@@ -101,12 +101,11 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     setShowLabels(attributes.getBoolean(R.styleable.WidgetView_showLabels, true));
                     setShowValue(attributes.getBoolean(R.styleable.WidgetView_showValue, true));
                     fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
-                    MainActivity.debug("Creating a new: "+widget+" --> "+ fieldSID);
                     repaint();
                 }
                 else
                 {
-                    MainActivity.debug("Widgetindex is wrong!? --> "+widgetIndex);
+                    MainActivity.debug("Widgetindex "+widgetIndex+" is wrong!? Not registered in <WidgetView>?");
                 }
             }
             catch(Exception e)
@@ -259,6 +258,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
             catch (InterruptedException e)
             {
             	// ignore any error
+                e.printStackTrace();
             }
         }
         // set it to null, so that a new one can be created in case of a resume

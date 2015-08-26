@@ -339,7 +339,15 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-        reconnect();
+        debug("BT: in onResume()");
+
+        // only reconnect if we are not connected yet
+        if(btSocket!=null) {
+            if (!btSocket.isConnected())
+                reconnect();
+        }
+        else
+            reconnect();
     }
 
     @Override
@@ -348,15 +356,15 @@ public class MainActivity extends AppCompatActivity {
 
         debug("BT: in onPause()");
 
-        try
-        {
-            // close the socket
-            if(btSocket!=null)
-                btSocket.close();
-        }
-        catch (IOException e2)
-        {
-            errorExit("Fatal Error", "In onPause() and failed to close socket." + e2.getMessage() + ".");
+        if(isFinishing()) {
+            try {
+                debug("BT: closing");
+                // close the socket
+                if (btSocket != null)
+                    btSocket.close();
+            } catch (IOException e2) {
+                errorExit("Fatal Error", "In onPause() and failed to close socket." + e2.getMessage() + ".");
+            }
         }
     }
 
