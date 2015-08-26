@@ -98,17 +98,17 @@ public class DrawSurface extends SurfaceView implements SurfaceHolder.Callback {
 		    case MotionEvent.ACTION_DOWN:
 		    case MotionEvent.ACTION_POINTER_DOWN:
 		    case MotionEvent.ACTION_MOVE: {
-			    // TODO use data
+
 			    break;
 		    }
 		    /*case MotionEvent.ACTION_MOVE: { // a pointer was moved
-		    	// TODO use data
+
 			    break;
 		    }*/
 		    case MotionEvent.ACTION_UP:
 		    case MotionEvent.ACTION_POINTER_UP:
 		    case MotionEvent.ACTION_CANCEL: {
-		    	// TODO use data
+
 		    	break;
 		    }
 	    }
@@ -121,7 +121,7 @@ public class DrawSurface extends SurfaceView implements SurfaceHolder.Callback {
 
 	@Override
 	public void surfaceChanged(SurfaceHolder arg0, int arg1, int arg2, int arg3) {
-		// TODO Auto-generated method stub
+
 	}
 
 	@Override

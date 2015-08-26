@@ -157,17 +157,17 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                 break;
             }
 		    case MotionEvent.ACTION_MOVE: {
-			    // TODO use data
+
 			    break;
 		    }
 		    /*case MotionEvent.ACTION_MOVE: { // a pointer was moved
-		    	// TODO use data
+
 			    break;
 		    }*/
 		    case MotionEvent.ACTION_UP:
 		    case MotionEvent.ACTION_POINTER_UP:
 		    case MotionEvent.ACTION_CANCEL: {
-		    	// TODO use data
+
 		    	break;
 		    }
 	    }
@@ -180,7 +180,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 
 	@Override
 	public void surfaceChanged(SurfaceHolder arg0, int arg1, int arg2, int arg3) {
-		// TODO Auto-generated method stub
+
 	}
 
 	@Override
