@@ -3,7 +3,10 @@ package lu.fisch.canze;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
@@ -23,6 +26,8 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 import lu.fisch.can.Fields;
@@ -64,9 +69,58 @@ public class MainActivity extends AppCompatActivity {
     private int count;
     private long start;
 
+    private boolean connected = false;
+
     private Drawables drawables = new Drawables();
     private Fields fields = new Fields();
     private Stack stack = new Stack();
+
+    //The BroadcastReceiver that listens for bluetooth broadcasts
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                //Device found
+            }
+            else if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
+                //Device is now connected
+                debug("BT: connected");
+                setTitle(TAG + " - connected to <" + deviceName + "@" + deviceAddress + ">");
+                connected=true;
+            }
+            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
+                //Done searching
+            }
+            else if (BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED.equals(action)) {
+                //Device is about to disconnect
+            }
+            else if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
+                //Device has disconnected
+                setTitle(TAG + " - disconnected");
+                debug("BT: disconnected");
+                connected=false;
+                // start a timer trying to reconnect
+                final Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+
+                    @Override
+                    public void run() {
+                        // canel timer if we are connected again
+                        if(connected)
+                            timer.cancel();
+                        else {
+                            // try to reconnect
+                            debug("BT: trying to re-connect");
+                            reconnect();
+                        }
+                    }
+                }, 100,5000);
+            }
+        }
+    };
 
     public static void debug(String text)
     {
@@ -104,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTitle("CanZE - not connected");
+        setTitle(TAG+" - not connected");
 
         // load settings
         loadSettings();
@@ -196,7 +250,14 @@ public class MainActivity extends AppCompatActivity {
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         // check it's state
         checkBTState();
-    }
+
+        // register for bluetooth changes
+        IntentFilter filter1 = new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED);
+        IntentFilter filter2 = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED);
+        IntentFilter filter3 = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+        this.registerReceiver(mReceiver, filter1);
+        this.registerReceiver(mReceiver, filter2);
+        this.registerReceiver(mReceiver, filter3);    }
 
     /**
      * Create a new bluetooth socket on a given device
@@ -226,10 +287,8 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
+    private void reconnect()
+    {
         debug("BT: onResume - try connect");
 
         if(deviceAddress==null)
@@ -260,7 +319,7 @@ public class MainActivity extends AppCompatActivity {
         debug("BT: connecting");
         try {
             btSocket.connect();
-            debug("BT:  connection ok");
+            debug("BT: connection ok");
         } catch (IOException e) {
             try {
                 btSocket.close();
@@ -274,8 +333,13 @@ public class MainActivity extends AppCompatActivity {
 
         mConnectedThread = new ConnectedThread(btSocket,h);
         mConnectedThread.start();
+    }
 
-        setTitle("CanZE - connected to <"+deviceName+"@"+deviceAddress+">");
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        reconnect();
     }
 
     @Override
@@ -343,5 +407,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
 }

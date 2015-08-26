@@ -30,6 +30,8 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 	private Drawable drawable = null;
     private String fieldSID = "";
 
+    private boolean clickable = true;
+
     // for data sharing
     public static Drawable selectedDrawable = null;
 
@@ -48,7 +50,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 
 	public WidgetView(Context context) {
 		super(context);
-		init(context,null);
+		init(context, null);
 	}
 
 	public WidgetView(Context context, AttributeSet attrs) {
@@ -151,9 +153,11 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 	    switch (maskedAction) {
 		    case MotionEvent.ACTION_DOWN:
 		    case MotionEvent.ACTION_POINTER_DOWN:{
-                Intent intent = new Intent(this.getContext(), WidgetActivity.class);
-                selectedDrawable=this.getDrawable();
-                this.getContext().startActivity(intent);
+                if(clickable) {
+                    Intent intent = new Intent(this.getContext(), WidgetActivity.class);
+                    selectedDrawable = this.getDrawable();
+                    this.getContext().startActivity(intent);
+                }
                 break;
             }
 		    case MotionEvent.ACTION_MOVE: {
@@ -270,9 +274,19 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
         return fieldSID;
     }
 
+    @Override
+    public boolean isClickable() {
+        return clickable;
+    }
+
+    @Override
+    public void setClickable(boolean clickable) {
+        this.clickable = clickable;
+    }
+
     /* *************************************
-     * Deleguations
-     * *************************************/
+         * Deleguations
+         * *************************************/
 	public void setMin(int min) {
         if(drawable!=null)
             drawable.setMin(min);
@@ -307,4 +321,6 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
         if(drawable!=null)
             drawable.setShowValue(showValue);
     }
+
+
 }

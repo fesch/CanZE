@@ -15,6 +15,7 @@ public class WidgetActivity extends AppCompatActivity {
         setContentView(R.layout.activity_widget);
 
         WidgetView wv = (WidgetView) findViewById(R.id.selectedWidget);
+        wv.setClickable(false);
         if(WidgetView.selectedDrawable!=null) {
             wv.setDrawable(WidgetView.selectedDrawable);
             setTitle(WidgetView.selectedDrawable.getTitle());
