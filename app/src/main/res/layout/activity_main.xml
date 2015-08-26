@@ -1,0 +1,145 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    tools:context=".MainActivity"
+    android:stretchColumns="3"
+    android:id="@+id/table"
+    >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <lu.fisch.can.widgets.WidgetView
+            android:id="@+id/accelerationPedal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            custom:min="0"
+            custom:max="1000"
+            custom:majorTicks="100"
+            custom:minorTicks="50"
+            custom:fieldSID="186.40"
+            custom:widget="tacho"
+            custom:text="Acceleration pedal"
+            />
+
+        <lu.fisch.can.widgets.WidgetView
+            android:id="@+id/speed"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            custom:min="0"
+            custom:max="140"
+            custom:majorTicks="10"
+            custom:minorTicks="5"
+            custom:fieldSID="186.0"
+            custom:widget="tacho"
+            custom:text="Speed (km/h)"
+            />
+
+        <lu.fisch.can.widgets.WidgetView
+            android:id="@+id/SOC"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            custom:min="0"
+            custom:max="100"
+            custom:majorTicks="10"
+            custom:minorTicks="5"
+            custom:fieldSID="42e.0"
+            custom:widget="tacho"
+            custom:text="State of charge (%)"
+            />
+
+
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <lu.fisch.can.widgets.WidgetView
+            android:id="@+id/steering"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            custom:min="-0x1000"
+            custom:max="0x1000"
+            custom:majorTicks="0x500"
+            custom:minorTicks="0"
+            custom:showLabels="false"
+            custom:showValue="false"
+            custom:fieldSID="c6.0"
+            custom:widget="kompass"
+            custom:text="Steering position"
+            />
+
+        <lu.fisch.can.widgets.WidgetView
+            android:id="@+id/consumption"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            custom:min="-43"
+            custom:max="43"
+            custom:majorTicks="10"
+            custom:minorTicks="5"
+            custom:fieldSID="1fd.48"
+            custom:widget="kompass"
+            custom:text="Consumption (kw)"
+            />
+
+        <lu.fisch.can.widgets.WidgetView
+            android:id="@+id/recup"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            custom:min="0"
+            custom:max="45"
+            custom:majorTicks="5"
+            custom:minorTicks="0"
+            custom:fieldSID="18a.31"
+            custom:widget="tacho"
+            custom:text="Regeneration (kw)"
+            />
+
+    </TableRow>
+
+    <!--
+    <lu.fisch.canze.DrawSurface
+        android:id="@+id/drawpanel"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp" />
+        -->
+
+</TableLayout>
