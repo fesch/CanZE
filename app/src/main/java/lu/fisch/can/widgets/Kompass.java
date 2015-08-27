@@ -6,7 +6,6 @@ import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
 import lu.fisch.awt.Polygon;
 import lu.fisch.can.interfaces.DrawSurfaceInterface;
-import lu.fisch.canze.DrawSurface;
 
 /**
  *
@@ -43,6 +42,10 @@ public class Kompass extends Tacho {
     @Override
     public void draw(Graphics g)
     {
+        // clean the surface
+            g.setColor(Color.WHITE);
+            g.fillRect(0,0,getWidth(),getHeight());
+
         g.setTextSize(12);
 
         double alpha = (360-angle)/2.;

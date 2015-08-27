@@ -3,6 +3,7 @@ package lu.fisch.canze;
 import java.util.Calendar;
 
 import lu.fisch.awt.Graphics;
+import lu.fisch.can.widgets.Drawable;
 import lu.fisch.can.widgets.Drawables;
 import lu.fisch.canze.MainActivity;
 import android.content.Context;
@@ -26,7 +27,7 @@ public class DrawThread extends Thread {
     // indicates weather we are running or not
     private boolean running = false;
     
-    private Drawables drawables = new Drawables();
+    private Drawable drawable = null;
 
     public DrawThread(SurfaceHolder surfaceHolder, 
 			  Context context,
@@ -38,9 +39,9 @@ public class DrawThread extends Thread {
 		mContext = context;
 	}
     
-    public void setDrawables(Drawables items)
+    public void setDrawable(Drawable item)
     {
-    	this.drawables =items;
+    	this.drawable =item;
     }
     
     
@@ -56,7 +57,7 @@ public class DrawThread extends Thread {
 			paint.setColor(Color.WHITE);
 			c.drawRect(0, 0, c.getWidth(), c.getHeight(), paint);
 
-			drawables.draw(new Graphics(c));
+			drawable.draw(new Graphics(c));
 			
 			//Log.w(MainActivity.TAG, Calendar.getInstance().getTimeInMillis() + " -> Items = " + drawables.size());
 

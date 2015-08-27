@@ -10,8 +10,6 @@ import lu.fisch.awt.Graphics;
 import lu.fisch.awt.Polygon;
 import lu.fisch.can.Field;
 import lu.fisch.can.interfaces.DrawSurfaceInterface;
-import lu.fisch.canze.DrawSurface;
-import lu.fisch.canze.MainActivity;
 
 /**
  *
@@ -46,6 +44,10 @@ public class Tacho extends Drawable {
 
     public void draw(Graphics g)
     {
+        // clean the surface
+            g.setColor(Color.WHITE);
+            g.fillRect(0,0,getWidth(),getHeight());
+
         g.setTextSize(12);
 
         double alpha = (360-angle)/2.;

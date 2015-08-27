@@ -38,8 +38,8 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 	public void setDrawable(Drawable drawable)
     {
         this.drawable=drawable;
-        if(drawable.getDrawSurface()==null)
-            drawable.setDrawSurface(this);
+        //if(drawable.getDrawSurface()==null)
+        drawable.setDrawSurface(this);
         repaint();
     }
 
@@ -195,30 +195,32 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 
 	public void repaint()
 	{
-        System.gc();
+        if(drawThread==null || !drawThread.isRunning())
+        {
+            System.gc();
 
-		// post a task to the UI thread
-		this.post(new Runnable() {
-            @Override
-            public void run() {
-                // create a new drawThread
-                drawThread = new DrawThread(getHolder(), getContext(), new Handler() {
-                    @Override
-                    public void handleMessage(Message m) {
+            // post a task to the UI thread
+            this.post(new Runnable() {
+                @Override
+                public void run() {
+                    // create a new drawThread
+                    drawThread = new DrawThread(getHolder(), getContext(), new Handler() {
+                        @Override
+                        public void handleMessage(Message m) {
+                        }
+                    });
+                    // call the setter for the pointer to the model
+                    if (drawable != null) {
+                        drawable.setWidth(getWidth());
+                        drawable.setHeight(getHeight());
+                        drawThread.setDrawable(drawable);
                     }
-                });
-                // call the setter for the pointer to the model
-                if (drawable != null) {
-                    Drawables drawables = new Drawables();
-                    drawables.add(drawable);
-                    drawable.setWidth(getWidth());
-                    drawable.setHeight(getHeight());
-                    drawThread.setDrawables(drawables);
+                    // start the thread
+                    drawThread.start();
                 }
-                // start the thread
-                drawThread.start();
-            }
-        });
+            });
+        }
+
 		/*
 		// determine if we need to create a new drawing thread
 		boolean createNew = false;

@@ -57,12 +57,6 @@ public class MainActivity extends AppCompatActivity {
     public final static int REQUEST_ENABLE_BT = 3;
     public final static int SETTINGS_ACTIVITY = 7;
 
-    private ListView lv;
-    private TextView txtArduino;
-    private TextView txtFreq;
-    private Button resetButton;
-    private DrawSurface drawSurface;
-
     private StringBuilder sb = new StringBuilder();
     private String buffer = "";
 
@@ -72,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean connected = false;
 
     private Drawables drawables = new Drawables();
-    private Fields fields = new Fields();
-    private Stack stack = new Stack();
+    private static Fields fields = new Fields();
+    private static Stack stack = new Stack();
 
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -187,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (msg.what) {
                     // if recieve a massage
                     case RECIEVE_MESSAGE:
+                        //debug("Got message ...");
                         // get the raw data
                         byte[] readBuf = (byte[]) msg.obj;
                         // create string from bytes array
@@ -348,6 +343,16 @@ public class MainActivity extends AppCompatActivity {
         }
         else
             reconnect();
+
+        // re-connect the widgets to the respective fields
+        WidgetView wv;
+        ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
+        for(int i=0; i<widgets.size(); i++)
+        {
+            wv = widgets.get(i);
+            wv.getDrawable().setDrawSurface(wv);
+        }
+
     }
 
     @Override
