@@ -33,14 +33,14 @@ public class Fields implements StackListener {
 
     public void fillStatic()
     {
-        String fieldDef =
+        String fieldDef = // startBit, endBit, divider, multiplier, offset, decimals, format
                  "0x0c6, 0, 15, 1, 1, 0x8000, 0, Steering pos:%5ld, \n"
                 +"0x0c6, 16, 29, 1, 1, 0x2000, 0, Steering ac: %5ld, \n"
                 +"0x12e, 0, 7, 1, 1, 198, 0, Accel F/R: %4ld, \n"
                 +"0x12e, 8, 23, 1, 1, 0x8000, 0, Incl: %4ld, \n"
                 +"0x12e, 24, 35, 1, 1, 0x800, 0, Accel L/R: %4ld, \n"
                 +"0x17e, 50, 51, 1, 1, 0, 0, Gear: %4ld, \n"
-                +"0x186, 0, 11, 4, 1, 0, 10, Speed(c): %3ld.%02ld, km/h\n"
+                +"0x186, 0, 11, 4, 1, 10, 10, Speed(c): %3ld.%02ld, km/h\n"
                 +"0x186, 16, 27, 1, 1, 0, 0, Accel(a): %4ld, \n"
                 +"0x186, 28, 39, 1, 1, 0, 0, Accel(b): %4ld, \n"
                 +"0x186, 40, 49, 1, 1, 0, 0, Pedal: %4ld, \n"

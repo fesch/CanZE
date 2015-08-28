@@ -92,6 +92,7 @@
             custom:showLabels="false"
             custom:showValue="false"
             custom:fieldSID="c6.0"
+            custom:isInverted="true"
             custom:widget="kompass"
             custom:text="Steering position"
             />

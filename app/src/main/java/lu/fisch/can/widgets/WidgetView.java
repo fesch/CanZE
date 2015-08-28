@@ -100,6 +100,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     setTitle(attributes.getString(R.styleable.WidgetView_text));
                     setShowLabels(attributes.getBoolean(R.styleable.WidgetView_showLabels, true));
                     setShowValue(attributes.getBoolean(R.styleable.WidgetView_showValue, true));
+                    setInverted(attributes.getBoolean(R.styleable.WidgetView_isInverted, false));
                     fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
                     repaint();
                 }
@@ -276,6 +277,11 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
         return fieldSID;
     }
 
+    public String getFieldID()
+    {
+        return fieldSID.substring(0,fieldSID.indexOf('.'));
+    }
+
     @Override
     public boolean isClickable() {
         return clickable;
@@ -287,8 +293,8 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
     }
 
     /* *************************************
-         * Deleguations
-         * *************************************/
+     * Deleguations
+     * *************************************/
 	public void setMin(int min) {
         if(drawable!=null)
             drawable.setMin(min);
@@ -324,5 +330,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
             drawable.setShowValue(showValue);
     }
 
-
+    public void setInverted(boolean inverted) {
+        drawable.setInverted(inverted);
+    }
 }

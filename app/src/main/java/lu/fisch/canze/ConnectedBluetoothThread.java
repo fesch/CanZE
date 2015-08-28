@@ -11,13 +11,13 @@ import java.io.OutputStream;
 /**
  * Created by robertfisch on 14.08.2015.
  */
-public class ConnectedThread extends Thread {
+public class ConnectedBluetoothThread extends Thread {
 
     private final InputStream mmInStream;
     private final OutputStream mmOutStream;
     private Handler h;
 
-    public ConnectedThread(BluetoothSocket socket, Handler h) {
+    public ConnectedBluetoothThread(BluetoothSocket socket, Handler h) {
         this.h=h;
 
         InputStream tmpIn = null;
@@ -52,12 +52,12 @@ public class ConnectedThread extends Thread {
 
     /* Call this from the main activity to send data to the remote device */
     public void write(String message) {
-        Log.d(MainActivity.TAG, "...Data to send: " + message + "...");
+        Log.d(MainActivity.TAG, "BT: send > " + message);
         byte[] msgBuffer = message.getBytes();
         try {
             mmOutStream.write(msgBuffer);
         } catch (IOException e) {
-            Log.d(MainActivity.TAG, "...Error data send: " + e.getMessage() + "...");
+            Log.d(MainActivity.TAG, "BT: Error sending > " + e.getMessage());
         }
     }
 }

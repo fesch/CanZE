@@ -13,8 +13,6 @@ import lu.fisch.can.interfaces.DrawSurfaceInterface;
  */
 public class Kompass extends Tacho {
 
-    protected boolean inverted = false;
-
     public Kompass() {
         super();
     }
@@ -201,7 +199,8 @@ public class Kompass extends Tacho {
             //g.setColor(Color.BLACK);
             //g.drawRect(tx - 1, ty - th, tw + 7, th +5);
             g.setColor(Color.GREEN_DARK);
-            g.drawString(value+"",tx,ty);
+            if(field!=null)
+                g.drawString(String.format("%."+(String.valueOf(field.getDecimals()).length()-1)+"f",field.getValue()),tx,ty);
         }
         // draw the title
         if(title!=null && !title.equals(""))
@@ -217,11 +216,4 @@ public class Kompass extends Tacho {
     }
 
 
-    public boolean isInverted() {
-        return inverted;
-    }
-
-    public void setInverted(boolean inverted) {
-        this.inverted = inverted;
-    }
 }

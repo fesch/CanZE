@@ -7,6 +7,7 @@ import android.graphics.Point;
 
 import lu.fisch.awt.Graphics;
 import lu.fisch.awt.Rectangle;
+import lu.fisch.can.Field;
 import lu.fisch.can.aligner.Space;
 import lu.fisch.can.interfaces.DrawSurfaceInterface;
 import lu.fisch.can.interfaces.FieldListener;
@@ -23,7 +24,9 @@ public abstract class Drawable implements Space, FieldListener {
     protected int minorTicks = 2;
     protected boolean showLabels = true;
     protected boolean showValue = true;
+    protected boolean inverted = false;
     protected int value = 0;
+    protected Field field = null;
     protected String title = "";
 
     protected DrawSurfaceInterface drawSurface = null;
@@ -45,6 +48,14 @@ public abstract class Drawable implements Space, FieldListener {
     protected double mkRad(double degree)
     {
         return degree/180.*Math.PI;
+    }
+
+    @Override
+    public void onFieldUpdateEvent(Field field) {
+        this.field=field;
+        setValue((int) field.getValue());
+        if(drawSurface!=null)
+            drawSurface.repaint();
     }
 
 
@@ -155,5 +166,13 @@ public abstract class Drawable implements Space, FieldListener {
 
     public void setShowValue(boolean showValue) {
         this.showValue = showValue;
+    }
+
+    public boolean isInverted() {
+        return inverted;
+    }
+
+    public void setInverted(boolean inverted) {
+        this.inverted = inverted;
     }
 }

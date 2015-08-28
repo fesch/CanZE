@@ -10,17 +10,15 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TableLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -32,9 +30,10 @@ import java.util.UUID;
 
 import lu.fisch.can.Fields;
 import lu.fisch.can.Stack;
-import lu.fisch.can.exeptions.NoDecoderException;
 import lu.fisch.can.widgets.Drawables;
 import lu.fisch.can.widgets.WidgetView;
+import lu.fisch.canze.lu.fisch.canze.readers.DataReader;
+import lu.fisch.canze.lu.fisch.canze.readers.DueReader;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "CanZE";
@@ -50,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BluetoothAdapter btAdapter = null;
     private BluetoothSocket btSocket = null;
-    private ConnectedThread mConnectedThread;
-    private Handler h;
+    private ConnectedBluetoothThread mConnectedBluetoothThread;
 
     public final static int RECIEVE_MESSAGE = 1;
     public final static int REQUEST_ENABLE_BT = 3;
@@ -69,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
     private static Fields fields = new Fields();
     private static Stack stack = new Stack();
 
+    private DataReader reader = null;
+
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
@@ -84,6 +84,19 @@ public class MainActivity extends AppCompatActivity {
                 debug("BT: connected");
                 setTitle(TAG + " - connected to <" + deviceName + "@" + deviceAddress + ">");
                 connected=true;
+
+                // apply filters
+                WidgetView wv;
+                ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
+                for(int i=0; i<widgets.size(); i++)
+                {
+                    wv = widgets.get(i);
+                    if(reader!=null)
+                    {
+                        reader.addFilter(wv.getFieldID());
+                    }
+                }
+
             }
             else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                 //Done searching
@@ -173,78 +186,8 @@ public class MainActivity extends AppCompatActivity {
         // link the fields to the stack
         stack.addListener(fields);
 
-        // this is the handler that is being executed when data from
-        // the bluetooth device is being received
-        h = new Handler() {
-            @Override
-            public void handleMessage(android.os.Message msg) {
-                switch (msg.what) {
-                    // if recieve a massage
-                    case RECIEVE_MESSAGE:
-                        //debug("Got message ...");
-                        // get the raw data
-                        byte[] readBuf = (byte[]) msg.obj;
-                        // create string from bytes array
-                        String strIncom = new String(readBuf, 0, msg.arg1);
-                        // add it to the buffer
-                        buffer += strIncom;
-                        // split up the buffer using either space separator
-                        String[] lines = {};
-                        if(buffer.contains("|"))
-                        {
-                            lines=buffer.split("\\|");
-                            // when the last symbol in the buffer if the separator, it will be cut of,
-                            // but as we will not process the last message and save it for later usage,
-                            // we need to add it again, if needed.
-                            if(lines.length>0 && buffer.endsWith("|"))
-                                lines[lines.length-1]+="|";
-                        }
-                        else if(buffer.contains("\r\n"))
-                        {
-                            lines=buffer.split("\r\n");
-                            // when the last symbol in the buffer if the separator, it will be cut of,
-                            // but as we will not process the last message and save it for later usage,
-                            // we need to add it again, if needed.
-                            if(lines.length>0 && buffer.endsWith("\r\n"))
-                                lines[lines.length-1]+="\r\n";
-                        }
-                        // now process each message, except the last one (mostly empty anyway)
-                        for(int i=0; i<lines.length-1; i++)
-                        {
-                            // stats
-                            /*
-                            if(count==0) start= Calendar.getInstance().getTimeInMillis();
-                            count++;
-                            double freg = (double) count/((Calendar.getInstance().getTimeInMillis()-start)/1000);
-                            txtFreq.setText("Message rate: "+freg);
-                            txtArduino.setText("Data from Arduino: " + lines[i]);
-                            */
-
-                            try
-                            {
-                                // process the message
-                                stack.process(lines[i].trim());
-                            }
-                            catch (NoDecoderException e)
-                            {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        // if there were some lines
-                        if(lines.length>0)
-                            // set the buffer to te last message (mostly empty anyway)
-                            buffer = lines[lines.length-1];
-                        else
-                            buffer="";
-                }
-            };
-        };
-
-        // get Bluetooth adapter
-        btAdapter = BluetoothAdapter.getDefaultAdapter();
-        // check it's state
-        checkBTState();
+        // create the reader/handler that evaluates the connection
+        reader = new DueReader(stack);
 
         // register for bluetooth changes
         IntentFilter filter1 = new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED);
@@ -252,7 +195,13 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter filter3 = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
         this.registerReceiver(mReceiver, filter1);
         this.registerReceiver(mReceiver, filter2);
-        this.registerReceiver(mReceiver, filter3);    }
+        this.registerReceiver(mReceiver, filter3);
+
+        // get Bluetooth adapter
+        btAdapter = BluetoothAdapter.getDefaultAdapter();
+        // check it's state
+        checkBTState();
+    }
 
     /**
      * Create a new bluetooth socket on a given device
@@ -263,7 +212,8 @@ public class MainActivity extends AppCompatActivity {
     private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
         if(Build.VERSION.SDK_INT >= 10){
             try {
-                final Method m = device.getClass().getMethod("createInsecureRfcommSocketToServiceRecord", new Class[] { UUID.class });
+                //final Method m = device.getClass().getMethod("createInsecureRfcommSocketToServiceRecord", new Class[] { UUID.class });
+                final Method m = device.getClass().getMethod("createRfcommSocketToServiceRecord", new Class[] { UUID.class });
                 return (BluetoothSocket) m.invoke(device, MY_UUID);
             } catch (Exception e) {
                 Log.e(TAG, "Could not create Insecure RFComm Connection", e);
@@ -326,8 +276,9 @@ public class MainActivity extends AppCompatActivity {
         // Create a data stream so we can talk to server.
         debug("BT: create socket");
 
-        mConnectedThread = new ConnectedThread(btSocket,h);
-        mConnectedThread.start();
+        mConnectedBluetoothThread = new ConnectedBluetoothThread(btSocket,reader);
+        reader.setConnectedBluetoothThread(mConnectedBluetoothThread);
+        mConnectedBluetoothThread.start();
     }
 
     @Override
@@ -364,6 +315,10 @@ public class MainActivity extends AppCompatActivity {
         if(isFinishing()) {
             try {
                 debug("BT: closing");
+
+                // remove filters
+                reader.clearFilters();
+
                 // close the socket
                 if (btSocket != null)
                     btSocket.close();
@@ -372,6 +327,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
     private void checkBTState() {
         // Check for Bluetooth support and then check to make sure it is turned on

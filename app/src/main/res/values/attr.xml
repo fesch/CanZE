@@ -7,6 +7,7 @@
         <attr name="minorTicks" format="integer" />
         <attr name="showLabels" format="boolean" />
         <attr name="showValue" format="boolean" />
+        <attr name="isInverted" format="boolean" />
         <attr name="fieldSID" format="string" />
         <attr name="widget" format="enum">
             <enum name="tacho" value="0"/>

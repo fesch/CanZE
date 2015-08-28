@@ -157,7 +157,8 @@ public class Tacho extends Drawable {
                 //g.setColor(Color.BLACK);
                 //g.drawRect(tx - 1, ty - th, tw + 7, th +5);
                 g.setColor(Color.GREEN_DARK);
-                g.drawString(value+"",tx,ty);
+                if(field!=null)
+                    g.drawString(String.format("%."+(String.valueOf(field.getDecimals()).length()-1)+"f",field.getValue()),tx,ty);
             }
         // draw the title
             if(title!=null && !title.equals(""))
@@ -195,12 +196,6 @@ public class Tacho extends Drawable {
         this.value = value;
     }
 
-    @Override
-    public void onFieldUpdateEvent(Field field) {
-        setValue((int) field.getValue());
-        if(drawSurface!=null)
-            drawSurface.repaint();
-    }
 
     
     

@@ -115,7 +115,6 @@ public class Field {
     
     /**
      * Notify all listeners synchronously
-     * @param frame     the frame to send 
      */
     private void notifyFieldListeners()
     {
@@ -124,7 +123,6 @@ public class Field {
 
     /**
      * Notify all listeners
-     * @param frame     the frame to send        
      * @param async     true for asynchronous notifications (one thread per listener)
      */
     private void notifyFieldListeners(boolean async)
