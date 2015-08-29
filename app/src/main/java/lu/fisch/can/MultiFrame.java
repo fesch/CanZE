@@ -45,7 +45,7 @@ public class MultiFrame extends Frame {
             sequence = Utils.getLastNibble(data[0]);
 
             // only the 7 last bytes are considered as payload
-            int[] newData = new int[7];
+            int[] newData = new int[data.length-1];
             for(int i=1; i<data.length; i++)
                 newData[i-1]=data[i];
             data = newData;

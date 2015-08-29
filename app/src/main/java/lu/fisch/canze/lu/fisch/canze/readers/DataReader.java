@@ -22,6 +22,16 @@ public abstract class DataReader extends Handler{
         this.stack=stack;
     }
 
+    public abstract void registerFilter(String filter);
+
+    public void registerFilters()
+    {
+        for(int i=0; i<filters.size(); i++)
+        {
+            registerFilter(filters.get(i));
+        }
+    }
+
     public void clearFilters()
     {
         filters.clear();
@@ -43,10 +53,10 @@ public abstract class DataReader extends Handler{
 
     public void setConnectedBluetoothThread(ConnectedBluetoothThread connectedBluetoothThread) {
         this.connectedBluetoothThread = connectedBluetoothThread;
+        initConnection();
         clearFilters();
     }
 
-
-
+    public abstract void initConnection();
 
 }

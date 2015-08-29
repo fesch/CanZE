@@ -97,14 +97,25 @@ public class DueReader extends DataReader {
     @Override
     public void addFilter(String filter) {
         super.addFilter(filter);
-        connectedBluetoothThread.write("f" + filter + "\n");
+        registerFilter(filter);
     }
 
     @Override
     public void removeFilter(String filter) {
         super.removeFilter(filter);
-        connectedBluetoothThread.write("r"+filter+"\n");
+        connectedBluetoothThread.write("r" + filter + "\n");
     }
+
+    public void registerFilter(String filter)
+    {
+        connectedBluetoothThread.write("f" + filter + "\n");
+    }
+
+    @Override
+    public void initConnection() {
+        // nothing to do here yet
+    }
+
 
 
 }

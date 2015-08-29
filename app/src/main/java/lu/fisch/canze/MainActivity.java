@@ -9,14 +9,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -34,6 +31,7 @@ import lu.fisch.can.widgets.Drawables;
 import lu.fisch.can.widgets.WidgetView;
 import lu.fisch.canze.lu.fisch.canze.readers.DataReader;
 import lu.fisch.canze.lu.fisch.canze.readers.DueReader;
+import lu.fisch.canze.lu.fisch.canze.readers.ElmReader;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "CanZE";
@@ -187,7 +185,8 @@ public class MainActivity extends AppCompatActivity {
         stack.addListener(fields);
 
         // create the reader/handler that evaluates the connection
-        reader = new DueReader(stack);
+        //reader = new DueReader(stack);
+        reader = new ElmReader(stack);
 
         // register for bluetooth changes
         IntentFilter filter1 = new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED);
@@ -234,7 +233,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void reconnect()
     {
-        debug("BT: onResume - try connect");
+        debug("BT: (re)connect");
+
+        if(btSocket!=null)
+        {
+            if (btSocket.isConnected())
+                try {
+                    btSocket.close();
+                } catch (IOException e) {
+                    debug("BT: error while disconnecting > " + e.getMessage());
+                }
+        }
 
         if(deviceAddress==null)
         {
@@ -304,6 +313,9 @@ public class MainActivity extends AppCompatActivity {
             wv.getDrawable().setDrawSurface(wv);
         }
 
+        // register all filters (to be sure ...)
+        reader.registerFilters();
+
     }
 
     @Override
@@ -371,6 +383,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
             startActivityForResult(intent,SETTINGS_ACTIVITY);
+            reconnect();
             return true;
         }
 

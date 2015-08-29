@@ -38,7 +38,7 @@ public class BOB implements Decoder {
             catch(Exception e)
             {
                 //e.printStackTrace();
-                Log.d(MainActivity.TAG,"Problematic line while decoding: "+text);
+                //Log.d(MainActivity.TAG,"Problematic line while decoding: "+text);
             }
         }
         return null;
