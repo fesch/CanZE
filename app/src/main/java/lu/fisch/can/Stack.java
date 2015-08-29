@@ -52,7 +52,20 @@ public class Stack {
         if (decoder == null) throw new NoDecoderException();
         return decoder;
     }
-    
+
+    private Decoder detectDecoder(int[] data) throws NoDecoderException
+    {
+        if(decoder!=null) return decoder;
+
+        String dataString = "";
+        for(int i=0; i<data.length; i++)
+            dataString += (char) data[i];
+
+        decoder = detectDecoder(dataString);
+
+        return decoder;
+    }
+
     /**
      * Test if a frame is a multi-frame
      * @param frame     the frame to be tested
@@ -120,7 +133,7 @@ public class Stack {
         Frame frame = null;
 
         try {
-            frame = detectDecoder(line).decode(line);
+            frame = detectDecoder(line).decodeFrame(line);
         }
         catch(Exception e)
         {
@@ -137,6 +150,26 @@ public class Stack {
 
         if(frame!=null)
             notifyStackListeners(frame);
+    }
+
+    public void process(int[] data) throws NoDecoderException
+    {
+        // decodeFrame the frame
+        ArrayList<Frame> frames = detectDecoder(data).process(data);
+
+        //MainActivity.debug("Frames = "+frames.size());
+
+        for(int i=0; i<frames.size(); i++)
+        {
+            Frame frame = frames.get(i);
+
+            // process and possibly discard or retain the frame
+            frame = process(frame);
+
+            // notify the listeners about if the precessed frame is OK
+            if(frame!=null)
+                notifyStackListeners(frame);
+        }
     }
 
     

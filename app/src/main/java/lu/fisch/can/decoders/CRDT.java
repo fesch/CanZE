@@ -3,9 +3,9 @@
  */
 package lu.fisch.can.decoders;
 
+import java.util.ArrayList;
+
 import lu.fisch.can.Frame;
-import lu.fisch.can.MultiFrame;
-import static lu.fisch.can.decoders.Utils.toByteArray;
 
 /**
  *
@@ -13,11 +13,14 @@ import static lu.fisch.can.decoders.Utils.toByteArray;
  */
 public class CRDT implements Decoder {
 
+    private String buffer = "";
+    private final String separator = "\n";
+
     @Override
-    public Frame decode(String text) {
+    public Frame decodeFrame(String text) {
         // split up the text
         String[] fields = text.split(" ");
-        if(fields.length>=4) {
+        if(fields.length>=3) {
             // get the timestamp
             long timestamp = Long.parseLong(fields[0]);
             // get the id
@@ -26,11 +29,45 @@ public class CRDT implements Decoder {
             String hexData = "";
             for (int i = 3; i < fields.length; i++)
                 hexData += fields[i];
-            int[] data = toByteArray(hexData.trim());
+            int[] data = Utils.toIntArray(hexData.trim());
             // create & return a new frame
             return new Frame(id, timestamp, data);
         }
         return null;
+    }
+
+    @Override
+    public ArrayList<Frame> process(int[] input) {
+        ArrayList<Frame> result = new ArrayList<>();
+
+        // add to buffer as characters
+        for(int i=0; i<input.length; i++)
+            buffer+= (char) input[i];
+
+        // split by <new line>
+        String[] messages = buffer.split(separator);
+        // let assume the last message is fine
+        int last = messages.length;
+        // but if it is not, do not consider it
+        if(!buffer.endsWith(separator)) last--;
+        // process each message
+        for(int i=0; i<last; i++)
+        {
+            // decode into a frame
+            Frame frame = decodeFrame(messages[i].trim());
+            // store if valid
+            if(frame!=null)
+                result.add(frame);
+        }
+        // adapt the buffer
+        if(!buffer.endsWith(separator))
+            // retain the last uncompleted message
+            buffer=messages[messages.length-1];
+        else
+            // empty the entire buffer
+            buffer="";
+        // we are done
+        return result;
     }
     
     /* --------------------------------
@@ -39,7 +76,7 @@ public class CRDT implements Decoder {
 
     public static void main(String[] args)
     {
-        Frame f = (new CRDT()).decode("0 R11 7bb 10 66 61 67 f0 f0 f0 f0");
+        Frame f = (new CRDT()).decodeFrame("0 R11 7bb 10 66 61 67 f0 f0 f0 f0");
         System.out.println(f);
     }
     

@@ -130,7 +130,7 @@ public class Frame {
     
     public static void main(String[] args)
     {
-        Frame f = (new CRDT()).decode("38265528 R11 657 c4 88");
+        Frame f = (new CRDT()).decodeFrame("38265528 R11 657 c4 88");
         System.out.println(f);
     }
 

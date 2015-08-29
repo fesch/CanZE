@@ -3,6 +3,8 @@
  */
 package lu.fisch.can.decoders;
 
+import java.util.ArrayList;
+
 import lu.fisch.can.Frame;
 
 /**
@@ -10,5 +12,6 @@ import lu.fisch.can.Frame;
  * @author robertfisch
  */
 public interface Decoder {
-    public Frame decode(String text);
+    public Frame decodeFrame(String line);
+    public ArrayList<Frame> process(int[] input);
 }

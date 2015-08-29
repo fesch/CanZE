@@ -8,6 +8,7 @@ package lu.fisch.canze.lu.fisch.canze.readers;
 import android.os.Handler;
 
 import lu.fisch.can.Stack;
+import lu.fisch.can.decoders.Utils;
 import lu.fisch.can.exeptions.NoDecoderException;
 import lu.fisch.canze.ConnectedBluetoothThread;
 import lu.fisch.canze.MainActivity;
@@ -32,6 +33,14 @@ public class DueReader extends DataReader {
                 //debug("Got message ...");
                 // get the raw data
                 byte[] readBuf = (byte[]) msg.obj;
+                // preocess data
+                try {
+                    stack.process(Utils.toIntArray(readBuf));
+                } catch (NoDecoderException e) {
+                    e.printStackTrace();
+                }
+
+                /*
                 // create string from bytes array
                 String strIncom = new String(readBuf, 0, msg.arg1);
                 // add it to the buffer
@@ -59,15 +68,6 @@ public class DueReader extends DataReader {
                 // now process each message, except the last one (mostly empty anyway)
                 for(int i=0; i<lines.length-1; i++)
                 {
-                    // stats
-                            /*
-                            if(count==0) start= Calendar.getInstance().getTimeInMillis();
-                            count++;
-                            double freg = (double) count/((Calendar.getInstance().getTimeInMillis()-start)/1000);
-                            txtFreq.setText("Message rate: "+freg);
-                            txtArduino.setText("Data from Arduino: " + lines[i]);
-                            */
-
                     try
                     {
                         // process the message
@@ -85,6 +85,7 @@ public class DueReader extends DataReader {
                     buffer = lines[lines.length-1];
                 else
                     buffer="";
+                */
         }
     }
 

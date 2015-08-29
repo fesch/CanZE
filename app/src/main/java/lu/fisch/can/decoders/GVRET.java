@@ -3,9 +3,9 @@
  */
 package lu.fisch.can.decoders;
 
+import java.util.ArrayList;
+
 import lu.fisch.can.Frame;
-import lu.fisch.can.MultiFrame;
-import static lu.fisch.can.decoders.Utils.toByteArray;
 
 /**
  *
@@ -14,7 +14,7 @@ import static lu.fisch.can.decoders.Utils.toByteArray;
 public class GVRET implements Decoder {
 
 
-    public Frame decode(int[] bin) {
+    public Frame decodeFrame(int[] bin) {
         // split up the text
         if(bin[0] == 0xf1 && bin[1] == 0x00 && bin[10] > 0) {
             // get the timestamp
@@ -30,6 +30,29 @@ public class GVRET implements Decoder {
         }
         return null;
     }
+
+    private int[] buffer = new int[0];
+
+    @Override
+    public Frame decodeFrame(String line) {
+        // not possible for this decoder
+        return null;
+    }
+
+    @Override
+    public ArrayList<Frame> process(int[] input) {
+        ArrayList<Frame> result = new ArrayList<>();
+
+        // add bytes to buffer
+        int[] newBuffer = new int[buffer.length+input.length];
+        for(int i=0; i<buffer.length; i++) newBuffer[i]=buffer[i];
+        for(int i=0; i<input.length; i++) newBuffer[buffer.length+i]=input[i];
+        buffer=newBuffer;
+
+        // TODO: find frames ...
+
+        return result;
+    }
     
     /* --------------------------------
      * Tests ...
@@ -37,18 +60,14 @@ public class GVRET implements Decoder {
 
     public static void main(String[] args)
     {
-        Frame f = (new GVRET()).decode(new int[]{
-            0xf1, 0,                         // receive frame
-            0x02, 0x01, 0x00, 0x00,          // timestamp
-            0xbb, 0x07, 0x00, 0x00,          // id
-            0x08,                            // length & bus
-            0x10, 0x66, 0x61, 0x67,          // data
-            0xf0, 0xf0, 0xf0, 0xf0});
+        Frame f = (new GVRET()).decodeFrame(new int[]{
+                0xf1, 0,                         // receive frame
+                0x02, 0x01, 0x00, 0x00,          // timestamp
+                0xbb, 0x07, 0x00, 0x00,          // id
+                0x08,                            // length & bus
+                0x10, 0x66, 0x61, 0x67,          // data
+                0xf0, 0xf0, 0xf0, 0xf0});
         System.out.println(f);
     }
 
-    @Override
-    public Frame decode(String text) {
-        return null;
-    }
 }

@@ -185,8 +185,8 @@ public class MainActivity extends AppCompatActivity {
         stack.addListener(fields);
 
         // create the reader/handler that evaluates the connection
-        //reader = new DueReader(stack);
-        reader = new ElmReader(stack);
+        reader = new DueReader(stack);
+        //reader = new ElmReader(stack);
 
         // register for bluetooth changes
         IntentFilter filter1 = new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED);

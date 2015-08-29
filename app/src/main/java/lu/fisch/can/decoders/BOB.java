@@ -5,11 +5,9 @@ package lu.fisch.can.decoders;
 
 import android.util.Log;
 
-import lu.fisch.can.Frame;
-import lu.fisch.can.MultiFrame;
-import lu.fisch.canze.MainActivity;
+import java.util.ArrayList;
 
-import static lu.fisch.can.decoders.Utils.toByteArray;
+import lu.fisch.can.Frame;
 
 /**
  *
@@ -17,8 +15,11 @@ import static lu.fisch.can.decoders.Utils.toByteArray;
  */
 public class BOB implements Decoder {
 
+    private String buffer = "";
+    private final String separator = "\n";
+
     @Override
-    public Frame decode(String text) {
+    public Frame decodeFrame(String text) {
         // split up the fields
         String[] pieces = text.split(",");
         if(pieces.length>=2) {
@@ -26,22 +27,50 @@ public class BOB implements Decoder {
                 // get the id
                 int id = Integer.parseInt(pieces[0], 16);
                 // get the data
-                int[] data = toByteArray(pieces[1].trim());
+                int[] data = Utils.toIntArray(pieces[1].trim());
                 // create and return new frame
-                Frame frame = new Frame(id, data);
-
-                if(pieces.length>=3)
-                    frame.setRate(Double.valueOf(pieces[2]));
-
-                return frame;
+                return new Frame(id, data);
             }
             catch(Exception e)
             {
-                //e.printStackTrace();
-                //Log.d(MainActivity.TAG,"Problematic line while decoding: "+text);
+                return null;
             }
         }
         return null;
+    }
+
+    @Override
+    public ArrayList<Frame> process(int[] input) {
+        ArrayList<Frame> result = new ArrayList<>();
+
+        // add to buffer as characters
+        for(int i=0; i<input.length; i++)
+            buffer+= (char) input[i];
+
+        // split by <new line>
+        String[] messages = buffer.split(separator);
+        // let assume the last message is fine
+        int last = messages.length;
+        // but if it is not, do not consider it
+        if(!buffer.endsWith(separator)) last--;
+        // process each message
+        for(int i=0; i<last; i++)
+        {
+            // decode into a frame
+            Frame frame = decodeFrame(messages[i].trim());
+            // store if valid
+            if(frame!=null)
+                result.add(frame);
+        }
+        // adapt the buffer
+        if(!buffer.endsWith(separator))
+            // retain the last uncompleted message
+            buffer=messages[messages.length-1];
+        else
+            // empty the entire buffer
+            buffer="";
+        // we are done
+        return result;
     }
     
     /* --------------------------------
@@ -50,7 +79,7 @@ public class BOB implements Decoder {
 
     public static void main(String[] args)
     {
-        Frame f = (new BOB()).decode("7bb,10666167f0f0f0f0");
+        Frame f = (new BOB()).decodeFrame("7bb,10666167f0f0f0f0");
         System.out.println(f);
     }
     

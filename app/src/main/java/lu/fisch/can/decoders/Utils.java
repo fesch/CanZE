@@ -15,13 +15,21 @@ public class Utils {
      * @param hexString     the hexadecimal string
      * @return 
      */
-    public static int[] toByteArray(String hexString) throws IllegalArgumentException
+    public static int[] toIntArray(String hexString) throws IllegalArgumentException
     {
         // make shure the string has an even length
         // cut the last symbol if length is odd
         if(hexString.length()%2==1) hexString=hexString.substring(0, hexString.length()-1);
         return parseHexBinary(hexString);
-    } 
+    }
+
+    public static int[] toIntArray(byte[] byteArray)
+    {
+        int[] toIntArray = new int[byteArray.length];
+        for(int i=0; i<byteArray.length; i++)
+            toIntArray[i]=(byteArray[i]<0?256+byteArray[i]:byteArray[i]);
+        return toIntArray;
+    }
     
     public static String get8Bit(int b)
     {
