@@ -40,7 +40,7 @@ public class Fields implements StackListener {
                 +"0x12e, 8, 23, 1, 1, 0x8000, 0, Incl: %4ld, \n"
                 +"0x12e, 24, 35, 1, 1, 0x800, 0, Accel L/R: %4ld, \n"
                 +"0x17e, 50, 51, 1, 1, 0, 0, Gear: %4ld, \n"
-                +"0x186, 0, 11, 1, 1, 405, 0, Speed(c): %3ld.%02ld, km/h\n"
+                +"0x186, 0, 9, 1, 1, 0, 10, Speed(c): %3ld.%02ld, km/h\n"
                 +"0x186, 16, 27, 1, 1, 0, 0, Accel(a): %4ld, \n"
                 +"0x186, 28, 39, 1, 1, 0, 0, Accel(b): %4ld, \n"
                 +"0x186, 40, 49, 1, 1, 0, 0, Pedal: %4ld, \n"

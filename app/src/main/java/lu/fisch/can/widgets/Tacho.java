@@ -10,6 +10,7 @@ import lu.fisch.awt.Graphics;
 import lu.fisch.awt.Polygon;
 import lu.fisch.can.Field;
 import lu.fisch.can.interfaces.DrawSurfaceInterface;
+import lu.fisch.canze.MainActivity;
 
 /**
  *
@@ -64,7 +65,7 @@ public class Tacho extends Drawable {
         g.setColor(Color.BLACK);
         g.drawRect(x, y, width, height);
         // draw the frame
-            g.setColor(Color.GRAY);
+            g.setColor(Color.GRAY_DARK);
             double ax,ay,bx=0,by=0;
             // draw right arm
             ax = center.x+rayon*Math.cos(mkRad(-90+alpha));
@@ -91,7 +92,7 @@ public class Tacho extends Drawable {
             int actual = min;
         // draw the minor ticks
             if(minorTicks >0 || majorTicks>0) {
-                g.setColor(Color.GRAY);
+                g.setColor(Color.GRAY_DARK);
                 int toTicks = minorTicks;
                 if (toTicks == 0) toTicks = majorTicks;
                 double accel = dist / ((max - min) / toTicks);

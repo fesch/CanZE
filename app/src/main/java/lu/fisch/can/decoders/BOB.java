@@ -8,6 +8,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import lu.fisch.can.Frame;
+import lu.fisch.canze.MainActivity;
 
 /**
  *
@@ -16,13 +17,14 @@ import lu.fisch.can.Frame;
 public class BOB implements Decoder {
 
     private String buffer = "";
-    private final String separator = "\n";
+    private final String separator2 = "\\|"; // \r\n
+    private final String separator = "\r\n";
 
     @Override
     public Frame decodeFrame(String text) {
         // split up the fields
         String[] pieces = text.split(",");
-        if(pieces.length>=2) {
+        if(pieces.length==2) {
             try {
                 // get the id
                 int id = Integer.parseInt(pieces[0], 16);
@@ -30,6 +32,27 @@ public class BOB implements Decoder {
                 int[] data = Utils.toIntArray(pieces[1].trim());
                 // create and return new frame
                 return new Frame(id, data);
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+        }
+        else if(pieces.length==3) {
+            try {
+                // get the id
+                int id = Integer.parseInt(pieces[0], 16);
+                // get the data
+                int[] data = Utils.toIntArray(pieces[1].trim());
+                // get checksum
+                int chk = Integer.parseInt(pieces[2].trim(), 16);
+                int check = 0;
+                for(int i=0; i<data.length; i++)
+                    check ^= data[i];
+                // validate the checksum
+                if(chk==check)
+                    // create and return new frame
+                    return new Frame(id, data);
             }
             catch(Exception e)
             {
@@ -44,8 +67,9 @@ public class BOB implements Decoder {
         ArrayList<Frame> result = new ArrayList<>();
 
         // add to buffer as characters
-        for(int i=0; i<input.length; i++)
-            buffer+= (char) input[i];
+        for(int i=0; i<input.length; i++) {
+            buffer += (char) input[i];
+        }
 
         // split by <new line>
         String[] messages = buffer.split(separator);
@@ -57,6 +81,7 @@ public class BOB implements Decoder {
         for(int i=0; i<last; i++)
         {
             // decode into a frame
+            //MainActivity.debug(messages[i].trim());
             Frame frame = decodeFrame(messages[i].trim());
             // store if valid
             if(frame!=null)

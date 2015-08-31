@@ -6,6 +6,7 @@ package lu.fisch.can;
 
 import android.util.Log;
 
+import lu.fisch.can.decoders.GVRET;
 import lu.fisch.can.interfaces.StackListener;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public class Stack {
     
     private final HashMap<Integer,MultiFrame> frameStack = new HashMap<>();
     
-    private Decoder decoder = null;
+    private Decoder decoder = new CRDT();
 
     private int invalid = 0;
     
@@ -38,7 +39,7 @@ public class Stack {
      * @return          the decoder to be used
      * @throws NoDecoderException 
      */
-    private Decoder detectDecoder(String line) throws NoDecoderException
+    /*private Decoder detectDecoder(String line) throws NoDecoderException
     {
         if(decoder!=null) return decoder;
         // CRDT is space delimited and has at least 4 fields
@@ -60,11 +61,10 @@ public class Stack {
         String dataString = "";
         for(int i=0; i<data.length; i++)
             dataString += (char) data[i];
-
         decoder = detectDecoder(dataString);
 
         return decoder;
-    }
+    }*/
 
     /**
      * Test if a frame is a multi-frame
@@ -133,7 +133,7 @@ public class Stack {
         Frame frame = null;
 
         try {
-            frame = detectDecoder(line).decodeFrame(line);
+            frame = decoder.decodeFrame(line);
         }
         catch(Exception e)
         {
@@ -155,7 +155,7 @@ public class Stack {
     public void process(int[] data) throws NoDecoderException
     {
         // decodeFrame the frame
-        ArrayList<Frame> frames = detectDecoder(data).process(data);
+        ArrayList<Frame> frames = decoder.process(data);
 
         //MainActivity.debug("Frames = "+frames.size());
 
@@ -172,7 +172,12 @@ public class Stack {
         }
     }
 
-    
+    public void setDataFormat(String dataFormat) {
+        if(dataFormat.equals("crdt")) decoder=new CRDT();
+        else if(dataFormat.equals("bob")) decoder=new BOB();
+        else if(dataFormat.equals("gvret")) decoder=new GVRET();
+        else decoder=null;
+    }
     
     
     /* --------------------------------
@@ -251,8 +256,9 @@ public class Stack {
 
         f=s.process(new Frame(0x7bb, 0, new int[] {0x24,0xDD,0xF7,0x00,0xF5,0x22,0x41,0xF0}));
         System.out.println(f);
-    }      
-    
+    }
+
+
 }
 
 

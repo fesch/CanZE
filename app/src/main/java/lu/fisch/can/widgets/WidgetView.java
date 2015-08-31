@@ -3,6 +3,10 @@ package lu.fisch.can.widgets;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Point;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +19,7 @@ import android.view.WindowManager;
 
 import java.lang.reflect.Constructor;
 
+import lu.fisch.awt.Graphics;
 import lu.fisch.can.interfaces.DrawSurfaceInterface;
 import lu.fisch.canze.DrawThread;
 import lu.fisch.canze.MainActivity;
@@ -194,7 +199,36 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 		repaint();
 	}
 
-	public void repaint()
+    public void repaint() {
+        Canvas c = null;
+        try {
+            c = getHolder().lockCanvas();
+            if (c != null) {
+                c.setDrawFilter(new PaintFlagsDrawFilter(1, Paint.ANTI_ALIAS_FLAG));
+
+                // clean background
+                Paint paint = new Paint();
+                paint.setColor(Color.WHITE);
+                c.drawRect(0, 0, c.getWidth(), c.getHeight(), paint);
+                // draw what we need to draw
+                drawable.setWidth(getWidth());
+                drawable.setHeight(getHeight());
+                drawable.draw(new Graphics(c));
+            }
+        }
+        catch(Exception e)
+        {
+
+        }
+        finally
+        {
+            if (c != null) {
+                getHolder().unlockCanvasAndPost(c);
+            }
+        }
+    }
+
+	public void repaint2()
 	{
         if(drawThread==null || !drawThread.isRunning())
         {
@@ -255,7 +289,8 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
             try
             {
             	// wait for it to finish
-            	drawThread.join();
+                if(drawThread!=null && drawThread.isRunning())
+            	    drawThread.join();
                 retry = false;
             }
             catch (InterruptedException e)

@@ -82,7 +82,7 @@ public class DrawThread extends Thread {
         try 
         {
         	// get the surface
-            c = mSurfaceHolder.lockCanvas(null);
+            c = mSurfaceHolder.lockCanvas();
             synchronized (mSurfaceHolder) 
             {
             	if(c!=null)

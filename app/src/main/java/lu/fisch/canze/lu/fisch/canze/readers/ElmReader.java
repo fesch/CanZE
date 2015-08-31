@@ -132,7 +132,7 @@ public class ElmReader extends DataReader {
             // get filter ID
             String filter = filters.get(filterIndex);
             // atcra186 (substitute 186 by the hex code of the id)
-            sendAndWaitForAnswer("atcra" + filter,500);
+            sendAndWaitForAnswer("atcra" + filter,400);
             // atma     (wait for one answer line)
             String hexData = sendAndWaitForAnswer("atma",100);
             // atar     (stop output)

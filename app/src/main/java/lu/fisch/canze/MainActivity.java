@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     // MAC-address of Bluetooth module (you must edit this line)
     private static String deviceAddress = null;
     private static String deviceName = null;
+    private static String dataFormat = "crdt";
 
     //private BluetoothAdapter mBluetoothAdapter;
 
@@ -137,7 +138,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences("lu.fisch.canze.settings", 0);
         deviceAddress=settings.getString("deviceAddress", null);
         deviceName=settings.getString("deviceName", null);
-        debug("Loaded settings: device = " + deviceAddress);
+        dataFormat = settings.getString("dataFormat", "crdt");
+
+        // as the settings may have changed, we need to reload different things
+        stack.setDataFormat(dataFormat);
     }
 
     private ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)

@@ -29,7 +29,7 @@
             custom:min="0"
             custom:max="1000"
             custom:majorTicks="100"
-            custom:minorTicks="50"
+            custom:minorTicks="25"
             custom:fieldSID="186.40"
             custom:widget="tacho"
             custom:text="Acceleration pedal"
@@ -68,7 +68,6 @@
             custom:text="State of charge (%)"
             />
 
-
     </TableRow>
     <TableRow
         android:id="@+id/tableRow2"
@@ -87,7 +86,7 @@
             android:layout_marginBottom="8dp"
             custom:min="-0x1000"
             custom:max="0x1000"
-            custom:majorTicks="0x500"
+            custom:majorTicks="0x250"
             custom:minorTicks="0"
             custom:showLabels="false"
             custom:showValue="false"
@@ -108,7 +107,7 @@
             custom:min="-43"
             custom:max="43"
             custom:majorTicks="10"
-            custom:minorTicks="5"
+            custom:minorTicks="2"
             custom:fieldSID="1fd.48"
             custom:widget="kompass"
             custom:text="Consumption (kw)"
@@ -124,12 +123,12 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             custom:min="0"
-            custom:max="45"
-            custom:majorTicks="5"
-            custom:minorTicks="0"
-            custom:fieldSID="18a.31"
+            custom:max="160"
+            custom:majorTicks="10"
+            custom:minorTicks="5"
+            custom:fieldSID="654.42"
             custom:widget="tacho"
-            custom:text="Regeneration (kw)"
+            custom:text="Available distance (km)"
             />
 
     </TableRow>

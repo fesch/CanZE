@@ -11,10 +11,11 @@ public class Color
 	public static final Color BLACK 	= new Color(0,0,0);
 	public static final Color RED   	= new Color(255,0,0);
 	public static final Color GREEN   	= new Color(0,255,0);
-	public static final Color GREEN_DARK   	= new Color(0,128,0);
+	public static final Color GREEN_DARK= new Color(0,128,0);
 	public static final Color BLUE   	= new Color(0,0,255);
 	public static final Color GRAY   	= new Color(138,138,138);
 	public static final Color GRAY_LIGHT= new Color(204,204,204);
+	public static final Color GRAY_DARK = new Color(80,80,80);
 	public static final Color YELLOW	= new Color(255,255,128);
 	
 	public Color()

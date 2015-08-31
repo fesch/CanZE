@@ -13,6 +13,17 @@ import lu.fisch.can.Frame;
  */
 public class GVRET implements Decoder {
 
+    private static final int IDLE             = 0;
+    private static final int GET_COMMAND      = 1;
+    private static final int BUILD_CAN_FRAME  = 2;
+
+
+    private int rxState = IDLE;
+    private int rxStep;
+    private long timestamp;
+    private int id;
+    private int length;
+    private int[] dataBuf = new int[8];
 
     public Frame decodeFrame(int[] bin) {
         // split up the text
@@ -31,8 +42,6 @@ public class GVRET implements Decoder {
         return null;
     }
 
-    private int[] buffer = new int[0];
-
     @Override
     public Frame decodeFrame(String line) {
         // not possible for this decoder
@@ -43,15 +52,85 @@ public class GVRET implements Decoder {
     public ArrayList<Frame> process(int[] input) {
         ArrayList<Frame> result = new ArrayList<>();
 
-        // add bytes to buffer
-        int[] newBuffer = new int[buffer.length+input.length];
-        for(int i=0; i<buffer.length; i++) newBuffer[i]=buffer[i];
-        for(int i=0; i<input.length; i++) newBuffer[buffer.length+i]=input[i];
-        buffer=newBuffer;
-
-        // TODO: find frames ...
+        for(int i=0; i<input.length; i++)
+        {
+            Frame f = receiveCode(input[i]);
+            if(f!=null) result.add(f);
+        }
 
         return result;
+    }
+
+    public Frame receiveCode (int code) {
+        int dataidx;
+
+        switch (rxState) {
+            case IDLE:
+                if (code == 0xf1) rxState = GET_COMMAND;
+                break;
+            case GET_COMMAND:
+                switch (code) {
+                    case 0: //receiving a can frame
+                        rxState = BUILD_CAN_FRAME;
+                        rxStep = 0;
+                        break;
+                    default:
+                        rxState = IDLE;
+                        rxStep = 0;
+                        break;
+                }
+                break;
+
+            case BUILD_CAN_FRAME:
+                switch (rxStep) {
+                    case 0:
+                        timestamp = code;
+                        break;
+                    case 1:
+                        timestamp = timestamp + (code << 8);
+                        break;
+                    case 2:
+                        timestamp = timestamp + (code << 16);
+                        break;
+                    case 3:
+                        timestamp = timestamp + (code << 24);
+                        break;
+                    case 4:
+                        id = code;
+                        break;
+                    case 5:
+                        id = id + (code << 8);
+                        break;
+                    case 6:
+                        id = id + (code << 16);
+                        break;
+                    case 7:
+                        id = id + (code << 24);
+                        break;
+                    case 8:
+                        length = code & 0x07;
+                        break;
+                    default:
+                        if (rxStep < length + 9) {
+                            dataBuf[rxStep - 9] = code;
+                        } else {
+                            int[] data = new int[length];
+                            for (int i = 0; i < length; i++)
+                                data[i] += dataBuf[i];
+                            rxState = IDLE;
+                            rxStep = 0;
+                            return new Frame(id, timestamp, data);
+                        }
+                        break;
+                }
+                rxStep++;
+                break;
+
+            default:
+                break;
+
+        }
+        return null;
     }
     
     /* --------------------------------

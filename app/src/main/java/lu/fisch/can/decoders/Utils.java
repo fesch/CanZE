@@ -19,7 +19,7 @@ public class Utils {
     {
         // make shure the string has an even length
         // cut the last symbol if length is odd
-        if(hexString.length()%2==1) hexString=hexString.substring(0, hexString.length()-1);
+        //if(hexString.length()%2==1) hexString=hexString.substring(0, hexString.length()-1);
         return parseHexBinary(hexString);
     }
 

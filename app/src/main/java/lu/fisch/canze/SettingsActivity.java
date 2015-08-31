@@ -24,6 +24,27 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         tryTofillDeviceList();
+
+        // fill formats
+        SharedPreferences settings = getSharedPreferences("lu.fisch.canze.settings", 0);
+        String dataFormat=settings.getString("dataFormat", "crdt");
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        arrayAdapter.add("gvret");
+        arrayAdapter.add("crdt");
+        arrayAdapter.add("bob");
+
+        int index = 0;
+        if(dataFormat.equals("gvret")) index=0;
+        else if(dataFormat.equals("crdt")) index=1;
+        else if(dataFormat.equals("bob")) index=2;
+
+        // display the list
+        Spinner dataFormatList = (Spinner) findViewById(R.id.dataFormat);
+        dataFormatList.setAdapter(arrayAdapter);
+        // select the actual device
+        dataFormatList.setSelection(index);
+        dataFormatList.setSelected(true);
     }
 
     @Override
@@ -45,11 +66,13 @@ public class SettingsActivity extends AppCompatActivity {
             SharedPreferences settings = getSharedPreferences("lu.fisch.canze.settings", 0);
             SharedPreferences.Editor editor = settings.edit();
             Spinner deviceList = (Spinner) findViewById(R.id.deviceList);
+            Spinner dataFormatList = (Spinner) findViewById(R.id.dataFormat);
             if(deviceList.getSelectedItem()!=null) {
                 MainActivity.debug("Settings.deviceAddress = " + deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 MainActivity.debug("Settings.deviceName = " + deviceList.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("deviceAddress", deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 editor.putString("deviceName", deviceList.getSelectedItem().toString().split("\n")[0].trim());
+                editor.putString("dataFormat", dataFormatList.getSelectedItem().toString().split("\n")[0].trim());
             }
             editor.commit();
             // finish
