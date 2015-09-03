@@ -25,13 +25,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
-import lu.fisch.can.Fields;
-import lu.fisch.can.Stack;
-import lu.fisch.can.widgets.Drawables;
-import lu.fisch.can.widgets.WidgetView;
-import lu.fisch.canze.lu.fisch.canze.readers.DataReader;
-import lu.fisch.canze.lu.fisch.canze.readers.DueReader;
-import lu.fisch.canze.lu.fisch.canze.readers.ElmReader;
+import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.actors.Stack;
+import lu.fisch.canze.widgets.Drawables;
+import lu.fisch.canze.widgets.WidgetView;
+import lu.fisch.canze.readers.DataReader;
+import lu.fisch.canze.readers.DueReader;
+import lu.fisch.canze.readers.ElmReader;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "CanZE";
@@ -42,13 +42,14 @@ public class MainActivity extends AppCompatActivity {
     // MAC-address of Bluetooth module (you must edit this line)
     private static String deviceAddress = null;
     private static String deviceName = null;
-    private static String dataFormat = "crdt";
+    private static String dataFormat = "bob";
+    private static String device = "Arduino";
 
     //private BluetoothAdapter mBluetoothAdapter;
 
     private BluetoothAdapter btAdapter = null;
     private BluetoothSocket btSocket = null;
-    private ConnectedBluetoothThread mConnectedBluetoothThread;
+    private ConnectedBluetoothThread connectedBluetoothThread;
 
     public final static int RECIEVE_MESSAGE = 1;
     public final static int REQUEST_ENABLE_BT = 3;
@@ -79,23 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 //Device found
             }
             else if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
-                //Device is now connected
-                debug("BT: connected");
-                setTitle(TAG + " - connected to <" + deviceName + "@" + deviceAddress + ">");
-                connected=true;
-
-                // apply filters
-                WidgetView wv;
-                ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
-                for(int i=0; i<widgets.size(); i++)
-                {
-                    wv = widgets.get(i);
-                    if(reader!=null)
-                    {
-                        reader.addFilter(wv.getFieldID());
-                    }
-                }
-
+                // device connected
             }
             else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                 //Done searching
@@ -119,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                             timer.cancel();
                         else {
                             // try to reconnect
-                            debug("BT: trying to re-connect");
+                            debug("BT: trying to re-connect to <"+deviceName+"> on ("+deviceAddress+")");
                             reconnect();
                         }
                     }
@@ -139,9 +124,18 @@ public class MainActivity extends AppCompatActivity {
         deviceAddress=settings.getString("deviceAddress", null);
         deviceName=settings.getString("deviceName", null);
         dataFormat = settings.getString("dataFormat", "crdt");
+        device = settings.getString("device", "Arduino");
 
         // as the settings may have changed, we need to reload different things
-        stack.setDataFormat(dataFormat);
+            // pass the dataFormat to the stack
+            stack.setDataFormat(dataFormat);
+            // initialise a new dataReader
+            if(device.equals("Arduino")) reader=new DueReader(stack);
+            else if(device.equals("ELM327")) reader=new ElmReader(stack);
+            else reader=null;
+
+        if(reader!=null)
+            reader.initConnection();
     }
 
     private ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)
@@ -170,6 +164,8 @@ public class MainActivity extends AppCompatActivity {
         setTitle(TAG+" - not connected");
 
         // load settings
+        // - includes the reader
+        // - includes the decoder
         loadSettings();
 
         // load fields from static code
@@ -187,10 +183,15 @@ public class MainActivity extends AppCompatActivity {
 
         // link the fields to the stack
         stack.addListener(fields);
-
-        // create the reader/handler that evaluates the connection
-        reader = new DueReader(stack);
-        //reader = new ElmReader(stack);
+        /*
+        stack.addListener(new StackListener() {
+            @Override
+            public void onFrameCompleteEvent(Frame frame) {
+                TextView tv = (TextView) findViewById(R.id.textView);
+                tv.setText(frame.toString());
+                tv.invalidate();
+            }
+        });*/
 
         // register for bluetooth changes
         IntentFilter filter1 = new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED);
@@ -278,20 +279,45 @@ public class MainActivity extends AppCompatActivity {
         try {
             btSocket.connect();
             debug("BT: connection ok");
+
+            // Create a data stream so we can talk to server.
+            debug("BT: create socket");
+
+            connectedBluetoothThread = new ConnectedBluetoothThread(btSocket,stack);
+            // pass the thread to the reader: this may start it if needed
+            reader.setConnectedBluetoothThread(connectedBluetoothThread);
+
+            // apply filters
+            WidgetView wv;
+            ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
+            for(int i=0; i<widgets.size(); i++)
+            {
+                wv = widgets.get(i);
+                if(reader!=null)
+                {
+                    reader.addFilter(wv.getFieldID());
+                }
+            }
+
+            //Device is now connected
+            debug("BT: connected");
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    setTitle(TAG + " - connected to <" + deviceName + "@" + deviceAddress + ">");
+                }
+            });
+            connected=true;
+
+
         } catch (IOException e) {
+            e.printStackTrace();
             try {
                 btSocket.close();
             } catch (IOException e2) {
                 errorExit("Fatal Error", "In onResume() and unable to close socket during connection failure" + e2.getMessage() + ".");
             }
         }
-
-        // Create a data stream so we can talk to server.
-        debug("BT: create socket");
-
-        mConnectedBluetoothThread = new ConnectedBluetoothThread(btSocket,reader);
-        reader.setConnectedBluetoothThread(mConnectedBluetoothThread);
-        mConnectedBluetoothThread.start();
     }
 
     @Override

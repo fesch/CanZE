@@ -25,10 +25,12 @@ public class SettingsActivity extends AppCompatActivity {
 
         tryTofillDeviceList();
 
-        // fill formats
+        // load settings
         SharedPreferences settings = getSharedPreferences("lu.fisch.canze.settings", 0);
         String dataFormat=settings.getString("dataFormat", "crdt");
+        String device=settings.getString("device", "Arduino");
 
+        // fill formats
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         arrayAdapter.add("gvret");
         arrayAdapter.add("crdt");
@@ -45,6 +47,22 @@ public class SettingsActivity extends AppCompatActivity {
         // select the actual device
         dataFormatList.setSelection(index);
         dataFormatList.setSelected(true);
+
+        // fill devices
+        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        arrayAdapter.add("Arduino");
+        arrayAdapter.add("ELM327");
+
+        index = 0;
+        if(dataFormat.equals("Arduino")) index=0;
+        else if(dataFormat.equals("ELM327")) index=1;
+
+        // display the list
+        Spinner deviceList = (Spinner) findViewById(R.id.device);
+        deviceList.setAdapter(arrayAdapter);
+        // select the actual device
+        deviceList.setSelection(index);
+        deviceList.setSelected(true);
     }
 
     @Override
@@ -67,12 +85,14 @@ public class SettingsActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = settings.edit();
             Spinner deviceList = (Spinner) findViewById(R.id.deviceList);
             Spinner dataFormatList = (Spinner) findViewById(R.id.dataFormat);
+            Spinner device = (Spinner) findViewById(R.id.device);
             if(deviceList.getSelectedItem()!=null) {
                 MainActivity.debug("Settings.deviceAddress = " + deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 MainActivity.debug("Settings.deviceName = " + deviceList.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("deviceAddress", deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 editor.putString("deviceName", deviceList.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("dataFormat", dataFormatList.getSelectedItem().toString().split("\n")[0].trim());
+                editor.putString("device", device.getSelectedItem().toString().split("\n")[0].trim());
             }
             editor.commit();
             // finish

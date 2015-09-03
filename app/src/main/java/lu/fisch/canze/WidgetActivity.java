@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import lu.fisch.can.widgets.WidgetView;
+import lu.fisch.canze.widgets.WidgetView;
 
 public class WidgetActivity extends AppCompatActivity {
 
