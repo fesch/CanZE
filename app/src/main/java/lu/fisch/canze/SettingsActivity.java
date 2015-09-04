@@ -54,8 +54,8 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("ELM327");
 
         index = 0;
-        if(dataFormat.equals("Arduino")) index=0;
-        else if(dataFormat.equals("ELM327")) index=1;
+        if(device.equals("Arduino")) index=0;
+        else if(device.equals("ELM327")) index=1;
 
         // display the list
         Spinner deviceList = (Spinner) findViewById(R.id.device);

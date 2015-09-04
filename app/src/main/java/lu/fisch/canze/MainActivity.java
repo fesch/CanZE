@@ -8,25 +8,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.UUID;
 
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Stack;
+import lu.fisch.canze.bluetooth.BluetoothManager;
+import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
+import lu.fisch.canze.interfaces.BluetoothEvent;
 import lu.fisch.canze.widgets.Drawables;
 import lu.fisch.canze.widgets.WidgetView;
 import lu.fisch.canze.readers.DataReader;
@@ -45,15 +44,12 @@ public class MainActivity extends AppCompatActivity {
     private static String dataFormat = "bob";
     private static String device = "Arduino";
 
-    //private BluetoothAdapter mBluetoothAdapter;
-
-    private BluetoothAdapter btAdapter = null;
-    private BluetoothSocket btSocket = null;
     private ConnectedBluetoothThread connectedBluetoothThread;
 
-    public final static int RECIEVE_MESSAGE = 1;
+    public final static int RECIEVE_MESSAGE   = 1;
     public final static int REQUEST_ENABLE_BT = 3;
     public final static int SETTINGS_ACTIVITY = 7;
+    public final static int SINGLE_WIDGET     = 11;
 
     private StringBuilder sb = new StringBuilder();
     private String buffer = "";
@@ -61,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
     private int count;
     private long start;
 
-    private boolean connected = false;
+    private boolean visible = true;
+    private boolean leaveBluetoothOn = false;
+    private boolean returnFromWidget = false;
 
     private Drawables drawables = new Drawables();
     private static Fields fields = new Fields();
@@ -76,39 +74,24 @@ public class MainActivity extends AppCompatActivity {
             String action = intent.getAction();
             BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
-            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                //Device found
-            }
-            else if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
-                // device connected
-            }
-            else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-                //Done searching
-            }
-            else if (BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED.equals(action)) {
-                //Device is about to disconnect
-            }
-            else if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
+            if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
                 //Device has disconnected
-                setTitle(TAG + " - disconnected");
-                debug("BT: disconnected");
-                connected=false;
-                // start a timer trying to reconnect
-                final Timer timer = new Timer();
-                timer.schedule(new TimerTask() {
 
-                    @Override
-                    public void run() {
-                        // canel timer if we are connected again
-                        if(connected)
-                            timer.cancel();
-                        else {
-                            // try to reconnect
-                            debug("BT: trying to re-connect to <"+deviceName+"> on ("+deviceAddress+")");
-                            reconnect();
-                        }
-                    }
-                }, 100,5000);
+                // only resume if this activity is also visible
+                if(visible)
+                {
+                    // stop reading
+                    // assign the BT thread to the reader
+                    if (reader != null)
+                        reader.setConnectedBluetoothThread(null);
+
+                    // inform user
+                    setTitle(TAG + " - disconnected");
+                    Toast.makeText(MainActivity.this.getBaseContext(),"Bluetooth connection lost!",Toast.LENGTH_LONG).show();
+
+                    // try to reconnect
+                    onResume();
+                }
             }
         }
     };
@@ -173,218 +156,163 @@ public class MainActivity extends AppCompatActivity {
         debug("Loaded fields: " + fields.size());
 
         // connect the widgets to the respective fields
-        WidgetView wv;
         ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
         for(int i=0; i<widgets.size(); i++)
         {
-            wv = widgets.get(i);
+            final WidgetView wv = widgets.get(i);
             fields.getBySID(wv.getFieldSID()).addListener(wv.getDrawable());
+
+            wv.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    // get pointer index from the event object
+                    int pointerIndex = event.getActionIndex();
+
+                    // get pointer ID
+                    int pointerId = event.getPointerId(pointerIndex);
+
+                    // get masked (not specific to a pointer) action
+                    int maskedAction = event.getActionMasked();
+
+                    switch (maskedAction) {
+                        case MotionEvent.ACTION_DOWN:
+                        case MotionEvent.ACTION_POINTER_DOWN:
+                        {
+                            leaveBluetoothOn=true;
+                            Intent intent = new Intent(MainActivity.this, WidgetActivity.class);
+                            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            WidgetView.selectedDrawable = wv.getDrawable();
+                            MainActivity.this.startActivityForResult(intent,SINGLE_WIDGET);
+                            break;
+                        }
+                        case MotionEvent.ACTION_MOVE:
+                        case MotionEvent.ACTION_UP:
+                        case MotionEvent.ACTION_POINTER_UP:
+                        case MotionEvent.ACTION_CANCEL: {
+                            break;
+                        }
+                    }
+
+                    wv.invalidate();
+
+                    return true;
+                }
+            });
         }
 
         // link the fields to the stack
         stack.addListener(fields);
-        /*
-        stack.addListener(new StackListener() {
-            @Override
-            public void onFrameCompleteEvent(Frame frame) {
-                TextView tv = (TextView) findViewById(R.id.textView);
-                tv.setText(frame.toString());
-                tv.invalidate();
-            }
-        });*/
 
         // register for bluetooth changes
-        IntentFilter filter1 = new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED);
-        IntentFilter filter2 = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED);
-        IntentFilter filter3 = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-        this.registerReceiver(mReceiver, filter1);
-        this.registerReceiver(mReceiver, filter2);
-        this.registerReceiver(mReceiver, filter3);
+        IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+        this.registerReceiver(mReceiver, intentFilter);
 
-        // get Bluetooth adapter
-        btAdapter = BluetoothAdapter.getDefaultAdapter();
-        // check it's state
-        checkBTState();
-    }
+        // configure Bluetooth manager
+        BluetoothManager.getInstance().setBluetoothEvent(new BluetoothEvent() {
+            @Override
+            public void onBeforeConnect() {
 
-    /**
-     * Create a new bluetooth socket on a given device
-     * @param device
-     * @return
-     * @throws IOException
-     */
-    private BluetoothSocket createBluetoothSocket(BluetoothDevice device) throws IOException {
-        if(Build.VERSION.SDK_INT >= 10){
-            try {
-                //final Method m = device.getClass().getMethod("createInsecureRfcommSocketToServiceRecord", new Class[] { UUID.class });
-                final Method m = device.getClass().getMethod("createRfcommSocketToServiceRecord", new Class[] { UUID.class });
-                return (BluetoothSocket) m.invoke(device, MY_UUID);
-            } catch (Exception e) {
-                Log.e(TAG, "Could not create Insecure RFComm Connection", e);
             }
-        }
-        return  device.createRfcommSocketToServiceRecord(MY_UUID);
-    }
 
-    /**
-     * Exit the appliction with a given error message
-     * @param title
-     * @param message
-     */
-    private void errorExit(String title, String message) {
-        Toast.makeText(getBaseContext(), title + " - " + message, Toast.LENGTH_LONG).show();
-        finish();
-    }
+            @Override
+            public void onAfterConnect(BluetoothSocket bluetoothSocket, ConnectedBluetoothThread connectedBluetoothThread) {
+                MainActivity.this.connectedBluetoothThread=connectedBluetoothThread;
+                // assign the stack to the BT thread
+                debug("assign the stack to the BT thread");
+                connectedBluetoothThread.setStack(stack);
+                // assign the BT thread to the reader
+                debug("assign the BT thread to the reader");
+                if (reader != null)
+                    reader.setConnectedBluetoothThread(connectedBluetoothThread);
+                // set all filters
+                debug("set all filters & connect widgets");
+                WidgetView wv;
+                ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
+                for (int i = 0; i < widgets.size(); i++) {
+                    wv = widgets.get(i);
+                    // add filter
+                    if (reader != null) {
+                        reader.addFilter(wv.getFieldID());
+                    }
+                    // connect to correct surface
+                    wv.getDrawable().setDrawSurface(wv);
+                }
+                reader.registerFilters();
+                // set title
+                debug("set title");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        setTitle(TAG + " - connected to <" + deviceName + "@" + deviceAddress + ">");
+                    }
+                });
+            }
 
-    private void reconnect()
-    {
-        debug("BT: (re)connect");
+            @Override
+            public void onBeforeDisconnect(BluetoothSocket bluetoothSocket, ConnectedBluetoothThread connectedBluetoothThread) {
+                // clear all filters
+                reader.clearFilters();
+            }
 
-        if(btSocket!=null)
+            @Override
+            public void onAfterDisconnect() {
+
+            }
+        });
+        // detect hardware status
+        int BT_STATE = BluetoothManager.getInstance().getHardwareState();
+        if(BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_AVAILABLE)
+            Toast.makeText(this.getBaseContext(),"Sorry, but your device does not seam to have Bluettoot support!",Toast.LENGTH_LONG).show();
+        else if (BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_ACTIVE)
         {
-            if (btSocket.isConnected())
-                try {
-                    btSocket.close();
-                } catch (IOException e) {
-                    debug("BT: error while disconnecting > " + e.getMessage());
-                }
-        }
-
-        if(deviceAddress==null)
-        {
-            debug("BT: no device selected");
-            return;
-        }
-
-        // Set up a pointer to the remote node using it's address.
-        BluetoothDevice device = btAdapter.getRemoteDevice(deviceAddress);
-
-        // Two things are needed to make a connection:
-        //   A MAC address, which we got above.
-        //   A Service ID or UUID.  In this case we are using the
-        //     UUID for SPP.
-
-        try {
-            btSocket = createBluetoothSocket(device);
-        } catch (IOException e) {
-            errorExit("Fatal Error", "In onResume() and socket create failed: " + e.getMessage() + ".");
-        }
-
-        // Discovery is resource intensive.  Make sure it isn't going on
-        // when you attempt to connect and pass your message.
-        btAdapter.cancelDiscovery();
-
-        // Establish the connection.  This will block until it connects.
-        debug("BT: connecting");
-        try {
-            btSocket.connect();
-            debug("BT: connection ok");
-
-            // Create a data stream so we can talk to server.
-            debug("BT: create socket");
-
-            connectedBluetoothThread = new ConnectedBluetoothThread(btSocket,stack);
-            // pass the thread to the reader: this may start it if needed
-            reader.setConnectedBluetoothThread(connectedBluetoothThread);
-
-            // apply filters
-            WidgetView wv;
-            ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
-            for(int i=0; i<widgets.size(); i++)
-            {
-                wv = widgets.get(i);
-                if(reader!=null)
-                {
-                    reader.addFilter(wv.getFieldID());
-                }
-            }
-
-            //Device is now connected
-            debug("BT: connected");
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    setTitle(TAG + " - connected to <" + deviceName + "@" + deviceAddress + ">");
-                }
-            });
-            connected=true;
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            try {
-                btSocket.close();
-            } catch (IOException e2) {
-                errorExit("Fatal Error", "In onResume() and unable to close socket during connection failure" + e2.getMessage() + ".");
-            }
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, 1);
         }
     }
 
     @Override
     public void onResume() {
+        visible=true;
         super.onResume();
+        debug("MainActivity: onResume");
 
-        debug("BT: in onResume()");
-
-        // only reconnect if we are not connected yet
-        if(btSocket!=null) {
-            if (!btSocket.isConnected())
-                reconnect();
-        }
-        else
-            reconnect();
-
-        // re-connect the widgets to the respective fields
-        WidgetView wv;
+        // connect all widgets
+        debug("MainActivity: onResume > connect all widgets");
         ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
-        for(int i=0; i<widgets.size(); i++)
-        {
-            wv = widgets.get(i);
+        for (int i = 0; i < widgets.size(); i++) {
+            WidgetView wv = widgets.get(i);
+            // connect to correct surface
             wv.getDrawable().setDrawSurface(wv);
         }
 
-        // register all filters (to be sure ...)
-        reader.registerFilters();
+        // if returning from a single widget activity, we have to leave here!
+        if(returnFromWidget) {
+            returnFromWidget=!returnFromWidget;
+            return;
+        }
 
+        if(!leaveBluetoothOn) {
+            loadSettings();
+
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    connectedBluetoothThread = BluetoothManager.getInstance().connect(deviceAddress, true, BluetoothManager.RETRIES_INFINITE);
+                }
+            })).start();
+        }
     }
 
     @Override
     public void onPause() {
+        visible=false;
+
         super.onPause();
 
-        debug("BT: in onPause()");
+        debug("MainActivity: onPause");
 
-        if(isFinishing()) {
-            try {
-                debug("BT: closing");
-
-                // remove filters
-                reader.clearFilters();
-
-                // close the socket
-                if (btSocket != null)
-                    btSocket.close();
-            } catch (IOException e2) {
-                errorExit("Fatal Error", "In onPause() and failed to close socket." + e2.getMessage() + ".");
-            }
-        }
-    }
-
-
-    private void checkBTState() {
-        // Check for Bluetooth support and then check to make sure it is turned on
-        // Emulator doesn't support Bluetooth and will return null
-        if(btAdapter==null) {
-            errorExit("Fatal Error", "Bluetooth not support");
-        } else {
-            if (btAdapter.isEnabled()) {
-                debug("BT: bluetooth ON");
-            } else {
-                //Prompt user to turn on Bluetooth
-                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                startActivityForResult(enableBtIntent, 1);
-            }
-        }
+        if(!leaveBluetoothOn)
+            BluetoothManager.getInstance().disconnect();
     }
 
     @Override
@@ -394,6 +322,11 @@ public class MainActivity extends AppCompatActivity {
         {
             // load settings
             loadSettings();
+        }
+        else if(requestCode==SINGLE_WIDGET)
+        {
+            returnFromWidget=true;
+            leaveBluetoothOn=false;
         }
         else super.onActivityResult(requestCode, resultCode, data);
     }
@@ -412,8 +345,7 @@ public class MainActivity extends AppCompatActivity {
         // start the settings activity
         if (id == R.id.action_settings) {
             Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
-            startActivityForResult(intent,SETTINGS_ACTIVITY);
-            reconnect();
+            startActivityForResult(intent, SETTINGS_ACTIVITY);
             return true;
         }
 

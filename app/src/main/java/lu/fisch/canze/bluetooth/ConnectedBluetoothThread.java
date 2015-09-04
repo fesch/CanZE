@@ -1,4 +1,4 @@
-package lu.fisch.canze;
+package lu.fisch.canze.bluetooth;
 
 import android.bluetooth.BluetoothSocket;
 import android.util.Log;
@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.actors.Stack;
 
 /**
@@ -23,6 +24,10 @@ public class ConnectedBluetoothThread extends Thread {
     private Stack stack = null;
 
     private volatile boolean stopped = false;
+
+    public ConnectedBluetoothThread(BluetoothSocket socket) {
+        this(socket,null);
+    }
 
     public ConnectedBluetoothThread(BluetoothSocket socket, Stack stack) {
         // store properties
@@ -76,7 +81,8 @@ public class ConnectedBluetoothThread extends Thread {
                             synchronized (stack)
                             {
                                 try {
-                                    stack.process(intArray);
+                                    if(stack!=null)
+                                        stack.process(intArray);
                                 }
                                 catch (Exception e)
                                 {
@@ -129,5 +135,7 @@ public class ConnectedBluetoothThread extends Thread {
             return 0;
     }
 
-
+    public void setStack(Stack stack) {
+        this.stack = stack;
+    }
 }

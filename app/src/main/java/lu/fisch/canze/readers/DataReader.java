@@ -4,7 +4,7 @@ package lu.fisch.canze.readers;
 import java.util.ArrayList;
 
 import lu.fisch.canze.actors.Stack;
-import lu.fisch.canze.ConnectedBluetoothThread;
+import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
 
 /**
  * Created by robertfisch on 27.08.2015.
@@ -50,8 +50,10 @@ public abstract class DataReader {
     // add a given filter
     public void addFilter(String filter)
     {
-        filters.add(filter);
-        registerFilter(filter);
+        if(!filters.contains(filter)) {
+            filters.add(filter);
+            registerFilter(filter);
+        }
     }
 
     // remove a given filter

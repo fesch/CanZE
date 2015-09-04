@@ -11,6 +11,7 @@ package lu.fisch.canze.readers;
 
 import java.io.IOException;
 
+import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.actors.Stack;
 import lu.fisch.canze.exeptions.NoDecoderException;
 
@@ -24,6 +25,7 @@ public class DueReader extends DataReader {
     private int filterIndex = 0;
     // the thread that polls the data to the stack
     private Thread poller = null;
+    private boolean pollerRunning = true;
 
     // create a new reader
     public DueReader(Stack stack) {
@@ -82,18 +84,35 @@ public class DueReader extends DataReader {
                 e.printStackTrace();
             }
         }
-        // make sure we only have one poller task
-        if(poller==null) {
-            // post a task to the UI thread
-            Runnable r = new Runnable() {
-                @Override
-                public void run() {
-                    while (true)
-                        queryNextFilter();
+        if(connectedBluetoothThread!=null) {
+            // make sure we only have one poller task
+            if (poller == null) {
+                // post a task to the UI thread
+                pollerRunning=true;
+                Runnable r = new Runnable() {
+                    @Override
+                    public void run() {
+                        while (pollerRunning)
+                            queryNextFilter();
+                    }
+                };
+                poller = new Thread(r);
+                poller.start();
+            }
+        }
+        else
+        {
+            if(poller!=null && poller.isAlive())
+            {
+                pollerRunning=false;
+                try {
+                    poller.join();
                 }
-            };
-            poller = new Thread(r);
-            poller.start();
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -101,18 +120,25 @@ public class DueReader extends DataReader {
     private void queryNextFilter()
     {
         if(filters.size()>0) {
-            // get filter ID
-            String filter = filters.get(filterIndex);
-            // request the response from the device
-            String hexData = sendAndWaitForAnswer("g" + filter,0);
-            // send it to the stack
             try {
-                stack.process(hexData);
-            } catch (NoDecoderException e) {
-                e.printStackTrace();
+                // get filter ID
+                String filter = filters.get(filterIndex);
+                // request the response from the device
+                //MainActivity.debug("Requesting: " + filter);
+                String hexData = sendAndWaitForAnswer("g" + filter, 0);
+                // send it to the stack
+                try {
+                    stack.process(hexData);
+                } catch (NoDecoderException e) {
+                    e.printStackTrace();
+                }
+                // goto next filter
+                filterIndex = (filterIndex + 1) % filters.size();
             }
-            // goto next filter
-            filterIndex = (filterIndex + 1) % filters.size();
+            catch (Exception e)
+            {
+                // ignore
+            }
         }
         else
         {

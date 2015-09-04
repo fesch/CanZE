@@ -33,7 +33,7 @@ public class BOB implements Decoder {
             }
             catch(Exception e)
             {
-                MainActivity.debug("BAD: "+text);
+                //MainActivity.debug("BAD: "+text);
                 return null;
             }
         }
@@ -55,11 +55,11 @@ public class BOB implements Decoder {
             }
             catch(Exception e)
             {
-                MainActivity.debug("BAD: "+text);
+                //MainActivity.debug("BAD: "+text);
                 return null;
             }
         }
-        MainActivity.debug("BAD: "+text);
+        //MainActivity.debug("BAD: "+text);
         return null;
     }
 

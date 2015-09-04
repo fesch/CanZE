@@ -75,30 +75,31 @@ public class ElmReader extends DataReader {
             }
         }
 
-        // post a task to the UI thread
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                // atz (reset)
-                // continue only if we got an answer.
-                if (!sendAndWaitForAnswer("atz", 1000).trim().equals("")) {
-                    // ate0 (no echo)
-                    sendAndWaitForAnswer("ate0", 1000);
-                    // ats0 (no spaces)
-                    sendAndWaitForAnswer("ats0", 1000);
-                    // atsp6 (CAN 500K 11 bit)
-                    sendAndWaitForAnswer("atsp6", 500);
-                    // atat1 (auto timing)
-                    sendAndWaitForAnswer("atat1", 500);
-                    // atdp
-                    sendAndWaitForAnswer("atdp", 500);
-                    // atcaf0 (no formatting)
-                    sendAndWaitForAnswer("atcaf0", 500);
+        if(connectedBluetoothThread!=null) {
+            // post a task to the UI thread
+            Runnable r = new Runnable() {
+                @Override
+                public void run() {
+                    // atz (reset)
+                    // continue only if we got an answer.
+                    if (!sendAndWaitForAnswer("atz", 1000).trim().equals("")) {
+                        // ate0 (no echo)
+                        sendAndWaitForAnswer("ate0", 1000);
+                        // ats0 (no spaces)
+                        sendAndWaitForAnswer("ats0", 1000);
+                        // atsp6 (CAN 500K 11 bit)
+                        sendAndWaitForAnswer("atsp6", 500);
+                        // atat1 (auto timing)
+                        sendAndWaitForAnswer("atat1", 500);
+                        // atdp
+                        sendAndWaitForAnswer("atdp", 500);
+                        // atcaf0 (no formatting)
+                        sendAndWaitForAnswer("atcaf0", 500);
 
-                    while(true)
-                        queryNextFilter();
+                        while (true)
+                            queryNextFilter();
 
-                    // now start the query'ing timer
+                        // now start the query'ing timer
                     /*
                     Timer timer = new Timer();
                     timer.schedule(new TimerTask() {
@@ -108,72 +109,78 @@ public class ElmReader extends DataReader {
                         }
                     }, 1, 1);
                     /**/
+                    } else {
+                        MainActivity.debug("ELM: no answer ...");
+                    }
                 }
-                else
-                {
-                    MainActivity.debug("ELM: no answer ...");
-                }
-            }
-        };
-        Thread t = new Thread(r);
-        t.start();
+            };
+            Thread t = new Thread(r);
+            t.start();
+        }
     }
 
     // query the device for the next filter
     private void queryNextFilter()
     {
-        if(filters.size()>0) {
-            // get filter ID
-            String filter = filters.get(filterIndex);
-            // atcra186 (substitute 186 by the hex code of the id)
-            sendAndWaitForAnswer("atcra" + filter,400);
-            // atma     (wait for one answer line)
-            String hexData = sendAndWaitForAnswer("atma",100);
-            // atar     (stop output)
-            sendAndWaitForAnswer("atar", 10);
-            // atar     (clear filter)
-            sendAndWaitForAnswer("atar",10);
+        try {
+            if(filters.size()>0) {
+                // get filter ID
+                String filter = filters.get(filterIndex);
+                // atcra186 (substitute 186 by the hex code of the id)
+                sendAndWaitForAnswer("atcra" + filter,400);
+                // atma     (wait for one answer line)
+                String hexData = sendAndWaitForAnswer("atma",100);
+                // atar     (stop output)
+                sendAndWaitForAnswer("atar", 10);
+                // atar     (clear filter)
+                sendAndWaitForAnswer("atar",10);
 
-            // the result may contain multiple lines
-            String[] hexDataLines = hexData.split("\r");
+                // the result may contain multiple lines
+                String[] hexDataLines = hexData.split("\r");
 
-            //MainActivity.debug("ELM: lines = "+hexDataLines.length);
+                //MainActivity.debug("ELM: lines = "+hexDataLines.length);
 
-            if(hexDataLines.length>1) {
-                // take the line in the middle
-                String data = hexDataLines[hexDataLines.length/2].trim();
-                // format the line (Bob's condensed: <ID>,<data>)
-                data = filter + "," + data +"\r\n";
+                if(hexDataLines.length>1) {
+                    // take the line in the middle
+                    String data = hexDataLines[hexDataLines.length/2].trim();
+                    // format the line (Bob's condensed: <ID>,<data>)
+                    data = filter + "," + data +"\r\n";
 
-                MainActivity.debug("ELM: received message " + data);
+                    MainActivity.debug("ELM: received message " + data);
 
-                // Send to message queue Handler
-                //connectedBluetoothThread.getHandler().obtainMessage(MainActivity.RECIEVE_MESSAGE, data.length(), -1, hexData.getBytes()).sendToTarget();
+                    // Send to message queue Handler
+                    //connectedBluetoothThread.getHandler().obtainMessage(MainActivity.RECIEVE_MESSAGE, data.length(), -1, hexData.getBytes()).sendToTarget();
 
-                // send it to the stack
-                try {
-                    stack.process(data);
-                } catch (NoDecoderException e) {
-                    e.printStackTrace();
+                    // send it to the stack
+                    try {
+                        stack.process(data);
+                    } catch (NoDecoderException e) {
+                        e.printStackTrace();
+                    }
                 }
+                else // should not happen as the bus is faster than this ...
+                {
+                    String data = filter + "," + hexDataLines[0].trim() +"\r\n";
+
+                    // send it to the stack
+                    try {
+                        stack.process(data);
+                    } catch (NoDecoderException e) {
+                        e.printStackTrace();
+                    }
+                }
+                filterIndex = (filterIndex + 1) % filters.size();
             }
-            else // should not happen as the bus is faster than this ...
+            else
             {
-                String data = filter + "," + hexDataLines[0].trim() +"\r\n";
-
-                // send it to the stack
-                try {
-                    stack.process(data);
-                } catch (NoDecoderException e) {
-                    e.printStackTrace();
-                }
+                //MainActivity.debug("ELM: no filters set ...");
             }
-            filterIndex = (filterIndex + 1) % filters.size();
         }
-        else
+        catch (Exception e)
         {
-            MainActivity.debug("ELM: no filters set ...");
+            // ignore
         }
+
     }
 
     // register a filter

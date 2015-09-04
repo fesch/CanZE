@@ -131,8 +131,8 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 		*/
 	}
 
-	@Override
-    public boolean onTouchEvent(MotionEvent event)
+	//@Override
+    public boolean onTouchEvent__disabled(MotionEvent event)
     {
 		// react on touch events
 		// get pointer index from the event object
