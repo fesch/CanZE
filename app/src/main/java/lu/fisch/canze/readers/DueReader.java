@@ -136,7 +136,7 @@ public class DueReader extends DataReader {
                     // goto next filter
                     filterIndex = (filterIndex + 1) % filters.size();
                 } catch (Exception e) {
-                    // ignore
+                    filterIndex=0;
                 }
             } else {
                 // ignore
@@ -163,8 +163,11 @@ public class DueReader extends DataReader {
     // register a filter
     public void registerFilter(String filter)
     {
+        //MainActivity.debug("registerFilter "+filter);
         if(connectedBluetoothThread!=null)
             connectedBluetoothThread.write("f" + filter + "\n");
+        else
+            MainActivity.debug("registerFilter "+filter+" failed because connectedBluetoothThread is NULL");
     }
 
 

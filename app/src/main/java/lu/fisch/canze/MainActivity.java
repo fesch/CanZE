@@ -206,6 +206,11 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(connectedBluetoothThread==null)
+                {
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, TachoActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -216,6 +221,11 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(connectedBluetoothThread==null)
+                {
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, TextActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -302,6 +312,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         debug("MainActivity: onResume");
 
+        /*
         // connect all widgets
         debug("MainActivity: onResume > connect all widgets");
         ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
@@ -310,6 +321,7 @@ public class MainActivity extends AppCompatActivity {
             // connect to correct surface
             wv.getDrawable().setDrawSurface(wv);
         }
+        */
 
         // if returning from a single widget activity, we have to leave here!
         if(returnFromWidget) {

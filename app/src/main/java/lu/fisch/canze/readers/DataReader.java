@@ -59,6 +59,7 @@ public abstract class DataReader {
                 filters.add(filter);
                 registerFilter(filter);
             }
+            //MainActivity.debug("Filters = "+filters.toString());
         }
     }
 

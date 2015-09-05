@@ -112,6 +112,7 @@ public class ConnectedBluetoothThread extends Thread {
                 Log.d(MainActivity.TAG, "BT: Error sending > " + e.getMessage());
             }
         }
+        else MainActivity.debug("Write failed! Socket is closed ... M = "+message);
     }
 
     public int read(byte[] buffer) throws IOException {
