@@ -6,7 +6,7 @@
     android:padding="0dp"
     tools:context="lu.fisch.canze.WidgetActivity">
 
-    <lu.fisch.can.widgets.WidgetView
+    <lu.fisch.canze.widgets.WidgetView
         android:id="@+id/selectedWidget"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public final static int RECIEVE_MESSAGE   = 1;
     public final static int REQUEST_ENABLE_BT = 3;
     public final static int SETTINGS_ACTIVITY = 7;
-    public final static int SINGLE_WIDGET     = 11;
+    public final static int LEAVE_BLUETOOTH_ON= 11;
 
     private StringBuilder sb = new StringBuilder();
     private String buffer = "";
@@ -62,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
     private boolean returnFromWidget = false;
 
     private Drawables drawables = new Drawables();
-    private static Fields fields = new Fields();
+    public static Fields fields = new Fields();
     private static Stack stack = new Stack();
 
-    private DataReader reader = null;
+    public static DataReader reader = null;
 
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -182,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, WidgetActivity.class);
                             //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             WidgetView.selectedDrawable = wv.getDrawable();
-                            MainActivity.this.startActivityForResult(intent,SINGLE_WIDGET);
+                            MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
                             break;
                         }
                         case MotionEvent.ACTION_MOVE:
@@ -199,6 +200,28 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        Button button;
+        button = (Button) findViewById(R.id.buttonTacho);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.this, TachoActivity.class);
+                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
+            }
+        });
+
+        button = (Button) findViewById(R.id.buttonText);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.this, TextActivity.class);
+                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
+            }
+        });
+
 
         // link the fields to the stack
         stack.addListener(fields);
@@ -224,6 +247,7 @@ public class MainActivity extends AppCompatActivity {
                 debug("assign the BT thread to the reader");
                 if (reader != null)
                     reader.setConnectedBluetoothThread(connectedBluetoothThread);
+                /*
                 // set all filters
                 debug("set all filters & connect widgets");
                 WidgetView wv;
@@ -237,6 +261,8 @@ public class MainActivity extends AppCompatActivity {
                     // connect to correct surface
                     wv.getDrawable().setDrawSurface(wv);
                 }
+                */
+                // register filters
                 reader.registerFilters();
                 // set title
                 debug("set title");
@@ -323,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
             // load settings
             loadSettings();
         }
-        else if(requestCode==SINGLE_WIDGET)
+        else if(requestCode==LEAVE_BLUETOOTH_ON)
         {
             returnFromWidget=true;
             leaveBluetoothOn=false;

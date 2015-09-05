@@ -119,30 +119,28 @@ public class DueReader extends DataReader {
     // query the device for the next filter
     private void queryNextFilter()
     {
-        if(filters.size()>0) {
-            try {
-                // get filter ID
-                String filter = filters.get(filterIndex);
-                // request the response from the device
-                //MainActivity.debug("Requesting: " + filter);
-                String hexData = sendAndWaitForAnswer("g" + filter, 0);
-                // send it to the stack
+        synchronized (filters) {
+            if (filters.size() > 0) {
                 try {
-                    stack.process(hexData);
-                } catch (NoDecoderException e) {
-                    e.printStackTrace();
+                    // get filter ID
+                    String filter = filters.get(filterIndex);
+                    // request the response from the device
+                    //MainActivity.debug("Requesting: " + filter);
+                    String hexData = sendAndWaitForAnswer("g" + filter, 0);
+                    // send it to the stack
+                    try {
+                        stack.process(hexData);
+                    } catch (NoDecoderException e) {
+                        e.printStackTrace();
+                    }
+                    // goto next filter
+                    filterIndex = (filterIndex + 1) % filters.size();
+                } catch (Exception e) {
+                    // ignore
                 }
-                // goto next filter
-                filterIndex = (filterIndex + 1) % filters.size();
-            }
-            catch (Exception e)
-            {
+            } else {
                 // ignore
             }
-        }
-        else
-        {
-            // ignore
         }
     }
 

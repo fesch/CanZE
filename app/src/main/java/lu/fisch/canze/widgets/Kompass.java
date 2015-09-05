@@ -199,8 +199,8 @@ public class Kompass extends Tacho {
             //g.setColor(Color.BLACK);
             //g.drawRect(tx - 1, ty - th, tw + 7, th +5);
             g.setColor(Color.GREEN_DARK);
-            if(field!=null)
-                g.drawString(String.format("%."+(String.valueOf(field.getDecimals()).length()-1)+"f",field.getValue()),tx,ty);
+            if(field !=null)
+                g.drawString(String.format("%."+(String.valueOf(field.getDecimals()).length()-1)+"f", field.getValue()),tx,ty);
         }
         // draw the title
         if(title!=null && !title.equals(""))

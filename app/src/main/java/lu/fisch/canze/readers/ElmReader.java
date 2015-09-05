@@ -146,7 +146,7 @@ public class ElmReader extends DataReader {
                     // format the line (Bob's condensed: <ID>,<data>)
                     data = filter + "," + data +"\r\n";
 
-                    MainActivity.debug("ELM: received message " + data);
+                    MainActivity.debug("ELM: received " + data);
 
                     // Send to message queue Handler
                     //connectedBluetoothThread.getHandler().obtainMessage(MainActivity.RECIEVE_MESSAGE, data.length(), -1, hexData.getBytes()).sendToTarget();

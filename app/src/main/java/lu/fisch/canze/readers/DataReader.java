@@ -3,6 +3,7 @@ package lu.fisch.canze.readers;
 
 import java.util.ArrayList;
 
+import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.actors.Stack;
 import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
 
@@ -35,31 +36,38 @@ public abstract class DataReader {
 
     public void registerFilters()
     {
-        for(int i=0; i<filters.size(); i++)
-        {
-            registerFilter(filters.get(i));
+        synchronized (filters) {
+            for (int i = 0; i < filters.size(); i++) {
+                registerFilter(filters.get(i));
+            }
         }
     }
 
     // clean filters
     public void clearFilters()
     {
-        filters.clear();
+        synchronized (filters) {
+            filters.clear();
+        }
     }
 
     // add a given filter
     public void addFilter(String filter)
     {
-        if(!filters.contains(filter)) {
-            filters.add(filter);
-            registerFilter(filter);
+        synchronized (filters) {
+            if (!filters.contains(filter)) {
+                filters.add(filter);
+                registerFilter(filter);
+            }
         }
     }
 
     // remove a given filter
     public void removeFilter(String filter)
     {
-        filters.remove(filter);
+        synchronized (filters) {
+            filters.remove(filter);
+        }
     }
 
     // get the Bluetooth thread

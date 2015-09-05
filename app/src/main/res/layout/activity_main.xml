@@ -11,7 +11,7 @@
     android:stretchColumns="3"
     android:id="@+id/table"
     >
-
+<!--
     <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="fill_parent"
@@ -19,7 +19,7 @@
         android:orientation="horizontal"
         android:layout_weight="1">
 
-        <lu.fisch.can.widgets.WidgetView
+        <lu.fisch.canze.widgets.WidgetView
             android:id="@+id/accelerationPedal"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -35,7 +35,7 @@
             custom:text="Acceleration pedal"
             />
 
-        <lu.fisch.can.widgets.WidgetView
+        <lu.fisch.canze.widgets.WidgetView
             android:id="@+id/speed"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -46,12 +46,12 @@
             custom:max="140"
             custom:majorTicks="10"
             custom:minorTicks="5"
-            custom:fieldSID="186.0"
+            custom:fieldSID="5d7.0"
             custom:widget="tacho"
             custom:text="Speed (km/h)"
             />
 
-        <lu.fisch.can.widgets.WidgetView
+        <lu.fisch.canze.widgets.WidgetView
             android:id="@+id/SOC"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -67,7 +67,6 @@
             custom:widget="tacho"
             custom:text="State of charge (%)"
             />
-
     </TableRow>
     <TableRow
         android:id="@+id/tableRow2"
@@ -76,7 +75,7 @@
         android:orientation="horizontal"
         android:layout_weight="1">
 
-        <lu.fisch.can.widgets.WidgetView
+        <lu.fisch.canze.widgets.WidgetView
             android:id="@+id/steering"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -96,7 +95,7 @@
             custom:text="Steering position"
             />
 
-        <lu.fisch.can.widgets.WidgetView
+        <lu.fisch.canze.widgets.WidgetView
             android:id="@+id/consumption"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -113,7 +112,7 @@
             custom:text="Consumption (kw)"
             />
 
-        <lu.fisch.can.widgets.WidgetView
+        <lu.fisch.canze.widgets.WidgetView
             android:id="@+id/recup"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -130,16 +129,36 @@
             custom:widget="tacho"
             custom:text="Available distance (km)"
             />
-
     </TableRow>
 
-    <!--
-    <lu.fisch.canze.DrawSurface
-        android:id="@+id/drawpanel"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:paddingLeft="0dp"
-        android:paddingTop="0dp" />
-        -->
+    -->
 
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="TachoActivity (Bob)"
+            android:id="@+id/buttonTacho"
+            android:layout_column="0" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="TextActivity (Jeroen)"
+            android:id="@+id/buttonText"
+            android:layout_column="0" />
+    </TableRow>
 </TableLayout>

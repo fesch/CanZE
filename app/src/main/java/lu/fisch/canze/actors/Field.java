@@ -76,11 +76,6 @@ public class Field {
 
     public double getValue()
     {
-        /*MainActivity.debug("Field: "+getFormat());
-        MainActivity.debug("Value: "+value);
-        MainActivity.debug("Offset: "+offset);
-        MainActivity.debug("devider: "+devider);
-        MainActivity.debug("multiplier: "+multiplier);*/
         return ((value-offset)/(double)devider*multiplier)/(decimals==0?1:decimals);
     }
     
@@ -107,7 +102,7 @@ public class Field {
             fieldListeners.add(fieldListener);
     }
     
-    public void removeSackListener(FieldListener fieldListener)
+    public void removeListener(FieldListener fieldListener)
     {
         fieldListeners.remove(fieldListener);
     }

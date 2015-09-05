@@ -144,7 +144,7 @@ public class Fields implements StackListener {
                         tokens[FIELD_FORMAT],
                         tokens[FIELD_UNIT]
                 );
-                // add the fieled to the list of available fields
+                // add the field to the list of available fields
                 fields.add(field);
             }
         }
@@ -179,7 +179,7 @@ public class Fields implements StackListener {
                         tokens[FIELD_FORMAT],
                         tokens[FIELD_UNIT]
                 );
-                // add the filed to the list of available fields
+                // add the field to the list of available fields
                 fields.add(field);
             }
         }
@@ -187,7 +187,7 @@ public class Fields implements StackListener {
 
     public Field getBySID(String sid)
     {
-        for(int i=0; i<fields.size(); i++)
+        for(int i=0; i< fields.size(); i++)
             if(fields.get(i).getSID().equals(sid))
                 return fields.get(i);
         return null;
@@ -195,7 +195,7 @@ public class Fields implements StackListener {
     
     public Field getFieldByFormat(String formatStartsWith)
     {
-        for(int i=0; i<fields.size(); i++)
+        for(int i=0; i< fields.size(); i++)
         {
             Field field = fields.get(i);
             if(field.getFormat().startsWith(formatStartsWith))
@@ -218,13 +218,13 @@ public class Fields implements StackListener {
     
     @Override
     public void onFrameCompleteEvent(Frame frame) {
-        for(int i=0; i<fields.size(); i++)
+        for(int i=0; i< fields.size(); i++)
         {
             Field field = fields.get(i);
             if(field.getId()==frame.getId())
             {
                 String binString = frame.getAsBinaryString();
-                if(binString.length()>=field.getTo()) {
+                if(binString.length()>= field.getTo()) {
                     // parseInt --> signed, so the first bit is "cut-off"!
                     try {
                         field.setValue(Integer.parseInt("0" + binString.substring(field.getFrom(), field.getTo() + 1), 2));

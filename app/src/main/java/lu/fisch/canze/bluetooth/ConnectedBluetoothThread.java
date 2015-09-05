@@ -66,7 +66,7 @@ public class ConnectedBluetoothThread extends Thread {
         while (true && !stopped) {
             try {
                 // read from the InputStream
-                // get number of bytes and message in "buffer"
+                // get number of bytes in "buffer"
                 bytes = inputStream.read(buffer);
                 // if we got something
                 if(bytes!=-1) {

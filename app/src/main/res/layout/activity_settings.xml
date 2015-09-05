@@ -26,6 +26,18 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Device"
+        android:id="@+id/textViewDevice" />
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/device" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Data format"
         android:id="@+id/textViewDataFormat" />
 
@@ -33,5 +45,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/dataFormat" />
+
+
 
 </LinearLayout>

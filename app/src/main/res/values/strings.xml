@@ -5,4 +5,6 @@
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_widget">WidgetActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_tacho">TachoActivity</string>
+    <string name="title_activity_text">TextActivity</string>
 </resources>

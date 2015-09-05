@@ -52,7 +52,7 @@ public abstract class Drawable implements Space, FieldListener {
 
     @Override
     public void onFieldUpdateEvent(Field field) {
-        this.field=field;
+        this.field = field;
         setValue((int) field.getValue());
         if(drawSurface!=null)
             drawSurface.repaint();
