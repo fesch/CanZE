@@ -20,7 +20,7 @@ public class Field {
     private int to;
     private int offset;
     private int id;
-    private int devider;
+    private int divider;
     private int multiplier;
     private int decimals;
     private String format;
@@ -35,7 +35,7 @@ public class Field {
         this.to=to;
         this.offset=offset;
         this.id=id;
-        this.devider = devider;
+        this.divider = devider;
         this.multiplier = multiplier;
         this.decimals = decimals;
         this.format = format.trim();
@@ -47,7 +47,7 @@ public class Field {
     @Override
     public Field clone()
     {
-        Field field = new Field(id, from, to, devider, multiplier, offset, decimals, format, unit, requestId, responseId);
+        Field field = new Field(id, from, to, divider, multiplier, offset, decimals, format, unit, requestId, responseId);
         field.value = value;
         return field;
     }
@@ -58,7 +58,7 @@ public class Field {
         /*return Integer.toHexString(id)+" "
                 +from+" "
                 +to+" "
-                +devider+" "
+                +divider+" "
                 +multiplier+" "
                 +offset+" "
                 +decimals+" "
@@ -82,26 +82,26 @@ public class Field {
     
     public String getPrintValue()
     {
-        double temp = ((value-offset)/(double)devider*multiplier)/(decimals==0?1:decimals);
+        double temp = ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
         return format.substring(0, format.indexOf("%")-1).trim()+" "+temp+" "+unit;
     }
 
     public double getValue()
     {
-        return ((value-offset)/(double)devider*multiplier)/(decimals==0?1:decimals);
+        return ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
     }
     
     public double getMax()
     {
         double val = (int) Math.pow(2, to-from+1);
-        return ((val-offset)/(double)devider*multiplier)/(decimals==0?1:decimals);
+        return ((val-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
         
     }
 
     public double getMin()
     {
         double val = 0;
-        return ((val-offset)/(double)devider*multiplier)/(decimals==0?1:decimals);
+        return ((val-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
     }
 
     /* --------------------------------
@@ -205,12 +205,12 @@ public class Field {
     }
     
     
-    public int getDevider() {
-        return devider;
+    public int getDivider() {
+        return divider;
     }
 
-    public void setDevider(int devider) {
-        this.devider = devider;
+    public void setDivider(int divider) {
+        this.divider = divider;
     }
 
     public int getMultiplier() {
