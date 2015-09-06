@@ -15,12 +15,21 @@ public class TextActivity extends AppCompatActivity implements FieldListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Field field;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text);
 
         // Add this class ass listener to the field "Pedal"
         // I chose this one, because it can easily be tested ;-)
-        Field field = MainActivity.fields.getBySID("186.40");
+        field = MainActivity.fields.getBySID("186.40");
+        field.addListener(this);
+        MainActivity.reader.addField(field);
+
+        field = MainActivity.fields.getBySID("42e.38");
+        field.addListener(this);
+        MainActivity.reader.addField(field);
+
+        field = MainActivity.fields.getBySID("42e.56");
         field.addListener(this);
         MainActivity.reader.addField(field);
     }
@@ -44,10 +53,24 @@ public class TextActivity extends AppCompatActivity implements FieldListener {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                String fieldId = field.getSID();
+                TextView tv = null;
                 // get the text field
-                TextView tv = (TextView) findViewById(R.id.textPedal);
+                switch (fieldId) {
+                    case "186.40":
+                        tv = (TextView) findViewById(R.id.textPedal);
+                        break;
+                    case "42e.38":
+                        tv = (TextView) findViewById(R.id.text_max_pilot);
+                        break;
+                    case "42e.56":
+                        tv = (TextView) findViewById(R.id.text_max_charge);
+                        break;
+                }
                 // set a new content
-                tv.setText(field.getPrintValue());
+                if (tv != null) tv.setText(field.getPrintValue());
+                tv = (TextView) findViewById(R.id.textDebug);
+                tv.setText(fieldId);
             }
         });
 
