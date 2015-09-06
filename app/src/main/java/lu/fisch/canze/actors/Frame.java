@@ -15,6 +15,7 @@ public class Frame {
     protected long timestamp;
     protected int[] data;
     private double rate;
+    private String responseId = null;
     
     private static final int[] EMPTY = {};
     
@@ -25,11 +26,16 @@ public class Frame {
      * @param data          the data
      */
     public Frame(int id, long timestamp, int[] data) {
+        this(id,timestamp,data,null);
+    }
+
+    public Frame(int id, long timestamp, int[] data, String responseId) {
         this.id=id;
         this.timestamp=timestamp;
         this.data=data;
+        this.responseId=responseId;
     }
-    
+
     public Frame(int id) {
         this(id, -1, EMPTY);
     }
@@ -49,7 +55,7 @@ public class Frame {
     @Override
     public Frame clone()
     {
-        return new Frame(id,timestamp,data.clone());
+        return new Frame(id,timestamp,data.clone(),responseId);
     }
     
     public boolean isMultiFrame()
@@ -81,6 +87,14 @@ public class Frame {
         this.rate = rate;
     }
 
+    public String getResponseId() {
+        return responseId;
+    }
+
+    public void setResponseId(String responseId) {
+        this.responseId = responseId;
+    }
+
     /* --------------------------------
      * Some utilities
      \ ------------------------------ */
@@ -92,7 +106,9 @@ public class Frame {
         String hexData = "";
         for(int i=0; i<data.length; i++)
             hexData+= (Integer.toHexString(data[i]).length()==1?"0":"")+Integer.toHexString(data[i])+" ";
-        return "ID: "+Integer.toHexString(id)+"\nData: "+hexData;
+        String res = "ID: "+Integer.toHexString(id)+"\nData: "+hexData;
+        if(responseId !=null) res+="\nReply: "+ responseId;
+        return res;
     }
     
     public String getAsBinaryString()

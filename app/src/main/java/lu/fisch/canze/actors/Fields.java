@@ -4,6 +4,7 @@
  */
 package lu.fisch.canze.actors;
 
+import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.interfaces.StackListener;
 
 import java.io.BufferedReader;
@@ -473,11 +474,19 @@ public class Fields implements StackListener {
     
     @Override
     public void onFrameCompleteEvent(Frame frame) {
+        //MainActivity.debug(frame.toString());
+        //MainActivity.debug("Frame.rID = "+frame.getResponseId());
         for(int i=0; i< fields.size(); i++)
         {
             Field field = fields.get(i);
-            if(field.getId()==frame.getId())
+            if(field.getId()==frame.getId() &&
+                    (
+                            frame.getResponseId()==null
+                            ||
+                            frame.getResponseId().equals(field.getResponseId())
+                            ))
             {
+                //MainActivity.debug("Field.rID = "+field.getResponseId());
                 String binString = frame.getAsBinaryString();
                 if(binString.length()>= field.getTo()) {
                     // parseInt --> signed, so the first bit is "cut-off"!

@@ -141,12 +141,14 @@ public class Stack {
             //e.printStackTrace();
         }
         // process and possibly discard or retain the frame
+        /* ---> handleed by the DUE
         if(frame!=null)
             frame = process(frame);
         else {
             invalid++;
             //Log.w(MainActivity.TAG,"Invalid framecount = "+invalid);
         }
+         */
 
         if(frame!=null)
             notifyStackListeners(frame);

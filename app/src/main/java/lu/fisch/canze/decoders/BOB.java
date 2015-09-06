@@ -43,6 +43,12 @@ public class BOB implements Decoder {
                 int id = Integer.parseInt(pieces[0], 16);
                 // get the data
                 int[] data = Utils.toIntArray(pieces[1].trim());
+                // get the reply-ID
+                Frame f = new Frame(id,data);
+                //MainActivity.debug("THIRD: "+pieces[2].trim());
+                f.setResponseId(pieces[2].trim());
+                return f;
+                /*
                 // get checksum
                 int chk = Integer.parseInt(pieces[2].trim(), 16);
                 int check = 0;
@@ -52,6 +58,7 @@ public class BOB implements Decoder {
                 if(chk==check)
                     // create and return new frame
                     return new Frame(id, data);
+                */
             }
             catch(Exception e)
             {

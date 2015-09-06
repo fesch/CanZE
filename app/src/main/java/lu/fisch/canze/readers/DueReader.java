@@ -52,6 +52,7 @@ public class DueReader extends DataReader {
         // send the command
         if(command!=null)
             connectedBluetoothThread.write(command + "\r\n");
+        //MainActivity.debug("Send > "+command);
         // wait if needed
         if(waitMillis>0)
             try {
@@ -66,18 +67,22 @@ public class DueReader extends DataReader {
         long start = Calendar.getInstance().getTimeInMillis();
         while(!stop && Calendar.getInstance().getTimeInMillis()-start<TIMEOUT)
         {
+            //MainActivity.debug("Delta = "+(Calendar.getInstance().getTimeInMillis()-start));
             try {
                 // read a byte
-                int data = connectedBluetoothThread.read();
-                // if it is a real one
-                if(data!=-1)
-                {
-                    // convert it to a character
-                    char ch = (char) data;
-                    // add it to the readBuffer
-                    readBuffer+=ch;
-                    // stop if we reached the end or if no more data is available
-                    if(ch==EOM || connectedBluetoothThread.available()<=0) stop=true;
+                if(connectedBluetoothThread.available()>0) {
+                    //MainActivity.debug("Reading ...");
+                    int data = connectedBluetoothThread.read();
+                    //MainActivity.debug("... done");
+                    // if it is a real one
+                    if (data != -1) {
+                        // convert it to a character
+                        char ch = (char) data;
+                        // add it to the readBuffer
+                        readBuffer += ch;
+                        // stop if we reached the end or if no more data is available
+                        if (ch == EOM || connectedBluetoothThread.available() <= 0) stop = true;
+                    }
                 }
             }
             catch (IOException e)
@@ -85,6 +90,7 @@ public class DueReader extends DataReader {
                 e.printStackTrace();
             }
         }
+        //MainActivity.debug("Recv < "+readBuffer);
         return readBuffer;
     }
 
@@ -134,44 +140,49 @@ public class DueReader extends DataReader {
     // query the device for the next filter
     private void queryNextFilter()
     {
-        synchronized (fields) {
             if (fields.size() > 0) {
                 try {
                     // get field
-                    Field field = fields.get(filterIndex);
-                    // get field ID
-                    String filter = field.getHexId();
+                    Field field;
 
-                    if(field.isIsoTp())
-                    {
-                        String hexData = sendAndWaitForAnswer("i" + filter+","+field.getRequestId()+","+field.getResponseId(), 0);
-                        // send it to the stack
-                        try {
-                            stack.process(hexData);
-                        } catch (NoDecoderException e) {
-                            e.printStackTrace();
+                    synchronized (fields) {
+                        field = fields.get(filterIndex);
+                    }
+
+                    if(field!=null) {
+                        // get field ID
+                        String filter = field.getHexId();
+
+                        if (field.isIsoTp()) {
+                            String hexData = sendAndWaitForAnswer("i" + filter + "," + field.getRequestId() + "," + field.getResponseId(), 0);
+                            // send it to the stack
+                            try {
+                                stack.process(hexData);
+                            } catch (NoDecoderException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            // request the response from the device
+                            //MainActivity.debug("Requesting: " + filter);
+                            String hexData = sendAndWaitForAnswer("g" + filter, 0);
+                            // send it to the stack
+                            try {
+                                stack.process(hexData);
+                            } catch (NoDecoderException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        // goto next filter
+                        synchronized (fields) {
+                            filterIndex = (filterIndex + 1) % fields.size();
                         }
                     }
-                    else {
-                        // request the response from the device
-                        //MainActivity.debug("Requesting: " + filter);
-                        String hexData = sendAndWaitForAnswer("g" + filter, 0);
-                        // send it to the stack
-                        try {
-                            stack.process(hexData);
-                        } catch (NoDecoderException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    // goto next filter
-                    filterIndex = (filterIndex + 1) % fields.size();
                 } catch (Exception e) {
                     filterIndex=0;
                 }
             } else {
                 // ignore
             }
-        }
     }
 
     // clean all filters

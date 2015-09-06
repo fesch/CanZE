@@ -29,7 +29,7 @@
                 android:text="Large Text"
                 android:id="@+id/textView"/>
     -->
-
+<!--
     <lu.fisch.canze.widgets.WidgetView
         android:id="@+id/accelerationPedal"
         android:layout_width="0dp"
@@ -78,6 +78,7 @@
         custom:widget="tacho"
         custom:text="State of charge (%)"
         />
+    -->
 </TableRow>
 <TableRow
     android:id="@+id/tableRow2"
@@ -85,7 +86,7 @@
     android:layout_height="fill_parent"
     android:orientation="horizontal"
     android:layout_weight="1">
-
+<!--
     <lu.fisch.canze.widgets.WidgetView
         android:id="@+id/steering"
         android:layout_width="0dp"
@@ -105,6 +106,7 @@
         custom:widget="kompass"
         custom:text="Steering position"
         />
+        -->
 <!--
     <lu.fisch.canze.widgets.WidgetView
         android:id="@+id/consumption"
@@ -157,7 +159,7 @@
         custom:minorTicks="2"
         custom:fieldSID="7bb.6104.32"
         custom:widget="kompass"
-        custom:text="Temp Cell 01 C°"
+        custom:text="Temp Cell 01 (C°)"
         />
 
     <lu.fisch.canze.widgets.WidgetView
@@ -176,6 +178,24 @@
         custom:fieldSID="7ec.622006.16"
         custom:widget="tacho"
         custom:text="Odometer (km)"
+        />
+
+    <lu.fisch.canze.widgets.WidgetView
+        android:id="@+id/recup2"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        custom:min="0"
+        custom:max="5"
+        custom:majorTicks="1"
+        custom:minorTicks="0"
+        custom:fieldSID="7bb.6141.16"
+        custom:widget="tacho"
+        custom:text="Cell 01 (V)"
         />
 
 </TableRow>

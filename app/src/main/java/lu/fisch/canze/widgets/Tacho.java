@@ -20,7 +20,7 @@ public class Tacho extends Drawable {
 
     protected boolean autoRange = false;
 
-    protected int padding = 2;
+    protected int padding = 5;
 
     public Tacho() {
         super();
@@ -146,18 +146,20 @@ public class Tacho extends Drawable {
         // draw the value
             if(showValue)
             {
-                g.setTextSize(50);
-                int tw = g.stringWidth(value+"");
-                int th = g.stringHeight(value + "");
-                int tx = center.x-tw/2-3;
-                int ty = center.y-32;
-                g.setColor(Color.WHITE);
-                g.fillRect(tx - 1, ty - th, tw + 7, th + 5);
-                //g.setColor(Color.BLACK);
-                //g.drawRect(tx - 1, ty - th, tw + 7, th +5);
-                g.setColor(Color.GREEN_DARK);
-                if(field !=null)
-                    g.drawString(String.format("%."+(String.valueOf(field.getDecimals()).length()-1)+"f", field.getValue()),tx,ty);
+                if(field !=null) {
+                    g.setTextSize(50);
+                    String text = String.format("%." + (String.valueOf(field.getDecimals()).length() - 1) + "f", field.getValue());
+                    int tw = g.stringWidth(text);
+                    int th = g.stringHeight(text);
+                    int tx = center.x-tw/2-3;
+                    int ty = center.y-32;
+                    g.setColor(Color.WHITE);
+                        g.fillRect(tx - 1, ty - th, tw + 7, th + 5);
+                    //g.setColor(Color.BLACK);
+                    //g.drawRect(tx - 1, ty - th, tw + 7, th +5);
+                    g.setColor(Color.GREEN_DARK);
+                    g.drawString(text, tx, ty);
+                }
             }
         // draw the title
             if(title!=null && !title.equals(""))

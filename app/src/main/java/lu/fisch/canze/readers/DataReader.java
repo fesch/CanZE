@@ -60,7 +60,6 @@ public abstract class DataReader {
                 fields.add(field);
                 registerFilter(field.getHexId());
             }
-            //MainActivity.debug("Filters = "+filters.toString());
         }
     }
 
