@@ -27,7 +27,6 @@ import lu.fisch.canze.actors.Stack;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
 import lu.fisch.canze.interfaces.BluetoothEvent;
-import lu.fisch.canze.widgets.Drawables;
 import lu.fisch.canze.widgets.WidgetView;
 import lu.fisch.canze.readers.DataReader;
 import lu.fisch.canze.readers.DueReader;
@@ -62,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean leaveBluetoothOn = false;
     private boolean returnFromWidget = false;
 
-    private Drawables drawables = new Drawables();
     public static Fields fields = new Fields();
     private static Stack stack = new Stack();
 
