@@ -20,8 +20,9 @@ public class TextActivity extends AppCompatActivity implements FieldListener {
 
         // Add this class ass listener to the field "Pedal"
         // I chose this one, because it can easily be tested ;-)
-        MainActivity.fields.getBySID("186.40").addListener(this);
-        MainActivity.reader.addFilter("186");
+        Field field = MainActivity.fields.getBySID("186.40");
+        field.addListener(this);
+        MainActivity.reader.addField(field);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class TextActivity extends AppCompatActivity implements FieldListener {
         // free up the listener again
         MainActivity.fields.getBySID("186.40").removeListener(this);
         // clear filters
-        MainActivity.reader.clearFilters();
+        MainActivity.reader.clearFields();
     }
 
     // This is the event fired as soon as this the registered fields are

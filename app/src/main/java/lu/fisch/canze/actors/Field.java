@@ -25,10 +25,12 @@ public class Field {
     private int decimals;
     private String format;
     private String unit;
+    private String requestId;
+    private String responseId;
     
     private double value = 0;
     
-    public Field(int id, int from, int to, int devider, int multiplier, int offset, int decimals, String format, String unit) {
+    public Field(int id, int from, int to, int devider, int multiplier, int offset, int decimals, String format, String unit, String requestId, String responseId) {
         this.from=from;
         this.to=to;
         this.offset=offset;
@@ -38,12 +40,14 @@ public class Field {
         this.decimals = decimals;
         this.format = format.trim();
         this.unit = unit;
+        this.requestId=requestId;
+        this.responseId=responseId;
     }
     
     @Override
     public Field clone()
     {
-        Field field = new Field(id, from, to, devider, multiplier, offset, decimals, format, unit);
+        Field field = new Field(id, from, to, devider, multiplier, offset, decimals, format, unit, requestId, responseId);
         field.value = value;
         return field;
     }
@@ -63,9 +67,17 @@ public class Field {
         return format.substring(0, format.indexOf("%")-1).trim();
     }
 
+    public boolean isIsoTp()
+    {
+        return !responseId.trim().isEmpty();
+    }
+
     public String getSID()
     {
-        return Integer.toHexString(id)+"."+from;
+        if(!responseId.trim().isEmpty())
+            return Integer.toHexString(id)+"."+responseId.trim()+"."+from;
+        else
+            return Integer.toHexString(id)+"."+from;
     }
     
     public String getPrintValue()
@@ -98,8 +110,11 @@ public class Field {
     
     public void addListener(FieldListener fieldListener)
     {
-        if(!fieldListeners.contains(fieldListener))
+        if(!fieldListeners.contains(fieldListener)) {
             fieldListeners.add(fieldListener);
+            // trigger immediate update to pass the reference to this field
+            fieldListener.onFieldUpdateEvent(this);
+        }
     }
     
     public void removeListener(FieldListener fieldListener)
@@ -181,6 +196,9 @@ public class Field {
     public int getId() {
         return id;
     }
+    public String getHexId() {
+        return Integer.toHexString(id);
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -225,5 +243,21 @@ public class Field {
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public String getResponseId() {
+        return responseId;
+    }
+
+    public void setResponseId(String responseId) {
+        this.responseId = responseId;
     }
 }

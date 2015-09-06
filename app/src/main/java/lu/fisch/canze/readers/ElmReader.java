@@ -123,9 +123,9 @@ public class ElmReader extends DataReader {
     private void queryNextFilter()
     {
         try {
-            if(filters.size()>0) {
+            if(fields.size()>0) {
                 // get filter ID
-                String filter = filters.get(filterIndex);
+                String filter = fields.get(filterIndex).getHexId();
                 // atcra186 (substitute 186 by the hex code of the id)
                 sendAndWaitForAnswer("atcra" + filter,400);
                 // atma     (wait for one answer line)
@@ -169,7 +169,7 @@ public class ElmReader extends DataReader {
                         e.printStackTrace();
                     }
                 }
-                filterIndex = (filterIndex + 1) % filters.size();
+                filterIndex = (filterIndex + 1) % fields.size();
             }
             else
             {

@@ -4,6 +4,7 @@ package lu.fisch.canze.readers;
 import java.util.ArrayList;
 
 import lu.fisch.canze.MainActivity;
+import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Stack;
 import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
 
@@ -12,7 +13,7 @@ import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
  */
 public abstract class DataReader {
     // the list of filters, e.g. a list with the hex-values of the ID of the frames we need to request
-    protected ArrayList<String> filters = new ArrayList<>();
+    protected ArrayList<Field> fields = new ArrayList<>();
 
     // the thread in charge of reading from the Bluetooth
     protected ConnectedBluetoothThread connectedBluetoothThread = null;
@@ -36,38 +37,38 @@ public abstract class DataReader {
 
     public void registerFilters()
     {
-        synchronized (filters) {
-            for (int i = 0; i < filters.size(); i++) {
-                registerFilter(filters.get(i));
+        synchronized (fields) {
+            for (int i = 0; i < fields.size(); i++) {
+                registerFilter(fields.get(i).getHexId());
             }
         }
     }
 
     // clean filters
-    public void clearFilters()
+    public void clearFields()
     {
-        synchronized (filters) {
-            filters.clear();
+        synchronized (fields) {
+            fields.clear();
         }
     }
 
     // add a given filter
-    public void addFilter(String filter)
+    public void addField(Field field)
     {
-        synchronized (filters) {
-            if (!filters.contains(filter)) {
-                filters.add(filter);
-                registerFilter(filter);
+        synchronized (fields) {
+            if (!fields.contains(field)) {
+                fields.add(field);
+                registerFilter(field.getHexId());
             }
             //MainActivity.debug("Filters = "+filters.toString());
         }
     }
 
     // remove a given filter
-    public void removeFilter(String filter)
+    public void removeField(Field field)
     {
-        synchronized (filters) {
-            filters.remove(filter);
+        synchronized (fields) {
+            fields.remove(field);
         }
     }
 
@@ -82,7 +83,7 @@ public abstract class DataReader {
         // init the connection
         initConnection();
         // clean all filters
-        clearFilters();
+        clearFields();
         // register all filters
         registerFilters();
     }

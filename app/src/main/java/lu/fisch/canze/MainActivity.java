@@ -287,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onBeforeDisconnect(BluetoothSocket bluetoothSocket, ConnectedBluetoothThread connectedBluetoothThread) {
                 // clear all filters
-                reader.clearFilters();
+                reader.clearFields();
             }
 
             @Override

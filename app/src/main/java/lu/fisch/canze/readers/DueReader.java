@@ -10,8 +10,10 @@
 package lu.fisch.canze.readers;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import lu.fisch.canze.MainActivity;
+import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Stack;
 import lu.fisch.canze.exeptions.NoDecoderException;
 
@@ -19,6 +21,8 @@ import lu.fisch.canze.exeptions.NoDecoderException;
  * Created by robertfisch on 27.08.2015.
  */
 public class DueReader extends DataReader {
+    // define the timeout we may wait to get an answer
+    private static final int TIMEOUT = 500;
     // define End Of Message for this type of reader
     private static final char EOM = '\n';
     // the actual filter
@@ -35,6 +39,16 @@ public class DueReader extends DataReader {
     // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis)
     {
+        // empty incoming buffer
+        // just make sure there is no previous response
+        try {
+            while(connectedBluetoothThread.available()>0)
+            {
+                connectedBluetoothThread.read();
+            }
+        } catch (IOException e) {
+            // ignore
+        }
         // send the command
         if(command!=null)
             connectedBluetoothThread.write(command + "\r\n");
@@ -48,8 +62,9 @@ public class DueReader extends DataReader {
         // init the buffer
         boolean stop = false;
         String readBuffer = "";
-        // wait for
-        while(!stop)
+        // wait for answer
+        long start = Calendar.getInstance().getTimeInMillis();
+        while(!stop && Calendar.getInstance().getTimeInMillis()-start<TIMEOUT)
         {
             try {
                 // read a byte
@@ -119,11 +134,11 @@ public class DueReader extends DataReader {
     // query the device for the next filter
     private void queryNextFilter()
     {
-        synchronized (filters) {
-            if (filters.size() > 0) {
+        synchronized (fields) {
+            if (fields.size() > 0) {
                 try {
                     // get filter ID
-                    String filter = filters.get(filterIndex);
+                    String filter = fields.get(filterIndex).getHexId();
                     // request the response from the device
                     //MainActivity.debug("Requesting: " + filter);
                     String hexData = sendAndWaitForAnswer("g" + filter, 0);
@@ -134,7 +149,7 @@ public class DueReader extends DataReader {
                         e.printStackTrace();
                     }
                     // goto next filter
-                    filterIndex = (filterIndex + 1) % filters.size();
+                    filterIndex = (filterIndex + 1) % fields.size();
                 } catch (Exception e) {
                     filterIndex=0;
                 }
@@ -146,18 +161,18 @@ public class DueReader extends DataReader {
 
     // clean all filters
     @Override
-    public void clearFilters() {
-        super.clearFilters();
+    public void clearFields() {
+        super.clearFields();
         if(connectedBluetoothThread!=null)
             connectedBluetoothThread.write("c\n");
     }
 
     // remove a filter
     @Override
-    public void removeFilter(String filter) {
-        super.removeFilter(filter);
+    public void removeField(Field field) {
+        super.removeField(field);
         if(connectedBluetoothThread!=null)
-            connectedBluetoothThread.write("r" + filter + "\n");
+            connectedBluetoothThread.write("r" + field.getHexId() + "\n");
     }
 
     // register a filter

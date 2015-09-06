@@ -175,4 +175,8 @@ public abstract class Drawable implements Space, FieldListener {
     public void setInverted(boolean inverted) {
         this.inverted = inverted;
     }
+
+    public Field getField() {
+        return field;
+    }
 }
