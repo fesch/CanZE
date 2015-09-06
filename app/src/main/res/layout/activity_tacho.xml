@@ -105,7 +105,7 @@
         custom:widget="kompass"
         custom:text="Steering position"
         />
-
+<!--
     <lu.fisch.canze.widgets.WidgetView
         android:id="@+id/consumption"
         android:layout_width="0dp"
@@ -122,7 +122,8 @@
         custom:widget="kompass"
         custom:text="Consumption (kw)"
         />
-
+-->
+<!--
     <lu.fisch.canze.widgets.WidgetView
         android:id="@+id/recup"
         android:layout_width="0dp"
@@ -140,7 +141,42 @@
         custom:widget="tacho"
         custom:text="Available distance (km)"
         />
+-->
 
+    <lu.fisch.canze.widgets.WidgetView
+        android:id="@+id/consumption"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        custom:min="0"
+        custom:max="30"
+        custom:majorTicks="10"
+        custom:minorTicks="2"
+        custom:fieldSID="7bb.6104.32"
+        custom:widget="kompass"
+        custom:text="Temp Cell 01 C°"
+        />
+
+    <lu.fisch.canze.widgets.WidgetView
+        android:id="@+id/recup"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        custom:min="0"
+        custom:max="50000"
+        custom:majorTicks="10000"
+        custom:minorTicks="1000"
+        custom:fieldSID="7ec.622006.16"
+        custom:widget="tacho"
+        custom:text="Odometer (km)"
+        />
 
 </TableRow>
 

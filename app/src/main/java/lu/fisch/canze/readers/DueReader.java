@@ -137,16 +137,31 @@ public class DueReader extends DataReader {
         synchronized (fields) {
             if (fields.size() > 0) {
                 try {
-                    // get filter ID
-                    String filter = fields.get(filterIndex).getHexId();
-                    // request the response from the device
-                    //MainActivity.debug("Requesting: " + filter);
-                    String hexData = sendAndWaitForAnswer("g" + filter, 0);
-                    // send it to the stack
-                    try {
-                        stack.process(hexData);
-                    } catch (NoDecoderException e) {
-                        e.printStackTrace();
+                    // get field
+                    Field field = fields.get(filterIndex);
+                    // get field ID
+                    String filter = field.getHexId();
+
+                    if(field.isIsoTp())
+                    {
+                        String hexData = sendAndWaitForAnswer("i" + filter+","+field.getRequestId()+","+field.getResponseId(), 0);
+                        // send it to the stack
+                        try {
+                            stack.process(hexData);
+                        } catch (NoDecoderException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else {
+                        // request the response from the device
+                        //MainActivity.debug("Requesting: " + filter);
+                        String hexData = sendAndWaitForAnswer("g" + filter, 0);
+                        // send it to the stack
+                        try {
+                            stack.process(hexData);
+                        } catch (NoDecoderException e) {
+                            e.printStackTrace();
+                        }
                     }
                     // goto next filter
                     filterIndex = (filterIndex + 1) % fields.size();
