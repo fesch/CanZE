@@ -7,8 +7,7 @@ import java.util.Calendar;
 import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Message;
-import lu.fisch.canze.decoders.Utils;
-import lu.fisch.canze.exeptions.NoDecoderException;
+import lu.fisch.canze.actors.Utils;
 
 /**
  * Created by robertfisch on 07.09.2015.
@@ -117,6 +116,7 @@ public class BobDue extends Device {
                         // request the response from the device
                         //MainActivity.debug("Requesting: " + filter);
                         String hexData = sendAndWaitForAnswer("g" + filter, 0);
+                        MainActivity.debug(hexData);
                         // process data
                         process(Utils.toIntArray(hexData.getBytes()));
                     }

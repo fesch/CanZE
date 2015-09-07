@@ -3,7 +3,7 @@
  */
 package lu.fisch.canze.actors;
 
-import lu.fisch.canze.decoders.CRDT;
+
 
 /**
  *
@@ -146,8 +146,6 @@ public class Message {
     
     public static void main(String[] args)
     {
-        Message f = (new CRDT()).decodeFrame("38265528 R11 657 c4 88");
-        System.out.println(f);
     }
 
 

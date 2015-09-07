@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import lu.fisch.canze.MainActivity;
-import lu.fisch.canze.actors.Stack;
+import lu.fisch.canze._old.actors.Stack;
 
 /**
  * Created by robertfisch on 14.08.2015.

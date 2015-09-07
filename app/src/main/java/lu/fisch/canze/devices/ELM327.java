@@ -5,8 +5,7 @@ import java.util.ArrayList;
 
 import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.actors.Message;
-import lu.fisch.canze.decoders.Utils;
-import lu.fisch.canze.exeptions.NoDecoderException;
+import lu.fisch.canze.actors.Utils;
 
 /**
  * Created by robertfisch on 07.09.2015.
