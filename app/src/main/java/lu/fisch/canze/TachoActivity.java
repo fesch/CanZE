@@ -35,7 +35,8 @@ public class TachoActivity extends AppCompatActivity {
             MainActivity.fields.getBySID(wv.getFieldSID()).removeListener(wv.getDrawable());
         }
         // clear filters
-        MainActivity.reader.clearFields();
+        // OLD: MainActivity.reader.clearFields();
+        MainActivity.device.clearFields();
     }
 
     @Override
@@ -83,7 +84,8 @@ public class TachoActivity extends AppCompatActivity {
                     // connect widgets to fields
                     MainActivity.fields.getBySID(wv.getFieldSID()).addListener(wv.getDrawable());
                     // add filter to reader
-                    MainActivity.reader.addField(wv.getDrawable().getField());
+                    // OLD: MainActivity.reader.addField(wv.getDrawable().getField());
+                    MainActivity.device.addField(wv.getDrawable().getField());
 
                     // touching a widget makes a "bigger" version appear
                     wv.setOnTouchListener(new View.OnTouchListener() {

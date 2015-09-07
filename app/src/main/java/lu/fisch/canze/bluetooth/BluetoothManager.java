@@ -129,7 +129,7 @@ public class BluetoothManager {
     public ConnectedBluetoothThread connect()
     {
         if(connectBluetoothAddress==null) throw new InvalidParameterException("connect() has to be called at least once with parameters!");
-        return connect(connectBluetoothAddress,connectSecure,connectRetries);
+        return connect(connectBluetoothAddress, connectSecure, connectRetries);
     }
 
     public ConnectedBluetoothThread connect(final String bluetoothAddress, final boolean secure, final int retries) {
@@ -139,6 +139,12 @@ public class BluetoothManager {
 
     private ConnectedBluetoothThread privateConnect(final String bluetoothAddress, final boolean secure, final int retries)
     {
+        if(connectedBluetoothThread!=null && connectedBluetoothThread.isAlive())
+        {
+            debug("Thread is active and alive. Aborting re-connect!");
+            return connectedBluetoothThread;
+        }
+
         if(retry) {
             // remember parameters
             connectBluetoothAddress = bluetoothAddress;

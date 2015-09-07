@@ -4,8 +4,7 @@
  */
 package lu.fisch.canze.actors;
 
-import lu.fisch.canze.MainActivity;
-import lu.fisch.canze.interfaces.StackListener;
+import lu.fisch.canze.interfaces.MessageListener;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -17,9 +16,9 @@ import java.util.ArrayList;
  *
  * @author robertfisch
  */
-public class Fields implements StackListener {
-    
-    private static final int FIELD_ID           = 0;    
+public class Fields implements MessageListener {
+
+    private static final int FIELD_ID           = 0;
     private static final int FIELD_FROM         = 1;    
     private static final int FIELD_TO           = 2;    
     private static final int FIELD_DEVIDER      = 3;    
@@ -34,7 +33,19 @@ public class Fields implements StackListener {
 
     private final ArrayList<Field> fields = new ArrayList<>();
 
-    public void fillStatic()
+    private static Fields instance = null;
+
+    private Fields() {
+        fillStatic();
+    }
+
+    public static Fields getInstance()
+    {
+        if(instance==null) instance=new Fields();
+        return instance;
+    }
+
+    private void fillStatic()
     {
         String fieldDef = // startBit, endBit, divider, multiplier, offset, decimals, format, requestID, responseID
                 ""
@@ -404,7 +415,7 @@ public class Fields implements StackListener {
         }
     }
 
-    public void readFromFile(String filename) throws FileNotFoundException, IOException
+    private void readFromFile(String filename) throws FileNotFoundException, IOException
     {
         BufferedReader fileReader = new BufferedReader(new FileReader(filename));
         String line;
@@ -473,21 +484,21 @@ public class Fields implements StackListener {
     }
     
     @Override
-    public void onFrameCompleteEvent(Frame frame) {
+    public void onMessageCompleteEvent(Message message) {
         //MainActivity.debug(frame.toString());
         //MainActivity.debug("Frame.rID = "+frame.getResponseId());
         for(int i=0; i< fields.size(); i++)
         {
             Field field = fields.get(i);
-            if(field.getId()==frame.getId() &&
+            if(field.getId()== message.getId() &&
                     (
-                            frame.getResponseId()==null
+                            message.getResponseId()==null
                             ||
-                            frame.getResponseId().equals(field.getResponseId())
+                            message.getResponseId().equals(field.getResponseId())
                             ))
             {
                 //MainActivity.debug("Field.rID = "+field.getResponseId());
-                String binString = frame.getAsBinaryString();
+                String binString = message.getAsBinaryString();
                 if(binString.length()>= field.getTo()) {
                     // parseInt --> signed, so the first bit is "cut-off"!
                     try {

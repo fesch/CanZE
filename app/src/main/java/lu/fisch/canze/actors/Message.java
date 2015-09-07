@@ -9,7 +9,7 @@ import lu.fisch.canze.decoders.CRDT;
  *
  * @author robertfisch
  */
-public class Frame {
+public class Message {
     
     protected int id;
     protected long timestamp;
@@ -25,26 +25,26 @@ public class Frame {
      * @param timestamp     the timestamp
      * @param data          the data
      */
-    public Frame(int id, long timestamp, int[] data) {
+    public Message(int id, long timestamp, int[] data) {
         this(id,timestamp,data,null);
     }
 
-    public Frame(int id, long timestamp, int[] data, String responseId) {
+    public Message(int id, long timestamp, int[] data, String responseId) {
         this.id=id;
         this.timestamp=timestamp;
         this.data=data;
         this.responseId=responseId;
     }
 
-    public Frame(int id) {
+    public Message(int id) {
         this(id, -1, EMPTY);
     }
     
-    public Frame(int id, long timestamp) {
+    public Message(int id, long timestamp) {
         this(id, timestamp, EMPTY);
     }
     
-    public Frame(int id, int[] data) {
+    public Message(int id, int[] data) {
         this(id, -1, data);
     }
     
@@ -53,9 +53,9 @@ public class Frame {
      * @return      the cloned frame
      */
     @Override
-    public Frame clone()
+    public Message clone()
     {
-        return new Frame(id,timestamp,data.clone(),responseId);
+        return new Message(id,timestamp,data.clone(),responseId);
     }
     
     public boolean isMultiFrame()
@@ -146,7 +146,7 @@ public class Frame {
     
     public static void main(String[] args)
     {
-        Frame f = (new CRDT()).decodeFrame("38265528 R11 657 c4 88");
+        Message f = (new CRDT()).decodeFrame("38265528 R11 657 c4 88");
         System.out.println(f);
     }
 

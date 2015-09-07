@@ -23,14 +23,14 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import lu.fisch.canze.actors.Fields;
-import lu.fisch.canze.actors.Stack;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
+import lu.fisch.canze.devices.ArduinoDue;
+import lu.fisch.canze.devices.BobDue;
+import lu.fisch.canze.devices.Device;
+import lu.fisch.canze.devices.ELM327;
 import lu.fisch.canze.interfaces.BluetoothEvent;
 import lu.fisch.canze.widgets.WidgetView;
-import lu.fisch.canze.readers.DataReader;
-import lu.fisch.canze.readers.DueReader;
-import lu.fisch.canze.readers.ElmReader;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "CanZE";
@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     // MAC-address of Bluetooth module (you must edit this line)
-    private static String deviceAddress = null;
-    private static String deviceName = null;
+    private static String bluetoothDeviceAddress = null;
+    private static String bluetoothDeviceName = null;
     private static String dataFormat = "bob";
-    private static String device = "Arduino";
+    private static String deviceName = "Arduino";
 
     private ConnectedBluetoothThread connectedBluetoothThread;
 
@@ -61,17 +61,19 @@ public class MainActivity extends AppCompatActivity {
     private boolean leaveBluetoothOn = false;
     private boolean returnFromWidget = false;
 
-    public static Fields fields = new Fields();
-    private static Stack stack = new Stack();
+    public static Fields fields = Fields.getInstance();
+    // old: private static Stack stack = new Stack();
 
-    public static DataReader reader = null;
+    // old: public static DataReader reader = null;
+
+    public static Device device = null;
 
     //The BroadcastReceiver that listens for bluetooth broadcasts
-    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+            BluetoothDevice bluetoothDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
             if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
                 //Device has disconnected
@@ -80,9 +82,13 @@ public class MainActivity extends AppCompatActivity {
                 if(visible)
                 {
                     // stop reading
+                    /* old
                     // assign the BT thread to the reader
                     if (reader != null)
                         reader.setConnectedBluetoothThread(null);
+                    */
+
+                    if (device!=null) device.setConnectedBluetoothThread(null);
 
                     // inform user
                     setTitle(TAG + " - disconnected");
@@ -103,21 +109,32 @@ public class MainActivity extends AppCompatActivity {
     private void loadSettings()
     {
         SharedPreferences settings = getSharedPreferences("lu.fisch.canze.settings", 0);
-        deviceAddress=settings.getString("deviceAddress", null);
-        deviceName=settings.getString("deviceName", null);
+        bluetoothDeviceAddress =settings.getString("deviceAddress", null);
+        bluetoothDeviceName =settings.getString("deviceName", null);
         dataFormat = settings.getString("dataFormat", "crdt");
-        device = settings.getString("device", "Arduino");
+        deviceName = settings.getString("device", "Arduino");
 
         // as the settings may have changed, we need to reload different things
+
+        /* OLD
             // pass the dataFormat to the stack
             stack.setDataFormat(dataFormat);
             // initialise a new dataReader
-            if(device.equals("Arduino")) reader=new DueReader(stack);
-            else if(device.equals("ELM327")) reader=new ElmReader(stack);
-            else reader=null;
-
+        if(deviceName.equals("Arduino")) reader=new DueReader(stack);
+        else if(deviceName.equals("ELM327")) reader=new ElmReader(stack);
+        else reader=null;
         if(reader!=null)
             reader.initConnection();
+        */
+
+        // create a new device
+        if(deviceName.equals("Arduino Due")) device=new ArduinoDue();
+        else if(deviceName.equals("Bob Due")) device=new BobDue();
+        else if(deviceName.equals("ELM327")) device=new ELM327();
+        else device=null;
+        if(device!=null)
+            device.initConnection();
+
     }
 
     private ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)
@@ -151,7 +168,6 @@ public class MainActivity extends AppCompatActivity {
         loadSettings();
 
         // load fields from static code
-        fields.fillStatic();
         debug("Loaded fields: " + fields.size());
 
         // connect the widgets to the respective fields
@@ -232,11 +248,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         // link the fields to the stack
-        stack.addListener(fields);
+        // OLD stack.addListener(fields);
 
         // register for bluetooth changes
         IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-        this.registerReceiver(mReceiver, intentFilter);
+        this.registerReceiver(broadcastReceiver, intentFilter);
 
         // configure Bluetooth manager
         BluetoothManager.getInstance().setBluetoothEvent(new BluetoothEvent() {
@@ -249,12 +265,14 @@ public class MainActivity extends AppCompatActivity {
             public void onAfterConnect(BluetoothSocket bluetoothSocket, ConnectedBluetoothThread connectedBluetoothThread) {
                 MainActivity.this.connectedBluetoothThread=connectedBluetoothThread;
                 // assign the stack to the BT thread
-                debug("assign the stack to the BT thread");
-                connectedBluetoothThread.setStack(stack);
+                // OLD: debug("assign the stack to the BT thread");
+                // OLD: connectedBluetoothThread.setStack(stack);
                 // assign the BT thread to the reader
                 debug("assign the BT thread to the reader");
-                if (reader != null)
-                    reader.setConnectedBluetoothThread(connectedBluetoothThread);
+                // OLD: if (reader != null)
+                // OLD: reader.setConnectedBluetoothThread(connectedBluetoothThread);
+                if(device!=null)
+                    device.setConnectedBluetoothThread(connectedBluetoothThread);
                 /*
                 // set all filters
                 debug("set all filters & connect widgets");
@@ -271,13 +289,14 @@ public class MainActivity extends AppCompatActivity {
                 }
                 */
                 // register filters
-                reader.registerFilters();
+                // OLD: reader.registerFilters();
+
                 // set title
                 debug("set title");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        setTitle(TAG + " - connected to <" + deviceName + "@" + deviceAddress + ">");
+                        setTitle(TAG + " - connected to <" + bluetoothDeviceName + "@" + bluetoothDeviceAddress + ">");
                     }
                 });
             }
@@ -285,7 +304,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onBeforeDisconnect(BluetoothSocket bluetoothSocket, ConnectedBluetoothThread connectedBluetoothThread) {
                 // clear all filters
-                reader.clearFields();
+                //reader.clearFields();
+                if(device!=null)
+                    device.clearFields();
             }
 
             @Override
@@ -333,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
             (new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    connectedBluetoothThread = BluetoothManager.getInstance().connect(deviceAddress, true, BluetoothManager.RETRIES_INFINITE);
+                    connectedBluetoothThread = BluetoothManager.getInstance().connect(bluetoothDeviceAddress, true, BluetoothManager.RETRIES_INFINITE);
                 }
             })).start();
         }
@@ -365,6 +386,14 @@ public class MainActivity extends AppCompatActivity {
             leaveBluetoothOn=false;
         }
         else super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // un-register for bluetooth changes
+        this.unregisterReceiver(broadcastReceiver);
     }
 
     @Override

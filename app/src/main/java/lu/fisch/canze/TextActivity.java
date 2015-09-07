@@ -23,15 +23,15 @@ public class TextActivity extends AppCompatActivity implements FieldListener {
         // I chose this one, because it can easily be tested ;-)
         field = MainActivity.fields.getBySID("186.40");
         field.addListener(this);
-        MainActivity.reader.addField(field);
+        MainActivity.device.addField(field);
 
         field = MainActivity.fields.getBySID("42e.38");
         field.addListener(this);
-        MainActivity.reader.addField(field);
+        MainActivity.device.addField(field);
 
         field = MainActivity.fields.getBySID("42e.56");
         field.addListener(this);
-        MainActivity.reader.addField(field);
+        MainActivity.device.addField(field);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class TextActivity extends AppCompatActivity implements FieldListener {
         // free up the listener again
         MainActivity.fields.getBySID("186.40").removeListener(this);
         // clear filters
-        MainActivity.reader.clearFields();
+        MainActivity.device.clearFields();
     }
 
     // This is the event fired as soon as this the registered fields are
