@@ -27,38 +27,21 @@ public class SettingsActivity extends AppCompatActivity {
 
         // load settings
         SharedPreferences settings = getSharedPreferences("lu.fisch.canze.settings", 0);
-        String dataFormat=settings.getString("dataFormat", "crdt");
         String device=settings.getString("device", "Arduino");
 
-        // fill formats
+        // fill devices
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
-        arrayAdapter.add("gvret");
-        arrayAdapter.add("crdt");
-        arrayAdapter.add("bob");
+        arrayAdapter.add("ELM327");
+        arrayAdapter.add("Arduino Due");
+        arrayAdapter.add("Bob Due");
 
         int index = 0;
-        if(dataFormat.equals("gvret")) index=0;
-        else if(dataFormat.equals("crdt")) index=1;
-        else if(dataFormat.equals("bob")) index=2;
+        if(device.equals("ELM327")) index=0;
+        else if(device.equals("Arduino Due")) index=1;
+        else if(device.equals("Bob Due")) index=2;
 
         // display the list
-        Spinner dataFormatList = (Spinner) findViewById(R.id.dataFormat);
-        dataFormatList.setAdapter(arrayAdapter);
-        // select the actual device
-        dataFormatList.setSelection(index);
-        dataFormatList.setSelected(true);
-
-        // fill devices
-        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
-        arrayAdapter.add("Arduino");
-        arrayAdapter.add("ELM327");
-
-        index = 0;
-        if(device.equals("Arduino")) index=0;
-        else if(device.equals("ELM327")) index=1;
-
-        // display the list
-        Spinner deviceList = (Spinner) findViewById(R.id.device);
+        Spinner deviceList = (Spinner) findViewById(R.id.remoteDevice);
         deviceList.setAdapter(arrayAdapter);
         // select the actual device
         deviceList.setSelection(index);
@@ -83,15 +66,13 @@ public class SettingsActivity extends AppCompatActivity {
             // save settings
             SharedPreferences settings = getSharedPreferences("lu.fisch.canze.settings", 0);
             SharedPreferences.Editor editor = settings.edit();
-            Spinner deviceList = (Spinner) findViewById(R.id.deviceList);
-            Spinner dataFormatList = (Spinner) findViewById(R.id.dataFormat);
-            Spinner device = (Spinner) findViewById(R.id.device);
+            Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
+            Spinner device = (Spinner) findViewById(R.id.remoteDevice);
             if(deviceList.getSelectedItem()!=null) {
                 MainActivity.debug("Settings.deviceAddress = " + deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 MainActivity.debug("Settings.deviceName = " + deviceList.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("deviceAddress", deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 editor.putString("deviceName", deviceList.getSelectedItem().toString().split("\n")[0].trim());
-                editor.putString("dataFormat", dataFormatList.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("device", device.getSelectedItem().toString().split("\n")[0].trim());
             }
             editor.commit();
@@ -163,7 +144,7 @@ public class SettingsActivity extends AppCompatActivity {
                 i++;
             }
             // display the list
-            Spinner deviceList = (Spinner) findViewById(R.id.deviceList);
+            Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
             deviceList.setAdapter(arrayAdapter);
             // select the actual device
             deviceList.setSelection(index);

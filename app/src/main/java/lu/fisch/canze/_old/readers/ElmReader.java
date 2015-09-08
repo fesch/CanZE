@@ -1,8 +1,11 @@
-package lu.fisch.canze.readers;
+package lu.fisch.canze._old.readers;
+
+import lu.fisch.canze._old.actors.Stack;
+
 
 import java.io.IOException;
 
-import lu.fisch.canze.actors.Stack;
+import lu.fisch.canze._old.actors.Stack;
 import lu.fisch.canze.exeptions.NoDecoderException;
 import lu.fisch.canze.MainActivity;
 

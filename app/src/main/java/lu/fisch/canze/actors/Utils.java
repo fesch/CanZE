@@ -1,7 +1,7 @@
 /*
  * Some convertion utilities.
  */
-package lu.fisch.canze.decoders;
+package lu.fisch.canze.actors;
 
 
 

@@ -7,14 +7,14 @@
  *  gID  get the data of a frame, ID is its hex filter
  */
 
-package lu.fisch.canze.readers;
+package lu.fisch.canze._old.readers;
 
 import java.io.IOException;
 import java.util.Calendar;
 
 import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Stack;
+import lu.fisch.canze._old.actors.Stack;
 import lu.fisch.canze.exeptions.NoDecoderException;
 
 /**
@@ -26,7 +26,7 @@ public class DueReader extends DataReader {
     // define End Of Message for this type of reader
     private static final char EOM = '\n';
     // the actual filter
-    private int filterIndex = 0;
+    private int fieldIndex = 0;
     // the thread that polls the data to the stack
     private Thread poller = null;
     private boolean pollerRunning = true;
@@ -52,6 +52,7 @@ public class DueReader extends DataReader {
         // send the command
         if(command!=null)
             connectedBluetoothThread.write(command + "\r\n");
+        //MainActivity.debug("Send > "+command);
         // wait if needed
         if(waitMillis>0)
             try {
@@ -66,18 +67,22 @@ public class DueReader extends DataReader {
         long start = Calendar.getInstance().getTimeInMillis();
         while(!stop && Calendar.getInstance().getTimeInMillis()-start<TIMEOUT)
         {
+            //MainActivity.debug("Delta = "+(Calendar.getInstance().getTimeInMillis()-start));
             try {
                 // read a byte
-                int data = connectedBluetoothThread.read();
-                // if it is a real one
-                if(data!=-1)
-                {
-                    // convert it to a character
-                    char ch = (char) data;
-                    // add it to the readBuffer
-                    readBuffer+=ch;
-                    // stop if we reached the end or if no more data is available
-                    if(ch==EOM || connectedBluetoothThread.available()<=0) stop=true;
+                if(connectedBluetoothThread.available()>0) {
+                    //MainActivity.debug("Reading ...");
+                    int data = connectedBluetoothThread.read();
+                    //MainActivity.debug("... done");
+                    // if it is a real one
+                    if (data != -1) {
+                        // convert it to a character
+                        char ch = (char) data;
+                        // add it to the readBuffer
+                        readBuffer += ch;
+                        // stop if we reached the end or if no more data is available
+                        if (ch == EOM || connectedBluetoothThread.available() <= 0) stop = true;
+                    }
                 }
             }
             catch (IOException e)
@@ -85,6 +90,7 @@ public class DueReader extends DataReader {
                 e.printStackTrace();
             }
         }
+        //MainActivity.debug("Recv < "+readBuffer);
         return readBuffer;
     }
 
@@ -134,29 +140,49 @@ public class DueReader extends DataReader {
     // query the device for the next filter
     private void queryNextFilter()
     {
-        synchronized (fields) {
             if (fields.size() > 0) {
                 try {
-                    // get filter ID
-                    String filter = fields.get(filterIndex).getHexId();
-                    // request the response from the device
-                    //MainActivity.debug("Requesting: " + filter);
-                    String hexData = sendAndWaitForAnswer("g" + filter, 0);
-                    // send it to the stack
-                    try {
-                        stack.process(hexData);
-                    } catch (NoDecoderException e) {
-                        e.printStackTrace();
+                    // get field
+                    Field field;
+
+                    synchronized (fields) {
+                        field = fields.get(fieldIndex);
                     }
-                    // goto next filter
-                    filterIndex = (filterIndex + 1) % fields.size();
+
+                    if(field!=null) {
+                        // get field ID
+                        String filter = field.getHexId();
+
+                        if (field.isIsoTp()) {
+                            String hexData = sendAndWaitForAnswer("i" + filter + "," + field.getRequestId() + "," + field.getResponseId(), 0);
+                            // send it to the stack
+                            try {
+                                stack.process(hexData);
+                            } catch (NoDecoderException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            // request the response from the device
+                            //MainActivity.debug("Requesting: " + filter);
+                            String hexData = sendAndWaitForAnswer("g" + filter, 0);
+                            // send it to the stack
+                            try {
+                                stack.process(hexData);
+                            } catch (NoDecoderException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        // goto next filter
+                        synchronized (fields) {
+                            fieldIndex = (fieldIndex + 1) % fields.size();
+                        }
+                    }
                 } catch (Exception e) {
-                    filterIndex=0;
+                    fieldIndex =0;
                 }
             } else {
                 // ignore
             }
-        }
     }
 
     // clean all filters

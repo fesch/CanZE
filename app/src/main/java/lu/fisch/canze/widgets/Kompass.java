@@ -187,20 +187,22 @@ public class Kompass extends Tacho {
                 (int)(center.y+(needleLength-pointerLength)*Math.sin(mkRad(rota - angleDiff))));
         g.fillPolygon(p);
         // draw the value
-        if(showValue)
-        {
-            g.setTextSize(50);
-            int tw = g.stringWidth(value+"");
-            int th = g.stringHeight(value + "");
-            int tx = center.x-tw/2-3;
-            int ty = center.y-32;
-            g.setColor(Color.WHITE);
-            g.fillRect(tx - 1, ty - th, tw + 7, th + 5);
-            //g.setColor(Color.BLACK);
-            //g.drawRect(tx - 1, ty - th, tw + 7, th +5);
-            g.setColor(Color.GREEN_DARK);
+        if(showValue) {
             if(field !=null)
-                g.drawString(String.format("%."+(String.valueOf(field.getDecimals()).length()-1)+"f", field.getValue()),tx,ty);
+            {
+                g.setTextSize(50);
+                String text = String.format("%." + (String.valueOf(field.getDecimals()).length() - 1) + "f", field.getValue());
+                int tw = g.stringWidth(text);
+                int th = g.stringHeight(text);
+                int tx = center.x - tw / 2 - 3;
+                int ty = center.y - 32;
+                g.setColor(Color.WHITE);
+                g.fillRect(tx - 1, ty - th, tw + 7, th + 5);
+                //g.setColor(Color.BLACK);
+                //g.drawRect(tx - 1, ty - th, tw + 7, th +5);
+                g.setColor(Color.GREEN_DARK);
+                g.drawString(text, tx, ty);
+            }
         }
         // draw the title
         if(title!=null && !title.equals(""))

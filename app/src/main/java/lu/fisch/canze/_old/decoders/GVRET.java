@@ -1,11 +1,11 @@
 /*
  * Decodes a frame in GVRET (protocol, not the obsolete logging) format.
  */
-package lu.fisch.canze.decoders;
+package lu.fisch.canze._old.decoders;
 
 import java.util.ArrayList;
 
-import lu.fisch.canze.actors.Frame;
+import lu.fisch.canze.actors.Message;
 
 /**
  *
@@ -25,7 +25,7 @@ public class GVRET implements Decoder {
     private int length;
     private int[] dataBuf = new int[8];
 
-    public Frame decodeFrame(int[] bin) {
+    public Message decodeFrame(int[] bin) {
         // split up the text
         if(bin[0] == 0xf1 && bin[1] == 0x00 && bin[10] > 0) {
             // get the timestamp
@@ -37,31 +37,31 @@ public class GVRET implements Decoder {
             for (int i = 0; i < length; i++)
                 data[i] += bin[i+10];
             // create & return a new frame
-            return new Frame(id, timestamp, data);
+            return new Message(id, timestamp, data);
         }
         return null;
     }
 
     @Override
-    public Frame decodeFrame(String line) {
+    public Message decodeFrame(String line) {
         // not possible for this decoder
         return null;
     }
 
     @Override
-    public ArrayList<Frame> process(int[] input) {
-        ArrayList<Frame> result = new ArrayList<>();
+    public ArrayList<Message> process(int[] input) {
+        ArrayList<Message> result = new ArrayList<>();
 
         for(int i=0; i<input.length; i++)
         {
-            Frame f = receiveCode(input[i]);
+            Message f = receiveCode(input[i]);
             if(f!=null) result.add(f);
         }
 
         return result;
     }
 
-    public Frame receiveCode (int code) {
+    public Message receiveCode (int code) {
         int dataidx;
 
         switch (rxState) {
@@ -119,7 +119,7 @@ public class GVRET implements Decoder {
                                 data[i] += dataBuf[i];
                             rxState = IDLE;
                             rxStep = 0;
-                            return new Frame(id, timestamp, data);
+                            return new Message(id, timestamp, data);
                         }
                         break;
                 }
@@ -139,7 +139,7 @@ public class GVRET implements Decoder {
 
     public static void main(String[] args)
     {
-        Frame f = (new GVRET()).decodeFrame(new int[]{
+        Message f = (new GVRET()).decodeFrame(new int[]{
                 0xf1, 0,                         // receive frame
                 0x02, 0x01, 0x00, 0x00,          // timestamp
                 0xbb, 0x07, 0x00, 0x00,          // id

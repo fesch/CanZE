@@ -1,11 +1,12 @@
 /*
  * Decodes a frame in CRDT format.
  */
-package lu.fisch.canze.decoders;
+package lu.fisch.canze._old.decoders;
 
 import java.util.ArrayList;
 
-import lu.fisch.canze.actors.Frame;
+import lu.fisch.canze.actors.Message;
+import lu.fisch.canze.actors.Utils;
 
 /**
  *
@@ -17,7 +18,7 @@ public class CRDT implements Decoder {
     private final String separator = "\n";
 
     @Override
-    public Frame decodeFrame(String text) {
+    public Message decodeFrame(String text) {
         // split up the text
         String[] fields = text.split(" ");
         if(fields.length>=3) {
@@ -31,14 +32,14 @@ public class CRDT implements Decoder {
                 hexData += fields[i];
             int[] data = Utils.toIntArray(hexData.trim());
             // create & return a new frame
-            return new Frame(id, timestamp, data);
+            return new Message(id, timestamp, data);
         }
         return null;
     }
 
     @Override
-    public ArrayList<Frame> process(int[] input) {
-        ArrayList<Frame> result = new ArrayList<>();
+    public ArrayList<Message> process(int[] input) {
+        ArrayList<Message> result = new ArrayList<>();
 
         // add to buffer as characters
         for(int i=0; i<input.length; i++)
@@ -54,10 +55,10 @@ public class CRDT implements Decoder {
         for(int i=0; i<last; i++)
         {
             // decode into a frame
-            Frame frame = decodeFrame(messages[i].trim());
+            Message message = decodeFrame(messages[i].trim());
             // store if valid
-            if(frame!=null)
-                result.add(frame);
+            if(message !=null)
+                result.add(message);
         }
         // adapt the buffer
         if(!buffer.endsWith(separator))
@@ -76,7 +77,7 @@ public class CRDT implements Decoder {
 
     public static void main(String[] args)
     {
-        Frame f = (new CRDT()).decodeFrame("0 R11 7bb 10 66 61 67 f0 f0 f0 f0");
+        Message f = (new CRDT()).decodeFrame("0 R11 7bb 10 66 61 67 f0 f0 f0 f0");
         System.out.println(f);
     }
     

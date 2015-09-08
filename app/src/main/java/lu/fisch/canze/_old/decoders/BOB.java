@@ -1,12 +1,12 @@
 /*
  * Decodes a frame in the condensed format Bob uses.
  */
-package lu.fisch.canze.decoders;
+package lu.fisch.canze._old.decoders;
 
 import java.util.ArrayList;
 
-import lu.fisch.canze.actors.Frame;
-import lu.fisch.canze.MainActivity;
+import lu.fisch.canze.actors.Message;
+import lu.fisch.canze.actors.Utils;
 
 /**
  *
@@ -19,7 +19,7 @@ public class BOB implements Decoder {
     private final String separator = "\r\n";
 
     @Override
-    public Frame decodeFrame(String text) {
+    public Message decodeFrame(String text) {
         // split up the fields
         String[] pieces = text.split(",");
         if(pieces.length==2) {
@@ -29,7 +29,7 @@ public class BOB implements Decoder {
                 // get the data
                 int[] data = Utils.toIntArray(pieces[1].trim());
                 // create and return new frame
-                return new Frame(id, data);
+                return new Message(id, data);
             }
             catch(Exception e)
             {
@@ -43,6 +43,12 @@ public class BOB implements Decoder {
                 int id = Integer.parseInt(pieces[0], 16);
                 // get the data
                 int[] data = Utils.toIntArray(pieces[1].trim());
+                // get the reply-ID
+                Message f = new Message(id,data);
+                //MainActivity.debug("THIRD: "+pieces[2].trim());
+                f.setResponseId(pieces[2].trim());
+                return f;
+                /*
                 // get checksum
                 int chk = Integer.parseInt(pieces[2].trim(), 16);
                 int check = 0;
@@ -52,6 +58,7 @@ public class BOB implements Decoder {
                 if(chk==check)
                     // create and return new frame
                     return new Frame(id, data);
+                */
             }
             catch(Exception e)
             {
@@ -64,8 +71,8 @@ public class BOB implements Decoder {
     }
 
     @Override
-    public ArrayList<Frame> process(int[] input) {
-        ArrayList<Frame> result = new ArrayList<>();
+    public ArrayList<Message> process(int[] input) {
+        ArrayList<Message> result = new ArrayList<>();
 
         // add to buffer as characters
         for (int i = 0; i < input.length; i++) {
@@ -82,10 +89,10 @@ public class BOB implements Decoder {
         // process each message
         for (int i = 0; i < last; i++) {
             // decode into a frame
-            Frame frame = decodeFrame(messages[i].trim());
+            Message message = decodeFrame(messages[i].trim());
             // store if valid
-            if (frame != null)
-                result.add(frame);
+            if (message != null)
+                result.add(message);
         }
         // adapt the buffer
         if (!buffer.endsWith(separator))
@@ -105,7 +112,7 @@ public class BOB implements Decoder {
 
     public static void main(String[] args)
     {
-        Frame f = (new BOB()).decodeFrame("7bb,10666167f0f0f0f0");
+        Message f = (new BOB()).decodeFrame("7bb,10666167f0f0f0f0");
         System.out.println(f);
     }
     

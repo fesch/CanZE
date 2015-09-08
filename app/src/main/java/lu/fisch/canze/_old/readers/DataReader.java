@@ -1,11 +1,11 @@
-package lu.fisch.canze.readers;
+package lu.fisch.canze._old.readers;
 
 
 import java.util.ArrayList;
 
 import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Stack;
+import lu.fisch.canze._old.actors.Stack;
 import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
 
 /**
@@ -60,7 +60,6 @@ public abstract class DataReader {
                 fields.add(field);
                 registerFilter(field.getHexId());
             }
-            //MainActivity.debug("Filters = "+filters.toString());
         }
     }
 
