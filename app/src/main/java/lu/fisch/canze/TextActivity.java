@@ -32,6 +32,14 @@ public class TextActivity extends AppCompatActivity implements FieldListener {
         field = MainActivity.fields.getBySID("42e.56");
         field.addListener(this);
         MainActivity.device.addField(field);
+
+        field = MainActivity.fields.getBySID("7bb.6104.16");
+        field.addListener(this);
+        MainActivity.device.addField(field);
+
+        field = MainActivity.fields.getBySID("7bb.6141.32");
+        field.addListener(this);
+        MainActivity.device.addField(field);
     }
 
     @Override
@@ -65,6 +73,12 @@ public class TextActivity extends AppCompatActivity implements FieldListener {
                         break;
                     case "42e.56":
                         tv = (TextView) findViewById(R.id.text_max_charge);
+                        break;
+                    case "7bb.6104.16":
+                        tv = (TextView) findViewById(R.id.text_comp_1_temp);
+                        break;
+                    case "7bb.6141.32":
+                        tv = (TextView) findViewById(R.id.text_cell_2_mv);
                         break;
                 }
                 // set a new content
