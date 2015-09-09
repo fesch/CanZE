@@ -19,17 +19,8 @@
     android:layout_height="fill_parent"
     android:orientation="horizontal"
     android:layout_weight="1">
-    <!--
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/textView"/>
-    -->
+
+
 <!--
     <lu.fisch.canze.widgets.WidgetView
         android:id="@+id/accelerationPedal"
@@ -48,20 +39,25 @@
         />
 
     <lu.fisch.canze.widgets.WidgetView
-        android:id="@+id/speed"
+        android:id="@+id/steering"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="fill_parent"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
-        custom:min="0"
-        custom:max="140"
-        custom:majorTicks="10"
-        custom:minorTicks="5"
-        custom:fieldSID="5d7.0"
-        custom:widget="tacho"
-        custom:text="Speed (km/h)"
+        android:layout_marginBottom="8dp"
+        custom:min="-0x1000"
+        custom:max="0x1000"
+        custom:majorTicks="0x250"
+        custom:minorTicks="0"
+        custom:showLabels="false"
+        custom:showValue="false"
+        custom:fieldSID="c6.0"
+        custom:isInverted="true"
+        custom:widget="kompass"
+        custom:text="Steering position"
         />
+
 
     <lu.fisch.canze.widgets.WidgetView
         android:id="@+id/SOC"
@@ -79,7 +75,26 @@
         custom:widget="tacho"
         custom:text="State of charge (%)"
         />
+-->
+
+    <!--
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/speed"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            custom:min="0"
+            custom:max="140"
+            custom:majorTicks="10"
+            custom:minorTicks="5"
+            custom:fieldSID="5d7.0"
+            custom:widget="tacho"
+            custom:text="Speed (km/h)"
+            />
     -->
+
 </TableRow>
 <TableRow
     android:id="@+id/tableRow2"
