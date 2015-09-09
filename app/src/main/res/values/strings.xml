@@ -20,4 +20,8 @@
     <string name="label_debug">Debug</string>
     <string name="default_debug">#Debug</string>
 
+    <string name="default_CompT">#T</string>
+    <string name="default_CellV">#T</string>
+
+
 </resources>
