@@ -21,4 +21,8 @@
     <string name="default_debug">#Debug</string>
     <string name="title_activity_battery_temp">BatteryTempActivity</string>
 
+    <string name="default_CompT">#T</string>
+    <string name="default_CellV">#T</string>
+
+
 </resources>

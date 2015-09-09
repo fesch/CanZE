@@ -53,6 +53,24 @@
         android:layout_alignParentRight="true"
         />
 
+    <TextView
+        android:id="@+id/text_comp_1_temp"
+        android:text="@string/default_CompT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LabelPedal"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:id="@+id/text_cell_2_mv"
+        android:text="@string/default_CellV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_comp_1_temp"
+        android:layout_alignParentRight="true"
+        />
+
 
     <!-- debug line -->
     <TextView
