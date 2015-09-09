@@ -111,7 +111,7 @@ public class ELM327 extends Device {
             buffer += (char) input[i];
         }
 
-        MainActivity.debug("Buffer: "+buffer);
+        //MainActivity.debug("Buffer: "+buffer);
 
         // split by <new line>
         String[] messages = buffer.split(SEPARATOR);
@@ -159,6 +159,24 @@ public class ELM327 extends Device {
             }
             catch(Exception e)
             {
+                return null;
+            }
+        }
+        else if(pieces.length==3) {
+            try {
+                // get the id
+                int id = Integer.parseInt(pieces[0], 16);
+                // get the data
+                int[] data = Utils.toIntArray(pieces[1].trim());
+                // get the reply-ID
+                Message f = new Message(id,data);
+                //MainActivity.debug("THIRD: "+pieces[2].trim());
+                f.setResponseId(pieces[2].trim());
+                return f;
+            }
+            catch(Exception e)
+            {
+                //MainActivity.debug("BAD: "+text);
                 return null;
             }
         }
@@ -210,25 +228,34 @@ public class ELM327 extends Device {
 
     // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis) {
-        return sendAndWaitForAnswer(command,waitMillis,false);
+        return sendAndWaitForAnswer(command,waitMillis,false,-1);
+    }
+
+    private String sendAndWaitForAnswer(String command, int waitMillis, int answerLinesCount) {
+        return sendAndWaitForAnswer(command,waitMillis,false,answerLinesCount);
+    }
+
+    private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty) {
+        return sendAndWaitForAnswer(command,waitMillis,untilEmpty,-1);
     }
 
     // send a command and wait for an answer
-    private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty)
+    private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount)
     {
-        // empty incoming buffer
-        // just make sure there is no previous response
-        try {
-            while(connectedBluetoothThread.available()>0)
-            {
-                connectedBluetoothThread.read();
+        if(command!=null) {
+            // empty incoming buffer
+            // just make sure there is no previous response
+            try {
+                while (connectedBluetoothThread.available() > 0) {
+                    connectedBluetoothThread.read();
+                }
+            } catch (IOException e) {
+                // ignore
             }
-        } catch (IOException e) {
-            // ignore
-        }
-        // send the command
-        if(command!=null)
+            // send the command
             connectedBluetoothThread.write(command + "\r\n");
+        }
+
         //MainActivity.debug("Send > "+command);
         // wait if needed
         if(waitMillis>0)
@@ -257,22 +284,29 @@ public class ELM327 extends Device {
                         char ch = (char) data;
                         // add it to the readBuffer
                         readBuffer += ch;
-                        // stop if we reached the end or if no more data is available
-                        if (ch == EOM || connectedBluetoothThread.available() <= 0) stop = true;
-                        if (ch == EOM && untilEmpty)
+                        // if we reach the end of a line
+                        if (ch == EOM)
                         {
-                            try {
-                                Thread.sleep(30);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                            //MainActivity.debug("ALC: "+answerLinesCount+")\n"+readBuffer);
+                            // decrease awaiting answer lines
+                            answerLinesCount--;
+                            // if we not asked to keep on and we got enough lines, stop
+                            if(untilEmpty==false){
+                                if(answerLinesCount<=0) {
+                                    stop = true;
+                                }
+                                else
+                                {
+                                    start = Calendar.getInstance().getTimeInMillis();
+                                }
                             }
-                        }
-                        // if we should read until the end and there is still data on the line,
-                        // do not stop and reset timeout!
-                        if(stop==true && connectedBluetoothThread.available()>0 && untilEmpty)
-                        {
-                            stop=false;
-                            start = Calendar.getInstance().getTimeInMillis();
+                            else if (untilEmpty) {
+                                stop=(connectedBluetoothThread.available()==0);
+                            }
+                            else
+                            {
+                                start = Calendar.getInstance().getTimeInMillis();
+                            }
                         }
                     }
                 }
@@ -282,7 +316,7 @@ public class ELM327 extends Device {
                 e.printStackTrace();
             }
         }
-        //MainActivity.debug("Stop: "+stop+" && Delta: "+(Calendar.getInstance().getTimeInMillis()-start));
+        //MainActivity.debug("ALC: "+answerLinesCount+" && Stop: "+stop+" && Delta: "+(Calendar.getInstance().getTimeInMillis()-start));
         //MainActivity.debug("Recv < "+readBuffer);
         return readBuffer;
     }
@@ -344,34 +378,57 @@ public class ELM327 extends Device {
                     sendAndWaitForAnswer("atfcsm1", 50);
                     // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
                     String pre="0"+field.getRequestId().length()/2;
-                    MainActivity.debug("R: "+request+" - F: "+emlFilter+" - C: "+pre+field.getRequestId());
-                    String hexData = sendAndWaitForAnswer(pre+field.getRequestId(),400,true);
-                    // atfcsm0          Reset flow control mode to 0 (default)
-                    sendAndWaitForAnswer("atfcsm0", 50);
+                    //MainActivity.debug("R: "+request+" - C: "+pre+field.getRequestId());
 
-                    //MainActivity.debug("Got:\n"+hexData);
+                    // get 0x1 frame
+                    String line0x1 = sendAndWaitForAnswer(pre+field.getRequestId(),400,false);
 
-                    // split into lines
-                    String[] hexDataLines = hexData.split(String.valueOf(EOM));
+                    // process first line (0x1 frame)
+                    line0x1=line0x1.trim();
+                    //MainActivity.debug("Line: "+line0x1);
+                    // clean-up if there is mess around
+                    if(line0x1.startsWith(">")) line0x1=line0x1.substring(1);
+                    // remove first nibble
+                    String type = line0x1.substring(0,1);
+                    //MainActivity.debug("Type: "+type);
+
                     String finalData = "";
-
-                    for(int i=0; i<hexDataLines.length; i++)
+                    if(type.equals("0"))
                     {
-                        // get the line
-                        String line = hexDataLines[i].trim();
-                        if(line.startsWith(">")) line=line.substring(1);
-                        if(!line.isEmpty()) {
-                            MainActivity.debug("Line: " + line);
-                            // first line
-                            if (i == 0) {
-                                // cut off the two first bytes (type + frame length)
-                                line = line.substring(4);
-                                // cut of the reply code
-                                line = line.substring(field.getRequestId().length());
-                                finalData = line;
-                            }
-                            // second line
-                            else {
+                        finalData = line0x1;
+                    }
+                    else {
+                        line0x1 = line0x1.substring(1);
+                        //MainActivity.debug("HEX-length = " + line0x1.substring(0, 3));
+                        int count = Integer.valueOf(line0x1.substring(0, 3), 16);
+                        //MainActivity.debug("DEC-length = " + count);
+                        // remove 3 nibbles (number of payload bytes)
+                        line0x1 = line0x1.substring(3);
+                        // remove response
+                        line0x1 = line0x1.substring(field.getRequestId().length());
+                        // store the reminding bytes
+                        finalData = line0x1;
+                        // decrease count
+                        count -= line0x1.length() / 2;
+                        // each of the 0x2 frames has a payload of 7 bytes
+                        int framesToReceive = (int) Math.ceil(count / 7.);
+                        //MainActivity.debug("framesToReceive = " + framesToReceive);
+
+                        // get remaining 0x2 frames
+                        String lines0x2 = sendAndWaitForAnswer(null,0, framesToReceive);
+
+                        // atfcsm0          Reset flow control mode to 0 (default)
+                        sendAndWaitForAnswer("atfcsm0", 50);
+
+                        //MainActivity.debug("Got:\n"+hexData);
+
+                        // split into lines
+                        String[] hexDataLines = lines0x2.split(String.valueOf(EOM));
+
+                        for (int i = 0; i < hexDataLines.length; i++) {
+                            String line = hexDataLines[i];
+                            //MainActivity.debug("Line "+(i+1)+": " + line);
+                            if(!line.isEmpty() && line.length()>2) {
                                 // cut off the first byte (type + sequence)
                                 line = line.substring(2);
                                 finalData += line;
@@ -381,7 +438,7 @@ public class ELM327 extends Device {
 
                     MainActivity.debug("ELM: received " + emlFilter+","+finalData.trim());
 
-                    String data = filter + "," + finalData.trim() + SEPARATOR;
+                    String data = filter + "," + finalData.trim()+","+field.getResponseId() + SEPARATOR;
 
                     // process data
                     process(Utils.toIntArray(data.getBytes()));

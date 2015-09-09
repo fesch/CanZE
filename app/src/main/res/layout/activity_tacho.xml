@@ -21,7 +21,7 @@
     android:layout_weight="1">
 
 
-<!--
+
     <lu.fisch.canze.widgets.WidgetView
         android:id="@+id/accelerationPedal"
         android:layout_width="0dp"
@@ -75,7 +75,7 @@
         custom:widget="tacho"
         custom:text="State of charge (%)"
         />
--->
+
 
     <!--
         <lu.fisch.canze.widgets.WidgetView
