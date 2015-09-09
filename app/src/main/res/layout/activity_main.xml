@@ -12,127 +12,7 @@
     android:stretchColumns="3"
     android:id="@+id/table"
     >
-<!--
-    <TableRow
-        android:id="@+id/tableRow1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="horizontal"
-        android:layout_weight="1">
 
-        <lu.fisch.canze.widgets.WidgetView
-            android:id="@+id/accelerationPedal"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            custom:min="0"
-            custom:max="1000"
-            custom:majorTicks="100"
-            custom:minorTicks="25"
-            custom:fieldSID="186.40"
-            custom:widget="tacho"
-            custom:text="Acceleration pedal"
-            />
-
-        <lu.fisch.canze.widgets.WidgetView
-            android:id="@+id/speed"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            custom:min="0"
-            custom:max="140"
-            custom:majorTicks="10"
-            custom:minorTicks="5"
-            custom:fieldSID="5d7.0"
-            custom:widget="tacho"
-            custom:text="Speed (km/h)"
-            />
-
-        <lu.fisch.canze.widgets.WidgetView
-            android:id="@+id/SOC"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            custom:min="0"
-            custom:max="100"
-            custom:majorTicks="10"
-            custom:minorTicks="5"
-            custom:fieldSID="42e.0"
-            custom:widget="tacho"
-            custom:text="State of charge (%)"
-            />
-    </TableRow>
-    <TableRow
-        android:id="@+id/tableRow2"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="horizontal"
-        android:layout_weight="1">
-
-        <lu.fisch.canze.widgets.WidgetView
-            android:id="@+id/steering"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginBottom="8dp"
-            custom:min="-0x1000"
-            custom:max="0x1000"
-            custom:majorTicks="0x250"
-            custom:minorTicks="0"
-            custom:showLabels="false"
-            custom:showValue="false"
-            custom:fieldSID="c6.0"
-            custom:isInverted="true"
-            custom:widget="kompass"
-            custom:text="Steering position"
-            />
-
-        <lu.fisch.canze.widgets.WidgetView
-            android:id="@+id/consumption"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginBottom="8dp"
-            custom:min="-43"
-            custom:max="43"
-            custom:majorTicks="10"
-            custom:minorTicks="2"
-            custom:fieldSID="1fd.48"
-            custom:widget="kompass"
-            custom:text="Consumption (kw)"
-            />
-
-        <lu.fisch.canze.widgets.WidgetView
-            android:id="@+id/recup"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            custom:min="0"
-            custom:max="160"
-            custom:majorTicks="10"
-            custom:minorTicks="5"
-            custom:fieldSID="654.42"
-            custom:widget="tacho"
-            custom:text="Available distance (km)"
-            />
-    </TableRow>
-
-    -->
 
     <TableRow
         android:layout_width="match_parent"
@@ -160,6 +40,34 @@
             android:layout_marginBottom="8dp"
             android:text="TextActivity (Jeroen)"
             android:id="@+id/buttonText"
+            android:layout_column="0" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="BatterytemperturesActivity (Bob)"
+            android:id="@+id/buttonBatTemp"
+            android:layout_column="0" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text=""
+            android:id="@+id/buttonEmpty"
             android:layout_column="0" />
     </TableRow>
 </TableLayout>
