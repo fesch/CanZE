@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static Device device = null;
 
+    private static MainActivity instance = null;
+
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -104,6 +106,16 @@ public class MainActivity extends AppCompatActivity {
     public static void debug(String text)
     {
         Log.d(TAG, text);
+    }
+
+    public static void toast(final String message)
+    {
+        instance.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void loadSettings()
@@ -157,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        instance = this;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
