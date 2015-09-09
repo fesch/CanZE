@@ -66,6 +66,7 @@ public class ELM327 extends Device {
                         sendAndWaitForAnswer("atcaf0", 500);
 
                         MainActivity.debug("ELM: initialised ...");
+                        MainActivity.toast("ELM is now ready ...");
 
                         while (true)
                             queryNextFilter();
@@ -82,6 +83,7 @@ public class ELM327 extends Device {
                     /**/
                     } else {
                         MainActivity.debug("ELM: no answer ...");
+                        MainActivity.toast("No answer from ELM ... retrying ...");
                         Thread t = new Thread(this);
                         t.start();
                     }
@@ -388,13 +390,17 @@ public class ELM327 extends Device {
                     //MainActivity.debug("Line: "+line0x1);
                     // clean-up if there is mess around
                     if(line0x1.startsWith(">")) line0x1=line0x1.substring(1);
-                    // remove first nibble
+                    // get type (first nibble)
                     String type = line0x1.substring(0,1);
                     //MainActivity.debug("Type: "+type);
 
                     String finalData = "";
                     if(type.equals("0"))
                     {
+                        // remove 2 nibbles (type + length)
+                        line0x1 = line0x1.substring(4);
+                        // remove response
+                        //line0x1 = line0x1.substring(field.getRequestId().length());
                         finalData = line0x1;
                     }
                     else {
@@ -405,7 +411,7 @@ public class ELM327 extends Device {
                         // remove 3 nibbles (number of payload bytes)
                         line0x1 = line0x1.substring(3);
                         // remove response
-                        line0x1 = line0x1.substring(field.getRequestId().length());
+                        //line0x1 = line0x1.substring(field.getRequestId().length());
                         // store the reminding bytes
                         finalData = line0x1;
                         // decrease count

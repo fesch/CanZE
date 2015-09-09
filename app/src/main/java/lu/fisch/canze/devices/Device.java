@@ -134,6 +134,25 @@ public abstract class Device {
     }
 
     /**
+     * A CAN message will trigger updates for all connected fields, meaning
+     * any field with the same ID and the same responseID will be updated.
+     * For this reason we don't need to query these fields multiple times
+     * in one turn.
+     * @param _field    the field to be tested
+     * @return
+     */
+    private boolean containsField(Field _field)
+    {
+        for(int i=0; i<fields.size(); i++)
+        {
+            Field field = fields.get(i);
+            if(field.getId()==_field.getId() && field.getResponseId().equals(_field.getResponseId()))
+                return true;
+        }
+        return false;
+    }
+
+    /**
      * Method to add a field to the list of monitored field.
      * The field is also immediately registered onto the device.
      * @param field the field to be added
@@ -141,7 +160,7 @@ public abstract class Device {
     public void addField(final Field field)
     {
         synchronized (fields) {
-            if (!fields.contains(field)) {
+            if (!containsField(field)) {
                 fields.add(field);
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
