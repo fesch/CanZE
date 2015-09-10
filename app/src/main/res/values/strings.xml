@@ -7,22 +7,52 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_tacho">TachoActivity</string>
     <string name="title_activity_text">TextActivity</string>
+    <string name="title_activity_battery__voltage_">Battery Voltages</string>
+    <string name="title_activity_leaf_spy">Leaf Spy Clone</string>
 
-    <string name="label_max_charge">Max battery charge</string>
+
+    <!-- Charging -->
+
+    <string name="activity_charging">Charging info</string>
+
+    <string name="label_max_charge">Max battery charge/regen Kw</string>
     <string name="default_max_charge">#Max bat ch</string>
 
-    <string name="label_max_pilot">Max AC charge</string>
+    <string name="label_max_pilot">Max AC charge pilot Amp</string>
     <string name="default_max_pilot">#Max AC ch</string>
 
-    <string name="label_pedal">Pedal</string>
-    <string name="default_pedal">#Pedal</string>
+    <string name="label_SOC">State of charge %</string>
+    <string name="default_SOC">#SOC</string>
+
+    <string name="label_SOH">State of health %</string>
+    <string name="default_SOH">#SOH</string>
+
+    <string name="label_TTF">Time to full min</string>
+    <string name="default_TTF">#TTF</string>
+
+    <string name="label_ETF">Energy to full kWh</string>
+    <string name="default_ETF">#ETF</string>
+
+    <string name="label_KMA">Available range km</string>
+    <string name="default_KMA">#KMA</string>
+
+    <string name="label_Volt">Volts HV Battery</string>
+    <string name="default_Volt">#Volt</string>
+
+    <string name="label_Amps">Amps HV Battery</string>
+    <string name="default_Amps">#Amps</string>
+
+    <string name="label_DcPwr">DC Power</string>
+    <string name="default_DcPwr">#DCP</string>
 
     <string name="label_debug">Debug</string>
     <string name="default_debug">#Debug</string>
     <string name="title_activity_battery_temp">BatteryTempActivity</string>
 
-    <string name="default_CompT">#T</string>
-    <string name="default_CellV">#T</string>
+    <string name="label_CompTemp">Battery Compartment temperatures</string>
 
+    <string name="default_CompT">#T</string>
+
+    <string name="default_CellV">#V</string>
 
 </resources>
