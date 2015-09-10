@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, TextActivity.class);
+                Intent intent = new Intent(MainActivity.this, ChargingActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
             }
         });

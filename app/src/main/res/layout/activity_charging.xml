@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="lu.fisch.canze.TextActivity">
+    tools:context="lu.fisch.canze.ChargingActivity">
 
     <RelativeLayout
         android:orientation="horizontal"
@@ -159,6 +159,22 @@
             android:layout_alignParentRight="true"
             />
 
+        <TextView
+            android:id="@+id/LabelDcPwr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_DcPwr"
+            android:layout_below="@id/LabelAmps"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/textDcPwr"
+            android:text="@string/default_DcPwr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textAmps"
+            android:layout_alignParentRight="true"
+            />
+
 
 
         <TextView
@@ -166,8 +182,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_CompTemp"
-            android:layout_below="@id/LabelAmps"
-            android:layout_alignParentLeft="true" />
+            android:layout_below="@id/LabelDcPwr"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:textColor="#000" />
 
 
     </RelativeLayout>
@@ -292,6 +310,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        />
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>

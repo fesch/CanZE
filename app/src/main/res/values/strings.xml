@@ -8,7 +8,12 @@
     <string name="title_activity_tacho">TachoActivity</string>
     <string name="title_activity_text">TextActivity</string>
 
-    <string name="label_max_charge">Max battery charge Kw</string>
+
+    <!-- Charging -->
+
+    <string name="activity_charging">Charging info</string>
+
+    <string name="label_max_charge">Max battery charge/regen Kw</string>
     <string name="default_max_charge">#Max bat ch</string>
 
     <string name="label_max_pilot">Max AC charge pilot Amp</string>
@@ -26,7 +31,7 @@
     <string name="label_ETF">Energy to full kWh</string>
     <string name="default_ETF">#ETF</string>
 
-    <string name="label_KMA">Kilometers available</string>
+    <string name="label_KMA">Available range km</string>
     <string name="default_KMA">#KMA</string>
 
     <string name="label_Volt">Volts HV Battery</string>
@@ -34,6 +39,9 @@
 
     <string name="label_Amps">Amps HV Battery</string>
     <string name="default_Amps">#Amps</string>
+
+    <string name="label_DcPwr">DC Power</string>
+    <string name="default_DcPwr">#DCP</string>
 
     <string name="label_debug">Debug</string>
     <string name="default_debug">#Debug</string>
