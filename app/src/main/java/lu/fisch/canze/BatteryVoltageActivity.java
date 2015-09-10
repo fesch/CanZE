@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
-import lu.fisch.canze.widgets.SimpleBar;
+import lu.fisch.canze.widgets.Bar;
 import lu.fisch.canze.widgets.WidgetView;
 
 public class BatteryVoltageActivity extends AppCompatActivity {
@@ -45,11 +45,11 @@ public class BatteryVoltageActivity extends AppCompatActivity {
 
             for (int i = 0; i < 12; i++) {
                 WidgetView wv = new WidgetView(getBaseContext());
-                SimpleBar simpleBar = new SimpleBar();
-                simpleBar.setValue(i * 2);
-                simpleBar.setMin(0);
-                simpleBar.setMax(5);
-                wv.setDrawable(simpleBar);
+                Bar bar = new Bar();
+                bar.setValue(i * 2);
+                bar.setMin(0);
+                bar.setMax(5);
+                wv.setDrawable(bar);
                 wv.setMinorTicks(0);
                 wv.setMajorTicks(1);
                 wv.setTitle("Cell " + (j * 12 + i));
