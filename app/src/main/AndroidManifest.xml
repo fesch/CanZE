@@ -32,8 +32,8 @@
             android:label="@string/title_activity_tacho" >
         </activity>
         <activity
-            android:name=".TextActivity"
-            android:label="@string/title_activity_text" >
+            android:name=".ChargingActivity"
+            android:label="@string/activity_charging" >
         </activity>
         <activity
             android:name=".BatteryTempActivity"

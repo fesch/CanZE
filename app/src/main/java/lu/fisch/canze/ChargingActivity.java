@@ -11,13 +11,15 @@ import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldListener to the fields.
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
-public class TextActivity extends AppCompatActivity implements FieldListener {
+public class ChargingActivity extends AppCompatActivity implements FieldListener {
+
+    double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Field field;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_text);
+        setContentView(R.layout.activity_charging);
 
         field = MainActivity.fields.getBySID("7bb.6101.336"); // Max charge
         field.addListener(this);
@@ -55,7 +57,7 @@ public class TextActivity extends AppCompatActivity implements FieldListener {
         field.addListener(this);
         MainActivity.device.addField(field);
 
-        // Battery compatment temperatures
+        // Battery compartment temperatures
         for (int i=32; i<= 296; i+=24) {
             field = MainActivity.fields.getBySID("7bb.6104." + i);
             field.addListener(this);
@@ -84,6 +86,7 @@ public class TextActivity extends AppCompatActivity implements FieldListener {
             public void run() {
                 String fieldId = field.getSID();
                 TextView tv = null;
+
                 // get the text field
                 switch (fieldId) {
 
@@ -152,7 +155,21 @@ public class TextActivity extends AppCompatActivity implements FieldListener {
                         break;
                 }
                 // set a new content
-                if (tv != null) tv.setText("" + field.getValue());
+                if (tv != null) {
+                    tv.setText("" + field.getValue());
+                    // special cases
+                    switch (fieldId) {
+
+                        case "7ec.623203.16":
+                            dcVolt = field.getValue();
+                            break;
+                        case "7ec.623204.16":
+                            tv = (TextView) findViewById(R.id.textDcPwr);
+                            tv.setText("" + (dcVolt * field.getValue()));
+                            break;
+                    }
+                }
+
                 tv = (TextView) findViewById(R.id.textDebug);
                 tv.setText(fieldId);
             }
