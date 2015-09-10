@@ -245,6 +245,7 @@ public class Fields implements MessageListener {
             +"0x7bb, 336, 351, 1, 1, 0, 100, Max batt in pw:%2ld.%02ld, kW, 0x2101, 0x6101\n"
             +"0x7bb, 192, 207, 1, 1, 0, 100, Max batt in pw:%2ld.%02ld, kW, 0x2101, 0x6101\n"
             +"0x7bb, 208, 223, 1, 1, 0, 100, Max batt out pw:%2ld.%02ld, kW, 0x2101, 0x6101\n"
+            +"0x7bb, 336, 351, 1, 1, 0, 100, Max ch kW %2ld.%04ld, Kw, 0x2101, 0x6101\n"
             +"0x7bb, 348, 367, 10000, 1, 0, 10000, Bat Ah %2ld.%04ld, Ah, 0x2101, 0x6101\n"
             +"0x7bb, 316, 335, 10000, 1, 0, 10000, SOC(real) %2ld.%04ld, %, 0x2101, 0x6101\n"
             +"0x7bb, 16, 31, 1, 1, 0, 0, Raw t c01: %4ld, unknown, 0x2104, 0x6104\n"
