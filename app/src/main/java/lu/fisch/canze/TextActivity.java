@@ -19,27 +19,48 @@ public class TextActivity extends AppCompatActivity implements FieldListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text);
 
-        // Add this class ass listener to the field "Pedal"
-        // I chose this one, because it can easily be tested ;-)
-        field = MainActivity.fields.getBySID("186.40");
+        field = MainActivity.fields.getBySID("7bb.6101.336"); // Max charge
         field.addListener(this);
         MainActivity.device.addField(field);
 
-        field = MainActivity.fields.getBySID("42e.38");
+        field = MainActivity.fields.getBySID("42e.38"); // AC pilot
         field.addListener(this);
         MainActivity.device.addField(field);
 
-        field = MainActivity.fields.getBySID("42e.56");
+        field = MainActivity.fields.getBySID("42e.56"); // Energy to full
         field.addListener(this);
         MainActivity.device.addField(field);
 
-        field = MainActivity.fields.getBySID("7bb.6104.16");
+        field = MainActivity.fields.getBySID("654.32"); // Time to full
         field.addListener(this);
         MainActivity.device.addField(field);
 
-        field = MainActivity.fields.getBySID("7bb.6141.32");
+        field = MainActivity.fields.getBySID("654.24"); // SOC
         field.addListener(this);
         MainActivity.device.addField(field);
+
+        field = MainActivity.fields.getBySID("658.32"); // SOH
+        field.addListener(this);
+        MainActivity.device.addField(field);
+
+        field = MainActivity.fields.getBySID("654.42"); // Kilometers Available
+        field.addListener(this);
+        MainActivity.device.addField(field);
+
+        field = MainActivity.fields.getBySID("7ec.623203.16"); // HV Voltage
+        field.addListener(this);
+        MainActivity.device.addField(field);
+
+        field = MainActivity.fields.getBySID("7ec.623204.16"); // HV Current
+        field.addListener(this);
+        MainActivity.device.addField(field);
+
+        // Battery compatment temperatures
+        for (int i=32; i<= 296; i+=24) {
+            field = MainActivity.fields.getBySID("7bb.6104." + i);
+            field.addListener(this);
+            MainActivity.device.addField(field);
+        }
     }
 
     @Override
@@ -65,24 +86,73 @@ public class TextActivity extends AppCompatActivity implements FieldListener {
                 TextView tv = null;
                 // get the text field
                 switch (fieldId) {
-                    case "186.40":
-                        tv = (TextView) findViewById(R.id.textPedal);
+
+                    case "7bb.6101.336":
+                        tv = (TextView) findViewById(R.id.text_max_charge);
                         break;
                     case "42e.38":
                         tv = (TextView) findViewById(R.id.text_max_pilot);
                         break;
                     case "42e.56":
-                        tv = (TextView) findViewById(R.id.text_max_charge);
+                        tv = (TextView) findViewById(R.id.textETF);
                         break;
-                    case "7bb.6104.16":
+                    case "654.32":
+                        tv = (TextView) findViewById(R.id.textTTF);
+                        break;
+                    case "654.24":
+                        tv = (TextView) findViewById(R.id.textSOC);
+                        break;
+                    case "658.32":
+                        tv = (TextView) findViewById(R.id.textSOH);
+                        break;
+                    case "654.42":
+                        tv = (TextView) findViewById(R.id.textKMA);
+                        break;
+                    case "7ec.623203.16":
+                        tv = (TextView) findViewById(R.id.textVolt);
+                        break;
+                    case "7ec.623204.16":
+                        tv = (TextView) findViewById(R.id.textAmps);
+                        break;
+                    case "7bb.6104.32":
                         tv = (TextView) findViewById(R.id.text_comp_1_temp);
                         break;
-                    case "7bb.6141.32":
-                        tv = (TextView) findViewById(R.id.text_cell_2_mv);
+                    case "7bb.6104.56":
+                        tv = (TextView) findViewById(R.id.text_comp_2_temp);
+                        break;
+                    case "7bb.6104.80":
+                        tv = (TextView) findViewById(R.id.text_comp_3_temp);
+                        break;
+                    case "7bb.6104.104":
+                        tv = (TextView) findViewById(R.id.text_comp_4_temp);
+                        break;
+                    case "7bb.6104.128":
+                        tv = (TextView) findViewById(R.id.text_comp_5_temp);
+                        break;
+                    case "7bb.6104.152":
+                        tv = (TextView) findViewById(R.id.text_comp_6_temp);
+                        break;
+                    case "7bb.6104.176":
+                        tv = (TextView) findViewById(R.id.text_comp_7_temp);
+                        break;
+                    case "7bb.6104.200":
+                        tv = (TextView) findViewById(R.id.text_comp_8_temp);
+                        break;
+                    case "7bb.6104.224":
+                        tv = (TextView) findViewById(R.id.text_comp_9_temp);
+                        break;
+                    case "7bb.6104.248":
+                        tv = (TextView) findViewById(R.id.text_comp_10_temp);
+                        break;
+                    case "7bb.6104.272":
+                        tv = (TextView) findViewById(R.id.text_comp_11_temp);
+                        break;
+                    case "7bb.6104.296":
+                        tv = (TextView) findViewById(R.id.text_comp_12_temp);
                         break;
                 }
                 // set a new content
-                if (tv != null) tv.setText(field.getPrintValue());
+                if (tv != null) tv.setText("" + field.getValue());
                 tv = (TextView) findViewById(R.id.textDebug);
                 tv.setText(fieldId);
             }
