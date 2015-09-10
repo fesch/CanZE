@@ -1,6 +1,5 @@
 package lu.fisch.canze;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,11 +9,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
-import lu.fisch.canze.widgets.Bar;
+import lu.fisch.canze.widgets.SimpleBar;
 import lu.fisch.canze.widgets.WidgetView;
 
 public class BatteryVoltageActivity extends AppCompatActivity {
@@ -47,11 +45,11 @@ public class BatteryVoltageActivity extends AppCompatActivity {
 
             for (int i = 0; i < 12; i++) {
                 WidgetView wv = new WidgetView(getBaseContext());
-                Bar bar = new Bar();
-                bar.setValue(i * 2);
-                bar.setMin(0);
-                bar.setMax(5);
-                wv.setDrawable(bar);
+                SimpleBar simpleBar = new SimpleBar();
+                simpleBar.setValue(i * 2);
+                simpleBar.setMin(0);
+                simpleBar.setMax(5);
+                wv.setDrawable(simpleBar);
                 wv.setMinorTicks(0);
                 wv.setMajorTicks(1);
                 wv.setTitle("Cell " + (j * 12 + i));
