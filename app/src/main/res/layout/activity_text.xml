@@ -1,76 +1,289 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
     android:keepScreenOn="true"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:layout_height="fill_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="lu.fisch.canze.TextActivity">
 
-    <TextView
-        android:id="@+id/LabelMaxCharge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_max_charge"
-        android:layout_alignParentLeft="true" />
-    <TextView
-        android:id="@+id/text_max_charge"
-        android:text="@string/default_max_charge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        />
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/LabelMaxPilot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_max_pilot"
-        android:layout_below="@id/LabelMaxCharge"
-        android:layout_alignParentLeft="true" />
-    <TextView
-        android:id="@+id/text_max_pilot"
-        android:text="@string/default_max_pilot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_max_charge"
-        android:layout_alignParentRight="true"
-        />
+        <TextView
+            android:id="@+id/LabelMaxCharge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_max_charge"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/text_max_charge"
+            android:text="@string/default_max_charge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            />
 
-    <TextView
-        android:id="@+id/LabelPedal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_pedal"
-        android:layout_below="@id/LabelMaxPilot"
-        android:layout_alignParentLeft="true" />
-    <TextView
-        android:id="@+id/textPedal"
-        android:text="@string/default_pedal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_max_pilot"
-        android:layout_alignParentRight="true"
-        />
+        <TextView
+            android:id="@+id/LabelMaxPilot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_max_pilot"
+            android:layout_below="@id/LabelMaxCharge"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/text_max_pilot"
+            android:text="@string/default_max_pilot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_max_charge"
+            android:layout_alignParentRight="true"
+            />
 
-    <TextView
-        android:id="@+id/text_comp_1_temp"
-        android:text="@string/default_CompT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/LabelPedal"
-        android:layout_alignParentRight="true"
-        />
+        <TextView
+            android:id="@+id/LabelETF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_ETF"
+            android:layout_below="@id/LabelMaxPilot"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/textETF"
+            android:text="@string/default_ETF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_max_pilot"
+            android:layout_alignParentRight="true"
+            />
 
-    <TextView
-        android:id="@+id/text_cell_2_mv"
-        android:text="@string/default_CellV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_comp_1_temp"
-        android:layout_alignParentRight="true"
-        />
+        <TextView
+            android:id="@+id/LabelTTF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_TTF"
+            android:layout_below="@id/LabelETF"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/textTTF"
+            android:text="@string/default_TTF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textETF"
+            android:layout_alignParentRight="true"
+            />
 
+        <TextView
+            android:id="@+id/LabelSOC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_SOC"
+            android:layout_below="@id/LabelTTF"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/textSOC"
+            android:text="@string/default_SOC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textTTF"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
+            android:id="@+id/LabelSOH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_SOH"
+            android:layout_below="@id/LabelSOC"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/textSOH"
+            android:text="@string/default_SOH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textSOC"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
+            android:id="@+id/LabelKMA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_KMA"
+            android:layout_below="@id/LabelSOH"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/textKMA"
+            android:text="@string/default_KMA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textSOH"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
+            android:id="@+id/LabelVolt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_Volt"
+            android:layout_below="@id/LabelKMA"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/textVolt"
+            android:text="@string/default_Volt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textKMA"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
+            android:id="@+id/LabelAmps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_Amps"
+            android:layout_below="@id/LabelVolt"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/textAmps"
+            android:text="@string/default_Amps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textVolt"
+            android:layout_alignParentRight="true"
+            />
+
+
+
+        <TextView
+            android:id="@+id/LabelCompTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_CompTemp"
+            android:layout_below="@id/LabelAmps"
+            android:layout_alignParentLeft="true" />
+
+
+    </RelativeLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_comp_1_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_2_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_3_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_4_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_5_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_6_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_comp_7_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_8_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_9_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_10_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_11_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_12_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+        </TableRow>
+
+    </TableLayout>
 
     <!-- debug line -->
     <TextView
@@ -81,4 +294,4 @@
         android:layout_alignParentBottom="true"
         />
 
-</RelativeLayout>
+</LinearLayout>
