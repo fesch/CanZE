@@ -35,6 +35,10 @@
             android:name=".TextActivity"
             android:label="@string/title_activity_text" >
         </activity>
+        <activity
+            android:name=".BatteryTempActivity"
+            android:label="@string/title_activity_battery_temp" >
+        </activity>
     </application>
 
 </manifest>

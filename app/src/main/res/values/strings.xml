@@ -37,6 +37,7 @@
 
     <string name="label_debug">Debug</string>
     <string name="default_debug">#Debug</string>
+    <string name="title_activity_battery_temp">BatteryTempActivity</string>
 
     <string name="label_CompTemp">Battery Compartment temperatures</string>
 

@@ -37,7 +37,7 @@
         custom:widget="tacho"
         custom:text="Acceleration pedal"
         />
-
+<!--
     <lu.fisch.canze.widgets.WidgetView
         android:id="@+id/steering"
         android:layout_width="0dp"
@@ -45,7 +45,7 @@
         android:layout_height="fill_parent"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
         custom:min="-0x1000"
         custom:max="0x1000"
         custom:majorTicks="0x250"
@@ -57,10 +57,58 @@
         custom:widget="kompass"
         custom:text="Steering position"
         />
-
+-->
 
     <lu.fisch.canze.widgets.WidgetView
-        android:id="@+id/SOC"
+        android:id="@+id/BatHelath"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        custom:min="0"
+        custom:max="100"
+        custom:majorTicks="10"
+        custom:minorTicks="5"
+        custom:fieldSID="658.32"
+        custom:widget="tacho"
+        custom:text="Battery health (%)"
+        />
+
+    <lu.fisch.canze.widgets.WidgetView
+        android:id="@+id/SOC1"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        custom:min="0"
+        custom:max="100"
+        custom:majorTicks="10"
+        custom:minorTicks="5"
+        custom:fieldSID="42e.0"
+        custom:widget="tacho"
+        custom:text="State of charge 1 (%)"
+        />
+
+    <lu.fisch.canze.widgets.WidgetView
+        android:id="@+id/SOC2"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        custom:min="0"
+        custom:max="100"
+        custom:majorTicks="10"
+        custom:minorTicks="5"
+        custom:fieldSID="654.24"
+        custom:widget="tacho"
+        custom:text="State of charge 2 (%)"
+        />
+
+    <lu.fisch.canze.widgets.WidgetView
+        android:id="@+id/SOC3"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="fill_parent"
@@ -71,11 +119,10 @@
         custom:max="100"
         custom:majorTicks="10"
         custom:minorTicks="5"
-        custom:fieldSID="42e.0"
+        custom:fieldSID="7ec.622002.16"
         custom:widget="tacho"
-        custom:text="State of charge (%)"
+        custom:text="State of charge 3 (%)"
         />
-
 
     <!--
         <lu.fisch.canze.widgets.WidgetView
@@ -174,12 +221,12 @@
         custom:majorTicks="10"
         custom:minorTicks="2"
         custom:fieldSID="7bb.6104.32"
-        custom:widget="kompass"
+        custom:widget="tacho"
         custom:text="Temp Cell 01 (C°)"
         />
 
     <lu.fisch.canze.widgets.WidgetView
-        android:id="@+id/consumption2"
+        android:id="@+id/recufp"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="fill_parent"
@@ -187,12 +234,12 @@
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
         custom:min="0"
-        custom:max="30"
-        custom:majorTicks="10"
-        custom:minorTicks="2"
-        custom:fieldSID="7bb.6104.40"
-        custom:widget="kompass"
-        custom:text="Temp Cell 01 (C°)"
+        custom:max="14"
+        custom:majorTicks="2"
+        custom:minorTicks="1"
+        custom:fieldSID="7ec.622005.16"
+        custom:widget="tacho"
+        custom:text="12 Volt (V)"
         />
 
     <lu.fisch.canze.widgets.WidgetView
@@ -202,7 +249,6 @@
         android:layout_height="fill_parent"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         custom:min="0"
         custom:max="50000"

@@ -207,7 +207,10 @@ public class BobDue extends Device {
                     }
                     // goto next filter
                     synchronized (fields) {
-                        fieldIndex = (fieldIndex + 1) % fields.size();
+                        if(fields.size()==0)
+                            fieldIndex=0;
+                        else
+                            fieldIndex = (fieldIndex + 1) % fields.size();
                     }
                 }
             } catch (Exception e) {
@@ -274,5 +277,11 @@ public class BobDue extends Device {
         }
         //MainActivity.debug("Recv < "+readBuffer);
         return readBuffer;
+    }
+
+    @Override
+    public void clearFields() {
+        super.clearFields();
+        fieldIndex=0;
     }
 }
