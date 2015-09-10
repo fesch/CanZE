@@ -13,14 +13,13 @@ import java.util.ArrayList;
 
 import lu.fisch.canze.widgets.WidgetView;
 
-public class BatteryTempActivity extends AppCompatActivity {
+public class LeafSpyActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_battery_temp);
-
-        setTitle("Cell Compartiment Temperatures");
+        setContentView(R.layout.activity_leaf_spy);
 
         // initialise the widgets
         initWidgets();
@@ -52,7 +51,7 @@ public class BatteryTempActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_battery_temp, menu);
+        getMenuInflater().inflate(R.menu.menu_tacho, menu);
         return true;
     }
 
@@ -84,6 +83,12 @@ public class BatteryTempActivity extends AppCompatActivity {
                 for (int i = 0; i < widgets.size(); i++) {
                     final WidgetView wv = widgets.get(i);
                     // connect widgets to fields
+                    if (wv == null) {
+                        throw new ExceptionInInitializerError("Widget <" + wv.getId() + "> is NULL!");
+                    }
+                    if (MainActivity.fields.getBySID(wv.getFieldSID()) == null) {
+                        throw new ExceptionInInitializerError("Field with following SID <" + wv.getFieldSID() + "> not found!");
+                    }
                     MainActivity.fields.getBySID(wv.getFieldSID()).addListener(wv.getDrawable());
                     // add filter to reader
                     // OLD: MainActivity.reader.addField(wv.getDrawable().getField());
@@ -105,10 +110,10 @@ public class BatteryTempActivity extends AppCompatActivity {
                             switch (maskedAction) {
                                 case MotionEvent.ACTION_DOWN:
                                 case MotionEvent.ACTION_POINTER_DOWN: {
-                                    Intent intent = new Intent(BatteryTempActivity.this, WidgetActivity.class);
+                                    Intent intent = new Intent(LeafSpyActivity.this, WidgetActivity.class);
                                     //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     WidgetView.selectedDrawable = wv.getDrawable();
-                                    BatteryTempActivity.this.startActivity(intent);
+                                    LeafSpyActivity.this.startActivity(intent);
                                     break;
                                 }
                                 case MotionEvent.ACTION_MOVE:
@@ -146,4 +151,5 @@ public class BatteryTempActivity extends AppCompatActivity {
 
         return result;
     }
+
 }

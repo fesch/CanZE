@@ -1,0 +1,153 @@
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:keepScreenOn="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        tools:context="lu.fisch.canze.LeafSpyActivity"
+        android:stretchColumns="3"
+        android:id="@+id/table"
+        >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+
+
+            <lu.fisch.canze.widgets.WidgetView
+                android:id="@+id/w1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_margin="4dp"
+                custom:min="0"
+                custom:max="100"
+                custom:majorTicks="10"
+                custom:minorTicks="2"
+                custom:fieldSID="654.24"
+                custom:widget="tacho"
+                custom:text="SOC (%)"
+                />
+
+            <lu.fisch.canze.widgets.WidgetView
+                android:id="@+id/w2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_margin="4dp"
+                custom:min="0"
+                custom:max="150"
+                custom:majorTicks="10"
+                custom:minorTicks="5"
+                custom:fieldSID="654.42"
+                custom:widget="tacho"
+                custom:text="Estimated Distance (km)"
+                />
+
+            <lu.fisch.canze.widgets.WidgetView
+                android:id="@+id/w3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_margin="4dp"
+                custom:min="0"
+                custom:max="24"
+                custom:majorTicks="4"
+                custom:minorTicks="2"
+                custom:fieldSID="42e.56"
+                custom:widget="tacho"
+                custom:text="Consumed energy (kWh)"
+                />
+
+
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <lu.fisch.canze.widgets.WidgetView
+                android:id="@+id/w4"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_margin="4dp"
+                custom:min="0"
+                custom:max="450"
+                custom:majorTicks="50"
+                custom:minorTicks="10"
+                custom:fieldSID="77e.62300e.24"
+                custom:widget="tacho"
+                custom:text="Battery Voltage (V)"
+                />
+
+            <lu.fisch.canze.widgets.WidgetView
+                android:id="@+id/w6"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_margin="4dp"
+                custom:min="0"
+                custom:max="32"
+                custom:majorTicks="8"
+                custom:minorTicks="2"
+                custom:fieldSID="77e.62301d.24"
+                custom:widget="tacho"
+                custom:text="Battery Current (A)"
+                />
+
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+
+
+            <lu.fisch.canze.widgets.WidgetView
+                android:id="@+id/w5"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_margin="4dp"
+                custom:min="0"
+                custom:max="450"
+                custom:majorTicks="50"
+                custom:minorTicks="10"
+                custom:fieldSID="7ec.623203.16"
+                custom:widget="tacho"
+                custom:text="Requested Voltage (V)"
+                />
+
+            <lu.fisch.canze.widgets.WidgetView
+                android:id="@+id/w7"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_margin="4dp"
+                custom:min="-60"
+                custom:max="20"
+                custom:majorTicks="10"
+                custom:minorTicks="2"
+                custom:fieldSID="7ec.623204.16"
+                custom:widget="tacho"
+                custom:text="Requested Current (A)"
+                />
+
+        </TableRow>
+
+    </TableLayout>
+
+

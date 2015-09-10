@@ -190,12 +190,12 @@ public class Kompass extends Tacho {
         if(showValue) {
             if(field !=null)
             {
-                g.setTextSize(width/7);
+                g.setTextSize(Math.min(width / 7, 40));
                 String text = String.format("%." + (String.valueOf(field.getDecimals()).length() - 1) + "f", field.getValue());
                 int tw = g.stringWidth(text);
                 int th = g.stringHeight(text);
                 int tx = center.x-tw/2-3;
-                int ty = center.y+2*th;
+                int ty = center.y+th;
                 g.setColor(Color.WHITE);
                 g.fillRect(tx - 1, ty - th, tw + 7, th + 5);
                 //g.setColor(Color.BLACK);

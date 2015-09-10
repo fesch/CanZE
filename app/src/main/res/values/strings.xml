@@ -23,6 +23,8 @@
 
     <string name="default_CompT">#T</string>
     <string name="default_CellV">#T</string>
+    <string name="title_activity_battery__voltage_">Battery_Voltage_Activity</string>
+    <string name="title_activity_leaf_spy">Leaf Spy</string>
 
 
 </resources>

@@ -86,12 +86,13 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
             try
             {
                 // create configured widget
-                String[] widgets = {"Tacho","Kompass"};
+                String[] widgets = {"Tacho","Kompass", "Bar"};
                 TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs,R.styleable.WidgetView,0,0);
                 int widgetIndex = attributes.getInt(R.styleable.WidgetView_widget, 0);
                 if(widgetIndex<widgets.length)
                 {
                     String widget = widgets[widgetIndex];
+                    //MainActivity.debug("WidgetView: I am a "+widget);
                     Class clazz = Class.forName("lu.fisch.canze.widgets." + widget);
                     Constructor<?> constructor = clazz.getConstructor(null);
                     drawable = (Drawable) constructor.newInstance();
@@ -106,11 +107,12 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     setShowValue(attributes.getBoolean(R.styleable.WidgetView_showValue, true));
                     setInverted(attributes.getBoolean(R.styleable.WidgetView_isInverted, false));
                     fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
+                    //MainActivity.debug("WidgetView: My SID is "+fieldSID);
                     repaint();
                 }
                 else
                 {
-                    MainActivity.debug("Widgetindex "+widgetIndex+" is wrong!? Not registered in <WidgetView>?");
+                    MainActivity.debug("WidgetIndex "+widgetIndex+" is wrong!? Not registered in <WidgetView>?");
                 }
             }
             catch(Exception e)
@@ -334,6 +336,10 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
     public void setShowValue(boolean showValue) {
         if(drawable!=null)
             drawable.setShowValue(showValue);
+    }
+
+    public void setFieldSID(String fieldSID) {
+        this.fieldSID = fieldSID;
     }
 
     public void setInverted(boolean inverted) {

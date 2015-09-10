@@ -165,7 +165,7 @@ public class Fields implements MessageListener {
             +"0x35c, 16, 39, 1, 1, 0, 0, Minutes: %7ld, min, , \n"
             +"0x3f7, 2, 3, 1, 1, 0, 0, Gear??: %4ld, , , \n"
             +"0x42a, 16, 23, 1, 1, 0, 0, Temp set: %5ld, , , \n"
-            +"0x42e, 0, 12, 49, 1, 0, 0, SOC(a): %5ld, %, , \n"
+            +"0x42e, 0, 12, 49, 100, 0, 100, SOC(a): %5ld, %, , \n"
             +"0x42e, 24, 35, 16, 100, 0, 100, AC V: %3ld.%02ld, V, , \n"
             +"0x42e, 38, 43, 1, 1, 0, 1, AC pilot current: %3ld, A, , \n"
             +"0x42e, 56, 63, 1, 1, 0, 10, EOC kWh: %3ld.%01ld, kWh, , \n"

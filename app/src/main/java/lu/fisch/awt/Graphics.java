@@ -177,6 +177,11 @@ public class Graphics
 		canvas.drawPath(path, paint);
 	}
 
+    public void rotate(float degrees, float cx, float cy)
+    {
+        canvas.rotate(degrees,cx,cy);
+    }
+
 	/* *********************************
 	 * String things ...
 	 * *********************************/

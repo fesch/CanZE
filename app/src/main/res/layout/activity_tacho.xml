@@ -216,12 +216,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
-        custom:min="0"
-        custom:max="30"
-        custom:majorTicks="10"
-        custom:minorTicks="2"
+        custom:min="-100"
+        custom:max="100"
+        custom:majorTicks="20"
+        custom:minorTicks="5"
         custom:fieldSID="7bb.6104.32"
-        custom:widget="tacho"
+        custom:widget="bar"
         custom:text="Temp Cell 01 (C°)"
         />
 

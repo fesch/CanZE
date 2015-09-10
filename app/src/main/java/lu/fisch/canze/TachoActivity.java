@@ -40,8 +40,8 @@ public class TachoActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
+    protected void onResume() {
+        super.onResume();
 
         // initialise the widgets
         initWidgets();
@@ -82,6 +82,14 @@ public class TachoActivity extends AppCompatActivity {
                 for (int i = 0; i < widgets.size(); i++) {
                     final WidgetView wv = widgets.get(i);
                     // connect widgets to fields
+                    if(wv==null)
+                    {
+                        throw new ExceptionInInitializerError("Widget <"+wv.getId()+"> is NULL!");
+                    }
+                    if(MainActivity.fields.getBySID(wv.getFieldSID())==null)
+                    {
+                        throw new ExceptionInInitializerError("Field with following SID <"+wv.getFieldSID()+"> not found!");
+                    }
                     MainActivity.fields.getBySID(wv.getFieldSID()).addListener(wv.getDrawable());
                     // add filter to reader
                     // OLD: MainActivity.reader.addField(wv.getDrawable().getField());

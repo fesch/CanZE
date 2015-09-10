@@ -54,8 +54,37 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="BatterytemperturesActivity (Bob)"
+            android:text="BatteryTemperturesActivity (Bob)"
             android:id="@+id/buttonBatTemp"
+            android:layout_column="0" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="BatteryVolatagesActivity (Bob)"
+            android:id="@+id/buttonBatVolt"
+            android:layout_column="0" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="LeafSpy (Bob)"
+            android:id="@+id/buttonLeafSpy"
             android:layout_column="0" />
 
         <Button
