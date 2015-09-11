@@ -169,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        debug("MainActivity: onCreate");
+
         instance = this;
 
         super.onCreate(savedInstanceState);
@@ -386,9 +388,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onResume() {
+        debug("MainActivity: onResume");
+
         visible=true;
         super.onResume();
-        debug("MainActivity: onResume");
 
         /*
         // connect all widgets
@@ -421,11 +424,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onPause() {
+        debug("MainActivity: onPause");
         visible=false;
 
         super.onPause();
-
-        debug("MainActivity: onPause");
 
         if(!leaveBluetoothOn)
             BluetoothManager.getInstance().disconnect();
@@ -449,7 +451,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        debug("MainActivity: onDestroy");
+
         super.onDestroy();
+
+        BluetoothManager.getInstance().disconnect();
 
         // un-register for bluetooth changes
         this.unregisterReceiver(broadcastReceiver);

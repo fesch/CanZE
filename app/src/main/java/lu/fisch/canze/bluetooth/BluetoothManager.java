@@ -134,7 +134,7 @@ public class BluetoothManager {
 
     public ConnectedBluetoothThread connect(final String bluetoothAddress, final boolean secure, final int retries) {
         retry = true;
-        return privateConnect(bluetoothAddress,secure,retries);
+        return privateConnect(bluetoothAddress, secure, retries);
     }
 
     private ConnectedBluetoothThread privateConnect(final String bluetoothAddress, final boolean secure, final int retries)
@@ -250,6 +250,11 @@ public class BluetoothManager {
 
             retry=false;
 
+            if(retryThread.isAlive()) {
+                debug("Waiting for retry-thread to stop ...");
+                retryThread.join();
+            }
+
             debug("Closing socket");
             // close the socket
             if (bluetoothSocket != null)
@@ -262,6 +267,8 @@ public class BluetoothManager {
         }
         catch (IOException e)
         {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
