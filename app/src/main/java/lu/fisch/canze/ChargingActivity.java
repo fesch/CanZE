@@ -15,6 +15,7 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
 
     double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     double pilot = 0;
+    double flap = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,10 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
         MainActivity.device.addField(field);
 
         field = MainActivity.fields.getBySID("654.42"); // Kilometers Available
+        field.addListener(this);
+        MainActivity.device.addField(field);
+
+        field = MainActivity.fields.getBySID("65b.41"); // Flap
         field.addListener(this);
         MainActivity.device.addField(field);
 
@@ -99,12 +104,20 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
                         pilot = field.getValue();
                         // continue
                         tv = (TextView) findViewById(R.id.text_max_pilot);
+                        if (pilot == 0) {
+                            tv.setText(flap == 0 ? "Closed" : "Open");
+                            tv = null;
+                        }
                         break;
                     case "42e.56":
                         tv = (TextView) findViewById(R.id.textETF);
                         break;
-                    case "654.32":
+                    case "654.32": // time to full
                         tv = (TextView) findViewById(R.id.textTTF);
+                        if (field.getValue() >= 1023) {
+                            tv.setText("Not charging");
+                            tv = null;
+                        }
                         break;
                     case "654.24":
                         tv = (TextView) findViewById(R.id.textSOC);
@@ -114,6 +127,10 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
                         break;
                     case "654.42":
                         tv = (TextView) findViewById(R.id.textKMA);
+                        break;
+                    case "65b.41":
+                        flap = field.getValue();
+                        tv = null;
                         break;
                     case "7ec.623203.16": // DC volts
                         // save DC voltage for DC power purposes
