@@ -18,16 +18,26 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/HeaderCharging"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/header_Charging"
+            android:layout_alignParentLeft="true"
+            android:textColor="#000" />
+        
+        <TextView
             android:id="@+id/LabelMaxCharge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_max_charge"
+            android:layout_below="@id/HeaderCharging"
             android:layout_alignParentLeft="true" />
         <TextView
             android:id="@+id/text_max_charge"
             android:text="@string/default_max_charge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/HeaderCharging"
             android:layout_alignParentRight="true"
             />
 
@@ -48,18 +58,34 @@
             />
 
         <TextView
+            android:id="@+id/LabelPhases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_Phases"
+            android:layout_below="@id/LabelMaxPilot"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/textPhases"
+            android:text="@string/default_Phases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_max_pilot"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
             android:id="@+id/LabelETF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_ETF"
-            android:layout_below="@id/LabelMaxPilot"
+            android:layout_below="@id/LabelPhases"
             android:layout_alignParentLeft="true" />
         <TextView
             android:id="@+id/textETF"
             android:text="@string/default_ETF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text_max_pilot"
+            android:layout_below="@id/textPhases"
             android:layout_alignParentRight="true"
             />
 
@@ -305,11 +331,21 @@
 
     <!-- debug line -->
     <TextView
+        android:id="@+id/HeaderDebug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/header_Debug"
+        android:layout_below="@id/LabelDcPwr"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        />
+    <TextView
         android:id="@+id/textDebug"
         android:text="@string/default_debug"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp" />
+        />
 
 </LinearLayout>

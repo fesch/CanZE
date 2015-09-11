@@ -14,6 +14,7 @@ import lu.fisch.canze.interfaces.FieldListener;
 public class ChargingActivity extends AppCompatActivity implements FieldListener {
 
     double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
+    double pilot = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,9 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
                         tv = (TextView) findViewById(R.id.text_max_charge);
                         break;
                     case "42e.38":
+                        // save pilot amps
+                        pilot = field.getValue();
+                        // continue
                         tv = (TextView) findViewById(R.id.text_max_pilot);
                         break;
                     case "42e.56":
@@ -111,10 +115,27 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
                     case "654.42":
                         tv = (TextView) findViewById(R.id.textKMA);
                         break;
-                    case "7ec.623203.16":
+                    case "7ec.623203.16": // DC volts
+                        // save DC voltage for DC power purposes
+                        dcVolt = field.getValue();
+                        // continue
                         tv = (TextView) findViewById(R.id.textVolt);
                         break;
-                    case "7ec.623204.16":
+                    case "7ec.623204.16": // DC amps
+                        // calculate DC power
+                        double dcPwr = (double)Math.round(dcVolt * field.getValue());
+                        tv = (TextView) findViewById(R.id.textDcPwr);
+                        tv.setText("" + (dcPwr));
+                        // guess phases
+                        tv = (TextView) findViewById(R.id.textPhases);
+                        if (pilot == 0) {
+                            tv.setText("0");
+                        } else if (dcPwr > (pilot * 230.0)) {
+                            tv.setText("3");
+                        } else {
+                            tv.setText("1");
+                        }
+                        // continue
                         tv = (TextView) findViewById(R.id.textAmps);
                         break;
                     case "7bb.6104.32":
@@ -154,20 +175,9 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
                         tv = (TextView) findViewById(R.id.text_comp_12_temp);
                         break;
                 }
-                // set a new content
+                // set regular new content, all exeptions handled above
                 if (tv != null) {
                     tv.setText("" + field.getValue());
-                    // special cases
-                    switch (fieldId) {
-
-                        case "7ec.623203.16":
-                            dcVolt = field.getValue();
-                            break;
-                        case "7ec.623204.16":
-                            tv = (TextView) findViewById(R.id.textDcPwr);
-                            tv.setText("" + (dcVolt * field.getValue()));
-                            break;
-                    }
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);
