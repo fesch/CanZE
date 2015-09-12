@@ -386,33 +386,37 @@ public class Fields implements MessageListener {
         for(int i=0; i<lines.length; i++)
         {
             String line = lines[i];
-            //Get all tokens available in line
-            String[] tokens = line.split(",");
-            if (tokens.length > 0) {
-                //Create a new field object and fill his  data
-                Field field = new Field(
-                        Integer.parseInt(tokens[FIELD_ID].trim().replace("0x", ""), 16),
-                        Integer.parseInt(tokens[FIELD_FROM].trim()),
-                        Integer.parseInt(tokens[FIELD_TO].trim()),
-                        Integer.parseInt(tokens[FIELD_DEVIDER].trim()),
-                        Integer.parseInt(tokens[FIELD_MULTIPLIER].trim()),
-                        (
-                                tokens[FIELD_OFFSET].trim().contains("0x")
-                                        ?
-                                        Integer.parseInt(tokens[FIELD_OFFSET].trim().replace("0x", ""), 16)
-                                        :
-                                        Integer.parseInt(tokens[FIELD_OFFSET].trim())
-                        ),
-                        Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
-                        tokens[FIELD_FORMAT],
-                        tokens[FIELD_UNIT],
-                        tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
-                        tokens[FIELD_RESPONSE_ID].trim().replace("0x", "")
+            addFieldForLine(line);
+        }
+    }
 
-                );
-                // add the field to the list of available fields
-                fields.add(field);
-            }
+    private void addFieldForLine(String line) {
+        //Get all tokens available in line
+        String[] tokens = line.split(",");
+        if (tokens.length > 0) {
+            //Create a new field object and fill his  data
+            Field field = new Field(
+                    Integer.parseInt(tokens[FIELD_ID].trim().replace("0x", ""), 16),
+                    Integer.parseInt(tokens[FIELD_FROM].trim()),
+                    Integer.parseInt(tokens[FIELD_TO].trim()),
+                    Integer.parseInt(tokens[FIELD_DEVIDER].trim()),
+                    Integer.parseInt(tokens[FIELD_MULTIPLIER].trim()),
+                    (
+                            tokens[FIELD_OFFSET].trim().contains("0x")
+                                    ?
+                                    Integer.parseInt(tokens[FIELD_OFFSET].trim().replace("0x", ""), 16)
+                                    :
+                                    Integer.parseInt(tokens[FIELD_OFFSET].trim())
+                    ),
+                    Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
+                    tokens[FIELD_FORMAT],
+                    tokens[FIELD_UNIT],
+                    tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
+                    tokens[FIELD_RESPONSE_ID].trim().replace("0x", "")
+
+            );
+            // add the field to the list of available fields
+            fields.add(field);
         }
     }
 
@@ -423,33 +427,7 @@ public class Fields implements MessageListener {
         //Read the file line by line starting from the second line
         while ((line = fileReader.readLine()) != null) 
         {
-            //Get all tokens available in line
-            String[] tokens = line.split(",");
-            if (tokens.length > 0) 
-            {
-                //Create a new field object and fill his  data
-                Field field = new Field(
-                        Integer.parseInt(tokens[FIELD_ID].trim().replace("0x", ""),16),
-                        Integer.parseInt(tokens[FIELD_FROM].trim()),
-                        Integer.parseInt(tokens[FIELD_TO].trim()),
-                        Integer.parseInt(tokens[FIELD_DEVIDER].trim()),
-                        Integer.parseInt(tokens[FIELD_MULTIPLIER].trim()),
-                        (
-                            tokens[FIELD_OFFSET].trim().contains("0x")
-                            ?
-                            Integer.parseInt(tokens[FIELD_OFFSET].trim().replace("0x", ""),16)
-                            :
-                            Integer.parseInt(tokens[FIELD_OFFSET].trim())
-                        ),
-                        Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
-                        tokens[FIELD_FORMAT],
-                        tokens[FIELD_UNIT],
-                        tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
-                        tokens[FIELD_RESPONSE_ID].trim().replace("0x", "")
-                );
-                // add the field to the list of available fields
-                fields.add(field);
-            }
+            addFieldForLine(line);
         }
     }
 
