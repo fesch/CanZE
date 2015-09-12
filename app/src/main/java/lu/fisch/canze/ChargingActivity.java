@@ -147,7 +147,7 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
                         tv = (TextView) findViewById(R.id.textPhases);
                         if (pilot == 0) {
                             tv.setText("0");
-                        } else if (dcPwr > (pilot * 230.0)) {
+                        } else if (dcPwr > (pilot * 250.0)) {
                             tv.setText("3");
                         } else {
                             tv.setText("1");

@@ -380,7 +380,7 @@ public class Fields implements MessageListener {
             +"0x7ec, 16, 39, 1, 1, 0, 0, Odometer, km, 0x222006, 0x622006\n"
             +"0x7ec, 16, 23, 1, 1, 0, 0, Steering wheel CC/SL buttons, , 0x22204B, 0x62204B\n"
             +"0x7ec, 16, 31, 1, 50, 0, 100, Volt, V, 0x223203, 0x623203\n"
-            +"0x7ec, 16, 31, 1, 19, 0x8000, 100, Amp, A, 0x223204, 0x623204\n"
+            +"0x7ec, 16, 31, 1, 25, 0x8000, 100, Amp, A, 0x223204, 0x623204\n"
         ;
         String[] lines = fieldDef.split("\n");
         for(int i=0; i<lines.length; i++)
