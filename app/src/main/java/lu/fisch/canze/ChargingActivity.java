@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.FieldListener;
 
@@ -13,70 +15,63 @@ import lu.fisch.canze.interfaces.FieldListener;
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
 public class ChargingActivity extends AppCompatActivity implements FieldListener {
 
+    public static final String SID_MaxCharge = "7bb.6101.336";
+    public static final String SID_ACPilot = "42e.38";
+    public static final String SID_EnergyToFull = "42e.56";
+    public static final String SID_TimeToFull = "654.32";
+    public static final String SID_SoC = "654.24";
+    public static final String SID_SOH = "658.32";
+    public static final String SID_RangeEstimate = "654.42";
+    public static final String SID_Flap = "65b.41";
+    public static final String SID_TractionBatteryVoltage = "7ec.623203.16";
+    public static final String SID_TractionBatteryCurrent = "7ec.623204.16";
     double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     double pilot = 0;
     double flap = 0;
+    private ArrayList<Field> subscribedFields;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Field field;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charging);
 
-        field = MainActivity.fields.getBySID("7bb.6101.336"); // Max charge
-        field.addListener(this);
-        MainActivity.device.addField(field);
-
-        field = MainActivity.fields.getBySID("42e.38"); // AC pilot
-        field.addListener(this);
-        MainActivity.device.addField(field);
-
-        field = MainActivity.fields.getBySID("42e.56"); // Energy to full
-        field.addListener(this);
-        MainActivity.device.addField(field);
-
-        field = MainActivity.fields.getBySID("654.32"); // Time to full
-        field.addListener(this);
-        MainActivity.device.addField(field);
-
-        field = MainActivity.fields.getBySID("654.24"); // SOC
-        field.addListener(this);
-        MainActivity.device.addField(field);
-
-        field = MainActivity.fields.getBySID("658.32"); // SOH
-        field.addListener(this);
-        MainActivity.device.addField(field);
-
-        field = MainActivity.fields.getBySID("654.42"); // Kilometers Available
-        field.addListener(this);
-        MainActivity.device.addField(field);
-
-        field = MainActivity.fields.getBySID("65b.41"); // Flap
-        field.addListener(this);
-        MainActivity.device.addField(field);
-
-        field = MainActivity.fields.getBySID("7ec.623203.16"); // HV Voltage
-        field.addListener(this);
-        MainActivity.device.addField(field);
-
-        field = MainActivity.fields.getBySID("7ec.623204.16"); // HV Current
-        field.addListener(this);
-        MainActivity.device.addField(field);
+        subscribedFields = new ArrayList<>();
+        addListener(SID_MaxCharge);
+        addListener(SID_ACPilot);
+        addListener(SID_EnergyToFull);
+        addListener(SID_TimeToFull);
+        addListener(SID_SoC);
+        addListener(SID_SOH);
+        addListener(SID_RangeEstimate);
+        addListener(SID_Flap);
+        addListener(SID_TractionBatteryVoltage);
+        addListener(SID_TractionBatteryCurrent);
 
         // Battery compartment temperatures
         for (int i=32; i<= 296; i+=24) {
-            field = MainActivity.fields.getBySID("7bb.6104." + i);
-            field.addListener(this);
-            MainActivity.device.addField(field);
+            String sid = "7bb.6104." + i;
+            addListener(sid);
         }
+    }
+
+    private void addListener(String sid) {
+        Field field;
+        field = MainActivity.fields.getBySID(sid);
+        field.addListener(this);
+        MainActivity.device.addField(field);
+        subscribedFields.add(field);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
-        // free up the listener again
-        MainActivity.fields.getBySID("186.40").removeListener(this);
+        // free up the listeners again
+        for(Field field : subscribedFields)
+        {
+            field.removeListener(this);
+        }
+        subscribedFields.clear();
         // clear filters
         MainActivity.device.clearFields();
     }
@@ -96,10 +91,10 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
                 // get the text field
                 switch (fieldId) {
 
-                    case "7bb.6101.336":
+                    case SID_MaxCharge:
                         tv = (TextView) findViewById(R.id.text_max_charge);
                         break;
-                    case "42e.38":
+                    case SID_ACPilot:
                         // save pilot amps
                         pilot = field.getValue();
                         // continue
@@ -109,36 +104,36 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
                             tv = null;
                         }
                         break;
-                    case "42e.56":
+                    case SID_EnergyToFull:
                         tv = (TextView) findViewById(R.id.textETF);
                         break;
-                    case "654.32": // time to full
+                    case SID_TimeToFull: // time to full
                         tv = (TextView) findViewById(R.id.textTTF);
                         if (field.getValue() >= 1023) {
                             tv.setText("Not charging");
                             tv = null;
                         }
                         break;
-                    case "654.24":
+                    case SID_SoC:
                         tv = (TextView) findViewById(R.id.textSOC);
                         break;
-                    case "658.32":
+                    case SID_SOH:
                         tv = (TextView) findViewById(R.id.textSOH);
                         break;
-                    case "654.42":
+                    case SID_RangeEstimate:
                         tv = (TextView) findViewById(R.id.textKMA);
                         break;
-                    case "65b.41":
+                    case SID_Flap:
                         flap = field.getValue();
                         tv = null;
                         break;
-                    case "7ec.623203.16": // DC volts
+                    case SID_TractionBatteryVoltage: // DC volts
                         // save DC voltage for DC power purposes
                         dcVolt = field.getValue();
                         // continue
                         tv = (TextView) findViewById(R.id.textVolt);
                         break;
-                    case "7ec.623204.16": // DC amps
+                    case SID_TractionBatteryCurrent: // DC amps
                         // calculate DC power
                         double dcPwr = (double)Math.round(dcVolt * field.getValue());
                         tv = (TextView) findViewById(R.id.textDcPwr);
