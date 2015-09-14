@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pedalBar"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ccPedalBar"
+        android:layout_gravity="center_horizontal"
+        />
+
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/HeaderDriving"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/header_Driving"
+            android:layout_alignParentLeft="true"
+            android:textColor="#000"
+            />
+
+        <TextView
+            android:id="@+id/realSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/default_realSpeed"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/HeaderDriving"
+            android:textColor="#000"
+            android:textSize="96dp" />
+
+        <TextView
+            android:id="@+id/LabelSOC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_SOC"
+            android:layout_below="@id/realSpeed"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/textSOC"
+            android:text="@string/default_SOC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/realSpeed"
+            android:layout_alignParentRight="true"
+            />
+
+
+
+        <TextView
+            android:id="@+id/LabelVolt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_Volt"
+            android:layout_below="@id/LabelSOC"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/textVolt"
+            android:text="@string/default_Volt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textSOC"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
+            android:id="@+id/LabelAmps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_Amps"
+            android:layout_below="@id/LabelVolt"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/textAmps"
+            android:text="@string/default_Amps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textVolt"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
+            android:id="@+id/LabelDcPwr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_DcPwr"
+            android:layout_below="@id/LabelAmps"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:id="@+id/textDcPwr"
+            android:text="@string/default_DcPwr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textAmps"
+            android:layout_alignParentRight="true"
+            />
+
+
+
+        <TextView
+            android:id="@+id/LabelCompTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_CompTemp"
+            android:layout_below="@id/LabelDcPwr"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:textColor="#000"
+            />
+    </RelativeLayout>
+
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_comp_1_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_2_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_3_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_4_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_5_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_6_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_comp_7_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_8_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_9_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_10_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_11_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+            <TextView
+                android:id="@+id/text_comp_12_temp"
+                android:text="@string/default_CompT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                />
+
+        </TableRow>
+
+    </TableLayout>
+
+
+
+    <!-- debug line -->
+    <TextView
+        android:id="@+id/HeaderDebug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/header_Debug"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        />
+
+    <TextView
+        android:id="@+id/textDebug"
+        android:text="@string/default_debug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>

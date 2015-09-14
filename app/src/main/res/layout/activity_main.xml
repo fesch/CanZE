@@ -39,7 +39,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/activity_charging"
-            android:id="@+id/buttonText"
+            android:id="@+id/buttonChargingActivity"
             android:layout_column="0" />
     </TableRow>
     <TableRow
@@ -95,8 +95,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text=""
-            android:id="@+id/buttonEmpty"
+            android:text="@string/activity_driving"
+            android:id="@+id/buttonDrivingActivity"
             android:layout_column="0" />
     </TableRow>
 </TableLayout>
