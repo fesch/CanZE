@@ -36,7 +36,7 @@
     <string name="default_TTF">#TTF</string>
 
     <string name="label_ETF">Energy to full kWh</string>
-    <string name="default_ETF">#ETF</string>
+    <string name="default_ETF">Not implemented</string>
 
     <string name="label_KMA">Available range km</string>
     <string name="default_KMA">#KMA</string>
