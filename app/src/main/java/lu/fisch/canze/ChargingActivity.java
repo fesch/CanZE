@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.FieldListener;
 
@@ -26,13 +28,14 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
     double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     double pilot = 0;
     double flap = 0;
+    private ArrayList<Field> subscribedFields;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Field field;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charging);
 
+        subscribedFields = new ArrayList<>();
         addListener(SID_MaxCharge);
         addListener(SID_ACPilot);
         addListener(SID_EnergyToFull);
@@ -56,14 +59,19 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
         field = MainActivity.fields.getBySID(sid);
         field.addListener(this);
         MainActivity.device.addField(field);
+        subscribedFields.add(field);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
-        // free up the listener again
-        MainActivity.fields.getBySID("186.40").removeListener(this);
+        // free up the listeners again
+        for(Field field : subscribedFields)
+        {
+            field.removeListener(this);
+        }
+        subscribedFields.clear();
         // clear filters
         MainActivity.device.clearFields();
     }
