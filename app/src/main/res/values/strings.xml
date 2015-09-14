@@ -63,4 +63,11 @@
     <string name="header_Debug">Debugging info</string>
 
 
+    <!-- driving -->
+
+    <string name="activity_driving">Driving info</string>
+    <string name="header_Driving">Driving parameters</string>
+    <string name="default_realSpeed">#Spd</string>
+
+
 </resources>

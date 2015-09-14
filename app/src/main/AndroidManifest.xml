@@ -36,6 +36,10 @@
             android:label="@string/activity_charging" >
         </activity>
         <activity
+            android:name=".DrivingActivity"
+            android:label="@string/activity_driving" >
+        </activity>
+        <activity
             android:name=".BatteryTempActivity"
             android:label="@string/title_activity_battery_temp" >
         </activity>
