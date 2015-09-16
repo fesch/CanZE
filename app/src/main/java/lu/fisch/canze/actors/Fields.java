@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -32,6 +33,7 @@ public class Fields implements MessageListener {
 
 
     private final ArrayList<Field> fields = new ArrayList<>();
+    private final HashMap<String, Field> fieldsBySid = new HashMap<>();
 
     private static Fields instance = null;
 
@@ -411,7 +413,7 @@ public class Fields implements MessageListener {
 
                 );
                 // add the field to the list of available fields
-                fields.add(field);
+                add(field);
             }
         }
     }
@@ -448,17 +450,19 @@ public class Fields implements MessageListener {
                         tokens[FIELD_RESPONSE_ID].trim().replace("0x", "")
                 );
                 // add the field to the list of available fields
-                fields.add(field);
+                add(field);
             }
         }
     }
 
     public Field getBySID(String sid)
     {
+        /*
         for(int i=0; i< fields.size(); i++)
             if(fields.get(i).getSID().equals(sid))
                 return fields.get(i);
-        return null;
+        return null;*/
+        return fieldsBySid.get(sid);
     }
     
     public Field getFieldByFormat(String formatStartsWith)
@@ -513,7 +517,11 @@ public class Fields implements MessageListener {
         }
     }
 
-    
+    public void add(Field field) {
+        fields.add(field);
+        fieldsBySid.put(field.getSID(),field);
+    }
+
     /* --------------------------------
      * Tests ...
      \ ------------------------------ */

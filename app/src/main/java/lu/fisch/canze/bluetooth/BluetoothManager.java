@@ -250,7 +250,7 @@ public class BluetoothManager {
 
             retry=false;
 
-            if(retryThread.isAlive()) {
+            if(retryThread!=null && retryThread.isAlive()) {
                 debug("Waiting for retry-thread to stop ...");
                 retryThread.join();
             }
