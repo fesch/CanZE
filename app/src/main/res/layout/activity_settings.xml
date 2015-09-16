@@ -35,6 +35,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/remoteDevice" />
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Car"
+        android:id="@+id/textViewCar" />
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/car" />
+
 
 
 </LinearLayout>
