@@ -35,8 +35,6 @@ public class Fields implements MessageListener {
     private final ArrayList<Field> fields = new ArrayList<>();
     private final HashMap<String, Field> fieldsBySid = new HashMap<>();
 
-    private final HashMap<Integer, ArrayList<Field>> fieldsById = new HashMap<>();
-
     private static Fields instance = null;
 
     private Fields() {
@@ -390,52 +388,34 @@ public class Fields implements MessageListener {
         for(int i=0; i<lines.length; i++)
         {
             String line = lines[i];
-            addFieldForLine(line);
+            //Get all tokens available in line
+            String[] tokens = line.split(",");
+            if (tokens.length > 0) {
+                //Create a new field object and fill his  data
+                Field field = new Field(
+                        Integer.parseInt(tokens[FIELD_ID].trim().replace("0x", ""), 16),
+                        Integer.parseInt(tokens[FIELD_FROM].trim()),
+                        Integer.parseInt(tokens[FIELD_TO].trim()),
+                        Integer.parseInt(tokens[FIELD_DEVIDER].trim()),
+                        Integer.parseInt(tokens[FIELD_MULTIPLIER].trim()),
+                        (
+                                tokens[FIELD_OFFSET].trim().contains("0x")
+                                        ?
+                                        Integer.parseInt(tokens[FIELD_OFFSET].trim().replace("0x", ""), 16)
+                                        :
+                                        Integer.parseInt(tokens[FIELD_OFFSET].trim())
+                        ),
+                        Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
+                        tokens[FIELD_FORMAT],
+                        tokens[FIELD_UNIT],
+                        tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
+                        tokens[FIELD_RESPONSE_ID].trim().replace("0x", "")
+
+                );
+                // add the field to the list of available fields
+                add(field);
+            }
         }
-    }
-
-    private void addFieldForLine(String line) {
-        //Get all tokens available in line
-        String[] tokens = line.split(",");
-        if (tokens.length > 0) {
-            //Create a new field object and fill his  data
-            Field field = new Field(
-                    Integer.parseInt(tokens[FIELD_ID].trim().replace("0x", ""), 16),
-                    Integer.parseInt(tokens[FIELD_FROM].trim()),
-                    Integer.parseInt(tokens[FIELD_TO].trim()),
-                    Integer.parseInt(tokens[FIELD_DEVIDER].trim()),
-                    Integer.parseInt(tokens[FIELD_MULTIPLIER].trim()),
-                    (
-                            tokens[FIELD_OFFSET].trim().contains("0x")
-                                    ?
-                                    Integer.parseInt(tokens[FIELD_OFFSET].trim().replace("0x", ""), 16)
-                                    :
-                                    Integer.parseInt(tokens[FIELD_OFFSET].trim())
-                    ),
-                    Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
-                    tokens[FIELD_FORMAT],
-                    tokens[FIELD_UNIT],
-                    tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
-                    tokens[FIELD_RESPONSE_ID].trim().replace("0x", "")
-
-            );
-            // add the field to the list of available fields
-            addField(field);
-        }
-    }
-
-    private void addField(Field field) {
-        fields.add(field);
-        fieldsBySid.put(field.getSID(), field);
-
-        ArrayList<Field> fieldsWithId;
-        if (fieldsById.containsKey(field.getId()))
-            fieldsWithId = fieldsById.get(field.getId());
-        else {
-            fieldsWithId = new ArrayList<>();
-            fieldsById.put(field.getId(), fieldsWithId);
-        }
-        fieldsWithId.add(field);
     }
 
     private void readFromFile(String filename) throws FileNotFoundException, IOException
@@ -445,14 +425,43 @@ public class Fields implements MessageListener {
         //Read the file line by line starting from the second line
         while ((line = fileReader.readLine()) != null) 
         {
-            addFieldForLine(line);
+            //Get all tokens available in line
+            String[] tokens = line.split(",");
+            if (tokens.length > 0) 
+            {
+                //Create a new field object and fill his  data
+                Field field = new Field(
+                        Integer.parseInt(tokens[FIELD_ID].trim().replace("0x", ""),16),
+                        Integer.parseInt(tokens[FIELD_FROM].trim()),
+                        Integer.parseInt(tokens[FIELD_TO].trim()),
+                        Integer.parseInt(tokens[FIELD_DEVIDER].trim()),
+                        Integer.parseInt(tokens[FIELD_MULTIPLIER].trim()),
+                        (
+                            tokens[FIELD_OFFSET].trim().contains("0x")
+                            ?
+                            Integer.parseInt(tokens[FIELD_OFFSET].trim().replace("0x", ""),16)
+                            :
+                            Integer.parseInt(tokens[FIELD_OFFSET].trim())
+                        ),
+                        Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
+                        tokens[FIELD_FORMAT],
+                        tokens[FIELD_UNIT],
+                        tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
+                        tokens[FIELD_RESPONSE_ID].trim().replace("0x", "")
+                );
+                // add the field to the list of available fields
+                add(field);
+            }
         }
     }
 
     public Field getBySID(String sid)
     {
-        if( sid == null || fieldsBySid.containsKey(sid))
-            return null;
+        /*
+        for(int i=0; i< fields.size(); i++)
+            if(fields.get(i).getSID().equals(sid))
+                return fields.get(i);
+        return null;*/
         return fieldsBySid.get(sid);
     }
     
@@ -483,29 +492,36 @@ public class Fields implements MessageListener {
     public void onMessageCompleteEvent(Message message) {
         //MainActivity.debug(frame.toString());
         //MainActivity.debug("Frame.rID = "+frame.getResponseId());
-
-        if(fieldsById.containsKey(message.getId())) {
-            ArrayList<Field> fieldsWithMessageId = fieldsById.get(message.getId());
-            for (Field field : fieldsWithMessageId) {
-                if (message.getResponseId() == null
-                        ||
-                        message.getResponseId().equals(field.getResponseId())) {
-                    //MainActivity.debug("Field.rID = "+field.getResponseId());
-                    String binString = message.getAsBinaryString();
-                    if (binString.length() >= field.getTo()) {
-                        // parseInt --> signed, so the first bit is "cut-off"!
-                        try {
-                            field.setValue(Integer.parseInt("0" + binString.substring(field.getFrom(), field.getTo() + 1), 2));
-                        } catch (Exception e) {
-                            // ignore
-                        }
+        for(int i=0; i< fields.size(); i++)
+        {
+            Field field = fields.get(i);
+            if(field.getId()== message.getId() &&
+                    (
+                            message.getResponseId()==null
+                            ||
+                            message.getResponseId().equals(field.getResponseId())
+                            ))
+            {
+                //MainActivity.debug("Field.rID = "+field.getResponseId());
+                String binString = message.getAsBinaryString();
+                if(binString.length()>= field.getTo()) {
+                    // parseInt --> signed, so the first bit is "cut-off"!
+                    try {
+                        field.setValue(Integer.parseInt("0" + binString.substring(field.getFrom(), field.getTo() + 1), 2));
+                    } catch (Exception e)
+                    {
+                        // ignore
                     }
                 }
             }
         }
     }
 
-    
+    public void add(Field field) {
+        fields.add(field);
+        fieldsBySid.put(field.getSID(),field);
+    }
+
     /* --------------------------------
      * Tests ...
      \ ------------------------------ */
