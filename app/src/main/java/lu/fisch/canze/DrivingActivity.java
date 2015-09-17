@@ -166,8 +166,8 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
                     tv.setText("" + field.getValue());
                 }
 
-                //tv = (TextView) findViewById(R.id.textDebug);
-                //tv.setText(fieldId);
+                tv = (TextView) findViewById(R.id.textDebug);
+                tv.setText(fieldId);
             }
         });
 
