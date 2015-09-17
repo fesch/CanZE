@@ -17,7 +17,7 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
 
     public static final String SID_MaxCharge = "7bb.6101.336";
     public static final String SID_ACPilot = "42e.38";
-    public static final String SID_EnergyToFull = "42e.56";
+//  public static final String SID_EnergyToFull = "42e.56";
     public static final String SID_TimeToFull = "654.32";
     public static final String SID_SoC = "654.24";
     public static final String SID_SOH = "658.32";
@@ -38,7 +38,7 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
         subscribedFields = new ArrayList<>();
         addListener(SID_MaxCharge);
         addListener(SID_ACPilot);
-        addListener(SID_EnergyToFull);
+//      addListener(SID_EnergyToFull);
         addListener(SID_TimeToFull);
         addListener(SID_SoC);
         addListener(SID_SOH);
@@ -104,9 +104,9 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
                             tv = null;
                         }
                         break;
-                    case SID_EnergyToFull:
-                        tv = (TextView) findViewById(R.id.textETF);
-                        break;
+//                  case SID_EnergyToFull:
+//                      tv = (TextView) findViewById(R.id.textETF);
+//                      break;
                     case SID_TimeToFull: // time to full
                         tv = (TextView) findViewById(R.id.textTTF);
                         if (field.getValue() >= 1023) {
