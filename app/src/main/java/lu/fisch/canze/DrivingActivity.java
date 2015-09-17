@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,6 +17,10 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
     public static final String SID_SoC = "654.24";
     public static final String SID_SOH = "658.32";
     public static final String SID_RangeEstimate = "654.42";
+    public static final String SID_RealSpeed = "5d7.0";
+    public static final String SID_Pedal = "186.40";
+    public static final String SID_CcPedal = "18a.16";
+    public static final String SID_Torque = "77e.623025.24";
     public static final String SID_TractionBatteryVoltage = "7ec.623203.16";
     public static final String SID_TractionBatteryCurrent = "7ec.623204.16";
     public static final String SID_CompartmentTemperaturesPreamble = "7bb.6104.";
@@ -32,6 +37,10 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
         addListener(SID_SoC);
         addListener(SID_SOH);
         addListener(SID_RangeEstimate);
+        addListener(SID_RealSpeed);
+        addListener(SID_Pedal);
+        addListener(SID_CcPedal);
+        addListener(SID_Torque);
         addListener(SID_TractionBatteryVoltage);
         addListener(SID_TractionBatteryCurrent);
 
@@ -74,12 +83,26 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
             public void run() {
                 String fieldId = field.getSID();
                 TextView tv = null;
+                ProgressBar pb = null;
 
                 // get the text field
                 switch (fieldId) {
-
                     case SID_SoC:
                         tv = (TextView) findViewById(R.id.textSOC);
+                        break;
+                    case SID_Pedal:
+                        pb = (ProgressBar) findViewById(R.id.pedalBar);
+                        pb.setProgress((int) field.getValue());
+                        break;
+                    case SID_CcPedal:
+                        pb = (ProgressBar) findViewById(R.id.ccPedalBar);
+                        pb.setProgress((int) field.getValue());
+                        break;
+                    case SID_RealSpeed:
+                        tv = (TextView) findViewById(R.id.textRealSpeed);
+                        break;
+                    case SID_Torque:
+                        tv = (TextView) findViewById(R.id.textTorque);
                         break;
                     case SID_SOH:
                         tv = (TextView) findViewById(R.id.textSOH);
@@ -143,8 +166,8 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
                     tv.setText("" + field.getValue());
                 }
 
-                tv = (TextView) findViewById(R.id.textDebug);
-                tv.setText(fieldId);
+                //tv = (TextView) findViewById(R.id.textDebug);
+                //tv.setText(fieldId);
             }
         });
 

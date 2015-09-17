@@ -4,19 +4,25 @@
     android:layout_height="match_parent">
 
     <ProgressBar
+        android:id="@+id/pedalBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/pedalBar"
         android:layout_gravity="center_horizontal"
+        android:minHeight="25dp"
+        android:max="1000"
+        android:progressDrawable="@drawable/progressbar_canze"
         />
 
     <ProgressBar
+        android:id="@+id/ccPedalBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ccPedalBar"
         android:layout_gravity="center_horizontal"
+        android:minHeight="25dp"
+        android:max="1000"
+        android:progressDrawable="@drawable/progressbar_canze"
         />
 
 
@@ -33,10 +39,10 @@
             android:text="@string/header_Driving"
             android:layout_alignParentLeft="true"
             android:textColor="#000"
-            />
+            android:layout_marginTop="10dp" />
 
         <TextView
-            android:id="@+id/realSpeed"
+            android:id="@+id/textRealSpeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -44,21 +50,32 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/HeaderDriving"
             android:textColor="#000"
-            android:textSize="96dp" />
+            android:textSize="96sp" />
+
+        <TextView
+            android:id="@+id/textTorque"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/default_Torque"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/textRealSpeed"
+            android:textColor="#000"
+            android:textSize="48sp" />
 
         <TextView
             android:id="@+id/LabelSOC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_SOC"
-            android:layout_below="@id/realSpeed"
+            android:layout_below="@id/textTorque"
             android:layout_alignParentLeft="true" />
         <TextView
             android:id="@+id/textSOC"
             android:text="@string/default_SOC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/realSpeed"
+            android:layout_below="@id/textTorque"
             android:layout_alignParentRight="true"
             />
 
