@@ -126,6 +126,11 @@ public class MainActivity extends AppCompatActivity {
         dataFormat = settings.getString("dataFormat", "crdt");
         deviceName = settings.getString("device", "Arduino");
 
+        String car = settings.getString("car", "Any");
+        if(car.equals("Any")) Fields.getInstance().setCar(Fields.CAR_ANY);
+        else if(car.equals("Zoé")) Fields.getInstance().setCar(Fields.CAR_ZOE);
+        else if(car.equals("Fluence")) Fields.getInstance().setCar(Fields.CAR_FLUENCE);
+
         // as the settings may have changed, we need to reload different things
 
         /* OLD

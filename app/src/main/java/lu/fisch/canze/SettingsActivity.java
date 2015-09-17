@@ -46,6 +46,23 @@ public class SettingsActivity extends AppCompatActivity {
         // select the actual device
         deviceList.setSelection(index);
         deviceList.setSelected(true);
+
+
+        // fill cars
+        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        arrayAdapter.add("Zoé");
+        arrayAdapter.add("Fluence");
+
+        index = 0;
+        if(device.equals("Zoé")) index=0;
+        else if(device.equals("Fluence")) index=1;
+
+        // display the list
+        Spinner carList = (Spinner) findViewById(R.id.car);
+        carList.setAdapter(arrayAdapter);
+        // select the actual device
+        carList.setSelection(index);
+        carList.setSelected(true);
     }
 
     @Override
@@ -68,12 +85,14 @@ public class SettingsActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = settings.edit();
             Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
             Spinner device = (Spinner) findViewById(R.id.remoteDevice);
+            Spinner car = (Spinner) findViewById(R.id.car);
             if(deviceList.getSelectedItem()!=null) {
                 MainActivity.debug("Settings.deviceAddress = " + deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 MainActivity.debug("Settings.deviceName = " + deviceList.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("deviceAddress", deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 editor.putString("deviceName", deviceList.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("device", device.getSelectedItem().toString().split("\n")[0].trim());
+                editor.putString("car", car.getSelectedItem().toString().split("\n")[0].trim());
             }
             editor.commit();
             // finish

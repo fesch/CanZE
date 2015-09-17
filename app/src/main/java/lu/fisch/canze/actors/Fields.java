@@ -31,11 +31,17 @@ public class Fields implements MessageListener {
     private static final int FIELD_REQUEST_ID   = 9;
     private static final int FIELD_RESPONSE_ID  = 10;
 
+    public static final int CAR_ANY            = 0;
+    public static final int CAR_ZOE            = 1;
+    public static final int CAR_FLUENCE        = 2;
+
 
     private final ArrayList<Field> fields = new ArrayList<>();
     private final HashMap<String, Field> fieldsBySid = new HashMap<>();
 
     private static Fields instance = null;
+
+    private static int car = CAR_ANY;
 
     private Fields() {
         fillStatic();
@@ -520,6 +526,14 @@ public class Fields implements MessageListener {
     public void add(Field field) {
         fields.add(field);
         fieldsBySid.put(field.getSID(),field);
+    }
+
+    public static int getCar() {
+        return car;
+    }
+
+    public static void setCar(int car) {
+        Fields.car = car;
     }
 
     /* --------------------------------
