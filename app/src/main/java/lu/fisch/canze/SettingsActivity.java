@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import java.util.Set;
 
+import lu.fisch.canze.actors.Fields;
+
 public class SettingsActivity extends AppCompatActivity {
 
     @Override
@@ -54,8 +56,9 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("Fluence");
 
         index = 0;
-        if(device.equals("Zoé")) index=0;
-        else if(device.equals("Fluence")) index=1;
+        int car = Fields.getInstance().getCar();
+        if(car==Fields.CAR_ZOE) index=0;
+        else if(car==Fields.CAR_FLUENCE) index=1;
 
         // display the list
         Spinner carList = (Spinner) findViewById(R.id.car);

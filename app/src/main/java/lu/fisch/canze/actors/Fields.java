@@ -41,7 +41,7 @@ public class Fields implements MessageListener {
 
     private static Fields instance = null;
 
-    private static int car = CAR_ANY;
+    private int car = CAR_ANY;
 
     private Fields() {
         fillStatic();
@@ -528,12 +528,12 @@ public class Fields implements MessageListener {
         fieldsBySid.put(field.getSID(),field);
     }
 
-    public static int getCar() {
+    public int getCar() {
         return car;
     }
 
-    public static void setCar(int car) {
-        Fields.car = car;
+    public void setCar(int car) {
+        this.car = car;
     }
 
     /* --------------------------------
