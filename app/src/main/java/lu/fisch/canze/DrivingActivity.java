@@ -15,14 +15,13 @@ import lu.fisch.canze.interfaces.FieldListener;
 public class DrivingActivity extends AppCompatActivity implements FieldListener {
 
     public static final String SID_SoC = "654.24";
-    public static final String SID_SOH = "658.32";
     public static final String SID_RangeEstimate = "654.42";
     public static final String SID_RealSpeed = "5d7.0";
     public static final String SID_Pedal = "186.40";
     public static final String SID_CcPedal = "18a.16";
     public static final String SID_Torque = "77e.623025.24";
-    public static final String SID_TractionBatteryVoltage = "7ec.623203.16";
-    public static final String SID_TractionBatteryCurrent = "7ec.623204.16";
+    public static final String SID_TractionBatteryVoltage = "7ec.623203.24";
+    public static final String SID_TractionBatteryCurrent = "7ec.623204.24";
     public static final String SID_CompartmentTemperaturesPreamble = "7bb.6104.";
 
     double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
@@ -35,7 +34,6 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
 
         subscribedFields = new ArrayList<>();
         addListener(SID_SoC);
-        addListener(SID_SOH);
         addListener(SID_RangeEstimate);
         addListener(SID_RealSpeed);
         addListener(SID_Pedal);
@@ -103,9 +101,6 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
                         break;
                     case SID_Torque:
                         tv = (TextView) findViewById(R.id.textTorque);
-                        break;
-                    case SID_SOH:
-                        tv = (TextView) findViewById(R.id.textSOH);
                         break;
                     case SID_RangeEstimate:
                         tv = (TextView) findViewById(R.id.textKMA);

@@ -20,11 +20,13 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
 //  public static final String SID_EnergyToFull = "42e.56";
     public static final String SID_TimeToFull = "654.32";
     public static final String SID_SoC = "654.24";
-    public static final String SID_SOH = "658.32";
+//  public static final String SID_SOH = "658.32";
+    public static final String SID_SOH = "7ec.623206.24";
+//  public static final String SID_SOH = "7ec.62202e.24"; //pedal, checking offsets
     public static final String SID_RangeEstimate = "654.42";
     public static final String SID_Flap = "65b.41";
-    public static final String SID_TractionBatteryVoltage = "7ec.623203.16";
-    public static final String SID_TractionBatteryCurrent = "7ec.623204.16";
+    public static final String SID_TractionBatteryVoltage = "7ec.623203.24";
+    public static final String SID_TractionBatteryCurrent = "7ec.623204.24";
     double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     double pilot = 0;
     double flap = 0;
@@ -41,7 +43,7 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
 //      addListener(SID_EnergyToFull);
         addListener(SID_TimeToFull);
         addListener(SID_SoC);
-        addListener(SID_SOH);
+        addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
         addListener(SID_Flap);
         addListener(SID_TractionBatteryVoltage);
