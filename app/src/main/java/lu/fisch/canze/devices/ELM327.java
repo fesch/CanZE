@@ -32,6 +32,9 @@ public class ELM327 extends Device {
      */
     private int fieldIndex = 0;
 
+    boolean sumTingWong = false; // yes I know, the fake news name of Asiana flight 214 777 captain that crashed in SF
+
+
     @Override
     public void initConnection() {
         // if the reading thread is running: stop it, because we don't need it
@@ -51,22 +54,7 @@ public class ELM327 extends Device {
                 public void run() {
                     // atz (reset)
                     // continue only if we got an answer.
-                    if (!sendAndWaitForAnswer("atz", 1000).trim().equals("")) {
-                        // ate0 (no echo)
-                        sendAndWaitForAnswer("ate0", 10);
-                        // ats0 (no spaces)
-                        sendAndWaitForAnswer("ats0", 10);
-                        // atsp6 (CAN 500K 11 bit)
-                        sendAndWaitForAnswer("atsp6", 10);
-                        // atat1 (auto timing)
-                        sendAndWaitForAnswer("atat1", 10);
-                        // atdp
-                        sendAndWaitForAnswer("atdp", 10);
-                        // atcaf0 (no formatting)
-                        sendAndWaitForAnswer("atcaf0", 10);
-
-                        MainActivity.debug("ELM: initialised ...");
-                        MainActivity.toast("ELM is now ready ...");
+                    if (initELM(0)) {
 
                         while (true)
                             queryNextFilter();
@@ -140,6 +128,45 @@ public class ELM327 extends Device {
         // we are done
 
         return result;
+    }
+
+    private boolean initELM (int toughness) {
+
+        if (toughness == 0 ) {
+            if (sendAndWaitForAnswer("atz", 1000).trim().equals("")) {
+                return false;
+            }
+        }
+        else if (toughness == 1) {
+            if (sendAndWaitForAnswer("atws", 1000).trim().equals("")) {
+                return false;
+            }
+        }
+        else {
+            if (sendAndWaitForAnswer("atd", 100).trim().equals("")) {
+                return false;
+            }
+            return true;
+        }
+        // ate0 (no echo)
+        sendAndWaitForAnswer("ate0", 100);
+        // ats0 (no spaces)
+        sendAndWaitForAnswer("ats0", 100);
+        // atsp6 (CAN 500K 11 bit)
+        sendAndWaitForAnswer("atsp6", 100);
+        // atat1 (auto timing)
+        sendAndWaitForAnswer("atat1", 100);
+        // atdp ==> not needed
+        //sendAndWaitForAnswer("atdp", 100);
+        // atcaf0 (no formatting)
+        sendAndWaitForAnswer("atcaf0", 100);
+
+        MainActivity.debug("ELM: initialised ...");
+        if (toughness == 0 ) {
+            MainActivity.toast("ELM is now ready ...");
+        }
+
+        return true;
     }
 
     /**
@@ -244,6 +271,9 @@ public class ELM327 extends Device {
     // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount)
     {
+
+        boolean hooLeeFuk = false; // the fake news name of Asiana flight 214 777 First Officer that crashed in SF
+
         if(command!=null) {
             // empty incoming buffer
             // just make sure there is no previous response
@@ -271,7 +301,8 @@ public class ELM327 extends Device {
         String readBuffer = "";
         // wait for answer
         long start = Calendar.getInstance().getTimeInMillis();
-        while(!stop && Calendar.getInstance().getTimeInMillis()-start<TIMEOUT)
+        hooLeeFuk = false;
+        while(!stop && !hooLeeFuk)
         {
             //MainActivity.debug("Delta = "+(Calendar.getInstance().getTimeInMillis()-start));
             try {
@@ -293,7 +324,7 @@ public class ELM327 extends Device {
                             // decrease awaiting answer lines
                             answerLinesCount--;
                             // if we not asked to keep on and we got enough lines, stop
-                            if(untilEmpty==false){
+                            if(!untilEmpty){
                                 if(answerLinesCount<=0) {
                                     stop = true;
                                 }
@@ -312,12 +343,22 @@ public class ELM327 extends Device {
                         }
                     }
                 }
+
+                if (Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT) {
+                    hooLeeFuk = true;
+                    // MainActivity.toast("Sum Ting Wong on command " + command);
+                }
+
             }
             catch (IOException e)
             {
                 e.printStackTrace();
             }
         }
+        
+        // set the flag that a timeout has occurred. sumTingWong can be inspected anywhere, but we reset the device after a full filter has been run
+        if (hooLeeFuk) sumTingWong |= true;
+        
         //MainActivity.debug("ALC: "+answerLinesCount+" && Stop: "+stop+" && Delta: "+(Calendar.getInstance().getTimeInMillis()-start));
         //MainActivity.debug("Recv < "+readBuffer);
         return readBuffer;
@@ -397,14 +438,16 @@ public class ELM327 extends Device {
 
                         String finalData = "";
                         if (type.equals("0")) {
-                            // remove 2 bytes (type + length)
-                            line0x1 = line0x1.substring(4);
+                            // remove 2 nibbles (type + length)
+                            line0x1 = line0x1.substring(2); // was listed as 4
                             // remove response
                             //line0x1 = line0x1.substring(field.getRequestId().length());
                             finalData = line0x1;
                         } else {
+                            // remove first nibble (type)
                             line0x1 = line0x1.substring(1);
                             //MainActivity.debug("HEX-length = " + line0x1.substring(0, 3));
+                            // get the number of payload bytes
                             int count = Integer.valueOf(line0x1.substring(0, 3), 16);
                             //MainActivity.debug("DEC-length = " + count);
                             // remove 3 nibbles (number of payload bytes)
@@ -435,6 +478,7 @@ public class ELM327 extends Device {
                                 //MainActivity.debug("Line "+(i+1)+": " + line);
                                 if (!line.isEmpty() && line.length() > 2) {
                                     // cut off the first byte (type + sequence)
+                                    // adding sequence checking would be wise to detect collisions
                                     line = line.substring(2);
                                     finalData += line;
                                 }
@@ -488,7 +532,7 @@ atfcsm0	        >OK	Reset flow control mode to 0 (default)
                     // atcra186 (substitute 186 by the hex code of the id)
                     sendAndWaitForAnswer("atcra" + emlFilter,400);
                     // atma     (wait for one answer line)
-                    String hexData = sendAndWaitForAnswer("atma",80);
+                    String hexData = sendAndWaitForAnswer("atma",1500); // was 80. This is way too short for an atma, SOme frames come in only once per second
                     // the first line may miss the first some bytes, so read a second one
                     //hexData = sendAndWaitForAnswer(null,0);
                     // atar     (stop output)
@@ -530,6 +574,13 @@ atfcsm0	        >OK	Reset flow control mode to 0 (default)
                         // process data
                         process(Utils.toIntArray(data.getBytes()));
                     }*/
+                }
+
+                // reset the ELM if a timeout occurred somewhere tunning this filter
+                if (sumTingWong) {
+                    //MainActivity.toast("... in command " + emlFilter + ", resetting ELM");
+                    initELM(1);
+                    sumTingWong = false;
                 }
 
                 synchronized (fields) {
