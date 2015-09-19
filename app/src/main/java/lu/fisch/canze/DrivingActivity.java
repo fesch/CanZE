@@ -14,15 +14,16 @@ import lu.fisch.canze.interfaces.FieldListener;
 
 public class DrivingActivity extends AppCompatActivity implements FieldListener {
 
-    public static final String SID_SoC = "654.24";
-    public static final String SID_RangeEstimate = "654.42";
+    //public static final String SID_SoC = "654.24";
+    public static final String SID_SoC = "7ec.622002.24"; //  (EVC)
     public static final String SID_RealSpeed = "5d7.0";
-    public static final String SID_Pedal = "186.40";
+    //public static final String SID_Pedal = "186.40"; // free data
+    public static final String SID_Pedal = "7ec.62202e.24"; // inquired data (EVC)
     public static final String SID_CcPedal = "18a.16";
-    public static final String SID_Torque = "77e.623025.24";
-    public static final String SID_TractionBatteryVoltage = "7ec.623203.24";
-    public static final String SID_TractionBatteryCurrent = "7ec.623204.24";
-    public static final String SID_CompartmentTemperaturesPreamble = "7bb.6104.";
+    public static final String SID_Torque = "77e.623025.24"; //  (PEB)
+    public static final String SID_TractionBatteryVoltage = "7ec.623203.24"; //  (EVC)
+    public static final String SID_TractionBatteryCurrent = "7ec.623204.24"; //  (EVC)
+    public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
 
     double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     private ArrayList<Field> subscribedFields;
@@ -34,17 +35,16 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
 
         subscribedFields = new ArrayList<>();
         addListener(SID_SoC);
-        addListener(SID_RangeEstimate);
         addListener(SID_RealSpeed);
         addListener(SID_Pedal);
-        addListener(SID_CcPedal);
-        addListener(SID_Torque);
+        //addListener(SID_CcPedal);
+        //addListener(SID_Torque);
         addListener(SID_TractionBatteryVoltage);
         addListener(SID_TractionBatteryCurrent);
 
         // Battery compartment temperatures
         for (int i = 32; i <= 296; i += 24) {
-            String sid = SID_CompartmentTemperaturesPreamble + i;
+            String sid = SID_Preamble_CompartmentTemperatures + i;
             addListener(sid);
         }
     }
@@ -52,9 +52,15 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
     private void addListener(String sid) {
         Field field;
         field = MainActivity.fields.getBySID(sid);
-        field.addListener(this);
-        MainActivity.device.addField(field);
-        subscribedFields.add(field);
+        if (field != null) {
+            field.addListener(this);
+            MainActivity.device.addField(field);
+            subscribedFields.add(field);
+        }
+        else
+        {
+            MainActivity.toast("Requested SID " + sid + " is not defined");
+        }
     }
 
     @Override
@@ -102,9 +108,6 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
                     case SID_Torque:
                         tv = (TextView) findViewById(R.id.textTorque);
                         break;
-                    case SID_RangeEstimate:
-                        tv = (TextView) findViewById(R.id.textKMA);
-                        break;
                     case SID_TractionBatteryVoltage: // DC volts
                         // save DC voltage for DC power purposes
                         dcVolt = field.getValue();
@@ -119,40 +122,40 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
                         // continue
                         tv = (TextView) findViewById(R.id.textAmps);
                         break;
-                    case SID_CompartmentTemperaturesPreamble + "32":
+                    case SID_Preamble_CompartmentTemperatures + "32":
                         tv = (TextView) findViewById(R.id.text_comp_1_temp);
                         break;
-                    case SID_CompartmentTemperaturesPreamble + "56":
+                    case SID_Preamble_CompartmentTemperatures + "56":
                         tv = (TextView) findViewById(R.id.text_comp_2_temp);
                         break;
-                    case SID_CompartmentTemperaturesPreamble + "80":
+                    case SID_Preamble_CompartmentTemperatures + "80":
                         tv = (TextView) findViewById(R.id.text_comp_3_temp);
                         break;
-                    case SID_CompartmentTemperaturesPreamble + "104":
+                    case SID_Preamble_CompartmentTemperatures + "104":
                         tv = (TextView) findViewById(R.id.text_comp_4_temp);
                         break;
-                    case SID_CompartmentTemperaturesPreamble + "128":
+                    case SID_Preamble_CompartmentTemperatures + "128":
                         tv = (TextView) findViewById(R.id.text_comp_5_temp);
                         break;
-                    case SID_CompartmentTemperaturesPreamble + "152":
+                    case SID_Preamble_CompartmentTemperatures + "152":
                         tv = (TextView) findViewById(R.id.text_comp_6_temp);
                         break;
-                    case SID_CompartmentTemperaturesPreamble + "176":
+                    case SID_Preamble_CompartmentTemperatures + "176":
                         tv = (TextView) findViewById(R.id.text_comp_7_temp);
                         break;
-                    case SID_CompartmentTemperaturesPreamble + "200":
+                    case SID_Preamble_CompartmentTemperatures + "200":
                         tv = (TextView) findViewById(R.id.text_comp_8_temp);
                         break;
-                    case SID_CompartmentTemperaturesPreamble + "224":
+                    case SID_Preamble_CompartmentTemperatures + "224":
                         tv = (TextView) findViewById(R.id.text_comp_9_temp);
                         break;
-                    case SID_CompartmentTemperaturesPreamble + "248":
+                    case SID_Preamble_CompartmentTemperatures + "248":
                         tv = (TextView) findViewById(R.id.text_comp_10_temp);
                         break;
-                    case SID_CompartmentTemperaturesPreamble + "272":
+                    case SID_Preamble_CompartmentTemperatures + "272":
                         tv = (TextView) findViewById(R.id.text_comp_11_temp);
                         break;
-                    case SID_CompartmentTemperaturesPreamble + "296":
+                    case SID_Preamble_CompartmentTemperatures + "296":
                         tv = (TextView) findViewById(R.id.text_comp_12_temp);
                         break;
                 }

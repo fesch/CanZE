@@ -23,32 +23,39 @@ public class Field {
     private int divider;
     private int multiplier;
     private int decimals;
+    private int skips;
     private String format;
     private String unit;
     private String requestId;
     private String responseId;
     
     private double value = 0;
+    private int skipsCount = 0;
     
-    public Field(int id, int from, int to, int devider, int multiplier, int offset, int decimals, String format, String unit, String requestId, String responseId) {
+    public Field(int id, int from, int to, int divider, int multiplier, int offset, int decimals, int skips, String format, String unit, String requestId, String responseId) {
         this.from=from;
         this.to=to;
         this.offset=offset;
         this.id=id;
-        this.divider = devider;
+        this.divider = divider;
         this.multiplier = multiplier;
         this.decimals = decimals;
+        this.skips = skips;
         this.format = format.trim();
         this.unit = unit;
         this.requestId=requestId;
         this.responseId=responseId;
+
+        this.skipsCount=0;
+        this.value = 0;
     }
     
     @Override
     public Field clone()
     {
-        Field field = new Field(id, from, to, divider, multiplier, offset, decimals, format, unit, requestId, responseId);
+        Field field = new Field(id, from, to, divider, multiplier, offset, decimals, skips, format, unit, requestId, responseId);
         field.value = value;
+        field.skipsCount = skipsCount;
         return field;
     }
     
@@ -229,6 +236,22 @@ public class Field {
         this.decimals = decimals;
     }
 
+    public int getSkips() {
+        return skips;
+    }
+
+    public void setSkips(int skips) {
+        this.skips = skips;
+    }
+
+    public int getSkipsCount() {
+        return skipsCount;
+    }
+
+    public void setSkipsCount(int skipsCount) {
+        this.skipsCount = skipsCount;
+    }
+
     public String getFormat() {
         return format;
     }
@@ -260,4 +283,6 @@ public class Field {
     public void setResponseId(String responseId) {
         this.responseId = responseId;
     }
+
+
 }

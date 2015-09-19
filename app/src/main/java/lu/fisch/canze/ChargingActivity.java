@@ -59,9 +59,15 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
     private void addListener(String sid) {
         Field field;
         field = MainActivity.fields.getBySID(sid);
-        field.addListener(this);
-        MainActivity.device.addField(field);
-        subscribedFields.add(field);
+        if (field != null) {
+            field.addListener(this);
+            MainActivity.device.addField(field);
+            subscribedFields.add(field);
+        }
+        else
+        {
+            MainActivity.toast("Requested SID " + sid + " is not defined");
+        }
     }
 
     @Override
