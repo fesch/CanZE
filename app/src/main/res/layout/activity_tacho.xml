@@ -119,7 +119,7 @@
         custom:max="100"
         custom:majorTicks="10"
         custom:minorTicks="5"
-        custom:fieldSID="7ec.622002.16"
+        custom:fieldSID="7ec.622002.24"
         custom:widget="tacho"
         custom:text="State of charge 3 (%)"
         />
@@ -237,7 +237,7 @@
         custom:max="14"
         custom:majorTicks="2"
         custom:minorTicks="1"
-        custom:fieldSID="7ec.622005.16"
+        custom:fieldSID="7ec.622005.24"
         custom:widget="tacho"
         custom:text="12 Volt (V)"
         />
@@ -254,7 +254,7 @@
         custom:max="50000"
         custom:majorTicks="10000"
         custom:minorTicks="1000"
-        custom:fieldSID="7ec.622006.16"
+        custom:fieldSID="7ec.622006.24"
         custom:widget="tacho"
         custom:text="Odometer (km)"
         />

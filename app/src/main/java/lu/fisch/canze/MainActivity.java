@@ -475,6 +475,9 @@ public class MainActivity extends AppCompatActivity {
 
         super.onDestroy();
 
+        // this will stop any device from continuing trying to connect
+        device.setConnectedBluetoothThread(null);
+
         BluetoothManager.getInstance().disconnect();
 
         // un-register for bluetooth changes

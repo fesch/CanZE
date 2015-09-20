@@ -126,7 +126,7 @@
                 custom:max="450"
                 custom:majorTicks="50"
                 custom:minorTicks="10"
-                custom:fieldSID="7ec.623203.16"
+                custom:fieldSID="7ec.623203.24"
                 custom:widget="tacho"
                 custom:text="Requested Voltage (V)"
                 />
@@ -141,7 +141,7 @@
                 custom:max="20"
                 custom:majorTicks="10"
                 custom:minorTicks="2"
-                custom:fieldSID="7ec.623204.16"
+                custom:fieldSID="7ec.623204.24"
                 custom:widget="tacho"
                 custom:text="Requested Current (A)"
                 />

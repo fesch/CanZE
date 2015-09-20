@@ -27,10 +27,14 @@ public class Field {
     private String unit;
     private String requestId;
     private String responseId;
-    
+    private String description;
+    private int car;
+    private int skips;
+
     private double value = 0;
+    private int skipsCount = 0;
     
-    public Field(int id, int from, int to, int devider, int multiplier, int offset, int decimals, String format, String unit, String requestId, String responseId) {
+    public Field(int id, int from, int to, int devider, int multiplier, int offset, int decimals, String format, String unit, String requestId, String responseId, String description, int car, int skips) {
         this.from=from;
         this.to=to;
         this.offset=offset;
@@ -42,12 +46,15 @@ public class Field {
         this.unit = unit;
         this.requestId=requestId;
         this.responseId=responseId;
+        this.description=description;
+        this.car=car;
+        this.skips=skips;
     }
     
     @Override
     public Field clone()
     {
-        Field field = new Field(id, from, to, divider, multiplier, offset, decimals, format, unit, requestId, responseId);
+        Field field = new Field(id, from, to, divider, multiplier, offset, decimals, format, unit, requestId, responseId, description, car, skips);
         field.value = value;
         return field;
     }
@@ -259,5 +266,37 @@ public class Field {
 
     public void setResponseId(String responseId) {
         this.responseId = responseId;
+    }
+
+    public int getSkips() {
+        return skips;
+    }
+
+    public void setSkips(int skips) {
+        this.skips = skips;
+    }
+
+    public int getSkipsCount() {
+        return skipsCount;
+    }
+
+    public void decSkipCount() {
+        skipsCount--;
+    }
+
+    public void setSkipsCount(int skipCount) {
+        this.skipsCount = skipCount;
+    }
+
+    public void resetSkipsCount() {
+        this.skipsCount = skips;
+    }
+
+    public int getCar() {
+        return car;
+    }
+
+    public void setCar(int car) {
+        this.car = car;
     }
 }
