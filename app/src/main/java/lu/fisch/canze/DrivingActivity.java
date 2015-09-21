@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class DrivingActivity extends AppCompatActivity implements FieldListener {
@@ -18,9 +19,9 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
     public static final String SID_SoC = "7ec.622002.24"; //  (EVC)
     public static final String SID_RealSpeed = "5d7.0";
     //public static final String SID_Pedal = "186.40"; // free data
-    public static final String SID_Pedal = "7ec.62202e.24"; // inquired data (EVC)
-    public static final String SID_CcPedal = "18a.16";
-    public static final String SID_Torque = "77e.623025.24"; //  (PEB)
+    //public static final String SID_Pedal = "7ec.62202e.24"; // inquired data (EVC)
+    //public static final String SID_CcPedal = "18a.16";
+    //public static final String SID_Torque = "77e.623025.24"; //  (PEB)
     public static final String SID_TractionBatteryVoltage = "7ec.623203.24"; //  (EVC)
     public static final String SID_TractionBatteryCurrent = "7ec.623204.24"; //  (EVC)
     public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
@@ -36,14 +37,23 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
         subscribedFields = new ArrayList<>();
         addListener(SID_SoC);
         addListener(SID_RealSpeed);
-        addListener(SID_Pedal);
+        //addListener(SID_Pedal);
         //addListener(SID_CcPedal);
         //addListener(SID_Torque);
         addListener(SID_TractionBatteryVoltage);
         addListener(SID_TractionBatteryCurrent);
 
         // Battery compartment temperatures
-        for (int i = 32; i <= 296; i += 24) {
+        int car = Fields.getInstance().getCar();
+        int lastCell;
+        if(car==Fields.CAR_ZOE) {
+            lastCell = 296;
+        }
+        else
+        {
+            lastCell = 128;
+        }
+        for (int i = 32; i <= lastCell; i += 24) {
             String sid = SID_Preamble_CompartmentTemperatures + i;
             addListener(sid);
         }
@@ -87,27 +97,27 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
             public void run() {
                 String fieldId = field.getSID();
                 TextView tv = null;
-                ProgressBar pb = null;
+                //ProgressBar pb = null;
 
                 // get the text field
                 switch (fieldId) {
                     case SID_SoC:
                         tv = (TextView) findViewById(R.id.textSOC);
                         break;
-                    case SID_Pedal:
-                        pb = (ProgressBar) findViewById(R.id.pedalBar);
-                        pb.setProgress((int) field.getValue());
-                        break;
-                    case SID_CcPedal:
-                        pb = (ProgressBar) findViewById(R.id.ccPedalBar);
-                        pb.setProgress((int) field.getValue());
-                        break;
+                    //case SID_Pedal:
+                    //    pb = (ProgressBar) findViewById(R.id.pedalBar);
+                    //    pb.setProgress((int) field.getValue());
+                    //    break;
+                    //case SID_CcPedal:
+                    //    pb = (ProgressBar) findViewById(R.id.ccPedalBar);
+                    //    pb.setProgress((int) field.getValue());
+                    //    break;
                     case SID_RealSpeed:
                         tv = (TextView) findViewById(R.id.textRealSpeed);
                         break;
-                    case SID_Torque:
-                        tv = (TextView) findViewById(R.id.textTorque);
-                        break;
+                    //case SID_Torque:
+                    //    tv = (TextView) findViewById(R.id.textTorque);
+                    //    break;
                     case SID_TractionBatteryVoltage: // DC volts
                         // save DC voltage for DC power purposes
                         dcVolt = field.getValue();
