@@ -34,12 +34,12 @@ public class Field {
     private double value = 0;
     private int skipsCount = 0;
     
-    public Field(int id, int from, int to, int devider, int multiplier, int offset, int decimals, String format, String unit, String requestId, String responseId, String description, int car, int skips) {
+    public Field(int id, int from, int to, int divider, int multiplier, int offset, int decimals, String format, String unit, String requestId, String responseId, String description, int car, int skips) {
         this.from=from;
         this.to=to;
         this.offset=offset;
         this.id=id;
-        this.divider = devider;
+        this.divider = divider;
         this.multiplier = multiplier;
         this.decimals = decimals;
         this.format = format.trim();

@@ -22,7 +22,7 @@ public class Fields implements MessageListener {
     private static final int FIELD_ID           = 0;
     private static final int FIELD_FROM         = 1;    
     private static final int FIELD_TO           = 2;    
-    private static final int FIELD_DEVIDER      = 3;    
+    private static final int FIELD_DIVIDER      = 3;
     private static final int FIELD_MULTIPLIER   = 4;    
     private static final int FIELD_OFFSET       = 5;    
     private static final int FIELD_DECIMALS     = 6;    
@@ -667,7 +667,7 @@ public class Fields implements MessageListener {
                         Integer.parseInt(tokens[FIELD_ID].trim().replace("0x", ""), 16),
                         Integer.parseInt(tokens[FIELD_FROM].trim()),
                         Integer.parseInt(tokens[FIELD_TO].trim()),
-                        Integer.parseInt(tokens[FIELD_DEVIDER].trim()),
+                        Integer.parseInt(tokens[FIELD_DIVIDER].trim()),
                         Integer.parseInt(tokens[FIELD_MULTIPLIER].trim()),
                         (
                                 tokens[FIELD_OFFSET].trim().contains("0x")
@@ -706,7 +706,7 @@ public class Fields implements MessageListener {
                         Integer.parseInt(tokens[FIELD_ID].trim().replace("0x", ""), 16),
                         Integer.parseInt(tokens[FIELD_FROM].trim()),
                         Integer.parseInt(tokens[FIELD_TO].trim()),
-                        Integer.parseInt(tokens[FIELD_DEVIDER].trim()),
+                        Integer.parseInt(tokens[FIELD_DIVIDER].trim()),
                         Integer.parseInt(tokens[FIELD_MULTIPLIER].trim()),
                         (
                                 tokens[FIELD_OFFSET].trim().contains("0x")
