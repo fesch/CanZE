@@ -221,7 +221,7 @@
         custom:majorTicks="20"
         custom:minorTicks="5"
         custom:fieldSID="7bb.6104.32"
-        custom:widget="bar"
+        custom:widget="batterybar"
         custom:text="Temp Cell 01 (C°)"
         />
 
@@ -273,7 +273,7 @@
         custom:majorTicks="1"
         custom:minorTicks="0"
         custom:fieldSID="7bb.6141.16"
-        custom:widget="tacho"
+        custom:widget="batterybar"
         custom:text="Cell 01 (V)"
         />
 

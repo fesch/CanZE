@@ -13,6 +13,7 @@
             <enum name="tacho" value="0"/>
             <enum name="kompass" value="1"/>
             <enum name="bar" value="2"/>
+            <enum name="batterybar" value="3"/>
         </attr>
         <attr name="text" format="string" />
     </declare-styleable>
