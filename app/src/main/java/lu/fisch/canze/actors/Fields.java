@@ -37,6 +37,7 @@ public class Fields implements MessageListener {
     public static final int CAR_ANY             = 0;
     public static final int CAR_FLUENCE         = 1;
     public static final int CAR_ZOE             = 2;
+    public static final int CAR_KANGOO          = 3;
 
 
     private final ArrayList<Field> fields = new ArrayList<>();
