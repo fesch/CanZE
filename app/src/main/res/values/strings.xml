@@ -69,6 +69,7 @@
     <string name="header_Driving">Driving parameters</string>
     <string name="default_realSpeed">#Spd</string>
     <string name="default_Torque">#Trq</string>
+    <string name="title_activity_test">testActivity</string>
 
 
 </resources>
