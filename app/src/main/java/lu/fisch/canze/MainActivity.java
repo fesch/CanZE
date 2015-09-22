@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         if(car.equals("Any")) Fields.getInstance().setCar(Fields.CAR_ANY);
         else if(car.equals("Zoé")) Fields.getInstance().setCar(Fields.CAR_ZOE);
         else if(car.equals("Fluence")) Fields.getInstance().setCar(Fields.CAR_FLUENCE);
+        else if(car.equals("Kangoo")) Fields.getInstance().setCar(Fields.CAR_KANGOO);
 
         // as the settings may have changed, we need to reload different things
 
