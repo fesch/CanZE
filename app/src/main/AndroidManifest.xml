@@ -52,8 +52,8 @@
             android:label="@string/title_activity_leaf_spy" >
         </activity>
         <activity
-            android:name=".TestActivity"
-            android:label="@string/title_activity_test" >
+            android:name=".ElmTestActivity"
+            android:label="@string/title_activity_elm_test" >
         </activity>
     </application>
 
