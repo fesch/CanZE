@@ -130,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
         if(car.equals("Any")) Fields.getInstance().setCar(Fields.CAR_ANY);
         else if(car.equals("Zoé")) Fields.getInstance().setCar(Fields.CAR_ZOE);
         else if(car.equals("Fluence")) Fields.getInstance().setCar(Fields.CAR_FLUENCE);
+        else if(car.equals("Kangoo")) Fields.getInstance().setCar(Fields.CAR_KANGOO);
+        else if(car.equals("X10")) Fields.getInstance().setCar(Fields.CAR_X10);
 
         // as the settings may have changed, we need to reload different things
 
@@ -327,6 +329,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        button = (Button) findViewById(R.id.buttonTest);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(connectedBluetoothThread==null)
+                {
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.this, TestActivity.class);
+                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
+            }
+        });
+
 
         // link the fields to the stack
         // OLD stack.addListener(fields);
@@ -497,6 +514,11 @@ public class MainActivity extends AppCompatActivity {
 
         // start the settings activity
         if (id == R.id.action_settings) {
+            // stop the BT device
+            device.setConnectedBluetoothThread(null);
+            BluetoothManager.getInstance().disconnect();
+
+            // load the activity
             Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
             startActivityForResult(intent, SETTINGS_ACTIVITY);
             return true;

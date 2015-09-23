@@ -54,11 +54,15 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         arrayAdapter.add("Zoé");
         arrayAdapter.add("Fluence");
+        arrayAdapter.add("Kangoo");
+        arrayAdapter.add("X10");
 
         index = 0;
         int car = Fields.getInstance().getCar();
         if(car==Fields.CAR_ZOE) index=0;
         else if(car==Fields.CAR_FLUENCE) index=1;
+        else if(car==Fields.CAR_KANGOO) index=2;
+        else if(car==Fields.CAR_X10) index=3;
 
         // display the list
         Spinner carList = (Spinner) findViewById(R.id.car);
