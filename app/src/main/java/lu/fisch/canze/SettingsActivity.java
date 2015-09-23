@@ -14,6 +14,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Set;
 
 import lu.fisch.canze.actors.Fields;
@@ -163,7 +165,22 @@ public class SettingsActivity extends AppCompatActivity {
             int index=-1;
             for (BluetoothDevice device : pairedDevices) {
                 // add the name and address to an array adapter to show in a ListView
-                arrayAdapter.add(device.getName() + "\n" + device.getAddress());
+
+                String deviceAlias = device.getName();
+                try {
+                    Method method = device.getClass().getMethod("getAliasName");
+                    if(method != null) {
+                        deviceAlias = (String)method.invoke(device);
+                    }
+                } catch (NoSuchMethodException e) {
+                    // e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    // e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    // e.printStackTrace();
+                }
+
+                arrayAdapter.add(deviceAlias + "\n" + device.getAddress());
                 // get the index of the selected item
                 if(device.getAddress().equals(deviceAddress))
                     index=i;
