@@ -70,7 +70,8 @@
 
     <string name="default_realSpeed">#Spd</string>
     <string name="default_Torque">#Trq</string>
-    <string name="title_activity_elm_test">testActivity</string>
+    <string name="title_activity_test">testActivity</string>
+    <string name="title_activity_elm_test">elmTestActivity</string>
 
     <string name="label_KmToDest">Km to Destination</string>
     <string name="default_KmToDest">#ktd</string>
