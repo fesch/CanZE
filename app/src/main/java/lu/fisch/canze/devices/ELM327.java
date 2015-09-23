@@ -1,5 +1,6 @@
 package lu.fisch.canze.devices;
 
+import android.os.SystemClock;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import lu.fisch.canze.actors.Utils;
 
 /**
  * Created by robertfisch on 07.09.2015.
+ * Main loop fir ELM
  */
 public class ELM327 extends Device {
 
@@ -99,8 +101,8 @@ public class ELM327 extends Device {
         ArrayList<Message> result = new ArrayList<>();
 
         // add to buffer as characters
-        for (int i = 0; i < input.length; i++) {
-            buffer += (char) input[i];
+        for (int anInput : input) {
+            buffer += (char) anInput;
         }
 
         //MainActivity.debug("Buffer: "+buffer);
@@ -145,10 +147,7 @@ public class ELM327 extends Device {
             }
         }
         else {
-            if (sendAndWaitForAnswer("atd", 100).trim().equals("")) {
-                return false;
-            }
-            return true;
+            return !sendAndWaitForAnswer("atd", 100).trim().equals("");
         }
         // ate0 (no echo)
         sendAndWaitForAnswer("ate0", 100);
@@ -173,8 +172,8 @@ public class ELM327 extends Device {
 
     /**
      * Creates a message based on the data of a line
-     * @param text
-     * @return
+     * @param text what came back from the ELM
+     * @return Message
      */
     private Message lineToMessage(String text) {
         // split up the fields
@@ -275,8 +274,6 @@ public class ELM327 extends Device {
     {
         if(connectedBluetoothThread==null) return "";
 
-        boolean hooLeeFuk = false; // the fake news name of Asiana flight 214 777 First Officer that crashed in SF
-
         if(command!=null) {
             // empty incoming buffer
             // just make sure there is no previous response
@@ -304,7 +301,7 @@ public class ELM327 extends Device {
         String readBuffer = "";
         // wait for answer
         long start = Calendar.getInstance().getTimeInMillis();
-        hooLeeFuk = false;
+        boolean hooLeeFuk = false; // the fake news name of Asiana flight 214 777 First Officer that crashed in SF
         while(!stop && !hooLeeFuk)
         {
             //MainActivity.debug("Delta = "+(Calendar.getInstance().getTimeInMillis()-start));
@@ -344,6 +341,10 @@ public class ELM327 extends Device {
                                 start = Calendar.getInstance().getTimeInMillis();
                             }
                         }
+                    }
+                    else
+                    {
+                        SystemClock.sleep(10); // let the system breath if there was no data
                     }
                 }
 
