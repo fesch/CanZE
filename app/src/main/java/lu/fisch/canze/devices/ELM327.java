@@ -162,6 +162,18 @@ public class ELM327 extends Device {
         // atcaf0 (no formatting)
         sendAndWaitForAnswer("atcaf0", 100);
 
+        // PERFORMANE ENHACMENT
+        // atfcsh79b        Set flow control response ID to 79b (the LBC)
+        sendAndWaitForAnswer("atfcsh77b", 50);
+        // atfcsd300020     Set the flow control response data to 300020 (flow control, clear to send,
+        //                  all frames, 32 ms wait between frames. Note that it is not possible to let
+        //                  the ELM request each frame as the Altered Flow Control only responds to a
+        //                  First Frame (not a Next Frame)
+        sendAndWaitForAnswer("atfcsd300000", 50);
+        // atfcsm1          Set flow control mode 1 (ID and data suplied)
+        sendAndWaitForAnswer("atfcsm1", 50);
+
+
         MainActivity.debug("ELM: initialised ...");
         if (toughness == 0 ) {
             MainActivity.toast("ELM is now ready ...");
@@ -441,9 +453,11 @@ public class ELM327 extends Device {
                         //                  all frames, 32 ms wait between frames. Note that it is not possible to let
                         //                  the ELM request each frame as the Altered Flow Control only responds to a
                         //                  First Frame (not a Next Frame)
-                        sendAndWaitForAnswer("atfcsd300000", 50);
+
+// PERFORMANE ENHACMENT
+//                        sendAndWaitForAnswer("atfcsd300000", 50);
                         // atfcsm1          Set flow control mode 1 (ID and data suplied)
-                        sendAndWaitForAnswer("atfcsm1", 50);
+//                        sendAndWaitForAnswer("atfcsm1", 50);
                         // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
                         String pre = "0" + field.getRequestId().length() / 2;
                         //MainActivity.debug("R: "+request+" - C: "+pre+field.getRequestId());
@@ -490,8 +504,9 @@ public class ELM327 extends Device {
                                 // get remaining 0x2 frames
                                 String lines0x2 = sendAndWaitForAnswer(null, 0, framesToReceive);
 
+// PERFORMANE ENHACMENT
                                 // atfcsm0          Reset flow control mode to 0 (default)
-                                sendAndWaitForAnswer("atfcsm0", 50);
+//                                sendAndWaitForAnswer("atfcsm0", 50);
 
                                 //MainActivity.debug("Got:\n"+hexData);
 
