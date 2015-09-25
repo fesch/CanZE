@@ -170,7 +170,9 @@ public class ELM327 extends Device {
         //                  all frames, 32 ms wait between frames. Note that it is not possible to let
         //                  the ELM request each frame as the Altered Flow Control only responds to a
         //                  First Frame (not a Next Frame)
-        sendAndWaitForAnswer("atfcsd300000", 50);
+        // PERFORMANCE ENHANCEMENT III, removed 32 ms wait time
+        // note to self: as the ELM needs to process these and is very low on buffer RAM, this chang may cause the hangups. This is under test now.
+        sendAndWaitForAnswer("atfcsd300020", 50);
         // atfcsm1          Set flow control mode 1 (ID and data suplied)
         sendAndWaitForAnswer("atfcsm1", 50);
 
@@ -338,27 +340,28 @@ public class ELM327 extends Device {
                             answerLinesCount--;
                             // if we not asked to keep on and we got enough lines, stop
                             if(!untilEmpty){
-                                if(answerLinesCount<=0) {
-                                    stop = true;
+                                if(answerLinesCount<=0) { // the number of lines is in
+                                    stop = true; // so quit
                                 }
-                                else
+                                else // the number of lines is NOT in
                                 {
-                                    start = Calendar.getInstance().getTimeInMillis();
+                                    start = Calendar.getInstance().getTimeInMillis(); // so restart the timeout
                                 }
                             }
-                            else if (untilEmpty) {
+                            else { // if (untilEmpty) {
                                 stop=(connectedBluetoothThread.available()==0);
                             }
-                            else
-                            {
-                                start = Calendar.getInstance().getTimeInMillis();
-                            }
+                            // unreachable part
+                            // else
+                            // {
+                            //     start = Calendar.getInstance().getTimeInMillis();
+                            // }
                         }
                     }
-                    else
-                    {
-                        SystemClock.sleep(10); // let the system breath if there was no data
-                    }
+                }
+                else
+                {
+                    SystemClock.sleep(10); // let the system breath if there was no data
                 }
 
                 if (Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT) {
@@ -410,6 +413,9 @@ public class ELM327 extends Device {
     // query the device for the next filter
     private void queryNextFilter()
     {
+        // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
+        int lastId = -1;
+
         try {
             if(fields.size()>0) {
                 //MainActivity.debug("Index: "+fieldIndex);
@@ -442,27 +448,31 @@ public class ELM327 extends Device {
 
 
                     if (field.isIsoTp()) {
-                        String request = getRequestHexId(field.getId());
 
-                        //MainActivity.debug("ELM: ask for "+request+","+field.getRequestId());
+                        // PERFORMANCE ENHANCEMENT II
+                        if (lastId != field.getId()) {
+                            lastId = field.getId();
 
-                        if(lastID!=field.getId()) {
-                            lastID=field.getId();
+                            String request = getRequestHexId(field.getId()); //request contains the CAN id.
+
+
+                            //MainActivity.debug("ELM: ask for "+request+","+field.getRequestId());
 
                             // atsh7e4          Set header to hex 79b (the LBC)
                             sendAndWaitForAnswer("atsh" + request, 50);
                             // atfcsh79b        Set flow control response ID to 79b (the LBC)
                             sendAndWaitForAnswer("atfcsh" + request, 50);
-                            // atfcsd300020     Set the flow control response data to 300020 (flow control, clear to send,
-                            //                  all frames, 32 ms wait between frames. Note that it is not possible to let
-                            //                  the ELM request each frame as the Altered Flow Control only responds to a
-                            //                  First Frame (not a Next Frame)
+
+                            // PERFORMANCE ENHANCEMENT I, moved two commands below to device initialisation
+                            // // atfcsd300020     Set the flow control response data to 300020 (flow control, clear to send,
+                            // //                  all frames, 32 ms wait between frames. Note that it is not possible to let
+                            // //                  the ELM request each frame as the Altered Flow Control only responds to a
+                            // //                  First Frame (not a Next Frame)
+                            // sendAndWaitForAnswer("atfcsd300000", 50);
+                            // // atfcsm1          Set flow control mode 1 (ID and data suplied)
+                            // sendAndWaitForAnswer("atfcsm1", 50);
                         }
 
-// PERFORMANE ENHACMENT
-//                        sendAndWaitForAnswer("atfcsd300000", 50);
-                        // atfcsm1          Set flow control mode 1 (ID and data suplied)
-//                        sendAndWaitForAnswer("atfcsm1", 50);
                         // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
                         String pre = "0" + field.getRequestId().length() / 2;
                         //MainActivity.debug("R: "+request+" - C: "+pre+field.getRequestId());
