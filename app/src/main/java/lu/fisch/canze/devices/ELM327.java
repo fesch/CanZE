@@ -31,6 +31,7 @@ public class ELM327 extends Device {
      * the index of the actual field to request
      */
     private int fieldIndex = 0;
+    private int lastID = 0;
 
     boolean sumTingWong = false; // yes I know, the fake news name of Asiana flight 214 777 captain that crashed in SF
 
@@ -444,14 +445,18 @@ public class ELM327 extends Device {
 
                         //MainActivity.debug("ELM: ask for "+request+","+field.getRequestId());
 
-                        // atsh7e4          Set header to hex 79b (the LBC)
-                        sendAndWaitForAnswer("atsh" + request, 50);
-                        // atfcsh79b        Set flow control response ID to 79b (the LBC)
-                        sendAndWaitForAnswer("atfcsh" + request, 50);
-                        // atfcsd300020     Set the flow control response data to 300020 (flow control, clear to send,
-                        //                  all frames, 32 ms wait between frames. Note that it is not possible to let
-                        //                  the ELM request each frame as the Altered Flow Control only responds to a
-                        //                  First Frame (not a Next Frame)
+                        if(lastID!=field.getId()) {
+                            lastID=field.getId();
+
+                            // atsh7e4          Set header to hex 79b (the LBC)
+                            sendAndWaitForAnswer("atsh" + request, 50);
+                            // atfcsh79b        Set flow control response ID to 79b (the LBC)
+                            sendAndWaitForAnswer("atfcsh" + request, 50);
+                            // atfcsd300020     Set the flow control response data to 300020 (flow control, clear to send,
+                            //                  all frames, 32 ms wait between frames. Note that it is not possible to let
+                            //                  the ELM request each frame as the Altered Flow Control only responds to a
+                            //                  First Frame (not a Next Frame)
+                        }
 
 // PERFORMANE ENHACMENT
 //                        sendAndWaitForAnswer("atfcsd300000", 50);
