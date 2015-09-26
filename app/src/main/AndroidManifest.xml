@@ -55,6 +55,10 @@
             android:name=".TestActivity"
             android:label="@string/title_activity_test" >
         </activity>
+        <activity
+            android:name=".ElmTestActivity"
+            android:label="@string/title_activity_elm_test" >
+        </activity>
     </application>
 
 </manifest>
