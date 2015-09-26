@@ -15,12 +15,12 @@ import java.util.ArrayList;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.widgets.WidgetView;
 
-public class TestActivity extends AppCompatActivity {
+public class TestX10Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_testx10);
 
         // initialise the widgets
         initWidgets();
@@ -89,7 +89,7 @@ public class TestActivity extends AppCompatActivity {
                         throw new ExceptionInInitializerError("Widget <" + wv.getId() + "> is NULL!");
                     }
                     if (MainActivity.fields.getBySID(wv.getFieldSID()) == null) {
-                        Toast.makeText(TestActivity.this,"Field with following SID <" + wv.getFieldSID() + "> not found!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TestX10Activity.this,"Field with following SID <" + wv.getFieldSID() + "> not found!",Toast.LENGTH_SHORT).show();
                         //throw new ExceptionInInitializerError("Field with following SID <" + wv.getFieldSID() + "> not found!");
                     }
                     else {
@@ -114,10 +114,10 @@ public class TestActivity extends AppCompatActivity {
                                 switch (maskedAction) {
                                     case MotionEvent.ACTION_DOWN:
                                     case MotionEvent.ACTION_POINTER_DOWN: {
-                                        Intent intent = new Intent(TestActivity.this, WidgetActivity.class);
+                                        Intent intent = new Intent(TestX10Activity.this, WidgetActivity.class);
                                         //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         WidgetView.selectedDrawable = wv.getDrawable();
-                                        TestActivity.this.startActivity(intent);
+                                        TestX10Activity.this.startActivity(intent);
                                         break;
                                     }
                                     case MotionEvent.ACTION_MOVE:

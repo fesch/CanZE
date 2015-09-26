@@ -30,11 +30,12 @@ public class Field {
     private String description;
     private int car;
     private int skips;
+    private int frequency;
 
     private double value = 0;
     private int skipsCount = 0;
     
-    public Field(int id, int from, int to, int divider, int multiplier, double offset, int decimals, String format, String unit, String requestId, String responseId, String description, int car, int skips) {
+    public Field(int id, int from, int to, int divider, int multiplier, double offset, int decimals, String format, String unit, String requestId, String responseId, String description, int car, int skips, int frequency) {
         this.from=from;
         this.to=to;
         this.offset=offset;
@@ -49,12 +50,13 @@ public class Field {
         this.description=description;
         this.car=car;
         this.skips=skips;
+        this.frequency=frequency;
     }
     
     @Override
     public Field clone()
     {
-        Field field = new Field(id, from, to, divider, multiplier, offset, decimals, format, unit, requestId, responseId, description, car, skips);
+        Field field = new Field(id, from, to, divider, multiplier, offset, decimals, format, unit, requestId, responseId, description, car, skips,frequency);
         field.value = value;
         return field;
     }
@@ -82,9 +84,9 @@ public class Field {
     public String getSID()
     {
         if(!responseId.trim().isEmpty())
-            return Integer.toHexString(id)+"."+responseId.trim()+"."+from;
+            return (Integer.toHexString(id)+"."+responseId.trim()+"."+from).toLowerCase();
         else
-            return Integer.toHexString(id)+"."+from;
+            return (Integer.toHexString(id)+"."+from).toLowerCase();
     }
     
     public String getPrintValue()
@@ -298,5 +300,13 @@ public class Field {
 
     public void setCar(int car) {
         this.car = car;
+    }
+
+    public int getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
     }
 }

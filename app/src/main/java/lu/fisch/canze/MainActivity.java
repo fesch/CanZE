@@ -84,12 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 if(visible)
                 {
                     // stop reading
-                    /* old
-                    // assign the BT thread to the reader
-                    if (reader != null)
-                        reader.setConnectedBluetoothThread(null);
-                    */
-
                     if (device!=null) device.setConnectedBluetoothThread(null);
 
                     // inform user
@@ -134,17 +128,6 @@ public class MainActivity extends AppCompatActivity {
         else if(car.equals("X10")) Fields.getInstance().setCar(Fields.CAR_X10);
 
         // as the settings may have changed, we need to reload different things
-
-        /* OLD
-            // pass the dataFormat to the stack
-            stack.setDataFormat(dataFormat);
-            // initialise a new dataReader
-        if(deviceName.equals("Arduino")) reader=new DueReader(stack);
-        else if(deviceName.equals("ELM327")) reader=new ElmReader(stack);
-        else reader=null;
-        if(reader!=null)
-            reader.initConnection();
-        */
 
         // create a new device
         if(deviceName.equals("Arduino Due")) device=new ArduinoDue();
@@ -339,7 +322,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, TestActivity.class);
+                Intent intent = new Intent(MainActivity.this, TestX10Activity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
             }
         });
