@@ -34,7 +34,7 @@ public class ELM327 extends Device {
      * the index of the actual field to request
      */
     private int fieldIndex = 0;
-    private int lastID = 0;
+    private int lastId = 0;
 
     boolean sumTingWong = false; // yes I know, the fake news name of Asiana flight 214 777 captain that crashed in SF
 
@@ -414,9 +414,6 @@ public class ELM327 extends Device {
     // query the device for the next filter
     private void queryNextFilter()
     {
-        // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
-        int lastId = -1;
-
         try {
             if(fields.size()>0) {
                 //MainActivity.debug("Index: "+fieldIndex);
@@ -450,7 +447,8 @@ public class ELM327 extends Device {
 
                     if (field.isIsoTp()) {
 
-                        // PERFORMANCE ENHANCEMENT II
+                        // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
+
                         if (lastId != field.getId()) {
                             lastId = field.getId();
 
