@@ -8,9 +8,11 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.widgets.WidgetView;
 
 public class TestActivity extends AppCompatActivity {
@@ -32,7 +34,8 @@ public class TestActivity extends AppCompatActivity {
         ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
         for(int i=0; i<widgets.size(); i++) {
             final WidgetView wv = widgets.get(i);
-            MainActivity.fields.getBySID(wv.getFieldSID()).removeListener(wv.getDrawable());
+            Field f = MainActivity.fields.getBySID(wv.getFieldSID());
+            if(f!=null) f.removeListener(wv.getDrawable());
         }
         // clear filters
         // OLD: MainActivity.reader.clearFields();
@@ -86,48 +89,51 @@ public class TestActivity extends AppCompatActivity {
                         throw new ExceptionInInitializerError("Widget <" + wv.getId() + "> is NULL!");
                     }
                     if (MainActivity.fields.getBySID(wv.getFieldSID()) == null) {
-                        throw new ExceptionInInitializerError("Field with following SID <" + wv.getFieldSID() + "> not found!");
+                        Toast.makeText(TestActivity.this,"Field with following SID <" + wv.getFieldSID() + "> not found!",Toast.LENGTH_SHORT).show();
+                        //throw new ExceptionInInitializerError("Field with following SID <" + wv.getFieldSID() + "> not found!");
                     }
-                    MainActivity.fields.getBySID(wv.getFieldSID()).addListener(wv.getDrawable());
-                    // add filter to reader
-                    // OLD: MainActivity.reader.addField(wv.getDrawable().getField());
-                    MainActivity.device.addField(wv.getDrawable().getField());
+                    else {
+                        MainActivity.fields.getBySID(wv.getFieldSID()).addListener(wv.getDrawable());
+                        // add filter to reader
+                        // OLD: MainActivity.reader.addField(wv.getDrawable().getField());
+                        MainActivity.device.addField(wv.getDrawable().getField());
 
-                    // touching a widget makes a "bigger" version appear
-                    wv.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            // get pointer index from the event object
-                            int pointerIndex = event.getActionIndex();
+                        // touching a widget makes a "bigger" version appear
+                        wv.setOnTouchListener(new View.OnTouchListener() {
+                            @Override
+                            public boolean onTouch(View v, MotionEvent event) {
+                                // get pointer index from the event object
+                                int pointerIndex = event.getActionIndex();
 
-                            // get pointer ID
-                            int pointerId = event.getPointerId(pointerIndex);
+                                // get pointer ID
+                                int pointerId = event.getPointerId(pointerIndex);
 
-                            // get masked (not specific to a pointer) action
-                            int maskedAction = event.getActionMasked();
+                                // get masked (not specific to a pointer) action
+                                int maskedAction = event.getActionMasked();
 
-                            switch (maskedAction) {
-                                case MotionEvent.ACTION_DOWN:
-                                case MotionEvent.ACTION_POINTER_DOWN: {
-                                    Intent intent = new Intent(TestActivity.this, WidgetActivity.class);
-                                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    WidgetView.selectedDrawable = wv.getDrawable();
-                                    TestActivity.this.startActivity(intent);
-                                    break;
+                                switch (maskedAction) {
+                                    case MotionEvent.ACTION_DOWN:
+                                    case MotionEvent.ACTION_POINTER_DOWN: {
+                                        Intent intent = new Intent(TestActivity.this, WidgetActivity.class);
+                                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        WidgetView.selectedDrawable = wv.getDrawable();
+                                        TestActivity.this.startActivity(intent);
+                                        break;
+                                    }
+                                    case MotionEvent.ACTION_MOVE:
+                                    case MotionEvent.ACTION_UP:
+                                    case MotionEvent.ACTION_POINTER_UP:
+                                    case MotionEvent.ACTION_CANCEL: {
+                                        break;
+                                    }
                                 }
-                                case MotionEvent.ACTION_MOVE:
-                                case MotionEvent.ACTION_UP:
-                                case MotionEvent.ACTION_POINTER_UP:
-                                case MotionEvent.ACTION_CANCEL: {
-                                    break;
-                                }
+
+                                wv.invalidate();
+
+                                return true;
                             }
-
-                            wv.invalidate();
-
-                            return true;
-                        }
-                    });
+                        });
+                    }
                 }
             }
         });

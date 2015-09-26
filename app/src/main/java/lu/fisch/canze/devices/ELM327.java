@@ -23,7 +23,7 @@ public class ELM327 extends Device {
     // *** needed by the "reader" part of this device
 
     // define the timeout we may wait to get an answer
-    private static final int TIMEOUT = 500;
+    private static final int TIMEOUT = 1100;
     // define End Of Message for this type of reader
     private static final char EOM = '\r';
 
@@ -574,7 +574,9 @@ public class ELM327 extends Device {
                         // atcra186 (substitute 186 by the hex code of the id)
                         sendAndWaitForAnswer("atcra" + emlFilter, 400);
                         // atma     (wait for one answer line)
-                        String hexData = sendAndWaitForAnswer("atma", 1500); // was 80. This is way too short for an atma, SOme frames come in only once per second
+                        String hexData = sendAndWaitForAnswer("atma", 80); // was 80. This is way too short for an atma, SOme frames come in only once per second
+                                                                           // 1500 here will make the ELM crash due to too much data input
+                                                                           // increased general read-timeout from 500 to 1100
                         // the first line may miss the first some bytes, so read a second one
                         //hexData = sendAndWaitForAnswer(null,0);
                         // atar     (stop output)
