@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,11 +13,15 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.util.Set;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import lu.fisch.canze.actors.Fields;
 
@@ -72,6 +77,21 @@ public class SettingsActivity extends AppCompatActivity {
         // select the actual device
         carList.setSelection(index);
         carList.setSelected(true);
+
+        // display build version
+        TextView tv = (TextView) findViewById(R.id.build);
+        try{
+            ApplicationInfo ai = getPackageManager().getApplicationInfo(getPackageName(), 0);
+            ZipFile zf = new ZipFile(ai.sourceDir);
+            ZipEntry ze = zf.getEntry("classes.dex");
+            long time = ze.getTime();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd @ HH:mm");
+            String s = sdf.format(new java.util.Date(time));
+            tv.setText("Build: "+s);
+            zf.close();
+        }
+        catch(Exception e){
+        }
     }
 
     @Override

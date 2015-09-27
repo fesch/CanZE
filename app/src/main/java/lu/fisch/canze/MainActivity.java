@@ -524,13 +524,28 @@ public class MainActivity extends AppCompatActivity {
 
         // start the settings activity
         if (id == R.id.action_settings) {
-            // stop the BT device
-            device.setConnectedBluetoothThread(null);
-            BluetoothManager.getInstance().disconnect();
+            // run a toast
+            Toast.makeText(MainActivity.this,"Stopping Bluetooth. Settings are being loaded. Please wait ....",Toast.LENGTH_SHORT).show();
 
-            // load the activity
-            Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
-            startActivityForResult(intent, SETTINGS_ACTIVITY);
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    // give the toast a moment to appear
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    // stop the BT device
+                    device.setConnectedBluetoothThread(null);
+                    BluetoothManager.getInstance().disconnect();
+
+                    // load the activity
+                    Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
+                    startActivityForResult(intent, SETTINGS_ACTIVITY);
+                }
+            })).start();
             return true;
         }
 
