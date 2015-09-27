@@ -14,6 +14,16 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:text="Build: "
+        android:id="@+id/build"
+        android:background="#ffd900"
+        android:textStyle="bold"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Bluetooth device"
         android:id="@+id/textViewBluetoothDevice" />
