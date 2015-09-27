@@ -5,12 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 //import android.widget.ProgressBar;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class DrivingActivity extends AppCompatActivity implements FieldListener {
@@ -18,20 +18,20 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
-    //public static final String SID_Pedal                            = "186.40";
-    //public static final String SID_CcPedal                          = "18a.16";
-    public static final String SID_RealSpeed                        = "5d7.0";
-    //public static final String SID_SoC                              = "654.24";
+    public static final String SID_Pedal                                = "186.40";
+    public static final String SID_CcPedal                              = "18a.16";
+    public static final String SID_RealSpeed                            = "5d7.0";
+    public static final String SID_SoC                                  = "654.24";
 
     // ISO-TP data
-    public static final String SID_SoC                              = "7ec.622002.24"; //  (EVC)
-    public static final String SID_Odometer                         = "7ec.622006.24"; //  (EVC)
-    //public static final String SID_Pedal                            = "7ec.62202e.24"; // inquired data (EVC)
-    //public static final String SID_Torque                           = "77e.623025.24"; //  (PEB)
-    public static final String SID_TractionBatteryVoltage           = "7ec.623203.24"; //  (EVC)
-    public static final String SID_TractionBatteryCurrent           = "7ec.623204.24"; //  (EVC)
-    public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104.";     // (LBC)
-    public static final String SID_KmInBatt                         = "7bb.6161.136";
+    public static final String SID_PEB_Torque                           = "77e.623025.24"; //  (PEB)
+    public static final String SID_LBC_KmInBatt                         = "7bb.6161.136";  //  (LBC)
+    public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
+    public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC)
+    public static final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
+    public static final String SID_EVC_Pedal                            = "7ec.62202e.24"; //  (EVC)
+    public static final String SID_EVC_TractionBatteryVoltage           = "7ec.623203.24"; //  (EVC)
+    public static final String SID_EVC_TractionBatteryCurrent           = "7ec.623204.24"; //  (EVC)
 
     double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     int lastOdo = 0;
@@ -44,22 +44,22 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
         setContentView(R.layout.activity_driving);
 
         subscribedFields = new ArrayList<>();
-        addListener(SID_RealSpeed);
-        addListener(SID_SoC);
-        //addListener(SID_Odometer);
-        //addListener(SID_Pedal);
-        //addListener(SID_CcPedal);
-        //addListener(SID_Torque);
-        addListener(SID_TractionBatteryVoltage);
-        addListener(SID_TractionBatteryCurrent);
 
-        // Battery compartment temperatures
-        int car = Fields.getInstance().getCar();
-        int lastCompartment = (car==Fields.CAR_ZOE) ? 296 : 128;
-        for (int i = 32; i <= lastCompartment; i += 24) {
-            String sid = SID_Preamble_CompartmentTemperatures + i;
-            addListener(sid);
-        }
+        // Make sure to add ISO-TP listeners grouped by ID
+
+        addListener(SID_Pedal);
+        addListener(SID_CcPedal);
+        addListener(SID_RealSpeed);
+        // addListener(SID_SoC);
+
+        addListener(SID_EVC_SoC);
+        //addListener(SID_EVC_RealSpeed);
+        addListener(SID_EVC_Odometer);
+        //addListener(SID_EVC_Pedal);
+        addListener(SID_PEB_Torque);
+        addListener(SID_EVC_TractionBatteryVoltage);
+        addListener(SID_EVC_TractionBatteryCurrent);
+
     }
 
     private void addListener(String sid) {
@@ -100,26 +100,28 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
             public void run() {
                 String fieldId = field.getSID();
                 TextView tv = null;
-                //ProgressBar pb = null;
+                ProgressBar pb = null;
 
                 // get the text field
                 switch (fieldId) {
-                    case SID_SoC:
+                    case SID_EVC_SoC:
                         tv = (TextView) findViewById(R.id.textSOC);
                         break;
-                    //case SID_Pedal:
-                    //    pb = (ProgressBar) findViewById(R.id.pedalBar);
-                    //    pb.setProgress((int) field.getValue());
-                    //    break;
-                    //case SID_CcPedal:
-                    //    pb = (ProgressBar) findViewById(R.id.ccPedalBar);
-                    //    pb.setProgress((int) field.getValue());
-                    //    break;
-                    case SID_Odometer:
+                    case SID_Pedal:
+                    case SID_EVC_Pedal:
+                        pb = (ProgressBar) findViewById(R.id.pedalBar);
+                        pb.setProgress((int) field.getValue());
+                        break;
+                    case SID_CcPedal:
+                        pb = (ProgressBar) findViewById(R.id.ccPedalBar);
+                        pb.setProgress((int) field.getValue());
+                        break;
+                    case SID_EVC_Odometer:
                         int odo = (int)field.getValue();
                         if (odo != lastOdo) {
                             tv = (TextView) findViewById(R.id.textKmToDest);
-                            int newKmToDest = Integer.parseInt("" + tv.getText()) - odo + lastOdo;
+                            int newKmToDest = Integer.parseInt("" + tv.getText());
+                            if (lastOdo != 0) newKmToDest += lastOdo - odo;
                             if (newKmToDest >= 0)
                             {
                                 tv.setText("" + newKmToDest);
@@ -134,67 +136,26 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
                             }
                             lastOdo = odo;
                         }
-                        // do not display the odometer itself
-                        tv = null;
+                        break;
                     case SID_RealSpeed:
+                    case SID_EVC_RealSpeed:
                         tv = (TextView) findViewById(R.id.textRealSpeed);
                         break;
-                    //case SID_Torque:
-                    //    tv = (TextView) findViewById(R.id.textTorque);
-                    //    break;
-                    case SID_TractionBatteryVoltage: // DC volts
+                    case SID_PEB_Torque:
+                        tv = (TextView) findViewById(R.id.textTorque);
+                        break;
+                    case SID_EVC_TractionBatteryVoltage: // DC volts
                         // save DC voltage for DC power purposes
                         dcVolt = field.getValue();
-                        // continue
-                        tv = (TextView) findViewById(R.id.textVolt);
                         break;
-                    case SID_TractionBatteryCurrent: // DC amps
+                    case SID_EVC_TractionBatteryCurrent: // DC amps
                         // calculate DC power
                         double dcPwr = (double) Math.round(dcVolt * field.getValue());
                         tv = (TextView) findViewById(R.id.textDcPwr);
                         tv.setText("" + (dcPwr));
-                        // continue
-                        tv = (TextView) findViewById(R.id.textAmps);
                         break;
-                    case SID_Preamble_CompartmentTemperatures + "32":
-                        tv = (TextView) findViewById(R.id.text_comp_1_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "56":
-                        tv = (TextView) findViewById(R.id.text_comp_2_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "80":
-                        tv = (TextView) findViewById(R.id.text_comp_3_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "104":
-                        tv = (TextView) findViewById(R.id.text_comp_4_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "128":
-                        tv = (TextView) findViewById(R.id.text_comp_5_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "152":
-                        tv = (TextView) findViewById(R.id.text_comp_6_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "176":
-                        tv = (TextView) findViewById(R.id.text_comp_7_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "200":
-                        tv = (TextView) findViewById(R.id.text_comp_8_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "224":
-                        tv = (TextView) findViewById(R.id.text_comp_9_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "248":
-                        tv = (TextView) findViewById(R.id.text_comp_10_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "272":
-                        tv = (TextView) findViewById(R.id.text_comp_11_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "296":
-                        tv = (TextView) findViewById(R.id.text_comp_12_temp);
-                        break;
-                    case SID_KmInBatt:
+                    case SID_LBC_KmInBatt:
                         kmInBat = (int) field.getValue();
-                        tv = null;
                         break;
                 }
                 // set regular new content, all exeptions handled above

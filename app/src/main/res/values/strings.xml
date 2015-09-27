@@ -1,19 +1,24 @@
 <resources>
     <string name="app_name">CanZE</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_widget">WidgetActivity</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_tacho">TachoActivity</string>
     <string name="title_activity_text">TextActivity</string>
     <string name="title_activity_battery__voltage_">Battery Voltages</string>
     <string name="title_activity_leaf_spy">Leaf Spy Clone</string>
+    <string name="title_activity_battery_temp">BatteryTempActivity</string>
+    <string name="title_activity_test">testActivity</string>
+    <string name="title_activity_elm_test">elmTestActivity</string>
+    <string name="title_activity_charging">Charging info</string>
+    <string name="title_activity_driving">Driving info</string>
+    <string name="title_activity_braking">Braking info</string>
+
+    <string name="action_settings">Settings</string>
 
 
     <!-- Charging -->
 
-    <string name="activity_charging">Charging info</string>
 
     <string name="header_Charging">Charging parameters</string>
 
@@ -52,7 +57,6 @@
 
     <string name="label_debug">Debug</string>
     <string name="default_debug">#Debug</string>
-    <string name="title_activity_battery_temp">BatteryTempActivity</string>
 
     <string name="label_CompTemp">Battery Compartment temperatures</string>
 
@@ -65,13 +69,10 @@
 
     <!-- driving -->
 
-    <string name="activity_driving">Driving info</string>
     <string name="header_Driving">Driving parameters</string>
 
     <string name="default_realSpeed">#Spd</string>
     <string name="default_Torque">#Trq</string>
-    <string name="title_activity_test">testActivity</string>
-    <string name="title_activity_elm_test">elmTestActivity</string>
 
     <string name="label_KmToDest">Km to Destination</string>
     <string name="default_KmToDest">#ktd</string>
@@ -81,8 +82,38 @@
 
     <!-- elm testing -->
 
-    <string name="activity_testing">ELM testing</string>
     <string name="header_ElmTest">Test results</string>
     <string name="textNotImplementedYet">Not implemented yet</string>
+
+
+    <!-- braking -->
+
+    <string name="activity_braking">Braking</string>
+    <string name="header_braking">Braking parameters</string>
+
+    <string name="label_hbb_malfunction">HBB malfunction</string>
+    <string name="default_hbb_malfunction">#hbm</string>
+
+    <string name="label_hbb_in_progress">HBB in progress</string>
+    <string name="default_hbb_in_progress">#hbip</string>
+
+    <string name="label_eb_malfunction">EB malfunction</string>
+    <string name="default_eb_malfunction">#ebm</string>
+
+    <string name="label_eb_in_progress">EB in progress</string>
+    <string name="default_eb_in_progress">#ebip</string>
+
+    <string name="label_hba_activation_request">HBA Activation Request</string>
+    <string name="default_hba_activation_request">#har</string>
+
+    <string name="label_pressure_buildup">Pressure Buildup</string>
+    <string name="default_pressure_buildup">#pb</string>
+
+    <string name="label_eb_torque_request">Electral Brake Wheels Torque Request</string>
+    <string name="label_driver_torque_request">Driver Brake Wheels Torque Request</string>
+    <string name="label_friction_torque">Friction Torque</string>
+
+
+
 
 </resources>

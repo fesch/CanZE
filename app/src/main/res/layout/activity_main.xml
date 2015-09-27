@@ -46,7 +46,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/activity_charging"
+                android:text="@string/title_activity_charging"
                 android:id="@+id/buttonChargingActivity"
                 android:layout_column="0" />
         </TableRow>
@@ -73,7 +73,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/activity_driving"
+                android:text="@string/title_activity_driving"
                 android:id="@+id/buttonDrivingActivity"
                 android:layout_column="0" />
 
@@ -155,8 +155,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text=""
-                android:id="@+id/empty2"
+                android:text="Braking (Jeroen)"
+                android:id="@+id/buttonBraking"
                 android:layout_column="0" />
 
         </TableRow>
