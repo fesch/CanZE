@@ -121,11 +121,23 @@ public class MainActivity extends AppCompatActivity {
         deviceName = settings.getString("device", "Arduino");
 
         String car = settings.getString("car", "Any");
-        if(car.equals("Any")) Fields.getInstance().setCar(Fields.CAR_ANY);
-        else if(car.equals("Zoé")) Fields.getInstance().setCar(Fields.CAR_ZOE);
-        else if(car.equals("Fluence")) Fields.getInstance().setCar(Fields.CAR_FLUENCE);
-        else if(car.equals("Kangoo")) Fields.getInstance().setCar(Fields.CAR_KANGOO);
-        else if(car.equals("X10")) Fields.getInstance().setCar(Fields.CAR_X10);
+        switch (car) {
+            case "Any":
+                Fields.getInstance().setCar(Fields.CAR_ANY);
+                break;
+            case "Zoé":
+                Fields.getInstance().setCar(Fields.CAR_ZOE);
+                break;
+            case "Fluence":
+                Fields.getInstance().setCar(Fields.CAR_FLUENCE);
+                break;
+            case "Kangoo":
+                Fields.getInstance().setCar(Fields.CAR_KANGOO);
+                break;
+            case "X10":
+                Fields.getInstance().setCar(Fields.CAR_X10);
+                break;
+        }
 
         // as the settings may have changed, we need to reload different things
 
@@ -293,6 +305,21 @@ public class MainActivity extends AppCompatActivity {
                 }
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, BatteryVoltageActivity.class);
+                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
+            }
+        });
+
+        button = (Button) findViewById(R.id.buttonBraking);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(connectedBluetoothThread==null)
+                {
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.this, BrakingActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
             }
         });

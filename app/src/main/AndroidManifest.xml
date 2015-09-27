@@ -33,11 +33,11 @@
         </activity>
         <activity
             android:name=".ChargingActivity"
-            android:label="@string/activity_charging" >
+            android:label="@string/title_activity_charging" >
         </activity>
         <activity
             android:name=".DrivingActivity"
-            android:label="@string/activity_driving" >
+            android:label="@string/title_activity_driving" >
         </activity>
         <activity
             android:name=".BatteryTempActivity"
@@ -46,6 +46,10 @@
         <activity
             android:name=".BatteryVoltageActivity"
             android:label="@string/title_activity_battery__voltage_" >
+        </activity>
+        <activity
+            android:name=".BrakingActivity"
+            android:label="@string/title_activity_braking" >
         </activity>
         <activity
             android:name=".LeafSpyActivity"

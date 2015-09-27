@@ -120,7 +120,8 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
                         int odo = (int)field.getValue();
                         if (odo != lastOdo) {
                             tv = (TextView) findViewById(R.id.textKmToDest);
-                            int newKmToDest = Integer.parseInt("" + tv.getText()) - odo + lastOdo;
+                            int newKmToDest = Integer.parseInt("" + tv.getText());
+                            if (lastOdo != 0) newKmToDest += lastOdo - odo;
                             if (newKmToDest >= 0)
                             {
                                 tv.setText("" + newKmToDest);
