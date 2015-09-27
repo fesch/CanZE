@@ -112,6 +112,9 @@
     <string name="label_eb_torque_request">Electral Brake Wheels Torque Request</string>
     <string name="label_driver_torque_request">Driver Brake Wheels Torque Request</string>
     <string name="label_friction_torque">Friction Torque</string>
+    <string name="title_activity_stats">StatsActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 
 
 

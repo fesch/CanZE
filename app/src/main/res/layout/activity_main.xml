@@ -185,8 +185,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text=""
-                android:id="@+id/empty3"
+                android:text="Stats (Henrik)"
+                android:id="@+id/buttonStats"
                 android:layout_column="0" />
         </TableRow>
 
