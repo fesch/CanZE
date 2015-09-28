@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.widgets.WidgetView;
 
 public class BatteryTempActivity extends AppCompatActivity {
@@ -83,6 +84,13 @@ public class BatteryTempActivity extends AppCompatActivity {
                 ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
                 for (int i = 0; i < widgets.size(); i++) {
                     final WidgetView wv = widgets.get(i);
+
+                    // hide the last 16 cells if not on Zoé
+                    if(i>3 &&
+                            Fields.getInstance().getCar()!=Fields.CAR_ZOE &&
+                            Fields.getInstance().getCar()!=Fields.CAR_X10)
+                        wv.setVisibility(View.INVISIBLE);
+
                     // connect widgets to fields
                     MainActivity.fields.getBySID(wv.getFieldSID()).addListener(wv.getDrawable());
                     // add filter to reader
