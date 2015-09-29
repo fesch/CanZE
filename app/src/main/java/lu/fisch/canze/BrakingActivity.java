@@ -107,15 +107,15 @@ public class BrakingActivity extends AppCompatActivity implements FieldListener 
                         break;
                     case SID_ElecBrakeWheels_Torque_Request:
                         pb = (ProgressBar) findViewById(R.id.pb_eb_torque_request);
-                        pb.setProgress(800 - (int) field.getValue());
+                        pb.setProgress((int) field.getValue());
                         break;
                     case SID_DriverBrakeWheel_Torque_Request:
                         pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
-                        pb.setProgress(800 - (int) field.getValue());
+                        pb.setProgress((int) field.getValue());
                         break;
                     case SID_Friction_Torque:
                         pb = (ProgressBar) findViewById(R.id.pb_friction_torque);
-                        pb.setProgress(800 - (int) field.getValue());
+                        pb.setProgress((int) field.getValue());
                         break;
                 }
                 // set regular new content, all exeptions handled above

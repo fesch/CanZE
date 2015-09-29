@@ -50,15 +50,13 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
         addListener(SID_Pedal);
         addListener(SID_CcPedal);
         addListener(SID_RealSpeed);
-        // addListener(SID_SoC);
 
         addListener(SID_EVC_SoC);
-        //addListener(SID_EVC_RealSpeed);
         addListener(SID_EVC_Odometer);
-        //addListener(SID_EVC_Pedal);
-        addListener(SID_PEB_Torque);
         addListener(SID_EVC_TractionBatteryVoltage);
         addListener(SID_EVC_TractionBatteryCurrent);
+        addListener(SID_PEB_Torque);
+        addListener(SID_LBC_KmInBatt);
 
     }
 
@@ -118,10 +116,11 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
                         break;
                     case SID_EVC_Odometer:
                         int odo = (int)field.getValue();
+                        if (lastOdo < 1) lastOdo = odo;
                         if (odo != lastOdo) {
                             tv = (TextView) findViewById(R.id.textKmToDest);
                             int newKmToDest = Integer.parseInt("" + tv.getText());
-                            if (lastOdo != 0) newKmToDest += lastOdo - odo;
+                            newKmToDest -= (odo - lastOdo);
                             if (newKmToDest >= 0)
                             {
                                 tv.setText("" + newKmToDest);
