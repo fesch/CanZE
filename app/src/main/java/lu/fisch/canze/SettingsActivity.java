@@ -1,7 +1,10 @@
 package lu.fisch.canze;
 
+import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
@@ -10,7 +13,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,8 +29,11 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.dialogues.YesNoDialog;
 
 public class SettingsActivity extends AppCompatActivity {
+
+    public static final int YES_NO_CALL = 13;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +86,30 @@ public class SettingsActivity extends AppCompatActivity {
         carList.setSelection(index);
         carList.setSelected(true);
 
+        // options
+        final CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
+        safe.setChecked(MainActivity.safeDrivingMode);
+        safe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!safe.isChecked())
+                {
+                    DialogFragment dialog = new YesNoDialog();
+                    Bundle args = new Bundle();
+                    args.putString("title", "ATTENTION");
+                    args.putString("message", "Driving and looking somewhere else as on the street is extreemly dangerous " +
+                            "and will expose your life and the life of those who are aroun you at risk. " +
+                            "Disabling of this mode is not recommended at all!\n\n" +
+                            "Are you sure to continue disabling the Sage Driving Mode?");
+                    args.putString("yes", "Yes, I know what I'm doing");
+                    args.putString("no", "No, I prefer the secure way");
+                    dialog.setArguments(args);
+                    //dialog.setTargetFragment(SettingsActivity.this, YES_NO_CALL);
+                    dialog.show(getFragmentManager(), "tag");
+                }
+            }
+        });
+
         // display build version
         TextView tv = (TextView) findViewById(R.id.build);
         try{
@@ -115,6 +147,7 @@ public class SettingsActivity extends AppCompatActivity {
             Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
             Spinner device = (Spinner) findViewById(R.id.remoteDevice);
             Spinner car = (Spinner) findViewById(R.id.car);
+            CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
             if(deviceList.getSelectedItem()!=null) {
                 MainActivity.debug("Settings.deviceAddress = " + deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 MainActivity.debug("Settings.deviceName = " + deviceList.getSelectedItem().toString().split("\n")[0].trim());
@@ -122,6 +155,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString("deviceName", deviceList.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("device", device.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("car", car.getSelectedItem().toString().split("\n")[0].trim());
+                editor.putBoolean("optSafe",safe.isChecked());
             }
             editor.commit();
             // finish
@@ -145,6 +179,8 @@ public class SettingsActivity extends AppCompatActivity {
         {
             fillDeviceList();
         }
+
+        MainActivity.debug("Code = "+requestCode);
     }
 
     private void tryTofillDeviceList() {

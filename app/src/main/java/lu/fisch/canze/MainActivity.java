@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static MainActivity instance = null;
 
+    public static boolean safeDrivingMode = true;
+
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -119,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         bluetoothDeviceName =settings.getString("deviceName", null);
         dataFormat = settings.getString("dataFormat", "crdt");
         deviceName = settings.getString("device", "Arduino");
+        safeDrivingMode = settings.getBoolean("optSafe", true);
 
         String car = settings.getString("car", "Any");
         switch (car) {
