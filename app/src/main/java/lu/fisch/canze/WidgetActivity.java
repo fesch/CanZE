@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.widgets.WidgetView;
 
-public class WidgetActivity extends AppCompatActivity {
+public class WidgetActivity extends CanzeActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class ElmTestActivity extends AppCompatActivity {
+public class ElmTestActivity extends CanzeActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

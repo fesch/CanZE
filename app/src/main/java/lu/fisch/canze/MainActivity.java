@@ -22,6 +22,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
@@ -30,9 +31,10 @@ import lu.fisch.canze.devices.BobDue;
 import lu.fisch.canze.devices.Device;
 import lu.fisch.canze.devices.ELM327;
 import lu.fisch.canze.interfaces.BluetoothEvent;
+import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.widgets.WidgetView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FieldListener {
     public static final String TAG = "CanZE";
 
     // SPP UUID service
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     private static MainActivity instance = null;
 
     public static boolean safeDrivingMode = true;
+    private static boolean isDriving = true;
 
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -246,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, TachoActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -261,6 +265,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, ChargingActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -276,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, DrivingActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -291,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, BatteryTempActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -306,6 +313,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, BatteryVoltageActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -321,6 +329,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, BrakingActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -336,6 +345,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, LeafSpyActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -351,6 +361,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, TestX10Activity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -366,6 +377,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, StatsActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -390,15 +402,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAfterConnect(BluetoothSocket bluetoothSocket, ConnectedBluetoothThread connectedBluetoothThread) {
                 MainActivity.this.connectedBluetoothThread=connectedBluetoothThread;
-                // assign the stack to the BT thread
-                // OLD: debug("assign the stack to the BT thread");
-                // OLD: connectedBluetoothThread.setStack(stack);
+
                 // assign the BT thread to the reader
                 debug("assign the BT thread to the reader");
-                // OLD: if (reader != null)
-                // OLD: reader.setConnectedBluetoothThread(connectedBluetoothThread);
                 if(device!=null)
                     device.setConnectedBluetoothThread(connectedBluetoothThread);
+
+                // register fields this activity needs to get
+                registerFields();
+
+
                 /*
                 // set all filters
                 debug("set all filters & connect widgets");
@@ -450,6 +463,7 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(enableBtIntent, 1);
         }
     }
+
 
     @Override
     public void onResume() {
@@ -510,6 +524,8 @@ public class MainActivity extends AppCompatActivity {
         {
             returnFromWidget=true;
             leaveBluetoothOn=false;
+            // register fields this activity needs
+            registerFields();
         }
         else super.onActivityResult(requestCode, resultCode, data);
     }
@@ -542,36 +558,72 @@ public class MainActivity extends AppCompatActivity {
 
         // start the settings activity
         if (id == R.id.action_settings) {
-            // run a toast
-            Toast.makeText(MainActivity.this,"Stopping Bluetooth. Settings are being loaded. Please wait ....",Toast.LENGTH_SHORT).show();
 
-            (new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    // give the toast a moment to appear
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+            if(isSafe()) {
+                // run a toast
+                Toast.makeText(MainActivity.this, "Stopping Bluetooth. Settings are being loaded. Please wait ....", Toast.LENGTH_SHORT).show();
+
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // give the toast a moment to appear
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (device != null) {
+                            // stop the BT device
+                            device.setConnectedBluetoothThread(null);
+                            BluetoothManager.getInstance().disconnect();
+                        }
+
+                        // load the activity
+                        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                        startActivityForResult(intent, SETTINGS_ACTIVITY);
                     }
-
-                    if(device!=null)
-                    {
-                        // stop the BT device
-                        device.setConnectedBluetoothThread(null);
-                        BluetoothManager.getInstance().disconnect();
-                    }
-
-                    // load the activity
-                    Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
-                    startActivityForResult(intent, SETTINGS_ACTIVITY);
-                }
-            })).start();
-            return true;
+                })).start();
+                return true;
+            }
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    public static void registerFields()
+    {
+        debug("MainActivity: registerFields");
 
+        // speed
+        Field field = fields.getBySID("5d7.0");
+        if(field!=null)
+        {
+            field.addListener(MainActivity.instance);
+
+            if(device!=null)
+            {
+                device.addField(field);
+            }
+        }
+    }
+
+    @Override
+    public void onFieldUpdateEvent(Field field) {
+        if(field.getSID().equals("5d7.0"))
+        {
+            //debug("Speed "+field.getValue());
+            isDriving = (field.getValue()>10);
+        }
+    }
+
+    public static boolean isSafe()
+    {
+        boolean safe = !isDriving || !safeDrivingMode;
+        if(!safe)
+        {
+            Toast.makeText(MainActivity.instance,"Not possible while driving ...",Toast.LENGTH_LONG).show();
+        }
+        return safe;
+    }
 }

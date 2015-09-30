@@ -149,7 +149,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 	    switch (maskedAction) {
 		    case MotionEvent.ACTION_DOWN:
 		    case MotionEvent.ACTION_POINTER_DOWN:{
-                if(clickable) {
+                if(clickable && MainActivity.isSafe()) {
                     Intent intent = new Intent(this.getContext(), WidgetActivity.class);
                     selectedDrawable = this.getDrawable();
                     this.getContext().startActivity(intent);

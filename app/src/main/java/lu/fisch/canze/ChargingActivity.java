@@ -14,7 +14,7 @@ import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldListener to the fields.
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
-public class ChargingActivity extends AppCompatActivity implements FieldListener {
+public class ChargingActivity extends CanzeActivity implements FieldListener {
 
     public static final String SID_MaxCharge = "7bb.6101.336";
     public static final String SID_ACPilot = "42e.38";
@@ -93,8 +93,6 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
             field.removeListener(this);
         }
         subscribedFields.clear();
-        // clear filters
-        MainActivity.device.clearFields();
     }
 
     // This is the event fired as soon as this the registered fields are

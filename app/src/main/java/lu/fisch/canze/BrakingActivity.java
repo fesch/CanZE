@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.FieldListener;
 
-public class BrakingActivity extends AppCompatActivity implements FieldListener {
+public class BrakingActivity extends CanzeActivity implements FieldListener {
 
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
@@ -71,8 +71,6 @@ public class BrakingActivity extends AppCompatActivity implements FieldListener 
             field.removeListener(this);
         }
         subscribedFields.clear();
-        // clear filters
-        MainActivity.device.clearFields();
     }
 
     // This is the event fired as soon as this the registered fields are

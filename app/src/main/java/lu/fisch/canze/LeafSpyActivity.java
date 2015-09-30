@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import lu.fisch.canze.widgets.WidgetView;
 
-public class LeafSpyActivity extends AppCompatActivity {
+public class LeafSpyActivity extends CanzeActivity {
 
 
     @Override
@@ -35,9 +35,6 @@ public class LeafSpyActivity extends AppCompatActivity {
             final WidgetView wv = widgets.get(i);
             MainActivity.fields.getBySID(wv.getFieldSID()).removeListener(wv.getDrawable());
         }
-        // clear filters
-        // OLD: MainActivity.reader.clearFields();
-        MainActivity.device.clearFields();
     }
 
     @Override
@@ -70,6 +67,7 @@ public class LeafSpyActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     // ----------------------------------------------------
 
     private void initWidgets()
@@ -91,7 +89,6 @@ public class LeafSpyActivity extends AppCompatActivity {
                     }
                     MainActivity.fields.getBySID(wv.getFieldSID()).addListener(wv.getDrawable());
                     // add filter to reader
-                    // OLD: MainActivity.reader.addField(wv.getDrawable().getField());
                     MainActivity.device.addField(wv.getDrawable().getField());
 
                     // touching a widget makes a "bigger" version appear

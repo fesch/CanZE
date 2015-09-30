@@ -62,7 +62,6 @@ public class ELM327 extends Device {
 
                         while (connectedBluetoothThread!=null) {
                             queryNextFilter();
-
                             if(fields.size()==0)
                             {
                                 try{

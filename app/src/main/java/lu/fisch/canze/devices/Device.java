@@ -2,6 +2,7 @@ package lu.fisch.canze.devices;
 
 import java.util.ArrayList;
 
+import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Message;
@@ -123,6 +124,7 @@ public abstract class Device {
     {
         synchronized (fields) {
             fields.clear();
+            //MainActivity.debug("cleared");
             // launch the filter clearing asynchronously
             (new Thread(new Runnable() {
                 @Override
@@ -161,6 +163,7 @@ public abstract class Device {
     {
         synchronized (fields) {
             if (!containsField(field)) {
+                //MainActivity.debug("reg: "+field.getSID());
                 fields.add(field);
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
@@ -169,7 +172,6 @@ public abstract class Device {
                         registerFilter(field.getId());
                     }
                 })).start();
-
             }
         }
     }
@@ -207,11 +209,14 @@ public abstract class Device {
      */
     public void setConnectedBluetoothThread(ConnectedBluetoothThread connectedBluetoothThread) {
         this.connectedBluetoothThread = connectedBluetoothThread;
-        // init the connection
-        initConnection();
-        // clean all filters (just to make sure)
-        clearFields();
-        // register all filters (if there are any)
-        registerFilters();
+        if(connectedBluetoothThread!=null)
+        {
+            // init the connection
+            initConnection();
+            // clean all filters (just to make sure)
+            clearFields();
+            // register all filters (if there are any)
+            registerFilters();
+        }
     }
 }

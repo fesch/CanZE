@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.widgets.WidgetView;
 
-public class TachoActivity extends AppCompatActivity {
+public class TachoActivity extends CanzeActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +38,6 @@ public class TachoActivity extends AppCompatActivity {
             if(f!=null) f.removeListener(wv.getDrawable());
 
         }
-        // clear filters
-        // OLD: MainActivity.reader.clearFields();
-        MainActivity.device.clearFields();
     }
 
     @Override

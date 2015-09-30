@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.widgets.WidgetView;
 
-public class TestX10Activity extends AppCompatActivity {
+public class TestX10Activity extends CanzeActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +37,6 @@ public class TestX10Activity extends AppCompatActivity {
             Field f = MainActivity.fields.getBySID(wv.getFieldSID());
             if(f!=null) f.removeListener(wv.getDrawable());
         }
-        // clear filters
-        // OLD: MainActivity.reader.clearFields();
-        MainActivity.device.clearFields();
     }
 
     @Override
