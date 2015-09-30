@@ -60,8 +60,18 @@ public class ELM327 extends Device {
                     // continue only if we got an answer.
                     if (initELM(0)) {
 
-                        while (true)
+                        while (connectedBluetoothThread!=null) {
                             queryNextFilter();
+
+                            if(fields.size()==0)
+                            {
+                                try{
+                                    Thread.sleep(1000);
+                                }
+                                catch (Exception e) {}
+
+                            }
+                        }
 
                         // now start the query'ing timer
                     /*

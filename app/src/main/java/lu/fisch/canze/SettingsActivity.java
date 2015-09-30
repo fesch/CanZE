@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,7 +30,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import lu.fisch.canze.actors.Fields;
-import lu.fisch.canze.dialogues.YesNoDialog;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -94,18 +94,41 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!safe.isChecked())
                 {
-                    DialogFragment dialog = new YesNoDialog();
-                    Bundle args = new Bundle();
-                    args.putString("title", "ATTENTION");
-                    args.putString("message", "Driving and looking somewhere else as on the street is extreemly dangerous " +
-                            "and will expose your life and the life of those who are aroun you at risk. " +
-                            "Disabling of this mode is not recommended at all!\n\n" +
-                            "Are you sure to continue disabling the Sage Driving Mode?");
-                    args.putString("yes", "Yes, I know what I'm doing");
-                    args.putString("no", "No, I prefer the secure way");
-                    dialog.setArguments(args);
-                    //dialog.setTargetFragment(SettingsActivity.this, YES_NO_CALL);
-                    dialog.show(getFragmentManager(), "tag");
+                    final Context context = SettingsActivity.this;
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                    // set title
+                    alertDialogBuilder.setTitle("ATTENTION");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage("Driving and looking somewhere else as on the street is extreemly dangerous " +
+                                    "and will expose your life and the life of those who are aroun you at risk. " +
+                                    "Disabling of this mode is not recommended at all!\n\n" +
+                                    "Are you sure to continue disabling the Sage Driving Mode?")
+                            .setCancelable(true)
+                            .setPositiveButton("Yes, I know what I'm doing",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    // if this button is clicked, close
+                                    // current activity
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("No, I prefer the secure way",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // if this button is clicked, just close
+                            // the dialog box and do nothing
+                            safe.setChecked(true);
+                            dialog.cancel();
+                        }
+                    });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
                 }
             }
         });
