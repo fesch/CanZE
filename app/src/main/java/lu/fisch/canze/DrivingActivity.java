@@ -22,10 +22,11 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_CcPedal                              = "18a.16";
     public static final String SID_RealSpeed                            = "5d7.0";
     public static final String SID_SoC                                  = "654.24";
+    public static final String SID_RangeEstimate                        = "654.42";
 
     // ISO-TP data
     public static final String SID_PEB_Torque                           = "77e.623025.24"; //  (PEB)
-    public static final String SID_LBC_KmInBatt                         = "7bb.6161.136";  //  (LBC)
+    //public static final String SID_LBC_KmInBatt                         = "7bb.6161.136";  //  (LBC)
     public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
     public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC)
     public static final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
@@ -50,13 +51,14 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         addListener(SID_Pedal);
         addListener(SID_CcPedal);
         addListener(SID_RealSpeed);
+        addListener(SID_RangeEstimate);
 
         addListener(SID_EVC_SoC);
         addListener(SID_EVC_Odometer);
         addListener(SID_EVC_TractionBatteryVoltage);
         addListener(SID_EVC_TractionBatteryCurrent);
         addListener(SID_PEB_Torque);
-        addListener(SID_LBC_KmInBatt);
+        //addListener(SID_LBC_KmInBatt);
 
     }
 
@@ -114,23 +116,22 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_EVC_Odometer:
                         int odo = (int)field.getValue();
-                        if (lastOdo < 1) lastOdo = odo;
-                        if (odo != lastOdo) {
-                            tv = (TextView) findViewById(R.id.textKmToDest);
-                            int newKmToDest = Integer.parseInt("" + tv.getText());
-                            newKmToDest -= (odo - lastOdo);
-                            if (newKmToDest >= 0)
-                            {
-                                tv.setText("" + newKmToDest);
-                                tv = (TextView) findViewById(R.id.textKmAVailAtDest);
-                                tv.setText("" + (kmInBat - newKmToDest));
-                            }
-                            else
-                            {
-                                tv.setText("0");
-                                tv = (TextView) findViewById(R.id.textKmAVailAtDest);
-                                tv.setText("0");
-                            }
+                        if (lastOdo < 1) lastOdo = odo; // assume a lastOdo < 1 to be initialisation
+                        if (odo > lastOdo && odo < (lastOdo + 10)) { // we update only if there are no weird odo values
+                            try {
+                                tv = (TextView) findViewById(R.id.textKmToDest);
+                                int newKmToDest = Integer.parseInt("" + tv.getText());
+                                newKmToDest -= (odo - lastOdo);
+                                if (newKmToDest >= 0) {
+                                    tv.setText("" + newKmToDest);
+                                    tv = (TextView) findViewById(R.id.textKmAVailAtDest);
+                                    tv.setText("" + (kmInBat - newKmToDest));
+                                } else {
+                                    tv.setText("0");
+                                    tv = (TextView) findViewById(R.id.textKmAVailAtDest);
+                                    tv.setText("0");
+                                }
+                            } catch (Exception e) {}
                             lastOdo = odo;
                         }
                         break;
@@ -151,7 +152,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         tv = (TextView) findViewById(R.id.textDcPwr);
                         tv.setText("" + (dcPwr));
                         break;
-                    case SID_LBC_KmInBatt:
+                    case SID_RangeEstimate:
                         kmInBat = (int) field.getValue();
                         break;
                 }
