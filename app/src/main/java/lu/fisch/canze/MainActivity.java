@@ -552,9 +552,11 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    // stop the BT device
-                    device.setConnectedBluetoothThread(null);
-                    BluetoothManager.getInstance().disconnect();
+                    if(device!=null) {
+                        // stop the BT device
+                        device.setConnectedBluetoothThread(null);
+                        BluetoothManager.getInstance().disconnect();
+                    }
 
                     // load the activity
                     Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
