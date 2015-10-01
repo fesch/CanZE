@@ -1,10 +1,18 @@
 package lu.fisch.canze;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 //import android.widget.ProgressBar;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -19,14 +27,12 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
 
     // free data
     public static final String SID_Pedal                                = "186.40";
-    public static final String SID_CcPedal                              = "18a.16";
+    public static final String SID_MeanEffectiveTorque                  = "18a.16";
     public static final String SID_RealSpeed                            = "5d7.0";
     public static final String SID_SoC                                  = "654.24";
     public static final String SID_RangeEstimate                        = "654.42";
 
     // ISO-TP data
-    public static final String SID_PEB_Torque                           = "77e.623025.24"; //  (PEB)
-    //public static final String SID_LBC_KmInBatt                         = "7bb.6161.136";  //  (LBC)
     public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
     public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC)
     public static final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
@@ -49,7 +55,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         // Make sure to add ISO-TP listeners grouped by ID
 
         addListener(SID_Pedal);
-        addListener(SID_CcPedal);
+        addListener(SID_MeanEffectiveTorque);
         addListener(SID_RealSpeed);
         addListener(SID_RangeEstimate);
 
@@ -57,9 +63,51 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         addListener(SID_EVC_Odometer);
         addListener(SID_EVC_TractionBatteryVoltage);
         addListener(SID_EVC_TractionBatteryCurrent);
-        addListener(SID_PEB_Torque);
-        //addListener(SID_LBC_KmInBatt);
+        //addListener(SID_PEB_Torque);
 
+        final TextView kmToDest = (TextView) findViewById(R.id.LabelKmToDest);
+        kmToDest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Context context = DrivingActivity.this;
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                LayoutInflater inflater = getLayoutInflater();
+                final View kmToDestView = inflater.inflate(R.layout.set_dist_to_dest, null);
+
+                // set dialog message
+                alertDialogBuilder
+                        .setView(kmToDestView)
+                        .setTitle("REMAINING DISTANCE")
+                        .setMessage("Please enter the distance to your destination. The display will estimate " +
+                                "the remaining driving distance available in your battery on arrival")
+
+                        .setCancelable(true)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                EditText dialogKmToDest = (EditText) kmToDestView.findViewById(R.id.dialog_dist_to_dest);
+                                if (dialogKmToDest != null){
+                                    setKmToDest(dialogKmToDest.getText().toString(), "");
+                                }
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
+
+            }
+        });
+    }
+
+    private void setKmToDest (String km1, String km2) {
+        TextView tv = null;
+        tv = (TextView) findViewById(R.id.textKmToDest);
+        tv.setText(km1);
+        tv = (TextView) findViewById(R.id.textKmAVailAtDest);
+        tv.setText(km2);
     }
 
     private void addListener(String sid) {
@@ -110,12 +158,12 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         pb = (ProgressBar) findViewById(R.id.pedalBar);
                         pb.setProgress((int) field.getValue());
                         break;
-                    case SID_CcPedal:
-                        pb = (ProgressBar) findViewById(R.id.ccPedalBar);
+                    case SID_MeanEffectiveTorque:
+                        pb = (ProgressBar) findViewById(R.id.MeanEffectiveTorque);
                         pb.setProgress((int) field.getValue());
                         break;
                     case SID_EVC_Odometer:
-                        int odo = (int)field.getValue();
+                        int odo = (int) field.getValue();
                         if (lastOdo < 1) lastOdo = odo; // assume a lastOdo < 1 to be initialisation
                         if (odo > lastOdo && odo < (lastOdo + 10)) { // we update only if there are no weird odo values
                             try {
@@ -123,25 +171,23 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                                 int newKmToDest = Integer.parseInt("" + tv.getText());
                                 newKmToDest -= (odo - lastOdo);
                                 if (newKmToDest >= 0) {
-                                    tv.setText("" + newKmToDest);
-                                    tv = (TextView) findViewById(R.id.textKmAVailAtDest);
-                                    tv.setText("" + (kmInBat - newKmToDest));
+                                    setKmToDest("" + newKmToDest, "" + (kmInBat - newKmToDest));
                                 } else {
-                                    tv.setText("0");
-                                    tv = (TextView) findViewById(R.id.textKmAVailAtDest);
-                                    tv.setText("0");
+                                    setKmToDest("0", "0");
                                 }
-                            } catch (Exception e) {}
+                            } catch (Exception e) {
+                            }
                             lastOdo = odo;
                         }
+                        tv = null;
                         break;
                     case SID_RealSpeed:
                     case SID_EVC_RealSpeed:
                         tv = (TextView) findViewById(R.id.textRealSpeed);
                         break;
-                    case SID_PEB_Torque:
-                        tv = (TextView) findViewById(R.id.textTorque);
-                        break;
+                    //case SID_PEB_Torque:
+                    //    tv = (TextView) findViewById(R.id.textTorque);
+                    //    break;
                     case SID_EVC_TractionBatteryVoltage: // DC volts
                         // save DC voltage for DC power purposes
                         dcVolt = field.getValue();
@@ -151,6 +197,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         double dcPwr = (double) Math.round(dcVolt * field.getValue());
                         tv = (TextView) findViewById(R.id.textDcPwr);
                         tv.setText("" + (dcPwr));
+                        tv = null;
                         break;
                     case SID_RangeEstimate:
                         kmInBat = (int) field.getValue();
