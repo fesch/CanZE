@@ -51,11 +51,13 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("ELM327");
         arrayAdapter.add("Arduino Due");
         arrayAdapter.add("Bob Due");
+        arrayAdapter.add("ELM327 Experimental");
 
         int index = 0;
         if(device.equals("ELM327")) index=0;
         else if(device.equals("Arduino Due")) index=1;
         else if(device.equals("Bob Due")) index=2;
+        else if(device.equals("ELM327 Experimental")) index=3;
 
         // display the list
         Spinner deviceList = (Spinner) findViewById(R.id.remoteDevice);
@@ -102,10 +104,10 @@ public class SettingsActivity extends AppCompatActivity {
 
                     // set dialog message
                     alertDialogBuilder
-                            .setMessage("Driving and looking somewhere else as on the street is extreemly dangerous " +
-                                    "and will expose your life and the life of those who are aroun you at risk. " +
+                            .setMessage("Driving and not paying full attention to traffic is extremely dangerous " +
+                                    "and will put your life and the life of those around you at risk. " +
                                     "Disabling of this mode is not recommended at all!\n\n" +
-                                    "Are you sure to continue disabling the Sage Driving Mode?")
+                                    "Are you sure you want to continue disabling the Safe Driving Mode?")
                             .setCancelable(true)
                             .setPositiveButton("Yes, I know what I'm doing",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
