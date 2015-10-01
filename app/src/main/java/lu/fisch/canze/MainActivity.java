@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     private static MainActivity instance = null;
 
     public static boolean safeDrivingMode = true;
-    private static boolean isDriving = true;
+    private static boolean isDriving = false;
 
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
