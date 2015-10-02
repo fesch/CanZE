@@ -397,7 +397,7 @@ public class ELM327 extends Device {
     private int getRequestId(int responseId)
     {                     //from        // to
         if     (responseId==0x7ec) return 0x7e4;  // EVC / SCH
-        else if(responseId==0x7cd) return 0x7ca;  // TCU
+        else if(responseId==0x7da) return 0x7ca;  // TCU
         else if(responseId==0x7bb) return 0x79b;  // LBC
         else if(responseId==0x77e) return 0x75a;  // PEB
         else if(responseId==0x772) return 0x752;  // Airbag
