@@ -1,0 +1,331 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:keepScreenOn="true"
+    android:layout_height="fill_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="lu.fisch.canze.FirmwareActivity">
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/HeaderFirmware"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Firmware versions"
+            android:layout_alignParentLeft="true"
+            android:textColor="#000" />
+
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/HeaderFirmware"
+        android:stretchColumns="1">
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="EVC (Electric Vehicle Controller)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu7ec"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="TCU (Telematics Control Unit)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu7da"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="LBC (Lithium Battery Charger)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu7bb"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="PEB (Power Electronics Block)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu77e"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="AIBAG (Airbag)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu772"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="USM (12V fuse box under the hood"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecus76d"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="CLUSTER (Instrument panel)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu763"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="EPS (?)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu762"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="ABS (Antilock breaking system)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu760"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="UBP (?)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu7bc"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="BCM (?)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu765"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="CLIM (Climate control)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu764"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="UPA (?)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu76e"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="BCB (?)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu793"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="LBC2 (Lithium Battery Charger)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu7b6"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="LINSCH (?)"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="Not available"
+                android:padding="3dip"
+                android:id="@+id/ecu722"
+                />
+
+        </TableRow>
+
+
+    </TableLayout>
+
+        <!-- debug line -->
+        <TextView
+            android:id="@+id/textDebug"
+            android:text="@string/default_debug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            />
+        <TextView
+            android:id="@+id/HeaderDebug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/header_Debug"
+            android:layout_above="@id/textDebug"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:textColor="#000"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

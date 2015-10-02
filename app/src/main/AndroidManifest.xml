@@ -68,6 +68,10 @@
             android:name=".StatsActivity"
             android:label="@string/title_activity_stats" >
         </activity>
+        <activity
+            android:name=".FirmwareActivity"
+            android:label="@string/title_activity_firmware" >
+        </activity>
     </application>
 
 </manifest>
