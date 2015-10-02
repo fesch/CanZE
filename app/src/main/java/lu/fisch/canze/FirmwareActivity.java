@@ -134,8 +134,10 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
                     String version = Integer.toHexString((int) field.getValue());
-                    version = ("0000" + version).substring(version.length());
-                    tv.setText(version);
+                    if (!version.equals("0")) {
+                        version = ("0000" + version).substring(version.length());
+                        tv.setText(version);
+                    }
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);
