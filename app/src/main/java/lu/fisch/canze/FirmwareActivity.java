@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.FieldListener;
 
-/**
- * Created by jeroen on 2-10-15.
- */
+
+// Jeroen
+
 public class FirmwareActivity extends CanzeActivity implements FieldListener {
 
     private ArrayList<Field> subscribedFields;
@@ -25,22 +25,22 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
 
         subscribedFields = new ArrayList<>();
 
-        addListener("7ec.6180.128");
-        addListener("7da.6180.128");
-        addListener("7bb.6180.128");
-        addListener("77e.6180.128");
-        addListener("772.6180.128");
-        addListener("76d.6180.128");
-        addListener("763.6180.128");
-        addListener("762.6180.128");
-        addListener("760.6180.128");
-        addListener("7bc.6180.128");
-        addListener("765.6180.128");
-        addListener("764.6180.128");
-        addListener("76e.6180.128");
-        addListener("793.6180.128");
-        addListener("7b6.6180.128");
-        addListener("722.6180.128");
+        addListener("7ec.6180.128"); // SCH
+        addListener("7da.6180.128"); // TCU
+        addListener("7bb.6180.128"); // LBC
+        addListener("77e.6180.128"); // PEB
+        addListener("772.6180.128"); // AIRBAG
+        addListener("76d.6180.128"); // USM not for Fluence
+        addListener("763.6180.128"); // CLUSTER
+        addListener("762.6180.128"); // EPS
+        addListener("760.6180.128"); // ABS
+        addListener("7bc.6180.128"); // UBP not for Fluence
+        addListener("765.6180.128"); // BCM
+        addListener("764.6180.128"); // CLIM
+        addListener("76e.6180.128"); // UPA not for Zoe
+        addListener("793.6180.128"); // BCB not for Fluence or Zoe
+        addListener("7b6.6180.128"); // LBC2
+        addListener("722.6180.128"); // LINSCH not for FLuence or Zoe
     }
 
     private void addListener(String sid) {
@@ -81,64 +81,62 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
                 // get the text field
                 switch (fieldId) {
 
-                    case "7ec..6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
-                        break;
                     case "7ec.6180.128":
                         tv = (TextView) findViewById(R.id.ecu7ec);
                         break;
                     case "7da.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu7da);
                         break;
                     case "7bb.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu7bb);
                         break;
                     case "77e.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu77e);
                         break;
                     case "772.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu772);
                         break;
                     case "76d.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu76d);
                         break;
                     case "763.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu763);
                         break;
                     case "762.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu762);
                         break;
                     case "760.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu760);
                         break;
                     case "7bc.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu7bc);
                         break;
                     case "765.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu765);
                         break;
                     case "764.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu764);
                         break;
                     case "76e.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu76e);
                         break;
                     case "793.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu793);
                         break;
                     case "7b6.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu7b6);
                         break;
                     case "722.6180.128":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.ecu722);
                         break;
                 }
 
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText("" + Integer.toHexString((int )field.getValue()));
+                    String version = Integer.toHexString((int) field.getValue());
+                    version = ("0000" + version).substring(version.length());
+                    tv.setText(version);
                 }
-
 
                 tv = (TextView) findViewById(R.id.textDebug);
                 tv.setText(fieldId);
