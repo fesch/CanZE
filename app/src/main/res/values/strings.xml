@@ -13,6 +13,7 @@
     <string name="title_activity_charging">Charging info</string>
     <string name="title_activity_driving">Driving info</string>
     <string name="title_activity_braking">Braking info</string>
+    <string name="title_activity_firmware">Firmware info</string>
 
     <string name="action_settings">Settings</string>
 
@@ -113,6 +114,11 @@
     <string name="label_driver_torque_request">Driver Brake Wheels Torque Request</string>
     <string name="label_friction_torque">Coasting Torque</string>
     <string name="title_activity_stats">StatsActivity</string>
+
+
+    <!-- firmware -->
+
+
 
     <string name="hello_world">Hello world!</string>
 
