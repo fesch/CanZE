@@ -147,6 +147,15 @@ public class ELM327 extends Device {
 
     private boolean initELM (int toughness) {
 
+        // ensure the decoder (processData) is reset
+        buffer = "";
+
+        // ensure the dongle header are set again
+        lastId = 0;
+
+        // ensure any running operation is stopped
+        sendAndWaitForAnswer("x", 100);
+
         if (toughness == 0 ) {
             if (sendAndWaitForAnswer("atz", 1000).trim().equals("")) {
                 return false;
@@ -310,7 +319,8 @@ public class ELM327 extends Device {
                 // ignore
             }
             // send the command
-            connectedBluetoothThread.write(command + "\r\n");
+            //connectedBluetoothThread.write(command + "\r\n");
+            connectedBluetoothThread.write(command + "\r");
         }
 
         //MainActivity.debug("Send > "+command);
@@ -385,10 +395,10 @@ public class ELM327 extends Device {
                 // ignore: e.printStackTrace();
             }
         }
-        
+
         // set the flag that a timeout has occurred. sumTingWong can be inspected anywhere, but we reset the device after a full filter has been run
         if (hooLeeFuk) sumTingWong |= true;
-        
+
         //MainActivity.debug("ALC: "+answerLinesCount+" && Stop: "+stop+" && Delta: "+(Calendar.getInstance().getTimeInMillis()-start));
         //MainActivity.debug("Recv < "+readBuffer);
         return readBuffer;
@@ -491,72 +501,82 @@ public class ELM327 extends Device {
                         // get 0x1 frame
                         String line0x1 = sendAndWaitForAnswer(pre + field.getRequestId(), 400, false);
 
-                        // process first line (0x1 frame)
-                        line0x1 = line0x1.trim();
-                        //MainActivity.debug("Line: "+line0x1);
-                        // clean-up if there is mess around
-                        if (line0x1.startsWith(">")) line0x1 = line0x1.substring(1);
-                        if (!line0x1.isEmpty()) {
+                        if (!sumTingWong) {
+                            // process first line (SINGLE or FIRST frame)
+                            line0x1 = line0x1.trim();
+                            // clean-up if there is mess around
+                            if (line0x1.startsWith(">")) line0x1 = line0x1.substring(1);
+                            sumTingWong |= line0x1.isEmpty();
+                        }
+                        if (!sumTingWong){
                             // get type (first nibble)
                             String type = line0x1.substring(0, 1);
                             //MainActivity.debug("Type: "+type);
 
                             String finalData = "";
-                            if (type.equals("0")) {
-                                // remove 2 nibbles (type + length)
-                                line0x1 = line0x1.substring(2); // was listed as 4
-                                // remove response
-                                //line0x1 = line0x1.substring(field.getRequestId().length());
-                                finalData = line0x1;
-                            } else {
-                                // remove first nibble (type)
-                                line0x1 = line0x1.substring(1);
-                                //MainActivity.debug("HEX-length = " + line0x1.substring(0, 3));
-                                // get the number of payload bytes
-                                int count = Integer.valueOf(line0x1.substring(0, 3), 16);
-                                //MainActivity.debug("DEC-length = " + count);
-                                // remove 3 nibbles (number of payload bytes)
-                                line0x1 = line0x1.substring(3);
-                                // remove response
-                                //line0x1 = line0x1.substring(field.getRequestId().length());
-                                // store the reminding bytes
-                                finalData = line0x1;
-                                // decrease count
-                                count -= line0x1.length() / 2;
-                                // each of the 0x2 frames has a payload of 7 bytes
-                                int framesToReceive = (int) Math.ceil(count / 7.);
-                                //MainActivity.debug("framesToReceive = " + framesToReceive);
+                            switch (type) {
+                                case "0": // SINGLE frame
+                                    // remove 2 nibbles (type + length)
+                                    line0x1 = line0x1.substring(2); // was listed as 4
+                                    // remove response
+                                    //line0x1 = line0x1.substring(field.getRequestId().length());
+                                    finalData = line0x1;
+                                    break;
+                                case "1": // FIRST frame
+                                    // remove first nibble (type)
+                                    line0x1 = line0x1.substring(1);
+                                    //MainActivity.debug("HEX-length = " + line0x1.substring(0, 3));
+                                    // get the number of payload bytes
+                                    int count = Integer.valueOf(line0x1.substring(0, 3), 16);
+                                    //MainActivity.debug("DEC-length = " + count);
+                                    // remove 3 nibbles (number of payload bytes)
+                                    line0x1 = line0x1.substring(3);
+                                    // remove response
+                                    //line0x1 = line0x1.substring(field.getRequestId().length());
+                                    // store the reminding bytes
+                                    finalData = line0x1;
+                                    // decrease count
+                                    count -= line0x1.length() / 2;
+                                    // each of the 0x2 frames has a payload of 7 bytes
+                                    int framesToReceive = (int) Math.ceil(count / 7.);
+                                    //MainActivity.debug("framesToReceive = " + framesToReceive);
 
-                                // get remaining 0x2 frames
-                                String lines0x2 = sendAndWaitForAnswer(null, 0, framesToReceive);
+                                    // get remaining 0x2 (NEXT) frames
+                                    String lines0x2 = sendAndWaitForAnswer(null, 0, framesToReceive);
 
 // PERFORMANE ENHACMENT
-                                // atfcsm0          Reset flow control mode to 0 (default)
+                                    // atfcsm0          Reset flow control mode to 0 (default)
 //                                sendAndWaitForAnswer("atfcsm0", 50);
 
-                                //MainActivity.debug("Got:\n"+hexData);
+                                    //MainActivity.debug("Got:\n"+hexData);
 
-                                // split into lines
-                                String[] hexDataLines = lines0x2.split(String.valueOf(EOM));
+                                    // split into lines
+                                    String[] hexDataLines = lines0x2.split(String.valueOf(EOM));
 
-                                for (int i = 0; i < hexDataLines.length; i++) {
-                                    String line = hexDataLines[i];
-                                    //MainActivity.debug("Line "+(i+1)+": " + line);
-                                    if (!line.isEmpty() && line.length() > 2) {
-                                        // cut off the first byte (type + sequence)
-                                        // adding sequence checking would be wise to detect collisions
-                                        line = line.substring(2);
-                                        finalData += line;
+                                    for (int i = 0; i < hexDataLines.length; i++) {
+                                        String line = hexDataLines[i];
+                                        //MainActivity.debug("Line "+(i+1)+": " + line);
+                                        if (!line.isEmpty() && line.length() > 2) {
+                                            // cut off the first byte (type + sequence)
+                                            // adding sequence checking would be wise to detect collisions
+                                            line = line.substring(2);
+                                            finalData += line;
+                                        }
                                     }
-                                }
+                                    break;
+                                default:  // a NEXT, FLOWCONTROL should not be received. Neither should any other string (such as NO DATA)
+                                    sumTingWong = true;
+                                    break;
                             }
 
-                            //MainActivity.debug("ELM: received " + emlFilter+","+finalData.trim());
+                            if (!sumTingWong) {
+                                //MainActivity.debug("ELM: received " + emlFilter+","+finalData.trim());
 
-                            String data = filter + "," + finalData.trim() + "," + field.getResponseId() + SEPARATOR;
+                                String data = filter + "," + finalData.trim() + "," + field.getResponseId() + SEPARATOR;
 
-                            // process data
-                            process(Utils.toIntArray(data.getBytes()));
+                                // process data
+                                process(Utils.toIntArray(data.getBytes()));
+                            }
                         }
 
                         /*
@@ -598,8 +618,8 @@ public class ELM327 extends Device {
                         // atma     (wait for one answer line)
                         TIMEOUT=field.getFrequency()+20;
                         String hexData = sendAndWaitForAnswer("atma", 80); // was 80. This is way too short for an atma, SOme frames come in only once per second
-                                                                           // 1500 here will make the ELM crash due to too much data input
-                                                                           // increased general read-timeout from 500 to 1100
+                        // 1500 here will make the ELM crash due to too much data input
+                        // increased general read-timeout from 500 to 1100
                         TIMEOUT=DEFAULT_TIMEOUT;
                         // the first line may miss the first some bytes, so read a second one
                         //hexData = sendAndWaitForAnswer(null,0);
@@ -612,12 +632,15 @@ public class ELM327 extends Device {
                         //String[] hexDataLines = hexData.split(String.valueOf(EOM));
                         //MainActivity.debug("ELM: lines = "+hexDataLines.length);
 
-                        String data = filter + "," + hexData.trim() + SEPARATOR;
 
-                        //MainActivity.debug("ELM: received " + emlFilter+","+hexData.trim());
+                        if (!sumTingWong) {
+                            String data = filter + "," + hexData.trim() + SEPARATOR;
 
-                        // process data
-                        process(Utils.toIntArray(data.getBytes()));
+                            //MainActivity.debug("ELM: received " + emlFilter+","+hexData.trim());
+
+                            // process data
+                            process(Utils.toIntArray(data.getBytes()));
+                        }
 
                         /*
                         if(hexDataLines.length>1) {
@@ -647,7 +670,12 @@ public class ELM327 extends Device {
                     // reset the ELM if a timeout occurred somewhere tunning this filter
                     if (sumTingWong) {
                         //MainActivity.toast("... in command " + emlFilter + ", resetting ELM");
-                        initELM(1);
+                        if (!initELM(2)) {
+                            // MainActivity.toast("Soft Reset failed :-(");
+                            if (!initELM(1)) {
+                                MainActivity.toast("Hard reset failed :-(");
+                            }
+                        }
                         sumTingWong = false;
                     }
                 }
