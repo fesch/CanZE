@@ -34,8 +34,16 @@ public class TestX10Activity extends CanzeActivity {
         ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
         for(int i=0; i<widgets.size(); i++) {
             final WidgetView wv = widgets.get(i);
-            Field f = MainActivity.fields.getBySID(wv.getFieldSID());
-            if(f!=null) f.removeListener(wv.getDrawable());
+
+            String sid = wv.getFieldSID();
+            String[] sids = sid.split(",");
+            for(int s=0; s<sids.length; s++) {
+                Field field = MainActivity.fields.getBySID(sids[s]);
+                if (field != null) {
+                    field.removeListener(wv.getDrawable());
+                }
+            }
+
         }
     }
 
@@ -73,7 +81,7 @@ public class TestX10Activity extends CanzeActivity {
 
     private void initWidgets()
     {
-        runOnUiThread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 // connect the widgets to the respective fields
@@ -85,55 +93,59 @@ public class TestX10Activity extends CanzeActivity {
                     if (wv == null) {
                         throw new ExceptionInInitializerError("Widget <" + wv.getId() + "> is NULL!");
                     }
-                    if (MainActivity.fields.getBySID(wv.getFieldSID()) == null) {
-                        Toast.makeText(TestX10Activity.this,"Field with following SID <" + wv.getFieldSID() + "> not found!",Toast.LENGTH_SHORT).show();
-                        //throw new ExceptionInInitializerError("Field with following SID <" + wv.getFieldSID() + "> not found!");
+                    String sid = wv.getFieldSID();
+                    String[] sids = sid.split(",");
+                    for(int s=0; s<sids.length; s++) {
+                        Field field = MainActivity.fields.getBySID(sids[s]);
+                        if (field == null) {
+                            Toast.makeText(TestX10Activity.this,"Field with following SID <" + sids[s] + "> not found!",Toast.LENGTH_SHORT).show();
+                            //throw new ExceptionInInitializerError("Field with following SID <" + wv.getFieldSID() + "> not found!");
+                        }
+                        else {
+                            field.addListener(wv.getDrawable());
+                            // add filter to reader
+                            MainActivity.device.addField(field);
+                        }
                     }
-                    else {
-                        MainActivity.fields.getBySID(wv.getFieldSID()).addListener(wv.getDrawable());
-                        // add filter to reader
-                        // OLD: MainActivity.reader.addField(wv.getDrawable().getField());
-                        MainActivity.device.addField(wv.getDrawable().getField());
 
-                        // touching a widget makes a "bigger" version appear
-                        wv.setOnTouchListener(new View.OnTouchListener() {
-                            @Override
-                            public boolean onTouch(View v, MotionEvent event) {
-                                // get pointer index from the event object
-                                int pointerIndex = event.getActionIndex();
+                    // touching a widget makes a "bigger" version appear
+                    wv.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            // get pointer index from the event object
+                            int pointerIndex = event.getActionIndex();
 
-                                // get pointer ID
-                                int pointerId = event.getPointerId(pointerIndex);
+                            // get pointer ID
+                            int pointerId = event.getPointerId(pointerIndex);
 
-                                // get masked (not specific to a pointer) action
-                                int maskedAction = event.getActionMasked();
+                            // get masked (not specific to a pointer) action
+                            int maskedAction = event.getActionMasked();
 
-                                switch (maskedAction) {
-                                    case MotionEvent.ACTION_DOWN:
-                                    case MotionEvent.ACTION_POINTER_DOWN: {
-                                        Intent intent = new Intent(TestX10Activity.this, WidgetActivity.class);
-                                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        WidgetView.selectedDrawable = wv.getDrawable();
-                                        TestX10Activity.this.startActivity(intent);
-                                        break;
-                                    }
-                                    case MotionEvent.ACTION_MOVE:
-                                    case MotionEvent.ACTION_UP:
-                                    case MotionEvent.ACTION_POINTER_UP:
-                                    case MotionEvent.ACTION_CANCEL: {
-                                        break;
-                                    }
+                            switch (maskedAction) {
+                                case MotionEvent.ACTION_DOWN:
+                                case MotionEvent.ACTION_POINTER_DOWN: {
+                                    Intent intent = new Intent(TestX10Activity.this, WidgetActivity.class);
+                                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    WidgetView.selectedDrawable = wv.getDrawable();
+                                    TestX10Activity.this.startActivity(intent);
+                                    break;
                                 }
-
-                                wv.invalidate();
-
-                                return true;
+                                case MotionEvent.ACTION_MOVE:
+                                case MotionEvent.ACTION_UP:
+                                case MotionEvent.ACTION_POINTER_UP:
+                                case MotionEvent.ACTION_CANCEL: {
+                                    break;
+                                }
                             }
-                        });
-                    }
+
+                            wv.invalidate();
+
+                            return true;
+                        }
+                    });
                 }
             }
-        });
+        }).start();
     }
 
     private ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)

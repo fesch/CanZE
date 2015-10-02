@@ -87,9 +87,13 @@ public class LeafSpyActivity extends CanzeActivity {
                     if (MainActivity.fields.getBySID(wv.getFieldSID()) == null) {
                         throw new ExceptionInInitializerError("Field with following SID <" + wv.getFieldSID() + "> not found!");
                     }
-                    MainActivity.fields.getBySID(wv.getFieldSID()).addListener(wv.getDrawable());
-                    // add filter to reader
-                    MainActivity.device.addField(wv.getDrawable().getField());
+                    String sid = wv.getFieldSID();
+                    String[] sids = sid.split(",");
+                    for(int s=0; s<sids.length; s++) {
+                        MainActivity.fields.getBySID(sids[s]).addListener(wv.getDrawable());
+                        // add filter to reader
+                        MainActivity.device.addField(wv.getDrawable().getField());
+                    }
 
                     // touching a widget makes a "bigger" version appear
                     wv.setOnTouchListener(new View.OnTouchListener() {

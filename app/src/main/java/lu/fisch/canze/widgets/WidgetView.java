@@ -86,7 +86,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
             try
             {
                 // create configured widget
-                String[] widgets = {"Tacho","Kompass", "Bar","BatteryBar"};
+                String[] widgets = {"Tacho","Kompass", "Bar","BatteryBar","Plotter"};
                 TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs,R.styleable.WidgetView,0,0);
                 int widgetIndex = attributes.getInt(R.styleable.WidgetView_widget, 0);
                 if(widgetIndex<widgets.length)
@@ -191,7 +191,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 	}
 
     // DIRECT repaint method
-    public void repaint() {
+    public void repaint6() {
         Canvas c = null;
         try {
             c = getHolder().lockCanvas();
@@ -222,7 +222,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
     }
 
     // INDIRECT repaint method (using a separate thread
-	public void repaint2()
+	public void repaint()
 	{
         if(drawThread==null || !drawThread.isRunning())
         {

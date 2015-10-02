@@ -98,7 +98,7 @@ public class BatteryBar extends Drawable {
                     {
                         String text = (actual)+"";
                         double sw = g.stringWidth(text);
-                        bx = width-barWidth-16-sw;
+                        bx = x+width-barWidth-16-sw;
                         by = y+i;
                         g.drawString(text, (int)(bx), (int)(by+g.stringHeight(text)*(1-i/height)));
                     }

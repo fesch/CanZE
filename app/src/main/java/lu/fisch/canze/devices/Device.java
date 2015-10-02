@@ -82,13 +82,25 @@ public abstract class Device {
      * own listeners to the GUI or whoever needs to know about the changes.
      * @param input
      */
-    public void process(int[] input)
+    public void process(final int[] input)
     {
+        /*(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<Message> messages = processData(input);
+                for(int i=0; i<messages.size(); i++)
+                {
+                    Fields.getInstance().onMessageCompleteEvent(messages.get(i));
+                }
+            }
+        })).start();
+        /**/
         ArrayList<Message> messages = processData(input);
         for(int i=0; i<messages.size(); i++)
         {
             Fields.getInstance().onMessageCompleteEvent(messages.get(i));
         }
+        /**/
     }
 
     /**

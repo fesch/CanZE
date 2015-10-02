@@ -423,6 +423,7 @@ public class ELM327 extends Device {
     // query the device for the next filter
     private void queryNextFilter()
     {
+        MainActivity.debug("queryNextFilter: "+fieldIndex);
         try {
             if(fields.size()>0) {
                 //MainActivity.debug("Index: "+fieldIndex);
@@ -433,6 +434,8 @@ public class ELM327 extends Device {
 
                 synchronized (fields) {
                     field = fields.get(fieldIndex);
+
+                    MainActivity.debug("queryNextFilter: "+fieldIndex+" --> "+field.getSID());
 
                     // only run the filter if the skipsCount is down to zero
                     runFilter = (field.getSkipsCount() == 0);
@@ -665,7 +668,13 @@ public class ELM327 extends Device {
         catch (Exception e)
         {
             e.printStackTrace();
-            // ignore
+            // move on to the next field
+            synchronized (fields) {
+                if(fields.size()==0)
+                    fieldIndex=0;
+                else
+                    fieldIndex = (fieldIndex + 1) % fields.size();
+            }
         }
     }
 
