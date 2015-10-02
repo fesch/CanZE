@@ -27,6 +27,15 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44";
     public static final String SID_Friction_Torque                      = "18a.27";
 
+    public static final String hbb_Malfunction [] = {"unavailable", "OK", "Not OK"};
+    public static final String eb_Malfunction [] = {"unavailable", "OK", "Not OK"};
+    public static final String eb_Inprogress [] = {"unavailable", "In progress", "Not in progress"};
+    public static final String hba_actReq [] = {"unavailable", "Activation request", "No activation request"};
+    public static final String pressure_buildup [] = {"unavailable", "False", "True"};
+
+
+
+
     private ArrayList<Field> subscribedFields;
 
     @Override
@@ -84,24 +93,30 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
             public void run() {
                 String fieldId = field.getSID();
                 TextView tv = null;
+                String value = "";
                 ProgressBar pb = null;
 
                 // get the text field
                 switch (fieldId) {
                     case SID_HBB_Malfunction:
                         tv = (TextView) findViewById(R.id.text_hbb_malfunction);
+                        value = hbb_Malfunction[(int)field.getValue()];
                         break;
                     case SID_EB_Malfunction:
                         tv = (TextView) findViewById(R.id.text_eb_malfunction);
+                        value = eb_Malfunction[(int)field.getValue()];
                         break;
                     case SID_EB_In_Progress:
                         tv = (TextView) findViewById(R.id.text_eb_in_progress);
+                        value = eb_Inprogress[(int)field.getValue()];
                         break;
                     case SID_HBA_Activation_Request:
                         tv = (TextView) findViewById(R.id.text_hba_activation_request);
+                        value = hba_actReq[(int)field.getValue()];
                         break;
                     case SID_Pressure_Buildup:
                         tv = (TextView) findViewById(R.id.text_pressure_buildup);
+                        value = pressure_buildup[(int)field.getValue()];
                         break;
                     case SID_ElecBrakeWheels_Torque_Request:
                         pb = (ProgressBar) findViewById(R.id.pb_eb_torque_request);
@@ -118,7 +133,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText("" + field.getValue());
+                    tv.setText(value);
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);

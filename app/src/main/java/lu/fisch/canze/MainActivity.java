@@ -30,6 +30,7 @@ import lu.fisch.canze.devices.ArduinoDue;
 import lu.fisch.canze.devices.BobDue;
 import lu.fisch.canze.devices.Device;
 import lu.fisch.canze.devices.ELM327;
+import lu.fisch.canze.devices.ELM327Experimental;
 import lu.fisch.canze.interfaces.BluetoothEvent;
 import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.widgets.WidgetView;
@@ -148,10 +149,23 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         // as the settings may have changed, we need to reload different things
 
         // create a new device
-        if(deviceName.equals("Arduino Due")) device=new ArduinoDue();
-        else if(deviceName.equals("Bob Due")) device=new BobDue();
-        else if(deviceName.equals("ELM327")) device=new ELM327();
-        else device=null;
+        switch (deviceName) {
+            case "Arduino Due":
+                device = new ArduinoDue();
+                break;
+            case "Bob Due":
+                device = new BobDue();
+                break;
+            case "ELM327":
+                device = new ELM327();
+                break;
+            case "ELM327 Experimental":
+                device = new ELM327Experimental();
+                break;
+            default:
+                device = null;
+                break;
+        }
         if(device!=null)
             device.initConnection();
 

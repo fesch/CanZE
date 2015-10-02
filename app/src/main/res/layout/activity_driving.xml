@@ -11,18 +11,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:minHeight="25dp"
-        android:max="1000"
+        android:max="100"
         android:progressDrawable="@drawable/progressbar_canze"
         />
 
     <ProgressBar
-        android:id="@+id/ccPedalBar"
+        android:id="@+id/MeanEffectiveTorque"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:minHeight="25dp"
-        android:max="1000"
+        android:max="100"
         android:progressDrawable="@drawable/progressbar_canze"
         />
 
@@ -53,7 +53,7 @@
             android:textColor="#000"
             android:textSize="96sp" />
 
-        <TextView
+        <!-- <TextView
             android:id="@+id/textTorque"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/textRealSpeed"
             android:textColor="#000"
-            android:textSize="48sp" />
+            android:textSize="48sp" /> -->
 
     </RelativeLayout>
 
@@ -81,16 +81,13 @@
             android:layout_alignParentLeft="true"
             android:textSize="24sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/textKmToDest"
             android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:textSize="24sp"
-            android:inputType="number"
-            android:background="#40404000"
-            android:singleLine="false" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/LabelKmAVailAtDest"

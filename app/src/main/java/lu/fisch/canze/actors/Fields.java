@@ -349,7 +349,7 @@ public class Fields implements MessageListener {
                         +"0x17e, 40, 41, 1, 1, 0, 0, , , , , CrankingAuthorisation_AT, 0, 0, 10\n"
                         +"0x17e, 48, 51, 1, 1, 0, 0, Gear: %4ld, , , , GearLeverPosition, 0, 0, 10\n"
                         +"0x186, 0, 15, 10, 125, 0, 10, Engine RPM: %3ld.%02ld, Tr/min, , , Speed, 0, 0, 10\n"
-                        +"0x186, 16, 27, 1, 1, 800, 0, Accel(a): %4ld, , , , MeanEffectiveTorque, 0, 0, 10\n"
+                        +"0x186, 16, 27, 2, 1, 800, 0, MeanEffectiveTorque: %4ld, Nm, , , MeanEffectiveTorque, 0, 0, 10\n"
                         +"0x186, 28, 39, 1, 1, 800, 0, Accel(b): %4ld, , , , RequestedTorqueAfterProc, 0, 0, 10\n"
                         +"0x186, 40, 49, 10, 1, 0, 0, Pedal: %4ld, %, , , Throttle, 0, 0, 10\n"
                         +"0x18a, 0, 11, 1, 1, 0, 0, RawEngineTorque: %4ld, %, , , RawEngineTorque_WithoutTMReq, 0, 0, 10\n"
