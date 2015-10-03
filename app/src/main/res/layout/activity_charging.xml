@@ -1,4 +1,4 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -11,214 +11,206 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="lu.fisch.canze.ChargingActivity">
 
-    <RelativeLayout
-        android:orientation="horizontal"
+
+    <TextView
+        android:id="@+id/HeaderCharging"
         android:layout_width="fill_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="@string/header_Charging"
+        android:layout_alignParentLeft="true"
+        android:textColor="#000" />
 
-        <TextView
-            android:id="@+id/HeaderCharging"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/header_Charging"
-            android:layout_alignParentLeft="true"
-            android:textColor="#000" />
-        
-        <TextView
-            android:id="@+id/LabelMaxCharge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_max_charge"
-            android:layout_below="@id/HeaderCharging"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:id="@+id/text_max_charge"
-            android:text="@string/default_max_charge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/HeaderCharging"
-            android:layout_alignParentRight="true"
-            />
+    <TextView
+        android:id="@+id/LabelMaxCharge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_max_charge"
+        android:layout_below="@id/HeaderCharging"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/text_max_charge"
+        android:text="@string/default_max_charge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/HeaderCharging"
+        android:layout_alignParentRight="true"
+        />
 
-        <TextView
-            android:id="@+id/LabelMaxPilot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_max_pilot"
-            android:layout_below="@id/LabelMaxCharge"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:id="@+id/text_max_pilot"
-            android:text="@string/default_max_pilot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_max_charge"
-            android:layout_alignParentRight="true"
-            />
+    <TextView
+        android:id="@+id/LabelMaxPilot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_max_pilot"
+        android:layout_below="@id/LabelMaxCharge"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/text_max_pilot"
+        android:text="@string/default_max_pilot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_max_charge"
+        android:layout_alignParentRight="true"
+        />
 
-        <TextView
-            android:id="@+id/LabelPhases"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_Phases"
-            android:layout_below="@id/LabelMaxPilot"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:id="@+id/textPhases"
-            android:text="@string/default_Phases"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_max_pilot"
-            android:layout_alignParentRight="true"
-            />
+    <TextView
+        android:id="@+id/LabelPhases"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_Phases"
+        android:layout_below="@id/LabelMaxPilot"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textPhases"
+        android:text="@string/default_Phases"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_max_pilot"
+        android:layout_alignParentRight="true"
+        />
 
-        <TextView
-            android:id="@+id/LabelETF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_ETF"
-            android:layout_below="@id/LabelPhases"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:id="@+id/textETF"
-            android:text="@string/default_ETF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textPhases"
-            android:layout_alignParentRight="true"
-            />
+    <TextView
+        android:id="@+id/LabelETF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_ETF"
+        android:layout_below="@id/LabelPhases"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textETF"
+        android:text="@string/default_ETF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textPhases"
+        android:layout_alignParentRight="true"
+        />
 
-        <TextView
-            android:id="@+id/LabelTTF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_TTF"
-            android:layout_below="@id/LabelETF"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:id="@+id/textTTF"
-            android:text="@string/default_TTF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textETF"
-            android:layout_alignParentRight="true"
-            />
+    <TextView
+        android:id="@+id/LabelTTF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_TTF"
+        android:layout_below="@id/LabelETF"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textTTF"
+        android:text="@string/default_TTF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textETF"
+        android:layout_alignParentRight="true"
+        />
 
-        <TextView
-            android:id="@+id/LabelSOC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_SOC"
-            android:layout_below="@id/LabelTTF"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:id="@+id/textSOC"
-            android:text="@string/default_SOC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textTTF"
-            android:layout_alignParentRight="true"
-            />
+    <TextView
+        android:id="@+id/LabelSOC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_SOC"
+        android:layout_below="@id/LabelTTF"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textSOC"
+        android:text="@string/default_SOC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textTTF"
+        android:layout_alignParentRight="true"
+        />
 
-        <TextView
-            android:id="@+id/LabelSOH"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_SOH"
-            android:layout_below="@id/LabelSOC"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:id="@+id/textSOH"
-            android:text="@string/default_SOH"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textSOC"
-            android:layout_alignParentRight="true"
-            />
+    <TextView
+        android:id="@+id/LabelSOH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_SOH"
+        android:layout_below="@id/LabelSOC"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textSOH"
+        android:text="@string/default_SOH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textSOC"
+        android:layout_alignParentRight="true"
+        />
 
-        <TextView
-            android:id="@+id/LabelKMA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_KMA"
-            android:layout_below="@id/LabelSOH"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:id="@+id/textKMA"
-            android:text="@string/default_KMA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textSOH"
-            android:layout_alignParentRight="true"
-            />
+    <TextView
+        android:id="@+id/LabelKMA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_KMA"
+        android:layout_below="@id/LabelSOH"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textKMA"
+        android:text="@string/default_KMA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textSOH"
+        android:layout_alignParentRight="true"
+        />
 
-        <TextView
-            android:id="@+id/LabelVolt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_Volt"
-            android:layout_below="@id/LabelKMA"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:id="@+id/textVolt"
-            android:text="@string/default_Volt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textKMA"
-            android:layout_alignParentRight="true"
-            />
+    <TextView
+        android:id="@+id/LabelVolt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_Volt"
+        android:layout_below="@id/LabelKMA"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textVolt"
+        android:text="@string/default_Volt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textKMA"
+        android:layout_alignParentRight="true"
+        />
 
-        <TextView
-            android:id="@+id/LabelAmps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_Amps"
-            android:layout_below="@id/LabelVolt"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:id="@+id/textAmps"
-            android:text="@string/default_Amps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textVolt"
-            android:layout_alignParentRight="true"
-            />
+    <TextView
+        android:id="@+id/LabelAmps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_Amps"
+        android:layout_below="@id/LabelVolt"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textAmps"
+        android:text="@string/default_Amps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textVolt"
+        android:layout_alignParentRight="true"
+        />
 
-        <TextView
-            android:id="@+id/LabelDcPwr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_DcPwr"
-            android:layout_below="@id/LabelAmps"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:id="@+id/textDcPwr"
-            android:text="@string/default_DcPwr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textAmps"
-            android:layout_alignParentRight="true"
-            />
+    <TextView
+        android:id="@+id/LabelDcPwr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_DcPwr"
+        android:layout_below="@id/LabelAmps"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textDcPwr"
+        android:text="@string/default_DcPwr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textAmps"
+        android:layout_alignParentRight="true"
+        />
 
+    <TextView
+        android:id="@+id/LabelCompTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_CompTemp"
+        android:layout_below="@id/LabelDcPwr"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:textColor="#000" />
 
-
-        <TextView
-            android:id="@+id/LabelCompTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_CompTemp"
-            android:layout_below="@id/LabelDcPwr"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="10dp"
-            android:textColor="#000" />
-
-
-    </RelativeLayout>
 
     <TableLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LabelCompTemp">
 
         <TableRow
             android:layout_width="fill_parent"
@@ -331,21 +323,20 @@
 
     <!-- debug line -->
     <TextView
-        android:id="@+id/HeaderDebug"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/header_Debug"
-        android:layout_below="@id/LabelDcPwr"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp"
-        android:textColor="#000"
-        />
-    <TextView
         android:id="@+id/textDebug"
         android:text="@string/default_debug"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         />
-
-</LinearLayout>
+    <TextView
+        android:id="@+id/HeaderDebug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/header_Debug"
+        android:layout_above="@id/textDebug"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        />
+</RelativeLayout>

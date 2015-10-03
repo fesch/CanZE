@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
@@ -10,19 +10,13 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="lu.fisch.canze.FirmwareActivity">
 
-    <RelativeLayout
-        android:orientation="horizontal"
+    <TextView
+        android:id="@+id/HeaderFirmware"
         android:layout_width="fill_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/HeaderFirmware"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Firmware versions"
-            android:layout_alignParentLeft="true"
-            android:textColor="#000" />
+        android:layout_height="wrap_content"
+        android:text="@string/header_firmware"
+        android:layout_alignParentLeft="true"
+        android:textColor="#000" />
 
 
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -38,11 +32,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="EVC (Electric Vehicle Controller)"
+                android:text="@string/label_ecu_evc"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu7ec"
                 />
@@ -54,11 +48,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="TCU (Telematics Control Unit)"
+                android:text="@string/label_ecu_tcu"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu7da"
                 />
@@ -71,11 +65,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="LBC (Lithium Battery Charger)"
+                android:text="@string/label_ecu_lbc"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu7bb"
                 />
@@ -88,11 +82,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="PEB (Power Electronics Block)"
+                android:text="@string/lavel_ecu_peb"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu77e"
                 />
@@ -105,11 +99,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="AIBAG (Airbag)"
+                android:text="@string/label_ecu_aibag"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu772"
                 />
@@ -122,11 +116,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="USM (12V fuse box under the hood"
+                android:text="@string/label_ecu_usm"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu76d"
                 />
@@ -139,11 +133,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="CLUSTER (Instrument panel)"
+                android:text="@string/label_ecu_cluster"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu763"
                 />
@@ -156,11 +150,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="EPS (?)"
+                android:text="@string/label_ecu_eps"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu762"
                 />
@@ -173,11 +167,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="ABS (Antilock breaking system)"
+                android:text="@string/label_ecu_abs"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu760"
                 />
@@ -190,11 +184,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="UBP (?)"
+                android:text="@string/label_ecu_ubp"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu7bc"
                 />
@@ -207,11 +201,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="BCM (?)"
+                android:text="@string/label_ecu_bcm"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu765"
                 />
@@ -224,11 +218,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="CLIM (Climate control)"
+                android:text="@string/label_ecu_clim"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu764"
                 />
@@ -241,11 +235,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="UPA (?)"
+                android:text="@string/label_ecu_upa"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu76e"
                 />
@@ -258,11 +252,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="BCB (?)"
+                android:text="@string/label_ecu_bcb"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu793"
                 />
@@ -275,11 +269,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="LBC2 (Lithium Battery Charger)"
+                android:text="@string/label_ecu_lbc2"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu7b6"
                 />
@@ -292,11 +286,11 @@
 
             <TextView
                 android:layout_column="1"
-                android:text="LINSCH (?)"
+                android:text="@string/label_ecu_linsch"
                 android:padding="3dip"
                 />
             <TextView
-                android:text="Not available"
+                android:text="@string/default_firmware"
                 android:padding="3dip"
                 android:id="@+id/ecu722"
                 />
@@ -306,25 +300,24 @@
 
     </TableLayout>
 
-        <!-- debug line -->
-        <TextView
-            android:id="@+id/textDebug"
-            android:text="@string/default_debug"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            />
-        <TextView
-            android:id="@+id/HeaderDebug"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/header_Debug"
-            android:layout_above="@id/textDebug"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="10dp"
-            android:textColor="#000"
-            />
+    <!-- debug line -->
+    <TextView
+        android:id="@+id/textDebug"
+        android:text="@string/default_debug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        />
+    <TextView
+        android:id="@+id/HeaderDebug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/header_Debug"
+        android:layout_above="@id/textDebug"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        />
 
-    </RelativeLayout>
+</RelativeLayout>
 
-</LinearLayout>
