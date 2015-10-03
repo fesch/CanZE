@@ -226,9 +226,9 @@ public abstract class Device {
             // init the connection
             initConnection();
             // clean all filters (just to make sure)
-            clearFields();
+            //moved into initConnection: clearFields();
             // register all filters (if there are any)
-            registerFilters();
+            //moved into initConnection: registerFilters();
         }
     }
 }

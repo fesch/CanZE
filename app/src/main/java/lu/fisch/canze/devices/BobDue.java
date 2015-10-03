@@ -47,6 +47,12 @@ public class BobDue extends Device {
             if (poller == null) {
                 // post a task to the UI thread
                 pollerRunning=true;
+
+                // clean all filters (just to make sure)
+                clearFields();
+                // register all filters (if there are any)
+                registerFilters();
+
                 Runnable r = new Runnable() {
                     @Override
                     public void run() {

@@ -20,7 +20,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
     private static final int [] zoeVersions     = {0x0203, 0x0112, 0x0651, 0x0a06, 0x0470, 0xc630, 0x0507, 0x014a, 0x1178, 0x1516, 0x140e, 0x0701,      0,      0, 0x0651,      0};
     private static final int [] fluenceVersions = {     1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1};
     private static final int [] kangooVersions  = {     1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1};
-    private static final int [] x10Versions     = {0x0203, 0x0112, 0x0651, 0x0a06, 0x0470, 0xc630, 0x0507, 0x014a, 0x1178, 0x1516, 0x140e, 0x0701,      0,      0, 0x0651,      0};
+    private static final int [] x10Versions     = zoeVersions;
 
     private static int versions [] = null;
 

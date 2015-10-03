@@ -209,6 +209,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         debug("Loaded fields: " + fields.size());
 
         // connect the widgets to the respective fields
+        /* no more needed as there are none here!
         ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
         for(int i=0; i<widgets.size(); i++)
         {
@@ -252,6 +253,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                 }
             });
         }
+        */
 
         Button button;
         button = (Button) findViewById(R.id.buttonTacho);

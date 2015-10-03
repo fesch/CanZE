@@ -60,40 +60,37 @@ public class ELM327 extends Device {
                     // continue only if we got an answer.
                     if (initELM(0)) {
 
+                        // clean all filters (just to make sure)
+                        clearFields();
+                        // register all filters (if there are any)
+                        registerFilters();
+
                         while (connectedBluetoothThread!=null) {
-                            queryNextFilter();
+                            // if the no field is to be queried, sleep for a while
                             if(fields.size()==0)
                             {
                                 try{
-                                    Thread.sleep(1000);
+                                    Thread.sleep(5000);
                                 }
                                 catch (Exception e) {}
 
                             }
+                            // query a field
+                            else {
+                                queryNextFilter();
+                            }
                         }
-
-                        // now start the query'ing timer
-                    /*
-                    Timer timer = new Timer();
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            queryNextFilter();
-                        }
-                    }, 1, 1);
-                    /**/
                     } else {
                         MainActivity.debug("ELM: no answer ...");
                         MainActivity.toast("No answer from ELM ... retrying ...");
                         if(connectedBluetoothThread!=null) {
-                            Thread t = new Thread(this);
-                            t.start();
+                            // retry
+                            (new Thread(this)).start();
                         }
                     }
                 }
             };
-            Thread t = new Thread(r);
-            t.start();
+            (new Thread(r)).start();
         }
     }
 
@@ -444,6 +441,7 @@ public class ELM327 extends Device {
 
                 synchronized (fields) {
                     field = fields.get(fieldIndex);
+                }
 
                     MainActivity.debug("queryNextFilter: "+fieldIndex+" --> "+field.getSID());
 
@@ -455,7 +453,6 @@ public class ELM327 extends Device {
                     else
                         // decrement the skipsCount
                         field.decSkipCount();
-                }
 
                 if (runFilter) {
 
