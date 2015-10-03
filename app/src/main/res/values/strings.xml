@@ -134,7 +134,7 @@
     <string name="label_ecu_lbc">LBC (Lithium Battery Charger)</string>
     <string name="lavel_ecu_peb">PEB (Power Electronics Block)</string>
     <string name="label_ecu_aibag">AIBAG (Airbag)</string>
-    <string name="label_ecu_usm">USM (12V fuse box under the hood</string>
+    <string name="label_ecu_usm">USM (12V fuse box under the hood)</string>
     <string name="label_ecu_cluster">CLUSTER (Instrument panel)</string>
     <string name="label_ecu_eps">EPS (Electrical Power Steering)</string>
     <string name="label_ecu_abs">ABS (Antilock breaking system)</string>
