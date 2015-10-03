@@ -462,7 +462,7 @@ public class ELM327 extends Device {
                     if (field.isIsoTp()) {
 
                         // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
-                        if (lastId != field.getId() || true) {
+                        if (lastId != field.getId()) {
                             lastId = field.getId();
 
                             String request = getRequestHexId(field.getId()); //request contains the CAN id.
