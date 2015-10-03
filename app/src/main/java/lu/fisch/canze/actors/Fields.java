@@ -781,7 +781,9 @@ public class Fields implements MessageListener {
                 if(binString.length()>= field.getTo()) {
                     // parseInt --> signed, so the first bit is "cut-off"!
                     try {
-                        field.setValue(Integer.parseInt("0" + binString.substring(field.getFrom(), field.getTo() + 1), 2));
+                        int val = Integer.parseInt("0" + binString.substring(field.getFrom(), field.getTo() + 1), 2);
+                        //MainActivity.debug("Fields: onMessageCompleteEvent > "+field.getSID()+" = "+val);
+                        field.setValue(val);
                     } catch (Exception e)
                     {
                         // ignore

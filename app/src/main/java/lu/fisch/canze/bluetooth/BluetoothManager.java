@@ -218,8 +218,7 @@ public class BluetoothManager {
                 if (retryThread == null || (retryThread != null && !retryThread.isAlive())) {
                     if(retryThread!=null)
                     {
-                        debug("Killing retry-thread");
-                        retryThread.stop();
+                        retryThread.interrupt();
                     }
                     debug("Starting new try");
                     retryThread = new Thread(new Runnable() {

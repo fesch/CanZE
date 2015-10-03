@@ -60,11 +60,6 @@ public class ELM327 extends Device {
                     // continue only if we got an answer.
                     if (initELM(0)) {
 
-                        // clean all filters (just to make sure)
-                        clearFields();
-                        // register all filters (if there are any)
-                        registerFilters();
-
                         while (connectedBluetoothThread!=null) {
                             // if the no field is to be queried, sleep for a while
                             if(fields.size()==0)
@@ -188,7 +183,7 @@ public class ELM327 extends Device {
         //                  First Frame (not a Next Frame)
         // PERFORMANCE ENHANCEMENT III, removed 32 ms wait time
         // note to self: as the ELM needs to process these and is very low on buffer RAM, this chang may cause the hangups. This is under test now.
-        sendAndWaitForAnswer("atfcsd300020", 50);
+        sendAndWaitForAnswer("atfcsd300000", 50);
         // atfcsm1          Set flow control mode 1 (ID and data suplied)
         sendAndWaitForAnswer("atfcsm1", 50);
 
@@ -430,7 +425,7 @@ public class ELM327 extends Device {
     // query the device for the next filter
     private void queryNextFilter()
     {
-        MainActivity.debug("queryNextFilter: "+fieldIndex);
+        //MainActivity.debug("queryNextFilter: "+fieldIndex);
         try {
             if(fields.size()>0) {
                 //MainActivity.debug("Index: "+fieldIndex);
@@ -443,7 +438,7 @@ public class ELM327 extends Device {
                     field = fields.get(fieldIndex);
                 }
 
-                    MainActivity.debug("queryNextFilter: "+fieldIndex+" --> "+field.getSID());
+                    MainActivity.debug("queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
 
                     // only run the filter if the skipsCount is down to zero
                     runFilter = (field.getSkipsCount() == 0);
@@ -467,8 +462,7 @@ public class ELM327 extends Device {
                     if (field.isIsoTp()) {
 
                         // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
-
-                        if (lastId != field.getId()) {
+                        if (lastId != field.getId() || true) {
                             lastId = field.getId();
 
                             String request = getRequestHexId(field.getId()); //request contains the CAN id.
@@ -545,7 +539,7 @@ public class ELM327 extends Device {
                                     // atfcsm0          Reset flow control mode to 0 (default)
 //                                sendAndWaitForAnswer("atfcsm0", 50);
 
-                                    //MainActivity.debug("Got:\n"+hexData);
+                                    //MainActivity.debug("Got:\n"+lines0x2);
 
                                     // split into lines
                                     String[] hexDataLines = lines0x2.split(String.valueOf(EOM));

@@ -53,6 +53,7 @@
             custom:widget="tacho"
             custom:text="FrictionTorque"
             />
+
     </TableRow>
     <TableRow
         android:id="@+id/tableRow2"

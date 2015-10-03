@@ -166,7 +166,7 @@ public class Plotter extends Drawable {
     public void onFieldUpdateEvent(Field field) {
         String sid = field.getSID();
 
-        MainActivity.debug(sid+" --> "+field.getValue());
+        //MainActivity.debug("Plotter: "+sid+" --> "+field.getValue());
 
         int index = sids.indexOf(sid);
         if(index==-1){

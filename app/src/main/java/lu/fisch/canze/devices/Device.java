@@ -225,10 +225,11 @@ public abstract class Device {
         {
             // init the connection
             initConnection();
+
             // clean all filters (just to make sure)
-            //moved into initConnection: clearFields();
+            clearFields();
             // register all filters (if there are any)
-            //moved into initConnection: registerFilters();
+            registerFilters();
         }
     }
 }

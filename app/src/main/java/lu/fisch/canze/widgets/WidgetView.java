@@ -191,7 +191,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 	}
 
     // DIRECT repaint method
-    public void repaint6() {
+    public void repaint() {
         Canvas c = null;
         try {
             c = getHolder().lockCanvas();
@@ -222,7 +222,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
     }
 
     // INDIRECT repaint method (using a separate thread
-	public void repaint()
+	public void repaint2()
 	{
         if(drawThread==null || !drawThread.isRunning())
         {
