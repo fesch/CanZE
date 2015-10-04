@@ -3,7 +3,7 @@
 CanZE is an Android App that allows you to read out some useful information out of your Renault ZE car (actually Zoe,
 Kangoo & Fluence) that you cannot access using the on-board computer or display.
 
-The website can be found at http://canze.fusch.lu
+The website can be found at http://canze.fisch.lu
 
 
 #Informal warning
