@@ -101,33 +101,11 @@
         />
 
     <TextView
-        android:id="@+id/label_eb_torque_request"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_eb_torque_request"
-        android:layout_below="@id/label_pressure_buildup"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp"
-        android:textColor="#000"
-        />
-    <ProgressBar
-        android:id="@+id/pb_eb_torque_request"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/label_eb_torque_request"
-        android:layout_gravity="center_horizontal"
-        android:minHeight="25dp"
-        android:max="800"
-        android:progressDrawable="@drawable/progressbar_canze"
-        />
-
-    <TextView
         android:id="@+id/label_driver_torque_request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/label_driver_torque_request"
-        android:layout_below="@id/pb_eb_torque_request"
+        android:layout_below="@id/label_pressure_buildup"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="10dp"
         android:textColor="#000"
@@ -145,11 +123,33 @@
         />
 
     <TextView
+        android:id="@+id/label_eb_torque_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_eb_torque_request"
+        android:layout_below="@id/pb_driver_torque_request"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        />
+    <ProgressBar
+        android:id="@+id/pb_eb_torque_request"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_eb_torque_request"
+        android:layout_gravity="center_horizontal"
+        android:minHeight="25dp"
+        android:max="800"
+        android:progressDrawable="@drawable/progressbar_canze"
+        />
+
+    <TextView
         android:id="@+id/label_friction_torque"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/label_friction_torque"
-        android:layout_below="@id/pb_driver_torque_request"
+        android:layout_below="@id/pb_eb_torque_request"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="10dp"
         android:textColor="#000"

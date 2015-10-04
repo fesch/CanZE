@@ -91,6 +91,8 @@
     <string name="label_KmAvailAtDest">Km avail at dest</string>
     <string name="default_KmAvailAtDest">#kad</string>
 
+    <string name="label_friction">Friction braking (avoid)</string>
+
     <!-- elm testing -->
 
     <string name="header_ElmTest">Test results</string>
@@ -119,10 +121,10 @@
     <string name="label_pressure_buildup">Pressure Buildup</string>
     <string name="default_pressure_buildup">#pb</string>
 
-    <string name="label_eb_torque_request">Electral Brake Wheels Torque Request</string>
+    <string name="label_eb_torque_request">Electrical Brake Wheels Torque Request</string>
     <string name="label_driver_torque_request">Driver Brake Wheels Torque Request</string>
     <string name="label_friction_torque">Coasting Torque</string>
-    <string name="label_braking_pressure">Friction breaking pressure</string>
+    <string name="label_braking_pressure">Friction braking pressure</string>
 
     <!-- firmware -->
 
@@ -138,7 +140,7 @@
     <string name="label_ecu_usm">USM (12V fuse box under the hood)</string>
     <string name="label_ecu_cluster">CLUSTER (Instrument panel)</string>
     <string name="label_ecu_eps">EPS (Electrical Power Steering)</string>
-    <string name="label_ecu_abs">ABS (Antilock breaking system)</string>
+    <string name="label_ecu_abs">ABS (Antilock braking system)</string>
     <string name="label_ecu_ubp">UBP (?)</string>
     <string name="label_ecu_bcm">BCM (Body Control Module)</string>
     <string name="label_ecu_clim">CLIM (Climate Control)</string>

@@ -28,12 +28,13 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     // free data
     public static final String SID_Pedal                                = "186.40";
     public static final String SID_MeanEffectiveTorque                  = "18a.16";
+    public static final String SID_BrakePressure                        = "352.24";
     public static final String SID_RealSpeed                            = "5d7.0";
     public static final String SID_SoC                                  = "654.24";
     public static final String SID_RangeEstimate                        = "654.42";
 
     // ISO-TP data
-    public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
+//  public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
     public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC)
     public static final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
     public static final String SID_EVC_Pedal                            = "7ec.62202e.24"; //  (EVC)
@@ -43,6 +44,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     int lastOdo = 0;
     int kmInBat = 0;
+    double realSpeed = 0;
     private ArrayList<Field> subscribedFields;
 
     @Override
@@ -56,10 +58,12 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
 
         addListener(SID_Pedal);
         addListener(SID_MeanEffectiveTorque);
+        addListener(SID_BrakePressure);
         addListener(SID_RealSpeed);
+        addListener(SID_SoC);
         addListener(SID_RangeEstimate);
 
-        addListener(SID_EVC_SoC);
+        //addListener(SID_EVC_SoC);
         addListener(SID_EVC_Odometer);
         addListener(SID_EVC_TractionBatteryVoltage);
         addListener(SID_EVC_TractionBatteryCurrent);
@@ -150,7 +154,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
 
                 // get the text field
                 switch (fieldId) {
-                    case SID_EVC_SoC:
+                    case SID_SoC:
+//                  case SID_EVC_SoC:
                         tv = (TextView) findViewById(R.id.textSOC);
                         break;
                     case SID_Pedal:
@@ -165,7 +170,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                     case SID_EVC_Odometer:
                         int odo = (int) field.getValue();
                         if (lastOdo < 1) lastOdo = odo; // assume a lastOdo < 1 to be initialisation
-                        if (odo > lastOdo && odo < (lastOdo + 10)) { // we update only if there are no weird odo values
+                        if (odo > lastOdo && odo < (lastOdo + 10) && kmInBat > 0) { // we update only if there are no weird odo values
                             try {
                                 tv = (TextView) findViewById(R.id.textKmToDest);
                                 int newKmToDest = Integer.parseInt("" + tv.getText());
@@ -183,6 +188,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_RealSpeed:
                     case SID_EVC_RealSpeed:
+                        realSpeed =  (double) (Math.round(field.getValue() * 10) / 10);
                         tv = (TextView) findViewById(R.id.textRealSpeed);
                         break;
                     //case SID_PEB_Torque:
@@ -201,6 +207,23 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_RangeEstimate:
                         kmInBat = (int) field.getValue();
+                        if (kmInBat > 0) { // we update only if there are no weird values
+                            try {
+                                tv = (TextView) findViewById(R.id.textKmToDest);
+                                int newKmToDest = Integer.parseInt("" + tv.getText());
+                                if (newKmToDest >= 0) {
+                                    setKmToDest("" + newKmToDest, "" + (kmInBat - newKmToDest));
+                                } else {
+                                    setKmToDest("0", "0");
+                                }
+                            } catch (Exception e) {
+                            }
+                        }
+                        tv = null;
+                        break;
+                    case SID_BrakePressure:
+                        pb = (ProgressBar) findViewById(R.id.FrictionBreaking);
+                        pb.setProgress((int) (field.getValue() * realSpeed));
                         break;
                 }
                 // set regular new content, all exeptions handled above

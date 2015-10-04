@@ -83,75 +83,96 @@
         android:textSize="48sp" /> -->
 
 
-        <TextView
-            android:id="@+id/LabelKmToDest"
-            android:layout_below="@+id/textRealSpeed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_KmToDest"
-            android:layout_alignParentLeft="true"
-            android:textSize="24sp" />
+    <TextView
+        android:id="@+id/LabelKmToDest"
+        android:layout_below="@+id/textRealSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_KmToDest"
+        android:layout_alignParentLeft="true"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textKmToDest"
-            android:layout_below="@+id/textRealSpeed"
-            android:text="@string/default_zero"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:textSize="24sp" />
+    <TextView
+        android:id="@+id/textKmToDest"
+        android:layout_below="@+id/textRealSpeed"
+        android:text="@string/default_zero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/LabelKmAVailAtDest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_KmAvailAtDest"
-            android:layout_below="@id/LabelKmToDest"
-            android:layout_alignParentLeft="true"
-            android:textSize="24sp" />
+    <TextView
+        android:id="@+id/LabelKmAVailAtDest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_KmAvailAtDest"
+        android:layout_below="@id/LabelKmToDest"
+        android:layout_alignParentLeft="true"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textKmAVailAtDest"
-            android:text="@string/default_zero"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textKmToDest"
-            android:layout_alignParentRight="true"
-            android:textSize="24sp" />
+    <TextView
+        android:id="@+id/textKmAVailAtDest"
+        android:text="@string/default_zero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textKmToDest"
+        android:layout_alignParentRight="true"
+        android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/LabelSOC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_SOC"
-            android:layout_below="@id/LabelKmAVailAtDest"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:id="@+id/textSOC"
-            android:text="@string/default_SOC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textKmAVailAtDest"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentRight="true"
-            />
+    <TextView
+        android:id="@+id/LabelSOC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_SOC"
+        android:layout_below="@id/LabelKmAVailAtDest"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textSOC"
+        android:text="@string/default_SOC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textKmAVailAtDest"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        />
 
-        <TextView
-            android:id="@+id/LabelDcPwr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_DcPwr"
-            android:layout_below="@id/LabelSOC"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:id="@+id/textDcPwr"
-            android:text="@string/default_DcPwr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textSOC"
-            android:layout_alignParentRight="true"
-            />
+    <TextView
+        android:id="@+id/LabelDcPwr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_DcPwr"
+        android:layout_below="@id/LabelSOC"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textDcPwr"
+        android:text="@string/default_DcPwr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textSOC"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:id="@+id/label_friction"
+        android:layout_below="@+id/LabelDcPwr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_friction"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        />
+    <ProgressBar
+        android:id="@+id/FrictionBreaking"
+        android:layout_below="@+id/label_friction"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:minHeight="25dp"
+        android:max="100"
+        android:progressDrawable="@drawable/progressbar_canze_red"
+        />
 
     <!-- debug line -->
     <TextView
