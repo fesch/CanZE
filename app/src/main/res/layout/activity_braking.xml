@@ -166,6 +166,28 @@
         android:progressDrawable="@drawable/progressbar_canze"
         />
 
+    <TextView
+        android:id="@+id/label_braking_pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_braking_pressure"
+        android:layout_below="@id/pb_friction_torque"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        />
+    <ProgressBar
+        android:id="@+id/pb_braking_pressure"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/label_braking_pressure"
+        android:layout_gravity="center_horizontal"
+        android:minHeight="25dp"
+        android:max="100"
+        android:progressDrawable="@drawable/progressbar_canze"
+        />
+
     <!-- debug line -->
     <TextView
         android:id="@+id/textDebug"
