@@ -521,17 +521,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         visible=true;
         super.onResume();
 
-        /*
-        // connect all widgets
-        debug("MainActivity: onResume > connect all widgets");
-        ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
-        for (int i = 0; i < widgets.size(); i++) {
-            WidgetView wv = widgets.get(i);
-            // connect to correct surface
-            wv.getDrawable().setDrawSurface(wv);
-        }
-        */
-
         // if returning from a single widget activity, we have to leave here!
         if(returnFromWidget) {
             returnFromWidget=!returnFromWidget;
@@ -555,10 +544,24 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         debug("MainActivity: onPause");
         visible=false;
 
-        super.onPause();
-
         if(!leaveBluetoothOn)
+        {
+            device.clearFields();
+
+            // this will stop any device from continuing trying to connect
+            device.setConnectedBluetoothThread(null);
+            // wait for device to stop polling
+            try {
+                device.join();
+            }
+            catch(Exception e)
+            {
+                // ignore
+            }
             BluetoothManager.getInstance().disconnect();
+        }
+
+        super.onPause();
     }
 
     @Override
@@ -583,15 +586,22 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     protected void onDestroy() {
         debug("MainActivity: onDestroy");
 
-        super.onDestroy();
-
         // this will stop any device from continuing trying to connect
         device.setConnectedBluetoothThread(null);
-
+        // wait for device to stop polling
+        try {
+            device.join();
+        }
+        catch(Exception e)
+        {
+            // ignore
+        }
         BluetoothManager.getInstance().disconnect();
 
         // un-register for bluetooth changes
         this.unregisterReceiver(broadcastReceiver);
+
+        super.onDestroy();
     }
 
     @Override

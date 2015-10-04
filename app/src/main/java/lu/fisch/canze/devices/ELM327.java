@@ -1,7 +1,6 @@
 package lu.fisch.canze.devices;
 
 import android.os.SystemClock;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,6 +37,7 @@ public class ELM327 extends Device {
 
     boolean sumTingWong = false; // yes I know, the fake news name of Asiana flight 214 777 captain that crashed in SF
 
+    private Thread pollerThread;
 
     @Override
     public void initConnection() {
@@ -64,29 +64,38 @@ public class ELM327 extends Device {
                             // if the no field is to be queried, sleep for a while
                             if(fields.size()==0)
                             {
-                                try{
-                                    Thread.sleep(5000);
-                                }
-                                catch (Exception e) {}
-
+                                if(connectedBluetoothThread!=null)
+                                    try{
+                                        Thread.sleep(5000);
+                                    }
+                                    catch (Exception e) {}
                             }
                             // query a field
                             else {
                                 queryNextFilter();
                             }
                         }
+                        MainActivity.debug("ELM: poller is done!");
+                        pollerThread=null;
                     } else {
                         MainActivity.debug("ELM: no answer ...");
                         MainActivity.toast("No answer from ELM ... retrying ...");
                         if(connectedBluetoothThread!=null) {
                             // retry
-                            (new Thread(this)).start();
+                            pollerThread = new Thread(this);
+                            pollerThread.start();
                         }
                     }
                 }
             };
-            (new Thread(r)).start();
+            pollerThread = new Thread(r);
+            pollerThread.start();
         }
+    }
+
+    public void join() throws InterruptedException {
+        if(pollerThread!=null)
+            pollerThread.join();
     }
 
     @Override

@@ -24,6 +24,10 @@ public class ArduinoDue extends Device {
 
     }
 
+    public void join() throws InterruptedException {
+
+    }
+
     @Override
     protected ArrayList<Message> processData(int[] input) {
         return null;

@@ -283,6 +283,10 @@ public class ELM327Experimental extends Device {
         return Integer.toHexString(getRequestId(responseId));
     }
 
+    public void join() throws InterruptedException {
+
+    }
+
     // query the device for the next filter
     private void queryNextFilter()
     {

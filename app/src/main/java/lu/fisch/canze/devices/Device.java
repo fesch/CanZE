@@ -70,6 +70,8 @@ public abstract class Device {
      */
     protected abstract ArrayList<Message> processData(int[] input);
 
+    public abstract void join() throws InterruptedException;
+
 
     /* ----------------------------------------------------------------
      * Methods (that will be inherited by any "real" device)
@@ -220,6 +222,7 @@ public abstract class Device {
      * @param connectedBluetoothThread
      */
     public void setConnectedBluetoothThread(ConnectedBluetoothThread connectedBluetoothThread) {
+        MainActivity.debug("Device: nulling out connectedBluetoothThread");
         this.connectedBluetoothThread = connectedBluetoothThread;
         if(connectedBluetoothThread!=null)
         {

@@ -51,7 +51,7 @@ public class BobDue extends Device {
                 Runnable r = new Runnable() {
                     @Override
                     public void run() {
-                        while (pollerRunning)
+                        while (connectedBluetoothThread!=null)
                             queryNextFilter();
                     }
                 };
@@ -73,6 +73,10 @@ public class BobDue extends Device {
                 }
             }
         }
+    }
+
+    public void join() throws InterruptedException {
+        poller.join();
     }
 
     @Override
