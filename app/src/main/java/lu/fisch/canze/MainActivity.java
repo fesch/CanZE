@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(!isSafe()) return;
@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(!isSafe()) return;
@@ -310,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(!isSafe()) return;
@@ -326,7 +326,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(!isSafe()) return;
@@ -342,7 +342,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(!isSafe()) return;
@@ -358,7 +358,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(!isSafe()) return;
@@ -374,7 +374,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(!isSafe()) return;
@@ -390,7 +390,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(!isSafe()) return;
@@ -406,7 +406,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(!isSafe()) return;
@@ -422,7 +422,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(!isSafe()) return;
@@ -505,7 +505,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         // detect hardware status
         int BT_STATE = BluetoothManager.getInstance().getHardwareState();
         if(BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_AVAILABLE)
-            Toast.makeText(this.getBaseContext(),"Sorry, but your device does not seam to have Bluettoot support!",Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getBaseContext(),"Sorry, but your device doesn't seem to have Bluetooth support!",Toast.LENGTH_LONG).show();
         else if (BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_ACTIVE)
         {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
