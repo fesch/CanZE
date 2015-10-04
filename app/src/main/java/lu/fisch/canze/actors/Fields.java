@@ -371,7 +371,7 @@ public class Fields implements MessageListener {
                         +"0x29c, 48, 63, 1, 1, 0, 100, Speed R100: %3ld.%02ld, , , , , 0, 0, 20\n"
                         +"0x352, 0, 1, 1, 1, 0, 0, ABS warn req %1ld, , , , ABS Warning Request, 0, 0, 40\n"
                         +"0x352, 2, 3, 1, 1, 0, 0, StopLReq %1ld, , , , ESP_StopLampRequest, 0, 0, 40\n"
-                        +"0x352, 24, 31, 1, 1, 0, 0, Brake force %5ld, , , , Break Force, 0, 0, 40\n"
+                        +"0x352, 24, 31, 2, 1, 0, 0, Brake pressure %3ld, bar, , , Brake pressure, 0, 0, 40\n"
                         +"0x35c, 16, 39, 1, 1, 0, 0, Minutes: %7ld, min, , , , 0, 0, 100\n"
                         +"0x35c, 4, 15, 1, 1, 0, 0, Key-Start: %5ld, , , , , 0, 0, 100\n"
                         +"0x3f7, 2, 3, 1, 1, 0, 0, Gear??: %4ld, , , , , 2, 0, 60\n"

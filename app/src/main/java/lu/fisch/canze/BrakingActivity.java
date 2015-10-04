@@ -26,15 +26,13 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_ElecBrakeWheels_Torque_Request       = "130.20";
     public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44";
     public static final String SID_Friction_Torque                      = "18a.27";
+    public static final String SID_Braking_Pressure                     = "352.24";
 
-    public static final String hbb_Malfunction [] = {"unavailable", "OK", "Not OK"};
-    public static final String eb_Malfunction [] = {"unavailable", "OK", "Not OK"};
-    public static final String eb_Inprogress [] = {"unavailable", "In progress", "Not in progress"};
-    public static final String hba_actReq [] = {"unavailable", "Activation request", "No activation request"};
+    public static final String hbb_Malfunction  [] = {"unavailable", "OK", "Not OK"};
+    public static final String eb_Malfunction   [] = {"unavailable", "OK", "Not OK"};
+    public static final String eb_Inprogress    [] = {"unavailable", "In progress", "Not in progress"};
+    public static final String hba_actReq       [] = {"unavailable", "Activation request", "No activation request"};
     public static final String pressure_buildup [] = {"unavailable", "False", "True"};
-
-
-
 
     private ArrayList<Field> subscribedFields;
 
@@ -55,6 +53,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
         addListener(SID_ElecBrakeWheels_Torque_Request);
         addListener(SID_DriverBrakeWheel_Torque_Request);
         addListener(SID_Friction_Torque);
+        addListener(SID_Braking_Pressure);
     }
 
     private void addListener(String sid) {
@@ -128,6 +127,10 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_Friction_Torque:
                         pb = (ProgressBar) findViewById(R.id.pb_friction_torque);
+                        pb.setProgress((int) field.getValue());
+                        break;
+                    case SID_Braking_Pressure:
+                        pb = (ProgressBar) findViewById(R.id.pb_braking_pressure);
                         pb.setProgress((int) field.getValue());
                         break;
                 }
