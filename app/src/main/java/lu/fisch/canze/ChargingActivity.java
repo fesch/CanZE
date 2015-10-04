@@ -9,11 +9,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldListener to the fields.
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
-public class ChargingActivity extends AppCompatActivity implements FieldListener {
+public class ChargingActivity extends CanzeActivity implements FieldListener {
 
     public static final String SID_MaxCharge = "7bb.6101.336";
     public static final String SID_ACPilot = "42e.38";
@@ -27,9 +28,11 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
     public static final String SID_Flap = "65b.41";
     public static final String SID_TractionBatteryVoltage = "7ec.623203.24";
     public static final String SID_TractionBatteryCurrent = "7ec.623204.24";
+    public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
     double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     double pilot = 0;
     double flap = 0;
+
     private ArrayList<Field> subscribedFields;
 
     @Override
@@ -50,8 +53,17 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
         addListener(SID_TractionBatteryCurrent);
 
         // Battery compartment temperatures
-        for (int i=32; i<= 296; i+=24) {
-            String sid = "7bb.6104." + i;
+        int car = Fields.getInstance().getCar();
+        int lastCell;
+        if(car==Fields.CAR_ZOE) {
+            lastCell = 296;
+        }
+        else
+        {
+            lastCell = 128;
+        }
+        for (int i = 32; i <= lastCell; i += 24) {
+            String sid = SID_Preamble_CompartmentTemperatures + i;
             addListener(sid);
         }
     }
@@ -81,8 +93,6 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
             field.removeListener(this);
         }
         subscribedFields.clear();
-        // clear filters
-        MainActivity.device.clearFields();
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -159,40 +169,40 @@ public class ChargingActivity extends AppCompatActivity implements FieldListener
                         // continue
                         tv = (TextView) findViewById(R.id.textAmps);
                         break;
-                    case "7bb.6104.32":
+                    case SID_Preamble_CompartmentTemperatures + "32":
                         tv = (TextView) findViewById(R.id.text_comp_1_temp);
                         break;
-                    case "7bb.6104.56":
+                    case SID_Preamble_CompartmentTemperatures + "56":
                         tv = (TextView) findViewById(R.id.text_comp_2_temp);
                         break;
-                    case "7bb.6104.80":
+                    case SID_Preamble_CompartmentTemperatures + "80":
                         tv = (TextView) findViewById(R.id.text_comp_3_temp);
                         break;
-                    case "7bb.6104.104":
+                    case SID_Preamble_CompartmentTemperatures + "104":
                         tv = (TextView) findViewById(R.id.text_comp_4_temp);
                         break;
-                    case "7bb.6104.128":
+                    case SID_Preamble_CompartmentTemperatures + "128":
                         tv = (TextView) findViewById(R.id.text_comp_5_temp);
                         break;
-                    case "7bb.6104.152":
+                    case SID_Preamble_CompartmentTemperatures + "152":
                         tv = (TextView) findViewById(R.id.text_comp_6_temp);
                         break;
-                    case "7bb.6104.176":
+                    case SID_Preamble_CompartmentTemperatures + "176":
                         tv = (TextView) findViewById(R.id.text_comp_7_temp);
                         break;
-                    case "7bb.6104.200":
+                    case SID_Preamble_CompartmentTemperatures + "200":
                         tv = (TextView) findViewById(R.id.text_comp_8_temp);
                         break;
-                    case "7bb.6104.224":
+                    case SID_Preamble_CompartmentTemperatures + "224":
                         tv = (TextView) findViewById(R.id.text_comp_9_temp);
                         break;
-                    case "7bb.6104.248":
+                    case SID_Preamble_CompartmentTemperatures + "248":
                         tv = (TextView) findViewById(R.id.text_comp_10_temp);
                         break;
-                    case "7bb.6104.272":
+                    case SID_Preamble_CompartmentTemperatures + "272":
                         tv = (TextView) findViewById(R.id.text_comp_11_temp);
                         break;
-                    case "7bb.6104.296":
+                    case SID_Preamble_CompartmentTemperatures + "296":
                         tv = (TextView) findViewById(R.id.text_comp_12_temp);
                         break;
                 }

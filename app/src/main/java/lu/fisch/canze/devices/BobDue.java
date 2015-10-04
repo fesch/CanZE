@@ -1,5 +1,7 @@
 package lu.fisch.canze.devices;
 
+import android.support.annotation.MainThread;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -45,6 +47,7 @@ public class BobDue extends Device {
             if (poller == null) {
                 // post a task to the UI thread
                 pollerRunning=true;
+
                 Runnable r = new Runnable() {
                     @Override
                     public void run() {
@@ -189,6 +192,8 @@ public class BobDue extends Device {
                 synchronized (fields) {
                     field = fields.get(fieldIndex);
                 }
+
+                MainActivity.debug("Querying for field: "+field.getSID());
 
                 if(field!=null) {
                     // get field ID

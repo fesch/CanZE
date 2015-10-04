@@ -22,6 +22,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
@@ -29,10 +30,12 @@ import lu.fisch.canze.devices.ArduinoDue;
 import lu.fisch.canze.devices.BobDue;
 import lu.fisch.canze.devices.Device;
 import lu.fisch.canze.devices.ELM327;
+import lu.fisch.canze.devices.ELM327Experimental;
 import lu.fisch.canze.interfaces.BluetoothEvent;
+import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.widgets.WidgetView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FieldListener {
     public static final String TAG = "CanZE";
 
     // SPP UUID service
@@ -70,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static MainActivity instance = null;
 
+    public static boolean safeDrivingMode = true;
+    private static boolean isDriving = false;
+
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -84,12 +90,6 @@ public class MainActivity extends AppCompatActivity {
                 if(visible)
                 {
                     // stop reading
-                    /* old
-                    // assign the BT thread to the reader
-                    if (reader != null)
-                        reader.setConnectedBluetoothThread(null);
-                    */
-
                     if (device!=null) device.setConnectedBluetoothThread(null);
 
                     // inform user
@@ -125,32 +125,47 @@ public class MainActivity extends AppCompatActivity {
         bluetoothDeviceName =settings.getString("deviceName", null);
         dataFormat = settings.getString("dataFormat", "crdt");
         deviceName = settings.getString("device", "Arduino");
+        safeDrivingMode = settings.getBoolean("optSafe", true);
 
         String car = settings.getString("car", "Any");
-        if(car.equals("Any")) Fields.getInstance().setCar(Fields.CAR_ANY);
-        else if(car.equals("Zoé")) Fields.getInstance().setCar(Fields.CAR_ZOE);
-        else if(car.equals("Fluence")) Fields.getInstance().setCar(Fields.CAR_FLUENCE);
-        else if(car.equals("Kangoo")) Fields.getInstance().setCar(Fields.CAR_KANGOO);
-        else if(car.equals("X10")) Fields.getInstance().setCar(Fields.CAR_X10);
+        switch (car) {
+            case "Any":
+                Fields.getInstance().setCar(Fields.CAR_ANY);
+                break;
+            case "Zoé":
+                Fields.getInstance().setCar(Fields.CAR_ZOE);
+                break;
+            case "Fluence":
+                Fields.getInstance().setCar(Fields.CAR_FLUENCE);
+                break;
+            case "Kangoo":
+                Fields.getInstance().setCar(Fields.CAR_KANGOO);
+                break;
+            case "X10":
+                Fields.getInstance().setCar(Fields.CAR_X10);
+                break;
+        }
 
         // as the settings may have changed, we need to reload different things
 
-        /* OLD
-            // pass the dataFormat to the stack
-            stack.setDataFormat(dataFormat);
-            // initialise a new dataReader
-        if(deviceName.equals("Arduino")) reader=new DueReader(stack);
-        else if(deviceName.equals("ELM327")) reader=new ElmReader(stack);
-        else reader=null;
-        if(reader!=null)
-            reader.initConnection();
-        */
-
         // create a new device
-        if(deviceName.equals("Arduino Due")) device=new ArduinoDue();
-        else if(deviceName.equals("Bob Due")) device=new BobDue();
-        else if(deviceName.equals("ELM327")) device=new ELM327();
-        else device=null;
+        switch (deviceName) {
+            case "Arduino Due":
+                device = new ArduinoDue();
+                break;
+            case "Bob Due":
+                device = new BobDue();
+                break;
+            case "ELM327":
+                device = new ELM327();
+                break;
+            case "ELM327 Experimental":
+                device = new ELM327Experimental();
+                break;
+            default:
+                device = null;
+                break;
+        }
         if(device!=null)
             device.initConnection();
 
@@ -194,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
         debug("Loaded fields: " + fields.size());
 
         // connect the widgets to the respective fields
+        /* no more needed as there are none here!
         ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
         for(int i=0; i<widgets.size(); i++)
         {
@@ -237,6 +253,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+        */
 
         Button button;
         button = (Button) findViewById(R.id.buttonTacho);
@@ -245,9 +262,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, TachoActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -260,9 +278,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, ChargingActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -278,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, DrivingActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -290,9 +310,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, BatteryTempActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
@@ -305,11 +326,28 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, BatteryVoltageActivity.class);
+                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
+            }
+        });
+
+        button = (Button) findViewById(R.id.buttonBraking);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(connectedBluetoothThread==null)
+                {
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(!isSafe()) return;
+                leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.this, BrakingActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
             }
         });
@@ -320,11 +358,28 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, LeafSpyActivity.class);
+                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
+            }
+        });
+
+        button = (Button) findViewById(R.id.buttonFirmware);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(connectedBluetoothThread==null)
+                {
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(!isSafe()) return;
+                leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.this, FirmwareActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
             }
         });
@@ -335,14 +390,48 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(connectedBluetoothThread==null)
                 {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!isSafe()) return;
                 leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, TestActivity.class);
+                Intent intent = new Intent(MainActivity.this, TestX10Activity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
             }
         });
+
+        button = (Button) findViewById(R.id.buttonStats);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(connectedBluetoothThread==null)
+                {
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(!isSafe()) return;
+                leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.this, StatsActivity.class);
+                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
+            }
+        });
+
+        button = (Button) findViewById(R.id.buttonBattery);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(connectedBluetoothThread==null)
+                {
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(!isSafe()) return;
+                leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.this, BatteryActivity.class);
+                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
+            }
+        });
+
 
 
         // link the fields to the stack
@@ -362,15 +451,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAfterConnect(BluetoothSocket bluetoothSocket, ConnectedBluetoothThread connectedBluetoothThread) {
                 MainActivity.this.connectedBluetoothThread=connectedBluetoothThread;
-                // assign the stack to the BT thread
-                // OLD: debug("assign the stack to the BT thread");
-                // OLD: connectedBluetoothThread.setStack(stack);
+
                 // assign the BT thread to the reader
                 debug("assign the BT thread to the reader");
-                // OLD: if (reader != null)
-                // OLD: reader.setConnectedBluetoothThread(connectedBluetoothThread);
                 if(device!=null)
                     device.setConnectedBluetoothThread(connectedBluetoothThread);
+
+                // register fields this activity needs to get
+                registerFields();
+
+
                 /*
                 // set all filters
                 debug("set all filters & connect widgets");
@@ -415,13 +505,14 @@ public class MainActivity extends AppCompatActivity {
         // detect hardware status
         int BT_STATE = BluetoothManager.getInstance().getHardwareState();
         if(BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_AVAILABLE)
-            Toast.makeText(this.getBaseContext(),"Sorry, but your device does not seam to have Bluettoot support!",Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getBaseContext(),"Sorry, but your device doesn't seem to have Bluetooth support!",Toast.LENGTH_LONG).show();
         else if (BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_ACTIVE)
         {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, 1);
         }
     }
+
 
     @Override
     public void onResume() {
@@ -482,6 +573,8 @@ public class MainActivity extends AppCompatActivity {
         {
             returnFromWidget=true;
             leaveBluetoothOn=false;
+            // register fields this activity needs
+            registerFields();
         }
         else super.onActivityResult(requestCode, resultCode, data);
     }
@@ -514,18 +607,72 @@ public class MainActivity extends AppCompatActivity {
 
         // start the settings activity
         if (id == R.id.action_settings) {
-            // stop the BT device
-            device.setConnectedBluetoothThread(null);
-            BluetoothManager.getInstance().disconnect();
 
-            // load the activity
-            Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
-            startActivityForResult(intent, SETTINGS_ACTIVITY);
-            return true;
+            if(isSafe()) {
+                // run a toast
+                Toast.makeText(MainActivity.this, "Stopping Bluetooth. Settings are being loaded. Please wait ....", Toast.LENGTH_SHORT).show();
+
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // give the toast a moment to appear
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (device != null) {
+                            // stop the BT device
+                            device.setConnectedBluetoothThread(null);
+                            BluetoothManager.getInstance().disconnect();
+                        }
+
+                        // load the activity
+                        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                        startActivityForResult(intent, SETTINGS_ACTIVITY);
+                    }
+                })).start();
+                return true;
+            }
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    public static void registerFields()
+    {
+        debug("MainActivity: registerFields");
 
+        // speed
+        Field field = fields.getBySID("5d7.0");
+        if(field!=null)
+        {
+            field.addListener(MainActivity.instance);
+
+            if(device!=null)
+            {
+                device.addField(field);
+            }
+        }
+    }
+
+    @Override
+    public void onFieldUpdateEvent(Field field) {
+        if(field.getSID().equals("5d7.0"))
+        {
+            //debug("Speed "+field.getValue());
+            isDriving = (field.getValue()>10);
+        }
+    }
+
+    public static boolean isSafe()
+    {
+        boolean safe = !isDriving || !safeDrivingMode;
+        if(!safe)
+        {
+            Toast.makeText(MainActivity.instance,"Not possible while driving ...",Toast.LENGTH_LONG).show();
+        }
+        return safe;
+    }
 }

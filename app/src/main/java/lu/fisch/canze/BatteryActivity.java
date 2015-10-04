@@ -1,28 +1,36 @@
 package lu.fisch.canze;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
+        import android.content.Intent;
+        import android.support.v7.app.AppCompatActivity;
+        import android.os.Bundle;
+        import android.view.Menu;
+        import android.view.MenuItem;
+        import android.view.MotionEvent;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.Toast;
 
-import java.util.ArrayList;
+        import java.util.ArrayList;
 
-import lu.fisch.canze.widgets.WidgetView;
+        import lu.fisch.canze.actors.Field;
+        import lu.fisch.canze.widgets.WidgetView;
 
-public class LeafSpyActivity extends CanzeActivity {
-
+public class BatteryActivity extends CanzeActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_leaf_spy);
+        setContentView(R.layout.activity_battery);
+
+        setTitle("Battery");
 
         // initialise the widgets
-        initWidgets();
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                initWidgets();
+            }
+        })).start();
     }
 
     @Override
@@ -33,7 +41,16 @@ public class LeafSpyActivity extends CanzeActivity {
         ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
         for(int i=0; i<widgets.size(); i++) {
             final WidgetView wv = widgets.get(i);
-            MainActivity.fields.getBySID(wv.getFieldSID()).removeListener(wv.getDrawable());
+
+            String sid = wv.getFieldSID();
+            String[] sids = sid.split(",");
+            for(int s=0; s<sids.length; s++) {
+                Field field = MainActivity.fields.getBySID(sids[s]);
+                if (field != null) {
+                    field.removeListener(wv.getDrawable());
+                }
+            }
+
         }
     }
 
@@ -67,12 +84,11 @@ public class LeafSpyActivity extends CanzeActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     // ----------------------------------------------------
 
     private void initWidgets()
     {
-        runOnUiThread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 // connect the widgets to the respective fields
@@ -84,15 +100,19 @@ public class LeafSpyActivity extends CanzeActivity {
                     if (wv == null) {
                         throw new ExceptionInInitializerError("Widget <" + wv.getId() + "> is NULL!");
                     }
-                    if (MainActivity.fields.getBySID(wv.getFieldSID()) == null) {
-                        throw new ExceptionInInitializerError("Field with following SID <" + wv.getFieldSID() + "> not found!");
-                    }
                     String sid = wv.getFieldSID();
                     String[] sids = sid.split(",");
                     for(int s=0; s<sids.length; s++) {
-                        MainActivity.fields.getBySID(sids[s]).addListener(wv.getDrawable());
-                        // add filter to reader
-                        MainActivity.device.addField(wv.getDrawable().getField());
+                        Field field = MainActivity.fields.getBySID(sids[s]);
+                        if (field == null) {
+                            Toast.makeText(BatteryActivity.this, "Field with following SID <" + sids[s] + "> not found!", Toast.LENGTH_SHORT).show();
+                            //throw new ExceptionInInitializerError("Field with following SID <" + wv.getFieldSID() + "> not found!");
+                        }
+                        else {
+                            field.addListener(wv.getDrawable());
+                            // add filter to reader
+                            MainActivity.device.addField(field);
+                        }
                     }
 
                     // touching a widget makes a "bigger" version appear
@@ -111,10 +131,10 @@ public class LeafSpyActivity extends CanzeActivity {
                             switch (maskedAction) {
                                 case MotionEvent.ACTION_DOWN:
                                 case MotionEvent.ACTION_POINTER_DOWN: {
-                                    Intent intent = new Intent(LeafSpyActivity.this, WidgetActivity.class);
+                                    Intent intent = new Intent(BatteryActivity.this, WidgetActivity.class);
                                     //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     WidgetView.selectedDrawable = wv.getDrawable();
-                                    LeafSpyActivity.this.startActivity(intent);
+                                    BatteryActivity.this.startActivity(intent);
                                     break;
                                 }
                                 case MotionEvent.ACTION_MOVE:
@@ -132,7 +152,7 @@ public class LeafSpyActivity extends CanzeActivity {
                     });
                 }
             }
-        });
+        }).start();
     }
 
     private ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)
@@ -152,5 +172,4 @@ public class LeafSpyActivity extends CanzeActivity {
 
         return result;
     }
-
 }

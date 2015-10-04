@@ -1,19 +1,37 @@
 <resources>
     <string name="app_name">CanZE</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_widget">WidgetActivity</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_tacho">TachoActivity</string>
     <string name="title_activity_text">TextActivity</string>
     <string name="title_activity_battery__voltage_">Battery Voltages</string>
     <string name="title_activity_leaf_spy">Leaf Spy Clone</string>
+    <string name="title_activity_battery_temp">BatteryTempActivity</string>
+    <string name="title_activity_test">testActivity</string>
+    <string name="title_activity_elm_test">elmTestActivity</string>
+    <string name="title_activity_charging">Charging info</string>
+    <string name="title_activity_driving">Driving info</string>
+    <string name="title_activity_braking">Braking info</string>
+    <string name="title_activity_firmware">Firmware info</string>
+    <string name="title_activity_stats">StatsActivity</string>
 
+    <!-- nonsense -->
+
+    <string name="hello_world">Hello world!</string>
+
+    <!-- menus -->
+
+    <string name="action_settings">Settings</string>
+
+    <!-- debug (generic) -->
+
+    <string name="header_Debug">Debugging info</string>
+
+    <string name="label_debug">Debug</string>
+    <string name="default_debug">#Debug</string>
 
     <!-- Charging -->
-
-    <string name="activity_charging">Charging info</string>
 
     <string name="header_Charging">Charging parameters</string>
 
@@ -50,26 +68,84 @@
     <string name="label_DcPwr">DC Power</string>
     <string name="default_DcPwr">#DCP</string>
 
-    <string name="label_debug">Debug</string>
-    <string name="default_debug">#Debug</string>
-    <string name="title_activity_battery_temp">BatteryTempActivity</string>
-
     <string name="label_CompTemp">Battery Compartment temperatures</string>
 
     <string name="default_CompT">#T</string>
 
     <string name="default_CellV">#V</string>
 
-    <string name="header_Debug">Debugging info</string>
-
-
     <!-- driving -->
 
-    <string name="activity_driving">Driving info</string>
     <string name="header_Driving">Driving parameters</string>
+
+    <string name="label_pedal">Pedal position</string>
+
+    <string name="label_motor_torque">Motor Torque</string>
+
     <string name="default_realSpeed">#Spd</string>
-    <string name="default_Torque">#Trq</string>
-    <string name="title_activity_test">testActivity</string>
+    <!-- <string name="default_Torque">#Trq</string> -->
+
+    <string name="label_KmToDest">Km to Destination</string>
+    <string name="default_KmToDest">#ktd</string>
+
+    <string name="label_KmAvailAtDest">Km avail at dest</string>
+    <string name="default_KmAvailAtDest">#kad</string>
+
+    <!-- elm testing -->
+
+    <string name="header_ElmTest">Test results</string>
+    <string name="textNotImplementedYet">Not implemented yet</string>
+
+    <!-- braking -->
+
+    <string name="header_braking">Braking parameters</string>
+    <string name="activity_braking">Braking</string>
+
+    <string name="label_hbb_malfunction">HBB malfunction</string>
+    <string name="default_hbb_malfunction">#hbm</string>
+
+    <string name="label_hbb_in_progress">HBB in progress</string>
+    <string name="default_hbb_in_progress">#hbip</string>
+
+    <string name="label_eb_malfunction">EB malfunction</string>
+    <string name="default_eb_malfunction">#ebm</string>
+
+    <string name="label_eb_in_progress">EB in progress</string>
+    <string name="default_eb_in_progress">#ebip</string>
+
+    <string name="label_hba_activation_request">HBA Activation Request</string>
+    <string name="default_hba_activation_request">#har</string>
+
+    <string name="label_pressure_buildup">Pressure Buildup</string>
+    <string name="default_pressure_buildup">#pb</string>
+
+    <string name="label_eb_torque_request">Electral Brake Wheels Torque Request</string>
+    <string name="label_driver_torque_request">Driver Brake Wheels Torque Request</string>
+    <string name="label_friction_torque">Coasting Torque</string>
+
+    <!-- firmware -->
+
+    <string name="header_firmware">Firmware versions</string>
+
+    <string name="default_firmware">Not available</string>
+
+    <string name="label_ecu_evc">EVC (Electric Vehicle Controller)</string>
+    <string name="label_ecu_tcu">TCU (Telematics Control Unit)</string>
+    <string name="label_ecu_lbc">LBC (Lithium Battery Charger)</string>
+    <string name="lavel_ecu_peb">PEB (Power Electronics Block)</string>
+    <string name="label_ecu_aibag">AIBAG (Airbag)</string>
+    <string name="label_ecu_usm">USM (12V fuse box under the hood)</string>
+    <string name="label_ecu_cluster">CLUSTER (Instrument panel)</string>
+    <string name="label_ecu_eps">EPS (Electrical Power Steering)</string>
+    <string name="label_ecu_abs">ABS (Antilock breaking system)</string>
+    <string name="label_ecu_ubp">UBP (?)</string>
+    <string name="label_ecu_bcm">BCM (Body Control Module)</string>
+    <string name="label_ecu_clim">CLIM (Climate Control)</string>
+    <string name="label_ecu_upa">UPA (Park Assist)</string>
+    <string name="label_ecu_bcb">BCB (?)</string>
+    <string name="label_ecu_lbc2">LBC2 (Lithium Battery Charger)</string>
+    <string name="label_ecu_linsch">LINSCH (?)</string>
+    <string name="default_zero">0</string>
 
 
 </resources>

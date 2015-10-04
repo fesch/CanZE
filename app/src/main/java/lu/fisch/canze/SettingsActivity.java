@@ -1,24 +1,39 @@
 package lu.fisch.canze;
 
+import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.util.Set;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import lu.fisch.canze.actors.Fields;
 
 public class SettingsActivity extends AppCompatActivity {
+
+    public static final int YES_NO_CALL = 13;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +51,13 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("ELM327");
         arrayAdapter.add("Arduino Due");
         arrayAdapter.add("Bob Due");
+        arrayAdapter.add("ELM327 Experimental");
 
         int index = 0;
         if(device.equals("ELM327")) index=0;
         else if(device.equals("Arduino Due")) index=1;
         else if(device.equals("Bob Due")) index=2;
+        else if(device.equals("ELM327 Experimental")) index=3;
 
         // display the list
         Spinner deviceList = (Spinner) findViewById(R.id.remoteDevice);
@@ -70,6 +87,68 @@ public class SettingsActivity extends AppCompatActivity {
         // select the actual device
         carList.setSelection(index);
         carList.setSelected(true);
+
+        // options
+        final CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
+        safe.setChecked(MainActivity.safeDrivingMode);
+        safe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!safe.isChecked())
+                {
+                    final Context context = SettingsActivity.this;
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                    // set title
+                    alertDialogBuilder.setTitle("ATTENTION");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage("Driving and not paying full attention to traffic is extremely dangerous " +
+                                    "and will put your life and the life of those around you at risk. " +
+                                    "Disabling of this mode is not recommended at all!\n\n" +
+                                    "Are you sure you want to continue disabling the Safe Driving Mode?")
+                            .setCancelable(true)
+                            .setPositiveButton("Yes, I know what I'm doing",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    // if this button is clicked, close
+                                    // current activity
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("No, I prefer the secure way",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // if this button is clicked, just close
+                            // the dialog box and do nothing
+                            safe.setChecked(true);
+                            dialog.cancel();
+                        }
+                    });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
+                }
+            }
+        });
+
+        // display build version
+        TextView tv = (TextView) findViewById(R.id.build);
+        try{
+            ApplicationInfo ai = getPackageManager().getApplicationInfo(getPackageName(), 0);
+            ZipFile zf = new ZipFile(ai.sourceDir);
+            ZipEntry ze = zf.getEntry("classes.dex");
+            long time = ze.getTime();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd @ HH:mm");
+            String s = sdf.format(new java.util.Date(time));
+            tv.setText("Build: "+s);
+            zf.close();
+        }
+        catch(Exception e){
+        }
     }
 
     @Override
@@ -93,6 +172,7 @@ public class SettingsActivity extends AppCompatActivity {
             Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
             Spinner device = (Spinner) findViewById(R.id.remoteDevice);
             Spinner car = (Spinner) findViewById(R.id.car);
+            CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
             if(deviceList.getSelectedItem()!=null) {
                 MainActivity.debug("Settings.deviceAddress = " + deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 MainActivity.debug("Settings.deviceName = " + deviceList.getSelectedItem().toString().split("\n")[0].trim());
@@ -100,6 +180,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString("deviceName", deviceList.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("device", device.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("car", car.getSelectedItem().toString().split("\n")[0].trim());
+                editor.putBoolean("optSafe",safe.isChecked());
             }
             editor.commit();
             // finish
@@ -123,6 +204,8 @@ public class SettingsActivity extends AppCompatActivity {
         {
             fillDeviceList();
         }
+
+        MainActivity.debug("Code = "+requestCode);
     }
 
     private void tryTofillDeviceList() {
@@ -163,7 +246,22 @@ public class SettingsActivity extends AppCompatActivity {
             int index=-1;
             for (BluetoothDevice device : pairedDevices) {
                 // add the name and address to an array adapter to show in a ListView
-                arrayAdapter.add(device.getName() + "\n" + device.getAddress());
+
+                String deviceAlias = device.getName();
+                try {
+                    Method method = device.getClass().getMethod("getAliasName");
+                    if(method != null) {
+                        deviceAlias = (String)method.invoke(device);
+                    }
+                } catch (NoSuchMethodException e) {
+                    // e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    // e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    // e.printStackTrace();
+                }
+
+                arrayAdapter.add(deviceAlias + "\n" + device.getAddress());
                 // get the index of the selected item
                 if(device.getAddress().equals(deviceAddress))
                     index=i;

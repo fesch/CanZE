@@ -1,9 +1,18 @@
 package lu.fisch.canze;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+//import android.widget.ProgressBar;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -12,20 +21,28 @@ import java.util.ArrayList;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.FieldListener;
 
-public class DrivingActivity extends AppCompatActivity implements FieldListener {
+public class DrivingActivity extends CanzeActivity implements FieldListener {
 
-    //public static final String SID_SoC = "654.24";
-    public static final String SID_SoC = "7ec.622002.24"; //  (EVC)
-    public static final String SID_RealSpeed = "5d7.0";
-    //public static final String SID_Pedal = "186.40"; // free data
-    public static final String SID_Pedal = "7ec.62202e.24"; // inquired data (EVC)
-    public static final String SID_CcPedal = "18a.16";
-    public static final String SID_Torque = "77e.623025.24"; //  (PEB)
-    public static final String SID_TractionBatteryVoltage = "7ec.623203.24"; //  (EVC)
-    public static final String SID_TractionBatteryCurrent = "7ec.623204.24"; //  (EVC)
-    public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
+    // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
+
+    // free data
+    public static final String SID_Pedal                                = "186.40";
+    public static final String SID_MeanEffectiveTorque                  = "18a.16";
+    public static final String SID_RealSpeed                            = "5d7.0";
+    public static final String SID_SoC                                  = "654.24";
+    public static final String SID_RangeEstimate                        = "654.42";
+
+    // ISO-TP data
+    public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
+    public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC)
+    public static final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
+    public static final String SID_EVC_Pedal                            = "7ec.62202e.24"; //  (EVC)
+    public static final String SID_EVC_TractionBatteryVoltage           = "7ec.623203.24"; //  (EVC)
+    public static final String SID_EVC_TractionBatteryCurrent           = "7ec.623204.24"; //  (EVC)
 
     double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
+    int lastOdo = 0;
+    int kmInBat = 0;
     private ArrayList<Field> subscribedFields;
 
     @Override
@@ -34,19 +51,63 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
         setContentView(R.layout.activity_driving);
 
         subscribedFields = new ArrayList<>();
-        addListener(SID_SoC);
-        addListener(SID_RealSpeed);
-        addListener(SID_Pedal);
-        //addListener(SID_CcPedal);
-        //addListener(SID_Torque);
-        addListener(SID_TractionBatteryVoltage);
-        addListener(SID_TractionBatteryCurrent);
 
-        // Battery compartment temperatures
-        for (int i = 32; i <= 296; i += 24) {
-            String sid = SID_Preamble_CompartmentTemperatures + i;
-            addListener(sid);
-        }
+        // Make sure to add ISO-TP listeners grouped by ID
+
+        addListener(SID_Pedal);
+        addListener(SID_MeanEffectiveTorque);
+        addListener(SID_RealSpeed);
+        addListener(SID_RangeEstimate);
+
+        addListener(SID_EVC_SoC);
+        addListener(SID_EVC_Odometer);
+        addListener(SID_EVC_TractionBatteryVoltage);
+        addListener(SID_EVC_TractionBatteryCurrent);
+        //addListener(SID_PEB_Torque);
+
+        final TextView kmToDest = (TextView) findViewById(R.id.LabelKmToDest);
+        kmToDest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Context context = DrivingActivity.this;
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                LayoutInflater inflater = getLayoutInflater();
+                final View kmToDestView = inflater.inflate(R.layout.set_dist_to_dest, null);
+
+                // set dialog message
+                alertDialogBuilder
+                        .setView(kmToDestView)
+                        .setTitle("REMAINING DISTANCE")
+                        .setMessage("Please enter the distance to your destination. The display will estimate " +
+                                "the remaining driving distance available in your battery on arrival")
+
+                        .setCancelable(true)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                EditText dialogKmToDest = (EditText) kmToDestView.findViewById(R.id.dialog_dist_to_dest);
+                                if (dialogKmToDest != null){
+                                    setKmToDest(dialogKmToDest.getText().toString(), "");
+                                }
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
+
+            }
+        });
+    }
+
+    private void setKmToDest (String km1, String km2) {
+        TextView tv = null;
+        tv = (TextView) findViewById(R.id.textKmToDest);
+        tv.setText(km1);
+        tv = (TextView) findViewById(R.id.textKmAVailAtDest);
+        tv.setText(km2);
     }
 
     private void addListener(String sid) {
@@ -72,8 +133,6 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
             field.removeListener(this);
         }
         subscribedFields.clear();
-        // clear filters
-        MainActivity.device.clearFields();
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -91,72 +150,57 @@ public class DrivingActivity extends AppCompatActivity implements FieldListener 
 
                 // get the text field
                 switch (fieldId) {
-                    case SID_SoC:
+                    case SID_EVC_SoC:
                         tv = (TextView) findViewById(R.id.textSOC);
                         break;
                     case SID_Pedal:
+                    case SID_EVC_Pedal:
                         pb = (ProgressBar) findViewById(R.id.pedalBar);
                         pb.setProgress((int) field.getValue());
                         break;
-                    case SID_CcPedal:
-                        pb = (ProgressBar) findViewById(R.id.ccPedalBar);
+                    case SID_MeanEffectiveTorque:
+                        pb = (ProgressBar) findViewById(R.id.MeanEffectiveTorque);
                         pb.setProgress((int) field.getValue());
                         break;
+                    case SID_EVC_Odometer:
+                        int odo = (int) field.getValue();
+                        if (lastOdo < 1) lastOdo = odo; // assume a lastOdo < 1 to be initialisation
+                        if (odo > lastOdo && odo < (lastOdo + 10)) { // we update only if there are no weird odo values
+                            try {
+                                tv = (TextView) findViewById(R.id.textKmToDest);
+                                int newKmToDest = Integer.parseInt("" + tv.getText());
+                                newKmToDest -= (odo - lastOdo);
+                                if (newKmToDest >= 0) {
+                                    setKmToDest("" + newKmToDest, "" + (kmInBat - newKmToDest));
+                                } else {
+                                    setKmToDest("0", "0");
+                                }
+                            } catch (Exception e) {
+                            }
+                            lastOdo = odo;
+                        }
+                        tv = null;
+                        break;
                     case SID_RealSpeed:
+                    case SID_EVC_RealSpeed:
                         tv = (TextView) findViewById(R.id.textRealSpeed);
                         break;
-                    case SID_Torque:
-                        tv = (TextView) findViewById(R.id.textTorque);
-                        break;
-                    case SID_TractionBatteryVoltage: // DC volts
+                    //case SID_PEB_Torque:
+                    //    tv = (TextView) findViewById(R.id.textTorque);
+                    //    break;
+                    case SID_EVC_TractionBatteryVoltage: // DC volts
                         // save DC voltage for DC power purposes
                         dcVolt = field.getValue();
-                        // continue
-                        tv = (TextView) findViewById(R.id.textVolt);
                         break;
-                    case SID_TractionBatteryCurrent: // DC amps
+                    case SID_EVC_TractionBatteryCurrent: // DC amps
                         // calculate DC power
                         double dcPwr = (double) Math.round(dcVolt * field.getValue());
                         tv = (TextView) findViewById(R.id.textDcPwr);
                         tv.setText("" + (dcPwr));
-                        // continue
-                        tv = (TextView) findViewById(R.id.textAmps);
+                        tv = null;
                         break;
-                    case SID_Preamble_CompartmentTemperatures + "32":
-                        tv = (TextView) findViewById(R.id.text_comp_1_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "56":
-                        tv = (TextView) findViewById(R.id.text_comp_2_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "80":
-                        tv = (TextView) findViewById(R.id.text_comp_3_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "104":
-                        tv = (TextView) findViewById(R.id.text_comp_4_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "128":
-                        tv = (TextView) findViewById(R.id.text_comp_5_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "152":
-                        tv = (TextView) findViewById(R.id.text_comp_6_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "176":
-                        tv = (TextView) findViewById(R.id.text_comp_7_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "200":
-                        tv = (TextView) findViewById(R.id.text_comp_8_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "224":
-                        tv = (TextView) findViewById(R.id.text_comp_9_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "248":
-                        tv = (TextView) findViewById(R.id.text_comp_10_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "272":
-                        tv = (TextView) findViewById(R.id.text_comp_11_temp);
-                        break;
-                    case SID_Preamble_CompartmentTemperatures + "296":
-                        tv = (TextView) findViewById(R.id.text_comp_12_temp);
+                    case SID_RangeEstimate:
+                        kmInBat = (int) field.getValue();
                         break;
                 }
                 // set regular new content, all exeptions handled above

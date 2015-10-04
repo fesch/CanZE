@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.widgets.WidgetView;
 
-public class WidgetActivity extends AppCompatActivity {
+public class WidgetActivity extends CanzeActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,14 @@ public class WidgetActivity extends AppCompatActivity {
             setTitle(WidgetView.selectedDrawable.getTitle());
         }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        WidgetView wv = (WidgetView) findViewById(R.id.selectedWidget);
+        wv.reset();
+
+        super.onDestroy();
     }
 
     @Override

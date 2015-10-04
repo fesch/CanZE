@@ -5,7 +5,7 @@
     <item
         android:id="@+id/action_cancel"
         android:orderInCategory="100"
-        android:title="Settings"
+        android:title="@string/action_settings"
         android:visible="true"
         android:icon="@mipmap/action_deny"
         app:showAsAction="always"
@@ -14,10 +14,10 @@
     <item
         android:id="@+id/action_ok"
         android:orderInCategory="100"
-        android:title="Settings"
+        android:title="@string/action_settings"
         android:visible="true"
         android:icon="@mipmap/action_accept"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         />
 
 </menu>

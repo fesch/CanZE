@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import lu.fisch.canze.widgets.Bar;
 import lu.fisch.canze.widgets.WidgetView;
 
-public class BatteryVoltageActivity extends AppCompatActivity {
+public class BatteryVoltageActivity extends CanzeActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,9 +81,6 @@ public class BatteryVoltageActivity extends AppCompatActivity {
             final WidgetView wv = widgets.get(i);
             MainActivity.fields.getBySID(wv.getFieldSID()).removeListener(wv.getDrawable());
         }
-        // clear filters
-        // OLD: MainActivity.reader.clearFields();
-        MainActivity.device.clearFields();
     }
 
     @Override

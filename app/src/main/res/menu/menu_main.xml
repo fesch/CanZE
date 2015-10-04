@@ -5,7 +5,7 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="Settings"
+        android:title="@string/action_settings"
         android:visible="true" 
         android:icon="@mipmap/action_config"
         app:showAsAction="always"

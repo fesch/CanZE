@@ -11,9 +11,10 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.widgets.WidgetView;
 
-public class BatteryTempActivity extends AppCompatActivity {
+public class BatteryTempActivity extends CanzeActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +37,6 @@ public class BatteryTempActivity extends AppCompatActivity {
             final WidgetView wv = widgets.get(i);
             MainActivity.fields.getBySID(wv.getFieldSID()).removeListener(wv.getDrawable());
         }
-        // clear filters
-        // OLD: MainActivity.reader.clearFields();
-        MainActivity.device.clearFields();
     }
 
     @Override
@@ -83,47 +81,56 @@ public class BatteryTempActivity extends AppCompatActivity {
                 ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
                 for (int i = 0; i < widgets.size(); i++) {
                     final WidgetView wv = widgets.get(i);
-                    // connect widgets to fields
-                    MainActivity.fields.getBySID(wv.getFieldSID()).addListener(wv.getDrawable());
-                    // add filter to reader
-                    // OLD: MainActivity.reader.addField(wv.getDrawable().getField());
-                    MainActivity.device.addField(wv.getDrawable().getField());
 
-                    // touching a widget makes a "bigger" version appear
-                    wv.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            // get pointer index from the event object
-                            int pointerIndex = event.getActionIndex();
+                    // hide the last 16 cells if not on Zoé
+                    if(i>3 &&
+                            Fields.getInstance().getCar()!=Fields.CAR_ZOE &&
+                            Fields.getInstance().getCar()!=Fields.CAR_X10) {
+                        wv.setVisibility(View.INVISIBLE);
+                    }
+                    else {
+                        // connect widgets to fields
+                        MainActivity.fields.getBySID(wv.getFieldSID()).addListener(wv.getDrawable());
+                        // add filter to reader
+                        // OLD: MainActivity.reader.addField(wv.getDrawable().getField());
+                        MainActivity.device.addField(wv.getDrawable().getField());
 
-                            // get pointer ID
-                            int pointerId = event.getPointerId(pointerIndex);
+                        // touching a widget makes a "bigger" version appear
+                        wv.setOnTouchListener(new View.OnTouchListener() {
+                            @Override
+                            public boolean onTouch(View v, MotionEvent event) {
+                                // get pointer index from the event object
+                                int pointerIndex = event.getActionIndex();
 
-                            // get masked (not specific to a pointer) action
-                            int maskedAction = event.getActionMasked();
+                                // get pointer ID
+                                int pointerId = event.getPointerId(pointerIndex);
 
-                            switch (maskedAction) {
-                                case MotionEvent.ACTION_DOWN:
-                                case MotionEvent.ACTION_POINTER_DOWN: {
-                                    Intent intent = new Intent(BatteryTempActivity.this, WidgetActivity.class);
-                                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    WidgetView.selectedDrawable = wv.getDrawable();
-                                    BatteryTempActivity.this.startActivity(intent);
-                                    break;
+                                // get masked (not specific to a pointer) action
+                                int maskedAction = event.getActionMasked();
+
+                                switch (maskedAction) {
+                                    case MotionEvent.ACTION_DOWN:
+                                    case MotionEvent.ACTION_POINTER_DOWN: {
+                                        Intent intent = new Intent(BatteryTempActivity.this, WidgetActivity.class);
+                                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        WidgetView.selectedDrawable = wv.getDrawable();
+                                        BatteryTempActivity.this.startActivity(intent);
+                                        break;
+                                    }
+                                    case MotionEvent.ACTION_MOVE:
+                                    case MotionEvent.ACTION_UP:
+                                    case MotionEvent.ACTION_POINTER_UP:
+                                    case MotionEvent.ACTION_CANCEL: {
+                                        break;
+                                    }
                                 }
-                                case MotionEvent.ACTION_MOVE:
-                                case MotionEvent.ACTION_UP:
-                                case MotionEvent.ACTION_POINTER_UP:
-                                case MotionEvent.ACTION_CANCEL: {
-                                    break;
-                                }
+
+                                wv.invalidate();
+
+                                return true;
                             }
-
-                            wv.invalidate();
-
-                            return true;
-                        }
-                    });
+                        });
+                    }
                 }
             }
         });

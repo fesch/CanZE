@@ -1,0 +1,323 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:keepScreenOn="true"
+    android:layout_height="fill_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="lu.fisch.canze.FirmwareActivity">
+
+    <TextView
+        android:id="@+id/HeaderFirmware"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/header_firmware"
+        android:layout_alignParentLeft="true"
+        android:textColor="#000" />
+
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/HeaderFirmware"
+        android:stretchColumns="1">
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_evc"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu7ec"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_tcu"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu7da"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_lbc"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu7bb"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/lavel_ecu_peb"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu77e"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_aibag"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu772"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_usm"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu76d"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_cluster"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu763"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_eps"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu762"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_abs"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu760"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_ubp"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu7bc"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_bcm"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu765"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_clim"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu764"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_upa"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu76e"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_bcb"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu793"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_lbc2"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu7b6"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_column="1"
+                android:text="@string/label_ecu_linsch"
+                android:padding="3dip"
+                />
+            <TextView
+                android:text="@string/default_firmware"
+                android:padding="3dip"
+                android:id="@+id/ecu722"
+                />
+
+        </TableRow>
+
+
+    </TableLayout>
+
+    <!-- debug line -->
+    <TextView
+        android:id="@+id/textDebug"
+        android:text="@string/default_debug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        />
+    <TextView
+        android:id="@+id/HeaderDebug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/header_Debug"
+        android:layout_above="@id/textDebug"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        />
+
+</RelativeLayout>
+
