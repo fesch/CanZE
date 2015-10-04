@@ -44,6 +44,7 @@ public class Fields implements MessageListener {
     public static final int CAR_FLUENCE         = 1;
     public static final int CAR_ZOE             = 2;
     public static final int CAR_KANGOO          = 3;
+    public static final int CAR_TWIZY           = 4;    // you'll never know ;-)
     public static final int CAR_X10             = 5;
 
 

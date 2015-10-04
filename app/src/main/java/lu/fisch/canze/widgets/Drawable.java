@@ -58,6 +58,15 @@ public abstract class Drawable implements Space, FieldListener {
             drawSurface.repaint();
     }
 
+    public void onLayout(boolean landscape)
+    {
+        // empty
+    }
+
+    public void reset()
+    {
+        // empty
+    }
 
     /* --------------------------------
      * Getters & setters

@@ -72,6 +72,8 @@
             android:name=".FirmwareActivity"
             android:label="@string/title_activity_firmware" >
         </activity>
+        <activity android:name=".BatteryActivity" >
+        </activity>
     </application>
 
 </manifest>

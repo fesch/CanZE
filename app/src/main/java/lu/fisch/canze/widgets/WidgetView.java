@@ -36,6 +36,8 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 
     private boolean clickable = true;
 
+    protected boolean landscape = true;
+
     // for data sharing
     public static Drawable selectedDrawable = null;
 
@@ -67,7 +69,21 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 		init(context,attrs);
 	}
 
-	public void init(final Context context, AttributeSet attrs)
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+
+        landscape = (right-left)>(bottom-top);
+        if(changed) drawable.onLayout(landscape);
+    }
+
+    public void reset()
+    {
+        drawable.reset();
+        repaint();
+    }
+
+    public void init(final Context context, AttributeSet attrs)
 	{
         // register our interest in hearing about changes to our surface
         SurfaceHolder holder = getHolder();
@@ -86,8 +102,8 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
             try
             {
                 // create configured widget
-                String[] widgets = {"Tacho","Kompass", "Bar","BatteryBar","Plotter"};
-                TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs,R.styleable.WidgetView,0,0);
+                String[] widgets = {"Tacho","Kompass", "Bar","BatteryBar","Plotter","Label"};
+                TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.WidgetView, 0, 0);
                 int widgetIndex = attributes.getInt(R.styleable.WidgetView_widget, 0);
                 if(widgetIndex<widgets.length)
                 {

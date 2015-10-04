@@ -25,6 +25,14 @@ public class WidgetActivity extends CanzeActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        WidgetView wv = (WidgetView) findViewById(R.id.selectedWidget);
+        wv.reset();
+
+        super.onDestroy();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_widget, menu);

@@ -416,6 +416,23 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             }
         });
 
+        button = (Button) findViewById(R.id.buttonBattery);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(connectedBluetoothThread==null)
+                {
+                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(!isSafe()) return;
+                leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.this, BatteryActivity.class);
+                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
+            }
+        });
+
+
 
         // link the fields to the stack
         // OLD stack.addListener(fields);

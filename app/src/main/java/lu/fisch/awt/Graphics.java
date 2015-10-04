@@ -215,7 +215,7 @@ public class Graphics
 		Paint textPaint = new Paint();
 		textPaint.setTextSize(textSize);
 		textPaint.getTextBounds(_string, 0, _string.length(),bounds);
-		return bounds.height()+4;
+		return bounds.height();
 	}
 
 }
