@@ -17,7 +17,7 @@ import lu.fisch.canze.interfaces.FieldListener;
 
 public class FirmwareActivity extends CanzeActivity implements FieldListener {
 
-    private static final int [] zoeVersions     = {0x0203, 0x0112, 0x0651, 0x0a06, 0x0470, 0xc630, 0x0507, 0x014a, 0x1178, 0x1516, 0x140e, 0x0701,      0,      0, 0x0651,      0};
+    private static final int [] zoeVersions     = {0x0203, 0x0112, 0x0651, 0x0a06, 0x0470, 0xc630, 0x0507, 0x014a, 0x1178, 0x1516, 0x140e, 0x0701, 0x0017, 0x0210, 0x0651,      0};
     private static final int [] fluenceVersions = {0x0202, 0x0172, 0x7505, 0x02ba, 0x0305, 0x0907, 0x0026, 0x014a, 0x8160,      0, 0x140e, 0x0007, 0x0024, 0xd300, 0x5c0a,      0};
     private static final int [] kangooVersions  = {     1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1};
     private static final int [] x10Versions     = zoeVersions;
