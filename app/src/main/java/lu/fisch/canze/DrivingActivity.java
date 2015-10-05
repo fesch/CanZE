@@ -107,7 +107,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     }
 
     private void setKmToDest (String km1, String km2) {
-        TextView tv = null;
+        TextView tv;
         tv = (TextView) findViewById(R.id.textKmToDest);
         tv.setText(km1);
         tv = (TextView) findViewById(R.id.textKmAVailAtDest);
@@ -228,7 +228,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText("" + field.getValue());
+                    tv.setText("" + (double) (Math.round(field.getValue() * 10) / 10));
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);
