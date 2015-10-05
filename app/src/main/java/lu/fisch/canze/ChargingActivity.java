@@ -60,7 +60,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
         }
         else
         {
-            lastCell = 128;
+            lastCell = 104;
         }
         for (int i = 32; i <= lastCell; i += 24) {
             String sid = SID_Preamble_CompartmentTemperatures + i;
@@ -208,7 +208,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText("" + field.getValue());
+                    tv.setText("" + (double) (Math.round(field.getValue() * 10) / 10));
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);

@@ -70,7 +70,7 @@
 
     <string name="label_CompTemp">Battery Compartment temperatures</string>
 
-    <string name="default_CompT">#T</string>
+    <string name="default_CompT"></string>
 
     <string name="default_CellV">#V</string>
 
