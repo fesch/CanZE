@@ -72,6 +72,62 @@ public class Timeplot extends Drawable {
         int fillHeight = (int) ((value-min)/(double)(max-min)*(height-1));
         int barWidth = width-Math.max(g.stringWidth(min+""),g.stringWidth(max+""))-10-10;
 
+        // draw the ticks
+        if(minorTicks>0 || majorTicks>0)
+        {
+            int toTicks = minorTicks;
+            if(toTicks==0) toTicks=majorTicks;
+            double accel = (double)height/((max-min)/(double)toTicks);
+            double ax,ay,bx=0,by=0;
+            int actual = min;
+            int sum = 0;
+            for(double i=height; i>=0; i-=accel)
+            {
+                if(minorTicks>0)
+                {
+                    g.setColor(Color.GRAY);
+                    ax = x+width-barWidth-5;
+                    ay = y+i;
+                    bx = x+width-barWidth;
+                    by = y+i;
+                    g.drawLine((int)ax, (int)ay, (int)bx, (int)by);
+                }
+                // draw majorTicks
+                if(majorTicks!=0 && sum % majorTicks == 0) {
+                    if(majorTicks>0)
+                    {
+                        g.setColor(Color.GRAY_LIGHT);
+                        ax = x+width-barWidth-10;
+                        ay = y+i;
+                        bx = x+width;
+                        by = y+i;
+                        g.drawLine((int)ax, (int)ay, (int)bx, (int)by);
+
+                        g.setColor(Color.GRAY);
+                        ax = x+width-barWidth-10;
+                        ay = y+i;
+                        bx = x+width-barWidth;
+                        by = y+i;
+                        g.drawLine((int)ax, (int)ay, (int)bx, (int)by);
+                    }
+
+                    // draw String
+                    if(showLabels)
+                    {
+                        g.setColor(Color.GRAY);
+                        String text = (actual)+"";
+                        double sw = g.stringWidth(text);
+                        bx = x+width-barWidth-16-sw;
+                        by = y+i;
+                        g.drawString(text, (int)(bx), (int)(by+g.stringHeight(text)*(1-i/height)));
+                    }
+
+                    actual+=majorTicks;
+                }
+                sum+=minorTicks;
+            }
+        }
+
         // draw the graph
         g.drawRect(x+width-barWidth, y, barWidth, height);
         if(values.size()>0)
@@ -112,53 +168,6 @@ public class Timeplot extends Drawable {
                     lastX = mx;
                     lastY = my;
                 }
-            }
-        }
-
-        // draw the ticks
-        if(minorTicks>0 || majorTicks>0)
-        {
-            g.setColor(Color.GRAY);
-            int toTicks = minorTicks;
-            if(toTicks==0) toTicks=majorTicks;
-            double accel = (double)height/((max-min)/(double)toTicks);
-            double ax,ay,bx=0,by=0;
-            int actual = min;
-            int sum = 0;
-            for(double i=height; i>=0; i-=accel)
-            {
-                if(minorTicks>0)
-                {
-                    ax = x+width-barWidth-5;
-                    ay = y+i;
-                    bx = x+width-barWidth;
-                    by = y+i;
-                    g.drawLine((int)ax, (int)ay, (int)bx, (int)by);
-                }
-                // draw majorTicks
-                if(majorTicks!=0 && sum % majorTicks == 0) {
-                    if(majorTicks>0)
-                    {
-                        ax = x+width-barWidth-10;
-                        ay = y+i;
-                        bx = x+width-barWidth;
-                        by = y+i;
-                        g.drawLine((int)ax, (int)ay, (int)bx, (int)by);
-                    }
-
-                    // draw String
-                    if(showLabels)
-                    {
-                        String text = (actual)+"";
-                        double sw = g.stringWidth(text);
-                        bx = x+width-barWidth-16-sw;
-                        by = y+i;
-                        g.drawString(text, (int)(bx), (int)(by+g.stringHeight(text)*(1-i/height)));
-                    }
-
-                    actual+=majorTicks;
-                }
-                sum+=minorTicks;
             }
         }
 
