@@ -172,7 +172,6 @@ public class Tacho extends Drawable {
                 int ty = getY()+getHeight()-8;
                 g.drawString(title,tx,ty);
             }
-
     }
     
     /* --------------------------------

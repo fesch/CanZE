@@ -1,28 +1,38 @@
 package lu.fisch.canze.widgets;
 
+import android.graphics.Point;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
-import java.util.ArrayList;
-
-import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
-import lu.fisch.canze.widgets.Drawable;
 
 /**
  *
  * @author robertfisch
  */
-public class Plotter extends Drawable {
+public class Timeplot extends Drawable {
 
-    protected ArrayList<Double> values = new ArrayList<>();
-    protected ArrayList<String> sids = new ArrayList<>();
+    class TimePoint {
+        public long date;
+        public double value;
 
-    public Plotter() {
+        public TimePoint(long date, double value) {
+            this.date = date;
+            this.value = value;
+        }
+    }
+
+    protected ArrayList<TimePoint> values = new ArrayList<>();
+
+    public Timeplot() {
         super();
     }
 
-    public Plotter(int x, int y, int width, int height) {
+    public Timeplot(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -30,7 +40,7 @@ public class Plotter extends Drawable {
         // test
     }
 
-    public Plotter(DrawSurfaceInterface drawSurface, int x, int y, int width, int height) {
+    public Timeplot(DrawSurfaceInterface drawSurface, int x, int y, int width, int height) {
         this.drawSurface=drawSurface;
         this.x = x;
         this.y = y;
@@ -40,18 +50,16 @@ public class Plotter extends Drawable {
 
     public void addValue(double value)
     {
-        values.add(value);
-    }
+        values.add(new TimePoint(Calendar.getInstance().getTimeInMillis(), value));
+        if(value<min) setMin((int) value - 1);
+        else if(value>max) setMax((int) value + 1);
 
-    public void setValue(int index, double value)
-    {
-        values.set(index, value);
-    }
-
-    @Override
-    public void setValue(int value) {
-        super.setValue(value);
-        //addValue(value);
+        /*setMinorTicks(0);
+        setMajorTicks(1);
+        if(getMax()-getMin()>100) setMajorTicks(10);
+        else if(getMax()-getMin()>1000) setMajorTicks(100);
+        else if(getMax()-getMin()>10000) setMajorTicks(1000);
+        /**/
     }
 
     @Override
@@ -68,27 +76,42 @@ public class Plotter extends Drawable {
         g.drawRect(x+width-barWidth, y, barWidth, height);
         if(values.size()>0)
         {
+
             double w = (double) barWidth/values.size();
             double h = (double) getHeight()/(getMax()-getMin()+1);
 
             double lastX = Double.NaN;
             double lastY = Double.NaN;
             g.setColor(Color.RED);
-            for(int i=0; i<values.size(); i++)
+
+            long maxTime = values.get(values.size()-1).date;
+
+            for(int i=values.size()-1; i>=0; i--)
             {
-                double mx = w/2+i*w;
-                double my = getHeight()-(values.get(i)-getMin())*h;
-                int rayon = 2;
-                g.fillOval(getX()+getWidth()-barWidth+(int)mx-rayon,getY()+(int)my-rayon,2*rayon+1,2*rayon+1);
-                if(i>0)
+                TimePoint tp = values.get(i);
+
+                double mx = barWidth-(maxTime-tp.date)/1000;
+
+                if(mx<0)
                 {
-                    g.drawLine(getX()+getWidth()-barWidth+(int)lastX,
-                            getY()+(int)lastY,
-                            getX()+getWidth()-barWidth+(int)mx,
-                            getY()+(int)my);
+                    values.remove(i);
                 }
-                lastX=mx;
-                lastY=my;
+                else {
+                    double my = getHeight() - (tp.value - getMin()) * h;
+                    int rayon = 2;
+                    g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon,
+                            getY() + (int) my - rayon,
+                            2 * rayon + 1,
+                            2 * rayon + 1);
+                    if (i < values.size() - 1) {
+                        g.drawLine(getX() + getWidth() - barWidth + (int) lastX,
+                                getY() + (int) lastY,
+                                getX() + getWidth() - barWidth + (int) mx,
+                                getY() + (int) my);
+                    }
+                    lastX = mx;
+                    lastY = my;
+                }
             }
         }
 
@@ -149,22 +172,29 @@ public class Plotter extends Drawable {
             int ty = getY()+th+4;
             g.drawString(title,tx,ty);
         }
+
+        // draw the value
+        if(showValue)
+        {
+            if(field !=null) {
+                String text = String.format("%." + (String.valueOf(field.getDecimals()).length() - 1) + "f", field.getValue());
+
+                g.setTextSize(40);
+                g.setColor(Color.GREEN_DARK);
+                int tw = g.stringWidth(text);
+                int th = g.stringHeight(text);
+                int tx = getX()+width-tw-8;
+                int ty = getY()+th+4;
+                g.drawString(text, tx, ty);
+            }
+        }
+
     }
 
     @Override
     public void onFieldUpdateEvent(Field field) {
-        String sid = field.getSID();
+        addValue(field.getValue());
 
-        //MainActivity.debug("Plotter: "+sid+" --> "+field.getValue());
-
-        int index = sids.indexOf(sid);
-        if(index==-1){
-            sids.add(sid);
-            addValue(field.getValue());
-        }
-        else setValue(index,field.getValue());
-        // only repaint if the last field has been updated
-        //if(index==sids.size()-1)
-            super.onFieldUpdateEvent(field);
+        super.onFieldUpdateEvent(field);
     }
 }

@@ -16,6 +16,7 @@
             <enum name="batterybar" value="3"/>
             <enum name="plotter" value="4"/>
             <enum name="label" value="5"/>
+            <enum name="timeplot" value="6"/>
         </attr>
         <attr name="text" format="string" />
     </declare-styleable>
