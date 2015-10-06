@@ -1,7 +1,7 @@
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:keepScreenOn="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -79,6 +79,35 @@
 
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:text=""
+                android:id="@+id/buttonEmpty42"
+                android:layout_column="0" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Braking"
+                android:id="@+id/buttonBraking"
+                android:layout_column="0" />
+
+        </TableRow>
 
 
 
@@ -130,8 +159,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="Braking (Jeroen)"
-                android:id="@+id/buttonBraking"
+                android:text="LeafSpy (Bob)"
+                android:id="@+id/buttonLeafSpy"
                 android:layout_column="0" />
 
         </TableRow>
@@ -189,8 +218,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text=""
-                android:id="@+id/buttonEmpty27"
+                android:text="TachoActivity (Bob)"
+                android:id="@+id/buttonTacho"
                 android:layout_column="0" />
 
         </TableRow>
@@ -207,9 +236,10 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="TachoActivity (Bob)"
-                android:id="@+id/buttonTacho"
+                android:text=""
+                android:id="@+id/buttonEmpty26"
                 android:layout_column="0" />
+
 
             <Button
                 android:layout_width="0dp"
@@ -219,8 +249,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="LeafSpy (Bob)"
-                android:id="@+id/buttonLeafSpy"
+                android:text=""
+                android:id="@+id/buttonEmpty27"
                 android:layout_column="0" />
 
 
