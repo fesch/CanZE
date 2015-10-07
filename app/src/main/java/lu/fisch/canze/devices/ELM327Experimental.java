@@ -203,47 +203,51 @@ public class ELM327Experimental extends Device {
         }
 
         // only do version control at a full reset
-        if (toughness <= 1 && !response.contains("v1.4") && !response.contains("v1.5")) {
+        if (toughness <= 1 && !response.toUpperCase().contains("V1.4") && !response.toUpperCase().contains("V1.5")) {
             MainActivity.toast("ELM is not a version 1.4 or 1.5 [" + response + "]");
             return false;
         }
 
-
-
         // ate0 (no echo)
-        if (!sendSerialCommandElm("ate0", 0).contains("OK")) {
-            MainActivity.toast("Error on command e0");
+        response = sendSerialCommandElm("ate0", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err e0 [" + response + "]");
             return false;
         }
 
         // ats0 (no spaces)
-        if (!sendSerialCommandElm("ats0", 0).contains("OK")) {
-            MainActivity.toast("Error on command s0");
+        response = sendSerialCommandElm("ats0", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err s0 [" + response + "]");
             return false;
         }
 
         // atsp6 (CAN 500K 11 bit)
-        if (!sendSerialCommandElm("atsp6", 0).contains("OK")) {
-            MainActivity.toast("Error on command sp6");
+        response = sendSerialCommandElm("atsp6", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err sp6 [" + response + "]");
             return false;
         }
 
         // atat1 (auto timing)
-        if (!sendSerialCommandElm("atat1", 0).contains("OK")) {
-            MainActivity.toast("Error on command at1");
+        response = sendSerialCommandElm("atat1", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err at1 [" + response + "]");
             return false;
         }
 
         // atcaf0 (no formatting)
-        if (!sendSerialCommandElm("atcaf0", 0).contains("OK")) {
-            MainActivity.toast("Error on command caf0");
+        response = sendSerialCommandElm("atcaf0", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err caf0 [" + response + "]");
             return false;
         }
 
         // PERFORMANCE ENHACMENT
         // atfcsh79b        Set flow control response ID to 79b (the LBC) This is needed to set the flow control response, but that one is remembered :-)
-        if (!sendSerialCommandElm("atfcsh77b", 0).contains("OK")) {
-            MainActivity.toast("Error on command fcsh77b");
+        response = sendSerialCommandElm("atcsh77b", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err csh77b [" + response + "]");
             return false;
         }
 
@@ -251,14 +255,16 @@ public class ELM327Experimental extends Device {
         //                  all frames, 16 ms wait between frames. Note that it is not possible to let
         //                  the ELM request each frame as the Altered Flow Control only responds to a
         //                  First Frame (not a Next Frame)
-        if (!sendSerialCommandElm("atfcsd300010", 0).contains("OK")) {
-            MainActivity.toast("Error on command fcsd300010");
+        response = sendSerialCommandElm("atfcsd300010", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err fcsd300010 [" + response + "]");
             return false;
         }
 
         // atfcsm1          Set flow control mode 1 (ID and data suplied)
-        if (!sendSerialCommandElm("atfcsm1", 0).contains("OK")) {
-            MainActivity.toast("Error on command atfcsm1");
+        response = sendSerialCommandElm("atfcsm1", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err fcsm1 [" + response + "]");
             return false;
         }
 
@@ -343,9 +349,8 @@ public class ELM327Experimental extends Device {
     // open as passive monitor for a given frame ID, and stop as soon as one line is in
     private String sendSerialMonitor (String id, int timeout) {
         String result;
-        int length = 0;
 
-        if (sendSerialCommandElm("atcra" + ("000" + id).substring(id.length()), 0).contains("OK")) {
+        if (sendSerialCommandElm("atcra" + ("000" + id).substring(id.length()), 0).toUpperCase().contains("OK")) {
             try {
                 Thread.sleep(400);
                 flushSerial();
@@ -353,8 +358,8 @@ public class ELM327Experimental extends Device {
                 result = getSerialCommandLine('\r', timeout);
                 sendSerial("x");
                 getSerialCommandLine('>', TIMEOUT);
-                if (!sendSerialCommandElm("atar", 0).contains("OK")) {
-                    if (!sendSerialCommandElm("atar", 0).contains("OK")) {
+                if (!sendSerialCommandElm("atar", 0).toUpperCase().contains("OK")) {
+                    if (!sendSerialCommandElm("atar", 0).toUpperCase().contains("OK")) {
                         MainActivity.toast("Error on command ar");
                     }
                 }
@@ -380,7 +385,7 @@ public class ELM327Experimental extends Device {
         }
         sendSerial("0" + (command.length() / 2) + command + "\r");
         result = getSerialCommandLine('\r', TIMEOUT);
-        if (result.contains("NO DATA") || result.contains("CAN ERROR")) {
+        if (result.toUpperCase().contains("NO DATA") || result.toUpperCase().contains("CAN ERROR")) {
             MainActivity.toast("iso " + id + "," + command + ":" + result);
             restoreOrder(2);
             return "";
@@ -496,8 +501,8 @@ public class ELM327Experimental extends Device {
                 if (field.isIsoTp()) {
 
                     result = sendSerialCommandIsoTp (getRequestHexId(field.getId()), field.getRequestId(), false, lastId == field.getId());
-                    //MainActivity.toast("iso " + getRequestHexId(field.getId()) + "," + field.getRequestId() + ":" + result);
-                    //Thread.sleep(1000);
+                    MainActivity.toast("iso " + getRequestHexId(field.getId()) + "," + field.getRequestId() + ":" + result);
+                    Thread.sleep(1000);
                     lastId = field.getId();
 
                     // process data
@@ -506,8 +511,8 @@ public class ELM327Experimental extends Device {
                 } else {
 
                     result = sendSerialMonitor(field.getHexId(), field.getFrequency()+20);
-                    //MainActivity.toast("atma " + field.getHexId() + ":" + result);
-                    //Thread.sleep(1000);
+                    MainActivity.toast("atma " + field.getHexId() + ":" + result);
+                    Thread.sleep(1000);
                     // process data
                     process(Utils.toIntArray(result.getBytes()));
                 }
