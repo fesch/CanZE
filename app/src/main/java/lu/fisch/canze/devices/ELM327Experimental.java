@@ -179,13 +179,14 @@ public class ELM327Experimental extends Device {
         // ensure the dongle header are set again
         lastId = 0;
 
-        String response = "";
+        String response;
 
+        flushSerial();
         // sendSerialCommandElm("x", 2); // kill any running command (specifically ATMA), ignore response
 
         switch (toughness) {
             case 0:
-                //response = sendSerialCommandElm("atz", 1);
+                //response = sendSerialCommandElm("atz", 1); // we don't need the LED test
                 response = sendSerialCommandElm("atws", 1);
                 break;
             case 1:
@@ -294,9 +295,7 @@ public class ELM327Experimental extends Device {
                 if (connectedBluetoothThread.available() > 0) return true;
                 Thread.sleep(2);
             }
-        } catch (IOException e) {
-            // ignore
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             // ignore
         }
         return false;
@@ -331,16 +330,21 @@ public class ELM327Experimental extends Device {
 
     // send a command to control the ELM and wait for an answer
     private String sendSerialCommandElm(String command, int retries) {
+        String result;
         do {
             flushSerial();
             sendSerial(command + "\r");
-            return getSerialCommandLine('>', TIMEOUT);
+            result = getSerialCommandLine('>', TIMEOUT);
+            if (!result.equals("")) return result;
         } while (retries-- >= 0);
+        return ("");
     }
 
     // open as passive monitor for a given frame ID, and stop as soon as one line is in
     private String sendSerialMonitor (String id, int timeout) {
-        String result = "";
+        String result;
+        int length = 0;
+
         if (sendSerialCommandElm("atcra" + ("000" + id).substring(id.length()), 0).contains("OK")) {
             try {
                 Thread.sleep(400);
@@ -363,7 +367,11 @@ public class ELM327Experimental extends Device {
     }
 
     String sendSerialCommandIsoTp (String id, String command, boolean checkUDP, boolean fast) {
-        String result = "";
+        String result;
+        String finalResult;
+        int length;
+        int runLength;
+        int sequence;
         if (!fast) {
             sendSerialCommandElm("atsh" + ("000" + id).substring(id.length()), 0);
             //sendSerialCommandElm("atfcsd300010", 0);
@@ -373,37 +381,85 @@ public class ELM327Experimental extends Device {
         sendSerial("0" + (command.length() / 2) + command + "\r");
         result = getSerialCommandLine('\r', TIMEOUT);
         if (result.contains("NO DATA") || result.contains("CAN ERROR")) {
-            MainActivity.toast("ELM error:" + result);
+            MainActivity.toast("iso " + id + "," + command + ":" + result);
             restoreOrder(2);
-            result = "";
+            return "";
         }
 
+        switch (result.substring(0, 1)) {
+            case "0": //SINGLE
+                length = Integer.valueOf(result.substring(1, 2), 16);
+                if (length > 7) {
+                    MainActivity.toast("iso0 " + id + "," + command + ":" + result);
+                    restoreOrder(2);
+                    return ("");
+                }
+                return result.substring(2, 2 + (length * 2));
+            case "1": // FIRST
+                length = Integer.valueOf(result.substring(1, 4), 16);
+                finalResult = result.substring(4);
+                runLength = length - 6; // we already have 6 data bytes
+                sequence = 1;
+                while (runLength > 0) {
+                    result = getSerialCommandLine('\r', TIMEOUT);
+                    if (!result.substring(0, 2).equals(Integer.toHexString(0x20 + sequence))) {
+                        MainActivity.toast("iso seq " + id + "," + command + ":" + result);
+                        restoreOrder(2);
+                        return ("");
 
-
-
-
-        return result;
+                    }
+                    finalResult += result;
+                    sequence = (sequence + 1) & 0xf;
+                    runLength -= 7;
+                }
+                finalResult = finalResult.substring(0, length * 2);
+                return finalResult;
+            default:
+                MainActivity.toast("iso x " + id + "," + command + ":" + result);
+                restoreOrder(2);
+                break;
+        }
+        return "";
     }
 
     private int getRequestId(int responseId)
-    {                     //from        // to
-        if     (responseId==0x7ec) return 0x7e4;  // EVC / SCH
-        else if(responseId==0x7cd) return 0x7ca;  // TCU
-        else if(responseId==0x7bb) return 0x79b;  // LBC
-        else if(responseId==0x77e) return 0x75a;  // PEB
-        else if(responseId==0x772) return 0x752;  // Airbag
-        else if(responseId==0x76d) return 0x74d;  // USM / UDP
-        else if(responseId==0x763) return 0x743;  // CLUSTER / instrument panel
-        else if(responseId==0x762) return 0x742;  // PAS
-        else if(responseId==0x760) return 0x740;  // ABS
-        else if(responseId==0x7bc) return 0x79c;  // UBP
-        else if(responseId==0x765) return 0x745;  // BCM
-        else if(responseId==0x764) return 0x744;  // CLIM
-        else if(responseId==0x76e) return 0x74e;  // UPA
-        else if(responseId==0x793) return 0x792;  // BCB
-        else if(responseId==0x7b6) return 0x796;  // LBC2
-        else if(responseId==0x722) return 0x702;  // LINSCH
-        else return -1;
+    {          //from  to
+        switch (responseId) {
+            case 0x7ec:
+                return 0x7e4;  // EVC / SCH
+            case 0x7cd:
+                return 0x7ca;  // TCU
+            case 0x7bb:
+                return 0x79b;  // LBC
+            case 0x77e:
+                return 0x75a;  // PEB
+            case 0x772:
+                return 0x752;  // Airbag
+            case 0x76d:
+                return 0x74d;  // USM / UDP
+            case 0x763:
+                return 0x743;  // CLUSTER / instrument panel
+            case 0x762:
+                return 0x742;  // PAS
+            case 0x760:
+                return 0x740;  // ABS
+            case 0x7bc:
+                return 0x79c;  // UBP
+            case 0x765:
+                return 0x745;  // BCM
+            case 0x764:
+                return 0x744;  // CLIM
+            case 0x76e:
+                return 0x74e;  // UPA
+            case 0x793:
+                return 0x792;  // BCB
+            case 0x7b6:
+                return 0x796;  // LBC2
+            case 0x722:
+                return 0x702;  // LINSCH
+            default:
+                return -1;
+        }
     }
 
     private String getRequestHexId(int responseId)
