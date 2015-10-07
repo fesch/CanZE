@@ -258,7 +258,7 @@ public class ELM327Experimental extends Device {
 
         // atfcsm1          Set flow control mode 1 (ID and data suplied)
         if (!sendSerialCommandElm("atfcsm1", 0).contains("OK")) {
-            MainActivity.toast("Error on command e0");
+            MainActivity.toast("Error on command atfcsm1");
             return false;
         }
 
