@@ -307,7 +307,7 @@ public class ELM327Experimental extends Device {
         String readBuffer ="";
 
         while(numberOfLines>0) {
-            readBuffer+=getSerialCommandLine(stopChar,timeout);
+            readBuffer+=getSerialCommandLine(stopChar,timeout).trim()+"\r";
             numberOfLines--;
             //MainActivity.debug("numberOfLines = "+numberOfLines);
         }
