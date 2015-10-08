@@ -302,12 +302,26 @@ public class ELM327Experimental extends Device {
         return false;
     }
 
+    private String getSerialCommandLine (char stopChar, int timeout, int numberOfLines) {
+        if (connectedBluetoothThread == null) return "";
+        String readBuffer ="";
+
+        while(numberOfLines>0) {
+            readBuffer+=getSerialCommandLine(stopChar,timeout);
+            numberOfLines--;
+            //MainActivity.debug("numberOfLines = "+numberOfLines);
+        }
+
+        return readBuffer;
+    }
+
     private String getSerialCommandLine (char stopChar, int timeout) {
         if (connectedBluetoothThread == null) return "";
         String readBuffer ="";
+
         try {
             while (serialReady(timeout)) {
-                char c = (char )connectedBluetoothThread.read();
+                char c = (char) connectedBluetoothThread.read();
                 if (c == stopChar) {
                     //MainActivity.toast (readBuffer);
                     return readBuffer;
@@ -326,6 +340,7 @@ public class ELM327Experimental extends Device {
         } catch (IOException e) {
             // ignore
         }
+
         return readBuffer;
     }
 
@@ -371,13 +386,77 @@ public class ELM327Experimental extends Device {
             sendSerialCommandElm("atfcsm1", 0);
         }
         sendSerial("0" + (command.length() / 2) + command + "\r");
-        result = getSerialCommandLine('\r', TIMEOUT);
+        result = getSerialCommandLine('\r', TIMEOUT).trim();
         if (result.contains("NO DATA") || result.contains("CAN ERROR")) {
             MainActivity.toast("ELM error:" + result);
             restoreOrder(2);
             result = "";
         }
-        return result.trim();
+
+        // we now have the first list of the multi-frame response in "result"
+        boolean sumTingWong = false;
+
+        // get type (first nibble)
+        String line0x1 = result;
+        String type = line0x1.substring(0, 1);
+        //MainActivity.debug("Type: "+type);
+
+        String finalData = "";
+        switch (type) {
+            case "0": // SINGLE frame
+                // remove 2 nibbles (type + length)
+                line0x1 = line0x1.substring(2); // was listed as 4
+                finalData = line0x1;
+                break;
+            case "1": // FIRST frame
+                // remove first nibble (type)
+                line0x1 = line0x1.substring(1);
+                //MainActivity.debug("HEX-length = " + line0x1.substring(0, 3));
+                // get the number of payload bytes
+                int count = Integer.valueOf(line0x1.substring(0, 3), 16);
+                //MainActivity.debug("DEC-length = " + count);
+                // remove 3 nibbles (number of payload bytes)
+                line0x1 = line0x1.substring(3);
+                // remove response
+                //line0x1 = line0x1.substring(field.getRequestId().length());
+                // store the reminding bytes
+                finalData = line0x1;
+                // decrease count
+                count -= line0x1.length() / 2;
+                // each of the 0x2 frames has a payload of 7 bytes
+                int framesToReceive = (int) Math.ceil(count / 7.);
+                MainActivity.debug("framesToReceive = " + framesToReceive);
+
+                // get remaining 0x2 (NEXT) frames
+                String lines0x2 = getSerialCommandLine('\r', TIMEOUT, framesToReceive).trim();
+
+                //MainActivity.debug("Got:\n"+lines0x2);
+
+                // split into lines
+                String[] hexDataLines = lines0x2.split(String.valueOf("\r"));
+
+                for (int i = 0; i < hexDataLines.length; i++) {
+                    String line = hexDataLines[i];
+                    //MainActivity.debug("Line "+(i+1)+": " + line);
+                    if (!line.isEmpty() && line.length() > 2) {
+                        // cut off the first byte (type + sequence)
+                        // adding sequence checking would be wise to detect collisions
+                        line = line.substring(2);
+                        finalData += line;
+                    }
+                }
+                break;
+            default:  // a NEXT, FLOWCONTROL should not be received. Neither should any other string (such as NO DATA)
+                sumTingWong = true;
+                break;
+        }
+
+        if (!sumTingWong) {
+            return finalData.trim();
+        }
+
+        return "";
+        //return result.trim();
     }
 
     private int getRequestId(int responseId)
