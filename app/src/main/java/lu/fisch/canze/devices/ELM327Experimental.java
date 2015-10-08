@@ -354,7 +354,7 @@ public class ELM327Experimental extends Device {
                         MainActivity.toast("Error on command ar");
                     }
                 }
-                return result;
+                return result.trim();
             } catch (InterruptedException e) {
                 // ignore
             }
@@ -377,12 +377,7 @@ public class ELM327Experimental extends Device {
             restoreOrder(2);
             result = "";
         }
-
-
-
-
-
-        return result;
+        return result.trim();
     }
 
     private int getRequestId(int responseId)
@@ -409,6 +404,11 @@ public class ELM327Experimental extends Device {
     private String getRequestHexId(int responseId)
     {
         return Integer.toHexString(getRequestId(responseId));
+    }
+
+    private String getHex(int id)
+    {
+        return Integer.toHexString(id);
     }
 
     public void join() throws InterruptedException {
@@ -444,16 +444,26 @@ public class ELM327Experimental extends Device {
                     //Thread.sleep(1000);
                     lastId = field.getId();
 
-                    // process data
-                    process(Utils.toIntArray(result.getBytes()));
-
+                    if(!result.isEmpty())
+                    {
+                        result = field.getHexId()+","+result+","+field.getResponseId()+SEPARATOR;
+                        MainActivity.debug("Result = "+result);
+                        // process data
+                        process(Utils.toIntArray(result.getBytes()));
+                    }
                 } else {
 
                     result = sendSerialMonitor(field.getHexId(), field.getFrequency()+20);
                     //MainActivity.toast("atma " + field.getHexId() + ":" + result);
                     //Thread.sleep(1000);
-                    // process data
-                    process(Utils.toIntArray(result.getBytes()));
+
+                    if(!result.isEmpty())
+                    {
+                        result = field.getHexId()+","+result+SEPARATOR;
+                        MainActivity.debug("Result = "+result);
+                        // process data
+                        process(Utils.toIntArray(result.getBytes()));
+                    }
                 }
 
 
