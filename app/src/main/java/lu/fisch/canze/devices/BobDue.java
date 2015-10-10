@@ -18,7 +18,7 @@ public class BobDue extends Device {
 
     // *** needed by the "reader" part
     private String buffer = "";
-    private final String separator = "\r\n";
+    private final String separator = "\n";
 
 
     // define the timeout we may wait to get an answer
@@ -106,6 +106,8 @@ public class BobDue extends Device {
             buffer += (char) input[i];
         }
 
+        //MainActivity.debug("Buffer = "+buffer);
+
         // split by <new line>
         String[] messages = buffer.split(separator);
         // let assume the last message is fine
@@ -116,6 +118,7 @@ public class BobDue extends Device {
         // process each message
         for (int i = 0; i < last; i++) {
             // decode into a frame
+            //MainActivity.debug("Decoding: "+messages[i].trim());
             Message message = decodeFrame(messages[i].trim());
             // store if valid
             if (message != null)
@@ -136,6 +139,8 @@ public class BobDue extends Device {
     private Message decodeFrame(String text) {
         // split up the fields
         String[] pieces = text.split(",");
+        //MainActivity.debug("Pieces = "+pieces);
+        //MainActivity.debug("Size = "+pieces.length);
         if(pieces.length==2) {
             try {
                 // get the id
@@ -151,7 +156,7 @@ public class BobDue extends Device {
                 return null;
             }
         }
-        else if(pieces.length==3) {
+        else if(pieces.length>=3) {
             try {
                 // get the id
                 int id = Integer.parseInt(pieces[0], 16);
@@ -159,6 +164,7 @@ public class BobDue extends Device {
                 int[] data = Utils.toIntArray(pieces[1].trim());
                 // get the reply-ID
                 Message f = new Message(id,data);
+                //MainActivity.debug("ID = "+id+" / Data = "+data);
                 //MainActivity.debug("THIRD: "+pieces[2].trim());
                 f.setResponseId(pieces[2].trim());
                 return f;
@@ -197,14 +203,17 @@ public class BobDue extends Device {
                     field = fields.get(fieldIndex);
                 }
 
-                MainActivity.debug("Querying for field: "+field.getSID());
+                //MainActivity.debug("Querying for field: "+field.getSID());
 
                 if(field!=null) {
                     // get field ID
                     String filter = field.getHexId();
 
                     if (field.isIsoTp()) {
-                        String hexData = sendAndWaitForAnswer("i" + filter + "," + field.getRequestId() + "," + field.getResponseId(), 0);
+                        String command = "i" + filter + "," + field.getRequestId() + "," + field.getResponseId();
+                        MainActivity.debug("Sending: "+command);
+                        String hexData = sendAndWaitForAnswer(command, 0);
+                        //MainActivity.debug("Got: "+hexData);
                         // process data
                         process(Utils.toIntArray(hexData.getBytes()));
                     } else {

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 import lu.fisch.canze.widgets.Drawable;
 
@@ -162,18 +163,20 @@ public class Plotter extends Drawable {
 
     @Override
     public void onFieldUpdateEvent(Field field) {
-        String sid = field.getSID();
+        // only take data fofr valid cars
+        if(field.getCar()==0 || field.getCar()== Fields.getInstance().getCar()) {
+            String sid = field.getSID();
 
-        //MainActivity.debug("Plotter: "+sid+" --> "+field.getValue());
+            //MainActivity.debug("Plotter: "+sid+" --> "+field.getValue());
 
-        int index = sids.indexOf(sid);
-        if(index==-1){
-            sids.add(sid);
-            addValue(field.getValue());
-        }
-        else setValue(index,field.getValue());
-        // only repaint if the last field has been updated
-        //if(index==sids.size()-1)
+            int index = sids.indexOf(sid);
+            if (index == -1) {
+                sids.add(sid);
+                addValue(field.getValue());
+            } else setValue(index, field.getValue());
+            // only repaint if the last field has been updated
+            //if(index==sids.size()-1)
             super.onFieldUpdateEvent(field);
+        }
     }
 }

@@ -765,19 +765,27 @@ public class Fields implements MessageListener {
     
     @Override
     public void onMessageCompleteEvent(Message message) {
-        //MainActivity.debug(frame.toString());
-        //MainActivity.debug("Frame.rID = "+frame.getResponseId());
+        //MainActivity.debug(message.toString());
+        //if(message.getResponseId()!=null)
+        //  MainActivity.debug("Frame.rID = "+message.getResponseId());
         for(int i=0; i< fields.size(); i++)
         {
             Field field = fields.get(i);
+            /*if(field.getId()== message.getId())
+            {
+                if(message.getResponseId()!=null)
+                    MainActivity.debug(message.getResponseId()+" -> Field: "+field.getFormat());
+            }*/
             if(field.getId()== message.getId() &&
                     (
                             message.getResponseId()==null
                             ||
-                            message.getResponseId().equals(field.getResponseId())
+                            message.getResponseId().trim().equals(field.getResponseId().trim())
                             ))
             {
                 //MainActivity.debug("Field.rID = "+field.getResponseId());
+                //if(message.getResponseId()!=null)
+                //    MainActivity.debug("Field: "+field.getFormat());
                 String binString = message.getAsBinaryString();
                 if(binString.length()>= field.getTo()) {
                     // parseInt --> signed, so the first bit is "cut-off"!

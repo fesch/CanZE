@@ -1,7 +1,5 @@
 package lu.fisch.canze.devices;
 
-import android.os.SystemClock;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -18,15 +16,18 @@ import lu.fisch.canze.actors.Utils;
 public class ELM327Experimental extends Device {
 
     // *** needed by the "decoder" part of this device
-    private int TIMEOUT = 500;
-    // define End Of Message for this type of reader
-    private static final char EOM = '\r';
+    private String buffer = "";
+    private final String SEPARATOR = "\r\n";
+
+    private static final int TIMEOUT = 500;
 
     /**
      * the index of the actual field to request
      */
     private int fieldIndex = 0;
     private int lastId = 0;
+
+    private Thread pollerThread;
 
     @Override
     public void initConnection() {
@@ -40,6 +41,7 @@ public class ELM327Experimental extends Device {
             }
         }
 
+
         if(connectedBluetoothThread!=null) {
             // post a task to the UI thread
             Runnable r = new Runnable() {
@@ -50,30 +52,38 @@ public class ELM327Experimental extends Device {
                     if (restoreOrder(0)) {
 
                         while (connectedBluetoothThread!=null) {
-                            //queryNextFilter();
+                            // if the no field is to be queried, sleep for a while
                             if(fields.size()==0)
                             {
-                                try{
-                                    Thread.sleep(1000);
-                                }
-                                catch (Exception e) {}
-
+                                if(connectedBluetoothThread!=null)
+                                    try{
+                                        Thread.sleep(5000);
+                                    }
+                                    catch (Exception e) {}
+                            }
+                            // query a field
+                            else {
+                                queryNextFilter();
                             }
                         }
+                        MainActivity.debug("ELM: poller is done!");
+                        pollerThread=null;
                     } else {
-                        // restoreOrder already toasted the user
-                        // MainActivity.toast("No answer from ELM ... retrying ...");
+                        MainActivity.debug("ELM: no answer ...");
+                        MainActivity.toast("No answer from ELM ... retrying ...");
                         if(connectedBluetoothThread!=null) {
-                            Thread t = new Thread(this);
-                            t.start();
+                            // retry
+                            pollerThread = new Thread(this);
+                            pollerThread.start();
                         }
                     }
                 }
             };
-            Thread t = new Thread(r);
-            t.start();
+            pollerThread = new Thread(r);
+            pollerThread.start();
         }
     }
+
 
     @Override
     public void registerFilter(int frameId) {
@@ -87,25 +97,103 @@ public class ELM327Experimental extends Device {
 
     @Override
     protected ArrayList<Message> processData(int[] input) {
-        // not needed for this device
-        //ArrayList<Message> result = new ArrayList<>();
-        //return result;
+        ArrayList<Message> result = new ArrayList<>();
+
+        // add to buffer as characters
+        for (int anInput : input) {
+            buffer += (char) anInput;
+        }
+
+        //MainActivity.debug("Buffer: "+buffer);
+
+        // split by <new line>
+        String[] messages = buffer.split(SEPARATOR);
+        // let assume the last message is fine
+        int last = messages.length;
+        // but if it is not, do not consider it
+        if (!buffer.endsWith(SEPARATOR)) last--;
+
+        // process each message
+        for (int i = 0; i < last; i++) {
+            // decode into a frame
+            Message message = lineToMessage(messages[i].trim());
+            // store if valid
+            if (message != null)
+                result.add(message);
+        }
+        // adapt the buffer
+        if (!buffer.endsWith(SEPARATOR))
+            // retain the last uncompleted message
+            buffer = messages[messages.length - 1];
+        else
+            // empty the entire buffer
+            buffer = "";
+        // we are done
+
+        return result;
+    }
+
+    private Message lineToMessage(String text) {
+        // split up the fields
+        String[] pieces = text.split(",");
+        if(pieces.length==2) {
+            try {
+                // get the id
+                int id = Integer.parseInt(pieces[0], 16);
+                // get the data
+                int[] data = Utils.toIntArray(pieces[1].trim());
+                // create and return new frame
+                return new Message(id, data);
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+        }
+        else if(pieces.length==3) {
+            try {
+                // get the id
+                int id = Integer.parseInt(pieces[0], 16);
+                // get the data
+                int[] data = Utils.toIntArray(pieces[1].trim());
+                // get the reply-ID
+                Message f = new Message(id,data);
+                //MainActivity.debug("THIRD: "+pieces[2].trim());
+                f.setResponseId(pieces[2].trim());
+                return f;
+            }
+            catch(Exception e)
+            {
+                //MainActivity.debug("BAD: "+text);
+                return null;
+            }
+        }
         return null;
     }
 
     private boolean restoreOrder(int toughness) {
 
+        // ensure the decoder (processData) is reset
+        buffer = "";
+
+        // ensure the dongle header are set again
+        lastId = 0;
+
         String response = "";
 
-        sendSerialCommandElm("x", 2); // kill any running command (specifically ATMA), ignore response
+        // sendSerialCommandElm("x", 2); // kill any running command (specifically ATMA), ignore response
 
         switch (toughness) {
             case 0:
-                response = sendSerialCommandElm("atz", 2);
+                //response = sendSerialCommandElm("atz", 1);
+                response = sendSerialCommandElm("atws", 1);
+                break;
             case 1:
                 response = sendSerialCommandElm("atws", 1);
+                break;
             default:
-                response = sendSerialCommandElm("atd", 2);
+                response = sendSerialCommandElm("atd", 1);
+
         }
 
         if (response.trim().equals("")) {
@@ -115,32 +203,63 @@ public class ELM327Experimental extends Device {
 
         // only do version control at a full reset
         if (toughness <= 1 && !response.contains("v1.4") && !response.contains("v1.5")) {
-            MainActivity.toast("ELM is not a version 1.4 or 1.5, sorry");
+            MainActivity.toast("ELM is not a version 1.4 or 1.5 [" + response + "]");
             return false;
         }
 
 
 
         // ate0 (no echo)
-        if (!sendSerialCommandElm("ate0", 0).contains("OK")) MainActivity.toast("Error on command e0");
-                // ats0 (no spaces)
-        if (sendSerialCommandElm("ats0", 0).contains("OK")) MainActivity.toast("Error on command s0");
+        if (!sendSerialCommandElm("ate0", 0).contains("OK")) {
+            MainActivity.toast("Error on command e0");
+            return false;
+        }
+
+        // ats0 (no spaces)
+        if (!sendSerialCommandElm("ats0", 0).contains("OK")) {
+            MainActivity.toast("Error on command s0");
+            return false;
+        }
+
         // atsp6 (CAN 500K 11 bit)
-        if (!sendSerialCommandElm("atsp6", 0).contains("OK")) MainActivity.toast("Error on command sp6");
+        if (!sendSerialCommandElm("atsp6", 0).contains("OK")) {
+            MainActivity.toast("Error on command sp6");
+            return false;
+        }
+
         // atat1 (auto timing)
-        if (!sendSerialCommandElm("atat1", 0).contains("OK")) MainActivity.toast("Error on command at1");
+        if (!sendSerialCommandElm("atat1", 0).contains("OK")) {
+            MainActivity.toast("Error on command at1");
+            return false;
+        }
+
         // atcaf0 (no formatting)
-        if (!sendSerialCommandElm("atcaf0", 0).contains("OK")) MainActivity.toast("Error on command caf0");
+        if (!sendSerialCommandElm("atcaf0", 0).contains("OK")) {
+            MainActivity.toast("Error on command caf0");
+            return false;
+        }
+
         // PERFORMANCE ENHACMENT
         // atfcsh79b        Set flow control response ID to 79b (the LBC) This is needed to set the flow control response, but that one is remembered :-)
-        if (!sendSerialCommandElm("atfcsh77b", 0).contains("OK")) MainActivity.toast("Error on command fcsh77b");
+        if (!sendSerialCommandElm("atfcsh77b", 0).contains("OK")) {
+            MainActivity.toast("Error on command fcsh77b");
+            return false;
+        }
+
         // atfcsd300020     Set the flow control response data to 300020 (flow control, clear to send,
         //                  all frames, 16 ms wait between frames. Note that it is not possible to let
         //                  the ELM request each frame as the Altered Flow Control only responds to a
         //                  First Frame (not a Next Frame)
-        if (!sendSerialCommandElm("atfcsd300010", 0).contains("OK")) MainActivity.toast("Error on command fcsd300010");
+        if (!sendSerialCommandElm("atfcsd300010", 0).contains("OK")) {
+            MainActivity.toast("Error on command fcsd300010");
+            return false;
+        }
+
         // atfcsm1          Set flow control mode 1 (ID and data suplied)
-        if (!sendSerialCommandElm("atfcsm1", 0).contains("OK")) MainActivity.toast("Error on command e0");
+        if (!sendSerialCommandElm("atfcsm1", 0).contains("OK")) {
+            MainActivity.toast("Error on command atfcsm1");
+            return false;
+        }
 
         if (toughness == 0 ) {
             MainActivity.toast("ELM is now ready ...");
@@ -170,11 +289,10 @@ public class ELM327Experimental extends Device {
         if (connectedBluetoothThread == null) return false;
         try {
             if (connectedBluetoothThread.available() > 0) return true;
-            long start = Calendar.getInstance().getTimeInMillis();
-            while (msecs > 0) {
+            long end = Calendar.getInstance().getTimeInMillis() + msecs;
+            while (Calendar.getInstance().getTimeInMillis() < end) {
                 if (connectedBluetoothThread.available() > 0) return true;
                 Thread.sleep(2);
-                msecs -= (Calendar.getInstance().getTimeInMillis() - start);
             }
         } catch (IOException e) {
             // ignore
@@ -184,13 +302,28 @@ public class ELM327Experimental extends Device {
         return false;
     }
 
+    private String getSerialCommandLine (char stopChar, int timeout, int numberOfLines) {
+        if (connectedBluetoothThread == null) return "";
+        String readBuffer ="";
+
+        while(numberOfLines>0) {
+            readBuffer+=getSerialCommandLine(stopChar,timeout).trim()+"\r";
+            numberOfLines--;
+            //MainActivity.debug("numberOfLines = "+numberOfLines);
+        }
+
+        return readBuffer;
+    }
+
     private String getSerialCommandLine (char stopChar, int timeout) {
         if (connectedBluetoothThread == null) return "";
         String readBuffer ="";
+
         try {
             while (serialReady(timeout)) {
-                char c = (char )connectedBluetoothThread.read();
+                char c = (char) connectedBluetoothThread.read();
                 if (c == stopChar) {
+                    //MainActivity.toast (readBuffer);
                     return readBuffer;
                 }
                 switch (c) {
@@ -201,37 +334,47 @@ public class ELM327Experimental extends Device {
                         break;
                     default:
                         readBuffer += c;
-
+                        break;
                 }
             }
         } catch (IOException e) {
             // ignore
         }
+
         return readBuffer;
     }
 
-    // send a command and wait for an answer
+    // send a command to control the ELM and wait for an answer
     private String sendSerialCommandElm(String command, int retries) {
-        sendSerial(command);
-        sendSerial("\r");
-        return getSerialCommandLine('>', TIMEOUT);
+        do {
+            flushSerial();
+            sendSerial(command + "\r");
+            return getSerialCommandLine('>', TIMEOUT);
+        } while (retries-- >= 0);
     }
 
+    // open as passive monitor for a given frame ID, and stop as soon as one line is in
     private String sendSerialMonitor (String id, int timeout) {
         String result = "";
-        sendSerialCommandElm("atcra" + ("000" + id).substring(id.length()), 0);
-        try {
-            Thread.sleep(400);
-            flushSerial();
-            sendSerial("atma\r");
-            result = getSerialCommandLine('\r', timeout);
-            sendSerial(" ");
-            getSerialCommandLine('>', TIMEOUT);
-            if (!sendSerialCommandElm("atar", 0).contains("OK")) MainActivity.toast("Error on command ar");
-        } catch (InterruptedException e) {
-            // ignore
+        if (sendSerialCommandElm("atcra" + ("000" + id).substring(id.length()), 0).contains("OK")) {
+            try {
+                Thread.sleep(400);
+                flushSerial();
+                sendSerial("atma\r");
+                result = getSerialCommandLine('\r', timeout);
+                sendSerial("x");
+                getSerialCommandLine('>', TIMEOUT);
+                if (!sendSerialCommandElm("atar", 0).contains("OK")) {
+                    if (!sendSerialCommandElm("atar", 0).contains("OK")) {
+                        MainActivity.toast("Error on command ar");
+                    }
+                }
+                return result.trim();
+            } catch (InterruptedException e) {
+                // ignore
+            }
         }
-        return result;
+        return "";
     }
 
     String sendSerialCommandIsoTp (String id, String command, boolean checkUDP, boolean fast) {
@@ -243,18 +386,77 @@ public class ELM327Experimental extends Device {
             sendSerialCommandElm("atfcsm1", 0);
         }
         sendSerial("0" + (command.length() / 2) + command + "\r");
-        result = getSerialCommandLine('\r', TIMEOUT);
+        result = getSerialCommandLine('\r', TIMEOUT).trim();
         if (result.contains("NO DATA") || result.contains("CAN ERROR")) {
             MainActivity.toast("ELM error:" + result);
             restoreOrder(2);
             result = "";
         }
 
+        // we now have the first list of the multi-frame response in "result"
+        boolean sumTingWong = false;
 
+        // get type (first nibble)
+        String line0x1 = result;
+        String type = line0x1.substring(0, 1);
+        //MainActivity.debug("Type: "+type);
 
+        String finalData = "";
+        switch (type) {
+            case "0": // SINGLE frame
+                // remove 2 nibbles (type + length)
+                line0x1 = line0x1.substring(2); // was listed as 4
+                finalData = line0x1;
+                break;
+            case "1": // FIRST frame
+                // remove first nibble (type)
+                line0x1 = line0x1.substring(1);
+                //MainActivity.debug("HEX-length = " + line0x1.substring(0, 3));
+                // get the number of payload bytes
+                int count = Integer.valueOf(line0x1.substring(0, 3), 16);
+                //MainActivity.debug("DEC-length = " + count);
+                // remove 3 nibbles (number of payload bytes)
+                line0x1 = line0x1.substring(3);
+                // remove response
+                //line0x1 = line0x1.substring(field.getRequestId().length());
+                // store the reminding bytes
+                finalData = line0x1;
+                // decrease count
+                count -= line0x1.length() / 2;
+                // each of the 0x2 frames has a payload of 7 bytes
+                int framesToReceive = (int) Math.ceil(count / 7.);
+                MainActivity.debug("framesToReceive = " + framesToReceive);
 
+                // get remaining 0x2 (NEXT) frames
+                String lines0x2 = getSerialCommandLine('\r', TIMEOUT, framesToReceive).trim();
 
-        return result;
+                //MainActivity.debug("Got:\n"+lines0x2);
+
+                // split into lines
+                String[] hexDataLines = lines0x2.split(String.valueOf("\r"));
+
+                for (int i = 0; i < hexDataLines.length; i++) {
+                    String line = hexDataLines[i];
+                    //MainActivity.debug("Line "+(i+1)+": " + line);
+                    if (!line.isEmpty() && line.length() > 2) {
+                        // cut off the first byte (type + sequence)
+                        // adding sequence checking would be wise to detect collisions
+                        line = line.substring(2);
+                        finalData += line;
+                    }
+                }
+                break;
+            default:  // a NEXT, FLOWCONTROL should not be received. Neither should any other string (such as NO DATA)
+                sumTingWong = true;
+                break;
+        }
+
+        if (!sumTingWong) {
+            return finalData.trim();
+        }
+
+        return "";
+        //return result.trim();
     }
 
     private int getRequestId(int responseId)
@@ -283,6 +485,11 @@ public class ELM327Experimental extends Device {
         return Integer.toHexString(getRequestId(responseId));
     }
 
+    private String getHex(int id)
+    {
+        return Integer.toHexString(id);
+    }
+
     public void join() throws InterruptedException {
 
     }
@@ -290,68 +497,71 @@ public class ELM327Experimental extends Device {
     // query the device for the next filter
     private void queryNextFilter()
     {
+        if(fields.size() == 0) return;
+
         try {
-            if(fields.size()>0) {
-                //MainActivity.debug("Index: "+fieldIndex);
+            // get field
+            Field field;
+            String result;
 
-                // get field
-                Field field;
-                boolean runFilter;
-                String result;
+            synchronized (fields) {
+                field = fields.get(fieldIndex);
+            }
 
-                synchronized (fields) {
-                    field = fields.get(fieldIndex);
+            // only run the filter if the skipsCount is down to zero
+            if (field.getSkipsCount() == 0) {
+                // reset skipCount to its initial value
+                field.resetSkipsCount();
 
-                    // only run the filter if the skipsCount is down to zero
-                    runFilter = (field.getSkipsCount() == 0);
-                    if (runFilter)
-                        // reset it to its initial value
-                        field.resetSkipsCount();
-                    else
-                        // decrement the skipsCount
-                        field.decSkipCount();
-                }
+                // get filter ID
+                String filter = field.getHexId();
 
-                if (runFilter) {
+                if (field.isIsoTp()) {
 
-                    // get filter ID
-                    String filter = field.getHexId();
+                    result = sendSerialCommandIsoTp (getRequestHexId(field.getId()), field.getRequestId(), false, lastId == field.getId());
+                    //MainActivity.toast("iso " + getRequestHexId(field.getId()) + "," + field.getRequestId() + ":" + result);
+                    //Thread.sleep(1000);
+                    lastId = field.getId();
 
-                    if (field.isIsoTp()) {
-
-                        result = sendSerialCommandIsoTp (getRequestHexId(field.getId()), field.getRequestId(), false, lastId == field.getId());
-                        lastId = field.getId();
-
-                        // process data
-                        process(Utils.toIntArray(result.getBytes()));
-
-                    } else {
-
-                        result = sendSerialMonitor(field.getHexId(), field.getFrequency()+20);
-
+                    if(!result.isEmpty())
+                    {
+                        result = field.getHexId()+","+result+","+field.getResponseId()+SEPARATOR;
+                        MainActivity.debug("Result = "+result);
                         // process data
                         process(Utils.toIntArray(result.getBytes()));
                     }
+                } else {
 
+                    result = sendSerialMonitor(field.getHexId(), field.getFrequency()+20);
+                    //MainActivity.toast("atma " + field.getHexId() + ":" + result);
+                    //Thread.sleep(1000);
 
+                    if(!result.isEmpty())
+                    {
+                        result = field.getHexId()+","+result+SEPARATOR;
+                        MainActivity.debug("Result = "+result);
+                        // process data
+                        process(Utils.toIntArray(result.getBytes()));
+                    }
                 }
 
-                // move on to the next field
-                synchronized (fields) {
-                    if(fields.size()==0)
-                        fieldIndex=0;
-                    else
-                        fieldIndex = (fieldIndex + 1) % fields.size();
-                }
+
+            } else {
+                // decrement the skipsCount
+                field.decSkipCount();
             }
-            else
-            {
-                //MainActivity.debug("ELM: no filters set ...");
+
+            // move on to the next field
+            synchronized (fields) {
+                if(fields.size()==0)
+                    fieldIndex=0;
+                else
+                    fieldIndex = (fieldIndex + 1) % fields.size();
             }
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            // e.printStackTrace();
             // ignore
         }
     }
@@ -359,6 +569,6 @@ public class ELM327Experimental extends Device {
     @Override
     public void clearFields() {
         super.clearFields();
-        fieldIndex=0;
+        fieldIndex = 0;
     }
 }
