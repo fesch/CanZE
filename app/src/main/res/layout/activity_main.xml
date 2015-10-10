@@ -236,8 +236,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text=""
-                android:id="@+id/buttonEmpty26"
+                android:text="Harm (Harm)"
+                android:id="@+id/buttonHarm"
                 android:layout_column="0" />
 
 
