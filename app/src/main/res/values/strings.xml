@@ -35,7 +35,7 @@
 
     <string name="header_Charging">Charging parameters</string>
     <string name="header_stats">Driving stats</string>
-    <string name="label_max_charge">Max battery charge/regen Kw</string>
+    <string name="label_max_charge">Max battery charge/regen kW</string>
     <string name="default_max_charge">#Max bat ch</string>
 
     <string name="label_max_pilot">Max AC charge pilot Amp</string>
@@ -68,7 +68,7 @@
     <string name="label_DcPwr">DC Power</string>
     <string name="default_DcPwr">#DCP</string>
 
-    <string name="label_CompTemp">Battery Compartment temperatures</string>
+    <string name="label_CompTemp">Battery modules temperatures</string>
 
     <string name="default_CompT"></string>
 
