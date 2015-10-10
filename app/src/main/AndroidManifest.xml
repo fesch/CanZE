@@ -72,7 +72,12 @@
             android:name=".FirmwareActivity"
             android:label="@string/title_activity_firmware" >
         </activity>
-        <activity android:name=".BatteryActivity" >
+        <activity
+            android:name=".BatteryActivity" >
+        </activity>
+        <activity
+            android:name=".HarmActivity"
+            android:label="@string/title_activity_harm" >
         </activity>
     </application>
 
