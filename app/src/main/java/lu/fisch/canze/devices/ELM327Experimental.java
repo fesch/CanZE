@@ -179,13 +179,14 @@ public class ELM327Experimental extends Device {
         // ensure the dongle header are set again
         lastId = 0;
 
-        String response = "";
+        String response;
 
+        flushSerial();
         // sendSerialCommandElm("x", 2); // kill any running command (specifically ATMA), ignore response
 
         switch (toughness) {
             case 0:
-                //response = sendSerialCommandElm("atz", 1);
+                //response = sendSerialCommandElm("atz", 1); // we don't need the LED test
                 response = sendSerialCommandElm("atws", 1);
                 break;
             case 1:
@@ -202,47 +203,51 @@ public class ELM327Experimental extends Device {
         }
 
         // only do version control at a full reset
-        if (toughness <= 1 && !response.contains("v1.4") && !response.contains("v1.5")) {
+        if (toughness <= 1 && !response.toUpperCase().contains("V1.4") && !response.toUpperCase().contains("V1.5")) {
             MainActivity.toast("ELM is not a version 1.4 or 1.5 [" + response + "]");
             return false;
         }
 
-
-
         // ate0 (no echo)
-        if (!sendSerialCommandElm("ate0", 0).contains("OK")) {
-            MainActivity.toast("Error on command e0");
+        response = sendSerialCommandElm("ate0", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err e0 [" + response + "]");
             return false;
         }
 
         // ats0 (no spaces)
-        if (!sendSerialCommandElm("ats0", 0).contains("OK")) {
-            MainActivity.toast("Error on command s0");
+        response = sendSerialCommandElm("ats0", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err s0 [" + response + "]");
             return false;
         }
 
         // atsp6 (CAN 500K 11 bit)
-        if (!sendSerialCommandElm("atsp6", 0).contains("OK")) {
-            MainActivity.toast("Error on command sp6");
+        response = sendSerialCommandElm("atsp6", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err sp6 [" + response + "]");
             return false;
         }
 
         // atat1 (auto timing)
-        if (!sendSerialCommandElm("atat1", 0).contains("OK")) {
-            MainActivity.toast("Error on command at1");
+        response = sendSerialCommandElm("atat1", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err at1 [" + response + "]");
             return false;
         }
 
         // atcaf0 (no formatting)
-        if (!sendSerialCommandElm("atcaf0", 0).contains("OK")) {
-            MainActivity.toast("Error on command caf0");
+        response = sendSerialCommandElm("atcaf0", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err caf0 [" + response + "]");
             return false;
         }
 
         // PERFORMANCE ENHACMENT
         // atfcsh79b        Set flow control response ID to 79b (the LBC) This is needed to set the flow control response, but that one is remembered :-)
-        if (!sendSerialCommandElm("atfcsh77b", 0).contains("OK")) {
-            MainActivity.toast("Error on command fcsh77b");
+        response = sendSerialCommandElm("atcsh77b", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err csh77b [" + response + "]");
             return false;
         }
 
@@ -250,14 +255,16 @@ public class ELM327Experimental extends Device {
         //                  all frames, 16 ms wait between frames. Note that it is not possible to let
         //                  the ELM request each frame as the Altered Flow Control only responds to a
         //                  First Frame (not a Next Frame)
-        if (!sendSerialCommandElm("atfcsd300010", 0).contains("OK")) {
-            MainActivity.toast("Error on command fcsd300010");
+        response = sendSerialCommandElm("atfcsd300010", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err fcsd300010 [" + response + "]");
             return false;
         }
 
         // atfcsm1          Set flow control mode 1 (ID and data suplied)
-        if (!sendSerialCommandElm("atfcsm1", 0).contains("OK")) {
-            MainActivity.toast("Error on command atfcsm1");
+        response = sendSerialCommandElm("atfcsm1", 0);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err fcsm1 [" + response + "]");
             return false;
         }
 
@@ -294,34 +301,18 @@ public class ELM327Experimental extends Device {
                 if (connectedBluetoothThread.available() > 0) return true;
                 Thread.sleep(2);
             }
-        } catch (IOException e) {
-            // ignore
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             // ignore
         }
         return false;
     }
 
-    private String getSerialCommandLine (char stopChar, int timeout, int numberOfLines) {
-        if (connectedBluetoothThread == null) return "";
-        String readBuffer ="";
-
-        while(numberOfLines>0) {
-            readBuffer+=getSerialCommandLine(stopChar,timeout).trim()+"\r";
-            numberOfLines--;
-            //MainActivity.debug("numberOfLines = "+numberOfLines);
-        }
-
-        return readBuffer;
-    }
-
     private String getSerialCommandLine (char stopChar, int timeout) {
         if (connectedBluetoothThread == null) return "";
         String readBuffer ="";
-
         try {
             while (serialReady(timeout)) {
-                char c = (char) connectedBluetoothThread.read();
+                char c = (char )connectedBluetoothThread.read();
                 if (c == stopChar) {
                     //MainActivity.toast (readBuffer);
                     return readBuffer;
@@ -340,23 +331,26 @@ public class ELM327Experimental extends Device {
         } catch (IOException e) {
             // ignore
         }
-
         return readBuffer;
     }
 
     // send a command to control the ELM and wait for an answer
     private String sendSerialCommandElm(String command, int retries) {
+        String result;
         do {
             flushSerial();
             sendSerial(command + "\r");
-            return getSerialCommandLine('>', TIMEOUT);
+            result = getSerialCommandLine('>', TIMEOUT);
+            if (!result.equals("")) return result;
         } while (retries-- >= 0);
+        return ("");
     }
 
     // open as passive monitor for a given frame ID, and stop as soon as one line is in
     private String sendSerialMonitor (String id, int timeout) {
-        String result = "";
-        if (sendSerialCommandElm("atcra" + ("000" + id).substring(id.length()), 0).contains("OK")) {
+        String result;
+
+        if (sendSerialCommandElm("atcra" + ("000" + id).substring(id.length()), 0).toUpperCase().contains("OK")) {
             try {
                 Thread.sleep(400);
                 flushSerial();
@@ -364,12 +358,12 @@ public class ELM327Experimental extends Device {
                 result = getSerialCommandLine('\r', timeout);
                 sendSerial("x");
                 getSerialCommandLine('>', TIMEOUT);
-                if (!sendSerialCommandElm("atar", 0).contains("OK")) {
-                    if (!sendSerialCommandElm("atar", 0).contains("OK")) {
+                if (!sendSerialCommandElm("atar", 0).toUpperCase().contains("OK")) {
+                    if (!sendSerialCommandElm("atar", 0).toUpperCase().contains("OK")) {
                         MainActivity.toast("Error on command ar");
                     }
                 }
-                return result.trim();
+                return result;
             } catch (InterruptedException e) {
                 // ignore
             }
@@ -378,7 +372,11 @@ public class ELM327Experimental extends Device {
     }
 
     String sendSerialCommandIsoTp (String id, String command, boolean checkUDP, boolean fast) {
-        String result = "";
+        String result;
+        String finalResult;
+        int length;
+        int runLength;
+        int sequence;
         if (!fast) {
             sendSerialCommandElm("atsh" + ("000" + id).substring(id.length()), 0);
             //sendSerialCommandElm("atfcsd300010", 0);
@@ -386,108 +384,92 @@ public class ELM327Experimental extends Device {
             sendSerialCommandElm("atfcsm1", 0);
         }
         sendSerial("0" + (command.length() / 2) + command + "\r");
-        result = getSerialCommandLine('\r', TIMEOUT).trim();
-        if (result.contains("NO DATA") || result.contains("CAN ERROR")) {
-            MainActivity.toast("ELM error:" + result);
+        result = getSerialCommandLine('\r', TIMEOUT);
+        if (result.toUpperCase().contains("NO DATA") || result.toUpperCase().contains("CAN ERROR")) {
+            MainActivity.toast("iso " + id + "," + command + ":" + result);
             restoreOrder(2);
-            result = "";
+            return "";
         }
 
-        // we now have the first list of the multi-frame response in "result"
-        boolean sumTingWong = false;
-
-        // get type (first nibble)
-        String line0x1 = result;
-        String type = line0x1.substring(0, 1);
-        //MainActivity.debug("Type: "+type);
-
-        String finalData = "";
-        switch (type) {
-            case "0": // SINGLE frame
-                // remove 2 nibbles (type + length)
-                line0x1 = line0x1.substring(2); // was listed as 4
-                finalData = line0x1;
-                break;
-            case "1": // FIRST frame
-                // remove first nibble (type)
-                line0x1 = line0x1.substring(1);
-                //MainActivity.debug("HEX-length = " + line0x1.substring(0, 3));
-                // get the number of payload bytes
-                int count = Integer.valueOf(line0x1.substring(0, 3), 16);
-                //MainActivity.debug("DEC-length = " + count);
-                // remove 3 nibbles (number of payload bytes)
-                line0x1 = line0x1.substring(3);
-                // remove response
-                //line0x1 = line0x1.substring(field.getRequestId().length());
-                // store the reminding bytes
-                finalData = line0x1;
-                // decrease count
-                count -= line0x1.length() / 2;
-                // each of the 0x2 frames has a payload of 7 bytes
-                int framesToReceive = (int) Math.ceil(count / 7.);
-                MainActivity.debug("framesToReceive = " + framesToReceive);
-
-                // get remaining 0x2 (NEXT) frames
-                String lines0x2 = getSerialCommandLine('\r', TIMEOUT, framesToReceive).trim();
-
-                //MainActivity.debug("Got:\n"+lines0x2);
-
-                // split into lines
-                String[] hexDataLines = lines0x2.split(String.valueOf("\r"));
-
-                for (int i = 0; i < hexDataLines.length; i++) {
-                    String line = hexDataLines[i];
-                    //MainActivity.debug("Line "+(i+1)+": " + line);
-                    if (!line.isEmpty() && line.length() > 2) {
-                        // cut off the first byte (type + sequence)
-                        // adding sequence checking would be wise to detect collisions
-                        line = line.substring(2);
-                        finalData += line;
-                    }
+        switch (result.substring(0, 1)) {
+            case "0": //SINGLE
+                length = Integer.valueOf(result.substring(1, 2), 16);
+                if (length > 7) {
+                    MainActivity.toast("iso0 " + id + "," + command + ":" + result);
+                    restoreOrder(2);
+                    return ("");
                 }
-                break;
-            default:  // a NEXT, FLOWCONTROL should not be received. Neither should any other string (such as NO DATA)
-                sumTingWong = true;
+                return result.substring(2, 2 + (length * 2));
+            case "1": // FIRST
+                length = Integer.valueOf(result.substring(1, 4), 16);
+                finalResult = result.substring(4);
+                runLength = length - 6; // we already have 6 data bytes
+                sequence = 1;
+                while (runLength > 0) {
+                    result = getSerialCommandLine('\r', TIMEOUT);
+                    if (!result.substring(0, 2).equals(Integer.toHexString(0x20 + sequence))) {
+                        MainActivity.toast("iso seq " + id + "," + command + ":" + result);
+                        restoreOrder(2);
+                        return ("");
+
+                    }
+                    finalResult += result;
+                    sequence = (sequence + 1) & 0xf;
+                    runLength -= 7;
+                }
+                finalResult = finalResult.substring(0, length * 2);
+                return finalResult;
+            default:
+                MainActivity.toast("iso x " + id + "," + command + ":" + result);
+                restoreOrder(2);
                 break;
         }
-
-        if (!sumTingWong) {
-            return finalData.trim();
-        }
-
         return "";
-        //return result.trim();
     }
 
     private int getRequestId(int responseId)
-    {                     //from        // to
-        if     (responseId==0x7ec) return 0x7e4;  // EVC / SCH
-        else if(responseId==0x7cd) return 0x7ca;  // TCU
-        else if(responseId==0x7bb) return 0x79b;  // LBC
-        else if(responseId==0x77e) return 0x75a;  // PEB
-        else if(responseId==0x772) return 0x752;  // Airbag
-        else if(responseId==0x76d) return 0x74d;  // USM / UDP
-        else if(responseId==0x763) return 0x743;  // CLUSTER / instrument panel
-        else if(responseId==0x762) return 0x742;  // PAS
-        else if(responseId==0x760) return 0x740;  // ABS
-        else if(responseId==0x7bc) return 0x79c;  // UBP
-        else if(responseId==0x765) return 0x745;  // BCM
-        else if(responseId==0x764) return 0x744;  // CLIM
-        else if(responseId==0x76e) return 0x74e;  // UPA
-        else if(responseId==0x793) return 0x792;  // BCB
-        else if(responseId==0x7b6) return 0x796;  // LBC2
-        else if(responseId==0x722) return 0x702;  // LINSCH
-        else return -1;
+    {          //from  to
+        switch (responseId) {
+            case 0x7ec:
+                return 0x7e4;  // EVC / SCH
+            case 0x7cd:
+                return 0x7ca;  // TCU
+            case 0x7bb:
+                return 0x79b;  // LBC
+            case 0x77e:
+                return 0x75a;  // PEB
+            case 0x772:
+                return 0x752;  // Airbag
+            case 0x76d:
+                return 0x74d;  // USM / UDP
+            case 0x763:
+                return 0x743;  // CLUSTER / instrument panel
+            case 0x762:
+                return 0x742;  // PAS
+            case 0x760:
+                return 0x740;  // ABS
+            case 0x7bc:
+                return 0x79c;  // UBP
+            case 0x765:
+                return 0x745;  // BCM
+            case 0x764:
+                return 0x744;  // CLIM
+            case 0x76e:
+                return 0x74e;  // UPA
+            case 0x793:
+                return 0x792;  // BCB
+            case 0x7b6:
+                return 0x796;  // LBC2
+            case 0x722:
+                return 0x702;  // LINSCH
+            default:
+                return -1;
+        }
     }
 
     private String getRequestHexId(int responseId)
     {
         return Integer.toHexString(getRequestId(responseId));
-    }
-
-    private String getHex(int id)
-    {
-        return Integer.toHexString(id);
     }
 
     public void join() throws InterruptedException {
@@ -519,30 +501,20 @@ public class ELM327Experimental extends Device {
                 if (field.isIsoTp()) {
 
                     result = sendSerialCommandIsoTp (getRequestHexId(field.getId()), field.getRequestId(), false, lastId == field.getId());
-                    //MainActivity.toast("iso " + getRequestHexId(field.getId()) + "," + field.getRequestId() + ":" + result);
-                    //Thread.sleep(1000);
+                    MainActivity.toast("iso " + getRequestHexId(field.getId()) + "," + field.getRequestId() + ":" + result);
+                    Thread.sleep(1000);
                     lastId = field.getId();
 
-                    if(!result.isEmpty())
-                    {
-                        result = field.getHexId()+","+result+","+field.getResponseId()+SEPARATOR;
-                        MainActivity.debug("Result = "+result);
-                        // process data
-                        process(Utils.toIntArray(result.getBytes()));
-                    }
+                    // process data
+                    process(Utils.toIntArray(result.getBytes()));
+
                 } else {
 
                     result = sendSerialMonitor(field.getHexId(), field.getFrequency()+20);
-                    //MainActivity.toast("atma " + field.getHexId() + ":" + result);
-                    //Thread.sleep(1000);
-
-                    if(!result.isEmpty())
-                    {
-                        result = field.getHexId()+","+result+SEPARATOR;
-                        MainActivity.debug("Result = "+result);
-                        // process data
-                        process(Utils.toIntArray(result.getBytes()));
-                    }
+                    MainActivity.toast("atma " + field.getHexId() + ":" + result);
+                    Thread.sleep(1000);
+                    // process data
+                    process(Utils.toIntArray(result.getBytes()));
                 }
 
 
