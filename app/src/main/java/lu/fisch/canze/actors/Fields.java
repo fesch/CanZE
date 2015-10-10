@@ -625,6 +625,7 @@ public class Fields implements MessageListener {
                         +"0x7b6, 128, 143, 1, 1, 0, 0, LBC2 SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x722, 128, 143, 1, 1, 0, 0, LINSCH SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
 
+                        +"0x764, 112, 127, 1, 1, 0, 0, CLIM PG version, , 0x2180, 0x6180, , 0, 0, 0\n"
 
                 ;
 
