@@ -2,6 +2,7 @@ package lu.fisch.canze.widgets;
 
 import android.graphics.Point;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -24,9 +25,37 @@ public class Timeplot extends Drawable {
             this.date = date;
             this.value = value;
         }
+
+        public String toString()
+        {
+            return date+","+value;
+        }
     }
 
     protected ArrayList<TimePoint> values = new ArrayList<>();
+
+    public String getDataString()
+    {
+        String result = "";
+        for(int i=0; i<values.size(); i++)
+        {
+            if(i>0) result+="|";
+            result+=values.get(i).toString();
+        }
+        return result;
+    }
+
+    public void fromDataString(String data)
+    {
+        values.clear();
+        String[] points = data.split("\\|");
+        for(int i=0; i<points.length; i++)
+        {
+            String[] vals = points[i].split(",");
+            values.add(new TimePoint(Long.valueOf(vals[0]),Double.valueOf(vals[1])));
+        }
+    }
+
 
     public Timeplot() {
         super();

@@ -668,7 +668,8 @@ public class ELM327 extends Device {
                     }
 
                     // reset the ELM if a timeout occurred somewhere tunning this filter
-                    if (sumTingWong) {
+                    // ... but only if we are not asekd to stop!
+                    if (sumTingWong && connectedBluetoothThread!=null) {
                         //MainActivity.toast("... in command " + emlFilter + ", resetting ELM");
                         if (!initELM(2)) {
                             // MainActivity.toast("Soft Reset failed :-(");

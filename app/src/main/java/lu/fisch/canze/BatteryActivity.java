@@ -111,7 +111,8 @@ public class BatteryActivity extends CanzeActivity {
                         else {
                             field.addListener(wv.getDrawable());
                             // add filter to reader
-                            MainActivity.device.addField(field);
+                            MainActivity.device.
+                                    addField(field);
                         }
                     }
 

@@ -85,7 +85,7 @@ public class BobDue extends Device {
         if(connectedBluetoothThread!=null)
             connectedBluetoothThread.write("f" + filter + "\n");
         else
-            MainActivity.debug("registerFilter " + filter + " failed because connectedBluetoothThread is NULL");
+            MainActivity.debug("BobDue.registerFilter " + filter + " failed because connectedBluetoothThread is NULL");
     }
 
     @Override
@@ -94,7 +94,7 @@ public class BobDue extends Device {
         if(connectedBluetoothThread!=null)
             connectedBluetoothThread.write("r" + filter + "\n");
         else
-            MainActivity.debug("registerFilter " + filter + " failed because connectedBluetoothThread is NULL");
+            MainActivity.debug("BobDue.unregisterFilter " + filter + " failed because connectedBluetoothThread is NULL");
     }
 
     @Override

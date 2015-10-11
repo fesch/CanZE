@@ -215,24 +215,30 @@ public abstract class Device {
      * Methods (that will be inherited by any "real" device)
      \ -------------------------------------------------------------- */
 
-    /**
-     * This method sets the connected Bluetooth thread and does all
-     * initialisation stuff.
-     *
-     * @param connectedBluetoothThread
-     */
+    public ConnectedBluetoothThread getConnectedBluetoothThread()
+    {
+        return connectedBluetoothThread;
+    }
+
     public void setConnectedBluetoothThread(ConnectedBluetoothThread connectedBluetoothThread) {
-        MainActivity.debug("Device: nulling out connectedBluetoothThread");
+        setConnectedBluetoothThread(connectedBluetoothThread,true);
+    }
+
+    public void setConnectedBluetoothThread(ConnectedBluetoothThread connectedBluetoothThread, boolean reset) {
+        if(connectedBluetoothThread==null)
+            MainActivity.debug("Device: nulling out connectedBluetoothThread");
         this.connectedBluetoothThread = connectedBluetoothThread;
         if(connectedBluetoothThread!=null)
         {
             // init the connection
             initConnection();
 
-            // clean all filters (just to make sure)
-            clearFields();
-            // register all filters (if there are any)
-            registerFilters();
+            if(reset) {
+                // clean all filters (just to make sure)
+                clearFields();
+                // register all filters (if there are any)
+                registerFilters();
+            }
         }
     }
 }

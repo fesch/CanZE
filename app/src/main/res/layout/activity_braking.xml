@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:text="@string/header_braking"
         android:layout_alignParentLeft="true"
-        android:textColor="#000" />
+        android:textColor="#000"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/label_hbb_malfunction"
