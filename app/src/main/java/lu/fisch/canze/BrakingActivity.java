@@ -1,10 +1,8 @@
 package lu.fisch.canze;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-//import android.widget.ProgressBar;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -27,6 +25,9 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44";
     public static final String SID_Friction_Torque                      = "18a.27";
     public static final String SID_Braking_Pressure                     = "352.24";
+
+    // ISO-TP data
+    public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC) <<-- this one os not used but added to see if a non-free query added improves stability.
 
     public static final String hbb_Malfunction  [] = {"unavailable", "OK", "Not OK"};
     public static final String eb_Malfunction   [] = {"unavailable", "OK", "Not OK"};
@@ -54,6 +55,8 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
         addListener(SID_DriverBrakeWheel_Torque_Request);
         addListener(SID_Friction_Torque);
         addListener(SID_Braking_Pressure);
+
+        addListener(SID_EVC_RealSpeed); // unhandled
     }
 
     private void addListener(String sid) {
