@@ -578,8 +578,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
         if(!leaveBluetoothOn)
         {
-            device.clearFields();
-
+            if(device!=null)
+                device.clearFields();
             stopBluetooth();
         }
 
@@ -588,10 +588,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
     public void stopBluetooth()
     {
-        // stop the device
-        device.stopAndJoin();
-        // remove reference
-        device.setConnectedBluetoothThread(null);
+        if(device!=null) {
+            // stop the device
+            device.stopAndJoin();
+            // remove reference
+            device.setConnectedBluetoothThread(null);
+        }
         // disconnect BT
         BluetoothManager.getInstance().disconnect();
     }
