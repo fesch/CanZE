@@ -157,12 +157,12 @@ public class ELM327 extends Device {
         sendAndWaitForAnswer("x", 100);
 
         if (toughness == 0 ) {
-            if (sendAndWaitForAnswer("atz", 1000).trim().equals("")) {
+            if (sendAndWaitForAnswer("atz", 1500).trim().equals("")) {
                 return false;
             }
         }
         else if (toughness == 1) {
-            if (sendAndWaitForAnswer("atws", 1000).trim().equals("")) {
+            if (sendAndWaitForAnswer("atws", 1500).trim().equals("")) {
                 return false;
             }
         }
