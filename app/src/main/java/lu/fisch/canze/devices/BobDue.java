@@ -28,8 +28,6 @@ public class BobDue extends Device {
     // the actual filter
     private int fieldIndex = 0;
     // the thread that polls the data to the stack
-    private Thread poller = null;
-    private boolean pollerRunning = true;
 
     @Override
     public void initConnection() {
@@ -44,28 +42,28 @@ public class BobDue extends Device {
         }
         if(connectedBluetoothThread!=null) {
             // make sure we only have one poller task
-            if (poller == null) {
+            if (pollerThread == null) {
                 // post a task to the UI thread
-                pollerRunning=true;
+                setPollerActive(true);
 
                 Runnable r = new Runnable() {
                     @Override
                     public void run() {
-                        while (connectedBluetoothThread!=null)
+                        while (isPollerActive())
                             queryNextFilter();
                     }
                 };
-                poller = new Thread(r);
-                poller.start();
+                pollerThread = new Thread(r);
+                pollerThread.start();
             }
         }
         else
         {
-            if(poller!=null && poller.isAlive())
+            if(pollerThread!=null && pollerThread.isAlive())
             {
-                pollerRunning=false;
+                setPollerActive(false);
                 try {
-                    poller.join();
+                    pollerThread.join();
                 }
                 catch (Exception e)
                 {
@@ -76,7 +74,7 @@ public class BobDue extends Device {
     }
 
     public void join() throws InterruptedException {
-        poller.join();
+        pollerThread.join();
     }
 
     @Override
@@ -203,6 +201,7 @@ public class BobDue extends Device {
                     field = fields.get(fieldIndex);
                 }
 
+                MainActivity.debug("queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
                 //MainActivity.debug("Querying for field: "+field.getSID());
 
                 if(field!=null) {
@@ -211,7 +210,7 @@ public class BobDue extends Device {
 
                     if (field.isIsoTp()) {
                         String command = "i" + filter + "," + field.getRequestId() + "," + field.getResponseId();
-                        MainActivity.debug("Sending: "+command);
+                        //MainActivity.debug("Sending: "+command);
                         String hexData = sendAndWaitForAnswer(command, 0);
                         //MainActivity.debug("Got: "+hexData);
                         // process data

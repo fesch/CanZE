@@ -37,8 +37,6 @@ public class ELM327 extends Device {
 
     boolean sumTingWong = false; // yes I know, the fake news name of Asiana flight 214 777 captain that crashed in SF
 
-    private Thread pollerThread;
-
     @Override
     public void initConnection() {
         // if the reading thread is running: stop it, because we don't need it
@@ -60,7 +58,8 @@ public class ELM327 extends Device {
                     // continue only if we got an answer.
                     if (initELM(0)) {
 
-                        while (connectedBluetoothThread!=null) {
+                        setPollerActive(true);
+                        while (isPollerActive()) {
                             // if the no field is to be queried, sleep for a while
                             if(fields.size()==0)
                             {

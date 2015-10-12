@@ -36,6 +36,9 @@ public abstract class Device {
      */
     protected ConnectedBluetoothThread connectedBluetoothThread = null;
 
+    protected boolean pollerActive = false;
+    protected Thread pollerThread;
+
 
 
     /* ----------------------------------------------------------------
@@ -225,8 +228,9 @@ public abstract class Device {
     }
 
     public void setConnectedBluetoothThread(ConnectedBluetoothThread connectedBluetoothThread, boolean reset) {
-        if(connectedBluetoothThread==null)
+        if(connectedBluetoothThread==null) {
             MainActivity.debug("Device: nulling out connectedBluetoothThread");
+        }
         this.connectedBluetoothThread = connectedBluetoothThread;
         if(connectedBluetoothThread!=null)
         {
@@ -240,5 +244,28 @@ public abstract class Device {
                 registerFilters();
             }
         }
+    }
+
+    public void stopAndJoin()
+    {
+        MainActivity.debug("Device: stopping poller");
+        setPollerActive(false);
+        MainActivity.debug("Device: waiting for poller to be stopped");
+        try {
+            pollerThread.join();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        MainActivity.debug("Device: poller stopped");
+    }
+
+    public boolean isPollerActive() {
+        return pollerActive;
+    }
+
+    public void setPollerActive(boolean pollerActive) {
+        this.pollerActive = pollerActive;
     }
 }

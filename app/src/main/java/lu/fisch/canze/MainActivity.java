@@ -90,7 +90,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                 if(visible)
                 {
                     // stop reading
-                    if (device!=null) device.setConnectedBluetoothThread(null);
+                    if (device!=null)
+                    {
+                        device.stopAndJoin();
+                        device.setConnectedBluetoothThread(null);
+                    }
 
                     // inform user
                     setTitle(TAG + " - disconnected");
@@ -584,16 +588,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
     public void stopBluetooth()
     {
-        // this will stop any device from continuing trying to connect
+        // stop the device
+        device.stopAndJoin();
+        // remove reference
         device.setConnectedBluetoothThread(null);
-        // wait for device to stop polling
-        try {
-            device.join();
-        }
-        catch(Exception e)
-        {
-            // ignore
-        }
+        // disconnect BT
         BluetoothManager.getInstance().disconnect();
     }
 
@@ -619,16 +618,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     protected void onDestroy() {
         debug("MainActivity: onDestroy");
 
-        // this will stop any device from continuing trying to connect
+        // stop the device nicely
+        device.stopAndJoin();
         device.setConnectedBluetoothThread(null);
-        // wait for device to stop polling
-        try {
-            device.join();
-        }
-        catch(Exception e)
-        {
-            // ignore
-        }
+        // disconnect the bluetooth
         BluetoothManager.getInstance().disconnect();
 
         // un-register for bluetooth changes
@@ -667,6 +660,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
                         if (device != null) {
                             // stop the BT device
+                            device.stopAndJoin();
                             device.setConnectedBluetoothThread(null);
                             BluetoothManager.getInstance().disconnect();
                         }
