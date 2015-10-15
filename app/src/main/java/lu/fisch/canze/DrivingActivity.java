@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -42,8 +43,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_EVC_TractionBatteryCurrent           = "7ec.623204.24"; //  (EVC)
 
     double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
-    int lastOdo = 0;
-    int kmInBat = 0;
+    int odo = 0;
+    int destOdo = 0; // have to init from save file
     double realSpeed = 0;
     private ArrayList<Field> subscribedFields;
 
@@ -53,6 +54,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         setContentView(R.layout.activity_driving);
 
         subscribedFields = new ArrayList<>();
+
+        getDestOdo();
 
         // Make sure to add ISO-TP listeners grouped by ID
 
@@ -73,6 +76,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         kmToDest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // don't react if we do not have a live odo yet
+                if (odo == 0) return;
                 final Context context = DrivingActivity.this;
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                 LayoutInflater inflater = getLayoutInflater();
@@ -90,7 +95,16 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                             public void onClick(DialogInterface dialog, int id) {
                                 EditText dialogKmToDest = (EditText) kmToDestView.findViewById(R.id.dialog_dist_to_dest);
                                 if (dialogKmToDest != null){
-                                    setKmToDest(dialogKmToDest.getText().toString(), "");
+                                    saveDestOdo(odo + Integer.parseInt(dialogKmToDest.getText().toString()));
+                                }
+                                dialog.cancel();
+                            }
+                        })
+                        .setPositiveButton("Double", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                EditText dialogKmToDest = (EditText) kmToDestView.findViewById(R.id.dialog_dist_to_dest);
+                                if (dialogKmToDest != null) {
+                                    saveDestOdo(odo + 2 * Integer.parseInt(dialogKmToDest.getText().toString()));
                                 }
                                 dialog.cancel();
                             }
@@ -104,6 +118,22 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
 
             }
         });
+    }
+
+    private void saveDestOdo (int d) {
+        SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("destOdo", d);
+        editor.commit();
+        destOdo = d;
+        setKmToDest("" + (destOdo - odo), "");
+        // still have to implement save to file
+    }
+
+    private void getDestOdo () {
+        SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
+        destOdo = settings.getInt("destOdo", 0);
+        //setKmToDest("" + (destOdo - odo), "");
     }
 
     private void setKmToDest (String km1, String km2) {
@@ -168,22 +198,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         pb.setProgress((int) field.getValue());
                         break;
                     case SID_EVC_Odometer:
-                        int odo = (int) field.getValue();
-                        if (lastOdo < 1) lastOdo = odo; // assume a lastOdo < 1 to be initialisation
-                        if (odo > lastOdo && odo < (lastOdo + 10) && kmInBat > 0) { // we update only if there are no weird odo values
-                            try {
-                                tv = (TextView) findViewById(R.id.textKmToDest);
-                                int newKmToDest = Integer.parseInt("" + tv.getText());
-                                newKmToDest -= (odo - lastOdo);
-                                if (newKmToDest >= 0) {
-                                    setKmToDest("" + newKmToDest, "" + (kmInBat - newKmToDest));
-                                } else {
-                                    setKmToDest("0", "0");
-                                }
-                            } catch (Exception e) {
-                            }
-                            lastOdo = odo;
-                        }
+                        odo = (int) field.getValue();
                         tv = null;
                         break;
                     case SID_RealSpeed:
@@ -200,19 +215,17 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_EVC_TractionBatteryCurrent: // DC amps
                         // calculate DC power
-                        double dcPwr = (double) Math.round(dcVolt * field.getValue());
+                        double dcPwr = (double) Math.round(dcVolt * field.getValue() / 100.0) * 10.0;
                         tv = (TextView) findViewById(R.id.textDcPwr);
                         tv.setText("" + (dcPwr));
                         tv = null;
                         break;
                     case SID_RangeEstimate:
-                        kmInBat = (int) field.getValue();
-                        if (kmInBat > 0) { // we update only if there are no weird values
+                        int kmInBat = (int) field.getValue();
+                        if (kmInBat > 0 && odo > 0 && destOdo > 0) { // we update only if there are no weird values
                             try {
-                                tv = (TextView) findViewById(R.id.textKmToDest);
-                                int newKmToDest = Integer.parseInt("" + tv.getText());
-                                if (newKmToDest >= 0) {
-                                    setKmToDest("" + newKmToDest, "" + (kmInBat - newKmToDest));
+                                if (destOdo > odo) {
+                                    setKmToDest("" + (destOdo - odo), "" + (kmInBat - destOdo + odo));
                                 } else {
                                     setKmToDest("0", "0");
                                 }
