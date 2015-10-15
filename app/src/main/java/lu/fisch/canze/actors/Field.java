@@ -88,6 +88,11 @@ public class Field {
         else
             return (Integer.toHexString(id)+"."+from).toLowerCase();
     }
+
+    public String getUniqueID()
+    {
+        return getCar()+"."+getSID();
+    }
     
     public String getPrintValue()
     {
@@ -134,9 +139,9 @@ public class Field {
     /**
      * Notify all listeners synchronously
      */
-    private void notifyFieldListeners()
+    public void notifyFieldListeners()
     {
-        notifyFieldListeners(false);
+        notifyFieldListeners(true);
     }
 
     /**

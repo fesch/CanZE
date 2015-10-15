@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     // SPP UUID service
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
+    public final static String PREFERENCES_FILE = "lu.fisch.canze.settings";
+
     // MAC-address of Bluetooth module (you must edit this line)
     private static String bluetoothDeviceAddress = null;
     private static String bluetoothDeviceName = null;
@@ -129,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
     public void loadSettings()
     {
-        SharedPreferences settings = getSharedPreferences("lu.fisch.canze.settings", 0);
+        SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
         bluetoothDeviceAddress =settings.getString("deviceAddress", null);
         bluetoothDeviceName =settings.getString("deviceName", null);
         dataFormat = settings.getString("dataFormat", "crdt");
@@ -217,6 +219,15 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         // load fields from static code
         debug("Loaded fields: " + fields.size());
 
+
+        // load fields
+        SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
+        for(int i=0; i<fields.size(); i++)
+        {
+            Field f = fields.get(i);
+            f.setValue(settings.getFloat(f.getUniqueID(), 0));
+        }
+
         // connect the widgets to the respective fields
         /* no more needed as there are none here!
         ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
@@ -269,11 +280,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(connectedBluetoothThread==null)
+                /*if(connectedBluetoothThread==null)
                 {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, TachoActivity.class);
@@ -285,11 +296,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(connectedBluetoothThread==null)
+                /*if(connectedBluetoothThread==null)
                 {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, ChargingActivity.class);
@@ -317,11 +328,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(connectedBluetoothThread==null)
+                /*if(connectedBluetoothThread==null)
                 {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, BatteryTempActivity.class);
@@ -349,11 +360,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(connectedBluetoothThread==null)
+                /*if(connectedBluetoothThread==null)
                 {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, BrakingActivity.class);
@@ -365,11 +376,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(connectedBluetoothThread==null)
+                /*if(connectedBluetoothThread==null)
                 {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, LeafSpyActivity.class);
@@ -381,11 +392,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(connectedBluetoothThread==null)
+                /*if(connectedBluetoothThread==null)
                 {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, FirmwareActivity.class);
@@ -397,11 +408,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(connectedBluetoothThread==null)
+                /*if(connectedBluetoothThread==null)
                 {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, TestX10Activity.class);
@@ -413,11 +424,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(connectedBluetoothThread==null)
+                /*if(connectedBluetoothThread==null)
                 {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, StatsActivity.class);
@@ -429,11 +440,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(connectedBluetoothThread==null)
+                /*if(connectedBluetoothThread==null)
                 {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, BatteryActivity.class);
@@ -445,11 +456,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(connectedBluetoothThread==null)
+                /*if(connectedBluetoothThread==null)
                 {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, HarmActivity.class);
@@ -475,17 +486,19 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
             @Override
             public void onAfterConnect(BluetoothSocket bluetoothSocket, ConnectedBluetoothThread connectedBluetoothThread) {
-                MainActivity.this.connectedBluetoothThread=connectedBluetoothThread;
+                MainActivity.this.connectedBluetoothThread = connectedBluetoothThread;
 
                 // assign the BT thread to the reader
                 debug("assign the BT thread to the reader");
-                if(device!=null)
-                    device.setConnectedBluetoothThread(connectedBluetoothThread,visible);
+                if (device != null)
+                    device.setConnectedBluetoothThread(connectedBluetoothThread, visible);
 
                 // register fields this activity needs to get
                 // but only if this activity is visible
-                if(visible)
+                if (visible)
                     registerFields();
+
+                device.registerFilters();
 
 
                 /*
@@ -520,7 +533,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             public void onBeforeDisconnect(BluetoothSocket bluetoothSocket, ConnectedBluetoothThread connectedBluetoothThread) {
                 // clear all filters
                 //reader.clearFields();
-                if(device!=null)
+                if (device != null)
                     device.clearFields();
             }
 
@@ -616,6 +629,20 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         else super.onActivityResult(requestCode, resultCode, data);
     }
 
+    public void saveFields()
+    {
+        // safe fields
+        SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        for(int i=0; i<fields.size(); i++)
+        {
+            Field f = fields.get(i);
+            editor.putFloat(f.getUniqueID(),(float) f.getRawValue());
+            //debug("Setting "+f.getUniqueID()+" = "+f.getRawValue());
+        }
+        editor.commit();
+    }
+
     @Override
     protected void onDestroy() {
         debug("MainActivity: onDestroy");
@@ -628,6 +655,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
         // un-register for bluetooth changes
         this.unregisterReceiver(broadcastReceiver);
+
+        saveFields();
 
         super.onDestroy();
     }

@@ -11,6 +11,7 @@ import lu.fisch.canze.bluetooth.BluetoothManager;
 public class CanzeActivity extends AppCompatActivity {
 
     private boolean iLeftMyOwn = false;
+    private boolean back = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +27,10 @@ public class CanzeActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         MainActivity.debug("CanzeActivity: onPause");
-        MainActivity.getInstance().stopBluetooth();
+        if(!back)
+            MainActivity.getInstance().stopBluetooth();
         iLeftMyOwn=true;
+        MainActivity.getInstance().saveFields();
     }
 
     @Override
@@ -54,8 +57,10 @@ public class CanzeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(MainActivity.isSafe())
+        if(MainActivity.isSafe()) {
             super.onBackPressed();
+            back = true;
+        }
     }
 
 }

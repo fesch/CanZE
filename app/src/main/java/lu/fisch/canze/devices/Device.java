@@ -252,7 +252,8 @@ public abstract class Device {
         setPollerActive(false);
         MainActivity.debug("Device: waiting for poller to be stopped");
         try {
-            pollerThread.join();
+            if(pollerThread!=null)
+                pollerThread.join();
         }
         catch(Exception e)
         {

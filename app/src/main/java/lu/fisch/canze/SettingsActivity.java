@@ -43,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
         tryTofillDeviceList();
 
         // load settings
-        SharedPreferences settings = getSharedPreferences("lu.fisch.canze.settings", 0);
+        SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
         String device=settings.getString("device", "Arduino");
 
         // fill devices
@@ -94,8 +94,7 @@ public class SettingsActivity extends AppCompatActivity {
         safe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!safe.isChecked())
-                {
+                if (!safe.isChecked()) {
                     final Context context = SettingsActivity.this;
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
@@ -109,22 +108,22 @@ public class SettingsActivity extends AppCompatActivity {
                                     "Disabling of this mode is not recommended at all!\n\n" +
                                     "Are you sure you want to continue disabling the Safe Driving Mode?")
                             .setCancelable(true)
-                            .setPositiveButton("Yes, I know what I'm doing",new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,int id) {
+                            .setPositiveButton("Yes, I know what I'm doing", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
                                     // if this button is clicked, close
                                     // current activity
                                     dialog.cancel();
                                 }
                             })
                             .setNegativeButton("No, I prefer the secure way",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // if this button is clicked, just close
-                            // the dialog box and do nothing
-                            safe.setChecked(true);
-                            dialog.cancel();
-                        }
-                    });
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            // if this button is clicked, just close
+                                            // the dialog box and do nothing
+                                            safe.setChecked(true);
+                                            dialog.cancel();
+                                        }
+                                    });
 
                     // create alert dialog
                     AlertDialog alertDialog = alertDialogBuilder.create();
@@ -167,7 +166,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         if (id == R.id.action_ok) {
             // save settings
-            SharedPreferences settings = getSharedPreferences("lu.fisch.canze.settings", 0);
+            SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
             SharedPreferences.Editor editor = settings.edit();
             Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
             Spinner device = (Spinner) findViewById(R.id.remoteDevice);
@@ -237,7 +236,7 @@ public class SettingsActivity extends AppCompatActivity {
         // if there are paired devices
         if (pairedDevices.size() > 0)
         {
-            SharedPreferences settings = getSharedPreferences("lu.fisch.canze.settings", 0);
+            SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
             String deviceAddress=settings.getString("deviceAddress", null);
 
             ArrayAdapter arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);

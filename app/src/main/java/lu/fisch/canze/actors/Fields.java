@@ -816,6 +816,13 @@ public class Fields implements MessageListener {
         this.car = car;
     }
 
+    public void notifyAllFieldListeners()
+    {
+        for(int i=0; i< fields.size(); i++) {
+            fields.get(i).notifyFieldListeners();
+        }
+    }
+
     /* --------------------------------
      * Tests ...
      \ ------------------------------ */
