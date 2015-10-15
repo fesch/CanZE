@@ -312,11 +312,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(connectedBluetoothThread==null)
+                /*if(connectedBluetoothThread==null)
                 {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, DrivingActivity.class);
@@ -344,11 +344,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(connectedBluetoothThread==null)
+                /*if(connectedBluetoothThread==null)
                 {
                     Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
                     return;
-                }
+                }*/
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, BatteryVoltageActivity.class);
