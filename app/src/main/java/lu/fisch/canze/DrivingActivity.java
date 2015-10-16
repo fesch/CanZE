@@ -53,25 +53,6 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driving);
 
-        subscribedFields = new ArrayList<>();
-
-        getDestOdo();
-
-        // Make sure to add ISO-TP listeners grouped by ID
-
-        addListener(SID_Pedal);
-        addListener(SID_MeanEffectiveTorque);
-        addListener(SID_BrakePressure);
-        addListener(SID_RealSpeed);
-        addListener(SID_SoC);
-        addListener(SID_RangeEstimate);
-
-        //addListener(SID_EVC_SoC);
-        addListener(SID_EVC_Odometer);
-        addListener(SID_EVC_TractionBatteryVoltage);
-        addListener(SID_EVC_TractionBatteryCurrent);
-        //addListener(SID_PEB_Torque);
-
         final TextView kmToDest = (TextView) findViewById(R.id.LabelKmToDest);
         kmToDest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +104,9 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
 
             }
         });
+
+        initWidgets();
+
     }
 
     private void saveDestOdo (int d) {
@@ -188,6 +172,37 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         subscribedFields.clear();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // initialise the widgets
+        initWidgets();
+    }
+
+    private void initWidgets () {
+
+        subscribedFields = new ArrayList<>();
+
+        getDestOdo();
+
+        // Make sure to add ISO-TP listeners grouped by ID
+
+        addListener(SID_Pedal);
+        addListener(SID_MeanEffectiveTorque);
+        addListener(SID_BrakePressure);
+        addListener(SID_RealSpeed);
+        addListener(SID_SoC);
+        addListener(SID_RangeEstimate);
+
+        //addListener(SID_EVC_SoC);
+        addListener(SID_EVC_Odometer);
+        addListener(SID_EVC_TractionBatteryVoltage);
+        addListener(SID_EVC_TractionBatteryCurrent);
+        //addListener(SID_PEB_Torque);
+    }
+
+
     // This is the event fired as soon as this the registered fields are
     // getting updated by the corresponding reader class.
     @Override
@@ -222,7 +237,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_RealSpeed:
                     case SID_EVC_RealSpeed:
-                        realSpeed =  (Math.round(field.getValue() * 10.0) / 10.0);
+                        realSpeed = (Math.round(field.getValue() * 10.0) / 10.0);
                         tv = (TextView) findViewById(R.id.textRealSpeed);
                         break;
                     //case SID_PEB_Torque:
@@ -234,7 +249,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_EVC_TractionBatteryCurrent: // DC amps
                         // calculate DC power
-                        double dcPwr = (double) Math.round(dcVolt * field.getValue() / 10000.0) * 10.0;
+                        double dcPwr = Math.round(dcVolt * field.getValue() / 100.0) / 10.0;
                         tv = (TextView) findViewById(R.id.textDcPwr);
                         tv.setText("" + (dcPwr));
                         tv = null;
@@ -260,7 +275,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText("" + (double) (Math.round(field.getValue() * 10) / 10));
+                    tv.setText("" + (Math.round(field.getValue() * 10.0) / 10.0));
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);
