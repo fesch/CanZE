@@ -154,7 +154,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_TractionBatteryCurrent: // DC amps
                         // calculate DC power
-                        double dcPwr = (double)Math.round(dcVolt * field.getValue());
+                        double dcPwr = (double)Math.round(dcVolt * field.getValue() / 10000.0) * 10.0;
                         tv = (TextView) findViewById(R.id.textDcPwr);
                         tv.setText("" + (dcPwr));
                         // guess phases

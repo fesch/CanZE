@@ -100,12 +100,17 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                                 dialog.cancel();
                             }
                         })
-                        .setPositiveButton("Double", new DialogInterface.OnClickListener() {
+                        .setNeutralButton("Double", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 EditText dialogKmToDest = (EditText) kmToDestView.findViewById(R.id.dialog_dist_to_dest);
                                 if (dialogKmToDest != null) {
                                     saveDestOdo(odo + 2 * Integer.parseInt(dialogKmToDest.getText().toString()));
                                 }
+                                dialog.cancel();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
                         });
@@ -126,14 +131,28 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         editor.putInt("destOdo", d);
         editor.commit();
         destOdo = d;
-        setKmToDest("" + (destOdo - odo), "");
-        // still have to implement save to file
+        Field field = MainActivity.fields.getBySID(SID_RangeEstimate);
+        int kmInBat = (int) field.getValue();
+        if (destOdo > odo) {
+            setKmToDest("" + (destOdo - odo), "" + (kmInBat - destOdo + odo));
+        } else {
+            setKmToDest("0", "0");
+        }
     }
 
     private void getDestOdo () {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
         destOdo = settings.getInt("destOdo", 0);
-        //setKmToDest("" + (destOdo - odo), "");
+        // get last persistent odo to calc
+        Field field = MainActivity.fields.getBySID(SID_EVC_Odometer);
+        odo = (int)field.getValue();
+        field = MainActivity.fields.getBySID(SID_RangeEstimate);
+        int kmInBat = (int) field.getValue();
+        if (destOdo > odo) {
+            setKmToDest("" + (destOdo - odo), "" + (kmInBat - destOdo + odo));
+        } else {
+            setKmToDest("0", "0");
+        }
     }
 
     private void setKmToDest (String km1, String km2) {
@@ -180,7 +199,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
             public void run() {
                 String fieldId = field.getSID();
                 TextView tv = null;
-                ProgressBar pb = null;
+                ProgressBar pb;
 
                 // get the text field
                 switch (fieldId) {
@@ -203,7 +222,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_RealSpeed:
                     case SID_EVC_RealSpeed:
-                        realSpeed =  (double) (Math.round(field.getValue() * 10) / 10);
+                        realSpeed =  (Math.round(field.getValue() * 10.0) / 10.0);
                         tv = (TextView) findViewById(R.id.textRealSpeed);
                         break;
                     //case SID_PEB_Torque:
@@ -215,7 +234,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_EVC_TractionBatteryCurrent: // DC amps
                         // calculate DC power
-                        double dcPwr = (double) Math.round(dcVolt * field.getValue() / 100.0) * 10.0;
+                        double dcPwr = (double) Math.round(dcVolt * field.getValue() / 10000.0) * 10.0;
                         tv = (TextView) findViewById(R.id.textDcPwr);
                         tv.setText("" + (dcPwr));
                         tv = null;
