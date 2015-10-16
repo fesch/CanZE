@@ -41,22 +41,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_braking);
-
-        subscribedFields = new ArrayList<>();
-
-        // Make sure to add ISO-TP listeners grouped by ID
-
-        addListener(SID_HBB_Malfunction);
-        addListener(SID_EB_Malfunction);
-        addListener(SID_EB_In_Progress);
-        addListener(SID_HBA_Activation_Request);
-        addListener(SID_Pressure_Buildup);
-        addListener(SID_ElecBrakeWheels_Torque_Request);
-        addListener(SID_DriverBrakeWheel_Torque_Request);
-        addListener(SID_Friction_Torque);
-        addListener(SID_Braking_Pressure);
-
-        addListener(SID_EVC_RealSpeed); // unhandled
+        initWidgets();
     }
 
     private void addListener(String sid) {
@@ -82,6 +67,33 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
             field.removeListener(this);
         }
         subscribedFields.clear();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // initialise the widgets
+        initWidgets();
+    }
+
+    private void initWidgets () {
+
+        subscribedFields = new ArrayList<>();
+
+        // Make sure to add ISO-TP listeners grouped by ID
+
+        addListener(SID_HBB_Malfunction);
+        addListener(SID_EB_Malfunction);
+        addListener(SID_EB_In_Progress);
+        addListener(SID_HBA_Activation_Request);
+        addListener(SID_Pressure_Buildup);
+        addListener(SID_ElecBrakeWheels_Torque_Request);
+        addListener(SID_DriverBrakeWheel_Torque_Request);
+        addListener(SID_Friction_Torque);
+        addListener(SID_Braking_Pressure);
+
+        addListener(SID_EVC_RealSpeed); // unhandled
     }
 
     // This is the event fired as soon as this the registered fields are

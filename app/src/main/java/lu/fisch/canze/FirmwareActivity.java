@@ -49,22 +49,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
                 break;
         }
 
-        addListener("7ec.6180.128"); // SCH
-        addListener("7da.6180.128"); // TCU
-        addListener("7bb.6180.128"); // LBC
-        addListener("77e.6180.128"); // PEB
-        addListener("772.6180.128"); // AIRBAG
-        addListener("76d.6180.128"); // USM not for Fluence
-        addListener("763.6180.128"); // CLUSTER
-        addListener("762.6180.128"); // EPS
-        addListener("760.6180.128"); // ABS
-        addListener("7bc.6180.128"); // UBP not for Fluence
-        addListener("765.6180.128"); // BCM
-        addListener("764.6180.128"); // CLIM
-        addListener("76e.6180.128"); // UPA not for Zoe
-        addListener("793.6180.128"); // BCB not for Fluence or Zoe
-        addListener("7b6.6180.128"); // LBC2
-        addListener("722.6180.128"); // LINSCH not for FLuence or Zoe
+        initWidgets();
 
      }
 
@@ -89,6 +74,36 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
             field.removeListener(this);
         }
         subscribedFields.clear();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // initialise the widgets
+        initWidgets();
+    }
+
+    private void initWidgets () {
+
+        subscribedFields = new ArrayList<>();
+
+        addListener("7ec.6180.128"); // SCH
+        addListener("7da.6180.128"); // TCU
+        addListener("7bb.6180.128"); // LBC
+        addListener("77e.6180.128"); // PEB
+        addListener("772.6180.128"); // AIRBAG
+        addListener("76d.6180.128"); // USM not for Fluence
+        addListener("763.6180.128"); // CLUSTER
+        addListener("762.6180.128"); // EPS
+        addListener("760.6180.128"); // ABS
+        addListener("7bc.6180.128"); // UBP not for Fluence
+        addListener("765.6180.128"); // BCM
+        addListener("764.6180.128"); // CLIM
+        addListener("76e.6180.128"); // UPA not for Zoe
+        addListener("793.6180.128"); // BCB not for Fluence or Zoe
+        addListener("7b6.6180.128"); // LBC2
+        addListener("722.6180.128"); // LINSCH not for FLuence or Zoe
     }
 
     // This is the event fired as soon as this the registered fields are

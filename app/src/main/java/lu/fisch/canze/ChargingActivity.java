@@ -40,32 +40,8 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charging);
 
-        subscribedFields = new ArrayList<>();
-        addListener(SID_MaxCharge);
-        addListener(SID_ACPilot);
-//      addListener(SID_EnergyToFull);
-        addListener(SID_TimeToFull);
-        addListener(SID_SoC);
-        addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
-        addListener(SID_RangeEstimate);
-        addListener(SID_Flap);
-        addListener(SID_TractionBatteryVoltage);
-        addListener(SID_TractionBatteryCurrent);
+        initWidgets();
 
-        // Battery compartment temperatures
-        int car = Fields.getInstance().getCar();
-        int lastCell;
-        if(car==Fields.CAR_ZOE) {
-            lastCell = 296;
-        }
-        else
-        {
-            lastCell = 104;
-        }
-        for (int i = 32; i <= lastCell; i += 24) {
-            String sid = SID_Preamble_CompartmentTemperatures + i;
-            addListener(sid);
-        }
     }
 
     private void addListener(String sid) {
@@ -93,6 +69,45 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
             field.removeListener(this);
         }
         subscribedFields.clear();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // initialise the widgets
+        initWidgets();
+    }
+
+    private void initWidgets () {
+
+        subscribedFields = new ArrayList<>();
+
+        addListener(SID_MaxCharge);
+        addListener(SID_ACPilot);
+//      addListener(SID_EnergyToFull);
+        addListener(SID_TimeToFull);
+        addListener(SID_SoC);
+        addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
+        addListener(SID_RangeEstimate);
+        addListener(SID_Flap);
+        addListener(SID_TractionBatteryVoltage);
+        addListener(SID_TractionBatteryCurrent);
+
+        // Battery compartment temperatures
+        int car = Fields.getInstance().getCar();
+        int lastCell;
+        if(car==Fields.CAR_ZOE) {
+            lastCell = 296;
+        }
+        else
+        {
+            lastCell = 104;
+        }
+        for (int i = 32; i <= lastCell; i += 24) {
+            String sid = SID_Preamble_CompartmentTemperatures + i;
+            addListener(sid);
+        }
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -154,7 +169,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_TractionBatteryCurrent: // DC amps
                         // calculate DC power
-                        double dcPwr = (double)Math.round(dcVolt * field.getValue() / 10000.0) * 10.0;
+                        double dcPwr = (double)Math.round(dcVolt * field.getValue() / 100.0) / 10.0;
                         tv = (TextView) findViewById(R.id.textDcPwr);
                         tv.setText("" + (dcPwr));
                         // guess phases
@@ -208,7 +223,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText("" + (double) (Math.round(field.getValue() * 10) / 10));
+                    tv.setText("" + (Math.round(field.getValue() * 10.0) / 10.0));
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);
