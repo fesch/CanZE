@@ -177,8 +177,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="BatteryVolatagesActivity (Bob)"
-                android:id="@+id/buttonBatVolt"
+                android:text="Temperatures (Bob)"
+                android:id="@+id/buttonTemperature"
                 android:layout_column="0" />
 
             <Button

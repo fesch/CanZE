@@ -87,8 +87,11 @@ public class Timeplot extends Drawable {
         //MainActivity.debug(values.size()+"");
         if(!values.containsKey(fieldSID)) values.put(fieldSID,new ArrayList<TimePoint>());
         values.get(fieldSID).add(new TimePoint(Calendar.getInstance().getTimeInMillis(), value));
+
+        /*
         if(value<min) setMin((int) value - 1);
         else if(value>max) setMax((int) value + 1);
+        */
 
         /*setMinorTicks(0);
         setMajorTicks(1);

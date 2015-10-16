@@ -5,7 +5,7 @@
     <string name="title_activity_widget">WidgetActivity</string>
     <string name="title_activity_tacho">TachoActivity</string>
     <string name="title_activity_text">TextActivity</string>
-    <string name="title_activity_battery__voltage_">Battery Voltages</string>
+    <string name="title_activity_temperatures">Temperatures</string>
     <string name="title_activity_leaf_spy">Leaf Spy Clone</string>
     <string name="title_activity_battery_temp">BatteryTempActivity</string>
     <string name="title_activity_test">testActivity</string>

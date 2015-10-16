@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -340,7 +339,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             }
         });
 
-        button = (Button) findViewById(R.id.buttonBatVolt);
+        button = (Button) findViewById(R.id.buttonTemperature);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -351,7 +350,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                 }*/
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, BatteryVoltageActivity.class);
+                Intent intent = new Intent(MainActivity.this, TemperatureActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
             }
         });

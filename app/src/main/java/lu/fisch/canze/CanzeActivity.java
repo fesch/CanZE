@@ -15,8 +15,9 @@ public class CanzeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if(MainActivity.device.getConnectedBluetoothThread()==null)
-            MainActivity.getInstance().reloadBluetooth();
+        if(MainActivity.device!=null)
+            if(MainActivity.device.getConnectedBluetoothThread()==null)
+                MainActivity.getInstance().reloadBluetooth();
 
         MainActivity.debug("CanzeActivity: onCreate");
         MainActivity.registerFields();
