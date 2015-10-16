@@ -27,7 +27,9 @@ public class ELM327 extends Device {
     private int DEFAULT_TIMEOUT = 500;
     private int TIMEOUT = 500;
     // define End Of Message for this type of reader
-    private static final char EOM = '\r';
+    private static final char EOM1 = '\r';
+    private static final char EOM2 = '>';
+    private static final char EOM3 = '?';
 
     /**
      * the index of the actual field to request
@@ -54,7 +56,7 @@ public class ELM327 extends Device {
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
-                    // atz (reset)
+                    // atz / atws (reset)
                     // continue only if we got an answer.
                     if (initELM(0)) {
 
@@ -78,7 +80,7 @@ public class ELM327 extends Device {
                         pollerThread=null;
                     } else {
                         MainActivity.debug("ELM: no answer ...");
-                        MainActivity.toast("No answer from ELM ... retrying ...");
+                        MainActivity.toast("... retrying ...");
                         if(connectedBluetoothThread!=null) {
                             // retry
                             pollerThread = new Thread(this);
@@ -153,56 +155,89 @@ public class ELM327 extends Device {
         // ensure the dongle header are set again
         lastId = 0;
 
+        String response;
+
         // ensure any running operation is stopped
+        // sending a return might restart the last command. Bad plan.
+        sendAndWaitForAnswer("x", 200, false, -1 , false);
+        // if a command was running, it is interrupted now and the ELM is waiting for a command. However, if there was no command running, the x
+        // in the buffer will screw up the next command. There are two possibilities: Sending a Backspace and hope for the best, or sending x <CR>
+        // and being sure the ELM will report an unknow command (prompt a ? mark), as it will be processing either x <CR> or xx <CR>. We choose the latter
         sendAndWaitForAnswer("x", 100);
 
         if (toughness == 0 ) {
-            if (sendAndWaitForAnswer("atz", 1500).trim().equals("")) {
-                return false;
-            }
+            //response = sendAndWaitForAnswer("atz", 1500);
+            response = sendAndWaitForAnswer("atws", 300, true, -1 , true);
         }
         else if (toughness == 1) {
-            if (sendAndWaitForAnswer("atws", 1500).trim().equals("")) {
-                return false;
-            }
+            response = sendAndWaitForAnswer("atws", 300, true, -1 , true);
         }
         else {
-            return !sendAndWaitForAnswer("atd", 100).trim().equals("");
+            response = sendAndWaitForAnswer("atd", 200, true, -1 , true);
         }
-        // ate0 (no echo)
-        sendAndWaitForAnswer("ate0", 100);
-        // ats0 (no spaces)
-        sendAndWaitForAnswer("ats0", 100);
-        // atsp6 (CAN 500K 11 bit)
-        sendAndWaitForAnswer("atsp6", 100);
-        // atat1 (auto timing)
-        sendAndWaitForAnswer("atat1", 100);
-        // atdp ==> not needed
-        //sendAndWaitForAnswer("atdp", 100);
-        // atcaf0 (no formatting)
-        sendAndWaitForAnswer("atcaf0", 100);
 
-        // PERFORMANE ENHACMENT
-        // atfcsh79b        Set flow control response ID to 79b (the LBC)
-        sendAndWaitForAnswer("atfcsh77b", 50);
-        // atfcsd300020     Set the flow control response data to 300020 (flow control, clear to send,
-        //                  all frames, 32 ms wait between frames. Note that it is not possible to let
+        if (response.trim().equals("")) {
+            MainActivity.toast("ELM is not responding, sorry");
+            return false;
+        }
+
+        // only do version control at a full reset
+        if (toughness <= 1 && !response.toUpperCase().contains("V1.4") && !response.toUpperCase().contains("V1.5")) {
+            MainActivity.toast("ELM is not a version 1.4 or 1.5 [" + response + "]");
+            return false;
+        }
+
+
+        // at this point, echo is still on (except when atd was issued), so we still need to absorb the echoed command
+        // ate0 (no echo)
+        response = sendAndWaitForAnswer("ate0", 40, true, -1 , true);
+        if (!response.toUpperCase().contains("OK")) {
+            MainActivity.toast("Err e0 [" + response + "]");
+            return false;
+        }
+
+        // at this point, echo is finally off
+        // ats0 (no spaces)
+        if (!initCommandExpectOk("ats0")) return false;
+
+        // atsp6 (CAN 500K 11 bit)
+        if (!initCommandExpectOk("atsp6")) return false;
+
+        // atat1 (auto timing)
+        if (!initCommandExpectOk("atat1")) return false;
+
+        // atcaf0 (no formatting)
+        if (!initCommandExpectOk("atcaf0")) return false;
+
+        // atfcsh79b        Set flow control response ID to 79b (the LBC) This is needed to set the flow control response, but that one is remembered :-)
+        if (!initCommandExpectOk("atfcsh77b")) return false;
+
+        // atfcsd300020     Set the flow control response data to 300010 (flow control, clear to send,
+        //                  all frames, 16 ms wait between frames. Note that it is not possible to let
         //                  the ELM request each frame as the Altered Flow Control only responds to a
         //                  First Frame (not a Next Frame)
-        // PERFORMANCE ENHANCEMENT III, removed 32 ms wait time
-        // note to self: as the ELM needs to process these and is very low on buffer RAM, this chang may cause the hangups. This is under test now.
-        sendAndWaitForAnswer("atfcsd300000", 50);
+        if (!initCommandExpectOk("atfcsd300010")) return false;
+
         // atfcsm1          Set flow control mode 1 (ID and data suplied)
-        sendAndWaitForAnswer("atfcsm1", 50);
+        if (!initCommandExpectOk("atfcsm1")) return false;
 
-
-        MainActivity.debug("ELM: initialised ...");
         if (toughness == 0 ) {
             MainActivity.toast("ELM is now ready ...");
         }
 
         return true;
     }
+
+    private boolean initCommandExpectOk (String command) {
+        String response = "";
+        for (int i = 2; i > 0; i--) {
+            response = sendAndWaitForAnswer(command, 40);
+            if (response.toUpperCase().contains("OK")) return true;
+        }
+        MainActivity.toast("Err " + command + " [" + response + "]");
+        return false;
+    }
+
 
     /**
      * Creates a message based on the data of a line
@@ -292,19 +327,23 @@ public class ELM327 extends Device {
 
     // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis) {
-        return sendAndWaitForAnswer(command,waitMillis,false,-1);
+        return sendAndWaitForAnswer(command,waitMillis,false,-1, true);
     }
 
     private String sendAndWaitForAnswer(String command, int waitMillis, int answerLinesCount) {
-        return sendAndWaitForAnswer(command,waitMillis,false,answerLinesCount);
+        return sendAndWaitForAnswer(command,waitMillis,false,answerLinesCount, true);
     }
 
     private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty) {
-        return sendAndWaitForAnswer(command,waitMillis,untilEmpty,-1);
+        return sendAndWaitForAnswer(command,waitMillis,untilEmpty,-1, true);
+    }
+
+    private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount) {
+        return sendAndWaitForAnswer(command,waitMillis,untilEmpty,answerLinesCount, true);
     }
 
     // send a command and wait for an answer
-    private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount)
+    private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount, boolean addReturn)
     {
         if(connectedBluetoothThread==null) return "";
 
@@ -320,7 +359,7 @@ public class ELM327 extends Device {
             }
             // send the command
             //connectedBluetoothThread.write(command + "\r\n");
-            connectedBluetoothThread.write(command + "\r");
+            connectedBluetoothThread.write(command + (addReturn? "\r" : ""));
         }
 
         //MainActivity.debug("Send > "+command);
@@ -353,7 +392,7 @@ public class ELM327 extends Device {
                         // add it to the readBuffer
                         readBuffer += ch;
                         // if we reach the end of a line
-                        if (ch == EOM)
+                        if (ch == EOM1 || ch == EOM2)
                         {
                             //MainActivity.debug("ALC: "+answerLinesCount+")\n"+readBuffer);
                             // decrease awaiting answer lines
@@ -550,7 +589,7 @@ public class ELM327 extends Device {
                                     //MainActivity.debug("Got:\n"+lines0x2);
 
                                     // split into lines
-                                    String[] hexDataLines = lines0x2.split(String.valueOf(EOM));
+                                    String[] hexDataLines = lines0x2.split(String.valueOf(EOM1));
 
                                     for (int i = 0; i < hexDataLines.length; i++) {
                                         String line = hexDataLines[i];
@@ -615,20 +654,31 @@ public class ELM327 extends Device {
                         // atcra186 (substitute 186 by the hex code of the id)
                         sendAndWaitForAnswer("atcra" + emlFilter, 400);
                         // atma     (wait for one answer line)
-                        TIMEOUT=field.getFrequency()+20;
-                        String hexData = sendAndWaitForAnswer("atma", 80); // was 80. This is way too short for an atma, SOme frames come in only once per second
+                        TIMEOUT=field.getFrequency() + 50;
+                        String hexData = sendAndWaitForAnswer("atma", 20); // was 80. This is way too short for an atma, Some frames come in only once per second
                         // 1500 here will make the ELM crash due to too much data input
-                        // increased general read-timeout from 500 to 1100
+                        // JM: notice that even 80 ms between sending the command and starting to absorb data might already pit 8 full lines in the ELM's buffer
+                        //     I think there is no need whatsoever to wait after sending this command, as the input buffer has been cleared and the ELM is given
+                        //     a decent time (expected repeat time + 20) to fetch data. Even if that is too short I believe a better strategy would be to increase
+                        //     the 20 offset as opposed to the 2nd paramameter.
                         TIMEOUT=DEFAULT_TIMEOUT;
                         // the first line may miss the first some bytes, so read a second one
                         //hexData = sendAndWaitForAnswer(null,0);
                         // atar     (stop output)
-                        sendAndWaitForAnswer("atar", 0);
+
+                        // ensure any running operation is stopped
+                        // sending a return might restart the last command. Bad plan.
+                        sendAndWaitForAnswer("x", 100, false, -1 , false);
+                        //sendAndWaitForAnswer("atar", 0);
+
                         // atar     (clear filter)
+                        // AM has suggested the atar might not be neccesary as it might only influence cra filters and they are always set
+                        // if cra dies incluence isotp requests, an small optimization might be only sending atar when switching from free
+                        // frames to isotp frames.
                         sendAndWaitForAnswer("atar", 0);
 
                         // the result may contain multiple lines
-                        //String[] hexDataLines = hexData.split(String.valueOf(EOM));
+                        //String[] hexDataLines = hexData.split(String.valueOf(EOM1));
                         //MainActivity.debug("ELM: lines = "+hexDataLines.length);
 
 
@@ -670,7 +720,7 @@ public class ELM327 extends Device {
                     // ... but only if we are not asekd to stop!
                     if (sumTingWong && connectedBluetoothThread!=null) {
                         //MainActivity.toast("... in command " + emlFilter + ", resetting ELM");
-                        if (!initELM(2)) {
+                        if (!initELM(1)) {
                             // MainActivity.toast("Soft Reset failed :-(");
                             if (!initELM(1)) {
                                 MainActivity.toast("Hard reset failed :-(");
