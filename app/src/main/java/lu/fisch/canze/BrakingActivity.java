@@ -16,18 +16,18 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
-    public static final String SID_HBB_Malfunction                      = "130.11";
+    public static final String SID_HBB_Malfunction                      = "130.11"; //10
     public static final String SID_EB_Malfunction                       = "130.16";
     public static final String SID_EB_In_Progress                       = "130.18";
     public static final String SID_HBA_Activation_Request               = "130.40";
     public static final String SID_Pressure_Buildup                     = "130.42";
     public static final String SID_ElecBrakeWheels_Torque_Request       = "130.20";
     public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44";
-    public static final String SID_Friction_Torque                      = "18a.27";
-    public static final String SID_Braking_Pressure                     = "352.24";
+    public static final String SID_Friction_Torque                      = "18a.27"; //10
+    public static final String SID_Braking_Pressure                     = "352.24"; //40
 
     // ISO-TP data
-    public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC) <<-- this one os not used but added to see if a non-free query added improves stability.
+    //public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC) <<-- this one os not used but added to see if a non-free query added improves stability.
 
     public static final String hbb_Malfunction  [] = {"unavailable", "OK", "Not OK"};
     public static final String eb_Malfunction   [] = {"unavailable", "OK", "Not OK"};
@@ -93,7 +93,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
         addListener(SID_Friction_Torque);
         addListener(SID_Braking_Pressure);
 
-        addListener(SID_EVC_RealSpeed); // unhandled
+        //addListener(SID_EVC_RealSpeed); // unhandled
     }
 
     // This is the event fired as soon as this the registered fields are

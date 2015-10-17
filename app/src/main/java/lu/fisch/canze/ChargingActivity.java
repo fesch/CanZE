@@ -16,18 +16,22 @@ import lu.fisch.canze.interfaces.FieldListener;
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
 public class ChargingActivity extends CanzeActivity implements FieldListener {
 
-    public static final String SID_MaxCharge = "7bb.6101.336";
-    public static final String SID_ACPilot = "42e.38";
-//  public static final String SID_EnergyToFull = "42e.56";
-    public static final String SID_TimeToFull = "654.32";
-    public static final String SID_SoC = "654.24";
-//  public static final String SID_SOH = "658.32";
-    public static final String SID_SOH = "7ec.623206.24";
-//  public static final String SID_SOH = "7ec.62202e.24"; //pedal, checking offsets
-    public static final String SID_RangeEstimate = "654.42";
-    public static final String SID_Flap = "65b.41";
-    public static final String SID_TractionBatteryVoltage = "7ec.623203.24";
-    public static final String SID_TractionBatteryCurrent = "7ec.623204.24";
+    public static final String SID_MaxCharge                        = "7bb.6101.336";
+    public static final String SID_ACPilot                          = "42e.38";
+    public static final String SID_SoC                              = "42e.0";          // user SOC, not raw
+//  public static final String SID_EnergyToFull                     = "42e.56";
+    public static final String SID_AvChargingPower                  = "427.40";
+    public static final String SID_AvEnergy                         = "427.49";
+
+    public static final String SID_TimeToFull                       = "654.32";
+//  public static final String SID_SoC                              = "654.24";
+//  public static final String SID_SOH                              = "658.32";
+    public static final String SID_SOH                              = "7ec.623206.24";
+//  public static final String SID_SOH                              = "7ec.62202e.24"; //pedal, checking offsets
+    public static final String SID_RangeEstimate                    = "654.42";
+    public static final String SID_Flap                             = "65b.41";
+    public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
+    public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
     public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
     double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     double pilot = 0;
@@ -88,6 +92,8 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
 //      addListener(SID_EnergyToFull);
         addListener(SID_TimeToFull);
         addListener(SID_SoC);
+        addListener(SID_AvChargingPower);
+        addListener(SID_AvEnergy);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
         addListener(SID_Flap);
@@ -184,7 +190,13 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         // continue
                         tv = (TextView) findViewById(R.id.textAmps);
                         break;
-                    case SID_Preamble_CompartmentTemperatures + "32":
+                    case SID_AvChargingPower:
+                        tv = (TextView) findViewById(R.id.textAvChPwr);
+                        break;
+                    case SID_AvEnergy:
+                        tv = (TextView) findViewById(R.id.textAvEner);
+                        break;
+                   case SID_Preamble_CompartmentTemperatures + "32":
                         tv = (TextView) findViewById(R.id.text_comp_1_temp);
                         break;
                     case SID_Preamble_CompartmentTemperatures + "56":

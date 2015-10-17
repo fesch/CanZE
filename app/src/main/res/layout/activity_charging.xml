@@ -196,12 +196,46 @@
         android:layout_alignParentRight="true"
         />
 
+
+    <TextView
+        android:id="@+id/LabelAvChPwr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_AvChPwr"
+        android:layout_below="@id/LabelDcPwr"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textAvChPwr"
+        android:text="@string/default_AvChPwr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textDcPwr"
+        android:layout_alignParentRight="true"
+        />
+
+
+    <TextView
+        android:id="@+id/LabelAvEner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_AvEner"
+        android:layout_below="@id/LabelAvChPwr"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textAvEner"
+        android:text="@string/default_AvEner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textAvChPwr"
+        android:layout_alignParentRight="true"
+        />
+
     <TextView
         android:id="@+id/LabelCompTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/label_CompTemp"
-        android:layout_below="@id/LabelDcPwr"
+        android:layout_below="@id/LabelAvEner"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="10dp"
         android:textColor="#000" />
