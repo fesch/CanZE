@@ -45,8 +45,8 @@
             android:label="@string/title_activity_battery_temp" >
         </activity>
         <activity
-            android:name=".BatteryVoltageActivity"
-            android:label="@string/title_activity_battery__voltage_" >
+            android:name=".TemperatureActivity"
+            android:label="@string/title_activity_temperatures" >
         </activity>
         <activity
             android:name=".BrakingActivity"

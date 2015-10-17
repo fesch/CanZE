@@ -1,9 +1,16 @@
 # CanZE
 
+You have to read and agree to the informal warning and the formal disclaimer at the end of this readme.md file!
+
 CanZE is an Android App that allows you to read out some useful information out of your Renault ZE car (actually Zoe,
 Kangoo & Fluence) that you cannot access using the on-board computer or display.
 
 The website can be found at http://canze.fisch.lu
+
+
+# Issues and language
+
+We strongly urge you to report bugs, issues and requests here on github using the issue system. You have to have a github account for that, but it offloads the team from an awful lot of administrative tasks, wasting valuable time that would better be spend on more productive work. You can report in English (preferred, and really, we don't mind language errors, NONE of the team members are native speakers!), German, French, Portuguese, Dutch and Danish, as long as you don't mind us answering in English, to keep things coordinated.
 
 
 #Informal warning

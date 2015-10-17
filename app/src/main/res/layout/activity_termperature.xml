@@ -1,0 +1,96 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:keepScreenOn="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    tools:context="lu.fisch.canze.TemperatureActivity"
+    android:stretchColumns="3"
+    android:id="@+id/table"
+    >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/accelerationPedal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            custom:min="-10"
+            custom:max="40"
+            custom:majorTicks="10"
+            custom:minorTicks="5"
+            custom:fieldSID="656.48"
+            custom:widget="timeplot"
+            custom:text="External (°C)"
+            />
+
+
+
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/soh"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            custom:min="-10"
+            custom:max="40"
+            custom:majorTicks="10"
+            custom:minorTicks="5"
+            custom:fieldSID="42a.30"
+            custom:widget="timeplot"
+            custom:text="Evaporation (°C)"
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/speed"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            custom:min="-10"
+            custom:max="40"
+            custom:majorTicks="10"
+            custom:minorTicks="5"
+            custom:fieldSID="42e.44"
+            custom:widget="timeplot"
+            custom:text="Battery (°C)"
+            />
+
+    </TableRow>
+
+</TableLayout>
