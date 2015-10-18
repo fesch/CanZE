@@ -175,8 +175,8 @@ public class Timeplot extends Drawable {
         }
 
         // draw the graph
-        int s = 0;
-        for (String sid: values.keySet()) {
+        for(int s=0; s<sids.size(); s++) {
+            String sid = sids.get(s);
             ArrayList<TimePoint> values = this.values.get(sid);
 
             g.drawRect(x + width - barWidth, y, barWidth, height);
@@ -216,7 +216,6 @@ public class Timeplot extends Drawable {
                     }
                 }
             }
-            s++;
         }
 
         // draw the title
@@ -233,8 +232,8 @@ public class Timeplot extends Drawable {
         // draw the value
         if(showValue)
         {
-            s=0;
-            for (String sid: values.keySet()) {
+            for(int s=0; s<sids.size(); s++) {
+                String sid = sids.get(s);
                 ArrayList<TimePoint> values = this.values.get(sid);
                 Field field = Fields.getInstance().getBySID(sid);
 
@@ -249,7 +248,6 @@ public class Timeplot extends Drawable {
                     int ty = getY()+(s+1)*(th+4);
                     g.drawString(text, tx, ty);
                 }
-                s++;
             }
         }
 
@@ -260,5 +258,11 @@ public class Timeplot extends Drawable {
         addValue(field.getSID(),field.getValue());
 
         super.onFieldUpdateEvent(field);
+    }
+
+    public void addField(String sid)
+    {
+        super.addField(sid);
+        values.put(sid, new ArrayList<TimePoint>());
     }
 }

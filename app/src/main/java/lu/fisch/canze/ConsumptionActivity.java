@@ -101,6 +101,9 @@ public class ConsumptionActivity extends CanzeActivity {
                             //throw new ExceptionInInitializerError("Field with following SID <" + wv.getFieldSID() + "> not found!");
                         }
                         else {
+                            // add field to list of registered sids for this widget
+                            wv.getDrawable().addField(field.getSID());
+                            // add listener
                             field.addListener(wv.getDrawable());
                             // add filter to reader
                             MainActivity.device.addField(field);

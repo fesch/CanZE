@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -148,6 +149,18 @@ public class SettingsActivity extends AppCompatActivity {
         }
         catch(Exception e){
         }
+
+        Button button = (Button) findViewById(R.id.buttonClearSettings);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.clear();
+                editor.commit();
+                MainActivity.toast("Settings have been cleared ...");
+            }
+        });
     }
 
     @Override

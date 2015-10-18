@@ -141,7 +141,7 @@ public class Field {
      */
     public void notifyFieldListeners()
     {
-        notifyFieldListeners(true);
+        notifyFieldListeners(false);
     }
 
     /**

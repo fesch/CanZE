@@ -70,4 +70,24 @@
         android:text="Safe Driving Mode"
         android:id="@+id/safeDrivingMode" />
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Actions"
+        android:id="@+id/textViewActions" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear settings"
+            android:id="@+id/buttonClearSettings" />
+
+    </LinearLayout>
+
 </LinearLayout>

@@ -5,6 +5,9 @@ package lu.fisch.canze.widgets;
 
 import android.graphics.Point;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import lu.fisch.awt.Graphics;
 import lu.fisch.awt.Rectangle;
 import lu.fisch.canze.actors.Field;
@@ -30,6 +33,8 @@ public abstract class Drawable implements Space, FieldListener {
     protected String title = "";
 
     protected DrawSurfaceInterface drawSurface = null;
+
+    protected ArrayList<String> sids = new ArrayList<>();
 
 
     public Drawable()
@@ -188,4 +193,11 @@ public abstract class Drawable implements Space, FieldListener {
     public Field getField() {
         return field;
     }
+
+    public void addField(String sid)
+    {
+        if(!sids.contains(sid))
+            sids.add(sid);
+    }
+
 }
