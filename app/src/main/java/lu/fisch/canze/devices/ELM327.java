@@ -92,6 +92,7 @@ public class ELM327 extends Device {
         }
     }
 
+    @Override
     public void join() throws InterruptedException {
         if(pollerThread!=null)
             pollerThread.join();
