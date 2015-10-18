@@ -154,6 +154,13 @@ public class ELM327 extends Device {
             if (ret = initELM(toughness)) return ret;
         }
         MainActivity.toast("Hard reset failed");
+
+        // -- give up and restart BT
+        // stop BT
+        MainActivity.getInstance().stopBluetooth();
+        // restart BT
+        MainActivity.getInstance().reloadBluetooth();
+
         return false;
     }
 

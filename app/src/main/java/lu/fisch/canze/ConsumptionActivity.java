@@ -1,7 +1,6 @@
 package lu.fisch.canze;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,12 +14,12 @@ import java.util.ArrayList;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.widgets.WidgetView;
 
-public class TestX10Activity extends CanzeActivity {
+public class ConsumptionActivity extends CanzeActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_testx10);
+        setContentView(R.layout.activity_consumption);
 
         // initialise the widgets
         initWidgets();
@@ -98,7 +97,7 @@ public class TestX10Activity extends CanzeActivity {
                     for(int s=0; s<sids.length; s++) {
                         Field field = MainActivity.fields.getBySID(sids[s]);
                         if (field == null) {
-                            Toast.makeText(TestX10Activity.this,"Field with following SID <" + sids[s] + "> not found!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ConsumptionActivity.this,"Field with following SID <" + sids[s] + "> not found!",Toast.LENGTH_SHORT).show();
                             //throw new ExceptionInInitializerError("Field with following SID <" + wv.getFieldSID() + "> not found!");
                         }
                         else {
@@ -124,10 +123,10 @@ public class TestX10Activity extends CanzeActivity {
                             switch (maskedAction) {
                                 case MotionEvent.ACTION_DOWN:
                                 case MotionEvent.ACTION_POINTER_DOWN: {
-                                    Intent intent = new Intent(TestX10Activity.this, WidgetActivity.class);
+                                    Intent intent = new Intent(ConsumptionActivity.this, WidgetActivity.class);
                                     //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     WidgetView.selectedDrawable = wv.getDrawable();
-                                    TestX10Activity.this.startActivity(intent);
+                                    ConsumptionActivity.this.startActivity(intent);
                                     break;
                                 }
                                 case MotionEvent.ACTION_MOVE:

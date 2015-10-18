@@ -91,8 +91,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text=""
-                android:id="@+id/buttonEmpty42"
+                android:text="Consumption"
+                android:id="@+id/buttonConsumption"
                 android:layout_column="0" />
 
             <Button
@@ -147,8 +147,8 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="X10 (Bob)"
-                android:id="@+id/buttonTest"
+                android:text="Harm (Harm)"
+                android:id="@+id/buttonHarm"
                 android:layout_column="0" />
 
             <Button
@@ -224,37 +224,7 @@
 
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Harm (Harm)"
-                android:id="@+id/buttonHarm"
-                android:layout_column="0" />
-
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:text=""
-                android:id="@+id/buttonEmpty27"
-                android:layout_column="0" />
-
-
-        </TableRow>
 
     </TableLayout>
 

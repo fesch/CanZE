@@ -8,7 +8,7 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:paddingBottom="0dp"
-    tools:context="lu.fisch.canze.TestX10Activity"
+    tools:context="lu.fisch.canze.ConsumptionActivity"
     android:stretchColumns="3"
     android:id="@+id/table"
     >
@@ -34,7 +34,7 @@
             custom:minorTicks="5"
             custom:fieldSID="186.40,18a.16"
             custom:widget="timeplot"
-            custom:text="Acceleration pedal"
+            custom:text="Acceleration pedal / Power train set point"
             />
 
 
@@ -57,11 +57,11 @@
             android:layout_marginRight="8dp"
             custom:min="0"
             custom:max="120"
-            custom:majorTicks="10"
-            custom:minorTicks="5"
-            custom:fieldSID="42e.0"
+            custom:majorTicks="20"
+            custom:minorTicks="10"
+            custom:fieldSID="42e.0,427.49"
             custom:widget="timeplot"
-            custom:text="State of Charge (%)"
+            custom:text="State of Charge (%) / Available energy (kWh)"
             />
 
     </TableRow>
