@@ -825,6 +825,13 @@ public class Fields implements MessageListener {
         }
     }
 
+    public void clearAllFields()
+    {
+        for(int i=0; i< fields.size(); i++) {
+            fields.get(i).setValue(0);
+        }
+    }
+
     /* --------------------------------
      * Tests ...
      \ ------------------------------ */
