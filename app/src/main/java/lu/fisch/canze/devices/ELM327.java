@@ -146,6 +146,18 @@ public class ELM327 extends Device {
         return result;
     }
 
+    private boolean initELM (int toughness, int retries) {
+        boolean ret;
+        if (ret = initELM(toughness)) return ret;
+        while (retries-- > 0) {
+            flushWithTimeout(500);
+            if (ret = initELM(toughness)) return ret;
+        }
+        MainActivity.toast("Hard reset failed");
+        return false;
+    }
+
+
     private boolean initELM (int toughness) {
 
         String response;
@@ -206,8 +218,6 @@ public class ELM327 extends Device {
         // ate0 (no echo)
         if (!initCommandExpectOk("ate0", true)) return false;
 
-        flushWithTimeout(50);
-
         // at this point, echo is finally off so we can safely check for OK messages. If the app starts responding with toasts showing the responses
         // in brackets equal to the commands, somehow the echo was not executed. so maybe we need to check for that specific condition in the next
         // command.
@@ -251,9 +261,9 @@ public class ELM327 extends Device {
                     MainActivity.toast("ELM ready, version innocar, should work");
                     break;
 
-                    // default should never be reached!!
+                // default should never be reached!!
                 default:
-                    MainActivity.toast("ELM ready, unknow version, will probably not work, please report if it does");
+                    MainActivity.toast("ELM ready, unknown version, will probably not work, please report if it does");
                     break;
             }
         }
@@ -271,7 +281,7 @@ public class ELM327 extends Device {
                     connectedBluetoothThread.read();
                 }
             } else {
-               long end = Calendar.getInstance().getTimeInMillis() + timeout;
+                long end = Calendar.getInstance().getTimeInMillis() + timeout;
                 while (Calendar.getInstance().getTimeInMillis() < end) {
                     // read a byte
                     if (connectedBluetoothThread == null) return;
@@ -403,9 +413,9 @@ public class ELM327 extends Device {
         boolean stop = false;
         String readBuffer = "";
         // wait for answer
-        long start = Calendar.getInstance().getTimeInMillis();
-        boolean hooLeeFuk = false; // the fake news name of Asiana flight 214 777 First Officer that crashed in SF
-        while(!stop && !hooLeeFuk)
+        long end = Calendar.getInstance().getTimeInMillis() + TIMEOUT;
+        boolean timedOut = false;
+        while(!stop && !timedOut)
         {
             //MainActivity.debug("Delta = "+(Calendar.getInstance().getTimeInMillis()-start));
             try {
@@ -416,6 +426,8 @@ public class ELM327 extends Device {
                     //MainActivity.debug("... done");
                     // if it is a real one
                     if (data != -1) {
+                        // we might be JUST approaching the TIMEOUT, so give it a chance to get to the EOM,
+                        end = end + 2;
                         // convert it to a character
                         char ch = (char) data;
                         // add it to the readBuffer
@@ -433,7 +445,7 @@ public class ELM327 extends Device {
                                 }
                                 else // the number of lines is NOT in
                                 {
-                                    start = Calendar.getInstance().getTimeInMillis(); // so restart the timeout
+                                    end = Calendar.getInstance().getTimeInMillis() + TIMEOUT; // so restart the timeout
                                 }
                             }
                             else { // if (untilEmpty) {
@@ -461,8 +473,8 @@ public class ELM327 extends Device {
                     }
                 }
 
-                if (Calendar.getInstance().getTimeInMillis() - start >= TIMEOUT) {
-                    hooLeeFuk = true;
+                if (Calendar.getInstance().getTimeInMillis() > end) {
+                    timedOut = true;
                     // MainActivity.toast("Sum Ting Wong on command " + command);
                 }
 
@@ -474,7 +486,11 @@ public class ELM327 extends Device {
         }
 
         // set the flag that a timeout has occurred. sumTingWong can be inspected anywhere, but we reset the device after a full filter has been run
-        if (hooLeeFuk) sumTingWong |= true;
+        if (timedOut) {
+            MainActivity.toast("Timeout on [" + command + "][" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
+            sumTingWong |= true;
+            return ("");
+        }
 
         //MainActivity.debug("ALC: "+answerLinesCount+" && Stop: "+stop+" && Delta: "+(Calendar.getInstance().getTimeInMillis()-start));
         //MainActivity.debug("Recv < "+readBuffer);
@@ -523,16 +539,16 @@ public class ELM327 extends Device {
                     field = fields.get(fieldIndex);
                 }
 
-                    MainActivity.debug("queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
+                MainActivity.debug("queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
 
-                    // only run the filter if the skipsCount is down to zero
-                    runFilter = (field.getSkipsCount() == 0);
-                    if (runFilter)
-                        // reset it to its initial value
-                        field.resetSkipsCount();
-                    else
-                        // decrement the skipsCount
-                        field.decSkipCount();
+                // only run the filter if the skipsCount is down to zero
+                runFilter = (field.getSkipsCount() == 0);
+                if (runFilter)
+                    // reset it to its initial value
+                    field.resetSkipsCount();
+                else
+                    // decrement the skipsCount
+                    field.decSkipCount();
 
                 if (runFilter) {
 
@@ -668,7 +684,7 @@ public class ELM327 extends Device {
                         if (!sumTingWong) {
                             //sendAndWaitForAnswer("atcra" + emlFilter, 400);
                             // atma     (wait for one answer line)
-                            TIMEOUT = field.getFrequency() + 20;
+                            TIMEOUT = field.getFrequency() + 50;
                             if (TIMEOUT < 70) TIMEOUT = 70;
                             hexData = sendAndWaitForAnswer("atma", 20);
                             // the dongle starts babbling now. sendAndWaitForAnswer should stop at the first full line
@@ -704,12 +720,7 @@ public class ELM327 extends Device {
                     // ... but only if we are not asekd to stop!
                     if (sumTingWong && connectedBluetoothThread!=null) {
                         //MainActivity.toast("... in command " + emlFilter + ", resetting ELM");
-                        if (!initELM(1)) {
-                            // MainActivity.toast("Soft Reset failed :-(");
-                            if (!initELM(1)) {
-                                MainActivity.toast("Hard reset failed :-(");
-                            }
-                        }
+                        initELM(1, 2);
                         sumTingWong = false;
                     }
                 }
