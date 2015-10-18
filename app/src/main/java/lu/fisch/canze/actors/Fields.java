@@ -376,7 +376,6 @@ public class Fields implements MessageListener {
                         +"0x35c, 4, 15, 1, 1, 0, 0, Key-Start: %5ld, , , , , 0, 0, 100\n"
                         +"0x3f7, 2, 3, 1, 1, 0, 0, Gear??: %4ld, , , , , 2, 0, 60\n"
                         +"0x427, 40, 47, 10, 3, 0, 0, AvCharPwr: %5ld, kW, , , , 1, 0, 100\n"
-                        
                         +"0x427, 49, 57, 10, 1, 0, 0, AvEnergy: %5ld, kWh, , , , 1, 0, 100\n"
                         +"0x42a, 16, 23, 1, 1, 0, 0, Temp set: %5ld, , , , , 1, 0, 100\n"
                         +"0x42e, 0, 12, 1, 2, 0, 100, SOC(a): %3ld.%02ld, %, , , State of Charge, 0, 0, 100\n"
@@ -425,7 +424,7 @@ public class Fields implements MessageListener {
                         +"0x658, 0, 31, 1, 1, 0, 0, S# batt:%10ld, , , , Battery Serial N°, 0, 0, 3000\n"
                         +"0x658, 32, 39, 1, 1, 0, 0, Bat health %4ld, %, , , Battery Health, 0, 0, 3000\n"
                         +"0x65b, 25, 26, 1, 1, 0, 0, ECO Mode: %1ld, , , , Economy Mode, 0, 0, 100\n"
-                        +"0x65b, 41, 42, 1, 1, 0, 0, battery flap: %1ld, , , , Battery Flap, 0, 0, 100\n"
+                        +"0x65b, 41, 43, 1, 1, 0, 0, Charging Stat: %1ld, , , , Charging Stat, 0, 0, 100\n"
                         +"0x66a, 42, 42, 1, 1, 0, 0, CruisC ? %4ld, , , , , 0, 0, 100\n"
                         +"0x66a, 5, 7, 1, 1, 0, 0, CruisC mode %4ld, , , , Cruise Control Mode, 0, 0, 100\n"
                         +"0x66a, 8, 15, 1, 1, 0, 0, CruisC spd %4ld, km/h, , , Cruise Control Speed, 0, 0, 100\n"

@@ -29,13 +29,17 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_SOH                              = "7ec.623206.24";
 //  public static final String SID_SOH                              = "7ec.62202e.24"; //pedal, checking offsets
     public static final String SID_RangeEstimate                    = "654.42";
-    public static final String SID_Flap                             = "65b.41";
+    public static final String SID_ChargingStatusDisplay            = "65b.41";
     public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
     public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
     public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
-    double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
-    double pilot = 0;
-    double flap = 0;
+
+    public static final String cha_Status [] = {"No charge", "Waiting a planned charge", "Ended charge", "Charge in progress", "Charge failure", "Waiting for current charge", "Energy Flap opened welcome MMI", "Unavailable"};
+
+    double dcVolt       = 0; // holds the DC voltage, so we can calculate the power when the amps come in
+    double pilot        = 0;
+    int chargingStatus  = 0;
+    double soc          = 0;
 
     private ArrayList<Field> subscribedFields;
 
@@ -96,7 +100,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
         addListener(SID_AvEnergy);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
-        addListener(SID_Flap);
+        addListener(SID_ChargingStatusDisplay);
         addListener(SID_TractionBatteryVoltage);
         addListener(SID_TractionBatteryCurrent);
 
@@ -140,13 +144,10 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         // continue
                         tv = (TextView) findViewById(R.id.text_max_pilot);
                         if (pilot == 0) {
-                            tv.setText(flap == 0 ? "Closed" : "Open");
+                            tv.setText(chargingStatus != 0 ? "Open" : "Closed");
                             tv = null;
                         }
                         break;
-//                  case SID_EnergyToFull:
-//                      tv = (TextView) findViewById(R.id.textETF);
-//                      break;
                     case SID_TimeToFull: // time to full
                         tv = (TextView) findViewById(R.id.textTTF);
                         if (field.getValue() >= 1023) {
@@ -155,6 +156,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         }
                         break;
                     case SID_SoC:
+                        soc = field.getValue() / 100.0;
                         tv = (TextView) findViewById(R.id.textSOC);
                         break;
                     case SID_SOH:
@@ -162,10 +164,6 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_RangeEstimate:
                         tv = (TextView) findViewById(R.id.textKMA);
-                        break;
-                    case SID_Flap:
-                        flap = field.getValue();
-                        tv = null;
                         break;
                     case SID_TractionBatteryVoltage: // DC volts
                         // save DC voltage for DC power purposes
@@ -178,6 +176,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         double dcPwr = (double)Math.round(dcVolt * field.getValue() / 100.0) / 10.0;
                         tv = (TextView) findViewById(R.id.textDcPwr);
                         tv.setText("" + (dcPwr));
+                        /*
                         // guess phases
                         tv = (TextView) findViewById(R.id.textPhases);
                         if (pilot == 0) {
@@ -186,15 +185,34 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                             tv.setText("3");
                         } else {
                             tv.setText("1");
-                        }
+                        } */
                         // continue
                         tv = (TextView) findViewById(R.id.textAmps);
                         break;
                     case SID_AvChargingPower:
+                        double avChPwr = field.getValue();
+                        tv = (TextView) findViewById(R.id.textPhases);
+                        if (pilot == 0) {
+                            tv.setText("-");
+                        } else if (avChPwr > (pilot * 250.0)) {
+                            tv.setText("3");
+                        } else {
+                            tv.setText("1");
+                        }
                         tv = (TextView) findViewById(R.id.textAvChPwr);
                         break;
                     case SID_AvEnergy:
+                        if (soc > 0) {
+                            tv = (TextView) findViewById(R.id.textETF);
+                            tv.setText("" + (field.getValue() * (1-soc) / soc));
+                        }
                         tv = (TextView) findViewById(R.id.textAvEner);
+                        break;
+                    case SID_ChargingStatusDisplay:
+                        chargingStatus = (int) field.getValue();
+                        tv = (TextView) findViewById(R.id.textChaStatus);
+                        tv.setText(cha_Status[chargingStatus]);
+                        tv = null;
                         break;
                    case SID_Preamble_CompartmentTemperatures + "32":
                         tv = (TextView) findViewById(R.id.text_comp_1_temp);
