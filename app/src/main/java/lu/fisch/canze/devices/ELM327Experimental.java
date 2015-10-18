@@ -210,7 +210,7 @@ public class ELM327Experimental extends Device {
         }
 
         // only do version control at a full reset
-        if (toughness <= 1 && !response.toUpperCase().contains("V1.4") && !response.toUpperCase().contains("V1.5")) {
+        if (toughness <= 1 && !response.toUpperCase().contains("V1.4") && !response.toUpperCase().contains("V1.5") && !response.toUpperCase().contains("INNOCAR")) {
             MainActivity.toast("ELM is not a version 1.4 or 1.5 [" + response + "]");
             return false;
         }
