@@ -31,7 +31,7 @@ android:id="@+id/table"
         custom:max="0"
         custom:majorTicks="0"
         custom:minorTicks="0"
-        custom:fieldSID="42e.0"
+        custom:fieldSID="658.32"
         custom:widget="label"
         custom:text="State of Health (%)"
         />
@@ -93,7 +93,7 @@ android:id="@+id/table"
         custom:minorTicks="2"
         custom:fieldSID="7bb.6104.32,7bb.6104.56,7bb.6104.80,7bb.6104.104,7bb.6104.128,7bb.6104.152,7bb.6104.176,7bb.6104.200,7bb.6104.224,7bb.6104.248,7bb.6104.272,7bb.6104.296"
         custom:widget="plotter"
-        custom:text="Compartiment Temperatures (°C)"
+        custom:text="Comportiment Temperatures (°C)"
         />
 
 </TableRow>
