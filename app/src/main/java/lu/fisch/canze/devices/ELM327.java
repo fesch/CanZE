@@ -148,6 +148,7 @@ public class ELM327 extends Device {
     private boolean initELM (int toughness) {
 
         String response;
+        int elmVersion = 0;
 
         // ensure the decoder (processData) is reset
         buffer = "";
@@ -180,27 +181,35 @@ public class ELM327 extends Device {
         }
 
         if (response.trim().equals("")) {
-            MainActivity.toast("ELM is not responding, sorry");
+            MainActivity.toast("ELM is not responding");
             return false;
         }
 
         // only do version control at a full reset
-        if (toughness <= 1 && !response.toUpperCase().contains("V1.4") && !response.toUpperCase().contains("V1.5") && !response.toUpperCase().contains("INNOCAR")) {
-            MainActivity.toast("ELM is not a version 1.4 or 1.5 [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
-            return false;
+        if (toughness <= 1) {
+            if (response.toUpperCase().contains("V1.4")) {
+                elmVersion = 14;
+            } else if (response.toUpperCase().contains("V1.5")) {
+                elmVersion = 15;
+            } else if (response.toUpperCase().contains("V2.")) {
+                elmVersion = 20;
+            } else if (response.toUpperCase().contains("INNOCAR")) {
+                elmVersion = 8015;
+            } else {
+                MainActivity.toast("Unrecognized ELM version response [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
+                return false;
+            }
         }
-
 
         // at this point, echo is still on (except when atd was issued), so we still need to absorb the echoed command
         // ate0 (no echo)
-        response = sendAndWaitForAnswer("ate0", 40, true, -1 , true);
-        if (!response.toUpperCase().contains("OK")) {
-            MainActivity.toast("Err e0 [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
-            return false;
-        }
+        if (!initCommandExpectOk("ate0", true)) return false;
 
-        // at this point, echo is finally off
         flushWithTimeout(50);
+
+        // at this point, echo is finally off so we can safely check for OK messages. If the app starts responding with toasts showing the responses
+        // in brackets equal to the commands, somehow the echo was not executed. so maybe we need to check for that specific condition in the next
+        // command.
 
         // ats0 (no spaces)
         if (!initCommandExpectOk("ats0")) return false;
@@ -227,7 +236,25 @@ public class ELM327 extends Device {
         if (!initCommandExpectOk("atfcsm1")) return false;
 
         if (toughness == 0 ) {
-            MainActivity.toast("ELM is now ready ...");
+            switch (elmVersion) {
+                case 14:
+                    MainActivity.toast("ELM ready, version 1.4, should work");
+                    break;
+                case 15:
+                    MainActivity.toast("ELM is now ready");
+                    break;
+                case 20:
+                    MainActivity.toast("ELM ready, version 2.x, will probably not work, please report if it does");
+                    break;
+                case 8015:
+                    MainActivity.toast("ELM ready, version innocar, should work");
+                    break;
+
+                    // default should never be reached!!
+                default:
+                    MainActivity.toast("ELM ready, unknow version, will probably not work, please report if it does");
+                    break;
+            }
         }
 
         return true;
@@ -263,17 +290,23 @@ public class ELM327 extends Device {
         }
     }
 
-
     private boolean initCommandExpectOk (String command) {
+        return initCommandExpectOk(command, false);
+    }
+
+    private boolean initCommandExpectOk (String command, boolean untilEmpty) {
         String response = "";
         for (int i = 2; i > 0; i--) {
-            response = sendAndWaitForAnswer(command, 0);
+            if (untilEmpty) {
+                response = sendAndWaitForAnswer(command, 40, true, -1, true);
+            } else {
+                response = sendAndWaitForAnswer(command, 0);
+            }
             if (response.toUpperCase().contains("OK")) return true;
         }
         MainActivity.toast("Err " + command + " [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
         return false;
     }
-
 
     /**
      * Creates a message based on the data of a line
