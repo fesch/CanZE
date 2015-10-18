@@ -230,12 +230,29 @@
         android:layout_alignParentRight="true"
         />
 
+
+    <TextView
+        android:id="@+id/LabelChaStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_ChaStatus"
+        android:layout_below="@id/LabelAvEner"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textChaStatus"
+        android:text="@string/default_ChaStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textAvEner"
+        android:layout_alignParentRight="true"
+        />
+
     <TextView
         android:id="@+id/LabelCompTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/label_CompTemp"
-        android:layout_below="@id/LabelAvEner"
+        android:layout_below="@id/LabelChaStatus"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="10dp"
         android:textColor="#000" />

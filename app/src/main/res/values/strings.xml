@@ -75,6 +75,9 @@
     <string name="label_AvEner">Available Energy kWh</string>
     <string name="default_AvEner">#AE</string>
 
+    <string name="label_ChaStatus">Charging Status</string>
+    <string name="default_ChaStatus">#STA</string>
+
     <string name="label_CompTemp">Battery modules temperatures</string>
 
     <string name="default_CompT"></string>
