@@ -22,7 +22,7 @@ public class BobDue extends Device {
 
 
     // define the timeout we may wait to get an answer
-    private static final int TIMEOUT = 1500;
+    private static final int TIMEOUT = 500;
     // define End Of Message for this type of reader
     private static final char EOM = '\n';
     // the actual filter
@@ -201,7 +201,7 @@ public class BobDue extends Device {
                     field = fields.get(fieldIndex);
                 }
 
-                //MainActivity.debug("queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
+                MainActivity.debug("queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
                 //MainActivity.debug("Querying for field: "+field.getSID());
 
                 if(field!=null) {
@@ -210,9 +210,9 @@ public class BobDue extends Device {
 
                     if (field.isIsoTp()) {
                         String command = "i" + filter + "," + field.getRequestId() + "," + field.getResponseId();
-                        MainActivity.debug("Sending: "+command);
+                        //MainActivity.debug("Sending: "+command);
                         String hexData = sendAndWaitForAnswer(command, 0);
-                        MainActivity.debug("Got: "+hexData);
+                        //MainActivity.debug("Got: "+hexData);
                         // process data
                         process(Utils.toIntArray(hexData.getBytes()));
                     } else {
