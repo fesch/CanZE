@@ -249,6 +249,12 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         double dcPwr = Math.round(dcVolt * field.getValue() / 100.0) / 10.0;
                         tv = (TextView) findViewById(R.id.textDcPwr);
                         tv.setText("" + (dcPwr));
+                        tv = (TextView) findViewById(R.id.textConsumption);
+                        if (realSpeed > 5) {
+                            tv.setText("" + (Math.round((100 * dcPwr / realSpeed) * 10.0) / 10.0));
+                        } else {
+                            tv.setText("-");
+                        }
                         tv = null;
                         break;
                     case SID_RangeEstimate:
