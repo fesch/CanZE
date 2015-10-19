@@ -29,7 +29,7 @@
 
     <string name="header_Debug">Debugging info</string>
 
-    <string name="label_debug">Debug</string>
+    <string name="label_debug">Debug </string>
     <string name="default_debug">#Debug</string>
 
     <!-- Charging -->
@@ -78,6 +78,9 @@
     <string name="label_ChaStatus">Charging Status</string>
     <string name="default_ChaStatus">#STA</string>
 
+    <string name="label_Plug">Plug Status</string>
+    <string name="default_Plug">#PLU</string>
+
     <string name="label_CompTemp">Battery modules temperatures</string>
 
     <string name="default_CompT">-</string>
@@ -93,7 +96,8 @@
     <string name="label_motor_torque">Motor Torque</string>
 
     <string name="default_realSpeed">#Spd</string>
-    <!-- <string name="default_Torque">#Trq</string> -->
+
+    <string name="default_consumption">#Con</string>
 
     <string name="label_KmToDest">Km to Destination</string>
     <string name="default_KmToDest">#ktd</string>

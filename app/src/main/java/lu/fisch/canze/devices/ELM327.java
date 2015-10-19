@@ -29,6 +29,8 @@ public class ELM327 extends Device {
     private static final char EOM2 = '>';
     private static final char EOM3 = '?';
 
+    private static final int timeoutLogLevel = 1; // 0 = none, 1=only ELM issues, 2=elm and car issues
+
     /**
      * the index of the actual field to request
      */
@@ -78,7 +80,7 @@ public class ELM327 extends Device {
                         pollerThread=null;
                     } else {
                         MainActivity.debug("ELM: no answer ...");
-                        MainActivity.toast("... retrying ...");
+                        if (timeoutLogLevel >= 1) MainActivity.toast("Retrying ...");
                         if(connectedBluetoothThread!=null) {
                             // retry
                             pollerThread = new Thread(this);
@@ -153,7 +155,7 @@ public class ELM327 extends Device {
             flushWithTimeout(500);
             if (ret = initELM(toughness)) return ret;
         }
-        MainActivity.toast("Hard reset failed");
+        if (timeoutLogLevel >= 1) MainActivity.toast("Hard reset failed");
 
         // -- give up and restart BT
         // stop BT
@@ -201,7 +203,7 @@ public class ELM327 extends Device {
         }
 
         if (response.trim().equals("")) {
-            MainActivity.toast("ELM is not responding");
+            if (timeoutLogLevel >= 1) MainActivity.toast("ELM is not responding");
             return false;
         }
 
@@ -216,7 +218,7 @@ public class ELM327 extends Device {
             } else if (response.toUpperCase().contains("INNOCAR")) {
                 elmVersion = 8015;
             } else {
-                MainActivity.toast("Unrecognized ELM version response [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
+                if (timeoutLogLevel >= 1) MainActivity.toast("Unrecognized ELM version response [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
                 return false;
             }
         }
@@ -256,21 +258,21 @@ public class ELM327 extends Device {
         if (toughness == 0 ) {
             switch (elmVersion) {
                 case 14:
-                    MainActivity.toast("ELM ready, version 1.4, should work");
+                    if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, version 1.4, should work");
                     break;
                 case 15:
-                    MainActivity.toast("ELM is now ready");
+                    if (timeoutLogLevel >= 1) MainActivity.toast("ELM is now ready");
                     break;
                 case 20:
-                    MainActivity.toast("ELM ready, version 2.x, will probably not work, please report if it does");
+                    if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, version 2.x, will probably not work, please report if it does");
                     break;
                 case 8015:
-                    MainActivity.toast("ELM ready, version innocar, should work");
+                    if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, version innocar, should work");
                     break;
 
                 // default should never be reached!!
                 default:
-                    MainActivity.toast("ELM ready, unknown version, will probably not work, please report if it does");
+                    if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, unknown version, will probably not work, please report if it does");
                     break;
             }
         }
@@ -322,7 +324,10 @@ public class ELM327 extends Device {
             }
             if (response.toUpperCase().contains("OK")) return true;
         }
-        MainActivity.toast("Err " + command + " [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
+
+        if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && !command.startsWith("atma") && command.startsWith("at"))) {
+            MainActivity.toast("Err " + command + " [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
+        }
         return false;
     }
 
@@ -375,8 +380,6 @@ public class ELM327 extends Device {
             connectedBluetoothThread.write(command);
         }
     }
-
-
 
     // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis) {
@@ -494,7 +497,9 @@ public class ELM327 extends Device {
 
         // set the flag that a timeout has occurred. sumTingWong can be inspected anywhere, but we reset the device after a full filter has been run
         if (timedOut) {
-            MainActivity.toast("Timeout on [" + command + "][" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
+            if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && !command.startsWith("atma") && command.startsWith("at"))) {
+                MainActivity.toast("Timeout on [" + command + "][" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
+            }
             sumTingWong |= true;
             return ("");
         }

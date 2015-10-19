@@ -417,7 +417,7 @@ public class Fields implements MessageListener {
                         +"0x646, 8, 15, 1, 1, 0, 10, avg trB cons %2ld.%01ld, kWh/100km, , , , 0, 0, 500\n"
                         +"0x653, 9, 9, 1, 1, 0, 0, dr seatbelt %4ld, , , , , 0, 0, 100\n"
                         +"0x654, 24, 31, 1, 1, 0, 0, SOC(b): %4ld, , , , State of Charge, 0, 0, 500\n"
-                        +"0x654, 3, 3, 1, 1, 0, 0, Plugin state, , , , Plugin State, 0, 0, 500\n"
+                        +"0x654, 2, 2, 1, 1, 0, 0, Plugin state, , , , Plugin State, 0, 0, 500\n"
                         +"0x654, 32, 41, 1, 1, 0, 0, Time to full %4ld, min, , , Time to Full, 0, 0, 500\n"
                         +"0x654, 42, 51, 1, 1, 0, 0, Km avail: %4ld, km, , , Available Distance, 0, 0, 500\n"
                         +"0x654, 52, 61, 1, 1, 0, 10, kw/100Km %2ld.%01ld, , , , , 0, 0, 500\n"
