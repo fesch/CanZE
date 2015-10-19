@@ -35,7 +35,7 @@
 
     <!-- Charging -->
 
-    <string name="header_Charging">Charging parameters</string>
+    <string name="header_Charging">Charging parameters AC</string>
     <string name="header_stats">Driving stats</string>
     <string name="label_max_charge">Max battery charge/regen kW</string>
     <string name="default_max_charge">#Max bat ch</string>
@@ -44,7 +44,7 @@
     <string name="default_max_pilot">#Max AC ch</string>
 
     <string name="default_Phases">#Pha</string>
-    <string name="label_Phases">Phases (guestimate)</string>
+    <string name="label_Phases">Phases</string>
 
     <string name="label_SOC">State of charge %</string>
     <string name="default_SOC">#SOC</string>
@@ -56,7 +56,7 @@
     <string name="default_TTF">#TTF</string>
 
     <string name="label_ETF">Energy to full kWh</string>
-    <string name="default_ETF">Not implemented</string>
+    <string name="default_ETF">#ETF</string>
 
     <string name="label_KMA">Available range km</string>
     <string name="default_KMA">#KMA</string>
@@ -81,7 +81,7 @@
 
     <string name="label_CompTemp">Battery modules temperatures</string>
 
-    <string name="default_CompT"></string>
+    <string name="default_CompT">-</string>
 
     <string name="default_CellV">#V</string>
 
