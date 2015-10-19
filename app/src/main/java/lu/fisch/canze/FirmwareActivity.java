@@ -49,7 +49,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
                 break;
         }
 
-        initWidgets();
+        initListeners();
 
      }
 
@@ -81,10 +81,10 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
         super.onResume();
 
         // initialise the widgets
-        initWidgets();
+        initListeners();
     }
 
-    private void initWidgets () {
+    private void initListeners() {
 
         subscribedFields = new ArrayList<>();
 

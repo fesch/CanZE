@@ -12,6 +12,9 @@ public class WidgetActivity extends CanzeActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        widgetView=true;
+        widgetClicked=true;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_widget);
 
@@ -19,6 +22,7 @@ public class WidgetActivity extends CanzeActivity {
         wv.setClickable(false);
         if(WidgetView.selectedDrawable!=null) {
             wv.setDrawable(WidgetView.selectedDrawable);
+            wv.setFieldSID(WidgetView.selectedDrawable.getField().getSID());
             setTitle(WidgetView.selectedDrawable.getTitle());
         }
 
@@ -35,8 +39,14 @@ public class WidgetActivity extends CanzeActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_widget, menu);
+        getMenuInflater().inflate(R.menu.menu_empty, menu);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        widgetClicked=true;
     }
 
 }

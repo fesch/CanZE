@@ -41,7 +41,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_braking);
-        initWidgets();
+        initListeners();
     }
 
     private void addListener(String sid) {
@@ -74,10 +74,10 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
         super.onResume();
 
         // initialise the widgets
-        initWidgets();
+        initListeners();
     }
 
-    private void initWidgets () {
+    private void initListeners() {
 
         subscribedFields = new ArrayList<>();
 

@@ -201,7 +201,8 @@ public class BobDue extends Device {
                     field = fields.get(fieldIndex);
                 }
 
-                MainActivity.debug("queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
+                //MainActivity.debug("queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
+
                 //MainActivity.debug("Querying for field: "+field.getSID());
 
                 if(field!=null) {

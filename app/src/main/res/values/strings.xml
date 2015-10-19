@@ -16,6 +16,7 @@
     <string name="title_activity_firmware">Firmware info</string>
     <string name="title_activity_stats">StatsActivity</string>
     <string name="title_activity_harm">Harm\'s playground</string>
+    <string name="title_activity_battery" >Battery</string>
 
     <!-- nonsense -->
 
