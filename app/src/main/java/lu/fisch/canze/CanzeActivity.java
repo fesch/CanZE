@@ -46,12 +46,15 @@ public class CanzeActivity extends AppCompatActivity {
         super.onPause();
         MainActivity.debug("CanzeActivity: onPause");
         // if we are not coming back from somewhere, stop Bluetooth
-        if(!back && !widgetClicked)
+        if(!back && !widgetClicked) {
+            MainActivity.debug("CanzeActivity: onPause > stopBluetooth");
             MainActivity.getInstance().stopBluetooth();
-        // remember we paused ourselves
-        iLeftMyOwn=true;
+        }
         if(!widgetClicked) {
+            // remember we paused ourselves
+            iLeftMyOwn=true;
             // save all fields
+            MainActivity.debug("CanzeActivity: onPause > saveFields");
             MainActivity.getInstance().saveFields();
         }
     }
@@ -59,13 +62,15 @@ public class CanzeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        MainActivity.debug("CanzeActivity: onResume");
         if(!widgetClicked) {
+            MainActivity.debug("CanzeActivity: onResume > initWidgets");
             // initialise the widgets (if any present)
             initWidgets();
         }
         // if we paused ourselvers
         if (iLeftMyOwn && !widgetClicked) {
-            MainActivity.debug("CanzeActivity: onResume");
+            MainActivity.debug("CanzeActivity: onResume > reloadBluetooth");
             // restart Bluetooth
             MainActivity.getInstance().reloadBluetooth();
             iLeftMyOwn=false;
