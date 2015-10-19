@@ -1,18 +1,15 @@
 package lu.fisch.canze;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 //import android.widget.ProgressBar;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -105,7 +102,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
             }
         });
 
-        initWidgets();
+        initListeners();
 
     }
 
@@ -177,10 +174,10 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         super.onResume();
 
         // initialise the widgets
-        initWidgets();
+        initListeners();
     }
 
-    private void initWidgets () {
+    private void initListeners() {
 
         subscribedFields = new ArrayList<>();
 

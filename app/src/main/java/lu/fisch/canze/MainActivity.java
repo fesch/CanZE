@@ -715,7 +715,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         Field field = fields.getBySID("5d7.0");
         if(field!=null)
         {
-            field.addListener(MainActivity.instance);
+            field.addListener(MainActivity.getInstance());
 
             if(device!=null)
             {
