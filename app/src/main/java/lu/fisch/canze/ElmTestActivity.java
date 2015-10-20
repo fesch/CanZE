@@ -20,17 +20,16 @@ public class ElmTestActivity extends CanzeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elm_test);
-    }
-/*        //MainActivity.device.stopAndJoin(); // stop the poller thread
+        //MainActivity.device.stopAndJoin(); // stop the poller thread
 
         connectedBluetoothThread = MainActivity.device.getConnectedBluetoothThread();
 
         TextView tv = (TextView) findViewById(R.id.textResult);
         tv.setText("");
 
-        //sendNoWait("atws\r");
-        //tv.append("atws\n");
-        //displayResponseUntil(2000, tv);
+        sendNoWait("atws\r");
+        tv.append("atws\n");
+        displayResponseUntil(2000, tv);
 
     }
 
@@ -136,5 +135,5 @@ public class ElmTestActivity extends CanzeActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    } */
+    }
 }
