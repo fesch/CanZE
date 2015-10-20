@@ -209,6 +209,7 @@ public class CanzeActivity extends AppCompatActivity {
     {
         ArrayList<WidgetView> result = new ArrayList<WidgetView>();
 
+        if(viewGroup!=null)
         for (int i = 0; i < viewGroup.getChildCount(); i++) {
             View v = viewGroup.getChildAt(i);
             if (v instanceof ViewGroup) {

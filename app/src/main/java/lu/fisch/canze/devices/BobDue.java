@@ -22,7 +22,7 @@ public class BobDue extends Device {
 
 
     // define the timeout we may wait to get an answer
-    private static final int TIMEOUT = 500;
+    private static final int TIMEOUT = 250;
     // define End Of Message for this type of reader
     private static final char EOM = '\n';
     // the actual filter
