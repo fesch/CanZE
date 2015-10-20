@@ -29,7 +29,7 @@ public class ELM327 extends Device {
     private static final char EOM2 = '>';
     private static final char EOM3 = '?';
 
-    private static final int timeoutLogLevel = 1; // 0 = none, 1=only ELM issues, 2=elm and car issues
+    private int timeoutLogLevel = 1; // 0 = none, 1=only ELM issues, 2=elm and car issues
 
     /**
      * the index of the actual field to request
@@ -563,173 +563,24 @@ public class ELM327 extends Device {
                     field.decSkipCount();
 
                 if (runFilter) {
-
-                    // get filter ID
-                    String filter = field.getHexId();
-
-                    // EML needs the filter to be 3 symbols!
-                    String emlFilter = filter + "";
-                    while (emlFilter.length() < 3) emlFilter = "0" + emlFilter;
-
-
+                    String data = "";
                     if (field.isIsoTp()) {
-
-                        // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
-                        if (lastId != field.getId()) {
-                            lastId = field.getId();
-
-                            String request = getRequestHexId(field.getId()); //request contains the CAN id.
-
-
-                            //MainActivity.debug("ELM: ask for "+request+","+field.getRequestId());
-
-                            // atsh7e4          Set header to hex 79b (the LBC)
-                            if (!initCommandExpectOk("atsh" + request)) sumTingWong |= true;
-                            //sendAndWaitForAnswer("atsh" + request, 0);
-                            // atfcsh79b        Set flow control response ID to 79b (the LBC)
-                            if (!initCommandExpectOk("atfcsh" + request)) sumTingWong |= true;
-                            // sendAndWaitForAnswer("atfcsh" + request, 0);
-
-                            // PERFORMANCE ENHANCEMENT I, moved two commands below to device initialisation
-                            // // atfcsd300020     Set the flow control response data to 300020 (flow control, clear to send,
-                            // //                  all frames, 32 ms wait between frames. Note that it is not possible to let
-                            // //                  the ELM request each frame as the Altered Flow Control only responds to a
-                            // //                  First Frame (not a Next Frame)
-                            // sendAndWaitForAnswer("atfcsd300000", 50);
-                            // // atfcsm1          Set flow control mode 1 (ID and data suplied)
-                            // sendAndWaitForAnswer("atfcsm1", 50);
-                        }
-
-                        // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
-                        String pre = "0" + field.getRequestId().length() / 2;
-                        //MainActivity.debug("R: "+request+" - C: "+pre+field.getRequestId());
-
-                        // get 0x1 frame
-                        String line0x1 = sendAndWaitForAnswer(pre + field.getRequestId(), 0, false);
-
-                        if (!sumTingWong) {
-                            // process first line (SINGLE or FIRST frame)
-                            line0x1 = line0x1.trim();
-                            // clean-up if there is mess around
-                            if (line0x1.startsWith(">")) line0x1 = line0x1.substring(1);
-                            sumTingWong |= line0x1.isEmpty();
-                        }
-                        if (!sumTingWong){
-                            // get type (first nibble)
-                            String type = line0x1.substring(0, 1);
-                            //MainActivity.debug("Type: "+type);
-
-                            String finalData = "";
-                            switch (type) {
-                                case "0": // SINGLE frame
-                                    // remove 2 nibbles (type + length)
-                                    line0x1 = line0x1.substring(2); // was listed as 4
-                                    // remove response
-                                    //line0x1 = line0x1.substring(field.getRequestId().length());
-                                    finalData = line0x1;
-                                    break;
-                                case "1": // FIRST frame
-                                    // remove first nibble (type)
-                                    line0x1 = line0x1.substring(1);
-                                    //MainActivity.debug("HEX-length = " + line0x1.substring(0, 3));
-                                    // get the number of payload bytes
-                                    int count = Integer.valueOf(line0x1.substring(0, 3), 16);
-                                    //MainActivity.debug("DEC-length = " + count);
-                                    // remove 3 nibbles (number of payload bytes)
-                                    line0x1 = line0x1.substring(3);
-                                    // remove response
-                                    //line0x1 = line0x1.substring(field.getRequestId().length());
-                                    // store the reminding bytes
-                                    finalData = line0x1;
-                                    // decrease count
-                                    count -= line0x1.length() / 2;
-                                    // each of the 0x2 frames has a payload of 7 bytes
-                                    int framesToReceive = (int) Math.ceil(count / 7.);
-                                    //MainActivity.debug("framesToReceive = " + framesToReceive);
-
-                                    // get remaining 0x2 (NEXT) frames
-                                    String lines0x2 = sendAndWaitForAnswer(null, 0, framesToReceive);
-
-                                    // PERFORMANE ENHACMENT
-                                    // atfcsm0          Reset flow control mode to 0 (default)
-                                    // sendAndWaitForAnswer("atfcsm0", 50);
-
-                                    //MainActivity.debug("Got:\n"+lines0x2);
-
-                                    // split into lines
-                                    String[] hexDataLines = lines0x2.split(String.valueOf(EOM1));
-
-                                    for (int i = 0; i < hexDataLines.length; i++) {
-                                        String line = hexDataLines[i];
-                                        //MainActivity.debug("Line "+(i+1)+": " + line);
-                                        if (!line.isEmpty() && line.length() > 2) {
-                                            // cut off the first byte (type + sequence)
-                                            // adding sequence checking would be wise to detect collisions
-                                            line = line.substring(2);
-                                            finalData += line;
-                                        }
-                                    }
-                                    break;
-                                default:  // a NEXT, FLOWCONTROL should not be received. Neither should any other string (such as NO DATA)
-                                    sumTingWong = true;
-                                    break;
-                            }
-
-                            if (!sumTingWong) {
-                                //MainActivity.debug("ELM: received " + emlFilter+","+finalData.trim());
-
-                                String data = filter + "," + finalData.trim() + "," + field.getResponseId() + SEPARATOR;
-
-                                // process data
-                                process(Utils.toIntArray(data.getBytes()));
-                            }
-                        }
-
-                    } else {
-
-                        String hexData = "";
-
-                        //MainActivity.debug("ELM: ask for "+filter);
-
-                        // atcra186 (substitute 186 by the hex code of the id)
-                        if (!initCommandExpectOk("atcra" + emlFilter)) sumTingWong |= true;
-                        if (!sumTingWong) {
-                            //sendAndWaitForAnswer("atcra" + emlFilter, 400);
-                            // atma     (wait for one answer line)
-                            TIMEOUT = field.getFrequency() + 50;
-                            if (TIMEOUT < 70) TIMEOUT = 70;
-                            hexData = sendAndWaitForAnswer("atma", 20);
-                            // the dongle starts babbling now. sendAndWaitForAnswer should stop at the first full line
-                            // ensure any running operation is stopped
-                            // sending a return might restart the last command. Bad plan.
-                            sendNoWait("x");
-                            // let it settle down
-                            flushWithTimeout(50);
-                            TIMEOUT = DEFAULT_TIMEOUT;
-                        }
-                        // atar     (clear filter)
-                        // AM has suggested the atar might not be neccesary as it might only influence cra filters and they are always set
-                        // however, make sure proper flushing is done as we do here with the 100 mS for waitMillis
-                        // if cra dies incluence isotp requests, an small optimization might be only sending atar when switching from free
-                        // frames to isotp frames.
-                        if (!sumTingWong) {
-                            if (!initCommandExpectOk("atar")) sumTingWong |= true;
-                            //sendAndWaitForAnswer("atar", 0);
-                        }
-
-                        if (!sumTingWong && !hexData.equals("")) {
-                            String data = filter + "," + hexData.trim() + SEPARATOR;
-
-                            //MainActivity.debug("ELM: received " + emlFilter+","+hexData.trim());
-
-                            // process data
+                        //data = requestIsoTpFrame(field);
+                        if (!sumTingWong && !data.equals("")) {
+                            data = field.getHexId() + "," + data.trim() + "," + field.getResponseId() + SEPARATOR;
                             process(Utils.toIntArray(data.getBytes()));
                         }
 
+                    } else {
+                        //data = requestFreeFrame(field);
+                        if (!sumTingWong && !data.equals("")) {
+                            data = field.getHexId() + "," + data.trim() + SEPARATOR;
+                            process(Utils.toIntArray(data.getBytes()));
+                        }
                     }
 
-                    // reset the ELM if a timeout occurred somewhere tunning this filter
-                    // ... but only if we are not asekd to stop!
+                    // reset the ELM if a timeout occurred somewhere running this filter
+                    // ... but only if we are not asked to stop!
                     if (sumTingWong && connectedBluetoothThread!=null) {
                         //MainActivity.toast("... in command " + emlFilter + ", resetting ELM");
                         initELM(1, 2);
@@ -745,10 +596,7 @@ public class ELM327 extends Device {
                         fieldIndex = (fieldIndex + 1) % fields.size();
                 }
             }
-            else
-            {
-                //MainActivity.debug("ELM: no filters set ...");
-            }
+
         }
         catch (Exception e)
         {
@@ -771,11 +619,133 @@ public class ELM327 extends Device {
 
     @Override
     public String requestFreeFrame(Field field) {
-        return null;
+
+        String hexData = "";
+
+        // EML needs the filter to be 3 symbols and contains the from CAN id of the ECU
+        String emlFilter = field.getHexId() + "";
+        while (emlFilter.length() < 3) emlFilter = "0" + emlFilter;
+
+        if (!initCommandExpectOk("atcra" + emlFilter)) sumTingWong |= true;
+
+        // avoid starting an ATMA id the ATCRA failed
+        if (!sumTingWong) {
+            //sendAndWaitForAnswer("atcra" + emlFilter, 400);
+            // atma     (wait for one answer line)
+            TIMEOUT = field.getFrequency() + 50;
+            if (TIMEOUT < 70) TIMEOUT = 70;
+            hexData = sendAndWaitForAnswer("atma", 20);
+            // the dongle starts babbling now. sendAndWaitForAnswer should stop at the first full line
+            // ensure any running operation is stopped
+            // sending a return might restart the last command. Bad plan.
+            sendNoWait("x");
+            // let it settle down
+            flushWithTimeout(50);
+            TIMEOUT = DEFAULT_TIMEOUT;
+        }
+        // atar     (clear filter)
+        // AM has suggested the atar might not be neccesary as it might only influence cra filters and they are always set
+        // however, make sure proper flushing is done
+        // if cra does influence ISO-TP requests, an small optimization might be to only sending an atar when switching from free
+        // frames to isotp frames.
+        if (!initCommandExpectOk("atar")) sumTingWong |= true;
+        return hexData;
     }
 
     @Override
     public String requestIsoTpFrame(Field field) {
-        return null;
+
+        String hexData = "";
+
+        // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
+        if (lastId != field.getId()) {
+            lastId = field.getId();
+
+            // request contains the to CAN id of the ECU
+            String request = getRequestHexId(field.getId());
+
+            // Set header
+            if (!initCommandExpectOk("atsh" + request)) sumTingWong |= true;
+            // Set flow control response ID
+            if (!initCommandExpectOk("atfcsh" + request)) sumTingWong |= true;
+
+        }
+
+        // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
+        String pre = "0" + field.getRequestId().length() / 2;
+        //MainActivity.debug("R: "+request+" - C: "+pre+field.getRequestId());
+
+        // get 0x1 frame
+        String line0x1 = sendAndWaitForAnswer(pre + field.getRequestId(), 0, false);
+
+        if (!sumTingWong) {
+            // process first line (SINGLE or FIRST frame)
+            line0x1 = line0x1.trim();
+            // clean-up if there is mess around
+            if (line0x1.startsWith(">")) line0x1 = line0x1.substring(1);
+            sumTingWong |= line0x1.isEmpty();
+        }
+        if (!sumTingWong) {
+            // get type (first nibble)
+            String type = line0x1.substring(0, 1);
+            //MainActivity.debug("Type: "+type);
+
+            switch (type) {
+                case "0": // SINGLE frame
+                    // remove 2 nibbles (type + length)
+                    line0x1 = line0x1.substring(2); // was listed as 4
+                    // remove response
+                    //line0x1 = line0x1.substring(field.getRequestId().length());
+                    hexData = line0x1;
+                    break;
+                case "1": // FIRST frame
+                    // remove first nibble (type)
+                    line0x1 = line0x1.substring(1);
+                    //MainActivity.debug("HEX-length = " + line0x1.substring(0, 3));
+                    // get the number of payload bytes
+                    int count = Integer.valueOf(line0x1.substring(0, 3), 16);
+                    //MainActivity.debug("DEC-length = " + count);
+                    // remove 3 nibbles (number of payload bytes)
+                    line0x1 = line0x1.substring(3);
+                    // remove response
+                    //line0x1 = line0x1.substring(field.getRequestId().length());
+                    // store the reminding bytes
+                    hexData = line0x1;
+                    // decrease count
+                    count -= line0x1.length() / 2;
+                    // each of the 0x2 frames has a payload of 7 bytes
+                    int framesToReceive = (int) Math.ceil(count / 7.);
+                    //MainActivity.debug("framesToReceive = " + framesToReceive);
+
+                    // get remaining 0x2 (NEXT) frames
+                    String lines0x2 = sendAndWaitForAnswer(null, 0, framesToReceive);
+
+                    // PERFORMANE ENHACMENT
+                    // atfcsm0          Reset flow control mode to 0 (default)
+                    // sendAndWaitForAnswer("atfcsm0", 50);
+
+                    //MainActivity.debug("Got:\n"+lines0x2);
+
+                    // split into lines
+                    String[] hexDataLines = lines0x2.split(String.valueOf(EOM1));
+
+                    for (int i = 0; i < hexDataLines.length; i++) {
+                        String line = hexDataLines[i];
+                        //MainActivity.debug("Line "+(i+1)+": " + line);
+                        if (!line.isEmpty() && line.length() > 2) {
+                            // cut off the first byte (type + sequence)
+                            // adding sequence checking would be wise to detect collisions
+                            line = line.substring(2);
+                            hexData += line;
+                        }
+                    }
+                    break;
+                default:  // a NEXT, FLOWCONTROL should not be received. Neither should any other string (such as NO DATA)
+                    sumTingWong = true;
+                    break;
+            }
+
+        }
+        return hexData;
     }
 }
