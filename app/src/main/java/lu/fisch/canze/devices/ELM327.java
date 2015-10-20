@@ -565,14 +565,14 @@ public class ELM327 extends Device {
                 if (runFilter) {
                     String data = "";
                     if (field.isIsoTp()) {
-                        //data = requestIsoTpFrame(field);
+                        data = requestIsoTpFrame(field);
                         if (!sumTingWong && !data.equals("")) {
                             data = field.getHexId() + "," + data.trim() + "," + field.getResponseId() + SEPARATOR;
                             process(Utils.toIntArray(data.getBytes()));
                         }
 
                     } else {
-                        //data = requestFreeFrame(field);
+                        data = requestFreeFrame(field);
                         if (!sumTingWong && !data.equals("")) {
                             data = field.getHexId() + "," + data.trim() + SEPARATOR;
                             process(Utils.toIntArray(data.getBytes()));
