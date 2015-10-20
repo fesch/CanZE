@@ -20,16 +20,67 @@ public class ElmTestActivity extends CanzeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elm_test);
-        //MainActivity.device.stopAndJoin(); // stop the poller thread
+
+        MainActivity.device.stopAndJoin(); // stop the poller thread
 
         connectedBluetoothThread = MainActivity.device.getConnectedBluetoothThread();
 
-        TextView tv = (TextView) findViewById(R.id.textResult);
-        tv.setText("");
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                TextView tv = (TextView) findViewById(R.id.textResult);
+                tv.setText("");
 
-        sendNoWait("atws\r");
-        tv.append("atws\n");
-        displayResponseUntil(2000, tv);
+                tv.append("Sending a reset\n");
+                sendNoWait("atws\r");
+                displayResponseUntil(2000, tv);
+
+                tv.append("\nSending initialisation commands\n");
+                sendNoWait("ate0\r");
+                displayResponseUntil(400, tv);
+                sendNoWait("ats0\r");
+                displayResponseUntil(400, tv);
+                sendNoWait("atsp6\r");
+                displayResponseUntil(400, tv);
+                sendNoWait("atat1\r");
+                displayResponseUntil(400, tv);
+                sendNoWait("atcaf0\r");
+                displayResponseUntil(400, tv);
+                sendNoWait("atfcsh77b\r");
+                displayResponseUntil(400, tv);
+                sendNoWait("atfcsd300010\r");
+                displayResponseUntil(400, tv);
+                sendNoWait("atfcsm1\r");
+                displayResponseUntil(400, tv);
+
+                tv.append("\nPreparing an ISO-TP command\n");
+                sendNoWait("atsh743\r");
+                displayResponseUntil(400, tv);
+                sendNoWait("atfcsh743\r");
+                displayResponseUntil(400, tv);
+                tv.append("\nSending an ISO-TP command\n");
+                sendNoWait("03222001\r");
+                displayResponseUntil(400, tv);
+
+                tv.append("\nPreparing a free frame capture\n");
+                sendNoWait("atcra4F8\r");
+                displayResponseUntil(400, tv);
+
+                tv.append("\nShowing a free frame capture\n");
+                sendNoWait("atma\r");
+                displayResponseUntil(200, tv);
+
+                tv.append("\nStopping free frame capture\n");
+                sendNoWait("x");
+                displayResponseUntil(200, tv);
+                sendNoWait("x\r");
+                displayResponseUntil(400, tv);
+                tv.append("\nResetting free frame capture\n");
+                sendNoWait("atar\r");
+                displayResponseUntil(400, tv);
+
+            }
+        });
 
     }
 
@@ -73,10 +124,10 @@ public class ElmTestActivity extends CanzeActivity {
     }
 
 
-
     private void displayResponseUntil (int timeout, TextView tv) {
         long end = Calendar.getInstance().getTimeInMillis() + timeout;
         boolean timedOut = false;
+        boolean lastWasCr = false;
         while(Calendar.getInstance().getTimeInMillis() <= end)
         {
             try {
@@ -87,11 +138,17 @@ public class ElmTestActivity extends CanzeActivity {
                     // if it is a real one
                     if (data != -1) {
                         // we might be JUST approaching the TIMEOUT, so give it a chance to get to the EOM,
-                        end = end + 2;
+                        // end = end + 2;
                         // convert it to a character
                         char ch = (char) data;
-                        if (ch == '\r') ch = '\n';
-                        tv.append("" + ch);
+                        if (ch == '\r') {
+                            tv.append("\u2022");
+                            lastWasCr = true;
+                        } else {
+                            if (lastWasCr) tv.append("\n");
+                            tv.append("" + ch);
+                            lastWasCr = false;
+                        }
                     }
                 }
                 else
