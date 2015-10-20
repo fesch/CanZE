@@ -592,4 +592,14 @@ public class ELM327Experimental extends Device {
         super.clearFields();
         fieldIndex = 0;
     }
+
+    @Override
+    public String requestFreeFrame(Field field) {
+        return null;
+    }
+
+    @Override
+    public String requestIsoTpFrame(Field field) {
+        return null;
+    }
 }

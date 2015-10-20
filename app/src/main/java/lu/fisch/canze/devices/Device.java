@@ -269,4 +269,14 @@ public abstract class Device {
     public void setPollerActive(boolean pollerActive) {
         this.pollerActive = pollerActive;
     }
+
+    public String requestField(Field field)
+    {
+        if(field.isIsoTp()) return requestIsoTpFrame(field);
+        else return requestFreeFrame(field);
+    }
+
+    public abstract String requestFreeFrame(Field field);
+    public abstract String requestIsoTpFrame(Field field);
+
 }
