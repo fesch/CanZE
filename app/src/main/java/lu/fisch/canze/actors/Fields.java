@@ -609,7 +609,6 @@ public class Fields implements MessageListener {
                         +"0x7ec, 24, 39, 1, 50, 0, 100, Volt, V, 0x223203, 0x623203, , 0, 0, 0\n"
                         +"0x7ec, 24, 39, 48, 100, 0, 100, SOC, %, 0x222002, 0x622002, , 1, 0, 0\n"
                         +"0x7ec, 24, 47, 1, 1, 0, 0, Odometer, km, 0x222006, 0x622006, , 0, 0, 0\n"
-
                         +"0x7ec, 128, 143, 1, 1, 0, 0, SCH SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x7da, 128, 143, 1, 1, 0, 0, TCU SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x7bb, 128, 143, 1, 1, 0, 0, LBC SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
@@ -622,6 +621,9 @@ public class Fields implements MessageListener {
                         +"0x7bc, 128, 143, 1, 1, 0, 0, UBP SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x765, 128, 143, 1, 1, 0, 0, BCM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x764, 128, 143, 1, 1, 0, 0, CLIM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x764,   0,   7, 1, 1, 0, 0, CLIM reset, , 0x14ffff, 0x54, , 0, 0, 0\n"
+                        +"0x764,  24,  47, 1, 1, 0, 0, CLIM DTC1, , 0x19023b, 0x5902ff, , 0, 0, 0\n"
+                        +"0x764,  48,  55, 1, 1, 0, 0, CLIM DTC1 val, , 0x19023b, 0x5902ff, , 0, 0, 0\n"
                         +"0x76e, 128, 143, 1, 1, 0, 0, UPA SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x793, 128, 143, 1, 1, 0, 0, BCB SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x7b6, 128, 143, 1, 1, 0, 0, LBC2 SW version, , 0x2180, 0x6180, , 0, 0, 0\n"

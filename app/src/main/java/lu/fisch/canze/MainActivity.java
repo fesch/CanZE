@@ -467,6 +467,17 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             }
         });
 
+        button = (Button) findViewById(R.id.buttonPgJm);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!isSafe()) return;
+                leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.this, ElmTestActivity.class);
+                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
+            }
+        });
+
 
 
         // link the fields to the stack
