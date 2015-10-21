@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -17,123 +18,131 @@ import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
 public class ElmTestActivity extends CanzeActivity {
 
     private ConnectedBluetoothThread connectedBluetoothThread = null;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elm_test);
 
-        MainActivity.device.stopAndJoin(); // stop the poller thread
+        textView = (TextView) findViewById(R.id.textResult);
 
-        connectedBluetoothThread = MainActivity.device.getConnectedBluetoothThread();
-
+        // run the test in a separate thread
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Field field;
-                TextView tv = (TextView) findViewById(R.id.textResult);
-                tv.setText("");
-
-                tv.append("Sending a reset\n");
-                sendNoWait("atws\r");
-                displayResponseUntil(2000, tv);
-
-                tv.append("\nSending initialisation commands\n");
-                sendNoWait("ate0\r");
-                displayResponseUntil(400, tv);
-                sendNoWait("ats0\r");
-                displayResponseUntil(400, tv);
-                sendNoWait("atsp6\r");
-                displayResponseUntil(400, tv);
-                sendNoWait("atat1\r");
-                displayResponseUntil(400, tv);
-                sendNoWait("atcaf0\r");
-                displayResponseUntil(400, tv);
-                sendNoWait("atfcsh77b\r");
-                displayResponseUntil(400, tv);
-                sendNoWait("atfcsd300010\r");
-                displayResponseUntil(400, tv);
-                sendNoWait("atfcsm1\r");
-                displayResponseUntil(400, tv);
-
-/*                tv.append("\nPreparing a raw ISO-TP command\n");
-                sendNoWait("atsh743\r");
-                displayResponseUntil(400, tv);
-                sendNoWait("atfcsh743\r");
-                displayResponseUntil(400, tv);
-                tv.append("\nSending an ISO-TP command\n");
-                sendNoWait("03222001\r");
-                displayResponseUntil(400, tv);
-*/
-                tv.append("\nProcessing prepped ISO-TP command\n");
-                field = Fields.getInstance().getBySID("763.622001.24");
-                if (field != null)
-                    tv.append(MainActivity.device.requestField(field).replace('\r', '•'));
-                else
-                    tv.append("- field does not exist\n");
-/*
-
-                tv.append("\nPreparing a free frame capture\n");
-                sendNoWait("atcra4f8\r");
-                displayResponseUntil(400, tv);
-
-                tv.append("\nShowing a free frame capture\n");
-                sendNoWait("atma\r");
-                displayResponseUntil(200, tv);
-
-                tv.append("\nStopping free frame capture\n");
-                sendNoWait("x");
-                displayResponseUntil(200, tv);
-                sendNoWait("x\r");
-                displayResponseUntil(400, tv);
-                tv.append("\nResetting free frame capture\n");
-                sendNoWait("atar\r");
-                displayResponseUntil(400, tv);
-*/
-                tv.append("\nProcessing prepped free frame\n");
-                field = Fields.getInstance().getBySID("4f8.4");
-                if (field != null)
-                    tv.append(MainActivity.device.requestField(field).replace('\r', '\u2022'));
-                else
-                    tv.append("- field does not exist\n");
-
+                doTest();
             }
         }).start();
-
     }
 
+    void doTest () {
 
-    void flushWithTimeout (int timeout) {
-        // empty incoming buffer
-        // just make sure there is no previous response
-        try {
-            // fast track.....
-            if (timeout == 0) {
-                if (connectedBluetoothThread != null && connectedBluetoothThread.available() > 0) {
-                    connectedBluetoothThread.read();
-                }
-            } else {
-                long end = Calendar.getInstance().getTimeInMillis() + timeout;
-                while (Calendar.getInstance().getTimeInMillis() < end) {
-                    // read a byte
-                    if (connectedBluetoothThread == null) return;
-                    if (connectedBluetoothThread.available() > 0) {
-                        // absorb the characters
-                        while (connectedBluetoothThread.available() > 0) connectedBluetoothThread.read();
-                        // restart the timer
-                        end = Calendar.getInstance().getTimeInMillis() + timeout;
-                    } else {
-                        // let the system breath if there was no data
-                        Thread.sleep(5);
-                    }
-                }
-            }
-        } catch (IOException | InterruptedException e) {
-            // ignore
+        Field field;
+
+        clearResult ();
+
+        if (MainActivity.device != null){
+            // stop the poller thread
+            MainActivity.device.stopAndJoin();
+            // Get the bluetooth thread
+            connectedBluetoothThread = MainActivity.device.getConnectedBluetoothThread();
         }
+
+        if (connectedBluetoothThread == null) {
+            appendResult("\nCan't get to BluetoothThread. Is your device paired and connected?\n");
+            return;
+        }
+
+        appendResult("\nSending a reset\n");
+        sendNoWait("atws\r");
+        appendResult(displayResponseUntil(2000));
+
+        appendResult("\nSending initialisation sequence\n");
+        sendNoWait("ate0\r");
+        appendResult(displayResponseUntil(400));
+        sendNoWait("ats0\r");
+        appendResult(displayResponseUntil(400));
+        sendNoWait("atsp6\r");
+        appendResult(displayResponseUntil(400));
+        sendNoWait("atat1\r");
+        appendResult(displayResponseUntil(400));
+        sendNoWait("atcaf0\r");
+        appendResult(displayResponseUntil(400));
+        sendNoWait("atfcsh77b\r");
+        appendResult(displayResponseUntil(400));
+        sendNoWait("atfcsd300010\r");
+        appendResult(displayResponseUntil(400));
+        sendNoWait("atfcsm1\r");
+        appendResult(displayResponseUntil(400));
+
+        appendResult("\nPreparing a raw ISO-TP command\n");
+        sendNoWait("atsh743\r");
+        appendResult(displayResponseUntil(400));
+        sendNoWait("atfcsh743\r");
+        appendResult(displayResponseUntil(400));
+        appendResult("\nSending an ISO-TP command\n");
+        sendNoWait("03222001\r");
+        appendResult(displayResponseUntil(400));
+
+        appendResult("\nProcessing prepped ISO-TP command\n");
+        field = Fields.getInstance().getBySID("763.622001.24");
+        if (field != null)
+            appendResult(MainActivity.device.requestField(field).replace('\r', '•'));
+        else
+            appendResult("- field does not exist\n");
+
+        // There was spurious error here, that immediately sending the below atcra command STOPPED the still not entirely finished ISO-TP command.
+        // It was probably sending "OK>" or just ">".
+        // This made the atcra fail, and therefor the following ATMA immediately overwhelmed the ELM as no filter was set.
+        // As a solution, added in ELM327 to specifically wait up to 500ms (!) for a > after an ISO-TP command.
+        appendResult("\nSetting filter for free frame capture\n");
+        sendNoWait("atcra4f8\r");
+        appendResult(displayResponseUntil(400));
+
+        appendResult("\nShowing a free frame capture\n");
+        sendNoWait("atma\r");
+        appendResult(displayResponseUntil(200));
+
+        appendResult("\nStopping free frame capture\n");
+        appendResult(displayResponseUntil(200));
+        sendNoWait("x");
+        // this will result in STOPPED. We need to double check if the ELM also sends a >
+
+        appendResult(displayResponseUntil(400));
+        appendResult("\nResetting free frame capture\n");
+        sendNoWait("atar\r");
+        appendResult(displayResponseUntil(400));
+
+        appendResult("\nProcessing prepped free frame\n");
+        field = Fields.getInstance().getBySID("4f8.4");
+        if (field != null)
+            appendResult(MainActivity.device.requestField(field).replace('\r', '\u2022'));
+        else
+            appendResult("- field does not exist\n");
     }
 
+    // Ensure all UI updates are done on the UiThread
+    private void clearResult() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                textView.setText("");
+            }
+        });
+    }
 
+    private void appendResult(String str) {
+        final String localStr = str;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                textView.append(localStr);
+            }
+        });
+    }
+
+    // ELM functions not available or reachable through the device Class
     private void sendNoWait(String command) {
         if(connectedBluetoothThread==null) return;
         if(command!=null) {
@@ -141,11 +150,11 @@ public class ElmTestActivity extends CanzeActivity {
         }
     }
 
-
-    private void displayResponseUntil (int timeout, TextView tv) {
+    private String displayResponseUntil (int timeout) {
         long end = Calendar.getInstance().getTimeInMillis() + timeout;
         boolean timedOut = false;
         boolean lastWasCr = false;
+        String result = "";
         while(Calendar.getInstance().getTimeInMillis() <= end)
         {
             try {
@@ -160,11 +169,11 @@ public class ElmTestActivity extends CanzeActivity {
                         // convert it to a character
                         char ch = (char) data;
                         if (ch == '\r') {
-                            tv.append("\u2022");
+                            result += "\u2022";
                             lastWasCr = true;
                         } else {
-                            if (lastWasCr) tv.append("\n");
-                            tv.append("" + ch);
+                            if (lastWasCr) result += "\n";
+                            result += ch;
                             lastWasCr = false;
                         }
                     }
@@ -185,9 +194,10 @@ public class ElmTestActivity extends CanzeActivity {
                 // ignore: e.printStackTrace();
             }
         }
-
+        return result;
     }
 
+    // UI elements
     @Override
     protected void onDestroy() {
         // restart the poller
@@ -196,7 +206,6 @@ public class ElmTestActivity extends CanzeActivity {
 
         super.onDestroy();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

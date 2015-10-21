@@ -647,8 +647,8 @@ public class ELM327 extends Device {
             // ensure any running operation is stopped
             // sending a return might restart the last command. Bad plan.
             sendNoWait("x");
-            // let it settle down
-            flushWithTimeout(50);
+            // let it settle down, the ELM should indicate STOPPED then prompt >
+            flushWithTimeout(100, '>');
             TIMEOUT = DEFAULT_TIMEOUT;
         }
         // atar     (clear filter)
@@ -752,7 +752,7 @@ public class ELM327 extends Device {
 
         }
         // better here is to wait for a >
-        flushWithTimeout(100, '>');
+        flushWithTimeout(400, '>');
         return hexData;
     }
 }
