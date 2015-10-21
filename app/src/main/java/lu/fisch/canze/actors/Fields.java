@@ -376,7 +376,7 @@ public class Fields implements MessageListener {
                         +"0x35c, 4, 15, 1, 1, 0, 0, Key-Start: %5ld, , , , , 0, 0, 100\n"
                         +"0x3f7, 2, 3, 1, 1, 0, 0, Gear??: %4ld, , , , , 2, 0, 60\n"
                         +"0x427, 40, 47, 10, 3, 0, 0, AvCharPwr: %5ld, kW, , , , 1, 0, 100\n"
-                        +"0x427, 49, 57, 10, 1, 0, 10, AvEnergy: %5ld, kWh, , , , 1, 0, 100\n"
+                        +"0x427, 49, 57, 100, 1, 0, 10, AvEnergy: %5ld, kWh, , , , 1, 0, 100\n"
                         +"0x42a, 16, 23, 1, 1, 0, 0, Temp set: %5ld, , , , , 1, 0, 100\n"
                         +"0x42e, 0, 12, 1, 2, 0, 100, SOC(a): %3ld.%02ld, %, , , State of Charge, 0, 0, 100\n"
                         +"0x42e, 18, 19, 1, 1, 0, 0, , , , , HVBatLevel2Failure, 0, 0, 100\n"

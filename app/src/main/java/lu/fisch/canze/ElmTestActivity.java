@@ -27,7 +27,7 @@ public class ElmTestActivity extends CanzeActivity {
 
         connectedBluetoothThread = MainActivity.device.getConnectedBluetoothThread();
 
-        runOnUiThread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 Field field;
@@ -98,7 +98,7 @@ public class ElmTestActivity extends CanzeActivity {
                     tv.append("- field does not exist\n");
 
             }
-        });
+        }).start();
 
     }
 
@@ -188,6 +188,14 @@ public class ElmTestActivity extends CanzeActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        // restart the poller
+        if(MainActivity.device!=null)
+            MainActivity.device.initConnection();
+
+        super.onDestroy();
+    }
 
 
     @Override
