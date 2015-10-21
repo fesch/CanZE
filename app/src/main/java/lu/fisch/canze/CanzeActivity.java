@@ -154,7 +154,6 @@ public class CanzeActivity extends AppCompatActivity {
                     String json = settings.getString(id, "");
                     if(!json.trim().isEmpty())
                     {
-                        MainActivity.debug("JSON: "+json);
                         wv.getDrawable().dataFromJson(json);
                     }
 
