@@ -251,7 +251,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         tv.setText("" + (dcPwr));
                         tv = (TextView) findViewById(R.id.textConsumption);
                         if (realSpeed > 5) {
-                            tv.setText("" + (Math.round((100 * dcPwr / realSpeed) * 10.0) / 10.0));
+                            tv.setText("" + (Math.round(1000.0 * dcPwr / realSpeed) / 10.0) + " kWh/100km");
                         } else {
                             tv.setText("-");
                         }
