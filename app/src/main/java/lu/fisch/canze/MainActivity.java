@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     public final static String PREFERENCES_FILE = "lu.fisch.canze.settings";
+    public final static String DATA_FILE = "lu.fisch.canze.data";
 
     // MAC-address of Bluetooth module (you must edit this line)
     private static String bluetoothDeviceAddress = null;

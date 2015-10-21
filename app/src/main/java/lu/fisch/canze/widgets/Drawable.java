@@ -5,6 +5,8 @@ package lu.fisch.canze.widgets;
 
 import android.graphics.Point;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -72,6 +74,13 @@ public abstract class Drawable implements Space, FieldListener {
     {
         // empty
     }
+
+    /* --------------------------------
+     * Serialization
+     \ ------------------------------ */
+
+    public abstract String dataToJson();
+    public abstract void dataFromJson(String json);
 
     /* --------------------------------
      * Getters & setters
@@ -200,4 +209,7 @@ public abstract class Drawable implements Space, FieldListener {
             sids.add(sid);
     }
 
+    public ArrayList<String> getSids() {
+        return sids;
+    }
 }

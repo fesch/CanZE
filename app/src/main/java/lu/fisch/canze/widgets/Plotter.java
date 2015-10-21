@@ -179,4 +179,18 @@ public class Plotter extends Drawable {
             super.onFieldUpdateEvent(field);
         }
     }
+
+    /* --------------------------------
+     * Serialization
+     \ ------------------------------ */
+
+    @Override
+    public String dataToJson() {
+        return "";
+    }
+
+    @Override
+    public void dataFromJson(String json) {
+    }
+
 }
