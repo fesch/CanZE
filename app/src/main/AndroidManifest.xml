@@ -80,6 +80,10 @@
             android:name=".HarmActivity"
             android:label="@string/title_activity_harm" >
         </activity>
+        <activity
+            android:name=".DtcActivity"
+            android:label="@string/title_activity_dtc" >
+        </activity>
     </application>
 
 </manifest>

@@ -177,16 +177,6 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         double dcPwr = (double)Math.round(dcVolt * field.getValue() / 100.0) / 10.0;
                         tv = (TextView) findViewById(R.id.textDcPwr);
                         tv.setText("" + (dcPwr));
-                        /*
-                        // guess phases
-                        tv = (TextView) findViewById(R.id.textPhases);
-                        if (pilot == 0) {
-                            tv.setText("0");
-                        } else if (dcPwr > (pilot * 250.0)) {
-                            tv.setText("3");
-                        } else {
-                            tv.setText("1");
-                        } */
                         // continue
                         tv = (TextView) findViewById(R.id.textAmps);
                         break;
