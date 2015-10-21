@@ -9,6 +9,8 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.util.Calendar;
 
+import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
 
 
@@ -28,6 +30,7 @@ public class ElmTestActivity extends CanzeActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                Field field;
                 TextView tv = (TextView) findViewById(R.id.textResult);
                 tv.setText("");
 
@@ -53,7 +56,7 @@ public class ElmTestActivity extends CanzeActivity {
                 sendNoWait("atfcsm1\r");
                 displayResponseUntil(400, tv);
 
-                tv.append("\nPreparing an ISO-TP command\n");
+/*                tv.append("\nPreparing a raw ISO-TP command\n");
                 sendNoWait("atsh743\r");
                 displayResponseUntil(400, tv);
                 sendNoWait("atfcsh743\r");
@@ -61,9 +64,17 @@ public class ElmTestActivity extends CanzeActivity {
                 tv.append("\nSending an ISO-TP command\n");
                 sendNoWait("03222001\r");
                 displayResponseUntil(400, tv);
+*/
+                tv.append("\nProcessing prepped ISO-TP command\n");
+                field = Fields.getInstance().getBySID("763.622001.24");
+                if (field != null)
+                    tv.append(MainActivity.device.requestField(field).replace('\r', '•'));
+                else
+                    tv.append("- field does not exist\n");
+/*
 
                 tv.append("\nPreparing a free frame capture\n");
-                sendNoWait("atcra4F8\r");
+                sendNoWait("atcra4f8\r");
                 displayResponseUntil(400, tv);
 
                 tv.append("\nShowing a free frame capture\n");
@@ -78,6 +89,13 @@ public class ElmTestActivity extends CanzeActivity {
                 tv.append("\nResetting free frame capture\n");
                 sendNoWait("atar\r");
                 displayResponseUntil(400, tv);
+*/
+                tv.append("\nProcessing prepped free frame\n");
+                field = Fields.getInstance().getBySID("4f8.4");
+                if (field != null)
+                    tv.append(MainActivity.device.requestField(field).replace('\r', '\u2022'));
+                else
+                    tv.append("- field does not exist\n");
 
             }
         });

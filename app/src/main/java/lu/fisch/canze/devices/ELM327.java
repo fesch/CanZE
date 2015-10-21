@@ -281,6 +281,10 @@ public class ELM327 extends Device {
     }
 
     void flushWithTimeout (int timeout) {
+        flushWithTimeout(timeout, '\0');
+    }
+
+    void flushWithTimeout (int timeout, char eom) {
         // empty incoming buffer
         // just make sure there is no previous response
         try {
@@ -296,7 +300,11 @@ public class ELM327 extends Device {
                     if (connectedBluetoothThread == null) return;
                     if (connectedBluetoothThread.available() > 0) {
                         // absorb the characters
-                        while (connectedBluetoothThread.available() > 0) connectedBluetoothThread.read();
+                        while (connectedBluetoothThread.available() > 0) {
+                            int c = connectedBluetoothThread.read();
+                            if (c == (int)eom) return;
+
+                        }
                         // restart the timer
                         end = Calendar.getInstance().getTimeInMillis() + timeout;
                     } else {
@@ -675,7 +683,7 @@ public class ELM327 extends Device {
         String pre = "0" + field.getRequestId().length() / 2;
         //MainActivity.debug("R: "+request+" - C: "+pre+field.getRequestId());
 
-        // get 0x1 frame
+        // get 0x1 frame. No delays, and no waiting until done.
         String line0x1 = sendAndWaitForAnswer(pre + field.getRequestId(), 0, false);
 
         if (!sumTingWong) {
@@ -693,10 +701,7 @@ public class ELM327 extends Device {
             switch (type) {
                 case "0": // SINGLE frame
                     // remove 2 nibbles (type + length)
-                    line0x1 = line0x1.substring(2); // was listed as 4
-                    // remove response
-                    //line0x1 = line0x1.substring(field.getRequestId().length());
-                    hexData = line0x1;
+                    hexData = line0x1.substring(2);
                     break;
                 case "1": // FIRST frame
                     // remove first nibble (type)
@@ -746,6 +751,8 @@ public class ELM327 extends Device {
             }
 
         }
+        // better here is to wait for a >
+        flushWithTimeout(100, '>');
         return hexData;
     }
 }
