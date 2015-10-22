@@ -1,6 +1,5 @@
-package lu.fisch.canze;
+package lu.fisch.canze.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,6 +8,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.FieldListener;

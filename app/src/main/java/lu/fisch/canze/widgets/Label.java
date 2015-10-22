@@ -2,7 +2,6 @@ package lu.fisch.canze.widgets;
 
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
-import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 
 /**

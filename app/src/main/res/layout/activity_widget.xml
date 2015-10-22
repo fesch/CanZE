@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="0dp"
-    tools:context="lu.fisch.canze.WidgetActivity">
+    tools:context="lu.fisch.canze.activities.WidgetActivity">
 
     <lu.fisch.canze.widgets.WidgetView
         android:id="@+id/selectedWidget"

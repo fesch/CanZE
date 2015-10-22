@@ -2,7 +2,7 @@ package lu.fisch.canze.devices;
 
 import java.util.ArrayList;
 
-import lu.fisch.canze.MainActivity;
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Message;

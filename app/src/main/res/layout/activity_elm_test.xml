@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    tools:context="lu.fisch.canze.DtcActivity">
+    tools:context="lu.fisch.canze.activities.DtcActivity">
 
     <ScrollView
         android:id="@+id/SCROLLER_ID"

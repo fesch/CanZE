@@ -1,4 +1,4 @@
-package lu.fisch.canze;
+package lu.fisch.canze.activities;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.FieldListener;
 

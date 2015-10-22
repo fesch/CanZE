@@ -6,7 +6,7 @@ package lu.fisch.canze.actors;
 
 import android.os.Environment;
 
-import lu.fisch.canze.MainActivity;
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.interfaces.MessageListener;
 
 import java.io.BufferedReader;
@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 

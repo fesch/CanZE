@@ -5,9 +5,8 @@ import lu.fisch.canze._old.actors.Stack;
 
 import java.io.IOException;
 
-import lu.fisch.canze._old.actors.Stack;
 import lu.fisch.canze.exeptions.NoDecoderException;
-import lu.fisch.canze.MainActivity;
+import lu.fisch.canze.activities.MainActivity;
 
 /**
  * Created by robertfisch on 29.08.2015.

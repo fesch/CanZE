@@ -1,21 +1,16 @@
-package lu.fisch.canze;
+package lu.fisch.canze.activities;
 
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ViewGroup;
+        import android.os.Bundle;
+        import android.view.Menu;
 
-import java.util.ArrayList;
+        import lu.fisch.canze.R;
 
-import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.widgets.WidgetView;
-
-public class ConsumptionActivity extends CanzeActivity {
+public class BatteryActivity extends CanzeActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consumption);
+        setContentView(R.layout.activity_battery);
     }
 
     @Override
@@ -24,5 +19,4 @@ public class ConsumptionActivity extends CanzeActivity {
         getMenuInflater().inflate(R.menu.menu_empty, menu);
         return true;
     }
-
 }

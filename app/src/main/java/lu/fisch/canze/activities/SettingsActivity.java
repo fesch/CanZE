@@ -1,7 +1,6 @@
-package lu.fisch.canze;
+package lu.fisch.canze.activities;
 
 import android.app.AlertDialog;
-import android.app.DialogFragment;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
@@ -11,14 +10,12 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +27,7 @@ import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Fields;
 
 public class SettingsActivity extends AppCompatActivity {

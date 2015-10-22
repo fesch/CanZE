@@ -1,22 +1,18 @@
-package lu.fisch.canze;
+package lu.fisch.canze.activities;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ViewGroup;
 
-import java.util.ArrayList;
+import lu.fisch.canze.R;
 
-import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.widgets.WidgetView;
-
-public class TemperatureActivity extends CanzeActivity {
+public class TachoActivity extends CanzeActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_termperature);
+        setContentView(R.layout.activity_tacho);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -24,5 +20,6 @@ public class TemperatureActivity extends CanzeActivity {
         getMenuInflater().inflate(R.menu.menu_empty, menu);
         return true;
     }
+
 
 }

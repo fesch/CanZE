@@ -1,11 +1,9 @@
-package lu.fisch.canze;
+package lu.fisch.canze.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 
-import lu.fisch.canze.bluetooth.BluetoothManager;
+import lu.fisch.canze.R;
 import lu.fisch.canze.widgets.WidgetView;
 
 public class WidgetActivity extends CanzeActivity {

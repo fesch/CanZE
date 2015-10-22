@@ -15,7 +15,7 @@ import lu.fisch.canze.exeptions.NoDecoderException;
 import lu.fisch.canze._old.decoders.BOB;
 import lu.fisch.canze._old.decoders.CRDT;
 import lu.fisch.canze._old.decoders.Decoder;
-import lu.fisch.canze.MainActivity;
+import lu.fisch.canze.activities.MainActivity;
 
 /**
  *

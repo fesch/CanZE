@@ -1,4 +1,4 @@
-package lu.fisch.canze;
+package lu.fisch.canze.activities;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.util.Calendar;
 
+import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;

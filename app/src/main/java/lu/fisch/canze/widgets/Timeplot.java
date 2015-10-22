@@ -1,7 +1,5 @@
 package lu.fisch.canze.widgets;
 
-import android.graphics.Point;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -10,11 +8,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Set;
 
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
-import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;

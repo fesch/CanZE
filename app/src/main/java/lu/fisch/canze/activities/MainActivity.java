@@ -1,4 +1,4 @@
-package lu.fisch.canze;
+package lu.fisch.canze.activities;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -8,6 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,12 +18,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
+import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.bluetooth.BluetoothManager;
@@ -30,6 +35,8 @@ import lu.fisch.canze.devices.BobDue;
 import lu.fisch.canze.devices.Device;
 import lu.fisch.canze.devices.ELM327;
 import lu.fisch.canze.devices.ELM327Experimental;
+import lu.fisch.canze.fragments.ExperimentalFragment;
+import lu.fisch.canze.fragments.MainFragment;
 import lu.fisch.canze.interfaces.BluetoothEvent;
 import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.widgets.WidgetView;
@@ -63,13 +70,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     private long start;
 
     private boolean visible = true;
-    private boolean leaveBluetoothOn = false;
+    public boolean leaveBluetoothOn = false;
     private boolean returnFromWidget = false;
 
     public static Fields fields = Fields.getInstance();
-    // old: private static Stack stack = new Stack();
-
-    // old: public static DataReader reader = null;
 
     public static Device device = null;
 
@@ -77,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
     public static boolean safeDrivingMode = true;
     private static boolean isDriving = false;
+
+    private Fragment actualFragment;
 
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -200,16 +206,43 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         return result;
     }
 
+    protected void loadFragement(Fragment newFragment)
+    {
+        if(actualFragment==null || !actualFragment.getClass().equals(newFragment.getClass())) {
+            actualFragment=newFragment;
+            // Create fragment and give it an argument specifying the article it should show
+            //MainFragment newFragment = new MainFragment();
+            /*Bundle args = new Bundle();
+            args.putInt(MainFragment.ARG_POSITION, position);
+            newFragment.setArguments(args);*/
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack so the user can navigate back
+            transaction.replace(R.id.main, newFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         debug("MainActivity: onCreate");
 
         instance = this;
 
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         setTitle(TAG+" - not connected");
+
+        // tabs
+        final ActionBar actionBar = getSupportActionBar();
+        // Specify that tabs should be displayed in the action bar.
+
+        loadFragement(new MainFragment());
+
 
         // load settings
         // - includes the reader
@@ -228,63 +261,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             f.setValue(settings.getFloat(f.getUniqueID(), 0));
         }
 
-        // connect the widgets to the respective fields
-        /* no more needed as there are none here!
-        ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
-        for(int i=0; i<widgets.size(); i++)
-        {
-            final WidgetView wv = widgets.get(i);
-            fields.getBySID(wv.getFieldSID()).addListener(wv.getDrawable());
-
-            wv.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    // get pointer index from the event object
-                    int pointerIndex = event.getActionIndex();
-
-                    // get pointer ID
-                    int pointerId = event.getPointerId(pointerIndex);
-
-                    // get masked (not specific to a pointer) action
-                    int maskedAction = event.getActionMasked();
-
-                    switch (maskedAction) {
-                        case MotionEvent.ACTION_DOWN:
-                        case MotionEvent.ACTION_POINTER_DOWN:
-                        {
-                            leaveBluetoothOn=true;
-                            Intent intent = new Intent(MainActivity.this, WidgetActivity.class);
-                            //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            WidgetView.selectedDrawable = wv.getDrawable();
-                            MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-                            break;
-                        }
-                        case MotionEvent.ACTION_MOVE:
-                        case MotionEvent.ACTION_UP:
-                        case MotionEvent.ACTION_POINTER_UP:
-                        case MotionEvent.ACTION_CANCEL: {
-                            break;
-                        }
-                    }
-
-                    wv.invalidate();
-
-                    return true;
-                }
-            });
-        }
-        */
-
+/*
         Button button;
         button = (Button) findViewById(R.id.buttonTacho);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(connectedBluetoothThread==null)
-                {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
-                    return;
-                }*/
+
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, TachoActivity.class);
@@ -296,11 +279,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(connectedBluetoothThread==null)
-                {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
-                    return;
-                }*/
+
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, ChargingActivity.class);
@@ -312,11 +291,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(connectedBluetoothThread==null)
-                {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connexion to be established ...",Toast.LENGTH_LONG).show();
-                    return;
-                }*/
+
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, DrivingActivity.class);
@@ -328,11 +303,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(connectedBluetoothThread==null)
-                {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
-                    return;
-                }*/
+
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, BatteryTempActivity.class);
@@ -344,11 +315,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(connectedBluetoothThread==null)
-                {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
-                    return;
-                }*/
+
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, TemperatureActivity.class);
@@ -360,11 +327,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(connectedBluetoothThread==null)
-                {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
-                    return;
-                }*/
+
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, BrakingActivity.class);
@@ -376,11 +339,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(connectedBluetoothThread==null)
-                {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
-                    return;
-                }*/
+
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, LeafSpyActivity.class);
@@ -392,11 +351,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(connectedBluetoothThread==null)
-                {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
-                    return;
-                }*/
+
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, FirmwareActivity.class);
@@ -408,11 +363,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(connectedBluetoothThread==null)
-                {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
-                    return;
-                }*/
+
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, ConsumptionActivity.class);
@@ -424,11 +375,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(connectedBluetoothThread==null)
-                {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
-                    return;
-                }*/
+
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, StatsActivity.class);
@@ -440,11 +387,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(connectedBluetoothThread==null)
-                {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
-                    return;
-                }*/
+
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, BatteryActivity.class);
@@ -456,11 +399,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(connectedBluetoothThread==null)
-                {
-                    Toast.makeText(MainActivity.this,"Please wait for the Bluetooth connection to be established ...",Toast.LENGTH_LONG).show();
-                    return;
-                }*/
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.this, HarmActivity.class);
@@ -489,7 +427,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
             }
         });
-
+*/
 
 
 
@@ -574,6 +512,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, 1);
         }
+
     }
 
 
@@ -727,8 +666,15 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                 return true;
             }
         }
+        else if (id == R.id.action_main) {
+            loadFragement(new MainFragment());
+        }
+        else if (id == R.id.action_experimental) {
+            loadFragement(new ExperimentalFragment());
+        }
 
-        return super.onOptionsItemSelected(item);
+
+            return super.onOptionsItemSelected(item);
     }
 
     public static void registerFields()

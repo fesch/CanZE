@@ -21,9 +21,9 @@ import java.lang.reflect.Constructor;
 
 import lu.fisch.awt.Graphics;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
-import lu.fisch.canze.MainActivity;
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.R;
-import lu.fisch.canze.WidgetActivity;
+import lu.fisch.canze.activities.WidgetActivity;
 
 public class WidgetView extends SurfaceView implements DrawSurfaceInterface, SurfaceHolder.Callback {
 

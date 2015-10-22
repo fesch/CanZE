@@ -3,7 +3,6 @@ package lu.fisch.canze._old.readers;
 
 import java.util.ArrayList;
 
-import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze._old.actors.Stack;
 import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;

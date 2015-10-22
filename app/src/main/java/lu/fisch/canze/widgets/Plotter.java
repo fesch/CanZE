@@ -4,11 +4,9 @@ import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
 import java.util.ArrayList;
 
-import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
-import lu.fisch.canze.widgets.Drawable;
 
 /**
  *

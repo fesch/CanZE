@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import lu.fisch.canze.MainActivity;
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze._old.actors.Stack;
 
 /**

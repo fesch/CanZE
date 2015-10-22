@@ -1,4 +1,4 @@
-package lu.fisch.canze;
+package lu.fisch.canze.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,12 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.widgets.WidgetView;
 
 /**

@@ -1,13 +1,9 @@
-package lu.fisch.canze;
+package lu.fisch.canze.activities;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ViewGroup;
 
-import java.util.ArrayList;
-
-import lu.fisch.canze.widgets.WidgetView;
+import lu.fisch.canze.R;
 
 public class LeafSpyActivity extends CanzeActivity {
 

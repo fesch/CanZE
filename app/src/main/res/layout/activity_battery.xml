@@ -8,7 +8,7 @@ android:paddingLeft="0dp"
 android:paddingRight="0dp"
 android:paddingTop="0dp"
 android:paddingBottom="0dp"
-tools:context="lu.fisch.canze.BatteryActivity"
+tools:context="lu.fisch.canze.activities.BatteryActivity"
 android:stretchColumns="3"
 android:id="@+id/table"
     >

@@ -3,10 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
 
     <item
+        android:id="@+id/action_main"
+        android:orderInCategory="100"
+        android:title="Main"
+        android:visible="true"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/action_experimental"
+        android:orderInCategory="100"
+        android:title="Experimental"
+        android:visible="true"
+        app:showAsAction="never"
+        />
+
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
-        android:visible="true" 
+        android:visible="true"
         android:icon="@mipmap/action_config"
         app:showAsAction="always"
         />

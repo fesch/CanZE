@@ -1,18 +1,9 @@
-package lu.fisch.canze;
+package lu.fisch.canze.activities;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
 
-import java.util.ArrayList;
-
-import lu.fisch.canze.actors.Fields;
-import lu.fisch.canze.widgets.WidgetView;
+import lu.fisch.canze.R;
 
 public class BatteryTempActivity extends CanzeActivity {
 
