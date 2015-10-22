@@ -27,10 +27,6 @@
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name=".activities.ExperimentsActivity"
-            android:label="@string/title_activity_experiments" >
-        </activity>
-        <activity
             android:name=".activities.WidgetActivity"
             android:label="@string/title_activity_widget" >
         </activity>
@@ -85,6 +81,10 @@
         <activity
             android:name=".activities.HarmActivity"
             android:label="@string/title_activity_harm" >
+        </activity>
+        <activity
+            android:name=".activities.AlexandreActivity"
+            android:label="@string/title_activity_alexandre" >
         </activity>
         <activity
             android:name=".activities.DtcActivity"

@@ -13,14 +13,14 @@ import lu.fisch.canze.interfaces.FieldListener;
 /**
  * Created by jeroen on 10-10-15.
  */
-public class HarmActivity  extends CanzeActivity implements FieldListener {
+public class AlexandreActivity  extends CanzeActivity implements FieldListener {
 
 
     private ArrayList<Field> subscribedFields;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_harm);
+        setContentView(R.layout.activity_alexandre);
 
         subscribedFields = new ArrayList<>();
 
