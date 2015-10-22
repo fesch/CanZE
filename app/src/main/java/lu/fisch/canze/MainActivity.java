@@ -451,7 +451,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             }
         });
 
-        button = (Button) findViewById(R.id.buttonHarm);
+        button = (Button) findViewById(R.id.buttonPgHo);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -478,13 +478,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             }
         });
 
-        button = (Button) findViewById(R.id.buttonDtc);
+        button = (Button) findViewById(R.id.buttonExperiments);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!isSafe()) return;
                 leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this,DtcActivity.class);
+                Intent intent = new Intent(MainActivity.this,ExperimentsActivity.class);
                 MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
             }
         });

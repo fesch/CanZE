@@ -9,111 +9,13 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:paddingBottom="0dp"
-    tools:context=".MainActivity"
+    tools:context=".ExperimentsActivity"
     android:stretchColumns="3"
     android:id="@+id/table"
     android:layout_column="1"
     android:layout_row="3"
     android:orientation="vertical"
     >
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="3"
-        >
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Battery"
-                android:id="@+id/buttonBattery"
-                android:layout_column="0" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/title_activity_charging"
-                android:id="@+id/buttonChargingActivity"
-                android:layout_column="0" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Firmware"
-                android:id="@+id/buttonFirmware"
-                android:layout_column="0" />
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/title_activity_driving"
-                android:id="@+id/buttonDrivingActivity"
-                android:layout_column="0" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Consumption"
-                android:id="@+id/buttonConsumption"
-                android:layout_column="0" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Braking"
-                android:id="@+id/buttonBraking"
-                android:layout_column="0" />
-
-        </TableRow>
-
-
-
-
-    </TableLayout>
-
 
     <LinearLayout
         android:orientation="vertical"
@@ -147,7 +49,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="Harm (Harm)"
+                android:text="Playground (Harm)"
                 android:id="@+id/buttonPgHo"
                 android:layout_column="0" />
 
@@ -248,13 +150,42 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="Experiments"
-                android:id="@+id/buttonExperiments"
+                android:text="DTC readout BCB"
+                android:id="@+id/buttonDtc"
                 android:layout_column="0" />
 
         </TableRow>
 
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Playground (Alexandre)"
+                android:id="@+id/buttonPgAm"
+                android:layout_column="0" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:text=""
+                android:id="@+id/Empty1"
+                android:layout_column="0" />
+
+        </TableRow>
     </TableLayout>
 
 </LinearLayout>

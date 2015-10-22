@@ -29,7 +29,7 @@ public class DtcActivity  extends CanzeActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                doDisplayDtc("\"793.5902ff.0\"");
+                doDisplayDtc("764.5902ff.0");
             }
         }).start();
     }
@@ -57,9 +57,15 @@ public class DtcActivity  extends CanzeActivity {
 
         if (field != null) {
             String dtcString = MainActivity.device.requestField(field);
-            for (int i = 6; i < dtcString.length(); i += 8) {
+//          appendResult(dtcString);
+            int i;
+            for (i = 6; i < dtcString.length() - 8; i += 8) {
                 appendResult("\nDTC" + dtcString.substring(i, i + 6) + ":" + dtcString.substring(i + 6, i + 8));
             }
+            if (i < dtcString.length()) {
+                appendResult("\nDTC" + dtcString.substring(i));
+            }
+
         }
         else
             appendResult("- field does not exist\n");
@@ -196,7 +202,7 @@ public class DtcActivity  extends CanzeActivity {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    doDisplayDtc("\"793.5902ff.0\"");
+                    doResetDtc("764.54.0");
                 }
             }).start();
             return true;
@@ -204,7 +210,7 @@ public class DtcActivity  extends CanzeActivity {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    doResetDtc("\"793.54.0\"");
+                    doDisplayDtc("764.5902ff.0");
                 }
             }).start();
             return true;

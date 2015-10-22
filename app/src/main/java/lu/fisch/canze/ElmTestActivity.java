@@ -122,6 +122,45 @@ public class ElmTestActivity extends CanzeActivity {
             appendResult("- field does not exist\n");
     }
 
+
+    void doFindEcu () {
+        int ecu;
+        String filter;
+        String result;
+        clearResult ();
+        for (ecu = 0x700; ecu <= 0x7ff; ecu++) {
+            filter = Integer.toHexString(ecu);
+            sendNoWait("atsh" + filter + "\r");
+            displayResponseUntil(400);
+            sendNoWait("atfcsh" + filter + "\r");
+            displayResponseUntil(400);
+            sendNoWait("022180\r");
+            result = displayResponseUntil(400);
+            if (result.length() > 20) result = result.substring(0,20);
+            appendResult(filter + ":" + result + "\n");
+        }
+    }
+
+    void doFindBcb () {
+        int ecu;
+        String filter;
+        String result;
+        clearResult ();
+
+        ecu = 0x792;
+        filter = Integer.toHexString(ecu);
+        sendNoWait("atsh" + filter + "\r");
+        displayResponseUntil(400);
+        sendNoWait("atfcsh" + filter + "\r");
+        displayResponseUntil(400);
+        sendNoWait("atfcsm1\r");
+        appendResult(displayResponseUntil(400));
+        sendNoWait("022180\r");
+        result = displayResponseUntil(400);
+        //if (result.length() > 20) result = result.substring(0,20);
+        appendResult(filter + ":" + result + "\n");
+    }
+
     // Ensure all UI updates are done on the UiThread
     private void clearResult() {
         runOnUiThread(new Runnable() {
@@ -210,19 +249,31 @@ public class ElmTestActivity extends CanzeActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_text, menu);
+        getMenuInflater().inflate(R.menu.menu_elm_test, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        // start the settings activity
+        if (id == R.id.action_findEcu) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    doFindEcu();
+                }
+            }).start();
+            return true;
+        } else if (id == R.id.action_findBcb) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    doFindBcb();
+                }
+            }).start();
             return true;
         }
 
