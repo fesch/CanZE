@@ -11,6 +11,7 @@ import android.widget.Button;
 
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.activities.AlexandreActivity;
 import lu.fisch.canze.activities.BatteryTempActivity;
 import lu.fisch.canze.activities.DtcActivity;
 import lu.fisch.canze.activities.ElmTestActivity;
@@ -125,6 +126,17 @@ public class ExperimentalFragment extends Fragment {
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), ElmTestActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
+            }
+        });
+
+        button = (Button) view.findViewById(R.id.buttonPgAm);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MainActivity.getInstance().isSafe()) return;
+                MainActivity.getInstance().leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.getInstance(), AlexandreActivity.class);
+                ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });
 
