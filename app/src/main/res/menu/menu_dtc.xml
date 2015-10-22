@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".DtcActivity"
+    >
+
+    <item
+        android:id="@+id/action_resetEcu"
+        android:orderInCategory="100"
+        android:title="Reset ECU"
+        android:visible="true"
+        />
+
+    <item
+        android:id="@+id/action_showEcu"
+        android:orderInCategory="200"
+        android:title="Show DTC's again"
+        android:visible="true"
+        />
+
+</menu>

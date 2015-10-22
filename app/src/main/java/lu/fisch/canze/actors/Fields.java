@@ -622,14 +622,15 @@ public class Fields implements MessageListener {
                         +"0x765, 128, 143, 1, 1, 0, 0, BCM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x764, 128, 143, 1, 1, 0, 0, CLIM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x764,   0,   7, 1, 1, 0, 0, CLIM reset, , 0x14ffff, 0x54, , 0, 0, 0\n"
-                        +"0x764,  24,  47, 1, 1, 0, 0, CLIM DTC1, , 0x19023b, 0x5902ff, , 0, 0, 0\n"
-                        +"0x764,  48,  55, 1, 1, 0, 0, CLIM DTC1 val, , 0x19023b, 0x5902ff, , 0, 0, 0\n"
+                        +"0x764,   0,   0, 1, 1, 0, 0, CLIM DTC, , 0x19023b, 0x5902ff, , 0, 0, 0\n"
                         +"0x76e, 128, 143, 1, 1, 0, 0, UPA SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x793, 128, 143, 1, 1, 0, 0, BCB SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x7b6, 128, 143, 1, 1, 0, 0, LBC2 SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x722, 128, 143, 1, 1, 0, 0, LINSCH SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
 
                         +"0x764, 112, 127, 1, 1, 0, 0, CLIM PG version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x793,   0,   0, 1, 1, 0, 0, BCB DTC, , 0x19023b, 0x5902ff, , 0, 0, 0\n"
+                        +"0x793,   0,   0, 1, 1, 0, 0, BCB Reset, , 0x14ffffff, 0x54, , 0, 0, 0\n"
 
                 ;
 

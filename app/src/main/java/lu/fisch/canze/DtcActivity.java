@@ -1,10 +1,8 @@
 package lu.fisch.canze;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -15,7 +13,7 @@ import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
 
 
-public class ElmTestActivity extends CanzeActivity {
+public class DtcActivity  extends CanzeActivity {
 
     private ConnectedBluetoothThread connectedBluetoothThread = null;
     private TextView textView;
@@ -23,7 +21,7 @@ public class ElmTestActivity extends CanzeActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_elm_test);
+        setContentView(R.layout.activity_dtc);
 
         textView = (TextView) findViewById(R.id.textResult);
 
@@ -31,18 +29,18 @@ public class ElmTestActivity extends CanzeActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                doTest();
+                doDisplayDtc("764.5902ff.0");
             }
         }).start();
     }
 
-    void doTest () {
+    void doDisplayDtc(String fldId) {
 
         Field field;
 
-        clearResult ();
+        clearResult();
 
-        if (MainActivity.device != null){
+        if (MainActivity.device != null) {
             // stop the poller thread
             MainActivity.device.stopAndJoin();
             // Get the bluetooth thread
@@ -54,111 +52,52 @@ public class ElmTestActivity extends CanzeActivity {
             return;
         }
 
-        appendResult("\nSending a reset\n");
-        sendNoWait("atws\r");
-        appendResult(displayResponseUntil(2000));
+        appendResult("\nBCB DTC's\n");
+        field = Fields.getInstance().getBySID(fldId);
 
-        appendResult("\nSending initialisation sequence\n");
-        sendNoWait("ate0\r");
-        appendResult(displayResponseUntil(400));
-        sendNoWait("ats0\r");
-        appendResult(displayResponseUntil(400));
-        sendNoWait("atsp6\r");
-        appendResult(displayResponseUntil(400));
-        sendNoWait("atat1\r");
-        appendResult(displayResponseUntil(400));
-        sendNoWait("atcaf0\r");
-        appendResult(displayResponseUntil(400));
-        sendNoWait("atfcsh77b\r");
-        appendResult(displayResponseUntil(400));
-        sendNoWait("atfcsd300010\r");
-        appendResult(displayResponseUntil(400));
-        sendNoWait("atfcsm1\r");
-        appendResult(displayResponseUntil(400));
+        if (field != null) {
+            String dtcString = MainActivity.device.requestField(field);
+//          appendResult(dtcString);
+            int i;
+            for (i = 6; i < dtcString.length() - 8; i += 8) {
+                appendResult("\nDTC" + dtcString.substring(i, i + 6) + ":" + dtcString.substring(i + 6, i + 8));
+            }
+            if (i < dtcString.length()) {
+                appendResult("\nDTC" + dtcString.substring(i));
+            }
 
-        appendResult("\nPreparing a raw ISO-TP command\n");
-        sendNoWait("atsh743\r");
-        appendResult(displayResponseUntil(400));
-        sendNoWait("atfcsh743\r");
-        appendResult(displayResponseUntil(400));
-        appendResult("\nSending an ISO-TP command\n");
-        sendNoWait("03222001\r");
-        appendResult(displayResponseUntil(400));
-
-        appendResult("\nProcessing prepped ISO-TP command\n");
-        field = Fields.getInstance().getBySID("763.622001.24");
-        if (field != null)
-            appendResult(MainActivity.device.requestField(field).replace('\r', '•'));
-        else
-            appendResult("- field does not exist\n");
-
-        // There was spurious error here, that immediately sending the below atcra command STOPPED the still not entirely finished ISO-TP command.
-        // It was probably sending "OK>" or just ">".
-        // This made the atcra fail, and therefor the following ATMA immediately overwhelmed the ELM as no filter was set.
-        // As a solution, added in ELM327 to specifically wait up to 500ms (!) for a > after an ISO-TP command.
-        appendResult("\nSetting filter for free frame capture\n");
-        sendNoWait("atcra4f8\r");
-        appendResult(displayResponseUntil(400));
-
-        appendResult("\nShowing a free frame capture\n");
-        sendNoWait("atma\r");
-        appendResult(displayResponseUntil(200));
-
-        appendResult("\nStopping free frame capture\n");
-        appendResult(displayResponseUntil(200));
-        sendNoWait("x");
-        // this will result in STOPPED. We need to double check if the ELM also sends a >
-
-        appendResult(displayResponseUntil(400));
-        appendResult("\nResetting free frame capture\n");
-        sendNoWait("atar\r");
-        appendResult(displayResponseUntil(400));
-
-        appendResult("\nProcessing prepped free frame\n");
-        field = Fields.getInstance().getBySID("4f8.4");
-        if (field != null)
-            appendResult(MainActivity.device.requestField(field).replace('\r', '\u2022'));
-        else
-            appendResult("- field does not exist\n");
-    }
-
-
-    void doFindEcu () {
-        int ecu;
-        String filter;
-        String result;
-        clearResult ();
-        for (ecu = 0x700; ecu <= 0x7ff; ecu++) {
-            filter = Integer.toHexString(ecu);
-            sendNoWait("atsh" + filter + "\r");
-            displayResponseUntil(400);
-            sendNoWait("atfcsh" + filter + "\r");
-            displayResponseUntil(400);
-            sendNoWait("022180\r");
-            result = displayResponseUntil(400);
-            if (result.length() > 20) result = result.substring(0,20);
-            appendResult(filter + ":" + result + "\n");
         }
+        else
+            appendResult("- field does not exist\n");
     }
 
-    void doFindBcb () {
-        int ecu;
-        String filter;
-        String result;
-        clearResult ();
+    void doResetDtc(String fldId) {
 
-        ecu = 0x792;
-        filter = Integer.toHexString(ecu);
-        sendNoWait("atsh" + filter + "\r");
-        displayResponseUntil(400);
-        sendNoWait("atfcsh" + filter + "\r");
-        displayResponseUntil(400);
-        sendNoWait("atfcsm1\r");
-        appendResult(displayResponseUntil(400));
-        sendNoWait("022180\r");
-        result = displayResponseUntil(400);
-        //if (result.length() > 20) result = result.substring(0,20);
-        appendResult(filter + ":" + result + "\n");
+        Field field;
+
+        clearResult();
+
+        if (MainActivity.device != null) {
+            // stop the poller thread
+            MainActivity.device.stopAndJoin();
+            // Get the bluetooth thread
+            connectedBluetoothThread = MainActivity.device.getConnectedBluetoothThread();
+        }
+
+        if (connectedBluetoothThread == null) {
+            appendResult("\nCan't get to BluetoothThread. Is your device paired and connected?\n");
+            return;
+        }
+
+        appendResult("\nClearing BCB DTC's\n");
+        field = Fields.getInstance().getBySID(fldId);
+
+        if (field != null) {
+            String dtcString = MainActivity.device.requestField(field);
+            appendResult("\nDone, check DTC's again to verify\n");
+        }
+        else
+            appendResult("- field does not exist\n");
     }
 
     // Ensure all UI updates are done on the UiThread
@@ -249,7 +188,7 @@ public class ElmTestActivity extends CanzeActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_elm_test, menu);
+        getMenuInflater().inflate(R.menu.menu_dtc, menu);
         return true;
     }
 
@@ -259,19 +198,19 @@ public class ElmTestActivity extends CanzeActivity {
         int id = item.getItemId();
 
         // start the settings activity
-        if (id == R.id.action_findEcu) {
+        if (id == R.id.action_resetEcu) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    doFindEcu();
+                    doResetDtc("764.54.0");
                 }
             }).start();
             return true;
-        } else if (id == R.id.action_findBcb) {
+        } else if (id == R.id.action_showEcu) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    doFindBcb();
+                    doDisplayDtc("764.5902ff.0");
                 }
             }).start();
             return true;
@@ -279,4 +218,5 @@ public class ElmTestActivity extends CanzeActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
