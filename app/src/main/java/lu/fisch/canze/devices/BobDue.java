@@ -50,7 +50,20 @@ public class BobDue extends Device {
                     @Override
                     public void run() {
                         while (isPollerActive())
-                            queryNextFilter();
+                        {
+                            if(fields.size()==0)
+                            {
+                                if(connectedBluetoothThread!=null)
+                                    try{
+                                        Thread.sleep(5000);
+                                    }
+                                    catch (Exception e) {}
+                            }
+                            // query a field
+                            else {
+                                queryNextFilter();
+                            }
+                        }
                     }
                 };
                 pollerThread = new Thread(r);

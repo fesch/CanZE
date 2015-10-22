@@ -5,6 +5,8 @@ package lu.fisch.canze.widgets;
 
 import android.graphics.Point;
 
+import com.google.gson.Gson;
+
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
 import lu.fisch.awt.Polygon;
@@ -197,6 +199,18 @@ public class Tacho extends Drawable {
     }
 
 
+    /* --------------------------------
+     * Serialization
+     \ ------------------------------ */
+
+    @Override
+    public String dataToJson() {
+        return "";
+    }
+
+    @Override
+    public void dataFromJson(String json) {
+    }
     
     
 }

@@ -301,11 +301,6 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
         return fieldSID;
     }
 
-    public String getFieldID()
-    {
-        return fieldSID.substring(0,fieldSID.indexOf('.'));
-    }
-
     @Override
     public boolean isClickable() {
         return clickable;

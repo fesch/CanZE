@@ -92,4 +92,18 @@ public class Label extends Drawable {
             g.drawString(title,tx,ty);
         }
     }
+
+    /* --------------------------------
+     * Serialization
+     \ ------------------------------ */
+
+    @Override
+    public String dataToJson() {
+        return "";
+    }
+
+    @Override
+    public void dataFromJson(String json) {
+    }
+
 }

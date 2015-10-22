@@ -1,6 +1,7 @@
 package lu.fisch.canze;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -37,7 +38,8 @@ public class CanzeActivity extends AppCompatActivity {
             // register all fields
             MainActivity.registerFields();
             // initialise the widgets (if any present)
-            initWidgets();
+            // --> not needed as onResume will call it!
+            //initWidgets();
         }
     }
 
@@ -45,6 +47,8 @@ public class CanzeActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         MainActivity.debug("CanzeActivity: onPause");
+        // save data
+        saveWidgetData();
         // if we are not coming back from somewhere, stop Bluetooth
         if(!back && !widgetClicked) {
             MainActivity.debug("CanzeActivity: onPause > stopBluetooth");
@@ -110,14 +114,18 @@ public class CanzeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // sleep a bit to give the UI time to initialise
-                try { Thread.sleep(1000); }
-                catch (Exception e) {}
+                //try { Thread.sleep(1000); }
+                //catch (Exception e) {}
+
+                // load data
+                SharedPreferences settings = getSharedPreferences(MainActivity.DATA_FILE, 0);
 
                 // connect the widgets to the respective fields
                 // and add the filters to the reader
                 ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(android.R.id.content));
                 for (int i = 0; i < widgets.size(); i++) {
                     final WidgetView wv = widgets.get(i);
+
                     // connect widgets to fields
                     if (wv == null) {
                         throw new ExceptionInInitializerError("Widget <" + wv.getId() + "> is NULL!");
@@ -139,6 +147,14 @@ public class CanzeActivity extends AppCompatActivity {
                             // add filter to reader
                             MainActivity.device.addField(field);
                         }
+                    }
+
+                    // load data
+                    String id = wv.getDrawable().getClass().getSimpleName()+"."+wv.getFieldSID();
+                    String json = settings.getString(id, "");
+                    if(!json.trim().isEmpty())
+                    {
+                        wv.getDrawable().dataFromJson(json);
                     }
 
                     // touching a widget makes a "bigger" version appear
@@ -185,13 +201,28 @@ public class CanzeActivity extends AppCompatActivity {
         }).start();
     }
 
+    protected void saveWidgetData()
+    {
+        // free up the listener again
+        ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
+        // save widget data
+        SharedPreferences settings = getSharedPreferences(MainActivity.DATA_FILE, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        for(int i=0; i<widgets.size(); i++) {
+            WidgetView wv = widgets.get(i);
+            // save widget data
+            String id = wv.getDrawable().getClass().getSimpleName() + "." + wv.getFieldSID();
+            editor.putString(id, wv.getDrawable().dataToJson());
+        }
+        editor.commit();
+    }
+
     protected void freeWidgetListeners()
     {
         // free up the listener again
         ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
         for(int i=0; i<widgets.size(); i++) {
-            final WidgetView wv = widgets.get(i);
-
+            WidgetView wv = widgets.get(i);
             String sid = wv.getFieldSID();
             String[] sids = sid.split(",");
             for(int s=0; s<sids.length; s++) {

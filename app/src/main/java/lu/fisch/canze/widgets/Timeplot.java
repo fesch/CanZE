@@ -2,7 +2,11 @@ package lu.fisch.canze.widgets;
 
 import android.graphics.Point;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -21,9 +25,12 @@ import lu.fisch.canze.interfaces.DrawSurfaceInterface;
  */
 public class Timeplot extends Drawable {
 
-    class TimePoint {
+    class TimePoint implements Serializable {
         public long date;
         public double value;
+
+        public TimePoint() {
+        }
 
         public TimePoint(long date, double value) {
             this.date = date;
@@ -36,31 +43,7 @@ public class Timeplot extends Drawable {
         }
     }
 
-    //protected ArrayList<TimePoint> values = new ArrayList<>();
     protected HashMap<String,ArrayList<TimePoint>> values = new HashMap<>();
-
-    /*public String getDataString()
-    {
-        String result = "";
-        for(int i=0; i<values.size(); i++)
-        {
-            if(i>0) result+="|";
-            result+=values.get(i).toString();
-        }
-        return result;
-    }
-
-    public void fromDataString(String data)
-    {
-        values.clear();
-        String[] points = data.split("\\|");
-        for(int i=0; i<points.length; i++)
-        {
-            String[] vals = points[i].split(",");
-            values.add(new TimePoint(Long.valueOf(vals[0]),Double.valueOf(vals[1])));
-        }
-    }*/
-
 
     public Timeplot() {
         super();
@@ -260,9 +243,25 @@ public class Timeplot extends Drawable {
         super.onFieldUpdateEvent(field);
     }
 
+    @Override
+    public String dataToJson() {
+        Gson gson = new Gson();
+        return gson.toJson(values.clone());
+    }
+
+    @Override
+    public void dataFromJson(String json) {
+        Gson gson = new Gson();
+        Type fooType = new TypeToken<HashMap<String,ArrayList<TimePoint>>>() {}.getType();
+
+        values = gson.fromJson(json,fooType);
+    }
+
     public void addField(String sid)
     {
         super.addField(sid);
-        values.put(sid, new ArrayList<TimePoint>());
+        if(!values.containsKey(sid)) {
+            values.put(sid, new ArrayList<TimePoint>());
+        }
     }
 }
