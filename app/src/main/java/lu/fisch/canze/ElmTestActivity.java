@@ -87,8 +87,13 @@ public class ElmTestActivity extends CanzeActivity {
 
         appendResult("\nProcessing prepped ISO-TP command\n");
         field = Fields.getInstance().getBySID("763.622001.24");
-        if (field != null)
-            appendResult(MainActivity.device.requestField(field).replace('\r', '•'));
+        if (field != null) {
+            String backRes = MainActivity.device.requestField(field);
+            if (backRes != null)
+                appendResult(backRes.replace('\r', '•'));
+            else
+                appendResult("null");
+        }
         else
             appendResult("- field does not exist\n");
 
@@ -116,8 +121,13 @@ public class ElmTestActivity extends CanzeActivity {
 
         appendResult("\nProcessing prepped free frame\n");
         field = Fields.getInstance().getBySID("4f8.4");
-        if (field != null)
-            appendResult(MainActivity.device.requestField(field).replace('\r', '\u2022'));
+        if (field != null) {
+            String backRes = MainActivity.device.requestField(field);
+            if (backRes != null)
+                appendResult(backRes.replace('\r', '\u2022'));
+            else
+                appendResult("null");
+        }
         else
             appendResult("- field does not exist\n");
     }

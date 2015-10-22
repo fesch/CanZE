@@ -57,13 +57,15 @@ public class DtcActivity  extends CanzeActivity {
 
         if (field != null) {
             String dtcString = MainActivity.device.requestField(field);
+            if(dtcString!=null) {
 //          appendResult(dtcString);
-            int i;
-            for (i = 6; i < dtcString.length() - 8; i += 8) {
-                appendResult("\nDTC" + dtcString.substring(i, i + 6) + ":" + dtcString.substring(i + 6, i + 8));
-            }
-            if (i < dtcString.length()) {
-                appendResult("\nDTC" + dtcString.substring(i));
+                int i;
+                for (i = 6; i < dtcString.length() - 8; i += 8) {
+                    appendResult("\nDTC" + dtcString.substring(i, i + 6) + ":" + dtcString.substring(i + 6, i + 8));
+                }
+                if (i < dtcString.length()) {
+                    appendResult("\nDTC" + dtcString.substring(i));
+                }
             }
 
         }
