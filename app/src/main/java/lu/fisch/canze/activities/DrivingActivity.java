@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class DrivingActivity extends CanzeActivity implements FieldListener {
@@ -230,12 +231,12 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         pb.setProgress((int) field.getValue());
                         break;
                     case SID_EVC_Odometer:
-                        odo = (int) field.getValue();
+                        odo = (int) Utils.kmOrMiles(odo);
                         tv = null;
                         break;
                     case SID_RealSpeed:
                     case SID_EVC_RealSpeed:
-                        realSpeed = (Math.round(field.getValue() * 10.0) / 10.0);
+                        realSpeed = (Math.round(Utils.kmOrMiles(field.getValue()) * 10.0) / 10.0);
                         tv = (TextView) findViewById(R.id.textRealSpeed);
                         break;
                     //case SID_PEB_Torque:
@@ -259,11 +260,11 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         tv = null;
                         break;
                     case SID_RangeEstimate:
-                        int kmInBat = (int) field.getValue();
-                        if (kmInBat > 0 && odo > 0 && destOdo > 0) { // we update only if there are no weird values
+                        int rangeInBat = (int) Utils.kmOrMiles(field.getValue());
+                        if (rangeInBat > 0 && odo > 0 && destOdo > 0) { // we update only if there are no weird values
                             try {
                                 if (destOdo > odo) {
-                                    setKmToDest("" + (destOdo - odo), "" + (kmInBat - destOdo + odo));
+                                    setKmToDest("" + (destOdo - odo), "" + (rangeInBat - destOdo + odo));
                                 } else {
                                     setKmToDest("0", "0");
                                 }

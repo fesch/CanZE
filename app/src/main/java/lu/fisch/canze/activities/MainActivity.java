@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     public static boolean safeDrivingMode = true;
     private static boolean isDriving = false;
 
+    public static boolean milesMode = false;
+
     private Fragment actualFragment;
 
     //The BroadcastReceiver that listens for bluetooth broadcasts
@@ -143,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         dataFormat = settings.getString("dataFormat", "crdt");
         deviceName = settings.getString("device", "Arduino");
         safeDrivingMode = settings.getBoolean("optSafe", true);
+        milesMode = settings.getBoolean("optMiles", false);
 
         String car = settings.getString("car", "Any");
         switch (car) {
