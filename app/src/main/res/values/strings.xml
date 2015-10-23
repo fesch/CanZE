@@ -61,8 +61,8 @@
     <string name="label_ETF">Energy to full kWh</string>
     <string name="default_ETF">#ETF</string>
 
-    <string name="label_KMA">Available range km</string>
-    <string name="default_KMA">#KMA</string>
+    <string name="label_DISTA">Available range</string>
+    <string name="default_DISTA">#DSA</string>
 
     <string name="label_Volt">Volts HV Battery</string>
     <string name="default_Volt">#Volt</string>
@@ -103,11 +103,11 @@
 
     <string name="default_consumption">#Con</string>
 
-    <string name="label_KmToDest">Km to Destination</string>
-    <string name="default_KmToDest">#ktd</string>
+    <string name="label_DistToDest">Dist. to destination</string>
+    <string name="default_DistToDest">#ktd</string>
 
-    <string name="label_KmAvailAtDest">Km avail at dest</string>
-    <string name="default_KmAvailAtDest">#kad</string>
+    <string name="label_DistAvailAtDest">Dist. available at dest.</string>
+    <string name="default_DistAvailAtDest">#kad</string>
 
     <string name="label_friction">Friction braking (avoid)</string>
 

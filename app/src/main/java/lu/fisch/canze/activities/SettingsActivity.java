@@ -132,6 +132,8 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+        final CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
+        miles.setChecked(MainActivity.milesMode);
 
         // display build version
         TextView tv = (TextView) findViewById(R.id.build);
@@ -206,7 +208,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString("device", device.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("car", car.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putBoolean("optSafe", safe.isChecked());
-                editor.putBoolean("optMailes",miles.isChecked());
+                editor.putBoolean("optMiles", miles.isChecked());
             }
             editor.commit();
             // finish
@@ -239,6 +241,7 @@ public class SettingsActivity extends AppCompatActivity {
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null) {
             Toast.makeText(SettingsActivity.this, "This device does not have any bluetooth adapter.\n\nSorry...", Toast.LENGTH_SHORT).show();
+            return;
         }
         // test if enabled ...
         if (!bluetoothAdapter.isEnabled())

@@ -115,8 +115,8 @@
 
             <TableRow>
                 <TextView
-                    android:id="@+id/LabelKmToDest"
-                    android:text="@string/label_KmToDest"
+                    android:id="@+id/LabelDistToDest"
+                    android:text="@string/label_DistToDest"
                     android:textSize="24sp"
                     android:layout_weight="2"
                     />
@@ -131,8 +131,8 @@
 
             <TableRow>
                 <TextView
-                    android:id="@+id/LabelKmAVailAtDest"
-                    android:text="@string/label_KmAvailAtDest"
+                    android:id="@+id/LabelDistAVailAtDest"
+                    android:text="@string/label_DistAvailAtDest"
                     android:textSize="24sp"
                     android:layout_weight="2"
                     />
