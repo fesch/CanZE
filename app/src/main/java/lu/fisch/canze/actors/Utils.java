@@ -4,6 +4,7 @@
 package lu.fisch.canze.actors;
 
 
+import lu.fisch.canze.activities.MainActivity;
 
 /**
  *
@@ -103,4 +104,7 @@ public class Utils {
         }
         return r.toString();
     }
+
+    public static double kmOrMiles (double km) {if (MainActivity.milesMode) return km/1.609344; return km;}
+
 }

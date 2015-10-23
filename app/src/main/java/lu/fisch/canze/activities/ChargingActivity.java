@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldListener to the fields.
@@ -166,6 +167,8 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_RangeEstimate:
                         tv = (TextView) findViewById(R.id.textKMA);
+                        tv.setText("" + (Math.round(Utils.kmOrMiles(field.getValue()) * 10.0) / 10.0));
+                        tv = null;
                         break;
                     case SID_TractionBatteryVoltage: // DC volts
                         // save DC voltage for DC power purposes

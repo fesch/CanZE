@@ -70,6 +70,12 @@
         android:text="Safe Driving Mode"
         android:id="@+id/safeDrivingMode" />
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Miles"
+        android:id="@+id/milesMode" />
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

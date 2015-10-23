@@ -190,6 +190,7 @@ public class SettingsActivity extends AppCompatActivity {
             Spinner device = (Spinner) findViewById(R.id.remoteDevice);
             Spinner car = (Spinner) findViewById(R.id.car);
             CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
+            CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
             if(deviceList.getSelectedItem()!=null) {
                 MainActivity.debug("Settings.deviceAddress = " + deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 MainActivity.debug("Settings.deviceName = " + deviceList.getSelectedItem().toString().split("\n")[0].trim());
@@ -197,7 +198,8 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString("deviceName", deviceList.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("device", device.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("car", car.getSelectedItem().toString().split("\n")[0].trim());
-                editor.putBoolean("optSafe",safe.isChecked());
+                editor.putBoolean("optSafe", safe.isChecked());
+                editor.putBoolean("optMailes",miles.isChecked());
             }
             editor.commit();
             // finish

@@ -63,27 +63,51 @@
             android:layout_marginTop="10dp"
             />
 
-        <TextView
-            android:id="@+id/textRealSpeed"
-            android:layout_width="match_parent"
+        <TableLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/default_realSpeed"
-            android:textColor="#000"
-            android:textSize="96sp"
-            android:gravity="center_horizontal"
-            />
+            android:layout_gravity="center_horizontal">
+            <TableRow>
+                <TextView
+                    android:id="@+id/textRealSpeed"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/default_realSpeed"
+                    android:textColor="#000"
+                    android:textSize="96sp"
+                    android:gravity="right"
+                    />
+                <TextView
+                    android:id="@+id/textSpeedUnit"
+                    android:text=" km/h"
+                    android:textSize="24sp"
+                    android:gravity="left"
+                    />
+            </TableRow>
+        </TableLayout>
 
-        <TextView
-            android:id="@+id/textConsumption"
-            android:layout_width="match_parent"
+        <TableLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/default_consumption"
-            android:textColor="#000"
-            android:textSize="48sp"
-            android:gravity="center_horizontal"
-            />
+            android:layout_gravity="center_horizontal">
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/textConsumption"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/default_consumption"
+                    android:textColor="#000"
+                    android:textSize="48sp"
+                    android:gravity="right"
+                    />
+                <TextView
+                    android:id="@+id/textConsumptionUnit"
+                    android:text=" kWh/100km/h"
+                    android:textSize="12sp"
+                    android:gravity="left"
+                    />
+            </TableRow>
+        </TableLayout>
+
 
         <TableLayout
             android:layout_width="fill_parent"
