@@ -158,6 +158,13 @@ public class SettingsActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = settings.edit();
                 editor.clear();
                 editor.commit();
+
+
+                settings = getSharedPreferences(MainActivity.DATA_FILE, 0);
+                editor = settings.edit();
+                editor.clear();
+                editor.commit();
+
                 MainActivity.fields.clearAllFields();
                 MainActivity.toast("Settings have been cleared ...");
             }

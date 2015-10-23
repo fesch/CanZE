@@ -4,11 +4,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
@@ -150,7 +156,15 @@ public class CanzeActivity extends AppCompatActivity {
 
                     // load data
                     String id = wv.getDrawable().getClass().getSimpleName()+"."+wv.getFieldSID();
-                    String json = settings.getString(id, "");
+                    String json = "";
+                    try {
+                        json=decompress(settings.getString(id, ""));
+                    }
+                    catch(Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+
                     if(!json.trim().isEmpty())
                     {
                         wv.getDrawable().dataFromJson(json);
@@ -211,7 +225,17 @@ public class CanzeActivity extends AppCompatActivity {
             WidgetView wv = widgets.get(i);
             // save widget data
             String id = wv.getDrawable().getClass().getSimpleName() + "." + wv.getFieldSID();
-            editor.putString(id, wv.getDrawable().dataToJson());
+            String data = "";
+            {
+                try {
+                    data = compress(wv.getDrawable().dataToJson());
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            editor.putString(id, data);
         }
         editor.commit();
     }
@@ -254,4 +278,32 @@ public class CanzeActivity extends AppCompatActivity {
         return result;
     }
 
+
+    public static String compress(String string) throws IOException {
+        ByteArrayOutputStream os = new ByteArrayOutputStream(string.length());
+        GZIPOutputStream gos = new GZIPOutputStream(os);
+        gos.write(string.getBytes());
+        gos.close();
+        byte[] compressed = os.toByteArray();
+        os.close();
+        return Base64.encodeToString(compressed, Base64.NO_WRAP);
+    }
+
+    public static String decompress(String zipText) throws IOException {
+        byte[] compressed = Base64.decode(zipText,Base64.NO_WRAP);
+        final int BUFFER_SIZE = 32;
+        ByteArrayInputStream is = new ByteArrayInputStream(compressed);
+        GZIPInputStream gis = new GZIPInputStream(is, BUFFER_SIZE);
+        StringBuilder string = new StringBuilder();
+        byte[] data = new byte[BUFFER_SIZE];
+        int bytesRead;
+        while ((bytesRead = gis.read(data)) != -1) {
+            string.append(new String(data, 0, bytesRead));
+        }
+        gis.close();
+        is.close();
+        return string.toString();
+    }
+
 }
+
