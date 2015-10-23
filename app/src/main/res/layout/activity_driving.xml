@@ -121,7 +121,7 @@
                     android:layout_weight="2"
                     />
                 <TextView
-                    android:id="@+id/textKmToDest"
+                    android:id="@+id/textDistToDest"
                     android:text="@string/default_zero"
                     android:textSize="24sp"
                     android:gravity="right"
@@ -137,7 +137,7 @@
                     android:layout_weight="2"
                     />
                 <TextView
-                    android:id="@+id/textKmAVailAtDest"
+                    android:id="@+id/textDistAVailAtDest"
                     android:text="@string/default_zero"
                     android:textSize="24sp"
                     android:gravity="right"
