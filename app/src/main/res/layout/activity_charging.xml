@@ -255,12 +255,12 @@
             <TableRow>
                 <TextView
                     android:id="@+id/LabelKMA"
-                    android:text="@string/label_KMA"
+                    android:text="@string/label_DISTA"
                     android:layout_weight="2"
                     />
                 <TextView
                     android:id="@+id/textKMA"
-                    android:text="@string/default_KMA"
+                    android:text="@string/default_DISTA"
                     android:gravity="right"
                     android:layout_weight="1"
                     />

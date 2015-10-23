@@ -52,7 +52,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driving);
 
-        final TextView distkmToDest = (TextView) findViewById(R.id.LabelKmToDest);
+        final TextView distkmToDest = (TextView) findViewById(R.id.LabelDistToDest);
         distkmToDest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,9 +104,13 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
             }
         });
 
-        TextView tv = (TextView) findViewById(R.id.textConsumptionUnit);
-        tv.setText(" kWh/mi");
-
+        if (MainActivity.milesMode) {
+            TextView tv;
+            tv = (TextView) findViewById(R.id.textSpeedUnit);
+            tv.setText(" mi/h");
+            tv = (TextView) findViewById(R.id.textConsumptionUnit);
+            tv.setText(" kWh/mi");
+        }
         initListeners();
 
     }
@@ -272,6 +276,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                                     setDestToDest("0", "0");
                                 }
                             } catch (Exception e) {
+                                // empty
                             }
                         }
                         tv = null;
