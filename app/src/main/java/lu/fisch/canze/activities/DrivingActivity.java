@@ -52,8 +52,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driving);
 
-        final TextView kmToDest = (TextView) findViewById(R.id.LabelKmToDest);
-        kmToDest.setOnClickListener(new View.OnClickListener() {
+        final TextView distkmToDest = (TextView) findViewById(R.id.LabelKmToDest);
+        distkmToDest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // don't react if we do not have a live odo yet
@@ -61,11 +61,11 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                 final Context context = DrivingActivity.this;
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                 LayoutInflater inflater = getLayoutInflater();
-                final View kmToDestView = inflater.inflate(R.layout.set_dist_to_dest, null);
+                final View distToDestView = inflater.inflate(R.layout.set_dist_to_dest, null);
 
                 // set dialog message
                 alertDialogBuilder
-                        .setView(kmToDestView)
+                        .setView(distToDestView)
                         .setTitle("REMAINING DISTANCE")
                         .setMessage("Please enter the distance to your destination. The display will estimate " +
                                 "the remaining driving distance available in your battery on arrival")
@@ -73,18 +73,18 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         .setCancelable(true)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                EditText dialogKmToDest = (EditText) kmToDestView.findViewById(R.id.dialog_dist_to_dest);
-                                if (dialogKmToDest != null){
-                                    saveDestOdo(odo + Integer.parseInt(dialogKmToDest.getText().toString()));
+                                EditText dialogDistToDest = (EditText) distToDestView.findViewById(R.id.dialog_dist_to_dest);
+                                if (dialogDistToDest != null) {
+                                    saveDestOdo(odo + Integer.parseInt(dialogDistToDest.getText().toString()));
                                 }
                                 dialog.cancel();
                             }
                         })
                         .setNeutralButton("Double", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                EditText dialogKmToDest = (EditText) kmToDestView.findViewById(R.id.dialog_dist_to_dest);
-                                if (dialogKmToDest != null) {
-                                    saveDestOdo(odo + 2 * Integer.parseInt(dialogKmToDest.getText().toString()));
+                                EditText dialogDistToDest = (EditText) distToDestView.findViewById(R.id.dialog_dist_to_dest);
+                                if (dialogDistToDest != null) {
+                                    saveDestOdo(odo + 2 * Integer.parseInt(dialogDistToDest.getText().toString()));
                                 }
                                 dialog.cancel();
                             }
@@ -104,6 +104,9 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
             }
         });
 
+        TextView tv = (TextView) findViewById(R.id.textConsumptionUnit);
+        tv.setText(" kWh/mi");
+
         initListeners();
 
     }
@@ -115,11 +118,11 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         editor.commit();
         destOdo = d;
         Field field = MainActivity.fields.getBySID(SID_RangeEstimate);
-        int kmInBat = (int) field.getValue();
+        int distInBat = (int) field.getValue();
         if (destOdo > odo) {
-            setKmToDest("" + (destOdo - odo), "" + (kmInBat - destOdo + odo));
+            setDestToDest("" + (destOdo - odo), "" + (distInBat - destOdo + odo));
         } else {
-            setKmToDest("0", "0");
+            setDestToDest("0", "0");
         }
     }
 
@@ -130,20 +133,20 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         Field field = MainActivity.fields.getBySID(SID_EVC_Odometer);
         odo = (int)field.getValue();
         field = MainActivity.fields.getBySID(SID_RangeEstimate);
-        int kmInBat = (int) field.getValue();
+        int distInBat = (int) field.getValue();
         if (destOdo > odo) {
-            setKmToDest("" + (destOdo - odo), "" + (kmInBat - destOdo + odo));
+            setDestToDest("" + (destOdo - odo), "" + (distInBat - destOdo + odo));
         } else {
-            setKmToDest("0", "0");
+            setDestToDest("0", "0");
         }
     }
 
-    private void setKmToDest (String km1, String km2) {
+    private void setDestToDest(String distance1, String distance2) {
         TextView tv;
-        tv = (TextView) findViewById(R.id.textKmToDest);
-        tv.setText(km1);
-        tv = (TextView) findViewById(R.id.textKmAVailAtDest);
-        tv.setText(km2);
+        tv = (TextView) findViewById(R.id.textDistToDest);
+        tv.setText(distance1);
+        tv = (TextView) findViewById(R.id.textDistAVailAtDest);
+        tv.setText(distance2);
     }
 
     private void addListener(String sid) {
@@ -253,7 +256,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         tv.setText("" + (dcPwr));
                         tv = (TextView) findViewById(R.id.textConsumption);
                         if (realSpeed > 5) {
-                            tv.setText("" + (Math.round(1000.0 * dcPwr / realSpeed) / 10.0) + " kWh/100km");
+                            tv.setText("" + (Math.round(1000.0 * dcPwr / realSpeed) / 10.0));
                         } else {
                             tv.setText("-");
                         }
@@ -264,9 +267,9 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         if (rangeInBat > 0 && odo > 0 && destOdo > 0) { // we update only if there are no weird values
                             try {
                                 if (destOdo > odo) {
-                                    setKmToDest("" + (destOdo - odo), "" + (rangeInBat - destOdo + odo));
+                                    setDestToDest("" + (destOdo - odo), "" + (rangeInBat - destOdo + odo));
                                 } else {
-                                    setKmToDest("0", "0");
+                                    setDestToDest("0", "0");
                                 }
                             } catch (Exception e) {
                             }

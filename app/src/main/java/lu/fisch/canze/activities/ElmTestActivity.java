@@ -27,12 +27,12 @@ public class ElmTestActivity extends CanzeActivity {
         textView = (TextView) findViewById(R.id.textResult);
 
         // run the test in a separate thread
-        new Thread(new Runnable() {
+        /* new Thread(new Runnable() {
             @Override
             public void run() {
                 doTest();
             }
-        }).start();
+        }).start(); */
     }
 
     void doTest () {
@@ -145,7 +145,6 @@ public class ElmTestActivity extends CanzeActivity {
             displayResponseUntil(400);
             sendNoWait("022180\r");
             result = displayResponseUntil(400);
-            if (result.length() > 20) result = result.substring(0,20);
             appendResult(filter + ":" + result + "\n");
         }
     }
@@ -164,10 +163,39 @@ public class ElmTestActivity extends CanzeActivity {
         displayResponseUntil(400);
         sendNoWait("atfcsm1\r");
         appendResult(displayResponseUntil(400));
-        sendNoWait("022180\r");
-        result = displayResponseUntil(400);
-        //if (result.length() > 20) result = result.substring(0,20);
+
+        sendNoWait("021081\r"); //dunno
+        result = displayResponseUntil(200);
+        appendResult("1081:" + filter + ":" + result + "\n");
+
+        sendNoWait("0210C0\r"); //dunno
+        result = displayResponseUntil(200);
+        appendResult("10C0:" + filter + ":" + result + "\n");
+
+        sendNoWait("021081\r"); //dunno
+        result = displayResponseUntil(200);
+        appendResult("1081:" + filter + ":" + result + "\n");
+
+        sendNoWait("023E01\r"); //dunno
+        result = displayResponseUntil(600);
+        appendResult("3e01:" + filter + ":" + result + "\n");
+
+        sendNoWait("0210C0\r"); //dunno
+        result = displayResponseUntil(200);
+        appendResult("10C0:" + filter + ":" + result + "\n");
+
+        sendNoWait("0319023b\r"); // ask DTCs
+        result = displayResponseUntil(600);
+        appendResult("19023b:" + filter + ":" + result + "\n");
+
+        sendNoWait("0319023b\r"); // ask DTCs
+        result = displayResponseUntil(600);
         appendResult(filter + ":" + result + "\n");
+
+        sendNoWait("022180\r"); // ask software version
+        result = displayResponseUntil(600);
+        appendResult(filter + ":" + result + "\n");
+
     }
 
     // Ensure all UI updates are done on the UiThread
@@ -281,6 +309,14 @@ public class ElmTestActivity extends CanzeActivity {
                 @Override
                 public void run() {
                     doFindBcb();
+                }
+            }).start();
+            return true;
+        } else if (id == R.id.action_doTest) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    doTest();
                 }
             }).start();
             return true;
