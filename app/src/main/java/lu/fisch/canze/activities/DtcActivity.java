@@ -32,7 +32,7 @@ public class DtcActivity  extends CanzeActivity {
             public void run() {
                 doDisplayDtc("764.5902ff.0");
             }
-        }).start();
+        }).start(); // Clima show dtc
     }
 
     void doDisplayDtc(String fldId) {
@@ -205,15 +205,15 @@ public class DtcActivity  extends CanzeActivity {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    doResetDtc("764.54.0");
+                    doResetDtc("764.54.0"); // clima reset dtc
                 }
-            }).start();
+            }).start(); // clima reset
             return true;
         } else if (id == R.id.action_showEcu) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    doDisplayDtc("764.5902ff.0");
+                    doDisplayDtc("764.5902ff.0"); // clima dtc
                 }
             }).start();
             return true;

@@ -159,7 +159,7 @@
     <string name="label_ecu_cluster">CLUSTER (Instrument panel)</string>
     <string name="label_ecu_eps">EPS (Electrical Power Steering)</string>
     <string name="label_ecu_abs">ABS (Antilock braking system)</string>
-    <string name="label_ecu_ubp">UBP (?)</string>
+    <string name="label_ecu_ubp">UBP (Uncoupled braking Pedal)</string>
     <string name="label_ecu_bcm">BCM (Body Control Module)</string>
     <string name="label_ecu_clim">CLIM (Climate Control)</string>
     <string name="label_ecu_upa">UPA (Park Assist)</string>
