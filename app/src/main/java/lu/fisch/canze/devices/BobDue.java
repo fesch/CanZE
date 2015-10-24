@@ -29,18 +29,22 @@ public class BobDue extends Device {
 
     @Override
     public void initConnection() {
+        MainActivity.debug("BobDue: initConnection");
         // if the reading thread is running: stop it, because we don't need it
         if(connectedBluetoothThread!=null && connectedBluetoothThread.isAlive()) {
             connectedBluetoothThread.cleanStop();
             try {
+                MainActivity.debug("BobDue: joining");
                 connectedBluetoothThread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         if(connectedBluetoothThread!=null) {
+            MainActivity.debug("BobDue: connectedBluetoothThread!=null");
             // make sure we only have one poller task
             if (pollerThread == null) {
+                MainActivity.debug("BobDue: pollerThread == null");
                 // post a task to the UI thread
                 setPollerActive(true);
 
@@ -49,9 +53,11 @@ public class BobDue extends Device {
                     public void run() {
                         while (isPollerActive())
                         {
+                            MainActivity.debug("BobDue: inside poller thread ...");
                             if(fields.size()==0)
                             {
                                 if(connectedBluetoothThread!=null)
+                                    MainActivity.debug("BobDue: sleeping ...");
                                     try{
                                         Thread.sleep(5000);
                                     }
@@ -59,6 +65,7 @@ public class BobDue extends Device {
                             }
                             // query a field
                             else {
+                                //MainActivity.debug("BobDue: Doing next query ...");
                                 queryNextFilter();
                             }
                         }
@@ -70,10 +77,12 @@ public class BobDue extends Device {
         }
         else
         {
+            MainActivity.debug("BobDue: connectedBluetoothThread == null");
             if(pollerThread!=null && pollerThread.isAlive())
             {
                 setPollerActive(false);
                 try {
+                    MainActivity.debug("BobDue: joining pollerThread");
                     pollerThread.join();
                 }
                 catch (Exception e)
@@ -212,7 +221,7 @@ public class BobDue extends Device {
                     field = fields.get(fieldIndex);
                 }
 
-                //MainActivity.debug("queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
+                MainActivity.debug("BobDue: queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
 
                 //MainActivity.debug("Querying for field: "+field.getSID());
 

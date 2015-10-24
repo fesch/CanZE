@@ -159,9 +159,9 @@ public class ELM327 extends Device {
 
         // -- give up and restart BT
         // stop BT
-        MainActivity.getInstance().stopBluetooth();
+        //MainActivity.getInstance().stopBluetooth();
         // restart BT
-        MainActivity.getInstance().reloadBluetooth();
+        //MainActivity.getInstance().reloadBluetooth();
 
         return false;
     }

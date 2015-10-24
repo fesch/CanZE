@@ -139,6 +139,7 @@ public abstract class Device {
      */
     public void clearFields()
     {
+        MainActivity.debug("Device: clearFields");
         synchronized (fields) {
             fields.clear();
             //MainActivity.debug("cleared");
@@ -228,16 +229,18 @@ public abstract class Device {
     }
 
     public void setConnectedBluetoothThread(ConnectedBluetoothThread connectedBluetoothThread, boolean reset) {
+        this.connectedBluetoothThread = connectedBluetoothThread;
         if(connectedBluetoothThread==null) {
             MainActivity.debug("Device: nulling out connectedBluetoothThread");
         }
-        this.connectedBluetoothThread = connectedBluetoothThread;
-        if(connectedBluetoothThread!=null)
+        //if(connectedBluetoothThread!=null)
+        else
         {
             // init the connection
             initConnection();
 
             if(reset) {
+                MainActivity.debug("Device: setConnectedBluetoothThread > resetting");
                 // clean all filters (just to make sure)
                 clearFields();
                 // register all filters (if there are any)
@@ -252,8 +255,10 @@ public abstract class Device {
         setPollerActive(false);
         MainActivity.debug("Device: waiting for poller to be stopped");
         try {
-            if(pollerThread!=null)
+            if(pollerThread!=null) {
                 pollerThread.join();
+                pollerThread=null;
+            }
         }
         catch(Exception e)
         {

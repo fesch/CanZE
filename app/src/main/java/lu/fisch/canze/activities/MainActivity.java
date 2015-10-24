@@ -453,9 +453,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                 MainActivity.this.connectedBluetoothThread = connectedBluetoothThread;
 
                 // assign the BT thread to the reader
-                debug("assign the BT thread to the reader");
+                debug("MainActivity: onAfterConnect > assign the BT thread to the device");
                 if (device != null)
                     device.setConnectedBluetoothThread(connectedBluetoothThread, visible);
+                else
+                    debug("... but device is null!");
 
                 // register fields this activity needs to get
                 // but only if this activity is visible
@@ -484,7 +486,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                 // OLD: reader.registerFilters();
 
                 // set title
-                debug("set title");
+                debug("MainActivity: onAfterConnect > set title");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -497,8 +499,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             public void onBeforeDisconnect(BluetoothSocket bluetoothSocket, ConnectedBluetoothThread connectedBluetoothThread) {
                 // clear all filters
                 //reader.clearFields();
-                if (device != null)
-                    device.clearFields();
+                //if (device != null)
+                //    device.clearFields();
             }
 
             @Override
@@ -537,14 +539,21 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         }
     }
 
-    public void reloadBluetooth()
+    public void reloadBluetooth() {
+        reloadBluetooth(true);
+    }
+
+    public void reloadBluetooth(boolean reloadSettings)
     {
-        loadSettings();
+        // re-load the settings if asked to
+        if(reloadSettings)
+            loadSettings();
 
         (new Thread(new Runnable() {
             @Override
             public void run() {
-                connectedBluetoothThread = BluetoothManager.getInstance().connect(bluetoothDeviceAddress, true, BluetoothManager.RETRIES_INFINITE);
+            // try to get a new BT thread)
+            connectedBluetoothThread = BluetoothManager.getInstance().connect(bluetoothDeviceAddress, true, BluetoothManager.RETRIES_INFINITE);
             }
         })).start();
     }
@@ -564,13 +573,17 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         super.onPause();
     }
 
-    public void stopBluetooth()
+    public void stopBluetooth() {
+        stopBluetooth(true);
+    }
+
+    public void stopBluetooth(boolean reset)
     {
         if(device!=null) {
             // stop the device
             device.stopAndJoin();
             // remove reference
-            device.setConnectedBluetoothThread(null);
+            device.setConnectedBluetoothThread(null,reset);
         }
         // disconnect BT
         BluetoothManager.getInstance().disconnect();

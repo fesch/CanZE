@@ -8,7 +8,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import lu.fisch.canze.activities.MainActivity;
-import lu.fisch.canze._old.actors.Stack;
 
 /**
  * Created by robertfisch on 14.08.2015.
@@ -21,15 +20,31 @@ public class ConnectedBluetoothThread extends Thread {
     private final OutputStream outputStream;
     private BluetoothSocket socket;
 
-    private Stack stack = null;
+    //private Stack stack = null;
 
     private volatile boolean stopped = false;
 
     public ConnectedBluetoothThread(BluetoothSocket socket) {
-        this(socket,null);
+        // store properties
+        this.socket=socket;
+        // reset streams
+        InputStream tmpIn = null;
+        OutputStream tmpOut = null;
+        // Get the input and output streams, using temp objects because
+        // member streams are final
+        try {
+            tmpIn = socket.getInputStream();
+            tmpOut = socket.getOutputStream();
+        }
+        catch (IOException e) {
+            // ignore
+        }
+        // assign streams
+        inputStream = tmpIn;
+        outputStream = tmpOut;
     }
 
-    public ConnectedBluetoothThread(BluetoothSocket socket, Stack stack) {
+    /*public ConnectedBluetoothThread(BluetoothSocket socket, Stack stack) {
         // store properties
         this.socket=socket;
         this.stack=stack;
@@ -48,14 +63,17 @@ public class ConnectedBluetoothThread extends Thread {
         // assign streams
         inputStream = tmpIn;
         outputStream = tmpOut;
-    }
+    }*/
 
     public void cleanStop()
     {
         stopped=true;
     }
 
+    // this is no longer used, but it, we have to re-active it.
+    // atually this "thread" gets never started
     public void run() {
+    /*
         // buffer store for the stream
         byte[] buffer = new byte[BUFFER_SIZE];
         // bytes returned from read()
@@ -100,6 +118,7 @@ public class ConnectedBluetoothThread extends Thread {
                 break;
             }
         }
+        */
     }
 
     // write a message to the output stream
@@ -110,6 +129,17 @@ public class ConnectedBluetoothThread extends Thread {
                 outputStream.write(msgBuffer);
             } catch (IOException e) {
                 Log.d(MainActivity.TAG, "BT: Error sending > " + e.getMessage());
+                Log.d(MainActivity.TAG, "BT: Error sending > restaring BT");
+
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // stop the BT but don't reset the device registered fields
+                        MainActivity.getInstance().stopBluetooth(false);
+                        // reload the BT with filter registration
+                        MainActivity.getInstance().reloadBluetooth(false);
+                    }
+                })).start();
             }
         }
         else MainActivity.debug("Write failed! Socket is closed ... M = "+message);
@@ -136,7 +166,9 @@ public class ConnectedBluetoothThread extends Thread {
             return 0;
     }
 
+    /*
     public void setStack(Stack stack) {
         this.stack = stack;
     }
+    */
 }

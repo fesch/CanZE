@@ -115,6 +115,10 @@ public class CanzeActivity extends AppCompatActivity {
 
     protected void initWidgets()
     {
+        final ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(android.R.id.content));
+        if(!widgets.isEmpty())
+            MainActivity.toast("Initialising widgets and loading data ...");
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -127,9 +131,11 @@ public class CanzeActivity extends AppCompatActivity {
 
                 // connect the widgets to the respective fields
                 // and add the filters to the reader
-                ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(android.R.id.content));
+
                 for (int i = 0; i < widgets.size(); i++) {
                     final WidgetView wv = widgets.get(i);
+
+                    MainActivity.debug("Widget: "+wv.getDrawable().getTitle()+" ("+wv.getFieldSID()+")");
 
                     // connect widgets to fields
                     if (wv == null) {
@@ -162,7 +168,7 @@ public class CanzeActivity extends AppCompatActivity {
                     }
                     catch(Exception e)
                     {
-                        e.printStackTrace();
+                        //e.printStackTrace();
                     }
 
                     if(!json.trim().isEmpty())
