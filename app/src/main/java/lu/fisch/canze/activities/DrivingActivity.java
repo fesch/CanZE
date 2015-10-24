@@ -238,12 +238,14 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         pb.setProgress((int) field.getValue());
                         break;
                     case SID_EVC_Odometer:
-                        odo = (int) Utils.kmOrMiles(odo);
+                        odo = (int ) field.getValue();
+                        //odo = (int) Utils.kmOrMiles(field.getValue());
                         tv = null;
                         break;
                     case SID_RealSpeed:
                     case SID_EVC_RealSpeed:
-                        realSpeed = (Math.round(Utils.kmOrMiles(field.getValue()) * 10.0) / 10.0);
+                        //realSpeed = (Math.round(Utils.kmOrMiles(field.getValue()) * 10.0) / 10.0);
+                        realSpeed = (Math.round(field.getValue() * 10.0) / 10.0);
                         tv = (TextView) findViewById(R.id.textRealSpeed);
                         break;
                     //case SID_PEB_Torque:
@@ -267,7 +269,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         tv = null;
                         break;
                     case SID_RangeEstimate:
-                        int rangeInBat = (int) Utils.kmOrMiles(field.getValue());
+                        //int rangeInBat = (int) Utils.kmOrMiles(field.getValue());
+                        int rangeInBat = (int) field.getValue();
                         if (rangeInBat > 0 && odo > 0 && destOdo > 0) { // we update only if there are no weird values
                             try {
                                 if (destOdo > odo) {
