@@ -103,7 +103,7 @@
 
     <string name="default_consumption">#Con</string>
 
-    <string name="label_DistToDest">Dist. to destination</string>
+    <string name="label_DistToDest">Distance to destination</string>
     <string name="default_DistToDest">#ktd</string>
 
     <string name="label_DistAvailAtDest">Dist. available at dest.</string>
@@ -163,7 +163,7 @@
     <string name="label_ecu_bcm">BCM (Body Control Module)</string>
     <string name="label_ecu_clim">CLIM (Climate Control)</string>
     <string name="label_ecu_upa">UPA (Park Assist)</string>
-    <string name="label_ecu_bcb">BCB (?)</string>
+    <string name="label_ecu_bcb">BCB (? Connection Box)</string>
     <string name="label_ecu_lbc2">LBC2 (Lithium Battery Charger)</string>
     <string name="label_ecu_linsch">LINSCH (?)</string>
     <string name="default_zero">0</string>
