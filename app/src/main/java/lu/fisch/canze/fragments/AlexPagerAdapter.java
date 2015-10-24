@@ -14,14 +14,14 @@ import lu.fisch.canze.activities.AlexandreActivity;
  * A FragmentPagerAdapter that returns a fragment corresponding to one of
  * the primary sections of the app.
  */
-public class FZPagerAdapter extends FragmentPagerAdapter {
+public class AlexPagerAdapter extends FragmentPagerAdapter {
 
     private AlexandreActivity myPagerAdapter;
     SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
 
     Context c;
 
-    public FZPagerAdapter(AlexandreActivity MyPagerAdapter, Context c, FragmentManager fm) {
+    public AlexPagerAdapter(AlexandreActivity MyPagerAdapter, Context c, FragmentManager fm) {
         super(fm);
         myPagerAdapter = MyPagerAdapter;
         this.c = c;
@@ -31,13 +31,13 @@ public class FZPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int i) {
         Fragment fragment = null;
         if (i == 0) {
-            fragment = new FZPage0();
+            fragment = new AlexBatteryFragment();
         }
         if (i == 1) {
-            fragment = new FZPage1();
+            fragment = new AlexGeneralFragment();
         }
         if (i == 2) {
-            fragment = new FZPage2();
+            fragment = new AlexDrivingFrament();
         }
 
         return fragment;
