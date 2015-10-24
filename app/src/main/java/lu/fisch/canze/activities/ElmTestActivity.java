@@ -153,48 +153,32 @@ public class ElmTestActivity extends CanzeActivity {
         int ecu;
         String filter;
         String result;
-        clearResult ();
+        clearResult();
 
         ecu = 0x792;
         filter = Integer.toHexString(ecu);
         sendNoWait("atsh" + filter + "\r");
-        displayResponseUntil(400);
+        displayResponseUntil(400, '>');
         sendNoWait("atfcsh" + filter + "\r");
-        displayResponseUntil(400);
+        displayResponseUntil(400, '>');
         sendNoWait("atfcsm1\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
 
-        sendNoWait("021081\r"); //dunno
-        result = displayResponseUntil(200);
-        appendResult("1081:" + filter + ":" + result + "\n");
-
-        sendNoWait("0210C0\r"); //dunno
-        result = displayResponseUntil(200);
+        sendNoWait("0210C0\r"); //wakeup
+        result = displayResponseUntil(600, '>');
         appendResult("10C0:" + filter + ":" + result + "\n");
 
-        sendNoWait("021081\r"); //dunno
-        result = displayResponseUntil(200);
-        appendResult("1081:" + filter + ":" + result + "\n");
+        sendNoWait("0210C0\r"); //wakeup
+        result = displayResponseUntil(600, '>');
+        appendResult("10C0:" + filter + ":" + result + "\n");
 
-        sendNoWait("023E01\r"); //dunno
-        result = displayResponseUntil(600);
-        appendResult("3e01:" + filter + ":" + result + "\n");
-
-        sendNoWait("0210C0\r"); //dunno
-        result = displayResponseUntil(200);
+        sendNoWait("0210C0\r"); //wakeup
+        result = displayResponseUntil(600, '>');
         appendResult("10C0:" + filter + ":" + result + "\n");
 
         sendNoWait("0319023b\r"); // ask DTCs
-        result = displayResponseUntil(600);
+        result = displayResponseUntil(600, '>');
         appendResult("19023b:" + filter + ":" + result + "\n");
-
-        sendNoWait("0319023b\r"); // ask DTCs
-        result = displayResponseUntil(600);
-        appendResult(filter + ":" + result + "\n");
-
-        sendNoWait("022180\r"); // ask software version
-        result = displayResponseUntil(600);
-        appendResult(filter + ":" + result + "\n");
 
     }
 
@@ -227,6 +211,10 @@ public class ElmTestActivity extends CanzeActivity {
     }
 
     private String displayResponseUntil (int timeout) {
+        return displayResponseUntil (timeout, '\0');
+    }
+
+    private String displayResponseUntil (int timeout, char stopChar) {
         long end = Calendar.getInstance().getTimeInMillis() + timeout;
         boolean timedOut = false;
         boolean lastWasCr = false;
@@ -247,6 +235,8 @@ public class ElmTestActivity extends CanzeActivity {
                         if (ch == '\r') {
                             result += "\u2022";
                             lastWasCr = true;
+                        } else if (ch == stopChar) {
+
                         } else {
                             if (lastWasCr) result += "\n";
                             result += ch;

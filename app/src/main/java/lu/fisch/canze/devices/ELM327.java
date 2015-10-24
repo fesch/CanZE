@@ -29,7 +29,7 @@ public class ELM327 extends Device {
     private static final char EOM2 = '>';
     private static final char EOM3 = '?';
 
-    private int timeoutLogLevel = 1; // 0 = none, 1=only ELM issues, 2=elm and car issues
+    private int timeoutLogLevel = MainActivity.toastLevel; // 0 = none, 1=only ELM issues, 2=elm and car issues
 
     /**
      * the index of the actual field to request

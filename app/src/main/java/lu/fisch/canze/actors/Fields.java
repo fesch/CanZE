@@ -46,6 +46,9 @@ public class Fields implements MessageListener {
     public static final int CAR_TWIZY           = 4;    // you'll never know ;-)
     public static final int CAR_X10             = 5;
 
+    public static final int TOAST_NONE          = 0;
+    public static final int TOAST_DEVICE        = 1;
+    public static final int TOAST_ALL           = 2;
 
     private final ArrayList<Field> fields = new ArrayList<>();
     private final HashMap<String, Field> fieldsBySid = new HashMap<>();
