@@ -171,5 +171,8 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="title_FZ_section2">Driving</string>
+    <string name="title_FZ_section1">General</string>
+    <string name="title_FZ_section0">Battery</string>
 
 </resources>
