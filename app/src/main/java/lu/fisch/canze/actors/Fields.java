@@ -662,7 +662,7 @@ public class Fields implements MessageListener {
                         ),
                         Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
                         tokens[FIELD_FORMAT],
-                        tokens[FIELD_UNIT],
+                        tokens[FIELD_UNIT].trim(),
                         tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
                         tokens[FIELD_RESPONSE_ID].trim().replace("0x", ""),
                         tokens[FIELD_DESCRIPTION],
