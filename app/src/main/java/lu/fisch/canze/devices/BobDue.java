@@ -226,23 +226,8 @@ public class BobDue extends Device {
                 //MainActivity.debug("Querying for field: "+field.getSID());
 
                 if(field!=null) {
-                    // get field ID
-                    String filter = field.getHexId();
+                    process(Utils.toIntArray(requestField(field).getBytes()));
 
-                    if (field.isIsoTp()) {
-                        String command = "i" + filter + "," + field.getRequestId() + "," + field.getResponseId();
-                        //MainActivity.debug("Sending: "+command);
-                        String hexData = sendAndWaitForAnswer(command, 0);
-                        //MainActivity.debug("Got: "+hexData);
-                        // process data
-                        process(Utils.toIntArray(hexData.getBytes()));
-                    } else {
-                        // request the response from the device
-                        //MainActivity.debug("Requesting: " + filter);
-                        String hexData = sendAndWaitForAnswer("g" + filter, 0);
-                        // process data
-                        process(Utils.toIntArray(hexData.getBytes()));
-                    }
                     // goto next filter
                     synchronized (fields) {
                         if(fields.size()==0)
@@ -325,11 +310,15 @@ public class BobDue extends Device {
 
     @Override
     public String requestFreeFrame(Field field) {
-        return null;
+        // send the command and wait fir an answer, no delay
+        return sendAndWaitForAnswer("g" + field.getHexId(), 0);
     }
 
     @Override
     public String requestIsoTpFrame(Field field) {
-        return null;
+        // build the command string to send to the remote device
+        String command = "i" + field.getHexId() + "," + field.getRequestId() + "," + field.getResponseId();
+        // send and wait fir an answer, no delay
+        return sendAndWaitForAnswer(command, 0);
     }
 }

@@ -4,6 +4,7 @@
  */
 package lu.fisch.canze.actors;
 
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.interfaces.FieldListener;
 
 import java.util.ArrayList;
@@ -102,7 +103,14 @@ public class Field {
 
     public double getValue()
     {
-        return ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        if (MainActivity.milesMode) {
+            if (getUnit().toLowerCase().startsWith("km"))
+                return val / 1.609344;
+            else if (getUnit().toLowerCase().endsWith("km"))
+                return val*1.609344;
+        }
+        return val;
     }
     
     public double getMax()
