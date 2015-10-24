@@ -106,6 +106,12 @@
         android:text="Miles"
         android:id="@+id/milesMode" />
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log to sdcard1"
+        android:id="@+id/exportMode" />
+
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
