@@ -101,7 +101,7 @@
                     />
                 <TextView
                     android:id="@+id/textConsumptionUnit"
-                    android:text=" kWh/100km/h"
+                    android:text=" kWh/100km"
                     android:textSize="12sp"
                     android:gravity="left"
                     />
