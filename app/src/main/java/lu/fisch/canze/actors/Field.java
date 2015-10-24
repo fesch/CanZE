@@ -97,8 +97,7 @@ public class Field {
     
     public String getPrintValue()
     {
-        double temp = ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
-        return format.substring(0, format.indexOf("%")-1).trim()+" "+temp+" "+unit;
+        return format.substring(0, format.indexOf("%")-1).trim()+" "+getValue()+" "+unit;
     }
 
     public double getValue()
