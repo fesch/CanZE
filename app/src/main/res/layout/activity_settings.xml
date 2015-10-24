@@ -83,14 +83,13 @@
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Miles"
-        android:id="@+id/milesMode" />
-
+        android:text="Export data to (external) sdcard"
+        android:id="@+id/dataexportMode" />
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log to sdcard1"
-        android:id="@+id/exportMode" />
+        android:text="Miles"
+        android:id="@+id/milesMode" />
 
     <TextView
         android:layout_width="fill_parent"
