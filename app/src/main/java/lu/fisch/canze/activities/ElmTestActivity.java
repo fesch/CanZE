@@ -59,27 +59,27 @@ public class ElmTestActivity extends CanzeActivity {
 
         appendResult("\nSending initialisation sequence\n");
         sendNoWait("ate0\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
         sendNoWait("ats0\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
         sendNoWait("atsp6\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
         sendNoWait("atat1\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
         sendNoWait("atcaf0\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
         sendNoWait("atfcsh77b\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
         sendNoWait("atfcsd300010\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
         sendNoWait("atfcsm1\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
 
         appendResult("\nPreparing a raw ISO-TP command\n");
         sendNoWait("atsh743\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
         sendNoWait("atfcsh743\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
         appendResult("\nSending an ISO-TP command\n");
         sendNoWait("03222001\r");
         appendResult(displayResponseUntil(400));
@@ -102,21 +102,21 @@ public class ElmTestActivity extends CanzeActivity {
         // As a solution, added in ELM327 to specifically wait up to 500ms (!) for a > after an ISO-TP command.
         appendResult("\nSetting filter for free frame capture\n");
         sendNoWait("atcra4f8\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
 
         appendResult("\nShowing a free frame capture\n");
         sendNoWait("atma\r");
         appendResult(displayResponseUntil(200));
 
         appendResult("\nStopping free frame capture\n");
-        appendResult(displayResponseUntil(200));
+        appendResult(displayResponseUntil(200, '>'));
         sendNoWait("x");
         // this will result in STOPPED. We need to double check if the ELM also sends a >
 
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
         appendResult("\nResetting free frame capture\n");
         sendNoWait("atar\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
 
         appendResult("\nProcessing prepped free frame\n");
         field = Fields.getInstance().getBySID("4f8.4");
@@ -140,11 +140,11 @@ public class ElmTestActivity extends CanzeActivity {
         for (ecu = 0x700; ecu <= 0x7ff; ecu++) {
             filter = Integer.toHexString(ecu);
             sendNoWait("atsh" + filter + "\r");
-            displayResponseUntil(400);
+            displayResponseUntil(400, '>');
             sendNoWait("atfcsh" + filter + "\r");
-            displayResponseUntil(400);
+            displayResponseUntil(400, '>');
             sendNoWait("022180\r");
-            result = displayResponseUntil(400);
+            result = displayResponseUntil(400, '>');
             appendResult(filter + ":" + result + "\n");
         }
     }
@@ -161,8 +161,10 @@ public class ElmTestActivity extends CanzeActivity {
         displayResponseUntil(400, '>');
         sendNoWait("atfcsh" + filter + "\r");
         displayResponseUntil(400, '>');
+        sendNoWait("atfcsd300010\r");
+        appendResult(displayResponseUntil(400));
         sendNoWait("atfcsm1\r");
-        appendResult(displayResponseUntil(400, '>'));
+        appendResult(displayResponseUntil(400));
 
         sendNoWait("0210C0\r"); //wakeup
         result = displayResponseUntil(600, '>');
@@ -177,7 +179,42 @@ public class ElmTestActivity extends CanzeActivity {
         appendResult("10C0:" + filter + ":" + result + "\n");
 
         sendNoWait("0319023b\r"); // ask DTCs
+        result = displayResponseUntil(2000, '>');
+        appendResult("19023b:" + filter + ":" + result + "\n");
+
+    }
+
+    void doFindClima () {
+        int ecu;
+        String filter;
+        String result;
+        clearResult();
+
+        ecu = 0x744;
+        filter = Integer.toHexString(ecu);
+        sendNoWait("atsh" + filter + "\r");
+        displayResponseUntil(400, '>');
+        sendNoWait("atfcsh" + filter + "\r");
+        displayResponseUntil(400, '>');
+        sendNoWait("atfcsd300010\r");
+        appendResult(displayResponseUntil(400));
+        sendNoWait("atfcsm1\r");
+        appendResult(displayResponseUntil(400));
+
+        sendNoWait("0210C0\r"); //wakeup
         result = displayResponseUntil(600, '>');
+        appendResult("10C0:" + filter + ":" + result + "\n");
+
+        sendNoWait("0210C0\r"); //wakeup
+        result = displayResponseUntil(600, '>');
+        appendResult("10C0:" + filter + ":" + result + "\n");
+
+        sendNoWait("0210C0\r"); //wakeup
+        result = displayResponseUntil(600, '>');
+        appendResult("10C0:" + filter + ":" + result + "\n");
+
+        sendNoWait("0319023b\r"); // ask DTCs
+        result = displayResponseUntil(2000, '>');
         appendResult("19023b:" + filter + ":" + result + "\n");
 
     }
@@ -236,7 +273,7 @@ public class ElmTestActivity extends CanzeActivity {
                             result += "\u2022";
                             lastWasCr = true;
                         } else if (ch == stopChar) {
-
+                            return result;
                         } else {
                             if (lastWasCr) result += "\n";
                             result += ch;
@@ -299,6 +336,14 @@ public class ElmTestActivity extends CanzeActivity {
                 @Override
                 public void run() {
                     doFindBcb();
+                }
+            }).start();
+            return true;
+        } else if (id == R.id.action_findClima) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    doFindClima();
                 }
             }).start();
             return true;

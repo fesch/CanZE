@@ -18,6 +18,12 @@
         android:visible="true"
         />
     <item
+        android:id="@+id/action_findClima"
+        android:orderInCategory="100"
+        android:title="Find CLIM"
+        android:visible="true"
+        />
+    <item
         android:id="@+id/action_doTest"
         android:orderInCategory="100"
         android:title="ELM test"
