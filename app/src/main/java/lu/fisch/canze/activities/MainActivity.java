@@ -227,8 +227,58 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             //transaction.addToBackStack(null);
             // Commit the transaction
             transaction.commit();
+
+            //checkButtons();
         }
     }
+
+    /*private void checkButtons()
+    {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(500);
+                }
+                catch(Exception e) {
+                    // ignore
+                }
+
+                if(device==null && actualFragment.getView()!=null)
+                {
+                    ArrayList<Button> buttons = getButtonArrayList((ViewGroup) actualFragment.getView().findViewById(R.id.table));
+                    for(int i=0; i<buttons.size(); i++)
+                    {
+                        buttons.get(i).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                toast("You first need to adjust the settings ...");
+                            }
+                        });
+                    }
+                }
+            }
+        }).start();
+    }
+
+    protected ArrayList<Button> getButtonArrayList(ViewGroup viewGroup)
+    {
+        ArrayList<Button> result = new ArrayList<Button>();
+
+        if(viewGroup!=null)
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View v = viewGroup.getChildAt(i);
+                if (v instanceof ViewGroup) {
+                    result.addAll(getButtonArrayList((ViewGroup) v));
+                }
+                else if (v instanceof Button)
+                {
+                    result.add((Button)v);
+                }
+            }
+
+        return result;
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -245,8 +295,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         // tabs
         final ActionBar actionBar = getSupportActionBar();
         // Specify that tabs should be displayed in the action bar.
-
-        loadFragement(new MainFragment());
 
 
         // load settings
@@ -265,6 +313,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             Field f = fields.get(i);
             f.setValue(settings.getFloat(f.getUniqueID(), 0));
         }
+
+        loadFragement(new MainFragment());
+
 
 /*
         Button button;
@@ -539,6 +590,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         if(!leaveBluetoothOn) {
             reloadBluetooth();
         }
+
+        //checkButtons();
     }
 
     public void reloadBluetooth() {
