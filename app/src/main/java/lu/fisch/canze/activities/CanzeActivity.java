@@ -176,6 +176,8 @@ public class CanzeActivity extends AppCompatActivity {
                         wv.getDrawable().dataFromJson(json);
                     }
 
+                    wv.repaint();
+
                     // touching a widget makes a "bigger" version appear
                     wv.setOnTouchListener(new View.OnTouchListener() {
                         @Override
