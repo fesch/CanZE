@@ -106,9 +106,11 @@ public class Field {
         double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
         if (MainActivity.milesMode) {
             if (getUnit().toLowerCase().startsWith("km"))
-                return val / 1.609344;
+                val = val / 1.609344;
             else if (getUnit().toLowerCase().endsWith("km"))
-                return val*1.609344;
+                val = val*1.609344;
+            setUnit(getUnit().replace("km","mi"));
+            return val;
         }
         return val;
     }
