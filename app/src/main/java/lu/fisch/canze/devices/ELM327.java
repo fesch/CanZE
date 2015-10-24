@@ -81,11 +81,21 @@ public class ELM327 extends Device {
                     } else {
                         MainActivity.debug("ELM: no answer ...");
                         if (timeoutLogLevel >= 1) MainActivity.toast("Retrying ...");
-                        if(connectedBluetoothThread!=null) {
+                        /*if(connectedBluetoothThread!=null) {
                             // retry
                             pollerThread = new Thread(this);
                             pollerThread.start();
-                        }
+                        }*/
+
+                        (new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                // stop the BT but don't reset the device registered fields
+                                MainActivity.getInstance().stopBluetooth(false);
+                                // reload the BT with filter registration
+                                MainActivity.getInstance().reloadBluetooth(false);
+                            }
+                        })).start();
                     }
                 }
             };
