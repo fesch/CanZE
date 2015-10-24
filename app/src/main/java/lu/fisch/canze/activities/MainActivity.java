@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     private static boolean isDriving = false;
 
     public static boolean milesMode = false;
+    public static int toastLevel = 1;
 
     private Fragment actualFragment;
 
@@ -146,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         deviceName = settings.getString("device", "Arduino");
         safeDrivingMode = settings.getBoolean("optSafe", true);
         milesMode = settings.getBoolean("optMiles", false);
+        toastLevel = settings.getInt("optToast", 1);
 
         String car = settings.getString("car", "Any");
         switch (car) {

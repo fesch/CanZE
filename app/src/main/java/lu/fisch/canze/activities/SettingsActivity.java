@@ -87,6 +87,24 @@ public class SettingsActivity extends AppCompatActivity {
         carList.setSelection(index);
         carList.setSelected(true);
 
+        // fill Toastlevel
+        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        arrayAdapter.add("None");
+        arrayAdapter.add("Only device");
+        arrayAdapter.add("All");
+
+        index = 0;
+        if(MainActivity.toastLevel==Fields.TOAST_NONE) index=0;
+        else if(MainActivity.toastLevel==Fields.TOAST_DEVICE) index=1;
+        else if(MainActivity.toastLevel==Fields.TOAST_ALL) index=2;
+
+        // display the list
+        Spinner toastList = (Spinner) findViewById(R.id.toastLevel);
+        toastList.setAdapter(arrayAdapter);
+        // select the actual device
+        toastList.setSelection(index);
+        toastList.setSelected(true);
+
         // options
         final CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
         safe.setChecked(MainActivity.safeDrivingMode);
@@ -200,6 +218,7 @@ public class SettingsActivity extends AppCompatActivity {
             Spinner car = (Spinner) findViewById(R.id.car);
             CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
             CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
+            Spinner toastLevel = (Spinner) findViewById(R.id.toastLevel);
             if(deviceList.getSelectedItem()!=null) {
                 MainActivity.debug("Settings.deviceAddress = " + deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 MainActivity.debug("Settings.deviceName = " + deviceList.getSelectedItem().toString().split("\n")[0].trim());
@@ -209,6 +228,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString("car", car.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putBoolean("optSafe", safe.isChecked());
                 editor.putBoolean("optMiles", miles.isChecked());
+                editor.putInt("optToast", toastLevel.getSelectedItemPosition());
             }
             editor.commit();
             // finish

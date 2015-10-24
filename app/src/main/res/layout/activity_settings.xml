@@ -27,10 +27,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Bluetooth device"
         android:id="@+id/textViewBluetoothDevice" />
-
     <Spinner
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:id="@+id/bluetoothDeviceList" />
 
     <TextView
@@ -39,10 +39,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Remote Device"
         android:id="@+id/textViewDevice" />
-
     <Spinner
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:id="@+id/remoteDevice" />
 
     <TextView
@@ -51,11 +51,23 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Car"
         android:id="@+id/textViewCar" />
-
     <Spinner
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:id="@+id/car" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Log level"
+        android:id="@+id/textToastLevel" />
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:id="@+id/toastLevel" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -63,13 +75,11 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Options"
         android:id="@+id/textViewOptions" />
-
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Safe Driving Mode"
         android:id="@+id/safeDrivingMode" />
-
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,12 +92,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Actions"
         android:id="@+id/textViewActions" />
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
-
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
