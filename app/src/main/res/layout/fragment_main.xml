@@ -35,6 +35,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="Battery"
                 android:id="@+id/buttonBattery"
+                android:drawableLeft="@mipmap/button_battery"
                 android:layout_column="0" />
 
             <Button
@@ -47,6 +48,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/title_activity_charging"
                 android:id="@+id/buttonChargingActivity"
+                android:drawableLeft="@mipmap/button_charge"
                 android:layout_column="0" />
         </TableRow>
         <TableRow
@@ -63,6 +65,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="Firmware"
                 android:id="@+id/buttonFirmware"
+                android:drawableLeft="@mipmap/button_firmware"
                 android:layout_column="0" />
             <Button
                 android:layout_width="0dp"
@@ -74,6 +77,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/title_activity_driving"
                 android:id="@+id/buttonDrivingActivity"
+                android:drawableLeft="@mipmap/button_drive"
                 android:layout_column="0" />
 
         </TableRow>
@@ -92,6 +96,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="Consumption"
                 android:id="@+id/buttonConsumption"
+                android:drawableLeft="@mipmap/button_consumption"
                 android:layout_column="0" />
 
             <Button
@@ -104,6 +109,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="Braking"
                 android:id="@+id/buttonBraking"
+                android:drawableLeft="@mipmap/button_brake"
                 android:layout_column="0" />
 
         </TableRow>
