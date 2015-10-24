@@ -56,12 +56,12 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             custom:min="0"
-            custom:max="120"
-            custom:majorTicks="20"
-            custom:minorTicks="10"
-            custom:fieldSID="42e.0,427.49"
+            custom:max="24"
+            custom:majorTicks="4"
+            custom:minorTicks="2"
+            custom:fieldSID="1fd.48,427.49"
             custom:widget="timeplot"
-            custom:text="State of Charge (%) / Available energy (kWh)"
+            custom:text="Econometer (kw) / Available energy (kWh)"
             />
 
     </TableRow>
@@ -86,9 +86,9 @@
             custom:max="140"
             custom:majorTicks="20"
             custom:minorTicks="10"
-            custom:fieldSID="5d7.0"
+            custom:fieldSID="5d7.0,42e.0"
             custom:widget="timeplot"
-            custom:text="Speed (km/h)"
+            custom:text="Speed (km/h) / State of Charge (%)"
             />
 
     </TableRow>

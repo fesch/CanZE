@@ -124,6 +124,9 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     setInverted(attributes.getBoolean(R.styleable.WidgetView_isInverted, false));
                     fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
                     //MainActivity.debug("WidgetView: My SID is "+fieldSID);
+
+                    if(MainActivity.milesMode) setTitle(drawable.getTitle().replace("km","mi"));
+
                     repaint();
                 }
                 else
