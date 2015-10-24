@@ -87,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
     private Fragment actualFragment;
 
+    public static boolean exportMode = false;
+
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
