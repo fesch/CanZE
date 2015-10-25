@@ -184,7 +184,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.commit();
 
                 MainActivity.fields.clearAllFields();
-                MainActivity.toast("Settings have been cleared ...");
+                MainActivity.toast("Cache has been cleared ...");
             }
         });
     }

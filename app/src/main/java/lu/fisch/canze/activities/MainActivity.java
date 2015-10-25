@@ -1,10 +1,12 @@
 package lu.fisch.canze.activities;
 
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -309,7 +311,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
 
         // load fields
-        SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
+        final SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
         for(int i=0; i<fields.size(); i++)
         {
             Field f = fields.get(i);
@@ -317,180 +319,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         }
 
         loadFragement(new MainFragment());
-
-
-/*
-        Button button;
-        button = (Button) findViewById(R.id.buttonTacho);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!isSafe()) return;
-                leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, TachoActivity.class);
-                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) findViewById(R.id.buttonChargingActivity);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!isSafe()) return;
-                leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, ChargingActivity.class);
-                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) findViewById(R.id.buttonDrivingActivity);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!isSafe()) return;
-                leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, DrivingActivity.class);
-                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) findViewById(R.id.buttonBatTemp);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!isSafe()) return;
-                leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, BatteryTempActivity.class);
-                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) findViewById(R.id.buttonTemperature);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!isSafe()) return;
-                leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, TemperatureActivity.class);
-                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) findViewById(R.id.buttonBraking);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!isSafe()) return;
-                leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, BrakingActivity.class);
-                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) findViewById(R.id.buttonLeafSpy);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!isSafe()) return;
-                leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, LeafSpyActivity.class);
-                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) findViewById(R.id.buttonFirmware);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!isSafe()) return;
-                leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, FirmwareActivity.class);
-                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) findViewById(R.id.buttonConsumption);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!isSafe()) return;
-                leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, ConsumptionActivity.class);
-                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) findViewById(R.id.buttonStats);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!isSafe()) return;
-                leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, StatsActivity.class);
-                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) findViewById(R.id.buttonBattery);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!isSafe()) return;
-                leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, BatteryActivity.class);
-                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) findViewById(R.id.buttonPgHo);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!isSafe()) return;
-                leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, HarmActivity.class);
-                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) findViewById(R.id.buttonPgJm);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!isSafe()) return;
-                leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this, ElmTestActivity.class);
-                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) findViewById(R.id.buttonExperiments);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!isSafe()) return;
-                leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.this,ExperimentsActivity.class);
-                MainActivity.this.startActivityForResult(intent,LEAVE_BLUETOOTH_ON);
-            }
-        });
-*/
-
-
-
-        // link the fields to the stack
-        // OLD stack.addListener(fields);
 
         // register for bluetooth changes
         IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
@@ -520,25 +348,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                     registerFields();
 
                 device.registerFilters();
-
-
-                /*
-                // set all filters
-                debug("set all filters & connect widgets");
-                WidgetView wv;
-                ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
-                for (int i = 0; i < widgets.size(); i++) {
-                    wv = widgets.get(i);
-                    // add filter
-                    if (reader != null) {
-                        reader.addFilter(wv.getFieldID());
-                    }
-                    // connect to correct surface
-                    wv.getDrawable().setDrawSurface(wv);
-                }
-                */
-                // register filters
-                // OLD: reader.registerFilters();
 
                 // set title
                 debug("MainActivity: onAfterConnect > set title");
@@ -573,6 +382,54 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             startActivityForResult(enableBtIntent, 1);
         }
 
+        if(settings.getBoolean("disclaimer",false)==false) {
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+            // set title
+            alertDialogBuilder.setTitle("Formal Disclaimer");
+
+            // set dialog message
+            alertDialogBuilder
+                    .setMessage("CanZE (“the software”) is provided as is. Use the software at your own risk. " +
+                            "The authors make no warranties as to performance or fitness for a particular purpose, " +
+                            "or any other warranties whether expressed or implied. No oral or written communication " +
+                            "from or information provided by the authors shall create a warranty. Under no circumstances " +
+                            "shall the authors be liable for direct, indirect, special, incidental, or consequential " +
+                            "damages resulting from the use, misuse, or inability to use the software, even if the author " +
+                            "has been advised of the possibility of such damages. These exclusions and limitations may not " +
+                            "apply in all jurisdictions. You may have additional rights and some of these limitations may not " +
+                            "apply to you. This software is only intended for scientific usage.")
+                    .setCancelable(true)
+                    .setPositiveButton("Yes, I got it!", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // if this button is clicked, close
+                            SharedPreferences.Editor editor = settings.edit();
+                            editor.putBoolean("disclaimer", true);
+                            editor.commit();
+                            // current activity
+                            dialog.cancel();
+                        }
+                    })
+                    .setNegativeButton("No, I didn't understand a word ...",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // if this button is clicked, just close
+                                    // the dialog box and do nothing
+                                    dialog.cancel();
+                                    //MainActivity.this.finishAffinity(); requires API16
+                                    MainActivity.this.finish();
+                                    android.os.Process.killProcess(android.os.Process.myPid());
+                                    System.exit(0);
+                                }
+                            });
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+
+            // show it
+            alertDialog.show();
+        }
     }
 
 
