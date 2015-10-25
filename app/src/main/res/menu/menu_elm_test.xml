@@ -6,21 +6,33 @@
     >
 
     <item
-        android:id="@+id/action_findEcu"
+        android:id="@+id/action_findAllEcus"
         android:orderInCategory="100"
-        android:title="Find ECUs"
+        android:title="Find all ECUs"
         android:visible="true"
         />
     <item
-        android:id="@+id/action_findBcb"
+        android:id="@+id/action_queryBcb"
         android:orderInCategory="100"
-        android:title="Find BCB"
+        android:title="Query BCB"
         android:visible="true"
         />
     <item
-        android:id="@+id/action_findClima"
+        android:id="@+id/action_queryClima"
         android:orderInCategory="100"
-        android:title="Find CLIM"
+        android:title="Query CLIM"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryBroadcast"
+        android:orderInCategory="100"
+        android:title="Query CLIM"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_query7f1"
+        android:orderInCategory="100"
+        android:title="Query CLIM"
         android:visible="true"
         />
     <item

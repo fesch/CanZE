@@ -58,28 +58,40 @@ public class ElmTestActivity extends CanzeActivity {
         appendResult(displayResponseUntil(2000));
 
         appendResult("\nSending initialisation sequence\n");
+        // ate0 (no echo)
         sendNoWait("ate0\r");
         appendResult(displayResponseUntil(400, '>'));
+        // ats0 (no spaces)
         sendNoWait("ats0\r");
         appendResult(displayResponseUntil(400, '>'));
+        // atsp6 (CAN 500K 11 bit)
         sendNoWait("atsp6\r");
         appendResult(displayResponseUntil(400, '>'));
+        // atat1 (auto timing)
         sendNoWait("atat1\r");
         appendResult(displayResponseUntil(400, '>'));
+        // atcaf0 (no formatting)
         sendNoWait("atcaf0\r");
         appendResult(displayResponseUntil(400, '>'));
+        // experimenting with auto-flow control
+/*
         sendNoWait("atfcsh77b\r");
         appendResult(displayResponseUntil(400, '>'));
         sendNoWait("atfcsd300010\r");
         appendResult(displayResponseUntil(400, '>'));
         sendNoWait("atfcsm1\r");
         appendResult(displayResponseUntil(400, '>'));
-
+*/
+        // auto flow control
+        sendNoWait("atfcsm0\r");
+        appendResult(displayResponseUntil(400, '>'));
         appendResult("\nPreparing a raw ISO-TP command\n");
+        // set header to 743 (CLUSTER)
         sendNoWait("atsh743\r");
         appendResult(displayResponseUntil(400, '>'));
-        sendNoWait("atfcsh743\r");
-        appendResult(displayResponseUntil(400, '>'));
+        // set flow control header to 743 (CLUSTER)
+        // sendNoWait("atfcsh743\r");
+        // appendResult(displayResponseUntil(400, '>'));
         appendResult("\nSending an ISO-TP command\n");
         sendNoWait("03222001\r");
         appendResult(displayResponseUntil(400));
@@ -132,7 +144,7 @@ public class ElmTestActivity extends CanzeActivity {
     }
 
 
-    void doFindEcu () {
+    void doFindAllEcus () {
         int ecu;
         String filter;
         String result;
@@ -149,57 +161,29 @@ public class ElmTestActivity extends CanzeActivity {
         }
     }
 
-    void doFindBcb () {
-        int ecu;
+    void doQueryEcu(int ecu) {
         String filter;
         String result;
         clearResult();
 
-        ecu = 0x792;
         filter = Integer.toHexString(ecu);
         sendNoWait("atsh" + filter + "\r");
         displayResponseUntil(400, '>');
+/*
         sendNoWait("atfcsh" + filter + "\r");
         displayResponseUntil(400, '>');
         sendNoWait("atfcsd300010\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
         sendNoWait("atfcsm1\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(displayResponseUntil(400, '>'));
+*/
+        // re-experiment with full automated flow control mode
+        sendNoWait("atfcsm0\r");
+        appendResult(displayResponseUntil(400, '>'));
 
-        sendNoWait("0210C0\r"); //wakeup
-        result = displayResponseUntil(600, '>');
-        appendResult("10C0:" + filter + ":" + result + "\n");
-
-        sendNoWait("0210C0\r"); //wakeup
-        result = displayResponseUntil(600, '>');
-        appendResult("10C0:" + filter + ":" + result + "\n");
-
-        sendNoWait("0210C0\r"); //wakeup
-        result = displayResponseUntil(600, '>');
-        appendResult("10C0:" + filter + ":" + result + "\n");
-
-        sendNoWait("0319023b\r"); // ask DTCs
-        result = displayResponseUntil(2000, '>');
-        appendResult("19023b:" + filter + ":" + result + "\n");
-
-    }
-
-    void doFindClima () {
-        int ecu;
-        String filter;
-        String result;
-        clearResult();
-
-        ecu = 0x744;
-        filter = Integer.toHexString(ecu);
-        sendNoWait("atsh" + filter + "\r");
-        displayResponseUntil(400, '>');
-        sendNoWait("atfcsh" + filter + "\r");
-        displayResponseUntil(400, '>');
-        sendNoWait("atfcsd300010\r");
-        appendResult(displayResponseUntil(400));
-        sendNoWait("atfcsm1\r");
-        appendResult(displayResponseUntil(400));
+        // show headers, so we can find out the FROM address
+        sendNoWait("ath1\r");
+        appendResult(displayResponseUntil(400, '>'));
 
         sendNoWait("0210C0\r"); //wakeup
         result = displayResponseUntil(600, '>');
@@ -272,13 +256,14 @@ public class ElmTestActivity extends CanzeActivity {
                         if (ch == '\r') {
                             result += "\u2022";
                             lastWasCr = true;
-                        } else if (ch == stopChar) {
-                            return result;
                         } else {
                             if (lastWasCr) result += "\n";
                             result += ch;
                             lastWasCr = false;
                         }
+                        // quit on stopchar after making sure the stop character is added to the output and
+                        // a possible newline was indeed added
+                        if (ch == stopChar) return result;
                     }
                 }
                 else
@@ -297,6 +282,7 @@ public class ElmTestActivity extends CanzeActivity {
                 // ignore: e.printStackTrace();
             }
         }
+        // quit on timeout
         return result;
     }
 
@@ -323,38 +309,55 @@ public class ElmTestActivity extends CanzeActivity {
         int id = item.getItemId();
 
         // start the settings activity
-        if (id == R.id.action_findEcu) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    doFindEcu();
-                }
-            }).start();
-            return true;
-        } else if (id == R.id.action_findBcb) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    doFindBcb();
-                }
-            }).start();
-            return true;
-        } else if (id == R.id.action_findClima) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    doFindClima();
-                }
-            }).start();
-            return true;
-        } else if (id == R.id.action_doTest) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    doTest();
-                }
-            }).start();
-            return true;
+        switch (id) {
+            case R.id.action_findAllEcus:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        doFindAllEcus();
+                    }
+                }).start();
+                return true;
+            case R.id.action_queryBcb:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        doQueryEcu(0x792);
+                    }
+                }).start();
+                return true;
+            case R.id.action_queryClima:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        doQueryEcu(0x744);
+                    }
+                }).start();
+                return true;
+            case R.id.action_query7f1:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        doQueryEcu(0x7f1);
+                    }
+                }).start();
+                return true;
+            case R.id.action_queryBroadcast:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        doQueryEcu(0x7df);
+                    }
+                }).start();
+                return true;
+            case R.id.action_doTest:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        doTest();
+                    }
+                }).start();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
