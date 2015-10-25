@@ -53,11 +53,11 @@ public class BobDue extends Device {
                     public void run() {
                         while (isPollerActive())
                         {
-                            MainActivity.debug("BobDue: inside poller thread ...");
+                            //MainActivity.debug("BobDue: inside poller thread ...");
                             if(fields.size()==0)
                             {
                                 if(connectedBluetoothThread!=null)
-                                    MainActivity.debug("BobDue: sleeping ...");
+                                    //MainActivity.debug("BobDue: sleeping ...");
                                     try{
                                         Thread.sleep(5000);
                                     }
