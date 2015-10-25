@@ -34,7 +34,7 @@
             custom:minorTicks="5"
             custom:fieldSID="186.40,18a.16"
             custom:widget="timeplot"
-            custom:text="Acceleration pedal / Power train set point"
+            custom:text="Acceleration pedal (%) / Power train set point (%)"
             />
 
 
