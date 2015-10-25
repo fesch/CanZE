@@ -637,7 +637,13 @@ public class Fields implements MessageListener {
 
                 ;
 
-        fieldDef+=readFromLocalFile();
+        try {
+            fieldDef += readFromLocalFile();
+        }
+        catch(Exception e)
+        {
+            // ignore
+        }
 
         String[] lines = fieldDef.split("\n");
         for(int i=0; i<lines.length; i++)
