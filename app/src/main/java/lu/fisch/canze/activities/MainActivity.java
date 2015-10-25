@@ -382,6 +382,28 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             startActivityForResult(enableBtIntent, 1);
         }
 
+
+    }
+
+
+    @Override
+    public void onResume() {
+        debug("MainActivity: onResume");
+
+        visible=true;
+        super.onResume();
+
+        // if returning from a single widget activity, we have to leave here!
+        if(returnFromWidget) {
+            returnFromWidget=!returnFromWidget;
+            return;
+        }
+
+        if(!leaveBluetoothOn) {
+            reloadBluetooth();
+        }
+
+        final SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
         if(settings.getBoolean("disclaimer",false)==false) {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -430,27 +452,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             // show it
             alertDialog.show();
         }
-    }
-
-
-    @Override
-    public void onResume() {
-        debug("MainActivity: onResume");
-
-        visible=true;
-        super.onResume();
-
-        // if returning from a single widget activity, we have to leave here!
-        if(returnFromWidget) {
-            returnFromWidget=!returnFromWidget;
-            return;
-        }
-
-        if(!leaveBluetoothOn) {
-            reloadBluetooth();
-        }
-
-        //checkButtons();
     }
 
     public void reloadBluetooth() {
