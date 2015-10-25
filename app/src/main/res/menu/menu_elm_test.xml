@@ -24,15 +24,21 @@
         android:visible="true"
         />
     <item
+        android:id="@+id/action_queryCluster"
+        android:orderInCategory="100"
+        android:title="Query Cluster"
+        android:visible="true"
+        />
+    <item
         android:id="@+id/action_queryBroadcast"
         android:orderInCategory="100"
-        android:title="Query CLIM"
+        android:title="Query Broadcast"
         android:visible="true"
         />
     <item
         android:id="@+id/action_query7f1"
         android:orderInCategory="100"
-        android:title="Query CLIM"
+        android:title="Query 7f1"
         android:visible="true"
         />
     <item
