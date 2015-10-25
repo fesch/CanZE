@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         deviceName = settings.getString("device", "Arduino");
         safeDrivingMode = settings.getBoolean("optSafe", true);
         milesMode = settings.getBoolean("optMiles", false);
+        dataexportMode = settings.getBoolean("optDataExport", false);
         toastLevel = settings.getInt("optToast", 1);
 
         String car = settings.getString("car", "Any");

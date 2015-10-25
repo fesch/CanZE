@@ -1,5 +1,6 @@
 package lu.fisch.canze.activities;
 
+import android.os.Environment;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -33,6 +34,16 @@ import lu.fisch.canze.actors.Fields;
 public class SettingsActivity extends AppCompatActivity {
 
     public static final int YES_NO_CALL = 13;
+
+    // Checks if external storage is available for read and write
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,7 +170,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // add code here to check external SDcard is avail, writeable and has sufficient space
-                final boolean sdcardCheck = false; // replace hardcoded later
+                final boolean sdcardCheck = isExternalStorageWritable(); // check for space later
                 if (!sdcardCheck) {
                     final Context context = SettingsActivity.this;
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
