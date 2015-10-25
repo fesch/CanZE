@@ -37,7 +37,10 @@ public class ELM327 extends Device {
     private int fieldIndex = 0;
     private int lastId = 0;
 
-    boolean sumTingWong = false; // yes I know, the fake news name of Asiana flight 214 777 captain that crashed in SF
+    // someThingWrong will be set when something goes wrong, usually a timeout.
+    // most command routines just won't run when someThingWrong is set
+    // someThingWrong can be reset only by calling initElm, but with toughness 100 this is the only thing it does :-)
+    boolean someThingWrong = false;
 
     @Override
     public void initConnection() {
@@ -58,7 +61,7 @@ public class ELM327 extends Device {
                 public void run() {
                     // atz / atws (reset)
                     // continue only if we got an answer.
-                    if (initELM(0)) {
+                    if (initDevice(0)) {
 
                         setPollerActive(true);
                         while (isPollerActive()) {
@@ -158,12 +161,12 @@ public class ELM327 extends Device {
         return result;
     }
 
-    private boolean initELM (int toughness, int retries) {
+    private boolean initDevice (int toughness, int retries) {
         boolean ret;
-        if (ret = initELM(toughness)) return ret;
+        if (ret = initDevice(toughness)) return ret;
         while (retries-- > 0) {
             flushWithTimeout(500);
-            if (ret = initELM(toughness)) return ret;
+            if (ret = initDevice(toughness)) return ret;
         }
         if (timeoutLogLevel >= 1) MainActivity.toast("Hard reset failed");
 
@@ -177,7 +180,7 @@ public class ELM327 extends Device {
     }
 
 
-    private boolean initELM (int toughness) {
+    public boolean initDevice(int toughness) {
 
         String response;
         int elmVersion = 0;
@@ -187,6 +190,12 @@ public class ELM327 extends Device {
 
         // ensure the dongle header field is set again
         lastId = 0;
+
+        // extremely soft, just clear the global error condition
+        if (toughness == 100){
+            someThingWrong = false;
+            return true;
+        }
 
         // ensure any running operation is stopped
         // sending a return might restart the last command. Bad plan.
@@ -287,6 +296,7 @@ public class ELM327 extends Device {
             }
         }
 
+        someThingWrong = false;
         return true;
     }
 
@@ -513,12 +523,12 @@ public class ELM327 extends Device {
             }
         }
 
-        // set the flag that a timeout has occurred. sumTingWong can be inspected anywhere, but we reset the device after a full filter has been run
+        // set the flag that a timeout has occurred. someThingWrong can be inspected anywhere, but we reset the device after a full filter has been run
         if (timedOut) {
             if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && !command.startsWith("atma") && command.startsWith("at"))) {
                 MainActivity.toast("Timeout on [" + command + "][" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
             }
-            sumTingWong |= true;
+            someThingWrong |= true;
             return ("");
         }
 
@@ -584,14 +594,14 @@ public class ELM327 extends Device {
                     String data = "";
                     if (field.isIsoTp()) {
                         data = requestIsoTpFrame(field);
-                        if (!sumTingWong && !data.equals("")) {
+                        if (!someThingWrong && !data.equals("")) {
                             data = field.getHexId() + "," + data.trim() + "," + field.getResponseId() + SEPARATOR;
                             process(Utils.toIntArray(data.getBytes()));
                         }
 
                     } else {
                         data = requestFreeFrame(field);
-                        if (!sumTingWong && !data.equals("")) {
+                        if (!someThingWrong && !data.equals("")) {
                             data = field.getHexId() + "," + data.trim() + SEPARATOR;
                             process(Utils.toIntArray(data.getBytes()));
                         }
@@ -599,10 +609,10 @@ public class ELM327 extends Device {
 
                     // reset the ELM if a timeout occurred somewhere running this filter
                     // ... but only if we are not asked to stop!
-                    if (sumTingWong && connectedBluetoothThread!=null) {
+                    if (someThingWrong && connectedBluetoothThread!=null) {
                         //MainActivity.toast("... in command " + emlFilter + ", resetting ELM");
-                        initELM(1, 2);
-                        sumTingWong = false;
+                        initDevice(1, 2);
+                        // someThingWrong = false; // done in initElm now
                     }
                 }
 
@@ -640,14 +650,16 @@ public class ELM327 extends Device {
 
         String hexData = "";
 
+        if (someThingWrong) { return "" ; }
+
         // EML needs the filter to be 3 symbols and contains the from CAN id of the ECU
         String emlFilter = field.getHexId() + "";
         while (emlFilter.length() < 3) emlFilter = "0" + emlFilter;
 
-        if (!initCommandExpectOk("atcra" + emlFilter)) sumTingWong |= true;
+        if (!initCommandExpectOk("atcra" + emlFilter)) someThingWrong |= true;
 
         // avoid starting an ATMA id the ATCRA failed
-        if (!sumTingWong) {
+        if (!someThingWrong) {
             //sendAndWaitForAnswer("atcra" + emlFilter, 400);
             // atma     (wait for one answer line)
             TIMEOUT = field.getFrequency() + 50;
@@ -666,17 +678,20 @@ public class ELM327 extends Device {
         // however, make sure proper flushing is done
         // if cra does influence ISO-TP requests, an small optimization might be to only sending an atar when switching from free
         // frames to isotp frames.
-        if (!initCommandExpectOk("atar")) sumTingWong |= true;
+        if (!initCommandExpectOk("atar")) someThingWrong |= true;
         return hexData;
     }
 
     @Override
     public String requestIsoTpFrame(Field field) {
 
+        if (someThingWrong) { return "" ; }
+
         String hexData = "";
         int len = 0;
 
         // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
+        lastId = 0;
         if (lastId != field.getId()) {
             lastId = field.getId();
 
@@ -684,9 +699,9 @@ public class ELM327 extends Device {
             String request = getRequestHexId(field.getId());
 
             // Set header
-            if (!initCommandExpectOk("atsh" + request)) sumTingWong |= true;
+            if (!initCommandExpectOk("atsh" + request)) someThingWrong |= true;
             // Set flow control response ID
-            if (!initCommandExpectOk("atfcsh" + request)) sumTingWong |= true;
+            if (!initCommandExpectOk("atfcsh" + request)) someThingWrong |= true;
 
         }
 
@@ -697,14 +712,14 @@ public class ELM327 extends Device {
         // get 0x1 frame. No delays, and no waiting until done.
         String line0x1 = sendAndWaitForAnswer(pre + field.getRequestId(), 0, false).replace("\r", "");
 
-        if (!sumTingWong) {
+        if (!someThingWrong) {
             // process first line (SINGLE or FIRST frame)
             line0x1 = line0x1.trim();
             // clean-up if there is mess around
             if (line0x1.startsWith(">")) line0x1 = line0x1.substring(1);
-            sumTingWong |= line0x1.isEmpty();
+            someThingWrong |= line0x1.isEmpty();
         }
-        if (!sumTingWong) {
+        if (!someThingWrong) {
             // get type (first nibble)
             String type = line0x1.substring(0, 1);
 
@@ -736,7 +751,7 @@ public class ELM327 extends Device {
                     }
                     break;
                 default:  // a NEXT, FLOWCONTROL should not be received. Neither should any other string (such as NO DATA)
-                    sumTingWong = true;
+                    someThingWrong = true;
                     break;
             }
 
@@ -744,7 +759,7 @@ public class ELM327 extends Device {
         // better here is to wait for a >
         flushWithTimeout(400, '>');
         len *= 2;
-        if (hexData.length() >= len) return hexData + "\r";
+        if (hexData.length() <= len) return hexData + "\r";
         return hexData.substring(0, len) + "\r";
     }
 }

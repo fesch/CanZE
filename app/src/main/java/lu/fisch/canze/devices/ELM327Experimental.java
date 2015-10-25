@@ -602,4 +602,7 @@ public class ELM327Experimental extends Device {
     public String requestIsoTpFrame(Field field) {
         return null;
     }
+
+    @Override
+    public boolean initDevice(int toughness) { return true; }
 }

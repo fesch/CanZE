@@ -284,4 +284,5 @@ public abstract class Device {
     public abstract String requestFreeFrame(Field field);
     public abstract String requestIsoTpFrame(Field field);
 
+    public abstract boolean initDevice(int toughness);
 }
