@@ -23,16 +23,27 @@ public class ElmTestActivity extends CanzeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elm_test);
-
         textView = (TextView) findViewById(R.id.textResult);
 
-        // run the test in a separate thread
-        /* new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                doTest();
+                appendResult("\n\nPlease while the poller thread is stopped...\n");
+
+                if (MainActivity.device != null){
+                    // stop the poller thread
+                    MainActivity.device.stopAndJoin();
+                    // Get the bluetooth thread
+                    connectedBluetoothThread = MainActivity.device.getConnectedBluetoothThread();
+                }
+
+                if (connectedBluetoothThread == null) {
+                    appendResult("\nCan't get to BluetoothThread. Is your device paired and connected?\n");
+                    return;
+                }
+                appendResult("\nReady");
             }
-        }).start(); */
+        }).start();
     }
 
     void doTest () {
@@ -41,18 +52,10 @@ public class ElmTestActivity extends CanzeActivity {
 
         clearResult ();
 
-        if (MainActivity.device != null){
-            // stop the poller thread
-            MainActivity.device.stopAndJoin();
-            // Get the bluetooth thread
-            connectedBluetoothThread = MainActivity.device.getConnectedBluetoothThread();
-        }
+        appendResult("\nSending initialisation sequence\n");
+        MainActivity.device.initDevice (1);
 
-        if (connectedBluetoothThread == null) {
-            appendResult("\nCan't get to BluetoothThread. Is your device paired and connected?\n");
-            return;
-        }
-
+/*
         appendResult("\nSending a reset\n");
         sendNoWait("atws\r");
         appendResult(getResponseUntil(2000));
@@ -81,7 +84,8 @@ public class ElmTestActivity extends CanzeActivity {
         appendResult(getResponseUntil(400, '>'));
         sendNoWait("atfcsm1\r");
         appendResult(getResponseUntil(400, '>'));
-
+*/
+/*
         appendResult("\nPreparing a raw ISO-TP command\n");
         // set header to 743 (CLUSTER)
         sendNoWait("atsh743\r");
@@ -93,7 +97,7 @@ public class ElmTestActivity extends CanzeActivity {
         appendResult("\nSending an ISO-TP command\n");
         sendNoWait("022180\r");
         appendResult(getResponseUntil(400));
-
+*/
         appendResult("\nProcessing prepped ISO-TP command CLUSTER SW \n");
         field = Fields.getInstance().getBySID("763.6180.128");
         if (field != null) {
@@ -157,6 +161,12 @@ public class ElmTestActivity extends CanzeActivity {
             result = getResponseUntil(400, '>');
             appendResult(filter + ":" + result + "\n");
         }
+/*
+        for (ecu = 0x700; ecu <= 0x7ff; ecu++) {
+
+        }
+*/
+
     }
 
     void doQueryEcu(int ecu) {
@@ -179,7 +189,7 @@ public class ElmTestActivity extends CanzeActivity {
             filter = field.getRequestId();
         }
 
-        sendNoWait("atsh" + filter + "\r");
+/*        sendNoWait("atsh" + filter + "\r");
         result = getResponseUntil(400, '>');
         // appendResult("atsh:" + filter + ":" + result + "\n");
 
@@ -194,31 +204,28 @@ public class ElmTestActivity extends CanzeActivity {
         sendNoWait("atfcsm1\r");
         result = getResponseUntil(400, '>');
         // appendResult("atfcsm1:" + filter + ":" + result + "\n");
-
-        sendNoWait("0210C0\r"); //wakeup
-        result = getResponseUntil(600, '>');
-        appendResult("0210C0:" + filter + ":" + result + "\n");
-
-        sendNoWait("0210C0\r"); //wakeup
-        result = getResponseUntil(600, '>');
-        appendResult("0210C0:" + filter + ":" + result + "\n");
-
-        sendNoWait("0210C0\r"); //wakeup
-        result = getResponseUntil(600, '>');
-        appendResult("0210C0:" + filter + ":" + result + "\n");
-/*
-        sendNoWait("022180\r"); // ask SW version
-        result = getResponseUntil(2000, '>');
-        appendResult("022180:" + filter + ":" + result + "\n");
-
-        sendNoWait("0319023b\r"); // ask DTCs
-        result = getResponseUntil(2000, '>');
-        appendResult("0319023b:" + filter + ":" + result + "\n");
 */
+        sendNoWait("0210C0\r"); //wakeup
+        result = getResponseUntil(600, '>');
+        appendResult("0210C0:" + filter + ":" + result + "\n");
+
+        sendNoWait("0210C0\r"); //wakeup
+        result = getResponseUntil(600, '>');
+        appendResult("0210C0:" + filter + ":" + result + "\n");
+
+        sendNoWait("0210C0\r"); //wakeup
+        result = getResponseUntil(600, '>');
+        appendResult("0210C0:" + filter + ":" + result + "\n");
+
         if (field != null) {
             String backRes = MainActivity.device.requestField(field);
             if (backRes != null)
-                appendResult(backRes.replace('\r', '•'));
+                if (backRes.equals("")) {
+                    MainActivity.device.initDevice(2);
+                    appendResult("Oeps, reset\n");
+                } else {
+                    appendResult(backRes.replace('\r', '•'));
+                }
             else
                 appendResult("null");
         }
@@ -232,18 +239,25 @@ public class ElmTestActivity extends CanzeActivity {
         if (field != null) {
             String backRes = MainActivity.device.requestField(field);
             if (backRes != null) {
-                appendResult(backRes.replace('\r', '•'));
-                for (int i = 6; i < backRes.length() - 7; i += 8) {
-                    appendResult("\n" + backRes.substring(i, i + 6) + ":" + backRes.substring(i + 6, i + 8));
-                    int bits = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
-                    if ((bits & 0x01) != 0) appendResult(" testFail");
-                    if ((bits & 0x02) != 0) appendResult(" testFailThisOp");
-                    if ((bits & 0x04) != 0) appendResult(" pendingDtc");
-                    if ((bits & 0x08) != 0) appendResult(" confiremedDtc");
-                    if ((bits & 0x10) != 0) appendResult(" noCplSinceClear");
-                    if ((bits & 0x20) != 0) appendResult(" failedSinceClear");
-                    if ((bits & 0x40) != 0) appendResult(" testnotCpl");
-                    if ((bits & 0x80) != 0) appendResult(" WarnLight");
+                if (backRes.equals("")) {
+                    MainActivity.device.initDevice(2);
+                    appendResult("Oeps, reset\n");
+                } else {
+                    appendResult(backRes.replace('\r', '•'));
+                    for (int i = 6; i < backRes.length() - 7; i += 8) {
+                        appendResult("\n" + backRes.substring(i, i + 6) + ":" + backRes.substring(i + 6, i + 8));
+                        int bits = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
+                        if (bits != 0x50) {
+                            if ((bits & 0x01) != 0) appendResult(" testFail");
+                            if ((bits & 0x02) != 0) appendResult(" testFailThisOp");
+                            if ((bits & 0x04) != 0) appendResult(" pendingDtc");
+                            if ((bits & 0x08) != 0) appendResult(" confiremedDtc");
+                            if ((bits & 0x10) != 0) appendResult(" noCplSinceClear");
+                            if ((bits & 0x20) != 0) appendResult(" failedSinceClear");
+                            if ((bits & 0x40) != 0) appendResult(" testnotCpl");
+                            if ((bits & 0x80) != 0) appendResult(" WarnLight");
+                        }
+                    }
                 }
             } else
                 appendResult("null");

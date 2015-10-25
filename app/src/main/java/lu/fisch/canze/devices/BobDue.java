@@ -321,4 +321,7 @@ public class BobDue extends Device {
         // send and wait fir an answer, no delay
         return sendAndWaitForAnswer(command, 0);
     }
+
+    @Override
+    public boolean initDevice(int toughness) { return true; }
 }
