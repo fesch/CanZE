@@ -674,6 +674,7 @@ public class ELM327 extends Device {
     public String requestIsoTpFrame(Field field) {
 
         String hexData = "";
+        int len = 0;
 
         // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
         if (lastId != field.getId()) {
@@ -694,7 +695,7 @@ public class ELM327 extends Device {
         //MainActivity.debug("R: "+request+" - C: "+pre+field.getRequestId());
 
         // get 0x1 frame. No delays, and no waiting until done.
-        String line0x1 = sendAndWaitForAnswer(pre + field.getRequestId(), 0, false);
+        String line0x1 = sendAndWaitForAnswer(pre + field.getRequestId(), 0, false).replace("\r", "");
 
         if (!sumTingWong) {
             // process first line (SINGLE or FIRST frame)
@@ -706,52 +707,31 @@ public class ELM327 extends Device {
         if (!sumTingWong) {
             // get type (first nibble)
             String type = line0x1.substring(0, 1);
-            //MainActivity.debug("Type: "+type);
 
             switch (type) {
                 case "0": // SINGLE frame
+                    len = Integer.parseInt(line0x1.substring(1, 2), 16);
                     // remove 2 nibbles (type + length)
                     hexData = line0x1.substring(2);
                     break;
                 case "1": // FIRST frame
-                    // remove first nibble (type)
-                    line0x1 = line0x1.substring(1);
-                    //MainActivity.debug("HEX-length = " + line0x1.substring(0, 3));
-                    // get the number of payload bytes
-                    int count = Integer.valueOf(line0x1.substring(0, 3), 16);
-                    //MainActivity.debug("DEC-length = " + count);
-                    // remove 3 nibbles (number of payload bytes)
-                    line0x1 = line0x1.substring(3);
-                    // remove response
-                    //line0x1 = line0x1.substring(field.getRequestId().length());
-                    // store the reminding bytes
-                    hexData = line0x1;
-                    // decrease count
-                    count -= line0x1.length() / 2;
-                    // each of the 0x2 frames has a payload of 7 bytes
-                    int framesToReceive = (int) Math.ceil(count / 7.);
-                    //MainActivity.debug("framesToReceive = " + framesToReceive);
-
+                    len = Integer.parseInt(line0x1.substring(1, 4), 16);
+                    // remove 4 nibbles (type + length)
+                    hexData = line0x1.substring(4);
+                    // calculate the # of frames to come. 6 byte are in and each of the 0x2 frames has a payload of 7 bytes
+                    int framesToReceive = (int) Math.ceil((len - 6) / 7.);
                     // get remaining 0x2 (NEXT) frames
-                    String lines0x2 = sendAndWaitForAnswer(null, 0, framesToReceive);
-
-                    // PERFORMANE ENHACMENT
-                    // atfcsm0          Reset flow control mode to 0 (default)
-                    // sendAndWaitForAnswer("atfcsm0", 50);
-
-                    //MainActivity.debug("Got:\n"+lines0x2);
-
+                    String lines0x1 = sendAndWaitForAnswer(null, 0, framesToReceive);
                     // split into lines
-                    String[] hexDataLines = lines0x2.split(String.valueOf(EOM1));
+                    String[] hexDataLines = lines0x1.split(String.valueOf(EOM1));
 
                     for (int i = 0; i < hexDataLines.length; i++) {
-                        String line = hexDataLines[i];
+                        line0x1 = hexDataLines[i];
                         //MainActivity.debug("Line "+(i+1)+": " + line);
-                        if (!line.isEmpty() && line.length() > 2) {
+                        if (!line0x1.isEmpty() && line0x1.length() > 2) {
                             // cut off the first byte (type + sequence)
                             // adding sequence checking would be wise to detect collisions
-                            line = line.substring(2);
-                            hexData += line;
+                            hexData += line0x1.substring(2);
                         }
                     }
                     break;
@@ -763,6 +743,8 @@ public class ELM327 extends Device {
         }
         // better here is to wait for a >
         flushWithTimeout(400, '>');
-        return hexData;
+        len *= 2;
+        if (hexData.length() >= len) return hexData + "\r";
+        return hexData.substring(0, len) + "\r";
     }
 }

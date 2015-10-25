@@ -55,37 +55,47 @@ public class ElmTestActivity extends CanzeActivity {
 
         appendResult("\nSending a reset\n");
         sendNoWait("atws\r");
-        appendResult(displayResponseUntil(2000));
+        appendResult(getResponseUntil(2000));
 
         appendResult("\nSending initialisation sequence\n");
+        // ate0 (no echo)
         sendNoWait("ate0\r");
-        appendResult(displayResponseUntil(400, '>'));
+        appendResult(getResponseUntil(400, '>'));
+        // ats0 (no spaces)
         sendNoWait("ats0\r");
-        appendResult(displayResponseUntil(400, '>'));
+        appendResult(getResponseUntil(400, '>'));
+        // atsp6 (CAN 500K 11 bit)
         sendNoWait("atsp6\r");
-        appendResult(displayResponseUntil(400, '>'));
+        appendResult(getResponseUntil(400, '>'));
+        // atat1 (auto timing)
         sendNoWait("atat1\r");
-        appendResult(displayResponseUntil(400, '>'));
+        appendResult(getResponseUntil(400, '>'));
+        // atcaf0 (no formatting)
         sendNoWait("atcaf0\r");
-        appendResult(displayResponseUntil(400, '>'));
+        appendResult(getResponseUntil(400, '>'));
+        // experimenting with auto-flow control
+
         sendNoWait("atfcsh77b\r");
-        appendResult(displayResponseUntil(400, '>'));
+        appendResult(getResponseUntil(400, '>'));
         sendNoWait("atfcsd300010\r");
-        appendResult(displayResponseUntil(400, '>'));
+        appendResult(getResponseUntil(400, '>'));
         sendNoWait("atfcsm1\r");
-        appendResult(displayResponseUntil(400, '>'));
+        appendResult(getResponseUntil(400, '>'));
 
         appendResult("\nPreparing a raw ISO-TP command\n");
+        // set header to 743 (CLUSTER)
         sendNoWait("atsh743\r");
-        appendResult(displayResponseUntil(400, '>'));
+        appendResult(getResponseUntil(400, '>'));
+        // set flow control header to 743 (CLUSTER)
         sendNoWait("atfcsh743\r");
-        appendResult(displayResponseUntil(400, '>'));
-        appendResult("\nSending an ISO-TP command\n");
-        sendNoWait("03222001\r");
-        appendResult(displayResponseUntil(400));
+        appendResult(getResponseUntil(400, '>'));
 
-        appendResult("\nProcessing prepped ISO-TP command\n");
-        field = Fields.getInstance().getBySID("763.622001.24");
+        appendResult("\nSending an ISO-TP command\n");
+        sendNoWait("022180\r");
+        appendResult(getResponseUntil(400));
+
+        appendResult("\nProcessing prepped ISO-TP command CLUSTER SW \n");
+        field = Fields.getInstance().getBySID("763.6180.128");
         if (field != null) {
             String backRes = MainActivity.device.requestField(field);
             if (backRes != null)
@@ -102,29 +112,29 @@ public class ElmTestActivity extends CanzeActivity {
         // As a solution, added in ELM327 to specifically wait up to 500ms (!) for a > after an ISO-TP command.
         appendResult("\nSetting filter for free frame capture\n");
         sendNoWait("atcra4f8\r");
-        appendResult(displayResponseUntil(400, '>'));
+        appendResult(getResponseUntil(400, '>'));
 
         appendResult("\nShowing a free frame capture\n");
         sendNoWait("atma\r");
-        appendResult(displayResponseUntil(200));
+        appendResult(getResponseUntil(200));
 
         appendResult("\nStopping free frame capture\n");
-        appendResult(displayResponseUntil(200, '>'));
+        appendResult(getResponseUntil(200, '>'));
         sendNoWait("x");
         // this will result in STOPPED. We need to double check if the ELM also sends a >
 
-        appendResult(displayResponseUntil(400, '>'));
+        appendResult(getResponseUntil(400, '>'));
         appendResult("\nResetting free frame capture\n");
         sendNoWait("atar\r");
-        appendResult(displayResponseUntil(400, '>'));
+        appendResult(getResponseUntil(400, '>'));
 
         appendResult("\nProcessing prepped free frame\n");
         field = Fields.getInstance().getBySID("4f8.4");
         if (field != null) {
             String backRes = MainActivity.device.requestField(field);
-            if (backRes != null)
+            if (backRes != null) {
                 appendResult(backRes.replace('\r', '\u2022'));
-            else
+            } else
                 appendResult("null");
         }
         else
@@ -132,91 +142,112 @@ public class ElmTestActivity extends CanzeActivity {
     }
 
 
-    void doFindEcu () {
+    void doFindAllEcus () {
         int ecu;
         String filter;
         String result;
-        clearResult ();
+        clearResult();
         for (ecu = 0x700; ecu <= 0x7ff; ecu++) {
             filter = Integer.toHexString(ecu);
             sendNoWait("atsh" + filter + "\r");
-            displayResponseUntil(400, '>');
+            getResponseUntil(400, '>');
             sendNoWait("atfcsh" + filter + "\r");
-            displayResponseUntil(400, '>');
+            getResponseUntil(400, '>');
             sendNoWait("022180\r");
-            result = displayResponseUntil(400, '>');
+            result = getResponseUntil(400, '>');
             appendResult(filter + ":" + result + "\n");
         }
     }
 
-    void doFindBcb () {
-        int ecu;
-        String filter;
-        String result;
-        clearResult();
-
-        ecu = 0x792;
-        filter = Integer.toHexString(ecu);
-        sendNoWait("atsh" + filter + "\r");
-        displayResponseUntil(400, '>');
-        sendNoWait("atfcsh" + filter + "\r");
-        displayResponseUntil(400, '>');
-        sendNoWait("atfcsd300010\r");
-        appendResult(displayResponseUntil(400));
-        sendNoWait("atfcsm1\r");
-        appendResult(displayResponseUntil(400));
-
-        sendNoWait("0210C0\r"); //wakeup
-        result = displayResponseUntil(600, '>');
-        appendResult("10C0:" + filter + ":" + result + "\n");
-
-        sendNoWait("0210C0\r"); //wakeup
-        result = displayResponseUntil(600, '>');
-        appendResult("10C0:" + filter + ":" + result + "\n");
-
-        sendNoWait("0210C0\r"); //wakeup
-        result = displayResponseUntil(600, '>');
-        appendResult("10C0:" + filter + ":" + result + "\n");
-
-        sendNoWait("0319023b\r"); // ask DTCs
-        result = displayResponseUntil(2000, '>');
-        appendResult("19023b:" + filter + ":" + result + "\n");
-
+    void doQueryEcu(int ecu) {
+        doQueryEcu(ecu, false);
     }
 
-    void doFindClima () {
-        int ecu;
+    void doQueryEcu(int ecu, boolean sourceEcu) {
+        Field field = null;
         String filter;
         String result;
         clearResult();
 
-        ecu = 0x744;
         filter = Integer.toHexString(ecu);
+        if (!sourceEcu) {
+            field = Fields.getInstance().getBySID(filter + ".6180.128"); // get sw version
+            if (field == null) {
+                appendResult("- field does not exist\n");
+                return;
+            }
+            filter = field.getRequestId();
+        }
+
         sendNoWait("atsh" + filter + "\r");
-        displayResponseUntil(400, '>');
+        result = getResponseUntil(400, '>');
+        // appendResult("atsh:" + filter + ":" + result + "\n");
+
         sendNoWait("atfcsh" + filter + "\r");
-        displayResponseUntil(400, '>');
-        sendNoWait("atfcsd300010\r");
-        appendResult(displayResponseUntil(400));
+        result = getResponseUntil(400, '>');
+        // appendResult("atfcsh:" + filter + ":" + result + "\n");
+
+        sendNoWait("atfcsd300000\r");
+        result = getResponseUntil(400, '>');
+        // appendResult("atsh:" + filter + ":" + result + "\n");
+
         sendNoWait("atfcsm1\r");
-        appendResult(displayResponseUntil(400));
+        result = getResponseUntil(400, '>');
+        // appendResult("atfcsm1:" + filter + ":" + result + "\n");
 
         sendNoWait("0210C0\r"); //wakeup
-        result = displayResponseUntil(600, '>');
-        appendResult("10C0:" + filter + ":" + result + "\n");
+        result = getResponseUntil(600, '>');
+        appendResult("0210C0:" + filter + ":" + result + "\n");
 
         sendNoWait("0210C0\r"); //wakeup
-        result = displayResponseUntil(600, '>');
-        appendResult("10C0:" + filter + ":" + result + "\n");
+        result = getResponseUntil(600, '>');
+        appendResult("0210C0:" + filter + ":" + result + "\n");
 
         sendNoWait("0210C0\r"); //wakeup
-        result = displayResponseUntil(600, '>');
-        appendResult("10C0:" + filter + ":" + result + "\n");
+        result = getResponseUntil(600, '>');
+        appendResult("0210C0:" + filter + ":" + result + "\n");
+/*
+        sendNoWait("022180\r"); // ask SW version
+        result = getResponseUntil(2000, '>');
+        appendResult("022180:" + filter + ":" + result + "\n");
 
         sendNoWait("0319023b\r"); // ask DTCs
-        result = displayResponseUntil(2000, '>');
-        appendResult("19023b:" + filter + ":" + result + "\n");
+        result = getResponseUntil(2000, '>');
+        appendResult("0319023b:" + filter + ":" + result + "\n");
+*/
+        if (field != null) {
+            String backRes = MainActivity.device.requestField(field);
+            if (backRes != null)
+                appendResult(backRes.replace('\r', '•'));
+            else
+                appendResult("null");
+        }
 
+        filter = Integer.toHexString(ecu);
+        field = Fields.getInstance().getBySID(filter + ".5902ff.0"); // get DTC
+        if (field == null) {
+            appendResult("- field does not exist\n");
+            return;
+        }
+        if (field != null) {
+            String backRes = MainActivity.device.requestField(field);
+            if (backRes != null) {
+                appendResult(backRes.replace('\r', '•'));
+                for (int i = 6; i < backRes.length() - 7; i += 8) {
+                    appendResult("\n" + backRes.substring(i, i + 6) + ":" + backRes.substring(i + 6, i + 8));
+                    int bits = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
+                    if ((bits & 0x01) != 0) appendResult(" testFail");
+                    if ((bits & 0x02) != 0) appendResult(" testFailThisOp");
+                    if ((bits & 0x04) != 0) appendResult(" pendingDtc");
+                    if ((bits & 0x08) != 0) appendResult(" confiremedDtc");
+                    if ((bits & 0x10) != 0) appendResult(" noCplSinceClear");
+                    if ((bits & 0x20) != 0) appendResult(" failedSinceClear");
+                    if ((bits & 0x40) != 0) appendResult(" testnotCpl");
+                    if ((bits & 0x80) != 0) appendResult(" WarnLight");
+                }
+            } else
+                appendResult("null");
+        }
     }
 
     // Ensure all UI updates are done on the UiThread
@@ -247,11 +278,11 @@ public class ElmTestActivity extends CanzeActivity {
         }
     }
 
-    private String displayResponseUntil (int timeout) {
-        return displayResponseUntil (timeout, '\0');
+    private String getResponseUntil(int timeout) {
+        return getResponseUntil(timeout, '\0');
     }
 
-    private String displayResponseUntil (int timeout, char stopChar) {
+    private String getResponseUntil(int timeout, char stopChar) {
         long end = Calendar.getInstance().getTimeInMillis() + timeout;
         boolean timedOut = false;
         boolean lastWasCr = false;
@@ -272,13 +303,14 @@ public class ElmTestActivity extends CanzeActivity {
                         if (ch == '\r') {
                             result += "\u2022";
                             lastWasCr = true;
-                        } else if (ch == stopChar) {
-                            return result;
                         } else {
                             if (lastWasCr) result += "\n";
                             result += ch;
                             lastWasCr = false;
                         }
+                        // quit on stopchar after making sure the stop character is added to the output and
+                        // a possible newline was indeed added
+                        if (ch == stopChar) return result;
                     }
                 }
                 else
@@ -297,6 +329,7 @@ public class ElmTestActivity extends CanzeActivity {
                 // ignore: e.printStackTrace();
             }
         }
+        // quit on timeout
         return result;
     }
 
@@ -323,38 +356,63 @@ public class ElmTestActivity extends CanzeActivity {
         int id = item.getItemId();
 
         // start the settings activity
-        if (id == R.id.action_findEcu) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    doFindEcu();
-                }
-            }).start();
-            return true;
-        } else if (id == R.id.action_findBcb) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    doFindBcb();
-                }
-            }).start();
-            return true;
-        } else if (id == R.id.action_findClima) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    doFindClima();
-                }
-            }).start();
-            return true;
-        } else if (id == R.id.action_doTest) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    doTest();
-                }
-            }).start();
-            return true;
+        switch (id) {
+            case R.id.action_findAllEcus:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        doFindAllEcus();
+                    }
+                }).start();
+                return true;
+            case R.id.action_queryBcb:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        doQueryEcu(0x793);
+                    }
+                }).start();
+                return true;
+            case R.id.action_queryClima:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        doQueryEcu(0x764);
+                    }
+                }).start();
+                return true;
+            case R.id.action_queryCluster:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        doQueryEcu(0x763);
+                    }
+                }).start();
+                return true;
+            case R.id.action_query7f1:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        doQueryEcu(0x7f1, true);
+                    }
+                }).start();
+                return true;
+            case R.id.action_queryBroadcast:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        doQueryEcu(0x7d, true);
+                    }
+                }).start();
+                return true;
+            case R.id.action_doTest:
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        doTest();
+                    }
+                }).start();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

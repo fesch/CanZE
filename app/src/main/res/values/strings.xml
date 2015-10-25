@@ -100,8 +100,12 @@
     <string name="label_motor_torque">Motor Torque</string>
 
     <string name="default_realSpeed">#Spd</string>
+    <string name="unit_SpeedKm">km/h</string>
+    <string name="unit_SpeedMi">mi/h</string>
 
     <string name="default_consumption">#Con</string>
+    <string name="unit_ConsumptionKm">kWh/100km</string>
+    <string name="unit_ConsumptionMi">kWh/100mi</string>
 
     <string name="label_DistToDest">Distance to destination</string>
     <string name="default_DistToDest">#ktd</string>

@@ -65,9 +65,9 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         if (MainActivity.milesMode) {
             TextView tv;
             tv = (TextView) findViewById(R.id.textSpeedUnit);
-            tv.setText(" mi/h");
+            tv.setText(getResources().getString(R.string.unit_SpeedMi));
             tv = (TextView) findViewById(R.id.textConsumptionUnit);
-            tv.setText(" kWh/100mi");
+            tv.setText(getResources().getString(R.string.unit_ConsumptionMi));
         }
         initListeners();
     }
