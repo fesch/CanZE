@@ -19,6 +19,7 @@
             <enum name="label" value="5"/>
             <enum name="timeplot" value="6"/>
         </attr>
+        <attr name="colorRanges" format="string"/>
         <attr name="text" format="string" />
     </declare-styleable>
 </resources>

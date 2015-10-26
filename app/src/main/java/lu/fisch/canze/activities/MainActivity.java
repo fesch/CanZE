@@ -25,9 +25,15 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
+import lu.fisch.awt.Color;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
@@ -295,7 +301,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTitle(TAG+" - not connected");
+        setTitle(TAG + " - not connected");
+
 
         // tabs
         final ActionBar actionBar = getSupportActionBar();

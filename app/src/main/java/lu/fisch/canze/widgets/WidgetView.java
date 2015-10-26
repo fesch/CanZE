@@ -20,6 +20,8 @@ import android.view.WindowManager;
 import java.lang.reflect.Constructor;
 
 import lu.fisch.awt.Graphics;
+import lu.fisch.canze.classes.ColorRange;
+import lu.fisch.canze.classes.ColorRanges;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.R;
@@ -123,6 +125,11 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     setShowValue(attributes.getBoolean(R.styleable.WidgetView_showValue, true));
                     setInverted(attributes.getBoolean(R.styleable.WidgetView_isInverted, false));
                     fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
+
+                    String colorRangesJson =attributes.getString(R.styleable.WidgetView_colorRanges);
+                    if(!colorRangesJson.trim().isEmpty())
+                        setColorRanges(new ColorRanges(colorRangesJson.replace("'","\"")));
+
                     //MainActivity.debug("WidgetView: My SID is "+fieldSID);
 
                     if(MainActivity.milesMode) setTitle(drawable.getTitle().replace("km","mi"));
@@ -358,5 +365,9 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 
     public void setInverted(boolean inverted) {
         drawable.setInverted(inverted);
+    }
+
+    public void setColorRanges(ColorRanges colorRanges) {
+        drawable.setColorRanges(colorRanges);
     }
 }

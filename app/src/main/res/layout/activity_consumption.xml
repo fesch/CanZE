@@ -61,6 +61,7 @@
             custom:minorTicks="5"
             custom:fieldSID="1fd.48,427.49"
             custom:widget="timeplot"
+            custom:colorRanges="[{'sid':'1fd.48','color':'#008a1d','from':-100,'to':0},{'sid':'1fd.48','color':'#ffaa17','from':0,'to':43},{'sid':'1fd.48','color':'#FF0000','from':43,'to':100}]"
             custom:text="Econometer (kw) / Available energy (kWh)"
             />
 
