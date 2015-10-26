@@ -173,6 +173,8 @@ public class Timeplot extends Drawable {
                 for (int i = values.size() - 1; i >= 0; i--) {
                     TimePoint tp = values.get(i);
 
+                    g.setColor(colorRanges.getColor(sid,tp.value,getColor(s)));
+
                     double mx = barWidth - (maxTime - tp.date) / 1000;
 
                     if (mx < 0) {
@@ -220,7 +222,12 @@ public class Timeplot extends Drawable {
                     String text = String.format("%." + (String.valueOf(field.getDecimals()).length() - 1) + "f", field.getValue());
 
                     g.setTextSize(40);
-                    g.setColor(getColor(s));
+
+                    if(values.isEmpty())
+                        g.setColor(getColor(s));
+                    else
+                        g.setColor(colorRanges.getColor(sid, values.get(values.size()-1).value, getColor(s)));
+
                     int tw = g.stringWidth(text);
                     int th = g.stringHeight(text);
                     int tx = getX()+width-tw-8;

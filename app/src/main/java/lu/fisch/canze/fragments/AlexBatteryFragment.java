@@ -12,10 +12,10 @@ import android.view.ViewGroup;
 
 import lu.fisch.canze.R;
 
-public class FZPage0 extends Fragment {
+public class AlexBatteryFragment extends Fragment {
 
 
-    public FZPage0(){
+    public AlexBatteryFragment(){
 
     }
 
@@ -26,7 +26,7 @@ public class FZPage0 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fz_section0, null);
+        View v = inflater.inflate(R.layout.alex_battery_section, null);
         return       v;
     }
 

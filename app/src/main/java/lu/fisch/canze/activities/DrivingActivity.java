@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 //import android.widget.ProgressBar;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -56,64 +58,73 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         distkmToDest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // don't react if we do not have a live odo yet
-                if (odo == 0) return;
-                final Context context = DrivingActivity.this;
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                LayoutInflater inflater = getLayoutInflater();
-                final View distToDestView = inflater.inflate(R.layout.set_dist_to_dest, null);
-
-                // set dialog message
-                alertDialogBuilder
-                        .setView(distToDestView)
-                        .setTitle("REMAINING DISTANCE")
-                        .setMessage("Please enter the distance to your destination. The display will estimate " +
-                                "the remaining driving distance available in your battery on arrival")
-
-                        .setCancelable(true)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                EditText dialogDistToDest = (EditText) distToDestView.findViewById(R.id.dialog_dist_to_dest);
-                                if (dialogDistToDest != null) {
-                                    saveDestOdo(odo + Integer.parseInt(dialogDistToDest.getText().toString()));
-                                }
-                                dialog.cancel();
-                            }
-                        })
-                        .setNeutralButton("Double", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                EditText dialogDistToDest = (EditText) distToDestView.findViewById(R.id.dialog_dist_to_dest);
-                                if (dialogDistToDest != null) {
-                                    saveDestOdo(odo + 2 * Integer.parseInt(dialogDistToDest.getText().toString()));
-                                }
-                                dialog.cancel();
-                            }
-                        })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
-                alertDialog.show();
-
+                setDistanceToDestination();
             }
         });
 
         if (MainActivity.milesMode) {
             TextView tv;
             tv = (TextView) findViewById(R.id.textSpeedUnit);
-            tv.setText(" mi/h");
+            tv.setText(getResources().getString(R.string.unit_SpeedMi));
             tv = (TextView) findViewById(R.id.textConsumptionUnit);
-            tv.setText(" kWh/mi");
+            tv.setText(getResources().getString(R.string.unit_ConsumptionMi));
         }
         initListeners();
-
     }
+
+    void setDistanceToDestination () {
+        // don't react if we do not have a live odo yet
+        if (odo == 0) return;
+        final Context context = DrivingActivity.this;
+        final EditText textEdit = new EditText(this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = getLayoutInflater();
+        final View distToDestView = inflater.inflate(R.layout.set_dist_to_dest, null);
+
+        // set dialog message
+        alertDialogBuilder
+                .setView(distToDestView)
+                .setTitle("REMAINING DISTANCE")
+                .setMessage("Please enter the distance to your destination. The display will estimate " +
+                        "the remaining driving distance available in your battery on arrival")
+
+                .setCancelable(true)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        EditText dialogDistToDest = (EditText) distToDestView.findViewById(R.id.dialog_dist_to_dest);
+                        if (dialogDistToDest != null) {
+                            saveDestOdo(odo + Integer.parseInt(dialogDistToDest.getText().toString()));
+                        }
+                        dialog.cancel();
+                    }
+                })
+                .setNeutralButton("Double", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        EditText dialogDistToDest = (EditText) distToDestView.findViewById(R.id.dialog_dist_to_dest);
+                        if (dialogDistToDest != null) {
+                            saveDestOdo(odo + 2 * Integer.parseInt(dialogDistToDest.getText().toString()));
+                        }
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+
+        // show it
+        alertDialog.show();
+    }
+
+
+
 
     private void saveDestOdo (int d) {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
@@ -238,12 +249,14 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         pb.setProgress((int) field.getValue());
                         break;
                     case SID_EVC_Odometer:
-                        odo = (int) Utils.kmOrMiles(odo);
+                        odo = (int ) field.getValue();
+                        //odo = (int) Utils.kmOrMiles(field.getValue());
                         tv = null;
                         break;
                     case SID_RealSpeed:
                     case SID_EVC_RealSpeed:
-                        realSpeed = (Math.round(Utils.kmOrMiles(field.getValue()) * 10.0) / 10.0);
+                        //realSpeed = (Math.round(Utils.kmOrMiles(field.getValue()) * 10.0) / 10.0);
+                        realSpeed = (Math.round(field.getValue() * 10.0) / 10.0);
                         tv = (TextView) findViewById(R.id.textRealSpeed);
                         break;
                     //case SID_PEB_Torque:
@@ -267,7 +280,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         tv = null;
                         break;
                     case SID_RangeEstimate:
-                        int rangeInBat = (int) Utils.kmOrMiles(field.getValue());
+                        //int rangeInBat = (int) Utils.kmOrMiles(field.getValue());
+                        int rangeInBat = (int) field.getValue();
                         if (rangeInBat > 0 && odo > 0 && destOdo > 0) { // we update only if there are no weird values
                             try {
                                 if (destOdo > odo) {
@@ -301,7 +315,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_text, menu);
+        getMenuInflater().inflate(R.menu.menu_driving, menu);
         return true;
     }
 
@@ -313,7 +327,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_setDistanceToDestination) {
+            setDistanceToDestination();
             return true;
         }
 

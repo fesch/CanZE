@@ -4,6 +4,7 @@
  */
 package lu.fisch.canze.actors;
 
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.interfaces.FieldListener;
 
 import java.util.ArrayList;
@@ -96,13 +97,21 @@ public class Field {
     
     public String getPrintValue()
     {
-        double temp = ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
-        return format.substring(0, format.indexOf("%")-1).trim()+" "+temp+" "+unit;
+        return format.substring(0, format.indexOf("%")-1).trim()+" "+getValue()+" "+unit;
     }
 
     public double getValue()
     {
-        return ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        if (MainActivity.milesMode) {
+            if (getUnit().toLowerCase().startsWith("km"))
+                val = val / 1.609344;
+            else if (getUnit().toLowerCase().endsWith("km"))
+                val = val*1.609344;
+            setUnit(getUnit().replace("km","mi"));
+            return val;
+        }
+        return val;
     }
     
     public double getMax()

@@ -34,7 +34,7 @@
             custom:minorTicks="5"
             custom:fieldSID="186.40,18a.16"
             custom:widget="timeplot"
-            custom:text="Acceleration pedal / Power train set point"
+            custom:text="Acceleration pedal (%) / Power train set point (%)"
             />
 
 
@@ -55,13 +55,14 @@
             android:layout_marginTop="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            custom:min="0"
-            custom:max="120"
-            custom:majorTicks="20"
-            custom:minorTicks="10"
-            custom:fieldSID="42e.0,427.49"
+            custom:min="-30"
+            custom:max="70"
+            custom:majorTicks="10"
+            custom:minorTicks="5"
+            custom:fieldSID="1fd.48,427.49"
             custom:widget="timeplot"
-            custom:text="State of Charge (%) / Available energy (kWh)"
+            custom:colorRanges="[{'sid':'1fd.48','color':'#008a1d','from':-100,'to':0},{'sid':'1fd.48','color':'#ffaa17','from':0,'to':43},{'sid':'1fd.48','color':'#FF0000','from':43,'to':100}]"
+            custom:text="Econometer (kw) / Available energy (kWh)"
             />
 
     </TableRow>
@@ -86,9 +87,9 @@
             custom:max="140"
             custom:majorTicks="20"
             custom:minorTicks="10"
-            custom:fieldSID="5d7.0"
+            custom:fieldSID="5d7.0,42e.0"
             custom:widget="timeplot"
-            custom:text="Speed (km/h)"
+            custom:text="Speed (km/h) / State of Charge (%)"
             />
 
     </TableRow>

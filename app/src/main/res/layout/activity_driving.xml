@@ -53,7 +53,7 @@
             android:max="100"
             android:progressDrawable="@drawable/progressbar_canze"
             />
-
+<!--
         <TextView
             android:id="@+id/HeaderDriving"
             android:layout_width="fill_parent"
@@ -62,7 +62,7 @@
             android:textColor="#000"
             android:layout_marginTop="10dp"
             />
-
+-->
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,7 +78,8 @@
                     />
                 <TextView
                     android:id="@+id/textSpeedUnit"
-                    android:text=" km/h"
+                    android:text="@string/unit_SpeedKm"
+                    android:paddingLeft="8dp"
                     android:textSize="24sp"
                     android:gravity="left"
                     />
@@ -101,7 +102,8 @@
                     />
                 <TextView
                     android:id="@+id/textConsumptionUnit"
-                    android:text=" kWh/100km/h"
+                    android:text="@string/unit_ConsumptionKm"
+                    android:paddingLeft="8dp"
                     android:textSize="12sp"
                     android:gravity="left"
                     />

@@ -138,7 +138,7 @@ public class Fields implements MessageListener {
                         +"0x654, 24, 31, 1, 1, 0, 0, SOC(b): %4ld, , , , State of Charge, 0, 0\n"
                         +"0x654, 32, 41, 1, 1, 0, 0, Time to full %4ld, min, , , Time to Full, 0, 0\n"
                         +"0x654, 42, 51, 1, 1, 0, 0, Km avail: %4ld, km, , , Available Distance, 0, 0\n"
-                        +"0x654, 52, 61, 1, 1, 0, 10, kw/100Km %2ld.%01ld, , , , , 0, 0\n"
+                        +"0x654, 52, 61, 1, 1, 0, 10, kw/100km %2ld.%01ld, , , , , 0, 0\n"
                         +"0x658, 0, 31, 1, 1, 0, 0, S# batt:%10ld, , , , Battery Serial N°, 0, 0\n"
                         +"0x658, 32, 39, 1, 1, 0, 0, Bat health %4ld, %, , , Battery Health, 0, 0\n"
                         +"0x65b, 25, 26, 1, 1, 0, 0, ECO Mode: %1ld, , , , Economy Mode, 0, 0\n"
@@ -423,7 +423,7 @@ public class Fields implements MessageListener {
                         +"0x654, 2, 2, 1, 1, 0, 0, Plugin state, , , , Plugin State, 0, 0, 500\n"
                         +"0x654, 32, 41, 1, 1, 0, 0, Time to full %4ld, min, , , Time to Full, 0, 0, 500\n"
                         +"0x654, 42, 51, 1, 1, 0, 0, Km avail: %4ld, km, , , Available Distance, 0, 0, 500\n"
-                        +"0x654, 52, 61, 1, 1, 0, 10, kw/100Km %2ld.%01ld, , , , , 0, 0, 500\n"
+                        +"0x654, 52, 61, 1, 1, 0, 10, kw/100km %2ld.%01ld, , , , , 0, 0, 500\n"
                         +"0x658, 0, 31, 1, 1, 0, 0, S# batt:%10ld, , , , Battery Serial N°, 0, 0, 3000\n"
                         +"0x658, 32, 39, 1, 1, 0, 0, Bat health %4ld, %, , , Battery Health, 0, 0, 3000\n"
                         +"0x65b, 25, 26, 1, 1, 0, 0, ECO Mode: %1ld, , , , Economy Mode, 0, 0, 100\n"
@@ -618,26 +618,42 @@ public class Fields implements MessageListener {
                         +"0x77e, 128, 143, 1, 1, 0, 0, PEBSW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x772, 128, 143, 1, 1, 0, 0, AIBAG SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x76d, 128, 143, 1, 1, 0, 0, USM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
-                        +"0x763, 128, 143, 1, 1, 0, 0, CLUSTER SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+
+                        +"0x763, 128, 143, 1, 1, 0, 0, CLUSTER SW ver, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x763, 112, 127, 1, 1, 0, 0, CLUSTER PG ver, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x763,   0,   7, 1, 1, 0, 0, CLUSTER reset,  , 0x14ffff, 0x54, , 0, 0, 0\n"
+                        +"0x763,   0,   0, 1, 1, 0, 0, CLUSTER DTC,    , 0x19023b, 0x5902ff, , 0, 0, 0\n"
+
                         +"0x762, 128, 143, 1, 1, 0, 0, EPS SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x760, 128, 143, 1, 1, 0, 0, ABS SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x7bc, 128, 143, 1, 1, 0, 0, UBP SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x765, 128, 143, 1, 1, 0, 0, BCM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+
                         +"0x764, 128, 143, 1, 1, 0, 0, CLIM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
-                        +"0x764,   0,   7, 1, 1, 0, 0, CLIM reset, , 0x14ffff, 0x54, , 0, 0, 0\n"
-                        +"0x764,   0,   0, 1, 1, 0, 0, CLIM DTC, , 0x19023b, 0x5902ff, , 0, 0, 0\n"
-                        +"0x76e, 128, 143, 1, 1, 0, 0, UPA SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x764, 112, 127, 1, 1, 0, 0, CLIM PG version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x764,   0,   7, 1, 1, 0, 0, CLIM reset,      , 0x14ffff, 0x54, , 0, 0, 0\n"
+                        +"0x764,   0,   0, 1, 1, 0, 0, CLIM DTC,        , 0x19023b, 0x5902ff, , 0, 0, 0\n"
+
+                        +"0x76e, 128, 143, 1, 1, 0, 0, UPA SW version,  , 0x2180, 0x6180, , 0, 0, 0\n"
+
                         +"0x793, 128, 143, 1, 1, 0, 0, BCB SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x793,   0,   0, 1, 1, 0, 0, BCB Reset,      , 0x14ffffff, 0x54, , 0, 0, 0\n"
+                        +"0x793,   0,   0, 1, 1, 0, 0, BCB DTC,        , 0x19023b, 0x5902ff, , 0, 0, 0\n"
+
                         +"0x7b6, 128, 143, 1, 1, 0, 0, LBC2 SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+
                         +"0x722, 128, 143, 1, 1, 0, 0, LINSCH SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
 
-                        +"0x764, 112, 127, 1, 1, 0, 0, CLIM PG version, , 0x2180, 0x6180, , 0, 0, 0\n"
-                        +"0x793,   0,   0, 1, 1, 0, 0, BCB DTC, , 0x19023b, 0x5902ff, , 0, 0, 0\n"
-                        +"0x793,   0,   0, 1, 1, 0, 0, BCB Reset, , 0x14ffffff, 0x54, , 0, 0, 0\n"
 
                 ;
 
-        fieldDef+=readFromLocalFile();
+        try {
+            fieldDef += readFromLocalFile();
+        }
+        catch(Exception e)
+        {
+            // ignore
+        }
 
         String[] lines = fieldDef.split("\n");
         for(int i=0; i<lines.length; i++)
@@ -662,7 +678,7 @@ public class Fields implements MessageListener {
                         ),
                         Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
                         tokens[FIELD_FORMAT],
-                        tokens[FIELD_UNIT],
+                        tokens[FIELD_UNIT].trim(),
                         tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
                         tokens[FIELD_RESPONSE_ID].trim().replace("0x", ""),
                         tokens[FIELD_DESCRIPTION],

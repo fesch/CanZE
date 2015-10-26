@@ -14,6 +14,7 @@ import lu.fisch.awt.Graphics;
 import lu.fisch.awt.Rectangle;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.aligner.Space;
+import lu.fisch.canze.classes.ColorRanges;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 import lu.fisch.canze.interfaces.FieldListener;
 
@@ -37,6 +38,7 @@ public abstract class Drawable implements Space, FieldListener {
     protected DrawSurfaceInterface drawSurface = null;
 
     protected ArrayList<String> sids = new ArrayList<>();
+    protected ColorRanges colorRanges = new ColorRanges();
 
 
     public Drawable()
@@ -211,5 +213,9 @@ public abstract class Drawable implements Space, FieldListener {
 
     public ArrayList<String> getSids() {
         return sids;
+    }
+
+    public void setColorRanges(ColorRanges colorRanges) {
+        this.colorRanges = colorRanges;
     }
 }

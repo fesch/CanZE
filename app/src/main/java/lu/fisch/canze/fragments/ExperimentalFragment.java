@@ -47,6 +47,7 @@ public class ExperimentalFragment extends Fragment {
             public void onClick(View v) {
 
                 if(!MainActivity.getInstance().isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), TachoActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
@@ -61,6 +62,7 @@ public class ExperimentalFragment extends Fragment {
             public void onClick(View v) {
 
                 if(!MainActivity.getInstance().isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), BatteryTempActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
@@ -73,6 +75,7 @@ public class ExperimentalFragment extends Fragment {
             public void onClick(View v) {
 
                 if(!MainActivity.getInstance().isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), TemperatureActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
@@ -87,6 +90,7 @@ public class ExperimentalFragment extends Fragment {
             public void onClick(View v) {
 
                 if(!MainActivity.getInstance().isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), LeafSpyActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
@@ -101,6 +105,7 @@ public class ExperimentalFragment extends Fragment {
             public void onClick(View v) {
 
                 if(!MainActivity.getInstance().isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), StatsActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
@@ -112,6 +117,7 @@ public class ExperimentalFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(!MainActivity.getInstance().isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), HarmActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
@@ -123,6 +129,7 @@ public class ExperimentalFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(!MainActivity.getInstance().isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), ElmTestActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
@@ -134,6 +141,7 @@ public class ExperimentalFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(!MainActivity.getInstance().isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), AlexandreActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
@@ -145,6 +153,7 @@ public class ExperimentalFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(!MainActivity.getInstance().isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), DtcActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);

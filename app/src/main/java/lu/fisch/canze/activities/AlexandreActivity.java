@@ -6,24 +6,22 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.support.v4.view.PagerTabStrip;
 
 
 import java.util.ArrayList;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.fragments.FZPage0;
-import lu.fisch.canze.fragments.FZPage1;
-import lu.fisch.canze.fragments.FZPage2;
-import lu.fisch.canze.fragments.FZPagerAdapter;
+import lu.fisch.canze.fragments.AlexGeneralFragment;
+import lu.fisch.canze.fragments.AlexPagerAdapter;
+import lu.fisch.canze.fragments.SlidingTabLayout;
 import lu.fisch.canze.interfaces.FieldListener;
 
 /**
  * Created by jeroen on 10-10-15.
  */
-public class AlexandreActivity  extends CanzeActivity implements FieldListener,ActionBar.TabListener {
+public class AlexandreActivity  extends CanzeActivity implements FieldListener {
 
 
     public static final String SOC                     = "42e.0";
@@ -42,14 +40,14 @@ public class AlexandreActivity  extends CanzeActivity implements FieldListener,A
      * may be best to switch to a
      * android.support.v4.app.FragmentStatePagerAdapter.
      */
-    FZPagerAdapter mSectionsPagerAdapter;
+    AlexPagerAdapter mSectionsPagerAdapter;
 
     /**
      * The ViewPager that will host the section contents.
      */
     ViewPager mViewPager;
 
-
+    SlidingTabLayout mSlidingTabLayout;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,49 +62,25 @@ public class AlexandreActivity  extends CanzeActivity implements FieldListener,A
 
         instance = this;
 
-        // Set up the action bar.
-        final ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
         // Create the adapter that will return a fragment for each of the three
         // primary sections
         // of the app.
-        mSectionsPagerAdapter = new FZPagerAdapter(this, this, getSupportFragmentManager());
+        mSectionsPagerAdapter = new AlexPagerAdapter(this, this, getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.FZpager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        // When swiping between different sections, select the corresponding
-        // tab. We can also use ActionBar.Tab#select() to do this if we have
-        // a reference to the Tab.
-        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                actionBar.setSelectedNavigationItem(position);
-            }
-        });
+        // Give the SlidingTabLayout the ViewPager, this must be done AFTER the ViewPager has had
+        // it's PagerAdapter set.
 
-        // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-            // Create a tab with text corresponding to the page title defined by
-            // the adapter. Also specify this Activity object, which implements
-            // the TabListener interface, as the callback (listener) for when
-            // this tab is selected.
+        mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+        mSlidingTabLayout.setDistributeEvenly(true);
+        mSlidingTabLayout.setViewPager(mViewPager);
 
 
-
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText(mSectionsPagerAdapter.getPageTitle(i))
-                            .setTabListener(this));
-
-
-        }
-
-        //By default choose the second page (index 1)
-        actionBar.setSelectedNavigationItem(1);
-
+        //choose the middle page
+        mViewPager.setCurrentItem(1);
 
 
 
@@ -176,6 +150,7 @@ public class AlexandreActivity  extends CanzeActivity implements FieldListener,A
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -194,41 +169,27 @@ public class AlexandreActivity  extends CanzeActivity implements FieldListener,A
     }
 
 
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        // When the given tab is selected, switch to the corresponding page in
-        // the ViewPager.
-        mViewPager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-    }
 
 
-    //actualizar páginas
+    //update fragments
     public void actualizarpaginas(long[] arrayd) {
 
         try {
 
-            FZPage1 fragmentoy1 = (FZPage1) mSectionsPagerAdapter.getRegisteredFragment(1);
+            AlexGeneralFragment fragmentoy1 = (AlexGeneralFragment) mSectionsPagerAdapter.getRegisteredFragment(1);
 
             if (fragmentoy1 != null) {
                 fragmentoy1.actpag1(arrayd);
             }
 
             /*
-            FZPage2 fragmentoy2 = (FZPage2) mSectionsPagerAdapter.getRegisteredFragment(2);
+            AlexDrivingFrament fragmentoy2 = (AlexDrivingFrament) mSectionsPagerAdapter.getRegisteredFragment(2);
 
             if (fragmentoy2 != null) {
                 fragmentoy2.actpag2(arrayd);
             }
 
-            FZPage0 fragmentoy0 = (FZPage0) mSectionsPagerAdapter.getRegisteredFragment(0);
+            AlexBatteryFragment fragmentoy0 = (AlexBatteryFragment) mSectionsPagerAdapter.getRegisteredFragment(0);
 
             if (fragmentoy0 != null) {
                 fragmentoy0.actpag0(arrayd);

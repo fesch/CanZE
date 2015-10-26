@@ -6,15 +6,39 @@
     >
 
     <item
-        android:id="@+id/action_findEcu"
+        android:id="@+id/action_findAllEcus"
         android:orderInCategory="100"
-        android:title="Find ECUs"
+        android:title="Find all ECUs"
         android:visible="true"
         />
     <item
-        android:id="@+id/action_findBcb"
+        android:id="@+id/action_queryBcb"
         android:orderInCategory="100"
-        android:title="Find BCB"
+        android:title="Query BCB"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryClima"
+        android:orderInCategory="100"
+        android:title="Query CLIM"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryCluster"
+        android:orderInCategory="100"
+        android:title="Query Cluster"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryBroadcast"
+        android:orderInCategory="100"
+        android:title="Query Broadcast"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_query7f1"
+        android:orderInCategory="100"
+        android:title="Query 7f1"
         android:visible="true"
         />
     <item
