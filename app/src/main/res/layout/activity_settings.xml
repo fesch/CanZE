@@ -29,7 +29,7 @@
             android:paddingRight="0px"
             android:paddingTop="0px"
             android:paddingBottom="0px"
-        >
+            >
 
             <TextView
                 android:layout_width="fill_parent"
@@ -69,114 +69,117 @@
                         android:paddingTop="0px"
                         android:paddingBottom="0px"
                         >
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Bluetooth device"
-                    android:id="@+id/textViewBluetoothDevice" />
-                <Spinner
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:id="@+id/bluetoothDeviceList" />
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Options"
-        android:id="@+id/textViewOptions" />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Safe Driving Mode"
-        android:id="@+id/safeDrivingMode" />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Miles"
-        android:id="@+id/milesMode" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Log to sdcard1"
-        android:id="@+id/exportMode" />
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Log level"
-                    android:id="@+id/textToastLevel" />
-                <Spinner
-                    android:layout_width="fill_parent"
-                    android:layout_height="25dp"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:id="@+id/toastLevel" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20px"
-                android:paddingRight="0px"
-                android:paddingTop="0px"
-                android:paddingBottom="0px"
-                >
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Bluetooth device"
+                            android:id="@+id/textViewBluetoothDevice" />
+                        <Spinner
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:id="@+id/bluetoothDeviceList" />
 
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Options"
-                    android:id="@+id/textViewOptions" />
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Safe Driving Mode"
-                    android:id="@+id/safeDrivingMode" />
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Miles"
-                    android:id="@+id/milesMode" />
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Remote Device"
+                            android:id="@+id/textViewDevice" />
+                        <Spinner
+                            android:layout_width="fill_parent"
+                            android:layout_height="25dp"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:id="@+id/remoteDevice" />
 
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Log to sdcard1"
-                    android:id="@+id/exportMode" />
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Car"
+                            android:id="@+id/textViewCar" />
+                        <Spinner
+                            android:layout_width="fill_parent"
+                            android:layout_height="25dp"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:id="@+id/car" />
 
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Log level"
+                            android:id="@+id/textToastLevel" />
+                        <Spinner
+                            android:layout_width="fill_parent"
+                            android:layout_height="25dp"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:id="@+id/toastLevel" />
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Actions"
-                    android:id="@+id/textViewActions" />
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-                    <Button
-                        android:layout_width="wrap_content"
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Clear cached data"
-                        android:id="@+id/buttonClearSettings" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-        </TableRow>
-    </TableLayout>
+                        android:paddingLeft="20px"
+                        android:paddingRight="0px"
+                        android:paddingTop="0px"
+                        android:paddingBottom="0px"
+                        >
 
 
-    </LinearLayout>
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Options"
+                            android:id="@+id/textViewOptions" />
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Safe Driving Mode"
+                            android:id="@+id/safeDrivingMode" />
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Miles"
+                            android:id="@+id/milesMode" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Log to sdcard1"
+                            android:id="@+id/dataexportMode" />
+
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Actions"
+                            android:id="@+id/textViewActions" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Clear cached data"
+                                android:id="@+id/buttonClearSettings" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+
+
+        </LinearLayout>
 
     </ScrollView>
 
