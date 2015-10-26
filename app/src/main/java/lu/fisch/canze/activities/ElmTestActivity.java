@@ -204,19 +204,19 @@ public class ElmTestActivity extends CanzeActivity {
         sendNoWait("atfcsm1\r");
         result = getResponseUntil(400, '>');
         // appendResult("atfcsm1:" + filter + ":" + result + "\n");
+
+        sendNoWait("0210C0\r"); //wakeup
+        result = getResponseUntil(600, '>');
+        appendResult("0210C0:" + filter + ":" + result + "\n");
+
+        sendNoWait("0210C0\r"); //wakeup
+        result = getResponseUntil(600, '>');
+        appendResult("0210C0:" + filter + ":" + result + "\n");
+
+        sendNoWait("0210C0\r"); //wakeup
+        result = getResponseUntil(600, '>');
+        appendResult("0210C0:" + filter + ":" + result + "\n");
 */
-        sendNoWait("0210C0\r"); //wakeup
-        result = getResponseUntil(600, '>');
-        appendResult("0210C0:" + filter + ":" + result + "\n");
-
-        sendNoWait("0210C0\r"); //wakeup
-        result = getResponseUntil(600, '>');
-        appendResult("0210C0:" + filter + ":" + result + "\n");
-
-        sendNoWait("0210C0\r"); //wakeup
-        result = getResponseUntil(600, '>');
-        appendResult("0210C0:" + filter + ":" + result + "\n");
-
         if (field != null) {
             String backRes = MainActivity.device.requestField(field);
             if (backRes != null)
@@ -232,36 +232,36 @@ public class ElmTestActivity extends CanzeActivity {
 
         filter = Integer.toHexString(ecu);
         field = Fields.getInstance().getBySID(filter + ".5902ff.0"); // get DTC
-        if (field == null) {
-            appendResult("- field does not exist\n");
-            return;
-        }
         if (field != null) {
             String backRes = MainActivity.device.requestField(field);
             if (backRes != null) {
-                if (backRes.equals("")) {
-                    MainActivity.device.initDevice(2);
-                    appendResult("Oeps, reset\n");
-                } else {
-                    appendResult(backRes.replace('\r', '•'));
+                if (!backRes.equals("")) {
+                    appendResult("[" + backRes.replace('\r', '•') + "]\n");
                     for (int i = 6; i < backRes.length() - 7; i += 8) {
                         appendResult("\n" + backRes.substring(i, i + 6) + ":" + backRes.substring(i + 6, i + 8));
                         int bits = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
-                        if (bits != 0x50) {
-                            if ((bits & 0x01) != 0) appendResult(" testFail");
-                            if ((bits & 0x02) != 0) appendResult(" testFailThisOp");
+                        if (bits != 0x50) { // exclude 50 as it means something like "I have this DTC code, but I have never tested it"
+                            if ((bits & 0x01) != 0) appendResult(" tstFail");
+                            if ((bits & 0x02) != 0) appendResult(" tstFailThisOp");
                             if ((bits & 0x04) != 0) appendResult(" pendingDtc");
-                            if ((bits & 0x08) != 0) appendResult(" confiremedDtc");
+                            if ((bits & 0x08) != 0) appendResult(" confirmedDtc");
                             if ((bits & 0x10) != 0) appendResult(" noCplSinceClear");
-                            if ((bits & 0x20) != 0) appendResult(" failedSinceClear");
-                            if ((bits & 0x40) != 0) appendResult(" testnotCpl");
-                            if ((bits & 0x80) != 0) appendResult(" WarnLight");
+                            if ((bits & 0x20) != 0) appendResult(" faildSinceClear");
+                            if ((bits & 0x40) != 0) appendResult(" tstNtCpl");
+                            if ((bits & 0x80) != 0) appendResult(" WrnLght");
                         }
                     }
+                } else {
+                    MainActivity.device.initDevice(100);
+                    appendResult("Oeps, reset\n");
                 }
             } else
-                appendResult("null");
+                appendResult("null\n");
+        } else {
+            appendResult("- field does not exist\n");
+            return;
         }
+
     }
 
     // Ensure all UI updates are done on the UiThread
