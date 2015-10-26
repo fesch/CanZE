@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -413,7 +414,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
             // set dialog message
             alertDialogBuilder
-                    .setMessage("CanZE (“the software”) is provided as is. Use the software at your own risk. " +
+                    .setMessage(Html.fromHtml("<html>CanZE (“the software”) is provided as is. Use the software at your own risk. " +
                             "The authors make no warranties as to performance or fitness for a particular purpose, " +
                             "or any other warranties whether expressed or implied. No oral or written communication " +
                             "from or information provided by the authors shall create a warranty. Under no circumstances " +
@@ -421,7 +422,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                             "damages resulting from the use, misuse, or inability to use the software, even if the author " +
                             "has been advised of the possibility of such damages. These exclusions and limitations may not " +
                             "apply in all jurisdictions. You may have additional rights and some of these limitations may not " +
-                            "apply to you. This software is only intended for scientific usage.")
+                            "apply to you. This software is only intended for scientific usage." +
+                            "<br>" +
+                            "<br>" +
+                            "<b>By using this software you are interfering with your car and doing that with hardware and " +
+                            "software beyond your control, created by a loose team of interested amateurs in this field. Any " +
+                            "car is a possibly lethal piece of machinery and you might hurt or kill yourself or others using " +
+                            "it, or even paying attention to the displays instead of watching the road.</b></html>"))
                     .setCancelable(true)
                     .setPositiveButton("Yes, I got it!", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -498,7 +505,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             // stop the device
             device.stopAndJoin();
             // remove reference
-            device.setConnectedBluetoothThread(null,reset);
+            device.setConnectedBluetoothThread(null, reset);
         }
         // disconnect BT
         BluetoothManager.getInstance().disconnect();
@@ -540,9 +547,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     protected void onDestroy() {
         debug("MainActivity: onDestroy");
 
-        // stop the device nicely
-        device.stopAndJoin();
-        device.setConnectedBluetoothThread(null);
+        if(device!=null) {
+            // stop the device nicely
+            device.stopAndJoin();
+            device.setConnectedBluetoothThread(null);
+        }
         // disconnect the bluetooth
         BluetoothManager.getInstance().disconnect();
 
