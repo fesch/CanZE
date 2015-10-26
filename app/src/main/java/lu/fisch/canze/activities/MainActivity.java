@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
     private Fragment actualFragment;
 
-    public static boolean exportMode = false;
+    public static boolean dataexportMode = false;
 
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -158,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         deviceName = settings.getString("device", "Arduino");
         safeDrivingMode = settings.getBoolean("optSafe", true);
         milesMode = settings.getBoolean("optMiles", false);
+        dataexportMode = settings.getBoolean("optDataExport", false);
         toastLevel = settings.getInt("optToast", 1);
 
         String car = settings.getString("car", "Any");

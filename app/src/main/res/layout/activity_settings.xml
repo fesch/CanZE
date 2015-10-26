@@ -81,29 +81,28 @@
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:id="@+id/bluetoothDeviceList" />
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Remote Device"
-                    android:id="@+id/textViewDevice" />
-                <Spinner
-                    android:layout_width="fill_parent"
-                    android:layout_height="25dp"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:id="@+id/remoteDevice" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Options"
+        android:id="@+id/textViewOptions" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Safe Driving Mode"
+        android:id="@+id/safeDrivingMode" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Miles"
+        android:id="@+id/milesMode" />
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Car"
-                    android:id="@+id/textViewCar" />
-                <Spinner
-                    android:layout_width="fill_parent"
-                    android:layout_height="25dp"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:id="@+id/car" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log to sdcard1"
+        android:id="@+id/exportMode" />
 
                 <TextView
                     android:layout_width="fill_parent"

@@ -1,5 +1,6 @@
 package lu.fisch.canze.activities;
 
+import android.os.Environment;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -33,6 +34,16 @@ import lu.fisch.canze.actors.Fields;
 public class SettingsActivity extends AppCompatActivity {
 
     public static final int YES_NO_CALL = 13;
+
+    // Checks if external storage is available for read and write
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +164,45 @@ public class SettingsActivity extends AppCompatActivity {
         final CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
         miles.setChecked(MainActivity.milesMode);
 
+        final CheckBox dataexport = (CheckBox) findViewById(R.id.dataexportMode);
+        dataexport.setChecked(MainActivity.dataexportMode);
+        dataexport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // add code here to check external SDcard is avail, writeable and has sufficient space
+                final boolean sdcardCheck = isExternalStorageWritable(); // check for space later
+                if (!sdcardCheck) {
+                    final Context context = SettingsActivity.this;
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                    // set title
+                    alertDialogBuilder.setTitle("I am sorry...");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage("External SDcard not available " +
+                                    "or not writeable " +
+                                    "or has not sufficient space left to log data\n\n" +
+                                    "Data export cannot be enabled")
+                            .setCancelable(true)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // if this button is clicked, close
+                                    // current activity
+                                    dataexport.setChecked(false);
+                                    dialog.cancel();
+                                }
+                            });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
+                }
+            }
+        });
+
         // display build version
         TextView tv = (TextView) findViewById(R.id.build);
         try{
@@ -218,6 +268,7 @@ public class SettingsActivity extends AppCompatActivity {
             Spinner car = (Spinner) findViewById(R.id.car);
             CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
             CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
+            CheckBox dataexport = (CheckBox) findViewById(R.id.dataexportMode);
             Spinner toastLevel = (Spinner) findViewById(R.id.toastLevel);
             if(deviceList.getSelectedItem()!=null) {
                 MainActivity.debug("Settings.deviceAddress = " + deviceList.getSelectedItem().toString().split("\n")[1].trim());
@@ -228,6 +279,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString("car", car.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putBoolean("optSafe", safe.isChecked());
                 editor.putBoolean("optMiles", miles.isChecked());
+                editor.putBoolean("optDataExport", dataexport.isChecked());
                 editor.putInt("optToast", toastLevel.getSelectedItemPosition());
             }
             editor.commit();
