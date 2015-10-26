@@ -104,7 +104,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
             try
             {
                 // create configured widget
-                String[] widgets = {"Tacho","Kompass", "Bar","BatteryBar","Plotter","Label","Timeplot"};
+                String[] widgets = {"Tacho","Kompass", "Bar","BatteryBar","Plotter","Label","Timeplot","BarGraph"};
                 TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.WidgetView, 0, 0);
                 int widgetIndex = attributes.getInt(R.styleable.WidgetView_widget, 0);
                 if(widgetIndex<widgets.length)
