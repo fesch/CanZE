@@ -214,6 +214,7 @@
             />
             <TextView
                 android:id="@+id/textDebug"
+                android:paddingLeft="8dp"
                 android:text="@string/default_debug"
             />
         </TableRow>

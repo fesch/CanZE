@@ -93,6 +93,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
 
         subscribedFields = new ArrayList<>();
 
+        addListener("793.6180.128"); // BCB put here as it seems to stop reponding very easily
         addListener("7ec.6180.128"); // SCH
         addListener("7da.6180.128"); // TCU
         addListener("7bb.6180.128"); // LBC
@@ -106,7 +107,6 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
         addListener("765.6180.128"); // BCM
         addListener("764.6180.128"); // CLIM
         addListener("76e.6180.128"); // UPA not for Zoe
-        addListener("793.6180.128"); // BCB not for Fluence or Zoe
         addListener("7b6.6180.128"); // LBC2
         addListener("722.6180.128"); // LINSCH not for FLuence or Zoe
     }
