@@ -28,6 +28,15 @@ public abstract class Device {
      * have to be read and updated.
      */
     protected ArrayList<Field> fields = new ArrayList<>();
+    /**
+     * Some fields will be custom, activity based
+     */
+    protected ArrayList<Field> customActivityFields = new ArrayList<>();
+    /**
+     * Some other fields will have to be queried anyway,
+     * such as e.g. the speed --> safe mode driving
+     */
+    protected ArrayList<Field> applicationFields = new ArrayList<>();
 
     /**
      * The connected Bluetooth thread is being used to read and write
@@ -135,13 +144,16 @@ public abstract class Device {
     }
 
     /**
-     * This method clears the list of monitored fields.
+     * This method clears the list of monitored fields,
+     * but only the custom ones ...
      */
     public void clearFields()
     {
         MainActivity.debug("Device: clearFields");
         synchronized (fields) {
+            customActivityFields.clear();
             fields.clear();
+            fields.addAll(applicationFields);
             //MainActivity.debug("cleared");
             // launch the filter clearing asynchronously
             (new Thread(new Runnable() {
@@ -183,6 +195,25 @@ public abstract class Device {
             if (!containsField(field)) {
                 //MainActivity.debug("reg: "+field.getSID());
                 fields.add(field);
+                customActivityFields.add(field);
+                // launch the field registration asynchronously
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        registerFilter(field.getId());
+                    }
+                })).start();
+            }
+        }
+    }
+
+    public void addApplicationField(final Field field)
+    {
+        synchronized (fields) {
+            if (!containsField(field)) {
+                //MainActivity.debug("reg: "+field.getSID());
+                fields.add(field);
+                applicationFields.add(field);
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
                     @Override
@@ -202,7 +233,8 @@ public abstract class Device {
     public void removeField(final Field field)
     {
         synchronized (fields) {
-            if(fields.remove(field))
+            // only remove from the custom fields
+            if(customActivityFields.remove(field))
             {
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
@@ -249,6 +281,9 @@ public abstract class Device {
         }
     }
 
+    /**
+     * Stop the poller thread and wait for it to be finished
+     */
     public void stopAndJoin()
     {
         MainActivity.debug("Device: stopping poller");
@@ -256,9 +291,11 @@ public abstract class Device {
         MainActivity.debug("Device: waiting for poller to be stopped");
         try {
             if(pollerThread!=null) {
+                MainActivity.debug("Device: joining thread");
                 pollerThread.join();
                 pollerThread=null;
             }
+            else MainActivity.debug("Device: >>>>>>> pollerThread is NULL!!!");
         }
         catch(Exception e)
         {
@@ -275,13 +312,30 @@ public abstract class Device {
         this.pollerActive = pollerActive;
     }
 
+    /**
+     * Request a field from the device depending on the
+     * type of field.
+     * @param field     the field to be requested
+     * @return
+     */
     public String requestField(Field field)
     {
         if(field.isIsoTp()) return requestIsoTpFrame(field);
         else return requestFreeFrame(field);
     }
 
+    /**
+     * Request a free-frame type field from the device
+     * @param field
+     * @return
+     */
     public abstract String requestFreeFrame(Field field);
+
+    /**
+     * Request an ISO-TP frame type from the device
+     * @param field
+     * @return
+     */
     public abstract String requestIsoTpFrame(Field field);
 
     public abstract boolean initDevice(int toughness);

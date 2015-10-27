@@ -200,9 +200,18 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                 device = null;
                 break;
         }
-        if(device!=null)
+
+        if(device!=null) {
+            // initialise the connection
             device.initConnection();
 
+            // register application wide fields
+
+            // speed
+            Field field = fields.getBySID("5d7.0");
+            field.addListener(MainActivity.getInstance());
+            device.addApplicationField(field);
+        }
     }
 
     private ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)
@@ -353,8 +362,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
                 // register fields this activity needs to get
                 // but only if this activity is visible
+                /* no longer needed as these fields are now application bound
                 if (visible)
                     registerFields();
+                */
 
                 device.registerFilters();
 
@@ -491,12 +502,14 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     @Override
     public void onPause() {
         debug("MainActivity: onPause");
+        debug("MainActivity: onPause > leaveBluetoothOn = "+leaveBluetoothOn);
         visible=false;
 
         if(!leaveBluetoothOn)
         {
             if(device!=null)
                 device.clearFields();
+            debug("MainActivity: stopping BT");
             stopBluetooth();
         }
 
@@ -511,17 +524,25 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     {
         if(device!=null) {
             // stop the device
+            debug("MainActivity: stopBluetooth > stopAndJoin");
             device.stopAndJoin();
             // remove reference
+            debug("MainActivity: stopBluetooth > nulling out setConnectedBluetoothThread");
             device.setConnectedBluetoothThread(null, reset);
         }
         // disconnect BT
+        debug("MainActivity: stopBluetooth > BT disconnect");
         BluetoothManager.getInstance().disconnect();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
+        MainActivity.debug("MainActivity: onActivityResult");
+
+        // this must be set in any case
+        leaveBluetoothOn=false;
+
         if(requestCode==SETTINGS_ACTIVITY)
         {
             // load settings
@@ -529,10 +550,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         }
         else if(requestCode==LEAVE_BLUETOOTH_ON)
         {
+            MainActivity.debug("MainActivity: onActivityResult > "+LEAVE_BLUETOOTH_ON);
             returnFromWidget=true;
-            leaveBluetoothOn=false;
             // register fields this activity needs
+            /*
             registerFields();
+             */
         }
         else super.onActivityResult(requestCode, resultCode, data);
     }
@@ -625,6 +648,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             return super.onOptionsItemSelected(item);
     }
 
+    /*
     public static void registerFields()
     {
         debug("MainActivity: registerFields");
@@ -641,6 +665,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             }
         }
     }
+    */
 
     @Override
     public void onFieldUpdateEvent(Field field) {

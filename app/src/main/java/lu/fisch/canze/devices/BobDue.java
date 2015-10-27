@@ -69,6 +69,7 @@ public class BobDue extends Device {
                                 queryNextFilter();
                             }
                         }
+                        pollerThread=null;
                     }
                 };
                 pollerThread = new Thread(r);

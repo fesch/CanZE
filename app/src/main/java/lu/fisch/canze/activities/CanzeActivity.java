@@ -41,7 +41,8 @@ public class CanzeActivity extends AppCompatActivity {
         MainActivity.debug("CanzeActivity: onCreate");
         if(!widgetView) {
             // register all fields
-            MainActivity.registerFields();
+            // --> not needed as these frames are now application bound and will not be cleared anyway
+            // MainActivity.registerFields();
             // initialise the widgets (if any present)
             // --> not needed as onResume will call it!
             //initWidgets();
@@ -97,7 +98,7 @@ public class CanzeActivity extends AppCompatActivity {
                 MainActivity.debug("CanzeActivity: onDestroy (finishing)");
                 // clear filters
                 MainActivity.device.clearFields();
-                MainActivity.registerFields();
+                //MainActivity.registerFields();
             }
         }
         super.onDestroy();
