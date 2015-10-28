@@ -151,6 +151,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
     public void loadSettings()
     {
+        debug("MainActivity: loadSettings");
+
         SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
         bluetoothDeviceAddress =settings.getString("deviceAddress", null);
         bluetoothDeviceName =settings.getString("deviceName", null);
@@ -539,6 +541,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         MainActivity.debug("MainActivity: onActivityResult");
+        MainActivity.debug("MainActivity: onActivityResult > requestCode = "+requestCode);
+        MainActivity.debug("MainActivity: onActivityResult > resultCode = "+resultCode);
 
         // this must be set in any case
         leaveBluetoothOn=false;
