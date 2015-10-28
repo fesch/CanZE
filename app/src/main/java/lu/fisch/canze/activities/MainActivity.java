@@ -208,11 +208,23 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             device.initConnection();
 
             // register application wide fields
+            registerApplicationFields();
+        }
+    }
 
+    private void registerApplicationFields() {
+        if (safeDrivingMode) {
             // speed
             Field field = fields.getBySID("5d7.0");
             field.addListener(MainActivity.getInstance());
-            device.addApplicationField(field);
+            if(device!=null)
+                device.addApplicationField(field);
+        } else
+        {
+            Field field = fields.getBySID("5d7.0");
+            field.removeListener(MainActivity.getInstance());
+            if(device!=null)
+                device.removeApplicationField(field);
         }
     }
 
@@ -612,7 +624,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         // start the settings activity
         if (id == R.id.action_settings) {
 
-            if(isSafe()) {
+            if(isSafe())
+            {
                 // run a toast
                 Toast.makeText(MainActivity.this, "Stopping Bluetooth. Settings are being loaded. Please wait ....", Toast.LENGTH_SHORT).show();
 

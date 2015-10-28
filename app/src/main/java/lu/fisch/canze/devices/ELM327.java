@@ -42,8 +42,7 @@ public class ELM327 extends Device {
     // someThingWrong can be reset only by calling initElm, but with toughness 100 this is the only thing it does :-)
     boolean someThingWrong = false;
 
-    @Override
-    public void initConnection() {
+    public void initConnection_old() {
         // if the reading thread is running: stop it, because we don't need it
         if(connectedBluetoothThread!=null && connectedBluetoothThread.isAlive()) {
             connectedBluetoothThread.cleanStop();
@@ -105,12 +104,6 @@ public class ELM327 extends Device {
             pollerThread = new Thread(r);
             pollerThread.start();
         }
-    }
-
-    @Override
-    public void join() throws InterruptedException {
-        if(pollerThread!=null)
-            pollerThread.join();
     }
 
     @Override
@@ -564,7 +557,7 @@ public class ELM327 extends Device {
     }
 
     // query the device for the next filter
-    private void queryNextFilter()
+    public void queryNextFilter_old()
     {
         //MainActivity.debug("queryNextFilter: "+fieldIndex);
         try {
@@ -594,15 +587,17 @@ public class ELM327 extends Device {
                     String data = "";
                     if (field.isIsoTp()) {
                         data = requestIsoTpFrame(field);
-                        if (!someThingWrong && !data.equals("")) {
-                            data = field.getHexId() + "," + data.trim() + "," + field.getResponseId() + SEPARATOR;
+                        if (!someThingWrong && data!=null) //!data.equals(""))
+                        {
+                            //data = field.getHexId() + "," + data.trim() + "," + field.getResponseId() + SEPARATOR;
                             process(Utils.toIntArray(data.getBytes()));
                         }
 
                     } else {
                         data = requestFreeFrame(field);
-                        if (!someThingWrong && !data.equals("")) {
-                            data = field.getHexId() + "," + data.trim() + SEPARATOR;
+                        if (!someThingWrong && data!=null) //!data.equals(""))
+                        {
+                            //data = field.getHexId() + "," + data.trim() + SEPARATOR;
                             process(Utils.toIntArray(data.getBytes()));
                         }
                     }
@@ -679,7 +674,13 @@ public class ELM327 extends Device {
         // if cra does influence ISO-TP requests, an small optimization might be to only sending an atar when switching from free
         // frames to isotp frames.
         if (!initCommandExpectOk("atar")) someThingWrong |= true;
-        return hexData;
+        String returnData = hexData;
+
+        String data = field.getHexId() + "," + returnData.trim() + SEPARATOR;
+        if(returnData.trim().equals(""))
+            return null;
+        else
+            return data;
     }
 
     @Override
@@ -760,6 +761,12 @@ public class ELM327 extends Device {
         flushWithTimeout(400, '>');
         len *= 2;
         if (hexData.length() <= len) return hexData + "\r";
-        return hexData.substring(0, len) + "\r";
+        String returnData = hexData.substring(0, len) + "\r";
+
+        String data = field.getHexId() + "," + returnData.trim() + "," + field.getResponseId() + SEPARATOR;
+        if(returnData.trim().equals(""))
+            return null;
+        else
+            return data;
     }
 }

@@ -515,7 +515,7 @@ public class ELM327Experimental extends Device {
     }
 
     // query the device for the next filter
-    private void queryNextFilter()
+    public void queryNextFilter()
     {
         if(fields.size() == 0) return;
 

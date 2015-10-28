@@ -15,6 +15,8 @@ import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 public class Plotter extends Drawable {
 
     protected ArrayList<Double> values = new ArrayList<>();
+    protected ArrayList<Double> minValues = new ArrayList<>();
+    protected ArrayList<Double> maxValues = new ArrayList<>();
     protected ArrayList<String> sids = new ArrayList<>();
 
     public Plotter() {
@@ -40,11 +42,15 @@ public class Plotter extends Drawable {
     public void addValue(double value)
     {
         values.add(value);
+        minValues.add(value);
+        maxValues.add(value);
     }
 
     public void setValue(int index, double value)
     {
         values.set(index, value);
+        if(value<minValues.get(index)) minValues.set(index,value);
+        if(value>maxValues.get(index)) maxValues.set(index,value);
     }
 
     @Override
@@ -121,6 +127,58 @@ public class Plotter extends Drawable {
 
         // draw the graph
         g.drawRect(x+width-barWidth, y, barWidth, height);
+        // min & max
+        if(minValues.size()>0)
+        {
+            double w = (double) barWidth/minValues.size();
+            double h = (double) getHeight()/(getMax()-getMin()+1);
+
+            double lastX = Double.NaN;
+            double lastY = Double.NaN;
+            g.setColor(Color.GREEN_DARK);
+            for(int i=0; i<values.size(); i++)
+            {
+                double mx = w/2+i*w;
+                double my = getHeight()-(minValues.get(i)-getMin())*h;
+                int rayon = 2;
+                g.fillOval(getX()+getWidth()-barWidth+(int)mx-rayon,getY()+(int)my-rayon,2*rayon+1,2*rayon+1);
+                if(i>0)
+                {
+                    g.drawLine(getX()+getWidth()-barWidth+(int)lastX,
+                            getY()+(int)lastY,
+                            getX()+getWidth()-barWidth+(int)mx,
+                            getY()+(int)my);
+                }
+                lastX=mx;
+                lastY=my;
+            }
+        }
+        if(maxValues.size()>0)
+        {
+            double w = (double) barWidth/maxValues.size();
+            double h = (double) getHeight()/(getMax()-getMin()+1);
+
+            double lastX = Double.NaN;
+            double lastY = Double.NaN;
+            g.setColor(Color.BLUE);
+            for(int i=0; i<values.size(); i++)
+            {
+                double mx = w/2+i*w;
+                double my = getHeight()-(maxValues.get(i)-getMin())*h;
+                int rayon = 2;
+                g.fillOval(getX()+getWidth()-barWidth+(int)mx-rayon,getY()+(int)my-rayon,2*rayon+1,2*rayon+1);
+                if(i>0)
+                {
+                    g.drawLine(getX()+getWidth()-barWidth+(int)lastX,
+                            getY()+(int)lastY,
+                            getX()+getWidth()-barWidth+(int)mx,
+                            getY()+(int)my);
+                }
+                lastX=mx;
+                lastY=my;
+            }
+        }
+        // values
         if(values.size()>0)
         {
             double w = (double) barWidth/values.size();

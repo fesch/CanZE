@@ -27,8 +27,7 @@ public class BobDue extends Device {
     private int fieldIndex = 0;
     // the thread that polls the data to the stack
 
-    @Override
-    public void initConnection() {
+    public void initConnection_old() {
         MainActivity.debug("BobDue: initConnection");
         // if the reading thread is running: stop it, because we don't need it
         if(connectedBluetoothThread!=null && connectedBluetoothThread.isAlive()) {
@@ -211,7 +210,7 @@ public class BobDue extends Device {
 
 
     // query the device for the next filter
-    private void queryNextFilter()
+    public void queryNextFilter_old()
     {
         if (fields.size() > 0) {
             try {
