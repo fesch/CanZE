@@ -37,10 +37,7 @@ public class ELM327 extends Device {
     private int fieldIndex = 0;
     private int lastId = 0;
 
-    // someThingWrong will be set when something goes wrong, usually a timeout.
-    // most command routines just won't run when someThingWrong is set
-    // someThingWrong can be reset only by calling initElm, but with toughness 100 this is the only thing it does :-)
-    boolean someThingWrong = false;
+
 
     public void initConnection_old() {
         // if the reading thread is running: stop it, because we don't need it
@@ -154,7 +151,7 @@ public class ELM327 extends Device {
         return result;
     }
 
-    private boolean initDevice (int toughness, int retries) {
+    protected boolean initDevice (int toughness, int retries) {
         boolean ret;
         if (ret = initDevice(toughness)) return ret;
         while (retries-- > 0) {

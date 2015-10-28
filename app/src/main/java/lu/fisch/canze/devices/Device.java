@@ -55,7 +55,12 @@ public abstract class Device {
     protected boolean pollerActive = false;
     protected Thread pollerThread;
 
-
+    /**
+     * someThingWrong will be set when something goes wrong, usually a timeout.
+     * most command routines just won't run when someThingWrong is set
+     * someThingWrong can be reset only by calling initElm, but with toughness 100 this is the only thing it does :-)
+     */
+    boolean someThingWrong = false;
 
     /* ----------------------------------------------------------------
      * Abstract methods (to be implemented in each "real" device)
@@ -155,7 +160,7 @@ public abstract class Device {
     }
 
     // query the device for the next filter
-    public void queryNextFilter()
+    protected void queryNextFilter()
     {
         if (fields.size() > 0)
         {
@@ -188,12 +193,14 @@ public abstract class Device {
                         // get the data
                         String data = requestField(field);
                         // test if we got something
-                        if(data!=null) {
+                        if(data!=null && !someThingWrong) {
                             process(Utils.toIntArray(data.getBytes()));
                         }
-                        else
-                        {
-                            // ignore
+
+                        // reset if something went wrong ...
+                        // ... but only if we are not asked to stop!
+                        if (someThingWrong && connectedBluetoothThread!=null) {
+                            initDevice(1, 2);
                         }
                     }
 
@@ -519,4 +526,6 @@ public abstract class Device {
     public abstract String requestIsoTpFrame(Field field);
 
     public abstract boolean initDevice(int toughness);
+
+    protected abstract boolean initDevice (int toughness, int retries);
 }

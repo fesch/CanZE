@@ -1,8 +1,14 @@
 package lu.fisch.canze.widgets;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
@@ -240,13 +246,27 @@ public class Plotter extends Drawable {
      * Serialization
      \ ------------------------------ */
 
+
     @Override
     public String dataToJson() {
-        return "";
+        Gson gson = new Gson();
+        ArrayList<ArrayList<Double>> data = new ArrayList<>();
+        data.add((ArrayList<Double>) values.clone());
+        data.add((ArrayList<Double>) minValues.clone());
+        data.add((ArrayList<Double>) maxValues.clone());
+        return gson.toJson(data);
     }
 
     @Override
     public void dataFromJson(String json) {
+        Gson gson = new Gson();
+        Type fooType = new TypeToken<ArrayList<ArrayList<Double>>>() {}.getType();
+
+        ArrayList<ArrayList<Double>> data = gson.fromJson(json, fooType);
+        values = data.get(0);
+        minValues=data.get(1);
+        maxValues=data.get(2);
     }
+
 
 }

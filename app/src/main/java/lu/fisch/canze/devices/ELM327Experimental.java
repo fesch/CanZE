@@ -605,4 +605,9 @@ public class ELM327Experimental extends Device {
 
     @Override
     public boolean initDevice(int toughness) { return true; }
+
+    @Override
+    protected boolean initDevice(int toughness, int retries) {
+        return true;
+    }
 }
