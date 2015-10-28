@@ -47,9 +47,12 @@ public class Plotter extends Drawable {
 
     public void addValue(double value)
     {
-        values.add(value);
-        minValues.add(value);
-        maxValues.add(value);
+        //if(value!=min)
+        {
+            values.add(value);
+            minValues.add(value);
+            maxValues.add(value);
+        }
     }
 
     public void setValue(int index, double value)
@@ -146,6 +149,8 @@ public class Plotter extends Drawable {
             {
                 double mx = w/2+i*w;
                 double my = getHeight()-(minValues.get(i)-getMin())*h;
+                if(minValues.get(i)==getMin())
+                    my = getHeight()-(values.get(i)-getMin())*h;
                 int rayon = 2;
                 g.fillOval(getX()+getWidth()-barWidth+(int)mx-rayon,getY()+(int)my-rayon,2*rayon+1,2*rayon+1);
                 if(i>0)

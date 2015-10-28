@@ -33,7 +33,7 @@ public class Field {
     private int skips;
     private int frequency;
 
-    private double value = 0;
+    private double value = Double.NaN;
     private int skipsCount = 0;
     
     public Field(int id, int from, int to, int divider, int multiplier, double offset, int decimals, String format, String unit, String requestId, String responseId, String description, int car, int skips, int frequency) {

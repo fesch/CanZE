@@ -162,5 +162,4 @@ public class BarGraph extends Plotter {
         }
     }
 
-
 }
