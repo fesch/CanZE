@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="lu.fisch.canze" >
 
+    <!--<uses-sdk android:minSdkVersion="11" />-->
+
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,58 +23,72 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name=".WidgetActivity"
+            android:name=".activities.WidgetActivity"
             android:label="@string/title_activity_widget" >
         </activity>
         <activity
-            android:name=".TachoActivity"
+            android:name=".activities.TachoActivity"
             android:label="@string/title_activity_tacho" >
         </activity>
         <activity
-            android:name=".ChargingActivity"
+            android:name=".activities.ChargingActivity"
             android:label="@string/title_activity_charging" >
         </activity>
         <activity
-            android:name=".DrivingActivity"
+            android:name=".activities.DrivingActivity"
             android:label="@string/title_activity_driving" >
         </activity>
         <activity
-            android:name=".BatteryTempActivity"
+            android:name=".activities.BatteryTempActivity"
             android:label="@string/title_activity_battery_temp" >
         </activity>
         <activity
-            android:name=".BatteryVoltageActivity"
-            android:label="@string/title_activity_battery__voltage_" >
+            android:name=".activities.TemperatureActivity"
+            android:label="@string/title_activity_temperatures" >
         </activity>
         <activity
-            android:name=".BrakingActivity"
+            android:name=".activities.BrakingActivity"
             android:label="@string/title_activity_braking" >
         </activity>
         <activity
-            android:name=".LeafSpyActivity"
+            android:name=".activities.LeafSpyActivity"
             android:label="@string/title_activity_leaf_spy" >
         </activity>
         <activity
-            android:name=".TestX10Activity"
+            android:name=".activities.ConsumptionActivity"
             android:label="@string/title_activity_test" >
         </activity>
         <activity
-            android:name=".ElmTestActivity"
+            android:name=".activities.ElmTestActivity"
             android:label="@string/title_activity_elm_test" >
         </activity>
         <activity
-            android:name=".StatsActivity"
+            android:name=".activities.StatsActivity"
             android:label="@string/title_activity_stats" >
         </activity>
         <activity
-            android:name=".FirmwareActivity"
+            android:name=".activities.FirmwareActivity"
             android:label="@string/title_activity_firmware" >
         </activity>
-        <activity android:name=".BatteryActivity" >
+        <activity
+            android:name=".activities.BatteryActivity"
+            android:label="@string/title_activity_battery">
+        </activity>
+        <activity
+            android:name=".activities.HarmActivity"
+            android:label="@string/title_activity_harm" >
+        </activity>
+        <activity
+            android:name=".activities.AlexandreActivity"
+            android:label="@string/title_activity_alexandre" >
+        </activity>
+        <activity
+            android:name=".activities.DtcActivity"
+            android:label="@string/title_activity_dtc" >
         </activity>
     </application>
 

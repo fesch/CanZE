@@ -6,7 +6,7 @@ package lu.fisch.canze.actors;
 
 import android.os.Environment;
 
-import lu.fisch.canze.MainActivity;
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.interfaces.MessageListener;
 
 import java.io.BufferedReader;
@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -47,6 +46,9 @@ public class Fields implements MessageListener {
     public static final int CAR_TWIZY           = 4;    // you'll never know ;-)
     public static final int CAR_X10             = 5;
 
+    public static final int TOAST_NONE          = 0;
+    public static final int TOAST_DEVICE        = 1;
+    public static final int TOAST_ALL           = 2;
 
     private final ArrayList<Field> fields = new ArrayList<>();
     private final HashMap<String, Field> fieldsBySid = new HashMap<>();
@@ -136,7 +138,7 @@ public class Fields implements MessageListener {
                         +"0x654, 24, 31, 1, 1, 0, 0, SOC(b): %4ld, , , , State of Charge, 0, 0\n"
                         +"0x654, 32, 41, 1, 1, 0, 0, Time to full %4ld, min, , , Time to Full, 0, 0\n"
                         +"0x654, 42, 51, 1, 1, 0, 0, Km avail: %4ld, km, , , Available Distance, 0, 0\n"
-                        +"0x654, 52, 61, 1, 1, 0, 10, kw/100Km %2ld.%01ld, , , , , 0, 0\n"
+                        +"0x654, 52, 61, 1, 1, 0, 10, kw/100km %2ld.%01ld, , , , , 0, 0\n"
                         +"0x658, 0, 31, 1, 1, 0, 0, S# batt:%10ld, , , , Battery Serial N°, 0, 0\n"
                         +"0x658, 32, 39, 1, 1, 0, 0, Bat health %4ld, %, , , Battery Health, 0, 0\n"
                         +"0x65b, 25, 26, 1, 1, 0, 0, ECO Mode: %1ld, , , , Economy Mode, 0, 0\n"
@@ -371,12 +373,15 @@ public class Fields implements MessageListener {
                         +"0x29c, 48, 63, 1, 1, 0, 100, Speed R100: %3ld.%02ld, , , , , 0, 0, 20\n"
                         +"0x352, 0, 1, 1, 1, 0, 0, ABS warn req %1ld, , , , ABS Warning Request, 0, 0, 40\n"
                         +"0x352, 2, 3, 1, 1, 0, 0, StopLReq %1ld, , , , ESP_StopLampRequest, 0, 0, 40\n"
-                        +"0x352, 24, 31, 1, 1, 0, 0, Brake force %5ld, , , , Break Force, 0, 0, 40\n"
+                        +"0x352, 24, 31, 2, 1, 0, 0, Brake pressure %3ld, bar, , , Brake pressure, 0, 0, 40\n"
                         +"0x35c, 16, 39, 1, 1, 0, 0, Minutes: %7ld, min, , , , 0, 0, 100\n"
                         +"0x35c, 4, 15, 1, 1, 0, 0, Key-Start: %5ld, , , , , 0, 0, 100\n"
                         +"0x3f7, 2, 3, 1, 1, 0, 0, Gear??: %4ld, , , , , 2, 0, 60\n"
+                        +"0x427, 40, 47, 10, 3, 0, 0, AvCharPwr: %5ld, kW, , , , 1, 0, 100\n"
+                        +"0x427, 49, 57, 1, 1, 0, 10, AvEnergy: %2ld.%1ld, kWh, , , , 1, 0, 100\n"
                         +"0x42a, 16, 23, 1, 1, 0, 0, Temp set: %5ld, , , , , 1, 0, 100\n"
-                        +"0x42e, 0, 12, 1, 2, 0, 100, SOC(a): %3ld.%02ld, %, , , State of Charge, 0, 0, 100\n"
+                        +"0x42e, 0, 12, 1, 2, 0, 100, SOC(a): %3ld.%02ld, %, , , State of Charge, 2, 0, 100\n"
+                        +"0x42e, 0, 12, 475, 1000, 0, 100, SOC(a): %3ld.%02ld, %, , , State of Charge, 1, 0, 100\n"
                         +"0x42e, 18, 19, 1, 1, 0, 0, , , , , HVBatLevel2Failure, 0, 0, 100\n"
                         +"0x42e, 20, 24, 1, 5, 0, 0, EngineFanSpeed %3ld, %, , , EngineFanSpeed, 0, 0, 100\n"
                         +"0x42e, 25, 34, 2, 1, 0, 0, DC V: %3ld.%02ld, V, , , HVNetworkVoltage, 0, 0, 100\n"
@@ -415,14 +420,14 @@ public class Fields implements MessageListener {
                         +"0x646, 8, 15, 1, 1, 0, 10, avg trB cons %2ld.%01ld, kWh/100km, , , , 0, 0, 500\n"
                         +"0x653, 9, 9, 1, 1, 0, 0, dr seatbelt %4ld, , , , , 0, 0, 100\n"
                         +"0x654, 24, 31, 1, 1, 0, 0, SOC(b): %4ld, , , , State of Charge, 0, 0, 500\n"
-                        +"0x654, 3, 3, 1, 1, 0, 0, Plugin state, , , , Plugin State, 0, 0, 500\n"
+                        +"0x654, 2, 2, 1, 1, 0, 0, Plugin state, , , , Plugin State, 0, 0, 500\n"
                         +"0x654, 32, 41, 1, 1, 0, 0, Time to full %4ld, min, , , Time to Full, 0, 0, 500\n"
                         +"0x654, 42, 51, 1, 1, 0, 0, Km avail: %4ld, km, , , Available Distance, 0, 0, 500\n"
-                        +"0x654, 52, 61, 1, 1, 0, 10, kw/100Km %2ld.%01ld, , , , , 0, 0, 500\n"
+                        +"0x654, 52, 61, 1, 1, 0, 10, kw/100km %2ld.%01ld, , , , , 0, 0, 500\n"
                         +"0x658, 0, 31, 1, 1, 0, 0, S# batt:%10ld, , , , Battery Serial N°, 0, 0, 3000\n"
                         +"0x658, 32, 39, 1, 1, 0, 0, Bat health %4ld, %, , , Battery Health, 0, 0, 3000\n"
                         +"0x65b, 25, 26, 1, 1, 0, 0, ECO Mode: %1ld, , , , Economy Mode, 0, 0, 100\n"
-                        +"0x65b, 41, 42, 1, 1, 0, 0, battery flap: %1ld, , , , Battery Flap, 0, 0, 100\n"
+                        +"0x65b, 41, 43, 1, 1, 0, 0, Charging Stat: %1ld, , , , Charging Stat, 0, 0, 100\n"
                         +"0x66a, 42, 42, 1, 1, 0, 0, CruisC ? %4ld, , , , , 0, 0, 100\n"
                         +"0x66a, 5, 7, 1, 1, 0, 0, CruisC mode %4ld, , , , Cruise Control Mode, 0, 0, 100\n"
                         +"0x66a, 8, 15, 1, 1, 0, 0, CruisC spd %4ld, km/h, , , Cruise Control Speed, 0, 0, 100\n"
@@ -607,28 +612,48 @@ public class Fields implements MessageListener {
                         +"0x7ec, 24, 39, 1, 50, 0, 100, Volt, V, 0x223203, 0x623203, , 0, 0, 0\n"
                         +"0x7ec, 24, 39, 48, 100, 0, 100, SOC, %, 0x222002, 0x622002, , 1, 0, 0\n"
                         +"0x7ec, 24, 47, 1, 1, 0, 0, Odometer, km, 0x222006, 0x622006, , 0, 0, 0\n"
-
                         +"0x7ec, 128, 143, 1, 1, 0, 0, SCH SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x7da, 128, 143, 1, 1, 0, 0, TCU SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x7bb, 128, 143, 1, 1, 0, 0, LBC SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x77e, 128, 143, 1, 1, 0, 0, PEBSW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x772, 128, 143, 1, 1, 0, 0, AIBAG SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x76d, 128, 143, 1, 1, 0, 0, USM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
-                        +"0x763, 128, 143, 1, 1, 0, 0, CLUSTER SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+
+                        +"0x763, 128, 143, 1, 1, 0, 0, CLUSTER SW ver, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x763, 112, 127, 1, 1, 0, 0, CLUSTER PG ver, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x763,   0,   7, 1, 1, 0, 0, CLUSTER reset,  , 0x14ffff, 0x54, , 0, 0, 0\n"
+                        +"0x763,   0,   0, 1, 1, 0, 0, CLUSTER DTC,    , 0x19023b, 0x5902ff, , 0, 0, 0\n"
+
                         +"0x762, 128, 143, 1, 1, 0, 0, EPS SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x760, 128, 143, 1, 1, 0, 0, ABS SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x7bc, 128, 143, 1, 1, 0, 0, UBP SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x765, 128, 143, 1, 1, 0, 0, BCM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+
                         +"0x764, 128, 143, 1, 1, 0, 0, CLIM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
-                        +"0x76e, 128, 143, 1, 1, 0, 0, UPA SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x764, 112, 127, 1, 1, 0, 0, CLIM PG version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x764,   0,   7, 1, 1, 0, 0, CLIM reset,      , 0x14ffff, 0x54, , 0, 0, 0\n"
+                        +"0x764,   0,   0, 1, 1, 0, 0, CLIM DTC,        , 0x19023b, 0x5902ff, , 0, 0, 0\n"
+
+                        +"0x76e, 128, 143, 1, 1, 0, 0, UPA SW version,  , 0x2180, 0x6180, , 0, 0, 0\n"
+
                         +"0x793, 128, 143, 1, 1, 0, 0, BCB SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x793,   0,   0, 1, 1, 0, 0, BCB Reset,      , 0x14ffffff, 0x54, , 0, 0, 0\n"
+                        +"0x793,   0,   0, 1, 1, 0, 0, BCB DTC,        , 0x19023b, 0x5902ff, , 0, 0, 0\n"
+
                         +"0x7b6, 128, 143, 1, 1, 0, 0, LBC2 SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+
                         +"0x722, 128, 143, 1, 1, 0, 0, LINSCH SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
 
 
                 ;
 
-        fieldDef+=readFromLocalFile();
+        try {
+            fieldDef += readFromLocalFile();
+        }
+        catch(Exception e)
+        {
+            // ignore
+        }
 
         String[] lines = fieldDef.split("\n");
         for(int i=0; i<lines.length; i++)
@@ -653,7 +678,7 @@ public class Fields implements MessageListener {
                         ),
                         Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
                         tokens[FIELD_FORMAT],
-                        tokens[FIELD_UNIT],
+                        tokens[FIELD_UNIT].trim(),
                         tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
                         tokens[FIELD_RESPONSE_ID].trim().replace("0x", ""),
                         tokens[FIELD_DESCRIPTION],
@@ -765,19 +790,27 @@ public class Fields implements MessageListener {
     
     @Override
     public void onMessageCompleteEvent(Message message) {
-        //MainActivity.debug(frame.toString());
-        //MainActivity.debug("Frame.rID = "+frame.getResponseId());
+        //MainActivity.debug(message.toString());
+        //if(message.getResponseId()!=null)
+        //  MainActivity.debug("Frame.rID = "+message.getResponseId());
         for(int i=0; i< fields.size(); i++)
         {
             Field field = fields.get(i);
+            /*if(field.getId()== message.getId())
+            {
+                if(message.getResponseId()!=null)
+                    MainActivity.debug(message.getResponseId()+" -> Field: "+field.getFormat());
+            }*/
             if(field.getId()== message.getId() &&
                     (
                             message.getResponseId()==null
                             ||
-                            message.getResponseId().equals(field.getResponseId())
+                            message.getResponseId().trim().equals(field.getResponseId().trim())
                             ))
             {
                 //MainActivity.debug("Field.rID = "+field.getResponseId());
+                //if(message.getResponseId()!=null)
+                //    MainActivity.debug("Field: "+field.getFormat());
                 String binString = message.getAsBinaryString();
                 if(binString.length()>= field.getTo()) {
                     // parseInt --> signed, so the first bit is "cut-off"!
@@ -805,6 +838,20 @@ public class Fields implements MessageListener {
 
     public void setCar(int car) {
         this.car = car;
+    }
+
+    public void notifyAllFieldListeners()
+    {
+        for(int i=0; i< fields.size(); i++) {
+            fields.get(i).notifyFieldListeners();
+        }
+    }
+
+    public void clearAllFields()
+    {
+        for(int i=0; i< fields.size(); i++) {
+            fields.get(i).setValue(0);
+        }
     }
 
     /* --------------------------------

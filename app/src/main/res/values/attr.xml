@@ -8,6 +8,7 @@
         <attr name="showLabels" format="boolean" />
         <attr name="showValue" format="boolean" />
         <attr name="isInverted" format="boolean" />
+        <attr name="isAutoScale" format="boolean" />
         <attr name="fieldSID" format="string" />
         <attr name="widget" format="enum">
             <enum name="tacho" value="0"/>
@@ -16,7 +17,10 @@
             <enum name="batterybar" value="3"/>
             <enum name="plotter" value="4"/>
             <enum name="label" value="5"/>
+            <enum name="timeplot" value="6"/>
+            <enum name="bargraph" value="7"/>
         </attr>
+        <attr name="colorRanges" format="string"/>
         <attr name="text" format="string" />
     </declare-styleable>
 </resources>

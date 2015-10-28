@@ -1,0 +1,98 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:keepScreenOn="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    tools:context="lu.fisch.canze.activities.ConsumptionActivity"
+    android:stretchColumns="3"
+    android:id="@+id/table"
+    >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/accelerationPedal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            custom:min="0"
+            custom:max="125"
+            custom:majorTicks="25"
+            custom:minorTicks="5"
+            custom:fieldSID="186.40,18a.16"
+            custom:widget="timeplot"
+            custom:text="Acceleration pedal (%) / Power train set point (%)"
+            />
+
+
+
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/soh"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            custom:min="-30"
+            custom:max="70"
+            custom:majorTicks="10"
+            custom:minorTicks="5"
+            custom:fieldSID="1fd.48,427.49"
+            custom:widget="timeplot"
+            custom:colorRanges="[{'sid':'1fd.48','color':'#008a1d','from':-100,'to':0},{'sid':'1fd.48','color':'#ffaa17','from':0,'to':43},{'sid':'1fd.48','color':'#FF0000','from':43,'to':100}]"
+            custom:text="Econometer (kw) / Available energy (kWh)"
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/speed"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            custom:min="0"
+            custom:max="140"
+            custom:majorTicks="20"
+            custom:minorTicks="10"
+            custom:fieldSID="5d7.0,42e.0"
+            custom:widget="timeplot"
+            custom:text="Speed (km/h) / State of Charge (%)"
+            />
+
+    </TableRow>
+
+</TableLayout>
+

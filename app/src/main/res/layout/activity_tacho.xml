@@ -8,7 +8,7 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:paddingBottom="0dp"
-    tools:context="lu.fisch.canze.TachoActivity"
+    tools:context="lu.fisch.canze.activities.TachoActivity"
     android:stretchColumns="3"
     android:id="@+id/table"
         >
@@ -30,9 +30,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
         custom:min="0"
-        custom:max="1000"
-        custom:majorTicks="100"
-        custom:minorTicks="25"
+        custom:max="125"
+        custom:majorTicks="25"
+        custom:minorTicks="5"
         custom:fieldSID="186.40"
         custom:widget="tacho"
         custom:text="Acceleration pedal"
@@ -91,7 +91,7 @@
         custom:text="State of charge 1 (%)"
         />
 
-    <lu.fisch.canze.widgets.WidgetView
+    <!--<lu.fisch.canze.widgets.WidgetView
         android:id="@+id/SOC2"
         android:layout_width="0dp"
         android:layout_weight="1"
@@ -122,7 +122,7 @@
         custom:fieldSID="7ec.622002.24"
         custom:widget="tacho"
         custom:text="State of charge 3 (%)"
-        />
+        />-->
 
     <!--
         <lu.fisch.canze.widgets.WidgetView
@@ -207,7 +207,7 @@
         custom:text="Available distance (km)"
         />
 -->
-
+<!--
     <lu.fisch.canze.widgets.WidgetView
         android:id="@+id/consumption"
         android:layout_width="0dp"
@@ -275,7 +275,7 @@
         custom:fieldSID="7bb.6141.16"
         custom:widget="batterybar"
         custom:text="Cell 01 (V)"
-        />
+        />-->
 
 </TableRow>
 

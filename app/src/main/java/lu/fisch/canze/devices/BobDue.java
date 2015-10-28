@@ -1,12 +1,10 @@
 package lu.fisch.canze.devices;
 
-import android.support.annotation.MainThread;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import lu.fisch.canze.MainActivity;
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.actors.Utils;
@@ -18,54 +16,74 @@ public class BobDue extends Device {
 
     // *** needed by the "reader" part
     private String buffer = "";
-    private final String separator = "\r\n";
+    private final String separator = "\n";
 
 
     // define the timeout we may wait to get an answer
-    private static final int TIMEOUT = 500;
+    private static final int TIMEOUT = 250;
     // define End Of Message for this type of reader
     private static final char EOM = '\n';
     // the actual filter
     private int fieldIndex = 0;
     // the thread that polls the data to the stack
-    private Thread poller = null;
-    private boolean pollerRunning = true;
 
-    @Override
-    public void initConnection() {
+    public void initConnection_old() {
+        MainActivity.debug("BobDue: initConnection");
         // if the reading thread is running: stop it, because we don't need it
         if(connectedBluetoothThread!=null && connectedBluetoothThread.isAlive()) {
             connectedBluetoothThread.cleanStop();
             try {
+                MainActivity.debug("BobDue: joining");
                 connectedBluetoothThread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         if(connectedBluetoothThread!=null) {
+            MainActivity.debug("BobDue: connectedBluetoothThread!=null");
             // make sure we only have one poller task
-            if (poller == null) {
+            if (pollerThread == null) {
+                MainActivity.debug("BobDue: pollerThread == null");
                 // post a task to the UI thread
-                pollerRunning=true;
+                setPollerActive(true);
 
                 Runnable r = new Runnable() {
                     @Override
                     public void run() {
-                        while (pollerRunning)
-                            queryNextFilter();
+                        while (isPollerActive())
+                        {
+                            //MainActivity.debug("BobDue: inside poller thread ...");
+                            if(fields.size()==0)
+                            {
+                                if(connectedBluetoothThread!=null)
+                                    //MainActivity.debug("BobDue: sleeping ...");
+                                    try{
+                                        Thread.sleep(5000);
+                                    }
+                                    catch (Exception e) {}
+                            }
+                            // query a field
+                            else {
+                                //MainActivity.debug("BobDue: Doing next query ...");
+                                queryNextFilter();
+                            }
+                        }
+                        pollerThread=null;
                     }
                 };
-                poller = new Thread(r);
-                poller.start();
+                pollerThread = new Thread(r);
+                pollerThread.start();
             }
         }
         else
         {
-            if(poller!=null && poller.isAlive())
+            MainActivity.debug("BobDue: connectedBluetoothThread == null");
+            if(pollerThread!=null && pollerThread.isAlive())
             {
-                pollerRunning=false;
+                setPollerActive(false);
                 try {
-                    poller.join();
+                    MainActivity.debug("BobDue: joining pollerThread");
+                    pollerThread.join();
                 }
                 catch (Exception e)
                 {
@@ -75,13 +93,17 @@ public class BobDue extends Device {
         }
     }
 
+    public void join() throws InterruptedException {
+        pollerThread.join();
+    }
+
     @Override
     public void registerFilter(int frameId) {
         String filter = Integer.toHexString(frameId);
         if(connectedBluetoothThread!=null)
             connectedBluetoothThread.write("f" + filter + "\n");
         else
-            MainActivity.debug("registerFilter " + filter + " failed because connectedBluetoothThread is NULL");
+            MainActivity.debug("BobDue.registerFilter " + filter + " failed because connectedBluetoothThread is NULL");
     }
 
     @Override
@@ -90,7 +112,7 @@ public class BobDue extends Device {
         if(connectedBluetoothThread!=null)
             connectedBluetoothThread.write("r" + filter + "\n");
         else
-            MainActivity.debug("registerFilter " + filter + " failed because connectedBluetoothThread is NULL");
+            MainActivity.debug("BobDue.unregisterFilter " + filter + " failed because connectedBluetoothThread is NULL");
     }
 
     @Override
@@ -102,6 +124,8 @@ public class BobDue extends Device {
             buffer += (char) input[i];
         }
 
+        //MainActivity.debug("Buffer = "+buffer);
+
         // split by <new line>
         String[] messages = buffer.split(separator);
         // let assume the last message is fine
@@ -112,6 +136,7 @@ public class BobDue extends Device {
         // process each message
         for (int i = 0; i < last; i++) {
             // decode into a frame
+            //MainActivity.debug("Decoding: "+messages[i].trim());
             Message message = decodeFrame(messages[i].trim());
             // store if valid
             if (message != null)
@@ -132,6 +157,8 @@ public class BobDue extends Device {
     private Message decodeFrame(String text) {
         // split up the fields
         String[] pieces = text.split(",");
+        //MainActivity.debug("Pieces = "+pieces);
+        //MainActivity.debug("Size = "+pieces.length);
         if(pieces.length==2) {
             try {
                 // get the id
@@ -147,7 +174,7 @@ public class BobDue extends Device {
                 return null;
             }
         }
-        else if(pieces.length==3) {
+        else if(pieces.length>=3) {
             try {
                 // get the id
                 int id = Integer.parseInt(pieces[0], 16);
@@ -155,6 +182,7 @@ public class BobDue extends Device {
                 int[] data = Utils.toIntArray(pieces[1].trim());
                 // get the reply-ID
                 Message f = new Message(id,data);
+                //MainActivity.debug("ID = "+id+" / Data = "+data);
                 //MainActivity.debug("THIRD: "+pieces[2].trim());
                 f.setResponseId(pieces[2].trim());
                 return f;
@@ -182,7 +210,7 @@ public class BobDue extends Device {
 
 
     // query the device for the next filter
-    private void queryNextFilter()
+    public void queryNextFilter_old()
     {
         if (fields.size() > 0) {
             try {
@@ -193,23 +221,13 @@ public class BobDue extends Device {
                     field = fields.get(fieldIndex);
                 }
 
-                MainActivity.debug("Querying for field: "+field.getSID());
+                MainActivity.debug("BobDue: queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
+
+                //MainActivity.debug("Querying for field: "+field.getSID());
 
                 if(field!=null) {
-                    // get field ID
-                    String filter = field.getHexId();
+                    process(Utils.toIntArray(requestField(field).getBytes()));
 
-                    if (field.isIsoTp()) {
-                        String hexData = sendAndWaitForAnswer("i" + filter + "," + field.getRequestId() + "," + field.getResponseId(), 0);
-                        // process data
-                        process(Utils.toIntArray(hexData.getBytes()));
-                    } else {
-                        // request the response from the device
-                        //MainActivity.debug("Requesting: " + filter);
-                        String hexData = sendAndWaitForAnswer("g" + filter, 0);
-                        // process data
-                        process(Utils.toIntArray(hexData.getBytes()));
-                    }
                     // goto next filter
                     synchronized (fields) {
                         if(fields.size()==0)
@@ -289,4 +307,21 @@ public class BobDue extends Device {
         super.clearFields();
         fieldIndex=0;
     }
+
+    @Override
+    public String requestFreeFrame(Field field) {
+        // send the command and wait fir an answer, no delay
+        return sendAndWaitForAnswer("g" + field.getHexId(), 0);
+    }
+
+    @Override
+    public String requestIsoTpFrame(Field field) {
+        // build the command string to send to the remote device
+        String command = "i" + field.getHexId() + "," + field.getRequestId() + "," + field.getResponseId();
+        // send and wait fir an answer, no delay
+        return sendAndWaitForAnswer(command, 0);
+    }
+
+    @Override
+    public boolean initDevice(int toughness) { return true; }
 }

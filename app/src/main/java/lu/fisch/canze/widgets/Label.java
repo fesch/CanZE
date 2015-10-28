@@ -2,7 +2,6 @@ package lu.fisch.canze.widgets;
 
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
-import lu.fisch.canze.MainActivity;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 
 /**
@@ -58,7 +57,7 @@ public class Label extends Drawable {
                 String text = String.format("%." + (String.valueOf(field.getDecimals()).length() - 1) + "f", field.getValue()).trim();
 
                 int th, tw;
-                if(textSize==-1) {
+                //if(textSize==-1) {
                     // init
                     textSize = 10;
                     // find out what the biggest text size could be
@@ -70,7 +69,7 @@ public class Label extends Drawable {
                     } while (th < getHeight() * 0.9 && tw < getWidth() * 0.9);
 
                     textSize--;
-                }
+                //}
                 g.setTextSize(textSize);
                 tw = g.stringWidth(text);
                 th = g.stringHeight(text);
@@ -92,4 +91,18 @@ public class Label extends Drawable {
             g.drawString(title,tx,ty);
         }
     }
+
+    /* --------------------------------
+     * Serialization
+     \ ------------------------------ */
+
+    @Override
+    public String dataToJson() {
+        return "";
+    }
+
+    @Override
+    public void dataFromJson(String json) {
+    }
+
 }

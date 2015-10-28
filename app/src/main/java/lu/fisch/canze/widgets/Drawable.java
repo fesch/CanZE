@@ -5,10 +5,16 @@ package lu.fisch.canze.widgets;
 
 import android.graphics.Point;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import lu.fisch.awt.Graphics;
 import lu.fisch.awt.Rectangle;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.aligner.Space;
+import lu.fisch.canze.classes.ColorRanges;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 import lu.fisch.canze.interfaces.FieldListener;
 
@@ -30,6 +36,9 @@ public abstract class Drawable implements Space, FieldListener {
     protected String title = "";
 
     protected DrawSurfaceInterface drawSurface = null;
+
+    protected ArrayList<String> sids = new ArrayList<>();
+    protected ColorRanges colorRanges = new ColorRanges();
 
 
     public Drawable()
@@ -67,6 +76,13 @@ public abstract class Drawable implements Space, FieldListener {
     {
         // empty
     }
+
+    /* --------------------------------
+     * Serialization
+     \ ------------------------------ */
+
+    public abstract String dataToJson();
+    public abstract void dataFromJson(String json);
 
     /* --------------------------------
      * Getters & setters
@@ -187,5 +203,19 @@ public abstract class Drawable implements Space, FieldListener {
 
     public Field getField() {
         return field;
+    }
+
+    public void addField(String sid)
+    {
+        if(!sids.contains(sid))
+            sids.add(sid);
+    }
+
+    public ArrayList<String> getSids() {
+        return sids;
+    }
+
+    public void setColorRanges(ColorRanges colorRanges) {
+        this.colorRanges = colorRanges;
     }
 }

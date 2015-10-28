@@ -2,6 +2,7 @@ package lu.fisch.canze.devices;
 
 import java.util.ArrayList;
 
+import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Message;
 
 /**
@@ -24,8 +25,25 @@ public class ArduinoDue extends Device {
 
     }
 
+    public void join() throws InterruptedException {
+
+    }
+
     @Override
     protected ArrayList<Message> processData(int[] input) {
         return null;
     }
+
+    @Override
+    public String requestFreeFrame(Field field) {
+        return null;
+    }
+
+    @Override
+    public String requestIsoTpFrame(Field field) {
+        return null;
+    }
+
+    @Override
+    public boolean initDevice(int toughness) { return true; }
 }

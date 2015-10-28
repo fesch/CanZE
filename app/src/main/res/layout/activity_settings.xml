@@ -4,70 +4,183 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="lu.fisch.canze.SettingsActivity"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    tools:context="lu.fisch.canze.activities.SettingsActivity"
     android:id="@+id/activity_settings">
 
-    <TextView
+    <ScrollView
+        android:id="@+id/ScrlView"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Build: "
-        android:id="@+id/build"
-        android:background="#ffd900"
-        android:textStyle="bold"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        android:layout_marginBottom="32dp" />
+        android:layout_height="fill_parent"
+        android:paddingLeft="0px"
+        android:paddingRight="0px"
+        android:paddingTop="0px"
+        android:paddingBottom="0px"
+        >
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Bluetooth device"
-        android:id="@+id/textViewBluetoothDevice" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="0px"
+            android:paddingRight="0px"
+            android:paddingTop="0px"
+            android:paddingBottom="0px"
+            >
 
-    <Spinner
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bluetoothDeviceList" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Build: "
+                android:id="@+id/build"
+                android:background="#ffd900"
+                android:textStyle="bold"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                android:layout_marginBottom="32dp"
+                android:padding="4dp"/>
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Remote Device"
-        android:id="@+id/textViewDevice" />
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:stretchColumns="2"
+                android:id="@+id/table"
+                >
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
 
-    <Spinner
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/remoteDevice" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="0px"
+                        android:paddingRight="20px"
+                        android:paddingTop="0px"
+                        android:paddingBottom="0px"
+                        >
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Bluetooth device"
+                            android:id="@+id/textViewBluetoothDevice" />
+                        <Spinner
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:id="@+id/bluetoothDeviceList" />
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Car"
-        android:id="@+id/textViewCar" />
 
-    <Spinner
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/car" />
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Remote Device"
+                            android:id="@+id/textViewDevice" />
+                        <Spinner
+                            android:layout_width="fill_parent"
+                            android:layout_height="25dp"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:id="@+id/remoteDevice" />
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Options"
-        android:id="@+id/textViewOptions" />
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Car"
+                            android:id="@+id/textViewCar" />
+                        <Spinner
+                            android:layout_width="fill_parent"
+                            android:layout_height="25dp"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:id="@+id/car" />
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Safe Driving Mode"
-        android:id="@+id/safeDrivingMode" />
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Log level"
+                            android:id="@+id/textToastLevel" />
+                        <Spinner
+                            android:layout_width="fill_parent"
+                            android:layout_height="25dp"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:id="@+id/toastLevel" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20px"
+                        android:paddingRight="0px"
+                        android:paddingTop="0px"
+                        android:paddingBottom="0px"
+                        >
+
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Options"
+                            android:id="@+id/textViewOptions" />
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Safe Driving Mode"
+                            android:id="@+id/safeDrivingMode" />
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Miles"
+                            android:id="@+id/milesMode" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Log to sdcard1"
+                            android:id="@+id/dataexportMode" />
+
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Actions"
+                            android:id="@+id/textViewActions" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Clear cached data"
+                                android:id="@+id/buttonClearSettings" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 import java.security.InvalidParameterException;
 import java.util.UUID;
 
-import lu.fisch.canze.MainActivity;
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.interfaces.BluetoothEvent;
 
 /**
