@@ -81,7 +81,7 @@ public abstract class Device {
                         if(initDevice(0)) {
                             while (isPollerActive()) {
                                 //MainActivity.debug("Device: inside poller thread");
-                                if (fields.size() == 0) {
+                                if (fields.size() == 0 || !BluetoothManager.getInstance().isConnected()) {
                                     //MainActivity.debug("Device: sleeping");
                                     try {
                                         Thread.sleep(5000);

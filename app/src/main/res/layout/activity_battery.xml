@@ -48,9 +48,9 @@ android:id="@+id/table"
         custom:max="120"
         custom:majorTicks="10"
         custom:minorTicks="5"
-        custom:fieldSID="42e.0"
+        custom:fieldSID="42e.0,654.24"
         custom:widget="timeplot"
-        custom:text="State of Charge (%)"
+        custom:text="True vs. Indicated State of Charge (%)"
         />
 
 </TableRow>
