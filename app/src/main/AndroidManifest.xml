@@ -90,6 +90,14 @@
             android:name=".activities.DtcActivity"
             android:label="@string/title_activity_dtc" >
         </activity>
+        <activity
+            android:name=".activities.HeatmapBatcompActivity"
+            android:label="@string/title_activity_heatmap_bat" >
+        </activity>
+        <activity
+            android:name=".activities.HeatmapCellvoltageActivity"
+            android:label="@string/title_activity_heatmap_cellvoltage" >
+        </activity>
     </application>
 
 </manifest>

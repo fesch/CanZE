@@ -181,7 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:minHeight="25dp"
-            android:max="100"
+            android:max="1000"
             android:progressDrawable="@drawable/progressbar_canze"
             />
 
