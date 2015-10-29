@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="lu.fisch.canze" >
 
-    <uses-sdk android:minSdkVersion="11" />
+    <!--<uses-sdk android:minSdkVersion="11" />-->
 
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -89,6 +89,14 @@
         <activity
             android:name=".activities.DtcActivity"
             android:label="@string/title_activity_dtc" >
+        </activity>
+        <activity
+            android:name=".activities.HeatmapBatcompActivity"
+            android:label="@string/title_activity_heatmap_bat" >
+        </activity>
+        <activity
+            android:name=".activities.HeatmapCellvoltageActivity"
+            android:label="@string/title_activity_heatmap_cellvoltage" >
         </activity>
     </application>
 

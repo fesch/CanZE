@@ -22,13 +22,10 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_EB_In_Progress                       = "130.18";
     public static final String SID_HBA_Activation_Request               = "130.40";
     public static final String SID_Pressure_Buildup                     = "130.42";
-    public static final String SID_ElecBrakeWheels_Torque_Request       = "130.20";
-    public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44";
-    public static final String SID_Friction_Torque                      = "18a.27"; //10
-    public static final String SID_Braking_Pressure                     = "352.24"; //40
-
-    // ISO-TP data
-    //public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC) <<-- this one os not used but added to see if a non-free query added improves stability.
+    public static final String SID_ElecBrakeWheels_Torque_Request       = "130.20"; // wheel torque the car wants from the motor
+    public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; // wheeltorque the driver wants
+    public static final String SID_Friction_Torque                      = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
+    public static final String SID_Braking_Pressure                     = "352.24"; //40ms We still don't know if braking pressure correlates to torque
 
     public static final String hbb_Malfunction  [] = {"unavailable", "OK", "Not OK"};
     public static final String eb_Malfunction   [] = {"unavailable", "OK", "Not OK"};

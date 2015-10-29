@@ -109,5 +109,8 @@ public class MainFragment extends Fragment {
         return view;
     }
 
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        MainActivity.getInstance().onActivityResult(requestCode,resultCode,data);
+    }
 }

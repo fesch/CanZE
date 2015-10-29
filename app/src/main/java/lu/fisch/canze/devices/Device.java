@@ -6,6 +6,7 @@ import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Message;
+import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
 
 /**
@@ -28,6 +29,21 @@ public abstract class Device {
      * have to be read and updated.
      */
     protected ArrayList<Field> fields = new ArrayList<>();
+    /**
+     * Some fields will be custom, activity based
+     */
+    protected ArrayList<Field> customActivityFields = new ArrayList<>();
+    /**
+     * Some other fields will have to be queried anyway,
+     * such as e.g. the speed --> safe mode driving
+     */
+    protected ArrayList<Field> applicationFields = new ArrayList<>();
+
+    /**
+     * The index of the actual field to query.
+     * Loops over ther "fields" array
+     */
+    protected int fieldIndex = 0;
 
     /**
      * The connected Bluetooth thread is being used to read and write
@@ -39,7 +55,12 @@ public abstract class Device {
     protected boolean pollerActive = false;
     protected Thread pollerThread;
 
-
+    /**
+     * someThingWrong will be set when something goes wrong, usually a timeout.
+     * most command routines just won't run when someThingWrong is set
+     * someThingWrong can be reset only by calling initElm, but with toughness 100 this is the only thing it does :-)
+     */
+    boolean someThingWrong = false;
 
     /* ----------------------------------------------------------------
      * Abstract methods (to be implemented in each "real" device)
@@ -48,7 +69,161 @@ public abstract class Device {
     /**
      * A device may need some initialisation before data can be requested.
      */
-    public abstract void initConnection();
+    public void initConnection()
+    {
+        MainActivity.debug("Device: initConnection");
+
+        // if the reading thread is running: stop it, because we don't need it
+        if(connectedBluetoothThread!=null && connectedBluetoothThread.isAlive()) {
+            MainActivity.debug("Device: cleanStop");
+            connectedBluetoothThread.cleanStop();
+            if(connectedBluetoothThread.isAlive()) {
+                try {
+                    MainActivity.debug("Device: joining");
+                    connectedBluetoothThread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if(connectedBluetoothThread!=null) {
+            MainActivity.debug("Device: connectedBluetoothThread!=null");
+            // make sure we only have one poller task
+            if (pollerThread == null) {
+                MainActivity.debug("Device: pollerThread == null");
+                // post a task to the UI thread
+                setPollerActive(true);
+
+                Runnable r = new Runnable() {
+                    @Override
+                    public void run() {
+                        // if the device has been initialised and we got an answer
+                        if(initDevice(0)) {
+                            while (isPollerActive()) {
+                                //MainActivity.debug("Device: inside poller thread");
+                                if (fields.size() == 0) {
+                                    if (connectedBluetoothThread != null)
+                                        //MainActivity.debug("Device: sleeping");
+                                        try {
+                                            Thread.sleep(5000);
+                                        } catch (Exception e) {
+                                        }
+                                }
+                                // query a field
+                                else {
+                                    //MainActivity.debug("Device: Doing next query ...");
+                                    queryNextFilter();
+                                }
+                            }
+                            // dereference the poller thread (it i stopped now anyway!)
+                            MainActivity.debug("Device: Poller is done");
+                            pollerThread = null;
+                        }
+                        else
+                        {
+                            MainActivity.debug("Device: no answer from device");
+
+                            // drop the BT connexion and try again
+                            (new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    // stop the BT but don't reset the device registered fields
+                                    MainActivity.getInstance().stopBluetooth(false);
+                                    // reload the BT with filter registration
+                                    MainActivity.getInstance().reloadBluetooth(false);
+                                }
+                            })).start();
+                        }
+                    }
+                };
+                pollerThread = new Thread(r);
+                // start the thread
+                pollerThread.start();
+            }
+        }
+        else
+        {
+            MainActivity.debug("Device: connectedBluetoothThread == null");
+            if(pollerThread!=null && pollerThread.isAlive())
+            {
+                setPollerActive(false);
+                try {
+                    MainActivity.debug("Device: joining pollerThread");
+                    pollerThread.join();
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    // query the device for the next filter
+    protected void queryNextFilter()
+    {
+        if (fields.size() > 0)
+        {
+            try {
+
+                Field field = null;
+
+                // get field
+                synchronized (fields) {
+                    field = fields.get(fieldIndex);
+                }
+
+                MainActivity.debug("Device: queryNextFilter: " + fieldIndex + " --> " + field.getSID() + " \tSkipsCount = " + field.getSkipsCount());
+
+                // if we got the field
+                if (field != null) {
+
+                    // only run the filter if the skipsCount is down to zero
+                    boolean runFilter = (field.getSkipsCount() == 0);
+                    if (runFilter)
+                        // reset it to its initial value
+                        field.resetSkipsCount();
+                    else
+                        // decrement the skipsCount
+                        field.decSkipCount();
+
+                    // get this field
+                    if (runFilter) {
+
+                        // get the data
+                        String data = requestField(field);
+                        // test if we got something
+                        if(data!=null && !someThingWrong) {
+                            process(Utils.toIntArray(data.getBytes()));
+                        }
+
+                        // reset if something went wrong ...
+                        // ... but only if we are not asked to stop!
+                        if (someThingWrong && connectedBluetoothThread!=null) {
+                            initDevice(1, 2);
+                        }
+                    }
+
+                    // goto next filter
+                    synchronized (fields) {
+                        if (fields.size() == 0)
+                            fieldIndex = 0;
+                        else
+                            fieldIndex = (fieldIndex + 1) % fields.size();
+                    }
+                }
+                else
+                    MainActivity.debug("Device: failed to get the field!");
+            }
+            // if any error occures, reset the fieldIndex
+            catch (Exception e) {
+                fieldIndex =0;
+            }
+        }
+        else {
+            // ignore if there are no fields to query
+        }
+    }
 
     /**
      * Ass the CAN bus sends a lot of free frames, the device may want
@@ -73,7 +248,10 @@ public abstract class Device {
      */
     protected abstract ArrayList<Message> processData(int[] input);
 
-    public abstract void join() throws InterruptedException;
+    public void join() throws InterruptedException{
+        if(pollerThread!=null)
+            pollerThread.join();
+    }
 
 
     /* ----------------------------------------------------------------
@@ -135,13 +313,16 @@ public abstract class Device {
     }
 
     /**
-     * This method clears the list of monitored fields.
+     * This method clears the list of monitored fields,
+     * but only the custom ones ...
      */
     public void clearFields()
     {
         MainActivity.debug("Device: clearFields");
         synchronized (fields) {
+            customActivityFields.clear();
             fields.clear();
+            fields.addAll(applicationFields);
             //MainActivity.debug("cleared");
             // launch the filter clearing asynchronously
             (new Thread(new Runnable() {
@@ -183,6 +364,25 @@ public abstract class Device {
             if (!containsField(field)) {
                 //MainActivity.debug("reg: "+field.getSID());
                 fields.add(field);
+                customActivityFields.add(field);
+                // launch the field registration asynchronously
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        registerFilter(field.getId());
+                    }
+                })).start();
+            }
+        }
+    }
+
+    public void addApplicationField(final Field field)
+    {
+        synchronized (fields) {
+            if (!containsField(field)) {
+                //MainActivity.debug("reg: "+field.getSID());
+                fields.add(field);
+                applicationFields.add(field);
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
                     @Override
@@ -202,8 +402,27 @@ public abstract class Device {
     public void removeField(final Field field)
     {
         synchronized (fields) {
+            // only remove from the custom fields
+            if(customActivityFields.remove(field))
+            {
+                // launch the field registration asynchronously
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        unregisterFilter(field.getId());
+                    }
+                })).start();
+            }
+        }
+    }
+
+    public void removeApplicationField(final Field field)
+    {
+        synchronized (fields) {
+            // only remove from the custom fields
             if(fields.remove(field))
             {
+                applicationFields.remove(field);
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
                     @Override
@@ -249,6 +468,9 @@ public abstract class Device {
         }
     }
 
+    /**
+     * Stop the poller thread and wait for it to be finished
+     */
     public void stopAndJoin()
     {
         MainActivity.debug("Device: stopping poller");
@@ -256,9 +478,11 @@ public abstract class Device {
         MainActivity.debug("Device: waiting for poller to be stopped");
         try {
             if(pollerThread!=null) {
+                MainActivity.debug("Device: joining thread");
                 pollerThread.join();
                 pollerThread=null;
             }
+            else MainActivity.debug("Device: >>>>>>> pollerThread is NULL!!!");
         }
         catch(Exception e)
         {
@@ -275,14 +499,33 @@ public abstract class Device {
         this.pollerActive = pollerActive;
     }
 
+    /**
+     * Request a field from the device depending on the
+     * type of field.
+     * @param field     the field to be requested
+     * @return
+     */
     public String requestField(Field field)
     {
         if(field.isIsoTp()) return requestIsoTpFrame(field);
         else return requestFreeFrame(field);
     }
 
+    /**
+     * Request a free-frame type field from the device
+     * @param field
+     * @return
+     */
     public abstract String requestFreeFrame(Field field);
+
+    /**
+     * Request an ISO-TP frame type from the device
+     * @param field
+     * @return
+     */
     public abstract String requestIsoTpFrame(Field field);
 
     public abstract boolean initDevice(int toughness);
+
+    protected abstract boolean initDevice (int toughness, int retries);
 }

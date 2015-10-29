@@ -16,6 +16,8 @@ import lu.fisch.canze.activities.BatteryTempActivity;
 import lu.fisch.canze.activities.DtcActivity;
 import lu.fisch.canze.activities.ElmTestActivity;
 import lu.fisch.canze.activities.HarmActivity;
+import lu.fisch.canze.activities.HeatmapBatcompActivity;
+import lu.fisch.canze.activities.HeatmapCellvoltageActivity;
 import lu.fisch.canze.activities.LeafSpyActivity;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.activities.StatsActivity;
@@ -160,8 +162,37 @@ public class ExperimentalFragment extends Fragment {
             }
         });
 
+
+        button = (Button) view.findViewById(R.id.buttonHeatmapBatcomp);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MainActivity.getInstance().isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                MainActivity.getInstance().leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.getInstance(), HeatmapBatcompActivity.class);
+                ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
+            }
+        });
+
+        button = (Button) view.findViewById(R.id.buttonHeatmapCellvoltage);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MainActivity.getInstance().isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                MainActivity.getInstance().leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.getInstance(), HeatmapCellvoltageActivity.class);
+                ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
+            }
+        });
+
         return view;
     }
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        MainActivity.getInstance().onActivityResult(requestCode,resultCode,data);
+    }
 }

@@ -91,6 +91,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                 .setCancelable(true)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
                         EditText dialogDistToDest = (EditText) distToDestView.findViewById(R.id.dialog_dist_to_dest);
                         if (dialogDistToDest != null) {
                             saveDestOdo(odo + Integer.parseInt(dialogDistToDest.getText().toString()));
@@ -100,6 +102,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                 })
                 .setNeutralButton("Double", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
                         EditText dialogDistToDest = (EditText) distToDestView.findViewById(R.id.dialog_dist_to_dest);
                         if (dialogDistToDest != null) {
                             saveDestOdo(odo + 2 * Integer.parseInt(dialogDistToDest.getText().toString()));
@@ -109,6 +113,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
                         dialog.cancel();
                     }
                 });
@@ -122,9 +128,6 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         // show it
         alertDialog.show();
     }
-
-
-
 
     private void saveDestOdo (int d) {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);

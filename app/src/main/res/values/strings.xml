@@ -19,7 +19,9 @@
     <string name="title_activity_harm">Harm\'s playground</string>
     <string name="title_activity_alexandre">Alexandre\'s playground</string>
     <string name="title_activity_battery" >Battery</string>
-    <string name="title_activity_dtc" >Diagnostic Trouble Codes</string>
+    <string name="title_activity_dtc">Diagnostic Trouble Codes</string>
+    <string name="title_activity_heatmap_bat">Battery Compartment heatmap</string>
+    <string name="title_activity_heatmap_cellvoltage">Battery Voltage heatmap</string>
 
     <!-- nonsense -->
 
@@ -70,7 +72,7 @@
     <string name="label_Amps">Amps HV Battery</string>
     <string name="default_Amps">#Amps</string>
 
-    <string name="label_DcPwr">DC Power kWh</string>
+    <string name="label_DcPwr">DC Power kW</string>
     <string name="default_DcPwr">#DCP</string>
 
     <string name="label_AvChPwr">Available Charging Power kW</string>

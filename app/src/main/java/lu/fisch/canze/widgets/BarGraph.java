@@ -96,18 +96,38 @@ public class BarGraph extends Plotter {
             double w = (double) barWidth/values.size();
             double h = (double) getHeight()/(getMax()-getMin()+1);
 
-            g.setColor(Color.RED);
             for(int i=0; i<values.size(); i++)
             {
                 double mx = i*w;
-                double my = getHeight()-(values.get(i)-getMin())*h;
+                double my;
                 int padding = 2;
+                // max value
+                my = getHeight()-(maxValues.get(i)-getMin())*h;
+                g.setColor(Color.GREEN_DARK);
                 g.fillRect(
                         (float) (getX() + getWidth() - barWidth + (int) mx)+padding,
                         (float) (getY() + (int) my),
                         (float) w-2*padding,
-                        (float) (getHeight()-my)
-                        );
+                        (float) 2 //(getHeight()-my)
+                );
+                // min value
+                my = getHeight() - (minValues.get(i) - getMin()) * h;
+                g.setColor(Color.GREEN_DARK);
+                g.fillRect(
+                        (float) (getX() + getWidth() - barWidth + (int) mx) + padding,
+                        (float) (getY() + (int) my),
+                        (float) w - 2 * padding,
+                        (float) 2 //(getHeight() - my)
+                );
+                // value
+                my = getHeight()-(values.get(i)-getMin())*h;
+                g.setColor(Color.RED);
+                g.fillRect(
+                        (float) (getX() + getWidth() - barWidth + (int) mx)+padding,
+                        (float) (getY() + (int) my),
+                        (float) w-2*padding,
+                        (float) 2 //(getHeight()-my)
+                );
             }
         }
 
@@ -141,4 +161,5 @@ public class BarGraph extends Plotter {
             super.onFieldUpdateEvent(field);
         }
     }
+
 }

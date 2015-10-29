@@ -515,7 +515,7 @@ public class ELM327Experimental extends Device {
     }
 
     // query the device for the next filter
-    private void queryNextFilter()
+    public void queryNextFilter()
     {
         if(fields.size() == 0) return;
 
@@ -605,4 +605,9 @@ public class ELM327Experimental extends Device {
 
     @Override
     public boolean initDevice(int toughness) { return true; }
+
+    @Override
+    protected boolean initDevice(int toughness, int retries) {
+        return true;
+    }
 }
