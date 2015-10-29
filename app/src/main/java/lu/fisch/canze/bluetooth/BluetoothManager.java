@@ -7,8 +7,11 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.os.Build;
+import android.util.Log;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.security.InvalidParameterException;
 import java.util.UUID;
@@ -26,6 +29,9 @@ public class BluetoothManager {
      \ ------------------------------ */
 
     private static BluetoothManager bluetoothManager = null;
+
+    private InputStream inputStream     = null;
+    private OutputStream outputStream   = null;
 
     public static BluetoothManager getInstance()
     {
@@ -47,7 +53,6 @@ public class BluetoothManager {
 
     private BluetoothAdapter bluetoothAdapter = null;
     private BluetoothSocket bluetoothSocket = null;
-    private ConnectedBluetoothThread connectedBluetoothThread = null;
 
     private BluetoothEvent bluetoothEvent;
 
@@ -126,25 +131,19 @@ public class BluetoothManager {
         return  device.createRfcommSocketToServiceRecord(MY_UUID);
     }
 
-    public ConnectedBluetoothThread connect()
+    public void connect()
     {
         if(connectBluetoothAddress==null) throw new InvalidParameterException("connect() has to be called at least once with parameters!");
-        return connect(connectBluetoothAddress, connectSecure, connectRetries);
+        connect(connectBluetoothAddress, connectSecure, connectRetries);
     }
 
-    public ConnectedBluetoothThread connect(final String bluetoothAddress, final boolean secure, final int retries) {
+    public void connect(final String bluetoothAddress, final boolean secure, final int retries) {
         retry = true;
-        return privateConnect(bluetoothAddress, secure, retries);
+        privateConnect(bluetoothAddress, secure, retries);
     }
 
-    private ConnectedBluetoothThread privateConnect(final String bluetoothAddress, final boolean secure, final int retries)
+    private void privateConnect(final String bluetoothAddress, final boolean secure, final int retries)
     {
-        if(connectedBluetoothThread!=null && connectedBluetoothThread.isAlive())
-        {
-            debug("Thread is active and alive. Aborting re-connect!");
-            return connectedBluetoothThread;
-        }
-
         if(retry) {
             // remember parameters
             connectBluetoothAddress = bluetoothAddress;
@@ -153,19 +152,15 @@ public class BluetoothManager {
 
             // only continue if we got an address
             if (bluetoothAddress != null && !bluetoothAddress.isEmpty() && getHardwareState() == STATE_BLUETOOTH_ACTIVE) {
-                // make sure the affected thread is no longer running
-                if (connectedBluetoothThread != null && connectedBluetoothThread.isAlive()) {
-                    debug("Stopping previous connected thread");
-                    connectedBluetoothThread.cleanStop();
-                }
 
                 // make sure there is no more active connection
                 if (bluetoothSocket != null && !bluetoothSocket.isConnected()) {
                     try {
                         debug("Closing previous socket");
                         bluetoothSocket.close();
+                        bluetoothSocket=null;
                     } catch (Exception e) {
-                        // ignore
+                        e.printStackTrace();
                     }
                 }
 
@@ -192,16 +187,23 @@ public class BluetoothManager {
                     debug("Connect the socket");
                     bluetoothSocket.connect();
 
-                    debug("Create a new connected thread");
-                    ConnectedBluetoothThread connectedBluetoothThread = new ConnectedBluetoothThread(bluetoothSocket);
+                    debug("Connect the streams");
+                    // connect the streams
+                    try {
+                        inputStream  = bluetoothSocket.getInputStream();
+                        outputStream = bluetoothSocket.getOutputStream();
+                    }
+                    catch (IOException e) {
+                        inputStream  = null;
+                        outputStream = null;
+                    }
 
                     // execute attached event
                     if (bluetoothEvent != null)
-                        bluetoothEvent.onAfterConnect(bluetoothSocket, connectedBluetoothThread);
+                        bluetoothEvent.onAfterConnect(bluetoothSocket);
 
                     debug("Connected");
-
-                    return connectedBluetoothThread;
+                    return;
                 } catch (IOException e) {
                     //e.printStackTrace();
                 }
@@ -225,7 +227,7 @@ public class BluetoothManager {
                         @Override
                         public void run() {
                             try {
-                                Thread.sleep(5 * 1000);
+                                Thread.sleep(2 * 1000);
                             } catch (Exception e) {
                             }
                             (new Thread(new Runnable() {
@@ -243,14 +245,13 @@ public class BluetoothManager {
                 }
             }
         }
-        return null;
     }
 
     public void disconnect()
     {
         try {
             // execute attached event
-            if(bluetoothEvent!=null) bluetoothEvent.onBeforeDisconnect(bluetoothSocket,connectedBluetoothThread);
+            if(bluetoothEvent!=null) bluetoothEvent.onBeforeDisconnect(bluetoothSocket);
 
             retry=false;
 
@@ -275,6 +276,59 @@ public class BluetoothManager {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    /* --------------------------------
+     * input / output
+     \ ------------------------------ */
+
+    // write a message to the output stream
+    public void write(String message) {
+        if(bluetoothSocket.isConnected()) {
+            byte[] msgBuffer = message.getBytes();
+            try {
+                outputStream.write(msgBuffer);
+            } catch (IOException e) {
+                Log.d(MainActivity.TAG, "BT: Error sending > " + e.getMessage());
+                Log.d(MainActivity.TAG, "BT: Error sending > restaring BT");
+
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        disconnect();
+                        connect(connectBluetoothAddress, true, BluetoothManager.RETRIES_INFINITE);
+                    }
+                })).start();
+            }
+        }
+        else MainActivity.debug("Write failed! Socket is closed ... M = "+message);
+    }
+
+    public int read(byte[] buffer) throws IOException {
+        if(bluetoothSocket.isConnected())
+            return inputStream.read(buffer);
+        else
+            return 0;
+    }
+
+    public int read() throws IOException {
+        if(bluetoothSocket.isConnected())
+            return inputStream.read();
+        else
+            return -1;
+    }
+
+    public int available() throws IOException {
+        if(bluetoothSocket.isConnected())
+            return inputStream.available();
+        else
+            return 0;
+    }
+
+    public boolean isConnected()
+    {
+        if(bluetoothSocket==null) return false;
+        return bluetoothSocket.isConnected();
     }
 
     /* --------------------------------

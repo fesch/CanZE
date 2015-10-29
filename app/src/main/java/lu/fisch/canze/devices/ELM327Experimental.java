@@ -8,6 +8,7 @@ import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.actors.Utils;
+import lu.fisch.canze.bluetooth.BluetoothManager;
 
 /**
  * Created by robertfisch on 07.09.2015.
@@ -31,18 +32,7 @@ public class ELM327Experimental extends Device {
 
     @Override
     public void initConnection() {
-        // if the reading thread is running: stop it, because we don't need it
-        if(connectedBluetoothThread!=null && connectedBluetoothThread.isAlive()) {
-            connectedBluetoothThread.cleanStop();
-            try {
-                connectedBluetoothThread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-        if(connectedBluetoothThread!=null) {
+        if(BluetoothManager.getInstance().isConnected()) {
             // post a task to the UI thread
             Runnable r = new Runnable() {
                 @Override
@@ -51,11 +41,11 @@ public class ELM327Experimental extends Device {
                     // continue only if we got an answer.
                     if (restoreOrder(0)) {
 
-                        while (connectedBluetoothThread!=null) {
+                        while (!BluetoothManager.getInstance().isConnected()) {
                             // if the no field is to be queried, sleep for a while
                             if(fields.size()==0)
                             {
-                                if(connectedBluetoothThread!=null)
+                                if(BluetoothManager.getInstance().isConnected())
                                     try{
                                         Thread.sleep(5000);
                                     }
@@ -71,7 +61,7 @@ public class ELM327Experimental extends Device {
                     } else {
                         MainActivity.debug("ELM: no answer ...");
                         MainActivity.toast("No answer from ELM ... retrying ...");
-                        if(connectedBluetoothThread!=null) {
+                        if(BluetoothManager.getInstance().isConnected()) {
                             // retry
                             pollerThread = new Thread(this);
                             pollerThread.start();
@@ -285,21 +275,21 @@ public class ELM327Experimental extends Device {
     // RAW SERIAL BLUETOOTH METHODS ====================================================================================
 
     private void sendSerial (String command) {
-        if (connectedBluetoothThread == null) return;
-        connectedBluetoothThread.write (command);
+        if (!BluetoothManager.getInstance().isConnected()) return;
+        BluetoothManager.getInstance().write(command);
     }
 
 
     private void flushSerial (int timeout) {
-        if(connectedBluetoothThread == null) return;
+        if(!BluetoothManager.getInstance().isConnected()) return;
         try {
             // raw implementation of timeout. Better would be to use serialReady and restart the timeout after echt character.
             // then again, this timeout is in reality only used by restoreOrder, so we're fine.
             if (timeout != 0) {
                 Thread.sleep(timeout);
             }
-            while (connectedBluetoothThread.available() > 0) {
-                connectedBluetoothThread.read();
+            while (BluetoothManager.getInstance().available() > 0) {
+                BluetoothManager.getInstance().read();
             }
         } catch (IOException e) {
             // ignore
@@ -310,12 +300,12 @@ public class ELM327Experimental extends Device {
 
 
     private boolean serialReady (int msecs) throws IOException {
-        if (connectedBluetoothThread == null) return false;
+        if (!BluetoothManager.getInstance().isConnected()) return false;
         try {
-            if (connectedBluetoothThread.available() > 0) return true;
+            if (BluetoothManager.getInstance().available() > 0) return true;
             long end = Calendar.getInstance().getTimeInMillis() + msecs;
             while (Calendar.getInstance().getTimeInMillis() < end) {
-                if (connectedBluetoothThread.available() > 0) return true;
+                if (BluetoothManager.getInstance().available() > 0) return true;
                 Thread.sleep(2);
             }
         } catch (IOException | InterruptedException e) {
@@ -326,11 +316,11 @@ public class ELM327Experimental extends Device {
 
 
     private String getSerialCommandLine (char stopChar, int timeout) {
-        if (connectedBluetoothThread == null) return "";
+        if (!BluetoothManager.getInstance().isConnected()) return "";
         String readBuffer ="";
         try {
             while (serialReady(timeout)) {
-                char c = (char )connectedBluetoothThread.read();
+                char c = (char )BluetoothManager.getInstance().read();
                 if (c == stopChar) {
                     //MainActivity.toast (readBuffer);
                     return readBuffer;

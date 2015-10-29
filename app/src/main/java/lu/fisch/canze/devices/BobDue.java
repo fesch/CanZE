@@ -8,6 +8,7 @@ import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.actors.Utils;
+import lu.fisch.canze.bluetooth.BluetoothManager;
 
 /**
  * Created by robertfisch on 07.09.2015.
@@ -29,17 +30,7 @@ public class BobDue extends Device {
 
     public void initConnection_old() {
         MainActivity.debug("BobDue: initConnection");
-        // if the reading thread is running: stop it, because we don't need it
-        if(connectedBluetoothThread!=null && connectedBluetoothThread.isAlive()) {
-            connectedBluetoothThread.cleanStop();
-            try {
-                MainActivity.debug("BobDue: joining");
-                connectedBluetoothThread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        if(connectedBluetoothThread!=null) {
+        if(BluetoothManager.getInstance().isConnected()) {
             MainActivity.debug("BobDue: connectedBluetoothThread!=null");
             // make sure we only have one poller task
             if (pollerThread == null) {
@@ -55,12 +46,11 @@ public class BobDue extends Device {
                             //MainActivity.debug("BobDue: inside poller thread ...");
                             if(fields.size()==0)
                             {
-                                if(connectedBluetoothThread!=null)
-                                    //MainActivity.debug("BobDue: sleeping ...");
-                                    try{
-                                        Thread.sleep(5000);
-                                    }
-                                    catch (Exception e) {}
+                                //MainActivity.debug("BobDue: sleeping ...");
+                                try{
+                                    Thread.sleep(5000);
+                                }
+                                catch (Exception e) {}
                             }
                             // query a field
                             else {
@@ -100,8 +90,8 @@ public class BobDue extends Device {
     @Override
     public void registerFilter(int frameId) {
         String filter = Integer.toHexString(frameId);
-        if(connectedBluetoothThread!=null)
-            connectedBluetoothThread.write("f" + filter + "\n");
+        if(BluetoothManager.getInstance().isConnected())
+            BluetoothManager.getInstance().write("f" + filter + "\n");
         else
             MainActivity.debug("BobDue.registerFilter " + filter + " failed because connectedBluetoothThread is NULL");
     }
@@ -109,8 +99,8 @@ public class BobDue extends Device {
     @Override
     public void unregisterFilter(int frameId) {
         String filter = Integer.toHexString(frameId);
-        if(connectedBluetoothThread!=null)
-            connectedBluetoothThread.write("r" + filter + "\n");
+        if(BluetoothManager.getInstance().isConnected())
+            BluetoothManager.getInstance().write("r" + filter + "\n");
         else
             MainActivity.debug("BobDue.unregisterFilter " + filter + " failed because connectedBluetoothThread is NULL");
     }
@@ -250,16 +240,16 @@ public class BobDue extends Device {
         // empty incoming buffer
         // just make sure there is no previous response
         try {
-            while(connectedBluetoothThread.available()>0)
+            while(BluetoothManager.getInstance().available()>0)
             {
-                connectedBluetoothThread.read();
+                BluetoothManager.getInstance().read();
             }
         } catch (IOException e) {
             // ignore
         }
         // send the command
         if(command!=null)
-            connectedBluetoothThread.write(command + "\r\n");
+            BluetoothManager.getInstance().write(command + "\r\n");
         //MainActivity.debug("Send > "+command);
         // wait if needed
         if(waitMillis>0)
@@ -278,9 +268,9 @@ public class BobDue extends Device {
             //MainActivity.debug("Delta = "+(Calendar.getInstance().getTimeInMillis()-start));
             try {
                 // read a byte
-                if(connectedBluetoothThread.available()>0) {
+                if(BluetoothManager.getInstance().available()>0) {
                     //MainActivity.debug("Reading ...");
-                    int data = connectedBluetoothThread.read();
+                    int data = BluetoothManager.getInstance().read();
                     //MainActivity.debug("... done");
                     // if it is a real one
                     if (data != -1) {
@@ -289,7 +279,7 @@ public class BobDue extends Device {
                         // add it to the readBuffer
                         readBuffer += ch;
                         // stop if we reached the end or if no more data is available
-                        if (ch == EOM || connectedBluetoothThread.available() <= 0) stop = true;
+                        if (ch == EOM || BluetoothManager.getInstance().available() <= 0) stop = true;
                     }
                 }
             }
