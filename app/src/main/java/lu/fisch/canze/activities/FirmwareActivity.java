@@ -21,9 +21,13 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
     // There are hardware dependencies here (i.e. different CLIMA ECU's with different software loads) that we do not yet fully understand.
 
     //                                             EVC     TCU     LBC     PEB     AIBAG   USM     CLUSTER EPS     ABS     UBP     BCM     CLIM    UPA     BCB     LBC2    LINSCH
-    private static final int [] zoeVersions     = {0x0203, 0x0767, 0x0751, 0x0a06, 0x0470, 0xc630, 0x0507, 0x014a, 0x1178, 0x1523, 0x140e, 0x0702, 0x0017, 0x0210, 0x0751,      0};
-    private static final int [] fluenceVersions = {0x0202, 0x0172, 0x7505, 0x02ba, 0x0305, 0x0907, 0x0026, 0x014a, 0x8160,      0, 0x140e, 0x0007, 0x0024, 0xd300, 0x5c0a,      0};
-    private static final int [] kangooVersions  = {0x0201, 0x1011, 0x7505, 0x0205,      1,      1, 0x003d,      1,      1,      1, 0x0003,      1,      1, 0xd300, 0x5c0a,      1};
+//  private static final int [] zoeVersions     = {0x0203, 0x0767, 0x0751, 0x0a06, 0x0470, 0xc630, 0x0507, 0x014a, 0x1178, 0x1523, 0x140e, 0x0702, 0x0017, 0x0210, 0x0751,      0};
+//  private static final int [] fluenceVersions = {0x0202, 0x0172, 0x7505, 0x02ba, 0x0305, 0x0907, 0x0026, 0x014a, 0x8160,      0, 0x140e, 0x0007, 0x0024, 0xd300, 0x5c0a,      0};
+//  private static final int [] kangooVersions  = {0x0201, 0x1011, 0x7505, 0x0205,      1,      1, 0x003d,      1,      1,      1, 0x0003,      1,      1, 0xd300, 0x5c0a,      1};
+//  private static final int [] x10Versions     = zoeVersions;
+    private static final int [] zoeVersions     = {0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
+    private static final int [] fluenceVersions = {0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
+    private static final int [] kangooVersions  = {0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
     private static final int [] x10Versions     = zoeVersions;
 
     private static int versions [] = null;
@@ -93,22 +97,22 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
 
         subscribedFields = new ArrayList<>();
 
-        addListener("793.6180.128"); // BCB put here as it seems to stop reponding very easily
-        addListener("7ec.6180.128"); // SCH
-        addListener("7da.6180.128"); // TCU
-        addListener("7bb.6180.128"); // LBC
-        addListener("77e.6180.128"); // PEB
-        addListener("772.6180.128"); // AIRBAG
-        addListener("76d.6180.128"); // USM not for Fluence
-        addListener("763.6180.128"); // CLUSTER
-        addListener("762.6180.128"); // EPS
-        addListener("760.6180.128"); // ABS
-        addListener("7bc.6180.128"); // UBP not for Fluence
-        addListener("765.6180.128"); // BCM
-        addListener("764.6180.128"); // CLIM
-        addListener("76e.6180.128"); // UPA not for Zoe
-        addListener("7b6.6180.128"); // LBC2
-        addListener("722.6180.128"); // LINSCH not for FLuence or Zoe
+        addListener("793.6180.144"); // BCB put here as it seems to stop reponding very easily
+        addListener("7ec.6180.144"); // SCH
+        addListener("7da.6180.144"); // TCU
+        addListener("7bb.6180.144"); // LBC
+        addListener("77e.6180.144"); // PEB
+        addListener("772.6180.144"); // AIRBAG
+        addListener("76d.6180.144"); // USM not for Fluence
+        addListener("763.6180.144"); // CLUSTER
+        addListener("762.6180.144"); // EPS
+        addListener("760.6180.144"); // ABS
+        addListener("7bc.6180.144"); // UBP not for Fluence
+        addListener("765.6180.144"); // BCM
+        addListener("764.6180.144"); // CLIM
+        addListener("76e.6180.144"); // UPA not for Zoe
+        addListener("7b6.6180.144"); // LBC2
+        addListener("722.6180.144"); // LINSCH not for FLuence or Zoe
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -127,67 +131,67 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
                 // get the text field
                 switch (fieldId) {
 
-                    case "7ec.6180.128":
+                    case "7ec.6180.144":
                         tv = (TextView) findViewById(R.id.ecu7ec);
                         refVersion = versions [0];
                         break;
-                    case "7da.6180.128":
+                    case "7da.6180.144":
                         tv = (TextView) findViewById(R.id.ecu7da);
                         refVersion = versions [1];
                         break;
-                    case "7bb.6180.128":
+                    case "7bb.6180.144":
                         tv = (TextView) findViewById(R.id.ecu7bb);
                         refVersion = versions [2];
                         break;
-                    case "77e.6180.128":
+                    case "77e.6180.144":
                         tv = (TextView) findViewById(R.id.ecu77e);
                         refVersion = versions [3];
                         break;
-                    case "772.6180.128":
+                    case "772.6180.144":
                         tv = (TextView) findViewById(R.id.ecu772);
                         refVersion = versions [4];
                         break;
-                    case "76d.6180.128":
+                    case "76d.6180.144":
                         tv = (TextView) findViewById(R.id.ecu76d);
                         refVersion = versions [5];
                         break;
-                    case "763.6180.128":
+                    case "763.6180.144":
                         tv = (TextView) findViewById(R.id.ecu763);
                         refVersion = versions [6];
                         break;
-                    case "762.6180.128":
+                    case "762.6180.144":
                         tv = (TextView) findViewById(R.id.ecu762);
                         refVersion = versions [7];
                         break;
-                    case "760.6180.128":
+                    case "760.6180.144":
                         tv = (TextView) findViewById(R.id.ecu760);
                         refVersion = versions [8];
                         break;
-                    case "7bc.6180.128":
+                    case "7bc.6180.144":
                         tv = (TextView) findViewById(R.id.ecu7bc);
                         refVersion = versions [9];
                         break;
-                    case "765.6180.128":
+                    case "765.6180.144":
                         tv = (TextView) findViewById(R.id.ecu765);
                         refVersion = versions [10];
                         break;
-                    case "764.6180.128":
+                    case "764.6180.144":
                         tv = (TextView) findViewById(R.id.ecu764);
                         refVersion = versions [11];
                         break;
-                    case "76e.6180.128":
+                    case "76e.6180.144":
                         tv = (TextView) findViewById(R.id.ecu76e);
                         refVersion = versions [12];
                         break;
-                    case "793.6180.128":
+                    case "793.6180.144":
                         tv = (TextView) findViewById(R.id.ecu793);
                         refVersion = versions [13];
                         break;
-                    case "7b6.6180.128":
+                    case "7b6.6180.144":
                         tv = (TextView) findViewById(R.id.ecu7b6);
                         refVersion = versions [14];
                         break;
-                    case "722.6180.128":
+                    case "722.6180.144":
                         tv = (TextView) findViewById(R.id.ecu722);
                         refVersion = versions [15];
                         break;
