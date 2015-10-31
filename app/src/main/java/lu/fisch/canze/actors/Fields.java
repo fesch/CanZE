@@ -346,7 +346,7 @@ public class Fields implements MessageListener {
                         +"0x130, 32, 38, 1, 1, 0, 0, BrakePedalDriverWill %3ld, %, , , BrakePedalDriverWill, 0, 0, 10\n"
                         +"0x130, 40, 41, 1, 1, 0, 0, HBA_ActivationRequest %1ld, , , , HBA_ActivationRequest, 0, 0, 10\n"
                         +"0x130, 42, 43, 1, 1, 0, 0, PressureBuildUp %1ld, , , , PressureBuildUp, 0, 0, 10\n"
-                        +"0x130, 44, 55, 1, -1, 4049, 0, DriverBrakeWheelTq_Req %4ld, Nm, , , DriverBrakeWheelTq_Req , 0, 0, 10\n"
+                        +"0x130, 44, 55, 1, -3, 4049, 0, DriverBrakeWheelTq_Req %4ld, Nm, , , DriverBrakeWheelTq_Req , 0, 0, 10\n"
                         +"0x130, 56, 63, 1, 1, 0, 0, CheckSum_UBP %3ld, , , , CheckSum_UBP, 0, 0, 10\n"
                         +"0x130, 8, 10, 1, 1, 0, 0, UBP_Clock %1ld, , , , UBP_Clock, 0, 0, 10\n"
                         +"0x17e, 40, 41, 1, 1, 0, 0, , , , , CrankingAuthorisation_AT, 0, 0, 10\n"
@@ -362,6 +362,10 @@ public class Fields implements MessageListener {
                         +"0x18a, 26, 26, 1, 1, 0, 0, Kickdown: %1ld, , , , KickDownActivated, 0, 0, 10\n"
                         +"0x18a, 27, 38, 1, 5, 800, 10, FrictionTorque: %4ld, Nm, , , , 0, 0, 10\n"
                         +"0x1f6, 20, 20, 1, 5, 0, 10, Break pedal: %4ld, , , , Break Pedal, 0, 0, 10\n"
+
+                        +"0x1f8, 16, 27, 1, -1, 4096, 0, TotalPotentialResistiveWheelsTorque: %4ld, Nm, , , TotalPotentialResistiveWheelsTorque, 0, 0, 10\n"
+                        +"0x1f8, 28, 39, 1, -1, 4096, 0, ElecBrakeWheelsTorqueApplied: %4ld, Nm, , , ElecBrakeWheelsTorqueApplied, 0, 0, 10\n"
+
                         +"0x1fd, 0, 7, 1, 5, 0, 10, Amp 12V: %2ld.%01ld, A, , , 12V Battery Current, 0, 0, 100\n"
                         +"0x1fd, 48, 55, 1, 1, 0x50, 0, KwDash: %4ld, kW, , , Consumption, 0, 0, 100\n"
                         +"0x218, 0, 15, 1, 1, 0, 0, , , , , , 0, 0, 20\n"
