@@ -43,10 +43,10 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_EVC_TractionBatteryVoltage           = "7ec.623203.24"; //  (EVC)
     public static final String SID_EVC_TractionBatteryCurrent           = "7ec.623204.24"; //  (EVC)
 
-    double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
-    int odo = 0;
-    int destOdo = 0; // have to init from save file
-    double realSpeed = 0;
+    private double  dcVolt      = 0; // holds the DC voltage, so we can calculate the power when the amps come in
+    private int     odo         = 0;
+    private int     destOdo     = 0; // have to init from save file
+    private double  realSpeed   = 0;
     private ArrayList<Field> subscribedFields;
 
     @Override
