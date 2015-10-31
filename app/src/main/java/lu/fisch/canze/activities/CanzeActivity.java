@@ -18,6 +18,7 @@ import java.util.zip.GZIPOutputStream;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.widgets.WidgetView;
 
 /**
@@ -35,9 +36,9 @@ public class CanzeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(MainActivity.device!=null)
-            if(MainActivity.device.getConnectedBluetoothThread()==null)
+            if(!BluetoothManager.getInstance().isConnected())
                 // restart Bluetooth
-                MainActivity.getInstance().reloadBluetooth();
+                BluetoothManager.getInstance().connect();
         MainActivity.debug("CanzeActivity: onCreate");
         if(!widgetView) {
             // register all fields

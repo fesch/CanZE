@@ -127,7 +127,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
 
                     String colorRangesJson =attributes.getString(R.styleable.WidgetView_colorRanges);
-                    if(!colorRangesJson.trim().isEmpty())
+                    if(colorRangesJson!=null && !colorRangesJson.trim().isEmpty())
                         setColorRanges(new ColorRanges(colorRangesJson.replace("'","\"")));
 
                     //MainActivity.debug("WidgetView: My SID is "+fieldSID);
@@ -217,7 +217,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 	}
 
     // DIRECT repaint method
-    public void repaint() {
+    public void repaint2() {
         Canvas c = null;
         try {
             c = getHolder().lockCanvas();
@@ -248,7 +248,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
     }
 
     // INDIRECT repaint method (using a separate thread
-	public void repaint2()
+	public void repaint()
 	{
         if(drawThread==null || !drawThread.isRunning())
         {

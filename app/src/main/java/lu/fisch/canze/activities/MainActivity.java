@@ -39,7 +39,6 @@ import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.bluetooth.BluetoothManager;
-import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
 import lu.fisch.canze.devices.ArduinoDue;
 import lu.fisch.canze.devices.BobDue;
 import lu.fisch.canze.devices.Device;
@@ -65,8 +64,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     private static String bluetoothDeviceName = null;
     private static String dataFormat = "bob";
     private static String deviceName = "Arduino";
-
-    private ConnectedBluetoothThread connectedBluetoothThread;
 
     public final static int RECIEVE_MESSAGE   = 1;
     public final static int REQUEST_ENABLE_BT = 3;
@@ -117,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                     if (device!=null)
                     {
                         device.stopAndJoin();
-                        device.setConnectedBluetoothThread(null);
                     }
 
                     // inform user
@@ -335,6 +331,52 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         // Specify that tabs should be displayed in the action bar.
 
 
+
+        // register for bluetooth changes
+        IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+        this.registerReceiver(broadcastReceiver, intentFilter);
+
+        // configure Bluetooth manager
+        BluetoothManager.getInstance().setBluetoothEvent(new BluetoothEvent() {
+            @Override
+            public void onBeforeConnect() {
+
+            }
+
+            @Override
+            public void onAfterConnect(BluetoothSocket bluetoothSocket) {
+                device.init(visible);
+                device.registerFilters();
+
+                // set title
+                debug("MainActivity: onAfterConnect > set title");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        setTitle(TAG + " - connected to <" + bluetoothDeviceName + "@" + bluetoothDeviceAddress + ">");
+                    }
+                });
+            }
+
+            @Override
+            public void onBeforeDisconnect(BluetoothSocket bluetoothSocket) {
+            }
+
+            @Override
+            public void onAfterDisconnect() {
+            }
+        });
+        // detect hardware status
+        int BT_STATE = BluetoothManager.getInstance().getHardwareState();
+        if(BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_AVAILABLE)
+            Toast.makeText(this.getBaseContext(),"Sorry, but your device doesn't seem to have Bluetooth support!",Toast.LENGTH_LONG).show();
+        else if (BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_ACTIVE)
+        {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, 1);
+        }
+
+
         // load settings
         // - includes the reader
         // - includes the decoder
@@ -353,72 +395,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         }
 
         loadFragement(new MainFragment());
-
-        // register for bluetooth changes
-        IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-        this.registerReceiver(broadcastReceiver, intentFilter);
-
-        // configure Bluetooth manager
-        BluetoothManager.getInstance().setBluetoothEvent(new BluetoothEvent() {
-            @Override
-            public void onBeforeConnect() {
-
-            }
-
-            @Override
-            public void onAfterConnect(BluetoothSocket bluetoothSocket, ConnectedBluetoothThread connectedBluetoothThread) {
-                MainActivity.this.connectedBluetoothThread = connectedBluetoothThread;
-
-                // assign the BT thread to the reader
-                debug("MainActivity: onAfterConnect > assign the BT thread to the device");
-                if (device != null)
-                    device.setConnectedBluetoothThread(connectedBluetoothThread, visible);
-                else
-                    debug("... but device is null!");
-
-                // register fields this activity needs to get
-                // but only if this activity is visible
-                /* no longer needed as these fields are now application bound
-                if (visible)
-                    registerFields();
-                */
-
-                device.registerFilters();
-
-                // set title
-                debug("MainActivity: onAfterConnect > set title");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        setTitle(TAG + " - connected to <" + bluetoothDeviceName + "@" + bluetoothDeviceAddress + ">");
-                    }
-                });
-            }
-
-            @Override
-            public void onBeforeDisconnect(BluetoothSocket bluetoothSocket, ConnectedBluetoothThread connectedBluetoothThread) {
-                // clear all filters
-                //reader.clearFields();
-                //if (device != null)
-                //    device.clearFields();
-            }
-
-            @Override
-            public void onAfterDisconnect() {
-
-            }
-        });
-        // detect hardware status
-        int BT_STATE = BluetoothManager.getInstance().getHardwareState();
-        if(BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_AVAILABLE)
-            Toast.makeText(this.getBaseContext(),"Sorry, but your device doesn't seem to have Bluetooth support!",Toast.LENGTH_LONG).show();
-        else if (BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_ACTIVE)
-        {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, 1);
-        }
-
-
     }
 
 
@@ -510,7 +486,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             @Override
             public void run() {
             // try to get a new BT thread)
-            connectedBluetoothThread = BluetoothManager.getInstance().connect(bluetoothDeviceAddress, true, BluetoothManager.RETRIES_INFINITE);
+            BluetoothManager.getInstance().connect(bluetoothDeviceAddress, true, BluetoothManager.RETRIES_INFINITE);
             }
         })).start();
     }
@@ -543,8 +519,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             debug("MainActivity: stopBluetooth > stopAndJoin");
             device.stopAndJoin();
             // remove reference
-            debug("MainActivity: stopBluetooth > nulling out setConnectedBluetoothThread");
-            device.setConnectedBluetoothThread(null, reset);
+            if(reset) {
+                device.clearFields();
+                device.registerFilters();
+            }
         }
         // disconnect BT
         debug("MainActivity: stopBluetooth > BT disconnect");
@@ -599,7 +577,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         if(device!=null) {
             // stop the device nicely
             device.stopAndJoin();
-            device.setConnectedBluetoothThread(null);
+            device.clearFields();
+            device.registerFilters();
         }
         // disconnect the bluetooth
         BluetoothManager.getInstance().disconnect();
@@ -644,7 +623,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                         if (device != null) {
                             // stop the BT device
                             device.stopAndJoin();
-                            device.setConnectedBluetoothThread(null);
+                            device.clearFields();
+                            device.registerFilters();
                             BluetoothManager.getInstance().disconnect();
                         }
 
