@@ -101,7 +101,11 @@ public class ElmTestActivity extends CanzeActivity {
         if (field != null) {
             String backRes = MainActivity.device.requestField(field);
             if (backRes != null)
-                appendResult(backRes.replace('\r', '•'));
+                if (!backRes.equals("")) {
+                    appendResult(backRes.replace('\r', '•'));
+                } else {
+                    appendResult("empty");
+                }
             else
                 appendResult("null");
         }
@@ -135,7 +139,11 @@ public class ElmTestActivity extends CanzeActivity {
         if (field != null) {
             String backRes = MainActivity.device.requestField(field);
             if (backRes != null) {
-                appendResult(backRes.replace('\r', '\u2022'));
+                if (!backRes.equals("")) {
+                    appendResult(backRes.replace('\r', '•'));
+                } else {
+                    appendResult("empty");
+                }
             } else
                 appendResult("null");
         }

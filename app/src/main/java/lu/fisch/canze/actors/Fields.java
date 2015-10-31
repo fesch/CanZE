@@ -346,7 +346,7 @@ public class Fields implements MessageListener {
                         +"0x130, 32, 38, 1, 1, 0, 0, BrakePedalDriverWill %3ld, %, , , BrakePedalDriverWill, 0, 0, 10\n"
                         +"0x130, 40, 41, 1, 1, 0, 0, HBA_ActivationRequest %1ld, , , , HBA_ActivationRequest, 0, 0, 10\n"
                         +"0x130, 42, 43, 1, 1, 0, 0, PressureBuildUp %1ld, , , , PressureBuildUp, 0, 0, 10\n"
-                        +"0x130, 44, 55, 1, -1, 4049, 0, DriverBrakeWheelTq_Req %4ld, Nm, , , DriverBrakeWheelTq_Req , 0, 0, 10\n"
+                        +"0x130, 44, 55, 1, -3, 4049, 0, DriverBrakeWheelTq_Req %4ld, Nm, , , DriverBrakeWheelTq_Req , 0, 0, 10\n"
                         +"0x130, 56, 63, 1, 1, 0, 0, CheckSum_UBP %3ld, , , , CheckSum_UBP, 0, 0, 10\n"
                         +"0x130, 8, 10, 1, 1, 0, 0, UBP_Clock %1ld, , , , UBP_Clock, 0, 0, 10\n"
                         +"0x17e, 40, 41, 1, 1, 0, 0, , , , , CrankingAuthorisation_AT, 0, 0, 10\n"
@@ -362,6 +362,10 @@ public class Fields implements MessageListener {
                         +"0x18a, 26, 26, 1, 1, 0, 0, Kickdown: %1ld, , , , KickDownActivated, 0, 0, 10\n"
                         +"0x18a, 27, 38, 1, 5, 800, 10, FrictionTorque: %4ld, Nm, , , , 0, 0, 10\n"
                         +"0x1f6, 20, 20, 1, 5, 0, 10, Break pedal: %4ld, , , , Break Pedal, 0, 0, 10\n"
+
+                        +"0x1f8, 16, 27, 1, -1, 4096, 0, TotalPotentialResistiveWheelsTorque: %4ld, Nm, , , TotalPotentialResistiveWheelsTorque, 0, 0, 10\n"
+                        +"0x1f8, 28, 39, 1, -1, 4096, 0, ElecBrakeWheelsTorqueApplied: %4ld, Nm, , , ElecBrakeWheelsTorqueApplied, 0, 0, 10\n"
+
                         +"0x1fd, 0, 7, 1, 5, 0, 10, Amp 12V: %2ld.%01ld, A, , , 12V Battery Current, 0, 0, 100\n"
                         +"0x1fd, 48, 55, 1, 1, 0x50, 0, KwDash: %4ld, kW, , , Consumption, 0, 0, 100\n"
                         +"0x218, 0, 15, 1, 1, 0, 0, , , , , , 0, 0, 20\n"
@@ -457,6 +461,7 @@ public class Fields implements MessageListener {
                         +"0x763, 4, 4, 1, 1, 0, 0, vol- %1ld, , 0x2220f0, 0x6220f0, , 0, 0, 0\n"
                         +"0x763, 5, 5, 1, 1, 0, 0, media %1ld, , 0x2220f0, 0x6220f0, , 0, 0, 0\n"
                         +"0x763, 6, 6, 1, 1, 0, 0, radio %1ld, , 0x2220f0, 0x6220f0, , 0, 0, 0\n"
+
                         +"0x77e, 24, 31, 1, 1, 0, 0, dcdc state %2ld, , 0x22300f, 0x62300f, , 0, 0, 0\n"
                         +"0x77e, 24, 31, 16, 100, 0, 100, Current %3ld.%02ld, A, 0x22301d, 0x62301d, , 0, 0, 0\n"
                         +"0x77e, 24, 31, 32, 1, 0, 0, Trq app. %5ld, Nm, 0x223025, 0x623025, , 0, 0, 0\n"
@@ -471,7 +476,7 @@ public class Fields implements MessageListener {
                         +"0x7bb, 112, 127, 1, 1, 0, 1000, Cell 69 %1ld.%03ld, V, 0x2142, 0x6142, , 0, 0, 0\n"
                         +"0x7bb, 128, 135, 1, 1, 40, 0, T 5: %4ld, C, 0x2104, 0x6104, Cell 5 Temperature, 2, 10, 0\n"
                         +"0x7bb, 128, 143, 1, 1, 0, 1000, Cell 08 %1ld.%03ld, V, 0x2141, 0x6141, , 0, 0, 0\n"
-                        +"0x7bb, 128, 143, 1, 1, 0, 1000, Cell 70 %1ld.%03ld, V, 0x2142, 0x6142, , 0, 0, 0\n"
+                        +"0x7bb, 144, 159, 1, 1, 0, 1000, Cell 70 %1ld.%03ld, V, 0x2142, 0x6142, , 0, 0, 0\n"
                         +"0x7bb, 136, 151, 1, 1, 0, 0, Bat kWh %5ld, kWh, 0x2161, 0x6161, , 1, 0, 0\n"
                         +"0x7bb, 136, 151, 1, 1, 0, 0, Raw t c06: %4ld, unknown, 0x2104, 0x6104, , 2, 10, 0\n"
                         +"0x7bb, 144, 159, 1, 1, 0, 1000, Cell 09 %1ld.%03ld, V, 0x2141, 0x6141, , 0, 0, 0\n"
@@ -612,37 +617,37 @@ public class Fields implements MessageListener {
                         +"0x7ec, 24, 39, 1, 50, 0, 100, Volt, V, 0x223203, 0x623203, , 0, 0, 0\n"
                         +"0x7ec, 24, 39, 48, 100, 0, 100, SOC, %, 0x222002, 0x622002, , 1, 0, 0\n"
                         +"0x7ec, 24, 47, 1, 1, 0, 0, Odometer, km, 0x222006, 0x622006, , 0, 0, 0\n"
-                        +"0x7ec, 128, 143, 1, 1, 0, 0, SCH SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
-                        +"0x7da, 128, 143, 1, 1, 0, 0, TCU SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
-                        +"0x7bb, 128, 143, 1, 1, 0, 0, LBC SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
-                        +"0x77e, 128, 143, 1, 1, 0, 0, PEBSW version, , 0x2180, 0x6180, , 0, 0, 0\n"
-                        +"0x772, 128, 143, 1, 1, 0, 0, AIBAG SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
-                        +"0x76d, 128, 143, 1, 1, 0, 0, USM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x7ec, 144, 159, 1, 1, 0, 0, SCH SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x7da, 144, 159, 1, 1, 0, 0, TCU SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x7bb, 144, 159, 1, 1, 0, 0, LBC SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x77e, 144, 159, 1, 1, 0, 0, PEBSW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x772, 144, 159, 1, 1, 0, 0, AIBAG SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x76d, 144, 159, 1, 1, 0, 0, USM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
 
-                        +"0x763, 128, 143, 1, 1, 0, 0, CLUSTER SW ver, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x763, 144, 159, 1, 1, 0, 0, CLUSTER SW ver, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x763, 112, 127, 1, 1, 0, 0, CLUSTER PG ver, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x763,   0,   7, 1, 1, 0, 0, CLUSTER reset,  , 0x14ffff, 0x54, , 0, 0, 0\n"
                         +"0x763,   0,   0, 1, 1, 0, 0, CLUSTER DTC,    , 0x19023b, 0x5902ff, , 0, 0, 0\n"
 
-                        +"0x762, 128, 143, 1, 1, 0, 0, EPS SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
-                        +"0x760, 128, 143, 1, 1, 0, 0, ABS SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
-                        +"0x7bc, 128, 143, 1, 1, 0, 0, UBP SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
-                        +"0x765, 128, 143, 1, 1, 0, 0, BCM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x762, 144, 159, 1, 1, 0, 0, EPS SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x760, 144, 159, 1, 1, 0, 0, ABS SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x7bc, 144, 159, 1, 1, 0, 0, UBP SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x765, 144, 159, 1, 1, 0, 0, BCM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
 
-                        +"0x764, 128, 143, 1, 1, 0, 0, CLIM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x764, 144, 159, 1, 1, 0, 0, CLIM SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x764, 112, 127, 1, 1, 0, 0, CLIM PG version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x764,   0,   7, 1, 1, 0, 0, CLIM reset,      , 0x14ffff, 0x54, , 0, 0, 0\n"
                         +"0x764,   0,   0, 1, 1, 0, 0, CLIM DTC,        , 0x19023b, 0x5902ff, , 0, 0, 0\n"
 
-                        +"0x76e, 128, 143, 1, 1, 0, 0, UPA SW version,  , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x76e, 144, 159, 1, 1, 0, 0, UPA SW version,  , 0x2180, 0x6180, , 0, 0, 0\n"
 
-                        +"0x793, 128, 143, 1, 1, 0, 0, BCB SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x793, 144, 159, 1, 1, 0, 0, BCB SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
                         +"0x793,   0,   0, 1, 1, 0, 0, BCB Reset,      , 0x14ffffff, 0x54, , 0, 0, 0\n"
                         +"0x793,   0,   0, 1, 1, 0, 0, BCB DTC,        , 0x19023b, 0x5902ff, , 0, 0, 0\n"
 
-                        +"0x7b6, 128, 143, 1, 1, 0, 0, LBC2 SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x7b6, 144, 159, 1, 1, 0, 0, LBC2 SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
 
-                        +"0x722, 128, 143, 1, 1, 0, 0, LINSCH SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+                        +"0x722, 144, 159, 1, 1, 0, 0, LINSCH SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
 
 
                 ;
