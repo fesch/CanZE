@@ -12,24 +12,6 @@
         android:visible="true"
         />
     <item
-        android:id="@+id/action_queryBcb"
-        android:orderInCategory="100"
-        android:title="Query BCB"
-        android:visible="true"
-        />
-    <item
-        android:id="@+id/action_queryClima"
-        android:orderInCategory="100"
-        android:title="Query CLIM"
-        android:visible="true"
-        />
-    <item
-        android:id="@+id/action_queryCluster"
-        android:orderInCategory="100"
-        android:title="Query Cluster"
-        android:visible="true"
-        />
-    <item
         android:id="@+id/action_queryBroadcast"
         android:orderInCategory="100"
         android:title="Query Broadcast"
