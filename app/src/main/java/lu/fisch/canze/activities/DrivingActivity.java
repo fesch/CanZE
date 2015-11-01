@@ -30,10 +30,11 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     // free data
     public static final String SID_Pedal                                = "186.40";
     public static final String SID_MeanEffectiveTorque                  = "18a.16";
-    public static final String SID_BrakePressure                        = "352.24";
     public static final String SID_RealSpeed                            = "5d7.0";
     public static final String SID_SoC                                  = "654.24";
     public static final String SID_RangeEstimate                        = "654.42";
+    public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; // braking wheel torque the driver wants
+    public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; //10ms
 
     // ISO-TP data
 //  public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
@@ -43,10 +44,12 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_EVC_TractionBatteryVoltage           = "7ec.623203.24"; //  (EVC)
     public static final String SID_EVC_TractionBatteryCurrent           = "7ec.623204.24"; //  (EVC)
 
-    double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
-    int odo = 0;
-    int destOdo = 0; // have to init from save file
-    double realSpeed = 0;
+    private double dcVolt                           = 0; // holds the DC voltage, so we can calculate the power when the amps come in
+    private int    odo                              = 0;
+    private int    destOdo                          = 0; // have to init from save file
+    private double realSpeed                        = 0;
+    private double driverBrakeWheel_Torque_Request  = 0;
+
     private ArrayList<Field> subscribedFields;
 
     @Override
@@ -210,7 +213,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
 
         addListener(SID_Pedal);
         addListener(SID_MeanEffectiveTorque);
-        addListener(SID_BrakePressure);
+        addListener(SID_DriverBrakeWheel_Torque_Request);
+        addListener(SID_ElecBrakeWheelsTorqueApplied);
         addListener(SID_RealSpeed);
         addListener(SID_SoC);
         addListener(SID_RangeEstimate);
@@ -298,9 +302,14 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         }
                         tv = null;
                         break;
-                    case SID_BrakePressure:
+                    case SID_DriverBrakeWheel_Torque_Request:
+                        driverBrakeWheel_Torque_Request = field.getValue();
+                        tv = null;
+                        break;
+                    case SID_ElecBrakeWheelsTorqueApplied:
+                        double frictionBrakeTorque = driverBrakeWheel_Torque_Request - field.getValue();
                         pb = (ProgressBar) findViewById(R.id.FrictionBreaking);
-                        pb.setProgress((int) (field.getValue() * realSpeed));
+                        pb.setProgress((int) (frictionBrakeTorque * realSpeed));
                         break;
                 }
                 // set regular new content, all exeptions handled above

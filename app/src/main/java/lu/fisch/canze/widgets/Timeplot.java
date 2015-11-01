@@ -82,9 +82,9 @@ public class Timeplot extends Drawable {
 
     private Color getColor(int i)
     {
-        if(i==1) return Color.BLUE;
-        else if (i==2) return Color.GREEN_DARK;
-        else return Color.RED;
+        if(i==0) return Color.RENAULT_RED;
+        else if (i==1) return Color.BLUE;
+        else return Color.GREEN_DARK;
     }
 
     @Override

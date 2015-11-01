@@ -32,9 +32,9 @@
             custom:max="125"
             custom:majorTicks="25"
             custom:minorTicks="5"
-            custom:fieldSID="186.40,18a.16"
+            custom:fieldSID="42e.0,654.24"
             custom:widget="timeplot"
-            custom:text="Acceleration pedal (%) / Power train set point (%)"
+            custom:text="True State of Charge (%) / Indicated State of Charge (%)"
             />
 
 
@@ -84,12 +84,12 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             custom:min="0"
-            custom:max="140"
+            custom:max="160"
             custom:majorTicks="20"
             custom:minorTicks="10"
-            custom:fieldSID="5d7.0,42e.0,654.24"
+            custom:fieldSID="5d7.0,654.42"
             custom:widget="timeplot"
-            custom:text="Speed (km/h) / True State of Charge (%) / Indicated State of Charge (%)"
+            custom:text="Speed (km/h) / Available distance (km)"
             />
 
     </TableRow>
