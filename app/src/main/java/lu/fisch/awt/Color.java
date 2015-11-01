@@ -17,7 +17,12 @@ public class Color
 	public static final Color GRAY_LIGHT= new Color(204,204,204);
 	public static final Color GRAY_DARK = new Color(80,80,80);
 	public static final Color YELLOW	= new Color(255,255,128);
-	
+
+	public static final Color RENAULT_RED    = new Color(250,36,4);
+	public static final Color RENAULT_BLUE   = new Color(11,198,209);
+	public static final Color RENAULT_GREEN  = new Color(133,196,26);
+	public static final Color RENAULT_YELLOW = new Color(251,207,00);
+
 	public Color()
 	{
 	}
