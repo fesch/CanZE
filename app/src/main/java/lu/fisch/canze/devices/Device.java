@@ -7,7 +7,7 @@ import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.actors.Utils;
-import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
+import lu.fisch.canze.bluetooth.BluetoothManager;
 
 /**
  * This class defines an abstract device. It has to manage the device related
@@ -45,17 +45,15 @@ public abstract class Device {
      */
     protected int fieldIndex = 0;
 
-    /**
-     * The connected Bluetooth thread is being used to read and write
-     * to the Bluetooth serial connection. It's actually just a wrapper
-     * class around some streams.
-     */
-    protected ConnectedBluetoothThread connectedBluetoothThread = null;
-
     protected boolean pollerActive = false;
     protected Thread pollerThread;
 
-
+    /**
+     * someThingWrong will be set when something goes wrong, usually a timeout.
+     * most command routines just won't run when someThingWrong is set
+     * someThingWrong can be reset only by calling initElm, but with toughness 100 this is the only thing it does :-)
+     */
+    boolean someThingWrong = false;
 
     /* ----------------------------------------------------------------
      * Abstract methods (to be implemented in each "real" device)
@@ -68,21 +66,8 @@ public abstract class Device {
     {
         MainActivity.debug("Device: initConnection");
 
-        // if the reading thread is running: stop it, because we don't need it
-        if(connectedBluetoothThread!=null && connectedBluetoothThread.isAlive()) {
-            MainActivity.debug("Device: cleanStop");
-            connectedBluetoothThread.cleanStop();
-            if(connectedBluetoothThread.isAlive()) {
-                try {
-                    MainActivity.debug("Device: joining");
-                    connectedBluetoothThread.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        if(connectedBluetoothThread!=null) {
-            MainActivity.debug("Device: connectedBluetoothThread!=null");
+        if(BluetoothManager.getInstance().isConnected()) {
+            MainActivity.debug("Device: BT connected");
             // make sure we only have one poller task
             if (pollerThread == null) {
                 MainActivity.debug("Device: pollerThread == null");
@@ -96,13 +81,11 @@ public abstract class Device {
                         if(initDevice(0)) {
                             while (isPollerActive()) {
                                 //MainActivity.debug("Device: inside poller thread");
-                                if (fields.size() == 0) {
-                                    if (connectedBluetoothThread != null)
-                                        //MainActivity.debug("Device: sleeping");
-                                        try {
-                                            Thread.sleep(5000);
-                                        } catch (Exception e) {
-                                        }
+                                if (fields.size() == 0 || !BluetoothManager.getInstance().isConnected()) {
+                                    //MainActivity.debug("Device: sleeping");
+                                    try {
+                                        Thread.sleep(5000);
+                                    } catch (Exception e) {}
                                 }
                                 // query a field
                                 else {
@@ -123,9 +106,10 @@ public abstract class Device {
                                 @Override
                                 public void run() {
                                     // stop the BT but don't reset the device registered fields
-                                    MainActivity.getInstance().stopBluetooth(false);
+                                    //MainActivity.getInstance().stopBluetooth(false);
                                     // reload the BT with filter registration
-                                    MainActivity.getInstance().reloadBluetooth(false);
+                                    //MainActivity.getInstance().reloadBluetooth(false);
+                                    BluetoothManager.getInstance().connect();
                                 }
                             })).start();
                         }
@@ -138,7 +122,7 @@ public abstract class Device {
         }
         else
         {
-            MainActivity.debug("Device: connectedBluetoothThread == null");
+            MainActivity.debug("Device: BT not connected");
             if(pollerThread!=null && pollerThread.isAlive())
             {
                 setPollerActive(false);
@@ -155,7 +139,7 @@ public abstract class Device {
     }
 
     // query the device for the next filter
-    public void queryNextFilter()
+    protected void queryNextFilter()
     {
         if (fields.size() > 0)
         {
@@ -188,12 +172,14 @@ public abstract class Device {
                         // get the data
                         String data = requestField(field);
                         // test if we got something
-                        if(data!=null) {
+                        if(data!=null && !someThingWrong) {
                             process(Utils.toIntArray(data.getBytes()));
                         }
-                        else
-                        {
-                            // ignore
+
+                        // reset if something went wrong ...
+                        // ... but only if we are not asked to stop!
+                        if (someThingWrong && BluetoothManager.getInstance().isConnected()) {
+                            initDevice(1, 2);
                         }
                     }
 
@@ -431,34 +417,20 @@ public abstract class Device {
      * Methods (that will be inherited by any "real" device)
      \ -------------------------------------------------------------- */
 
-    public ConnectedBluetoothThread getConnectedBluetoothThread()
-    {
-        return connectedBluetoothThread;
-    }
 
-    public void setConnectedBluetoothThread(ConnectedBluetoothThread connectedBluetoothThread) {
-        setConnectedBluetoothThread(connectedBluetoothThread,true);
-    }
+    public void init(boolean reset) {
+        // init the connection
+        initConnection();
 
-    public void setConnectedBluetoothThread(ConnectedBluetoothThread connectedBluetoothThread, boolean reset) {
-        this.connectedBluetoothThread = connectedBluetoothThread;
-        if(connectedBluetoothThread==null) {
-            MainActivity.debug("Device: nulling out connectedBluetoothThread");
+        if(reset) {
+            MainActivity.debug("Device: init with reset");
+            // clean all filters (just to make sure)
+            clearFields();
+            // register all filters (if there are any)
+            registerFilters();
         }
-        //if(connectedBluetoothThread!=null)
         else
-        {
-            // init the connection
-            initConnection();
-
-            if(reset) {
-                MainActivity.debug("Device: setConnectedBluetoothThread > resetting");
-                // clean all filters (just to make sure)
-                clearFields();
-                // register all filters (if there are any)
-                registerFilters();
-            }
-        }
+            MainActivity.debug("Device: init");
     }
 
     /**
@@ -519,4 +491,6 @@ public abstract class Device {
     public abstract String requestIsoTpFrame(Field field);
 
     public abstract boolean initDevice(int toughness);
+
+    protected abstract boolean initDevice (int toughness, int retries);
 }

@@ -87,9 +87,9 @@
             custom:max="140"
             custom:majorTicks="20"
             custom:minorTicks="10"
-            custom:fieldSID="5d7.0,42e.0"
+            custom:fieldSID="5d7.0,42e.0,654.24"
             custom:widget="timeplot"
-            custom:text="Speed (km/h) / State of Charge (%)"
+            custom:text="Speed (km/h) / True State of Charge (%) / Indicated State of Charge (%)"
             />
 
     </TableRow>

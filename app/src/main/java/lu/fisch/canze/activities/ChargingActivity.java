@@ -154,7 +154,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                     case SID_TimeToFull: // time to full
                         tv = (TextView) findViewById(R.id.textTTF);
                         if (field.getValue() >= 1023) {
-                            tv.setText("Not charging");
+                            tv.setText("--:--");
                             tv = null;
                         }
                         break;
@@ -189,7 +189,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         tv = (TextView) findViewById(R.id.textPhases);
                         if (pilot == 0) {
                             tv.setText("-");
-                        } else if (avChPwr > (pilot * 250.0)) {
+                        } else if (avChPwr > (pilot * 0.250)) {
                             tv.setText("3");
                         } else {
                             tv.setText("1");

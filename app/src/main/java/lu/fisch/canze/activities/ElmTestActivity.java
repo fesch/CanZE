@@ -11,12 +11,11 @@ import java.util.Calendar;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
-import lu.fisch.canze.bluetooth.ConnectedBluetoothThread;
+import lu.fisch.canze.bluetooth.BluetoothManager;
 
 
 public class ElmTestActivity extends CanzeActivity {
 
-    private ConnectedBluetoothThread connectedBluetoothThread = null;
     private TextView textView;
 
     @Override
@@ -33,14 +32,13 @@ public class ElmTestActivity extends CanzeActivity {
                 if (MainActivity.device != null){
                     // stop the poller thread
                     MainActivity.device.stopAndJoin();
-                    // Get the bluetooth thread
-                    connectedBluetoothThread = MainActivity.device.getConnectedBluetoothThread();
                 }
 
-                if (connectedBluetoothThread == null) {
-                    appendResult("\nCan't get to BluetoothThread. Is your device paired and connected?\n");
+                if (!BluetoothManager.getInstance().isConnected()) {
+                    appendResult("\nIs your device paired and connected?\n");
                     return;
                 }
+
                 appendResult("\nReady");
             }
         }).start();
@@ -103,7 +101,11 @@ public class ElmTestActivity extends CanzeActivity {
         if (field != null) {
             String backRes = MainActivity.device.requestField(field);
             if (backRes != null)
-                appendResult(backRes.replace('\r', '•'));
+                if (!backRes.equals("")) {
+                    appendResult(backRes.replace('\r', '•'));
+                } else {
+                    appendResult("empty");
+                }
             else
                 appendResult("null");
         }
@@ -137,7 +139,11 @@ public class ElmTestActivity extends CanzeActivity {
         if (field != null) {
             String backRes = MainActivity.device.requestField(field);
             if (backRes != null) {
-                appendResult(backRes.replace('\r', '\u2022'));
+                if (!backRes.equals("")) {
+                    appendResult(backRes.replace('\r', '•'));
+                } else {
+                    appendResult("empty");
+                }
             } else
                 appendResult("null");
         }
@@ -286,9 +292,9 @@ public class ElmTestActivity extends CanzeActivity {
 
     // ELM functions not available or reachable through the device Class
     private void sendNoWait(String command) {
-        if(connectedBluetoothThread==null) return;
+        if(!BluetoothManager.getInstance().isConnected()) return;
         if(command!=null) {
-            connectedBluetoothThread.write(command);
+            BluetoothManager.getInstance().write(command);
         }
     }
 
@@ -305,9 +311,9 @@ public class ElmTestActivity extends CanzeActivity {
         {
             try {
                 // read a byte
-                if(connectedBluetoothThread!=null && connectedBluetoothThread.available()>0) {
+                if(BluetoothManager.getInstance().isConnected() && BluetoothManager.getInstance().available()>0) {
                     //MainActivity.debug("Reading ...");
-                    int data = connectedBluetoothThread.read();
+                    int data = BluetoothManager.getInstance().read();
                     // if it is a real one
                     if (data != -1) {
                         // we might be JUST approaching the TIMEOUT, so give it a chance to get to the EOM,

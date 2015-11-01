@@ -161,4 +161,5 @@ public class BarGraph extends Plotter {
             super.onFieldUpdateEvent(field);
         }
     }
+
 }

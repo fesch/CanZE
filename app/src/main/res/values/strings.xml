@@ -19,7 +19,9 @@
     <string name="title_activity_harm">Harm\'s playground</string>
     <string name="title_activity_alexandre">Alexandre\'s playground</string>
     <string name="title_activity_battery" >Battery</string>
-    <string name="title_activity_dtc" >Diagnostic Trouble Codes</string>
+    <string name="title_activity_dtc">Diagnostic Trouble Codes</string>
+    <string name="title_activity_heatmap_bat">Battery Compartment heatmap</string>
+    <string name="title_activity_heatmap_cellvoltage">Battery Voltage heatmap</string>
 
     <!-- nonsense -->
 
@@ -70,7 +72,7 @@
     <string name="label_Amps">Amps HV Battery</string>
     <string name="default_Amps">#Amps</string>
 
-    <string name="label_DcPwr">DC Power kWh</string>
+    <string name="label_DcPwr">DC Power kW</string>
     <string name="default_DcPwr">#DCP</string>
 
     <string name="label_AvChPwr">Available Charging Power kW</string>
@@ -122,8 +124,16 @@
 
     <!-- braking -->
 
-    <string name="header_braking">Braking parameters</string>
+    <string name="header_braking">Braking system status</string>
     <string name="activity_braking">Braking</string>
+
+    <string name="label_driver_torque_request">Driver Brake Wheels Torque Request</string>
+<!--<string name="label_eb_torque_request">Electrical Brake Wheels Torque Request</string> -->
+<!--<string name="label_coasting_torque">Coasting Torque</string> -->
+<!--<string name="label_braking_pressure">Friction braking pressure</string> -->
+    <string name="label_ElecBrakeWheelsTorqueApplied">Electrical Brake Wheels Torque Applied</string>
+    <string name="label_diff_friction_torque">Friction Torque</string>
+    <string name="label_TotalPotentialResistiveWheelsTorque">Total Potential Resistive Wheels Torque</string>
 
     <string name="label_hbb_malfunction">HBB malfunction</string>
     <string name="default_hbb_malfunction">#hbm</string>
@@ -143,10 +153,6 @@
     <string name="label_pressure_buildup">Pressure Buildup</string>
     <string name="default_pressure_buildup">#pb</string>
 
-    <string name="label_eb_torque_request">Electrical Brake Wheels Torque Request</string>
-    <string name="label_driver_torque_request">Driver Brake Wheels Torque Request</string>
-    <string name="label_friction_torque">Coasting Torque</string>
-    <string name="label_braking_pressure">Friction braking pressure</string>
 
     <!-- firmware -->
 
