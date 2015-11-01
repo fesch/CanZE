@@ -7,16 +7,93 @@
     >
 
     <item
-        android:id="@+id/action_resetEcu"
+        android:id="@+id/action_queryBcb"
         android:orderInCategory="100"
-        android:title="Reset ECU"
+        android:title="Query BCB"
         android:visible="true"
         />
-
     <item
-        android:id="@+id/action_showEcu"
-        android:orderInCategory="200"
-        android:title="Show DTC's again"
+        android:id="@+id/action_queryClima"
+        android:orderInCategory="100"
+        android:title="Query CLIM"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryCluster"
+        android:orderInCategory="100"
+        android:title="Query Cluster"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryEvc"
+        android:orderInCategory="100"
+        android:title="Query EVC"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryTcu"
+        android:orderInCategory="100"
+        android:title="Query TCU"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryLbc"
+        android:orderInCategory="100"
+        android:title="Query LBC"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryPeb"
+        android:orderInCategory="100"
+        android:title="Query PEB"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryAibag"
+        android:orderInCategory="100"
+        android:title="Query AIBAG"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryUsm"
+        android:orderInCategory="100"
+        android:title="Query USM"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryEps"
+        android:orderInCategory="100"
+        android:title="Query EPS"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryAbs"
+        android:orderInCategory="100"
+        android:title="Query ABS"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryUbp"
+        android:orderInCategory="100"
+        android:title="Query UBP"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryBcm"
+        android:orderInCategory="100"
+        android:title="Query BCM"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryUpa"
+        android:orderInCategory="100"
+        android:title="Query Upa"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/action_queryLbc2"
+        android:orderInCategory="100"
+        android:title="Query LBC2"
         android:visible="true"
         />
 
