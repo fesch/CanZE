@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="General Portrait Phone "
+        android:text="General Landscape Phone "
         android:id="@+id/textView3"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
