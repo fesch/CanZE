@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:minHeight="25dp"
             android:max="4096"
-            android:progressDrawable="@drawable/progressbar_canze"
+            android:progressDrawable="@drawable/progressbar_canze_red"
             />
 <!--
         <TextView
