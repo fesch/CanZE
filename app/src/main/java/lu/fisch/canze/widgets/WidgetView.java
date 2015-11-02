@@ -25,7 +25,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Point;
@@ -40,8 +39,8 @@ import android.view.WindowManager;
 
 import java.lang.reflect.Constructor;
 
+import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
-import lu.fisch.canze.classes.ColorRange;
 import lu.fisch.canze.classes.ColorRanges;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 import lu.fisch.canze.activities.MainActivity;
@@ -144,12 +143,28 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     setTitle(attributes.getString(R.styleable.WidgetView_text));
                     setShowLabels(attributes.getBoolean(R.styleable.WidgetView_showLabels, true));
                     setShowValue(attributes.getBoolean(R.styleable.WidgetView_showValue, true));
-                    setInverted(attributes.getBoolean(R.styleable.WidgetView_isInverted, false));
+                    drawable.setInverted(attributes.getBoolean(R.styleable.WidgetView_isInverted, false));
                     fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
 
                     String colorRangesJson =attributes.getString(R.styleable.WidgetView_colorRanges);
                     if(colorRangesJson!=null && !colorRangesJson.trim().isEmpty())
-                        setColorRanges(new ColorRanges(colorRangesJson.replace("'","\"")));
+                        drawable.setColorRanges(new ColorRanges(colorRangesJson.replace("'","\"")));
+
+                    String foreground =attributes.getString(R.styleable.WidgetView_foregroundColor);
+                    if(foreground!=null && !foreground.isEmpty())
+                        drawable.setForeground(Color.decode(foreground));
+
+                    String background =attributes.getString(R.styleable.WidgetView_backgroundColor);
+                    if(background!=null && !background.isEmpty())
+                        drawable.setBackground(Color.decode(background));
+
+                    String intermediate =attributes.getString(R.styleable.WidgetView_intermediateColor);
+                    if(intermediate!=null && !intermediate.isEmpty())
+                        drawable.setIntermediate(Color.decode(intermediate));
+
+                    String titleColor =attributes.getString(R.styleable.WidgetView_titleColor);
+                    if(titleColor!=null && !titleColor.isEmpty())
+                        drawable.setTitleColor(Color.decode(titleColor));
 
                     //MainActivity.debug("WidgetView: My SID is "+fieldSID);
 
@@ -247,7 +262,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                 c.setDrawFilter(new PaintFlagsDrawFilter(1, Paint.ANTI_ALIAS_FLAG));
                 // clean background
                 Paint paint = new Paint();
-                paint.setColor(Color.WHITE);
+                paint.setColor(drawable.getBackground().getAndroidColor());
                 c.drawRect(0, 0, c.getWidth(), c.getHeight(), paint);
                 // set dimensions
                 drawable.setWidth(getWidth());
@@ -382,13 +397,5 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 
     public void setFieldSID(String fieldSID) {
         this.fieldSID = fieldSID;
-    }
-
-    public void setInverted(boolean inverted) {
-        drawable.setInverted(inverted);
-    }
-
-    public void setColorRanges(ColorRanges colorRanges) {
-        drawable.setColorRanges(colorRanges);
     }
 }

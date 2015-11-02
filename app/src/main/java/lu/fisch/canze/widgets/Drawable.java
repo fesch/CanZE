@@ -32,6 +32,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
 import lu.fisch.awt.Rectangle;
 import lu.fisch.canze.actors.Field;
@@ -55,6 +56,12 @@ public abstract class Drawable implements FieldListener {
     protected int value = 0;
     protected Field field = null;
     protected String title = "";
+
+    // colors
+    protected Color foreground   = Color.BLACK;
+    protected Color background   = Color.WHITE;
+    protected Color intermediate = Color.GRAY_LIGHT;
+    protected Color titleColor   = Color.BLUE;
 
     protected DrawSurfaceInterface drawSurface = null;
 
@@ -239,5 +246,37 @@ public abstract class Drawable implements FieldListener {
 
     public void setColorRanges(ColorRanges colorRanges) {
         this.colorRanges = colorRanges;
+    }
+
+    public Color getForeground() {
+        return foreground;
+    }
+
+    public void setForeground(Color foreground) {
+        this.foreground = foreground;
+    }
+
+    public Color getBackground() {
+        return background;
+    }
+
+    public void setBackground(Color background) {
+        this.background = background;
+    }
+
+    public Color getIntermediate() {
+        return intermediate;
+    }
+
+    public void setIntermediate(Color intermediate) {
+        this.intermediate = intermediate;
+    }
+
+    public Color getTitleColor() {
+        return titleColor;
+    }
+
+    public void setTitleColor(Color titleColor) {
+        this.titleColor = titleColor;
     }
 }

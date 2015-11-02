@@ -68,4 +68,6 @@ public class WidgetActivity extends CanzeActivity {
         widgetClicked=true;
     }
 
+
+
 }
