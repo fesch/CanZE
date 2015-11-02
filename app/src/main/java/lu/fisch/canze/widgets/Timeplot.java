@@ -110,8 +110,12 @@ public class Timeplot extends Drawable {
 
     @Override
     public void draw(Graphics g) {
+        // background
+        g.setColor(getBackground());
+        g.fillRect(x, y, width, height);
+
         // black border
-        g.setColor(Color.BLACK);
+        g.setColor(getForeground());
         g.drawRect(x, y, width, height);
 
         // calculate fill height
@@ -131,7 +135,7 @@ public class Timeplot extends Drawable {
             {
                 if(minorTicks>0)
                 {
-                    g.setColor(Color.GRAY);
+                    g.setColor(getForeground());
                     ax = x+width-barWidth-5;
                     ay = y+i;
                     bx = x+width-barWidth;
@@ -142,14 +146,14 @@ public class Timeplot extends Drawable {
                 if(majorTicks!=0 && sum % majorTicks == 0) {
                     if(majorTicks>0)
                     {
-                        g.setColor(Color.GRAY_LIGHT);
+                        g.setColor(getIntermediate());
                         ax = x+width-barWidth-10;
                         ay = y+i;
                         bx = x+width;
                         by = y+i;
                         g.drawLine((int)ax, (int)ay, (int)bx, (int)by);
 
-                        g.setColor(Color.GRAY);
+                        g.setColor(getForeground());
                         ax = x+width-barWidth-10;
                         ay = y+i;
                         bx = x+width-barWidth;
@@ -160,7 +164,7 @@ public class Timeplot extends Drawable {
                     // draw String
                     if(showLabels)
                     {
-                        g.setColor(Color.GRAY);
+                        g.setColor(getForeground());
                         String text = (actual)+"";
                         double sw = g.stringWidth(text);
                         bx = x+width-barWidth-16-sw;
@@ -223,7 +227,7 @@ public class Timeplot extends Drawable {
         // draw the title
         if(title!=null && !title.equals(""))
         {
-            g.setColor(Color.BLUE);
+            g.setColor(getTitleColor());
             g.setTextSize(20);
             int th = g.stringHeight(title);
             int tx = getX()+width-barWidth+8;

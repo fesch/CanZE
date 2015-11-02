@@ -21,6 +21,10 @@
             <enum name="bargraph" value="7"/>
         </attr>
         <attr name="colorRanges" format="string"/>
+        <attr name="foregroundColor" format="string"/>
+        <attr name="backgroundColor" format="string"/>
+        <attr name="intermediateColor" format="string"/>
+        <attr name="titleColor" format="string"/>
         <attr name="text" format="string" />
     </declare-styleable>
 </resources>
