@@ -34,7 +34,7 @@ import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.FieldListener;
 
 /**
- * Created by jeroen on 27-10-15.
+ * Heatmap by jeroen on 27-10-15.
  */
 public class HeatmapBatcompActivity extends CanzeActivity implements FieldListener {
 
@@ -42,7 +42,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
 
     private ArrayList<Field> subscribedFields;
 
-    private double totalTemp = 60;
+    private double mean = 15;
     private double lastVal [] = {0,15,15,15,15,15,15,15,15,15,15,15,15};
     private int lastCell = 4;
 
@@ -98,7 +98,6 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
         // Battery compartment temperatures
         if(Fields.getInstance().getCar() == Fields.CAR_ZOE) {
             lastCell = 12;
-            totalTemp = 180;
         }
         for (int i = 1; i <= lastCell; i++) {
             String sid = SID_Preamble_CompartmentTemperatures + (8 + i * 24); // remember, first is pos 32, i starts s at 1
@@ -116,19 +115,26 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
             @Override
             public void run() {
                 String fieldId = field.getSID();
-                TextView tv = null;
+                TextView tv;
 
                 // get the text field
 
                 if (fieldId.startsWith(SID_Preamble_CompartmentTemperatures)) {
                     int cell = (Integer.parseInt(fieldId.split("[.]")[2]) - 8) / 24; // cell is 1-based
+                    // calculate the mean value of the previous full round
+                    if (cell == 1) {
+                        mean = 0;
+                        for (int i = 1; i <= lastCell; i++) {
+                            mean += lastVal[i];
+                        }
+                        mean /= lastCell;
+                    }
                     double value = field.getValue();
-                    totalTemp += (value - lastVal[cell]);
                     lastVal[cell] = value;
                     tv = (TextView) findViewById(getResources().getIdentifier("text_comp_" + cell + "_temp", "id", getPackageName()));
                     if (tv != null) {
                         tv.setText("" + Math.round(value));
-                        int color = (int) (50 * (value - (totalTemp / lastCell))); // color is temp minus mean
+                        int color = (int) (50 * (value - mean)); // color is temp minus mean
                         if (color > 62) {
                             color = 0xffffc0c0;
                         } else if (color > 0) {
@@ -142,7 +148,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
                     }
                 }
                 tv = (TextView) findViewById(R.id.textDebug);
-                tv.setText(fieldId + ":" + (totalTemp / lastCell));
+                tv.setText(fieldId + ":" + mean);
             }
         });
 

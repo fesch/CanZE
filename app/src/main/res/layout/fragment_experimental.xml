@@ -180,8 +180,8 @@ android:orientation="vertical"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Heatmap battery compartment"
-            android:id="@+id/buttonHeatmapBatcomp"
+            android:text="-"
+            android:id="@+id/button_3"
             android:layout_column="0" />
 
     </TableRow>
@@ -198,7 +198,7 @@ android:orientation="vertical"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="e- -"
+            android:text="-"
             android:id="@+id/button_1"
             android:layout_column="0" />
 
@@ -210,8 +210,8 @@ android:orientation="vertical"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Heatmap cell voltages"
-            android:id="@+id/buttonHeatmapCellvoltage"
+            android:text="-"
+            android:id="@+id/button_2"
             android:layout_column="0" />
 
     </TableRow>
