@@ -31,10 +31,20 @@ android:orientation="vertical"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>
 
+
+    <ScrollView
+        android:id="@+id/scroller_main"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:fillViewport="true"
+        android:fadeScrollbars="false">
+
+
 <TableLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:stretchColumns="3">
+    android:stretchColumns="*">
 
     <TableRow
         android:layout_width="match_parent"
@@ -62,7 +72,7 @@ android:orientation="vertical"
             android:layout_marginBottom="8dp"
             android:text="LeafSpy (Bob)"
             android:id="@+id/buttonLeafSpy"
-            android:layout_column="0" />
+            android:layout_column="1" />
 
     </TableRow>
 
@@ -92,7 +102,7 @@ android:orientation="vertical"
             android:layout_marginBottom="8dp"
             android:text="Stats (Henrik)"
             android:id="@+id/buttonStats"
-            android:layout_column="0" />
+            android:layout_column="1" />
     </TableRow>
 
     <TableRow
@@ -121,7 +131,7 @@ android:orientation="vertical"
             android:layout_marginBottom="8dp"
             android:text="TachoActivity (Bob)"
             android:id="@+id/buttonTacho"
-            android:layout_column="0" />
+            android:layout_column="1" />
 
     </TableRow>
 
@@ -151,7 +161,7 @@ android:orientation="vertical"
             android:layout_marginBottom="8dp"
             android:text="DTC readout BCB"
             android:id="@+id/buttonDtc"
-            android:layout_column="0" />
+            android:layout_column="1" />
 
 
     </TableRow>
@@ -182,7 +192,7 @@ android:orientation="vertical"
             android:layout_marginBottom="8dp"
             android:text="-"
             android:id="@+id/button_3"
-            android:layout_column="0" />
+            android:layout_column="1" />
 
     </TableRow>
 
@@ -212,10 +222,12 @@ android:orientation="vertical"
             android:layout_marginBottom="8dp"
             android:text="-"
             android:id="@+id/button_2"
-            android:layout_column="0" />
+            android:layout_column="1" />
 
     </TableRow>
 
 </TableLayout>
+
+    </ScrollView>
 
 </LinearLayout>
