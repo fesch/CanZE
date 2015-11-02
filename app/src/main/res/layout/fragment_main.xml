@@ -113,6 +113,38 @@
                 android:layout_column="0" />
 
         </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Heatmap cell voltages"
+                android:id="@+id/buttonHeatmapCellvoltage"
+                android:layout_column="0" />
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Heatmap battery compartment"
+                android:id="@+id/buttonHeatmapBatcomp"
+                android:layout_column="0" />
+
+        </TableRow>
+
     </TableLayout>
 
     <LinearLayout
