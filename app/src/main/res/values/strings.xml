@@ -38,10 +38,17 @@
     <string name="label_debug">Debug </string>
     <string name="default_debug">#Debug</string>
 
+    <!-- -->
+
+    <string name="header_stats">Driving stats</string>
+
     <!-- Charging -->
 
-    <string name="header_Charging">Charging parameters AC</string>
-    <string name="header_stats">Driving stats</string>
+    <string name="header_Charging">Charger parameters</string>
+    <string name="header_Battery">Battery parameters</string>
+    <string name="header_DrivingCh">Driving</string>
+    <string name="header_CompTemp">Battery modules temperatures</string>
+
     <string name="label_max_charge">Max battery charge/regen kW</string>
     <string name="default_max_charge">#Max bat ch</string>
 
@@ -86,8 +93,6 @@
 
     <string name="label_Plug">Plug Status</string>
     <string name="default_Plug">#PLU</string>
-
-    <string name="label_CompTemp">Battery modules temperatures</string>
 
     <string name="default_CompT">-</string>
 

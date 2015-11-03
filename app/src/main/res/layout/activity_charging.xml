@@ -115,7 +115,7 @@
 
         <TextView
             android:id="@+id/HeaderDC"
-            android:text="Charging DC"
+            android:text="@string/header_Battery"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -241,8 +241,8 @@
         </TableLayout>
 
         <TextView
-            android:id="@+id/HeaderChDriving"
-            android:text="Driving"
+            android:id="@+id/HeaderDrivingCh"
+            android:text="@string/header_DrivingCh"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -271,7 +271,7 @@
 
         <TextView
             android:id="@+id/LabelCompTemp"
-            android:text="@string/label_CompTemp"
+            android:text="@string/header_CompTemp"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
