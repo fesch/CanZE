@@ -94,6 +94,7 @@ public class Fields implements MessageListener {
         String fieldDef = // startBit, endBit, divider, multiplier, offset, decimals, format, requestID, responseID
                 ""
                         // 26/09/15
+
                         +"0x0c6, 0, 15, 1, 1, 0x8000, 10, Steering pos:%5ld, °, , , Steering Position, 0, 0, 10\n"
                         +"0x0c6, 16, 31, 1, 1, 0x8000, 10, Steering ac: %5ld, °/s, , , Steering Acceleration, 0, 0, 10\n"
                         +"0x0c6, 32, 47, 1, 1, 0x8000, 10, Steering offset %5ld, °, , , SteeringWheelAngle_Offset, 0, 0, 10\n"
