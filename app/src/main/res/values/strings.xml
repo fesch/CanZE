@@ -178,6 +178,28 @@
     <string name="label_ecu_linsch">LINSCH (?)</string>
     <string name="default_zero">0</string>
 
+    <!-- dtc -->
+
+    <string-array name="ecu_array">
+        <item>EVC</item>
+        <item>TCU</item>
+        <item>LBC</item>
+        <item>PEB</item>
+        <item>AIBAG</item>
+        <item>USM</item>
+        <item>CLUSTER</item>
+        <item>EPS</item>
+        <item>ABS</item>
+        <item>UBP</item>
+        <item>BCM</item>
+        <item>CLIM</item>
+        <item>UPA</item>
+        <item>BCB</item>
+        <item>LBC2</item>
+    </string-array>
+
+
+
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
