@@ -89,5 +89,9 @@ Icons & Images
     * Accept >  Free for commercial use
       Source:  https://www.iconfinder.com/icons/66697/accept_icon#size=128
 
-    * Reject >  https://www.iconfinder.com/icons/66700/deny_icon#size=128
+    * Reject >  Free for commercial use
       Source:  https://www.iconfinder.com/icons/66878/settings_icon#size=128
+
+    * Bluetooth >  CC BY 3.0
+      Source:  https://www.iconfinder.com/icons/296510/bluetooth_sync_wave_icon#size=128
+      License: http://creativecommons.org/licenses/by/3.0/

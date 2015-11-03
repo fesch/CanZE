@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
     defaultConfig {
         applicationId "lu.fisch.canze"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 22
         versionName '1.01'
         versionCode 2

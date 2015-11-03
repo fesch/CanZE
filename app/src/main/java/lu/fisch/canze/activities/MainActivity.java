@@ -31,11 +31,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.internal.view.menu.ActionMenuItemView;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
@@ -43,7 +47,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -116,6 +122,14 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
     public static boolean dataexportMode = false;
 
+    // bluetooth stuff
+    private MenuItem bluetoothMenutItem = null;
+    public final static int BLUETOOTH_DISCONNECTED = 21;
+    public final static int BLUETOOTH_SEARCH       = 22;
+    public final static int BLUETOOTH_CONNECTED    = 23;
+
+
+
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -137,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
                     // inform user
                     setTitle(TAG + " - disconnected");
+                    setBluetoothState(BLUETOOTH_DISCONNECTED);
                     Toast.makeText(MainActivity.this.getBaseContext(),"Bluetooth connection lost!",Toast.LENGTH_LONG).show();
 
                     // try to reconnect
@@ -284,54 +299,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         }
     }
 
-    /*private void checkButtons()
-    {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(500);
-                }
-                catch(Exception e) {
-                    // ignore
-                }
-
-                if(device==null && actualFragment.getView()!=null)
-                {
-                    ArrayList<Button> buttons = getButtonArrayList((ViewGroup) actualFragment.getView().findViewById(R.id.table));
-                    for(int i=0; i<buttons.size(); i++)
-                    {
-                        buttons.get(i).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                toast("You first need to adjust the settings ...");
-                            }
-                        });
-                    }
-                }
-            }
-        }).start();
-    }
-
-    protected ArrayList<Button> getButtonArrayList(ViewGroup viewGroup)
-    {
-        ArrayList<Button> result = new ArrayList<Button>();
-
-        if(viewGroup!=null)
-            for (int i = 0; i < viewGroup.getChildCount(); i++) {
-                View v = viewGroup.getChildAt(i);
-                if (v instanceof ViewGroup) {
-                    result.addAll(getButtonArrayList((ViewGroup) v));
-                }
-                else if (v instanceof Button)
-                {
-                    result.add((Button)v);
-                }
-            }
-
-        return result;
-    }*/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         debug("MainActivity: onCreate");
@@ -343,6 +310,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         setContentView(R.layout.activity_main);
 
         setTitle(TAG + " - not connected");
+        setBluetoothState(BLUETOOTH_DISCONNECTED);
 
 
         // tabs
@@ -359,7 +327,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         BluetoothManager.getInstance().setBluetoothEvent(new BluetoothEvent() {
             @Override
             public void onBeforeConnect() {
-
+                setBluetoothState(BLUETOOTH_SEARCH);
             }
 
             @Override
@@ -373,6 +341,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                     @Override
                     public void run() {
                         setTitle(TAG + " - connected to <" + bluetoothDeviceName + "@" + bluetoothDeviceAddress + ">");
+                        setBluetoothState(BLUETOOTH_CONNECTED);
                     }
                 });
             }
@@ -383,6 +352,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
             @Override
             public void onAfterDisconnect() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        setTitle(TAG + " - disconnected");
+                    }
+                });
             }
         });
         // detect hardware status
@@ -413,6 +388,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             f.setValue(settings.getFloat(f.getUniqueID(), 0));
         }
 
+        // load the initial "main" fragment
         loadFragement(new MainFragment());
     }
 
@@ -504,7 +480,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         (new Thread(new Runnable() {
             @Override
             public void run() {
-            // try to get a new BT thread)
+            // try to get a new BT thread
             BluetoothManager.getInstance().connect(bluetoothDeviceAddress, true, BluetoothManager.RETRIES_INFINITE);
             }
         })).start();
@@ -552,8 +528,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         MainActivity.debug("MainActivity: onActivityResult");
-        MainActivity.debug("MainActivity: onActivityResult > requestCode = "+requestCode);
-        MainActivity.debug("MainActivity: onActivityResult > resultCode = "+resultCode);
+        MainActivity.debug("MainActivity: onActivityResult > requestCode = " + requestCode);
+        MainActivity.debug("MainActivity: onActivityResult > resultCode = " + resultCode);
 
         // this must be set in any case
         leaveBluetoothOn=false;
@@ -611,10 +587,67 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(final Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        // get a reference to the bluetooth action button
+        bluetoothMenutItem = menu.findItem(R.id.action_bluetooth);
+        // and put the right view on it
+        bluetoothMenutItem.setActionView(R.layout.animated_menu_item);
+        // set the correct initial state
+        setBluetoothState(BLUETOOTH_DISCONNECTED);
+        // get access to the image view
+        ImageView imageView = (ImageView) bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
+        // define an action
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toast("Reconnecting Bluetooth ...");
+                stopBluetooth();
+                reloadBluetooth();
+            }
+        });
+
         return true;
+    }
+
+
+    private void setBluetoothState(int btState)
+    {
+        if(bluetoothMenutItem!=null) {
+            final ImageView imageView = (ImageView) bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
+
+            // stop the animation if there is one running
+            AnimationDrawable frameAnimation = null;
+            if(imageView.getBackground() instanceof AnimationDrawable) {
+                frameAnimation = (AnimationDrawable) imageView.getBackground();
+                if (frameAnimation.isRunning())
+                    frameAnimation.stop();
+            }
+
+            switch (btState) {
+                case BLUETOOTH_DISCONNECTED:
+                    imageView.setBackgroundResource(R.mipmap.bluetooth_none);
+                    break;
+                case BLUETOOTH_CONNECTED:
+                    imageView.setBackgroundResource(R.mipmap.bluetooth_3);
+                    break;
+                case BLUETOOTH_SEARCH:
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            AnimationDrawable drawable = (AnimationDrawable) ContextCompat.getDrawable(getApplicationContext(), R.anim.animation_bluetooth);
+                            imageView.setBackground(drawable);
+                            AnimationDrawable frameAnimation = (AnimationDrawable) imageView.getBackground();
+                            frameAnimation.start();
+                        }
+                    });
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     @Override
@@ -661,29 +694,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         else if (id == R.id.action_experimental) {
             loadFragement(new ExperimentalFragment());
         }
-
-
-            return super.onOptionsItemSelected(item);
-    }
-
-    /*
-    public static void registerFields()
-    {
-        debug("MainActivity: registerFields");
-
-        // speed
-        Field field = fields.getBySID("5d7.0");
-        if(field!=null)
-        {
-            field.addListener(MainActivity.getInstance());
-
-            if(device!=null)
-            {
-                device.addField(field);
-            }
+        else if (id == R.id.action_bluetooth) {
         }
+
+
+        return super.onOptionsItemSelected(item);
     }
-    */
 
     @Override
     public void onFieldUpdateEvent(Field field) {
