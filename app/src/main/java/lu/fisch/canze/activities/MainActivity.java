@@ -643,11 +643,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                             AnimationDrawable drawable = (AnimationDrawable) ContextCompat.getDrawable(getApplicationContext(), R.anim.animation_bluetooth);
                             // Use setBackgroundDrawable() for API 14 and 15 and setBackground() for API 16+:
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                                imageView.setBackgroundDrawable(drawable);
+                                imageView.setBackground(drawable);
                             }
                             else
                             {
-                                imageView.setBackground(drawable);
+                                imageView.setBackgroundDrawable(drawable);
                             }
                             AnimationDrawable frameAnimation = (AnimationDrawable) imageView.getBackground();
                             frameAnimation.start();
