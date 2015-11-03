@@ -21,6 +21,7 @@
 
 package lu.fisch.canze.activities;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -33,6 +34,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -635,10 +637,18 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                     break;
                 case BLUETOOTH_SEARCH:
                     runOnUiThread(new Runnable() {
+                        @SuppressLint("NewApi")
                         @Override
                         public void run() {
                             AnimationDrawable drawable = (AnimationDrawable) ContextCompat.getDrawable(getApplicationContext(), R.anim.animation_bluetooth);
-                            imageView.setBackground(drawable);
+                            // Use setBackgroundDrawable() for API 14 and 15 and setBackground() for API 16+:
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                imageView.setBackgroundDrawable(drawable);
+                            }
+                            else
+                            {
+                                imageView.setBackground(drawable);
+                            }
                             AnimationDrawable frameAnimation = (AnimationDrawable) imageView.getBackground();
                             frameAnimation.start();
                         }
