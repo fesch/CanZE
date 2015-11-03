@@ -9,10 +9,31 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.actors.Dtcs;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 public class ElmTestActivity extends CanzeActivity {
 
@@ -27,7 +48,7 @@ public class ElmTestActivity extends CanzeActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                appendResult("\n\nPlease while the poller thread is stopped...\n");
+                appendResult("\n\nPlease wait while the poller thread is stopped...\n");
 
                 if (MainActivity.device != null){
                     // stop the poller thread
@@ -51,7 +72,10 @@ public class ElmTestActivity extends CanzeActivity {
         clearResult ();
 
         appendResult("\nSending initialisation sequence\n");
-        MainActivity.device.initDevice (1);
+        if (!MainActivity.device.initDevice (1)) {
+            appendResult("\nInitialisation failed\n");
+            return;
+        }
 
 /*
         appendResult("\nSending a reset\n");
@@ -97,7 +121,7 @@ public class ElmTestActivity extends CanzeActivity {
         appendResult(getResponseUntil(400));
 */
         appendResult("\nProcessing prepped ISO-TP command CLUSTER SW \n");
-        field = Fields.getInstance().getBySID("763.6180.128");
+        field = Fields.getInstance().getBySID("763.6180.144");
         if (field != null) {
             String backRes = MainActivity.device.requestField(field);
             if (backRes != null)
@@ -187,7 +211,7 @@ public class ElmTestActivity extends CanzeActivity {
 
         filter = Integer.toHexString(ecu);
         if (!sourceEcu) {
-            field = Fields.getInstance().getBySID(filter + ".6180.128"); // get sw version
+            field = Fields.getInstance().getBySID(filter + ".6180.144"); // get sw version
             if (field == null) {
                 appendResult("- field does not exist\n");
                 return;
@@ -228,7 +252,7 @@ public class ElmTestActivity extends CanzeActivity {
             if (backRes != null)
                 if (backRes.equals("")) {
                     MainActivity.device.initDevice(2);
-                    appendResult("Oeps, reset\n");
+                    appendResult("Oops, reset\n");
                 } else {
                     appendResult(backRes.replace('\r', '•'));
                 }
@@ -241,12 +265,15 @@ public class ElmTestActivity extends CanzeActivity {
         if (field != null) {
             String backRes = MainActivity.device.requestField(field);
             if (backRes != null) {
-                if (!backRes.equals("")) {
+                if (backRes.contains(",")) {
                     appendResult("[" + backRes.replace('\r', '•') + "]\n");
+                    backRes = backRes.split(",")[1];
+                    // loop trough all DTC's
                     for (int i = 6; i < backRes.length() - 7; i += 8) {
-                        appendResult("\n" + backRes.substring(i, i + 6) + ":" + backRes.substring(i + 6, i + 8));
                         int bits = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
-                        if (bits != 0x50) { // exclude 50 as it means something like "I have this DTC code, but I have never tested it"
+                        // exclude 50 / 10 as it means something like "I have this DTC code, but I have never tested it"
+                        if (bits != 0x50 && bits != 0x10) {
+                            appendResult("\n" + backRes.substring(i, i + 6) + ":" + backRes.substring(i + 6, i + 8) + ":" + Dtcs.getDescription(backRes.substring(i, i + 6)));
                             if ((bits & 0x01) != 0) appendResult(" tstFail");
                             if ((bits & 0x02) != 0) appendResult(" tstFailThisOp");
                             if ((bits & 0x04) != 0) appendResult(" pendingDtc");
@@ -382,30 +409,6 @@ public class ElmTestActivity extends CanzeActivity {
                     @Override
                     public void run() {
                         doFindAllEcus();
-                    }
-                }).start();
-                return true;
-            case R.id.action_queryBcb:
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        doQueryEcu(0x793);
-                    }
-                }).start();
-                return true;
-            case R.id.action_queryClima:
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        doQueryEcu(0x764);
-                    }
-                }).start();
-                return true;
-            case R.id.action_queryCluster:
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        doQueryEcu(0x763);
                     }
                 }).start();
                 return true;

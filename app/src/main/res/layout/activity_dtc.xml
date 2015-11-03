@@ -12,8 +12,34 @@
     android:weightSum="1"
     tools:context="lu.fisch.canze.activities.DtcActivity">
 
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+            <Spinner
+                android:id="@+id/ecuList"
+                android:entries="@array/ecu_array"
+                android:layout_weight="2"
+                />
+
+            <Button
+                android:id="@+id/ecuQuery"
+                android:text="Query"
+                android:layout_weight="1"
+                />
+
+            <Button
+                android:id="@+id/ecuReset"
+                android:text="Reset"
+                android:layout_weight="1"
+                />
+        </TableRow>
+
+    </TableLayout>
+
     <ScrollView
-        android:id="@+id/SCROLLER_ID"
+        android:id="@+id/scrollerId"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
@@ -22,9 +48,7 @@
         <TextView
             android:id="@+id/textResult"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1.0"
-            android:text="@string/textNotImplementedYet"
+            android:layout_height="wrap_content"
             />
 
     </ScrollView>

@@ -1,5 +1,27 @@
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package lu.fisch.canze.activities;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -30,6 +52,8 @@ public class AlexandreActivity  extends CanzeActivity implements FieldListener {
 
     private static long[] valoresmemorizados;
 
+    private static boolean tablet = false;
+
     private static AlexandreActivity instance = null;
 
     /**
@@ -52,6 +76,14 @@ public class AlexandreActivity  extends CanzeActivity implements FieldListener {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        // check if it's a tablet
+        if (this.getResources().getConfiguration().smallestScreenWidthDp >= 600) tablet = true;
+        else tablet = false;
+
+
+
         setContentView(R.layout.activity_alexandre);
 
         subscribedFields = new ArrayList<>();
@@ -62,27 +94,31 @@ public class AlexandreActivity  extends CanzeActivity implements FieldListener {
 
         instance = this;
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections
-        // of the app.
-        mSectionsPagerAdapter = new AlexPagerAdapter(this, this, getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.FZpager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        // Give the SlidingTabLayout the ViewPager, this must be done AFTER the ViewPager has had
-        // it's PagerAdapter set.
-
-        mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
-        mSlidingTabLayout.setDistributeEvenly(true);
-        mSlidingTabLayout.setViewPager(mViewPager);
+        //only use tabs if not tablet
+        if (!tablet) {
 
 
-        //choose the middle page
-        mViewPager.setCurrentItem(1);
+            // Create the adapter that will return a fragment for each of the three
+            // primary sections
+            // of the app.
+            mSectionsPagerAdapter = new AlexPagerAdapter(this, this, getSupportFragmentManager());
+
+            // Set up the ViewPager with the sections adapter.
+            mViewPager = (ViewPager) findViewById(R.id.FZpager);
+            mViewPager.setAdapter(mSectionsPagerAdapter);
+
+            // Give the SlidingTabLayout the ViewPager, this must be done AFTER the ViewPager has had
+            // it's PagerAdapter set.
+
+            mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
+            mSlidingTabLayout.setDistributeEvenly(true);
+            mSlidingTabLayout.setViewPager(mViewPager);
 
 
+            //choose the middle page
+            mViewPager.setCurrentItem(1);
+
+        }
 
     }
 
@@ -174,13 +210,15 @@ public class AlexandreActivity  extends CanzeActivity implements FieldListener {
     //update fragments
     public void actualizarpaginas(long[] arrayd) {
 
-        try {
+        if(!tablet) {
 
-            AlexGeneralFragment fragmentoy1 = (AlexGeneralFragment) mSectionsPagerAdapter.getRegisteredFragment(1);
+            try {
 
-            if (fragmentoy1 != null) {
-                fragmentoy1.actpag1(arrayd);
-            }
+                AlexGeneralFragment fragmentoy1 = (AlexGeneralFragment) mSectionsPagerAdapter.getRegisteredFragment(1);
+
+                if (fragmentoy1 != null) {
+                    fragmentoy1.actpag1(arrayd);
+                }
 
             /*
             AlexDrivingFrament fragmentoy2 = (AlexDrivingFrament) mSectionsPagerAdapter.getRegisteredFragment(2);
@@ -196,11 +234,12 @@ public class AlexandreActivity  extends CanzeActivity implements FieldListener {
             }
             */
 
-        }
-        catch (Exception e) {
-            //ignore
-        }
+            } catch (Exception e) {
+                //ignore
+            }
 
+
+        }
     }
 
 

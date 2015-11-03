@@ -1,4 +1,26 @@
 /*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
+/*
  * Represents an elemtn which can be draw onto a canvas
  */
 package lu.fisch.canze.widgets;
@@ -10,10 +32,10 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
 import lu.fisch.awt.Rectangle;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.aligner.Space;
 import lu.fisch.canze.classes.ColorRanges;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 import lu.fisch.canze.interfaces.FieldListener;
@@ -22,7 +44,7 @@ import lu.fisch.canze.interfaces.FieldListener;
  *
  * @author robertfisch
  */
-public abstract class Drawable implements Space, FieldListener {
+public abstract class Drawable implements FieldListener {
     protected int x, y, width, height;
     protected int min = 0;
     protected int max = 0;
@@ -34,6 +56,12 @@ public abstract class Drawable implements Space, FieldListener {
     protected int value = 0;
     protected Field field = null;
     protected String title = "";
+
+    // colors
+    protected Color foreground   = Color.BLACK;
+    protected Color background   = Color.WHITE;
+    protected Color intermediate = Color.GRAY_LIGHT;
+    protected Color titleColor   = Color.BLUE;
 
     protected DrawSurfaceInterface drawSurface = null;
 
@@ -218,5 +246,37 @@ public abstract class Drawable implements Space, FieldListener {
 
     public void setColorRanges(ColorRanges colorRanges) {
         this.colorRanges = colorRanges;
+    }
+
+    public Color getForeground() {
+        return foreground;
+    }
+
+    public void setForeground(Color foreground) {
+        this.foreground = foreground;
+    }
+
+    public Color getBackground() {
+        return background;
+    }
+
+    public void setBackground(Color background) {
+        this.background = background;
+    }
+
+    public Color getIntermediate() {
+        return intermediate;
+    }
+
+    public void setIntermediate(Color intermediate) {
+        this.intermediate = intermediate;
+    }
+
+    public Color getTitleColor() {
+        return titleColor;
+    }
+
+    public void setTitleColor(Color titleColor) {
+        this.titleColor = titleColor;
     }
 }

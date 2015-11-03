@@ -1,3 +1,24 @@
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package lu.fisch.canze.widgets;
 
 import com.google.gson.Gson;
@@ -89,8 +110,12 @@ public class Timeplot extends Drawable {
 
     @Override
     public void draw(Graphics g) {
+        // background
+        g.setColor(getBackground());
+        g.fillRect(x, y, width, height);
+
         // black border
-        g.setColor(Color.BLACK);
+        g.setColor(getForeground());
         g.drawRect(x, y, width, height);
 
         // calculate fill height
@@ -110,7 +135,7 @@ public class Timeplot extends Drawable {
             {
                 if(minorTicks>0)
                 {
-                    g.setColor(Color.GRAY);
+                    g.setColor(getForeground());
                     ax = x+width-barWidth-5;
                     ay = y+i;
                     bx = x+width-barWidth;
@@ -121,14 +146,14 @@ public class Timeplot extends Drawable {
                 if(majorTicks!=0 && sum % majorTicks == 0) {
                     if(majorTicks>0)
                     {
-                        g.setColor(Color.GRAY_LIGHT);
+                        g.setColor(getIntermediate());
                         ax = x+width-barWidth-10;
                         ay = y+i;
                         bx = x+width;
                         by = y+i;
                         g.drawLine((int)ax, (int)ay, (int)bx, (int)by);
 
-                        g.setColor(Color.GRAY);
+                        g.setColor(getForeground());
                         ax = x+width-barWidth-10;
                         ay = y+i;
                         bx = x+width-barWidth;
@@ -139,7 +164,7 @@ public class Timeplot extends Drawable {
                     // draw String
                     if(showLabels)
                     {
-                        g.setColor(Color.GRAY);
+                        g.setColor(getForeground());
                         String text = (actual)+"";
                         double sw = g.stringWidth(text);
                         bx = x+width-barWidth-16-sw;
@@ -158,6 +183,7 @@ public class Timeplot extends Drawable {
             String sid = sids.get(s);
             ArrayList<TimePoint> values = this.values.get(sid);
 
+            g.setColor(getForeground());
             g.drawRect(x + width - barWidth, y, barWidth, height);
             if (values.size() > 0) {
 
@@ -202,7 +228,7 @@ public class Timeplot extends Drawable {
         // draw the title
         if(title!=null && !title.equals(""))
         {
-            g.setColor(Color.BLUE);
+            g.setColor(getTitleColor());
             g.setTextSize(20);
             int th = g.stringHeight(title);
             int tx = getX()+width-barWidth+8;

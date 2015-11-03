@@ -9,17 +9,28 @@
     android:paddingTop="0dp"
     android:paddingBottom="0dp"
     tools:context="lu.fisch.canze.fragments.MainFragment"
-    android:stretchColumns="3"
     android:id="@+id/table"
-    android:layout_column="1"
-    android:layout_row="3"
     android:orientation="vertical"
     >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8">
+
+        <ScrollView
+            android:id="@+id/scroller_main"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:fillViewport="true"
+            android:fadeScrollbars="false">
+
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="3"
+        android:stretchColumns="*"
         >
         <TableRow
             android:layout_width="match_parent"
@@ -29,10 +40,10 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
                 android:text="Battery"
                 android:id="@+id/buttonBattery"
                 android:drawableLeft="@mipmap/button_battery"
@@ -42,14 +53,14 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
                 android:text="@string/title_activity_charging"
                 android:id="@+id/buttonChargingActivity"
                 android:drawableLeft="@mipmap/button_charge"
-                android:layout_column="0" />
+                android:layout_column="1" />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -59,10 +70,10 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
                 android:text="Firmware"
                 android:id="@+id/buttonFirmware"
                 android:drawableLeft="@mipmap/button_firmware"
@@ -71,14 +82,14 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
                 android:text="@string/title_activity_driving"
                 android:id="@+id/buttonDrivingActivity"
                 android:drawableLeft="@mipmap/button_drive"
-                android:layout_column="0" />
+                android:layout_column="1" />
 
         </TableRow>
 
@@ -90,10 +101,10 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
                 android:text="Consumption"
                 android:id="@+id/buttonConsumption"
                 android:drawableLeft="@mipmap/button_consumption"
@@ -103,17 +114,59 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
                 android:text="Braking"
                 android:id="@+id/buttonBraking"
                 android:drawableLeft="@mipmap/button_brake"
+                android:layout_column="1" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:text="Heatmap cell voltages"
+                android:id="@+id/buttonHeatmapCellvoltage"
+                android:drawableLeft="@mipmap/button_lightning"
+                android:layout_column="0" />
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:text="Heatmap battery compartment"
+                android:id="@+id/buttonHeatmapBatcomp"
+                android:drawableLeft="@mipmap/button_thermometer"
                 android:layout_column="0" />
 
         </TableRow>
+
     </TableLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
     <LinearLayout
         android:orientation="vertical"
@@ -131,5 +184,7 @@
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>

@@ -7,12 +7,12 @@ android {
         applicationId "lu.fisch.canze"
         minSdkVersion 15
         targetSdkVersion 22
-        versionName '1.01'
-        versionCode 2
+        versionName '1.02'
+        versionCode 3
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

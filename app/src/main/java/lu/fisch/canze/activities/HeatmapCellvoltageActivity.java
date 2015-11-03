@@ -1,3 +1,24 @@
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package lu.fisch.canze.activities;
 
 import android.os.Bundle;
@@ -13,7 +34,7 @@ import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.FieldListener;
 
 /**
- * Created by jeroen on 27-10-15.
+ * Heatmap by jeroen on 27-10-15.
  */
 public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldListener {
 
@@ -22,7 +43,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
 
     private ArrayList<Field> subscribedFields;
 
-    private double totalVoltage = 384;
+    private double mean = 4;
     private double lastVoltage[] = {0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4};
     private int lastCell = 96;
 
@@ -96,7 +117,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
             @Override
             public void run() {
                 String fieldId = field.getSID();
-                TextView tv = null;
+                TextView tv;
 
                 // get the text field
                 int cell = 0;
@@ -106,13 +127,19 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
                     cell = (Integer.parseInt(fieldId.split("[.]")[2])) / 16 + 62; // cell is 1-based
                 }
                 if (cell > 0) {
+                    if (cell == 1) {
+                        mean = 0;
+                        for (int i = 1; i <= lastCell; i++) {
+                            mean += lastVoltage[i];
+                        }
+                        mean /= lastCell;
+                    }
                     double value = field.getValue();
-                    totalVoltage += (value - lastVoltage[cell]);
                     lastVoltage[cell] = value;
                     tv = (TextView) findViewById(getResources().getIdentifier("text_cell_" + cell + "_voltage", "id", getPackageName()));
                     if (tv != null) {
                         tv.setText("" + value);
-                        int color = (int) (5000 * (value - (totalVoltage / lastCell))); // color is temp minus mean. 1mV difference is a color tick
+                        int color = (int) (5000 * (value - mean)); // color is temp minus mean. 1mV difference is 5 color ticks
                         if (color > 62) {
                             color = 0xffffc0c0;
                         } else if (color > 0) {
@@ -126,7 +153,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
                     }
                 }
                 tv = (TextView) findViewById(R.id.textDebug);
-                tv.setText(fieldId);
+                tv.setText(fieldId + ":" + mean);
             }
         });
 
