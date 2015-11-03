@@ -183,6 +183,7 @@ public class Timeplot extends Drawable {
             String sid = sids.get(s);
             ArrayList<TimePoint> values = this.values.get(sid);
 
+            g.setColor(getForeground());
             g.drawRect(x + width - barWidth, y, barWidth, height);
             if (values.size() > 0) {
 
