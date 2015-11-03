@@ -153,6 +153,7 @@
                 android:layout_marginBottom="4dp"
                 android:text="Heatmap battery compartment"
                 android:id="@+id/buttonHeatmapBatcomp"
+                android:drawableLeft="@mipmap/button_thermometer"
                 android:layout_column="0" />
 
         </TableRow>
