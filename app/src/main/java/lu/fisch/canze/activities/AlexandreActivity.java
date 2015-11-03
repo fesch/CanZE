@@ -79,7 +79,7 @@ public class AlexandreActivity  extends CanzeActivity implements FieldListener {
 
 
         // check if it's a tablet
-        if (this.getResources().getConfiguration().smallestScreenWidthDp > 600) tablet = true;
+        if (this.getResources().getConfiguration().smallestScreenWidthDp >= 600) tablet = true;
         else tablet = false;
 
 
