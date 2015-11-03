@@ -49,13 +49,13 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
-    public static final String SID_Pedal                                = "186.40";
-    public static final String SID_MeanEffectiveTorque                  = "18a.16";
-    public static final String SID_RealSpeed                            = "5d7.0";
-    public static final String SID_SoC                                  = "654.24";
-    public static final String SID_RangeEstimate                        = "654.42";
-    public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; // braking wheel torque the driver wants
-    public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; //10ms
+    public static final String SID_Pedal                                = "186.40"; //EVC
+    public static final String SID_MeanEffectiveTorque                  = "18a.16"; //EVC
+    public static final String SID_RealSpeed                            = "5d7.0";  //ESC-ABS
+    public static final String SID_SoC                                  = "654.24"; //EVC
+    public static final String SID_RangeEstimate                        = "654.42"; //EVC
+    public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
+    public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; //UBP 10ms
 
     // ISO-TP data
 //  public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
@@ -329,6 +329,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_ElecBrakeWheelsTorqueApplied:
                         double frictionBrakeTorque = driverBrakeWheel_Torque_Request - field.getValue();
+                        // a fair full red bar is estimated @ 1000 Nm
                         pb = (ProgressBar) findViewById(R.id.FrictionBreaking);
                         pb.setProgress((int) (frictionBrakeTorque * realSpeed));
                         break;
