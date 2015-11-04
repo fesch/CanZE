@@ -61,7 +61,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
     public static final String plu_Status [] = {"Not connected", "Connected"};
     double dcVolt       = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     double pilot        = 0;
-    int chargingStatus  = 0;
+    int chargingStatus  = 7;
     double soc          = 0;
 
     private ArrayList<Field> subscribedFields;
@@ -114,13 +114,15 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
 
         subscribedFields = new ArrayList<>();
 
+        int car = Fields.getInstance().getCar();
+
         addListener(SID_MaxCharge);
         addListener(SID_ACPilot);
 //      addListener(SID_EnergyToFull);
         addListener(SID_TimeToFull);
         addListener(SID_PlugConnected);
         addListener(SID_SoC);
-        addListener(SID_AvChargingPower);
+        if(car==Fields.CAR_ZOE) addListener(SID_AvChargingPower);
         addListener(SID_AvEnergy);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
@@ -129,15 +131,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
         addListener(SID_TractionBatteryCurrent);
 
         // Battery compartment temperatures
-        int car = Fields.getInstance().getCar();
-        int lastCell;
-        if(car==Fields.CAR_ZOE) {
-            lastCell = 296;
-        }
-        else
-        {
-            lastCell = 104;
-        }
+        int lastCell = (car==Fields.CAR_ZOE) ? 296 : 104;
         for (int i = 32; i <= lastCell; i += 24) {
             String sid = SID_Preamble_CompartmentTemperatures + i;
             addListener(sid);
@@ -167,7 +161,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         pilot = field.getValue();
                         // continue
                         tv = (TextView) findViewById(R.id.text_max_pilot);
-                        if (chargingStatus != 3) {
+                        if (chargingStatus != 3 && Fields.getInstance().getCar()!=Fields.CAR_ZOE) {
                             tv.setText("-");
                             tv = null;
                         }
