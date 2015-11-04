@@ -81,15 +81,15 @@ public class SettingsActivity extends AppCompatActivity {
         // fill devices
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         arrayAdapter.add("ELM327");
-        arrayAdapter.add("Arduino Due");
+        //arrayAdapter.add("Arduino Due");
         arrayAdapter.add("Bob Due");
-        arrayAdapter.add("ELM327 Experimental");
+        //arrayAdapter.add("ELM327 Experimental");
 
         int index = 0;
         if(device.equals("ELM327")) index=0;
-        else if(device.equals("Arduino Due")) index=1;
+        //else if(device.equals("Arduino Due")) index=1;
         else if(device.equals("Bob Due")) index=2;
-        else if(device.equals("ELM327 Experimental")) index=3;
+        //else if(device.equals("ELM327 Experimental")) index=3;
 
         // display the list
         Spinner deviceList = (Spinner) findViewById(R.id.remoteDevice);

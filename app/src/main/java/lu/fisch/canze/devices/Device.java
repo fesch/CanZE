@@ -208,7 +208,7 @@ public abstract class Device {
                         String data = requestField(field);
                         // test if we got something
                         if(data!=null && !someThingWrong) {
-                            process(Utils.toIntArray(data.getBytes()));
+                            process(data);
                         }
 
                         // reset if something went wrong ...
@@ -310,10 +310,10 @@ public abstract class Device {
      * This method will process the passed (binary) data and then
      * return based on that and on what the internal buffer still
      * may hold a list of complete messages.
-     * @param input
+     * @param inputString
      * @return
      */
-    protected abstract ArrayList<Message> processData(int[] input);
+    protected abstract ArrayList<Message> processData(String inputString);
 
     public void join() throws InterruptedException{
         if(pollerThread!=null)
@@ -330,9 +330,9 @@ public abstract class Device {
      * the fields (=singleton) about the incoming messages. The
      * listeners of the fields will then pass this information, via their
      * own listeners to the GUI or whoever needs to know about the changes.
-     * @param input
+     * @param inputString
      */
-    public void process(final int[] input)
+    public void process(final String inputString)
     {
         /*(new Thread(new Runnable() {
             @Override
@@ -345,7 +345,7 @@ public abstract class Device {
             }
         })).start();
         /**/
-        ArrayList<Message> messages = processData(input);
+        ArrayList<Message> messages = processData(inputString);
         for(int i=0; i<messages.size(); i++)
         {
             Fields.getInstance().onMessageCompleteEvent(messages.get(i));
