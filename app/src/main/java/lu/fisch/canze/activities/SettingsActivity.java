@@ -21,6 +21,7 @@
 
 package lu.fisch.canze.activities;
 
+import android.content.pm.PackageInfo;
 import android.os.Environment;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -233,7 +234,11 @@ public class SettingsActivity extends AppCompatActivity {
             long time = ze.getTime();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd @ HH:mm");
             String s = sdf.format(new java.util.Date(time));
-            tv.setText("Build: "+s);
+
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            String version = pInfo.versionName;
+
+            tv.setText("Version: "+version+"  //  Build: "+s);
             zf.close();
         }
         catch(Exception e){
