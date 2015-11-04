@@ -50,8 +50,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_heatmap_batcomp);
-
+        setContentView(Fields.getInstance().getCar() == Fields.CAR_ZOE ? R.layout.activity_heatmap_batcomp :  R.layout.activity_heatmap_batcomp2);
         initListeners();
 
     }
