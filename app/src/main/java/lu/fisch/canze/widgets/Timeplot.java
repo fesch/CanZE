@@ -34,6 +34,7 @@ import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.classes.TimePoint;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 
 /**
@@ -41,24 +42,6 @@ import lu.fisch.canze.interfaces.DrawSurfaceInterface;
  * @author robertfisch
  */
 public class Timeplot extends Drawable {
-
-    class TimePoint implements Serializable {
-        public long date;
-        public double value;
-
-        public TimePoint() {
-        }
-
-        public TimePoint(long date, double value) {
-            this.date = date;
-            this.value = value;
-        }
-
-        public String toString()
-        {
-            return date+","+value;
-        }
-    }
 
     protected HashMap<String,ArrayList<TimePoint>> values = new HashMap<>();
 
