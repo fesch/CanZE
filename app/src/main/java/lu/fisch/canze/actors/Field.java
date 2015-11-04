@@ -30,6 +30,7 @@ import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.interfaces.FieldListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -57,6 +58,9 @@ public class Field {
 
     private double value = Double.NaN;
     private int skipsCount = 0;
+
+    private long lastRequest = 0;
+    private int interval = 0;
     
     public Field(int id, int from, int to, int divider, int multiplier, double offset, int decimals, String format, String unit, String requestId, String responseId, String description, int car, int skips, int frequency) {
         this.from=from;
@@ -74,6 +78,8 @@ public class Field {
         this.car=car;
         this.skips=skips;
         this.frequency=frequency;
+
+        this.lastRequest=Calendar.getInstance().getTimeInMillis();
     }
     
     @Override
@@ -81,6 +87,8 @@ public class Field {
     {
         Field field = new Field(id, from, to, divider, multiplier, offset, decimals, format, unit, requestId, responseId, description, car, skips,frequency);
         field.value = value;
+        field.lastRequest=lastRequest;
+        field.interval=interval;
         return field;
     }
     
@@ -201,6 +209,37 @@ public class Field {
         }
     }
     
+    /* --------------------------------
+     * Scheduling
+    \ ------------------------------ */
+
+
+    public void updateLastRequest()
+    {
+        lastRequest = Calendar.getInstance().getTimeInMillis();
+    }
+
+    public long getLastRequest()
+    {
+        return lastRequest;
+    }
+
+    public boolean isDue(long referenceTime)
+    {
+        return lastRequest+interval<referenceTime;
+    }
+
+    public void setInterval(int interval)
+    {
+        this.interval=interval;
+    }
+
+    public int getInterval()
+    {
+        return interval;
+    }
+
+
     /* --------------------------------
      * Getters & setters
     \ ------------------------------ */

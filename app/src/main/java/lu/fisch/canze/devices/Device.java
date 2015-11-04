@@ -22,6 +22,9 @@
 package lu.fisch.canze.devices;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
@@ -65,6 +68,7 @@ public abstract class Device {
      * Loops over ther "fields" array
      */
     protected int fieldIndex = 0;
+    protected int customFieldIndex = 0;
 
     protected boolean pollerActive = false;
     protected Thread pollerThread;
@@ -168,6 +172,16 @@ public abstract class Device {
 
                 Field field = null;
 
+                if(fieldIndex<0) {
+                    // no next field ---> sleep
+                    try {
+                        Thread.sleep(100);
+                    } catch(Exception e) {}
+                    // try to get the next field
+                    fieldIndex = getNextIndex();
+                    return;
+                }
+
                 // get field
                 synchronized (fields) {
                     field = fields.get(fieldIndex);
@@ -205,12 +219,18 @@ public abstract class Device {
                     }
 
                     // goto next filter
-                    synchronized (fields) {
+                    /*synchronized (fields) {
                         if (fields.size() == 0)
                             fieldIndex = 0;
                         else
                             fieldIndex = (fieldIndex + 1) % fields.size();
-                    }
+                    }*/
+
+                    // update the request time
+                    field.updateLastRequest();
+
+                    // determine the next field to query
+                    fieldIndex = getNextIndex();
                 }
                 else
                     MainActivity.debug("Device: failed to get the field!");
@@ -222,6 +242,53 @@ public abstract class Device {
         }
         else {
             // ignore if there are no fields to query
+        }
+    }
+
+    private int getNextIndex()
+    {
+        long referenceTime = Calendar.getInstance().getTimeInMillis();
+
+        synchronized (fields) {
+            if(applicationFields.size()>0) {
+                // sort the applicationFields
+                Collections.sort(applicationFields, new Comparator<Field>() {
+                    @Override
+                    public int compare(Field lhs, Field rhs) {
+                        return (int) (lhs.getLastRequest()+lhs.getInterval() - (rhs.getLastRequest()+rhs.getInterval()));
+                    }
+                });
+
+                /*MainActivity.debug("--");
+                for(int i=0; i<applicationFields.size(); i++)
+                {
+                    MainActivity.debug(
+                            (applicationFields.get(i).getLastRequest()+applicationFields.get(i).getInterval()-referenceTime)+" > "+
+                            applicationFields.get(i).getSID());
+                }/**/
+
+                // get the first field (the one with the smallest lastRequest time
+                Field field = applicationFields.get(0);
+                // return it's index in the global registered field array
+                if(field.isDue(referenceTime)) {
+                    //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
+                    return fields.indexOf(field);
+                }
+            }
+            // take the next costum field
+            if(customActivityFields.size()>0)
+            {
+                /*
+                for(int i=0; i<customActivityFields.size(); i++)
+                {
+                    MainActivity.debug(i+" > "+ customActivityFields.get(i).getSID());
+                }/**/
+
+                customFieldIndex = (customFieldIndex + 1) % customActivityFields.size();
+                return fields.indexOf(customActivityFields.get(customFieldIndex));
+            }
+
+            return -1;
         }
     }
 
@@ -373,14 +440,19 @@ public abstract class Device {
                     }
                 })).start();
             }
+            if(!customActivityFields.contains(field))
+            {
+                customActivityFields.add(field);
+            }
         }
     }
 
-    public void addApplicationField(final Field field)
+    public void addApplicationField(final Field field, int interval)
     {
         synchronized (fields) {
             if (!containsField(field)) {
                 //MainActivity.debug("reg: "+field.getSID());
+                field.setInterval(interval);
                 fields.add(field);
                 applicationFields.add(field);
                 // launch the field registration asynchronously

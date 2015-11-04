@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             Field field = fields.getBySID("5d7.0");
             field.addListener(MainActivity.getInstance());
             if(device!=null)
-                device.addApplicationField(field);
+                device.addApplicationField(field,1000); // query every second
         } else
         {
             Field field = fields.getBySID("5d7.0");
@@ -262,6 +262,17 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             if(device!=null)
                 device.removeApplicationField(field);
         }
+/* test for scheduler
+        Field field = fields.getBySID("5d7.0");
+        if(device!=null)
+            device.addApplicationField(field,1000);
+        field = fields.getBySID("1fd.48");
+        if(device!=null)
+            device.addApplicationField(field,2000);
+        field = fields.getBySID("427.49");
+        if(device!=null)
+            device.addApplicationField(field,5000);
+*/
     }
 
     private ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)
