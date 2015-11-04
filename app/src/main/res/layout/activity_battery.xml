@@ -75,13 +75,13 @@ android:id="@+id/table"
                 android:layout_marginRight="2dp"
                 android:layout_marginBottom="2dp"
                 android:layout_marginTop="2dp"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="---"
                 android:id="@+id/link"
                 android:layout_weight="1"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center" />
         </LinearLayout>
     </TableRow>
     <TableRow
