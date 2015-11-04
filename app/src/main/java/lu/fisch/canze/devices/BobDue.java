@@ -49,61 +49,6 @@ public class BobDue extends Device {
     private int fieldIndex = 0;
     // the thread that polls the data to the stack
 
-    public void initConnection_old() {
-        MainActivity.debug("BobDue: initConnection");
-        if(BluetoothManager.getInstance().isConnected()) {
-            MainActivity.debug("BobDue: connectedBluetoothThread!=null");
-            // make sure we only have one poller task
-            if (pollerThread == null) {
-                MainActivity.debug("BobDue: pollerThread == null");
-                // post a task to the UI thread
-                setPollerActive(true);
-
-                Runnable r = new Runnable() {
-                    @Override
-                    public void run() {
-                        while (isPollerActive())
-                        {
-                            //MainActivity.debug("BobDue: inside poller thread ...");
-                            if(fields.size()==0)
-                            {
-                                //MainActivity.debug("BobDue: sleeping ...");
-                                try{
-                                    Thread.sleep(5000);
-                                }
-                                catch (Exception e) {}
-                            }
-                            // query a field
-                            else {
-                                //MainActivity.debug("BobDue: Doing next query ...");
-                                queryNextFilter();
-                            }
-                        }
-                        pollerThread=null;
-                    }
-                };
-                pollerThread = new Thread(r);
-                pollerThread.start();
-            }
-        }
-        else
-        {
-            MainActivity.debug("BobDue: connectedBluetoothThread == null");
-            if(pollerThread!=null && pollerThread.isAlive())
-            {
-                setPollerActive(false);
-                try {
-                    MainActivity.debug("BobDue: joining pollerThread");
-                    pollerThread.join();
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
     public void join() throws InterruptedException {
         pollerThread.join();
     }
@@ -127,13 +72,14 @@ public class BobDue extends Device {
     }
 
     @Override
-    protected ArrayList<Message> processData(int[] input) {
+    protected ArrayList<Message> processData(String inputString) {
         ArrayList<Message> result = new ArrayList<>();
 
         // add to buffer as characters
-        for (int i = 0; i < input.length; i++) {
+        buffer+=inputString;
+        /*for (int i = 0; i < input.length; i++) {
             buffer += (char) input[i];
-        }
+        }*/
 
         //MainActivity.debug("Buffer = "+buffer);
 
@@ -220,40 +166,7 @@ public class BobDue extends Device {
     }
 
 
-    // query the device for the next filter
-    public void queryNextFilter_old()
-    {
-        if (fields.size() > 0) {
-            try {
-                // get field
-                Field field;
 
-                synchronized (fields) {
-                    field = fields.get(fieldIndex);
-                }
-
-                MainActivity.debug("BobDue: queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
-
-                //MainActivity.debug("Querying for field: "+field.getSID());
-
-                if(field!=null) {
-                    process(Utils.toIntArray(requestField(field).getBytes()));
-
-                    // goto next filter
-                    synchronized (fields) {
-                        if(fields.size()==0)
-                            fieldIndex=0;
-                        else
-                            fieldIndex = (fieldIndex + 1) % fields.size();
-                    }
-                }
-            } catch (Exception e) {
-                fieldIndex =0;
-            }
-        } else {
-            // ignore
-        }
-    }
 
     // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis)

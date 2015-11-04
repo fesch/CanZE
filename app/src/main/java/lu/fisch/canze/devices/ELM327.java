@@ -41,7 +41,6 @@ public class ELM327 extends Device {
     private String buffer = "";
     private final String SEPARATOR = "\r\n";
 
-    // *** needed by the "reader" part of this device
 
     // define the timeout we may wait to get an answer
     private int DEFAULT_TIMEOUT = 500;
@@ -59,61 +58,6 @@ public class ELM327 extends Device {
     private int fieldIndex = 0;
     private int lastId = 0;
 
-
-
-    public void initConnection_old() {
-        if(BluetoothManager.getInstance().isConnected()) {
-            // post a task to the UI thread
-            Runnable r = new Runnable() {
-                @Override
-                public void run() {
-                    // atz / atws (reset)
-                    // continue only if we got an answer.
-                    if (initDevice(0)) {
-
-                        setPollerActive(true);
-                        while (isPollerActive()) {
-                            // if the no field is to be queried, sleep for a while
-                            if(fields.size()==0)
-                            {
-                                try{
-                                    Thread.sleep(5000);
-                                }
-                                catch (Exception e) {}
-                            }
-                            // query a field
-                            else {
-                                queryNextFilter();
-                            }
-                        }
-                        MainActivity.debug("ELM: poller is done!");
-                        pollerThread=null;
-                    } else {
-                        MainActivity.debug("ELM: no answer ...");
-                        if (timeoutLogLevel >= 1) MainActivity.toast("Retrying ...");
-                        /*if(connectedBluetoothThread!=null) {
-                            // retry
-                            pollerThread = new Thread(this);
-                            pollerThread.start();
-                        }*/
-
-                        (new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                // stop the BT but don't reset the device registered fields
-                                MainActivity.getInstance().stopBluetooth(false);
-                                // reload the BT with filter registration
-                                MainActivity.getInstance().reloadBluetooth(false);
-                            }
-                        })).start();
-                    }
-                }
-            };
-            pollerThread = new Thread(r);
-            pollerThread.start();
-        }
-    }
-
     @Override
     public void registerFilter(int frameId) {
         // not needed for this device
@@ -125,13 +69,14 @@ public class ELM327 extends Device {
     }
 
     @Override
-    protected ArrayList<Message> processData(int[] input) {
+    protected ArrayList<Message> processData(String inputString) {
         ArrayList<Message> result = new ArrayList<>();
 
         // add to buffer as characters
-        for (int anInput : input) {
+        buffer+=inputString;
+        /*for (int anInput : input) {
             buffer += (char) anInput;
-        }
+        }*/
 
         //MainActivity.debug("Buffer: "+buffer);
 
@@ -562,84 +507,6 @@ public class ELM327 extends Device {
     private String getRequestHexId(int responseId)
     {
         return Integer.toHexString(getRequestId(responseId));
-    }
-
-    // query the device for the next filter
-    public void queryNextFilter_old()
-    {
-        //MainActivity.debug("queryNextFilter: "+fieldIndex);
-        try {
-            if(fields.size()>0) {
-                //MainActivity.debug("Index: "+fieldIndex);
-
-                // get field
-                Field field;
-                boolean runFilter;
-
-                synchronized (fields) {
-                    field = fields.get(fieldIndex);
-                }
-
-                MainActivity.debug("queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
-
-                // only run the filter if the skipsCount is down to zero
-                runFilter = (field.getSkipsCount() == 0);
-                if (runFilter)
-                    // reset it to its initial value
-                    field.resetSkipsCount();
-                else
-                    // decrement the skipsCount
-                    field.decSkipCount();
-
-                if (runFilter) {
-                    String data = "";
-                    if (field.isIsoTp()) {
-                        data = requestIsoTpFrame(field);
-                        if (!someThingWrong && data!=null) //!data.equals(""))
-                        {
-                            //data = field.getHexId() + "," + data.trim() + "," + field.getResponseId() + SEPARATOR;
-                            process(Utils.toIntArray(data.getBytes()));
-                        }
-
-                    } else {
-                        data = requestFreeFrame(field);
-                        if (!someThingWrong && data!=null) //!data.equals(""))
-                        {
-                            //data = field.getHexId() + "," + data.trim() + SEPARATOR;
-                            process(Utils.toIntArray(data.getBytes()));
-                        }
-                    }
-
-                    // reset the ELM if a timeout occurred somewhere running this filter
-                    // ... but only if we are not asked to stop!
-                    if (someThingWrong && BluetoothManager.getInstance().isConnected()) {
-                        //MainActivity.toast("... in command " + emlFilter + ", resetting ELM");
-                        initDevice(1, 2);
-                        // someThingWrong = false; // done in initElm now
-                    }
-                }
-
-                // move on to the next field
-                synchronized (fields) {
-                    if(fields.size()==0)
-                        fieldIndex=0;
-                    else
-                        fieldIndex = (fieldIndex + 1) % fields.size();
-                }
-            }
-
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            // move on to the next field
-            synchronized (fields) {
-                if(fields.size()==0)
-                    fieldIndex=0;
-                else
-                    fieldIndex = (fieldIndex + 1) % fields.size();
-            }
-        }
     }
 
     @Override
