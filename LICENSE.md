@@ -44,12 +44,9 @@ Used third party components licenses
 Icons & Images
 --------------
 
-    * Renault Zoé
-      This image is all around the Internet. I can't remember where exactly where it has been taken
-      from, but I think it has come from some official Renault site, but I can't find it right now.
-      For the same reason, I cannot indicate the license of this image right now, but as it can be
-      found on many sites, I suppose it may be at least usable without modifications for non-commercial
-      use. I would be grateful for any more precise information ...
+    * Renault Zoé (launcher icon)
+      The icon has been designed by Bob Fisch and is part of the CanZE project.
+      Source of inspiration were his own car as well as different images found on the internet.
 
     * Thermometer > CC BY 3.0
       Source:  https://www.iconfinder.com/icons/653255/cloud_data_forecast_rain_temperature_thermometer_thermometre_icon#size=128
