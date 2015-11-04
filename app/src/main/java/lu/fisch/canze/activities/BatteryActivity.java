@@ -22,7 +22,10 @@
 package lu.fisch.canze.activities;
 
         import android.os.Bundle;
+        import android.text.Html;
+        import android.text.method.LinkMovementMethod;
         import android.view.Menu;
+        import android.widget.TextView;
 
         import lu.fisch.canze.R;
 
@@ -32,6 +35,10 @@ public class BatteryActivity extends CanzeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battery);
+
+        TextView textView = (TextView) findViewById(R.id.link);
+        textView.setText(Html.fromHtml("More detailed information about these data can be found in the <a href='http://canze.fisch.lu/qa/'>Q & A section</a> of the <a href='http://canze.fisch.lu/'>CanZE homepage</a>."));
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     @Override
