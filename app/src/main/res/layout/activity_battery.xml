@@ -9,57 +9,87 @@ android:paddingRight="0dp"
 android:paddingTop="0dp"
 android:paddingBottom="0dp"
 tools:context="lu.fisch.canze.activities.BatteryActivity"
-android:stretchColumns="3"
+android:stretchColumns="1"
 android:id="@+id/table"
     >
 
-<TableRow
-    android:id="@+id/tableRow1"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal"
-    android:layout_weight="1">
-
-    <lu.fisch.canze.widgets.WidgetView
-        android:id="@+id/soc"
-        android:layout_width="0dp"
-        android:layout_weight="1"
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        custom:min="0"
-        custom:max="0"
-        custom:majorTicks="0"
-        custom:minorTicks="0"
-        custom:fieldSID="658.32"
-        custom:widget="label"
-        custom:text="State of Health (%)"
-        />
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
-    <lu.fisch.canze.widgets.WidgetView
-        android:id="@+id/soh"
-        android:layout_width="0dp"
-        android:layout_weight="1"
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/soc"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            custom:min="0"
+            custom:max="0"
+            custom:majorTicks="0"
+            custom:minorTicks="0"
+            custom:fieldSID="658.32"
+            custom:widget="label"
+            custom:text="State of Health (%)"
+            />
+
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/soh"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            custom:min="0"
+            custom:max="120"
+            custom:majorTicks="10"
+            custom:minorTicks="5"
+            custom:fieldSID="42e.0,654.24"
+            custom:widget="timeplot"
+            custom:text="True vs. Indicated State of Charge (%)"
+            />
+
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:background="#ffd124"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="---"
+                android:id="@+id/link"
+                android:layout_weight="1"
+                android:layout_gravity="center" />
+        </LinearLayout>
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        custom:min="0"
-        custom:max="120"
-        custom:majorTicks="10"
-        custom:minorTicks="5"
-        custom:fieldSID="42e.0,654.24"
-        custom:widget="timeplot"
-        custom:text="True vs. Indicated State of Charge (%)"
-        />
-
-</TableRow>
-<TableRow
-    android:id="@+id/tableRow2"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal"
-    android:layout_weight="1">
+        android:orientation="horizontal"
+        android:layout_weight="1">
 
     <lu.fisch.canze.widgets.WidgetView
         android:id="@+id/voltages"
