@@ -24,27 +24,46 @@ package lu.fisch.canze.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.classes.TimePoint;
+import lu.fisch.canze.interfaces.FieldListener;
 
-public class CanzeDataSource
+public class CanzeDataSource implements FieldListener
 {
-    // Database fields
-    private SQLiteDatabase database;
-    private CanzeOpenHelper dbHelper;
+    private static long LIMIT = 24*60*60*1000;  // 24 h
 
-    public CanzeDataSource(Context context)
+    /*
+     * Singleton stuff
+     */
+    private static CanzeDataSource instance = null;
+
+    public static CanzeDataSource getInstance()
+    {
+        if(instance==null) throw new Error("Must call at least once with given context!");
+        return instance;
+    }
+
+    public static CanzeDataSource getInstance(Context context)
+    {
+        if(instance==null) instance = new CanzeDataSource(context);
+        return instance;
+    }
+
+    private CanzeDataSource(Context context)
     {
       dbHelper = new CanzeOpenHelper(context);
     }
+
+    // Database fields
+    private SQLiteDatabase database;
+    private CanzeOpenHelper dbHelper;
 
     public void open() throws SQLException
     {
@@ -63,23 +82,44 @@ public class CanzeDataSource
 
     public void insert(Field field)
     {
-        ContentValues values = new ContentValues();
-        values.put("sid", field.getSID());
-        values.put("moment", Calendar.getInstance().getTimeInMillis());
-        values.put("value",field.getValue());
-        database.insert("data", null, values);
+        if(!Double.isNaN(field.getValue())) {
+            //MainActivity.debug("CanzeDataSource: inserting "+field.getValue()+" for "+field.getSID());
+            ContentValues values = new ContentValues();
+            values.put("sid", field.getSID());
+            values.put("moment", Calendar.getInstance().getTimeInMillis());
+            values.put("value", field.getValue());
+            database.insert("data", null, values);
+        }
     }
 
-    public void clean(Field field, long limit)
+    public void cleanUp()
     {
-        database.rawQuery("DELETE FROM data WHERE sid = '" + field.getSID() + "' AND moment<" + limit, null);
+        long limit = Calendar.getInstance().getTimeInMillis()-LIMIT;
+        database.rawQuery("DELETE FROM data WHERE moment<" + limit, null);
     }
 
-    public ArrayList<TimePoint> getData(Field field)
+    public double getLast(String sid)
+    {
+        double data = Double.NaN;
+
+        Cursor c = database.rawQuery("SELECT * FROM data WHERE sid='"+sid+"' ORDER BY moment DESC LIMIT 1", null);
+        //MainActivity.debug("CanzeDataSource: getting last for "+sid);
+        c.moveToFirst();
+        if (!c.isAfterLast()) {
+            data = c.getDouble(c.getColumnIndex("value"));
+            //MainActivity.debug("CanzeDataSource: got value "+data);
+        }
+        // make sure to close the cursor
+        c.close();
+
+        return data;
+    }
+
+    public ArrayList<TimePoint> getData(String sid)
     {
         ArrayList<TimePoint> data = new ArrayList<>();
 
-        Cursor c = database.rawQuery("SELECT * FROM data WHERE sid='"+field.getSID()+"' ORDER BY moment DESC", null);
+        Cursor c = database.rawQuery("SELECT * FROM data WHERE sid='"+sid+"' ORDER BY moment ASC", null);
         c.moveToFirst();
         while (!c.isAfterLast())
         {
@@ -94,5 +134,13 @@ public class CanzeDataSource
         c.close();
 
         return data;
+    }
+
+    /*
+     * Singleton stuff
+     */
+    @Override
+    public void onFieldUpdateEvent(Field field) {
+        insert(field);
     }
 }

@@ -35,6 +35,7 @@ import lu.fisch.awt.Graphics;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.classes.TimePoint;
+import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 
 /**
@@ -166,6 +167,12 @@ public class Timeplot extends Drawable {
             String sid = sids.get(s);
             ArrayList<TimePoint> values = this.values.get(sid);
 
+            // setup an empty list if no list has been found
+            if(values==null) {
+                values = new ArrayList<>();
+                this.values.put(sid,values);
+            }
+
             g.setColor(getForeground());
             g.drawRect(x + width - barWidth, y, barWidth, height);
             if (values.size() > 0) {
@@ -267,6 +274,17 @@ public class Timeplot extends Drawable {
         Type fooType = new TypeToken<HashMap<String,ArrayList<TimePoint>>>() {}.getType();
 
         values = gson.fromJson(json,fooType);
+    }
+
+    @Override
+    public void loadValuesFromDatabase() {
+        super.loadValuesFromDatabase();
+
+        //values.clear(); // not needed as items will be replaced anyway!
+        for(int s=0; s<sids.size(); s++) {
+            String sid = sids.get(s);
+            values.put(sid, CanzeDataSource.getInstance().getData(sid));
+        }
     }
 
     public void addField(String sid)

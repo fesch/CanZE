@@ -35,6 +35,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -68,6 +69,7 @@ import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.bluetooth.BluetoothManager;
+import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.devices.BobDue;
 import lu.fisch.canze.devices.Device;
 import lu.fisch.canze.devices.ELM327;
@@ -254,17 +256,21 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             if(device!=null)
                 device.removeApplicationField(field);
         }
-/* test for scheduler
-        Field field = fields.getBySID("5d7.0");
-        if(device!=null)
-            device.addApplicationField(field,1000);
-        field = fields.getBySID("1fd.48");
-        if(device!=null)
-            device.addApplicationField(field,2000);
-        field = fields.getBySID("427.49");
-        if(device!=null)
-            device.addApplicationField(field,5000);
-*/
+/* test for scheduler & database
+        CanzeDataSource.getInstance(getBaseContext()).open();
+        Field field = fields.getBySID("5d7.0"); // Speed
+        if(device!=null) {
+            device.addApplicationField(field, 1000);
+        }
+        field = fields.getBySID("1fd.48");      // KwDash
+        if(device!=null) {
+            device.addApplicationField(field, 2000);
+        }
+        field = fields.getBySID("427.49");      // AvEnergy
+        if(device!=null) {
+            device.addApplicationField(field, 5000);
+        }
+/**/
     }
 
     private ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)
@@ -324,6 +330,20 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         final ActionBar actionBar = getSupportActionBar();
         // Specify that tabs should be displayed in the action bar.
 
+        // open the database
+        CanzeDataSource.getInstance(getBaseContext()).open();
+        // cleanup
+        CanzeDataSource.getInstance().cleanUp();
+
+        // setup cleaning (once every hour)
+        Runnable cleanUpRunnable = new Runnable() {
+            @Override
+            public void run() {
+                CanzeDataSource.getInstance().cleanUp();
+            }
+        };
+        Handler handler = new Handler();
+        handler.postDelayed(cleanUpRunnable, 60*1000);
 
 
         // register for bluetooth changes
@@ -388,12 +408,14 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
 
         // load fields
-        final SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
+        //final SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
         for(int i=0; i<fields.size(); i++)
         {
-            Field f = fields.get(i);
-            f.setValue(settings.getFloat(f.getUniqueID(), 0));
+            Field field = fields.get(i);
+            field.setValue(CanzeDataSource.getInstance().getLast(field.getSID()));
+            //f.setValue(settings.getFloat(f.getUniqueID(), 0));
         }
+
 
         // load the initial "main" fragment
         loadFragement(new MainFragment());
@@ -560,6 +582,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
     public void saveFields()
     {
+        /*
         // safe fields
         SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
         SharedPreferences.Editor editor = settings.edit();
@@ -570,6 +593,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             //debug("Setting "+f.getUniqueID()+" = "+f.getRawValue());
         }
         editor.commit();
+        */
     }
 
     @Override

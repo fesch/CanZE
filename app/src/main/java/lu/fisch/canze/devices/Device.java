@@ -32,6 +32,7 @@ import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.bluetooth.BluetoothManager;
+import lu.fisch.canze.database.CanzeDataSource;
 
 /**
  * This class defines an abstract device. It has to manage the device related
@@ -429,9 +430,11 @@ public abstract class Device {
     {
         synchronized (fields) {
             if (!containsField(field)) {
-                //MainActivity.debug("reg: "+field.getSID());
+                // add it to the lists
                 fields.add(field);
                 customActivityFields.add(field);
+                // register it to be saved to the database
+                field.addListener(CanzeDataSource.getInstance());
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
                     @Override
@@ -451,10 +454,13 @@ public abstract class Device {
     {
         synchronized (fields) {
             if (!containsField(field)) {
-                //MainActivity.debug("reg: "+field.getSID());
+                // set the fields query interval
                 field.setInterval(interval);
+                // add it to the two lists
                 fields.add(field);
                 applicationFields.add(field);
+                // register it to be saved to the database
+                field.addListener(CanzeDataSource.getInstance());
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
                     @Override
@@ -477,6 +483,11 @@ public abstract class Device {
             // only remove from the custom fields
             if(customActivityFields.remove(field))
             {
+                // remove it from the database if it is not on the other list
+                if(!applicationFields.contains(field)) {
+                    // un-register it ...
+                    field.removeListener(CanzeDataSource.getInstance());
+                }
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
                     @Override
@@ -494,7 +505,13 @@ public abstract class Device {
             // only remove from the custom fields
             if(fields.remove(field))
             {
+                // remove ti from the list
                 applicationFields.remove(field);
+                // remove it from the database if it is not on the other list
+                if(!customActivityFields.contains(field)) {
+                    // un-register it ...
+                    field.removeListener(CanzeDataSource.getInstance());
+                }
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
                     @Override

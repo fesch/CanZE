@@ -35,8 +35,10 @@ import java.util.HashMap;
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
 import lu.fisch.awt.Rectangle;
+import lu.fisch.canze.activities.CanzeActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.classes.ColorRanges;
+import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 import lu.fisch.canze.interfaces.FieldListener;
 
@@ -112,6 +114,11 @@ public abstract class Drawable implements FieldListener {
 
     public abstract String dataToJson();
     public abstract void dataFromJson(String json);
+
+    public void loadValuesFromDatabase()
+    {
+        // empty
+    }
 
     /* --------------------------------
      * Getters & setters

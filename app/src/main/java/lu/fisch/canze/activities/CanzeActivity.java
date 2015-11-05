@@ -183,7 +183,8 @@ public class CanzeActivity extends AppCompatActivity {
                         }
                     }
 
-                    // load data
+                    // load data --> replaced by loading from the database
+                    /*
                     String id = wv.getDrawable().getClass().getSimpleName()+"."+wv.getFieldSID();
                     String json = "";
                     try {
@@ -198,6 +199,9 @@ public class CanzeActivity extends AppCompatActivity {
                     {
                         wv.getDrawable().dataFromJson(json);
                     }
+                    */
+
+                    wv.getDrawable().loadValuesFromDatabase();
 
                     wv.repaint();
 
@@ -247,6 +251,7 @@ public class CanzeActivity extends AppCompatActivity {
 
     protected void saveWidgetData()
     {
+        /*
         // free up the listener again
         ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
         // save widget data
@@ -269,6 +274,7 @@ public class CanzeActivity extends AppCompatActivity {
             editor.putString(id, data);
         }
         editor.commit();
+        */
     }
 
     protected void freeWidgetListeners()
