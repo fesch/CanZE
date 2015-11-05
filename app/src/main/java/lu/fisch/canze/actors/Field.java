@@ -52,6 +52,7 @@ public class Field {
     private String responseId;
     private int car;
     private int skips;
+    private int frequency;
 
     private double value = Double.NaN;
     private int skipsCount = 0;
@@ -59,7 +60,7 @@ public class Field {
     private long lastRequest = 0;
     private int interval = 0;
     
-    public Field(int id, int from, int to, int divider, int multiplier, double offset, int decimals,  String unit, String requestId, String responseId, int car, int skips) {
+    public Field(int id, int from, int to, int divider, int multiplier, double offset, int decimals,  String unit, String requestId, String responseId, int car, int skips, int frequency) {
         this.from=from;
         this.to=to;
         this.offset=offset;
@@ -72,6 +73,7 @@ public class Field {
         this.responseId=responseId;
         this.car=car;
         this.skips=skips;
+        this.frequency=frequency;
 
         this.lastRequest=Calendar.getInstance().getTimeInMillis();
     }
@@ -79,7 +81,7 @@ public class Field {
     @Override
     public Field clone()
     {
-        Field field = new Field(id, from, to, divider, multiplier, offset, decimals, unit, requestId, responseId, car, skips);
+        Field field = new Field(id, from, to, divider, multiplier, offset, decimals, unit, requestId, responseId, car, skips,frequency);
         field.value = value;
         field.lastRequest=lastRequest;
         field.interval=interval;
@@ -352,5 +354,13 @@ public class Field {
 
     public void setCar(int car) {
         this.car = car;
+    }
+
+    public int getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
     }
 }

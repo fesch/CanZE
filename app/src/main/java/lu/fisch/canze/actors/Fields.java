@@ -498,7 +498,8 @@ public class Fields implements MessageListener {
                         tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
                         tokens[FIELD_RESPONSE_ID].trim().replace("0x", ""),
                         Integer.parseInt(tokens[FIELD_CAR].trim()),
-                        Integer.parseInt(tokens[FIELD_SKIPS].trim())
+                        Integer.parseInt(tokens[FIELD_SKIPS].trim()),
+                        Integer.parseInt(tokens[FIELD_FREQ].trim())
                 );
                 // add the field to the list of available fields
                 add(field);
@@ -563,7 +564,8 @@ public class Fields implements MessageListener {
                         tokens[FIELD_REQUEST_ID].trim().replace("0x", "").intern(),
                         tokens[FIELD_RESPONSE_ID].trim().replace("0x", "").intern(),
                         Integer.parseInt(tokens[FIELD_CAR].trim()),
-                        Integer.parseInt(tokens[FIELD_SKIPS].trim())
+                        Integer.parseInt(tokens[FIELD_SKIPS].trim()),
+                        Integer.parseInt(tokens[FIELD_FREQ].trim())
                 );
                 // add the field to the list of available fields
                 add(field);
