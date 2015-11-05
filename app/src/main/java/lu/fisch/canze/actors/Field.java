@@ -47,14 +47,11 @@ public class Field {
     private int divider;
     private int multiplier;
     private int decimals;
-    private String format;
     private String unit;
     private String requestId;
     private String responseId;
-    private String description;
     private int car;
     private int skips;
-    private int frequency;
 
     private double value = Double.NaN;
     private int skipsCount = 0;
@@ -62,7 +59,7 @@ public class Field {
     private long lastRequest = 0;
     private int interval = 0;
     
-    public Field(int id, int from, int to, int divider, int multiplier, double offset, int decimals, String format, String unit, String requestId, String responseId, String description, int car, int skips, int frequency) {
+    public Field(int id, int from, int to, int divider, int multiplier, double offset, int decimals,  String unit, String requestId, String responseId, int car, int skips) {
         this.from=from;
         this.to=to;
         this.offset=offset;
@@ -70,14 +67,11 @@ public class Field {
         this.divider = divider;
         this.multiplier = multiplier;
         this.decimals = decimals;
-        this.format = format.trim();
         this.unit = unit;
         this.requestId=requestId;
         this.responseId=responseId;
-        this.description=description;
         this.car=car;
         this.skips=skips;
-        this.frequency=frequency;
 
         this.lastRequest=Calendar.getInstance().getTimeInMillis();
     }
@@ -85,7 +79,7 @@ public class Field {
     @Override
     public Field clone()
     {
-        Field field = new Field(id, from, to, divider, multiplier, offset, decimals, format, unit, requestId, responseId, description, car, skips,frequency);
+        Field field = new Field(id, from, to, divider, multiplier, offset, decimals, unit, requestId, responseId, car, skips);
         field.value = value;
         field.lastRequest=lastRequest;
         field.interval=interval;
@@ -95,16 +89,7 @@ public class Field {
     @Override
     public String toString()
     {
-        /*return Integer.toHexString(id)+" "
-                +from+" "
-                +to+" "
-                +divider+" "
-                +multiplier+" "
-                +offset+" "
-                +decimals+" "
-                +format+" "
-                +unit;*/
-        return format.substring(0, format.indexOf("%")-1).trim();
+        return getPrintValue();
     }
 
     public boolean isIsoTp()
@@ -127,7 +112,7 @@ public class Field {
     
     public String getPrintValue()
     {
-        return format.substring(0, format.indexOf("%")-1).trim()+" "+getValue()+" "+unit;
+        return getValue()+" "+getUnit();
     }
 
     public double getValue()
@@ -313,14 +298,6 @@ public class Field {
         this.decimals = decimals;
     }
 
-    public String getFormat() {
-        return format;
-    }
-
-    public void setFormat(String format) {
-        this.format = format;
-    }
-
     public String getUnit() {
         return unit;
     }
@@ -375,13 +352,5 @@ public class Field {
 
     public void setCar(int car) {
         this.car = car;
-    }
-
-    public int getFrequency() {
-        return frequency;
-    }
-
-    public void setFrequency(int frequency) {
-        this.frequency = frequency;
     }
 }

@@ -494,14 +494,11 @@ public class Fields implements MessageListener {
                                         Double.parseDouble(tokens[FIELD_OFFSET].trim())
                         ),
                         Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
-                        tokens[FIELD_FORMAT],
                         tokens[FIELD_UNIT].trim(),
                         tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
                         tokens[FIELD_RESPONSE_ID].trim().replace("0x", ""),
-                        tokens[FIELD_DESCRIPTION],
                         Integer.parseInt(tokens[FIELD_CAR].trim()),
-                        Integer.parseInt(tokens[FIELD_SKIPS].trim()),
-                        Integer.parseInt(tokens[FIELD_FREQ].trim())
+                        Integer.parseInt(tokens[FIELD_SKIPS].trim())
                 );
                 // add the field to the list of available fields
                 add(field);
@@ -562,14 +559,11 @@ public class Fields implements MessageListener {
                                         Integer.parseInt(tokens[FIELD_OFFSET].trim())
                         ),
                         Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
-                        tokens[FIELD_FORMAT].intern(),
                         tokens[FIELD_UNIT].intern(),
                         tokens[FIELD_REQUEST_ID].trim().replace("0x", "").intern(),
                         tokens[FIELD_RESPONSE_ID].trim().replace("0x", "").intern(),
-                        tokens[FIELD_DESCRIPTION].trim().intern(),
                         Integer.parseInt(tokens[FIELD_CAR].trim()),
-                        Integer.parseInt(tokens[FIELD_SKIPS].trim()),
-                        Integer.parseInt(tokens[FIELD_FREQ].trim())
+                        Integer.parseInt(tokens[FIELD_SKIPS].trim())
                 );
                 // add the field to the list of available fields
                 add(field);
