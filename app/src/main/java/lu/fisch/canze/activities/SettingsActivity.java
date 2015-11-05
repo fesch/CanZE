@@ -88,7 +88,7 @@ public class SettingsActivity extends AppCompatActivity {
         int index = 0;
         if(device.equals("ELM327")) index=0;
         //else if(device.equals("Arduino Due")) index=1;
-        else if(device.equals("Bob Due")) index=2;
+        else if(device.equals("Bob Due")) index=1;
         //else if(device.equals("ELM327 Experimental")) index=3;
 
         // display the list
