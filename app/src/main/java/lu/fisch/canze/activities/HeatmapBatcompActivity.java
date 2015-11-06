@@ -42,7 +42,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
 
     private ArrayList<Field> subscribedFields;
 
-    private double mean = 15;
+    private double mean = 0;
     private double lastVal [] = {0,15,15,15,15,15,15,15,15,15,15,15,15};
     private int lastCell = 4;
 
@@ -133,17 +133,19 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
                     tv = (TextView) findViewById(getResources().getIdentifier("text_comp_" + cell + "_temp", "id", getPackageName()));
                     if (tv != null) {
                         tv.setText(String.format("%." + String.valueOf(field.getDecimals()) + "f", field.getValue()));
-                        int color = (int) (50 * (value - mean)); // color is temp minus mean
-                        if (color > 62) {
-                            color = 0xffffc0c0;
-                        } else if (color > 0) {
-                            color = 0xffc0c0c0 + (color * 0x010000); // one tick is one red
-                        } else if (color >= -62 ){
-                            color = 0xffc0c0c0 - color; // one degree below is a 16th blue added
-                        } else {
-                            color = 0xffc0c0ff;
+                        if (mean != 0) {
+                            int color = (int) (50 * (value - mean)); // color is temp minus mean
+                            if (color > 62) {
+                                color = 0xffffc0c0;
+                            } else if (color > 0) {
+                                color = 0xffc0c0c0 + (color * 0x010000); // one tick is one red
+                            } else if (color >= -62) {
+                                color = 0xffc0c0c0 - color; // one degree below is a 16th blue added
+                            } else {
+                                color = 0xffc0c0ff;
+                            }
+                            tv.setBackgroundColor(color);
                         }
-                        tv.setBackgroundColor(color);
                     }
                 }
                 tv = (TextView) findViewById(R.id.textDebug);
