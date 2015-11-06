@@ -31,7 +31,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 //import android.widget.ProgressBar;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -41,7 +40,6 @@ import java.util.ArrayList;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class DrivingActivity extends CanzeActivity implements FieldListener {
@@ -52,7 +50,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_Pedal                                = "186.40"; //EVC
     public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
     public static final String SID_RealSpeed                            = "5d7.0";  //ESC-ABS
-    public static final String SID_SoC                                  = "654.24"; //EVC
+    public static final String SID_SoC                                  = "654.25"; //EVC
     public static final String SID_RangeEstimate                        = "654.42"; //EVC
     public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
     public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; //UBP 10ms
@@ -196,7 +194,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addField(field);
+            MainActivity.device.addActivityField(field);
             subscribedFields.add(field);
         }
         else

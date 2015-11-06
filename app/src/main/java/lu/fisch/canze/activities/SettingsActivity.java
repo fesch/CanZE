@@ -52,6 +52,7 @@ import java.util.zip.ZipFile;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.database.CanzeDataSource;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -248,16 +249,20 @@ public class SettingsActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // clear preferences file
                 SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.clear();
                 editor.commit();
 
-
+                // clear data file
                 settings = getSharedPreferences(MainActivity.DATA_FILE, 0);
                 editor = settings.edit();
                 editor.clear();
                 editor.commit();
+
+                // clear database
+                CanzeDataSource.getInstance().clear();
 
                 MainActivity.fields.clearAllFields();
                 MainActivity.toast("Cache has been cleared ...");

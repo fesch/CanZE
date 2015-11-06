@@ -42,7 +42,7 @@ public class BobDue extends Device {
 
 
     // define the timeout we may wait to get an answer
-    private static final int TIMEOUT = 250;
+    private static final int TIMEOUT = 500;
     // define End Of Message for this type of reader
     private static final char EOM = '\n';
     // the actual filter
@@ -110,7 +110,7 @@ public class BobDue extends Device {
 
     protected Message processData(String text) {
         // split up the fields
-        String[] pieces = text.split(",");
+        String[] pieces = text.trim().split(",");
         //MainActivity.debug("Pieces = "+pieces);
         //MainActivity.debug("Size = "+pieces.length);
         if(pieces.length==2) {
@@ -180,7 +180,8 @@ public class BobDue extends Device {
         }
         // send the command
         if(command!=null)
-            BluetoothManager.getInstance().write(command + "\r\n");
+            // prefix fir EOM to make sure the previous command is done!
+            BluetoothManager.getInstance().write("\r\n"+command + "\r\n");
         //MainActivity.debug("Send > "+command);
         // wait if needed
         if(waitMillis>0)
@@ -210,7 +211,8 @@ public class BobDue extends Device {
                         // add it to the readBuffer
                         readBuffer += ch;
                         // stop if we reached the end or if no more data is available
-                        if (ch == EOM || BluetoothManager.getInstance().available() <= 0) stop = true;
+                        if ((ch == EOM || BluetoothManager.getInstance().available() <= 0) &&
+                                !readBuffer.trim().isEmpty())  stop = true;
                     }
                 }
             }

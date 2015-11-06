@@ -128,7 +128,7 @@ public class Bar extends Drawable {
         if(showValue)
         {
             g.setTextSize(Math.min(width/7,40));
-            String text = String.format("%." + (String.valueOf(field.getDecimals()).length() - 1) + "f", field.getValue());
+            String text = String.format("%." + String.valueOf(field.getDecimals()) + "f", field.getValue());
             int tw = g.stringWidth(text);
             int th = g.stringHeight(text);
             int tx = x+width-barWidth/2-tw/2;

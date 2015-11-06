@@ -75,7 +75,7 @@ public class Label extends Drawable {
             if(field !=null)
             {
                 // get text
-                String text = String.format("%." + (String.valueOf(field.getDecimals()).length() - 1) + "f", field.getValue()).trim();
+                String text = String.format("%." + String.valueOf(field.getDecimals()) + "f", field.getValue()).trim();
 
                 int th, tw;
                 //if(textSize==-1) {

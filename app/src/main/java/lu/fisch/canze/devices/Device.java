@@ -30,7 +30,6 @@ import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Message;
-import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.database.CanzeDataSource;
 
@@ -57,7 +56,7 @@ public abstract class Device {
     /**
      * Some fields will be custom, activity based
      */
-    protected ArrayList<Field> customActivityFields = new ArrayList<>();
+    protected ArrayList<Field> activityFields = new ArrayList<>();
     /**
      * Some other fields will have to be queried anyway,
      * such as e.g. the speed --> safe mode driving
@@ -174,6 +173,7 @@ public abstract class Device {
                 Field field = null;
 
                 if(fieldIndex<0) {
+                    MainActivity.debug("Device: fieldIndex < 0, sleeping");
                     // no next field ---> sleep
                     try {
                         Thread.sleep(100);
@@ -188,11 +188,12 @@ public abstract class Device {
                     field = fields.get(fieldIndex);
                 }
 
-                MainActivity.debug("Device: queryNextFilter: " + fieldIndex + " --> " + field.getSID() + " \tSkipsCount = " + field.getSkipsCount());
+                MainActivity.debug("Device: queryNextFilter: " + fieldIndex + " --> " + field.getSID()); //" + " \tSkipsCount = " + field.getSkipsCount());
+                long start = Calendar.getInstance().getTimeInMillis();
 
                 // if we got the field
                 if (field != null) {
-
+                    /*
                     // only run the filter if the skipsCount is down to zero
                     boolean runFilter = (field.getSkipsCount() == 0);
                     if (runFilter)
@@ -204,7 +205,7 @@ public abstract class Device {
 
                     // get this field
                     if (runFilter) {
-
+                    */
                         // get the data
                         String data = requestField(field);
                         // test if we got something
@@ -217,7 +218,7 @@ public abstract class Device {
                         if (someThingWrong && BluetoothManager.getInstance().isConnected()) {
                             initDevice(1, 2);
                         }
-                    }
+                    //}
 
                     // goto next filter
                     /*synchronized (fields) {
@@ -230,6 +231,9 @@ public abstract class Device {
                     // update the request time
                     field.updateLastRequest();
 
+                    MainActivity.debug("Device: Request took "+(Calendar.getInstance().getTimeInMillis()-start)/1000.+"s -( "+
+                            field.getSID()+" )-> "+field.getPrintValue());
+
                     // determine the next field to query
                     fieldIndex = getNextIndex();
                 }
@@ -238,7 +242,8 @@ public abstract class Device {
             }
             // if any error occures, reset the fieldIndex
             catch (Exception e) {
-                fieldIndex =0;
+                e.printStackTrace();
+                fieldIndex = getNextIndex();
             }
         }
         else {
@@ -277,7 +282,7 @@ public abstract class Device {
                 }
             }
             // take the next costum field
-            if(customActivityFields.size()>0)
+            if(activityFields.size()>0)
             {
                 /*
                 for(int i=0; i<customActivityFields.size(); i++)
@@ -285,9 +290,14 @@ public abstract class Device {
                     MainActivity.debug(i+" > "+ customActivityFields.get(i).getSID());
                 }/**/
 
-                customFieldIndex = (customFieldIndex + 1) % customActivityFields.size();
-                return fields.indexOf(customActivityFields.get(customFieldIndex));
+                customFieldIndex = (customFieldIndex + 1) % activityFields.size();
+                //MainActivity.debug("Device: customFieldIndex = "+customFieldIndex);
+                //MainActivity.debug("Device: customField = "+customActivityFields.get(customFieldIndex));
+                //MainActivity.debug("Device: fieldIndex = "+fields.indexOf(customActivityFields.get(customFieldIndex)));
+                return fields.indexOf(activityFields.get(customFieldIndex));
             }
+
+            MainActivity.debug("Device: applicationFields & customActivityFields empty?");
 
             return -1;
         }
@@ -353,7 +363,10 @@ public abstract class Device {
         /**/
 
         Message messages = processData(inputString);
-        Fields.getInstance().onMessageCompleteEvent(messages);
+        if(messages!=null)
+            Fields.getInstance().onMessageCompleteEvent(messages);
+        else
+            MainActivity.debug("Device: can't decode this message > "+inputString);
     }
 
     /**
@@ -390,7 +403,7 @@ public abstract class Device {
     {
         MainActivity.debug("Device: clearFields");
         synchronized (fields) {
-            customActivityFields.clear();
+            activityFields.clear();
             fields.clear();
             fields.addAll(applicationFields);
             //MainActivity.debug("cleared");
@@ -423,20 +436,45 @@ public abstract class Device {
         return false;
     }
 
+    private boolean containsApplicationField(Field _field)
+    {
+        for(int i=0; i< applicationFields.size(); i++)
+        {
+            Field field = applicationFields.get(i);
+            if(field.getId()==_field.getId() && field.getResponseId().equals(_field.getResponseId()))
+                return true;
+        }
+        return false;
+    }
+
+    private boolean containsActivityField(Field _field)
+    {
+        for(int i=0; i< activityFields.size(); i++)
+        {
+            Field field = activityFields.get(i);
+            if(field.getId()==_field.getId() && field.getResponseId().equals(_field.getResponseId()))
+                return true;
+        }
+        return false;
+    }
+
     /**
      * Method to add a field to the list of monitored field.
      * The field is also immediately registered onto the device.
      * @param field the field to be added
      */
-    public void addField(final Field field)
+    public void addActivityField(final Field field)
     {
+        // ass already present listeners are no being re-registered, do this always
+        // register it to be saved to the database
+        field.addListener(CanzeDataSource.getInstance());
+
         synchronized (fields) {
+
             if (!containsField(field)) {
                 // add it to the lists
                 fields.add(field);
-                customActivityFields.add(field);
-                // register it to be saved to the database
-                field.addListener(CanzeDataSource.getInstance());
+                activityFields.add(field);
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
                     @Override
@@ -445,15 +483,19 @@ public abstract class Device {
                     }
                 })).start();
             }
-            if(!customActivityFields.contains(field))
+            if(!containsActivityField(field))
             {
-                customActivityFields.add(field);
+                activityFields.add(field);
             }
         }
     }
 
     public void addApplicationField(final Field field, int interval)
     {
+        // ass already present listeners are no being re-registered, do this always
+        // register it to be saved to the database
+        field.addListener(CanzeDataSource.getInstance());
+
         synchronized (fields) {
             if (!containsField(field)) {
                 // set the fields query interval
@@ -461,8 +503,6 @@ public abstract class Device {
                 // add it to the two lists
                 fields.add(field);
                 applicationFields.add(field);
-                // register it to be saved to the database
-                field.addListener(CanzeDataSource.getInstance());
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
                     @Override
@@ -479,14 +519,14 @@ public abstract class Device {
      * and unregisters the corresponding filter.
      * @param field
      */
-    public void removeField(final Field field)
+    public void removeActivityField(final Field field)
     {
         synchronized (fields) {
             // only remove from the custom fields
-            if(customActivityFields.remove(field))
+            if(activityFields.remove(field))
             {
                 // remove it from the database if it is not on the other list
-                if(!applicationFields.contains(field)) {
+                if(!containsApplicationField(field)) {
                     // un-register it ...
                     field.removeListener(CanzeDataSource.getInstance());
                 }
@@ -505,15 +545,15 @@ public abstract class Device {
     {
         synchronized (fields) {
             // only remove from the custom fields
-            if(fields.remove(field))
+            if(applicationFields.remove(field))
             {
-                // remove ti from the list
-                applicationFields.remove(field);
                 // remove it from the database if it is not on the other list
-                if(!customActivityFields.contains(field)) {
+                if(!containsActivityField(field)) {
+                    fields.remove(field);
                     // un-register it ...
                     field.removeListener(CanzeDataSource.getInstance());
                 }
+
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
                     @Override
@@ -584,8 +624,13 @@ public abstract class Device {
      */
     public String requestField(Field field)
     {
-        if(field.isIsoTp()) return requestIsoTpFrame(field);
-        else return requestFreeFrame(field);
+        String data = null;
+        if(field.isIsoTp()) data=requestIsoTpFrame(field);
+        else data=requestFreeFrame(field);
+
+        if(data.trim().isEmpty()) MainActivity.debug("Device: request for "+field.getSID()+" is empty ...");
+
+        return data;
     }
 
     /**

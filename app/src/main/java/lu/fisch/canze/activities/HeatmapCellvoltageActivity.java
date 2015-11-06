@@ -30,7 +30,6 @@ import java.util.ArrayList;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.FieldListener;
 
 /**
@@ -62,7 +61,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addField(field);
+            MainActivity.device.addActivityField(field);
             subscribedFields.add(field);
         }
         else
@@ -138,7 +137,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
                     lastVoltage[cell] = value;
                     tv = (TextView) findViewById(getResources().getIdentifier("text_cell_" + cell + "_voltage", "id", getPackageName()));
                     if (tv != null) {
-                        tv.setText("" + value);
+                        tv.setText(String.format("%." + String.valueOf(field.getDecimals()) + "f", field.getValue()));
                         int color = (int) (5000 * (value - mean)); // color is temp minus mean. 1mV difference is 5 color ticks
                         if (color > 62) {
                             color = 0xffffc0c0;

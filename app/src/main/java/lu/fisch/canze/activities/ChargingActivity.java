@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
-import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldListener to the fields.
@@ -48,7 +47,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_TimeToFull                       = "654.32";
     public static final String SID_PlugConnected                    = "654.2";
 //  public static final String SID_SoC                              = "654.24";
-//  public static final String SID_SOH                              = "658.32";
+//  public static final String SID_SOH                              = "658.33";
     public static final String SID_SOH                              = "7ec.623206.24";
 //  public static final String SID_SOH                              = "7ec.62202e.24"; //pedal, checking offsets
     public static final String SID_RangeEstimate                    = "654.42";
@@ -80,7 +79,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addField(field);
+            MainActivity.device.addActivityField(field);
             subscribedFields.add(field);
         }
         else

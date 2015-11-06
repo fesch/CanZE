@@ -44,35 +44,34 @@ public class Field {
     private int to;
     private double offset;
     private int id;
-    private int divider;
-    private int multiplier;
+    //private int divider;
+    //private int multiplier;
     private int decimals;
+    private double resolution;
     private String unit;
     private String requestId;
     private String responseId;
     private int car;
-    private int skips;
+    //private int skips;
     private int frequency;
 
     private double value = Double.NaN;
-    private int skipsCount = 0;
+    //private int skipsCount = 0;
 
     private long lastRequest = 0;
     private int interval = 0;
     
-    public Field(int id, int from, int to, int divider, int multiplier, double offset, int decimals,  String unit, String requestId, String responseId, int car, int skips, int frequency) {
+    public Field(int id, int from, int to, double resolution, int decimals, double offset, String unit, String requestId, String responseId, int car, int frequency) {
         this.from=from;
         this.to=to;
         this.offset=offset;
         this.id=id;
-        this.divider = divider;
-        this.multiplier = multiplier;
+        this.resolution = resolution;
         this.decimals = decimals;
         this.unit = unit;
         this.requestId=requestId;
         this.responseId=responseId;
         this.car=car;
-        this.skips=skips;
         this.frequency=frequency;
 
         this.lastRequest=Calendar.getInstance().getTimeInMillis();
@@ -81,7 +80,7 @@ public class Field {
     @Override
     public Field clone()
     {
-        Field field = new Field(id, from, to, divider, multiplier, offset, decimals, unit, requestId, responseId, car, skips,frequency);
+        Field field = new Field(id, from, to, resolution, decimals, offset, unit, requestId, responseId, car,frequency);
         field.value = value;
         field.lastRequest=lastRequest;
         field.interval=interval;
@@ -91,7 +90,7 @@ public class Field {
     @Override
     public String toString()
     {
-        return getPrintValue();
+        return getSID()+" : "+getPrintValue();
     }
 
     public boolean isIsoTp()
@@ -119,13 +118,14 @@ public class Field {
 
     public double getValue()
     {
-        double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        //double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        double val =  (value-offset)* resolution;
         if (MainActivity.milesMode) {
             if (getUnit().toLowerCase().startsWith("km"))
                 val = val / 1.609344;
             else if (getUnit().toLowerCase().endsWith("km"))
                 val = val*1.609344;
-            setUnit(getUnit().replace("km","mi"));
+            setUnit(getUnit().replace("km", "mi"));
             return val;
         }
         return val;
@@ -134,14 +134,14 @@ public class Field {
     public double getMax()
     {
         double val = (int) Math.pow(2, to-from+1);
-        return ((val-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        return ((val-offset)* resolution);
         
     }
 
     public double getMin()
     {
         double val = 0;
-        return ((val-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        return ((val-offset)* resolution);
     }
 
     /* --------------------------------
@@ -275,29 +275,12 @@ public class Field {
         this.id = id;
     }
     
-    
-    public int getDivider() {
-        return divider;
+    public double getResolution() {
+        return resolution;
     }
 
-    public void setDivider(int divider) {
-        this.divider = divider;
-    }
-
-    public int getMultiplier() {
-        return multiplier;
-    }
-
-    public void setMultiplier(int multiplier) {
-        this.multiplier = multiplier;
-    }
-
-    public int getDecimals() {
-        return decimals;
-    }
-
-    public void setDecimals(int decimals) {
-        this.decimals = decimals;
+    public void setResolution(double resolution) {
+        this.resolution = resolution;
     }
 
     public String getUnit() {
@@ -324,6 +307,7 @@ public class Field {
         this.responseId = responseId;
     }
 
+    /*
     public int getSkips() {
         return skips;
     }
@@ -347,7 +331,7 @@ public class Field {
     public void resetSkipsCount() {
         this.skipsCount = skips;
     }
-
+*/
     public int getCar() {
         return car;
     }
@@ -362,5 +346,13 @@ public class Field {
 
     public void setFrequency(int frequency) {
         this.frequency = frequency;
+    }
+
+    public int getDecimals() {
+        return decimals;
+    }
+
+    public void setDecimals(int decimals) {
+        this.decimals = decimals;
     }
 }

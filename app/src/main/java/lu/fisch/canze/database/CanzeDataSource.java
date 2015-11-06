@@ -98,6 +98,12 @@ public class CanzeDataSource implements FieldListener
         database.rawQuery("DELETE FROM data WHERE moment<" + limit, null);
     }
 
+    public void clear()
+    {
+        dbHelper.reinit(database);
+        //database.rawQuery("DELETE FROM data",null);
+    }
+
     public double getLast(String sid)
     {
         double data = Double.NaN;
