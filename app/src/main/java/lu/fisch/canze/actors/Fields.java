@@ -871,7 +871,7 @@ public class Fields implements MessageListener {
                 ;
 
         try {
-            fieldDef += readFromLocalFile();
+            //fieldDef += readFromLocalFile();
         }
         catch(Exception e)
         {
@@ -882,7 +882,7 @@ public class Fields implements MessageListener {
         for(int i=0; i<lines.length; i++)
         {
             String line = lines[i];
-            MainActivity.debug("Fields: Reading > "+line);
+            //MainActivity.debug("Fields: Reading > "+line);
             //Get all tokens available in line
             String[] tokens = line.split(",");
             if (tokens.length > 0) {

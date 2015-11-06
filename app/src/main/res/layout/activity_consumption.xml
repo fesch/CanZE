@@ -20,7 +20,6 @@
         android:orientation="horizontal"
         android:layout_weight="1">
 
-        <!--
         <lu.fisch.canze.widgets.WidgetView
             android:id="@+id/accelerationPedal"
             android:layout_width="0dp"
@@ -37,7 +36,8 @@
             custom:widget="timeplot"
             custom:text="True State of Charge (%) / Indicated State of Charge (%)"
             />
-        -->
+
+        <!--
         <lu.fisch.canze.widgets.WidgetView
             android:id="@+id/accelerationPedal"
             android:layout_width="0dp"
@@ -54,7 +54,7 @@
             custom:widget="timeplot"
             custom:text="Driver Brake Torque Request / Electric Brake Torque Applied"
             />
-
+        -->
 
     </TableRow>
     <TableRow
