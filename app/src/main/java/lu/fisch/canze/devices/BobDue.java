@@ -37,8 +37,8 @@ import lu.fisch.canze.bluetooth.BluetoothManager;
 public class BobDue extends Device {
 
     // *** needed by the "reader" part
-    private String buffer = "";
-    private final String separator = "\n";
+    //private String buffer = "";
+    //private final String separator = "\n";
 
 
     // define the timeout we may wait to get an answer
@@ -46,7 +46,7 @@ public class BobDue extends Device {
     // define End Of Message for this type of reader
     private static final char EOM = '\n';
     // the actual filter
-    private int fieldIndex = 0;
+    //private int fieldIndex = 0;
     // the thread that polls the data to the stack
 
     public void join() throws InterruptedException {
@@ -71,16 +71,13 @@ public class BobDue extends Device {
             MainActivity.debug("BobDue.unregisterFilter " + filter + " failed because connectedBluetoothThread is NULL");
     }
 
+    /*
     @Override
     protected ArrayList<Message> processData(String inputString) {
         ArrayList<Message> result = new ArrayList<>();
 
         // add to buffer as characters
         buffer+=inputString;
-        /*for (int i = 0; i < input.length; i++) {
-            buffer += (char) input[i];
-        }*/
-
         //MainActivity.debug("Buffer = "+buffer);
 
         // split by <new line>
@@ -109,9 +106,9 @@ public class BobDue extends Device {
         // we are done
 
         return result;
-    }
+    }*/
 
-    private Message decodeFrame(String text) {
+    protected Message processData(String text) {
         // split up the fields
         String[] pieces = text.split(",");
         //MainActivity.debug("Pieces = "+pieces);
