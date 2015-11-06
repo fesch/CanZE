@@ -128,6 +128,8 @@ public class BobDue extends Device {
         return readBuffer;
     }
 
+    private int wrongCount = 0;
+
     @Override
     public void clearFields() {
         super.clearFields();
@@ -137,15 +139,29 @@ public class BobDue extends Device {
     @Override
     public String requestFreeFrame(Field field) {
         // send the command and wait fir an answer, no delay
-        return sendAndWaitForAnswer("g" + field.getHexId(), 0);
+        String data = sendAndWaitForAnswer("g" + field.getHexId(), 0);
+        if(data.trim().isEmpty()) wrongCount++;
+        if(wrongCount>10) {
+            wrongCount=0;
+            MainActivity.getInstance().stopBluetooth();
+            MainActivity.getInstance().reloadBluetooth();
+        }
+        return data;
     }
 
     @Override
     public String requestIsoTpFrame(Field field) {
         // build the command string to send to the remote device
         String command = "i" + field.getHexId() + "," + field.getRequestId() + "," + field.getResponseId();
+        String data = sendAndWaitForAnswer(command, 0);
+        if(data.trim().isEmpty()) wrongCount++;
+        if(wrongCount>10) {
+            wrongCount=0;
+            MainActivity.getInstance().stopBluetooth();
+            MainActivity.getInstance().reloadBluetooth();
+        }
         // send and wait fir an answer, no delay
-        return sendAndWaitForAnswer(command, 0);
+        return data;
     }
 
     @Override

@@ -26,12 +26,14 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.classes.TimePoint;
@@ -106,16 +108,19 @@ public class Timeplot extends Drawable {
         int fillHeight = (int) ((value-min)/(double)(max-min)*(height-1));
         int barWidth = width-Math.max(g.stringWidth(min+""),g.stringWidth(max+""))-10-10;
 
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        int graphHeight = height-g.stringHeight(sdf.format(Calendar.getInstance().getTime()))-5;
+
         // draw the ticks
         if(minorTicks>0 || majorTicks>0)
         {
             int toTicks = minorTicks;
             if(toTicks==0) toTicks=majorTicks;
-            double accel = (double)height/((max-min)/(double)toTicks);
+            double accel = (double)graphHeight/((max-min)/(double)toTicks);
             double ax,ay,bx=0,by=0;
             int actual = min;
             int sum = 0;
-            for(double i=height; i>=0; i-=accel)
+            for(double i=graphHeight; i>=0; i-=accel)
             {
                 if(minorTicks>0)
                 {
@@ -153,13 +158,22 @@ public class Timeplot extends Drawable {
                         double sw = g.stringWidth(text);
                         bx = x+width-barWidth-16-sw;
                         by = y+i;
-                        g.drawString(text, (int)(bx), (int)(by+g.stringHeight(text)*(1-i/height)));
+                        g.drawString(text, (int)(bx), (int)(by+g.stringHeight(text)*(1-i/graphHeight)));
                     }
 
                     actual+=majorTicks;
                 }
                 sum+=minorTicks;
             }
+        }
+
+        // draw the horizontal grid
+        g.setColor(getIntermediate());
+        long start = Calendar.getInstance().getTimeInMillis()/1000;
+        int interval = 60;
+        for(long x=width-(start%interval); x>=width-barWidth; x-=interval)
+        {
+            g.drawLine(x, 1, x, graphHeight + 5);
         }
 
         // draw the graph
@@ -174,11 +188,11 @@ public class Timeplot extends Drawable {
             }
 
             g.setColor(getForeground());
-            g.drawRect(x + width - barWidth, y, barWidth, height);
+            g.drawRect(x + width - barWidth, y, barWidth, graphHeight);
             if (values.size() > 0) {
 
                 double w = (double) barWidth / values.size();
-                double h = (double) getHeight() / (getMax() - getMin() + 1);
+                double h = (double) graphHeight / (getMax() - getMin() + 1);
 
                 double lastX = Double.NaN;
                 double lastY = Double.NaN;
@@ -196,7 +210,7 @@ public class Timeplot extends Drawable {
                     if (mx < 0) {
                         values.remove(i);
                     } else {
-                        double my = getHeight() - (tp.value - getMin()) * h;
+                        double my = graphHeight - (tp.value - getMin()) * h;
                         int rayon = 2;
                         g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon,
                                 getY() + (int) my - rayon,
@@ -214,6 +228,24 @@ public class Timeplot extends Drawable {
                 }
             }
         }
+
+        // clean bottom
+        g.setColor(getBackground());
+        g.fillRect(width - barWidth - 2, graphHeight + 1, barWidth + 1, height - graphHeight - 2);
+
+        // draw bottom axis
+        g.setColor(getForeground());
+        int c = 0;
+        for(long x=width-(start%interval); x>=width-barWidth; x-=interval)
+        {
+            g.drawLine(x, graphHeight, x, graphHeight + 5);
+            if(c%5==0) {
+                String date = sdf.format((start - (start % interval) - interval * c) * 1000);
+                g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
+            }
+            c++;
+        }
+
 
         // draw the title
         if(title!=null && !title.equals(""))
