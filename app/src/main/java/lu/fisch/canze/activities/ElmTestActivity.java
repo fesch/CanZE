@@ -12,6 +12,7 @@ import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Dtcs;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
 /*
@@ -123,7 +124,8 @@ public class ElmTestActivity extends CanzeActivity {
         appendResult("\nProcessing prepped ISO-TP command CLUSTER SW \n");
         field = Fields.getInstance().getBySID("763.6180.144");
         if (field != null) {
-            String backRes = MainActivity.device.requestField(field);
+            Message message = MainActivity.device.requestField(field);
+            String backRes = message.getData();
             if (backRes != null)
                 if (!backRes.equals("")) {
                     appendResult(backRes.replace('\r', '•'));
@@ -161,7 +163,8 @@ public class ElmTestActivity extends CanzeActivity {
         appendResult("\nProcessing prepped free frame\n");
         field = Fields.getInstance().getBySID("4f8.4");
         if (field != null) {
-            String backRes = MainActivity.device.requestField(field);
+            Message message = MainActivity.device.requestField(field);
+            String backRes = message.getData();
             if (backRes != null) {
                 if (!backRes.equals("")) {
                     appendResult(backRes.replace('\r', '•'));
@@ -248,7 +251,8 @@ public class ElmTestActivity extends CanzeActivity {
         appendResult("0210C0:" + filter + ":" + result + "\n");
 */
         if (field != null) {
-            String backRes = MainActivity.device.requestField(field);
+            Message message = MainActivity.device.requestField(field);
+            String backRes = message.getData();
             if (backRes != null)
                 if (backRes.equals("")) {
                     MainActivity.device.initDevice(2);
@@ -263,7 +267,8 @@ public class ElmTestActivity extends CanzeActivity {
         filter = Integer.toHexString(ecu);
         field = Fields.getInstance().getBySID(filter + ".5902ff.0"); // get DTC
         if (field != null) {
-            String backRes = MainActivity.device.requestField(field);
+            Message message = MainActivity.device.requestField(field);
+            String backRes = message.getData();
             if (backRes != null) {
                 if (backRes.contains(",")) {
                     appendResult("[" + backRes.replace('\r', '•') + "]\n");

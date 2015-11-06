@@ -22,13 +22,12 @@
 package lu.fisch.canze.devices;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Message;
-import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
 /**
@@ -40,6 +39,7 @@ public class BobDue extends Device {
     //private String buffer = "";
     //private final String separator = "\n";
 
+    private static final int WRONG_THRESHOLD = 20;
 
     // define the timeout we may wait to get an answer
     private static final int TIMEOUT = 500;
@@ -70,100 +70,6 @@ public class BobDue extends Device {
         else
             MainActivity.debug("BobDue.unregisterFilter " + filter + " failed because connectedBluetoothThread is NULL");
     }
-
-    /*
-    @Override
-    protected ArrayList<Message> processData(String inputString) {
-        ArrayList<Message> result = new ArrayList<>();
-
-        // add to buffer as characters
-        buffer+=inputString;
-        //MainActivity.debug("Buffer = "+buffer);
-
-        // split by <new line>
-        String[] messages = buffer.split(separator);
-        // let assume the last message is fine
-        int last = messages.length;
-        // but if it is not, do not consider it
-        if (!buffer.endsWith(separator)) last--;
-
-        // process each message
-        for (int i = 0; i < last; i++) {
-            // decode into a frame
-            //MainActivity.debug("Decoding: "+messages[i].trim());
-            Message message = decodeFrame(messages[i].trim());
-            // store if valid
-            if (message != null)
-                result.add(message);
-        }
-        // adapt the buffer
-        if (!buffer.endsWith(separator))
-            // retain the last uncompleted message
-            buffer = messages[messages.length - 1];
-        else
-            // empty the entire buffer
-            buffer = "";
-        // we are done
-
-        return result;
-    }*/
-
-    protected Message processData(String text) {
-        // split up the fields
-        String[] pieces = text.trim().split(",");
-        //MainActivity.debug("Pieces = "+pieces);
-        //MainActivity.debug("Size = "+pieces.length);
-        if(pieces.length==2) {
-            try {
-                // get the id
-                int id = Integer.parseInt(pieces[0], 16);
-                // get the data
-                int[] data = Utils.toIntArray(pieces[1].trim());
-                // create and return new frame
-                return new Message(id, data);
-            }
-            catch(Exception e)
-            {
-                //MainActivity.debug("BAD: "+text);
-                return null;
-            }
-        }
-        else if(pieces.length>=3) {
-            try {
-                // get the id
-                int id = Integer.parseInt(pieces[0], 16);
-                // get the data
-                int[] data = Utils.toIntArray(pieces[1].trim());
-                // get the reply-ID
-                Message f = new Message(id,data);
-                //MainActivity.debug("ID = "+id+" / Data = "+data);
-                //MainActivity.debug("THIRD: "+pieces[2].trim());
-                f.setResponseId(pieces[2].trim());
-                return f;
-                /*
-                // get checksum
-                int chk = Integer.parseInt(pieces[2].trim(), 16);
-                int check = 0;
-                for(int i=0; i<data.length; i++)
-                    check ^= data[i];
-                // validate the checksum
-                if(chk==check)
-                    // create and return new frame
-                    return new Frame(id, data);
-                */
-            }
-            catch(Exception e)
-            {
-                //MainActivity.debug("BAD: "+text);
-                return null;
-            }
-        }
-        //MainActivity.debug("BAD: "+text);
-        return null;
-    }
-
-
-
 
     // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis)
@@ -225,6 +131,8 @@ public class BobDue extends Device {
         return readBuffer;
     }
 
+    private int wrongCount = 0;
+
     @Override
     public void clearFields() {
         super.clearFields();
@@ -232,17 +140,56 @@ public class BobDue extends Device {
     }
 
     @Override
-    public String requestFreeFrame(Field field) {
+    public Message requestFreeFrame(Field field) {
         // send the command and wait fir an answer, no delay
-        return sendAndWaitForAnswer("g" + field.getHexId(), 0);
+        String data = sendAndWaitForAnswer("g" + field.getHexId(), 0);
+        // handle empty answer
+        if(data.trim().isEmpty()) wrongCount++;
+        if(wrongCount>WRONG_THRESHOLD) {
+            wrongCount=0;
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    MainActivity.getInstance().stopBluetooth(false);
+                    MainActivity.getInstance().reloadBluetooth(false);
+                }
+            })).start();
+        }
+        return responseToMessage(field,data);
     }
 
     @Override
-    public String requestIsoTpFrame(Field field) {
+    public Message requestIsoTpFrame(Field field) {
         // build the command string to send to the remote device
         String command = "i" + field.getHexId() + "," + field.getRequestId() + "," + field.getResponseId();
+        String data = sendAndWaitForAnswer(command, 0);
+        // handle empty answer
+        if(data.trim().isEmpty()) wrongCount++;
+        if(wrongCount>WRONG_THRESHOLD) {
+            wrongCount=0;
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    MainActivity.getInstance().stopBluetooth(false);
+                    MainActivity.getInstance().reloadBluetooth(false);
+                }
+            })).start();
+        }
         // send and wait fir an answer, no delay
-        return sendAndWaitForAnswer(command, 0);
+        return responseToMessage(field,data);
+    }
+
+    private Message responseToMessage(Field field, String text)
+    {
+        // split up the fields
+        String[] pieces = text.trim().split(",");
+        if(pieces.length>1)
+            return new Message(field,pieces[1].trim());
+        else
+        {
+            MainActivity.debug("BobDue: Got > "+text.trim());
+            return null;
+        }
     }
 
     @Override

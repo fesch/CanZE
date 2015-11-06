@@ -207,10 +207,10 @@ public abstract class Device {
                     if (runFilter) {
                     */
                         // get the data
-                        String data = requestField(field);
+                        Message message = requestField(field);
                         // test if we got something
-                        if(data!=null && !someThingWrong) {
-                            process(data);
+                        if(message!=null && !someThingWrong) {
+                            Fields.getInstance().onMessageCompleteEvent(message);
                         }
 
                         // reset if something went wrong ...
@@ -317,12 +317,78 @@ public abstract class Device {
      */
     public abstract void unregisterFilter(int frameId);
 
-    /**
-     * Convert a line into a message
-     * @param inputString
-     * @return
-     */
-    protected abstract Message processData(String inputString);
+    //protected abstract Message processData(String inputString);
+    /*
+    protected Message processData(String text) {
+        // split up the fields
+        String[] pieces = text.trim().split(",");
+        if(pieces.length==2) {
+            try {
+                // get the id
+                int id = Integer.parseInt(pieces[0], 16);
+                // create and return new frame
+                return new Message(id, pieces[1].trim());
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+        }
+        else if(pieces.length>=3) {
+            try {
+                // get the id
+                int id = Integer.parseInt(pieces[0], 16);
+                // get the reply-ID
+                Message f = new Message(id,pieces[1].trim());
+                f.setResponseId(pieces[2].trim());
+                return f;
+
+                // get checksum
+             //   int chk = Integer.parseInt(pieces[2].trim(), 16);
+             //   int check = 0;
+             //   for(int i=0; i<data.length; i++)
+             //       check ^= data[i];
+                // validate the checksum
+             //   if(chk==check)
+                    // create and return new frame
+             //       return new Frame(id, data);
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+        }
+        return null;
+    }
+    */
+
+    /*
+    protected boolean notifyFields(String text) {
+        // split up the fields
+        String[] pieces = text.trim().split(",");
+        if(pieces.length==2) {
+            try {
+                Fields.getInstance().onMessageCompleteEvent(Integer.parseInt(pieces[0], 16),pieces[1].trim(),null);
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+        }
+        else if(pieces.length>=3) {
+            try {
+                Fields.getInstance().onMessageCompleteEvent(Integer.parseInt(pieces[0], 16), pieces[1].trim(), pieces[2].trim());
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+        }
+        return false;
+    }
+    */
 
     public void join() throws InterruptedException{
         if(pollerThread!=null)
@@ -334,40 +400,7 @@ public abstract class Device {
      * Methods (that will be inherited by any "real" device)
      \ -------------------------------------------------------------- */
 
-    /**
-     * This method will process the passed (binary) data and notify
-     * the fields (=singleton) about the incoming messages. The
-     * listeners of the fields will then pass this information, via their
-     * own listeners to the GUI or whoever needs to know about the changes.
-     * @param inputString
-     */
-    public void process(final String inputString)
-    {
-        /*(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                ArrayList<Message> messages = processData(input);
-                for(int i=0; i<messages.size(); i++)
-                {
-                    Fields.getInstance().onMessageCompleteEvent(messages.get(i));
-                }
-            }
-        })).start();
-        /**/
-        /*
-        ArrayList<Message> messages = processData(inputString);
-        for(int i=0; i<messages.size(); i++)
-        {
-            Fields.getInstance().onMessageCompleteEvent(messages.get(i));
-        }
-        /**/
 
-        Message messages = processData(inputString);
-        if(messages!=null)
-            Fields.getInstance().onMessageCompleteEvent(messages);
-        else
-            MainActivity.debug("Device: can't decode this message > "+inputString);
-    }
 
     /**
      * This method registers the IDs of all monitored fields.
@@ -622,15 +655,15 @@ public abstract class Device {
      * @param field     the field to be requested
      * @return
      */
-    public String requestField(Field field)
+    public Message requestField(Field field)
     {
-        String data = null;
-        if(field.isIsoTp()) data=requestIsoTpFrame(field);
-        else data=requestFreeFrame(field);
+        Message msg = null;
+        if(field.isIsoTp()) msg=requestIsoTpFrame(field);
+        else msg=requestFreeFrame(field);
 
-        if(data.trim().isEmpty()) MainActivity.debug("Device: request for "+field.getSID()+" is empty ...");
+        if(msg==null || msg.getData().isEmpty()) MainActivity.debug("Device: request for "+field.getSID()+" is empty ...");
 
-        return data;
+        return msg;
     }
 
     /**
@@ -638,14 +671,14 @@ public abstract class Device {
      * @param field
      * @return
      */
-    public abstract String requestFreeFrame(Field field);
+    public abstract Message requestFreeFrame(Field field);
 
     /**
      * Request an ISO-TP frame type from the device
      * @param field
      * @return
      */
-    public abstract String requestIsoTpFrame(Field field);
+    public abstract Message requestIsoTpFrame(Field field);
 
     public abstract boolean initDevice(int toughness);
 

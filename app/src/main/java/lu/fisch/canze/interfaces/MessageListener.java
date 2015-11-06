@@ -25,6 +25,7 @@
  */
 package lu.fisch.canze.interfaces;
 
+
 import lu.fisch.canze.actors.Message;
 
 /**
@@ -33,4 +34,5 @@ import lu.fisch.canze.actors.Message;
  */
 public interface MessageListener {
     public void onMessageCompleteEvent(Message message);
+    //public void onMessageCompleteEvent(int msgId, String msgData, String responseId);
 }

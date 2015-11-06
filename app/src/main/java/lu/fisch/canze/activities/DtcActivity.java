@@ -37,6 +37,7 @@ import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Dtcs;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
 
@@ -114,7 +115,8 @@ public class DtcActivity  extends CanzeActivity {
             return;
         }
 
-        String backRes = MainActivity.device.requestField(field);
+        Message message = MainActivity.device.requestField(field);
+        String backRes = message.getData();
         if (backRes == null) {
             appendResult("Request DTC code for this ECU not found, nothing send\n");
             return;
@@ -173,7 +175,8 @@ public class DtcActivity  extends CanzeActivity {
             return;
         }
 
-        String backRes = MainActivity.device.requestField(field);
+        Message message = MainActivity.device.requestField(field);
+        String backRes = message.getData();
         if (backRes == null) {
             appendResult("Reset code for this ECU not found, nothing send\n");
             return;
