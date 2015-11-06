@@ -138,7 +138,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
                     lastVoltage[cell] = value;
                     tv = (TextView) findViewById(getResources().getIdentifier("text_cell_" + cell + "_voltage", "id", getPackageName()));
                     if (tv != null) {
-                        tv.setText("" + value);
+                        tv.setText(String.format("%." + String.valueOf(field.getDecimals()) + "f", field.getValue()));
                         int color = (int) (5000 * (value - mean)); // color is temp minus mean. 1mV difference is 5 color ticks
                         if (color > 62) {
                             color = 0xffffc0c0;

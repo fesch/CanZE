@@ -132,7 +132,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
                     lastVal[cell] = value;
                     tv = (TextView) findViewById(getResources().getIdentifier("text_comp_" + cell + "_temp", "id", getPackageName()));
                     if (tv != null) {
-                        tv.setText("" + Math.round(value));
+                        tv.setText(String.format("%." + String.valueOf(field.getDecimals()) + "f", field.getValue()));
                         int color = (int) (50 * (value - mean)); // color is temp minus mean
                         if (color > 62) {
                             color = 0xffffc0c0;

@@ -52,16 +52,16 @@ public class Field {
     private String requestId;
     private String responseId;
     private int car;
-    private int skips;
+    //private int skips;
     private int frequency;
 
     private double value = Double.NaN;
-    private int skipsCount = 0;
+    //private int skipsCount = 0;
 
     private long lastRequest = 0;
     private int interval = 0;
     
-    public Field(int id, int from, int to, double multiplier, int decimals, double offset, String unit, String requestId, String responseId, int car, int skips, int frequency) {
+    public Field(int id, int from, int to, double multiplier, int decimals, double offset, String unit, String requestId, String responseId, int car, int frequency) {
         this.from=from;
         this.to=to;
         this.offset=offset;
@@ -72,7 +72,6 @@ public class Field {
         this.requestId=requestId;
         this.responseId=responseId;
         this.car=car;
-        this.skips=skips;
         this.frequency=frequency;
 
         this.lastRequest=Calendar.getInstance().getTimeInMillis();
@@ -81,7 +80,7 @@ public class Field {
     @Override
     public Field clone()
     {
-        Field field = new Field(id, from, to, multiplier, decimals, offset, unit, requestId, responseId, car, skips,frequency);
+        Field field = new Field(id, from, to, multiplier, decimals, offset, unit, requestId, responseId, car,frequency);
         field.value = value;
         field.lastRequest=lastRequest;
         field.interval=interval;
@@ -91,7 +90,7 @@ public class Field {
     @Override
     public String toString()
     {
-        return getPrintValue();
+        return getSID()+" : "+getPrintValue();
     }
 
     public boolean isIsoTp()
@@ -308,6 +307,7 @@ public class Field {
         this.responseId = responseId;
     }
 
+    /*
     public int getSkips() {
         return skips;
     }
@@ -331,7 +331,7 @@ public class Field {
     public void resetSkipsCount() {
         this.skipsCount = skips;
     }
-
+*/
     public int getCar() {
         return car;
     }

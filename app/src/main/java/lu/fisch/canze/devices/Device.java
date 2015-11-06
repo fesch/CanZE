@@ -174,6 +174,7 @@ public abstract class Device {
                 Field field = null;
 
                 if(fieldIndex<0) {
+                    MainActivity.debug("Device: fieldIndex < 0, sleeping");
                     // no next field ---> sleep
                     try {
                         Thread.sleep(100);
@@ -188,11 +189,12 @@ public abstract class Device {
                     field = fields.get(fieldIndex);
                 }
 
-                MainActivity.debug("Device: queryNextFilter: " + fieldIndex + " --> " + field.getSID() + " \tSkipsCount = " + field.getSkipsCount());
+                MainActivity.debug("Device: queryNextFilter: " + fieldIndex + " --> " + field.getSID()); //" + " \tSkipsCount = " + field.getSkipsCount());
+                long start = Calendar.getInstance().getTimeInMillis();
 
                 // if we got the field
                 if (field != null) {
-
+                    /*
                     // only run the filter if the skipsCount is down to zero
                     boolean runFilter = (field.getSkipsCount() == 0);
                     if (runFilter)
@@ -204,7 +206,7 @@ public abstract class Device {
 
                     // get this field
                     if (runFilter) {
-
+                    */
                         // get the data
                         String data = requestField(field);
                         // test if we got something
@@ -217,7 +219,7 @@ public abstract class Device {
                         if (someThingWrong && BluetoothManager.getInstance().isConnected()) {
                             initDevice(1, 2);
                         }
-                    }
+                    //}
 
                     // goto next filter
                     /*synchronized (fields) {
@@ -229,6 +231,8 @@ public abstract class Device {
 
                     // update the request time
                     field.updateLastRequest();
+
+                    MainActivity.debug("Device: Request took "+(Calendar.getInstance().getTimeInMillis()-start)/1000.+"s");
 
                     // determine the next field to query
                     fieldIndex = getNextIndex();
@@ -287,8 +291,13 @@ public abstract class Device {
                 }/**/
 
                 customFieldIndex = (customFieldIndex + 1) % customActivityFields.size();
+                //MainActivity.debug("Device: customFieldIndex = "+customFieldIndex);
+                //MainActivity.debug("Device: customField = "+customActivityFields.get(customFieldIndex));
+                //MainActivity.debug("Device: fieldIndex = "+fields.indexOf(customActivityFields.get(customFieldIndex)));
                 return fields.indexOf(customActivityFields.get(customFieldIndex));
             }
+
+            MainActivity.debug("Device: applicationFields & customActivityFields empty?");
 
             return -1;
         }
@@ -427,6 +436,17 @@ public abstract class Device {
         return false;
     }
 
+    private boolean containsActivityField(Field _field)
+    {
+        for(int i=0; i<customActivityFields.size(); i++)
+        {
+            Field field = customActivityFields.get(i);
+            if(field.getId()==_field.getId() && field.getResponseId().equals(_field.getResponseId()))
+                return true;
+        }
+        return false;
+    }
+
     /**
      * Method to add a field to the list of monitored field.
      * The field is also immediately registered onto the device.
@@ -435,12 +455,13 @@ public abstract class Device {
     public void addField(final Field field)
     {
         synchronized (fields) {
+            // register it to be saved to the database
+            field.addListener(CanzeDataSource.getInstance());
+
             if (!containsField(field)) {
                 // add it to the lists
                 fields.add(field);
                 customActivityFields.add(field);
-                // register it to be saved to the database
-                field.addListener(CanzeDataSource.getInstance());
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
                     @Override
@@ -449,7 +470,7 @@ public abstract class Device {
                     }
                 })).start();
             }
-            if(!customActivityFields.contains(field))
+            if(!containsActivityField(field))
             {
                 customActivityFields.add(field);
             }
@@ -459,14 +480,15 @@ public abstract class Device {
     public void addApplicationField(final Field field, int interval)
     {
         synchronized (fields) {
+            // register it to be saved to the database
+            field.addListener(CanzeDataSource.getInstance());
+
             if (!containsField(field)) {
                 // set the fields query interval
                 field.setInterval(interval);
                 // add it to the two lists
                 fields.add(field);
                 applicationFields.add(field);
-                // register it to be saved to the database
-                field.addListener(CanzeDataSource.getInstance());
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
                     @Override
@@ -508,16 +530,14 @@ public abstract class Device {
     public void removeApplicationField(final Field field)
     {
         synchronized (fields) {
+            // un-register it ...
+            field.removeListener(CanzeDataSource.getInstance());
+
             // only remove from the custom fields
             if(fields.remove(field))
             {
                 // remove ti from the list
                 applicationFields.remove(field);
-                // remove it from the database if it is not on the other list
-                if(!customActivityFields.contains(field)) {
-                    // un-register it ...
-                    field.removeListener(CanzeDataSource.getInstance());
-                }
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
                     @Override
