@@ -47,7 +47,7 @@ public class Field {
     //private int divider;
     //private int multiplier;
     private int decimals;
-    private double multiplier;
+    private double resolution;
     private String unit;
     private String requestId;
     private String responseId;
@@ -61,12 +61,12 @@ public class Field {
     private long lastRequest = 0;
     private int interval = 0;
     
-    public Field(int id, int from, int to, double multiplier, int decimals, double offset, String unit, String requestId, String responseId, int car, int frequency) {
+    public Field(int id, int from, int to, double resolution, int decimals, double offset, String unit, String requestId, String responseId, int car, int frequency) {
         this.from=from;
         this.to=to;
         this.offset=offset;
         this.id=id;
-        this.multiplier = multiplier;
+        this.resolution = resolution;
         this.decimals = decimals;
         this.unit = unit;
         this.requestId=requestId;
@@ -80,7 +80,7 @@ public class Field {
     @Override
     public Field clone()
     {
-        Field field = new Field(id, from, to, multiplier, decimals, offset, unit, requestId, responseId, car,frequency);
+        Field field = new Field(id, from, to, resolution, decimals, offset, unit, requestId, responseId, car,frequency);
         field.value = value;
         field.lastRequest=lastRequest;
         field.interval=interval;
@@ -119,7 +119,7 @@ public class Field {
     public double getValue()
     {
         //double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
-        double val =  (value-offset)*multiplier;
+        double val =  (value-offset)* resolution;
         if (MainActivity.milesMode) {
             if (getUnit().toLowerCase().startsWith("km"))
                 val = val / 1.609344;
@@ -134,14 +134,14 @@ public class Field {
     public double getMax()
     {
         double val = (int) Math.pow(2, to-from+1);
-        return ((val-offset)*multiplier);
+        return ((val-offset)* resolution);
         
     }
 
     public double getMin()
     {
         double val = 0;
-        return ((val-offset)*multiplier);
+        return ((val-offset)* resolution);
     }
 
     /* --------------------------------
@@ -275,12 +275,12 @@ public class Field {
         this.id = id;
     }
     
-    public double getMultiplier() {
-        return multiplier;
+    public double getResolution() {
+        return resolution;
     }
 
-    public void setMultiplier(double multiplier) {
-        this.multiplier = multiplier;
+    public void setResolution(double resolution) {
+        this.resolution = resolution;
     }
 
     public String getUnit() {
