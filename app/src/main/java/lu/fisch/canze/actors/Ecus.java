@@ -30,20 +30,19 @@ public class Ecus {
                         + "Power Electronics Block,2092,E,77e,75a,PEB,\n"
                         + "Airbag,756,V,772,752,AIBAG,AIRBAG\n"
                         + "U Safety Module,1337,V,76d,74d,USM,UPC;UCM\n"
-                        + "\n"
-                        + "\n"
-                        + "\n"
-                        + "\n"
-                        + "\n"
-                        + "\n"
-                        + "\n"
-                        + "\n"
-                        + "\n"
-                        + "\n"
-                        + "\n"
-                        + "\n"
-                        + "\n"
-                        + "\n"
+                        + "Instrument panel,247,V;M,763,743,CLUSTER,\n"
+                        + "Electrical Power Steering,1232,V,762,742,EPS,\n"
+                        + "Electrinic Stability Control,1094,V,760,740,ESC,ABS\n"
+                        + "Uncoupled Braking Pedal,2197,V,7bc,79c,ESC,ABS\n"
+                        + "Body Control Module,645,V;O,765,845,BCM,UCH\n"
+                        + "Climate Control,419,V,764,744,CLIM,CLIMA;CLIMABOX\n"
+                        + "Park Assist,1222,O,76e,74e,UPA,\n"
+                        + "Battery Connection Box,2093,E,793,792,BCB,\n"
+                        + "Lithium Battery Controller 2,938,E,7b6,796,LBC2,\n"
+                        + "Tuner,261,M,,,,\n"
+                        + "Joystick,1657,M,,,,\n"
+                        + "R-Link,1127,M,,,,\n"
+                        + "Horn,2138,E,,,,\n"
 
                         +"";
         String[] lines = ecuDef.split("\n");
@@ -72,17 +71,31 @@ public class Ecus {
     }
 
     public Ecu getByMnemonic (String mnemonic) {
-        return null;
-    }
-
-    public Ecu getByAlias (String mnemonic) {
+        for (Ecu ecu : ecus) {
+            if (ecu.getMnemonic().equals(mnemonic) || ecu.getAliases().contains(mnemonic)) return ecu;
+        }
         return null;
     }
 
     public Ecu getByRenaultId (int renaultId) {
+        for (Ecu ecu : ecus) {
+            if (ecu.getRenaultId() == renaultId) return ecu;
+        }
         return null;
     }
 
+    public Ecu getByFromId (int fromId) {
+        for (Ecu ecu : ecus) {
+            if (ecu.getFromId() == fromId) return ecu;
+        }
+        return null;
+    }
 
+    public Ecu getByToId (int toId) {
+        for (Ecu ecu : ecus) {
+            if (ecu.getToId() == toId) return ecu;
+        }
+        return null;
+    }
 
 }

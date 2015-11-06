@@ -127,7 +127,7 @@ public class DtcActivity  extends CanzeActivity {
 
         backRes = backRes.split(",")[1];
         if (!backRes.startsWith("59")) {
-            appendResult("Reset send, but unexpected result received\n");
+            appendResult("Reset send, but unexpected result received:[" + backRes + "\n");
             return;
         }
 
@@ -186,7 +186,7 @@ public class DtcActivity  extends CanzeActivity {
 
         backRes = backRes.split(",")[1];
         if (!backRes.startsWith("54")) {
-            appendResult("Reset code send, but unexpected result received\n");
+            appendResult("Reset code send, but unexpected result received:[" + backRes + "\n");
             return;
         }
 
