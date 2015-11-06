@@ -26,10 +26,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import lu.fisch.canze.activities.MainActivity;
-import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Message;
-import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
 /**
@@ -304,49 +301,6 @@ public class ELM327 extends Device {
             MainActivity.toast("Err " + command + " [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
         }
         return false;
-    }
-
-    /**
-     * Creates a message based on the data of a line
-     * @param text what came back from the ELM
-     * @return Message
-     */
-    protected Message processData(String text) {
-        // split up the fields
-        String[] pieces = text.split(",");
-        if(pieces.length==2) {
-            try {
-                // get the id
-                int id = Integer.parseInt(pieces[0], 16);
-                // get the data
-                //int[] data = Utils.toIntArray(pieces[1].trim());
-                // create and return new frame
-                return new Message(id, pieces[1].trim());
-            }
-            catch(Exception e)
-            {
-                return null;
-            }
-        }
-        else if(pieces.length==3) {
-            try {
-                // get the id
-                int id = Integer.parseInt(pieces[0], 16);
-                // get the data
-                //int[] data = Utils.toIntArray(pieces[1].trim());
-                // get the reply-ID
-                Message f = new Message(id,pieces[1].trim());
-                //MainActivity.debug("THIRD: "+pieces[2].trim());
-                f.setResponseId(pieces[2].trim());
-                return f;
-            }
-            catch(Exception e)
-            {
-                //MainActivity.debug("BAD: "+text);
-                return null;
-            }
-        }
-        return null;
     }
 
     private void sendNoWait(String command) {

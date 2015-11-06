@@ -29,7 +29,6 @@ import java.util.Comparator;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
-import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.database.CanzeDataSource;
 
@@ -319,10 +318,79 @@ public abstract class Device {
 
     /**
      * Convert a line into a message
-     * @param inputString
+     * @param text
      * @return
      */
-    protected abstract Message processData(String inputString);
+    //protected abstract Message processData(String inputString);
+    /*
+    protected Message processData(String text) {
+        // split up the fields
+        String[] pieces = text.trim().split(",");
+        if(pieces.length==2) {
+            try {
+                // get the id
+                int id = Integer.parseInt(pieces[0], 16);
+                // create and return new frame
+                return new Message(id, pieces[1].trim());
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+        }
+        else if(pieces.length>=3) {
+            try {
+                // get the id
+                int id = Integer.parseInt(pieces[0], 16);
+                // get the reply-ID
+                Message f = new Message(id,pieces[1].trim());
+                f.setResponseId(pieces[2].trim());
+                return f;
+
+                // get checksum
+             //   int chk = Integer.parseInt(pieces[2].trim(), 16);
+             //   int check = 0;
+             //   for(int i=0; i<data.length; i++)
+             //       check ^= data[i];
+                // validate the checksum
+             //   if(chk==check)
+                    // create and return new frame
+             //       return new Frame(id, data);
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+        }
+        return null;
+    }
+    */
+
+    protected boolean notifyFields(String text) {
+        // split up the fields
+        String[] pieces = text.trim().split(",");
+        if(pieces.length==2) {
+            try {
+                Fields.getInstance().onMessageCompleteEvent(Integer.parseInt(pieces[0], 16),pieces[1].trim(),null);
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+        }
+        else if(pieces.length>=3) {
+            try {
+                Fields.getInstance().onMessageCompleteEvent(Integer.parseInt(pieces[0], 16), pieces[1].trim(), pieces[2].trim());
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+        }
+        return false;
+    }
 
     public void join() throws InterruptedException{
         if(pollerThread!=null)
@@ -362,11 +430,17 @@ public abstract class Device {
         }
         /**/
 
+        /*
         Message messages = processData(inputString);
         if(messages!=null)
             Fields.getInstance().onMessageCompleteEvent(messages);
         else
             MainActivity.debug("Device: can't decode this message > "+inputString);
+        */
+
+        if(!notifyFields(inputString))
+            MainActivity.debug("Device: can't decode this message > "+inputString);
+
     }
 
     /**

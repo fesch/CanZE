@@ -22,13 +22,10 @@
 package lu.fisch.canze.devices;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Message;
-import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
 /**
@@ -70,100 +67,6 @@ public class BobDue extends Device {
         else
             MainActivity.debug("BobDue.unregisterFilter " + filter + " failed because connectedBluetoothThread is NULL");
     }
-
-    /*
-    @Override
-    protected ArrayList<Message> processData(String inputString) {
-        ArrayList<Message> result = new ArrayList<>();
-
-        // add to buffer as characters
-        buffer+=inputString;
-        //MainActivity.debug("Buffer = "+buffer);
-
-        // split by <new line>
-        String[] messages = buffer.split(separator);
-        // let assume the last message is fine
-        int last = messages.length;
-        // but if it is not, do not consider it
-        if (!buffer.endsWith(separator)) last--;
-
-        // process each message
-        for (int i = 0; i < last; i++) {
-            // decode into a frame
-            //MainActivity.debug("Decoding: "+messages[i].trim());
-            Message message = decodeFrame(messages[i].trim());
-            // store if valid
-            if (message != null)
-                result.add(message);
-        }
-        // adapt the buffer
-        if (!buffer.endsWith(separator))
-            // retain the last uncompleted message
-            buffer = messages[messages.length - 1];
-        else
-            // empty the entire buffer
-            buffer = "";
-        // we are done
-
-        return result;
-    }*/
-
-    protected Message processData(String text) {
-        // split up the fields
-        String[] pieces = text.trim().split(",");
-        //MainActivity.debug("Pieces = "+pieces);
-        //MainActivity.debug("Size = "+pieces.length);
-        if(pieces.length==2) {
-            try {
-                // get the id
-                int id = Integer.parseInt(pieces[0], 16);
-                // get the data
-                //int[] data = Utils.toIntArray(pieces[1].trim());
-                // create and return new frame
-                return new Message(id, pieces[1].trim());
-            }
-            catch(Exception e)
-            {
-                //MainActivity.debug("BAD: "+text);
-                return null;
-            }
-        }
-        else if(pieces.length>=3) {
-            try {
-                // get the id
-                int id = Integer.parseInt(pieces[0], 16);
-                // get the data
-                //int[] data = Utils.toIntArray(pieces[1].trim());
-                // get the reply-ID
-                Message f = new Message(id,pieces[1].trim());
-                //MainActivity.debug("ID = "+id+" / Data = "+data);
-                //MainActivity.debug("THIRD: "+pieces[2].trim());
-                f.setResponseId(pieces[2].trim());
-                return f;
-                /*
-                // get checksum
-                int chk = Integer.parseInt(pieces[2].trim(), 16);
-                int check = 0;
-                for(int i=0; i<data.length; i++)
-                    check ^= data[i];
-                // validate the checksum
-                if(chk==check)
-                    // create and return new frame
-                    return new Frame(id, data);
-                */
-            }
-            catch(Exception e)
-            {
-                //MainActivity.debug("BAD: "+text);
-                return null;
-            }
-        }
-        //MainActivity.debug("BAD: "+text);
-        return null;
-    }
-
-
-
 
     // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis)
