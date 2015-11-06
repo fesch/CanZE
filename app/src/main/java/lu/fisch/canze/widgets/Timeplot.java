@@ -234,14 +234,19 @@ public class Timeplot extends Drawable {
         g.fillRect(width - barWidth - 2, graphHeight + 1, barWidth + 1, height - graphHeight - 2);
 
         // draw bottom axis
-        g.setColor(getForeground());
         int c = 0;
         for(long x=width-(start%interval); x>=width-barWidth; x-=interval)
         {
-            g.drawLine(x, graphHeight, x, graphHeight + 5);
             if(c%5==0) {
+                g.setColor(getForeground());
+                g.drawLine(x, graphHeight, x, graphHeight + 10);
                 String date = sdf.format((start - (start % interval) - interval * c) * 1000);
                 g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
+            }
+            else
+            {
+                g.setColor(getForeground());
+                g.drawLine(x, graphHeight, x, graphHeight + 5);
             }
             c++;
         }

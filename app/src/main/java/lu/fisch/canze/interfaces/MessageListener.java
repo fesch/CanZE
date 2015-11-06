@@ -26,11 +26,13 @@
 package lu.fisch.canze.interfaces;
 
 
+import lu.fisch.canze.actors.Message;
+
 /**
  *
  * @author robertfisch
  */
 public interface MessageListener {
-    //public void onMessageCompleteEvent(Message message);
-    public void onMessageCompleteEvent(int msgId, String msgData, String responseId);
+    public void onMessageCompleteEvent(Message message);
+    //public void onMessageCompleteEvent(int msgId, String msgData, String responseId);
 }

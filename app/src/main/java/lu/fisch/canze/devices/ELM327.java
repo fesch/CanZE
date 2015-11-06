@@ -27,6 +27,7 @@ import java.util.Calendar;
 
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
 /**
@@ -427,7 +428,7 @@ public class ELM327 extends Device {
 
         // set the flag that a timeout has occurred. someThingWrong can be inspected anywhere, but we reset the device after a full filter has been run
         if (timedOut) {
-            if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && !command.startsWith("atma") && command.startsWith("at"))) {
+            if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && (command==null || (!command.startsWith("atma") && command.startsWith("at"))))) {
                 MainActivity.toast("Timeout on [" + command + "][" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
             }
             someThingWrong |= true;
@@ -477,11 +478,11 @@ public class ELM327 extends Device {
     }
 
     @Override
-    public String requestFreeFrame(Field field) {
+    public Message requestFreeFrame(Field field) {
 
         String hexData = "";
 
-        if (someThingWrong) { return "" ; }
+        if (someThingWrong) { return null ; }
 
         // EML needs the filter to be 3 symbols and contains the from CAN id of the ECU
         String emlFilter = field.getHexId() + "";
@@ -512,17 +513,17 @@ public class ELM327 extends Device {
         if (!initCommandExpectOk("atar")) someThingWrong |= true;
         String returnData = hexData;
 
-        String data = field.getHexId() + "," + returnData.trim() + "\r\n";
+        //String data = field.getHexId() + "," + returnData.trim() + "\r\n";
         if(returnData.trim().equals(""))
             return null;
         else
-            return data;
+            return new Message(field,returnData.trim());
     }
 
     @Override
-    public String requestIsoTpFrame(Field field) {
+    public Message requestIsoTpFrame(Field field) {
 
-        if (someThingWrong) { return "" ; }
+        if (someThingWrong) { return null ; }
 
         String hexData = "";
         int len = 0;
@@ -596,13 +597,13 @@ public class ELM327 extends Device {
         // better here is to wait for a >
         flushWithTimeout(400, '>');
         len *= 2;
-        if (hexData.length() <= len) return hexData + "\r";
+        if (hexData.length() <= len) return new Message(field,hexData.trim());
         String returnData = hexData.substring(0, len) + "\r";
 
-        String data = field.getHexId() + "," + returnData.trim() + "," + field.getResponseId() + "\r\n";
+        //String data = field.getHexId() + "," + returnData.trim() + "," + field.getResponseId() + "\r\n";
         if(returnData.trim().equals(""))
             return null;
         else
-            return data;
+            return new Message(field,returnData.trim());
     }
 }

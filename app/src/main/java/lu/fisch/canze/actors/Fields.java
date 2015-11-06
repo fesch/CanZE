@@ -1017,18 +1017,18 @@ public class Fields implements MessageListener {
         return fields.toArray();
     }
 
-    /*
+
     @Override
     public void onMessageCompleteEvent(Message message) {
         for(int i=0; i< fields.size(); i++)
         {
             Field field = fields.get(i);
 
-            if(field.getId()== message.getId() &&
+            if(field.getId()== message.getField().getId() &&
                     (
-                            message.getResponseId()==null
+                            message.getField().getResponseId()==null
                             ||
-                            message.getResponseId().trim().equals(field.getResponseId().trim())
+                            message.getField().getResponseId().trim().equals(field.getResponseId().trim())
                     ))
             {
                 String binString = message.getAsBinaryString();
@@ -1046,8 +1046,9 @@ public class Fields implements MessageListener {
             }
         }
     }
-    */
 
+
+    /*
     @Override
     public void onMessageCompleteEvent(int msgId, String msgData, String responseId) {
         for(int i=0; i< fields.size(); i++)
@@ -1081,6 +1082,7 @@ public class Fields implements MessageListener {
             }
         }
     }
+    */
 
     public void add(Field field) {
         fields.add(field);

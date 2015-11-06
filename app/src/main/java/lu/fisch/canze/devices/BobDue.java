@@ -26,6 +26,8 @@ import java.util.Calendar;
 
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
 /**
@@ -37,6 +39,7 @@ public class BobDue extends Device {
     //private String buffer = "";
     //private final String separator = "\n";
 
+    private static final int WRONG_THRESHOLD = 20;
 
     // define the timeout we may wait to get an answer
     private static final int TIMEOUT = 500;
@@ -137,31 +140,56 @@ public class BobDue extends Device {
     }
 
     @Override
-    public String requestFreeFrame(Field field) {
+    public Message requestFreeFrame(Field field) {
         // send the command and wait fir an answer, no delay
         String data = sendAndWaitForAnswer("g" + field.getHexId(), 0);
+        // handle empty answer
         if(data.trim().isEmpty()) wrongCount++;
-        if(wrongCount>10) {
+        if(wrongCount>WRONG_THRESHOLD) {
             wrongCount=0;
-            MainActivity.getInstance().stopBluetooth();
-            MainActivity.getInstance().reloadBluetooth();
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    MainActivity.getInstance().stopBluetooth(false);
+                    MainActivity.getInstance().reloadBluetooth(false);
+                }
+            })).start();
         }
-        return data;
+        return responseToMessage(field,data);
     }
 
     @Override
-    public String requestIsoTpFrame(Field field) {
+    public Message requestIsoTpFrame(Field field) {
         // build the command string to send to the remote device
         String command = "i" + field.getHexId() + "," + field.getRequestId() + "," + field.getResponseId();
         String data = sendAndWaitForAnswer(command, 0);
+        // handle empty answer
         if(data.trim().isEmpty()) wrongCount++;
-        if(wrongCount>10) {
+        if(wrongCount>WRONG_THRESHOLD) {
             wrongCount=0;
-            MainActivity.getInstance().stopBluetooth();
-            MainActivity.getInstance().reloadBluetooth();
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    MainActivity.getInstance().stopBluetooth(false);
+                    MainActivity.getInstance().reloadBluetooth(false);
+                }
+            })).start();
         }
         // send and wait fir an answer, no delay
-        return data;
+        return responseToMessage(field,data);
+    }
+
+    private Message responseToMessage(Field field, String text)
+    {
+        // split up the fields
+        String[] pieces = text.trim().split(",");
+        if(pieces.length>1)
+            return new Message(field,pieces[1].trim());
+        else
+        {
+            MainActivity.debug("BobDue: Got > "+text.trim());
+            return null;
+        }
     }
 
     @Override
