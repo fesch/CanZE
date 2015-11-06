@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.actors.Utils;
@@ -109,10 +110,10 @@ public class ELM327 extends Device {
 
     protected boolean initDevice (int toughness, int retries) {
         boolean ret;
-        if (ret = initDevice(toughness)) return ret;
+        if (initDevice(toughness)) return true;
         while (retries-- > 0) {
             flushWithTimeout(500);
-            if (ret = initDevice(toughness)) return ret;
+            if (initDevice(toughness)) return true;
         }
         if (timeoutLogLevel >= 1) MainActivity.toast("Hard reset failed");
 
@@ -440,6 +441,7 @@ public class ELM327 extends Device {
                                     try {
                                         Thread.sleep(5);
                                     } catch (InterruptedException e) {
+                                        // do nothing
                                     }
                                     stop=(BluetoothManager.getInstance().available()==0);
                                 }
@@ -502,6 +504,11 @@ public class ELM327 extends Device {
         else if(responseId==0x7b6) return 0x796;  // LBC2
         else if(responseId==0x722) return 0x702;  // LINSCH
         else return -1;
+
+        //new code!!!
+        //return Ecus.getInstance().getByFromId(responseId).getToId();
+
+
     }
 
     private String getRequestHexId(int responseId)
@@ -616,8 +623,8 @@ public class ELM327 extends Device {
                     // split into lines
                     String[] hexDataLines = lines0x1.split(String.valueOf(EOM1));
 
-                    for (int i = 0; i < hexDataLines.length; i++) {
-                        line0x1 = hexDataLines[i];
+                    for (String hexDataLine : hexDataLines) {
+                        line0x1 = hexDataLine;
                         //MainActivity.debug("Line "+(i+1)+": " + line);
                         if (!line0x1.isEmpty() && line0x1.length() > 2) {
                             // cut off the first byte (type + sequence)
