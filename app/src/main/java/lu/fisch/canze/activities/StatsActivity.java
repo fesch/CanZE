@@ -77,7 +77,7 @@ public class StatsActivity extends CanzeActivity implements FieldListener {
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addField(field);
+            MainActivity.device.addActivityField(field);
             subscribedFields.add(field);
         }
         else

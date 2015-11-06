@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
-import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldListener to the fields.
@@ -80,7 +79,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addField(field);
+            MainActivity.device.addActivityField(field);
             subscribedFields.add(field);
         }
         else

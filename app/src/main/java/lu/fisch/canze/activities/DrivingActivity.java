@@ -31,7 +31,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 //import android.widget.ProgressBar;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -41,7 +40,6 @@ import java.util.ArrayList;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class DrivingActivity extends CanzeActivity implements FieldListener {
@@ -196,7 +194,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addField(field);
+            MainActivity.device.addActivityField(field);
             subscribedFields.add(field);
         }
         else

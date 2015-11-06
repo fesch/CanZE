@@ -54,7 +54,7 @@ public class HarmActivity  extends CanzeActivity implements FieldListener {
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addField(field);
+            MainActivity.device.addActivityField(field);
             subscribedFields.add(field);
         } else {
             MainActivity.toast("sid " + sid + " does not exist in class Fields");

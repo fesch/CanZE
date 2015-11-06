@@ -30,7 +30,6 @@ import java.util.ArrayList;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.FieldListener;
 
 /**
@@ -62,7 +61,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addField(field);
+            MainActivity.device.addActivityField(field);
             subscribedFields.add(field);
         }
         else

@@ -21,14 +21,10 @@
 
 package lu.fisch.canze.activities;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.view.PagerTabStrip;
 
 
 import java.util.ArrayList;
@@ -127,7 +123,7 @@ public class AlexandreActivity  extends CanzeActivity implements FieldListener {
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addField(field);
+            MainActivity.device.addActivityField(field);
             subscribedFields.add(field);
         } else {
             MainActivity.toast("sid " + sid + " does not exist in class Fields");

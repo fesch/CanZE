@@ -179,7 +179,7 @@ public class CanzeActivity extends AppCompatActivity {
                             // add listener
                             field.addListener(wv.getDrawable());
                             // add filter to reader
-                            MainActivity.device.addField(field);
+                            MainActivity.device.addActivityField(field);
                         }
                     }
 
