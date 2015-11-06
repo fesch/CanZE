@@ -308,13 +308,11 @@ public abstract class Device {
     public abstract void unregisterFilter(int frameId);
 
     /**
-     * This method will process the passed (binary) data and then
-     * return based on that and on what the internal buffer still
-     * may hold a list of complete messages.
+     * Convert a line into a message
      * @param inputString
      * @return
      */
-    protected abstract ArrayList<Message> processData(String inputString);
+    protected abstract Message processData(String inputString);
 
     public void join() throws InterruptedException{
         if(pollerThread!=null)
@@ -346,12 +344,16 @@ public abstract class Device {
             }
         })).start();
         /**/
+        /*
         ArrayList<Message> messages = processData(inputString);
         for(int i=0; i<messages.size(); i++)
         {
             Fields.getInstance().onMessageCompleteEvent(messages.get(i));
         }
         /**/
+
+        Message messages = processData(inputString);
+        Fields.getInstance().onMessageCompleteEvent(messages);
     }
 
     /**

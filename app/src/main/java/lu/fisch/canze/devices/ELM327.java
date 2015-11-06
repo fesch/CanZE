@@ -38,8 +38,8 @@ import lu.fisch.canze.bluetooth.BluetoothManager;
 public class ELM327 extends Device {
 
     // *** needed by the "decoder" part of this device
-    private String buffer = "";
-    private final String SEPARATOR = "\r\n";
+    //private String buffer = "";
+    //private final String SEPARATOR = "\r\n";
 
 
     // define the timeout we may wait to get an answer
@@ -68,15 +68,14 @@ public class ELM327 extends Device {
         // not needed for this device
     }
 
+    /*
     @Override
     protected ArrayList<Message> processData(String inputString) {
         ArrayList<Message> result = new ArrayList<>();
 
         // add to buffer as characters
         buffer+=inputString;
-        /*for (int anInput : input) {
-            buffer += (char) anInput;
-        }*/
+
 
         //MainActivity.debug("Buffer: "+buffer);
 
@@ -106,6 +105,7 @@ public class ELM327 extends Device {
 
         return result;
     }
+    */
 
     protected boolean initDevice (int toughness, int retries) {
         boolean ret;
@@ -132,7 +132,7 @@ public class ELM327 extends Device {
         int elmVersion = 0;
 
         // ensure the decoder (processData) is reset
-        buffer = "";
+        //buffer = "";
 
         // ensure the dongle header field is set again
         lastId = 0;
@@ -310,7 +310,7 @@ public class ELM327 extends Device {
      * @param text what came back from the ELM
      * @return Message
      */
-    private Message lineToMessage(String text) {
+    protected Message processData(String text) {
         // split up the fields
         String[] pieces = text.split(",");
         if(pieces.length==2) {
@@ -551,7 +551,7 @@ public class ELM327 extends Device {
         if (!initCommandExpectOk("atar")) someThingWrong |= true;
         String returnData = hexData;
 
-        String data = field.getHexId() + "," + returnData.trim() + SEPARATOR;
+        String data = field.getHexId() + "," + returnData.trim() + "\r\n";
         if(returnData.trim().equals(""))
             return null;
         else
@@ -638,7 +638,7 @@ public class ELM327 extends Device {
         if (hexData.length() <= len) return hexData + "\r";
         String returnData = hexData.substring(0, len) + "\r";
 
-        String data = field.getHexId() + "," + returnData.trim() + "," + field.getResponseId() + SEPARATOR;
+        String data = field.getHexId() + "," + returnData.trim() + "," + field.getResponseId() + "\r\n";
         if(returnData.trim().equals(""))
             return null;
         else
