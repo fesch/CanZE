@@ -44,9 +44,10 @@ public class Field {
     private int to;
     private double offset;
     private int id;
-    private int divider;
-    private int multiplier;
+    //private int divider;
+    //private int multiplier;
     private int decimals;
+    private double multiplier;
     private String unit;
     private String requestId;
     private String responseId;
@@ -60,12 +61,11 @@ public class Field {
     private long lastRequest = 0;
     private int interval = 0;
     
-    public Field(int id, int from, int to, int divider, int multiplier, double offset, int decimals,  String unit, String requestId, String responseId, int car, int skips, int frequency) {
+    public Field(int id, int from, int to, double multiplier, int decimals, double offset, String unit, String requestId, String responseId, int car, int skips, int frequency) {
         this.from=from;
         this.to=to;
         this.offset=offset;
         this.id=id;
-        this.divider = divider;
         this.multiplier = multiplier;
         this.decimals = decimals;
         this.unit = unit;
@@ -81,7 +81,7 @@ public class Field {
     @Override
     public Field clone()
     {
-        Field field = new Field(id, from, to, divider, multiplier, offset, decimals, unit, requestId, responseId, car, skips,frequency);
+        Field field = new Field(id, from, to, multiplier, decimals, offset, unit, requestId, responseId, car, skips,frequency);
         field.value = value;
         field.lastRequest=lastRequest;
         field.interval=interval;
@@ -119,13 +119,14 @@ public class Field {
 
     public double getValue()
     {
-        double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        //double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        double val =  (value-offset)*multiplier;
         if (MainActivity.milesMode) {
             if (getUnit().toLowerCase().startsWith("km"))
                 val = val / 1.609344;
             else if (getUnit().toLowerCase().endsWith("km"))
                 val = val*1.609344;
-            setUnit(getUnit().replace("km","mi"));
+            setUnit(getUnit().replace("km", "mi"));
             return val;
         }
         return val;
@@ -134,14 +135,14 @@ public class Field {
     public double getMax()
     {
         double val = (int) Math.pow(2, to-from+1);
-        return ((val-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        return ((val-offset)*multiplier);
         
     }
 
     public double getMin()
     {
         double val = 0;
-        return ((val-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        return ((val-offset)*multiplier);
     }
 
     /* --------------------------------
@@ -275,29 +276,12 @@ public class Field {
         this.id = id;
     }
     
-    
-    public int getDivider() {
-        return divider;
-    }
-
-    public void setDivider(int divider) {
-        this.divider = divider;
-    }
-
-    public int getMultiplier() {
+    public double getMultiplier() {
         return multiplier;
     }
 
-    public void setMultiplier(int multiplier) {
+    public void setMultiplier(double multiplier) {
         this.multiplier = multiplier;
-    }
-
-    public int getDecimals() {
-        return decimals;
-    }
-
-    public void setDecimals(int decimals) {
-        this.decimals = decimals;
     }
 
     public String getUnit() {
@@ -362,5 +346,13 @@ public class Field {
 
     public void setFrequency(int frequency) {
         this.frequency = frequency;
+    }
+
+    public int getDecimals() {
+        return decimals;
+    }
+
+    public void setDecimals(int decimals) {
+        this.decimals = decimals;
     }
 }

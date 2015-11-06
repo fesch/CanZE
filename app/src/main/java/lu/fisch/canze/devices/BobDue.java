@@ -110,7 +110,7 @@ public class BobDue extends Device {
 
     protected Message processData(String text) {
         // split up the fields
-        String[] pieces = text.split(",");
+        String[] pieces = text.trim().split(",");
         //MainActivity.debug("Pieces = "+pieces);
         //MainActivity.debug("Size = "+pieces.length);
         if(pieces.length==2) {
@@ -210,7 +210,8 @@ public class BobDue extends Device {
                         // add it to the readBuffer
                         readBuffer += ch;
                         // stop if we reached the end or if no more data is available
-                        if (ch == EOM || BluetoothManager.getInstance().available() <= 0) stop = true;
+                        if ((ch == EOM || BluetoothManager.getInstance().available() <= 0) &&
+                                !readBuffer.trim().isEmpty())  stop = true;
                     }
                 }
             }

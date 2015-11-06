@@ -48,7 +48,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_TimeToFull                       = "654.32";
     public static final String SID_PlugConnected                    = "654.2";
 //  public static final String SID_SoC                              = "654.24";
-//  public static final String SID_SOH                              = "658.32";
+//  public static final String SID_SOH                              = "658.33";
     public static final String SID_SOH                              = "7ec.623206.24";
 //  public static final String SID_SOH                              = "7ec.62202e.24"; //pedal, checking offsets
     public static final String SID_RangeEstimate                    = "654.42";

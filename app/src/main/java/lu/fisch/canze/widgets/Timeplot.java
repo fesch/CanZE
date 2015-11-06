@@ -235,7 +235,7 @@ public class Timeplot extends Drawable {
                 Field field = Fields.getInstance().getBySID(sid);
 
                 if(field !=null) {
-                    String text = String.format("%." + (String.valueOf(field.getDecimals()).length() - 1) + "f", field.getValue());
+                    String text = String.format("%." + String.valueOf(field.getDecimals()) + "f", field.getValue());
 
                     g.setTextSize(40);
 

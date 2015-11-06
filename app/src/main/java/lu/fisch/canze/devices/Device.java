@@ -238,7 +238,8 @@ public abstract class Device {
             }
             // if any error occures, reset the fieldIndex
             catch (Exception e) {
-                fieldIndex =0;
+                e.printStackTrace();
+                fieldIndex = getNextIndex();
             }
         }
         else {
@@ -353,7 +354,10 @@ public abstract class Device {
         /**/
 
         Message messages = processData(inputString);
-        Fields.getInstance().onMessageCompleteEvent(messages);
+        if(messages!=null)
+            Fields.getInstance().onMessageCompleteEvent(messages);
+        else
+            MainActivity.debug("Device: can't decode this message > "+inputString);
     }
 
     /**
@@ -584,8 +588,13 @@ public abstract class Device {
      */
     public String requestField(Field field)
     {
-        if(field.isIsoTp()) return requestIsoTpFrame(field);
-        else return requestFreeFrame(field);
+        String data = null;
+        if(field.isIsoTp()) data=requestIsoTpFrame(field);
+        else data=requestFreeFrame(field);
+
+        if(data.trim().isEmpty()) MainActivity.debug("Device: request for "+field.getSID()+" is empty ...");
+
+        return data;
     }
 
     /**
