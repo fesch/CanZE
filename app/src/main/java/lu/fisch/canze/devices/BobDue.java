@@ -118,9 +118,9 @@ public class BobDue extends Device {
                 // get the id
                 int id = Integer.parseInt(pieces[0], 16);
                 // get the data
-                int[] data = Utils.toIntArray(pieces[1].trim());
+                //int[] data = Utils.toIntArray(pieces[1].trim());
                 // create and return new frame
-                return new Message(id, data);
+                return new Message(id, pieces[1].trim());
             }
             catch(Exception e)
             {
@@ -133,9 +133,9 @@ public class BobDue extends Device {
                 // get the id
                 int id = Integer.parseInt(pieces[0], 16);
                 // get the data
-                int[] data = Utils.toIntArray(pieces[1].trim());
+                //int[] data = Utils.toIntArray(pieces[1].trim());
                 // get the reply-ID
-                Message f = new Message(id,data);
+                Message f = new Message(id,pieces[1].trim());
                 //MainActivity.debug("ID = "+id+" / Data = "+data);
                 //MainActivity.debug("THIRD: "+pieces[2].trim());
                 f.setResponseId(pieces[2].trim());

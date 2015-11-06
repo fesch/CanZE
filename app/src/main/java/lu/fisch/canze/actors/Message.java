@@ -35,11 +35,10 @@ public class Message {
     
     protected int id;
     protected long timestamp;
-    protected int[] data;
-    private double rate;
+    protected String data;
     private String responseId = null;
     
-    private static final int[] EMPTY = {};
+    private static final String EMPTY = "";
     
     /**
      * Full constructor for a new frame
@@ -47,11 +46,11 @@ public class Message {
      * @param timestamp     the timestamp
      * @param data          the data
      */
-    public Message(int id, long timestamp, int[] data) {
+    public Message(int id, long timestamp, String data) {
         this(id,timestamp,data,null);
     }
 
-    public Message(int id, long timestamp, int[] data, String responseId) {
+    public Message(int id, long timestamp, String data, String responseId) {
         this.id=id;
         this.timestamp=timestamp;
         this.data=data;
@@ -66,18 +65,18 @@ public class Message {
         this(id, timestamp, EMPTY);
     }
     
-    public Message(int id, int[] data) {
+    public Message(int id, String data) {
         this(id, -1, data);
     }
     
     /**
-     * Clones this frame
-     * @return      the cloned frame
+     * Clones this message
+     * @return      the cloned message
      */
     @Override
     public Message clone()
     {
-        return new Message(id,timestamp,data.clone(),responseId);
+        return new Message(id,timestamp,data+"",responseId);
     }
     
     public boolean isMultiFrame()
@@ -97,16 +96,8 @@ public class Message {
         return timestamp;
     }
 
-    public int[] getData() {
+    public String getData() {
         return data;
-    }
-
-    public double getRate() {
-        return rate;
-    }
-
-    public void setRate(double rate) {
-        this.rate = rate;
     }
 
     public String getResponseId() {
@@ -125,10 +116,7 @@ public class Message {
     @Override
     public String toString()
     {
-        String hexData = "";
-        for(int i=0; i<data.length; i++)
-            hexData+= (Integer.toHexString(data[i]).length()==1?"0":"")+Integer.toHexString(data[i])+" ";
-        String res = "ID: "+Integer.toHexString(id)+"\nData: "+hexData;
+        String res = "ID: "+Integer.toHexString(id)+"\nData: "+data;
         if(responseId !=null) res+="\nReply: "+ responseId;
         return res;
     }
@@ -136,39 +124,14 @@ public class Message {
     public String getAsBinaryString()
     {
         String result = "";
-        for(int i=0; i<data.length; i++)
+        for(int i=0; i<data.length(); i+=2)
         {
             /*String hexS = getByte(data[i]);
             result+=hexS;
             */
-            result += String.format("%8s", Integer.toBinaryString(data[i] & 0xFF)).replace(' ', '0');
+            result += String.format("%8s", Integer.toBinaryString(Integer.parseInt(data.substring(i,i+2),16) & 0xFF)).replace(' ', '0');
         }
         return result;
     }
-
-    /*
-    private String getByte(int i)
-    {
-        String r = "";
-        if(i / 128 == 1) {r+="1"; i-=128; }else r+="0";
-        if(i / 64 == 1)  {r+="1"; i-=64; }else r+="0";
-        if(i / 32 == 1)  {r+="1"; i-=32; }else r+="0";
-        if(i / 16 == 1)  {r+="1"; i-=16; }else r+="0";
-        if(i / 8 == 1)   {r+="1"; i-=8; }else r+="0";
-        if(i / 4 == 1)   {r+="1"; i-=4; }else r+="0";
-        if(i / 2 == 1)   {r+="1"; i-=2; }else r+="0";
-        if(i / 1 == 1)   {r+="1"; i-=1; }else r+="0";
-        return r;
-    }*/
-    
-    
-    /* --------------------------------
-     * Tests ...
-     \ ------------------------------ */
-    
-    public static void main(String[] args)
-    {
-    }
-
 
 }
