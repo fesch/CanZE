@@ -478,7 +478,7 @@ public class Fields implements MessageListener {
                         +"0x130, 32, 38, 1, 1, 0, 0, BrakePedalDriverWill %3ld, %, , , BrakePedalDriverWill, 0, 0, 10\n"
                         +"0x130, 40, 41, 1, 1, 0, 0, HBA_ActivationRequest %1ld, , , , HBA_ActivationRequest, 0, 0, 10\n"
                         +"0x130, 42, 43, 1, 1, 0, 0, PressureBuildUp %1ld, , , , PressureBuildUp, 0, 0, 10\n"
-                        +"0x130, 44, 55, 1, 1, 4094, 0, DriverBrakeWheelTq_Req %4ld, Nm, , , DriverBrakeWheelTq_Req , 0, 0, 10\n"
+                        +"0x130, 44, 55, 1, -1, 4094, 0, DriverBrakeWheelTq_Req %4ld, Nm, , , DriverBrakeWheelTq_Req , 0, 0, 10\n"
                         +"0x130, 56, 63, 1, 1, 0, 0, CheckSum_UBP %3ld, , , , CheckSum_UBP, 0, 0, 10\n"
                         +"0x130, 8, 10, 1, 1, 0, 0, UBP_Clock %1ld, , , , UBP_Clock, 0, 0, 10\n"
                         +"0x17e, 40, 41, 1, 1, 0, 0, , , , , CrankingAuthorisation_AT, 0, 0, 10\n"

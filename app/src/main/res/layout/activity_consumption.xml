@@ -32,7 +32,7 @@
             custom:max="125"
             custom:majorTicks="25"
             custom:minorTicks="5"
-            custom:fieldSID="42e.0,654.24"
+            custom:fieldSID="42e.0,654.25"
             custom:widget="timeplot"
             custom:text="True State of Charge (%) / Indicated State of Charge (%)"
             />

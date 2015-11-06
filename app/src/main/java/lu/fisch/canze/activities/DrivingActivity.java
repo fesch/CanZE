@@ -50,7 +50,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_Pedal                                = "186.40"; //EVC
     public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
     public static final String SID_RealSpeed                            = "5d7.0";  //ESC-ABS
-    public static final String SID_SoC                                  = "654.24"; //EVC
+    public static final String SID_SoC                                  = "654.25"; //EVC
     public static final String SID_RangeEstimate                        = "654.42"; //EVC
     public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
     public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; //UBP 10ms

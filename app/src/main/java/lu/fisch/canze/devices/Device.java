@@ -231,7 +231,8 @@ public abstract class Device {
                     // update the request time
                     field.updateLastRequest();
 
-                    MainActivity.debug("Device: Request took "+(Calendar.getInstance().getTimeInMillis()-start)/1000.+"s");
+                    MainActivity.debug("Device: Request took "+(Calendar.getInstance().getTimeInMillis()-start)/1000.+"s -( "+
+                            field.getSID()+" )-> "+field.getPrintValue());
 
                     // determine the next field to query
                     fieldIndex = getNextIndex();
