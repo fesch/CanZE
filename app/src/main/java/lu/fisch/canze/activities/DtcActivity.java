@@ -96,59 +96,101 @@ public class DtcActivity  extends CanzeActivity {
     }
 
     void doQueryEcu(int ecu, boolean sourceEcu) {
-        Field field = null;
+        Field field;
         String filter;
         String result;
         clearResult();
 
-
         filter = Integer.toHexString(ecu);
         field = Fields.getInstance().getBySID(filter + ".5902ff.0"); // get DTC
-        if (field != null) {
-
-            clearResult();
-
-            appendResult("\nSending initialisation sequence\n");
-            if (!MainActivity.device.initDevice(1)) {
-                appendResult("\nInitialisation failed\n");
-                return;
-            }
-
-            String backRes = MainActivity.device.requestField(field);
-            if (backRes != null) {
-                if (backRes.contains(",")) {
-                    // appendResult("[" + backRes.replace('\r', '•') + "]\n");
-                    backRes = backRes.split(",")[1];
-                    // loop trough all DTC's
-                    for (int i = 6; i < backRes.length() - 7; i += 8) {
-                        int bits = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
-                        // exclude 50 / 10 as it means something like "I have this DTC code, but I have never tested it"
-                        if (bits != 0x50 && bits != 0x10) {
-                            appendResult("\nDTC" + backRes.substring(i, i + 6) + ":" + backRes.substring(i + 6, i + 8) + ":" + Dtcs.getDescription(backRes.substring(i, i + 6)));
-                            if ((bits & 0x01) != 0) appendResult(" tstFail");
-                            if ((bits & 0x02) != 0) appendResult(" tstFailThisOp");
-                            if ((bits & 0x04) != 0) appendResult(" pendingDtc");
-                            if ((bits & 0x08) != 0) appendResult(" confirmedDtc");
-                            if ((bits & 0x10) != 0) appendResult(" noCplSinceClear");
-                            if ((bits & 0x20) != 0) appendResult(" faildSinceClear");
-                            if ((bits & 0x40) != 0) appendResult(" tstNtCpl");
-                            if ((bits & 0x80) != 0) appendResult(" WrnLght");
-                        }
-                    }
-                }
-            } else
-                appendResult("null\n");
-        } else {
+        if (field == null) {
             appendResult("- field does not exist\n");
+            return;
+        }
+
+        appendResult("\nSending initialisation sequence\n");
+        if (!MainActivity.device.initDevice(1)) {
+            appendResult("\nInitialisation failed\n");
+            return;
+        }
+
+        String backRes = MainActivity.device.requestField(field);
+        if (backRes == null) {
+            appendResult("Request DTC code for this ECU not found, nothing send\n");
+            return;
+        }
+
+        if (!backRes.contains(",")) {
+            appendResult("Request DTC code send, but empty response\n");
+            return;
+        }
+
+        backRes = backRes.split(",")[1];
+        if (!backRes.startsWith("59")) {
+            appendResult("Reset send, but unexpected result received\n");
+            return;
+        }
+
+        // loop trough all DTC's
+        for (int i = 6; i < backRes.length() - 7; i += 8) {
+            int bits = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
+            // exclude 50 / 10 as it means something like "I have this DTC code, but I have never tested it"
+            if (bits != 0x50 && bits != 0x10) {
+                appendResult("\nDTC" + backRes.substring(i, i + 6) + ":" + backRes.substring(i + 6, i + 8) + ":" + Dtcs.getDescription(backRes.substring(i, i + 6)));
+                if ((bits & 0x01) != 0) appendResult(" tstFail");
+                if ((bits & 0x02) != 0) appendResult(" tstFailThisOp");
+                if ((bits & 0x04) != 0) appendResult(" pendingDtc");
+                if ((bits & 0x08) != 0) appendResult(" confirmedDtc");
+                if ((bits & 0x10) != 0) appendResult(" noCplSinceClear");
+                if ((bits & 0x20) != 0) appendResult(" faildSinceClear");
+                if ((bits & 0x40) != 0) appendResult(" tstNtCpl");
+                if ((bits & 0x80) != 0) appendResult(" WrnLght");
+            }
         }
     }
 
     void doResetEcu(int ecu) {
-        doQueryEcu(ecu, false);
+        doResetEcu(ecu, false);
     }
 
     void doResetEcu(int ecu, boolean sourceEcu) {
-        MainActivity.toast("Not implemented yet");
+
+        Field field;
+        String filter;
+        clearResult();
+
+        filter = Integer.toHexString(ecu);
+        field = Fields.getInstance().getBySID(filter + ".54.0"); // get DTC reset
+
+        if (field == null) {
+            appendResult("- field does not exist\n");
+            return;
+        }
+
+        appendResult("\nSending initialisation sequence\n");
+        if (!MainActivity.device.initDevice(1)) {
+            appendResult("\nInitialisation failed\n");
+            return;
+        }
+
+        String backRes = MainActivity.device.requestField(field);
+        if (backRes == null) {
+            appendResult("Reset code for this ECU not found, nothing send\n");
+            return;
+        }
+
+        if (!backRes.contains(",")) {
+            appendResult("Reset code send, but empty response\n");
+            return;
+        }
+
+        backRes = backRes.split(",")[1];
+        if (!backRes.startsWith("54")) {
+            appendResult("Reset code send, but unexpected result received\n");
+            return;
+        }
+
+        appendResult("Reset seems succesful, please query DTCs\n");
     }
 
 
@@ -245,36 +287,19 @@ public class DtcActivity  extends CanzeActivity {
         getMenuInflater().inflate(R.menu.menu_empty, menu);
         return true;
     }
-/*
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
 
-            int id = item.getItemId();
-
-            // start the settings activity
-            switch (id) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            doQueryEcu(0x7b6);
-                        }
-                    }).start();
-                    return true;
-            }
-
-            return super.onOptionsItemSelected(item);
-        } */
-
-
-    private int ecuToId(String ecu) {
+    private int ecuToId(String ecu) { // this function should be moved to a separate class, or a function in Fields
         switch (ecu) {
             case "BCB":
                 return 0x793;
             case "CLIMA":
+            case "CLIMBOX":
                 return 0x764;
             case "CLUSTER":
                 return 0x763;
             case "EVC":
+            case "EVCBRIDGE":
+            case "SCH":
                 return 0x7ec;
             case "TCU":
                 return 0x7da;
@@ -283,16 +308,21 @@ public class DtcActivity  extends CanzeActivity {
             case "PEB":
                 return 0x77e;
             case "AIBAG":
+            case "AIRBAG":
                 return 0x772;
             case "USM":
+            case "UCM":
+            case "UPC":
                 return 0x76d;
             case "EPS":
                 return 0x762;
             case "ABS":
+            case "ESC":
                 return 0x760;
             case "UBP":
                 return 0x7bc;
             case "BCM":
+            case "UCH":
                 return 0x765;
             case "UPA":
                 return 0x76e;
