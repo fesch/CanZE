@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.actors.Ecu;
+import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
@@ -441,7 +443,7 @@ public class ELM327 extends Device {
 
     private int getRequestId(int responseId)
     {                     //from        // to
-        if     (responseId==0x7ec) return 0x7e4;  // EVC / SCH
+ /*      if     (responseId==0x7ec) return 0x7e4;  // EVC / SCH
         else if(responseId==0x7da) return 0x7ca;  // TCU
         else if(responseId==0x7bb) return 0x79b;  // LBC
         else if(responseId==0x77e) return 0x75a;  // PEB
@@ -457,12 +459,10 @@ public class ELM327 extends Device {
         else if(responseId==0x793) return 0x792;  // BCB
         else if(responseId==0x7b6) return 0x796;  // LBC2
         else if(responseId==0x722) return 0x702;  // LINSCH
-        else return -1;
+        else return 0; */
 
-        //new code!!!
-        //return Ecus.getInstance().getByFromId(responseId).getToId();
-
-
+        Ecu ecu = Ecus.getInstance().getByFromId(responseId);
+        return ecu != null ? ecu.getToId() : 0;
     }
 
     private String getRequestHexId(int responseId)

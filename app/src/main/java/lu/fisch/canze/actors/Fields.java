@@ -994,7 +994,7 @@ public class Fields implements MessageListener {
        return text.toString();
     }
 
-    private void readFromFile(String filename) throws IOException // FileNotFoundException, 
+    private void readFromFile(String filename) throws IOException // FileNotFoundException,
     {
         BufferedReader fileReader = new BufferedReader(new FileReader(filename));
         String line;
