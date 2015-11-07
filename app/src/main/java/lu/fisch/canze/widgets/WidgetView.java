@@ -35,12 +35,14 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.WindowManager;
 
 import java.lang.reflect.Constructor;
 
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
+import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.classes.ColorRanges;
 import lu.fisch.canze.classes.Intervals;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
@@ -48,7 +50,7 @@ import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.WidgetActivity;
 
-public class WidgetView extends SurfaceView implements DrawSurfaceInterface, SurfaceHolder.Callback {
+public class WidgetView extends SurfaceView implements DrawSurfaceInterface, SurfaceHolder.Callback, View.OnTouchListener {
 
 	// a reference to the drawing thread
 	private DrawThread drawThread = null;
@@ -80,16 +82,19 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 	public WidgetView(Context context) {
 		super(context);
 		init(context, null);
+        setOnTouchListener(this);
 	}
 
 	public WidgetView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(context, attrs);
+        setOnTouchListener(this);
 	}
 
 	public WidgetView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init(context,attrs);
+        setOnTouchListener(this);
 	}
 
     @Override
@@ -135,7 +140,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     Class clazz = Class.forName("lu.fisch.canze.widgets." + widget);
                     Constructor<?> constructor = clazz.getConstructor(null);
                     drawable = (Drawable) constructor.newInstance();
-                    drawable.setDrawSurface(this);
+                    drawable.setDrawSurface(WidgetView.this);
                     // apply attributes
                     drawable.setMin(attributes.getInt(R.styleable.WidgetView_min, 0));
                     drawable.setMax(attributes.getInt(R.styleable.WidgetView_max, 0));
@@ -145,7 +150,6 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     drawable.setShowLabels(attributes.getBoolean(R.styleable.WidgetView_showLabels, true));
                     drawable.setShowValue(attributes.getBoolean(R.styleable.WidgetView_showValue, true));
                     drawable.setInverted(attributes.getBoolean(R.styleable.WidgetView_isInverted, false));
-                    fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
 
                     String colorRangesJson =attributes.getString(R.styleable.WidgetView_colorRanges);
                     if(colorRangesJson!=null && !colorRangesJson.trim().isEmpty())
@@ -171,11 +175,30 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     if(intervalJson!=null && !intervalJson.trim().isEmpty())
                         drawable.setIntervals(new Intervals(intervalJson.replace("'", "\"")));
 
+                    fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
+                    String[] sids = fieldSID.split(",");
+                    for(int s=0; s<sids.length; s++) {
+                        Field field = MainActivity.fields.getBySID(sids[s]);
+                        if (field == null) {
+                            MainActivity.debug("!!! >> Field with following SID <" + sids[s] + "> not found!");
+                        }
+                        else {
+                            // add field to list of registered sids for this widget
+                            drawable.addField(field.getSID());
+                            // add listener
+                            field.addListener(drawable);
+                            // add filter to reader
+                            int interval = drawable.getIntervals().getInterval(field.getSID());
+                            if(interval==-1)
+                                MainActivity.device.addActivityField(field);
+                            else
+                                MainActivity.device.addActivityField(field,interval);
+                        }
+                    }
+
                     //MainActivity.debug("WidgetView: My SID is "+fieldSID);
 
                     if(MainActivity.milesMode) drawable.setTitle(drawable.getTitle().replace("km","mi"));
-
-                    repaint();
                 }
                 else
                 {
@@ -200,8 +223,12 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 		*/
 	}
 
-	//@Override
-    public boolean onTouchEvent__disabled(MotionEvent event)
+    private boolean motionDown = false;
+    private boolean motionMove = false;
+    private float downX, downY;
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event)
     {
 		// react on touch events
 		// get pointer index from the event object
@@ -213,26 +240,34 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 	    // get masked (not specific to a pointer) action
 	    int maskedAction = event.getActionMasked();
 
+        MainActivity.debug("WidgetView: maskedAction = "+maskedAction);
+
 	    switch (maskedAction) {
 		    case MotionEvent.ACTION_DOWN:
 		    case MotionEvent.ACTION_POINTER_DOWN:{
-                if(clickable && MainActivity.isSafe()) {
+                motionDown=true;
+                downX=event.getX();
+                downY=event.getY();
+                break;
+            }
+		    case MotionEvent.ACTION_MOVE: {
+                motionMove=true;
+			    break;
+		    }
+
+		    case MotionEvent.ACTION_UP:
+		    case MotionEvent.ACTION_POINTER_UP:
+            {
+                if(!motionMove && clickable && MainActivity.isSafe()) {
                     Intent intent = new Intent(this.getContext(), WidgetActivity.class);
                     selectedDrawable = this.getDrawable();
                     this.getContext().startActivity(intent);
                 }
+
+                motionDown=false;
+                motionMove=false;
                 break;
             }
-		    case MotionEvent.ACTION_MOVE: {
-
-			    break;
-		    }
-		    /*case MotionEvent.ACTION_MOVE: { // a pointer was moved
-
-			    break;
-		    }*/
-		    case MotionEvent.ACTION_UP:
-		    case MotionEvent.ACTION_POINTER_UP:
 		    case MotionEvent.ACTION_CANCEL: {
 
 		    	break;
@@ -253,8 +288,14 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 	@Override
 	public void surfaceCreated(SurfaceHolder arg0)
 	{
-		// do a first painting
-		repaint();
+        // load data from the database
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                drawable.loadValuesFromDatabase();
+                repaint();
+            }
+        })).start();
 	}
 
     // DIRECT repaint method
@@ -365,4 +406,5 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
     public void setFieldSID(String fieldSID) {
         this.fieldSID = fieldSID;
     }
+
 }

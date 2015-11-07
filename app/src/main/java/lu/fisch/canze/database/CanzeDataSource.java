@@ -37,7 +37,8 @@ import lu.fisch.canze.interfaces.FieldListener;
 
 public class CanzeDataSource implements FieldListener
 {
-    private static long LIMIT = 24*60*60*1000;  // 24 h
+    //private static long LIMIT = 24*60*60*1000;  // 24 h
+    private static long LIMIT = 60*60*1000;  // 1 h
 
     /*
      * Singleton stuff
