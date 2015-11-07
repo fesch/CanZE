@@ -826,6 +826,16 @@ public class Fields implements MessageListener {
                         +"0x7ec, 24, 39, 100, 1, 0, 2, Speed, km/h, 0x222003, 0x622003, , 1, 0, 0\n"
                         +"0x7ec, 24, 39, 100, 50, 0, 2, Motor Volt, V, 0x222004, 0x622004, , 0, 0, 0\n"
                         +"0x7ec, 24, 39, 48, 100, 0, 2, SOC, %, 0x222002, 0x622002, , 1, 0, 0\n"
+                        +"0x7ec, 24, 39, 100, 1, 0, 2, Speed, km/h, 0x222003, 0x622003, , 1, 0, 0\n"
+                        +"0x7ec, 24, 39, 100, 50, 0, 2, Motor Volt, V, 0x222004, 0x622004, , 0, 0, 0\n"
+                        +"0x7ec, 24, 39, 100, 1, 0, 2, 12V Volt, V, 0x222005, 0x622005, , 0, 0, 0\n"
+                        +"0x7ec, 24, 47, 1, 1, 0, 0, Odometer, km, 0x222006, 0x622006, , 0, 0, 0\n"
+                        +"0x7ec, 24, 39, 1, 1, 0, 0, Pedal, , 0x22202e, 0x62202e, , 0, 0, 0\n"
+                        +"0x7ec, 24, 31, 1, 1, 0, 0, Steering wheel CC/SL buttons, , 0x22204b, 0x62204b, , 1, 0, 0\n"
+                        +"0x7ec, 24, 39, 100, 50, 0, 2, Volt, V, 0x223203, 0x623203, , 0, 0, 0\n"
+                        +"0x7ec, 24, 39, 100, 25, 0x8000, 2, Amp, A, 0x223204, 0x623204, , 0, 0, 0\n"
+                        +"0x7ec, 24, 31, 1, 1, 0, 0, Bat Health, %, 0x223206, 0x623206, , 0, 0, 0\n"
+                        +"0x7ec, 24, 31, 1, 1, 40, 0, Ext temp, C, 0x2233b1, 0x6233b1, , 0, 0, 0\n"
 
 /*
                         +"0x7ec, 144, 159, 1, 1, 0, 0, EVC SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
@@ -910,26 +920,24 @@ public class Fields implements MessageListener {
 
                 ;
 
-        try {
-            //fieldDef += readFromLocalFile();
-        }
-        catch(Exception e)
-        {
-            // ignore
-        }
+//        try {
+//            //fieldDef += readFromLocalFile();
+//        }
+//        catch(Exception e)
+//        {
+//            // ignore
+//        }
 
         String[] lines = fieldDef.split("\n");
-        for(int i=0; i<lines.length; i++)
-        {
-            String line = lines[i];
+        for (String line : lines) {
             //MainActivity.debug("Fields: Reading > "+line);
             //Get all tokens available in line
             String[] tokens = line.split(",");
             if (tokens.length > 0) {
-                    int divider = Integer.parseInt(tokens[FIELD_DIVIDER].trim());
-                    int multiplier = Integer.parseInt(tokens[FIELD_MULTIPLIER].trim());
+                int divider = Integer.parseInt(tokens[FIELD_DIVIDER].trim());
+                int multiplier = Integer.parseInt(tokens[FIELD_MULTIPLIER].trim());
 
-                    double multi = ((double) multiplier/divider);
+                double multi = ((double) multiplier / divider);
 
                 //Create a new field object and fill his  data
                 Field field = new Field(
@@ -986,7 +994,7 @@ public class Fields implements MessageListener {
        return text.toString();
     }
 
-    private void readFromFile(String filename) throws FileNotFoundException, IOException
+    private void readFromFile(String filename) throws IOException // FileNotFoundException, 
     {
         BufferedReader fileReader = new BufferedReader(new FileReader(filename));
         String line;
