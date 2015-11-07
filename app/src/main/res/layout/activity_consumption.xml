@@ -84,6 +84,7 @@
                 {'sid':'1fd.48','color':'#ffaa17','from':0,'to':43},
                 {'sid':'1fd.48','color':'#FF0000','from':43,'to':100}]"
             custom:text="Econometer (kw) / Available energy (kWh)"
+            custom:intervals="{'427.49':10000}"
             />
 
     </TableRow>
@@ -111,7 +112,7 @@
             custom:fieldSID="5d7.0,654.42"
             custom:widget="timeplot"
             custom:text="Speed (km/h) / Available distance (km)"
-            custom:intervals="{'654.42':60000}"
+            custom:intervals="{'654.42':10000}"
             />
 
     </TableRow>

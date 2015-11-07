@@ -264,7 +264,7 @@ public abstract class Device {
                     }
                 });
 
-                MainActivity.debug("-1-");
+                /*MainActivity.debug("-1-");
                 for(int i=0; i<applicationFields.size(); i++)
                 {
                     MainActivity.debug(
@@ -292,7 +292,7 @@ public abstract class Device {
                     }
                 });
 
-                MainActivity.debug("-2-");
+                /*MainActivity.debug("-2-");
                 for(int i=0; i< activityFieldsScheduled.size(); i++)
                 {
                     Field field = activityFieldsScheduled.get(i);
@@ -313,7 +313,7 @@ public abstract class Device {
             if(activityFieldsAsFastAsPossible.size()>0)
             {
 
-                MainActivity.debug("-3-");
+                /*MainActivity.debug("-3-");
                 for(int i=0; i< activityFieldsAsFastAsPossible.size(); i++)
                 {
                     Field field = activityFieldsAsFastAsPossible.get(i);
