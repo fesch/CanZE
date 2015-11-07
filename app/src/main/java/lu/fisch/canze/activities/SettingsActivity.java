@@ -184,8 +184,54 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+
         final CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
         miles.setChecked(MainActivity.milesMode);
+
+        final CheckBox btBackground = (CheckBox) findViewById(R.id.btBackgrounding);
+        btBackground.setChecked(MainActivity.bluetoothBackgroundMode);
+        btBackground.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (btBackground.isChecked()) {
+                    final Context context = SettingsActivity.this;
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                    // set title
+                    alertDialogBuilder.setTitle("ATTENTION");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage("Leaving the Bluetooth active while the application goes to background " +
+                                    "may interfer with other application using the Bluetooth feature. It also" +
+                                    "may suck of your battery if you forget to kill CanZE or disable this option.\n\n" +
+                                    "Are you sure you want to continue enabling the Bluetooth Background Mode?")
+                            .setCancelable(true)
+                            .setPositiveButton("Yes, I know what I'm doing", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // if this button is clicked, close
+                                    // current activity
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("No, thanks",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            // if this button is clicked, just close
+                                            // the dialog box and do nothing
+                                            btBackground.setChecked(false);
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
+                }
+            }
+        });
 
         final CheckBox dataexport = (CheckBox) findViewById(R.id.dataexportMode);
         dataexport.setChecked(MainActivity.dataexportMode);
@@ -300,6 +346,7 @@ public class SettingsActivity extends AppCompatActivity {
             CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
             CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
             CheckBox dataexport = (CheckBox) findViewById(R.id.dataexportMode);
+            CheckBox btBackground = (CheckBox) findViewById(R.id.btBackgrounding);
             Spinner toastLevel = (Spinner) findViewById(R.id.toastLevel);
             if(deviceList.getSelectedItem()!=null) {
                 MainActivity.debug("Settings.deviceAddress = " + deviceList.getSelectedItem().toString().split("\n")[1].trim());
@@ -308,6 +355,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString("deviceName", deviceList.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("device", device.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("car", car.getSelectedItem().toString().split("\n")[0].trim());
+                editor.putBoolean("optBTBackground", btBackground.isChecked());
                 editor.putBoolean("optSafe", safe.isChecked());
                 editor.putBoolean("optMiles", miles.isChecked());
                 editor.putBoolean("optDataExport", dataexport.isChecked());

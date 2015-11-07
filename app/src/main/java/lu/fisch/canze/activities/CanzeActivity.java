@@ -76,8 +76,13 @@ public class CanzeActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         MainActivity.debug("CanzeActivity: onPause");
-        // save data
-        saveWidgetData();
+
+        // stop here if BT should stay on!
+        if(MainActivity.bluetoothBackgroundMode)
+        {
+            return;
+        }
+
         // if we are not coming back from somewhere, stop Bluetooth
         if(!back && !widgetClicked) {
             MainActivity.debug("CanzeActivity: onPause > stopBluetooth");
@@ -86,9 +91,6 @@ public class CanzeActivity extends AppCompatActivity {
         if(!widgetClicked) {
             // remember we paused ourselves
             iLeftMyOwn=true;
-            // save all fields
-            MainActivity.debug("CanzeActivity: onPause > saveFields");
-            MainActivity.getInstance().saveFields();
         }
     }
 
@@ -255,9 +257,9 @@ public class CanzeActivity extends AppCompatActivity {
         }).start();
     }
 
+        /*
     protected void saveWidgetData()
     {
-        /*
         // free up the listener again
         ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
         // save widget data
@@ -280,8 +282,8 @@ public class CanzeActivity extends AppCompatActivity {
             editor.putString(id, data);
         }
         editor.commit();
-        */
     }
+        */
 
     protected void freeWidgetListeners()
     {

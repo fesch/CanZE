@@ -117,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     private static MainActivity instance = null;
 
     public static boolean safeDrivingMode = true;
+    public static boolean bluetoothBackgroundMode = false;
+
     private static boolean isDriving = false;
 
     public static boolean milesMode = false;
@@ -196,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         dataFormat = settings.getString("dataFormat", "crdt");
         deviceName = settings.getString("device", "Arduino");
         safeDrivingMode = settings.getBoolean("optSafe", true);
+        bluetoothBackgroundMode = settings.getBoolean("optBTBackground", true);
         milesMode = settings.getBoolean("optMiles", false);
         dataexportMode = settings.getBoolean("optDataExport", false);
         toastLevel = settings.getInt("optToast", 1);
@@ -523,6 +526,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         debug("MainActivity: onPause > leaveBluetoothOn = "+leaveBluetoothOn);
         visible=false;
 
+        // stop here if BT should stay on!
+        if(bluetoothBackgroundMode)
+        {
+            super.onPause();
+            return;
+        }
+
         if(!leaveBluetoothOn)
         {
             if(device!=null)
@@ -582,9 +592,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         else super.onActivityResult(requestCode, resultCode, data);
     }
 
+        /*
     public void saveFields()
     {
-        /*
         // safe fields
         SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
         SharedPreferences.Editor editor = settings.edit();
@@ -595,8 +605,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             //debug("Setting "+f.getUniqueID()+" = "+f.getRawValue());
         }
         editor.commit();
-        */
     }
+        */
 
     @Override
     protected void onDestroy() {
@@ -613,8 +623,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
         // un-register for bluetooth changes
         this.unregisterReceiver(broadcastReceiver);
-
-        saveFields();
 
         super.onDestroy();
     }
