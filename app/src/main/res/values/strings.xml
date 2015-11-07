@@ -183,7 +183,7 @@
     <string name="label_ecu_linsch">LINSCH (?)</string>
     <string name="default_zero">0</string>
 
-    <!-- dtc -->
+    <!-- dtc
 
     <string-array name="ecu_array">
         <item>EVC</item>
@@ -201,7 +201,7 @@
         <item>UPA</item>
         <item>BCB</item>
         <item>LBC2</item>
-    </string-array>
+    </string-array>  -->
 
 
 

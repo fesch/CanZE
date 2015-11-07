@@ -159,7 +159,7 @@ android:orientation="vertical"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="DTC readout BCB"
+            android:text="DTC readout"
             android:id="@+id/buttonDtc"
             android:layout_column="1" />
 

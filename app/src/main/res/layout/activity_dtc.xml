@@ -19,7 +19,6 @@
         <TableRow>
             <Spinner
                 android:id="@+id/ecuList"
-                android:entries="@array/ecu_array"
                 android:layout_weight="2"
                 />
 
@@ -30,8 +29,8 @@
                 />
 
             <Button
-                android:id="@+id/ecuReset"
-                android:text="Reset"
+                android:id="@+id/ecuClear"
+                android:text="Clear"
                 android:layout_weight="1"
                 />
         </TableRow>
@@ -49,6 +48,7 @@
             android:id="@+id/textResult"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:text="To enable clearing DTC's:\n\nEnter key card\n\nGear to D\n\nHold start button for aproximately 5 seconds until the 'Remove card' message appears\n\nGear to P"
             />
 
     </ScrollView>
