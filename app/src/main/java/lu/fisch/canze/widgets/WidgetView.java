@@ -42,6 +42,7 @@ import java.lang.reflect.Constructor;
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
 import lu.fisch.canze.classes.ColorRanges;
+import lu.fisch.canze.classes.Intervals;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.R;
@@ -136,19 +137,19 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     drawable = (Drawable) constructor.newInstance();
                     drawable.setDrawSurface(this);
                     // apply attributes
-                    setMin(attributes.getInt(R.styleable.WidgetView_min, 0));
-                    setMax(attributes.getInt(R.styleable.WidgetView_max, 0));
-                    setMajorTicks(attributes.getInt(R.styleable.WidgetView_majorTicks, 0));
-                    setMinorTicks(attributes.getInt(R.styleable.WidgetView_minorTicks, 0));
-                    setTitle(attributes.getString(R.styleable.WidgetView_text));
-                    setShowLabels(attributes.getBoolean(R.styleable.WidgetView_showLabels, true));
-                    setShowValue(attributes.getBoolean(R.styleable.WidgetView_showValue, true));
+                    drawable.setMin(attributes.getInt(R.styleable.WidgetView_min, 0));
+                    drawable.setMax(attributes.getInt(R.styleable.WidgetView_max, 0));
+                    drawable.setMajorTicks(attributes.getInt(R.styleable.WidgetView_majorTicks, 0));
+                    drawable.setMinorTicks(attributes.getInt(R.styleable.WidgetView_minorTicks, 0));
+                    drawable.setTitle(attributes.getString(R.styleable.WidgetView_text));
+                    drawable.setShowLabels(attributes.getBoolean(R.styleable.WidgetView_showLabels, true));
+                    drawable.setShowValue(attributes.getBoolean(R.styleable.WidgetView_showValue, true));
                     drawable.setInverted(attributes.getBoolean(R.styleable.WidgetView_isInverted, false));
                     fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
 
                     String colorRangesJson =attributes.getString(R.styleable.WidgetView_colorRanges);
                     if(colorRangesJson!=null && !colorRangesJson.trim().isEmpty())
-                        drawable.setColorRanges(new ColorRanges(colorRangesJson.replace("'","\"")));
+                        drawable.setColorRanges(new ColorRanges(colorRangesJson.replace("'", "\"")));
 
                     String foreground =attributes.getString(R.styleable.WidgetView_foregroundColor);
                     if(foreground!=null && !foreground.isEmpty())
@@ -166,9 +167,13 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     if(titleColor!=null && !titleColor.isEmpty())
                         drawable.setTitleColor(Color.decode(titleColor));
 
+                    String intervalJson =attributes.getString(R.styleable.WidgetView_intervals);
+                    if(intervalJson!=null && !intervalJson.trim().isEmpty())
+                        drawable.setIntervals(new Intervals(intervalJson.replace("'", "\"")));
+
                     //MainActivity.debug("WidgetView: My SID is "+fieldSID);
 
-                    if(MainActivity.milesMode) setTitle(drawable.getTitle().replace("km","mi"));
+                    if(MainActivity.milesMode) drawable.setTitle(drawable.getTitle().replace("km","mi"));
 
                     repaint();
                 }
@@ -355,44 +360,6 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
     @Override
     public void setClickable(boolean clickable) {
         this.clickable = clickable;
-    }
-
-    /* *************************************
-     * Deleguations
-     * *************************************/
-	public void setMin(int min) {
-        if(drawable!=null)
-            drawable.setMin(min);
-	}
-
-	public void setMax(int max) {
-        if(drawable!=null)
-            drawable.setMax(max);
-	}
-
-	public void setMajorTicks(int majorTicks) {
-        if(drawable!=null)
-            drawable.setMajorTicks(majorTicks);
-	}
-
-	public void setMinorTicks(int minorticks) {
-        if(drawable!=null)
-            drawable.setMinorTicks(minorticks);
-	}
-
-	public void setShowLabels(boolean showLabels) {
-        if(drawable!=null)
-            drawable.setShowLabels(showLabels);
-	}
-
-    public void setTitle(String title) {
-        if(drawable!=null)
-            drawable.setTitle(title);
-    }
-
-    public void setShowValue(boolean showValue) {
-        if(drawable!=null)
-            drawable.setShowValue(showValue);
     }
 
     public void setFieldSID(String fieldSID) {

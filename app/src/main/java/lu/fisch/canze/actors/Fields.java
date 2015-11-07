@@ -1038,6 +1038,8 @@ public class Fields implements MessageListener {
                         int val = Integer.parseInt("0" + binString.substring(field.getFrom(), field.getTo() + 1), 2);
                         //MainActivity.debug("Fields: onMessageCompleteEvent > "+field.getSID()+" = "+val);
                         field.setValue(val);
+                        // update the fields last request date
+                        field.updateLastRequest();
                     } catch (Exception e)
                     {
                         // ignore

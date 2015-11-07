@@ -56,7 +56,8 @@ public abstract class Device {
     /**
      * Some fields will be custom, activity based
      */
-    protected ArrayList<Field> activityFields = new ArrayList<>();
+    protected ArrayList<Field> activityFieldsScheduled = new ArrayList<>();
+    protected ArrayList<Field> activityFieldsAsFastAsPossible = new ArrayList<>();
     /**
      * Some other fields will have to be queried anyway,
      * such as e.g. the speed --> safe mode driving
@@ -68,7 +69,8 @@ public abstract class Device {
      * Loops over ther "fields" array
      */
     protected int fieldIndex = 0;
-    protected int customFieldIndex = 0;
+
+    protected int activityFieldIndex = 0;
 
     protected boolean pollerActive = false;
     protected Thread pollerThread;
@@ -172,7 +174,7 @@ public abstract class Device {
 
                 Field field = null;
 
-                if(fieldIndex<0) {
+                if(fieldIndex <0) {
                     MainActivity.debug("Device: fieldIndex < 0, sleeping");
                     // no next field ---> sleep
                     try {
@@ -228,9 +230,6 @@ public abstract class Device {
                             fieldIndex = (fieldIndex + 1) % fields.size();
                     }*/
 
-                    // update the request time
-                    field.updateLastRequest();
-
                     MainActivity.debug("Device: Request took "+(Calendar.getInstance().getTimeInMillis()-start)/1000.+"s -( "+
                             field.getSID()+" )-> "+field.getPrintValue());
 
@@ -261,16 +260,17 @@ public abstract class Device {
                 Collections.sort(applicationFields, new Comparator<Field>() {
                     @Override
                     public int compare(Field lhs, Field rhs) {
-                        return (int) (lhs.getLastRequest()+lhs.getInterval() - (rhs.getLastRequest()+rhs.getInterval()));
+                    return (int) (lhs.getLastRequest()+lhs.getInterval() - (rhs.getLastRequest()+rhs.getInterval()));
                     }
                 });
 
-                /*MainActivity.debug("--");
+                MainActivity.debug("-1-");
                 for(int i=0; i<applicationFields.size(); i++)
                 {
                     MainActivity.debug(
-                            (applicationFields.get(i).getLastRequest()+applicationFields.get(i).getInterval()-referenceTime)+" > "+
-                            applicationFields.get(i).getSID());
+                            (applicationFields.get(i).getLastRequest()+applicationFields.get(i).getInterval()-referenceTime)+
+                                    " (" + applicationFields.get(i).getInterval() + ")> "+
+                                    applicationFields.get(i).getSID());
                 }/**/
 
                 // get the first field (the one with the smallest lastRequest time
@@ -282,22 +282,53 @@ public abstract class Device {
                 }
             }
             // take the next costum field
-            if(activityFields.size()>0)
+            if(activityFieldsScheduled.size()>0)
             {
-                /*
-                for(int i=0; i<customActivityFields.size(); i++)
+                // sort the activityFields
+                Collections.sort(activityFieldsScheduled, new Comparator<Field>() {
+                    @Override
+                    public int compare(Field lhs, Field rhs) {
+                    return (int) (lhs.getLastRequest()+lhs.getInterval() - (rhs.getLastRequest()+rhs.getInterval()));
+                    }
+                });
+
+                MainActivity.debug("-2-");
+                for(int i=0; i< activityFieldsScheduled.size(); i++)
                 {
-                    MainActivity.debug(i+" > "+ customActivityFields.get(i).getSID());
+                    Field field = activityFieldsScheduled.get(i);
+                    MainActivity.debug(
+                            applicationFields.contains(field) + " | " + (field.getLastRequest() + field.getInterval() - referenceTime) +
+                                    " (" + field.getInterval() + ")> " +
+                                    field.getSID());
                 }/**/
 
-                customFieldIndex = (customFieldIndex + 1) % activityFields.size();
-                //MainActivity.debug("Device: customFieldIndex = "+customFieldIndex);
-                //MainActivity.debug("Device: customField = "+customActivityFields.get(customFieldIndex));
-                //MainActivity.debug("Device: fieldIndex = "+fields.indexOf(customActivityFields.get(customFieldIndex)));
-                return fields.indexOf(activityFields.get(customFieldIndex));
+                // get the first field (the one with the smallest lastRequest time
+                Field field = activityFieldsScheduled.get(0);
+                // return it's index in the global registered field array
+                if(field.isDue(referenceTime)) {
+                    //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
+                    return fields.indexOf(field);
+                }
+            }
+            if(activityFieldsAsFastAsPossible.size()>0)
+            {
+
+                MainActivity.debug("-3-");
+                for(int i=0; i< activityFieldsAsFastAsPossible.size(); i++)
+                {
+                    Field field = activityFieldsAsFastAsPossible.get(i);
+                    MainActivity.debug(
+                            applicationFields.contains(field)+" | "+(field.getLastRequest()+field.getInterval()-referenceTime)+
+                                    " (" + field.getInterval() + ")> "+
+                                    field.getSID());
+                }/**/
+
+                activityFieldIndex = (activityFieldIndex + 1) % activityFieldsAsFastAsPossible.size();
+                return fields.indexOf(activityFieldsAsFastAsPossible.get(activityFieldIndex));
             }
 
-            MainActivity.debug("Device: applicationFields & customActivityFields empty?");
+            MainActivity.debug("Device: applicationFields & customActivityFields empty? "
+                    + applicationFields.size() + " / " + activityFieldsScheduled.size()+ " / " + activityFieldsAsFastAsPossible.size());
 
             return -1;
         }
@@ -436,7 +467,7 @@ public abstract class Device {
     {
         MainActivity.debug("Device: clearFields");
         synchronized (fields) {
-            activityFields.clear();
+            activityFieldsScheduled.clear();
             fields.clear();
             fields.addAll(applicationFields);
             //MainActivity.debug("cleared");
@@ -480,11 +511,22 @@ public abstract class Device {
         return false;
     }
 
-    private boolean containsActivityField(Field _field)
+    private boolean containsActivityFieldScheduled(Field _field)
     {
-        for(int i=0; i< activityFields.size(); i++)
+        for(int i=0; i< activityFieldsScheduled.size(); i++)
         {
-            Field field = activityFields.get(i);
+            Field field = activityFieldsScheduled.get(i);
+            if(field.getId()==_field.getId() && field.getResponseId().equals(_field.getResponseId()))
+                return true;
+        }
+        return false;
+    }
+
+    private boolean containsActivityFieldAsFastAsPossible(Field _field)
+    {
+        for(int i=0; i< activityFieldsAsFastAsPossible.size(); i++)
+        {
+            Field field = activityFieldsAsFastAsPossible.get(i);
             if(field.getId()==_field.getId() && field.getResponseId().equals(_field.getResponseId()))
                 return true;
         }
@@ -496,7 +538,41 @@ public abstract class Device {
      * The field is also immediately registered onto the device.
      * @param field the field to be added
      */
-    public void addActivityField(final Field field)
+    public void addActivityField(final Field field) {
+        // ass already present listeners are no being re-registered, do this always
+        // register it to be saved to the database
+        field.addListener(CanzeDataSource.getInstance());
+
+        synchronized (fields) {
+
+            if (!containsField(field)) {
+                // add it to the lists
+                fields.add(field);
+                activityFieldsAsFastAsPossible.add(field);
+                // if the scheduled list constains the same frame id,
+                // it can be removed there
+                if(containsActivityFieldScheduled(field))
+                    activityFieldsScheduled.remove(field);
+                // launch the field registration asynchronously
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        registerFilter(field.getId());
+                    }
+                })).start();
+            }
+            if(!containsActivityFieldAsFastAsPossible(field))
+            {
+                activityFieldsAsFastAsPossible.add(field);
+                // if the scheduled list constains the same frame id,
+                // it can be removed there
+                if(containsActivityFieldScheduled(field))
+                    activityFieldsScheduled.remove(field);
+            }
+        }
+    }
+
+    public void addActivityField(final Field field, int interval)
     {
         // ass already present listeners are no being re-registered, do this always
         // register it to be saved to the database
@@ -507,7 +583,9 @@ public abstract class Device {
             if (!containsField(field)) {
                 // add it to the lists
                 fields.add(field);
-                activityFields.add(field);
+                activityFieldsScheduled.add(field);
+                // set the fields query interval
+                field.setInterval(interval);
                 // launch the field registration asynchronously
                 (new Thread(new Runnable() {
                     @Override
@@ -516,9 +594,20 @@ public abstract class Device {
                     }
                 })).start();
             }
-            if(!containsActivityField(field))
+            if(!containsActivityFieldScheduled(field))
             {
-                activityFields.add(field);
+                // only add it this field id is not yet on the list of the
+                // request as fast as possible list.
+                if(!containsActivityFieldAsFastAsPossible(field))
+                    activityFieldsScheduled.add(field);
+                // the fields interval will be ignored as the one from the
+                // applicationFields has priority
+            }
+            else
+            {
+                // the smallest intervall is the one to take
+                if(interval<field.getInterval())
+                    field.setInterval(interval);
             }
         }
     }
@@ -556,7 +645,7 @@ public abstract class Device {
     {
         synchronized (fields) {
             // only remove from the custom fields
-            if(activityFields.remove(field))
+            if(activityFieldsScheduled.remove(field))
             {
                 // remove it from the database if it is not on the other list
                 if(!containsApplicationField(field)) {
@@ -581,8 +670,9 @@ public abstract class Device {
             if(applicationFields.remove(field))
             {
                 // remove it from the database if it is not on the other list
-                if(!containsActivityField(field)) {
+                if(!containsActivityFieldScheduled(field)) {
                     fields.remove(field);
+                    field.setInterval(Integer.MAX_VALUE);
                     // un-register it ...
                     field.removeListener(CanzeDataSource.getInstance());
                 }

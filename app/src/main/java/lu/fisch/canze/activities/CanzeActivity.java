@@ -40,6 +40,7 @@ import java.util.zip.GZIPOutputStream;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.bluetooth.BluetoothManager;
+import lu.fisch.canze.widgets.Drawable;
 import lu.fisch.canze.widgets.WidgetView;
 
 /**
@@ -174,12 +175,17 @@ public class CanzeActivity extends AppCompatActivity {
                             //throw new ExceptionInInitializerError("Field with following SID <" + wv.getFieldSID() + "> not found!");
                         }
                         else {
+                            Drawable drawable = wv.getDrawable();
                             // add field to list of registered sids for this widget
-                            wv.getDrawable().addField(field.getSID());
+                            drawable.addField(field.getSID());
                             // add listener
                             field.addListener(wv.getDrawable());
                             // add filter to reader
-                            MainActivity.device.addActivityField(field);
+                            int interval = drawable.getIntervals().getInterval(field.getSID());
+                            if(interval==-1)
+                                MainActivity.device.addActivityField(field);
+                            else
+                                MainActivity.device.addActivityField(field,interval);
                         }
                     }
 

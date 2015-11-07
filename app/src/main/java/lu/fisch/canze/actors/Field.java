@@ -59,7 +59,7 @@ public class Field {
     //private int skipsCount = 0;
 
     private long lastRequest = 0;
-    private int interval = 0;
+    private int interval = Integer.MAX_VALUE;
     
     public Field(int id, int from, int to, double resolution, int decimals, double offset, String unit, String requestId, String responseId, int car, int frequency) {
         this.from=from;
@@ -261,6 +261,21 @@ public class Field {
 
     public void setValue(double value) {
         this.value = value;
+        notifyFieldListeners();
+    }
+
+    public void setCalculatedValue(double value) {
+        // inverted conversion
+        if (MainActivity.milesMode)
+        {
+            if (getUnit().toLowerCase().startsWith("km"))
+                value = value * 1.609344;
+            else if (getUnit().toLowerCase().endsWith("km"))
+                value = value / 1.609344;
+        }
+        // inverted calculation
+        this.value = value/resolution+offset;
+
         notifyFieldListeners();
     }
 

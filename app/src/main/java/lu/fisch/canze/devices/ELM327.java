@@ -54,7 +54,6 @@ public class ELM327 extends Device {
     /**
      * the index of the actual field to request
      */
-    private int fieldIndex = 0;
     private int lastId = 0;
 
     @Override

@@ -69,6 +69,7 @@ import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.bluetooth.BluetoothManager;
+import lu.fisch.canze.classes.Intervals;
 import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.devices.BobDue;
 import lu.fisch.canze.devices.Device;
@@ -412,8 +413,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         for(int i=0; i<fields.size(); i++)
         {
             Field field = fields.get(i);
-            field.setValue(CanzeDataSource.getInstance().getLast(field.getSID()));
-            debug("MainActivity: Setting "+field.getSID()+" = "+field.getValue());
+            field.setCalculatedValue(CanzeDataSource.getInstance().getLast(field.getSID()));
+            //debug("MainActivity: Setting "+field.getSID()+" = "+field.getValue());
             //f.setValue(settings.getFloat(f.getUniqueID(), 0));
         }
 

@@ -26,7 +26,6 @@ import java.util.Calendar;
 
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
@@ -136,7 +135,7 @@ public class BobDue extends Device {
     @Override
     public void clearFields() {
         super.clearFields();
-        fieldIndex=0;
+        fieldIndex =0;
     }
 
     @Override
