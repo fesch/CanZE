@@ -108,50 +108,57 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
     // getting updated by the corresponding reader class.
     @Override
     public void onFieldUpdateEvent(final Field field) {
-        // the update has to be done in a separate thread
-        // otherwise the UI will not be repainted
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                String fieldId = field.getSID();
-                TextView tv;
+        final String fieldId = field.getSID();
 
-                // get the text field
+        // get the text field
 
-                if (fieldId.startsWith(SID_Preamble_CompartmentTemperatures)) {
-                    int cell = (Integer.parseInt(fieldId.split("[.]")[2]) - 8) / 24; // cell is 1-based
-                    // calculate the mean value of the previous full round
-                    if (cell == 1) {
-                        mean = 0;
-                        for (int i = 1; i <= lastCell; i++) {
-                            mean += lastVal[i];
-                        }
-                        mean /= lastCell;
-                    }
-                    double value = field.getValue();
-                    lastVal[cell] = value;
-                    tv = (TextView) findViewById(getResources().getIdentifier("text_comp_" + cell + "_temp", "id", getPackageName()));
-                    if (tv != null) {
-                        tv.setText(String.format("%." + String.valueOf(field.getDecimals()) + "f", field.getValue()));
-                        if (mean != 0) {
-                            int color = (int) (50 * (value - mean)); // color is temp minus mean
-                            if (color > 62) {
-                                color = 0xffffc0c0;
-                            } else if (color > 0) {
-                                color = 0xffc0c0c0 + (color * 0x010000); // one tick is one red
-                            } else if (color >= -62) {
-                                color = 0xffc0c0c0 - color; // one degree below is a 16th blue added
-                            } else {
-                                color = 0xffc0c0ff;
-                            }
-                            tv.setBackgroundColor(color);
-                        }
-                    }
+        if (fieldId.startsWith(SID_Preamble_CompartmentTemperatures)) {
+            int cell = (Integer.parseInt(fieldId.split("[.]")[2]) - 8) / 24; // cell is 1-based
+            final double value = field.getValue();
+
+            runOnUiThread(new Runnable() {
+                              @Override
+                              public void run() {
+                                  TextView tv = (TextView) findViewById(R.id.textDebug);
+                                  tv.setText(fieldId + ":" + value);
+                              }
+                          });
+
+            lastVal[cell] = value;
+            // calculate the mean value of the previous full round
+            if (cell == lastCell) {
+                mean = 0;
+                for (int i = 1; i <= lastCell; i++) {
+                    mean += lastVal[i];
                 }
-                tv = (TextView) findViewById(R.id.textDebug);
-                tv.setText(fieldId + ":" + mean);
+                mean /= lastCell;
+
+                // the update has to be done in a separate thread
+                // otherwise the UI will not be repainted doing that here only when the entire temperature buls is (supposed to be) in,
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int i = 1; i <= lastCell; i++) {
+                            TextView tv = (TextView) findViewById(getResources().getIdentifier("text_comp_" + i + "_temp", "id", getPackageName()));
+                            if (tv != null) {
+                                tv.setText("" + lastVal[i]);
+                                int color = (int) (50 * (lastVal[i] - mean)); // color is temp minus mean
+                                if (color > 62) {
+                                    color = 0xffffc0c0;
+                                } else if (color > 0) {
+                                    color = 0xffc0c0c0 + (color * 0x010000); // one tick is one red
+                                } else if (color >= -62) {
+                                    color = 0xffc0c0c0 - color; // one degree below is a 16th blue added
+                                } else {
+                                    color = 0xffc0c0ff;
+                                }
+                                tv.setBackgroundColor(color);
+                            }
+                        }
+                    }
+                });
             }
-        });
+        }
 
     }
 

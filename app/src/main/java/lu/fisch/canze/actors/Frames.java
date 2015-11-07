@@ -112,6 +112,23 @@ public class Frames {
                         +"0x69F,1000,BCM\n"
                         +"0x6F8,100,USM\n"
                         +"0x6FB,3000,CLUSTER\n"
+                        +"0x722,0,LINSCH\n"
+                        +"0x760,0,ESC\n"
+                        +"0x762,0,EPS\n"
+                        +"0x763,0,CLUSTER\n"
+                        +"0x764,0,CLIM\n"
+                        +"0x765,0,BCM\n"
+                        +"0x76D,0,USM\n"
+                        +"0x76E,0,UPA\n"
+                        +"0x772,0,AIBAG\n"
+                        +"0x77E,0,PEB\n"
+                        +"0x793,0,BCB\n"
+                        +"0x7B6,0,LBC2\n"
+                        +"0x7BB,0,LBC\n"
+                        +"0x7BC,0,UBP\n"
+                        +"0x7DA,0,TCU\n"
+                        +"0x7EC,0,EVC\n"
+                        +"\n"
                         +"";
         String[] lines = frameDef.split("\n");
         for (String line : lines) {
@@ -119,10 +136,10 @@ public class Frames {
             String[] tokens = line.split(",");
             if (tokens.length > 0) {
                 //Create a new field object and fill his  data
-                Ecu ecu = Ecus.getInstance().getByMnemonic(tokens[0].trim());
+                Ecu ecu = Ecus.getInstance().getByMnemonic(tokens[2].trim());
                 Frame frame = new Frame(
-                        Integer.parseInt(tokens[3].trim().replace("0x", ""), 16),
-                        Integer.parseInt(tokens[3].trim(), 10),
+                        Integer.parseInt(tokens[0].trim().replace("0x", ""), 16),
+                        Integer.parseInt(tokens[1].trim(), 10),
                         ecu
                 );
                 // add the field to the list of available fields

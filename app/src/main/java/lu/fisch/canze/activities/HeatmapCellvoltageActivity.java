@@ -110,54 +110,59 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
     // getting updated by the corresponding reader class.
     @Override
     public void onFieldUpdateEvent(final Field field) {
-        // the update has to be done in a separate thread
-        // otherwise the UI will not be repainted
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                String fieldId = field.getSID();
-                TextView tv;
+        // get the text field
+        final String fieldId = field.getSID();
+        int cell = 0;
+        if (fieldId.startsWith(SID_Preamble_CellVoltages1)) {
+            cell = (Integer.parseInt(fieldId.split("[.]")[2])) / 16; // cell is 1-based
+        } else if (fieldId.startsWith(SID_Preamble_CellVoltages2)) {
+            cell = (Integer.parseInt(fieldId.split("[.]")[2])) / 16 + 62; // cell is 1-based
+        }
+        if (cell > 0 && cell <= lastCell) {
+            final double value = field.getValue();
 
-                // get the text field
-                int cell = 0;
-                if (fieldId.startsWith(SID_Preamble_CellVoltages1)) {
-                    cell = (Integer.parseInt(fieldId.split("[.]")[2])) / 16; // cell is 1-based
-                } else if (fieldId.startsWith(SID_Preamble_CellVoltages2)) {
-                    cell = (Integer.parseInt(fieldId.split("[.]")[2])) / 16 + 62; // cell is 1-based
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    TextView tv = (TextView) findViewById(R.id.textDebug);
+                    tv.setText(fieldId + ":" + value);
                 }
-                if (cell > 0) {
-                    if (cell == 1) {
-                        mean = 0;
+            });
+
+            lastVoltage[cell] = value;
+            if (cell == lastCell) {
+                mean = 0;
+                for (int i = 1; i <= lastCell; i++) {
+                    mean += lastVoltage[i];
+                }
+                mean /= lastCell;
+
+                // the update has to be done in a separate thread
+                // otherwise the UI will not be repainted
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
                         for (int i = 1; i <= lastCell; i++) {
-                            mean += lastVoltage[i];
-                        }
-                        mean /= lastCell;
-                    }
-                    double value = field.getValue();
-                    lastVoltage[cell] = value;
-                    tv = (TextView) findViewById(getResources().getIdentifier("text_cell_" + cell + "_voltage", "id", getPackageName()));
-                    if (tv != null) {
-                        tv.setText(String.format("%." + String.valueOf(field.getDecimals()) + "f", field.getValue()));
-                        if (mean != 0) {
-                            int color = (int) (5000 * (value - mean)); // color is temp minus mean. 1mV difference is 5 color ticks
-                            if (color > 62) {
-                                color = 0xffffc0c0;
-                            } else if (color > 0) {
-                                color = 0xffc0c0c0 + (color * 0x010000); // one tick is one red
-                            } else if (color >= -62) {
-                                color = 0xffc0c0c0 - color; // one degree below is a 16th blue added
-                            } else {
-                                color = 0xffc0c0ff;
+                            TextView tv = (TextView) findViewById(getResources().getIdentifier("text_cell_" + i + "_voltage", "id", getPackageName()));
+                            if (tv != null) {
+                                tv.setText(String.format("%.3f", lastVoltage[i]));
+                                int color = (int) (5000 * (lastVoltage[i] - mean)); // color is temp minus mean. 1mV difference is 5 color ticks
+                                if (color > 62) {
+                                    color = 0xffffc0c0;
+                                } else if (color > 0) {
+                                    color = 0xffc0c0c0 + (color * 0x010000); // one tick is one red
+                                } else if (color >= -62) {
+                                    color = 0xffc0c0c0 - color; // one degree below is a 16th blue added
+                                } else {
+                                    color = 0xffc0c0ff;
+                                }
+                                tv.setBackgroundColor(color);
                             }
-                            tv.setBackgroundColor(color);
                         }
                     }
-                }
-                tv = (TextView) findViewById(R.id.textDebug);
-                tv.setText(fieldId + ":" + mean);
+                });
             }
-        });
-
+        }
     }
 
     @Override
