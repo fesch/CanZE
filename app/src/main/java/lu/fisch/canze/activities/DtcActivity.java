@@ -107,14 +107,15 @@ public class DtcActivity  extends CanzeActivity {
 
         clearResult();
 
+        appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
+
         // get the from ID from the selected ECU
         filter = Integer.toHexString(ecu.getFromId());
-        appendResult("Query " + ecu.getName() + " (" + filter + ")\n");
 
         // compile the field query and get the Field object
         field = Fields.getInstance().getBySID(filter + ".5902ff.0"); // get DTC
         if (field == null) {
-            appendResult("- field does not exist\n");
+            appendResult("Field does not exist\n");
             return;
         }
 
@@ -127,23 +128,30 @@ public class DtcActivity  extends CanzeActivity {
 
         // query the Field
         Message message = MainActivity.device.requestField(field);
+        if (message == null) {
+            appendResult("Msg is null. Is the car switched on?\n");
+            return;
+        }
+
         String backRes = message.getData();
         if (backRes == null) {
-            appendResult("Request DTC code for this ECU not found, nothing send\n");
+            appendResult("Data is null. This should never happen, please report\n");
             return;
         }
 
         // check the response
         if (!backRes.startsWith("59")) {
-            appendResult("Clear send, but unexpected result received:[" + backRes + "\n");
+            appendResult("Query send, but unexpected result received:[" + backRes + "\n");
             return;
         }
 
         // loop trough all DTC's
+        boolean onePrinted = false;
         for (int i = 6; i < backRes.length() - 7; i += 8) {
             int bits = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
             // exclude 50 / 10 as it means something like "I have this DTC code, but I have never tested it"
             if (bits != 0x50 && bits != 0x10) {
+                onePrinted = true;
                 appendResult("\nDTC" + backRes.substring(i, i + 6) + ":" + backRes.substring(i + 6, i + 8) + ":" + Dtcs.getDescription(backRes.substring(i, i + 6)));
                 if ((bits & 0x01) != 0) appendResult(" tstFail");
                 if ((bits & 0x02) != 0) appendResult(" tstFailThisOp");
@@ -155,6 +163,7 @@ public class DtcActivity  extends CanzeActivity {
                 if ((bits & 0x80) != 0) appendResult(" WrnLght");
             }
         }
+        if (!onePrinted) appendResult("\nNo active DTCs\n");
     }
 
     void doClearEcu(Ecu ecu) {
@@ -183,9 +192,14 @@ public class DtcActivity  extends CanzeActivity {
 
         // query the Field
         Message message = MainActivity.device.requestField(field);
+        if (message == null) {
+            appendResult("Msg is null. Is the car switched on?\n");
+            return;
+        }
+
         String backRes = message.getData();
         if (backRes == null) {
-            appendResult("Clear code for this ECU not found, nothing send\n");
+            appendResult("Data is null. This should never happen, please report\n");
             return;
         }
 

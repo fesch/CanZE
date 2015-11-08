@@ -23,6 +23,8 @@ package lu.fisch.canze.activities;
 
 
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -46,7 +48,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
 //  private static final int [] fluenceVersions = {0x0202, 0x0172, 0x7505, 0x02ba, 0x0305, 0x0907, 0x0026, 0x014a, 0x8160,      0, 0x140e, 0x0007, 0x0024, 0xd300, 0x5c0a,      0};
 //  private static final int [] kangooVersions  = {0x0201, 0x1011, 0x7505, 0x0205,      1,      1, 0x003d,      1,      1,      1, 0x0003,      1,      1, 0xd300, 0x5c0a,      1};
 //  private static final int [] x10Versions     = zoeVersions;
-    private static final int [] zoeVersions     = {0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
+    private static final int [] zoeVersions     = {0x0680, 0x0336, 0x0000, 0x0200, 0x0470, 0x2420, 0x0504, 0x0800, 0x0e43, 0x0c04, 0x0000, 0x0515, 0x0000, 0x0000, 0x0000, 0x0000};
     private static final int [] fluenceVersions = {0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
     private static final int [] kangooVersions  = {0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
     private static final int [] x10Versions     = zoeVersions;
@@ -77,6 +79,10 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
                 versions = zoeVersions;
                 break;
         }
+
+        TextView textView = (TextView) findViewById(R.id.link);
+        textView.setText(Html.fromHtml("Learn more about the car's computers <a href='http://canze.fisch.lu/computers/'>here</a>."));
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
 
         initListeners();
 
@@ -133,7 +139,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
         addListener("764.6180.144"); // CLIM
         addListener("76e.6180.144"); // UPA not for Zoe
         addListener("7b6.6180.144"); // LBC2
-        addListener("722.6180.144"); // LINSCH not for FLuence or Zoe
+        //addListener("722.6180.144"); // LINSCH not for FLuence or Zoe
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -212,10 +218,10 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
                         tv = (TextView) findViewById(R.id.ecu7b6);
                         refVersion = versions [14];
                         break;
-                    case "722.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu722);
-                        refVersion = versions [15];
-                        break;
+//                  case "722.6180.144":
+//                      tv = (TextView) findViewById(R.id.ecu722);
+//                      refVersion = versions [15];
+//                      break;
                 }
 
                 // set regular new content, all exeptions handled above
