@@ -82,6 +82,12 @@ public abstract class Device {
      */
     boolean someThingWrong = false;
 
+    /**
+     * lastInitProblem should be filled with a descriptive problem description by the initDevice implementation. In normal operation we don't care
+     * because a device either initializes or not, but for testing a new device this can be very helpful.
+     */
+    protected String lastInitProblem = "";
+
     /* ----------------------------------------------------------------
      * Abstract methods (to be implemented in each "real" device)
      \ -------------------------------------------------------------- */
@@ -112,7 +118,9 @@ public abstract class Device {
                                     //MainActivity.debug("Device: sleeping");
                                     try {
                                         Thread.sleep(5000);
-                                    } catch (Exception e) {}
+                                    } catch (Exception e) {
+                                        // ignore a sleep exception
+                                    }
                                 }
                                 // query a field
                                 else {
@@ -172,14 +180,16 @@ public abstract class Device {
         {
             try {
 
-                Field field = null;
+                Field field;
 
                 if(fieldIndex <0) {
                     MainActivity.debug("Device: fieldIndex < 0, sleeping");
                     // no next field ---> sleep
                     try {
                         Thread.sleep(100);
-                    } catch(Exception e) {}
+                    } catch(Exception e) {
+                        // ignore a sleep exception
+                    }
                     // try to get the next field
                     fieldIndex = getNextIndex();
                     return;
@@ -244,9 +254,6 @@ public abstract class Device {
                 e.printStackTrace();
                 fieldIndex = getNextIndex();
             }
-        }
-        else {
-            // ignore if there are no fields to query
         }
     }
 
@@ -773,4 +780,8 @@ public abstract class Device {
     public abstract boolean initDevice(int toughness);
 
     protected abstract boolean initDevice (int toughness, int retries);
+
+    public String getLastInitProblem () {
+        return lastInitProblem;
+    }
 }
