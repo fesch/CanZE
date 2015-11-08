@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         dataFormat = settings.getString("dataFormat", "crdt");
         deviceName = settings.getString("device", "Arduino");
         safeDrivingMode = settings.getBoolean("optSafe", true);
-        bluetoothBackgroundMode = settings.getBoolean("optBTBackground", true);
+        bluetoothBackgroundMode = settings.getBoolean("optBTBackground", false);
         milesMode = settings.getBoolean("optMiles", false);
         dataexportMode = settings.getBoolean("optDataExport", false);
         toastLevel = settings.getInt("optToast", 1);

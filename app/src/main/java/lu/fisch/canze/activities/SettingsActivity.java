@@ -33,6 +33,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -202,10 +203,12 @@ public class SettingsActivity extends AppCompatActivity {
 
                     // set dialog message
                     alertDialogBuilder
-                            .setMessage("Leaving the Bluetooth active while the application goes to background " +
+                            .setMessage(Html.fromHtml("Leaving the Bluetooth active while the application goes to background " +
                                     "may interfer with other application using the Bluetooth feature. It also" +
-                                    "may suck of your battery if you forget to kill CanZE or disable this option.\n\n" +
-                                    "Are you sure you want to continue enabling the Bluetooth Background Mode?")
+                                    "may suck of your battery if you forget to kill CanZE or disable this option." +
+                                    "<br><br><b>If using this feature, the connection will stay alive, even if you turn of " +
+                                    "your Android device!</b><br><br>" +
+                                    "Are you sure you want to continue enabling the Bluetooth Background Mode?"))
                             .setCancelable(true)
                             .setPositiveButton("Yes, I know what I'm doing", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
