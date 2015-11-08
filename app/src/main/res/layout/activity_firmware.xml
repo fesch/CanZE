@@ -241,7 +241,7 @@
                     android:layout_marginTop="4dp"
                     />
             </TableRow>
-
+<!--
             <TableRow>
                 <TextView
                     android:text="@string/label_ecu_linsch"
@@ -255,6 +255,30 @@
                     android:layout_marginTop="4dp"
                     />
             </TableRow>
+-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#ffd124"
+                android:layout_weight="1">
+
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:id="@+id/link"
+                android:layout_weight="1"
+                android:layout_gravity="center" />
+            </LinearLayout>
 
         </TableLayout>
 
