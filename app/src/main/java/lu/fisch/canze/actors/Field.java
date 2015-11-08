@@ -40,10 +40,10 @@ public class Field {
 
     private final ArrayList<FieldListener> fieldListeners = new ArrayList<>();
 
+    private Frame frame;
     private int from;
     private int to;
     private double offset;
-    private int id;
     //private int divider;
     //private int multiplier;
     private int decimals;
@@ -53,7 +53,6 @@ public class Field {
     private String responseId;
     private int car;
     //private int skips;
-    private int frequency;
 
     private double value = Double.NaN;
     //private int skipsCount = 0;
@@ -61,18 +60,17 @@ public class Field {
     private long lastRequest = 0;
     private int interval = Integer.MAX_VALUE;
     
-    public Field(int id, int from, int to, double resolution, int decimals, double offset, String unit, String requestId, String responseId, int car, int frequency) {
+    public Field(Frame frame, int from, int to, double resolution, int decimals, double offset, String unit, String requestId, String responseId, int car) {
+        this.frame=frame;
         this.from=from;
         this.to=to;
         this.offset=offset;
-        this.id=id;
         this.resolution = resolution;
         this.decimals = decimals;
         this.unit = unit;
         this.requestId=requestId;
         this.responseId=responseId;
         this.car=car;
-        this.frequency=frequency;
 
         this.lastRequest=Calendar.getInstance().getTimeInMillis();
     }
@@ -80,7 +78,7 @@ public class Field {
     @Override
     public Field clone()
     {
-        Field field = new Field(id, from, to, resolution, decimals, offset, unit, requestId, responseId, car,frequency);
+        Field field = new Field(frame, from, to, resolution, decimals, offset, unit, requestId, responseId, car);
         field.value = value;
         field.lastRequest=lastRequest;
         field.interval=interval;
@@ -101,9 +99,9 @@ public class Field {
     public String getSID()
     {
         if(!responseId.trim().isEmpty())
-            return (Integer.toHexString(id)+"."+responseId.trim()+"."+from).toLowerCase();
+            return (Integer.toHexString(frame.getId())+"."+responseId.trim()+"."+from).toLowerCase();
         else
-            return (Integer.toHexString(id)+"."+from).toLowerCase();
+            return (Integer.toHexString(frame.getId())+"."+from).toLowerCase();
     }
 
     public String getUniqueID()
@@ -176,7 +174,7 @@ public class Field {
      */
     private void notifyFieldListeners(boolean async)
     {
-        if(async == false) {
+        if(!async) {
             for(int i=0; i<fieldListeners.size(); i++) {
                 fieldListeners.get(i).onFieldUpdateEvent(this.clone());
             }
@@ -280,15 +278,15 @@ public class Field {
     }
 
     public int getId() {
-        return id;
+        return frame.getId();
     }
     public String getHexId() {
-        return Integer.toHexString(id);
+        return Integer.toHexString(frame.getId());
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
     
     public double getResolution() {
         return resolution;
@@ -356,12 +354,12 @@ public class Field {
     }
 
     public int getFrequency() {
-        return frequency;
+        return frame.getInterval();
     }
 
-    public void setFrequency(int frequency) {
-        this.frequency = frequency;
-    }
+//    public void setFrequency(int frequency) {
+//        this.frequency = frequency;
+//    }
 
     public int getDecimals() {
         return decimals;
