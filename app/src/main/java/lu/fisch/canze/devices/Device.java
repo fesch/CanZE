@@ -52,7 +52,7 @@ public abstract class Device {
      * the connected CAN-device, so this is the list of all fields that
      * have to be read and updated.
      */
-    protected ArrayList<Field> fields = new ArrayList<>();
+    protected final ArrayList<Field> fields = new ArrayList<>();
     /**
      * Some fields will be custom, activity based
      */
