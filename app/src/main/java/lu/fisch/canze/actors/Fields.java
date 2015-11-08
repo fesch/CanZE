@@ -45,13 +45,16 @@ import java.util.HashMap;
  */
 public class Fields implements MessageListener {
 
+    // next version we can condense the init string to 11 fields
+    // need to redefine the CSV tab and at the same time modify the init code here
+
     private static final int FIELD_ID           = 0;
     private static final int FIELD_FROM         = 1;    
     private static final int FIELD_TO           = 2;    
-    private static final int FIELD_DIVIDER      = 3;
-    private static final int FIELD_MULTIPLIER   = 4;    
+    private static final int FIELD_DIVIDER      = 3; // should be pre-calculated in the spreadsheet to resolution and folden in one
+    private static final int FIELD_MULTIPLIER   = 4; // should be pre-calculated in the spreadsheet to resolution and folden in one
     private static final int FIELD_OFFSET       = 5;    
-    private static final int FIELD_DECIMALS     = 6;    
+    private static final int FIELD_DECIMALS     = 6;
     private static final int FIELD_FORMAT       = 7;
     private static final int FIELD_UNIT         = 8;
     private static final int FIELD_REQUEST_ID   = 9;
@@ -59,7 +62,7 @@ public class Fields implements MessageListener {
     private static final int FIELD_DESCRIPTION  = 11;
     private static final int FIELD_CAR          = 12;
     private static final int FIELD_SKIPS        = 13;
-    private static final int FIELD_FREQ         = 14;
+    private static final int FIELD_FREQ         = 14; // not needed anymore
 
     public static final int CAR_ANY             = 0;
     public static final int CAR_FLUENCE         = 1;
@@ -505,7 +508,6 @@ public class Fields implements MessageListener {
                         +"0x1f8, 62, 63, 1, 1, 0, 0, , , , , DeclutchInProgress, 0, 0, 10\n"
                         +"0x1fd, 0, 7, 10, 5, 0, 1, Amp 12V: %2ld.%01ld, A, , , 12V Battery Current, 0, 0, 100\n"
                         +"0x1fd, 48, 55, 1, 1, 0x50, 0, KwDash: %4ld, kW, , , Consumption, 0, 0, 100\n"
-                        +"0x218, 0, 15, 1, 1, 0, 0, , , , , , 0, 0, 20\n"
                         +"0x29a, 0, 15, 1, 1, 0, 0, Speed FR: %5ld, , , , Speed Front Right, 0, 0, 20\n"
                         +"0x29a, 16, 31, 1, 1, 0, 0, Speed FL: %5ld, , , , Speed Front Left, 0, 0, 20\n"
                         +"0x29a, 32, 47, 100, 1, 0, 2, , , , , , 0, 0, 20\n"
@@ -540,11 +542,9 @@ public class Fields implements MessageListener {
                         +"0x42e, 38, 43, 1, 1, 0, 1, AC pilot current: %3ld, A, , , Charging Pilot Current, 0, 0, 100\n"
                         +"0x42e, 44, 50, 1, 1, 40, 0, HVBatteryTemp, C, , , HVBatteryTemp, 0, 0, 100\n"
                         +"0x42e, 56, 63, 10, 3, 0, 1, ChargingPower, kW, , , ChargingPower, 0, 0, 100\n"
-                        +"0x439, 0, 15, 1, 1, 0, 0, Accel? %5ld, ?, , , , 0, 0, 1000\n"
                         +"0x4f8, 0, 1, 1, -1, -2, 0, Start: %4ld, , , , , 0, 0, 100\n"
                         +"0x4f8, 24, 39, 100, 1, 0, 2, Speed(d): %3ld.%02ld, , , , Speed on Display, 2, 0, 100\n"
                         +"0x4f8, 4, 5, 1, -1, -2, 0, Park.break: %1ld, , , , Parking Break, 0, 0, 100\n"
-                        +"0x534, 32, 40, 1, 1, 40, 0, Temp out: %4ld, C, , , , 0, 0, 100\n"
                         +"0x5d7, 0, 15, 100, 1, 0, 2, Speed(a): %3ld.%02ld, km/h, , , Speed, 0, 0, 100\n"
                         +"0x5d7, 16, 43, 100, 1, 0, 2, Odo: %5ld.%02ld, km, , , Odometer, 0, 0, 100\n"
                         +"0x5d7, 44, 45, 1, 1, 0, 0, WheelsLockingState %1ld, ?, , , WheelsLockingState, 0, 0, 100\n"
@@ -933,35 +933,40 @@ public class Fields implements MessageListener {
             //MainActivity.debug("Fields: Reading > "+line);
             //Get all tokens available in line
             String[] tokens = line.split(",");
-            if (tokens.length > 0) {
+            if (tokens.length == 15) {
                 int divider = Integer.parseInt(tokens[FIELD_DIVIDER].trim());
                 int multiplier = Integer.parseInt(tokens[FIELD_MULTIPLIER].trim());
-
                 double multi = ((double) multiplier / divider);
 
-                //Create a new field object and fill his  data
-                Field field = new Field(
-                        Integer.parseInt(tokens[FIELD_ID].trim().replace("0x", ""), 16),
-                        Integer.parseInt(tokens[FIELD_FROM].trim()),
-                        Integer.parseInt(tokens[FIELD_TO].trim()),
-                        multi,
-                        Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
-                        (
-                                tokens[FIELD_OFFSET].trim().contains("0x")
-                                        ?
-                                        Integer.parseInt(tokens[FIELD_OFFSET].trim().replace("0x", ""), 16)
-                                        :
-                                        Double.parseDouble(tokens[FIELD_OFFSET].trim())
-                        ),
-                        tokens[FIELD_UNIT].trim(),
-                        tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
-                        tokens[FIELD_RESPONSE_ID].trim().replace("0x", ""),
-                        Integer.parseInt(tokens[FIELD_CAR].trim()),
-                        //Integer.parseInt(tokens[FIELD_SKIPS].trim()),
-                        Integer.parseInt(tokens[FIELD_FREQ].trim())
-                );
-                // add the field to the list of available fields
-                add(field);
+                int frameId = Integer.parseInt(tokens[FIELD_ID].trim().replace("0x", ""), 16);
+                Frame frame = Frames.getInstance().getById(frameId);
+                if (frame == null) {
+                    MainActivity.debug("frame does not exist:" + tokens[FIELD_ID].trim());
+                } else {
+                    //Create a new field object and fill his  data
+                    Field field = new Field(
+                            frame,
+                            Integer.parseInt(tokens[FIELD_FROM].trim()),
+                            Integer.parseInt(tokens[FIELD_TO].trim()),
+                            multi,
+                            Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
+                            (
+                                    tokens[FIELD_OFFSET].trim().contains("0x")
+                                            ?
+                                            Integer.parseInt(tokens[FIELD_OFFSET].trim().replace("0x", ""), 16)
+                                            :
+                                            Double.parseDouble(tokens[FIELD_OFFSET].trim())
+                            ),
+                            tokens[FIELD_UNIT].trim(),
+                            tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
+                            tokens[FIELD_RESPONSE_ID].trim().replace("0x", ""),
+                            Integer.parseInt(tokens[FIELD_CAR].trim())
+                            //Integer.parseInt(tokens[FIELD_SKIPS].trim())
+                            //Integer.parseInt(tokens[FIELD_FREQ].trim())
+                    );
+                    // add the field to the list of available fields
+                    add(field);
+                }
             }
         }
     }
@@ -999,20 +1004,21 @@ public class Fields implements MessageListener {
         BufferedReader fileReader = new BufferedReader(new FileReader(filename));
         String line;
         //Read the file line by line starting from the second line
-        while ((line = fileReader.readLine()) != null) 
+        while ((line = fileReader.readLine()) != null)
         {
             //Get all tokens available in line
             String[] tokens = line.split(",");
-            if (tokens.length > 0) 
+            if (tokens.length == 15)
             {
-                    int divider = Integer.parseInt(tokens[FIELD_DIVIDER].trim());
-                    int multiplier = Integer.parseInt(tokens[FIELD_MULTIPLIER].trim());
-                    int decimals = Integer.parseInt(tokens[FIELD_DECIMALS].trim());
+                int divider = Integer.parseInt(tokens[FIELD_DIVIDER].trim());
+                int multiplier = Integer.parseInt(tokens[FIELD_MULTIPLIER].trim());
+                int decimals = Integer.parseInt(tokens[FIELD_DECIMALS].trim());
+                double multi = ((double) multiplier/divider)/(decimals==0?1:decimals); // <<<<<< Probably wrong, as decimals have completely changed, and that should be in file too
+                int frameId = Integer.parseInt(tokens[FIELD_ID].trim().replace("0x", ""), 16);
 
-                    double multi = ((double) multiplier/divider)/(decimals==0?1:decimals);
-
+                Frame frame = Frames.getInstance().getById(frameId);
                 Field field = new Field(
-                        Integer.parseInt(tokens[FIELD_ID].trim().replace("0x", ""), 16),
+                        frame,
                         Integer.parseInt(tokens[FIELD_FROM].trim()),
                         Integer.parseInt(tokens[FIELD_TO].trim()),
                         multi,
@@ -1027,9 +1033,9 @@ public class Fields implements MessageListener {
                         tokens[FIELD_UNIT].intern(),
                         tokens[FIELD_REQUEST_ID].trim().replace("0x", "").intern(),
                         tokens[FIELD_RESPONSE_ID].trim().replace("0x", "").intern(),
-                        Integer.parseInt(tokens[FIELD_CAR].trim()),
-                        //Integer.parseInt(tokens[FIELD_SKIPS].trim()),
-                        Integer.parseInt(tokens[FIELD_FREQ].trim())
+                        Integer.parseInt(tokens[FIELD_CAR].trim())
+                        //Integer.parseInt(tokens[FIELD_SKIPS].trim())
+                        //Integer.parseInt(tokens[FIELD_FREQ].trim())
                 );
                 // add the field to the list of available fields
                 add(field);

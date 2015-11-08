@@ -49,19 +49,6 @@ public class ElmTestActivity extends CanzeActivity {
         setContentView(R.layout.activity_elm_test);
         textView = (TextView) findViewById(R.id.textResult);
 
-        final Button btnTest = (Button) findViewById(R.id.elmTest);
-        btnTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        doTest();
-                    }
-                }).start();
-            }
-        });
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -77,6 +64,20 @@ public class ElmTestActivity extends CanzeActivity {
                     return;
                 }
 
+
+                final Button btnTest = (Button) findViewById(R.id.elmTest);
+                btnTest.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                doTest();
+                            }
+                        }).start();
+                    }
+                });
+
                 appendResult("\nReady");
             }
         }).start();
@@ -85,61 +86,73 @@ public class ElmTestActivity extends CanzeActivity {
     void doTest () {
 
         Field field;
-
+        Message message;
+        String backRes;
         clearResult();
 
         appendResult("\nSending initialisation sequence...\n");
-        if (!MainActivity.device.initDevice (1)) {
+        if (!MainActivity.device.initDevice(1)) {
             appendResult("\nInitialisation failed\n");
             appendResult("Problem:" + MainActivity.device.getLastInitProblem() + "\n");
             return;
         }
-        appendResult("Done\n");
+        appendResult("Received expected result\n==========\n");
 
         appendResult("\nProcessing prepped ISO-TP command CLUSTER SW \n");
         field = Fields.getInstance().getBySID("763.6180.144");
-        if (field != null) {
-            Message message = MainActivity.device.requestField(field);
-            if (message != null) {
-                String backRes = message.getData();
-                if (backRes != null)
-                    if (!backRes.equals("")) {
-                        appendResult(backRes.replace('\r', '•'));
-                    } else {
-                        appendResult("empty");
-                    }
-                else
-                    appendResult("data null");
-            }
-            else
-                appendResult("msg null");
+        if (field == null) {
+            appendResult("Requested field does not exist. This is an error in the test quite, please report\n");
+            return;
         }
-        else
-            appendResult("field does not exist\n");
+        message = MainActivity.device.requestField(field);
+        if (message == null) {
+            appendResult("Msg is null. Is the car switched on?\n");
+            return;
+        }
+        backRes = message.getData();
+        if (backRes == null) {
+            appendResult("Data is null. This should never happen, please report\n");
+            return;
+        }
+        if (backRes.equals("")) {
+            appendResult("Result is empty. Your dongle will not work\n");
+            return;
+        }
+        if (!backRes.startsWith("6180")) {
+            appendResult("Unexpected result:" + backRes.replace('\r', '•') + "\n");
+            return;
+        }
+        appendResult("Received expected result\n==========\n");
 
-
-        appendResult("\nProcessing prepped free frame\n");
+        appendResult("\nProcessing prepped free frame PARK BRAKE\n");
         field = Fields.getInstance().getBySID("4f8.4");
-        if (field != null) {
-            Message message = MainActivity.device.requestField(field);
-            if (message != null) {
-                String backRes = message.getData();
-                if (backRes != null) {
-                    if (!backRes.equals("")) {
-                        appendResult(backRes.replace('\r', '•'));
-                    } else {
-                        appendResult("empty");
-                    }
-                }
-                else
-                    appendResult("data null");
-            }
-            else
-                appendResult("msg null");
+        if (field == null) {
+            appendResult("Requested field does not exist. This is an error in the test quite, please report\n");
+            return;
         }
-        else
-            appendResult("- field does not exist\n");
+        message = MainActivity.device.requestField(field);
+        if (message == null) {
+            appendResult("Msg is null. Is the car switched on?\n");
+            return;
+        }
+        backRes = message.getData();
+        if (backRes == null) {
+            appendResult("Data is null. This should never happen, please report\n");
+            return;
+        }
+        if (backRes.equals("")) {
+            appendResult("Result is empty. Your dongle will not work\n");
+            return;
+        }
+        if (backRes.length() != 10) {
+            appendResult("Unexpected result:" + backRes.replace('\r', '•') + "\n");
+            return;
+        }
+        appendResult("Received expected result\n==========\n");
+
+        appendResult("\nYour device passed all the tests, it will probably work just fine\n");
     }
+
 
 
 

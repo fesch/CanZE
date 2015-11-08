@@ -54,7 +54,7 @@ public class Ecus {
                         + "Instrument panel,247,V;M,763,743,CLUSTER,-\n"
                         + "Electrical Power Steering,1232,V,762,742,EPS,PAS\n"
                         + "Electronic Stability Control,1094,V,760,740,ESC,ABS\n"
-                        + "Uncoupled Braking Pedal,2197,V,7bc,79c,ESC,ABS\n"
+                        + "Uncoupled Braking Pedal,2197,V,7bc,79c,UBP,-\n"
                         + "Body Control Module,645,V;O,765,845,BCM,UCH\n"
                         + "Climate Control,419,V,764,744,CLIM,CLIMA;CLIMABOX\n"
                         + "Park Assist,1222,O,76e,74e,UPA,-\n"
