@@ -133,7 +133,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
                 String fieldId = field.getSID();
                 TextView tv = null;
                 String value = "";
-                ProgressBar pb = null;
+                ProgressBar pb;
 
                 // get the text field
                 switch (fieldId) {

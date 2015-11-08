@@ -22,7 +22,6 @@
 package lu.fisch.canze.devices;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import lu.fisch.canze.activities.MainActivity;
@@ -44,7 +43,7 @@ public class ELM327 extends Device {
 
 
     // define the timeout we may wait to get an answer
-    private int DEFAULT_TIMEOUT = 500;
+    private static int DEFAULT_TIMEOUT = 500;
     private int TIMEOUT = 500;
     // define End Of Message for this type of reader
     private static final char EOM1 = '\r';
@@ -57,6 +56,12 @@ public class ELM327 extends Device {
      * the index of the actual field to request
      */
     private int lastId = 0;
+
+    /**
+     *
+     *
+     */
+    private boolean lastCommandWasFreeFrame = false;
 
     @Override
     public void registerFilter(int frameId) {
@@ -108,7 +113,6 @@ public class ELM327 extends Device {
     */
 
     protected boolean initDevice (int toughness, int retries) {
-        boolean ret;
         if (initDevice(toughness)) return true;
         while (retries-- > 0) {
             flushWithTimeout(500);
@@ -131,8 +135,7 @@ public class ELM327 extends Device {
         String response;
         int elmVersion = 0;
 
-        // ensure the decoder (processData) is reset
-        //buffer = "";
+        lastInitProblem = "";
 
         // ensure the dongle header field is set again
         lastId = 0;
@@ -168,7 +171,8 @@ public class ELM327 extends Device {
         }
 
         if (response.trim().equals("")) {
-            if (timeoutLogLevel >= 1) MainActivity.toast("ELM is not responding");
+            lastInitProblem = "ELM is not responding";
+            if (timeoutLogLevel >= 1) MainActivity.toast(lastInitProblem);
             return false;
         }
 
@@ -183,42 +187,67 @@ public class ELM327 extends Device {
             } else if (response.toUpperCase().contains("INNOCAR")) {
                 elmVersion = 8015;
             } else {
-                if (timeoutLogLevel >= 1) MainActivity.toast("Unrecognized ELM version response [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
+                lastInitProblem = "Unrecognized ELM version response [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]";
+                if (timeoutLogLevel >= 1) MainActivity.toast(lastInitProblem);
                 return false;
             }
         }
 
         // at this point, echo is still on (except when atd was issued), so we still need to absorb the echoed command
         // ate0 (no echo)
-        if (!initCommandExpectOk("ate0", true)) return false;
+        if (!initCommandExpectOk("ate0", true)) {
+            lastInitProblem = "ATE0 command problem";
+            return false;
+        }
 
         // at this point, echo is finally off so we can safely check for OK messages. If the app starts responding with toasts showing the responses
         // in brackets equal to the commands, somehow the echo was not executed. so maybe we need to check for that specific condition in the next
         // command.
 
         // ats0 (no spaces)
-        if (!initCommandExpectOk("ats0")) return false;
+        if (!initCommandExpectOk("ats0")) {
+            lastInitProblem = "ATS0 command problem";
+            return false;
+        }
 
         // atsp6 (CAN 500K 11 bit)
-        if (!initCommandExpectOk("atsp6")) return false;
+        if (!initCommandExpectOk("atsp6")) {
+            lastInitProblem = "ATSP6 command problem";
+            return false;
+        }
 
         // atat1 (auto timing)
-        if (!initCommandExpectOk("atat1")) return false;
+        if (!initCommandExpectOk("atat1")) {
+            lastInitProblem = "ATAT1 command problem";
+            return false;
+        }
 
         // atcaf0 (no formatting)
-        if (!initCommandExpectOk("atcaf0")) return false;
+        if (!initCommandExpectOk("atcaf0")) {
+            lastInitProblem = "ATCAF0 command problem";
+            return false;
+        }
 
         // atfcsh79b        Set flow control response ID to 79b (the LBC) This is needed to set the flow control response, but that one is remembered :-)
-        if (!initCommandExpectOk("atfcsh77b")) return false;
+        if (!initCommandExpectOk("atfcsh77b")) {
+            lastInitProblem = "ATFCSH77B command problem";
+            return false;
+        }
 
         // atfcsd300020     Set the flow control response data to 300010 (flow control, clear to send,
         //                  all frames, 16 ms wait between frames. Note that it is not possible to let
         //                  the ELM request each frame as the Altered Flow Control only responds to a
         //                  First Frame (not a Next Frame)
-        if (!initCommandExpectOk("atfcsd300010")) return false;
+        if (!initCommandExpectOk("atfcsd300010")) {
+            lastInitProblem = "ATFCSD300010 command problem";
+            return false;
+        }
 
         // atfcsm1          Set flow control mode 1 (ID and data suplied)
-        if (!initCommandExpectOk("atfcsm1")) return false;
+        if (!initCommandExpectOk("atfcsm1")) {
+            lastInitProblem = "ATFCSM1 command problem";
+            return false;
+        }
 
         if (toughness == 0 ) {
             switch (elmVersion) {
@@ -229,7 +258,8 @@ public class ELM327 extends Device {
                     if (timeoutLogLevel >= 1) MainActivity.toast("ELM is now ready");
                     break;
                 case 20:
-                    if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, version 2.x, will probably not work, please report if it does");
+                    lastInitProblem = "ELM ready, version 2.x, will probably not work, please report if it does";
+                    if (timeoutLogLevel >= 1) MainActivity.toast(lastInitProblem);
                     break;
                 case 8015:
                     if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, version innocar, should work");
@@ -237,7 +267,8 @@ public class ELM327 extends Device {
 
                 // default should never be reached!!
                 default:
-                    if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, unknown version, will probably not work, please report if it does");
+                    lastInitProblem = "ELM ready, unknown version, will probably not work, please report if it does";
+                    if (timeoutLogLevel >= 1) MainActivity.toast(lastInitProblem);
                     break;
             }
         }
@@ -325,9 +356,9 @@ public class ELM327 extends Device {
         return sendAndWaitForAnswer(command,waitMillis,untilEmpty,-1, true);
     }
 
-    private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount) {
-        return sendAndWaitForAnswer(command,waitMillis,untilEmpty,answerLinesCount, true);
-    }
+//    private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount) {
+//        return sendAndWaitForAnswer(command,waitMillis,untilEmpty,answerLinesCount, true);
+//    }
 
     // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount, boolean addReturn)
@@ -483,6 +514,9 @@ public class ELM327 extends Device {
 
         if (someThingWrong) { return null ; }
 
+        // ensure the ATCRA filter is reset in the next NON free frame request
+        lastCommandWasFreeFrame = true;
+
         // EML needs the filter to be 3 symbols and contains the from CAN id of the ECU
         String emlFilter = field.getHexId() + "";
         while (emlFilter.length() < 3) emlFilter = "0" + emlFilter;
@@ -509,14 +543,13 @@ public class ELM327 extends Device {
         // however, make sure proper flushing is done
         // if cra does influence ISO-TP requests, an small optimization might be to only sending an atar when switching from free
         // frames to isotp frames.
-        if (!initCommandExpectOk("atar")) someThingWrong |= true;
-        String returnData = hexData;
+        // if (!initCommandExpectOk("atar")) someThingWrong |= true;
 
-        //String data = field.getHexId() + "," + returnData.trim() + "\r\n";
-        if(returnData.trim().equals(""))
+        hexData = hexData.trim();
+        if(hexData.equals(""))
             return null;
         else
-            return new Message(field,returnData.trim());
+            return new Message(field, hexData);
     }
 
     @Override
@@ -526,6 +559,16 @@ public class ELM327 extends Device {
 
         String hexData = "";
         int len = 0;
+
+        // PERFORMANCE ENHANCEMENT: only send ATAR if coming from a free frame
+        if (lastCommandWasFreeFrame) {
+            // atar     (clear filter set by free frame capture method)
+            if (!initCommandExpectOk("atar")){
+                someThingWrong |= true;
+                return null;
+            }
+            lastCommandWasFreeFrame = false;
+        }
 
         // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
         lastId = 0;
@@ -593,16 +636,22 @@ public class ELM327 extends Device {
             }
 
         }
-        // better here is to wait for a >
+
+        // There was spurious error here, that immediately sending another command STOPPED the still not entirely finished ISO-TP command.
+        // It was probably still sending "OK>" or just ">". So, the next command files and if it was i.e. an atcra f a free frame capture,
+        // the following ATMA immediately overwhelmed the ELM as no filter was set.
+        // As a solution, added this wait for a > after an ISO-TP command.
+
         flushWithTimeout(400, '>');
         len *= 2;
-        if (hexData.length() <= len) return new Message(field,hexData.trim());
-        String returnData = hexData.substring(0, len) + "\r";
 
-        //String data = field.getHexId() + "," + returnData.trim() + "," + field.getResponseId() + "\r\n";
-        if(returnData.trim().equals(""))
+        // Having less data than specified in length is actually an error, but at least we do not need so substr it
+        // if there is more data than specified in length, that is OK (filler bytes in the last frame), so cut those away
+        hexData = (hexData.length() <= len) ? hexData.trim() : hexData.substring(0, len).trim();
+
+        if (hexData.equals(""))
             return null;
         else
-            return new Message(field,returnData.trim());
+            return new Message(field, hexData);
     }
 }

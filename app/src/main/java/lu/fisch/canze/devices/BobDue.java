@@ -192,7 +192,10 @@ public class BobDue extends Device {
     }
 
     @Override
-    public boolean initDevice(int toughness) { return true; }
+    public boolean initDevice(int toughness) {
+        lastInitProblem = "";
+        return true;
+    }
 
     @Override
     protected boolean initDevice(int toughness, int retries) {
