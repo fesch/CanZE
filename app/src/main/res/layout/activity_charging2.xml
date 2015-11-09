@@ -1,0 +1,220 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:keepScreenOn="true"
+    android:layout_height="fill_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="lu.fisch.canze.activities.ChargingActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/LabelAvChPwr"
+                    android:text="@string/label_AvChPwr"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0"
+                    android:elegantTextHeight="false" />
+                <TextView
+                    android:text=""
+                    android:layout_width="20dp"
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/LabelMaxCharge"
+                    android:text="@string/label_max_charge"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/textAvChPwr"
+                    android:text="@string/default_AvChPwr"
+                    android:textColor="#000"
+                    android:textSize="48sp"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0" />
+                <TextView
+                    android:text="  "
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/text_max_charge"
+                    android:text="@string/default_max_charge"
+                    android:textColor="#000"
+                    android:textSize="48sp"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="  "
+            android:layout_weight="1" />
+
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+
+            <TableRow>
+                <TextView
+                    android:text="  "
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/LabelDcPwr"
+                    android:text="@string/label_DcPwr"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:background="#ffc0c0c0"
+                    />
+                <TextView
+                    android:text="  "
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="  "
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/textDcPwr"
+                    android:text="@string/default_DcPwr"
+                    android:textColor="#000"
+                    android:textSize="48sp"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:background="#ffc0c0c0"
+                    />
+                <TextView
+                    android:text="  "
+                    android:layout_weight="1" />
+
+            </TableRow>
+
+            <TableRow android:layout_marginTop="20dp">
+                <TextView
+                    android:text="  "
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/LabelKMA"
+                    android:text="@string/label_DISTA"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:background="#ffc0c0c0"
+                    />
+                <TextView
+                    android:text="  "
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="  "
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/textKMA"
+                    android:text="@string/default_DISTA"
+                    android:textColor="#000"
+                    android:textSize="48sp"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:background="#ffc0c0c0"
+                    />
+                <TextView
+                    android:text="  "
+                    android:layout_weight="1" />
+            </TableRow>
+
+
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow android:layout_marginTop="20dp">
+                <TextView
+                    android:id="@+id/LabelSOC"
+                    android:text="@string/label_SOC"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:id="@+id/textSOC"
+                    android:text="@string/default_SOC"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    />
+            </TableRow>
+
+
+            <TableRow>
+
+
+            </TableRow>
+
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/LabelSOH"
+                    android:text="@string/label_SOH"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:id="@+id/textSOH"
+                    android:text="@string/default_SOH"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    />
+            </TableRow>
+
+        </TableLayout>
+
+
+
+
+    </LinearLayout>
+
+
+    <!-- debug line -->
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        >
+
+        <TableRow>
+            <TextView
+                android:text="@string/label_debug"
+                android:textColor="#000"
+                />
+            <TextView
+                android:id="@+id/textDebug"
+                android:paddingLeft="8dp"
+                android:text="@string/default_debug"
+                />
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>
