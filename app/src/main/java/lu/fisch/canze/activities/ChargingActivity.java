@@ -181,8 +181,12 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_RangeEstimate:
                         tv = (TextView) findViewById(R.id.textKMA);
-                        //tv.setText("" + (Math.round(Utils.kmOrMiles(field.getValue()) * 10.0) / 10.0));
-                        //tv = null;
+                        if (field.getValue() >= 1023) {
+                            tv.setText("--:--");
+                        } else {
+                            tv.setText("" + field.getValue());
+                        }
+                        tv = null;
                         break;
                     case SID_TractionBatteryVoltage: // DC volts
                         // save DC voltage for DC power purposes
