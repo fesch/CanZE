@@ -50,7 +50,7 @@
     <string name="header_CompTemp">Battery modules temperatures</string>
 
     <string name="label_max_charge">Max battery charge/regen kW</string>
-    <string name="default_max_charge">#Max bat ch</string>
+    <string name="default_max_charge">#MBR</string>
 
     <string name="label_max_pilot">Max AC charge pilot Amp</string>
     <string name="default_max_pilot">#Max AC ch</string>

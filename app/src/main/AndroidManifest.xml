@@ -46,6 +46,10 @@
             android:label="@string/title_activity_charging" >
         </activity>
         <activity
+            android:name=".activities.ChargingActivity2"
+            android:label="@string/title_activity_charging" >
+        </activity>
+        <activity
             android:name=".activities.DrivingActivity"
             android:label="@string/title_activity_driving" >
         </activity>
