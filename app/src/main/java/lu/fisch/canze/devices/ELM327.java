@@ -115,16 +115,34 @@ public class ELM327 extends Device {
     protected boolean initDevice (int toughness, int retries) {
         if (initDevice(toughness)) return true;
         while (retries-- > 0) {
+            MainActivity.debug("ELM327: flushWithTimeout");
             flushWithTimeout(500);
+            MainActivity.debug("ELM327: initDevice("+toughness+"), "+retries+" retries left");
             if (initDevice(toughness)) return true;
         }
         if (timeoutLogLevel >= 1) MainActivity.toast("Hard reset failed, restarting Bluetooth ...");
+        MainActivity.debug("ELM327: Hard reset failed, restarting Bluetooth ...");
 
-        // -- give up and restart BT
-        // stop BT without resetting the registered fields
-        MainActivity.getInstance().stopBluetooth(false);
-        // restart BT without reloading all settings
-        MainActivity.getInstance().reloadBluetooth(false);
+        ///----- WE ARE HERE INSIDE THE POLLER THREAD, SO
+        ///----- JOINING CAN'T WORK!
+
+        // ... but we don't want the next request to happen,
+        // so we need to stop the poller here anyway, but
+        // DO NOT JOIN IT!
+        setPollerActive(false);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // -- give up and restart BT
+                // stop BT without resetting the registered fields
+                MainActivity.debug("ELM327: stopBluetooth (via MainActivity)");
+                MainActivity.getInstance().stopBluetooth(false);
+                // restart BT without reloading all settings
+                MainActivity.debug("ELM327: reloadBluetooth (via MainActivity)");
+                MainActivity.getInstance().reloadBluetooth(false);
+            }
+        })).start();
 
         return false;
     }

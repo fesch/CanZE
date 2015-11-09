@@ -166,6 +166,11 @@ public class BluetoothManager {
 
     private void privateConnect(final String bluetoothAddress, final boolean secure, final int retries)
     {
+        if (!(retryThread == null || (retryThread != null && !retryThread.isAlive()))) {
+            debug("BT: aborting connect (another one is in progress ...)");
+            return;
+        }
+
         if(retry) {
             // remember parameters
             connectBluetoothAddress = bluetoothAddress;
@@ -176,7 +181,7 @@ public class BluetoothManager {
             if (bluetoothAddress != null && !bluetoothAddress.isEmpty() && getHardwareState() == STATE_BLUETOOTH_ACTIVE) {
 
                 // make sure there is no more active connection
-                if (bluetoothSocket != null && !bluetoothSocket.isConnected()) {
+                if (bluetoothSocket!=null && bluetoothSocket.isConnected()) {
                     try {
                         debug("Closing previous socket");
                         bluetoothSocket.close();
@@ -234,8 +239,15 @@ public class BluetoothManager {
             debug("Something went wrong");
             if (bluetoothAddress == null || bluetoothAddress.isEmpty())
                 debug("No device address given");
-            if (getHardwareState() == STATE_BLUETOOTH_NOT_ACTIVE)
+            else if (getHardwareState() == STATE_BLUETOOTH_NOT_ACTIVE)
                 debug("Bluetooth not active");
+
+            try {
+                debug("Closing socket again ...");
+                bluetoothSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             debug(retries + " tries left");
             if (retries != RETRIES_NONE) {

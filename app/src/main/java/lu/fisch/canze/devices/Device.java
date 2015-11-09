@@ -117,15 +117,21 @@ public abstract class Device {
                                 if (fields.size() == 0 || !BluetoothManager.getInstance().isConnected()) {
                                     //MainActivity.debug("Device: sleeping");
                                     try {
-                                        Thread.sleep(5000);
+                                        if(isPollerActive())
+                                            Thread.sleep(5000);
+                                        else return;
                                     } catch (Exception e) {
                                         // ignore a sleep exception
                                     }
                                 }
                                 // query a field
                                 else {
-                                    //MainActivity.debug("Device: Doing next query ...");
-                                    queryNextFilter();
+                                    if(isPollerActive())
+                                    {
+                                        //MainActivity.debug("Device: Doing next query ...");
+                                        queryNextFilter();
+                                    }
+                                    else return;
                                 }
                             }
                             // dereference the poller thread (it i stopped now anyway!)
@@ -136,17 +142,21 @@ public abstract class Device {
                         {
                             MainActivity.debug("Device: no answer from device");
 
-                            // drop the BT connexion and try again
-                            (new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    // stop the BT but don't reset the device registered fields
-                                    //MainActivity.getInstance().stopBluetooth(false);
-                                    // reload the BT with filter registration
-                                    //MainActivity.getInstance().reloadBluetooth(false);
-                                    BluetoothManager.getInstance().connect();
-                                }
-                            })).start();
+                            // first check if we have not yet been killed!
+                            if(isPollerActive()) {
+                                MainActivity.debug("Device: --- init failed ---");
+                                // drop the BT connexion and try again
+                                (new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // stop the BT but don't reset the device registered fields
+                                        MainActivity.getInstance().stopBluetooth(false);
+                                        // reload the BT with filter registration
+                                        MainActivity.getInstance().reloadBluetooth(false);
+                                        //BluetoothManager.getInstance().connect();
+                                    }
+                                })).start();
+                            }
                         }
                     }
                 };
@@ -228,6 +238,7 @@ public abstract class Device {
                         // reset if something went wrong ...
                         // ... but only if we are not asked to stop!
                         if (someThingWrong && BluetoothManager.getInstance().isConnected()) {
+                            // we don't want to continue, so we need to stop the poller right now!
                             initDevice(1, 2);
                         }
                     //}
@@ -240,8 +251,8 @@ public abstract class Device {
                             fieldIndex = (fieldIndex + 1) % fields.size();
                     }*/
 
-                    MainActivity.debug("Device: Request took "+(Calendar.getInstance().getTimeInMillis()-start)/1000.+"s -( "+
-                            field.getSID()+" )-> "+field.getPrintValue());
+                    //MainActivity.debug("Device: Request took "+(Calendar.getInstance().getTimeInMillis()-start)/1000.+"s -( "+
+                    //        field.getSID()+" )-> "+field.getPrintValue());
 
                     // determine the next field to query
                     fieldIndex = getNextIndex();
@@ -724,12 +735,13 @@ public abstract class Device {
         setPollerActive(false);
         MainActivity.debug("Device: waiting for poller to be stopped");
         try {
-            if(pollerThread!=null) {
+            if(pollerThread!=null && pollerThread.isAlive()) {
                 MainActivity.debug("Device: joining thread");
                 pollerThread.join();
                 pollerThread=null;
             }
             else MainActivity.debug("Device: >>>>>>> pollerThread is NULL!!!");
+            MainActivity.debug("Device: pollerThread joined");
         }
         catch(Exception e)
         {

@@ -25,6 +25,7 @@ import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 
 /**
@@ -123,23 +124,27 @@ public class BarGraph extends Plotter {
                 double my;
                 int padding = 2;
                 // max value
-                my = getHeight()-(maxValues.get(i)-getMin())*h;
-                g.setColor(Color.GREEN_DARK);
-                g.fillRect(
-                        (float) (getX() + getWidth() - barWidth + (int) mx)+padding,
-                        (float) (getY() + (int) my),
-                        (float) w-2*padding,
-                        (float) 2 //(getHeight()-my)
-                );
+                if(i<maxValues.size()) {
+                    my = getHeight() - (maxValues.get(i) - getMin()) * h;
+                    g.setColor(Color.GREEN_DARK);
+                    g.fillRect(
+                            (float) (getX() + getWidth() - barWidth + (int) mx) + padding,
+                            (float) (getY() + (int) my),
+                            (float) w - 2 * padding,
+                            (float) 2 //(getHeight()-my)
+                    );
+                }
                 // min value
-                my = getHeight() - (minValues.get(i) - getMin()) * h;
-                g.setColor(Color.GREEN_DARK);
-                g.fillRect(
-                        (float) (getX() + getWidth() - barWidth + (int) mx) + padding,
-                        (float) (getY() + (int) my),
-                        (float) w - 2 * padding,
-                        (float) 2 //(getHeight() - my)
-                );
+                if(i<minValues.size()) {
+                    my = getHeight() - (minValues.get(i) - getMin()) * h;
+                    g.setColor(Color.GREEN_DARK);
+                    g.fillRect(
+                            (float) (getX() + getWidth() - barWidth + (int) mx) + padding,
+                            (float) (getY() + (int) my),
+                            (float) w - 2 * padding,
+                            (float) 2 //(getHeight() - my)
+                    );
+                }
                 // value
                 my = getHeight()-(values.get(i)-getMin())*h;
                 g.setColor(Color.RED);
@@ -175,7 +180,9 @@ public class BarGraph extends Plotter {
             int index = sids.indexOf(sid);
             if (index == -1) {
                 sids.add(sid);
-                addValue(field.getValue());
+                values.add(field.getValue());
+                minValues.add(CanzeDataSource.getInstance().getMin(sid));
+                maxValues.add(CanzeDataSource.getInstance().getMax(sid));
             } else setValue(index, field.getValue());
             // only repaint if the last field has been updated
             //if(index==sids.size()-1)
