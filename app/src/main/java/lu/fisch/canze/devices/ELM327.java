@@ -118,13 +118,13 @@ public class ELM327 extends Device {
             flushWithTimeout(500);
             if (initDevice(toughness)) return true;
         }
-        if (timeoutLogLevel >= 1) MainActivity.toast("Hard reset failed");
+        if (timeoutLogLevel >= 1) MainActivity.toast("Hard reset failed, restarting Bluetooth ...");
 
         // -- give up and restart BT
-        // stop BT
-        //MainActivity.getInstance().stopBluetooth();
-        // restart BT
-        //MainActivity.getInstance().reloadBluetooth();
+        // stop BT without resetting the registered fields
+        MainActivity.getInstance().stopBluetooth(false);
+        // restart BT without reloading all settings
+        MainActivity.getInstance().reloadBluetooth(false);
 
         return false;
     }

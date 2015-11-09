@@ -312,8 +312,9 @@ public class BluetoothManager {
                 outputStream.write(msgBuffer);
             } catch (IOException e) {
                 Log.d(MainActivity.TAG, "BT: Error sending > " + e.getMessage());
-                Log.d(MainActivity.TAG, "BT: Error sending > restaring BT");
+                //Log.d(MainActivity.TAG, "BT: Error sending > restaring BT");
 
+                /*
                 (new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -321,6 +322,7 @@ public class BluetoothManager {
                         connect(connectBluetoothAddress, true, BluetoothManager.RETRIES_INFINITE);
                     }
                 })).start();
+                */
             }
         }
         else MainActivity.debug("Write failed! Socket is closed ... M = "+message);
