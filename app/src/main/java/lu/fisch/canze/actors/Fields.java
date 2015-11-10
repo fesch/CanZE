@@ -916,7 +916,7 @@ public class Fields implements MessageListener {
 
 */
 
-                        +"0x722, 144, 159, 1, 1, 0, 0, LINSCH SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
+    //                    +"0x722, 144, 159, 1, 1, 0, 0, LINSCH SW version, , 0x2180, 0x6180, , 0, 0, 0\n"
 
                 ;
 
