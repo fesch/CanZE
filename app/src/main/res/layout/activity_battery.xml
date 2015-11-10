@@ -118,12 +118,12 @@ android:id="@+id/table"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         custom:min="0"
-        custom:max="30"
+        custom:max="40"
         custom:majorTicks="10"
         custom:minorTicks="2"
         custom:fieldSID="7bb.6104.32,7bb.6104.56,7bb.6104.80,7bb.6104.104,7bb.6104.128,7bb.6104.152,7bb.6104.176,7bb.6104.200,7bb.6104.224,7bb.6104.248,7bb.6104.272,7bb.6104.296"
         custom:widget="bargraph"
-        custom:text="Compartment Temperatures (°C)"
+        custom:text="Battery Modules Temperatures (°C)"
         />
 
 </TableRow>
