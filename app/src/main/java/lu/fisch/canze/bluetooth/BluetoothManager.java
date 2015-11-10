@@ -242,12 +242,13 @@ public class BluetoothManager {
             else if (getHardwareState() == STATE_BLUETOOTH_NOT_ACTIVE)
                 debug("Bluetooth not active");
 
-            try {
-                debug("Closing socket again ...");
-                bluetoothSocket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            if(bluetoothSocket!=null)
+                try {
+                    debug("Closing socket again ...");
+                    bluetoothSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             debug(retries + " tries left");
             if (retries != RETRIES_NONE) {
