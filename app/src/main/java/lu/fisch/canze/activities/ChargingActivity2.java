@@ -134,7 +134,7 @@ public class ChargingActivity2 extends CanzeActivity implements FieldListener {
                     case SID_RangeEstimate:
                         tv = (TextView) findViewById(R.id.textKMA);
                         if (field.getValue() >= 1023) {
-                            tv.setText("--:--");
+                            tv.setText("---");
                         } else {
                             tv.setText("" + field.getValue());
                         }
