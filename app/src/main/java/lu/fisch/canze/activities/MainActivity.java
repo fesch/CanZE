@@ -33,7 +33,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -42,7 +41,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.internal.view.menu.ActionMenuItemView;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
@@ -50,26 +48,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.File;
-import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Calendar;
 import java.util.UUID;
 
-import lu.fisch.awt.Color;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.bluetooth.BluetoothManager;
-import lu.fisch.canze.classes.Intervals;
+import lu.fisch.canze.classes.DebugLogger;
 import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.devices.BobDue;
 import lu.fisch.canze.devices.Device;
@@ -118,6 +110,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
     public static boolean safeDrivingMode = true;
     public static boolean bluetoothBackgroundMode = false;
+    public static boolean debugLogMode = false;
+    public static boolean dataExportMode = false;
+    public static File dataexportFile ;
 
     private static boolean isDriving = false;
 
@@ -126,8 +121,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
     private Fragment actualFragment;
 
-    public static boolean dataexportMode = false;
-    public static File dataexportFile ;
 
     // bluetooth stuff
     private MenuItem bluetoothMenutItem = null;
@@ -176,6 +169,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     public static void debug(String text)
     {
         Log.d(TAG, text);
+        if(debugLogMode) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+            DebugLogger.getInstance().log(sdf.format(Calendar.getInstance().getTime()) + ": " + text);
+        }
     }
 
     public static void toast(final String message)
@@ -200,7 +197,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         safeDrivingMode = settings.getBoolean("optSafe", true);
         bluetoothBackgroundMode = settings.getBoolean("optBTBackground", false);
         milesMode = settings.getBoolean("optMiles", false);
-        dataexportMode = settings.getBoolean("optDataExport", false);
+        dataExportMode = settings.getBoolean("optDataExport", false);
+        debugLogMode = settings.getBoolean("optDebugLog", false);
         toastLevel = settings.getInt("optToast", 1);
 
         String car = settings.getString("car", "Any");
@@ -318,6 +316,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DebugLogger.getInstance().createNewLog();
+
         debug("MainActivity: onCreate");
 
         instance = this;
@@ -325,6 +325,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // load the initial "main" fragment
+        loadFragement(new MainFragment());
 
         setTitle(TAG + " - not connected");
         setBluetoothState(BLUETOOTH_DISCONNECTED);
@@ -405,7 +408,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         // load settings
         // - includes the reader
         // - includes the decoder
-        loadSettings();
+        //loadSettings(); --> done in onResume
 
         // load fields from static code
         debug("Loaded fields: " + fields.size());
@@ -413,17 +416,20 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
         // load fields
         //final SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
-        for(int i=0; i<fields.size(); i++)
-        {
-            Field field = fields.get(i);
-            field.setCalculatedValue(CanzeDataSource.getInstance().getLast(field.getSID()));
-            //debug("MainActivity: Setting "+field.getSID()+" = "+field.getValue());
-            //f.setValue(settings.getFloat(f.getUniqueID(), 0));
-        }
-
-
-        // load the initial "main" fragment
-        loadFragement(new MainFragment());
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                debug("Loading fields last field values from database");
+                for(int i=0; i<fields.size(); i++)
+                {
+                    Field field = fields.get(i);
+                    field.setCalculatedValue(CanzeDataSource.getInstance().getLast(field.getSID()));
+                    //debug("MainActivity: Setting "+field.getSID()+" = "+field.getValue());
+                    //f.setValue(settings.getFloat(f.getUniqueID(), 0));
+                }
+                debug("Loading fields last field values from database (done)");
+            }
+        })).start();
     }
 
 
@@ -441,7 +447,18 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         }
 
         if(!leaveBluetoothOn) {
-            reloadBluetooth();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    setBluetoothState(BLUETOOTH_DISCONNECTED);
+                }
+            });
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    reloadBluetooth();
+                }
+            })).start();
         }
 
         final SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
@@ -639,9 +656,14 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toast("Reconnecting Bluetooth ...");
-                stopBluetooth();
-                reloadBluetooth();
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        toast("Reconnecting Bluetooth ...");
+                        stopBluetooth();
+                        reloadBluetooth();
+                    }
+                })).start();
             }
         });
 

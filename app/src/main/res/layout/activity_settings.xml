@@ -159,8 +159,14 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="Write debug log to SD card"
+                            android:id="@+id/debugLogMode" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="Log to sdcard1"
-                            android:id="@+id/dataexportMode" />
+                            android:id="@+id/dataExportMode" />
 
 
                         <TextView

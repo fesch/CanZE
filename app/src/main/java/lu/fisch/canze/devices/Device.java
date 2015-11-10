@@ -113,9 +113,9 @@ public abstract class Device {
                         // if the device has been initialised and we got an answer
                         if(initDevice(0)) {
                             while (isPollerActive()) {
-                                //MainActivity.debug("Device: inside poller thread");
+                                MainActivity.debug("Device: inside poller thread");
                                 if (fields.size() == 0 || !BluetoothManager.getInstance().isConnected()) {
-                                    //MainActivity.debug("Device: sleeping");
+                                    MainActivity.debug("Device: sleeping");
                                     try {
                                         if(isPollerActive())
                                             Thread.sleep(5000);
@@ -128,7 +128,7 @@ public abstract class Device {
                                 else {
                                     if(isPollerActive())
                                     {
-                                        //MainActivity.debug("Device: Doing next query ...");
+                                        MainActivity.debug("Device: Doing next query ...");
                                         queryNextFilter();
                                     }
                                     else return;
@@ -238,6 +238,7 @@ public abstract class Device {
                         // reset if something went wrong ...
                         // ... but only if we are not asked to stop!
                         if (someThingWrong && BluetoothManager.getInstance().isConnected()) {
+                            MainActivity.debug("Device: something went wrong!");
                             // we don't want to continue, so we need to stop the poller right now!
                             initDevice(1, 2);
                         }

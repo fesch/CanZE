@@ -150,6 +150,8 @@ public class ELM327 extends Device {
 
     public boolean initDevice(int toughness) {
 
+        MainActivity.debug("ELM327: initDevice ("+toughness+")");
+
         String response;
         int elmVersion = 0;
 

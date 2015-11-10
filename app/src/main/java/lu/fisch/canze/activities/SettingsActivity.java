@@ -236,9 +236,9 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        final CheckBox dataexport = (CheckBox) findViewById(R.id.dataexportMode);
-        dataexport.setChecked(MainActivity.dataexportMode);
-        dataexport.setOnClickListener(new View.OnClickListener() {
+        final CheckBox dataExport = (CheckBox) findViewById(R.id.dataExportMode);
+        dataExport.setChecked(MainActivity.dataExportMode);
+        dataExport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // add code here to check external SDcard is avail, writeable and has sufficient space
@@ -261,7 +261,45 @@ public class SettingsActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int id) {
                                     // if this button is clicked, close
                                     // current activity
-                                    dataexport.setChecked(false);
+                                    dataExport.setChecked(false);
+                                    dialog.cancel();
+                                }
+                            });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
+                }
+            }
+        });
+
+        final CheckBox debugLog = (CheckBox) findViewById(R.id.debugLogMode);
+        debugLog.setChecked(MainActivity.debugLogMode);
+        debugLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // add code here to check external SDcard is avail, writeable and has sufficient space
+                final boolean sdcardCheck = isExternalStorageWritable(); // check for space later
+                if (!sdcardCheck) {
+                    final Context context = SettingsActivity.this;
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                    // set title
+                    alertDialogBuilder.setTitle("I am sorry...");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage(Html.fromHtml("External SD card not available, not writeable " +
+                                    "or has not sufficient space left to log data." +
+                                    "<br><br><b>Data export cannot be enabled!</b>"))
+                            .setCancelable(true)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // if this button is clicked, close
+                                    // current activity
+                                    debugLog.setChecked(false);
                                     dialog.cancel();
                                 }
                             });
@@ -348,7 +386,8 @@ public class SettingsActivity extends AppCompatActivity {
             Spinner car = (Spinner) findViewById(R.id.car);
             CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
             CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
-            CheckBox dataexport = (CheckBox) findViewById(R.id.dataexportMode);
+            CheckBox dataExport = (CheckBox) findViewById(R.id.dataExportMode);
+            CheckBox debugLog = (CheckBox) findViewById(R.id.debugLogMode);
             CheckBox btBackground = (CheckBox) findViewById(R.id.btBackgrounding);
             Spinner toastLevel = (Spinner) findViewById(R.id.toastLevel);
             if(deviceList.getSelectedItem()!=null) {
@@ -361,7 +400,8 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putBoolean("optBTBackground", btBackground.isChecked());
                 editor.putBoolean("optSafe", safe.isChecked());
                 editor.putBoolean("optMiles", miles.isChecked());
-                editor.putBoolean("optDataExport", dataexport.isChecked());
+                editor.putBoolean("optDataExport", dataExport.isChecked());
+                editor.putBoolean("optDebugLog", debugLog.isChecked());
                 editor.putInt("optToast", toastLevel.getSelectedItemPosition());
             }
             editor.commit();
