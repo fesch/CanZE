@@ -147,7 +147,7 @@
             android:max="4096"
             android:progressDrawable="@drawable/progressbar_canze_green"
             /> -->
-
+<!--
         <TextView
             android:id="@+id/header_braking"
             android:layout_width="fill_parent"
@@ -238,7 +238,7 @@
             </TableRow>
 
         </TableLayout>
-
+-->
     </LinearLayout>
 
     <!-- debug line -->
