@@ -12,6 +12,20 @@
     android:weightSum="1"
     tools:context="lu.fisch.canze.activities.DtcActivity">
 
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+            <Button
+                android:id="@+id/elmTest"
+                android:text="Test"
+                android:layout_weight="1"
+                />
+        </TableRow>
+
+    </TableLayout>
+
     <ScrollView
         android:id="@+id/SCROLLER_ID"
         android:layout_width="fill_parent"
@@ -24,7 +38,6 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
-            android:text="Clear DTC mode:\n\nEnter key card\n\nGear to D\n\nHold start button for aproximately 5 seconds until the 'Remove card' message appears\n\nGear to P"
             />
 
     </ScrollView>

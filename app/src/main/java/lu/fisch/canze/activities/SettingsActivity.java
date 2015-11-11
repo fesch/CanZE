@@ -1,5 +1,27 @@
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package lu.fisch.canze.activities;
 
+import android.content.pm.PackageInfo;
 import android.os.Environment;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -11,6 +33,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +53,7 @@ import java.util.zip.ZipFile;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.database.CanzeDataSource;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -59,15 +83,15 @@ public class SettingsActivity extends AppCompatActivity {
         // fill devices
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         arrayAdapter.add("ELM327");
-        arrayAdapter.add("Arduino Due");
+        //arrayAdapter.add("Arduino Due");
         arrayAdapter.add("Bob Due");
-        arrayAdapter.add("ELM327 Experimental");
+        //arrayAdapter.add("ELM327 Experimental");
 
         int index = 0;
         if(device.equals("ELM327")) index=0;
-        else if(device.equals("Arduino Due")) index=1;
-        else if(device.equals("Bob Due")) index=2;
-        else if(device.equals("ELM327 Experimental")) index=3;
+        //else if(device.equals("Arduino Due")) index=1;
+        else if(device.equals("Bob Due")) index=1;
+        //else if(device.equals("ELM327 Experimental")) index=3;
 
         // display the list
         Spinner deviceList = (Spinner) findViewById(R.id.remoteDevice);
@@ -161,12 +185,60 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+
         final CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
         miles.setChecked(MainActivity.milesMode);
 
-        final CheckBox dataexport = (CheckBox) findViewById(R.id.dataexportMode);
-        dataexport.setChecked(MainActivity.dataexportMode);
-        dataexport.setOnClickListener(new View.OnClickListener() {
+        final CheckBox btBackground = (CheckBox) findViewById(R.id.btBackgrounding);
+        btBackground.setChecked(MainActivity.bluetoothBackgroundMode);
+        btBackground.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (btBackground.isChecked()) {
+                    final Context context = SettingsActivity.this;
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                    // set title
+                    alertDialogBuilder.setTitle("ATTENTION");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage(Html.fromHtml("Leaving the Bluetooth active while the application goes to background " +
+                                    "may interfer with other application using the Bluetooth feature. It also" +
+                                    "may suck of your battery if you forget to kill CanZE or disable this option." +
+                                    "<br><br><b>If using this feature, the connection will stay alive, even if you turn of " +
+                                    "your Android device!</b><br><br>" +
+                                    "Are you sure you want to continue enabling the Bluetooth Background Mode?"))
+                            .setCancelable(true)
+                            .setPositiveButton("Yes, I know what I'm doing", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // if this button is clicked, close
+                                    // current activity
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("No, thanks",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            // if this button is clicked, just close
+                                            // the dialog box and do nothing
+                                            btBackground.setChecked(false);
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
+                }
+            }
+        });
+
+        final CheckBox dataExport = (CheckBox) findViewById(R.id.dataExportMode);
+        dataExport.setChecked(MainActivity.dataExportMode);
+        dataExport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // add code here to check external SDcard is avail, writeable and has sufficient space
@@ -189,7 +261,45 @@ public class SettingsActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int id) {
                                     // if this button is clicked, close
                                     // current activity
-                                    dataexport.setChecked(false);
+                                    dataExport.setChecked(false);
+                                    dialog.cancel();
+                                }
+                            });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
+                }
+            }
+        });
+
+        final CheckBox debugLog = (CheckBox) findViewById(R.id.debugLogMode);
+        debugLog.setChecked(MainActivity.debugLogMode);
+        debugLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // add code here to check external SDcard is avail, writeable and has sufficient space
+                final boolean sdcardCheck = isExternalStorageWritable(); // check for space later
+                if (!sdcardCheck) {
+                    final Context context = SettingsActivity.this;
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                    // set title
+                    alertDialogBuilder.setTitle("I am sorry...");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage(Html.fromHtml("External SD card not available, not writeable " +
+                                    "or has not sufficient space left to log data." +
+                                    "<br><br><b>Data export cannot be enabled!</b>"))
+                            .setCancelable(true)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // if this button is clicked, close
+                                    // current activity
+                                    debugLog.setChecked(false);
                                     dialog.cancel();
                                 }
                             });
@@ -212,7 +322,11 @@ public class SettingsActivity extends AppCompatActivity {
             long time = ze.getTime();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd @ HH:mm");
             String s = sdf.format(new java.util.Date(time));
-            tv.setText("Build: "+s);
+
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            String version = pInfo.versionName;
+
+            tv.setText("Version: "+version+"  //  Build: "+s);
             zf.close();
         }
         catch(Exception e){
@@ -222,16 +336,20 @@ public class SettingsActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // clear preferences file
                 SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.clear();
                 editor.commit();
 
-
+                // clear data file
                 settings = getSharedPreferences(MainActivity.DATA_FILE, 0);
                 editor = settings.edit();
                 editor.clear();
                 editor.commit();
+
+                // clear database
+                CanzeDataSource.getInstance().clear();
 
                 MainActivity.fields.clearAllFields();
                 MainActivity.toast("Cache has been cleared ...");
@@ -268,7 +386,9 @@ public class SettingsActivity extends AppCompatActivity {
             Spinner car = (Spinner) findViewById(R.id.car);
             CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
             CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
-            CheckBox dataexport = (CheckBox) findViewById(R.id.dataexportMode);
+            CheckBox dataExport = (CheckBox) findViewById(R.id.dataExportMode);
+            CheckBox debugLog = (CheckBox) findViewById(R.id.debugLogMode);
+            CheckBox btBackground = (CheckBox) findViewById(R.id.btBackgrounding);
             Spinner toastLevel = (Spinner) findViewById(R.id.toastLevel);
             if(deviceList.getSelectedItem()!=null) {
                 MainActivity.debug("Settings.deviceAddress = " + deviceList.getSelectedItem().toString().split("\n")[1].trim());
@@ -277,9 +397,11 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString("deviceName", deviceList.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("device", device.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("car", car.getSelectedItem().toString().split("\n")[0].trim());
+                editor.putBoolean("optBTBackground", btBackground.isChecked());
                 editor.putBoolean("optSafe", safe.isChecked());
                 editor.putBoolean("optMiles", miles.isChecked());
-                editor.putBoolean("optDataExport", dataexport.isChecked());
+                editor.putBoolean("optDataExport", dataExport.isChecked());
+                editor.putBoolean("optDebugLog", debugLog.isChecked());
                 editor.putInt("optToast", toastLevel.getSelectedItemPosition());
             }
             editor.commit();

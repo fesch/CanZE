@@ -1,0 +1,102 @@
+package lu.fisch.canze.classes;
+
+import android.os.Environment;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+/**
+ * Created by Chris Mattheis on 03/11/15.
+ * don't use yet - still work in progress
+ */
+public class DataLogger {
+
+    /* ****************************
+     * Singleton stuff
+     * ****************************/
+
+    private static DataLogger debugLogger = null;
+
+    private DataLogger() {}
+
+    public static DataLogger getInstance() {
+        if(debugLogger ==null) debugLogger =new DataLogger();
+        return debugLogger;
+    }
+
+    /* ****************************
+     * Datalogger stuff
+     * ****************************/
+
+    private File logFile = null;
+
+    public boolean isCreated()
+    {
+        return (logFile!=null);
+    }
+
+    public boolean createNewLog() {
+        boolean result = false;
+
+        // ensure that there is a CanZE Folder in SDcard
+        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
+        File dir = new File(file_path);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        String exportdataFileName = file_path + sdf.format(Calendar.getInstance().getTime()) + ".log";
+
+        logFile = new File(exportdataFileName);
+        if (!logFile.exists()) {
+            try {
+                logFile.createNewFile();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            //BufferedWriter for performance, true to set append to file flag
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
+            // set global static BufferedWriter dataexportStream later
+            //if (true) {
+            //    bufferedWriter.append("this is just a test if stream is writeable");
+            //    bufferedWriter.newLine();
+            //    bufferedWriter.close();
+            //}
+            bufferedWriter.close();
+            result = true;
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * Appends a line of text to the log file
+     * @param text  the text line. A CR will be added automatically
+     */
+    public void log(String text)
+    {
+        if(!isCreated()) createNewLog();
+
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
+            bufferedWriter.append(text+"\n");
+            bufferedWriter.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+

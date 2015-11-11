@@ -1,10 +1,30 @@
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package lu.fisch.canze.widgets;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Point;
@@ -15,19 +35,22 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.WindowManager;
 
 import java.lang.reflect.Constructor;
 
+import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
-import lu.fisch.canze.classes.ColorRange;
+import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.classes.ColorRanges;
+import lu.fisch.canze.classes.Intervals;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.WidgetActivity;
 
-public class WidgetView extends SurfaceView implements DrawSurfaceInterface, SurfaceHolder.Callback {
+public class WidgetView extends SurfaceView implements DrawSurfaceInterface, SurfaceHolder.Callback, View.OnTouchListener {
 
 	// a reference to the drawing thread
 	private DrawThread drawThread = null;
@@ -59,16 +82,19 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 	public WidgetView(Context context) {
 		super(context);
 		init(context, null);
+        setOnTouchListener(this);
 	}
 
 	public WidgetView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(context, attrs);
+        setOnTouchListener(this);
 	}
 
 	public WidgetView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init(context,attrs);
+        setOnTouchListener(this);
 	}
 
     @Override
@@ -114,27 +140,65 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     Class clazz = Class.forName("lu.fisch.canze.widgets." + widget);
                     Constructor<?> constructor = clazz.getConstructor(null);
                     drawable = (Drawable) constructor.newInstance();
-                    drawable.setDrawSurface(this);
+                    drawable.setDrawSurface(WidgetView.this);
                     // apply attributes
-                    setMin(attributes.getInt(R.styleable.WidgetView_min, 0));
-                    setMax(attributes.getInt(R.styleable.WidgetView_max, 0));
-                    setMajorTicks(attributes.getInt(R.styleable.WidgetView_majorTicks, 0));
-                    setMinorTicks(attributes.getInt(R.styleable.WidgetView_minorTicks, 0));
-                    setTitle(attributes.getString(R.styleable.WidgetView_text));
-                    setShowLabels(attributes.getBoolean(R.styleable.WidgetView_showLabels, true));
-                    setShowValue(attributes.getBoolean(R.styleable.WidgetView_showValue, true));
-                    setInverted(attributes.getBoolean(R.styleable.WidgetView_isInverted, false));
-                    fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
+                    drawable.setMin(attributes.getInt(R.styleable.WidgetView_min, 0));
+                    drawable.setMax(attributes.getInt(R.styleable.WidgetView_max, 0));
+                    drawable.setMajorTicks(attributes.getInt(R.styleable.WidgetView_majorTicks, 0));
+                    drawable.setMinorTicks(attributes.getInt(R.styleable.WidgetView_minorTicks, 0));
+                    drawable.setTitle(attributes.getString(R.styleable.WidgetView_text));
+                    drawable.setShowLabels(attributes.getBoolean(R.styleable.WidgetView_showLabels, true));
+                    drawable.setShowValue(attributes.getBoolean(R.styleable.WidgetView_showValue, true));
+                    drawable.setInverted(attributes.getBoolean(R.styleable.WidgetView_isInverted, false));
 
                     String colorRangesJson =attributes.getString(R.styleable.WidgetView_colorRanges);
                     if(colorRangesJson!=null && !colorRangesJson.trim().isEmpty())
-                        setColorRanges(new ColorRanges(colorRangesJson.replace("'","\"")));
+                        drawable.setColorRanges(new ColorRanges(colorRangesJson.replace("'", "\"")));
+
+                    String foreground =attributes.getString(R.styleable.WidgetView_foregroundColor);
+                    if(foreground!=null && !foreground.isEmpty())
+                        drawable.setForeground(Color.decode(foreground));
+
+                    String background =attributes.getString(R.styleable.WidgetView_backgroundColor);
+                    if(background!=null && !background.isEmpty())
+                        drawable.setBackground(Color.decode(background));
+
+                    String intermediate =attributes.getString(R.styleable.WidgetView_intermediateColor);
+                    if(intermediate!=null && !intermediate.isEmpty())
+                        drawable.setIntermediate(Color.decode(intermediate));
+
+                    String titleColor =attributes.getString(R.styleable.WidgetView_titleColor);
+                    if(titleColor!=null && !titleColor.isEmpty())
+                        drawable.setTitleColor(Color.decode(titleColor));
+
+                    String intervalJson =attributes.getString(R.styleable.WidgetView_intervals);
+                    if(intervalJson!=null && !intervalJson.trim().isEmpty())
+                        drawable.setIntervals(new Intervals(intervalJson.replace("'", "\"")));
+
+                    fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
+                    String[] sids = fieldSID.split(",");
+                    for(int s=0; s<sids.length; s++) {
+                        Field field = MainActivity.fields.getBySID(sids[s]);
+                        if (field == null) {
+                            MainActivity.debug("!!! >> Field with following SID <" + sids[s] + "> not found!");
+                        }
+                        else {
+                            // add field to list of registered sids for this widget
+                            drawable.addField(field.getSID());
+                            // add listener
+                            field.addListener(drawable);
+                            // add filter to reader
+                            int interval = drawable.getIntervals().getInterval(field.getSID());
+                            if(interval==-1)
+                                MainActivity.device.addActivityField(field);
+                            else
+                                MainActivity.device.addActivityField(field,interval);
+                        }
+                    }
 
                     //MainActivity.debug("WidgetView: My SID is "+fieldSID);
 
-                    if(MainActivity.milesMode) setTitle(drawable.getTitle().replace("km","mi"));
-
-                    repaint();
+                    if(MainActivity.milesMode) drawable.setTitle(drawable.getTitle().replace("km","mi"));
                 }
                 else
                 {
@@ -159,8 +223,12 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 		*/
 	}
 
-	//@Override
-    public boolean onTouchEvent__disabled(MotionEvent event)
+    private boolean motionDown = false;
+    private boolean motionMove = false;
+    private float downX, downY;
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event)
     {
 		// react on touch events
 		// get pointer index from the event object
@@ -172,26 +240,34 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 	    // get masked (not specific to a pointer) action
 	    int maskedAction = event.getActionMasked();
 
+        MainActivity.debug("WidgetView: maskedAction = "+maskedAction);
+
 	    switch (maskedAction) {
 		    case MotionEvent.ACTION_DOWN:
 		    case MotionEvent.ACTION_POINTER_DOWN:{
-                if(clickable && MainActivity.isSafe()) {
+                motionDown=true;
+                downX=event.getX();
+                downY=event.getY();
+                break;
+            }
+		    case MotionEvent.ACTION_MOVE: {
+                motionMove=true;
+			    break;
+		    }
+
+		    case MotionEvent.ACTION_UP:
+		    case MotionEvent.ACTION_POINTER_UP:
+            {
+                if(!motionMove && clickable && MainActivity.isSafe()) {
                     Intent intent = new Intent(this.getContext(), WidgetActivity.class);
                     selectedDrawable = this.getDrawable();
                     this.getContext().startActivity(intent);
                 }
+
+                motionDown=false;
+                motionMove=false;
                 break;
             }
-		    case MotionEvent.ACTION_MOVE: {
-
-			    break;
-		    }
-		    /*case MotionEvent.ACTION_MOVE: { // a pointer was moved
-
-			    break;
-		    }*/
-		    case MotionEvent.ACTION_UP:
-		    case MotionEvent.ACTION_POINTER_UP:
 		    case MotionEvent.ACTION_CANCEL: {
 
 		    	break;
@@ -212,8 +288,14 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 	@Override
 	public void surfaceCreated(SurfaceHolder arg0)
 	{
-		// do a first painting
-		repaint();
+        // load data from the database
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                drawable.loadValuesFromDatabase();
+                repaint();
+            }
+        })).start();
 	}
 
     // DIRECT repaint method
@@ -226,7 +308,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                 c.setDrawFilter(new PaintFlagsDrawFilter(1, Paint.ANTI_ALIAS_FLAG));
                 // clean background
                 Paint paint = new Paint();
-                paint.setColor(Color.WHITE);
+                paint.setColor(drawable.getBackground().getAndroidColor());
                 c.drawRect(0, 0, c.getWidth(), c.getHeight(), paint);
                 // set dimensions
                 drawable.setWidth(getWidth());
@@ -321,53 +403,8 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
         this.clickable = clickable;
     }
 
-    /* *************************************
-     * Deleguations
-     * *************************************/
-	public void setMin(int min) {
-        if(drawable!=null)
-            drawable.setMin(min);
-	}
-
-	public void setMax(int max) {
-        if(drawable!=null)
-            drawable.setMax(max);
-	}
-
-	public void setMajorTicks(int majorTicks) {
-        if(drawable!=null)
-            drawable.setMajorTicks(majorTicks);
-	}
-
-	public void setMinorTicks(int minorticks) {
-        if(drawable!=null)
-            drawable.setMinorTicks(minorticks);
-	}
-
-	public void setShowLabels(boolean showLabels) {
-        if(drawable!=null)
-            drawable.setShowLabels(showLabels);
-	}
-
-    public void setTitle(String title) {
-        if(drawable!=null)
-            drawable.setTitle(title);
-    }
-
-    public void setShowValue(boolean showValue) {
-        if(drawable!=null)
-            drawable.setShowValue(showValue);
-    }
-
     public void setFieldSID(String fieldSID) {
         this.fieldSID = fieldSID;
     }
 
-    public void setInverted(boolean inverted) {
-        drawable.setInverted(inverted);
-    }
-
-    public void setColorRanges(ColorRanges colorRanges) {
-        drawable.setColorRanges(colorRanges);
-    }
 }

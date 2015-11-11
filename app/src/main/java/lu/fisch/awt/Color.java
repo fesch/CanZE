@@ -1,3 +1,24 @@
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package lu.fisch.awt;
 
 
@@ -17,7 +38,12 @@ public class Color
 	public static final Color GRAY_LIGHT= new Color(204,204,204);
 	public static final Color GRAY_DARK = new Color(80,80,80);
 	public static final Color YELLOW	= new Color(255,255,128);
-	
+
+	public static final Color RENAULT_RED    = new Color(250,36,4);
+	public static final Color RENAULT_BLUE   = new Color(11,198,209);
+	public static final Color RENAULT_GREEN  = new Color(133,196,26);
+	public static final Color RENAULT_YELLOW = new Color(251,207,00);
+
 	public Color()
 	{
 	}

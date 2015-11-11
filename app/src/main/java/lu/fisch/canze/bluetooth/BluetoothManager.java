@@ -1,3 +1,25 @@
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
 /**
  * Helper class to manage the Bluetooth connection
  */
@@ -144,6 +166,11 @@ public class BluetoothManager {
 
     private void privateConnect(final String bluetoothAddress, final boolean secure, final int retries)
     {
+        if (!(retryThread == null || (retryThread != null && !retryThread.isAlive()))) {
+            debug("BT: aborting connect (another one is in progress ...)");
+            return;
+        }
+
         if(retry) {
             // remember parameters
             connectBluetoothAddress = bluetoothAddress;
@@ -154,7 +181,7 @@ public class BluetoothManager {
             if (bluetoothAddress != null && !bluetoothAddress.isEmpty() && getHardwareState() == STATE_BLUETOOTH_ACTIVE) {
 
                 // make sure there is no more active connection
-                if (bluetoothSocket != null && !bluetoothSocket.isConnected()) {
+                if (bluetoothSocket!=null && bluetoothSocket.isConnected()) {
                     try {
                         debug("Closing previous socket");
                         bluetoothSocket.close();
@@ -212,8 +239,16 @@ public class BluetoothManager {
             debug("Something went wrong");
             if (bluetoothAddress == null || bluetoothAddress.isEmpty())
                 debug("No device address given");
-            if (getHardwareState() == STATE_BLUETOOTH_NOT_ACTIVE)
+            else if (getHardwareState() == STATE_BLUETOOTH_NOT_ACTIVE)
                 debug("Bluetooth not active");
+
+            if(bluetoothSocket!=null)
+                try {
+                    debug("Closing socket again ...");
+                    bluetoothSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             debug(retries + " tries left");
             if (retries != RETRIES_NONE) {
@@ -290,8 +325,9 @@ public class BluetoothManager {
                 outputStream.write(msgBuffer);
             } catch (IOException e) {
                 Log.d(MainActivity.TAG, "BT: Error sending > " + e.getMessage());
-                Log.d(MainActivity.TAG, "BT: Error sending > restaring BT");
+                //Log.d(MainActivity.TAG, "BT: Error sending > restaring BT");
 
+                /*
                 (new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -299,6 +335,7 @@ public class BluetoothManager {
                         connect(connectBluetoothAddress, true, BluetoothManager.RETRIES_INFINITE);
                     }
                 })).start();
+                */
             }
         }
         else MainActivity.debug("Write failed! Socket is closed ... M = "+message);

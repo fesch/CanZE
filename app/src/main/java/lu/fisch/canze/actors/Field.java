@@ -1,4 +1,26 @@
 /*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+
+/*
  * This class represents a field.
  * Other objects can register to be notified.
  */
@@ -8,6 +30,7 @@ import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.interfaces.FieldListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -17,64 +40,55 @@ public class Field {
 
     private final ArrayList<FieldListener> fieldListeners = new ArrayList<>();
 
+    private Frame frame;
     private int from;
     private int to;
     private double offset;
-    private int id;
-    private int divider;
-    private int multiplier;
+    //private int divider;
+    //private int multiplier;
     private int decimals;
-    private String format;
+    private double resolution;
     private String unit;
     private String requestId;
     private String responseId;
-    private String description;
     private int car;
-    private int skips;
-    private int frequency;
+    //private int skips;
 
     private double value = Double.NaN;
-    private int skipsCount = 0;
+    //private int skipsCount = 0;
+
+    private long lastRequest = 0;
+    private int interval = Integer.MAX_VALUE;
     
-    public Field(int id, int from, int to, int divider, int multiplier, double offset, int decimals, String format, String unit, String requestId, String responseId, String description, int car, int skips, int frequency) {
+    public Field(Frame frame, int from, int to, double resolution, int decimals, double offset, String unit, String requestId, String responseId, int car) {
+        this.frame=frame;
         this.from=from;
         this.to=to;
         this.offset=offset;
-        this.id=id;
-        this.divider = divider;
-        this.multiplier = multiplier;
+        this.resolution = resolution;
         this.decimals = decimals;
-        this.format = format.trim();
         this.unit = unit;
         this.requestId=requestId;
         this.responseId=responseId;
-        this.description=description;
         this.car=car;
-        this.skips=skips;
-        this.frequency=frequency;
+
+        this.lastRequest=Calendar.getInstance().getTimeInMillis();
     }
     
     @Override
     public Field clone()
     {
-        Field field = new Field(id, from, to, divider, multiplier, offset, decimals, format, unit, requestId, responseId, description, car, skips,frequency);
+        Field field = new Field(frame, from, to, resolution, decimals, offset, unit, requestId, responseId, car);
         field.value = value;
+        field.lastRequest=lastRequest;
+        field.interval=interval;
         return field;
     }
     
     @Override
     public String toString()
     {
-        /*return Integer.toHexString(id)+" "
-                +from+" "
-                +to+" "
-                +divider+" "
-                +multiplier+" "
-                +offset+" "
-                +decimals+" "
-                +format+" "
-                +unit;*/
-        return format.substring(0, format.indexOf("%")-1).trim();
+        return getSID()+" : "+getPrintValue();
     }
 
     public boolean isIsoTp()
@@ -85,9 +99,9 @@ public class Field {
     public String getSID()
     {
         if(!responseId.trim().isEmpty())
-            return (Integer.toHexString(id)+"."+responseId.trim()+"."+from).toLowerCase();
+            return (Integer.toHexString(frame.getId())+"."+responseId.trim()+"."+from).toLowerCase();
         else
-            return (Integer.toHexString(id)+"."+from).toLowerCase();
+            return (Integer.toHexString(frame.getId())+"."+from).toLowerCase();
     }
 
     public String getUniqueID()
@@ -97,18 +111,19 @@ public class Field {
     
     public String getPrintValue()
     {
-        return format.substring(0, format.indexOf("%")-1).trim()+" "+getValue()+" "+unit;
+        return getValue()+" "+getUnit();
     }
 
     public double getValue()
     {
-        double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        //double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        double val =  (value-offset)* resolution;
         if (MainActivity.milesMode) {
             if (getUnit().toLowerCase().startsWith("km"))
                 val = val / 1.609344;
             else if (getUnit().toLowerCase().endsWith("km"))
                 val = val*1.609344;
-            setUnit(getUnit().replace("km","mi"));
+            setUnit(getUnit().replace("km", "mi"));
             return val;
         }
         return val;
@@ -117,14 +132,14 @@ public class Field {
     public double getMax()
     {
         double val = (int) Math.pow(2, to-from+1);
-        return ((val-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        return ((val-offset)* resolution);
         
     }
 
     public double getMin()
     {
         double val = 0;
-        return ((val-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
+        return ((val-offset)* resolution);
     }
 
     /* --------------------------------
@@ -159,7 +174,7 @@ public class Field {
      */
     private void notifyFieldListeners(boolean async)
     {
-        if(async == false) {
+        if(!async) {
             for(int i=0; i<fieldListeners.size(); i++) {
                 fieldListeners.get(i).onFieldUpdateEvent(this.clone());
             }
@@ -179,6 +194,37 @@ public class Field {
         }
     }
     
+    /* --------------------------------
+     * Scheduling
+    \ ------------------------------ */
+
+
+    public void updateLastRequest()
+    {
+        lastRequest = Calendar.getInstance().getTimeInMillis();
+    }
+
+    public long getLastRequest()
+    {
+        return lastRequest;
+    }
+
+    public boolean isDue(long referenceTime)
+    {
+        return lastRequest+interval<referenceTime;
+    }
+
+    public void setInterval(int interval)
+    {
+        this.interval=interval;
+    }
+
+    public int getInterval()
+    {
+        return interval;
+    }
+
+
     /* --------------------------------
      * Getters & setters
     \ ------------------------------ */
@@ -216,48 +262,38 @@ public class Field {
         notifyFieldListeners();
     }
 
+    public void setCalculatedValue(double value) {
+        // inverted conversion
+        if (MainActivity.milesMode)
+        {
+            if (getUnit().toLowerCase().startsWith("km"))
+                value = value * 1.609344;
+            else if (getUnit().toLowerCase().endsWith("km"))
+                value = value / 1.609344;
+        }
+        // inverted calculation
+        this.value = value/resolution+offset;
+
+        notifyFieldListeners();
+    }
+
     public int getId() {
-        return id;
+        return frame.getId();
     }
     public String getHexId() {
-        return Integer.toHexString(id);
+        return Integer.toHexString(frame.getId());
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
     
-    
-    public int getDivider() {
-        return divider;
+    public double getResolution() {
+        return resolution;
     }
 
-    public void setDivider(int divider) {
-        this.divider = divider;
-    }
-
-    public int getMultiplier() {
-        return multiplier;
-    }
-
-    public void setMultiplier(int multiplier) {
-        this.multiplier = multiplier;
-    }
-
-    public int getDecimals() {
-        return decimals;
-    }
-
-    public void setDecimals(int decimals) {
-        this.decimals = decimals;
-    }
-
-    public String getFormat() {
-        return format;
-    }
-
-    public void setFormat(String format) {
-        this.format = format;
+    public void setResolution(double resolution) {
+        this.resolution = resolution;
     }
 
     public String getUnit() {
@@ -284,6 +320,7 @@ public class Field {
         this.responseId = responseId;
     }
 
+    /*
     public int getSkips() {
         return skips;
     }
@@ -307,7 +344,7 @@ public class Field {
     public void resetSkipsCount() {
         this.skipsCount = skips;
     }
-
+*/
     public int getCar() {
         return car;
     }
@@ -317,10 +354,18 @@ public class Field {
     }
 
     public int getFrequency() {
-        return frequency;
+        return frame.getInterval();
     }
 
-    public void setFrequency(int frequency) {
-        this.frequency = frequency;
+//    public void setFrequency(int frequency) {
+//        this.frequency = frequency;
+//    }
+
+    public int getDecimals() {
+        return decimals;
+    }
+
+    public void setDecimals(int decimals) {
+        this.decimals = decimals;
     }
 }

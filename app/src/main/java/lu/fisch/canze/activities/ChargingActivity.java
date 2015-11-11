@@ -1,3 +1,24 @@
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package lu.fisch.canze.activities;
 
 import android.os.Bundle;
@@ -10,7 +31,6 @@ import java.util.ArrayList;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
-import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldListener to the fields.
@@ -27,7 +47,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_TimeToFull                       = "654.32";
     public static final String SID_PlugConnected                    = "654.2";
 //  public static final String SID_SoC                              = "654.24";
-//  public static final String SID_SOH                              = "658.32";
+//  public static final String SID_SOH                              = "658.33";
     public static final String SID_SOH                              = "7ec.623206.24";
 //  public static final String SID_SOH                              = "7ec.62202e.24"; //pedal, checking offsets
     public static final String SID_RangeEstimate                    = "654.42";
@@ -40,7 +60,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
     public static final String plu_Status [] = {"Not connected", "Connected"};
     double dcVolt       = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     double pilot        = 0;
-    int chargingStatus  = 0;
+    int chargingStatus  = 7;
     double soc          = 0;
 
     private ArrayList<Field> subscribedFields;
@@ -59,7 +79,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addField(field);
+            MainActivity.device.addActivityField(field);
             subscribedFields.add(field);
         }
         else
@@ -93,13 +113,15 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
 
         subscribedFields = new ArrayList<>();
 
+        int car = Fields.getInstance().getCar();
+
         addListener(SID_MaxCharge);
         addListener(SID_ACPilot);
 //      addListener(SID_EnergyToFull);
         addListener(SID_TimeToFull);
         addListener(SID_PlugConnected);
         addListener(SID_SoC);
-        addListener(SID_AvChargingPower);
+        if(car==Fields.CAR_ZOE) addListener(SID_AvChargingPower);
         addListener(SID_AvEnergy);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
@@ -108,15 +130,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
         addListener(SID_TractionBatteryCurrent);
 
         // Battery compartment temperatures
-        int car = Fields.getInstance().getCar();
-        int lastCell;
-        if(car==Fields.CAR_ZOE) {
-            lastCell = 296;
-        }
-        else
-        {
-            lastCell = 104;
-        }
+        int lastCell = (car==Fields.CAR_ZOE) ? 296 : 104;
         for (int i = 32; i <= lastCell; i += 24) {
             String sid = SID_Preamble_CompartmentTemperatures + i;
             addListener(sid);
@@ -146,7 +160,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         pilot = field.getValue();
                         // continue
                         tv = (TextView) findViewById(R.id.text_max_pilot);
-                        if (chargingStatus != 3) {
+                        if (chargingStatus != 3 && Fields.getInstance().getCar()!=Fields.CAR_ZOE) {
                             tv.setText("-");
                             tv = null;
                         }
@@ -167,8 +181,12 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_RangeEstimate:
                         tv = (TextView) findViewById(R.id.textKMA);
-                        //tv.setText("" + (Math.round(Utils.kmOrMiles(field.getValue()) * 10.0) / 10.0));
-                        //tv = null;
+                        if (field.getValue() >= 1023) {
+                            tv.setText("---");
+                        } else {
+                            tv.setText("" + field.getValue());
+                        }
+                        tv = null;
                         break;
                     case SID_TractionBatteryVoltage: // DC volts
                         // save DC voltage for DC power purposes

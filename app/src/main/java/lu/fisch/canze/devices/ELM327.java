@@ -1,13 +1,34 @@
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package lu.fisch.canze.devices;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.actors.Ecu;
+import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Message;
-import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
 /**
@@ -17,13 +38,12 @@ import lu.fisch.canze.bluetooth.BluetoothManager;
 public class ELM327 extends Device {
 
     // *** needed by the "decoder" part of this device
-    private String buffer = "";
-    private final String SEPARATOR = "\r\n";
+    //private String buffer = "";
+    //private final String SEPARATOR = "\r\n";
 
-    // *** needed by the "reader" part of this device
 
     // define the timeout we may wait to get an answer
-    private int DEFAULT_TIMEOUT = 500;
+    private static int DEFAULT_TIMEOUT = 500;
     private int TIMEOUT = 500;
     // define End Of Message for this type of reader
     private static final char EOM1 = '\r';
@@ -35,63 +55,13 @@ public class ELM327 extends Device {
     /**
      * the index of the actual field to request
      */
-    private int fieldIndex = 0;
     private int lastId = 0;
 
-
-
-    public void initConnection_old() {
-        if(BluetoothManager.getInstance().isConnected()) {
-            // post a task to the UI thread
-            Runnable r = new Runnable() {
-                @Override
-                public void run() {
-                    // atz / atws (reset)
-                    // continue only if we got an answer.
-                    if (initDevice(0)) {
-
-                        setPollerActive(true);
-                        while (isPollerActive()) {
-                            // if the no field is to be queried, sleep for a while
-                            if(fields.size()==0)
-                            {
-                                try{
-                                    Thread.sleep(5000);
-                                }
-                                catch (Exception e) {}
-                            }
-                            // query a field
-                            else {
-                                queryNextFilter();
-                            }
-                        }
-                        MainActivity.debug("ELM: poller is done!");
-                        pollerThread=null;
-                    } else {
-                        MainActivity.debug("ELM: no answer ...");
-                        if (timeoutLogLevel >= 1) MainActivity.toast("Retrying ...");
-                        /*if(connectedBluetoothThread!=null) {
-                            // retry
-                            pollerThread = new Thread(this);
-                            pollerThread.start();
-                        }*/
-
-                        (new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                // stop the BT but don't reset the device registered fields
-                                MainActivity.getInstance().stopBluetooth(false);
-                                // reload the BT with filter registration
-                                MainActivity.getInstance().reloadBluetooth(false);
-                            }
-                        })).start();
-                    }
-                }
-            };
-            pollerThread = new Thread(r);
-            pollerThread.start();
-        }
-    }
+    /**
+     *
+     *
+     */
+    private boolean lastCommandWasFreeFrame = false;
 
     @Override
     public void registerFilter(int frameId) {
@@ -103,14 +73,14 @@ public class ELM327 extends Device {
         // not needed for this device
     }
 
+    /*
     @Override
-    protected ArrayList<Message> processData(int[] input) {
+    protected ArrayList<Message> processData(String inputString) {
         ArrayList<Message> result = new ArrayList<>();
 
         // add to buffer as characters
-        for (int anInput : input) {
-            buffer += (char) anInput;
-        }
+        buffer+=inputString;
+
 
         //MainActivity.debug("Buffer: "+buffer);
 
@@ -140,21 +110,39 @@ public class ELM327 extends Device {
 
         return result;
     }
+    */
 
     protected boolean initDevice (int toughness, int retries) {
-        boolean ret;
-        if (ret = initDevice(toughness)) return ret;
+        if (initDevice(toughness)) return true;
         while (retries-- > 0) {
+            MainActivity.debug("ELM327: flushWithTimeout");
             flushWithTimeout(500);
-            if (ret = initDevice(toughness)) return ret;
+            MainActivity.debug("ELM327: initDevice("+toughness+"), "+retries+" retries left");
+            if (initDevice(toughness)) return true;
         }
-        if (timeoutLogLevel >= 1) MainActivity.toast("Hard reset failed");
+        if (timeoutLogLevel >= 1) MainActivity.toast("Hard reset failed, restarting Bluetooth ...");
+        MainActivity.debug("ELM327: Hard reset failed, restarting Bluetooth ...");
 
-        // -- give up and restart BT
-        // stop BT
-        //MainActivity.getInstance().stopBluetooth();
-        // restart BT
-        //MainActivity.getInstance().reloadBluetooth();
+        ///----- WE ARE HERE INSIDE THE POLLER THREAD, SO
+        ///----- JOINING CAN'T WORK!
+
+        // ... but we don't want the next request to happen,
+        // so we need to stop the poller here anyway, but
+        // DO NOT JOIN IT!
+        setPollerActive(false);
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // -- give up and restart BT
+                // stop BT without resetting the registered fields
+                MainActivity.debug("ELM327: stopBluetooth (via MainActivity)");
+                MainActivity.getInstance().stopBluetooth(false);
+                // restart BT without reloading all settings
+                MainActivity.debug("ELM327: reloadBluetooth (via MainActivity)");
+                MainActivity.getInstance().reloadBluetooth(false);
+            }
+        })).start();
 
         return false;
     }
@@ -162,11 +150,12 @@ public class ELM327 extends Device {
 
     public boolean initDevice(int toughness) {
 
+        MainActivity.debug("ELM327: initDevice ("+toughness+")");
+
         String response;
         int elmVersion = 0;
 
-        // ensure the decoder (processData) is reset
-        buffer = "";
+        lastInitProblem = "";
 
         // ensure the dongle header field is set again
         lastId = 0;
@@ -202,7 +191,8 @@ public class ELM327 extends Device {
         }
 
         if (response.trim().equals("")) {
-            if (timeoutLogLevel >= 1) MainActivity.toast("ELM is not responding");
+            lastInitProblem = "ELM is not responding";
+            if (timeoutLogLevel >= 1) MainActivity.toast(lastInitProblem);
             return false;
         }
 
@@ -217,42 +207,67 @@ public class ELM327 extends Device {
             } else if (response.toUpperCase().contains("INNOCAR")) {
                 elmVersion = 8015;
             } else {
-                if (timeoutLogLevel >= 1) MainActivity.toast("Unrecognized ELM version response [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
+                lastInitProblem = "Unrecognized ELM version response [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]";
+                if (timeoutLogLevel >= 1) MainActivity.toast(lastInitProblem);
                 return false;
             }
         }
 
         // at this point, echo is still on (except when atd was issued), so we still need to absorb the echoed command
         // ate0 (no echo)
-        if (!initCommandExpectOk("ate0", true)) return false;
+        if (!initCommandExpectOk("ate0", true)) {
+            lastInitProblem = "ATE0 command problem";
+            return false;
+        }
 
         // at this point, echo is finally off so we can safely check for OK messages. If the app starts responding with toasts showing the responses
         // in brackets equal to the commands, somehow the echo was not executed. so maybe we need to check for that specific condition in the next
         // command.
 
         // ats0 (no spaces)
-        if (!initCommandExpectOk("ats0")) return false;
+        if (!initCommandExpectOk("ats0")) {
+            lastInitProblem = "ATS0 command problem";
+            return false;
+        }
 
         // atsp6 (CAN 500K 11 bit)
-        if (!initCommandExpectOk("atsp6")) return false;
+        if (!initCommandExpectOk("atsp6")) {
+            lastInitProblem = "ATSP6 command problem";
+            return false;
+        }
 
         // atat1 (auto timing)
-        if (!initCommandExpectOk("atat1")) return false;
+        if (!initCommandExpectOk("atat1")) {
+            lastInitProblem = "ATAT1 command problem";
+            return false;
+        }
 
         // atcaf0 (no formatting)
-        if (!initCommandExpectOk("atcaf0")) return false;
+        if (!initCommandExpectOk("atcaf0")) {
+            lastInitProblem = "ATCAF0 command problem";
+            return false;
+        }
 
         // atfcsh79b        Set flow control response ID to 79b (the LBC) This is needed to set the flow control response, but that one is remembered :-)
-        if (!initCommandExpectOk("atfcsh77b")) return false;
+        if (!initCommandExpectOk("atfcsh77b")) {
+            lastInitProblem = "ATFCSH77B command problem";
+            return false;
+        }
 
         // atfcsd300020     Set the flow control response data to 300010 (flow control, clear to send,
         //                  all frames, 16 ms wait between frames. Note that it is not possible to let
         //                  the ELM request each frame as the Altered Flow Control only responds to a
         //                  First Frame (not a Next Frame)
-        if (!initCommandExpectOk("atfcsd300010")) return false;
+        if (!initCommandExpectOk("atfcsd300010")) {
+            lastInitProblem = "ATFCSD300010 command problem";
+            return false;
+        }
 
         // atfcsm1          Set flow control mode 1 (ID and data suplied)
-        if (!initCommandExpectOk("atfcsm1")) return false;
+        if (!initCommandExpectOk("atfcsm1")) {
+            lastInitProblem = "ATFCSM1 command problem";
+            return false;
+        }
 
         if (toughness == 0 ) {
             switch (elmVersion) {
@@ -263,7 +278,8 @@ public class ELM327 extends Device {
                     if (timeoutLogLevel >= 1) MainActivity.toast("ELM is now ready");
                     break;
                 case 20:
-                    if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, version 2.x, will probably not work, please report if it does");
+                    lastInitProblem = "ELM ready, version 2.x, will probably not work, please report if it does";
+                    if (timeoutLogLevel >= 1) MainActivity.toast(lastInitProblem);
                     break;
                 case 8015:
                     if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, version innocar, should work");
@@ -271,7 +287,8 @@ public class ELM327 extends Device {
 
                 // default should never be reached!!
                 default:
-                    if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, unknown version, will probably not work, please report if it does");
+                    lastInitProblem = "ELM ready, unknown version, will probably not work, please report if it does";
+                    if (timeoutLogLevel >= 1) MainActivity.toast(lastInitProblem);
                     break;
             }
         }
@@ -339,49 +356,6 @@ public class ELM327 extends Device {
         return false;
     }
 
-    /**
-     * Creates a message based on the data of a line
-     * @param text what came back from the ELM
-     * @return Message
-     */
-    private Message lineToMessage(String text) {
-        // split up the fields
-        String[] pieces = text.split(",");
-        if(pieces.length==2) {
-            try {
-                // get the id
-                int id = Integer.parseInt(pieces[0], 16);
-                // get the data
-                int[] data = Utils.toIntArray(pieces[1].trim());
-                // create and return new frame
-                return new Message(id, data);
-            }
-            catch(Exception e)
-            {
-                return null;
-            }
-        }
-        else if(pieces.length==3) {
-            try {
-                // get the id
-                int id = Integer.parseInt(pieces[0], 16);
-                // get the data
-                int[] data = Utils.toIntArray(pieces[1].trim());
-                // get the reply-ID
-                Message f = new Message(id,data);
-                //MainActivity.debug("THIRD: "+pieces[2].trim());
-                f.setResponseId(pieces[2].trim());
-                return f;
-            }
-            catch(Exception e)
-            {
-                //MainActivity.debug("BAD: "+text);
-                return null;
-            }
-        }
-        return null;
-    }
-
     private void sendNoWait(String command) {
         if(!BluetoothManager.getInstance().isConnected()) return;
         if(command!=null) {
@@ -402,9 +376,9 @@ public class ELM327 extends Device {
         return sendAndWaitForAnswer(command,waitMillis,untilEmpty,-1, true);
     }
 
-    private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount) {
-        return sendAndWaitForAnswer(command,waitMillis,untilEmpty,answerLinesCount, true);
-    }
+//    private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount) {
+//        return sendAndWaitForAnswer(command,waitMillis,untilEmpty,answerLinesCount, true);
+//    }
 
     // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount, boolean addReturn)
@@ -474,6 +448,7 @@ public class ELM327 extends Device {
                                     try {
                                         Thread.sleep(5);
                                     } catch (InterruptedException e) {
+                                        // do nothing
                                     }
                                     stop=(BluetoothManager.getInstance().available()==0);
                                 }
@@ -505,7 +480,7 @@ public class ELM327 extends Device {
 
         // set the flag that a timeout has occurred. someThingWrong can be inspected anywhere, but we reset the device after a full filter has been run
         if (timedOut) {
-            if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && !command.startsWith("atma") && command.startsWith("at"))) {
+            if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && (command==null || (!command.startsWith("atma") && command.startsWith("at"))))) {
                 MainActivity.toast("Timeout on [" + command + "][" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
             }
             someThingWrong |= true;
@@ -519,7 +494,7 @@ public class ELM327 extends Device {
 
     private int getRequestId(int responseId)
     {                     //from        // to
-        if     (responseId==0x7ec) return 0x7e4;  // EVC / SCH
+ /*      if     (responseId==0x7ec) return 0x7e4;  // EVC / SCH
         else if(responseId==0x7da) return 0x7ca;  // TCU
         else if(responseId==0x7bb) return 0x79b;  // LBC
         else if(responseId==0x77e) return 0x75a;  // PEB
@@ -535,90 +510,15 @@ public class ELM327 extends Device {
         else if(responseId==0x793) return 0x792;  // BCB
         else if(responseId==0x7b6) return 0x796;  // LBC2
         else if(responseId==0x722) return 0x702;  // LINSCH
-        else return -1;
+        else return 0; */
+
+        Ecu ecu = Ecus.getInstance().getByFromId(responseId);
+        return ecu != null ? ecu.getToId() : 0;
     }
 
     private String getRequestHexId(int responseId)
     {
         return Integer.toHexString(getRequestId(responseId));
-    }
-
-    // query the device for the next filter
-    public void queryNextFilter_old()
-    {
-        //MainActivity.debug("queryNextFilter: "+fieldIndex);
-        try {
-            if(fields.size()>0) {
-                //MainActivity.debug("Index: "+fieldIndex);
-
-                // get field
-                Field field;
-                boolean runFilter;
-
-                synchronized (fields) {
-                    field = fields.get(fieldIndex);
-                }
-
-                MainActivity.debug("queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
-
-                // only run the filter if the skipsCount is down to zero
-                runFilter = (field.getSkipsCount() == 0);
-                if (runFilter)
-                    // reset it to its initial value
-                    field.resetSkipsCount();
-                else
-                    // decrement the skipsCount
-                    field.decSkipCount();
-
-                if (runFilter) {
-                    String data = "";
-                    if (field.isIsoTp()) {
-                        data = requestIsoTpFrame(field);
-                        if (!someThingWrong && data!=null) //!data.equals(""))
-                        {
-                            //data = field.getHexId() + "," + data.trim() + "," + field.getResponseId() + SEPARATOR;
-                            process(Utils.toIntArray(data.getBytes()));
-                        }
-
-                    } else {
-                        data = requestFreeFrame(field);
-                        if (!someThingWrong && data!=null) //!data.equals(""))
-                        {
-                            //data = field.getHexId() + "," + data.trim() + SEPARATOR;
-                            process(Utils.toIntArray(data.getBytes()));
-                        }
-                    }
-
-                    // reset the ELM if a timeout occurred somewhere running this filter
-                    // ... but only if we are not asked to stop!
-                    if (someThingWrong && BluetoothManager.getInstance().isConnected()) {
-                        //MainActivity.toast("... in command " + emlFilter + ", resetting ELM");
-                        initDevice(1, 2);
-                        // someThingWrong = false; // done in initElm now
-                    }
-                }
-
-                // move on to the next field
-                synchronized (fields) {
-                    if(fields.size()==0)
-                        fieldIndex=0;
-                    else
-                        fieldIndex = (fieldIndex + 1) % fields.size();
-                }
-            }
-
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            // move on to the next field
-            synchronized (fields) {
-                if(fields.size()==0)
-                    fieldIndex=0;
-                else
-                    fieldIndex = (fieldIndex + 1) % fields.size();
-            }
-        }
     }
 
     @Override
@@ -628,11 +528,14 @@ public class ELM327 extends Device {
     }
 
     @Override
-    public String requestFreeFrame(Field field) {
+    public Message requestFreeFrame(Field field) {
 
         String hexData = "";
 
-        if (someThingWrong) { return "" ; }
+        if (someThingWrong) { return null ; }
+
+        // ensure the ATCRA filter is reset in the next NON free frame request
+        lastCommandWasFreeFrame = true;
 
         // EML needs the filter to be 3 symbols and contains the from CAN id of the ECU
         String emlFilter = field.getHexId() + "";
@@ -660,23 +563,32 @@ public class ELM327 extends Device {
         // however, make sure proper flushing is done
         // if cra does influence ISO-TP requests, an small optimization might be to only sending an atar when switching from free
         // frames to isotp frames.
-        if (!initCommandExpectOk("atar")) someThingWrong |= true;
-        String returnData = hexData;
+        // if (!initCommandExpectOk("atar")) someThingWrong |= true;
 
-        String data = field.getHexId() + "," + returnData.trim() + SEPARATOR;
-        if(returnData.trim().equals(""))
+        hexData = hexData.trim();
+        if(hexData.equals(""))
             return null;
         else
-            return data;
+            return new Message(field, hexData);
     }
 
     @Override
-    public String requestIsoTpFrame(Field field) {
+    public Message requestIsoTpFrame(Field field) {
 
-        if (someThingWrong) { return "" ; }
+        if (someThingWrong) { return null ; }
 
         String hexData = "";
         int len = 0;
+
+        // PERFORMANCE ENHANCEMENT: only send ATAR if coming from a free frame
+        if (lastCommandWasFreeFrame) {
+            // atar     (clear filter set by free frame capture method)
+            if (!initCommandExpectOk("atar")){
+                someThingWrong |= true;
+                return null;
+            }
+            lastCommandWasFreeFrame = false;
+        }
 
         // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
         lastId = 0;
@@ -728,8 +640,8 @@ public class ELM327 extends Device {
                     // split into lines
                     String[] hexDataLines = lines0x1.split(String.valueOf(EOM1));
 
-                    for (int i = 0; i < hexDataLines.length; i++) {
-                        line0x1 = hexDataLines[i];
+                    for (String hexDataLine : hexDataLines) {
+                        line0x1 = hexDataLine;
                         //MainActivity.debug("Line "+(i+1)+": " + line);
                         if (!line0x1.isEmpty() && line0x1.length() > 2) {
                             // cut off the first byte (type + sequence)
@@ -744,16 +656,22 @@ public class ELM327 extends Device {
             }
 
         }
-        // better here is to wait for a >
+
+        // There was spurious error here, that immediately sending another command STOPPED the still not entirely finished ISO-TP command.
+        // It was probably still sending "OK>" or just ">". So, the next command files and if it was i.e. an atcra f a free frame capture,
+        // the following ATMA immediately overwhelmed the ELM as no filter was set.
+        // As a solution, added this wait for a > after an ISO-TP command.
+
         flushWithTimeout(400, '>');
         len *= 2;
-        if (hexData.length() <= len) return hexData + "\r";
-        String returnData = hexData.substring(0, len) + "\r";
 
-        String data = field.getHexId() + "," + returnData.trim() + "," + field.getResponseId() + SEPARATOR;
-        if(returnData.trim().equals(""))
+        // Having less data than specified in length is actually an error, but at least we do not need so substr it
+        // if there is more data than specified in length, that is OK (filler bytes in the last frame), so cut those away
+        hexData = (hexData.length() <= len) ? hexData.trim() : hexData.substring(0, len).trim();
+
+        if (hexData.equals(""))
             return null;
         else
-            return data;
+            return new Message(field, hexData);
     }
 }

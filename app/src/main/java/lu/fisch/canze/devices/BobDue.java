@@ -1,13 +1,32 @@
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package lu.fisch.canze.devices;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Message;
-import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
 /**
@@ -16,72 +35,18 @@ import lu.fisch.canze.bluetooth.BluetoothManager;
 public class BobDue extends Device {
 
     // *** needed by the "reader" part
-    private String buffer = "";
-    private final String separator = "\n";
+    //private String buffer = "";
+    //private final String separator = "\n";
 
+    private static final int WRONG_THRESHOLD = 20;
 
     // define the timeout we may wait to get an answer
-    private static final int TIMEOUT = 250;
+    private static final int TIMEOUT = 500;
     // define End Of Message for this type of reader
     private static final char EOM = '\n';
     // the actual filter
-    private int fieldIndex = 0;
+    //private int fieldIndex = 0;
     // the thread that polls the data to the stack
-
-    public void initConnection_old() {
-        MainActivity.debug("BobDue: initConnection");
-        if(BluetoothManager.getInstance().isConnected()) {
-            MainActivity.debug("BobDue: connectedBluetoothThread!=null");
-            // make sure we only have one poller task
-            if (pollerThread == null) {
-                MainActivity.debug("BobDue: pollerThread == null");
-                // post a task to the UI thread
-                setPollerActive(true);
-
-                Runnable r = new Runnable() {
-                    @Override
-                    public void run() {
-                        while (isPollerActive())
-                        {
-                            //MainActivity.debug("BobDue: inside poller thread ...");
-                            if(fields.size()==0)
-                            {
-                                //MainActivity.debug("BobDue: sleeping ...");
-                                try{
-                                    Thread.sleep(5000);
-                                }
-                                catch (Exception e) {}
-                            }
-                            // query a field
-                            else {
-                                //MainActivity.debug("BobDue: Doing next query ...");
-                                queryNextFilter();
-                            }
-                        }
-                        pollerThread=null;
-                    }
-                };
-                pollerThread = new Thread(r);
-                pollerThread.start();
-            }
-        }
-        else
-        {
-            MainActivity.debug("BobDue: connectedBluetoothThread == null");
-            if(pollerThread!=null && pollerThread.isAlive())
-            {
-                setPollerActive(false);
-                try {
-                    MainActivity.debug("BobDue: joining pollerThread");
-                    pollerThread.join();
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
     public void join() throws InterruptedException {
         pollerThread.join();
@@ -105,135 +70,6 @@ public class BobDue extends Device {
             MainActivity.debug("BobDue.unregisterFilter " + filter + " failed because connectedBluetoothThread is NULL");
     }
 
-    @Override
-    protected ArrayList<Message> processData(int[] input) {
-        ArrayList<Message> result = new ArrayList<>();
-
-        // add to buffer as characters
-        for (int i = 0; i < input.length; i++) {
-            buffer += (char) input[i];
-        }
-
-        //MainActivity.debug("Buffer = "+buffer);
-
-        // split by <new line>
-        String[] messages = buffer.split(separator);
-        // let assume the last message is fine
-        int last = messages.length;
-        // but if it is not, do not consider it
-        if (!buffer.endsWith(separator)) last--;
-
-        // process each message
-        for (int i = 0; i < last; i++) {
-            // decode into a frame
-            //MainActivity.debug("Decoding: "+messages[i].trim());
-            Message message = decodeFrame(messages[i].trim());
-            // store if valid
-            if (message != null)
-                result.add(message);
-        }
-        // adapt the buffer
-        if (!buffer.endsWith(separator))
-            // retain the last uncompleted message
-            buffer = messages[messages.length - 1];
-        else
-            // empty the entire buffer
-            buffer = "";
-        // we are done
-
-        return result;
-    }
-
-    private Message decodeFrame(String text) {
-        // split up the fields
-        String[] pieces = text.split(",");
-        //MainActivity.debug("Pieces = "+pieces);
-        //MainActivity.debug("Size = "+pieces.length);
-        if(pieces.length==2) {
-            try {
-                // get the id
-                int id = Integer.parseInt(pieces[0], 16);
-                // get the data
-                int[] data = Utils.toIntArray(pieces[1].trim());
-                // create and return new frame
-                return new Message(id, data);
-            }
-            catch(Exception e)
-            {
-                //MainActivity.debug("BAD: "+text);
-                return null;
-            }
-        }
-        else if(pieces.length>=3) {
-            try {
-                // get the id
-                int id = Integer.parseInt(pieces[0], 16);
-                // get the data
-                int[] data = Utils.toIntArray(pieces[1].trim());
-                // get the reply-ID
-                Message f = new Message(id,data);
-                //MainActivity.debug("ID = "+id+" / Data = "+data);
-                //MainActivity.debug("THIRD: "+pieces[2].trim());
-                f.setResponseId(pieces[2].trim());
-                return f;
-                /*
-                // get checksum
-                int chk = Integer.parseInt(pieces[2].trim(), 16);
-                int check = 0;
-                for(int i=0; i<data.length; i++)
-                    check ^= data[i];
-                // validate the checksum
-                if(chk==check)
-                    // create and return new frame
-                    return new Frame(id, data);
-                */
-            }
-            catch(Exception e)
-            {
-                //MainActivity.debug("BAD: "+text);
-                return null;
-            }
-        }
-        //MainActivity.debug("BAD: "+text);
-        return null;
-    }
-
-
-    // query the device for the next filter
-    public void queryNextFilter_old()
-    {
-        if (fields.size() > 0) {
-            try {
-                // get field
-                Field field;
-
-                synchronized (fields) {
-                    field = fields.get(fieldIndex);
-                }
-
-                MainActivity.debug("BobDue: queryNextFilter: "+fieldIndex+" --> "+field.getSID()+" \tSkipsCount = "+field.getSkipsCount());
-
-                //MainActivity.debug("Querying for field: "+field.getSID());
-
-                if(field!=null) {
-                    process(Utils.toIntArray(requestField(field).getBytes()));
-
-                    // goto next filter
-                    synchronized (fields) {
-                        if(fields.size()==0)
-                            fieldIndex=0;
-                        else
-                            fieldIndex = (fieldIndex + 1) % fields.size();
-                    }
-                }
-            } catch (Exception e) {
-                fieldIndex =0;
-            }
-        } else {
-            // ignore
-        }
-    }
-
     // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis)
     {
@@ -249,7 +85,8 @@ public class BobDue extends Device {
         }
         // send the command
         if(command!=null)
-            BluetoothManager.getInstance().write(command + "\r\n");
+            // prefix fir EOM to make sure the previous command is done!
+            BluetoothManager.getInstance().write("\r\n"+command + "\r\n");
         //MainActivity.debug("Send > "+command);
         // wait if needed
         if(waitMillis>0)
@@ -279,7 +116,8 @@ public class BobDue extends Device {
                         // add it to the readBuffer
                         readBuffer += ch;
                         // stop if we reached the end or if no more data is available
-                        if (ch == EOM || BluetoothManager.getInstance().available() <= 0) stop = true;
+                        if ((ch == EOM || BluetoothManager.getInstance().available() <= 0) &&
+                                !readBuffer.trim().isEmpty())  stop = true;
                     }
                 }
             }
@@ -292,28 +130,72 @@ public class BobDue extends Device {
         return readBuffer;
     }
 
+    private int wrongCount = 0;
+
     @Override
     public void clearFields() {
         super.clearFields();
-        fieldIndex=0;
+        fieldIndex =0;
     }
 
     @Override
-    public String requestFreeFrame(Field field) {
+    public Message requestFreeFrame(Field field) {
         // send the command and wait fir an answer, no delay
-        return sendAndWaitForAnswer("g" + field.getHexId(), 0);
+        String data = sendAndWaitForAnswer("g" + field.getHexId(), 0);
+        // handle empty answer
+        if(data.trim().isEmpty()) wrongCount++;
+        if(wrongCount>WRONG_THRESHOLD) {
+            wrongCount=0;
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    MainActivity.getInstance().stopBluetooth(false);
+                    MainActivity.getInstance().reloadBluetooth(false);
+                }
+            })).start();
+        }
+        return responseToMessage(field,data);
     }
 
     @Override
-    public String requestIsoTpFrame(Field field) {
+    public Message requestIsoTpFrame(Field field) {
         // build the command string to send to the remote device
         String command = "i" + field.getHexId() + "," + field.getRequestId() + "," + field.getResponseId();
+        String data = sendAndWaitForAnswer(command, 0);
+        // handle empty answer
+        if(data.trim().isEmpty()) wrongCount++;
+        if(wrongCount>WRONG_THRESHOLD) {
+            wrongCount=0;
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    MainActivity.getInstance().stopBluetooth(false);
+                    MainActivity.getInstance().reloadBluetooth(false);
+                }
+            })).start();
+        }
         // send and wait fir an answer, no delay
-        return sendAndWaitForAnswer(command, 0);
+        return responseToMessage(field,data);
+    }
+
+    private Message responseToMessage(Field field, String text)
+    {
+        // split up the fields
+        String[] pieces = text.trim().split(",");
+        if(pieces.length>1)
+            return new Message(field,pieces[1].trim());
+        else
+        {
+            MainActivity.debug("BobDue: Got > "+text.trim());
+            return null;
+        }
     }
 
     @Override
-    public boolean initDevice(int toughness) { return true; }
+    public boolean initDevice(int toughness) {
+        lastInitProblem = "";
+        return true;
+    }
 
     @Override
     protected boolean initDevice(int toughness, int retries) {

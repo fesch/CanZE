@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:minHeight="25dp"
             android:max="4096"
-            android:progressDrawable="@drawable/progressbar_canze"
+            android:progressDrawable="@drawable/progressbar_canze_red"
             />
 <!--
         <TextView
@@ -128,7 +128,7 @@
             android:minHeight="25dp"
             android:max="100"
             android:progressDrawable="@drawable/progressbar_canze"
-            /> -->
+            />
 
         <TextView
             android:id="@+id/label_TotalPotentialResistiveWheelsTorque"
@@ -146,8 +146,8 @@
             android:minHeight="25dp"
             android:max="4096"
             android:progressDrawable="@drawable/progressbar_canze_green"
-            />
-
+            /> -->
+<!--
         <TextView
             android:id="@+id/header_braking"
             android:layout_width="fill_parent"
@@ -238,7 +238,7 @@
             </TableRow>
 
         </TableLayout>
-
+-->
     </LinearLayout>
 
     <!-- debug line -->

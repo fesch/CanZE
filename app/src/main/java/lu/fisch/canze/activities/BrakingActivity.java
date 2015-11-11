@@ -1,3 +1,24 @@
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package lu.fisch.canze.activities;
 
 import android.os.Bundle;
@@ -17,15 +38,15 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
-    // public static final String SID_Coasting_Torque                   = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
-//  public static final String SID_ElecBrakeWheels_Torque_Request       = "130.20"; // wheel torque the car wants from the motor
-    public static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //10ms
+    public static final String SID_Coasting_Torque                   = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
+    //  public static final String SID_ElecBrakeWheels_Torque_Request       = "130.20"; // wheel torque the car wants from the motor
+//  public static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //10ms
     public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; //10ms
-    public static final String SID_HBB_Malfunction                      = "130.11"; //10ms
-    public static final String SID_EB_Malfunction                       = "130.16";
-    public static final String SID_EB_In_Progress                       = "130.18";
-    public static final String SID_HBA_Activation_Request               = "130.40";
-    public static final String SID_Pressure_Buildup                     = "130.42";
+    //  public static final String SID_HBB_Malfunction                      = "130.11"; //10ms
+//  public static final String SID_EB_Malfunction                       = "130.16";
+//  public static final String SID_EB_In_Progress                       = "130.18";
+//  public static final String SID_HBA_Activation_Request               = "130.40";
+//  public static final String SID_Pressure_Buildup                     = "130.42";
     public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; // braking wheel torque the driver wants
 
 //    public static final String SID_Braking_Pressure                     = "352.24"; //40ms We still don't know if braking pressure correlates to torque
@@ -37,6 +58,8 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
     public static final String pressure_buildup [] = {"unavailable", "False", "True"};
 
     private double driverBrakeWheel_Torque_Request = 0;
+    private double coasting_Torque = 0;
+    private double elecBrakeWheelsTorqueApplied = 0;
 
     private ArrayList<Field> subscribedFields;
 
@@ -52,7 +75,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addField(field);
+            MainActivity.device.addActivityField(field);
             subscribedFields.add(field);
         }
         else
@@ -89,15 +112,14 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
         addListener(SID_DriverBrakeWheel_Torque_Request);
         addListener(SID_ElecBrakeWheelsTorqueApplied);
 //      addListener(SID_ElecBrakeWheels_Torque_Request);
-        addListener(SID_TotalPotentialResistiveWheelsTorque);
-//      addListener(SID_Coasting_Torque)
+//      addListener(SID_TotalPotentialResistiveWheelsTorque);
+        addListener(SID_Coasting_Torque);
 //      addListener(SID_Braking_Pressure);
-        addListener(SID_HBB_Malfunction);
-        addListener(SID_EB_Malfunction);
-        addListener(SID_EB_In_Progress);
-        addListener(SID_HBA_Activation_Request);
-        addListener(SID_Pressure_Buildup);
-        //addListener(SID_EVC_RealSpeed); // unhandled
+//      addListener(SID_HBB_Malfunction);
+//      addListener(SID_EB_Malfunction);
+//      addListener(SID_EB_In_Progress);
+//      addListener(SID_HBA_Activation_Request);
+//      addListener(SID_Pressure_Buildup);
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -112,37 +134,39 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
                 String fieldId = field.getSID();
                 TextView tv = null;
                 String value = "";
-                ProgressBar pb = null;
+                ProgressBar pb;
 
                 // get the text field
                 switch (fieldId) {
                     case SID_DriverBrakeWheel_Torque_Request:
-                        driverBrakeWheel_Torque_Request = field.getValue();
+                        driverBrakeWheel_Torque_Request = field.getValue() + coasting_Torque;
                         pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
                         pb.setProgress((int) driverBrakeWheel_Torque_Request);
                         break;
                     case SID_ElecBrakeWheelsTorqueApplied:
+                        elecBrakeWheelsTorqueApplied = field.getValue() + coasting_Torque;
                         pb = (ProgressBar) findViewById(R.id.pb_ElecBrakeWheelsTorqueApplied);
                         pb.setProgress((int) (field.getValue()));
                         pb = (ProgressBar) findViewById(R.id.pb_diff_friction_torque);
-                        pb.setProgress((int) (driverBrakeWheel_Torque_Request - field.getValue()));
+                        pb.setProgress((int) (driverBrakeWheel_Torque_Request - elecBrakeWheelsTorqueApplied));
                         break;
-                     case SID_TotalPotentialResistiveWheelsTorque:
-                        pb = (ProgressBar) findViewById(R.id.pb_TotalPotentialResistiveWheelsTorque);
+/*                    case SID_TotalPotentialResistiveWheelsTorque:
+                      pb = (ProgressBar) findViewById(R.id.pb_TotalPotentialResistiveWheelsTorque);
+                      pb.setProgress((int) field.getValue());
+                      break;
+                    case SID_ElecBrakeWheels_Torque_Request:
+                      pb = (ProgressBar) findViewById(R.id.pb_eb_torque_request);
+                      pb.setProgress((int) field.getValue());
+                      break;*/
+                    case SID_Coasting_Torque:
+                        coasting_Torque = field.getValue();
+                        //  pb = (ProgressBar) findViewById(R.id.pb_friction_torque);
+                        //  pb.setProgress((int) field.getValue());
+                        break;
+/*                    case SID_Braking_Pressure:
+                        pb = (ProgressBar) findViewById(R.id.pb_braking_pressure);
                         pb.setProgress((int) field.getValue());
                         break;
-                    //case SID_ElecBrakeWheels_Torque_Request:
-                    //  pb = (ProgressBar) findViewById(R.id.pb_eb_torque_request);
-                    //  pb.setProgress((int) field.getValue());
-                    //  break;
-                    //case SID_Coasting_Torque:
-                    //  pb = (ProgressBar) findViewById(R.id.pb_friction_torque);
-                    //  pb.setProgress((int) field.getValue());
-                    //  break;
-                    //case SID_Braking_Pressure:
-                    //  pb = (ProgressBar) findViewById(R.id.pb_braking_pressure);
-                    //  pb.setProgress((int) field.getValue());
-                    //  break;
                     case SID_HBB_Malfunction:
                         tv = (TextView) findViewById(R.id.text_hbb_malfunction);
                         value = hbb_Malfunction[(int)field.getValue()];
@@ -162,12 +186,12 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
                     case SID_Pressure_Buildup:
                         tv = (TextView) findViewById(R.id.text_pressure_buildup);
                         value = pressure_buildup[(int)field.getValue()];
-                        break;
+                        break;*/
                 }
                 // set regular new content, all exeptions handled above
-                if (tv != null) {
+/*                if (tv != null) {
                     tv.setText(value);
-                }
+                }*/
 
                 tv = (TextView) findViewById(R.id.textDebug);
                 tv.setText(fieldId);

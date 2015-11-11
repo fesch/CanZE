@@ -1,3 +1,24 @@
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package lu.fisch.canze.widgets;
 
 import com.google.gson.Gson;
@@ -5,14 +26,18 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.classes.TimePoint;
+import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 
 /**
@@ -20,24 +45,6 @@ import lu.fisch.canze.interfaces.DrawSurfaceInterface;
  * @author robertfisch
  */
 public class Timeplot extends Drawable {
-
-    class TimePoint implements Serializable {
-        public long date;
-        public double value;
-
-        public TimePoint() {
-        }
-
-        public TimePoint(long date, double value) {
-            this.date = date;
-            this.value = value;
-        }
-
-        public String toString()
-        {
-            return date+","+value;
-        }
-    }
 
     protected HashMap<String,ArrayList<TimePoint>> values = new HashMap<>();
 
@@ -82,35 +89,42 @@ public class Timeplot extends Drawable {
 
     private Color getColor(int i)
     {
-        if(i==1) return Color.BLUE;
-        else if (i==2) return Color.GREEN_DARK;
-        else return Color.RED;
+        if(i==0) return Color.RENAULT_RED;
+        else if (i==1) return Color.BLUE;
+        else return Color.GREEN_DARK;
     }
 
     @Override
     public void draw(Graphics g) {
+        // background
+        g.setColor(getBackground());
+        g.fillRect(x, y, width, height);
+
         // black border
-        g.setColor(Color.BLACK);
+        g.setColor(getForeground());
         g.drawRect(x, y, width, height);
 
         // calculate fill height
         int fillHeight = (int) ((value-min)/(double)(max-min)*(height-1));
         int barWidth = width-Math.max(g.stringWidth(min+""),g.stringWidth(max+""))-10-10;
 
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        int graphHeight = height-g.stringHeight(sdf.format(Calendar.getInstance().getTime()))-5;
+
         // draw the ticks
         if(minorTicks>0 || majorTicks>0)
         {
             int toTicks = minorTicks;
             if(toTicks==0) toTicks=majorTicks;
-            double accel = (double)height/((max-min)/(double)toTicks);
+            double accel = (double)graphHeight/((max-min)/(double)toTicks);
             double ax,ay,bx=0,by=0;
             int actual = min;
             int sum = 0;
-            for(double i=height; i>=0; i-=accel)
+            for(double i=graphHeight; i>=0; i-=accel)
             {
                 if(minorTicks>0)
                 {
-                    g.setColor(Color.GRAY);
+                    g.setColor(getForeground());
                     ax = x+width-barWidth-5;
                     ay = y+i;
                     bx = x+width-barWidth;
@@ -121,14 +135,14 @@ public class Timeplot extends Drawable {
                 if(majorTicks!=0 && sum % majorTicks == 0) {
                     if(majorTicks>0)
                     {
-                        g.setColor(Color.GRAY_LIGHT);
+                        g.setColor(getIntermediate());
                         ax = x+width-barWidth-10;
                         ay = y+i;
                         bx = x+width;
                         by = y+i;
                         g.drawLine((int)ax, (int)ay, (int)bx, (int)by);
 
-                        g.setColor(Color.GRAY);
+                        g.setColor(getForeground());
                         ax = x+width-barWidth-10;
                         ay = y+i;
                         bx = x+width-barWidth;
@@ -139,12 +153,12 @@ public class Timeplot extends Drawable {
                     // draw String
                     if(showLabels)
                     {
-                        g.setColor(Color.GRAY);
+                        g.setColor(getForeground());
                         String text = (actual)+"";
                         double sw = g.stringWidth(text);
                         bx = x+width-barWidth-16-sw;
                         by = y+i;
-                        g.drawString(text, (int)(bx), (int)(by+g.stringHeight(text)*(1-i/height)));
+                        g.drawString(text, (int)(bx), (int)(by+g.stringHeight(text)*(1-i/graphHeight)));
                     }
 
                     actual+=majorTicks;
@@ -153,16 +167,32 @@ public class Timeplot extends Drawable {
             }
         }
 
+        // draw the horizontal grid
+        g.setColor(getIntermediate());
+        long start = Calendar.getInstance().getTimeInMillis()/1000;
+        int interval = 60;
+        for(long x=width-(start%interval); x>=width-barWidth; x-=interval)
+        {
+            g.drawLine(x, 1, x, graphHeight + 5);
+        }
+
         // draw the graph
         for(int s=0; s<sids.size(); s++) {
             String sid = sids.get(s);
             ArrayList<TimePoint> values = this.values.get(sid);
 
-            g.drawRect(x + width - barWidth, y, barWidth, height);
+            // setup an empty list if no list has been found
+            if(values==null) {
+                values = new ArrayList<>();
+                this.values.put(sid,values);
+            }
+
+            g.setColor(getForeground());
+            g.drawRect(x + width - barWidth, y, barWidth, graphHeight);
             if (values.size() > 0) {
 
                 double w = (double) barWidth / values.size();
-                double h = (double) getHeight() / (getMax() - getMin() + 1);
+                double h = (double) graphHeight / (getMax() - getMin() + 1);
 
                 double lastX = Double.NaN;
                 double lastY = Double.NaN;
@@ -173,36 +203,61 @@ public class Timeplot extends Drawable {
                 for (int i = values.size() - 1; i >= 0; i--) {
                     TimePoint tp = values.get(i);
 
-                    g.setColor(colorRanges.getColor(sid,tp.value,getColor(s)));
+                    if(tp!=null) {
+                        g.setColor(colorRanges.getColor(sid, tp.value, getColor(s)));
 
-                    double mx = barWidth - (maxTime - tp.date) / 1000;
+                        double mx = barWidth - (maxTime - tp.date) / 1000;
 
-                    if (mx < 0) {
-                        values.remove(i);
-                    } else {
-                        double my = getHeight() - (tp.value - getMin()) * h;
-                        int rayon = 2;
-                        g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon,
-                                getY() + (int) my - rayon,
-                                2 * rayon + 1,
-                                2 * rayon + 1);
-                        if (i < values.size() - 1) {
-                            g.drawLine(getX() + getWidth() - barWidth + (int) lastX,
-                                    getY() + (int) lastY,
-                                    getX() + getWidth() - barWidth + (int) mx,
-                                    getY() + (int) my);
+                        if (mx < 0) {
+                            values.remove(i);
+                        } else {
+                            double my = graphHeight - (tp.value - getMin()) * h;
+                            int rayon = 2;
+                            g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon,
+                                    getY() + (int) my - rayon,
+                                    2 * rayon + 1,
+                                    2 * rayon + 1);
+                            if (i < values.size() - 1) {
+                                g.drawLine(getX() + getWidth() - barWidth + (int) lastX,
+                                        getY() + (int) lastY,
+                                        getX() + getWidth() - barWidth + (int) mx,
+                                        getY() + (int) my);
+                            }
+                            lastX = mx;
+                            lastY = my;
                         }
-                        lastX = mx;
-                        lastY = my;
                     }
                 }
             }
         }
 
+        // clean bottom
+        g.setColor(getBackground());
+        g.fillRect(width - barWidth - 2, graphHeight + 1, barWidth + 1, height - graphHeight - 2);
+
+        // draw bottom axis
+        int c = 0;
+        for(long x=width-(start%interval); x>=width-barWidth; x-=interval)
+        {
+            if(c%5==0) {
+                g.setColor(getForeground());
+                g.drawLine(x, graphHeight, x, graphHeight + 10);
+                String date = sdf.format((start - (start % interval) - interval * c) * 1000);
+                g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
+            }
+            else
+            {
+                g.setColor(getForeground());
+                g.drawLine(x, graphHeight, x, graphHeight + 5);
+            }
+            c++;
+        }
+
+
         // draw the title
         if(title!=null && !title.equals(""))
         {
-            g.setColor(Color.BLUE);
+            g.setColor(getTitleColor());
             g.setTextSize(20);
             int th = g.stringHeight(title);
             int tx = getX()+width-barWidth+8;
@@ -219,7 +274,7 @@ public class Timeplot extends Drawable {
                 Field field = Fields.getInstance().getBySID(sid);
 
                 if(field !=null) {
-                    String text = String.format("%." + (String.valueOf(field.getDecimals()).length() - 1) + "f", field.getValue());
+                    String text = String.format("%." + String.valueOf(field.getDecimals()) + "f", field.getValue());
 
                     g.setTextSize(40);
 
@@ -258,6 +313,17 @@ public class Timeplot extends Drawable {
         Type fooType = new TypeToken<HashMap<String,ArrayList<TimePoint>>>() {}.getType();
 
         values = gson.fromJson(json,fooType);
+    }
+
+    @Override
+    public void loadValuesFromDatabase() {
+        super.loadValuesFromDatabase();
+
+        //values.clear(); // not needed as items will be replaced anyway!
+        for(int s=0; s<sids.size(); s++) {
+            String sid = sids.get(s);
+            values.put(sid, CanzeDataSource.getInstance().getData(sid));
+        }
     }
 
     public void addField(String sid)

@@ -12,8 +12,33 @@
     android:weightSum="1"
     tools:context="lu.fisch.canze.activities.DtcActivity">
 
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+            <Spinner
+                android:id="@+id/ecuList"
+                android:layout_weight="2"
+                />
+
+            <Button
+                android:id="@+id/ecuQuery"
+                android:text="Query"
+                android:layout_weight="1"
+                />
+
+            <Button
+                android:id="@+id/ecuClear"
+                android:text="Clear"
+                android:layout_weight="1"
+                />
+        </TableRow>
+
+    </TableLayout>
+
     <ScrollView
-        android:id="@+id/SCROLLER_ID"
+        android:id="@+id/scrollerId"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
@@ -22,9 +47,8 @@
         <TextView
             android:id="@+id/textResult"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1.0"
-            android:text="@string/textNotImplementedYet"
+            android:layout_height="wrap_content"
+            android:text="To enable clearing DTC's:\n\nEnter key card\n\nGear to D\n\nHold start button for aproximately 5 seconds until the 'Remove card' message appears\n\nGear to P"
             />
 
     </ScrollView>

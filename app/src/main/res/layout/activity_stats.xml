@@ -41,7 +41,7 @@
             android:id="@+id/LabelCompTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_CompTemp"
+            android:text="string/label_CompTemp not found!"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="20dp"

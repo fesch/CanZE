@@ -1,3 +1,24 @@
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package lu.fisch.canze.activities;
 
 import android.app.AlertDialog;
@@ -10,7 +31,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 //import android.widget.ProgressBar;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -20,7 +40,6 @@ import java.util.ArrayList;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class DrivingActivity extends CanzeActivity implements FieldListener {
@@ -28,25 +47,28 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
-    public static final String SID_Pedal                                = "186.40";
-    public static final String SID_MeanEffectiveTorque                  = "18a.16";
-    public static final String SID_BrakePressure                        = "352.24";
-    public static final String SID_RealSpeed                            = "5d7.0";
-    public static final String SID_SoC                                  = "654.24";
-    public static final String SID_RangeEstimate                        = "654.42";
+    public static final String SID_Pedal                                = "186.40"; //EVC
+    public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
+    public static final String SID_RealSpeed                            = "5d7.0";  //ESC-ABS
+    public static final String SID_SoC                                  = "654.25"; //EVC
+    public static final String SID_RangeEstimate                        = "654.42"; //EVC
+    public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
+    public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; //UBP 10ms
 
     // ISO-TP data
 //  public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
-    public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC)
+//  public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC)
     public static final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
-    public static final String SID_EVC_Pedal                            = "7ec.62202e.24"; //  (EVC)
+//  public static final String SID_EVC_Pedal                            = "7ec.62202e.24"; //  (EVC)
     public static final String SID_EVC_TractionBatteryVoltage           = "7ec.623203.24"; //  (EVC)
     public static final String SID_EVC_TractionBatteryCurrent           = "7ec.623204.24"; //  (EVC)
 
-    private double  dcVolt      = 0; // holds the DC voltage, so we can calculate the power when the amps come in
-    private int     odo         = 0;
-    private int     destOdo     = 0; // have to init from save file
-    private double  realSpeed   = 0;
+    private double dcVolt                           = 0; // holds the DC voltage, so we can calculate the power when the amps come in
+    private int    odo                              = 0;
+    private int    destOdo                          = 0; // have to init from save file
+    private double realSpeed                        = 0;
+    private double driverBrakeWheel_Torque_Request  = 0;
+
     private ArrayList<Field> subscribedFields;
 
     @Override
@@ -167,12 +189,12 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         tv.setText(distance2);
     }
 
-    private void addListener(String sid) {
+    private void addListener(String sid, int intervalMs) {
         Field field;
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addField(field);
+            MainActivity.device.addActivityField(field, intervalMs);
             subscribedFields.add(field);
         }
         else
@@ -208,17 +230,18 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
 
         // Make sure to add ISO-TP listeners grouped by ID
 
-        addListener(SID_Pedal);
-        addListener(SID_MeanEffectiveTorque);
-        addListener(SID_BrakePressure);
-        addListener(SID_RealSpeed);
-        addListener(SID_SoC);
-        addListener(SID_RangeEstimate);
+        addListener(SID_Pedal, 0);
+        addListener(SID_MeanEffectiveTorque, 0);
+        addListener(SID_DriverBrakeWheel_Torque_Request, 0);
+        addListener(SID_ElecBrakeWheelsTorqueApplied, 0);
+        addListener(SID_RealSpeed, 0);
+        addListener(SID_SoC, 3600);
+        addListener(SID_RangeEstimate, 3600);
 
         //addListener(SID_EVC_SoC);
-        addListener(SID_EVC_Odometer);
-        addListener(SID_EVC_TractionBatteryVoltage);
-        addListener(SID_EVC_TractionBatteryCurrent);
+        addListener(SID_EVC_Odometer, 6000);
+        addListener(SID_EVC_TractionBatteryVoltage, 5000);
+        addListener(SID_EVC_TractionBatteryCurrent, 0);
         //addListener(SID_PEB_Torque);
     }
 
@@ -243,7 +266,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         tv = (TextView) findViewById(R.id.textSOC);
                         break;
                     case SID_Pedal:
-                    case SID_EVC_Pedal:
+//                  case SID_EVC_Pedal:
                         pb = (ProgressBar) findViewById(R.id.pedalBar);
                         pb.setProgress((int) field.getValue());
                         break;
@@ -257,7 +280,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         tv = null;
                         break;
                     case SID_RealSpeed:
-                    case SID_EVC_RealSpeed:
+//                  case SID_EVC_RealSpeed:
                         //realSpeed = (Math.round(Utils.kmOrMiles(field.getValue()) * 10.0) / 10.0);
                         realSpeed = (Math.round(field.getValue() * 10.0) / 10.0);
                         tv = (TextView) findViewById(R.id.textRealSpeed);
@@ -298,9 +321,15 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         }
                         tv = null;
                         break;
-                    case SID_BrakePressure:
+                    case SID_DriverBrakeWheel_Torque_Request:
+                        driverBrakeWheel_Torque_Request = field.getValue();
+                        tv = null;
+                        break;
+                    case SID_ElecBrakeWheelsTorqueApplied:
+                        double frictionBrakeTorque = driverBrakeWheel_Torque_Request - field.getValue();
+                        // a fair full red bar is estimated @ 1000 Nm
                         pb = (ProgressBar) findViewById(R.id.FrictionBreaking);
-                        pb.setProgress((int) (field.getValue() * realSpeed));
+                        pb.setProgress((int) (frictionBrakeTorque * realSpeed));
                         break;
                 }
                 // set regular new content, all exeptions handled above

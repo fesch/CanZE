@@ -28,13 +28,12 @@
 
             <TableRow>
                 <TextView
-                    android:text="@string/label_ecu_evc"
+                    android:id="@+id/lEcu7ec"
                     android:layout_weight="2"
                     android:layout_marginTop="4dp"
                     />
                 <TextView
-                    android:id="@+id/ecu7ec"
-                    android:text="@string/default_firmware"
+                    android:id="@+id/vEcu7ec"
                     android:layout_weight="1"
                     android:layout_marginTop="4dp"
                     />
@@ -42,56 +41,12 @@
 
             <TableRow>
                 <TextView
-                    android:text="@string/label_ecu_tcu"
+                    android:id="@+id/lEcu7da"
                     android:layout_weight="2"
                     android:layout_marginTop="4dp"
                     />
                 <TextView
-                    android:id="@+id/ecu7da"
-                    android:text="@string/default_firmware"
-                    android:layout_weight="1"
-                    android:layout_marginTop="4dp"
-                    />
-
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_ecu_lbc"
-                    android:layout_weight="2"
-                    android:layout_marginTop="4dp"
-                    />
-                <TextView
-                    android:id="@+id/ecu7bb"
-                    android:text="@string/default_firmware"
-                    android:layout_weight="1"
-                    android:layout_marginTop="4dp"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/lavel_ecu_peb"
-                    android:layout_weight="2"
-                    android:layout_marginTop="4dp"
-                    />
-                <TextView
-                    android:id="@+id/ecu77e"
-                    android:text="@string/default_firmware"
-                    android:layout_weight="1"
-                    android:layout_marginTop="4dp"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_ecu_aibag"
-                    android:layout_weight="2"
-                    android:layout_marginTop="4dp"
-                    />
-                <TextView
-                    android:id="@+id/ecu772"
-                    android:text="@string/default_firmware"
+                    android:id="@+id/vEcu7da"
                     android:layout_weight="1"
                     android:layout_marginTop="4dp"
                     />
@@ -100,13 +55,12 @@
 
             <TableRow>
                 <TextView
-                    android:text="@string/label_ecu_usm"
+                    android:id="@+id/lEcu7bb"
                     android:layout_weight="2"
                     android:layout_marginTop="4dp"
                     />
                 <TextView
-                    android:id="@+id/ecu76d"
-                    android:text="@string/default_firmware"
+                    android:id="@+id/vEcu7bb"
                     android:layout_weight="1"
                     android:layout_marginTop="4dp"
                     />
@@ -114,28 +68,12 @@
 
             <TableRow>
                 <TextView
-                    android:text="@string/label_ecu_cluster"
+                    android:id="@+id/lEcu77e"
                     android:layout_weight="2"
                     android:layout_marginTop="4dp"
                     />
                 <TextView
-                    android:id="@+id/ecu763"
-                    android:text="@string/default_firmware"
-                    android:layout_weight="1"
-                    android:layout_marginTop="4dp"
-                    />
-
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_ecu_eps"
-                    android:layout_weight="2"
-                    android:layout_marginTop="4dp"
-                    />
-                <TextView
-                    android:id="@+id/ecu762"
-                    android:text="@string/default_firmware"
+                    android:id="@+id/vEcu77e"
                     android:layout_weight="1"
                     android:layout_marginTop="4dp"
                     />
@@ -143,41 +81,12 @@
 
             <TableRow>
                 <TextView
-                    android:text="@string/label_ecu_abs"
+                    android:id="@+id/lEcu772"
                     android:layout_weight="2"
                     android:layout_marginTop="4dp"
                     />
                 <TextView
-                    android:id="@+id/ecu760"
-                    android:text="@string/default_firmware"
-                    android:layout_weight="1"
-                    android:layout_marginTop="4dp"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_ecu_ubp"
-                    android:layout_weight="2"
-                    android:layout_marginTop="4dp"
-                    />
-                <TextView
-                    android:id="@+id/ecu7bc"
-                    android:text="@string/default_firmware"
-                    android:layout_weight="1"
-                    android:layout_marginTop="4dp"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_ecu_bcm"
-                    android:layout_weight="2"
-                    android:layout_marginTop="4dp"
-                    />
-                <TextView
-                    android:id="@+id/ecu765"
-                    android:text="@string/default_firmware"
+                    android:id="@+id/vEcu772"
                     android:layout_weight="1"
                     android:layout_marginTop="4dp"
                     />
@@ -186,13 +95,25 @@
 
             <TableRow>
                 <TextView
-                    android:text="@string/label_ecu_clim"
+                    android:id="@+id/lEcu76d"
                     android:layout_weight="2"
                     android:layout_marginTop="4dp"
                     />
                 <TextView
-                    android:id="@+id/ecu764"
-                    android:text="@string/default_firmware"
+                    android:id="@+id/vEcu76d"
+                    android:layout_weight="1"
+                    android:layout_marginTop="4dp"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/lEcu763"
+                    android:layout_weight="2"
+                    android:layout_marginTop="4dp"
+                    />
+                <TextView
+                    android:id="@+id/vEcu763"
                     android:layout_weight="1"
                     android:layout_marginTop="4dp"
                     />
@@ -201,13 +122,12 @@
 
             <TableRow>
                 <TextView
-                    android:text="@string/label_ecu_upa"
+                    android:id="@+id/lEcu762"
                     android:layout_weight="2"
                     android:layout_marginTop="4dp"
                     />
                 <TextView
-                    android:id="@+id/ecu76e"
-                    android:text="@string/default_firmware"
+                    android:id="@+id/vEcu762"
                     android:layout_weight="1"
                     android:layout_marginTop="4dp"
                     />
@@ -215,13 +135,79 @@
 
             <TableRow>
                 <TextView
-                    android:text="@string/label_ecu_bcb"
+                    android:id="@+id/lEcu760"
                     android:layout_weight="2"
                     android:layout_marginTop="4dp"
                     />
                 <TextView
-                    android:id="@+id/ecu793"
-                    android:text="@string/default_firmware"
+                    android:id="@+id/vEcu760"
+                    android:layout_weight="1"
+                    android:layout_marginTop="4dp"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/lEcu7bc"
+                    android:layout_weight="2"
+                    android:layout_marginTop="4dp"
+                    />
+                <TextView
+                    android:id="@+id/vEcu7bc"
+                    android:layout_weight="1"
+                    android:layout_marginTop="4dp"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/lEcu765"
+                    android:layout_weight="2"
+                    android:layout_marginTop="4dp"
+                    />
+                <TextView
+                    android:id="@+id/vEcu765"
+                    android:layout_weight="1"
+                    android:layout_marginTop="4dp"
+                    />
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/lEcu764"
+                    android:layout_weight="2"
+                    android:layout_marginTop="4dp"
+                    />
+                <TextView
+                    android:id="@+id/vEcu764"
+                    android:layout_weight="1"
+                    android:layout_marginTop="4dp"
+                    />
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/lEcu76e"
+                    android:layout_weight="2"
+                    android:layout_marginTop="4dp"
+                    />
+                <TextView
+                    android:id="@+id/vEcu76e"
+                    android:layout_weight="1"
+                    android:layout_marginTop="4dp"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/lEcu793"
+                    android:layout_weight="2"
+                    android:layout_marginTop="4dp"
+                    />
+                <TextView
+                    android:id="@+id/vEcu793"
                     android:layout_weight="1"
                     android:layout_marginTop="4dp"
                     />
@@ -230,18 +216,17 @@
             <TableRow>
 
                 <TextView
-                    android:text="@string/label_ecu_lbc2"
+                    android:id="@+id/lEcu7b6"
                     android:layout_weight="2"
                     android:layout_marginTop="4dp"
                     />
                 <TextView
-                    android:id="@+id/ecu7b6"
-                    android:text="@string/default_firmware"
+                    android:id="@+id/vEcu7b6"
                     android:layout_weight="1"
                     android:layout_marginTop="4dp"
                     />
             </TableRow>
-
+<!--
             <TableRow>
                 <TextView
                     android:text="@string/label_ecu_linsch"
@@ -255,6 +240,30 @@
                     android:layout_marginTop="4dp"
                     />
             </TableRow>
+-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:background="#ffd124"
+                android:layout_weight="1">
+
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text=""
+                android:id="@+id/link"
+                android:layout_weight="1"
+                android:layout_gravity="center" />
+            </LinearLayout>
 
         </TableLayout>
 

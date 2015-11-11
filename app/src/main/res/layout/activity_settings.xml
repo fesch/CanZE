@@ -81,7 +81,6 @@
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
                             android:id="@+id/bluetoothDeviceList" />
 
-
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
@@ -138,11 +137,19 @@
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:text="Options"
                             android:id="@+id/textViewOptions" />
+
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Safe Driving Mode"
                             android:id="@+id/safeDrivingMode" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bluetooth Background Mode"
+                            android:id="@+id/btBackgrounding" />
+
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -152,8 +159,14 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="Write debug log to SD card"
+                            android:id="@+id/debugLogMode" />
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="Log to sdcard1"
-                            android:id="@+id/dataexportMode" />
+                            android:id="@+id/dataExportMode" />
 
 
                         <TextView

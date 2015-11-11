@@ -1,14 +1,43 @@
+/*
+    CanZE
+    Take a closer look at your ZE car
+
+    Copyright (C) 2015 - The CanZE Team
+    http://canze.fisch.lu
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or any
+    later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 package lu.fisch.canze.activities;
 
 
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.actors.Ecu;
+import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.FieldListener;
@@ -25,7 +54,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
 //  private static final int [] fluenceVersions = {0x0202, 0x0172, 0x7505, 0x02ba, 0x0305, 0x0907, 0x0026, 0x014a, 0x8160,      0, 0x140e, 0x0007, 0x0024, 0xd300, 0x5c0a,      0};
 //  private static final int [] kangooVersions  = {0x0201, 0x1011, 0x7505, 0x0205,      1,      1, 0x003d,      1,      1,      1, 0x0003,      1,      1, 0xd300, 0x5c0a,      1};
 //  private static final int [] x10Versions     = zoeVersions;
-    private static final int [] zoeVersions     = {0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
+    private static final int [] zoeVersions     = {0x0790, 0x0337, 0x0000, 0x0300, 0x0470, 0x2420, 0x0504, 0x0800, 0x0e43, 0x0c04, 0x0000, 0x0515, 0x0002, 0x0000, 0x0000, 0x0000};
     private static final int [] fluenceVersions = {0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
     private static final int [] kangooVersions  = {0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
     private static final int [] x10Versions     = zoeVersions;
@@ -57,6 +86,28 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
                 break;
         }
 
+        for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
+            if (ecu.getFromId() != 0) {
+                TextView tv;
+                tv = (TextView) findViewById(getResources().getIdentifier("lEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase(), "id", getPackageName()));
+                if (tv != null) {
+                    tv.setText(ecu.getMnemonic() + " (" + ecu.getName() + ")");
+                } else {
+                    MainActivity.toast("No ecu label for lEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase());
+                }
+                tv = (TextView) findViewById(getResources().getIdentifier("vEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase(), "id", getPackageName()));
+                if (tv != null) {
+                    tv.setText("-");
+                } else {
+                    MainActivity.toast("No ecu label for lEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase());
+                }
+            }
+        }
+
+        TextView textView = (TextView) findViewById(R.id.link);
+        textView.setText(Html.fromHtml("Learn more about the car's computers <a href='http://canze.fisch.lu/computers/'>here</a>."));
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
+
         initListeners();
 
      }
@@ -67,7 +118,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
         if (field != null) {
             field.addListener(this);
             if(MainActivity.device!=null)
-                MainActivity.device.addField(field);
+                MainActivity.device.addActivityField(field);
             subscribedFields.add(field);
         } else {
             MainActivity.toast("sid " + sid + " does not exist in class Fields");
@@ -96,7 +147,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
     private void initListeners() {
 
         subscribedFields = new ArrayList<>();
-
+/*
         addListener("793.6180.144"); // BCB put here as it seems to stop reponding very easily
         addListener("7ec.6180.144"); // SCH
         addListener("7da.6180.144"); // TCU
@@ -112,7 +163,14 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
         addListener("764.6180.144"); // CLIM
         addListener("76e.6180.144"); // UPA not for Zoe
         addListener("7b6.6180.144"); // LBC2
-        addListener("722.6180.144"); // LINSCH not for FLuence or Zoe
+        //addListener("722.6180.144"); // LINSCH not for FLuence or Zoe
+*/
+
+        for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
+            if (ecu.getFromId() != 0) {
+                addListener(Integer.toHexString (ecu.getFromId()).toLowerCase() + ".6180.144");
+            }
+        }
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -132,69 +190,69 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
                 switch (fieldId) {
 
                     case "7ec.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu7ec);
+                        tv = (TextView) findViewById(R.id.vEcu7ec);
                         refVersion = versions [0];
                         break;
                     case "7da.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu7da);
+                        tv = (TextView) findViewById(R.id.vEcu7da);
                         refVersion = versions [1];
                         break;
                     case "7bb.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu7bb);
+                        tv = (TextView) findViewById(R.id.vEcu7bb);
                         refVersion = versions [2];
                         break;
                     case "77e.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu77e);
+                        tv = (TextView) findViewById(R.id.vEcu77e);
                         refVersion = versions [3];
                         break;
                     case "772.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu772);
+                        tv = (TextView) findViewById(R.id.vEcu772);
                         refVersion = versions [4];
                         break;
                     case "76d.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu76d);
+                        tv = (TextView) findViewById(R.id.vEcu76d);
                         refVersion = versions [5];
                         break;
                     case "763.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu763);
+                        tv = (TextView) findViewById(R.id.vEcu763);
                         refVersion = versions [6];
                         break;
                     case "762.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu762);
+                        tv = (TextView) findViewById(R.id.vEcu762);
                         refVersion = versions [7];
                         break;
                     case "760.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu760);
+                        tv = (TextView) findViewById(R.id.vEcu760);
                         refVersion = versions [8];
                         break;
                     case "7bc.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu7bc);
+                        tv = (TextView) findViewById(R.id.vEcu7bc);
                         refVersion = versions [9];
                         break;
                     case "765.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu765);
+                        tv = (TextView) findViewById(R.id.vEcu765);
                         refVersion = versions [10];
                         break;
                     case "764.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu764);
+                        tv = (TextView) findViewById(R.id.vEcu764);
                         refVersion = versions [11];
                         break;
                     case "76e.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu76e);
+                        tv = (TextView) findViewById(R.id.vEcu76e);
                         refVersion = versions [12];
                         break;
                     case "793.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu793);
+                        tv = (TextView) findViewById(R.id.vEcu793);
                         refVersion = versions [13];
                         break;
                     case "7b6.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu7b6);
+                        tv = (TextView) findViewById(R.id.vEcu7b6);
                         refVersion = versions [14];
                         break;
-                    case "722.6180.144":
-                        tv = (TextView) findViewById(R.id.ecu722);
-                        refVersion = versions [15];
-                        break;
+//                  case "722.6180.144":
+//                      tv = (TextView) findViewById(R.id.vEcu722);
+//                      refVersion = versions [15];
+//                      break;
                 }
 
                 // set regular new content, all exeptions handled above
