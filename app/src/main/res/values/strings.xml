@@ -2,7 +2,6 @@
     <string name="app_name">CanZE</string>
 
     <string name="title_activity_settings">Settings</string>
-    <!-- <string name="title_activity_experiments">Experiments</string> -->
     <string name="title_activity_widget">WidgetActivity</string>
     <string name="title_activity_tacho">TachoActivity</string>
     <string name="title_activity_text">TextActivity</string>
@@ -30,6 +29,10 @@
     <!-- menus -->
 
     <string name="action_settings">Settings</string>
+
+    <!-- generic -->
+
+    <string name="default_zero">0</string>
 
     <!-- debug (generic) -->
 
@@ -132,13 +135,13 @@
     <string name="header_braking">Braking system status</string>
     <string name="activity_braking">Braking</string>
 
-    <string name="label_driver_torque_request">Driver Brake Wheels Torque Request</string>
-<!--<string name="label_eb_torque_request">Electrical Brake Wheels Torque Request</string> -->
-<!--<string name="label_coasting_torque">Coasting Torque</string> -->
-<!--<string name="label_braking_pressure">Friction braking pressure</string> -->
-    <string name="label_ElecBrakeWheelsTorqueApplied">Electrical Brake Wheels Torque Applied</string>
-    <string name="label_diff_friction_torque">Friction Torque</string>
-    <string name="label_TotalPotentialResistiveWheelsTorque">Total Potential Resistive Wheels Torque</string>
+    <string name="label_driver_torque_request">Requested Torque</string>
+<!--<string name="label_eb_torque_request">Electrical Brake Wheels Torque Request</string>
+    <string name="label_coasting_torque">Coasting Torque</string>
+    <string name="label_braking_pressure">Friction braking pressure</string> -->
+    <string name="label_ElecBrakeWheelsTorqueApplied">Applied Electrical Torque (regeneration)</string>
+    <string name="label_diff_friction_torque">Applied Friction Torque (losses)</string>
+<!--<string name="label_TotalPotentialResistiveWheelsTorque">Total Potential Resistive Wheels Torque</string>
 
     <string name="label_hbb_malfunction">HBB malfunction</string>
     <string name="default_hbb_malfunction">#hbm</string>
@@ -156,7 +159,7 @@
     <string name="default_hba_activation_request">#har</string>
 
     <string name="label_pressure_buildup">Pressure Buildup</string>
-    <string name="default_pressure_buildup">#pb</string>
+    <string name="default_pressure_buildup">#pb</string> -->
 
 
     <!-- firmware -->
@@ -164,7 +167,7 @@
     <string name="header_firmware">Firmware versions</string>
 
     <string name="default_firmware">Not available</string>
-
+<!--
     <string name="label_ecu_evc">EVC (Electric Vehicle Controller)</string>
     <string name="label_ecu_tcu">TCU (Telematics Control Unit)</string>
     <string name="label_ecu_lbc">LBC (Lithium Battery Charger)</string>
@@ -181,8 +184,8 @@
     <string name="label_ecu_bcb">BCB (Battery Connection Box)</string>
     <string name="label_ecu_lbc2">LBC2 (Lithium Battery Charger)</string>
     <string name="label_ecu_linsch">LINSCH (?)</string>
-    <string name="default_zero">0</string>
 
+    -->
     <!-- dtc
 
     <string-array name="ecu_array">
