@@ -135,7 +135,7 @@ public class BobDue extends Device {
     @Override
     public void clearFields() {
         super.clearFields();
-        fieldIndex =0;
+        //fieldIndex =0;
     }
 
     @Override
