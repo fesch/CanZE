@@ -39,7 +39,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
 
     // free data
     public static final String SID_Coasting_Torque                   = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
-    //  public static final String SID_ElecBrakeWheels_Torque_Request       = "130.20"; // wheel torque the car wants from the motor
+//  public static final String SID_ElecBrakeWheels_Torque_Request       = "130.20"; // wheel torque the car wants from the motor
 //  public static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //10ms
     public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; //10ms
     //  public static final String SID_HBB_Malfunction                      = "130.11"; //10ms
@@ -146,7 +146,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
                     case SID_ElecBrakeWheelsTorqueApplied:
                         elecBrakeWheelsTorqueApplied = field.getValue() + coasting_Torque;
                         pb = (ProgressBar) findViewById(R.id.pb_ElecBrakeWheelsTorqueApplied);
-                        pb.setProgress((int) (field.getValue()));
+                        pb.setProgress((int) elecBrakeWheelsTorqueApplied);
                         pb = (ProgressBar) findViewById(R.id.pb_diff_friction_torque);
                         pb.setProgress((int) (driverBrakeWheel_Torque_Request - elecBrakeWheelsTorqueApplied));
                         break;
@@ -200,6 +200,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
 
     }
 
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -221,5 +222,6 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
 
         return super.onOptionsItemSelected(item);
     }
+*/
 
 }
