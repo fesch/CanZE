@@ -68,7 +68,7 @@ public abstract class Device {
      * The index of the actual field to query.
      * Loops over ther "fields" array
      */
-    protected int fieldIndex = 0;
+    //protected int fieldIndex = 0;
 
     protected int activityFieldIndex = 0;
 
@@ -114,7 +114,8 @@ public abstract class Device {
                         if(initDevice(0)) {
                             while (isPollerActive()) {
                                 MainActivity.debug("Device: inside poller thread");
-                                if (fields.size() == 0 || !BluetoothManager.getInstance().isConnected()) {
+                                if (applicationFields.size()+activityFieldsScheduled.size()+activityFieldsAsFastAsPossible.size() == 0
+                                        || !BluetoothManager.getInstance().isConnected()) {
                                     MainActivity.debug("Device: sleeping");
                                     try {
                                         if(isPollerActive())
@@ -186,35 +187,27 @@ public abstract class Device {
     // query the device for the next filter
     protected void queryNextFilter()
     {
-        if (fields.size() > 0)
+        if (applicationFields.size()+activityFieldsScheduled.size()+activityFieldsAsFastAsPossible.size() > 0)
         {
             try {
 
-                Field field;
+                Field field = getNextField();
 
-                if(fieldIndex <0) {
-                    MainActivity.debug("Device: fieldIndex < 0, sleeping");
+                if(field == null) {
+                    MainActivity.debug("Device: got no next field --> sleeping");
                     // no next field ---> sleep
                     try {
                         Thread.sleep(100);
                     } catch(Exception e) {
                         // ignore a sleep exception
                     }
-                    // try to get the next field
-                    fieldIndex = getNextIndex();
                     return;
                 }
+                else
+                {
+                    long start = Calendar.getInstance().getTimeInMillis();
+                    MainActivity.debug("Device: queryNextFilter: " + field.getSID());
 
-                // get field
-                synchronized (fields) {
-                    field = fields.get(fieldIndex);
-                }
-
-                MainActivity.debug("Device: queryNextFilter: " + fieldIndex + " --> " + field.getSID()); //" + " \tSkipsCount = " + field.getSkipsCount());
-                long start = Calendar.getInstance().getTimeInMillis();
-
-                // if we got the field
-                if (field != null) {
                     /*
                     // only run the filter if the skipsCount is down to zero
                     boolean runFilter = (field.getSkipsCount() == 0);
@@ -254,6 +247,67 @@ public abstract class Device {
 
                     //MainActivity.debug("Device: Request took "+(Calendar.getInstance().getTimeInMillis()-start)/1000.+"s -( "+
                     //        field.getSID()+" )-> "+field.getPrintValue());
+                }
+            }
+            // if any error occures, reset the fieldIndex
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /*
+    // query the device for the next filter
+    protected void queryNextFilter()
+    {
+        if (fields.size() > 0)
+        {
+            try {
+
+                Field field;
+
+                if(fieldIndex <0) {
+                    MainActivity.debug("Device: fieldIndex < 0, sleeping");
+                    // no next field ---> sleep
+                    try {
+                        Thread.sleep(100);
+                    } catch(Exception e) {
+                        // ignore a sleep exception
+                    }
+                    // try to get the next field
+                    fieldIndex = getNextIndex();
+                    return;
+                }
+
+                // get field
+                synchronized (fields) {
+                    field = fields.get(fieldIndex);
+                }
+
+                MainActivity.debug("Device: queryNextFilter: " + fieldIndex + " --> " + field.getSID()); //" + " \tSkipsCount = " + field.getSkipsCount());
+                long start = Calendar.getInstance().getTimeInMillis();
+
+                // if we got the field
+                if (field != null) {
+                    // get the data
+                    Message message = requestField(field);
+                    // test if we got something
+                    if(message!=null && !someThingWrong) {
+                        Fields.getInstance().onMessageCompleteEvent(message);
+                    }
+
+                    // reset if something went wrong ...
+                    // ... but only if we are not asked to stop!
+                    if (someThingWrong && BluetoothManager.getInstance().isConnected()) {
+                        MainActivity.debug("Device: something went wrong!");
+                        // we don't want to continue, so we need to stop the poller right now!
+                        initDevice(1, 2);
+                    }
+                    //}
+
+
+                    //MainActivity.debug("Device: Request took "+(Calendar.getInstance().getTimeInMillis()-start)/1000.+"s -( "+
+                    //        field.getSID()+" )-> "+field.getPrintValue());
 
                     // determine the next field to query
                     fieldIndex = getNextIndex();
@@ -268,7 +322,9 @@ public abstract class Device {
             }
         }
     }
+    */
 
+    /*
     private int getNextIndex()
     {
         long referenceTime = Calendar.getInstance().getTimeInMillis();
@@ -282,15 +338,6 @@ public abstract class Device {
                     return (int) (lhs.getLastRequest()+lhs.getInterval() - (rhs.getLastRequest()+rhs.getInterval()));
                     }
                 });
-
-                /*MainActivity.debug("-1-");
-                for(int i=0; i<applicationFields.size(); i++)
-                {
-                    MainActivity.debug(
-                            (applicationFields.get(i).getLastRequest()+applicationFields.get(i).getInterval()-referenceTime)+
-                                    " (" + applicationFields.get(i).getInterval() + ")> "+
-                                    applicationFields.get(i).getSID());
-                }/**/
 
                 // get the first field (the one with the smallest lastRequest time
                 Field field = applicationFields.get(0);
@@ -311,6 +358,70 @@ public abstract class Device {
                     }
                 });
 
+                // get the first field (the one with the smallest lastRequest time
+                Field field = activityFieldsScheduled.get(0);
+                // return it's index in the global registered field array
+                if(field.isDue(referenceTime)) {
+                    //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
+                    return fields.indexOf(field);
+                }
+            }
+            if(activityFieldsAsFastAsPossible.size()>0)
+            {
+                activityFieldIndex = (activityFieldIndex + 1) % activityFieldsAsFastAsPossible.size();
+                return fields.indexOf(activityFieldsAsFastAsPossible.get(activityFieldIndex));
+            }
+
+            MainActivity.debug("Device: applicationFields & customActivityFields empty? "
+                    + applicationFields.size() + " / " + activityFieldsScheduled.size()+ " / " + activityFieldsAsFastAsPossible.size());
+
+            return -1;
+        }
+    }
+    */
+
+    private Field getNextField()
+    {
+        long referenceTime = Calendar.getInstance().getTimeInMillis();
+
+        synchronized (fields) {
+            if(applicationFields.size()>0) {
+                // sort the applicationFields
+                Collections.sort(applicationFields, new Comparator<Field>() {
+                    @Override
+                    public int compare(Field lhs, Field rhs) {
+                        return (int) (lhs.getLastRequest()+lhs.getInterval() - (rhs.getLastRequest()+rhs.getInterval()));
+                    }
+                });
+
+                /*MainActivity.debug("-1-");
+                for(int i=0; i<applicationFields.size(); i++)
+                {
+                    MainActivity.debug(
+                            (applicationFields.get(i).getLastRequest()+applicationFields.get(i).getInterval()-referenceTime)+
+                                    " (" + applicationFields.get(i).getInterval() + ")> "+
+                                    applicationFields.get(i).getSID());
+                }/**/
+
+                // get the first field (the one with the smallest lastRequest time
+                Field field = applicationFields.get(0);
+                // return it's index in the global registered field array
+                if(field.isDue(referenceTime)) {
+                    //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
+                    return field;
+                }
+            }
+            // take the next costum field
+            if(activityFieldsScheduled.size()>0)
+            {
+                // sort the activityFields
+                Collections.sort(activityFieldsScheduled, new Comparator<Field>() {
+                    @Override
+                    public int compare(Field lhs, Field rhs) {
+                        return (int) (lhs.getLastRequest()+lhs.getInterval() - (rhs.getLastRequest()+rhs.getInterval()));
+                    }
+                });
+
                 /*MainActivity.debug("-2-");
                 for(int i=0; i< activityFieldsScheduled.size(); i++)
                 {
@@ -326,7 +437,7 @@ public abstract class Device {
                 // return it's index in the global registered field array
                 if(field.isDue(referenceTime)) {
                     //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
-                    return fields.indexOf(field);
+                    return field;
                 }
             }
             if(activityFieldsAsFastAsPossible.size()>0)
@@ -343,13 +454,13 @@ public abstract class Device {
                 }/**/
 
                 activityFieldIndex = (activityFieldIndex + 1) % activityFieldsAsFastAsPossible.size();
-                return fields.indexOf(activityFieldsAsFastAsPossible.get(activityFieldIndex));
+                return activityFieldsAsFastAsPossible.get(activityFieldIndex);
             }
 
             MainActivity.debug("Device: applicationFields & customActivityFields empty? "
                     + applicationFields.size() + " / " + activityFieldsScheduled.size()+ " / " + activityFieldsAsFastAsPossible.size());
 
-            return -1;
+            return null;
         }
     }
 
