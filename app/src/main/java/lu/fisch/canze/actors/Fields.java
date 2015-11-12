@@ -63,6 +63,19 @@ public class Fields implements MessageListener {
     private static final int FIELD_CAR          = 12;
     private static final int FIELD_SKIPS        = 13;
     private static final int FIELD_FREQ         = 14; // not needed anymore
+/*
+
+    private static final int FIELD_ID           = 0;
+    private static final int FIELD_FROM         = 1;
+    private static final int FIELD_TO           = 2;
+    private static final int FIELD_RESOLUTION   = 3;
+    private static final int FIELD_OFFSET       = 4;
+    private static final int FIELD_DECIMALS     = 5;
+    private static final int FIELD_UNIT         = 6;
+    private static final int FIELD_REQUEST_ID   = 7;
+    private static final int FIELD_RESPONSE_ID  = 8;
+    private static final int FIELD_CAR          = 9;
+*/
 
     public static final int CAR_ANY             = 0;
     public static final int CAR_FLUENCE         = 1;
@@ -495,7 +508,7 @@ public class Fields implements MessageListener {
                         +"0x18a, 13, 14, 1, 1, 0, 0, cc status %1ld, , , , CruiseControlStatus_forTM, 0, 0, 10\n"
                         +"0x18a, 16, 25, 800, 100, 0, 2, PowerTrainSetPoint: %4ld, %, , , Throttle, 0, 0, 10\n"
                         +"0x18a, 26, 26, 1, 1, 0, 0, Kickdown: %1ld, , , , KickDownActivated, 0, 0, 10\n"
-                        +"0x18a, 27, 38, 10, 5, 400, 1, FrictionTorque: %4ld, Nm, , , FrictionTorque, 0, 0, 10\n"
+                        +"0x18a, 27, 38, 10, 5, 800, 1, FrictionTorque: %4ld, Nm, , , FrictionTorque, 0, 0, 10\n"
                         +"0x1f6, 20, 20, 10, 5, 0, 1, Break pedal: %4ld, , , , Break Pedal, 0, 0, 10\n"
                         +"0x1f8, 0, 7, 1, 1, 0, 0, , , , , Checksum EVC, 0, 0, 10\n"
                         +"0x1f8, 12, 13, 1, 1, 0, 0, , , , , EVCReadyAsActuator, 0, 0, 10\n"
@@ -934,6 +947,7 @@ public class Fields implements MessageListener {
             //Get all tokens available in line
             String[] tokens = line.split(",");
             if (tokens.length == 15) {
+                /* below 3 lines can be removed with new format */
                 int divider = Integer.parseInt(tokens[FIELD_DIVIDER].trim());
                 int multiplier = Integer.parseInt(tokens[FIELD_MULTIPLIER].trim());
                 double multi = ((double) multiplier / divider);
@@ -945,6 +959,23 @@ public class Fields implements MessageListener {
                 } else {
                     //Create a new field object and fill his  data
                     Field field = new Field(
+                           /* frame,
+                            Integer.parseInt(tokens[FIELD_FROM].trim()),
+                            Integer.parseInt(tokens[FIELD_TO].trim()),
+                            Double.parseDouble(tokens[FIELD_RESOLUTION.trim()),
+                            Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
+                            (
+                                    tokens[FIELD_OFFSET].trim().contains("0x")
+                                            ?
+                                            Integer.parseInt(tokens[FIELD_OFFSET].trim().replace("0x", ""), 16)
+                                            :
+                                            Double.parseDouble(tokens[FIELD_OFFSET].trim())
+                            ),
+                            tokens[FIELD_UNIT].trim(),
+                            tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
+                            tokens[FIELD_RESPONSE_ID].trim().replace("0x", ""),
+                            Integer.parseInt(tokens[FIELD_CAR].trim())*/
+
                             frame,
                             Integer.parseInt(tokens[FIELD_FROM].trim()),
                             Integer.parseInt(tokens[FIELD_TO].trim()),
@@ -963,6 +994,9 @@ public class Fields implements MessageListener {
                             Integer.parseInt(tokens[FIELD_CAR].trim())
                             //Integer.parseInt(tokens[FIELD_SKIPS].trim())
                             //Integer.parseInt(tokens[FIELD_FREQ].trim())
+
+
+
                     );
                     // add the field to the list of available fields
                     add(field);
