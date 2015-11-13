@@ -80,8 +80,8 @@
             custom:fieldSID="1fd.48,427.49"
             custom:widget="timeplot"
             custom:colorRanges="[
-                {'sid':'1fd.48','color':'#FF0000','from':-100,'to':-1},
-                {'sid':'1fd.48','color':'#00FFFF','from':-1,'to':1},
+                {'sid':'1fd.48','color':'#cc00ff','from':-100,'to':-1},
+                {'sid':'1fd.48','color':'#3ee9ff','from':-1,'to':1},
                 {'sid':'1fd.48','color':'#008a1d','from':1,'to':20},
                 {'sid':'1fd.48','color':'#ffaa17','from':20,'to':33},
                 {'sid':'1fd.48','color':'#FF0000','from':33,'to':100}]"
