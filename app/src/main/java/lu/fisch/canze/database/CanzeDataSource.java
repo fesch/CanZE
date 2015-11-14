@@ -37,7 +37,8 @@ import lu.fisch.canze.interfaces.FieldListener;
 
 public class CanzeDataSource implements FieldListener
 {
-    private static long LIMIT = 24*60*60*1000;  // 24 h
+    //private static long LIMIT = 24*60*60*1000;  // 24 h
+    private static long LIMIT = 60*60*1000;  // 1 h
 
     /*
      * Singleton stuff
@@ -113,6 +114,40 @@ public class CanzeDataSource implements FieldListener
         c.moveToFirst();
         if (!c.isAfterLast()) {
             data = c.getDouble(c.getColumnIndex("value"));
+            //MainActivity.debug("CanzeDataSource: got value "+data);
+        }
+        // make sure to close the cursor
+        c.close();
+
+        return data;
+    }
+
+    public double getMax(String sid)
+    {
+        double data = Double.NaN;
+
+        Cursor c = database.rawQuery("SELECT MAX(value) FROM data WHERE sid='"+sid+"' ORDER BY moment DESC LIMIT 1", null);
+        //MainActivity.debug("CanzeDataSource: getting last for "+sid);
+        c.moveToFirst();
+        if (!c.isAfterLast()) {
+            data = c.getDouble(0);
+            //MainActivity.debug("CanzeDataSource: got value "+data);
+        }
+        // make sure to close the cursor
+        c.close();
+
+        return data;
+    }
+
+    public double getMin(String sid)
+    {
+        double data = Double.NaN;
+
+        Cursor c = database.rawQuery("SELECT MIN(value) FROM data WHERE sid='"+sid+"' ORDER BY moment DESC LIMIT 1", null);
+        //MainActivity.debug("CanzeDataSource: getting last for "+sid);
+        c.moveToFirst();
+        if (!c.isAfterLast()) {
+            data = c.getDouble(0);
             //MainActivity.debug("CanzeDataSource: got value "+data);
         }
         // make sure to close the cursor

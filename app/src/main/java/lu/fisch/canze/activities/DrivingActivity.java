@@ -57,9 +57,9 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
 
     // ISO-TP data
 //  public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
-    public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC)
+//  public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC)
     public static final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
-    public static final String SID_EVC_Pedal                            = "7ec.62202e.24"; //  (EVC)
+//  public static final String SID_EVC_Pedal                            = "7ec.62202e.24"; //  (EVC)
     public static final String SID_EVC_TractionBatteryVoltage           = "7ec.623203.24"; //  (EVC)
     public static final String SID_EVC_TractionBatteryCurrent           = "7ec.623204.24"; //  (EVC)
 
@@ -189,12 +189,12 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         tv.setText(distance2);
     }
 
-    private void addListener(String sid) {
+    private void addListener(String sid, int intervalMs) {
         Field field;
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addActivityField(field);
+            MainActivity.device.addActivityField(field, intervalMs);
             subscribedFields.add(field);
         }
         else
@@ -230,18 +230,18 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
 
         // Make sure to add ISO-TP listeners grouped by ID
 
-        addListener(SID_Pedal);
-        addListener(SID_MeanEffectiveTorque);
-        addListener(SID_DriverBrakeWheel_Torque_Request);
-        addListener(SID_ElecBrakeWheelsTorqueApplied);
-        addListener(SID_RealSpeed);
-        addListener(SID_SoC);
-        addListener(SID_RangeEstimate);
+        addListener(SID_Pedal, 0);
+        addListener(SID_MeanEffectiveTorque, 0);
+        addListener(SID_DriverBrakeWheel_Torque_Request, 0);
+        addListener(SID_ElecBrakeWheelsTorqueApplied, 0);
+        addListener(SID_RealSpeed, 0);
+        addListener(SID_SoC, 3600);
+        addListener(SID_RangeEstimate, 3600);
 
         //addListener(SID_EVC_SoC);
-        addListener(SID_EVC_Odometer);
-        addListener(SID_EVC_TractionBatteryVoltage);
-        addListener(SID_EVC_TractionBatteryCurrent);
+        addListener(SID_EVC_Odometer, 6000);
+        addListener(SID_EVC_TractionBatteryVoltage, 5000);
+        addListener(SID_EVC_TractionBatteryCurrent, 0);
         //addListener(SID_PEB_Torque);
     }
 
@@ -266,7 +266,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         tv = (TextView) findViewById(R.id.textSOC);
                         break;
                     case SID_Pedal:
-                    case SID_EVC_Pedal:
+//                  case SID_EVC_Pedal:
                         pb = (ProgressBar) findViewById(R.id.pedalBar);
                         pb.setProgress((int) field.getValue());
                         break;
@@ -280,7 +280,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         tv = null;
                         break;
                     case SID_RealSpeed:
-                    case SID_EVC_RealSpeed:
+//                  case SID_EVC_RealSpeed:
                         //realSpeed = (Math.round(Utils.kmOrMiles(field.getValue()) * 10.0) / 10.0);
                         realSpeed = (Math.round(field.getValue() * 10.0) / 10.0);
                         tv = (TextView) findViewById(R.id.textRealSpeed);

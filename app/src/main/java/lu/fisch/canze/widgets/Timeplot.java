@@ -203,27 +203,29 @@ public class Timeplot extends Drawable {
                 for (int i = values.size() - 1; i >= 0; i--) {
                     TimePoint tp = values.get(i);
 
-                    g.setColor(colorRanges.getColor(sid,tp.value,getColor(s)));
+                    if(tp!=null) {
+                        g.setColor(colorRanges.getColor(sid, tp.value, getColor(s)));
 
-                    double mx = barWidth - (maxTime - tp.date) / 1000;
+                        double mx = barWidth - (maxTime - tp.date) / 1000;
 
-                    if (mx < 0) {
-                        values.remove(i);
-                    } else {
-                        double my = graphHeight - (tp.value - getMin()) * h;
-                        int rayon = 2;
-                        g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon,
-                                getY() + (int) my - rayon,
-                                2 * rayon + 1,
-                                2 * rayon + 1);
-                        if (i < values.size() - 1) {
-                            g.drawLine(getX() + getWidth() - barWidth + (int) lastX,
-                                    getY() + (int) lastY,
-                                    getX() + getWidth() - barWidth + (int) mx,
-                                    getY() + (int) my);
+                        if (mx < 0) {
+                            values.remove(i);
+                        } else {
+                            double my = graphHeight - (tp.value - getMin()) * h;
+                            int rayon = 2;
+                            g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon,
+                                    getY() + (int) my - rayon,
+                                    2 * rayon + 1,
+                                    2 * rayon + 1);
+                            if (i < values.size() - 1) {
+                                g.drawLine(getX() + getWidth() - barWidth + (int) lastX,
+                                        getY() + (int) lastY,
+                                        getX() + getWidth() - barWidth + (int) mx,
+                                        getY() + (int) my);
+                            }
+                            lastX = mx;
+                            lastY = my;
                         }
-                        lastX = mx;
-                        lastY = my;
                     }
                 }
             }

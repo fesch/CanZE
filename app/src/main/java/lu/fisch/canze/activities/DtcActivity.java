@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -35,6 +36,8 @@ import java.util.Calendar;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Dtcs;
+import lu.fisch.canze.actors.Ecu;
+import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Message;
@@ -49,26 +52,32 @@ public class DtcActivity  extends CanzeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dtc);
+
         textView = (TextView) findViewById(R.id.textResult);
 
-
+        ArrayAdapter <String> arrayAdapter = new ArrayAdapter <> (this,android.R.layout.simple_list_item_1);
+        for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
+            if (ecu.getFromId() != 0) arrayAdapter.add(ecu.getMnemonic());
+        }
+        // display the list
         final Spinner spinnerEcu = (Spinner) findViewById(R.id.ecuList);
-        final Button btnQuery = (Button) findViewById(R.id.ecuQuery);
-        final Button btnReset = (Button) findViewById(R.id.ecuReset);
+        spinnerEcu.setAdapter(arrayAdapter);
 
+        final Button btnQuery = (Button) findViewById(R.id.ecuQuery);
         btnQuery.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 //MainActivity.toast("On Button Click : " + "\n" + String.valueOf(spinnerEcu.getSelectedItem()));
-                doQueryEcu(ecuToId(String.valueOf(spinnerEcu.getSelectedItem())));
+                doQueryEcu(Ecus.getInstance().getByMnemonic(String.valueOf(spinnerEcu.getSelectedItem())));
             }
         });
 
-        btnReset.setOnClickListener(new OnClickListener() {
+        final Button btnClear = (Button) findViewById(R.id.ecuClear);
+        btnClear.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 //MainActivity.toast("On Button Click : " + "\n" + String.valueOf(spinnerEcu.getSelectedItem()));
-                doResetEcu(ecuToId(String.valueOf(spinnerEcu.getSelectedItem())));
+                doClearEcu(Ecus.getInstance().getByMnemonic(String.valueOf(spinnerEcu.getSelectedItem())));
             }
         });
 
@@ -92,52 +101,57 @@ public class DtcActivity  extends CanzeActivity {
         }).start();
     }
 
-    void doQueryEcu(int ecu) {
-        doQueryEcu(ecu, false);
-    }
-
-    void doQueryEcu(int ecu, boolean sourceEcu) {
+    void doQueryEcu(Ecu ecu) {
         Field field;
         String filter;
-        String result;
+
         clearResult();
 
-        filter = Integer.toHexString(ecu);
+        appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
+
+        // get the from ID from the selected ECU
+        filter = Integer.toHexString(ecu.getFromId());
+
+        // compile the field query and get the Field object
         field = Fields.getInstance().getBySID(filter + ".5902ff.0"); // get DTC
         if (field == null) {
-            appendResult("- field does not exist\n");
+            appendResult("Field does not exist\n");
             return;
         }
 
+        // re-initialize the device
         appendResult("\nSending initialisation sequence\n");
         if (!MainActivity.device.initDevice(1)) {
             appendResult("\nInitialisation failed\n");
             return;
         }
 
+        // query the Field
         Message message = MainActivity.device.requestField(field);
+        if (message == null) {
+            appendResult("Msg is null. Is the car switched on?\n");
+            return;
+        }
+
         String backRes = message.getData();
         if (backRes == null) {
-            appendResult("Request DTC code for this ECU not found, nothing send\n");
+            appendResult("Data is null. This should never happen, please report\n");
             return;
         }
 
-        if (!backRes.contains(",")) {
-            appendResult("Request DTC code send, but empty response\n");
-            return;
-        }
-
-        backRes = backRes.split(",")[1];
+        // check the response
         if (!backRes.startsWith("59")) {
-            appendResult("Reset send, but unexpected result received:[" + backRes + "\n");
+            appendResult("Query send, but unexpected result received:[" + backRes + "\n");
             return;
         }
 
         // loop trough all DTC's
+        boolean onePrinted = false;
         for (int i = 6; i < backRes.length() - 7; i += 8) {
             int bits = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
             // exclude 50 / 10 as it means something like "I have this DTC code, but I have never tested it"
             if (bits != 0x50 && bits != 0x10) {
+                onePrinted = true;
                 appendResult("\nDTC" + backRes.substring(i, i + 6) + ":" + backRes.substring(i + 6, i + 8) + ":" + Dtcs.getDescription(backRes.substring(i, i + 6)));
                 if ((bits & 0x01) != 0) appendResult(" tstFail");
                 if ((bits & 0x02) != 0) appendResult(" tstFailThisOp");
@@ -149,51 +163,53 @@ public class DtcActivity  extends CanzeActivity {
                 if ((bits & 0x80) != 0) appendResult(" WrnLght");
             }
         }
+        if (!onePrinted) appendResult("\nNo active DTCs\n");
     }
 
-    void doResetEcu(int ecu) {
-        doResetEcu(ecu, false);
-    }
-
-    void doResetEcu(int ecu, boolean sourceEcu) {
-
+    void doClearEcu(Ecu ecu) {
         Field field;
         String filter;
+
         clearResult();
 
-        filter = Integer.toHexString(ecu);
-        field = Fields.getInstance().getBySID(filter + ".54.0"); // get DTC reset
+        // get the from ID from the selected ECU
+        filter = Integer.toHexString(ecu.getFromId());
+        appendResult("Clear " + ecu.getName() + " (" + filter + ")\n");
 
+        // compile the field query and get the Field object
+        field = Fields.getInstance().getBySID(filter + ".54.0"); // get DTC Clear
         if (field == null) {
             appendResult("- field does not exist\n");
             return;
         }
 
+        // re-initialize the device
         appendResult("\nSending initialisation sequence\n");
         if (!MainActivity.device.initDevice(1)) {
             appendResult("\nInitialisation failed\n");
             return;
         }
 
+        // query the Field
         Message message = MainActivity.device.requestField(field);
+        if (message == null) {
+            appendResult("Msg is null. Is the car switched on?\n");
+            return;
+        }
+
         String backRes = message.getData();
         if (backRes == null) {
-            appendResult("Reset code for this ECU not found, nothing send\n");
+            appendResult("Data is null. This should never happen, please report\n");
             return;
         }
 
-        if (!backRes.contains(",")) {
-            appendResult("Reset code send, but empty response\n");
-            return;
-        }
-
-        backRes = backRes.split(",")[1];
+        // check the response
         if (!backRes.startsWith("54")) {
-            appendResult("Reset code send, but unexpected result received:[" + backRes + "\n");
+            appendResult("Clear code send, but unexpected result received:[" + backRes + "\n");
             return;
         }
 
-        appendResult("Reset seems succesful, please query DTCs\n");
+        appendResult("Clear seems succesful, please query DTCs\n");
     }
 
 
@@ -290,8 +306,11 @@ public class DtcActivity  extends CanzeActivity {
         getMenuInflater().inflate(R.menu.menu_empty, menu);
         return true;
     }
+/*
+    private int ecuMnemonicToId(String ecuMnemonic) { // this function should be moved to a separate class, or a function in Fields
+        Ecu ecu = Ecus.getInstance().getByMnemonic(ecuMnemonic);
+        return ecu == null ? 0 : ecu.getToId();
 
-    private int ecuToId(String ecu) { // this function should be moved to a separate class, or a function in Fields
         switch (ecu) {
             case "BCB":
                 return 0x793;
@@ -333,5 +352,6 @@ public class DtcActivity  extends CanzeActivity {
                 return 0x76e;
         }
         return 0;
-    }
+
+    } */
 }

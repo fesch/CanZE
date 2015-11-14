@@ -23,6 +23,8 @@ package lu.fisch.canze.actors;
 
 import java.util.ArrayList;
 
+import lu.fisch.canze.activities.MainActivity;
+
 /**
  * Frames
  */
@@ -79,12 +81,12 @@ public class Frames {
                         +"0x511,100,EVCBRIDGE\n"
                         +"0x552,100,BCM\n"
                         +"0x563,100,EPS\n"
-                        +"0x581,100,ESCL\n"
+                        +"" // 0x581,100,ESCL unknown ECU
                         +"0x5D1,0,CLUSTER\n"
                         +"0x5D7,100,ESC\n"
                         +"0x5DA,100,EVC\n"
                         +"0x5DE,100,BCM\n"
-                        +"0x5E9,100,UPA via BCMBRIDGE\n"
+                        +"0x5E9,100,UPA\n"
                         +"0x5EE,100,BCM\n"
                         +"0x62C,100,EPS\n"
                         +"0x62D,500,EVC\n"
@@ -112,7 +114,7 @@ public class Frames {
                         +"0x69F,1000,BCM\n"
                         +"0x6F8,100,USM\n"
                         +"0x6FB,3000,CLUSTER\n"
-                        +"0x722,0,LINSCH\n"
+                        +"" // 0x722,0,LINSCH does not exist, does not respond
                         +"0x760,0,ESC\n"
                         +"0x762,0,EPS\n"
                         +"0x763,0,CLUSTER\n"
@@ -128,22 +130,25 @@ public class Frames {
                         +"0x7BC,0,UBP\n"
                         +"0x7DA,0,TCU\n"
                         +"0x7EC,0,EVC\n"
-                        +"\n"
                         +"";
         String[] lines = frameDef.split("\n");
         for (String line : lines) {
             //Get all tokens available in line
             String[] tokens = line.split(",");
-            if (tokens.length > 0) {
+            if (tokens.length == 3) {
                 //Create a new field object and fill his  data
                 Ecu ecu = Ecus.getInstance().getByMnemonic(tokens[2].trim());
-                Frame frame = new Frame(
-                        Integer.parseInt(tokens[0].trim().replace("0x", ""), 16),
-                        Integer.parseInt(tokens[1].trim(), 10),
-                        ecu
-                );
-                // add the field to the list of available fields
-                add(frame);
+                if (ecu == null) {
+                    MainActivity.debug("Ecu does not exist:" + tokens[2].trim());
+                } else {
+                    Frame frame = new Frame(
+                            Integer.parseInt(tokens[0].trim().replace("0x", ""), 16),
+                            Integer.parseInt(tokens[1].trim(), 10),
+                            ecu
+                    );
+                    // add the field to the list of available fields
+                    add(frame);
+                }
             }
         }
     }

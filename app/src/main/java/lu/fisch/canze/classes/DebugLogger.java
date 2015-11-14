@@ -13,18 +13,18 @@ import java.util.Calendar;
  * Created by Chris Mattheis on 03/11/15.
  * don't use yet - still work in progress
  */
-public class DataLogger {
+public class DebugLogger {
 
     /* ****************************
      * Singleton stuff
      * ****************************/
 
-    private static DataLogger debugLogger = null;
+    private static DebugLogger debugLogger = null;
 
-    private DataLogger() {}
+    private DebugLogger() {}
 
-    public static DataLogger getInstance() {
-        if(debugLogger ==null) debugLogger =new DataLogger();
+    public static DebugLogger getInstance() {
+        if(debugLogger ==null) debugLogger =new DebugLogger();
         return debugLogger;
     }
 
@@ -86,8 +86,6 @@ public class DataLogger {
      */
     public void log(String text)
     {
-        if(!isCreated()) createNewLog();
-
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
             bufferedWriter.append(text+"\n");

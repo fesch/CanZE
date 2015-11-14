@@ -31,8 +31,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 
 /**
@@ -64,16 +66,6 @@ public class Plotter extends Drawable {
         this.y = y;
         this.width = width;
         this.height = height;
-    }
-
-    public void addValue(double value)
-    {
-        //if(value!=min)
-        {
-            values.add(value);
-            minValues.add(value);
-            maxValues.add(value);
-        }
     }
 
     public void setValue(int index, double value)
@@ -166,7 +158,7 @@ public class Plotter extends Drawable {
             double lastX = Double.NaN;
             double lastY = Double.NaN;
             g.setColor(Color.GREEN_DARK);
-            for(int i=0; i<values.size(); i++)
+            for(int i=0; i<minValues.size(); i++)
             {
                 double mx = w/2+i*w;
                 double my = getHeight()-(minValues.get(i)-getMin())*h;
@@ -193,7 +185,7 @@ public class Plotter extends Drawable {
             double lastX = Double.NaN;
             double lastY = Double.NaN;
             g.setColor(Color.BLUE);
-            for(int i=0; i<values.size(); i++)
+            for(int i=0; i<maxValues.size(); i++)
             {
                 double mx = w/2+i*w;
                 double my = getHeight()-(maxValues.get(i)-getMin())*h;
@@ -260,7 +252,10 @@ public class Plotter extends Drawable {
             int index = sids.indexOf(sid);
             if (index == -1) {
                 sids.add(sid);
-                addValue(field.getValue());
+                values.add(field.getValue());
+                minValues.add(CanzeDataSource.getInstance().getMin(sid));
+                maxValues.add(CanzeDataSource.getInstance().getMax(sid));
+
             } else setValue(index, field.getValue());
             // only repaint if the last field has been updated
             //if(index==sids.size()-1)
@@ -272,6 +267,21 @@ public class Plotter extends Drawable {
      * Serialization
      \ ------------------------------ */
 
+    @Override
+    public void loadValuesFromDatabase() {
+        super.loadValuesFromDatabase();
+
+        values.clear();
+        maxValues.clear();
+        minValues.clear();
+
+        for(int s=0; s<sids.size(); s++) {
+            String sid = sids.get(s);
+            values.add(CanzeDataSource.getInstance().getLast(sid));
+            maxValues.add(CanzeDataSource.getInstance().getMax(sid));
+            minValues.add(CanzeDataSource.getInstance().getMin(sid));
+        }
+    }
 
     @Override
     public String dataToJson() {

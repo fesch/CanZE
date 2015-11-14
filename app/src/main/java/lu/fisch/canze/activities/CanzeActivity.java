@@ -86,7 +86,7 @@ public class CanzeActivity extends AppCompatActivity {
         // if we are not coming back from somewhere, stop Bluetooth
         if(!back && !widgetClicked) {
             MainActivity.debug("CanzeActivity: onPause > stopBluetooth");
-            MainActivity.getInstance().stopBluetooth();
+            MainActivity.getInstance().stopBluetooth(false);
         }
         if(!widgetClicked) {
             // remember we paused ourselves
@@ -98,17 +98,17 @@ public class CanzeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         MainActivity.debug("CanzeActivity: onResume");
-        if(!widgetClicked) {
-            MainActivity.debug("CanzeActivity: onResume > initWidgets");
-            // initialise the widgets (if any present)
-            initWidgets();
-        }
         // if we paused ourselvers
         if (iLeftMyOwn && !widgetClicked) {
             MainActivity.debug("CanzeActivity: onResume > reloadBluetooth");
             // restart Bluetooth
-            MainActivity.getInstance().reloadBluetooth();
+            MainActivity.getInstance().reloadBluetooth(false);
             iLeftMyOwn=false;
+        }
+        if(!widgetClicked) {
+            MainActivity.debug("CanzeActivity: onResume > initWidgets");
+            // initialise the widgets (if any present)
+            initWidgets();
         }
         widgetClicked=false;
     }
@@ -153,7 +153,7 @@ public class CanzeActivity extends AppCompatActivity {
                 //catch (Exception e) {}
 
                 // load data
-                SharedPreferences settings = getSharedPreferences(MainActivity.DATA_FILE, 0);
+                //SharedPreferences settings = getSharedPreferences(MainActivity.DATA_FILE, 0);
 
                 // connect the widgets to the respective fields
                 // and add the filters to the reader
@@ -167,7 +167,8 @@ public class CanzeActivity extends AppCompatActivity {
                     if (wv == null) {
                         throw new ExceptionInInitializerError("Widget <" + wv.getId() + "> is NULL!");
                     }
-                    String sid = wv.getFieldSID();
+
+                    /*String sid = wv.getFieldSID(); --> done in WidgetView
                     String[] sids = sid.split(",");
                     for(int s=0; s<sids.length; s++) {
                         Field field = MainActivity.fields.getBySID(sids[s]);
@@ -189,7 +190,7 @@ public class CanzeActivity extends AppCompatActivity {
                             else
                                 MainActivity.device.addActivityField(field,interval);
                         }
-                    }
+                    }*/
 
                     // load data --> replaced by loading from the database
                     /*
@@ -209,12 +210,36 @@ public class CanzeActivity extends AppCompatActivity {
                     }
                     */
 
-                    wv.getDrawable().loadValuesFromDatabase();
+                    // --> done in drawable
+                    //wv.getDrawable().loadValuesFromDatabase();
 
-                    wv.repaint();
+                    //wv.repaint();
 
                     // touching a widget makes a "bigger" version appear
-                    wv.setOnTouchListener(new View.OnTouchListener() {
+                    //wv.setOnTouchListener(wv);
+                    /*wv.setOnTouchBackListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            // get masked (not specific to a pointer) action
+                            int maskedAction = event.getActionMasked();
+
+                            switch (maskedAction) {
+                                case MotionEvent.ACTION_UP:
+                                case MotionEvent.ACTION_POINTER_UP: {
+                                    MainActivity.debug("Done!");
+                                    widgetClicked=true;
+                                    break;
+                                }
+                                default: {
+                                    break;
+                                }
+                            }
+                            return true;
+                        }
+                    });*/
+
+                    // touching a widget makes a "bigger" version appear
+                    /*wv.setOnTouchListener(new View.OnTouchListener() {
                         @Override
                         public boolean onTouch(View v, MotionEvent event) {
                             if(((WidgetView) v).isClickable()) {
@@ -251,7 +276,8 @@ public class CanzeActivity extends AppCompatActivity {
                             }
                             else return false;
                         }
-                    });
+                    });*/
+
                 }
             }
         }).start();
@@ -292,14 +318,15 @@ public class CanzeActivity extends AppCompatActivity {
         for(int i=0; i<widgets.size(); i++) {
             WidgetView wv = widgets.get(i);
             String sid = wv.getFieldSID();
-            String[] sids = sid.split(",");
-            for(int s=0; s<sids.length; s++) {
-                Field field = MainActivity.fields.getBySID(sids[s]);
-                if (field != null) {
-                    field.removeListener(wv.getDrawable());
+            if(sid!=null) {
+                String[] sids = sid.split(",");
+                for (int s = 0; s < sids.length; s++) {
+                    Field field = MainActivity.fields.getBySID(sids[s]);
+                    if (field != null) {
+                        field.removeListener(wv.getDrawable());
+                    }
                 }
             }
-
         }
     }
 
