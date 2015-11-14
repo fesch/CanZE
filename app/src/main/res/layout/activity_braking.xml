@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="25dp"
-            android:max="4096"
+            android:max="2048"
             android:progressDrawable="@drawable/progressbar_canze"
             />
 
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="25dp"
-            android:max="4096"
+            android:max="2048"
             android:progressDrawable="@drawable/progressbar_canze_green"
             />
 
@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="25dp"
-            android:max="4096"
+            android:max="2048"
             android:progressDrawable="@drawable/progressbar_canze_red"
             />
 <!--
