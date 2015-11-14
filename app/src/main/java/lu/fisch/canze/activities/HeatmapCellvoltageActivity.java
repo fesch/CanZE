@@ -164,7 +164,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
             }
         }
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -186,4 +186,5 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
 
         return super.onOptionsItemSelected(item);
     }
+*/
 }

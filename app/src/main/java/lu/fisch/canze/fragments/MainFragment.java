@@ -30,7 +30,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import lu.fisch.canze.R;
-import lu.fisch.canze.activities.*;
+import lu.fisch.canze.activities.BatteryActivity;
+import lu.fisch.canze.activities.BrakingActivity;
+import lu.fisch.canze.activities.ChargingActivity;
+import lu.fisch.canze.activities.ConsumptionActivity;
+import lu.fisch.canze.activities.DrivingActivity;
+import lu.fisch.canze.activities.FirmwareActivity;
+import lu.fisch.canze.activities.HeatmapBatcompActivity;
+import lu.fisch.canze.activities.HeatmapCellvoltageActivity;
+import lu.fisch.canze.activities.MainActivity;
 
 
 public class MainFragment extends Fragment {

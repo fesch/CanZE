@@ -42,11 +42,11 @@
             android:label="@string/title_activity_tacho" >
         </activity>
         <activity
-            android:name=".activities.ChargingActivity"
+            android:name=".activities.ChargingTechActivity"
             android:label="@string/title_activity_charging" >
         </activity>
         <activity
-            android:name=".activities.ChargingActivity2"
+            android:name=".activities.ChargingActivity"
             android:label="@string/title_activity_charging" >
         </activity>
         <activity

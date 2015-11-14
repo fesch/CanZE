@@ -161,7 +161,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
         }
 
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -183,4 +183,5 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }
