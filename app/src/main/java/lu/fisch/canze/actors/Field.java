@@ -148,11 +148,11 @@ public class Field {
         //double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
         double val =  (value-offset)* resolution;
         if (MainActivity.milesMode) {
-            if (getUnit().toLowerCase().startsWith("km"))
+            if (unit.toLowerCase().startsWith("km"))
                 val = val / 1.609344;
-            else if (getUnit().toLowerCase().endsWith("km"))
+            else if (unit.toLowerCase().endsWith("km"))
                 val = val*1.609344;
-            setUnit(getUnit().replace("km", "mi"));
+            //setUnit(getUnit().replace("km", "mi"));
             return val;
         }
         return val;
@@ -326,7 +326,10 @@ public class Field {
     }
 
     public String getUnit() {
-        return unit;
+        if(MainActivity.milesMode)
+            return (unit+"").replace("km", "mi");
+        else
+            return unit;
     }
 
     public void setUnit(String unit) {
