@@ -27,9 +27,12 @@
 package lu.fisch.canze.actors;
 
 import android.os.Environment;
+import android.widget.TextView;
 
+import lu.fisch.canze.R;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.interfaces.MessageListener;
+import lu.fisch.canze.interfaces.VirtualFieldAction;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -98,12 +101,64 @@ public class Fields implements MessageListener {
 
     private Fields() {
         fillStatic();
+        addVirtualFields();
     }
 
     public static Fields getInstance()
     {
         if(instance==null) instance=new Fields();
         return instance;
+    }
+
+    private void addVirtualFields()
+    {
+        /*
+        HashMap<String, Field> dependantFields = new HashMap<>();
+        final String SID_EVC_TractionBatteryVoltage = "7ec.623203.24";
+        final String SID_EVC_TractionBatteryCurrent = "7ec.623204.24";
+        final String SID_RealSpeed = "5d7.0";
+        dependantFields.put(SID_EVC_TractionBatteryVoltage,getBySID(SID_EVC_TractionBatteryVoltage));
+        dependantFields.put(SID_EVC_TractionBatteryCurrent,getBySID(SID_EVC_TractionBatteryCurrent));
+        dependantFields.put(SID_RealSpeed,getBySID(SID_RealSpeed));
+        VirtualField virtualField = new VirtualField(0x800, dependantFields, "kWh/100km", new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String,Field> dependantFields) {
+                // get voltage
+                double dcVolt = dependantFields.get(SID_EVC_TractionBatteryVoltage).getValue();
+                // get current
+                double dcPwr = dcVolt * dependantFields.get(SID_EVC_TractionBatteryCurrent).getValue() / 10.0;
+                // get real speed
+                double realSpeed = dependantFields.get(SID_RealSpeed).getValue();
+
+                if(realSpeed>=5)
+                    return (Math.round(1000.0 * dcPwr / realSpeed) / 10.0);
+                else
+                    return 0;
+            }
+        });
+        // add it to the list of fields
+        add(virtualField);
+        */
+
+        /*
+        // Econometer/2 (just to test)
+        // create a list of field this new virtual field will depend on
+        HashMap<String, Field> dependantFields = new HashMap<>();
+        final String SID_kw_dashboard = "1fd.48";
+        dependantFields.put(SID_kw_dashboard,getBySID(SID_kw_dashboard));
+        // create a new virtual field. Define it's ID and how it is being calculated
+        VirtualField virtualField = new VirtualField(0x801, dependantFields, "kw", new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String,Field> dependantFields) {
+                // get distance
+                double dist = dependantFields.get(SID_kw_dashboard).getValue();
+                // calculate return value
+                return dist/2;
+            }
+        });
+        // add it to the list of fields
+        add(virtualField);
+        */
     }
 
     private void fillStatic()

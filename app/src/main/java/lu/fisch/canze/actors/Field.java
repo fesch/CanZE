@@ -38,27 +38,29 @@ import java.util.Calendar;
  */
 public class Field {
 
-    private final ArrayList<FieldListener> fieldListeners = new ArrayList<>();
+    protected final ArrayList<FieldListener> fieldListeners = new ArrayList<>();
 
-    private Frame frame;
-    private int from;
-    private int to;
-    private double offset;
+    protected Frame frame;
+    protected int from;
+    protected int to;
+    protected double offset;
     //private int divider;
     //private int multiplier;
-    private int decimals;
-    private double resolution;
-    private String unit;
-    private String requestId;
-    private String responseId;
-    private int car;
+    protected int decimals;
+    protected double resolution;
+    protected String unit;
+    protected String requestId;
+    protected String responseId;
+    protected int car;
     //private int skips;
 
-    private double value = Double.NaN;
+    protected double value = Double.NaN;
     //private int skipsCount = 0;
 
-    private long lastRequest = 0;
-    private int interval = Integer.MAX_VALUE;
+    protected long lastRequest = 0;
+    protected int interval = Integer.MAX_VALUE;
+
+    protected boolean virtual = false;
     
     public Field(Frame frame, int from, int to, double resolution, int decimals, double offset, String unit, String requestId, String responseId, int car) {
         this.frame=frame;
@@ -98,7 +100,7 @@ public class Field {
 
     public String getSID()
     {
-        if(!responseId.trim().isEmpty())
+        if(responseId!=null && !responseId.trim().isEmpty())
             return (Integer.toHexString(frame.getId())+"."+responseId.trim()+"."+from).toLowerCase();
         else
             return (Integer.toHexString(frame.getId())+"."+from).toLowerCase();
@@ -367,5 +369,9 @@ public class Field {
 
     public void setDecimals(int decimals) {
         this.decimals = decimals;
+    }
+
+    public boolean isVirtual() {
+        return virtual;
     }
 }
