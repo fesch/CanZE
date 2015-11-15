@@ -45,6 +45,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
     private ArrayList<Field> subscribedFields;
 
     private double mean = 0;
+    private double cutoff;
     private double lastVoltage[] = {0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4};
     private int lastCell = 96;
 
@@ -132,12 +133,18 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
             lastVoltage[cell] = value;
             if (cell == lastCell) {
                 mean = 0;
+                double lowest = 5;
+                double highest = 3;
+                // lastVoltage[20] = 3.5; fake for test
                 for (int i = 1; i <= lastCell; i++) {
                     mean += lastVoltage[i];
+                    if (lastVoltage[i] < lowest ) lowest  = lastVoltage[i];
+                    if (lastVoltage[i] > highest) highest = lastVoltage[i];
                 }
                 mean /= lastCell;
+                cutoff = lowest < 3.712 ? mean - (highest - mean) * 1.5 : 2;
 
-                // the update has to be done in a separate thread
+                        // the update has to be done in a separate thread
                 // otherwise the UI will not be repainted
                 runOnUiThread(new Runnable() {
                     @Override
@@ -147,7 +154,9 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
                             if (tv != null) {
                                 tv.setText(String.format("%.3f", lastVoltage[i]));
                                 int color = (int) (5000 * (lastVoltage[i] - mean)); // color is temp minus mean. 1mV difference is 5 color ticks
-                                if (color > 62) {
+                                if (lastVoltage[i] <= cutoff) {
+                                    color = 0xffff4040;
+                                } else if (color > 62) {
                                     color = 0xffffc0c0;
                                 } else if (color > 0) {
                                     color = 0xffc0c0c0 + (color * 0x010000); // one tick is one red
