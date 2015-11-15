@@ -77,7 +77,7 @@
             custom:max="70"
             custom:majorTicks="10"
             custom:minorTicks="5"
-            custom:fieldSID="1fd.48,427.49"
+            custom:fieldSID="1fd.48,427.49,800.0"
             custom:widget="timeplot"
             custom:colorRanges="[
                 {'sid':'1fd.48','color':'#cc00ff','from':-100,'to':-1},
@@ -111,10 +111,14 @@
             custom:max="160"
             custom:majorTicks="20"
             custom:minorTicks="10"
-            custom:fieldSID="5d7.0,654.42"
+            custom:fieldSID="5d7.0,654.42,638.8,638.18"
             custom:widget="timeplot"
             custom:text="Speed (km/h) / Available distance (km)"
-            custom:intervals="{'654.42':10000}"
+            custom:intervals="{
+                               '654.42':10000,
+                               '638.8' :30000,
+                               '638.18':30000
+                               }"
             />
 
     </TableRow>

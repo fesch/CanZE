@@ -159,7 +159,7 @@ public class ExperimentalFragment extends Fragment {
             }
         });
 
-        button = (Button) view.findViewById(R.id.buttonDtc);
+        /*button = (Button) view.findViewById(R.id.buttonDtc);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,7 +169,7 @@ public class ExperimentalFragment extends Fragment {
                 Intent intent = new Intent(MainActivity.getInstance(), DtcActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
             }
-        });
+        });*/
 
         button = (Button) view.findViewById(R.id.button_3);
         button.setOnClickListener(new View.OnClickListener() {
