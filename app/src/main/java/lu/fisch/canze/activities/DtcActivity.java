@@ -92,7 +92,7 @@ public class DtcActivity  extends CanzeActivity {
                 }
 
                 if (!BluetoothManager.getInstance().isConnected()) {
-                    appendResult("\nIs your device paired and connected?\n");
+                    appendResult("\nNo connection. Close this screen and make sure your device paired and connected\n");
                     return;
                 }
 

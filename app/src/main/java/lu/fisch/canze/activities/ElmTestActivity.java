@@ -5,6 +5,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ import lu.fisch.canze.actors.Dtcs;
 import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
@@ -60,7 +62,7 @@ public class ElmTestActivity extends CanzeActivity {
                 }
 
                 if (!BluetoothManager.getInstance().isConnected()) {
-                    appendResult("\nIs your device paired and connected?\n");
+                    appendResult("\nNo connection. Close this screen and make sure your device paired and connected\n");
                     return;
                 }
 
@@ -73,6 +75,19 @@ public class ElmTestActivity extends CanzeActivity {
                             @Override
                             public void run() {
                                 doTest();
+                            }
+                        }).start();
+                    }
+                });
+
+                final Button btnQuery = (Button) findViewById(R.id.elmQuery);
+                btnTest.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                doQuery();
                             }
                         }).start();
                     }
@@ -153,7 +168,42 @@ public class ElmTestActivity extends CanzeActivity {
         appendResult("\nYour device passed all the tests, it will probably work just fine\n");
     }
 
+    void doQuery () {
 
+        Field field;
+        Message message;
+        String backRes;
+        clearResult();
+
+        EditText ev = (EditText) findViewById(R.id.frame);
+        String frameId = ev.getText().toString().trim().toLowerCase();
+        if (frameId.isEmpty()) {
+            appendResult("Requested field Id is empty.\n");
+            return;
+        }
+        field = Fields.getInstance().getBySID(frameId);
+        if (field == null) {
+            appendResult("Requested field does not exist.\n");
+            return;
+        }
+        message = MainActivity.device.requestField(field);
+        if (message == null) {
+            appendResult("Msg is null. Is the car switched on?\n");
+            return;
+        }
+        backRes = message.getData();
+        if (backRes == null) {
+            appendResult("Data is null. This should never happen, please report.\n");
+            return;
+        }
+        if (backRes.equals("")) {
+            appendResult("Result is empty.\n");
+            return;
+        }
+
+        appendResult("The result is stated below, the quotes are not part of the result.\n");
+        appendResult("\"" + backRes + "\"\n");
+    }
 
 
     // Ensure all UI updates are done on the UiThread
