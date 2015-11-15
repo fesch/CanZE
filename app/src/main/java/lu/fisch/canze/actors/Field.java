@@ -116,6 +116,33 @@ public class Field {
         return getValue()+" "+getUnit();
     }
 
+    public String getStringValue()
+    {
+        // truncate to a long
+        long longValue = (long) value;
+        // prepare to cut into 8 bit pieces
+        int[] intArray = new int[8];
+        // initialise the array
+        for(int i=0; i<intArray.length; i++) intArray[i]=0;
+        // as long as there is something
+        int i=0;
+        while(longValue>0)
+        {
+            // get 8 bits
+            intArray[i]=(int) (longValue & 0xFF);
+            // move the other bits
+            longValue >>= 8;
+            i++;
+        }
+        // initialise the result
+        String result = "";
+        // assemble as string
+        for(i=0; i<intArray.length; i++)
+            result=result+(char) intArray[i];
+        // return trimmed result
+        return result.trim();
+    }
+
     public double getValue()
     {
         //double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
