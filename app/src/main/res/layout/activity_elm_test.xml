@@ -17,9 +17,21 @@
         android:layout_height="wrap_content">
 
         <TableRow>
+            <EditText
+                android:id="@+id/frame"
+                android:inputType="text"
+                />
+        </TableRow>
+
+        <TableRow>
             <Button
                 android:id="@+id/elmTest"
                 android:text="Test"
+                android:layout_weight="1"
+                />
+            <Button
+                android:id="@+id/elmQuery"
+                android:text="Query"
                 android:layout_weight="1"
                 />
         </TableRow>

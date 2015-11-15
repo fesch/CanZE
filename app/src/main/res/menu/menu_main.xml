@@ -12,6 +12,14 @@
         />
 
     <item
+        android:id="@+id/action_technical"
+        android:orderInCategory="100"
+        android:title="Technical"
+        android:visible="true"
+        app:showAsAction="never"
+        />
+
+    <item
         android:id="@+id/action_experimental"
         android:orderInCategory="100"
         android:title="Experimental"
