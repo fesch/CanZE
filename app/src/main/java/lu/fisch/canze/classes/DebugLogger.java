@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import static lu.fisch.canze.activities.MainActivity.debug;
+
 /**
  * Created by Chris Mattheis on 03/11/15.
  * don't use yet - still work in progress
@@ -42,11 +44,17 @@ public class DebugLogger {
     public boolean createNewLog() {
         boolean result = false;
 
+        debug ("create new data logfile");
+
         // ensure that there is a CanZE Folder in SDcard
         String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
+
+        debug ("file_path:" + file_path);
+
         File dir = new File(file_path);
         if (!dir.exists()) {
             dir.mkdirs();
+            debug ("SDcard dir CanZE created");
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
