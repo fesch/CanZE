@@ -514,7 +514,8 @@ public abstract class Device {
             VirtualField virtualField = (VirtualField) field;
             for (Field realField : virtualField.getFields())
             {
-                addActivityField(realField,interval);
+                // increase interval
+                addActivityField(realField, interval * virtualField.getFields().size());
             }
         }
     }
@@ -548,7 +549,8 @@ public abstract class Device {
             VirtualField virtualField = (VirtualField) field;
             for (Field realField : virtualField.getFields())
             {
-                addApplicationField(realField,interval);
+                // increase interval
+                addApplicationField(realField,interval*virtualField.getFields().size());
             }
         }
 
