@@ -30,6 +30,7 @@ import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Message;
+import lu.fisch.canze.actors.VirtualField;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.database.CanzeDataSource;
 
@@ -448,10 +449,28 @@ public abstract class Device {
                     activityFieldsScheduled.remove(field);
             }
         }
+
+        // register real fields on which a virtual field may depend
+        if(field.isVirtual())
+        {
+            VirtualField virtualField = (VirtualField) field;
+            for (Field realField : virtualField.getFields())
+            {
+                addActivityField(realField);
+            }
+        }
     }
 
     public void addActivityField(final Field field, int interval)
     {
+        // if the interval is 0 or below, the field should be
+        // added to the list of "as fast as possible" fields.
+        if (interval <=0 )
+        {
+            addActivityField(field);
+            return;
+        }
+
         // ass already present listeners are no being re-registered, do this always
         // register it to be saved to the database
         field.addListener(CanzeDataSource.getInstance());
@@ -488,6 +507,17 @@ public abstract class Device {
                     field.setInterval(interval);
             }
         }
+
+        // register real fields on which a virtual field may depend
+        if(field.isVirtual())
+        {
+            VirtualField virtualField = (VirtualField) field;
+            for (Field realField : virtualField.getFields())
+            {
+                // increase interval
+                addActivityField(realField, interval * virtualField.getFields().size());
+            }
+        }
     }
 
     public void addApplicationField(final Field field, int interval)
@@ -512,6 +542,18 @@ public abstract class Device {
                 })).start();
             }
         }
+
+        // register real fields on which a virtual field may depend
+        if(field.isVirtual())
+        {
+            VirtualField virtualField = (VirtualField) field;
+            for (Field realField : virtualField.getFields())
+            {
+                // increase interval
+                addApplicationField(realField,interval*virtualField.getFields().size());
+            }
+        }
+
     }
 
     /**
@@ -519,7 +561,7 @@ public abstract class Device {
      * and unregisters the corresponding filter.
      * @param field
      */
-    public void removeActivityField(final Field field)
+    /*public void removeActivityField(final Field field)
     {
         synchronized (fields) {
             // only remove from the custom fields
@@ -539,7 +581,8 @@ public abstract class Device {
                 })).start();
             }
         }
-    }
+
+    }*/
 
     public void removeApplicationField(final Field field)
     {
@@ -563,6 +606,13 @@ public abstract class Device {
                     }
                 })).start();
             }
+        }
+
+        // remove depenand fields
+        // ATTENTION; remove the field, despite if it is used by some other VF or not!
+        if(field.isVirtual())
+        {
+            // may break something, so please do it manually if really needed!
         }
     }
 
@@ -597,7 +647,8 @@ public abstract class Device {
         try {
             if(pollerThread!=null && pollerThread.isAlive()) {
                 MainActivity.debug("Device: joining thread");
-                pollerThread.join();
+                if(pollerThread!=null)
+                    pollerThread.join();
                 pollerThread=null;
             }
             else MainActivity.debug("Device: >>>>>>> pollerThread is NULL!!!");
@@ -627,10 +678,18 @@ public abstract class Device {
     public Message requestField(Field field)
     {
         Message msg = null;
-        if(field.isIsoTp()) msg=requestIsoTpFrame(field);
-        else msg=requestFreeFrame(field);
 
-        if(msg==null || msg.getData().isEmpty()) MainActivity.debug("Device: request for "+field.getSID()+" is empty ...");
+        // check that only non virtual fields are being queried
+        if(!field.isVirtual()) {
+
+            if (field.isIsoTp()) msg = requestIsoTpFrame(field);
+            else msg = requestFreeFrame(field);
+
+            if (msg == null || msg.getData().isEmpty())
+                MainActivity.debug("Device: request for " + field.getSID() + " is empty ...");
+        }
+        else
+            MainActivity.debug("Device: ignoring virtual field " + field.getSID());
 
         return msg;
     }

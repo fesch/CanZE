@@ -68,6 +68,7 @@ import lu.fisch.canze.devices.Device;
 import lu.fisch.canze.devices.ELM327;
 import lu.fisch.canze.fragments.ExperimentalFragment;
 import lu.fisch.canze.fragments.MainFragment;
+import lu.fisch.canze.fragments.TechnicalFragment;
 import lu.fisch.canze.interfaces.BluetoothEvent;
 import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.widgets.WidgetView;
@@ -759,6 +760,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         }
         else if (id == R.id.action_experimental) {
             loadFragement(new ExperimentalFragment());
+        }
+        else if (id == R.id.action_technical) {
+            loadFragement(new TechnicalFragment());
         }
         else if (id == R.id.action_bluetooth) {
         }

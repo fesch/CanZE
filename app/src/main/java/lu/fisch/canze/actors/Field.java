@@ -38,27 +38,29 @@ import java.util.Calendar;
  */
 public class Field {
 
-    private final ArrayList<FieldListener> fieldListeners = new ArrayList<>();
+    protected final ArrayList<FieldListener> fieldListeners = new ArrayList<>();
 
-    private Frame frame;
-    private int from;
-    private int to;
-    private double offset;
+    protected Frame frame;
+    protected int from;
+    protected int to;
+    protected double offset;
     //private int divider;
     //private int multiplier;
-    private int decimals;
-    private double resolution;
-    private String unit;
-    private String requestId;
-    private String responseId;
-    private int car;
+    protected int decimals;
+    protected double resolution;
+    protected String unit;
+    protected String requestId;
+    protected String responseId;
+    protected int car;
     //private int skips;
 
-    private double value = Double.NaN;
+    protected double value = Double.NaN;
     //private int skipsCount = 0;
 
-    private long lastRequest = 0;
-    private int interval = Integer.MAX_VALUE;
+    protected long lastRequest = 0;
+    protected int interval = Integer.MAX_VALUE;
+
+    protected boolean virtual = false;
     
     public Field(Frame frame, int from, int to, double resolution, int decimals, double offset, String unit, String requestId, String responseId, int car) {
         this.frame=frame;
@@ -98,7 +100,7 @@ public class Field {
 
     public String getSID()
     {
-        if(!responseId.trim().isEmpty())
+        if(responseId!=null && !responseId.trim().isEmpty())
             return (Integer.toHexString(frame.getId())+"."+responseId.trim()+"."+from).toLowerCase();
         else
             return (Integer.toHexString(frame.getId())+"."+from).toLowerCase();
@@ -114,16 +116,43 @@ public class Field {
         return getValue()+" "+getUnit();
     }
 
+    public String getStringValue()
+    {
+        // truncate to a long
+        long longValue = (long) value;
+        // prepare to cut into 8 bit pieces
+        int[] intArray = new int[8];
+        // initialise the array
+        for(int i=0; i<intArray.length; i++) intArray[i]=0;
+        // as long as there is something
+        int i=0;
+        while(longValue>0)
+        {
+            // get 8 bits
+            intArray[i]=(int) (longValue & 0xFF);
+            // move the other bits
+            longValue >>= 8;
+            i++;
+        }
+        // initialise the result
+        String result = "";
+        // assemble as string
+        for(i=0; i<intArray.length; i++)
+            result=result+(char) intArray[i];
+        // return trimmed result
+        return result.trim();
+    }
+
     public double getValue()
     {
         //double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
         double val =  (value-offset)* resolution;
         if (MainActivity.milesMode) {
-            if (getUnit().toLowerCase().startsWith("km"))
+            if (unit.toLowerCase().startsWith("km"))
                 val = val / 1.609344;
-            else if (getUnit().toLowerCase().endsWith("km"))
+            else if (unit.toLowerCase().endsWith("km"))
                 val = val*1.609344;
-            setUnit(getUnit().replace("km", "mi"));
+            //setUnit(getUnit().replace("km", "mi"));
             return val;
         }
         return val;
@@ -297,7 +326,10 @@ public class Field {
     }
 
     public String getUnit() {
-        return unit;
+        if(MainActivity.milesMode)
+            return (unit+"").replace("km", "mi");
+        else
+            return unit;
     }
 
     public void setUnit(String unit) {
@@ -367,5 +399,9 @@ public class Field {
 
     public void setDecimals(int decimals) {
         this.decimals = decimals;
+    }
+
+    public boolean isVirtual() {
+        return virtual;
     }
 }

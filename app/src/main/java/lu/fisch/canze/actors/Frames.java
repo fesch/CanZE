@@ -21,6 +21,7 @@
 
 package lu.fisch.canze.actors;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
 import lu.fisch.canze.activities.MainActivity;
@@ -162,6 +163,31 @@ public class Frames {
             if (frame.getId() == id) return frame;
         }
         return null;
+    }
+
+    public Frame createVirtualIfNotExists(int id) {
+
+        if(id<0x800) throw new InvalidParameterException("ID of virtual field must be >= 0x800");
+
+        // Does the corresponding ECU already exist?
+        Ecu ecu = Ecus.getInstance().getByFromId(id);
+        if(ecu==null)
+        {
+            // No --> create it!
+            ecu = new Ecu("VirtualField", id, "CanZE", id, id, "Canze VirtualField", "CCF");
+            Ecus.getInstance().add(ecu);
+        }
+
+        // Does the corresponding frame already exists?
+        Frame frame = Frames.getInstance().getById(id);
+        if(frame==null)
+        {
+            // No --> create it!
+            frame = new Frame(id, 0, ecu);
+            Frames.getInstance().add(frame);
+        }
+
+        return frame;
     }
 
 }

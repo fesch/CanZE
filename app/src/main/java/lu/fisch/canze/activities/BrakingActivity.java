@@ -159,7 +159,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
                       pb.setProgress((int) field.getValue());
                       break;*/
                     case SID_Coasting_Torque:
-                        coasting_Torque = field.getValue();
+                        coasting_Torque = field.getValue() * 9.3; // it seems this torque is given in motor torque, not in wheel torque. Maybe another adjustment by a factor 05 is needed (two wheels)
                         //  pb = (ProgressBar) findViewById(R.id.pb_friction_torque);
                         //  pb.setProgress((int) field.getValue());
                         break;

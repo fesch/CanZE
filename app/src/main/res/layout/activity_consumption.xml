@@ -21,9 +21,25 @@
         android:layout_weight="1">
 
         <lu.fisch.canze.widgets.WidgetView
-            android:id="@+id/accelerationPedal"
+            android:id="@+id/consum"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            custom:min="-200"
+            custom:max="200"
+            custom:majorTicks="50"
+            custom:minorTicks="25"
+            custom:fieldSID="800.0"
+            custom:widget="tacho"
+            custom:text="kWh/100km"
+            />
+
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/accelerationPedal"
+            android:layout_width="0dp"
+            android:layout_weight="5"
             android:layout_height="fill_parent"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="8dp"
@@ -36,7 +52,7 @@
             custom:widget="timeplot"
             custom:text="True State of Charge (%) / Indicated State of Charge (%)"
             custom:intervals="{'42e.0':30000,'654.25':30000}"
-            />
+        />
 
         <!--
         <lu.fisch.canze.widgets.WidgetView
@@ -111,10 +127,14 @@
             custom:max="160"
             custom:majorTicks="20"
             custom:minorTicks="10"
-            custom:fieldSID="5d7.0,654.42"
+            custom:fieldSID="5d7.0,654.42,638.8,638.18"
             custom:widget="timeplot"
             custom:text="Speed (km/h) / Available distance (km)"
-            custom:intervals="{'654.42':10000}"
+            custom:intervals="{
+                               '654.42':10000,
+                               '638.8' :30000,
+                               '638.18':30000
+                               }"
             />
 
     </TableRow>
