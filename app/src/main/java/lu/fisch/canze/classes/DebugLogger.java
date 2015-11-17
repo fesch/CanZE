@@ -44,17 +44,17 @@ public class DebugLogger {
     public boolean createNewLog() {
         boolean result = false;
 
-        debug ("create new data logfile");
+        debug("DebugLogger: create new data logfile");
 
         // ensure that there is a CanZE Folder in SDcard
         String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
 
-        debug ("file_path:" + file_path);
+        debug("DebugLogger: file_path:" + file_path);
 
         File dir = new File(file_path);
         if (!dir.exists()) {
             dir.mkdirs();
-            debug ("SDcard dir CanZE created");
+            debug("DebugLogger: SDcard dir CanZE created");
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
