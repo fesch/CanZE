@@ -340,6 +340,7 @@ public class ELM327 extends Device {
     }
 
     private boolean initCommandExpectOk (String command, boolean untilEmpty) {
+        MainActivity.debug("ELM327: initCommandExpectOk");
         String response = "";
         for (int i = 2; i > 0; i--) {
             if (untilEmpty) {
@@ -353,6 +354,10 @@ public class ELM327 extends Device {
         if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && !command.startsWith("atma") && command.startsWith("at"))) {
             MainActivity.toast("Err " + command + " [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
         }
+
+        MainActivity.debug("ELM327: initCommandExpectOk > Error on > "+command);
+        MainActivity.debug("ELM327: initCommandExpectOk > Response was > "+response);
+
         return false;
     }
 
@@ -549,7 +554,11 @@ public class ELM327 extends Device {
             // atma     (wait for one answer line)
             TIMEOUT = field.getFrequency() + 50;
             if (TIMEOUT < 70) TIMEOUT = 70;
+            MainActivity.debug("ELM327: requestFreeFrame > TIMEOUT = "+TIMEOUT);
+
             hexData = sendAndWaitForAnswer("atma", 20);
+
+            MainActivity.debug("ELM327: requestFreeFrame > hexData = "+hexData);
             // the dongle starts babbling now. sendAndWaitForAnswer should stop at the first full line
             // ensure any running operation is stopped
             // sending a return might restart the last command. Bad plan.
