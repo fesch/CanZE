@@ -44,6 +44,7 @@ public class ELM327 extends Device {
 
     // define the timeout we may wait to get an answer
     private static int DEFAULT_TIMEOUT = 500;
+    private static int MINIMUM_TIMEOUT = 100;
     private int TIMEOUT = 500;
     // define End Of Message for this type of reader
     private static final char EOM1 = '\r';
@@ -552,8 +553,8 @@ public class ELM327 extends Device {
         if (!someThingWrong) {
             //sendAndWaitForAnswer("atcra" + emlFilter, 400);
             // atma     (wait for one answer line)
-            TIMEOUT = field.getFrequency() + 50;
-            if (TIMEOUT < 70) TIMEOUT = 70;
+            TIMEOUT = (int) (field.getFrequency()*frequencyMultiplicator + 50);
+            if (TIMEOUT < MINIMUM_TIMEOUT) TIMEOUT = MINIMUM_TIMEOUT;
             MainActivity.debug("ELM327: requestFreeFrame > TIMEOUT = "+TIMEOUT);
 
             hexData = sendAndWaitForAnswer("atma", 20);

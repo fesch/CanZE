@@ -44,6 +44,8 @@ import lu.fisch.canze.database.CanzeDataSource;
 
 public abstract class Device {
 
+    protected int frequencyMultiplicator = 1;
+
     /* ----------------------------------------------------------------
      * Attributes
      \ -------------------------------------------------------------- */
@@ -685,8 +687,12 @@ public abstract class Device {
             if (field.isIsoTp()) msg = requestIsoTpFrame(field);
             else msg = requestFreeFrame(field);
 
-            if (msg == null || msg.getData().isEmpty())
+            if (msg == null || msg.getData().isEmpty()) {
                 MainActivity.debug("Device: request for " + field.getSID() + " is empty ...");
+                // theory: when the answer is empty, the timeout is to low --> increase it!
+                frequencyMultiplicator+=0.1;
+                MainActivity.debug("Device: frequencyMultiplicator = "+frequencyMultiplicator);
+            }
         }
         else
             MainActivity.debug("Device: ignoring virtual field " + field.getSID());
