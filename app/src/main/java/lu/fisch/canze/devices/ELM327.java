@@ -389,6 +389,10 @@ public class ELM327 extends Device {
     // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount, boolean addReturn)
     {
+
+        int maxUntilEmptyCounter = 10;
+        int maxLengthCounter = 500; // char = nibble, so 2000 bits
+
         if(!BluetoothManager.getInstance().isConnected()) return "";
 
         if(command!=null) {
@@ -457,9 +461,14 @@ public class ELM327 extends Device {
                                         // do nothing
                                     }
                                     stop=(BluetoothManager.getInstance().available()==0);
+                                } else {
+                                    if (--maxUntilEmptyCounter <= 0) timedOut = true; // well, this is a timed"In", as in, too many lines
                                 }
                             }
+                        } else {
+                            if (--maxLengthCounter <= 0) timedOut = true; // well, this is a timed"In", as in, too many lines
                         }
+
                     }
                 }
                 else
