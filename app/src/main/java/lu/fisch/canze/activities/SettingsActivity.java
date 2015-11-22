@@ -59,16 +59,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     public static final int YES_NO_CALL = 13;
 
-    // Checks if external storage is available for read and write
-    public boolean isExternalStorageWritable() {
-        String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -242,8 +232,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // add code here to check external SDcard is avail, writeable and has sufficient space
-                final boolean sdcardCheck = isExternalStorageWritable(); // check for space later
-                if (!sdcardCheck) {
+                if ( !MainActivity.dataLogger.isExternalStorageWritable() ) {
                     final Context context = SettingsActivity.this;
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
@@ -271,6 +260,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                     // show it
                     alertDialog.show();
+                    MainActivity.dataExportMode = false; // due to SDcard not writeable
                 }
             }
         });
@@ -281,7 +271,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // add code here to check external SDcard is avail, writeable and has sufficient space
-                final boolean sdcardCheck = isExternalStorageWritable(); // check for space later
+                final boolean sdcardCheck = MainActivity.dataLogger.isExternalStorageWritable(); // check for space later
                 if (!sdcardCheck) {
                     final Context context = SettingsActivity.this;
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);

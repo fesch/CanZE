@@ -61,6 +61,7 @@ import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.bluetooth.BluetoothManager;
+import lu.fisch.canze.classes.DataLogger;
 import lu.fisch.canze.classes.DebugLogger;
 import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.devices.BobDue;
@@ -112,8 +113,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     public static boolean safeDrivingMode = true;
     public static boolean bluetoothBackgroundMode = false;
     public static boolean debugLogMode = false;
-    public static boolean dataExportMode = false;
-    public static File dataexportFile ;
+    public static boolean dataExportMode = true;
+    public static DataLogger  dataLogger = null; // rather use singleton in onCreate
 
     private static boolean isDriving = false;
 
@@ -252,8 +253,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             field.addListener(MainActivity.getInstance());
             if(device!=null)
                 device.addApplicationField(field,1000); // query every second
-        } else
-        {
+        } else {
             Field field = fields.getBySID("5d7.0");
             field.removeListener(MainActivity.getInstance());
             if(device!=null)
@@ -318,6 +318,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         DebugLogger.getInstance().createNewLog();
+
+        // always create an instance
+        // dataLogger = DataLogger.getInstance();
+        dataLogger = new DataLogger();
 
         debug("MainActivity: onCreate");
 
@@ -517,6 +521,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             // show it
             alertDialog.show();
         }
+
+        // after loading PREFERENCES we may have new values for "dataExportMode"
+        dataExportMode = dataLogger.activate ( dataExportMode );
     }
 
     public void reloadBluetooth() {
@@ -624,6 +631,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     @Override
     protected void onDestroy() {
         debug("MainActivity: onDestroy");
+
+        dataLogger.onDestroy(); // clean up
 
         if(device!=null) {
             // stop the device nicely
