@@ -159,8 +159,8 @@ android:orientation="vertical"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="-"
-            android:id="@+id/button_4"
+            android:text="Fluence Kangoo Temps"
+            android:id="@+id/buttonFluenceKangooTemps"
             android:layout_column="1" />
 
 

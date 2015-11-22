@@ -109,6 +109,10 @@
             android:name=".activities.HeatmapCellvoltageActivity"
             android:label="@string/title_activity_heatmap_cellvoltage" >
         </activity>
+        <activity
+            android:name=".activities.FluenceKangooTempsActivity"
+            android:label="Fluence Kangoo Temp" >
+        </activity>
     </application>
 
 </manifest>

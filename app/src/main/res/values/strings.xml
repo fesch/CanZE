@@ -167,49 +167,29 @@
     <string name="header_firmware">Firmware versions</string>
 
     <string name="default_firmware">Not available</string>
-<!--
-    <string name="label_ecu_evc">EVC (Electric Vehicle Controller)</string>
-    <string name="label_ecu_tcu">TCU (Telematics Control Unit)</string>
-    <string name="label_ecu_lbc">LBC (Lithium Battery Charger)</string>
-    <string name="lavel_ecu_peb">PEB (Power Electronics Block)</string>
-    <string name="label_ecu_aibag">AIBAG (Airbag)</string>
-    <string name="label_ecu_usm">USM (12V fuse box under the hood)</string>
-    <string name="label_ecu_cluster">CLUSTER (Instrument panel)</string>
-    <string name="label_ecu_eps">EPS (Electrical Power Steering)</string>
-    <string name="label_ecu_abs">ABS (Antilock braking system)</string>
-    <string name="label_ecu_ubp">UBP (Uncoupled braking Pedal)</string>
-    <string name="label_ecu_bcm">BCM (Body Control Module)</string>
-    <string name="label_ecu_clim">CLIM (Climate Control)</string>
-    <string name="label_ecu_upa">UPA (Park Assist)</string>
-    <string name="label_ecu_bcb">BCB (Battery Connection Box)</string>
-    <string name="label_ecu_lbc2">LBC2 (Lithium Battery Charger)</string>
-    <string name="label_ecu_linsch">LINSCH (?)</string>
 
-    -->
-    <!-- dtc
+    <!-- kangoo fluence temperatures -->
 
-    <string-array name="ecu_array">
-        <item>EVC</item>
-        <item>TCU</item>
-        <item>LBC</item>
-        <item>PEB</item>
-        <item>AIBAG</item>
-        <item>USM</item>
-        <item>CLUSTER</item>
-        <item>EPS</item>
-        <item>ABS</item>
-        <item>UBP</item>
-        <item>BCM</item>
-        <item>CLIM</item>
-        <item>UPA</item>
-        <item>BCB</item>
-        <item>LBC2</item>
-    </string-array>  -->
+    <string name="header_KangooFluenceTemperatures">Temperatures</string>
 
+    <string name="label_EvaporatorTemperature">Evaporator temperature</string>
+    <string name="label_WaterTemperatureHeating">Water temperature used for heating</string>
+    <string name="label_DcDcConverterTemperature">DC-DC converter temperature</string>
+    <string name="label_InverterTemperature">Inverter temperature</string>
+    <string name="label_ExternalTemperature">External ambient temperature</string>
+    <string name="label_InternalTemperature">Internal ambient temperature</string>
+
+    <string name="header_KangooFluenceFansPumps">Fans and pumps (descriptions to be added)</string>
+
+    <string name="label_MotorWaterPumpSpeed">Motor water pump speed</string>
+    <string name="label_ChargerWaterPumpSpeed">Charger water pump speed</string>
+    <string name="label_HeatingWaterPumpSpeed">Heating water pump speed</string>
+    <string name="label_BatteryCoolingFansSpeed">Battery cooling fans speed</string>
 
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
     <string name="title_FZ_section2">Driving</string>
     <string name="title_FZ_section1">General</string>
