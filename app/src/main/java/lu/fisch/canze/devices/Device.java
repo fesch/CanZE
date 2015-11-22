@@ -44,7 +44,7 @@ import lu.fisch.canze.database.CanzeDataSource;
 
 public abstract class Device {
 
-    protected int frequencyMultiplicator = 1;
+    protected double frequencyMultiplicator = 1;
 
     /* ----------------------------------------------------------------
      * Attributes
