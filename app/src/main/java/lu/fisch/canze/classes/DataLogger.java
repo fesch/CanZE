@@ -1,5 +1,6 @@
 package lu.fisch.canze.classes;
 
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 
@@ -8,7 +9,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+
+import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.interfaces.FieldListener;
 
 import static lu.fisch.canze.activities.MainActivity.debug;
 
@@ -17,7 +23,7 @@ import static lu.fisch.canze.activities.MainActivity.debug;
  * Created by Chris Mattheis on 03/11/15.
  * don't use yet - still work in progress
  */
-public class DataLogger {
+public class DataLogger  implements FieldListener {
 
     /* ****************************
      * Singleton stuff
@@ -33,6 +39,32 @@ public class DataLogger {
     /* ****************************
      * Datalogger stuff
      * ****************************/
+
+    // -------- Data Defintions copied from Driving Activity -- start ---
+    // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
+    // free data
+    public static final String SID_Pedal                                = "186.40"; //EVC
+    public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
+    public static final String SID_RealSpeed                            = "5d7.0";  //ESC-ABS
+    public static final String SID_SoC                                  = "654.25"; //EVC
+    public static final String SID_RangeEstimate                        = "654.42"; //EVC
+    public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
+    public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; //UBP 10ms
+
+    // ISO-TP data
+//  public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
+//  public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC)
+    public static final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
+    //  public static final String SID_EVC_Pedal                            = "7ec.62202e.24"; //  (EVC)
+    public static final String SID_EVC_TractionBatteryVoltage           = "7ec.623203.24"; //  (EVC)
+    public static final String SID_EVC_TractionBatteryCurrent           = "7ec.623204.24"; //  (EVC)
+
+    private double dcVolt                           = 0; // holds the DC voltage, so we can calculate the power when the amps come in
+    private int    odo                              = 0;
+    private double realSpeed                        = 0;
+
+    private ArrayList<Field> subscribedFields;
+    // -------- Data Defintions copied from Driving Activity -- end ---
 
     private File logFile = null;
     private boolean activated = false;
@@ -179,6 +211,7 @@ public class DataLogger {
         // start timer
         debug("DataLogger: start");
         handler.postDelayed(runnable, 400);
+        initListeners();
         return createNewLog();
     }
 
@@ -189,10 +222,20 @@ public class DataLogger {
         // stop timer
         logFile = null;
         handler.removeCallbacks(runnable);
+
+        // free up the listeners again
+        for (Field field : subscribedFields) {
+            field.removeListener(this);
+        }
+        subscribedFields.clear();
+
         debug("DataLogger: stop - and logFile = null");
         return result;
     }
 
+    // @Override
+    // protected void onCreate(Bundle savedInstanceState) {
+    //    super.onCreate(savedInstanceState);
     public void onCreate() {
         // start timer in 400ms
         boolean result = start();
@@ -204,6 +247,102 @@ public class DataLogger {
         boolean result = stop();
     }
 
+    private void addListener(String sid, int intervalMs) {
+        Field field;
+        field = MainActivity.fields.getBySID(sid);
+        if (field != null) {
+            field.addListener(this);
+            MainActivity.device.addActivityField(field, intervalMs);
+            subscribedFields.add(field);
+        }
+        else
+        {
+            MainActivity.toast("sid " + sid + " does not exist in class Fields");
+        }
+    }
+
+    private void initListeners() {
+
+        subscribedFields = new ArrayList<>();
+
+
+        // Make sure to add ISO-TP listeners grouped by ID
+
+        addListener(SID_Pedal, 0);
+        addListener(SID_MeanEffectiveTorque, 0);
+        addListener(SID_DriverBrakeWheel_Torque_Request, 0);
+        addListener(SID_ElecBrakeWheelsTorqueApplied, 0);
+        addListener(SID_RealSpeed, 0);
+        addListener(SID_SoC, 3600);
+        addListener(SID_RangeEstimate, 3600);
+
+        //addListener(SID_EVC_SoC);
+        addListener(SID_EVC_Odometer, 6000);
+        addListener(SID_EVC_TractionBatteryVoltage, 5000);
+        addListener(SID_EVC_TractionBatteryCurrent, 0);
+        //addListener(SID_PEB_Torque);
+    }
+
+
+    // This is the event fired as soon as this the registered fields are
+    // getting updated by the corresponding reader class.
+    @Override
+    public void onFieldUpdateEvent(final Field field) {
+                String fieldId = field.getSID();
+                double fieldValue;
+
+                log ( fieldId + field.getPrintValue() );
+                // get the text field
+                switch (fieldId) {
+                    case SID_SoC:
+//                  case SID_EVC_SoC:
+                        fieldValue = field.getValue();
+                        log ( "SID_SoC: " + fieldValue );
+                        break;
+                    case SID_Pedal:
+//                  case SID_EVC_Pedal:
+                        // pb.setProgress((int) field.getValue());
+                        break;
+                    case SID_MeanEffectiveTorque:
+                        // pb.setProgress((int) field.getValue());
+                        break;
+                    case SID_EVC_Odometer:
+                        odo = (int ) field.getValue();
+                        //odo = (int) Utils.kmOrMiles(field.getValue());
+                        break;
+                    case SID_RealSpeed:
+//                  case SID_EVC_RealSpeed:
+                        //realSpeed = (Math.round(Utils.kmOrMiles(field.getValue()) * 10.0) / 10.0);
+                        realSpeed = (Math.round(field.getValue() * 10.0) / 10.0);
+                        break;
+                    //case SID_PEB_Torque:
+                    //    tv = (TextView) findViewById(R.id.textTorque);
+                    //    break;
+                    case SID_EVC_TractionBatteryVoltage: // DC volts
+                        // save DC voltage for DC power purposes
+                        dcVolt = field.getValue();
+                        break;
+                    case SID_EVC_TractionBatteryCurrent: // DC amps
+                        // calculate DC power
+                        double dcPwr = Math.round(dcVolt * field.getValue() / 100.0) / 10.0;
+                        break;
+                    case SID_RangeEstimate:
+                        //int rangeInBat = (int) Utils.kmOrMiles(field.getValue());
+                        int rangeInBat = (int) field.getValue();
+                        break;
+                    case SID_DriverBrakeWheel_Torque_Request:
+                        // driverBrakeWheel_Torque_Request = field.getValue();
+                        break;
+                    case SID_ElecBrakeWheelsTorqueApplied:
+                        // double frictionBrakeTorque = driverBrakeWheel_Torque_Request - field.getValue();
+                        // a fair full red bar is estimated @ 1000 Nm
+                        // pb = (ProgressBar) findViewById(R.id.FrictionBreaking);
+                        // pb.setProgress((int) (frictionBrakeTorque * realSpeed));
+                        break;
+                }
+
+    }
+
     public void onPause() {
         onDestroy();
     }
@@ -211,6 +350,7 @@ public class DataLogger {
     public void onResume() {
         onCreate();
     }
+
 
     // only for test and trace purposes - delete later on
     public void add14() {
