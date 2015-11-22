@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     public static boolean safeDrivingMode = true;
     public static boolean bluetoothBackgroundMode = false;
     public static boolean debugLogMode = false;
-    public static boolean dataExportMode = true;
+    public static boolean dataExportMode = false;
     public static DataLogger  dataLogger = null; // rather use singleton in onCreate
 
     private static boolean isDriving = false;
