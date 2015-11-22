@@ -79,10 +79,11 @@ public class Frames {
                         +"0x4F8,100,CLUSTER\n"
                         +"0x500,100,BCM\n"
                         +"0x505,100,BCM\n"
-                        +"0x511,100,EVCBRIDGE\n"
+                        +"" //"0x511,100,EVCBRIDGE\n" // EVCBRIDGE -> Behind EVC. As it's locking only, we wont add it.
+                        +"0x534,100,BCM\n"
                         +"0x552,100,BCM\n"
                         +"0x563,100,EPS\n"
-                        +"" // 0x581,100,ESCL unknown ECU
+                        +"" // 0x581,100,ESCL unknown ECU. As it's locking only, we wont add it.
                         +"0x5D1,0,CLUSTER\n"
                         +"0x5D7,100,ESC\n"
                         +"0x5DA,100,EVC\n"
