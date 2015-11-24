@@ -104,6 +104,11 @@ public class Fields implements MessageListener {
         addVirtualFields();
     }
 
+    public static boolean initialised()
+    {
+        return (instance==null);
+    }
+
     public static Fields getInstance()
     {
         if(instance==null) instance=new Fields();
