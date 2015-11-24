@@ -44,6 +44,8 @@ public class Frame {
         return interval;
     }
 
+    public void setInterval (int interval) { this.interval = interval; }
+
     public Ecu getSendingEcu() {
         return sendingEcu;
     }
