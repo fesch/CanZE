@@ -67,14 +67,14 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
 
         subscribedFields = new ArrayList<>();
 
-        switch (Fields.getInstance().getCar()) {
-            case Fields.CAR_FLUENCE:
+        switch (MainActivity.car) {
+            case MainActivity.CAR_FLUENCE:
                 versions = fluenceVersions;
                 break;
-            case Fields.CAR_KANGOO:
+            case MainActivity.CAR_KANGOO:
                 versions = kangooVersions;
                 break;
-            case Fields.CAR_X10:
+            case MainActivity.CAR_X10:
                 versions = x10Versions;
                 break;
             default:

@@ -50,7 +50,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(Fields.getInstance().getCar() == Fields.CAR_ZOE ? R.layout.activity_heatmap_batcomp :  R.layout.activity_heatmap_batcomp2);
+        setContentView(MainActivity.getInstance().car == MainActivity.getInstance().CAR_ZOE ? R.layout.activity_heatmap_batcomp :  R.layout.activity_heatmap_batcomp2);
         initListeners();
 
     }
@@ -95,7 +95,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
         subscribedFields = new ArrayList<>();
 
         // Battery compartment temperatures
-        if(Fields.getInstance().getCar() == Fields.CAR_ZOE) {
+        if(MainActivity.getInstance().car == MainActivity.getInstance().CAR_ZOE) {
             lastCell = 12;
         }
         for (int i = 1; i <= lastCell; i++) {

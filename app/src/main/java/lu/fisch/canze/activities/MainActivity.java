@@ -90,10 +90,17 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     private static String dataFormat = "bob";
     private static String deviceName = "Arduino";
 
-    public final static int RECIEVE_MESSAGE   = 1;
+    public final static int RECEIVE_MESSAGE   = 1;
     public final static int REQUEST_ENABLE_BT = 3;
     public final static int SETTINGS_ACTIVITY = 7;
     public final static int LEAVE_BLUETOOTH_ON= 11;
+
+    public static final int CAR_ANY             = 0;
+    public static final int CAR_FLUENCE         = 1;
+    public static final int CAR_ZOE             = 2;
+    public static final int CAR_KANGOO          = 3;
+    public static final int CAR_TWIZY           = 4;    // you'll never know ;-)
+    public static final int CAR_X10             = 5;
 
     private StringBuilder sb = new StringBuilder();
     private String buffer = "";
@@ -116,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     public static boolean debugLogMode = false;
     public static boolean dataExportMode = false;
     public static DataLogger  dataLogger = null; // rather use singleton in onCreate
+    public static int car = CAR_ANY;
 
     private static boolean isDriving = false;
 
@@ -204,22 +212,27 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         debugLogMode = settings.getBoolean("optDebugLog", false);
         toastLevel = settings.getInt("optToast", 1);
 
-        String car = settings.getString("car", "Any");
-        switch (car) {
+        String carStr = settings.getString("car", "Any");
+        switch (carStr) {
             case "Any":
-                Fields.getInstance().setCar(Fields.CAR_ANY);
+                // Fields.getInstance().setCar(Fields.CAR_ANY);
+                car = CAR_ANY;
                 break;
             case "Zoé":
-                Fields.getInstance().setCar(Fields.CAR_ZOE);
+                // Fields.getInstance().setCar(Fields.CAR_ZOE);
+                car = CAR_ZOE;
                 break;
             case "Fluence":
-                Fields.getInstance().setCar(Fields.CAR_FLUENCE);
+                // Fields.getInstance().setCar(Fields.CAR_FLUENCE);
+                car = CAR_FLUENCE;
                 break;
             case "Kangoo":
-                Fields.getInstance().setCar(Fields.CAR_KANGOO);
+                // Fields.getInstance().setCar(Fields.CAR_KANGOO);
+                car = CAR_KANGOO;
                 break;
             case "X10":
-                Fields.getInstance().setCar(Fields.CAR_X10);
+                // Fields.getInstance().setCar(Fields.CAR_X10);
+                car = CAR_X10;
                 break;
         }
 
@@ -239,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         }
 
         // since the car type may have changed, reload the grame timings
-        Frames.getInstance().reloadTiming(Fields.getInstance().getCar());
+        Frames.getInstance().reloadTiming();
 
         if(device!=null) {
             // initialise the connection

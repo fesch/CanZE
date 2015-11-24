@@ -57,9 +57,9 @@ public class StatsActivity extends CanzeActivity implements FieldListener {
         addListener(SID_EVC_SoC);
         addListener(SID_EVC_Odometer);
         // Battery compartment temperatures
-        int car = Fields.getInstance().getCar();
+
         int lastCell;
-        if(car==Fields.CAR_ZOE) {
+        if(MainActivity.car==MainActivity.CAR_ZOE) {
             lastCell = 296;
         }
         else

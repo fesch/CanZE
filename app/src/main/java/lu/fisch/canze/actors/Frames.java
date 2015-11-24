@@ -46,10 +46,6 @@ public class Frames {
     }
 
     private void fillStatic() {
-        fillStatic(Fields.CAR_ZOE);
-    }
-
-    private void fillStatic(int car) {
         String frameDef = // Id, interval, sendingEcu
                 ""
 
@@ -166,7 +162,7 @@ public class Frames {
                     MainActivity.debug("Ecu does not exist:" + tokens[3].trim());
                 } else {
                     int frameId = Integer.parseInt(tokens[0].trim().replace("0x", ""), 16);
-                    int interval = car == Fields.CAR_ZOE ? Integer.parseInt(tokens[1].trim(), 10) : Integer.parseInt(tokens[2].trim(), 10);
+                    int interval = MainActivity.car == MainActivity.CAR_ZOE ? Integer.parseInt(tokens[1].trim(), 10) : Integer.parseInt(tokens[2].trim(), 10);
                     Frame frame = getById(frameId);
                     if (frame == null) {
                         frame = new Frame(
@@ -184,7 +180,7 @@ public class Frames {
         }
     }
 
-    public void reloadTiming (int car) { fillStatic(car); }
+    public void reloadTiming () { fillStatic(); }
 
     public void add(Frame frame) {
         frames.add(frame);
