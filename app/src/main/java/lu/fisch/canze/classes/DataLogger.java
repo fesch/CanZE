@@ -40,7 +40,7 @@ public class DataLogger  implements FieldListener {
      * Datalogger stuff
      * ****************************/
 
-    // -------- Data Defintions copied from Driving Activity -- start ---
+    // -------- Data Definitions copied from Driving Activity -- start ---
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
     // free data
     public static final String SID_Pedal                                = "186.40"; //EVC
@@ -64,7 +64,7 @@ public class DataLogger  implements FieldListener {
     private double realSpeed                        = 0;
 
     private ArrayList<Field> subscribedFields;
-    // -------- Data Defintions copied from Driving Activity -- end ---
+    // -------- Data Definitions copied from Driving Activity -- end ---
 
     private File logFile = null;
     private boolean activated = false;
@@ -166,9 +166,10 @@ public class DataLogger  implements FieldListener {
         @Override
         public void run() {
             // write data to file
+            String timestamp = "timestamp"; // sdf.format(sdf.format(Calendar.getInstance().getTime()));
             String data = "Zeile";
             // String dataWithNewLine= sdf.format(Calendar.getInstance()) + data + System.getProperty("line.separator");
-            String dataWithNewLine=  data + System.getProperty("line.separator");
+            String dataWithNewLine=  timestamp + ";" + data + System.getProperty("line.separator");
 
             // if(!isCreated()) createNewLog();
 
@@ -252,7 +253,8 @@ public class DataLogger  implements FieldListener {
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addActivityField(field, intervalMs);
+            // MainActivity.device.addActivityField(field, intervalMs);
+            MainActivity.device.addApplicationField(field, intervalMs);
             subscribedFields.add(field);
         }
         else
@@ -268,18 +270,18 @@ public class DataLogger  implements FieldListener {
 
         // Make sure to add ISO-TP listeners grouped by ID
 
-        addListener(SID_Pedal, 0);
-        addListener(SID_MeanEffectiveTorque, 0);
-        addListener(SID_DriverBrakeWheel_Torque_Request, 0);
-        addListener(SID_ElecBrakeWheelsTorqueApplied, 0);
-        addListener(SID_RealSpeed, 0);
+        addListener(SID_Pedal, 2000);
+        addListener(SID_MeanEffectiveTorque, 2000);
+        addListener(SID_DriverBrakeWheel_Torque_Request, 2000);
+        addListener(SID_ElecBrakeWheelsTorqueApplied, 2000);
+        addListener(SID_RealSpeed, 2000);
         addListener(SID_SoC, 3600);
         addListener(SID_RangeEstimate, 3600);
 
         //addListener(SID_EVC_SoC);
         addListener(SID_EVC_Odometer, 6000);
         addListener(SID_EVC_TractionBatteryVoltage, 5000);
-        addListener(SID_EVC_TractionBatteryCurrent, 0);
+        addListener(SID_EVC_TractionBatteryCurrent, 2000);
         //addListener(SID_PEB_Torque);
     }
 
@@ -291,13 +293,19 @@ public class DataLogger  implements FieldListener {
                 String fieldId = field.getSID();
                 double fieldValue;
 
-                log ( fieldId + field.getPrintValue() );
+        Long tsLong = System.currentTimeMillis()/1000;
+        String timestamp = tsLong.toString();
+
+        // String timestamp = "timestamp"; // sdf.format(sdf.format(Calendar.getInstance().getTime()));
+        // System.getProperty("line.separator");
+
+        log ( timestamp + ";" + fieldId + ";" + field.getPrintValue() );
                 // get the text field
                 switch (fieldId) {
                     case SID_SoC:
 //                  case SID_EVC_SoC:
                         fieldValue = field.getValue();
-                        log ( "SID_SoC: " + fieldValue );
+                        log ( "...SID_SoC: " + fieldValue );
                         break;
                     case SID_Pedal:
 //                  case SID_EVC_Pedal:
