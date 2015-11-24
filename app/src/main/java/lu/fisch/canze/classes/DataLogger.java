@@ -193,7 +193,7 @@ public class DataLogger  implements FieldListener {
     public void log(String text)
     {
         if(!isCreated()) createNewLog();
-        debug( "DataLogger - log: " + text );
+        debug("DataLogger - log: " + text);
 
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
@@ -221,15 +221,17 @@ public class DataLogger  implements FieldListener {
 
         // flush and close logfile
         // stop timer
+        debug("DataLogger: stop");
         logFile = null;
         handler.removeCallbacks(runnable);
 
         // free up the listeners again
-        for (Field field : subscribedFields) {
-            field.removeListener(this);
+        if (subscribedFields != null) {
+            for (Field field : subscribedFields) {
+                field.removeListener(this);
+            }
+            subscribedFields.clear();
         }
-        subscribedFields.clear();
-
         debug("DataLogger: stop - and logFile = null");
         return result;
     }
@@ -267,6 +269,7 @@ public class DataLogger  implements FieldListener {
 
         subscribedFields = new ArrayList<>();
 
+        debug("DataLogger: initListeners");
 
         // Make sure to add ISO-TP listeners grouped by ID
 
