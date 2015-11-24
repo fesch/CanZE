@@ -244,7 +244,7 @@ public class Plotter extends Drawable {
     @Override
     public void onFieldUpdateEvent(Field field) {
         // only take data fofr valid cars
-        if(field.getCar()==0 || field.getCar()== Fields.getInstance().getCar()) {
+        if(MainActivity.car==0 || field.getCar()== MainActivity.car) {
             String sid = field.getSID();
 
             //MainActivity.debug("Plotter: "+sid+" --> "+field.getValue());

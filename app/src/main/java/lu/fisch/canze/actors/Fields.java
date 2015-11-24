@@ -80,14 +80,14 @@ public class Fields implements MessageListener {
     private static final int FIELD_RESPONSE_ID  = 8;
     private static final int FIELD_CAR          = 9;
 
-
+/*
     public static final int CAR_ANY             = 0;
     public static final int CAR_FLUENCE         = 1;
     public static final int CAR_ZOE             = 2;
     public static final int CAR_KANGOO          = 3;
     public static final int CAR_TWIZY           = 4;    // you'll never know ;-)
     public static final int CAR_X10             = 5;
-
+*/
     public static final int TOAST_NONE          = 0;
     public static final int TOAST_DEVICE        = 1;
     public static final int TOAST_ALL           = 2;
@@ -97,7 +97,7 @@ public class Fields implements MessageListener {
 
     private static Fields instance = null;
 
-    private int car = CAR_ANY;
+    //private int car = CAR_ANY;
 
     private Fields() {
         fillStatic();
@@ -1096,7 +1096,7 @@ public class Fields implements MessageListener {
         sid=sid.toLowerCase();
 
         // first let's try to get the field that is bound to the selected car
-        Field tryField = fieldsBySid.get(getCar()+"."+sid);
+        Field tryField = fieldsBySid.get(MainActivity.getInstance().car + "."+sid);
         if(tryField!=null) return tryField;
 
         // if none is found, try the other one, starting with 0 = CAR_ANY
@@ -1193,7 +1193,7 @@ public class Fields implements MessageListener {
         fields.add(field);
         fieldsBySid.put(field.getCar()+"."+field.getSID(),field);
     }
-
+/*
     public int getCar() {
         return car;
     }
@@ -1201,7 +1201,7 @@ public class Fields implements MessageListener {
     public void setCar(int car) {
         this.car = car;
     }
-
+*/
     public void notifyAllFieldListeners()
     {
         for(int i=0; i< fields.size(); i++) {

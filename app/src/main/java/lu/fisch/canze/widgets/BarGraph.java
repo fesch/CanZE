@@ -23,6 +23,7 @@ package lu.fisch.canze.widgets;
 
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.database.CanzeDataSource;
@@ -172,7 +173,7 @@ public class BarGraph extends Plotter {
     @Override
     public void onFieldUpdateEvent(Field field) {
         // only take data fofr valid cars
-        if(field.getCar()==0 || field.getCar()== Fields.getInstance().getCar()) {
+        if(field.getCar()==0 || field.getCar()== MainActivity.car) {
             String sid = field.getSID();
 
             //MainActivity.debug("Plotter: "+sid+" --> "+field.getValue());

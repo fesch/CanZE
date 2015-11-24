@@ -96,11 +96,9 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
 
         subscribedFields = new ArrayList<>();
 
-        int car = Fields.getInstance().getCar();
-
         addListener(SID_MaxCharge);
         addListener(SID_SoC);
-        if(car==Fields.CAR_ZOE) addListener(SID_AvChargingPower);
+        if(MainActivity.car==MainActivity.CAR_ZOE) addListener(SID_AvChargingPower);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
         addListener(SID_TractionBatteryVoltage);

@@ -98,7 +98,7 @@ public class FluenceKangooTempsActivity extends CanzeActivity implements FieldLi
 
         subscribedFields = new ArrayList<>();
 
-        if (Fields.getInstance().getCar() == Fields.CAR_ZOE) {
+        if (MainActivity.car == MainActivity.CAR_ZOE) {
             addListener(SID_ExternalTemperatureZoe);
             addListener(SID_HVEvaporatorTemperature);
         } else {

@@ -113,15 +113,13 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
 
         subscribedFields = new ArrayList<>();
 
-        int car = Fields.getInstance().getCar();
-
         addListener(SID_MaxCharge);
         addListener(SID_ACPilot);
 //      addListener(SID_EnergyToFull);
         addListener(SID_TimeToFull);
         addListener(SID_PlugConnected);
         addListener(SID_SoC);
-        if(car==Fields.CAR_ZOE) addListener(SID_AvChargingPower);
+        if (MainActivity.car==MainActivity.CAR_ZOE) addListener(SID_AvChargingPower);
         addListener(SID_AvEnergy);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
@@ -130,7 +128,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addListener(SID_TractionBatteryCurrent);
 
         // Battery compartment temperatures
-        int lastCell = (car==Fields.CAR_ZOE) ? 296 : 104;
+        int lastCell = (MainActivity.car==MainActivity.CAR_ZOE) ? 296 : 104;
         for (int i = 32; i <= lastCell; i += 24) {
             String sid = SID_Preamble_CompartmentTemperatures + i;
             addListener(sid);
@@ -160,7 +158,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         pilot = field.getValue();
                         // continue
                         tv = (TextView) findViewById(R.id.text_max_pilot);
-                        if (chargingStatus != 3 && Fields.getInstance().getCar()!=Fields.CAR_ZOE) {
+                        if (chargingStatus != 3 && MainActivity.car!=MainActivity.CAR_ZOE) {
                             tv.setText("-");
                             tv = null;
                         }
