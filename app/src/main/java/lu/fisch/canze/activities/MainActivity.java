@@ -60,6 +60,7 @@ import java.util.UUID;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.actors.Frames;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.classes.DataLogger;
 import lu.fisch.canze.classes.DebugLogger;
@@ -236,6 +237,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                 device = null;
                 break;
         }
+
+        // since the car type may have changed, reload the grame timings
+        Frames.getInstance().reloadTiming();
 
         if(device!=null) {
             // initialise the connection
@@ -447,7 +451,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
         // if returning from a single widget activity, we have to leave here!
         if(returnFromWidget) {
-            returnFromWidget=!returnFromWidget;
+            returnFromWidget=false;
             return;
         }
 
@@ -467,7 +471,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         }
 
         final SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
-        if(settings.getBoolean("disclaimer",false)==false) {
+        if(!settings.getBoolean("disclaimer",false)) {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
@@ -687,7 +691,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             final ImageView imageView = (ImageView) bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
 
             // stop the animation if there is one running
-            AnimationDrawable frameAnimation = null;
+            AnimationDrawable frameAnimation;
             if(imageView.getBackground() instanceof AnimationDrawable) {
                 frameAnimation = (AnimationDrawable) imageView.getBackground();
                 if (frameAnimation.isRunning())
@@ -773,8 +777,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         else if (id == R.id.action_technical) {
             loadFragement(new TechnicalFragment());
         }
-        else if (id == R.id.action_bluetooth) {
-        }
+        //else if (id == R.id.action_bluetooth) {
+        //}
 
 
         return super.onOptionsItemSelected(item);
