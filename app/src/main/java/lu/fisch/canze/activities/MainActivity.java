@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         }
 
         // since the car type may have changed, reload the grame timings
-        Frames.getInstance().reloadTiming(Fields.getInstance().getCar());
+        Frames.getInstance().reloadTiming();
 
         if(device!=null) {
             // initialise the connection
