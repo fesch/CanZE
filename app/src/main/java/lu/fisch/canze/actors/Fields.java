@@ -104,6 +104,11 @@ public class Fields implements MessageListener {
         addVirtualFields();
     }
 
+    public static boolean initialised()
+    {
+        return (instance==null);
+    }
+
     public static Fields getInstance()
     {
         if(instance==null) instance=new Fields();
@@ -1096,7 +1101,7 @@ public class Fields implements MessageListener {
         sid=sid.toLowerCase();
 
         // first let's try to get the field that is bound to the selected car
-        Field tryField = fieldsBySid.get(MainActivity.getInstance().car + "."+sid);
+        Field tryField = fieldsBySid.get(MainActivity.car + "."+sid);
         if(tryField!=null) return tryField;
 
         // if none is found, try the other one, starting with 0 = CAR_ANY
