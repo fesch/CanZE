@@ -44,7 +44,7 @@ import lu.fisch.canze.database.CanzeDataSource;
 
 public abstract class Device {
 
-    protected double frequencyMultiplicator = 1;
+    protected double intervalMultiplicator = 1;
 
     /* ----------------------------------------------------------------
      * Attributes
@@ -690,8 +690,14 @@ public abstract class Device {
             if (msg == null || msg.getData().isEmpty()) {
                 MainActivity.debug("Device: request for " + field.getSID() + " is empty ...");
                 // theory: when the answer is empty, the timeout is to low --> increase it!
-                frequencyMultiplicator+=0.1;
-                MainActivity.debug("Device: frequencyMultiplicator = "+frequencyMultiplicator);
+                // jm: but never beyond 2
+                if (intervalMultiplicator < 2) intervalMultiplicator += 0.1;
+                MainActivity.debug("Device: intervalMultiplicator = " + intervalMultiplicator);
+            } else {
+                // theory: when the answer is good, we might recover slowly --> decrease it!
+                // jm: but never below 1
+                if (intervalMultiplicator > 1) intervalMultiplicator -= 0.01;
+                MainActivity.debug("Device: intervalMultiplicator = " + intervalMultiplicator);
             }
         }
         else

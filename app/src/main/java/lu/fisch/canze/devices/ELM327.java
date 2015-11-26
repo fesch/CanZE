@@ -306,9 +306,9 @@ public class ELM327 extends Device {
         // empty incoming buffer
         // just make sure there is no previous response
         try {
-            // fast track.....
+            // fast track, don't use expenive calendar.....
             if (timeout == 0) {
-                if (BluetoothManager.getInstance().isConnected() && BluetoothManager.getInstance().available() > 0) {
+                while (BluetoothManager.getInstance().isConnected() && BluetoothManager.getInstance().available() > 0) {
                     BluetoothManager.getInstance().read();
                 }
             } else {
@@ -341,7 +341,7 @@ public class ELM327 extends Device {
     }
 
     private boolean initCommandExpectOk (String command, boolean untilEmpty) {
-        MainActivity.debug("ELM327: initCommandExpectOk");
+        MainActivity.debug("ELM327: initCommandExpectOk [" + command + "] untilempty [" + untilEmpty + "]");
         String response = "";
         for (int i = 2; i > 0; i--) {
             if (untilEmpty) {
@@ -356,8 +356,8 @@ public class ELM327 extends Device {
             MainActivity.toast("Err " + command + " [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
         }
 
-        MainActivity.debug("ELM327: initCommandExpectOk > Error on > "+command);
-        MainActivity.debug("ELM327: initCommandExpectOk > Response was > "+response);
+        // MainActivity.debug("ELM327: initCommandExpectOk > Error on > "+command);
+        MainActivity.debug("ELM327: initCommandExpectOk > Response was > " + response);
 
         return false;
     }
@@ -429,7 +429,7 @@ public class ELM327 extends Device {
                     // if it is a real one
                     if (data != -1) {
                         // we might be JUST approaching the TIMEOUT, so give it a chance to get to the EOM,
-                        end = end + 2;
+                        // end = end + 2;
                         // convert it to a character
                         char ch = (char) data;
                         // add it to the readBuffer
@@ -443,6 +443,7 @@ public class ELM327 extends Device {
                             // if we not asked to keep on and we got enough lines, stop
                             if(!untilEmpty){
                                 if(answerLinesCount<=0) { // the number of lines is in
+                                    MainActivity.debug("ELM327: sendAndWaitForAnswer > stop on decimal char [" + data + "]");
                                     stop = true; // so quit
                                 }
                                 else // the number of lines is NOT in
@@ -498,6 +499,7 @@ public class ELM327 extends Device {
             if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && (command==null || (!command.startsWith("atma") && command.startsWith("at"))))) {
                 MainActivity.toast("Timeout on [" + command + "][" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
             }
+            MainActivity.debug("ELM327: sendAndWaitForAnswer > timed out on [" + command + "][" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
             someThingWrong |= true;
             return ("");
         }
@@ -547,6 +549,8 @@ public class ELM327 extends Device {
 
         String hexData = "";
 
+        MainActivity.debug("ELM327: requestFreeFrame: " + field.getSID());
+
         if (someThingWrong) { return null ; }
 
         // ensure the ATCRA filter is reset in the next NON free frame request
@@ -556,19 +560,20 @@ public class ELM327 extends Device {
         String emlFilter = field.getHexId() + "";
         while (emlFilter.length() < 3) emlFilter = "0" + emlFilter;
 
+        MainActivity.debug("ELM327: requestFreeFrame: atcra" + emlFilter);
         if (!initCommandExpectOk("atcra" + emlFilter)) someThingWrong |= true;
 
         // avoid starting an ATMA id the ATCRA failed
         if (!someThingWrong) {
             //sendAndWaitForAnswer("atcra" + emlFilter, 400);
             // atma     (wait for one answer line)
-            TIMEOUT = (int) (field.getFrequency()*frequencyMultiplicator + 50);
+            TIMEOUT = (int) (field.getFrequency()* intervalMultiplicator + 50);
             if (TIMEOUT < MINIMUM_TIMEOUT) TIMEOUT = MINIMUM_TIMEOUT;
             MainActivity.debug("ELM327: requestFreeFrame > TIMEOUT = "+TIMEOUT);
 
             hexData = sendAndWaitForAnswer("atma", 20);
 
-            MainActivity.debug("ELM327: requestFreeFrame > hexData = "+hexData);
+            MainActivity.debug("ELM327: requestFreeFrame > hexData = [" + hexData + "]");
             // the dongle starts babbling now. sendAndWaitForAnswer should stop at the first full line
             // ensure any running operation is stopped
             // sending a return might restart the last command. Bad plan.
