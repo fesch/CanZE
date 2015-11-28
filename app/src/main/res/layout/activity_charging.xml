@@ -167,13 +167,6 @@
                     />
             </TableRow>
 
-
-            <TableRow>
-
-
-            </TableRow>
-
-
             <TableRow>
                 <TextView
                     android:id="@+id/LabelSOH"
@@ -183,6 +176,20 @@
                 <TextView
                     android:id="@+id/textSOH"
                     android:text="@string/default_SOH"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/LabelHvTemp"
+                    android:text="@string/label_HvTemp"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:id="@+id/textHvTemp"
+                    android:text="@string/default_HvTemp"
                     android:gravity="right"
                     android:layout_weight="1"
                     />

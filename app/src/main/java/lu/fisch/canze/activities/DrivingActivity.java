@@ -47,6 +47,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
+    public static final String SID_Consumption                          = "1fd.40"; //EVC
     public static final String SID_Pedal                                = "186.40"; //EVC
     public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
     public static final String SID_RealSpeed                            = "5d7.0";  //ESC-ABS
@@ -56,14 +57,15 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; //UBP 10ms
 
     // ISO-TP data
-//  public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
+    public static final String SID_MaxCharge                            = "7bb.6101.336";
+    //  public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
 //  public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC)
     public static final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
 //  public static final String SID_EVC_Pedal                            = "7ec.62202e.24"; //  (EVC)
-    public static final String SID_EVC_TractionBatteryVoltage           = "7ec.623203.24"; //  (EVC)
-    public static final String SID_EVC_TractionBatteryCurrent           = "7ec.623204.24"; //  (EVC)
+//  public static final String SID_EVC_TractionBatteryVoltage           = "7ec.623203.24"; //  (EVC)
+//  public static final String SID_EVC_TractionBatteryCurrent           = "7ec.623204.24"; //  (EVC)
 
-    private double dcVolt                           = 0; // holds the DC voltage, so we can calculate the power when the amps come in
+//  private double dcVolt                           = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     private int    odo                              = 0;
     private int    destOdo                          = 0; // have to init from save file
     private double realSpeed                        = 0;
@@ -155,7 +157,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("destOdo", d);
-        editor.commit();
+        editor.apply();
         destOdo = d;
         Field field = MainActivity.fields.getBySID(SID_RangeEstimate);
         int distInBat = (int) field.getValue();
@@ -230,6 +232,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
 
         // Make sure to add ISO-TP listeners grouped by ID
 
+        addListener(SID_Consumption, 0);
         addListener(SID_Pedal, 0);
         addListener(SID_MeanEffectiveTorque, 0);
         addListener(SID_DriverBrakeWheel_Torque_Request, 0);
@@ -237,11 +240,12 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         addListener(SID_RealSpeed, 0);
         addListener(SID_SoC, 3600);
         addListener(SID_RangeEstimate, 3600);
+        addListener(SID_MaxCharge,6000);
 
         //addListener(SID_EVC_SoC);
         addListener(SID_EVC_Odometer, 6000);
-        addListener(SID_EVC_TractionBatteryVoltage, 5000);
-        addListener(SID_EVC_TractionBatteryCurrent, 0);
+        //addListener(SID_EVC_TractionBatteryVoltage, 5000);
+        //addListener(SID_EVC_TractionBatteryCurrent, 0);
         //addListener(SID_PEB_Torque);
     }
 
@@ -279,6 +283,9 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         //odo = (int) Utils.kmOrMiles(field.getValue());
                         tv = null;
                         break;
+                    case SID_MaxCharge:
+                        tv = (TextView) findViewById(R.id.text_max_charge);
+                        break;
                     case SID_RealSpeed:
 //                  case SID_EVC_RealSpeed:
                         //realSpeed = (Math.round(Utils.kmOrMiles(field.getValue()) * 10.0) / 10.0);
@@ -288,15 +295,16 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                     //case SID_PEB_Torque:
                     //    tv = (TextView) findViewById(R.id.textTorque);
                     //    break;
-                    case SID_EVC_TractionBatteryVoltage: // DC volts
-                        // save DC voltage for DC power purposes
-                        dcVolt = field.getValue();
-                        break;
-                    case SID_EVC_TractionBatteryCurrent: // DC amps
-                        // calculate DC power
-                        double dcPwr = Math.round(dcVolt * field.getValue() / 100.0) / 10.0;
-                        tv = (TextView) findViewById(R.id.textDcPwr);
-                        tv.setText("" + (dcPwr));
+//                    case SID_EVC_TractionBatteryVoltage: // DC volts
+//                        // save DC voltage for DC power purposes
+//                        dcVolt = field.getValue();
+//                        break;
+//                    case SID_EVC_TractionBatteryCurrent: // DC amps
+//                        // calculate DC power
+                    case SID_Consumption:
+                        double dcPwr = field.getValue();
+//                        tv = (TextView) findViewById(R.id.textDcPwr);
+//                        tv.setText("" + (dcPwr));
                         tv = (TextView) findViewById(R.id.textConsumption);
                         if (realSpeed > 5) {
                             tv.setText("" + (Math.round(1000.0 * dcPwr / realSpeed) / 10.0));
