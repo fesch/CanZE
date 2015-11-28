@@ -113,6 +113,10 @@
             android:name=".activities.FluenceKangooTempsActivity"
             android:label="Fluence Kangoo Temp" >
         </activity>
+        <activity
+            android:name=".activities.TyresActivity"
+            android:label="@string/title_activity_tyres" >
+        </activity>
     </application>
 
 </manifest>
