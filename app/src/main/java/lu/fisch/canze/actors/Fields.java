@@ -610,7 +610,7 @@ public class Fields implements MessageListener {
                         +"0x18a,16,25,0.125,0,2,%,,,0\n" // Throttle
                         +"0x18a,27,38,0.5,800,1,Nm,,,0\n" // Coasting Torque
                         +"0x1f6,0,1,1,0,0,,,,0\n" // Engine Fan Speed
-                        +"0x1f6,3,7,100,0,,W,,,0\n" // Max Electrical Power Allowed
+                        +"0x1f6,3,7,100,0,0,W,,,0\n" // Max Electrical Power Allowed
                         +"0x1f6,8,9,1,0,0,,,,0\n" // ElectricalPowerCutFreeze
                         +"0x1f6,10,11,1,0,0,,,,0\n" // EngineStatus_R
                         +"0x1f6,12,15,1,0,0,,,,0\n" // EngineStopRequestOrigine
@@ -1066,6 +1066,7 @@ public class Fields implements MessageListener {
                     MainActivity.debug("frame does not exist:" + tokens[FIELD_ID].trim());
                 } else {
                     //Create a new field object and fill his  data
+                    MainActivity.debug(tokens[FIELD_ID]+","+tokens[FIELD_FROM]);
                     Field field = new Field(
                             frame,
                             Integer.parseInt(tokens[FIELD_FROM].trim()),
