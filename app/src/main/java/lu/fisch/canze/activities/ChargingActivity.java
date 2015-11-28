@@ -40,6 +40,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_MaxCharge                        = "7bb.6101.336";
     public static final String SID_SoC                              = "42e.0";          // user SOC, not raw
     public static final String SID_AvChargingPower                  = "427.40";
+    public static final String SID_HvTemp                           = "42e.44";
     public static final String SID_SOH                              = "658.33";
     public static final String SID_RangeEstimate                    = "654.42";
     public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
@@ -47,6 +48,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
     double dcVolt       = 0; // holds the DC voltage, so we can calculate the power when the amps come in
 
     private ArrayList<Field> subscribedFields;
+    double avChPwr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +100,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
 
         addListener(SID_MaxCharge);
         addListener(SID_SoC);
+        addListener(SID_HvTemp);
         if(MainActivity.car==MainActivity.CAR_ZOE) addListener(SID_AvChargingPower);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
@@ -121,13 +124,19 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                 switch (fieldId) {
 
                     case SID_MaxCharge:
+                        double maxCharge = field.getValue();
+                        int color = 0xffc0c0c0; // standard grey
+                        if (maxCharge < (avChPwr * 0.8)) {
+                            color = 0xffffc0c0;
+                        }
                         tv = (TextView) findViewById(R.id.text_max_charge);
+                        tv.setBackgroundColor(color);
                         break;
                     case SID_SoC:
                         tv = (TextView) findViewById(R.id.textSOC);
                         break;
-                    case SID_SOH:
-                        tv = (TextView) findViewById(R.id.textSOH);
+                    case SID_HvTemp:
+                        tv = (TextView) findViewById(R.id.textHvTemp);
                         break;
                     case SID_RangeEstimate:
                         tv = (TextView) findViewById(R.id.textKMA);
@@ -153,7 +162,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         tv = (TextView) findViewById(R.id.textAmps);
                         break;
                     case SID_AvChargingPower:
-                        double avChPwr = field.getValue();
+                        avChPwr = field.getValue();
                         tv = (TextView) findViewById(R.id.textAvChPwr);
                         break;
                 }

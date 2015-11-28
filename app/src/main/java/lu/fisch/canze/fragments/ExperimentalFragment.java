@@ -44,6 +44,7 @@ import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.activities.StatsActivity;
 import lu.fisch.canze.activities.TachoActivity;
 import lu.fisch.canze.activities.TemperatureActivity;
+import lu.fisch.canze.activities.TyresActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -172,18 +173,6 @@ public class ExperimentalFragment extends Fragment {
             }
         });*/
 
-        button = (Button) view.findViewById(R.id.button_3);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), ChargingTechActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
         button = (Button) view.findViewById(R.id.buttonFluenceKangooTemps);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,9 +185,17 @@ public class ExperimentalFragment extends Fragment {
             }
         });
 
-
-
-
+        button = (Button) view.findViewById(R.id.buttonTyres);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MainActivity.isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                MainActivity.getInstance().leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.getInstance(), TyresActivity.class);
+                ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
+            }
+        });
 
         return view;
     }

@@ -164,13 +164,13 @@
 
             <TableRow>
                 <TextView
-                    android:id="@+id/LabelDcPwr"
-                    android:text="@string/label_DcPwr"
+                    android:id="@+id/LabelMaxCharge"
+                    android:text="@string/label_max_charge"
                     android:layout_weight="2"
                     />
                 <TextView
-                    android:id="@+id/textDcPwr"
-                    android:text="@string/default_DcPwr"
+                    android:id="@+id/text_max_charge"
+                    android:text="@string/default_max_charge"
                     android:gravity="right"
                     android:layout_weight="2"
                     />

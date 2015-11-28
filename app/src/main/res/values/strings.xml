@@ -21,6 +21,7 @@
     <string name="title_activity_dtc">Diagnostic Trouble Codes</string>
     <string name="title_activity_heatmap_bat">Battery Compartment heatmap</string>
     <string name="title_activity_heatmap_cellvoltage">Battery Voltage heatmap</string>
+    <string name="title_activity_tyres">Tyres info</string>
 
     <!-- nonsense -->
 
@@ -63,6 +64,9 @@
 
     <string name="label_SOC">State of charge %</string>
     <string name="default_SOC">#SOC</string>
+
+    <string name="label_HvTemp">Mean battery temperature</string>
+    <string name="default_HvTemp">#HVT</string>
 
     <string name="label_SOH">State of health %</string>
     <string name="default_SOH">#SOH</string>
@@ -186,6 +190,18 @@
     <string name="label_HeatingWaterPumpSpeed">Heating water pump speed</string>
     <string name="label_BatteryCoolingFansSpeed">Battery cooling fans speed</string>
 
+    <!-- tyres -->
+
+    <string name="header_Tyres">Tyres</string>
+    <string name="label_TyreSpdPresMisadaption">Speed-pressure misadaption</string>
+    <string name="label_TyreFLState">Front left state</string>
+    <string name="label_TyreFRState">Front right state</string>
+    <string name="label_TyreRLState">Rear left state</string>
+    <string name="label_TyreRRState">Rear right state</string>
+    <string name="label_TyreFLPressure">Front left pressure</string>
+    <string name="label_TyreFRPressure">Front right pressure</string>
+    <string name="label_TyreRLPressure">Rear left pressure</string>
+    <string name="label_TyreRRPressure">Rear right pressure</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
