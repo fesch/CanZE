@@ -16,229 +16,280 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <TextView
-            android:id="@+id/label_driver_torque_request"
             android:text="@string/label_driver_torque_request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textColor="#000"
             />
-        <ProgressBar
-            android:id="@+id/pb_driver_torque_request"
-            style="?android:attr/progressBarStyleHorizontal"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="25dp"
-            android:max="2048"
-            android:progressDrawable="@drawable/progressbar_canze"
-            />
+            android:layout_height="wrap_content">
+            <ProgressBar
+                android:id="@+id/pb_driver_torque_request"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="25dp"
+                android:max="2048"
+                android:progressDrawable="@drawable/progressbar_canze"
+                />
+            <TextView
+                android:id="@+id/text_driver_torque_request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 Nm"
+                android:layout_alignRight="@+id/pb_driver_torque_request"
+                android:layout_alignLeft="@+id/pb_driver_torque_request"
+                android:layout_alignBottom="@+id/pb_driver_torque_request"
+                android:layout_alignTop="@+id/pb_driver_torque_request"
+                android:gravity="center"
+                />
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/label_ElecBrakeWheelsTorqueApplied"
             android:text="@string/label_ElecBrakeWheelsTorqueApplied"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textColor="#000"
             />
-        <ProgressBar
-            android:id="@+id/pb_ElecBrakeWheelsTorqueApplied"
-            style="?android:attr/progressBarStyleHorizontal"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="25dp"
-            android:max="2048"
-            android:progressDrawable="@drawable/progressbar_canze_green"
-            />
+            android:layout_height="wrap_content">
+            <ProgressBar
+                android:id="@+id/pb_ElecBrakeWheelsTorqueApplied"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="25dp"
+                android:max="2048"
+                android:progressDrawable="@drawable/progressbar_canze_green"
+                />
+            <TextView
+                android:id="@+id/text_ElecBrakeWheelsTorqueApplied"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 Nm"
+                android:layout_alignRight="@+id/pb_ElecBrakeWheelsTorqueApplied"
+                android:layout_alignLeft="@+id/pb_ElecBrakeWheelsTorqueApplied"
+                android:layout_alignBottom="@+id/pb_ElecBrakeWheelsTorqueApplied"
+                android:layout_alignTop="@+id/pb_ElecBrakeWheelsTorqueApplied"
+                android:gravity="center"
+                />
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/label_diff_friction_torque"
             android:text="@string/label_diff_friction_torque"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textColor="#000"
             />
-        <ProgressBar
-            android:id="@+id/pb_diff_friction_torque"
-            style="?android:attr/progressBarStyleHorizontal"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="25dp"
-            android:max="2048"
-            android:progressDrawable="@drawable/progressbar_canze_red"
-            />
-<!--
-        <TextView
-            android:id="@+id/label_eb_torque_request"
-            android:text="@string/label_eb_torque_request"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="#000"
-            />
-        <ProgressBar
-            android:id="@+id/pb_eb_torque_request"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:minHeight="25dp"
-            android:max="5000"
-            android:progressDrawable="@drawable/progressbar_canze"
-            /> -->
-<!--
-        <TextView
-            android:id="@+id/label_friction_torque"
-            android:text="@string/label_coasting_torque"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="10dp"
-            android:textColor="#000"
-            />
-        <ProgressBar
-            android:id="@+id/pb_friction_torque"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:minHeight="25dp"
-            android:max="800"
-            android:progressDrawable="@drawable/progressbar_canze"
-            /> -->
-<!--
-        <TextView
-            android:id="@+id/label_braking_pressure"
-            android:text="@string/label_braking_pressure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="10dp"
-            android:textColor="#000"
-            />
-        <ProgressBar
-            android:id="@+id/pb_braking_pressure"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:minHeight="25dp"
-            android:max="100"
-            android:progressDrawable="@drawable/progressbar_canze"
-            />
-
-        <TextView
-            android:id="@+id/label_TotalPotentialResistiveWheelsTorque"
-            android:text="@string/label_TotalPotentialResistiveWheelsTorque"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="#000"
-            />
-        <ProgressBar
-            android:id="@+id/pb_TotalPotentialResistiveWheelsTorque"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="25dp"
-            android:max="4096"
-            android:progressDrawable="@drawable/progressbar_canze_green"
-            /> -->
-<!--
-        <TextView
-            android:id="@+id/header_braking"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/header_braking"
-            android:layout_marginTop="10dp"
-            android:textColor="#000"
-            android:textStyle="bold" />
-
-        <TableLayout
-            android:layout_width="fill_parent"
             android:layout_height="wrap_content">
+            <ProgressBar
+                android:id="@+id/pb_diff_friction_torque"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="25dp"
+                android:max="2048"
+                android:progressDrawable="@drawable/progressbar_canze_red"
+                />
+            <TextView
+                android:id="@+id/text_diff_friction_torque"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 Nm"
+                android:layout_alignRight="@+id/pb_diff_friction_torque"
+                android:layout_alignLeft="@+id/pb_diff_friction_torque"
+                android:layout_alignBottom="@+id/pb_diff_friction_torque"
+                android:layout_alignTop="@+id/pb_diff_friction_torque"
+                android:gravity="center"
+                />
+        </RelativeLayout>
 
-            <TableRow>
+        <!--
+                <TextView
+                    android:id="@+id/label_eb_torque_request"
+                    android:text="@string/label_eb_torque_request"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#000"
+                    />
+                <ProgressBar
+                    android:id="@+id/pb_eb_torque_request"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:minHeight="25dp"
+                    android:max="5000"
+                    android:progressDrawable="@drawable/progressbar_canze"
+                    /> -->
+        <!--
+                <TextView
+                    android:id="@+id/label_friction_torque"
+                    android:text="@string/label_coasting_torque"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#000"
+                    />
+                <ProgressBar
+                    android:id="@+id/pb_friction_torque"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:minHeight="25dp"
+                    android:max="800"
+                    android:progressDrawable="@drawable/progressbar_canze"
+                    /> -->
+        <!--
+                <TextView
+                    android:id="@+id/label_braking_pressure"
+                    android:text="@string/label_braking_pressure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#000"
+                    />
+                <ProgressBar
+                    android:id="@+id/pb_braking_pressure"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:minHeight="25dp"
+                    android:max="100"
+                    android:progressDrawable="@drawable/progressbar_canze"
+                    />
 
                 <TextView
-                    android:id="@+id/label_hbb_malfunction"
-                    android:text="@string/label_hbb_malfunction"
-                    android:layout_weight="2"
+                    android:id="@+id/label_TotalPotentialResistiveWheelsTorque"
+                    android:text="@string/label_TotalPotentialResistiveWheelsTorque"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#000"
                     />
+                <ProgressBar
+                    android:id="@+id/pb_TotalPotentialResistiveWheelsTorque"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="25dp"
+                    android:max="4096"
+                    android:progressDrawable="@drawable/progressbar_canze_green"
+                    /> -->
+        <!--
                 <TextView
-                    android:id="@+id/text_hbb_malfunction"
-                    android:text="@string/default_hbb_malfunction"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
+                    android:id="@+id/header_braking"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/header_braking"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
 
-            <TableRow>
+                <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/label_eb_malfunction"
-                    android:text="@string/label_eb_malfunction"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_eb_malfunction"
-                    android:text="@string/default_eb_malfunction"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
+                    <TableRow>
 
-            <TableRow>
+                        <TextView
+                            android:id="@+id/label_hbb_malfunction"
+                            android:text="@string/label_hbb_malfunction"
+                            android:layout_weight="2"
+                            />
+                        <TextView
+                            android:id="@+id/text_hbb_malfunction"
+                            android:text="@string/default_hbb_malfunction"
+                            android:gravity="end"
+                            android:layout_weight="1"
+                            />
+                    </TableRow>
 
-                <TextView
-                    android:id="@+id/label_eb_in_progress"
-                    android:text="@string/label_eb_in_progress"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_eb_in_progress"
-                    android:text="@string/default_hbb_in_progress"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
+                    <TableRow>
 
-            </TableRow>
+                        <TextView
+                            android:id="@+id/label_eb_malfunction"
+                            android:text="@string/label_eb_malfunction"
+                            android:layout_weight="2"
+                            />
+                        <TextView
+                            android:id="@+id/text_eb_malfunction"
+                            android:text="@string/default_eb_malfunction"
+                            android:gravity="end"
+                            android:layout_weight="1"
+                            />
+                    </TableRow>
 
-            <TableRow>
+                    <TableRow>
 
-                <TextView
-                    android:id="@+id/label_hba_activation_request"
-                    android:text="@string/label_hba_activation_request"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_hba_activation_request"
-                    android:text="@string/default_hba_activation_request"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
+                        <TextView
+                            android:id="@+id/label_eb_in_progress"
+                            android:text="@string/label_eb_in_progress"
+                            android:layout_weight="2"
+                            />
+                        <TextView
+                            android:id="@+id/text_eb_in_progress"
+                            android:text="@string/default_hbb_in_progress"
+                            android:gravity="end"
+                            android:layout_weight="1"
+                            />
 
-            <TableRow>
+                    </TableRow>
 
-                <TextView
-                    android:id="@+id/label_pressure_buildup"
-                    android:text="@string/label_pressure_buildup"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_pressure_buildup"
-                    android:text="@string/default_pressure_buildup"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
+                    <TableRow>
 
-        </TableLayout>
--->
+                        <TextView
+                            android:id="@+id/label_hba_activation_request"
+                            android:text="@string/label_hba_activation_request"
+                            android:layout_weight="2"
+                            />
+                        <TextView
+                            android:id="@+id/text_hba_activation_request"
+                            android:text="@string/default_hba_activation_request"
+                            android:gravity="end"
+                            android:layout_weight="1"
+                            />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:id="@+id/label_pressure_buildup"
+                            android:text="@string/label_pressure_buildup"
+                            android:layout_weight="2"
+                            />
+                        <TextView
+                            android:id="@+id/text_pressure_buildup"
+                            android:text="@string/default_pressure_buildup"
+                            android:gravity="end"
+                            android:layout_weight="1"
+                            />
+                    </TableRow>
+
+                </TableLayout>
+        -->
+
+        <TextView
+            android:text="Al torques are given in combined wheel torques, not motor torques."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="#000"
+            />
+
     </LinearLayout>
 
     <!-- debug line -->
