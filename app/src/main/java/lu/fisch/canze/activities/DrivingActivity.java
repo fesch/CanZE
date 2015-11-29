@@ -214,6 +214,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
             field.removeListener(this);
         }
         subscribedFields.clear();
+        MainActivity.device.clearFields();
     }
 
     @Override

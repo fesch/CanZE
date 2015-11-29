@@ -84,6 +84,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
             field.removeListener(this);
         }
         subscribedFields.clear();
+        MainActivity.device.clearFields();
     }
 
     @Override
