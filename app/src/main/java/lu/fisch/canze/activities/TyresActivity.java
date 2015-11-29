@@ -84,6 +84,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
             field.removeListener(this);
         }
         subscribedFields.clear();
+        MainActivity.device.clearFields();
     }
 
     @Override
@@ -122,16 +123,19 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
                 TextView tv = null;
                 String value = "";
                 int intValue = (int) field.getValue();
+                int color = 0xffc0c0c0;
 
                 // get the text field
                 switch (fieldId) {
 
                     case SID_TyreSpdPresMisadaption:
                         tv = (TextView) findViewById(R.id.text_TyreSpdPresMisadaption);
+                        color = 0xfff3f3f3; // default background holo_light
                         value = val_TyreSpdPresMisadaption[intValue];
                         break;
                     case SID_TyreFLState:
                         tv = (TextView) findViewById(R.id.text_TyreFLState);
+                        if (intValue > 1) color = 0xffffc0c0;
                         value = val_TyreState[intValue];
                         break;
                     case SID_TyreFLPressure:
@@ -140,6 +144,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_TyreFRState:
                         tv = (TextView) findViewById(R.id.text_TyreFRState);
+                        if (intValue > 1) color = 0xffffc0c0;
                         value = val_TyreState[intValue];
                         break;
                     case SID_TyreFRPressure:
@@ -148,6 +153,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_TyreRLState:
                         tv = (TextView) findViewById(R.id.text_TyreRLState);
+                        if (intValue > 1) color = 0xffffc0c0;
                         value = val_TyreState[intValue];
                         break;
                     case SID_TyreRLPressure:
@@ -156,6 +162,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_TyreRRState:
                         tv = (TextView) findViewById(R.id.text_TyreRRState);
+                        if (intValue > 1) color = 0xffffc0c0;
                         value = val_TyreState[intValue];
                         break;
                     case SID_TyreRRPressure:
@@ -166,6 +173,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
                     tv.setText(value);
+                    tv.setBackgroundColor(color);
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);

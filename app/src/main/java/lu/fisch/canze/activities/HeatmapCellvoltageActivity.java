@@ -82,6 +82,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
             field.removeListener(this);
         }
         subscribedFields.clear();
+        MainActivity.device.clearFields();
     }
 
     @Override
