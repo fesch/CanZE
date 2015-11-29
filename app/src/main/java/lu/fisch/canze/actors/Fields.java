@@ -786,10 +786,10 @@ public class Fields implements MessageListener {
                         +"0x673,5,7,1,0,0,,,,0\n" // Rear left wheel state
                         +"0x673,8,10,1,0,0,,,,0\n" // Front right wheel state
                         +"0x673,11,13,1,0,0,,,,0\n" // Front left wheel state
-                        +"0x673,16,23,0.07285974499,0,0,mbar,,,0\n" // Rear right wheel pressure
-                        +"0x673,24,31,0.07285974499,0,0,mbar,,,0\n" // Rear left wheel pressure
-                        +"0x673,32,39,0.07285974499,0,0,mbar,,,0\n" // Front right wheel pressure
-                        +"0x673,40,47,0.07285974499,0,0,mbar,,,0\n" // Front left wheel pressure
+                        +"0x673,16,23,13.725,0,0,mbar,,,0\n" // Rear right wheel pressure
+                        +"0x673,24,31,13.725,0,0,mbar,,,0\n" // Rear left wheel pressure
+                        +"0x673,32,39,13.725,0,0,mbar,,,0\n" // Front right wheel pressure
+                        +"0x673,40,47,13.725,0,0,mbar,,,0\n" // Front left wheel pressure
                         +"0x68b,0,3,1,0,0,,,,0\n" // MM action counter
                         +"0x699,0,1,1,0,0,,,,2\n" // Clima off Request display
                         +"0x699,2,3,1,0,0,,,,2\n" // Clima read defrost Reuqest display

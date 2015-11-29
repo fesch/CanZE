@@ -44,6 +44,10 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
     public static final String SID_TyreRRState                  = "673.2";
     public static final String SID_TyreRRPressure               = "673.16";
 
+    public static final String val_TyreSpdPresMisadaption  [] = {"OK", "Not OK"};
+    public static final String val_TyreState               [] = {"OK", "No info", "-", "-", "-", "Flat", "Under infl."};
+    public static final String val_Unavailable                = "Unavailable";
+
     private ArrayList<Field> subscribedFields;
 
     @Override
@@ -116,41 +120,52 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
             public void run() {
                 String fieldId = field.getSID();
                 TextView tv = null;
+                String value = "";
+                int intValue = (int) field.getValue();
 
                 // get the text field
                 switch (fieldId) {
 
                     case SID_TyreSpdPresMisadaption:
                         tv = (TextView) findViewById(R.id.text_TyreSpdPresMisadaption);
+                        value = val_TyreSpdPresMisadaption[intValue];
                         break;
                     case SID_TyreFLState:
                         tv = (TextView) findViewById(R.id.text_TyreFLState);
+                        value = val_TyreState[intValue];
                         break;
                     case SID_TyreFLPressure:
                         tv = (TextView) findViewById(R.id.text_TyreFLPressure);
+                        value = intValue == 0xff ? val_Unavailable : "" + intValue;
                         break;
                     case SID_TyreFRState:
                         tv = (TextView) findViewById(R.id.text_TyreFRState);
+                        value = val_TyreState[intValue];
                         break;
                     case SID_TyreFRPressure:
                         tv = (TextView) findViewById(R.id.text_TyreFRPressure);
+                        value = intValue == 0xff ? val_Unavailable : "" + intValue;
                         break;
                     case SID_TyreRLState:
                         tv = (TextView) findViewById(R.id.text_TyreRLState);
+                        value = val_TyreState[intValue];
                         break;
                     case SID_TyreRLPressure:
                         tv = (TextView) findViewById(R.id.text_TyreRLPressure);
+                        value = intValue == 0xff ? val_Unavailable : "" + intValue;
                         break;
                     case SID_TyreRRState:
                         tv = (TextView) findViewById(R.id.text_TyreRRState);
+                        value = val_TyreState[intValue];
                         break;
                     case SID_TyreRRPressure:
                         tv = (TextView) findViewById(R.id.text_TyreRRPressure);
+                        value = intValue == 0xff ? val_Unavailable : "" + intValue;
                         break;
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText("" + (Math.round(field.getValue() * 10.0) / 10.0));
+                    tv.setText(value);
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);

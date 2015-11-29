@@ -198,10 +198,10 @@
     <string name="label_TyreFRState">Front right state</string>
     <string name="label_TyreRLState">Rear left state</string>
     <string name="label_TyreRRState">Rear right state</string>
-    <string name="label_TyreFLPressure">Front left pressure</string>
-    <string name="label_TyreFRPressure">Front right pressure</string>
-    <string name="label_TyreRLPressure">Rear left pressure</string>
-    <string name="label_TyreRRPressure">Rear right pressure</string>
+    <string name="label_TyreFLPressure">Front left pressure mbar</string>
+    <string name="label_TyreFRPressure">Front right pressure mbar</string>
+    <string name="label_TyreRLPressure">Rear left pressure mbar</string>
+    <string name="label_TyreRRPressure">Rear right pressure mbar</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
