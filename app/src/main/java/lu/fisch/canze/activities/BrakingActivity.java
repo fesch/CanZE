@@ -59,7 +59,6 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
 
     private double driverBrakeWheel_Torque_Request = 0;
     private double coasting_Torque = 0;
-    private double elecBrakeWheelsTorqueApplied = 0;
 
     private ArrayList<Field> subscribedFields;
 
@@ -132,8 +131,8 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
             @Override
             public void run() {
                 String fieldId = field.getSID();
-                TextView tv = null;
-                String value = "";
+                TextView tv;
+                //String value = "";
                 ProgressBar pb;
 
                 // get the text field
@@ -142,13 +141,21 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
                         driverBrakeWheel_Torque_Request = field.getValue() + coasting_Torque;
                         pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
                         pb.setProgress((int) driverBrakeWheel_Torque_Request);
+                        tv = (TextView) findViewById(R.id.text_driver_torque_request);
+                        if (tv != null) tv.setText("" + ((int)driverBrakeWheel_Torque_Request) + " Nm");
                         break;
                     case SID_ElecBrakeWheelsTorqueApplied:
-                        elecBrakeWheelsTorqueApplied = field.getValue() + coasting_Torque;
+                        double elecBrakeWheelsTorqueApplied = field.getValue() + coasting_Torque;
                         pb = (ProgressBar) findViewById(R.id.pb_ElecBrakeWheelsTorqueApplied);
                         pb.setProgress((int) elecBrakeWheelsTorqueApplied);
+                        tv = (TextView) findViewById(R.id.text_ElecBrakeWheelsTorqueApplied);
+                        if (tv != null) tv.setText("" + ((int)elecBrakeWheelsTorqueApplied) + " Nm");
+
+                        double diff_friction_torque = driverBrakeWheel_Torque_Request - elecBrakeWheelsTorqueApplied;
                         pb = (ProgressBar) findViewById(R.id.pb_diff_friction_torque);
-                        pb.setProgress((int) (driverBrakeWheel_Torque_Request - elecBrakeWheelsTorqueApplied));
+                        pb.setProgress((int) diff_friction_torque);
+                        tv = (TextView) findViewById(R.id.text_diff_friction_torque);
+                        if (tv != null) tv.setText("" + ((int) diff_friction_torque) + " Nm");
                         break;
 /*                    case SID_TotalPotentialResistiveWheelsTorque:
                       pb = (ProgressBar) findViewById(R.id.pb_TotalPotentialResistiveWheelsTorque);
