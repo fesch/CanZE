@@ -32,6 +32,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -492,6 +494,20 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
             alertDialogBuilder.setTitle("Formal Disclaimer");
 
             // set dialog message
+            String yes = "Yes, I got it!";
+            String no  = "No, I didn't understand a word ...";
+
+            Display display = getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            int width = size.x;
+            int height = size.y;
+            if(width<400)
+            {
+                yes="Yes";
+                no ="No";
+            }
+
             alertDialogBuilder
                     .setMessage(Html.fromHtml("<html>CanZE (“the software”) is provided as is. Use the software at your own risk. " +
                             "The authors make no warranties as to performance or fitness for a particular purpose, " +
@@ -509,7 +525,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                             "car is a possibly lethal piece of machinery and you might hurt or kill yourself or others using " +
                             "it, or even paying attention to the displays instead of watching the road.</b></html>"))
                     .setCancelable(true)
-                    .setPositiveButton("Yes, I got it!", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             // if this button is clicked, close
                             SharedPreferences.Editor editor = settings.edit();
@@ -519,7 +535,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
                             dialog.cancel();
                         }
                     })
-                    .setNegativeButton("No, I didn't understand a word ...",
+                    .setNegativeButton(no,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     // if this button is clicked, just close
