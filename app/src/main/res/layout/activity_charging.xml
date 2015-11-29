@@ -29,7 +29,7 @@
                     android:gravity="center"
                     android:layout_weight="5"
                     android:background="#ffc0c0c0"
-                    android:elegantTextHeight="false" />
+                    />
                 <TextView
                     android:text=""
                     android:layout_width="20dp"

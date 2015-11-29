@@ -16,12 +16,134 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/HeaderTyres"
-            android:text="@string/header_Tyres"
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+                <TextView
+                    android:text="@string/label_TyreFL"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0"
+                    />
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_weight="1" />
+                <TextView
+                    android:text="@string/label_TyreFR"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/text_TyreFLState"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0"
+                    />
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/text_TyreFRState"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/text_TyreFLPressure"
+                    android:textColor="#000"
+                    android:textSize="48sp"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0" />
+                <TextView
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/text_TyreFRPressure"
+                    android:textColor="#000"
+                    android:textSize="48sp"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0" />
+            </TableRow>
+        </TableLayout>
+
+         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000" />
+            android:layout_weight="1"
+             />
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+                <TextView
+                    android:text="@string/label_TyreRL"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0"
+                    />
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_weight="1" />
+                <TextView
+                    android:text="@string/label_TyreRR"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/text_TyreRLState"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0"
+                    />
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/text_TyreRRState"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/text_TyreRLPressure"
+                    android:textColor="#000"
+                    android:textSize="48sp"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0" />
+                <TextView
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/text_TyreRRPressure"
+                    android:textColor="#000"
+                    android:textSize="48sp"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="#ffc0c0c0" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="  "
+            android:layout_weight="1" />
+
 
         <TableLayout
             android:layout_width="fill_parent"
@@ -34,102 +156,6 @@
                     />
                 <TextView
                     android:id="@+id/text_TyreSpdPresMisadaption"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_TyreFLState"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_TyreFLState"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_TyreFLPressure"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_TyreFLPressure"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_TyreFRState"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_TyreFRState"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_TyreFRPressure"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_TyreFRPressure"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_TyreRLState"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_TyreRLState"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_TyreRLPressure"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_TyreRLPressure"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_TyreRRState"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_TyreRRState"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_TyreRRPressure"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_TyreRRPressure"
                     android:gravity="right"
                     android:layout_weight="1"
                     />

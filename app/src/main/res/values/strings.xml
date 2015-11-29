@@ -194,6 +194,10 @@
 
     <string name="header_Tyres">Tyres</string>
     <string name="label_TyreSpdPresMisadaption">Speed-pressure misadaption</string>
+    <string name="label_TyreFL">Front left</string>
+    <string name="label_TyreFR">Front right</string>
+    <string name="label_TyreRL">Rear left</string>
+    <string name="label_TyreRR">Rear right</string>
     <string name="label_TyreFLState">Front left state</string>
     <string name="label_TyreFRState">Front right state</string>
     <string name="label_TyreRLState">Rear left state</string>
