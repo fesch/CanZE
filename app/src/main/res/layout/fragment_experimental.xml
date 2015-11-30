@@ -192,6 +192,7 @@ android:orientation="vertical"
             android:layout_marginBottom="8dp"
             android:text="@string/title_activity_tyres"
             android:id="@+id/buttonTyres"
+            android:drawableLeft="@mipmap/button_tire"
             android:layout_column="1" />
 
     </TableRow>

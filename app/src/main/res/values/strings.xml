@@ -21,7 +21,7 @@
     <string name="title_activity_dtc">Diagnostic Trouble Codes</string>
     <string name="title_activity_heatmap_bat">Battery Compartment heatmap</string>
     <string name="title_activity_heatmap_cellvoltage">Battery Voltage heatmap</string>
-    <string name="title_activity_tyres">Tyres info</string>
+    <string name="title_activity_tyres">Tires info</string>
 
     <!-- nonsense -->
 
