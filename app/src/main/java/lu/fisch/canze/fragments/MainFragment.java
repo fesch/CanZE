@@ -39,6 +39,7 @@ import lu.fisch.canze.activities.FirmwareActivity;
 import lu.fisch.canze.activities.HeatmapBatcompActivity;
 import lu.fisch.canze.activities.HeatmapCellvoltageActivity;
 import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.activities.TyresActivity;
 
 
 public class MainFragment extends Fragment {
@@ -79,19 +80,6 @@ public class MainFragment extends Fragment {
                 if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), ChargingActivity.class);
-                MainFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) view.findViewById(R.id.buttonFirmware);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), FirmwareActivity.class);
                 MainFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });
@@ -158,6 +146,19 @@ public class MainFragment extends Fragment {
                 MainFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });
+
+        button = (Button) view.findViewById(R.id.buttonTyres);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MainActivity.isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                MainActivity.getInstance().leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.getInstance(), TyresActivity.class);
+                MainFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
+            }
+        });
+
         return view;
     }
 

@@ -190,8 +190,8 @@ android:orientation="vertical"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/title_activity_tyres"
-            android:id="@+id/buttonTyres"
+            android:text="-"
+            android:id="@+id/button_3"
             android:layout_column="1" />
 
     </TableRow>

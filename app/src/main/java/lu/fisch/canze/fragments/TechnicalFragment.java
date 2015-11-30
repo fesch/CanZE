@@ -36,6 +36,7 @@ import lu.fisch.canze.activities.BatteryTempActivity;
 import lu.fisch.canze.activities.ChargingTechActivity;
 import lu.fisch.canze.activities.DtcActivity;
 import lu.fisch.canze.activities.ElmTestActivity;
+import lu.fisch.canze.activities.FirmwareActivity;
 import lu.fisch.canze.activities.HarmActivity;
 import lu.fisch.canze.activities.LeafSpyActivity;
 import lu.fisch.canze.activities.MainActivity;
@@ -95,6 +96,19 @@ public class TechnicalFragment extends Fragment {
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), ChargingTechActivity.class);
                 TechnicalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
+            }
+        });
+
+        button = (Button) view.findViewById(R.id.buttonFirmware);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(!MainActivity.isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                MainActivity.getInstance().leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.getInstance(), FirmwareActivity.class);
+                TechnicalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });
 

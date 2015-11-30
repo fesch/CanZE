@@ -74,11 +74,13 @@
             </TableRow>
         </TableLayout>
 
-         <TextView
+        <TextView
             android:layout_width="fill_parent"
+            android:text="all pressures in mbar"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-             />
+            />
 
         <TableLayout
             android:layout_width="fill_parent"

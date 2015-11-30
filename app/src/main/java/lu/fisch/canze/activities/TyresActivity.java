@@ -44,9 +44,9 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
     public static final String SID_TyreRRState                  = "673.2";
     public static final String SID_TyreRRPressure               = "673.16";
 
-    public static final String val_TyreSpdPresMisadaption  [] = {"OK", "Not OK"};
-    public static final String val_TyreState               [] = {"OK", "No info", "-", "-", "-", "Flat", "Under infl."};
-    public static final String val_Unavailable                = "Unavailable";
+    public static final String val_TyreSpdPresMisadaption  []   = {"OK", "Not OK"};
+    public static final String val_TyreState               []   = {"OK", "No info", "-", "-", "-", "Flat", "Under infl."};
+    public static final String val_Unavailable                  = "-";
 
     private ArrayList<Field> subscribedFields;
 
@@ -140,7 +140,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_TyreFLPressure:
                         tv = (TextView) findViewById(R.id.text_TyreFLPressure);
-                        value = intValue == 0xff ? val_Unavailable : "" + intValue;
+                        value = (intValue == 0xff) ? val_Unavailable : ("" + intValue);
                         break;
                     case SID_TyreFRState:
                         tv = (TextView) findViewById(R.id.text_TyreFRState);
@@ -149,7 +149,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_TyreFRPressure:
                         tv = (TextView) findViewById(R.id.text_TyreFRPressure);
-                        value = intValue == 0xff ? val_Unavailable : "" + intValue;
+                        value = (intValue == 0xff) ? val_Unavailable : ("" + intValue);
                         break;
                     case SID_TyreRLState:
                         tv = (TextView) findViewById(R.id.text_TyreRLState);
@@ -158,7 +158,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_TyreRLPressure:
                         tv = (TextView) findViewById(R.id.text_TyreRLPressure);
-                        value = intValue == 0xff ? val_Unavailable : "" + intValue;
+                        value = (intValue == 0xff) ? val_Unavailable : ("" + intValue);
                         break;
                     case SID_TyreRRState:
                         tv = (TextView) findViewById(R.id.text_TyreRRState);
@@ -167,7 +167,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_TyreRRPressure:
                         tv = (TextView) findViewById(R.id.text_TyreRRPressure);
-                        value = intValue == 0xff ? val_Unavailable : "" + intValue;
+                        value = (intValue == 0xff) ? val_Unavailable : ("" + intValue);
                         break;
                 }
                 // set regular new content, all exeptions handled above
