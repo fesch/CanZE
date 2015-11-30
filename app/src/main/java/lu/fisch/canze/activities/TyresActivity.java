@@ -130,7 +130,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
 
                     case SID_TyreSpdPresMisadaption:
                         tv = (TextView) findViewById(R.id.text_TyreSpdPresMisadaption);
-                        color = 0xfff3f3f3; // default background holo_light
+                        color = 0; // don't set color
                         value = val_TyreSpdPresMisadaption[intValue];
                         break;
                     case SID_TyreFLState:
@@ -173,13 +173,12 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
                     tv.setText(value);
-                    tv.setBackgroundColor(color);
+                    if (color != 0) tv.setBackgroundColor(color);
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);
                 tv.setText(fieldId);
             }
         });
-
     }
 }
