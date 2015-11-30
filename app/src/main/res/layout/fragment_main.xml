@@ -74,9 +74,9 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="4dp"
-                android:text="Firmware"
-                android:id="@+id/buttonFirmware"
-                android:drawableLeft="@mipmap/button_firmware"
+                android:text="Tyres"
+                android:id="@+id/buttonTyres"
+                android:drawableLeft="@mipmap/button_tyre"
                 android:layout_column="0" />
             <Button
                 android:layout_width="0dp"
