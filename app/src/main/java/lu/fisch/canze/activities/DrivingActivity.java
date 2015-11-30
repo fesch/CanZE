@@ -47,7 +47,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
-    public static final String SID_Consumption                          = "1fd.40"; //EVC
+    public static final String SID_Consumption                          = "1fd.48"; //EVC
     public static final String SID_Pedal                                = "186.40"; //EVC
     public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
     public static final String SID_RealSpeed                            = "5d7.0";  //ESC-ABS
