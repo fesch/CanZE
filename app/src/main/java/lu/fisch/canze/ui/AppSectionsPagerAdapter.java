@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import java.util.ArrayList;
+
 import lu.fisch.canze.fragments.ExperimentalFragment;
 import lu.fisch.canze.fragments.MainFragment;
 import lu.fisch.canze.fragments.TechnicalFragment;
@@ -13,44 +15,24 @@ import lu.fisch.canze.fragments.TechnicalFragment;
  */
 public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
-    public AppSectionsPagerAdapter(FragmentManager fm) {
+    private ArrayList<Fragment> fragments = new ArrayList<>();
+
+    public AppSectionsPagerAdapter(FragmentManager fm)
+    {
         super(fm);
+
+        fragments.add(new MainFragment());
+        fragments.add(new TechnicalFragment());
+        fragments.add(new ExperimentalFragment());
     }
-
-
 
     @Override
     public Fragment getItem(int i) {
-        switch (i) {
-            case 0:
-                return new MainFragment();
-            case 1:
-                return new TechnicalFragment();
-            case 2:
-                return new ExperimentalFragment();
-
-            default:
-                return new MainFragment();
-        }
+        return fragments.get(i);
     }
 
     @Override
     public int getCount() {
-        return 3;
-    }
-
-    @Override
-    public CharSequence getPageTitle(int i) {
-        switch (i) {
-            case 0:
-                return "Main";
-            case 1:
-                return "Technical";
-            case 2:
-                return "Experimental";
-
-            default:
-                return "?";
-        }
+        return fragments.size();
     }
 }
