@@ -184,7 +184,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Experimental buttons have been moved away. Please use the top right menu to access them."
+            android:text="Use swipe gestures to switch between Main, Technical and Experimental screens."
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>

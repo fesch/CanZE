@@ -81,7 +81,7 @@ import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.ui.AppSectionsPagerAdapter;
 import lu.fisch.canze.widgets.WidgetView;
 
-public class MainActivity extends AppCompatActivity implements FieldListener, android.support.v7.app.ActionBar.TabListener {
+public class MainActivity extends AppCompatActivity implements FieldListener /*, android.support.v7.app.ActionBar.TabListener */{
     public static final String TAG = "  CanZE";
 
     // SPP UUID service
@@ -317,6 +317,24 @@ public class MainActivity extends AppCompatActivity implements FieldListener, an
         return result;
     }
 
+    protected void updateActionBar()
+    {
+        switch (viewPager.getCurrentItem())
+        {
+            case 0:
+                actionBar.setIcon(R.mipmap.ic_launcher);
+                break;
+            case 1:
+                actionBar.setIcon(R.mipmap.fragement_experimental);
+                break;
+            case 2:
+                actionBar.setIcon(R.mipmap.fragement_technical);
+                break;
+            default:
+                break;
+        }
+    }
+
     protected void loadFragement(Fragment newFragment)
     {
         if(actualFragment==null || !actualFragment.getClass().equals(newFragment.getClass())) {
@@ -348,6 +366,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener, an
         }
     }
 
+    /*
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
 
@@ -362,11 +381,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener, an
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
 
     }
+    */
 
-    /*
     private ViewPager viewPager;
     private AppSectionsPagerAdapter appSectionsPagerAdapter;
-    */
+    private ActionBar actionBar ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -384,19 +403,24 @@ public class MainActivity extends AppCompatActivity implements FieldListener, an
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
+
         // navigation bar
         appSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
-        final ActionBar actionBar = getSupportActionBar();
+        actionBar = getSupportActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         viewPager = (ViewPager) findViewById(R.id.main);
         viewPager.setAdapter(appSectionsPagerAdapter);
         viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                actionBar.setSelectedNavigationItem(position);
+                //actionBar.setSelectedNavigationItem(position);
+                updateActionBar();
             }
         });
+        updateActionBar();
+
+        /*
         for (int i = 0; i < appSectionsPagerAdapter.getCount(); i++) {
             actionBar.addTab(
                     actionBar.newTab()
@@ -407,7 +431,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener, an
 
 
         // load the initial "main" fragment
-        loadFragement(new MainFragment());
+        //loadFragement(new MainFragment());
 
         setTitle(TAG + " - not connected");
         setBluetoothState(BLUETOOTH_DISCONNECTED);
@@ -854,13 +878,21 @@ public class MainActivity extends AppCompatActivity implements FieldListener, an
             }
         }
         else if (id == R.id.action_main) {
-            loadFragement(new MainFragment());
+            //loadFragement(new MainFragment());
+            viewPager.setCurrentItem(0,true);
+            updateActionBar();
+
         }
         else if (id == R.id.action_experimental) {
-            loadFragement(new ExperimentalFragment());
+            //loadFragement(new ExperimentalFragment());
+            viewPager.setCurrentItem(1,true);
+            updateActionBar();
+
         }
         else if (id == R.id.action_technical) {
-            loadFragement(new TechnicalFragment());
+            //loadFragement(new TechnicalFragment());
+            viewPager.setCurrentItem(2,true);
+            updateActionBar();
         }
         //else if (id == R.id.action_bluetooth) {
         //}
