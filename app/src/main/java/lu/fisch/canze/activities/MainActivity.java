@@ -316,6 +316,16 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     protected void loadFragement(Fragment newFragment)
     {
         if(actualFragment==null || !actualFragment.getClass().equals(newFragment.getClass())) {
+
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
+            if(newFragment instanceof  MainFragment)
+                actionBar.setIcon(R.mipmap.ic_launcher);
+            else if(newFragment instanceof  ExperimentalFragment)
+                actionBar.setIcon(R.mipmap.fragement_experimental);
+            else if(newFragment instanceof  TechnicalFragment)
+                actionBar.setIcon(R.mipmap.fragement_technical);
+
             actualFragment=newFragment;
             // Create fragment and give it an argument specifying the article it should show
             //MainFragment newFragment = new MainFragment();
