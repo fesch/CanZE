@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
+        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -19,10 +19,10 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="ActionButtonStyle" parent="@android:style/Widget.Holo.Light.ActionButton">
+    <style name="ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionButton">
         <item name="android:minWidth">0dip</item>
         <item name="android:paddingLeft">0dip</item>
-        <item name="android:paddingRight">16dip</item>
+        <item name="android:paddingRight">160dip</item>
     </style>
 
 </resources>

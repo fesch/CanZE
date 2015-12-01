@@ -1,4 +1,4 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:keepScreenOn="true"
@@ -15,5 +15,8 @@
     android:layout_row="3"
     android:orientation="vertical"
     >
+<!--
+android.support.v4.view.ViewPager
+-->
 
-</LinearLayout>
+</RelativeLayout>

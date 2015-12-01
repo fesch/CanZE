@@ -38,8 +38,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -75,10 +78,11 @@ import lu.fisch.canze.fragments.MainFragment;
 import lu.fisch.canze.fragments.TechnicalFragment;
 import lu.fisch.canze.interfaces.BluetoothEvent;
 import lu.fisch.canze.interfaces.FieldListener;
+import lu.fisch.canze.ui.AppSectionsPagerAdapter;
 import lu.fisch.canze.widgets.WidgetView;
 
-public class MainActivity extends AppCompatActivity implements FieldListener {
-    public static final String TAG = "CanZE";
+public class MainActivity extends AppCompatActivity implements FieldListener, android.support.v7.app.ActionBar.TabListener {
+    public static final String TAG = "  CanZE";
 
     // SPP UUID service
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -345,6 +349,26 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
     }
 
     @Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+    }
+
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+    }
+
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+    }
+
+    /*
+    private ViewPager viewPager;
+    private AppSectionsPagerAdapter appSectionsPagerAdapter;
+    */
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         DebugLogger.getInstance().createNewLog();
 
@@ -360,6 +384,28 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*
+        // navigation bar
+        appSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        viewPager = (ViewPager) findViewById(R.id.main);
+        viewPager.setAdapter(appSectionsPagerAdapter);
+        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                actionBar.setSelectedNavigationItem(position);
+            }
+        });
+        for (int i = 0; i < appSectionsPagerAdapter.getCount(); i++) {
+            actionBar.addTab(
+                    actionBar.newTab()
+                            .setText(appSectionsPagerAdapter.getPageTitle(i))
+                            .setTabListener(MainActivity.this));
+        }
+        */
+
+
         // load the initial "main" fragment
         loadFragement(new MainFragment());
 
@@ -368,7 +414,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener {
 
 
         // tabs
-        final ActionBar actionBar = getSupportActionBar();
+        //final ActionBar actionBar = getSupportActionBar();
         // Specify that tabs should be displayed in the action bar.
 
         // open the database
