@@ -38,7 +38,7 @@ import lu.fisch.canze.activities.AlexandreActivity;
 public class AlexPagerAdapter extends FragmentPagerAdapter {
 
     private AlexandreActivity myPagerAdapter;
-    SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
+    SparseArray <Fragment> registeredFragments = new SparseArray<Fragment>();
 
     Context c;
 
