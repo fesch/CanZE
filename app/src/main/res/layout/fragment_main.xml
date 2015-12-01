@@ -76,7 +76,7 @@
                 android:layout_marginBottom="4dp"
                 android:text="Tyres"
                 android:id="@+id/buttonTyres"
-                android:drawableLeft="@mipmap/button_tyre"
+                android:drawableLeft="@mipmap/button_tire"
                 android:layout_column="0" />
             <Button
                 android:layout_width="0dp"
