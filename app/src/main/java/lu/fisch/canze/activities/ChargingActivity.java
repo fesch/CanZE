@@ -41,10 +41,11 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_SoC                              = "42e.0";          // user SOC, not raw
     public static final String SID_AvChargingPower                  = "427.40";
     public static final String SID_HvTemp                           = "42e.44";
-    public static final String SID_SOH                              = "658.33";
+//  public static final String SID_SOH                              = "658.33";
     public static final String SID_RangeEstimate                    = "654.42";
     public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
     public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
+    public static final String SID_SOH                              = "7ec.623206.24";
     double dcVolt       = 0; // holds the DC voltage, so we can calculate the power when the amps come in
 
     private ArrayList<Field> subscribedFields;
