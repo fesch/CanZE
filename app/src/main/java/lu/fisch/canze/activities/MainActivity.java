@@ -408,7 +408,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         appSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
         actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         viewPager = (ViewPager) findViewById(R.id.main);
         viewPager.setAdapter(appSectionsPagerAdapter);
         viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -582,7 +582,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             display.getSize(size);
             int width = size.x;
             int height = size.y;
-            if(width<400)
+            if(width<=480)
             {
                 yes="Yes";
                 no ="No";
