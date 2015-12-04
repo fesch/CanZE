@@ -84,7 +84,6 @@ public class FluenceKangooTempsActivity extends CanzeActivity implements FieldLi
             field.removeListener(this);
         }
         subscribedFields.clear();
-        MainActivity.device.clearFields();
     }
 
     @Override
