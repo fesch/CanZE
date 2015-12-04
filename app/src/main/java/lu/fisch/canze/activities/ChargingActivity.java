@@ -145,7 +145,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         if (field.getValue() >= 1023) {
                             tv.setText("---");
                         } else {
-                            tv.setText("" + field.getValue());
+                            tv.setText("" + Math.round(field.getValue()));
                         }
                         tv = null;
                         break;
