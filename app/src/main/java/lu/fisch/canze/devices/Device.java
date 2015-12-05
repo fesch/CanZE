@@ -254,6 +254,7 @@ public abstract class Device {
                 // return it's index in the global registered field array
                 if(field.isDue(referenceTime)) {
                     //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
+                    MainActivity.debug("Device: getNextField > applicationFields");
                     return field;
                 }
             }
@@ -273,12 +274,14 @@ public abstract class Device {
                 // return it's index in the global registered field array
                 if(field.isDue(referenceTime)) {
                     //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
+                    MainActivity.debug("Device: getNextField > activityFieldsScheduled");
                     return field;
                 }
             }
             if(activityFieldsAsFastAsPossible.size()>0)
             {
                 activityFieldIndex = (activityFieldIndex + 1) % activityFieldsAsFastAsPossible.size();
+                MainActivity.debug("Device: getNextField > activityFieldsAsFastAsPossible");
                 return activityFieldsAsFastAsPossible.get(activityFieldIndex);
             }
 
@@ -349,6 +352,7 @@ public abstract class Device {
         MainActivity.debug("Device: clearFields");
         synchronized (fields) {
             activityFieldsScheduled.clear();
+            activityFieldsAsFastAsPossible.clear();
             fields.clear();
             fields.addAll(applicationFields);
             //MainActivity.debug("cleared");
