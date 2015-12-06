@@ -139,6 +139,9 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                     case SID_HvTemp:
                         tv = (TextView) findViewById(R.id.textHvTemp);
                         break;
+                    case SID_SOH:
+                        tv = (TextView) findViewById(R.id.textSOH);
+                        break;
                     case SID_RangeEstimate:
                         tv = (TextView) findViewById(R.id.textKMA);
                         if (field.getValue() >= 1023) {
