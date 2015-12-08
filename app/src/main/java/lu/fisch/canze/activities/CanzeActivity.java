@@ -161,12 +161,13 @@ public class CanzeActivity extends AppCompatActivity {
                 for (int i = 0; i < widgets.size(); i++) {
                     final WidgetView wv = widgets.get(i);
 
-                    MainActivity.debug("Widget: "+wv.getDrawable().getTitle()+" ("+wv.getFieldSID()+")");
-
                     // connect widgets to fields
                     if (wv == null) {
-                        throw new ExceptionInInitializerError("Widget <" + wv.getId() + "> is NULL!");
+                        throw new ExceptionInInitializerError("CanzeActivity: initWidgets: Widget <" + i + "> is NULL!");
                     }
+
+                    MainActivity.debug("CanzeActivity: initWidgets: Widget: " + wv.getDrawable().getTitle() + " ("+wv.getFieldSID()+")");
+
 
                     /*String sid = wv.getFieldSID(); --> done in WidgetView
                     String[] sids = sid.split(",");
