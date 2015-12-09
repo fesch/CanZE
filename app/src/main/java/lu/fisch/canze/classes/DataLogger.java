@@ -43,6 +43,7 @@ public class DataLogger  implements FieldListener {
     // -------- Data Definitions copied from Driving Activity -- start ---
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
     // free data
+    public static final String SID_Consumption                          = "1fd.48"; //EVC
     public static final String SID_Pedal                                = "186.40"; //EVC
     public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
     public static final String SID_RealSpeed                            = "5d7.0";  //ESC-ABS
@@ -62,6 +63,14 @@ public class DataLogger  implements FieldListener {
     private double dcVolt                           = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     private int    odo                              = 0;
     private double realSpeed                        = 0;
+
+    private String var_SoC;
+    private String var_Pedal;
+    private String var_MeanEffectiveTorque;
+    private String var_Odometer;
+    private String var_realSpeed;
+    private String var_Consumption;
+    private String var_rangeInBat;
 
     private ArrayList<Field> subscribedFields;
     // -------- Data Definitions copied from Driving Activity -- end ---
@@ -166,10 +175,9 @@ public class DataLogger  implements FieldListener {
         @Override
         public void run() {
             // write data to file
-            String timestamp = "timestamp"; // sdf.format(sdf.format(Calendar.getInstance().getTime()));
-            String data = "Zeile";
+            Long tsLong = System.currentTimeMillis()/1000;
+            String timestamp = tsLong.toString();
             // String dataWithNewLine= sdf.format(Calendar.getInstance()) + data + System.getProperty("line.separator");
-            String dataWithNewLine=  timestamp + ";" + data + System.getProperty("line.separator");
 
             // if(!isCreated()) createNewLog();
 
@@ -181,6 +189,14 @@ public class DataLogger  implements FieldListener {
             //catch (IOException e) {
             //    e.printStackTrace();
             //}
+            String dataWithNewLine =  timestamp + ";" + var_SoC
+                    + ";" +  var_Pedal
+                    + ";" +  var_MeanEffectiveTorque
+                    + ";" +  var_Odometer
+                    + ";" +  var_realSpeed
+                    + ";" +  var_Consumption
+                    + ";" +  var_rangeInBat
+                    + System.getProperty("line.separator");
             log ( dataWithNewLine );
             handler.postDelayed(this, intervall);
         }
@@ -273,6 +289,7 @@ public class DataLogger  implements FieldListener {
 
         // Make sure to add ISO-TP listeners grouped by ID
 
+        addListener(SID_Consumption, 2000);
         addListener(SID_Pedal, 2000);
         addListener(SID_MeanEffectiveTorque, 2000);
         addListener(SID_DriverBrakeWheel_Torque_Request, 2000);
@@ -296,35 +313,39 @@ public class DataLogger  implements FieldListener {
                 String fieldId = field.getSID();
                 double fieldValue;
 
-        Long tsLong = System.currentTimeMillis()/1000;
-        String timestamp = tsLong.toString();
+        // Long tsLong = System.currentTimeMillis()/1000;
+        // String timestamp = tsLong.toString();
 
         // String timestamp = "timestamp"; // sdf.format(sdf.format(Calendar.getInstance().getTime()));
         // System.getProperty("line.separator");
 
-        log ( timestamp + ";" + fieldId + ";" + field.getPrintValue() );
+        // log ( timestamp + ";" + fieldId + ";" + field.getPrintValue() );
                 // get the text field
                 switch (fieldId) {
                     case SID_SoC:
 //                  case SID_EVC_SoC:
-                        fieldValue = field.getValue();
-                        log ( "...SID_SoC: " + fieldValue );
+                        var_SoC = field.getPrintValue();
+                        // log ( "...SID_SoC: " + fieldValue );
                         break;
                     case SID_Pedal:
 //                  case SID_EVC_Pedal:
+                        var_Pedal =  field.getPrintValue();
                         // pb.setProgress((int) field.getValue());
                         break;
                     case SID_MeanEffectiveTorque:
+                        var_MeanEffectiveTorque = field.getPrintValue();
                         // pb.setProgress((int) field.getValue());
                         break;
                     case SID_EVC_Odometer:
                         odo = (int ) field.getValue();
                         //odo = (int) Utils.kmOrMiles(field.getValue());
+                        var_Odometer = "" + odo;
                         break;
                     case SID_RealSpeed:
 //                  case SID_EVC_RealSpeed:
                         //realSpeed = (Math.round(Utils.kmOrMiles(field.getValue()) * 10.0) / 10.0);
                         realSpeed = (Math.round(field.getValue() * 10.0) / 10.0);
+                        var_realSpeed = "" + realSpeed;
                         break;
                     //case SID_PEB_Torque:
                     //    tv = (TextView) findViewById(R.id.textTorque);
@@ -337,9 +358,17 @@ public class DataLogger  implements FieldListener {
                         // calculate DC power
                         double dcPwr = Math.round(dcVolt * field.getValue() / 100.0) / 10.0;
                         break;
+                    case SID_Consumption:
+                        dcPwr = field.getValue();
+                        if (realSpeed > 5) {
+                            var_Consumption = "" + (Math.round(1000.0 * dcPwr / realSpeed) / 10.0);
+                        } else {
+                            var_Consumption = "-";
+                        }
+                        break;
                     case SID_RangeEstimate:
                         //int rangeInBat = (int) Utils.kmOrMiles(field.getValue());
-                        int rangeInBat = (int) field.getValue();
+                        var_rangeInBat = "" + (int) field.getValue();
                         break;
                     case SID_DriverBrakeWheel_Torque_Request:
                         // driverBrakeWheel_Torque_Request = field.getValue();
