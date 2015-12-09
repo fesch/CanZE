@@ -745,7 +745,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     protected void onDestroy() {
         debug("MainActivity: onDestroy");
 
-        dataLogger.onDestroy(); // clean up
+        dataLogger.destroy(); // clean up
 
         if(device!=null) {
             // stop the device nicely

@@ -80,7 +80,6 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
             field.removeListener(this);
         }
         subscribedFields.clear();
-        MainActivity.device.clearFields();
     }
 
     @Override

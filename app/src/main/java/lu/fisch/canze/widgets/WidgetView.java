@@ -180,7 +180,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     for(int s=0; s<sids.length; s++) {
                         Field field = MainActivity.fields.getBySID(sids[s]);
                         if (field == null) {
-                            MainActivity.debug("!!! >> Field with following SID <" + sids[s] + "> not found!");
+                            MainActivity.debug("WidgetView: init: Field with SID <" + sids[s] + "> (index <" + s + "> in <" + R.styleable.WidgetView_text + "> not found!");
                         }
                         else {
                             // add field to list of registered sids for this widget
@@ -202,7 +202,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                 }
                 else
                 {
-                    MainActivity.debug("WidgetIndex "+widgetIndex+" is wrong!? Not registered in <WidgetView>?");
+                    MainActivity.debug("WidgetView: init: WidgetIndex " + widgetIndex + " is wrong!? Not registered in <WidgetView>?");
                 }
             }
             catch(Exception e)

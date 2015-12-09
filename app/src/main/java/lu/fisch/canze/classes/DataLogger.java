@@ -101,7 +101,7 @@ public class DataLogger  implements FieldListener {
 
     public boolean activate ( boolean state ) {
         boolean result = state;
-        debug ( "DataLogger: activate req " + state );
+        debug ( "DataLogger: activate > request = " + state );
 
         if ( activated != state) {
             if (state) { // now need to activate, open file, start timer
@@ -114,7 +114,7 @@ public class DataLogger  implements FieldListener {
                 // debug("DataLogger: stop ");
             }
         }
-        debug ( "DataLogger: activate return " + result );
+        debug ( "DataLogger: activate > return " + result );
        return result;
     }
 
@@ -252,16 +252,19 @@ public class DataLogger  implements FieldListener {
         return result;
     }
 
+    // Bob: Useless
+    /*
     // @Override
     // protected void onCreate(Bundle savedInstanceState) {
     //    super.onCreate(savedInstanceState);
-    public void onCreate() {
+    public void create() {
         // start timer in 400ms
         boolean result = start();
         // handler.postDelayed(runnable, 400 );
     }
+    */
 
-    public void onDestroy() {
+    public void destroy() {
         handler.removeCallbacks(runnable);
         boolean result = stop();
     }
@@ -383,13 +386,19 @@ public class DataLogger  implements FieldListener {
 
     }
 
+    // Bob: This is no activity ...
+    /*
     public void onPause() {
         onDestroy();
     }
+    */
 
+    // Bob: This is no activity ...
+    /*
     public void onResume() {
         onCreate();
     }
+    */
 
 
     // only for test and trace purposes - delete later on

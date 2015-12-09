@@ -41,7 +41,8 @@ public class WidgetActivity extends CanzeActivity {
         wv.setClickable(false);
         if(WidgetView.selectedDrawable!=null) {
             wv.setDrawable(WidgetView.selectedDrawable);
-            wv.setFieldSID(WidgetView.selectedDrawable.getField().getSID());
+            if(WidgetView.selectedDrawable.getField()!=null)
+                wv.setFieldSID(WidgetView.selectedDrawable.getField().getSID());
             setTitle(WidgetView.selectedDrawable.getTitle());
         }
 
