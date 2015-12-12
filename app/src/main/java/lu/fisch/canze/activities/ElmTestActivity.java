@@ -81,7 +81,7 @@ public class ElmTestActivity extends CanzeActivity {
                 });
 
                 final Button btnQuery = (Button) findViewById(R.id.elmQuery);
-                btnTest.setOnClickListener(new View.OnClickListener() {
+                btnQuery.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         new Thread(new Runnable() {
