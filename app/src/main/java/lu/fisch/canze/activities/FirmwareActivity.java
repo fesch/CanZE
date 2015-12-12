@@ -83,7 +83,8 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
         }
 
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
-            if (ecu.getFromId() != 0) {
+            // ensure we are only selecting true (as in physical boxes) and reachable (as in, i.e. skipping R-LINK) ECU's
+            if (ecu.getFromId() > 0 && ecu.getFromId() < 0x800) {
                 TextView tv;
                 tv = (TextView) findViewById(getResources().getIdentifier("lEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase(), "id", getPackageName()));
                 if (tv != null) {
