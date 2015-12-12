@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
@@ -31,7 +32,8 @@
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
             android:minHeight="25dp"
-            android:max="100"
+            android:max="125"
+            android:progress="10"
             android:progressDrawable="@drawable/progressbar_canze"
             />
 
@@ -39,30 +41,77 @@
             android:id="@+id/label_motor_torque"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_motor_torque"
+            android:text="@string/label_wheel_torque"
             android:layout_marginTop="10dp"
             android:textColor="#000"
             />
-        <ProgressBar
-            android:id="@+id/MeanEffectiveTorque"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:minHeight="25dp"
-            android:max="256"
-            android:progressDrawable="@drawable/progressbar_canze"
-            />
-<!--
-        <TextView
-            android:id="@+id/HeaderDriving"
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/header_Driving"
-            android:textColor="#000"
-            android:layout_marginTop="10dp"
-            />
--->
+            android:orientation="horizontal"
+            android:weightSum="3"
+            >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                >
+
+                <ProgressBar
+                    android:id="@+id/pb_driver_torque_request"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:minHeight="25dp"
+                    android:max="1536"
+                    android:progressDrawable="@drawable/progressbar_canze_decel"
+                    />
+
+                <ProgressBar
+                    android:id="@+id/MaxBreakTorque"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="9dp"
+                    android:paddingTop="2dp"
+                    android:layout_gravity="center_horizontal"
+                    android:max="1536"
+                    android:progress="10"
+                    android:progressDrawable="@drawable/progressbar_canze_decel_aim"
+                    />
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/MeanEffectiveAccTorque"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:minHeight="25dp"
+                android:max="2048"
+                android:progress="0"
+                android:layout_weight="2"
+                android:progressDrawable="@drawable/progressbar_canze_accel"
+                />
+
+        </LinearLayout>
+
+
+
+        <!--
+                <TextView
+                    android:id="@+id/HeaderDriving"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/header_Driving"
+                    android:textColor="#000"
+                    android:layout_marginTop="10dp"
+                    />
+        -->
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,7 +182,6 @@
 
             <TableRow>
                 <TextView
-                    android:id="@+id/LabelDistAVailAtDest"
                     android:text="@string/label_DistAvailAtDest"
                     android:textSize="24sp"
                     android:layout_weight="2"
@@ -150,7 +198,6 @@
 
             <TableRow>
                 <TextView
-                    android:id="@+id/LabelSOC"
                     android:text="@string/label_SOC"
                     android:layout_weight="2"
                     />
@@ -162,41 +209,7 @@
                     />
             </TableRow>
 
-            <TableRow>
-                <TextView
-                    android:id="@+id/LabelMaxCharge"
-                    android:text="@string/label_max_charge"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_max_charge"
-                    android:text="@string/default_max_charge"
-                    android:gravity="right"
-                    android:layout_weight="2"
-                    />
-            </TableRow>
-
         </TableLayout>
-
-
-        <TextView
-            android:id="@+id/label_friction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_friction"
-            android:layout_marginTop="10dp"
-            android:textColor="#000"
-            />
-        <ProgressBar
-            android:id="@+id/FrictionBreaking"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:minHeight="25dp"
-            android:max="16384"
-            android:progressDrawable="@drawable/progressbar_canze_red"
-            />
 
     </LinearLayout>
 
@@ -210,12 +223,12 @@
         <TableRow>
             <TextView
                 android:text="@string/label_debug"
-            />
+                />
             <TextView
                 android:id="@+id/textDebug"
                 android:paddingLeft="8dp"
                 android:text="@string/default_debug"
-            />
+                />
         </TableRow>
 
     </TableLayout>
