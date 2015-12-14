@@ -38,10 +38,11 @@ import lu.fisch.canze.interfaces.FieldListener;
 public class ChargingTechActivity extends CanzeActivity implements FieldListener {
 
     public static final String SID_MaxCharge                        = "7bb.6101.336";
-    public static final String SID_ACPilot                          = "42e.38";
+    //public static final String SID_ACPilot                          = "42e.38";
     public static final String SID_SoC                              = "42e.0";          // user SOC, not raw
 //  public static final String SID_EnergyToFull                     = "42e.56";
     public static final String SID_AvChargingPower                  = "427.40";
+    public static final String SID_ACPilot                          = "42e.38";
     public static final String SID_AvEnergy                         = "427.49";
 
     public static final String SID_TimeToFull                       = "654.32";
@@ -119,7 +120,9 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addListener(SID_TimeToFull);
         addListener(SID_PlugConnected);
         addListener(SID_SoC);
-        if (MainActivity.car==MainActivity.CAR_ZOE) addListener(SID_AvChargingPower);
+        if (MainActivity.car==MainActivity.CAR_ZOE) {
+            addListener(SID_AvChargingPower);
+        }
         addListener(SID_AvEnergy);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
@@ -156,9 +159,16 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                     case SID_ACPilot:
                         // save pilot amps
                         pilot = field.getValue();
+                        if (MainActivity.car != MainActivity.CAR_ZOE) { // for FluKan, aprocimate pgases (always 1) and AvChPwr (amps * 0.225)
+                            double avChPwr = (double) Math.round(pilot * 2.25) / 10.0;
+                            tv = (TextView) findViewById(R.id.textPhases);
+                            tv.setText("1");
+                            tv = (TextView) findViewById(R.id.textAvChPwr);
+                            tv.setText("" + (avChPwr));
+                        }
                         // continue
                         tv = (TextView) findViewById(R.id.text_max_pilot);
-                        if (chargingStatus != 3 && MainActivity.car!=MainActivity.CAR_ZOE) {
+                        if (chargingStatus != 3 && MainActivity.car != MainActivity.CAR_ZOE) {
                             tv.setText("-");
                             tv = null;
                         }
@@ -200,7 +210,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         // continue
                         tv = (TextView) findViewById(R.id.textAmps);
                         break;
-                    case SID_AvChargingPower:
+                    case SID_AvChargingPower: // won't be called for FluKan
                         double avChPwr = field.getValue();
                         tv = (TextView) findViewById(R.id.textPhases);
                         if (pilot == 0) {
