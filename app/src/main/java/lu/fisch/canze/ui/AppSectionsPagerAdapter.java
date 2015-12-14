@@ -21,9 +21,9 @@ public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
     {
         super(fm);
 
-        fragments.add(new MainFragment());
-        fragments.add(new TechnicalFragment());
-        fragments.add(new ExperimentalFragment());
+        fragments.add(new MainFragment());          // 0
+        fragments.add(new TechnicalFragment());     // 1
+        fragments.add(new ExperimentalFragment());  // 2
     }
 
     @Override
