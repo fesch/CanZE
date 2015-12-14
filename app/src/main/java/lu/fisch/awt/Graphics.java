@@ -186,7 +186,7 @@ public class Graphics
 	public void fillPolygon(Polygon p)
 	{
 		paint.setColor(color.getAndroidColor());
-		paint.setStyle(Paint.Style.FILL);
+		paint.setStyle(Paint.Style.FILL_AND_STROKE);
 
 		Path path = new Path();
 		path.moveTo(p.get(p.size()-1).x,p.get(p.size()-1).y);

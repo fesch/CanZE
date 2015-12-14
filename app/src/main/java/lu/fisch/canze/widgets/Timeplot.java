@@ -33,6 +33,7 @@ import java.util.HashMap;
 
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
+import lu.fisch.awt.Polygon;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
@@ -212,16 +213,42 @@ public class Timeplot extends Drawable {
                             values.remove(i);
                         } else {
                             double my = graphHeight - (tp.value - getMin()) * h;
+                            double zy = graphHeight - (0 - getMin()) * h;
                             int rayon = 2;
-                            g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon,
-                                    getY() + (int) my - rayon,
-                                    2 * rayon + 1,
-                                    2 * rayon + 1);
-                            if (i < values.size() - 1) {
-                                g.drawLine(getX() + getWidth() - barWidth + (int) lastX,
-                                        getY() + (int) lastY,
+                            if(getOptions().getOption(sid)!=null &&
+                                    getOptions().getOption(sid).contains("full")) {
+                                g.drawLine(getX() + getWidth() - barWidth + (int) mx,
+                                        getY() + (int) my,
                                         getX() + getWidth() - barWidth + (int) mx,
-                                        getY() + (int) my);
+                                        getY() + (int) zy);
+                            }
+                            else {
+                                g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon,
+                                        getY() + (int) my - rayon,
+                                        2 * rayon + 1,
+                                        2 * rayon + 1);
+                            }
+                            if (i < values.size() - 1) {
+                                if(getOptions().getOption(sid)!=null &&
+                                        getOptions().getOption(sid).contains("full")) {
+                                    Polygon p = new Polygon();
+                                    p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
+                                            getY() + (int) lastY);
+                                    p.addPoint(getX() + getWidth() - barWidth + (int) mx - rayon,
+                                            getY() + (int) my);
+                                    p.addPoint(getX() + getWidth() - barWidth + (int) mx - rayon,
+                                            (int)(getY() + zy));
+                                    p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
+                                            (int)(getY() + zy));
+                                    g.fillPolygon(p);
+                                }
+                                else
+                                {
+                                    g.drawLine(getX() + getWidth() - barWidth + (int) lastX,
+                                            getY() + (int) lastY,
+                                            getX() + getWidth() - barWidth + (int) mx,
+                                            getY() + (int) my);
+                                }
                             }
                             lastX = mx;
                             lastY = my;
@@ -292,6 +319,9 @@ public class Timeplot extends Drawable {
             }
         }
 
+        // black border
+        g.setColor(getForeground());
+        g.drawRect(x, y, width, height);
     }
 
     @Override
