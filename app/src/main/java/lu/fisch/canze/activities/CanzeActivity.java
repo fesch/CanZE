@@ -61,7 +61,7 @@ public class CanzeActivity extends AppCompatActivity {
             if(!BluetoothManager.getInstance().isConnected())
                 // restart Bluetooth
                 BluetoothManager.getInstance().connect();
-        MainActivity.debug("CanzeActivity: onCreate");
+        MainActivity.debug("CanzeActivity: onCreate ("+this.getClass().getSimpleName()+")");
         if(!widgetView) {
             // register all fields
             // --> not needed as these frames are now application bound and will not be cleared anyway

@@ -21,6 +21,10 @@
 
 package lu.fisch.canze.widgets;
 
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Shader;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -216,7 +220,7 @@ public class Timeplot extends Drawable {
                             double zy = graphHeight - (0 - getMin()) * h;
                             int rayon = 2;
                             if(getOptions().getOption(sid)!=null &&
-                                    getOptions().getOption(sid).contains("full")) {
+                                    !getOptions().getOption(sid).isEmpty()) {
                                 g.drawLine(getX() + getWidth() - barWidth + (int) mx,
                                         getY() + (int) my,
                                         getX() + getWidth() - barWidth + (int) mx,
@@ -234,13 +238,39 @@ public class Timeplot extends Drawable {
                                     Polygon p = new Polygon();
                                     p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
                                             getY() + (int) lastY);
-                                    p.addPoint(getX() + getWidth() - barWidth + (int) mx - rayon,
+                                    p.addPoint(getX() + getWidth() - barWidth + (int) mx,
                                             getY() + (int) my);
-                                    p.addPoint(getX() + getWidth() - barWidth + (int) mx - rayon,
-                                            (int)(getY() + zy));
+                                    p.addPoint(getX() + getWidth() - barWidth + (int) mx,
+                                            (int) (getY() + zy));
                                     p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
-                                            (int)(getY() + zy));
+                                            (int) (getY() + zy));
                                     g.fillPolygon(p);
+                                }
+                                else if(getOptions().getOption(sid)!=null &&
+                                        getOptions().getOption(sid).contains("gradient")) {
+
+                                    if(i<values.size() && values.get(i+1)!=null) {
+                                        Polygon p = new Polygon();
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
+                                                getY() + (int) lastY);
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) mx,
+                                                getY() + (int) my);
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) mx,
+                                                (int) (getY() + zy));
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
+                                                (int) (getY() + zy));
+
+                                        if ((values.get(i + 1).value > 0 && tp.value > 0) || (values.get(i + 1).value < 0 && tp.value < 0)) {
+                                            if (tp.value > 0)
+                                                g.fillPolygon(p, 0, (int) zy, 0, 0, colorRanges.getColors(sid, tp.value > 0), colorRanges.getSpacings(sid, 0, max, tp.value > 0));
+                                            else
+                                                g.fillPolygon(p, 0, graphHeight, 0, (int) zy, colorRanges.getColors(sid, tp.value > 0), colorRanges.getSpacings(sid, min, 0, tp.value > 0));
+                                        }
+                                        else
+                                        {
+                                            g.fillPolygon(p, 0, graphHeight, 0, 0, colorRanges.getColors(sid), colorRanges.getSpacings(sid, min, max));
+                                        }
+                                    }
                                 }
                                 else
                                 {
