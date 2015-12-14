@@ -22,10 +22,12 @@
 package lu.fisch.awt;
 
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.text.style.TextAppearanceSpan;
 
 public class Graphics 
@@ -198,7 +200,31 @@ public class Graphics
 		canvas.drawPath(path, paint);
 	}
 
-    public void rotate(float degrees, float cx, float cy)
+	public void fillPolygon(Polygon p, int x1, int y1, int x2, int y2, int[] colors, float[] spacings)
+	{
+		paint.setColor(color.getAndroidColor());
+		paint.setStyle(Paint.Style.FILL_AND_STROKE);
+
+		LinearGradient lg = new LinearGradient(x1, y1, x2, y2,
+				colors,
+				spacings,
+				Shader.TileMode.REPEAT);
+		paint.setShader(lg);
+
+		Path path = new Path();
+		path.moveTo(p.get(p.size()-1).x,p.get(p.size()-1).y);
+		for(int i=0; i<p.size(); i++)
+		{
+			Point from = p.get(i);
+			path.lineTo(from.x,from.y);
+		}
+		canvas.drawPath(path, paint);
+
+        paint.setShader(null);
+	}
+
+
+	public void rotate(float degrees, float cx, float cy)
     {
         canvas.rotate(degrees,cx,cy);
     }
@@ -239,4 +265,7 @@ public class Graphics
 		return bounds.height();
 	}
 
+	public Paint getPaint() {
+		return paint;
+	}
 }

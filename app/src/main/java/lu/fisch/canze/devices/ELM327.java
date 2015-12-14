@@ -192,7 +192,7 @@ public class ELM327 extends Device {
         }
 
         if (response.trim().equals("")) {
-            lastInitProblem = "ELM is not responding";
+            lastInitProblem = "ELM is not responding (toughness = "+toughness+")";
             if (timeoutLogLevel >= 1) MainActivity.toast(lastInitProblem);
             return false;
         }
