@@ -45,6 +45,7 @@ import lu.fisch.awt.Graphics;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.classes.ColorRanges;
 import lu.fisch.canze.classes.Intervals;
+import lu.fisch.canze.classes.Options;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.R;
@@ -174,6 +175,10 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     String intervalJson =attributes.getString(R.styleable.WidgetView_intervals);
                     if(intervalJson!=null && !intervalJson.trim().isEmpty())
                         drawable.setIntervals(new Intervals(intervalJson.replace("'", "\"")));
+
+                    String optionsJson =attributes.getString(R.styleable.WidgetView_options);
+                    if(optionsJson!=null && !optionsJson.trim().isEmpty())
+                        drawable.setOptions(new Options(optionsJson.replace("'", "\"")));
 
                     fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
                     String[] sids = fieldSID.split(",");

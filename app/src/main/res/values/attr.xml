@@ -20,6 +20,7 @@
             <enum name="timeplot" value="6"/>
             <enum name="bargraph" value="7"/>
         </attr>
+        <attr name="options" format="string" />
         <attr name="intervals" format="string" />
         <attr name="colorRanges" format="string"/>
         <attr name="foregroundColor" format="string"/>
