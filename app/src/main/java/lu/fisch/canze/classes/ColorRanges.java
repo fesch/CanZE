@@ -105,8 +105,12 @@ public class ColorRanges {
                             (positive && (colorRange.to>0 || colorRange.from>0))
                                     ||
                                     (!positive && (colorRange.to<0 || colorRange.from<0))
-                    ))
-                values.add(colorRange.to);
+                    )) {
+                if(colorRange.from>0 && colorRange.to>0)
+                    values.add(colorRange.from);
+                else
+                    values.add(colorRange.to);
+            }
         }
         if((positive && max>0) || (!positive && max<0))
             values.add(max);
@@ -129,7 +133,12 @@ public class ColorRanges {
         {
             ColorRange colorRange = colorRanges.get(i);
             if (colorRange.sid.equals(sid))
-                values.add(colorRange.to);
+            {
+                if(colorRange.from>0 && colorRange.to>0)
+                    values.add(colorRange.from);
+                else
+                    values.add(colorRange.to);
+            }
         }
         values.add(max);
 
