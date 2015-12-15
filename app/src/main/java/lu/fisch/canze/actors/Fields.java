@@ -874,6 +874,7 @@ public class Fields implements MessageListener {
                         +"0x7bb,348,367,0.0001,0,4,Ah,0x2101,0x6101,1\n" // Ah of the battery
                         +"0x7bb,316,335,0.0001,0,4,%,0x2101,0x6101,1\n" // Real State of Charge
                         +"0x7bb,336,351,0.01,0,2,kW,0x2101,0x6101,2\n" // Maximum battery input power
+                        +"0x7bb,56,71,0.1,0,1,°C,0x2103,0x6103,1\n" // Mean compartment temp
                         +"0x7bb,16,31,1,0,0,stravinsky1124,0x2104,0x6104,2\n" // Module 1 raw NTC
                         +"0x7bb,32,39,1,40,0,°C,0x2104,0x6104,2\n" // Cell 1 Temperature
                         +"0x7bb,40,55,1,0,0,,0x2104,0x6104,2\n" // Module 2 raw NTC
