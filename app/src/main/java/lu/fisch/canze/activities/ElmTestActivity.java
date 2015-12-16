@@ -54,7 +54,7 @@ public class ElmTestActivity extends CanzeActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                appendResult("\n\nPlease wait while the poller thread is stopped...\n");
+                appendResult("\n\nPlease wait while the poller thread is stopped...");
 
                 if (MainActivity.device != null){
                     // stop the poller thread
@@ -81,7 +81,7 @@ public class ElmTestActivity extends CanzeActivity {
                 });
 
                 final Button btnQuery = (Button) findViewById(R.id.elmQuery);
-                btnTest.setOnClickListener(new View.OnClickListener() {
+                btnQuery.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         new Thread(new Runnable() {
@@ -93,7 +93,7 @@ public class ElmTestActivity extends CanzeActivity {
                     }
                 });
 
-                appendResult("\nReady");
+                appendResult("\nPoller is stopped. Ready for Test and Query");
             }
         }).start();
     }

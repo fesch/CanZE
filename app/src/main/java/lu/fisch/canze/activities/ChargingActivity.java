@@ -40,8 +40,11 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_MaxCharge                        = "7bb.6101.336";
     public static final String SID_SoC                              = "42e.0";          // user SOC, not raw
     public static final String SID_AvChargingPower                  = "427.40";
+    public static final String SID_ACPilot                          = "42e.38";
     public static final String SID_HvTemp                           = "42e.44";
-//  public static final String SID_SOH                              = "658.33";
+    public static final String SID_HvTempFluKan                     = "7bb.6103.56";
+
+    //  public static final String SID_SOH                          = "658.33";
     public static final String SID_RangeEstimate                    = "654.42";
     public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
     public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
@@ -101,12 +104,17 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
 
         addListener(SID_MaxCharge);
         addListener(SID_SoC);
-        addListener(SID_HvTemp);
-        if(MainActivity.car==MainActivity.CAR_ZOE) addListener(SID_AvChargingPower);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
         addListener(SID_TractionBatteryVoltage);
         addListener(SID_TractionBatteryCurrent);
+        if (MainActivity.car==MainActivity.CAR_ZOE) {
+            addListener(SID_AvChargingPower);
+            addListener(SID_HvTemp);
+        } else { //FLuKan
+            addListener(SID_HvTempFluKan);
+            addListener(SID_ACPilot);
+        }
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -167,6 +175,10 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_AvChargingPower:
                         avChPwr = field.getValue();
+                        tv = (TextView) findViewById(R.id.textAvChPwr);
+                        break;
+                    case SID_ACPilot:
+                        avChPwr = field.getValue() * 0.225;
                         tv = (TextView) findViewById(R.id.textAvChPwr);
                         break;
                 }

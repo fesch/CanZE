@@ -51,7 +51,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
 //  private static final int [] kangooVersions  = {0x0201, 0x1011, 0x7505, 0x0205,      1,      1, 0x003d,      1,      1,      1, 0x0003,      1,      1, 0xd300, 0x5c0a,      1};
 //  private static final int [] x10Versions     = zoeVersions;
     private static final int [] zoeVersions     = {0x0790, 0x0337, 0x0000, 0x0300, 0x0470, 0x2420, 0x0504, 0x0800, 0x0e43, 0x0c04, 0x0000, 0x0515, 0x0002, 0x0000, 0x0000, 0x0000};
-    private static final int [] fluenceVersions = {0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
+    private static final int [] fluenceVersions = {0x0830, 0x0000, 0x0000, 0x1668, 0x0000, 0x0400, 0x0400, 0x0000, 0x4009, 0x0000, 0x0000, 0xe504, 0x0000, 0x3066, 0x0000, 0x0000};
     private static final int [] kangooVersions  = {0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
     private static final int [] x10Versions     = zoeVersions;
 
@@ -83,19 +83,20 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
         }
 
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
-            if (ecu.getFromId() != 0) {
+            // ensure we are only selecting true (as in physical boxes) and reachable (as in, i.e. skipping R-LINK) ECU's
+            if (ecu.getFromId() > 0 && ecu.getFromId() < 0x800) {
                 TextView tv;
                 tv = (TextView) findViewById(getResources().getIdentifier("lEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase(), "id", getPackageName()));
                 if (tv != null) {
                     tv.setText(ecu.getMnemonic() + " (" + ecu.getName() + ")");
                 } else {
-                    MainActivity.toast("No ecu label for lEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase());
+                    MainActivity.toast("No view with id 'lEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase() + "'");
                 }
                 tv = (TextView) findViewById(getResources().getIdentifier("vEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase(), "id", getPackageName()));
                 if (tv != null) {
                     tv.setText("-");
                 } else {
-                    MainActivity.toast("No ecu label for lEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase());
+                    MainActivity.toast("No view with id 'vEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase() + "'");
                 }
             }
         }

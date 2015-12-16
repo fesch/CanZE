@@ -40,6 +40,7 @@ import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.classes.ColorRanges;
 import lu.fisch.canze.classes.Intervals;
+import lu.fisch.canze.classes.Options;
 import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 import lu.fisch.canze.interfaces.FieldListener;
@@ -73,6 +74,7 @@ public abstract class Drawable implements FieldListener {
     protected ColorRanges colorRanges = new ColorRanges();
 
     protected Intervals intervals = new Intervals();
+    protected Options options = new Options();
 
 
     public Drawable()
@@ -299,5 +301,13 @@ public abstract class Drawable implements FieldListener {
     public void setIntervals(Intervals intervals) {
         this.intervals = intervals;
 
+    }
+
+    public Options getOptions() {
+        return options;
+    }
+
+    public void setOptions(Options options) {
+        this.options = options;
     }
 }

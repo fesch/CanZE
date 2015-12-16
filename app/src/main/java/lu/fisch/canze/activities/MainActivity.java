@@ -325,10 +325,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 actionBar.setIcon(R.mipmap.ic_launcher);
                 break;
             case 1:
-                actionBar.setIcon(R.mipmap.fragement_experimental);
+                actionBar.setIcon(R.mipmap.fragement_technical);
                 break;
             case 2:
-                actionBar.setIcon(R.mipmap.fragement_technical);
+                actionBar.setIcon(R.mipmap.fragement_experimental);
                 break;
             default:
                 break;
@@ -877,22 +877,24 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 return true;
             }
         }
+        // see AppSectionsPagerAdapter for the right sequence
         else if (id == R.id.action_main) {
             //loadFragement(new MainFragment());
             viewPager.setCurrentItem(0,true);
             updateActionBar();
 
         }
-        else if (id == R.id.action_experimental) {
-            //loadFragement(new ExperimentalFragment());
+        else if (id == R.id.action_technical) {
+            //loadFragement(new TechnicalFragment());
             viewPager.setCurrentItem(1,true);
             updateActionBar();
 
         }
-        else if (id == R.id.action_technical) {
-            //loadFragement(new TechnicalFragment());
+        else if (id == R.id.action_experimental) {
+            //loadFragement(new ExperimentalFragment());
             viewPager.setCurrentItem(2,true);
             updateActionBar();
+
         }
         //else if (id == R.id.action_bluetooth) {
         //}

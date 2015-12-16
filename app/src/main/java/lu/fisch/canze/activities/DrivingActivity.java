@@ -50,11 +50,13 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_Consumption                          = "1fd.48"; //EVC
     public static final String SID_Pedal                                = "186.40"; //EVC
     public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
+    public static final String SID_Coasting_Torque                      = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
     public static final String SID_RealSpeed                            = "5d7.0";  //ESC-ABS
     public static final String SID_SoC                                  = "654.25"; //EVC
     public static final String SID_RangeEstimate                        = "654.42"; //EVC
     public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
     public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; //UBP 10ms
+    public static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //UBP 10ms
 
     // ISO-TP data
     public static final String SID_MaxCharge                            = "7bb.6101.336";
@@ -70,6 +72,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     private int    destOdo                          = 0; // have to init from save file
     private double realSpeed                        = 0;
     private double driverBrakeWheel_Torque_Request  = 0;
+    private double coasting_Torque                  = 0;
 
     private ArrayList<Field> subscribedFields;
 
@@ -237,10 +240,12 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         addListener(SID_MeanEffectiveTorque, 0);
         addListener(SID_DriverBrakeWheel_Torque_Request, 0);
         addListener(SID_ElecBrakeWheelsTorqueApplied, 0);
+        addListener(SID_Coasting_Torque, 0);
+        addListener(SID_TotalPotentialResistiveWheelsTorque, 7200);
         addListener(SID_RealSpeed, 0);
-        addListener(SID_SoC, 3600);
-        addListener(SID_RangeEstimate, 3600);
-        addListener(SID_MaxCharge,6000);
+        addListener(SID_SoC, 7200);
+        addListener(SID_RangeEstimate, 7200);
+        // addListener(SID_MaxCharge,6000);
 
         //addListener(SID_EVC_SoC);
         addListener(SID_EVC_Odometer, 6000);
@@ -275,8 +280,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         pb.setProgress((int) field.getValue());
                         break;
                     case SID_MeanEffectiveTorque:
-                        pb = (ProgressBar) findViewById(R.id.MeanEffectiveTorque);
-                        pb.setProgress((int) field.getValue());
+                        pb = (ProgressBar) findViewById(R.id.MeanEffectiveAccTorque);
+                        pb.setProgress((int) (field.getValue() * 9.3)); // --> translate from motor torque to wheel torque
                         break;
                     case SID_EVC_Odometer:
                         odo = (int ) field.getValue();
@@ -329,16 +334,31 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         }
                         tv = null;
                         break;
+
+                    case SID_Coasting_Torque:
+                        coasting_Torque = field.getValue() * 9.3; // it seems this torque is given in motor torque, not in wheel torque. Maybe another adjustment by a factor 05 is needed (two wheels)
+                        break;
+
+                    case SID_TotalPotentialResistiveWheelsTorque:
+                        int tprwt = - ((int) field.getValue());
+                        pb = (ProgressBar) findViewById(R.id.MaxBreakTorque);
+                        if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 10);
+                        tv = null; // (TextView) findViewById(R.id.textTPRWT);
+                        break;
+
                     case SID_DriverBrakeWheel_Torque_Request:
-                        driverBrakeWheel_Torque_Request = field.getValue();
+                        driverBrakeWheel_Torque_Request = field.getValue() + coasting_Torque;
+                        pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
+                        if (pb != null) pb.setProgress((int) driverBrakeWheel_Torque_Request);
                         tv = null;
                         break;
-                    case SID_ElecBrakeWheelsTorqueApplied:
-                        double frictionBrakeTorque = driverBrakeWheel_Torque_Request - field.getValue();
-                        // a fair full red bar is estimated @ 1000 Nm
-                        pb = (ProgressBar) findViewById(R.id.FrictionBreaking);
-                        pb.setProgress((int) (frictionBrakeTorque * realSpeed));
-                        break;
+
+//                    case SID_ElecBrakeWheelsTorqueApplied:
+//                        double frictionBrakeTorque = driverBrakeWheel_Torque_Request - field.getValue();
+//                        // a fair full red bar is estimated @ 1000 Nm
+//                        pb = (ProgressBar) findViewById(R.id.FrictionBreaking);
+//                        pb.setProgress((int) (frictionBrakeTorque * realSpeed));
+//                        break;
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {

@@ -55,6 +55,104 @@ public class ColorRanges {
         return defaultColor;
     }
 
+    public int[] getColors(String sid, boolean positive)
+    {
+        ArrayList<Integer> colors = new ArrayList<>();
+        for(int i=0; i<colorRanges.size(); i++)
+        {
+            ColorRange colorRange = colorRanges.get(i);
+            if (colorRange.sid.equals(sid) &&
+                    (
+                            (positive && (colorRange.to>0 || colorRange.from>0))
+                                    ||
+                                    (!positive && (colorRange.to<0 || colorRange.from<0))
+                    ))
+                colors.add(Color.decode(colorRange.color).getAndroidColor());
+        }
+        final int[] result = new int[colors.size()];
+        for (int i = 0; i < colors.size(); i++) {
+            result[i] = colors.get(i);
+        }
+        return result;
+    }
+
+    public int[] getColors(String sid)
+    {
+        ArrayList<Integer> colors = new ArrayList<>();
+        for(int i=0; i<colorRanges.size(); i++)
+        {
+            ColorRange colorRange = colorRanges.get(i);
+            if (colorRange.sid.equals(sid) )
+                colors.add(Color.decode(colorRange.color).getAndroidColor());
+        }
+        final int[] result = new int[colors.size()];
+        for (int i = 0; i < colors.size(); i++) {
+            result[i] = colors.get(i);
+        }
+        return result;
+    }
+
+    public float[] getSpacings(String sid, int min, int max, boolean positive)
+    {
+        ArrayList<Integer> values = new ArrayList<>();
+        if((positive && min>0) || (!positive && min<0))
+            values.add(min);
+        for(int i=1; i<colorRanges.size()-1; i++)
+        {
+            ColorRange colorRange = colorRanges.get(i);
+            if (colorRange.sid.equals(sid) &&
+                    (
+                            (positive && (colorRange.to>0 || colorRange.from>0))
+                                    ||
+                                    (!positive && (colorRange.to<0 || colorRange.from<0))
+                    )) {
+                if(colorRange.from>0 && colorRange.to>0)
+                    values.add(colorRange.from);
+                else
+                    values.add(colorRange.to);
+            }
+        }
+        if((positive && max>0) || (!positive && max<0))
+            values.add(max);
+
+        final float[] result = new float[values.size()];
+        //String spacings = "Spacings: ";
+        for (int i = 0; i < values.size(); i++) {
+            result[i] = (float) (values.get(i)-min)/(max-min);
+            //spacings+=", "+result[i];
+        }
+        //MainActivity.debug(spacings);
+        return result;
+    }
+
+    public float[] getSpacings(String sid, int min, int max)
+    {
+        ArrayList<Integer> values = new ArrayList<>();
+        values.add(min);
+        for(int i=1; i<colorRanges.size()-1; i++)
+        {
+            ColorRange colorRange = colorRanges.get(i);
+            if (colorRange.sid.equals(sid))
+            {
+                if(colorRange.from>0 && colorRange.to>0)
+                    values.add(colorRange.from);
+                else
+                    values.add(colorRange.to);
+            }
+        }
+        values.add(max);
+
+        final float[] result = new float[values.size()];
+        //String spacings = "Spacings: ";
+        for (int i = 0; i < values.size(); i++) {
+            result[i] = (float) (values.get(i)-min)/(max-min);
+            //spacings+=", "+result[i];
+        }
+        //MainActivity.debug(spacings);
+        return result;
+    }
+
+
     public String getJson() {
 
         return (new Gson()).toJson(colorRanges.clone());

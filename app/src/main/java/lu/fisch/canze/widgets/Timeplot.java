@@ -21,6 +21,10 @@
 
 package lu.fisch.canze.widgets;
 
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Shader;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -33,6 +37,7 @@ import java.util.HashMap;
 
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
+import lu.fisch.awt.Polygon;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
@@ -212,16 +217,68 @@ public class Timeplot extends Drawable {
                             values.remove(i);
                         } else {
                             double my = graphHeight - (tp.value - getMin()) * h;
+                            double zy = graphHeight - (0 - getMin()) * h;
                             int rayon = 2;
-                            g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon,
-                                    getY() + (int) my - rayon,
-                                    2 * rayon + 1,
-                                    2 * rayon + 1);
-                            if (i < values.size() - 1) {
-                                g.drawLine(getX() + getWidth() - barWidth + (int) lastX,
-                                        getY() + (int) lastY,
+                            if(getOptions().getOption(sid)!=null &&
+                                    !getOptions().getOption(sid).isEmpty()) {
+                                g.drawLine(getX() + getWidth() - barWidth + (int) mx,
+                                        getY() + (int) my,
                                         getX() + getWidth() - barWidth + (int) mx,
-                                        getY() + (int) my);
+                                        getY() + (int) zy);
+                            }
+                            else {
+                                g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon,
+                                        getY() + (int) my - rayon,
+                                        2 * rayon + 1,
+                                        2 * rayon + 1);
+                            }
+                            if (i < values.size() - 1) {
+                                if(getOptions().getOption(sid)!=null &&
+                                        getOptions().getOption(sid).contains("full")) {
+                                    Polygon p = new Polygon();
+                                    p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
+                                            getY() + (int) lastY);
+                                    p.addPoint(getX() + getWidth() - barWidth + (int) mx,
+                                            getY() + (int) my);
+                                    p.addPoint(getX() + getWidth() - barWidth + (int) mx,
+                                            (int) (getY() + zy));
+                                    p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
+                                            (int) (getY() + zy));
+                                    g.fillPolygon(p);
+                                }
+                                else if(getOptions().getOption(sid)!=null &&
+                                        getOptions().getOption(sid).contains("gradient")) {
+
+                                    if(i<values.size() && values.get(i+1)!=null) {
+                                        Polygon p = new Polygon();
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
+                                                getY() + (int) lastY);
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) mx,
+                                                getY() + (int) my);
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) mx,
+                                                (int) (getY() + zy));
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
+                                                (int) (getY() + zy));
+
+                                        if ((values.get(i + 1).value > 0 && tp.value > 0) || (values.get(i + 1).value < 0 && tp.value < 0)) {
+                                            if (tp.value > 0)
+                                                g.fillPolygon(p, 0, (int) zy, 0, 0, colorRanges.getColors(sid, tp.value > 0), colorRanges.getSpacings(sid, 0, max, tp.value > 0));
+                                            else
+                                                g.fillPolygon(p, 0, graphHeight, 0, (int) zy, colorRanges.getColors(sid, tp.value > 0), colorRanges.getSpacings(sid, min, 0, tp.value > 0));
+                                        }
+                                        else
+                                        {
+                                            g.fillPolygon(p, 0, graphHeight, 0, 0, colorRanges.getColors(sid), colorRanges.getSpacings(sid, min, max));
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    g.drawLine(getX() + getWidth() - barWidth + (int) lastX,
+                                            getY() + (int) lastY,
+                                            getX() + getWidth() - barWidth + (int) mx,
+                                            getY() + (int) my);
+                                }
                             }
                             lastX = mx;
                             lastY = my;
@@ -292,6 +349,9 @@ public class Timeplot extends Drawable {
             }
         }
 
+        // black border
+        g.setColor(getForeground());
+        g.drawRect(x, y, width, height);
     }
 
     @Override
