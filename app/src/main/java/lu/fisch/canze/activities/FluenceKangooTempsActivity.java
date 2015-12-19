@@ -54,36 +54,6 @@ public class FluenceKangooTempsActivity extends CanzeActivity implements FieldLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fluence_kangoo_temps);
-
-        initListeners();
-
-    }
-
-    private void addListener(String sid) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            field.addListener(this);
-            MainActivity.device.addActivityField(field);
-            subscribedFields.add(field);
-        }
-        else
-        {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        // free up the listeners again
-        for(Field field : subscribedFields)
-        {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
     }
 
     @Override
@@ -92,6 +62,12 @@ public class FluenceKangooTempsActivity extends CanzeActivity implements FieldLi
 
         // initialise the widgets
         initListeners();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        removeListeners();
     }
 
     private void initListeners() {
@@ -112,9 +88,32 @@ public class FluenceKangooTempsActivity extends CanzeActivity implements FieldLi
         addListener(SID_MotorWaterPumpSpeed);
         addListener(SID_ChargerWaterPumpSpeed);
         addListener(SID_HeatingWaterPumpSpeed);
-        //addListener(SID_BatteryCoolingFansSpeed);
+    }
+
+    private void removeListeners () {
+        // empty the query loop
+        MainActivity.device.clearFields();
+        // free up the listeners again
+        for (Field field : subscribedFields) {
+            field.removeListener(this);
+        }
+        subscribedFields.clear();
+    }
+
+    private void addListener(String sid) {
+        Field field;
+        field = MainActivity.fields.getBySID(sid);
+        if (field != null) {
+            field.addListener(this);
+            MainActivity.device.addActivityField(field);
+            subscribedFields.add(field);
+        } else {
+            MainActivity.toast("sid " + sid + " does not exist in class Fields");
+        }
 
     }
+
+
 
     // This is the event fired as soon as this the registered fields are
     // getting updated by the corresponding reader class.

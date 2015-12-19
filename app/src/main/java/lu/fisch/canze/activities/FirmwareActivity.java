@@ -104,10 +104,40 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
         TextView textView = (TextView) findViewById(R.id.link);
         textView.setText(Html.fromHtml("Learn more about the car's computers <a href='http://canze.fisch.lu/computers/'>here</a>."));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
-
-        //initListeners();
-
      }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // initialise the widgets
+        initListeners();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        removeListeners();
+    }
+
+    private void initListeners() {
+        subscribedFields = new ArrayList<>();
+        for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
+            if (ecu.getFromId() != 0) {
+                addListener(Integer.toHexString (ecu.getFromId()).toLowerCase() + ".6180.144");
+            }
+        }
+    }
+
+    private void removeListeners () {
+        // empty the query loop
+        MainActivity.device.clearFields();
+        // free up the listeners again
+        for (Field field : subscribedFields) {
+            field.removeListener(this);
+        }
+        subscribedFields.clear();
+    }
 
     private void addListener(String sid) {
         Field field;
@@ -119,54 +149,6 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
             subscribedFields.add(field);
         } else {
             MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        // free up the listeners again
-        for (Field field : subscribedFields) {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // initialise the widgets
-        initListeners();
-    }
-
-    private void initListeners() {
-
-        subscribedFields = new ArrayList<>();
-/*
-        addListener("793.6180.144"); // BCB put here as it seems to stop reponding very easily
-        addListener("7ec.6180.144"); // SCH
-        addListener("7da.6180.144"); // TCU
-        addListener("7bb.6180.144"); // LBC
-        addListener("77e.6180.144"); // PEB
-        addListener("772.6180.144"); // AIRBAG
-        addListener("76d.6180.144"); // USM not for Fluence
-        addListener("763.6180.144"); // CLUSTER
-        addListener("762.6180.144"); // EPS
-        addListener("760.6180.144"); // ABS
-        addListener("7bc.6180.144"); // UBP not for Fluence
-        addListener("765.6180.144"); // BCM
-        addListener("764.6180.144"); // CLIM
-        addListener("76e.6180.144"); // UPA not for Zoe
-        addListener("7b6.6180.144"); // LBC2
-        //addListener("722.6180.144"); // LINSCH not for FLuence or Zoe
-*/
-
-        for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
-            if (ecu.getFromId() != 0) {
-                addListener(Integer.toHexString (ecu.getFromId()).toLowerCase() + ".6180.144");
-            }
         }
     }
 
@@ -246,10 +228,6 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
                         tv = (TextView) findViewById(R.id.vEcu7b6);
                         refVersion = versions [14];
                         break;
-//                  case "722.6180.144":
-//                      tv = (TextView) findViewById(R.id.vEcu722);
-//                      refVersion = versions [15];
-//                      break;
                 }
 
                 // set regular new content, all exeptions handled above
@@ -275,29 +253,5 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
                 tv.setText(fieldId);
             }
         });
-
     }
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_text, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-*/
 }

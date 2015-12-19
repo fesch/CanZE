@@ -58,36 +58,6 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charging);
-
-        initListeners();
-
-    }
-
-    private void addListener(String sid) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            field.addListener(this);
-            MainActivity.device.addActivityField(field);
-            subscribedFields.add(field);
-        }
-        else
-        {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        // free up the listeners again
-        for(Field field : subscribedFields)
-        {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
     }
 
     @Override
@@ -96,6 +66,12 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
 
         // initialise the widgets
         initListeners();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        removeListeners();
     }
 
     private void initListeners() {
@@ -116,6 +92,29 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
             addListener(SID_ACPilot);
         }
     }
+
+    private void removeListeners () {
+        // empty the query loop
+        MainActivity.device.clearFields();
+        // free up the listeners again
+        for (Field field : subscribedFields) {
+            field.removeListener(this);
+        }
+        subscribedFields.clear();
+    }
+
+    private void addListener(String sid) {
+        Field field;
+        field = MainActivity.fields.getBySID(sid);
+        if (field != null) {
+            field.addListener(this);
+            MainActivity.device.addActivityField(field);
+            subscribedFields.add(field);
+        } else {
+            MainActivity.toast("sid " + sid + " does not exist in class Fields");
+        }
+    }
+
 
     // This is the event fired as soon as this the registered fields are
     // getting updated by the corresponding reader class.

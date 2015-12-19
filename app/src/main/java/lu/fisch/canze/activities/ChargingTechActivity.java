@@ -22,15 +22,10 @@
 package lu.fisch.canze.activities;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldListener to the fields.
@@ -38,19 +33,14 @@ import lu.fisch.canze.interfaces.FieldListener;
 public class ChargingTechActivity extends CanzeActivity implements FieldListener {
 
     public static final String SID_MaxCharge                        = "7bb.6101.336";
-    //public static final String SID_ACPilot                          = "42e.38";
     public static final String SID_SoC                              = "42e.0";          // user SOC, not raw
-//  public static final String SID_EnergyToFull                     = "42e.56";
     public static final String SID_AvChargingPower                  = "427.40";
     public static final String SID_ACPilot                          = "42e.38";
     public static final String SID_AvEnergy                         = "427.49";
 
     public static final String SID_TimeToFull                       = "654.32";
     public static final String SID_PlugConnected                    = "654.2";
-//  public static final String SID_SoC                              = "654.24";
-//  public static final String SID_SOH                              = "658.33";
     public static final String SID_SOH                              = "7ec.623206.24";
-//  public static final String SID_SOH                              = "7ec.62202e.24"; //pedal, checking offsets
     public static final String SID_RangeEstimate                    = "654.42";
     public static final String SID_ChargingStatusDisplay            = "65b.41";
     public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
@@ -70,36 +60,6 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chargingtech);
-
-        initListeners();
-
-    }
-
-    private void addListener(String sid) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            field.addListener(this);
-            MainActivity.device.addActivityField(field);
-            subscribedFields.add(field);
-        }
-        else
-        {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        // free up the listeners again
-        for(Field field : subscribedFields)
-        {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
     }
 
     @Override
@@ -110,13 +70,18 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         initListeners();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        removeListeners();
+    }
+
     private void initListeners() {
 
         subscribedFields = new ArrayList<>();
 
         addListener(SID_MaxCharge);
         addListener(SID_ACPilot);
-//      addListener(SID_EnergyToFull);
         addListener(SID_TimeToFull);
         addListener(SID_PlugConnected);
         addListener(SID_SoC);
@@ -135,6 +100,28 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         for (int i = 32; i <= lastCell; i += 24) {
             String sid = SID_Preamble_CompartmentTemperatures + i;
             addListener(sid);
+        }
+    }
+
+    private void removeListeners () {
+        // empty the query loop
+        MainActivity.device.clearFields();
+        // free up the listeners again
+        for (Field field : subscribedFields) {
+            field.removeListener(this);
+        }
+        subscribedFields.clear();
+    }
+
+    private void addListener(String sid) {
+        Field field;
+        field = MainActivity.fields.getBySID(sid);
+        if (field != null) {
+            field.addListener(this);
+            MainActivity.device.addActivityField(field);
+            subscribedFields.add(field);
+        } else {
+            MainActivity.toast("sid " + sid + " does not exist in class Fields");
         }
     }
 
@@ -288,27 +275,4 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         });
 
     }
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_text, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-*/
 }

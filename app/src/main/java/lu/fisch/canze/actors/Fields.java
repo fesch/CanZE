@@ -48,27 +48,6 @@ import java.util.HashMap;
  */
 public class Fields implements MessageListener {
 
-    // next version we can condense the init string to 11 fields
-    // need to redefine the CSV tab and at the same time modify the init code here
-
-/*
-    private static final int FIELD_ID           = 0;
-    private static final int FIELD_FROM         = 1;    
-    private static final int FIELD_TO           = 2;    
-    private static final int FIELD_DIVIDER      = 3; // should be pre-calculated in the spreadsheet to resolution and folden in one
-    private static final int FIELD_MULTIPLIER   = 4; // should be pre-calculated in the spreadsheet to resolution and folden in one
-    private static final int FIELD_OFFSET       = 5;    
-    private static final int FIELD_DECIMALS     = 6;
-    private static final int FIELD_FORMAT       = 7;
-    private static final int FIELD_UNIT         = 8;
-    private static final int FIELD_REQUEST_ID   = 9;
-    private static final int FIELD_RESPONSE_ID  = 10;
-    private static final int FIELD_DESCRIPTION  = 11;
-    private static final int FIELD_CAR          = 12;
-    private static final int FIELD_SKIPS        = 13;
-    private static final int FIELD_FREQ         = 14; // not needed anymore
-*/
-
     private static final int FIELD_ID           = 0;
     private static final int FIELD_FROM         = 1;
     private static final int FIELD_TO           = 2;
@@ -80,14 +59,6 @@ public class Fields implements MessageListener {
     private static final int FIELD_RESPONSE_ID  = 8;
     private static final int FIELD_CAR          = 9;
 
-/*
-    public static final int CAR_ANY             = 0;
-    public static final int CAR_FLUENCE         = 1;
-    public static final int CAR_ZOE             = 2;
-    public static final int CAR_KANGOO          = 3;
-    public static final int CAR_TWIZY           = 4;    // you'll never know ;-)
-    public static final int CAR_X10             = 5;
-*/
     public static final int TOAST_NONE          = 0;
     public static final int TOAST_DEVICE        = 1;
     public static final int TOAST_ALL           = 2;
@@ -115,20 +86,29 @@ public class Fields implements MessageListener {
         return instance;
     }
 
-    private void addVirtualFields()
-    {
+    private void addVirtualFields() {
+        addVirtualFieldUsage();
+        addVirtualFieldFrictionTorque();
+        addVirtualFieldFrictionPower();
+    }
+
+
+    private void addVirtualFieldUsage() {
+
+        // It would be easier use SID_Consumption = "1fd.48" (dash kWh) instead of V*A
+
         // create a list of field this new virtual field will depend on
         HashMap<String, Field> dependantFields = new HashMap<>();
         final String SID_EVC_TractionBatteryVoltage = "7ec.623203.24";  // unit = V
         final String SID_EVC_TractionBatteryCurrent = "7ec.623204.24";  // unit = A
         final String SID_RealSpeed = "5d7.0";                           // unit = km/h
-        dependantFields.put(SID_EVC_TractionBatteryVoltage,getBySID(SID_EVC_TractionBatteryVoltage));
-        dependantFields.put(SID_EVC_TractionBatteryCurrent,getBySID(SID_EVC_TractionBatteryCurrent));
-        dependantFields.put(SID_RealSpeed,getBySID(SID_RealSpeed));
+        dependantFields.put(SID_EVC_TractionBatteryVoltage, getBySID(SID_EVC_TractionBatteryVoltage));
+        dependantFields.put(SID_EVC_TractionBatteryCurrent, getBySID(SID_EVC_TractionBatteryCurrent));
+        dependantFields.put(SID_RealSpeed, getBySID(SID_RealSpeed));
         // create a new virtual field. Define it's ID and how it is being calculated
         VirtualField virtualField = new VirtualField(0x800, dependantFields, "kWh/100km", new VirtualFieldAction() {
             @Override
-            public double updateValue(HashMap<String,Field> dependantFields) {
+            public double updateValue(HashMap<String, Field> dependantFields) {
                 // get voltage
                 double dcVolt = dependantFields.get(SID_EVC_TractionBatteryVoltage).getValue();
                 // get current
@@ -136,7 +116,7 @@ public class Fields implements MessageListener {
                 // get real speed
                 double realSpeed = dependantFields.get(SID_RealSpeed).getValue();
 
-                if(realSpeed>=5)
+                if (realSpeed >= 5)
                     return (Math.round(1000.0 * dcPwr / realSpeed) / 10.0);
                 else
                     return 0;
@@ -144,27 +124,49 @@ public class Fields implements MessageListener {
         });
         // add it to the list of fields
         add(virtualField);
+    }
 
 
-        /*
-        // Econometer/2 (just to test)
+    private void addVirtualFieldFrictionTorque() {
         // create a list of field this new virtual field will depend on
         HashMap<String, Field> dependantFields = new HashMap<>();
-        final String SID_kw_dashboard = "1fd.48";
-        dependantFields.put(SID_kw_dashboard,getBySID(SID_kw_dashboard));
+        final String SID_DriverBrakeWheel_Torque_Request        = "130.44"; //UBP braking wheel torque the driver wants
+        final String SID_ElecBrakeWheelsTorqueApplied           = "1f8.28"; //10ms
+        dependantFields.put(SID_DriverBrakeWheel_Torque_Request,getBySID(SID_DriverBrakeWheel_Torque_Request));
+        dependantFields.put(SID_ElecBrakeWheelsTorqueApplied,getBySID(SID_ElecBrakeWheelsTorqueApplied));
         // create a new virtual field. Define it's ID and how it is being calculated
-        VirtualField virtualField = new VirtualField(0x801, dependantFields, "kw", new VirtualFieldAction() {
+        VirtualField virtualField = new VirtualField(0x801, dependantFields, "Nm", new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String,Field> dependantFields) {
-                // get distance
-                double dist = dependantFields.get(SID_kw_dashboard).getValue();
-                // calculate return value
-                return dist/2;
+
+                double frictionBrakeTorque = dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue();
+                return frictionBrakeTorque;
             }
         });
         // add it to the list of fields
         add(virtualField);
-        */
+    }
+
+    private void addVirtualFieldFrictionPower() {
+        // create a list of field this new virtual field will depend on
+        HashMap<String, Field> dependantFields = new HashMap<>();
+        final String SID_DriverBrakeWheel_Torque_Request        = "130.44"; //UBP braking wheel torque the driver wants
+        final String SID_ElecBrakeWheelsTorqueApplied           = "1f8.28"; //10ms
+        final String SID_ElecEngineRPM                          = "1f8.40"; //10ms
+
+        dependantFields.put(SID_DriverBrakeWheel_Torque_Request,getBySID(SID_DriverBrakeWheel_Torque_Request));
+        dependantFields.put(SID_ElecBrakeWheelsTorqueApplied,getBySID(SID_ElecBrakeWheelsTorqueApplied));
+        // create a new virtual field. Define it's ID and how it is being calculated
+        VirtualField virtualField = new VirtualField(0x802, dependantFields, "kW", new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String,Field> dependantFields) {
+
+                double frictionBrakeTorque = (dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue()) * dependantFields.get(SID_ElecEngineRPM).getValue() / 9.3;
+                return frictionBrakeTorque;
+            }
+        });
+        // add it to the list of fields
+        add(virtualField);
     }
 
     private void fillStatic()
