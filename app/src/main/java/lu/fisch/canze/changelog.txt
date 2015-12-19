@@ -1,0 +1,5 @@
+
+2015.12.19 - fixed issue #271: In battery screen no cell voltages are displayed [Bob]
+2015.12.14 - screen consumption: gradient are graph for instant consumption [Bob]
+
+---< Version 1.08 / 2015.12.13 >---
