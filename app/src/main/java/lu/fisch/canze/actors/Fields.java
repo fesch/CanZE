@@ -139,8 +139,7 @@ public class Fields implements MessageListener {
             @Override
             public double updateValue(HashMap<String,Field> dependantFields) {
 
-                double frictionBrakeTorque = dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue();
-                return frictionBrakeTorque;
+                return dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue();
             }
         });
         // add it to the list of fields
@@ -162,8 +161,7 @@ public class Fields implements MessageListener {
             @Override
             public double updateValue(HashMap<String,Field> dependantFields) {
 
-                double frictionBrakeTorque = (dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue()) * dependantFields.get(SID_ElecEngineRPM).getValue() / 9.3;
-                return frictionBrakeTorque;
+                return (dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue()) * dependantFields.get(SID_ElecEngineRPM).getValue() / 9.3;
             }
         });
         // add it to the list of fields
