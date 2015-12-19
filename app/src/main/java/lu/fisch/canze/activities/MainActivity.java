@@ -399,6 +399,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         instance = this;
 
+        /*float density = getResources().getDisplayMetrics().density;
+        MainActivity.debug("MainActivity: density "+getResources().getDisplayMetrics().density);
+        MainActivity.debug("MainActivity: scaledDensity = "+getResources().getDisplayMetrics().scaledDensity);
+        MainActivity.debug("MainActivity: densityDpi = "+getResources().getDisplayMetrics().densityDpi);
+        MainActivity.debug("MainActivity: widthPixels = "+getResources().getDisplayMetrics().widthPixels);*/
+
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -580,8 +586,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             Display display = getWindowManager().getDefaultDisplay();
             Point size = new Point();
             display.getSize(size);
-            int width = size.x;
+            float width = size.x;
             int height = size.y;
+            width = width / getResources().getDisplayMetrics().density * getResources().getDisplayMetrics().scaledDensity;
             if(width<=480)
             {
                 yes="Yes";

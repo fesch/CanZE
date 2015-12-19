@@ -54,34 +54,6 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heatmap_cellvoltage);
-        initListeners();
-    }
-
-    private void addListener(String sid) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            field.addListener(this);
-            MainActivity.device.addActivityField(field);
-            subscribedFields.add(field);
-        }
-        else
-        {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        // free up the listeners again
-        for(Field field : subscribedFields)
-        {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
     }
 
     @Override
@@ -90,6 +62,12 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
 
         // initialise the widgets
         initListeners();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        removeListeners();
     }
 
     private void initListeners() {
@@ -105,6 +83,29 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
             String sid = SID_Preamble_CellVoltages2 + ((i - 62) * 16); // remember, first is pos 16, i starts s at 1
             addListener(sid);
         }
+    }
+
+    private void removeListeners () {
+        // empty the query loop
+        MainActivity.device.clearFields();
+        // free up the listeners again
+        for (Field field : subscribedFields) {
+            field.removeListener(this);
+        }
+        subscribedFields.clear();
+    }
+
+    private void addListener(String sid) {
+        Field field;
+        field = MainActivity.fields.getBySID(sid);
+        if (field != null) {
+            field.addListener(this);
+            MainActivity.device.addActivityField(field);
+            subscribedFields.add(field);
+        } else {
+            MainActivity.toast("sid " + sid + " does not exist in class Fields");
+        }
+
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -173,27 +174,4 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
             }
         }
     }
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_text, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-*/
 }

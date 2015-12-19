@@ -22,6 +22,7 @@
 package lu.fisch.canze.activities;
 
 import android.content.pm.PackageInfo;
+import android.graphics.Point;
 import android.os.Environment;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -34,6 +35,7 @@ import android.content.pm.ApplicationInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -136,6 +138,23 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!safe.isChecked()) {
+
+                    // set dialog message
+                    String yes = "Yes, I know what I'm doing";
+                    String no  = "No, I prefer the secure way";
+
+                    Display display = getWindowManager().getDefaultDisplay();
+                    Point size = new Point();
+                    display.getSize(size);
+                    float width = size.x;
+                    int height = size.y;
+                    width = width / getResources().getDisplayMetrics().density * getResources().getDisplayMetrics().scaledDensity;
+                    if(width<=480)
+                    {
+                        yes="Yes";
+                        no ="No";
+                    }
+
                     final Context context = SettingsActivity.this;
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
@@ -149,14 +168,14 @@ public class SettingsActivity extends AppCompatActivity {
                                     "Disabling of this mode is not recommended at all!\n\n" +
                                     "Are you sure you want to continue disabling the Safe Driving Mode?")
                             .setCancelable(true)
-                            .setPositiveButton("Yes, I know what I'm doing", new DialogInterface.OnClickListener() {
+                            .setPositiveButton(yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     // if this button is clicked, close
                                     // current activity
                                     dialog.cancel();
                                 }
                             })
-                            .setNegativeButton("No, I prefer the secure way",
+                            .setNegativeButton(no,
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             // if this button is clicked, just close
@@ -184,6 +203,22 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (btBackground.isChecked()) {
+                    // set dialog message
+                    String yes = "Yes, I know what I'm doing";
+                    String no  = "No, thanks";
+
+                    Display display = getWindowManager().getDefaultDisplay();
+                    Point size = new Point();
+                    display.getSize(size);
+                    float width = size.x;
+                    int height = size.y;
+                    width = width / getResources().getDisplayMetrics().density * getResources().getDisplayMetrics().scaledDensity;
+                    if(width<=480)
+                    {
+                        yes="Yes";
+                        no ="No";
+                    }
+
                     final Context context = SettingsActivity.this;
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
@@ -199,14 +234,14 @@ public class SettingsActivity extends AppCompatActivity {
                                     "your Android device!</b><br><br>" +
                                     "Are you sure you want to continue enabling the Bluetooth Background Mode?"))
                             .setCancelable(true)
-                            .setPositiveButton("Yes, I know what I'm doing", new DialogInterface.OnClickListener() {
+                            .setPositiveButton(yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     // if this button is clicked, close
                                     // current activity
                                     dialog.cancel();
                                 }
                             })
-                            .setNegativeButton("No, thanks",
+                            .setNegativeButton(no,
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             // if this button is clicked, just close

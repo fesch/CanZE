@@ -22,15 +22,12 @@
 package lu.fisch.canze.activities;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.FieldListener;
 
 /**
@@ -40,46 +37,16 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
 
     public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
 
-    private ArrayList<Field> subscribedFields;
-
     private double mean = 0;
     private double lastVal [] = {0,15,15,15,15,15,15,15,15,15,15,15,15};
     private int lastCell = 4;
 
+    private ArrayList<Field> subscribedFields;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(MainActivity.car == MainActivity.CAR_ZOE ? R.layout.activity_heatmap_batcomp :  R.layout.activity_heatmap_batcomp2);
-        initListeners();
-
-    }
-
-    private void addListener(String sid) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            field.addListener(this);
-            MainActivity.device.addActivityField(field);
-            subscribedFields.add(field);
-        }
-        else
-        {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        // free up the listeners again
-        for(Field field : subscribedFields)
-        {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
+        setContentView(MainActivity.car == MainActivity.CAR_ZOE ? R.layout.activity_heatmap_batcomp : R.layout.activity_heatmap_batcomp2);
     }
 
     @Override
@@ -90,11 +57,14 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
         initListeners();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        removeListeners ();
+    }
+
     private void initListeners() {
-
         subscribedFields = new ArrayList<>();
-
-        // Battery compartment temperatures
         if(MainActivity.car == MainActivity.CAR_ZOE) {
             lastCell = 12;
         }
@@ -102,6 +72,31 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
             String sid = SID_Preamble_CompartmentTemperatures + (8 + i * 24); // remember, first is pos 32, i starts s at 1
             addListener(sid);
         }
+    }
+
+    private void removeListeners () {
+        // empty the query loop
+        MainActivity.device.clearFields();
+        // free up the listeners again
+        for (Field field : subscribedFields) {
+            field.removeListener(this);
+        }
+        subscribedFields.clear();
+    }
+
+    private void addListener(String sid) {
+        Field field;
+        field = MainActivity.fields.getBySID(sid);
+        if (field != null) {
+            // activate callback to this object when a value is updated
+            field.addListener(this);
+            // add querying this field in the queryloop
+            MainActivity.device.addActivityField(field);
+            subscribedFields.add(field);
+        } else {
+            MainActivity.toast("sid " + sid + " does not exist in class Fields");
+        }
+
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -161,27 +156,4 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
         }
 
     }
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_text, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-    */
 }
