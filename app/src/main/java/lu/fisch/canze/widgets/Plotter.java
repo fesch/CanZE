@@ -147,6 +147,10 @@ public class Plotter extends Drawable {
             }
         }
 
+        /*MainActivity.debug("Values "+values.size());
+        MainActivity.debug("Values min "+minValues.size());
+        MainActivity.debug("Values max "+maxValues.size());*/
+
         // draw the graph
         g.drawRect(x+width-barWidth, y, barWidth, height);
         // min & max
@@ -213,6 +217,7 @@ public class Plotter extends Drawable {
             g.setColor(Color.RED);
             for(int i=0; i<values.size(); i++)
             {
+                //MainActivity.debug("Value "+i+": "+values.get(i));
                 double mx = w/2+i*w;
                 double my = getHeight()-(values.get(i)-getMin())*h;
                 int rayon = 2;
@@ -244,10 +249,13 @@ public class Plotter extends Drawable {
     @Override
     public void onFieldUpdateEvent(Field field) {
         // only take data fofr valid cars
-        if(MainActivity.car==0 || field.getCar()== MainActivity.car) {
+        //MainActivity.debug("Plotter: "+field.getSID()+" --> "+field.getValue());
+        //MainActivity.debug("Car = "+MainActivity.car+" / "+field.getCar());
+
+        if(field.getCar()==0 || field.getCar()== MainActivity.car) {
             String sid = field.getSID();
 
-            //MainActivity.debug("Plotter: "+sid+" --> "+field.getValue());
+            //MainActivity.debug("!! Plotter: "+sid+" --> "+field.getValue());
 
             int index = sids.indexOf(sid);
             if (index == -1) {
