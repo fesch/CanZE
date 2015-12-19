@@ -260,7 +260,7 @@ public class Timeplot extends Drawable {
                                         p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
                                                 (int) (getY() + zy));
 
-                                        if ((values.get(i + 1).value > 0 && tp.value > 0) || (values.get(i + 1).value < 0 && tp.value < 0)) {
+                                        /*if ((values.get(i + 1).value > 0 && tp.value > 0) || (values.get(i + 1).value < 0 && tp.value < 0)) {
                                             if (tp.value > 0)
                                                 g.fillPolygon(p, 0, (int) zy, 0, 0, colorRanges.getColors(sid, tp.value > 0), colorRanges.getSpacings(sid, 0, max, tp.value > 0));
                                             else
@@ -269,7 +269,8 @@ public class Timeplot extends Drawable {
                                         else
                                         {
                                             g.fillPolygon(p, 0, graphHeight, 0, 0, colorRanges.getColors(sid), colorRanges.getSpacings(sid, min, max));
-                                        }
+                                        }*/
+                                        g.fillPolygon(p, 0, graphHeight, 0, 0, colorRanges.getColors(sid), colorRanges.getSpacings(sid, min, max));
                                     }
                                 }
                                 else
