@@ -1234,6 +1234,7 @@ public class Fields implements MessageListener {
                     // parseInt --> signed, so the first bit is "cut-off"!
                     try {
                         int val = Integer.parseInt("0" + binString.substring(field.getFrom(), field.getTo() + 1), 2);
+                        //MainActivity.debug("Value of " + field.getHexId() + "." + field.getResponseId() + "." + field.getFrom()+" = "+val);
                         //MainActivity.debug("Fields: onMessageCompleteEvent > "+field.getSID()+" = "+val);
                         field.setValue(val);
                         // update the fields last request date
