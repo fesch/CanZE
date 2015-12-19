@@ -156,6 +156,7 @@ public class Fields implements MessageListener {
 
         dependantFields.put(SID_DriverBrakeWheel_Torque_Request,getBySID(SID_DriverBrakeWheel_Torque_Request));
         dependantFields.put(SID_ElecBrakeWheelsTorqueApplied,getBySID(SID_ElecBrakeWheelsTorqueApplied));
+        dependantFields.put(SID_ElecEngineRPM,getBySID(SID_ElecEngineRPM));
         // create a new virtual field. Define it's ID and how it is being calculated
         VirtualField virtualField = new VirtualField(0x802, dependantFields, "kW", new VirtualFieldAction() {
             @Override
