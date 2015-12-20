@@ -128,14 +128,20 @@
             custom:max="160"
             custom:majorTicks="20"
             custom:minorTicks="10"
-            custom:fieldSID="5d7.0,654.42"
+            custom:fieldSID="5d7.0,654.42,654.25"
             custom:widget="timeplot"
-            custom:text="Speed (km/h) / Available distance (km)"
+            custom:text="Speed (km/h) / Available distance (km) / State of Charge (%)"
             custom:intervals="{
                                '654.42':10000
                                }"
+            custom:colorRanges="[
+                {'sid':'5d7.0','color':'#008a1d','from':0,'to':70},
+                {'sid':'5d7.0','color':'#ffaa17','from':70,'to':100},
+                {'sid':'5d7.0','color':'#FF0000','from':100,'to':130},
+                {'sid':'5d7.0','color':'#cc00ff','from':130,'to':160}
+                ]"
             custom:options="{
-                               '5d7.0':'full'
+                               '5d7.0':'gradient'
                             }"
             />
 

@@ -1,4 +1,7 @@
-2015.12.19 [Jeroen] Added new virtualFields 801 and 802
+2015.12.19 [Bob] consumption screen: moved SoC (for testing) to lower graph
+2015.12.19 [Bob] consumption screen: fixed gradient for speed
+2015.12.19 [Bob] optimisation in gradient area graph
+2015.12.19 [Jeroen] added new virtualFields 801 (FrictionTorque) and 802 (FrictionPower)
 2015.12.19 [Jeroen] all text screens: major code cleanup on the onXxxx code
 2015.12.19 [Bob] fixed issue 262:  Formal Disclaimer answers not fully visible on phone for o.a. Safe Driving Mode setting
 2015.12.19 [Bob] fixed issue #271: In battery screen no cell voltages are displayed

@@ -55,6 +55,7 @@ public class ColorRanges {
         return defaultColor;
     }
 
+    /*
     public int[] getColors(String sid, boolean positive)
     {
         ArrayList<Integer> colors = new ArrayList<>();
@@ -75,6 +76,7 @@ public class ColorRanges {
         }
         return result;
     }
+    */
 
     public int[] getColors(String sid)
     {
@@ -92,6 +94,7 @@ public class ColorRanges {
         return result;
     }
 
+    /*
     public float[] getSpacings(String sid, int min, int max, boolean positive)
     {
         ArrayList<Integer> values = new ArrayList<>();
@@ -124,6 +127,7 @@ public class ColorRanges {
         //MainActivity.debug(spacings);
         return result;
     }
+    */
 
     public float[] getSpacings(String sid, int min, int max)
     {
