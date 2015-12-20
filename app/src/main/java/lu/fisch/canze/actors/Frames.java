@@ -150,7 +150,7 @@ public class Frames {
                         +"0x7E4,0,0,\n"
                         +"0x7EC,0,0,EVC\n"
 
-                        +"";
+                        +"0x800,0,0,VFC";
 
         String[] lines = frameDef.split("\n");
         for (String line : lines) {
@@ -194,11 +194,12 @@ public class Frames {
         return null;
     }
 
-    public Frame createVirtualIfNotExists(int id) {
+ //   public Frame createVirtualIfNotExists(String responseId) {
 
-        if(id<0x800) throw new InvalidParameterException("ID of virtual field must be >= 0x800");
+        // if(id<0x800) throw new InvalidParameterException("ID of virtual field must be >= 0x800");
 
         // Does the corresponding ECU already exist?
+/* No need to check for ECU, as alle virtual fields are to be handled by ECU 0x800 (Virfualfield Computer), which is already initiaized in Class Ecus
         Ecu ecu = Ecus.getInstance().getByFromId(id);
         if(ecu==null)
         {
@@ -206,6 +207,8 @@ public class Frames {
             ecu = new Ecu("VirtualField", id, "CanZE", id, id, "Canze VirtualField", "CCF");
             Ecus.getInstance().add(ecu);
         }
+*/
+/* Same for frame. Virual fields behave like ISO-TP frames, Single one per ECU and already defined in Class Fields
 
         // Does the corresponding frame already exists?
         Frame frame = Frames.getInstance().getById(id);
@@ -217,6 +220,8 @@ public class Frames {
         }
 
         return frame;
-    }
+*/
+ //       return null;
+ //   }
 
 }
