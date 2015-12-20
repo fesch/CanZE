@@ -106,7 +106,7 @@ public class Fields implements MessageListener {
         dependantFields.put(SID_EVC_TractionBatteryCurrent, getBySID(SID_EVC_TractionBatteryCurrent));
         dependantFields.put(SID_RealSpeed, getBySID(SID_RealSpeed));
         // create a new virtual field. Define it's ID and how it is being calculated
-        VirtualField virtualField = new VirtualField(0x800, dependantFields, "kWh/100km", new VirtualFieldAction() {
+        VirtualField virtualField = new VirtualField("6100", dependantFields, "kWh/100km", new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
                 // get voltage
@@ -135,7 +135,7 @@ public class Fields implements MessageListener {
         dependantFields.put(SID_DriverBrakeWheel_Torque_Request,getBySID(SID_DriverBrakeWheel_Torque_Request));
         dependantFields.put(SID_ElecBrakeWheelsTorqueApplied,getBySID(SID_ElecBrakeWheelsTorqueApplied));
         // create a new virtual field. Define it's ID and how it is being calculated
-        VirtualField virtualField = new VirtualField(0x801, dependantFields, "Nm", new VirtualFieldAction() {
+        VirtualField virtualField = new VirtualField("6101", dependantFields, "Nm", new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String,Field> dependantFields) {
 
@@ -157,7 +157,7 @@ public class Fields implements MessageListener {
         dependantFields.put(SID_ElecBrakeWheelsTorqueApplied,getBySID(SID_ElecBrakeWheelsTorqueApplied));
         dependantFields.put(SID_ElecEngineRPM,getBySID(SID_ElecEngineRPM));
         // create a new virtual field. Define it's ID and how it is being calculated
-        VirtualField virtualField = new VirtualField(0x802, dependantFields, "kW", new VirtualFieldAction() {
+        VirtualField virtualField = new VirtualField("6102", dependantFields, "kW", new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String,Field> dependantFields) {
 

@@ -31,7 +31,7 @@
             custom:max="150"
             custom:majorTicks="50"
             custom:minorTicks="25"
-            custom:fieldSID="800.0"
+            custom:fieldSID="800.6100.24"
             custom:widget="tacho"
             custom:text="kWh/100km"
             />

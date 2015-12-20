@@ -1,3 +1,4 @@
+2015.12.20 [Jeroen] changed virtualfields to one ECU and responseID as selector
 2015.12.20 [Bob] consumption screen: color and interval update
 2015.12.19 [Bob] consumption screen: moved SoC (for testing) to lower graph
 2015.12.19 [Bob] consumption screen: fixed gradient for speed
