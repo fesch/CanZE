@@ -135,7 +135,7 @@
             custom:widget="timeplot"
             custom:text="Speed (km/h) / Available distance (km) / State of Charge (%)"
             custom:intervals="{
-                               '654.42':10000
+                               '654.42':10000,
                                '654.25':30000
                                }"
             custom:colorRanges="[

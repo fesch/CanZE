@@ -88,9 +88,13 @@ public class ColorRanges {
                 colors.add(Color.decode(colorRange.color).getAndroidColor());
         }
         final int[] result = new int[colors.size()];
+        //String debug = "Colors: ";
         for (int i = 0; i < colors.size(); i++) {
+            //debug+=", "+colors.get(i).toString();
             result[i] = colors.get(i);
         }
+        //MainActivity.debug(debug);
+        //MainActivity.debug("Colors "+result.length);
         return result;
     }
 
@@ -138,21 +142,25 @@ public class ColorRanges {
             ColorRange colorRange = colorRanges.get(i);
             if (colorRange.sid.equals(sid))
             {
-                if(colorRange.from>0 && colorRange.to>0)
+                if(colorRange.from>0 && colorRange.to>0) {
                     values.add(colorRange.from);
+                }
                 else
+                {
                     values.add(colorRange.to);
+                }
             }
         }
         values.add(max);
 
         final float[] result = new float[values.size()];
-        //String spacings = "Spacings: ";
+        //String debug = "Spacings: ";
         for (int i = 0; i < values.size(); i++) {
             result[i] = (float) (values.get(i)-min)/(max-min);
-            //spacings+=", "+result[i];
+            //debug+=", "+result[i];
         }
-        //MainActivity.debug(spacings);
+        //MainActivity.debug(debug);
+        //MainActivity.debug("Spacings "+result.length);
         return result;
     }
 
