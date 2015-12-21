@@ -274,7 +274,10 @@ public class Timeplot extends Drawable {
                                         int[] colors = colorRanges.getColors(sid);
                                         float[] spacings = colorRanges.getSpacings(sid, min, max);
                                         if(colors.length==spacings.length)
-                                            g.fillPolygon(p, 0, graphHeight, 0, 0, colors, spacings);
+                                            g.setGradient(0, graphHeight, 0, 0, colors, spacings);
+                                        g.fillPolygon(p);
+                                        g.clearGradient();
+
                                         //else MainActivity.debug("size not equal: "+colors.length+"=="+spacings.length);
                                     }
                                 }

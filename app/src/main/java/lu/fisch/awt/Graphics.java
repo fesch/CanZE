@@ -200,7 +200,21 @@ public class Graphics
 		canvas.drawPath(path, paint);
 	}
 
-	public void fillPolygon(Polygon p, int x1, int y1, int x2, int y2, int[] colors, float[] spacings)
+	public void setGradient(int x1, int y1, int x2, int y2, int[] colors, float[] spacings)
+	{
+		LinearGradient lg = new LinearGradient(x1, y1, x2, y2,
+				colors,
+				spacings,
+				Shader.TileMode.REPEAT);
+		paint.setShader(lg);
+	}
+
+	public void clearGradient()
+	{
+		paint.setShader(null);
+	}
+
+	/*public void fillPolygon(Polygon p, int x1, int y1, int x2, int y2, int[] colors, float[] spacings)
 	{
 		paint.setColor(color.getAndroidColor());
 		paint.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -221,7 +235,7 @@ public class Graphics
 		canvas.drawPath(path, paint);
 
         paint.setShader(null);
-	}
+	}*/
 
 
 	public void rotate(float degrees, float cx, float cy)

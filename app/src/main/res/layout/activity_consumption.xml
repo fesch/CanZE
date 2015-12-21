@@ -32,8 +32,16 @@
             custom:majorTicks="50"
             custom:minorTicks="25"
             custom:fieldSID="800.6100.24"
-            custom:widget="tacho"
+            custom:widget="bar"
             custom:text="kWh/100km"
+            custom:colorRanges="[
+                {'sid':'800.6100.24','color':'#008a1d','from':-150,'to':0},
+                {'sid':'800.6100.24','color':'#3ee9ff','from':0,'to':0},
+                {'sid':'800.6100.24','color':'#cc00ff','from':0,'to':150}
+                ]"
+            custom:options="{
+                               '800.6100.24':'gradient'
+                            }"
             />
 
         <lu.fisch.canze.widgets.WidgetView

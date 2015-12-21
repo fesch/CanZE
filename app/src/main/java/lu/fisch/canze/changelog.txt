@@ -1,3 +1,5 @@
+2015.12.21 [Bob] consumption screen: modified kWh/100km
+2015.12.21 [Bob] widgets: modified bar (move around zero & gradient support)
 2015.12.21 [Bob] consumption screen: fixed another gradient bug
 2015.12.20 [Bob] consumption screen: fixed interval error & gradient bug (crashed in some cases)
 2015.12.20 [Jeroen] changed virtualfields to one ECU and responseID as selector
