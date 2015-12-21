@@ -90,6 +90,7 @@ public class Fields implements MessageListener {
         addVirtualFieldUsage();
         addVirtualFieldFrictionTorque();
         addVirtualFieldFrictionPower();
+        addVirtualFieldDcPower();
     }
 
 
@@ -162,6 +163,25 @@ public class Fields implements MessageListener {
             public double updateValue(HashMap<String,Field> dependantFields) {
 
                 return (dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue()) * dependantFields.get(SID_ElecEngineRPM).getValue() / 9.3;
+            }
+        });
+        // add it to the list of fields
+        add(virtualField);
+    }
+
+    private void addVirtualFieldDcPower() {
+        // create a list of field this new virtual field will depend on
+        HashMap<String, Field> dependantFields = new HashMap<>();
+        final String SID_TractionBatteryVoltage             = "7ec.623203.24";
+        final String SID_TractionBatteryCurrent             = "7ec.623204.24";
+        dependantFields.put(SID_TractionBatteryVoltage,getBySID(SID_TractionBatteryVoltage));
+        dependantFields.put(SID_TractionBatteryCurrent,getBySID(SID_TractionBatteryCurrent));
+        // create a new virtual field. Define it's ID and how it is being calculated
+        VirtualField virtualField = new VirtualField("6103", dependantFields, "kW", new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String,Field> dependantFields) {
+
+                return dependantFields.get(SID_TractionBatteryVoltage).getValue() * dependantFields.get(SID_TractionBatteryCurrent).getValue() / 1000;
             }
         });
         // add it to the list of fields
