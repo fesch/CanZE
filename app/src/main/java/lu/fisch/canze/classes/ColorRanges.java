@@ -159,12 +159,12 @@ public class ColorRanges {
         //values.add(max+0f);
 
         final float[] result = new float[values.size()];
-        String debug = "Spacings: ";
+        //String debug = "Spacings: ";
         for (int i = 0; i < values.size(); i++) {
             result[i] = (float) (values.get(i)-min)/(max-min);
-            debug+=", "+values.get(i);
+            //debug+=", "+values.get(i);
         }
-        MainActivity.debug(debug);
+        //MainActivity.debug(debug);
         //MainActivity.debug("Spacings "+result.length);
         return result;
     }
