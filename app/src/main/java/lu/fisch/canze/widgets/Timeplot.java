@@ -43,6 +43,7 @@ import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.classes.TimePoint;
 import lu.fisch.canze.database.CanzeDataSource;
+import lu.fisch.canze.fragments.MainFragment;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 
 /**
@@ -274,6 +275,8 @@ public class Timeplot extends Drawable {
                                         float[] spacings = colorRanges.getSpacings(sid, min, max);
                                         if(colors.length==spacings.length)
                                             g.fillPolygon(p, 0, graphHeight, 0, 0, colors, spacings);
+                                        else
+                                            MainActivity.debug("size not equal: "+colors.length+"=="+spacings.length);
                                     }
                                 }
                                 else

@@ -52,8 +52,8 @@
             custom:widget="timeplot"
             custom:text="True State of Charge (%) / Indicated State of Charge (%)"
             custom:intervals="{
-                    '42e.0':30000,
-                    '654.25':30000
+                    '42e.0':60000,
+                    '654.25':60000
                     }"
         />
 
@@ -136,7 +136,7 @@
             custom:text="Speed (km/h) / Available distance (km) / State of Charge (%)"
             custom:intervals="{
                                '654.42':10000,
-                               '654.25':30000
+                               '654.25':60000
                                }"
             custom:colorRanges="[
                 {'sid':'654.25','color':'#000000','from':-10,'to':110},
