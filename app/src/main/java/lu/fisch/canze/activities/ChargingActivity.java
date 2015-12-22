@@ -46,8 +46,9 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
 
     //  public static final String SID_SOH                          = "658.33";
     public static final String SID_RangeEstimate                    = "654.42";
-    public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
-    public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
+//    public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
+//    public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
+    public static final String SID_DcPower                          = "800.6103.24"; // Virtual field
     public static final String SID_SOH                              = "7ec.623206.24";
     double dcVolt       = 0; // holds the DC voltage, so we can calculate the power when the amps come in
 
@@ -82,8 +83,9 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
         addListener(SID_SoC);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
-        addListener(SID_TractionBatteryVoltage);
-        addListener(SID_TractionBatteryCurrent);
+//        addListener(SID_TractionBatteryVoltage);
+//        addListener(SID_TractionBatteryCurrent);
+        addListener(SID_DcPower);
         if (MainActivity.car==MainActivity.CAR_ZOE) {
             addListener(SID_AvChargingPower);
             addListener(SID_HvTemp);
@@ -158,6 +160,10 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         }
                         tv = null;
                         break;
+                    case SID_DcPower:
+                        tv = (TextView) findViewById(R.id.textDcPwr);
+                        break;
+/*
                     case SID_TractionBatteryVoltage: // DC volts
                         // save DC voltage for DC power purposes
                         dcVolt = field.getValue();
@@ -172,6 +178,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         // continue
                         tv = (TextView) findViewById(R.id.textAmps);
                         break;
+*/
                     case SID_AvChargingPower:
                         avChPwr = field.getValue();
                         tv = (TextView) findViewById(R.id.textAvChPwr);
