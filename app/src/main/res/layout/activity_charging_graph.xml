@@ -37,6 +37,10 @@
             custom:widget="timeplot"
             custom:text="Pilot amp (A) / Charger power (kW)"
             custom:timeScale="4"
+            custom:intervals="{
+                               '42e.38':3000,
+                               '427.40':3000
+                               }"
 
         />
     </TableRow>
@@ -65,6 +69,10 @@
             custom:widget="timeplot"
             custom:text="Max battery charge kW / DC Charging power (kW)"
             custom:timeScale="4"
+            custom:intervals="{
+                               '7bb.6101.336':3000,
+                               '800.6103.24':3000
+                               }"
             />
 
     </TableRow>
@@ -99,7 +107,9 @@
                 {'sid':'427.49','color':'#ffaa17','from':17,'to':25}]"
             custom:options="{'427.49':'gradient'}"
             custom:timeScale="4"
-
+            custom:intervals="{
+                               '427.49':3000
+                               }"
             />
 
     </TableRow>
