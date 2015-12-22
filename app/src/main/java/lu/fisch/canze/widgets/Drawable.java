@@ -53,6 +53,8 @@ public abstract class Drawable implements FieldListener {
     protected int x, y, width, height;
     protected int min = 0;
     protected int max = 0;
+    protected int minAlt = 0;
+    protected int maxAlt = 0;
     protected int majorTicks = 10;
     protected int minorTicks = 2;
     protected boolean showLabels = true;
@@ -309,5 +311,21 @@ public abstract class Drawable implements FieldListener {
 
     public void setOptions(Options options) {
         this.options = options;
+    }
+
+    public int getMaxAlt() {
+        return maxAlt;
+    }
+
+    public void setMaxAlt(int maxAlt) {
+        this.maxAlt = maxAlt;
+    }
+
+    public int getMinAlt() {
+        return minAlt;
+    }
+
+    public void setMinAlt(int minAlt) {
+        this.minAlt = minAlt;
     }
 }

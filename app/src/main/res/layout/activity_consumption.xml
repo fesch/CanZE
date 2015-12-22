@@ -137,24 +137,28 @@
             android:layout_marginBottom="8dp"
             custom:min="0"
             custom:max="160"
+            custom:minAlt="-160"
+            custom:maxAlt="160"
             custom:majorTicks="20"
             custom:minorTicks="10"
-            custom:fieldSID="5d7.0,654.42,654.25"
+            custom:fieldSID="5d7.0,654.42,654.25,800.6100.24"
             custom:widget="timeplot"
-            custom:text="Speed (km/h) / Available distance (km) / State of Charge (%)"
+            custom:text="Speed (km/h) / Available distance (km) / State of Charge (%) / Instant consumption (kWh/100km)"
             custom:intervals="{
                                '654.42':10000,
                                '654.25':60000
                                }"
             custom:colorRanges="[
-                {'sid':'654.25','color':'#000000','from':-10,'to':110},
+                {'sid':'654.25','color':'#000000','from':-1000,'to':11000},
+                {'sid':'800.6100.24','color':'#af5f00','from':-16000,'to':16000},
                 {'sid':'5d7.0','color':'#008a1d','from':0,'to':70},
                 {'sid':'5d7.0','color':'#ffaa17','from':70,'to':100},
                 {'sid':'5d7.0','color':'#FF0000','from':100,'to':130},
                 {'sid':'5d7.0','color':'#cc00ff','from':130,'to':160}
                 ]"
             custom:options="{
-                               '5d7.0':'gradient'
+                               '5d7.0':'gradient',
+                               '800.6100.24':'alt'
                             }"
             />
 

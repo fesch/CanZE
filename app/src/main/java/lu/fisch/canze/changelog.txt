@@ -1,3 +1,5 @@
+2015.12.22 [Bob] consumption screen: added kWh/100km to bottom graph on second Y-axe
+2015.12.22 [Bob] widgets: modified timeplot to support second Y-axe
 2015.12.21 [Bob] consumption screen: modified kWh/100km
 2015.12.21 [Bob] widgets: modified bar (move around zero & gradient support)
 2015.12.21 [Bob] consumption screen: fixed another gradient bug
