@@ -48,6 +48,18 @@
                 />
         </RelativeLayout>
 
+        <ProgressBar
+            android:id="@+id/MaxBreakTorque"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="9dp"
+            android:paddingTop="2dp"
+            android:layout_gravity="center_horizontal"
+            android:max="2048"
+            android:progress="20"
+            android:progressDrawable="@drawable/progressbar_canze_decel_aimright"
+            />
+
         <TextView
             android:text="@string/label_ElecBrakeWheelsTorqueApplied"
             android:layout_width="wrap_content"
