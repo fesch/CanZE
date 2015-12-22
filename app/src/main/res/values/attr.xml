@@ -5,6 +5,7 @@
         <attr name="max" format="integer" />
         <attr name="minAlt" format="integer" />
         <attr name="maxAlt" format="integer" />
+        <attr name="timeScale" format="integer" />
         <attr name="majorTicks" format="integer" />
         <attr name="minorTicks" format="integer" />
         <attr name="showLabels" format="boolean" />

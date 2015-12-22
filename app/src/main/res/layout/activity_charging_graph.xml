@@ -36,6 +36,7 @@
             custom:fieldSID="42e.38,427.40"
             custom:widget="timeplot"
             custom:text="Pilot amp (A) / Charger power (kW)"
+            custom:timeScale="4"
 
         />
     </TableRow>
@@ -63,6 +64,7 @@
             custom:fieldSID="7bb.6101.336,800.6103.24"
             custom:widget="timeplot"
             custom:text="Max battery charge kW / DC Charging power (kW)"
+            custom:timeScale="4"
             />
 
     </TableRow>
@@ -96,6 +98,7 @@
                 {'sid':'427.49','color':'#008a1d','from':8,'to':17},
                 {'sid':'427.49','color':'#ffaa17','from':17,'to':25}]"
             custom:options="{'427.49':'gradient'}"
+            custom:timeScale="4"
 
             />
 

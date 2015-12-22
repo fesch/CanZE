@@ -63,6 +63,7 @@ public abstract class Drawable implements FieldListener {
     protected int value = 0;
     protected Field field = null;
     protected String title = "";
+    protected int timeSale = 1;
 
     // colors
     protected Color foreground   = Color.BLACK;
@@ -327,5 +328,13 @@ public abstract class Drawable implements FieldListener {
 
     public void setMinAlt(int minAlt) {
         this.minAlt = minAlt;
+    }
+
+    public int getTimeScale() {
+        return timeSale;
+    }
+
+    public void setTimeScale(int timescale) {
+        this.timeSale = timescale;
     }
 }

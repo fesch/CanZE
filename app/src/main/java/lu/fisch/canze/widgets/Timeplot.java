@@ -212,7 +212,7 @@ public class Timeplot extends Drawable {
         // draw the horizontal grid
         g.setColor(getIntermediate());
         long start = Calendar.getInstance().getTimeInMillis()/1000;
-        int interval = 60;
+        int interval = 60/timeSale;
         for(long x=width-(start%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
         {
             g.drawLine(x, 1, x, graphHeight + 5);
@@ -249,7 +249,7 @@ public class Timeplot extends Drawable {
                     if(tp!=null) {
                         g.setColor(colorRanges.getColor(sid, tp.value, getColor(s)));
 
-                        double mx = barWidth - (maxTime - tp.date) / 1000;
+                        double mx = barWidth - ((maxTime - tp.date)/timeSale / 1000);
 
                         if (mx < 0) {
                             values.remove(i);
@@ -348,18 +348,19 @@ public class Timeplot extends Drawable {
 
         // draw bottom axis
         int c = 0;
+        int ts = (int) timeSale;
         for(long x=width-(start%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
         {
-            if(c%5==0) {
+            if(c%(5*ts)==0) {
                 g.setColor(getForeground());
                 g.drawLine(x, graphHeight, x, graphHeight + 10);
-                String date = sdf.format((start - (start % interval) - interval * c) * 1000);
+                String date = sdf.format((start - ((start % interval))*timeSale - interval * c*timeSale) * 1000);
                 g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
             }
             else
             {
                 g.setColor(getForeground());
-                g.drawLine(x, graphHeight, x, graphHeight + 5);
+                g.drawLine(x, graphHeight, x, graphHeight + 3);
             }
             c++;
         }

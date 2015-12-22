@@ -1,3 +1,5 @@
+2015.12.22 [Bob] widgets: added feature "timeScale" for timed plots
+2015.12.22 [Bob] consumption screen: removed kWh/100km from bottom graph on second Y-axe
 2015.12.22 [Bob] consumption screen: added kWh/100km to bottom graph on second Y-axe
 2015.12.22 [Bob] widgets: modified timeplot to support second Y-axe
 2015.12.21 [Bob] consumption screen: modified kWh/100km
