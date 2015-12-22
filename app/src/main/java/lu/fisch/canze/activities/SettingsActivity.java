@@ -228,9 +228,9 @@ public class SettingsActivity extends AppCompatActivity {
                     // set dialog message
                     alertDialogBuilder
                             .setMessage(Html.fromHtml("Leaving the Bluetooth active while the application goes to background " +
-                                    "may interfer with other application using the Bluetooth feature. It also" +
-                                    "may suck of your battery if you forget to kill CanZE or disable this option." +
-                                    "<br><br><b>If using this feature, the connection will stay alive, even if you turn of " +
+                                    "may interfere with other applications using the Bluetooth feature. It also " +
+                                    "may drain your battery if you forget to kill CanZE or disable this option." +
+                                    "<br><br><b>If using this feature, the connection will stay alive, even if you power cycle " +
                                     "your Android device!</b><br><br>" +
                                     "Are you sure you want to continue enabling the Bluetooth Background Mode?"))
                             .setCancelable(true)

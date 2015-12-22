@@ -1,3 +1,4 @@
+2015.12.22 [Bob] settings: spelling errors (#262)
 2015.12.22 [Bob] widgets: added feature "timeScale" for timed plots
 2015.12.22 [Bob] consumption screen: removed kWh/100km from bottom graph on second Y-axe
 2015.12.22 [Bob] consumption screen: added kWh/100km to bottom graph on second Y-axe
@@ -13,7 +14,7 @@
 2015.12.19 [Bob] optimisation in gradient area graph
 2015.12.19 [Jeroen] added new virtualFields 801 (FrictionTorque) and 802 (FrictionPower)
 2015.12.19 [Jeroen] all text screens: major code cleanup on the onXxxx code
-2015.12.19 [Bob] fixed issue 262:  Formal Disclaimer answers not fully visible on phone for o.a. Safe Driving Mode setting
+2015.12.19 [Bob] fixed issue #262:  Formal Disclaimer answers not fully visible on phone for o.a. Safe Driving Mode setting
 2015.12.19 [Bob] fixed issue #271: In battery screen no cell voltages are displayed
 2015.12.14 [Bob] screen consumption: gradient are graph for instant consumption
 
