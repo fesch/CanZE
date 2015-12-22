@@ -1,3 +1,6 @@
+2015.12.22 [Jeroen] Added Aim bar in braking screen
+2015.12.22 [Jeroen] Added charging graphs in Experimental
+2015.12.22 [Jeroen] Added virtual field DC power and updated Charging accordingly
 2015.12.22 [Bob] settings: spelling errors (#262)
 2015.12.22 [Bob] widgets: added feature "timeScale" for timed plots
 2015.12.22 [Bob] consumption screen: removed kWh/100km from bottom graph on second Y-axe
