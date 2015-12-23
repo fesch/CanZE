@@ -1,3 +1,4 @@
+2015.12.23 [Bob] virtual field listeners where not unregistering as they should
 2015.12.23 [Bob] CanzeActivity: removed some commented old code
 2015.12.23 [Jeroen] Fixed TPM pressure unavailable bug, slowed down query
 2015.12.23 [Jeroen] Slowed down query for FluenceKangooTemps

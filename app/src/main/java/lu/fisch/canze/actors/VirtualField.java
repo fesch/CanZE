@@ -45,6 +45,18 @@ public class VirtualField extends Field implements FieldListener {
         }
     }
 
+    @Override
+    public void removeListener(FieldListener fieldListener)
+    {
+        // remove our listener
+        super.removeListener(fieldListener);
+
+        // remove listeners to dependant listeners
+        for (Field field : dependantFields.values()) {
+            fieldListeners.remove(this);
+        }
+    }
+
     public Collection<Field> getFields()
     {
         return dependantFields.values();
