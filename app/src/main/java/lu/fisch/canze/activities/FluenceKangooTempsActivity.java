@@ -75,19 +75,19 @@ public class FluenceKangooTempsActivity extends CanzeActivity implements FieldLi
         subscribedFields = new ArrayList<>();
 
         if (MainActivity.car == MainActivity.CAR_ZOE) {
-            addListener(SID_ExternalTemperatureZoe);
-            addListener(SID_HVEvaporatorTemperature);
+            addListener(SID_ExternalTemperatureZoe, 10000);
+            addListener(SID_HVEvaporatorTemperature, 10000);
         } else {
-            addListener(SID_ExternalTemperature);
+            addListener(SID_ExternalTemperature, 10000);
         }
-        addListener(SID_EvaporatorTemperature);
-        addListener(SID_WaterTemperatureHeating);
-        addListener(SID_DcDcConverterTemperature);
-        addListener(SID_InverterTemperature);
-        addListener(SID_InternalTemperature);
-        addListener(SID_MotorWaterPumpSpeed);
-        addListener(SID_ChargerWaterPumpSpeed);
-        addListener(SID_HeatingWaterPumpSpeed);
+        addListener(SID_EvaporatorTemperature, 10000);
+        addListener(SID_WaterTemperatureHeating, 10000);
+        addListener(SID_DcDcConverterTemperature, 10000);
+        addListener(SID_InverterTemperature, 10000);
+        addListener(SID_InternalTemperature, 10000);
+        addListener(SID_MotorWaterPumpSpeed, 2000);
+        addListener(SID_ChargerWaterPumpSpeed, 2000);
+        addListener(SID_HeatingWaterPumpSpeed, 2000);
     }
 
     private void removeListeners () {
@@ -100,12 +100,12 @@ public class FluenceKangooTempsActivity extends CanzeActivity implements FieldLi
         subscribedFields.clear();
     }
 
-    private void addListener(String sid) {
+    private void addListener(String sid, int intervalMs) {
         Field field;
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addActivityField(field);
+            MainActivity.device.addActivityField(field, intervalMs);
             subscribedFields.add(field);
         } else {
             MainActivity.toast("sid " + sid + " does not exist in class Fields");
