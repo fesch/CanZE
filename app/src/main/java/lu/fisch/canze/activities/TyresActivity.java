@@ -74,15 +74,15 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
 
         subscribedFields = new ArrayList<>();
 
-        addListener(SID_TyreSpdPresMisadaption);
-        addListener(SID_TyreFLState);
-        addListener(SID_TyreFLPressure);
-        addListener(SID_TyreFRState);
-        addListener(SID_TyreFRPressure);
-        addListener(SID_TyreRLState);
-        addListener(SID_TyreRLPressure);
-        addListener(SID_TyreRRState);
-        addListener(SID_TyreRRPressure);
+        addListener(SID_TyreSpdPresMisadaption, 6000);
+        addListener(SID_TyreFLState, 6000);
+        addListener(SID_TyreFLPressure, 6000);
+        addListener(SID_TyreFRState, 6000);
+        addListener(SID_TyreFRPressure, 6000);
+        addListener(SID_TyreRLState, 6000);
+        addListener(SID_TyreRLPressure, 6000);
+        addListener(SID_TyreRRState, 6000);
+        addListener(SID_TyreRRPressure, 6000);
     }
 
     private void removeListeners () {
@@ -95,12 +95,12 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
         subscribedFields.clear();
     }
 
-    private void addListener(String sid) {
+    private void addListener(String sid, int intervalMs) {
         Field field;
         field = MainActivity.fields.getBySID(sid);
         if (field != null) {
             field.addListener(this);
-            MainActivity.device.addActivityField(field);
+            MainActivity.device.addActivityField(field, intervalMs);
             subscribedFields.add(field);
         } else {
             MainActivity.toast("sid " + sid + " does not exist in class Fields");
@@ -138,7 +138,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_TyreFLPressure:
                         tv = (TextView) findViewById(R.id.text_TyreFLPressure);
-                        value = (intValue == 0xff) ? val_Unavailable : ("" + intValue);
+                        value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
                     case SID_TyreFRState:
                         tv = (TextView) findViewById(R.id.text_TyreFRState);
@@ -147,7 +147,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_TyreFRPressure:
                         tv = (TextView) findViewById(R.id.text_TyreFRPressure);
-                        value = (intValue == 0xff) ? val_Unavailable : ("" + intValue);
+                        value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
                     case SID_TyreRLState:
                         tv = (TextView) findViewById(R.id.text_TyreRLState);
@@ -156,7 +156,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_TyreRLPressure:
                         tv = (TextView) findViewById(R.id.text_TyreRLPressure);
-                        value = (intValue == 0xff) ? val_Unavailable : ("" + intValue);
+                        value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
                     case SID_TyreRRState:
                         tv = (TextView) findViewById(R.id.text_TyreRRState);
@@ -165,7 +165,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_TyreRRPressure:
                         tv = (TextView) findViewById(R.id.text_TyreRRPressure);
-                        value = (intValue == 0xff) ? val_Unavailable : ("" + intValue);
+                        value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
                 }
                 // set regular new content, all exeptions handled above
