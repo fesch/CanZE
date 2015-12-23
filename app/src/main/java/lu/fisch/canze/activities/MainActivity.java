@@ -38,8 +38,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -54,10 +52,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -283,21 +279,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             if(device!=null)
                 device.removeApplicationField(field);
         }
-/* test for scheduler & database
-        CanzeDataSource.getInstance(getBaseContext()).open();
-        Field field = fields.getBySID("5d7.0"); // Speed
-        if(device!=null) {
-            device.addApplicationField(field, 1000);
-        }
-        field = fields.getBySID("1fd.48");      // KwDash
-        if(device!=null) {
-            device.addApplicationField(field, 2000);
-        }
-        field = fields.getBySID("427.49");      // AvEnergy
-        if(device!=null) {
-            device.addApplicationField(field, 5000);
-        }
-/**/
     }
 
     private ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)
@@ -351,10 +332,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
             actualFragment=newFragment;
             // Create fragment and give it an argument specifying the article it should show
-            //MainFragment newFragment = new MainFragment();
-            /*Bundle args = new Bundle();
-            args.putInt(MainFragment.ARG_POSITION, position);
-            newFragment.setArguments(args);*/
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             // Replace whatever is in the fragment_container view with this fragment,
             // and add the transaction to the back stack so the user can navigate back
@@ -362,27 +339,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             //transaction.addToBackStack(null);
             // Commit the transaction
             transaction.commit();
-
-            //checkButtons();
         }
     }
-
-    /*
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-
-    }
-    */
 
     private ViewPager viewPager;
     private AppSectionsPagerAdapter appSectionsPagerAdapter;
@@ -399,12 +357,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         debug("MainActivity: onCreate");
 
         instance = this;
-
-        /*float density = getResources().getDisplayMetrics().density;
-        MainActivity.debug("MainActivity: density "+getResources().getDisplayMetrics().density);
-        MainActivity.debug("MainActivity: scaledDensity = "+getResources().getDisplayMetrics().scaledDensity);
-        MainActivity.debug("MainActivity: densityDpi = "+getResources().getDisplayMetrics().densityDpi);
-        MainActivity.debug("MainActivity: widthPixels = "+getResources().getDisplayMetrics().widthPixels);*/
 
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
