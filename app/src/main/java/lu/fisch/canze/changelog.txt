@@ -1,3 +1,5 @@
+2015.12.23 [Bob] trying to fix issue #262
+2015.12.22 [Bob] modified "temperature" screen to "screen tests"
 2015.12.22 [Jeroen] Added Aim bar in braking screen
 2015.12.22 [Jeroen] Added charging graphs in Experimental
 2015.12.22 [Jeroen] Added virtual field DC power and updated Charging accordingly

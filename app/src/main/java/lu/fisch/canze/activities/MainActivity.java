@@ -588,7 +588,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             display.getSize(size);
             float width = size.x;
             int height = size.y;
-            width = width / getResources().getDisplayMetrics().density * getResources().getDisplayMetrics().scaledDensity;
+            width = width / getResources().getDisplayMetrics().scaledDensity;
             if(width<=480)
             {
                 yes="Yes";
