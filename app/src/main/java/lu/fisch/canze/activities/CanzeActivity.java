@@ -148,16 +148,8 @@ public class CanzeActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                // sleep a bit to give the UI time to initialise
-                //try { Thread.sleep(1000); }
-                //catch (Exception e) {}
-
-                // load data
-                //SharedPreferences settings = getSharedPreferences(MainActivity.DATA_FILE, 0);
-
                 // connect the widgets to the respective fields
                 // and add the filters to the reader
-
                 for (int i = 0; i < widgets.size(); i++) {
                     final WidgetView wv = widgets.get(i);
 
@@ -167,150 +159,10 @@ public class CanzeActivity extends AppCompatActivity {
                     }
 
                     MainActivity.debug("CanzeActivity: initWidgets: Widget: " + wv.getDrawable().getTitle() + " ("+wv.getFieldSID()+")");
-
-
-                    /*String sid = wv.getFieldSID(); --> done in WidgetView
-                    String[] sids = sid.split(",");
-                    for(int s=0; s<sids.length; s++) {
-                        Field field = MainActivity.fields.getBySID(sids[s]);
-                        if (field == null) {
-                            MainActivity.debug("!!! >> Field with following SID <" + sids[s] + "> not found!");
-//                            Toast.makeText(CanzeActivity.this, "Field with following SID <" + sids[s] + "> not found!", Toast.LENGTH_SHORT).show();
-                            //throw new ExceptionInInitializerError("Field with following SID <" + wv.getFieldSID() + "> not found!");
-                        }
-                        else {
-                            Drawable drawable = wv.getDrawable();
-                            // add field to list of registered sids for this widget
-                            drawable.addField(field.getSID());
-                            // add listener
-                            field.addListener(wv.getDrawable());
-                            // add filter to reader
-                            int interval = drawable.getIntervals().getInterval(field.getSID());
-                            if(interval==-1)
-                                MainActivity.device.addActivityField(field);
-                            else
-                                MainActivity.device.addActivityField(field,interval);
-                        }
-                    }*/
-
-                    // load data --> replaced by loading from the database
-                    /*
-                    String id = wv.getDrawable().getClass().getSimpleName()+"."+wv.getFieldSID();
-                    String json = "";
-                    try {
-                        json=decompress(settings.getString(id, ""));
-                    }
-                    catch(Exception e)
-                    {
-                        //e.printStackTrace();
-                    }
-
-                    if(!json.trim().isEmpty())
-                    {
-                        wv.getDrawable().dataFromJson(json);
-                    }
-                    */
-
-                    // --> done in drawable
-                    //wv.getDrawable().loadValuesFromDatabase();
-
-                    //wv.repaint();
-
-                    // touching a widget makes a "bigger" version appear
-                    //wv.setOnTouchListener(wv);
-                    /*wv.setOnTouchBackListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            // get masked (not specific to a pointer) action
-                            int maskedAction = event.getActionMasked();
-
-                            switch (maskedAction) {
-                                case MotionEvent.ACTION_UP:
-                                case MotionEvent.ACTION_POINTER_UP: {
-                                    MainActivity.debug("Done!");
-                                    widgetClicked=true;
-                                    break;
-                                }
-                                default: {
-                                    break;
-                                }
-                            }
-                            return true;
-                        }
-                    });*/
-
-                    // touching a widget makes a "bigger" version appear
-                    /*wv.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View v, MotionEvent event) {
-                            if(((WidgetView) v).isClickable()) {
-                                // get pointer index from the event object
-                                int pointerIndex = event.getActionIndex();
-
-                                // get pointer ID
-                                int pointerId = event.getPointerId(pointerIndex);
-
-                                // get masked (not specific to a pointer) action
-                                int maskedAction = event.getActionMasked();
-
-                                switch (maskedAction) {
-                                    case MotionEvent.ACTION_DOWN:
-                                    case MotionEvent.ACTION_POINTER_DOWN: {
-                                        widgetClicked=true;
-                                        Intent intent = new Intent(CanzeActivity.this, WidgetActivity.class);
-                                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        WidgetView.selectedDrawable = wv.getDrawable();
-                                        CanzeActivity.this.startActivity(intent);
-                                        break;
-                                    }
-                                    case MotionEvent.ACTION_MOVE:
-                                    case MotionEvent.ACTION_UP:
-                                    case MotionEvent.ACTION_POINTER_UP:
-                                    case MotionEvent.ACTION_CANCEL: {
-                                        break;
-                                    }
-                                }
-
-                                wv.invalidate();
-
-                                return true;
-                            }
-                            else return false;
-                        }
-                    });*/
-
                 }
             }
         }).start();
     }
-
-        /*
-    protected void saveWidgetData()
-    {
-        // free up the listener again
-        ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
-        // save widget data
-        SharedPreferences settings = getSharedPreferences(MainActivity.DATA_FILE, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        for(int i=0; i<widgets.size(); i++) {
-            WidgetView wv = widgets.get(i);
-            // save widget data
-            String id = wv.getDrawable().getClass().getSimpleName() + "." + wv.getFieldSID();
-            String data = "";
-            {
-                try {
-                    data = compress(wv.getDrawable().dataToJson());
-                }
-                catch(Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-            editor.putString(id, data);
-        }
-        editor.commit();
-    }
-        */
 
     protected void freeWidgetListeners()
     {

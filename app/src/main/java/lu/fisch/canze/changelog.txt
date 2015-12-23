@@ -1,5 +1,6 @@
-2015.12.22 [Jeroen] Fixed TPM pressure unavailable bug, slowed down query
-2015.12.22 [Jeroen] Slowed down query for FluenceKangooTemps
+2015.12.23 [Bob] CanzeActivity: removed some commented old code
+2015.12.23 [Jeroen] Fixed TPM pressure unavailable bug, slowed down query
+2015.12.23 [Jeroen] Slowed down query for FluenceKangooTemps
 2015.12.23 [Bob] trying to fix issue #262
 2015.12.22 [Bob] modified "temperature" screen to "screen tests"
 2015.12.22 [Jeroen] Added Aim bar in braking screen
