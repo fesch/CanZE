@@ -1254,12 +1254,26 @@ public class Fields implements MessageListener {
                 if(binString.length()>= field.getTo()) {
                     // parseInt --> signed, so the first bit is "cut-off"!
                     try {
+                        // experiment with unavailable: any field >= 5 bits whose value contains only 1's
+                        binString = binString.substring(field.getFrom(), field.getTo() + 1);
+                        if (binString.length() <= 4 || binString.contains("0")) {
+                            int val = Integer.parseInt("0" + binString, 2);
+                            //MainActivity.debug("Value of " + field.getHexId() + "." + field.getResponseId() + "." + field.getFrom()+" = "+val);
+                            //MainActivity.debug("Fields: onMessageCompleteEvent > "+field.getSID()+" = "+val);
+                            field.setValue(val);
+                            // update the fields last request date
+                            field.updateLastRequest();
+                        } else {
+                            field.setValue(Double.NaN);
+                        }
+/*
                         int val = Integer.parseInt("0" + binString.substring(field.getFrom(), field.getTo() + 1), 2);
                         //MainActivity.debug("Value of " + field.getHexId() + "." + field.getResponseId() + "." + field.getFrom()+" = "+val);
                         //MainActivity.debug("Fields: onMessageCompleteEvent > "+field.getSID()+" = "+val);
                         field.setValue(val);
                         // update the fields last request date
                         field.updateLastRequest();
+*/
                     } catch (Exception e)
                     {
                         // ignore
