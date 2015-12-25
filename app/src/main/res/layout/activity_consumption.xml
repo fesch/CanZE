@@ -31,9 +31,17 @@
             custom:max="150"
             custom:majorTicks="50"
             custom:minorTicks="25"
-            custom:fieldSID="800.0"
-            custom:widget="tacho"
+            custom:fieldSID="800.6100.24"
+            custom:widget="bar"
             custom:text="kWh/100km"
+            custom:colorRanges="[
+                {'sid':'800.6100.24','color':'#008a1d','from':-150,'to':0},
+                {'sid':'800.6100.24','color':'#3ee9ff','from':0,'to':0},
+                {'sid':'800.6100.24','color':'#cc00ff','from':0,'to':150}
+                ]"
+            custom:options="{
+                               '800.6100.24':'gradient'
+                            }"
             />
 
         <lu.fisch.canze.widgets.WidgetView
@@ -51,7 +59,10 @@
             custom:fieldSID="42e.0,654.25"
             custom:widget="timeplot"
             custom:text="True State of Charge (%) / Indicated State of Charge (%)"
-            custom:intervals="{'42e.0':30000,'654.25':30000}"
+            custom:intervals="{
+                    '42e.0':60000,
+                    '654.25':60000
+                    }"
         />
 
         <!--
@@ -132,9 +143,11 @@
             custom:widget="timeplot"
             custom:text="Speed (km/h) / Available distance (km) / State of Charge (%)"
             custom:intervals="{
-                               '654.42':10000
+                               '654.42':10000,
+                               '654.25':60000
                                }"
             custom:colorRanges="[
+                {'sid':'654.25','color':'#000000','from':-1000,'to':11000},
                 {'sid':'5d7.0','color':'#008a1d','from':0,'to':70},
                 {'sid':'5d7.0','color':'#ffaa17','from':70,'to':100},
                 {'sid':'5d7.0','color':'#FF0000','from':100,'to':130},

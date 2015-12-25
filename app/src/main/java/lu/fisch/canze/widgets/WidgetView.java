@@ -180,6 +180,10 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     if(optionsJson!=null && !optionsJson.trim().isEmpty())
                         drawable.setOptions(new Options(optionsJson.replace("'", "\"")));
 
+                    drawable.setMinAlt(attributes.getInt(R.styleable.WidgetView_minAlt,-1));
+                    drawable.setMaxAlt(attributes.getInt(R.styleable.WidgetView_maxAlt, -1));
+                    drawable.setTimeScale(attributes.getInt(R.styleable.WidgetView_timeScale,1));
+
                     fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
                     String[] sids = fieldSID.split(",");
                     for(int s=0; s<sids.length; s++) {

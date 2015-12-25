@@ -1,0 +1,117 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:keepScreenOn="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    tools:context="lu.fisch.canze.activities.ChargingGraphActivity"
+    android:stretchColumns="3"
+    android:id="@+id/table"
+    >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <!-- pilot amp / available power -->
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/graph_max_pilot"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            custom:min="0"
+            custom:max="64"
+            custom:majorTicks="16"
+            custom:minorTicks="4"
+            custom:fieldSID="42e.38,427.40"
+            custom:widget="timeplot"
+            custom:text="Pilot amp (A) / Charger power (kW)"
+            custom:timeScale="4"
+            custom:intervals="{
+                               '42e.38':10000,
+                               '427.40':10000
+                               }"
+
+        />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <!-- pilot amp / available power -->
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/graph_max_charge"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            custom:min="0"
+            custom:max="40"
+            custom:majorTicks="10"
+            custom:minorTicks="5"
+            custom:fieldSID="7bb.6101.336,800.6103.24"
+            custom:widget="timeplot"
+            custom:text="Max battery charge kW / DC Charging power (kW)"
+            custom:timeScale="4"
+            custom:intervals="{
+                               '7bb.6101.336':10000,
+                               '800.6103.24':10000
+                               }"
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <!-- available energy -->
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/graph_charge_power"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            custom:min="0"
+            custom:max="25"
+            custom:majorTicks="5"
+            custom:minorTicks="1"
+            custom:fieldSID="427.49"
+            custom:widget="timeplot"
+            custom:text="Available energy (kWh)"
+            custom:colorRanges="[
+                {'sid':'427.49','color':'#3ee9ff','from':0,'to':8},
+                {'sid':'427.49','color':'#008a1d','from':8,'to':17},
+                {'sid':'427.49','color':'#ffaa17','from':17,'to':25}]"
+            custom:options="{'427.49':'gradient'}"
+            custom:timeScale="4"
+            custom:intervals="{
+                               '427.49':10000
+                               }"
+            />
+
+    </TableRow>
+
+</TableLayout>

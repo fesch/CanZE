@@ -24,6 +24,7 @@ package lu.fisch.canze.widgets;
 
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
+import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 
 /**
@@ -59,17 +60,54 @@ public class Bar extends Drawable {
         g.setColor(Color.BLACK);
         g.drawRect(x, y, width, height);
 
-        // calculate fill height
+        int value = this.value;
+        if (inverted) value=-value;
+
+            // calculate fill height
         int fillHeight = (int) ((value-min)/(double)(max-min)*(height-1));
+        if(value<min) fillHeight = (int) ((min-min)/(double)(max-min)*(height-1));
+        else if(value>max) fillHeight = (int) ((max-min)/(double)(max-min)*(height-1));
+
         int barWidth = width-Math.max(g.stringWidth(min+""),g.stringWidth(max+""))-10-10-g.stringHeight(title)-4;
+        int startY = y+height-fillHeight;
+
+        // if min is below zero, we want to start at that position
+        if(min<0)
+        {
+            int zero = (int) ((0-min)/(double)(max-min)*(height-1));
+            startY = y+zero;
+
+            if(value>0)
+            {
+                fillHeight=zero-(height-fillHeight);
+                startY-=fillHeight;
+            }
+            else
+            {
+                fillHeight=zero-fillHeight;
+            }
+        }
 
         // draw the filled part
-        g.drawRect(x+width-barWidth, y, barWidth, height);
+        g.drawRect(x + width - barWidth, y, barWidth, height);
         g.setColor(Color.RED);
-        if(inverted)
-            g.fillRect(x+1+width-barWidth, y+1, barWidth-1, fillHeight);
-        else
-            g.fillRect(x+1+width-barWidth, y+height-fillHeight, barWidth-1, fillHeight);
+
+        String sid = getSids().get(0);
+        if(getOptions().getOption(sid)!=null &&
+                getOptions().getOption(sid).contains("gradient")) {
+
+            int[] colors = colorRanges.getColors(sid);
+            float[] spacings = colorRanges.getSpacings(sid, min, max);
+            if(colors.length==spacings.length)
+            {
+                g.setGradient(0, height-1, 0, 0, colors, spacings);
+
+            }
+        }
+
+        g.fillRect(x + 1 + width - barWidth, startY, barWidth - 2, fillHeight);
+
+        g.clearGradient();
 
         // draw the ticks
         if(minorTicks>0 || majorTicks>0)
@@ -132,8 +170,8 @@ public class Bar extends Drawable {
             int tw = g.stringWidth(text);
             int th = g.stringHeight(text);
             int tx = x+width-barWidth/2-tw/2;
-            int ty = y+height/2;
-            g.setColor(Color.GREEN_DARK);
+            int ty = y+height/2+th/2;
+            g.setColor(Color.BLACK);
             g.drawString(text, tx, ty);
         }
         // draw the title
@@ -146,7 +184,7 @@ public class Bar extends Drawable {
             int tx = x; //x+width-barWidth/2-tw/2;
             int ty = y+height; //getY()+getHeight()-8;
             g.rotate(-90, tx, ty);
-            g.drawString(title,tx+4,ty+th-2);
+            g.drawString(title,tx+4,ty+th+2);
             g.rotate(90,tx,ty);
         }
 

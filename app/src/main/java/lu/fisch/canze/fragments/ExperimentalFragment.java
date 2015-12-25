@@ -34,6 +34,7 @@ import android.widget.Button;
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.AlexandreActivity;
 import lu.fisch.canze.activities.BatteryTempActivity;
+import lu.fisch.canze.activities.ChargingGraphActivity;
 import lu.fisch.canze.activities.ChargingTechActivity;
 import lu.fisch.canze.activities.DtcActivity;
 import lu.fisch.canze.activities.ElmTestActivity;
@@ -144,7 +145,7 @@ public class ExperimentalFragment extends Fragment {
                 if(!MainActivity.isSafe()) return;
                 if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), ElmTestActivity.class);
+                Intent intent = new Intent(MainActivity.getInstance(), ChargingGraphActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });

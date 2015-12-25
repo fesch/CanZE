@@ -36,9 +36,10 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
-    public static final String SID_Coasting_Torque                      = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
-    public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; //10ms
+    public static final String SID_Coasting_Torque                      = "18a.27"; // 10ms Friction torque means EMULATED friction, what we'd call coasting
+    public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; // 10ms
     public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; // braking wheel torque the driver wants
+    public static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; // UBP 10ms
 
     private double driverBrakeWheel_Torque_Request = 0;
     private double coasting_Torque = 0;
@@ -66,14 +67,11 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
     }
 
     private void initListeners() {
-
         subscribedFields = new ArrayList<>();
-
-        // Make sure to add ISO-TP listeners grouped by ID
-
         addListener(SID_DriverBrakeWheel_Torque_Request);
         addListener(SID_ElecBrakeWheelsTorqueApplied);
         addListener(SID_Coasting_Torque);
+        addListener(SID_TotalPotentialResistiveWheelsTorque);
     }
 
     private void removeListeners () {
@@ -124,6 +122,11 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
                         tv = (TextView) findViewById(R.id.text_driver_torque_request);
                         if (tv != null) tv.setText(((int)driverBrakeWheel_Torque_Request) + " Nm");
                         break;
+                    case SID_TotalPotentialResistiveWheelsTorque:
+                        int tprwt = - ((int) field.getValue());
+                        pb = (ProgressBar) findViewById(R.id.MaxBreakTorque);
+                        if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 20);
+                        break;
                     case SID_ElecBrakeWheelsTorqueApplied:
                         double elecBrakeWheelsTorqueApplied = field.getValue() + coasting_Torque;
                         pb = (ProgressBar) findViewById(R.id.pb_ElecBrakeWheelsTorqueApplied);
@@ -137,78 +140,14 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
                         tv = (TextView) findViewById(R.id.text_diff_friction_torque);
                         if (tv != null) tv.setText(((int) diff_friction_torque) + " Nm");
                         break;
-/*                    case SID_TotalPotentialResistiveWheelsTorque:
-                      pb = (ProgressBar) findViewById(R.id.pb_TotalPotentialResistiveWheelsTorque);
-                      pb.setProgress((int) field.getValue());
-                      break;
-                    case SID_ElecBrakeWheels_Torque_Request:
-                      pb = (ProgressBar) findViewById(R.id.pb_eb_torque_request);
-                      pb.setProgress((int) field.getValue());
-                      break;*/
                     case SID_Coasting_Torque:
-                        coasting_Torque = field.getValue() * 9.3; // it seems this torque is given in motor torque, not in wheel torque. Maybe another adjustment by a factor 05 is needed (two wheels)
-                        //  pb = (ProgressBar) findViewById(R.id.pb_friction_torque);
-                        //  pb.setProgress((int) field.getValue());
+                        coasting_Torque = field.getValue() * 9.3; // it seems this torque is given in motor torque, not in wheel torque.
                         break;
-/*                    case SID_Braking_Pressure:
-                        pb = (ProgressBar) findViewById(R.id.pb_braking_pressure);
-                        pb.setProgress((int) field.getValue());
-                        break;
-                    case SID_HBB_Malfunction:
-                        tv = (TextView) findViewById(R.id.text_hbb_malfunction);
-                        value = hbb_Malfunction[(int)field.getValue()];
-                        break;
-                    case SID_EB_Malfunction:
-                        tv = (TextView) findViewById(R.id.text_eb_malfunction);
-                        value = eb_Malfunction[(int)field.getValue()];
-                        break;
-                    case SID_EB_In_Progress:
-                        tv = (TextView) findViewById(R.id.text_eb_in_progress);
-                        value = eb_Inprogress[(int)field.getValue()];
-                        break;
-                    case SID_HBA_Activation_Request:
-                        tv = (TextView) findViewById(R.id.text_hba_activation_request);
-                        value = hba_actReq[(int)field.getValue()];
-                        break;
-                    case SID_Pressure_Buildup:
-                        tv = (TextView) findViewById(R.id.text_pressure_buildup);
-                        value = pressure_buildup[(int)field.getValue()];
-                        break;*/
                 }
-                // set regular new content, all exeptions handled above
-/*                if (tv != null) {
-                    tv.setText(value);
-                }*/
-
                 tv = (TextView) findViewById(R.id.textDebug);
                 tv.setText(fieldId);
             }
         });
 
     }
-
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_text, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-*/
-
 }

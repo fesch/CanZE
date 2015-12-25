@@ -118,6 +118,10 @@
             android:name=".activities.TyresActivity"
             android:label="@string/title_activity_tyres" >
         </activity>
+        <activity
+            android:name=".activities.ChargingGraphActivity"
+            android:label="@string/title_activity_charging_graph" >
+        </activity>
     </application>
 
 </manifest>

@@ -21,12 +21,14 @@ public class VirtualField extends Field implements FieldListener {
     protected VirtualFieldAction virtualFieldAction = null;
 
 
-    public VirtualField(int id, HashMap<String,Field> dependantFields, String unit, VirtualFieldAction virtualFieldAction)
+    public VirtualField(String responseId, HashMap<String,Field> dependantFields, String unit, VirtualFieldAction virtualFieldAction)
     {
         // virtual frame added in the initialization block
-        super(Frames.getInstance().createVirtualIfNotExists(id), 0, 0, 1, 1, 0, unit, "", "", 0);
+        // super(Frames.getInstance().createVirtualIfNotExists(id), 0, 0, 1, 1, 0, unit, "", "", 0);
+        // We're creating a new Field, frame 800, bit position 24-31, resolution 1, decimals 0, offset 0, given unit, empty requestId, given responseId, generic car
+        super(Frames.getInstance().getById(0x800), 24, 31, 1, 0, 0, unit, "", responseId, 0);
 
-        // regiester dependant listeners
+        // register dependant listeners
         for (Field field : dependantFields.values()) {
             field.addListener(this);
         }
@@ -40,6 +42,18 @@ public class VirtualField extends Field implements FieldListener {
     public void onFieldUpdateEvent(Field field) {
         if(virtualFieldAction!=null) {
             setValue(virtualFieldAction.updateValue(dependantFields));
+        }
+    }
+
+    @Override
+    public void removeListener(FieldListener fieldListener)
+    {
+        // remove our listener
+        super.removeListener(fieldListener);
+
+        // remove listeners to dependant listeners
+        for (Field field : dependantFields.values()) {
+            fieldListeners.remove(this);
         }
     }
 

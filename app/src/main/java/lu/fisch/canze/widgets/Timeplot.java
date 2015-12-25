@@ -43,6 +43,7 @@ import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.classes.TimePoint;
 import lu.fisch.canze.database.CanzeDataSource;
+import lu.fisch.canze.fragments.MainFragment;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 
 /**
@@ -110,8 +111,15 @@ public class Timeplot extends Drawable {
         g.drawRect(x, y, width, height);
 
         // calculate fill height
-        int fillHeight = (int) ((value-min)/(double)(max-min)*(height-1));
+        //int fillHeight = (int) ((value-min)/(double)(max-min)*(height-1));
         int barWidth = width-Math.max(g.stringWidth(min+""),g.stringWidth(max+""))-10-10;
+        int spaceAlt = Math.max(g.stringWidth(minAlt+""),g.stringWidth(maxAlt+""))+10+10;
+        // reduce with if second y-axe is used
+        if (minAlt==-1 && maxAlt==-1)
+        {
+            spaceAlt=0;
+        }
+        barWidth-=spaceAlt;
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         int graphHeight = height-g.stringHeight(sdf.format(Calendar.getInstance().getTime()))-5;
@@ -124,35 +132,53 @@ public class Timeplot extends Drawable {
             double accel = (double)graphHeight/((max-min)/(double)toTicks);
             double ax,ay,bx=0,by=0;
             int actual = min;
+            int actualAlt = minAlt;
             int sum = 0;
             for(double i=graphHeight; i>=0; i-=accel)
             {
                 if(minorTicks>0)
                 {
                     g.setColor(getForeground());
-                    ax = x+width-barWidth-5;
+                    ax = x+width-barWidth-spaceAlt-5;
                     ay = y+i;
-                    bx = x+width-barWidth;
+                    bx = x+width-barWidth-spaceAlt;
                     by = y+i;
                     g.drawLine((int)ax, (int)ay, (int)bx, (int)by);
+
+                    if(spaceAlt!=0) {
+                        ax = x+width-spaceAlt;
+                        ay = y+i;
+                        bx = ax+5;
+                        by = y+i;
+                        g.drawLine((int)ax, (int)ay, (int)bx, (int)by);
+                    }
                 }
                 // draw majorTicks
                 if(majorTicks!=0 && sum % majorTicks == 0) {
                     if(majorTicks>0)
                     {
                         g.setColor(getIntermediate());
-                        ax = x+width-barWidth-10;
+                        ax = x+width-spaceAlt-barWidth-10;
                         ay = y+i;
-                        bx = x+width;
+                        bx = x+width-spaceAlt+(spaceAlt!=0?10:0);
+                        by = y+i;
+                        g.drawLine((int) ax, (int) ay, (int) bx, (int) by);
+
+                        g.setColor(getForeground());
+                        ax = x+width-barWidth-spaceAlt-10;
+                        ay = y+i;
+                        bx = x+width-barWidth-spaceAlt;
                         by = y+i;
                         g.drawLine((int)ax, (int)ay, (int)bx, (int)by);
 
-                        g.setColor(getForeground());
-                        ax = x+width-barWidth-10;
-                        ay = y+i;
-                        bx = x+width-barWidth;
-                        by = y+i;
-                        g.drawLine((int)ax, (int)ay, (int)bx, (int)by);
+                        if(spaceAlt!=0)
+                        {
+                            ax = x+width-spaceAlt;
+                            ay = y+i;
+                            bx = ax+10;
+                            by = y+i;
+                            g.drawLine((int)ax, (int)ay, (int)bx, (int)by);
+                        }
                     }
 
                     // draw String
@@ -161,12 +187,23 @@ public class Timeplot extends Drawable {
                         g.setColor(getForeground());
                         String text = (actual)+"";
                         double sw = g.stringWidth(text);
-                        bx = x+width-barWidth-16-sw;
+                        bx = x+width-barWidth-16-sw-spaceAlt;
                         by = y+i;
                         g.drawString(text, (int)(bx), (int)(by+g.stringHeight(text)*(1-i/graphHeight)));
+
+                        // alternative labels
+                        if(spaceAlt!=0)
+                        {
+                            text = (actualAlt)+"";
+                            sw = g.stringWidth(text);
+                            bx = x+width-spaceAlt+16;
+                            by = y+i;
+                            g.drawString(text, (int)(bx), (int)(by+g.stringHeight(text)*(1-i/graphHeight)));
+                        }
                     }
 
                     actual+=majorTicks;
+                    actualAlt+=(maxAlt-minAlt)/((max-min)/majorTicks);
                 }
                 sum+=minorTicks;
             }
@@ -175,8 +212,8 @@ public class Timeplot extends Drawable {
         // draw the horizontal grid
         g.setColor(getIntermediate());
         long start = Calendar.getInstance().getTimeInMillis()/1000;
-        int interval = 60;
-        for(long x=width-(start%interval); x>=width-barWidth; x-=interval)
+        int interval = 60/timeSale;
+        for(long x=width-(start%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
         {
             g.drawLine(x, 1, x, graphHeight + 5);
         }
@@ -193,11 +230,12 @@ public class Timeplot extends Drawable {
             }
 
             g.setColor(getForeground());
-            g.drawRect(x + width - barWidth, y, barWidth, graphHeight);
+            g.drawRect(x + width - barWidth-spaceAlt, y, barWidth, graphHeight);
             if (values.size() > 0) {
 
                 double w = (double) barWidth / values.size();
                 double h = (double) graphHeight / (getMax() - getMin() + 1);
+                double hAlt = (double) graphHeight / (getMaxAlt() - getMinAlt() + 1);
 
                 double lastX = Double.NaN;
                 double lastY = Double.NaN;
@@ -211,23 +249,31 @@ public class Timeplot extends Drawable {
                     if(tp!=null) {
                         g.setColor(colorRanges.getColor(sid, tp.value, getColor(s)));
 
-                        double mx = barWidth - (maxTime - tp.date) / 1000;
+                        double mx = barWidth - ((maxTime - tp.date)/timeSale / 1000);
 
                         if (mx < 0) {
                             values.remove(i);
                         } else {
-                            double my = graphHeight - (tp.value - getMin()) * h;
-                            double zy = graphHeight - (0 - getMin()) * h;
+                            double my = graphHeight - (tp.value - min) * h;
+                            double zy = graphHeight - (0 - min) * h;
+
+                            // draw on alternate scale if requested
+                            if(getOptions().getOption(sid)!=null &&
+                                    getOptions().getOption(sid).contains("alt")) {
+                                my = graphHeight - (tp.value - minAlt) * hAlt;
+                                zy = graphHeight - (0 - minAlt) * hAlt;
+                            }
+
                             int rayon = 2;
                             if(getOptions().getOption(sid)!=null &&
                                     !getOptions().getOption(sid).isEmpty()) {
-                                g.drawLine(getX() + getWidth() - barWidth + (int) mx,
-                                        getY() + (int) my,
-                                        getX() + getWidth() - barWidth + (int) mx,
-                                        getY() + (int) zy);
+                                g.drawLine(getX() + getWidth() - barWidth + (int) mx-spaceAlt,
+                                           getY() + (int) my,
+                                           getX() + getWidth() - barWidth + (int) mx-spaceAlt,
+                                           getY() + (int) zy);
                             }
                             else {
-                                g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon,
+                                g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon-spaceAlt,
                                         getY() + (int) my - rayon,
                                         2 * rayon + 1,
                                         2 * rayon + 1);
@@ -236,13 +282,13 @@ public class Timeplot extends Drawable {
                                 if(getOptions().getOption(sid)!=null &&
                                         getOptions().getOption(sid).contains("full")) {
                                     Polygon p = new Polygon();
-                                    p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
+                                    p.addPoint(getX() + getWidth() - barWidth + (int) lastX-spaceAlt,
                                             getY() + (int) lastY);
-                                    p.addPoint(getX() + getWidth() - barWidth + (int) mx,
+                                    p.addPoint(getX() + getWidth() - barWidth + (int) mx-spaceAlt,
                                             getY() + (int) my);
-                                    p.addPoint(getX() + getWidth() - barWidth + (int) mx,
+                                    p.addPoint(getX() + getWidth() - barWidth + (int) mx-spaceAlt,
                                             (int) (getY() + zy));
-                                    p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
+                                    p.addPoint(getX() + getWidth() - barWidth + (int) lastX-spaceAlt,
                                             (int) (getY() + zy));
                                     g.fillPolygon(p);
                                 }
@@ -251,13 +297,13 @@ public class Timeplot extends Drawable {
 
                                     if(i<values.size() && values.get(i+1)!=null) {
                                         Polygon p = new Polygon();
-                                        p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) lastX-spaceAlt,
                                                 getY() + (int) lastY);
-                                        p.addPoint(getX() + getWidth() - barWidth + (int) mx,
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) mx-spaceAlt,
                                                 getY() + (int) my);
-                                        p.addPoint(getX() + getWidth() - barWidth + (int) mx,
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) mx-spaceAlt,
                                                 (int) (getY() + zy));
-                                        p.addPoint(getX() + getWidth() - barWidth + (int) lastX,
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) lastX-spaceAlt,
                                                 (int) (getY() + zy));
 
                                         /*if ((values.get(i + 1).value > 0 && tp.value > 0) || (values.get(i + 1).value < 0 && tp.value < 0)) {
@@ -270,14 +316,21 @@ public class Timeplot extends Drawable {
                                         {
                                             g.fillPolygon(p, 0, graphHeight, 0, 0, colorRanges.getColors(sid), colorRanges.getSpacings(sid, min, max));
                                         }*/
-                                        g.fillPolygon(p, 0, graphHeight, 0, 0, colorRanges.getColors(sid), colorRanges.getSpacings(sid, min, max));
+                                        int[] colors = colorRanges.getColors(sid);
+                                        float[] spacings = colorRanges.getSpacings(sid, min, max);
+                                        if(colors.length==spacings.length)
+                                            g.setGradient(0, graphHeight, 0, 0, colors, spacings);
+                                        g.fillPolygon(p);
+                                        g.clearGradient();
+
+                                        //else MainActivity.debug("size not equal: "+colors.length+"=="+spacings.length);
                                     }
                                 }
                                 else
                                 {
-                                    g.drawLine(getX() + getWidth() - barWidth + (int) lastX,
+                                    g.drawLine(getX() + getWidth() - barWidth + (int) lastX-spaceAlt,
                                             getY() + (int) lastY,
-                                            getX() + getWidth() - barWidth + (int) mx,
+                                            getX() + getWidth() - barWidth + (int) mx-spaceAlt,
                                             getY() + (int) my);
                                 }
                             }
@@ -295,18 +348,19 @@ public class Timeplot extends Drawable {
 
         // draw bottom axis
         int c = 0;
-        for(long x=width-(start%interval); x>=width-barWidth; x-=interval)
+        int ts = (int) timeSale;
+        for(long x=width-(start%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
         {
-            if(c%5==0) {
+            if(c%(5*ts)==0) {
                 g.setColor(getForeground());
                 g.drawLine(x, graphHeight, x, graphHeight + 10);
-                String date = sdf.format((start - (start % interval) - interval * c) * 1000);
+                String date = sdf.format((start - ((start % interval))*timeSale - interval * c*timeSale) * 1000);
                 g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
             }
             else
             {
                 g.setColor(getForeground());
-                g.drawLine(x, graphHeight, x, graphHeight + 5);
+                g.drawLine(x, graphHeight, x, graphHeight + 3);
             }
             c++;
         }
@@ -318,7 +372,7 @@ public class Timeplot extends Drawable {
             g.setColor(getTitleColor());
             g.setTextSize(20);
             int th = g.stringHeight(title);
-            int tx = getX()+width-barWidth+8;
+            int tx = getX()+width-barWidth+8-spaceAlt;
             int ty = getY()+th+4;
             g.drawString(title,tx,ty);
         }
@@ -343,7 +397,7 @@ public class Timeplot extends Drawable {
 
                     int tw = g.stringWidth(text);
                     int th = g.stringHeight(text);
-                    int tx = getX()+width-tw-8;
+                    int tx = getX()+width-tw-8-spaceAlt;
                     int ty = getY()+(s+1)*(th+4);
                     g.drawString(text, tx, ty);
                 }

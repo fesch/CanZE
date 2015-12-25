@@ -90,6 +90,7 @@ public class Fields implements MessageListener {
         addVirtualFieldUsage();
         addVirtualFieldFrictionTorque();
         addVirtualFieldFrictionPower();
+        addVirtualFieldDcPower();
     }
 
 
@@ -106,7 +107,7 @@ public class Fields implements MessageListener {
         dependantFields.put(SID_EVC_TractionBatteryCurrent, getBySID(SID_EVC_TractionBatteryCurrent));
         dependantFields.put(SID_RealSpeed, getBySID(SID_RealSpeed));
         // create a new virtual field. Define it's ID and how it is being calculated
-        VirtualField virtualField = new VirtualField(0x800, dependantFields, "kWh/100km", new VirtualFieldAction() {
+        VirtualField virtualField = new VirtualField("6100", dependantFields, "kWh/100km", new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
                 // get voltage
@@ -135,12 +136,11 @@ public class Fields implements MessageListener {
         dependantFields.put(SID_DriverBrakeWheel_Torque_Request,getBySID(SID_DriverBrakeWheel_Torque_Request));
         dependantFields.put(SID_ElecBrakeWheelsTorqueApplied,getBySID(SID_ElecBrakeWheelsTorqueApplied));
         // create a new virtual field. Define it's ID and how it is being calculated
-        VirtualField virtualField = new VirtualField(0x801, dependantFields, "Nm", new VirtualFieldAction() {
+        VirtualField virtualField = new VirtualField("6101", dependantFields, "Nm", new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String,Field> dependantFields) {
 
-                double frictionBrakeTorque = dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue();
-                return frictionBrakeTorque;
+                return dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue();
             }
         });
         // add it to the list of fields
@@ -158,12 +158,30 @@ public class Fields implements MessageListener {
         dependantFields.put(SID_ElecBrakeWheelsTorqueApplied,getBySID(SID_ElecBrakeWheelsTorqueApplied));
         dependantFields.put(SID_ElecEngineRPM,getBySID(SID_ElecEngineRPM));
         // create a new virtual field. Define it's ID and how it is being calculated
-        VirtualField virtualField = new VirtualField(0x802, dependantFields, "kW", new VirtualFieldAction() {
+        VirtualField virtualField = new VirtualField("6102", dependantFields, "kW", new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String,Field> dependantFields) {
 
-                double frictionBrakeTorque = (dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue()) * dependantFields.get(SID_ElecEngineRPM).getValue() / 9.3;
-                return frictionBrakeTorque;
+                return (dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue()) * dependantFields.get(SID_ElecEngineRPM).getValue() / 9.3;
+            }
+        });
+        // add it to the list of fields
+        add(virtualField);
+    }
+
+    private void addVirtualFieldDcPower() {
+        // create a list of field this new virtual field will depend on
+        HashMap<String, Field> dependantFields = new HashMap<>();
+        final String SID_TractionBatteryVoltage             = "7ec.623203.24";
+        final String SID_TractionBatteryCurrent             = "7ec.623204.24";
+        dependantFields.put(SID_TractionBatteryVoltage,getBySID(SID_TractionBatteryVoltage));
+        dependantFields.put(SID_TractionBatteryCurrent,getBySID(SID_TractionBatteryCurrent));
+        // create a new virtual field. Define it's ID and how it is being calculated
+        VirtualField virtualField = new VirtualField("6103", dependantFields, "kW", new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String,Field> dependantFields) {
+
+                return dependantFields.get(SID_TractionBatteryVoltage).getValue() * dependantFields.get(SID_TractionBatteryCurrent).getValue() / 1000;
             }
         });
         // add it to the list of fields
@@ -1236,12 +1254,26 @@ public class Fields implements MessageListener {
                 if(binString.length()>= field.getTo()) {
                     // parseInt --> signed, so the first bit is "cut-off"!
                     try {
+                        // experiment with unavailable: any field >= 5 bits whose value contains only 1's
+                        binString = binString.substring(field.getFrom(), field.getTo() + 1);
+                        if (binString.length() <= 4 || binString.contains("0")) {
+                            int val = Integer.parseInt("0" + binString, 2);
+                            //MainActivity.debug("Value of " + field.getHexId() + "." + field.getResponseId() + "." + field.getFrom()+" = "+val);
+                            //MainActivity.debug("Fields: onMessageCompleteEvent > "+field.getSID()+" = "+val);
+                            field.setValue(val);
+                            // update the fields last request date
+                            field.updateLastRequest();
+                        } else {
+                            field.setValue(Double.NaN);
+                        }
+/*
                         int val = Integer.parseInt("0" + binString.substring(field.getFrom(), field.getTo() + 1), 2);
                         //MainActivity.debug("Value of " + field.getHexId() + "." + field.getResponseId() + "." + field.getFrom()+" = "+val);
                         //MainActivity.debug("Fields: onMessageCompleteEvent > "+field.getSID()+" = "+val);
                         field.setValue(val);
                         // update the fields last request date
                         field.updateLastRequest();
+*/
                     } catch (Exception e)
                     {
                         // ignore

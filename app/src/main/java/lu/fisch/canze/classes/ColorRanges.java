@@ -88,9 +88,13 @@ public class ColorRanges {
                 colors.add(Color.decode(colorRange.color).getAndroidColor());
         }
         final int[] result = new int[colors.size()];
+        //String debug = "Colors: ";
         for (int i = 0; i < colors.size(); i++) {
+            //debug+=", "+colors.get(i).toString();
             result[i] = colors.get(i);
         }
+        //MainActivity.debug(debug);
+        //MainActivity.debug("Colors "+result.length);
         return result;
     }
 
@@ -131,28 +135,37 @@ public class ColorRanges {
 
     public float[] getSpacings(String sid, int min, int max)
     {
-        ArrayList<Integer> values = new ArrayList<>();
-        values.add(min);
-        for(int i=1; i<colorRanges.size()-1; i++)
+        ArrayList<Float> values = new ArrayList<>();
+        //values.add(min+0f);
+        for(int i=0; i<colorRanges.size(); i++)
         {
             ColorRange colorRange = colorRanges.get(i);
             if (colorRange.sid.equals(sid))
             {
-                if(colorRange.from>0 && colorRange.to>0)
+                /*if(colorRange.from>=0 && colorRange.to>=0) {
                     values.add(colorRange.from);
+                }
                 else
+                {
                     values.add(colorRange.to);
+                }*/
+                values.add((colorRange.to+colorRange.from)/2.f);
             }
         }
-        values.add(max);
+        // replace the first one with min
+        if(values.size()>0) values.set(0,min+0f);
+        // replace the last one with max
+        if(values.size()>0) values.set(values.size()-1,max+0f);
+        //values.add(max+0f);
 
         final float[] result = new float[values.size()];
-        //String spacings = "Spacings: ";
+        //String debug = "Spacings: ";
         for (int i = 0; i < values.size(); i++) {
             result[i] = (float) (values.get(i)-min)/(max-min);
-            //spacings+=", "+result[i];
+            //debug+=", "+values.get(i);
         }
-        //MainActivity.debug(spacings);
+        //MainActivity.debug(debug);
+        //MainActivity.debug("Spacings "+result.length);
         return result;
     }
 

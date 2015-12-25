@@ -202,7 +202,7 @@ public abstract class Device {
                     MainActivity.debug("Device: got no next field --> sleeping");
                     // no next field ---> sleep
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(200);
                     } catch(Exception e) {
                         // ignore a sleep exception
                     }
@@ -430,36 +430,37 @@ public abstract class Device {
         // register it to be saved to the database
         field.addListener(CanzeDataSource.getInstance());
 
-        synchronized (fields) {
+        if(!field.isVirtual()) {
 
-            if (!containsField(field)) {
-                // add it to the lists
-                fields.add(field);
-                activityFieldsAsFastAsPossible.add(field);
-                // if the scheduled list constains the same frame id,
-                // it can be removed there
-                if(containsActivityFieldScheduled(field))
-                    activityFieldsScheduled.remove(field);
-                // launch the field registration asynchronously
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        registerFilter(field.getId());
-                    }
-                })).start();
-            }
-            if(!containsActivityFieldAsFastAsPossible(field))
-            {
-                activityFieldsAsFastAsPossible.add(field);
-                // if the scheduled list constains the same frame id,
-                // it can be removed there
-                if(containsActivityFieldScheduled(field))
-                    activityFieldsScheduled.remove(field);
+            synchronized (fields) {
+
+                if (!containsField(field)) {
+                    // add it to the lists
+                    fields.add(field);
+                    activityFieldsAsFastAsPossible.add(field);
+                    // if the scheduled list constains the same frame id,
+                    // it can be removed there
+                    if (containsActivityFieldScheduled(field))
+                        activityFieldsScheduled.remove(field);
+                    // launch the field registration asynchronously
+                    (new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            registerFilter(field.getId());
+                        }
+                    })).start();
+                }
+                if (!containsActivityFieldAsFastAsPossible(field)) {
+                    activityFieldsAsFastAsPossible.add(field);
+                    // if the scheduled list constains the same frame id,
+                    // it can be removed there
+                    if (containsActivityFieldScheduled(field))
+                        activityFieldsScheduled.remove(field);
+                }
             }
         }
-
         // register real fields on which a virtual field may depend
-        if(field.isVirtual())
+        else
         {
             VirtualField virtualField = (VirtualField) field;
             for (Field realField : virtualField.getFields())
@@ -483,41 +484,39 @@ public abstract class Device {
         // register it to be saved to the database
         field.addListener(CanzeDataSource.getInstance());
 
-        synchronized (fields) {
+        if(!field.isVirtual()) {
+            synchronized (fields) {
 
-            if (!containsField(field)) {
-                // add it to the lists
-                fields.add(field);
-                activityFieldsScheduled.add(field);
-                // set the fields query interval
-                field.setInterval(interval);
-                // launch the field registration asynchronously
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        registerFilter(field.getId());
-                    }
-                })).start();
-            }
-            if(!containsActivityFieldScheduled(field))
-            {
-                // only add it this field id is not yet on the list of the
-                // request as fast as possible list.
-                if(!containsActivityFieldAsFastAsPossible(field))
+                if (!containsField(field)) {
+                    // add it to the lists
+                    fields.add(field);
                     activityFieldsScheduled.add(field);
-                // the fields interval will be ignored as the one from the
-                // applicationFields has priority
-            }
-            else
-            {
-                // the smallest intervall is the one to take
-                if(interval<field.getInterval())
+                    // set the fields query interval
                     field.setInterval(interval);
+                    // launch the field registration asynchronously
+                    (new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            registerFilter(field.getId());
+                        }
+                    })).start();
+                }
+                if (!containsActivityFieldScheduled(field)) {
+                    // only add it this field id is not yet on the list of the
+                    // request as fast as possible list.
+                    if (!containsActivityFieldAsFastAsPossible(field))
+                        activityFieldsScheduled.add(field);
+                    // the fields interval will be ignored as the one from the
+                    // applicationFields has priority
+                } else {
+                    // the smallest intervall is the one to take
+                    if (interval < field.getInterval())
+                        field.setInterval(interval);
+                }
             }
         }
-
         // register real fields on which a virtual field may depend
-        if(field.isVirtual())
+        else
         {
             VirtualField virtualField = (VirtualField) field;
             for (Field realField : virtualField.getFields())
@@ -534,25 +533,26 @@ public abstract class Device {
         // register it to be saved to the database
         field.addListener(CanzeDataSource.getInstance());
 
-        synchronized (fields) {
-            if (!containsField(field)) {
-                // set the fields query interval
-                field.setInterval(interval);
-                // add it to the two lists
-                fields.add(field);
-                applicationFields.add(field);
-                // launch the field registration asynchronously
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        registerFilter(field.getId());
-                    }
-                })).start();
+        if(!field.isVirtual()) {
+            synchronized (fields) {
+                if (!containsField(field)) {
+                    // set the fields query interval
+                    field.setInterval(interval);
+                    // add it to the two lists
+                    fields.add(field);
+                    applicationFields.add(field);
+                    // launch the field registration asynchronously
+                    (new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            registerFilter(field.getId());
+                        }
+                    })).start();
+                }
             }
         }
-
         // register real fields on which a virtual field may depend
-        if(field.isVirtual())
+        else
         {
             VirtualField virtualField = (VirtualField) field;
             for (Field realField : virtualField.getFields())

@@ -21,8 +21,12 @@
 
 package lu.fisch.canze.activities;
 
+import android.graphics.Point;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.Menu;
+import android.widget.TextView;
 
 import lu.fisch.canze.R;
 
@@ -32,6 +36,31 @@ public class TemperatureActivity extends CanzeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_termperature);
+
+        TextView textView = (TextView) findViewById(R.id.text);
+
+        String text = "";
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        text += "Size: " + size.x + "x" + size.y + "\n";
+        try {
+            display.getRealSize(size);
+        } catch (NoSuchMethodError e) {
+            size = new Point(display.getWidth(), display.getHeight());
+        }
+        text += "Real Size: " + size.x + "x" + size.y + "\n";
+        text += "\n";
+        text += "Density = "+getResources().getDisplayMetrics().density+"\n";
+        text += "Scaled Density = "+getResources().getDisplayMetrics().scaledDensity+"\n";
+        text += "\n";
+        text += "widthPixels = "+getResources().getDisplayMetrics().widthPixels+"\n";
+        text += "heightPixels = "+getResources().getDisplayMetrics().heightPixels+"\n";
+        text += "xdpi = "+getResources().getDisplayMetrics().xdpi+"\n";
+        text += "ydpi = "+getResources().getDisplayMetrics().ydpi+"\n";
+
+
+        textView.setText(text);
     }
 
     @Override

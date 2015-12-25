@@ -162,7 +162,7 @@ public class Field {
     {
         double val = (int) Math.pow(2, to-from+1);
         return ((val-offset)* resolution);
-        
+
     }
 
     public double getMin()
@@ -288,7 +288,7 @@ public class Field {
 
     public void setValue(double value) {
         this.value = value;
-        notifyFieldListeners();
+        if (!Double.isNaN(value)) notifyFieldListeners();
     }
 
     public void setCalculatedValue(double value) {
@@ -301,9 +301,7 @@ public class Field {
                 value = value / 1.609344;
         }
         // inverted calculation
-        this.value = value/resolution+offset;
-
-        notifyFieldListeners();
+        setValue (value / resolution + offset);
     }
 
     public int getId() {
@@ -316,7 +314,7 @@ public class Field {
 //    public void setId(int id) {
 //        this.id = id;
 //    }
-    
+
     public double getResolution() {
         return resolution;
     }

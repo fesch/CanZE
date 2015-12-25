@@ -64,6 +64,7 @@ public class Ecus {
                         + "Joystick,1657,M,0,0,,-\n"
                         + "R-Link,1127,M,0,0,,-\n"
                         + "Horn,2138,E,0,0,,-\n"
+                        + "VirtualField computer,9999,E,800,800,VFC,-\n"
 
                         +"";
         String[] lines = ecuDef.split("\n");
