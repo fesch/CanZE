@@ -44,6 +44,110 @@
                             }"
             />
 
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+
+            android:orientation="vertical"
+            >
+
+            <!--<TextView
+                android:id="@+id/label_motor_torque"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_wheel_torque"
+                android:layout_marginTop="10dp"
+                android:textColor="#000"
+                />-->
+
+            <lu.fisch.canze.widgets.WidgetView
+                android:id="@+id/speed2"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="8dp"
+                custom:min="0"
+                custom:max="160"
+                custom:majorTicks="20"
+                custom:minorTicks="10"
+                custom:fieldSID=""
+                custom:widget="timeplot"
+                custom:text="Motor Wheel Torque"
+                custom:intervals="{
+                               }"
+                custom:colorRanges="[
+                ]"
+                custom:options="{
+                            }"
+                />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal"
+                android:weightSum="3"
+                >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        >
+
+                        <ProgressBar
+                            android:id="@+id/pb_driver_torque_request"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:minHeight="25dp"
+                            android:max="1536"
+                            android:progressDrawable="@drawable/progressbar_canze_decel"
+                            />
+
+                        <ProgressBar
+                            android:id="@+id/MaxBreakTorque"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="9dp"
+                            android:paddingTop="2dp"
+                            android:layout_gravity="center_horizontal"
+                            android:max="1536"
+                            android:progress="10"
+                            android:progressDrawable="@drawable/progressbar_canze_decel_aim"
+                            />
+
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/MeanEffectiveAccTorque"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:minHeight="25dp"
+                        android:max="2048"
+                        android:progress="0"
+                        android:layout_weight="2"
+                        android:progressDrawable="@drawable/progressbar_canze_accel"
+                        />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!--
         <lu.fisch.canze.widgets.WidgetView
             android:id="@+id/accelerationPedal"
             android:layout_width="0dp"
@@ -64,6 +168,7 @@
                     '654.25':60000
                     }"
         />
+        -->
 
         <!--
         <lu.fisch.canze.widgets.WidgetView

@@ -1,3 +1,5 @@
+2015.12.26 [Bob] consumption screen: added motor wheel torque bar & graph
+2015.12.23 [Bob] CanzeActivity: peparations for commun field management
 2015.12.23 [Bob] virtual field listeners where not unregistering as they should
 2015.12.23 [Bob] CanzeActivity: removed some commented old code
 2015.12.23 [Jeroen] Fixed TPM pressure unavailable bug, slowed down query
