@@ -40,13 +40,14 @@ import java.util.zip.GZIPOutputStream;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.bluetooth.BluetoothManager;
+import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.widgets.Drawable;
 import lu.fisch.canze.widgets.WidgetView;
 
 /**
  * Created by robertfisch on 30.09.2015.
  */
-public class CanzeActivity extends AppCompatActivity {
+public class CanzeActivity extends AppCompatActivity implements FieldListener {
 
     private boolean iLeftMyOwn = false;
     private boolean back = false;
@@ -119,6 +120,8 @@ public class CanzeActivity extends AppCompatActivity {
         if(!widgetView) {
             // free the widget listerners
             freeWidgetListeners();
+            // free field listeners
+            removeFieldListeners();
             if (isFinishing()) {
                 MainActivity.debug("CanzeActivity: onDestroy (finishing)");
                 // clear filters
@@ -203,7 +206,7 @@ public class CanzeActivity extends AppCompatActivity {
         return result;
     }
 
-
+    /*
     public static String compress(String string) throws IOException {
         ByteArrayOutputStream os = new ByteArrayOutputStream(string.length());
         GZIPOutputStream gos = new GZIPOutputStream(os);
@@ -229,6 +232,42 @@ public class CanzeActivity extends AppCompatActivity {
         is.close();
         return string.toString();
     }
+    */
 
+    /******* activity field stuff ********************/
+
+    protected ArrayList<Field> subscribedFields = new ArrayList<>();;
+
+    protected void addField(String sid, int intervalMs)
+    {
+        Field field = MainActivity.fields.getBySID(sid);
+        if (field != null)
+        {
+            // add a listener to the field
+            field.addListener(this);
+            // register it in the queue
+            MainActivity.device.addActivityField(field, intervalMs);
+            // remeber this field has been added (filter out doubles)
+            if(!subscribedFields.contains(field))
+                subscribedFields.add(field);
+        } else {
+            MainActivity.debug(this.getClass().getSimpleName()+" (CanzeActivity): SID " + sid + " does not exist in class Fields");
+        }
+    }
+
+    private void removeFieldListeners()
+    {
+        // free up the listeners again
+        for (Field field : subscribedFields)
+        {
+            field.removeListener(this);
+        }
+        subscribedFields.clear();
+    }
+
+    @Override
+    public void onFieldUpdateEvent(Field field) {
+        // empty --> descents should override this
+    }
 }
 
