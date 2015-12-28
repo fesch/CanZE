@@ -22,15 +22,12 @@
 package lu.fisch.canze.activities;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldListener to the fields.
@@ -38,7 +35,8 @@ import lu.fisch.canze.interfaces.FieldListener;
 public class ChargingActivity extends CanzeActivity implements FieldListener {
 
     public static final String SID_MaxCharge                        = "7bb.6101.336";
-    public static final String SID_SoC                              = "42e.0";          // user SOC, not raw
+    public static final String SID_UserSoC                          = "42e.0";          // user SOC, not raw
+    public static final String SID_RealSoC                          = "654.25";         // real SOC
     public static final String SID_AvChargingPower                  = "427.40";
     public static final String SID_ACPilot                          = "42e.38";
     public static final String SID_HvTemp                           = "42e.44";
@@ -80,7 +78,8 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
         subscribedFields = new ArrayList<>();
 
         addListener(SID_MaxCharge);
-        addListener(SID_SoC);
+        addListener(SID_UserSoC);
+        addListener(SID_RealSoC);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
 //        addListener(SID_TractionBatteryVoltage);
@@ -142,8 +141,11 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         tv = (TextView) findViewById(R.id.text_max_charge);
                         tv.setBackgroundColor(color);
                         break;
-                    case SID_SoC:
-                        tv = (TextView) findViewById(R.id.textSOC);
+                    case SID_UserSoC:
+                        tv = (TextView) findViewById(R.id.textUserSOC);
+                        break;
+                    case SID_RealSoC:
+                        tv = (TextView) findViewById(R.id.textRealSOC);
                         break;
                     case SID_HvTemp:
                         tv = (TextView) findViewById(R.id.textHvTemp);
