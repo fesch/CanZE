@@ -265,19 +265,23 @@ public class Timeplot extends Drawable {
                             }
 
                             int rayon = 2;
-                            if(getOptions().getOption(sid)!=null &&
-                                    !getOptions().getOption(sid).isEmpty()) {
-                                g.drawLine(getX() + getWidth() - barWidth + (int) mx-spaceAlt,
-                                           getY() + (int) my,
-                                           getX() + getWidth() - barWidth + (int) mx-spaceAlt,
-                                           getY() + (int) zy);
-                            }
-                            else {
-                                g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon-spaceAlt,
+
+                            MainActivity.debug("HERE: "+sid+" / "+getOptions().getOption(sid));
+
+                            if(getOptions().getOption(sid)==null ||
+                                    (getOptions().getOption(sid)!=null &&
+                                            (getOptions().getOption(sid).isEmpty() || getOptions().getOption(sid).contains("dot")))) {
+                                g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon - spaceAlt,
                                         getY() + (int) my - rayon,
                                         2 * rayon + 1,
                                         2 * rayon + 1);
                             }
+                            /*else {
+                                g.drawLine(getX() + getWidth() - barWidth + (int) mx - spaceAlt,
+                                        getY() + (int) my,
+                                        getX() + getWidth() - barWidth + (int) mx - spaceAlt,
+                                        getY() + (int) zy);
+                            }*/
                             if (i < values.size() - 1) {
                                 if(getOptions().getOption(sid)!=null &&
                                         getOptions().getOption(sid).contains("full")) {
