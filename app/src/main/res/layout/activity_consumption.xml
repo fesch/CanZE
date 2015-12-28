@@ -203,7 +203,9 @@
                 android:layout_marginRight="8dp"
                 custom:min="-30"
                 custom:max="70"
-                custom:majorTicks="10"
+                custom:minAlt="0"
+                custom:maxAlt="25"
+                custom:majorTicks="15"
                 custom:minorTicks="5"
                 custom:fieldSID="1fd.48,427.49"
                 custom:widget="timeplot"
@@ -215,7 +217,10 @@
                     {'sid':'1fd.48','color':'#FF0000','from':33,'to':100}]"
                 custom:text="Econometer (kw) / Available energy (kWh)"
                 custom:intervals="{'427.49':10000}"
-                custom:options="{'1fd.48':'gradient'}"
+                custom:options="{
+                    '1fd.48':'gradient',
+                    '427.49':'alt,dot'
+                }"
                 />
 
         </TableRow>
@@ -279,8 +284,10 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
                 custom:min="0"
-                custom:max="160"
-                custom:majorTicks="20"
+                custom:max="180"
+                custom:minAlt="0"
+                custom:maxAlt="120"
+                custom:majorTicks="30"
                 custom:minorTicks="10"
                 custom:fieldSID="654.42,654.25"
                 custom:widget="timeplot"
@@ -293,6 +300,7 @@
                     {'sid':'654.25','color':'#000000','from':-1000,'to':11000}
                     ]"
                 custom:options="{
+                                '654.25':'alt,dot'
                                 }"
                 />
 

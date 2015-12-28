@@ -91,7 +91,7 @@ public class ConsumptionActivity extends CanzeActivity {
                         if (pb != null) pb.setProgress((int) driverBrakeWheel_Torque_Request);
                         break;
                     case SID_Instant_Consumption:
-                        ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(Math.min(0,(int)field.getValue()));
+                        ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(Math.abs(Math.min(0, (int) field.getValue())));
                         ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(Math.max(0, (int) field.getValue()));
                         break;
                 }
