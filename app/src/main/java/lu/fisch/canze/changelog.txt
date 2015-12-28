@@ -1,3 +1,4 @@
+2015.12.28 [Jeroen] Changed Zoe reference firmware versions
 2015.12.28 [Bob] consumption screen: re-configuration
 2015.12.28 [Bob] consumption screen: configured top timeplot
 2015.12.26 [Bob] consumption screen: added motor wheel torque bar & graph
