@@ -35,6 +35,8 @@ public class ConsumptionActivity extends CanzeActivity {
     public static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //UBP 10ms
     public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
     public static final String SID_Coasting_Torque                      = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
+    public static final String SID_Instant_Consumption                  = "800.6100.24";
+
 
     private double coasting_Torque                  = 0;
     private double driverBrakeWheel_Torque_Request  = 0;
@@ -48,6 +50,7 @@ public class ConsumptionActivity extends CanzeActivity {
         addField(SID_DriverBrakeWheel_Torque_Request, 0);
         addField(SID_Coasting_Torque, 0);
         addField(SID_TotalPotentialResistiveWheelsTorque, 7200);
+        addField(SID_Instant_Consumption, 0);
     }
 
     @Override
@@ -86,6 +89,10 @@ public class ConsumptionActivity extends CanzeActivity {
                         driverBrakeWheel_Torque_Request = field.getValue() + coasting_Torque;
                         pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
                         if (pb != null) pb.setProgress((int) driverBrakeWheel_Torque_Request);
+                        break;
+                    case SID_Instant_Consumption:
+                        ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(Math.min(0,(int)field.getValue()));
+                        ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(Math.max(0, (int) field.getValue()));
                         break;
                 }
             }

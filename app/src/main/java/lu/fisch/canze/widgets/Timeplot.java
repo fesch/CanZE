@@ -266,7 +266,7 @@ public class Timeplot extends Drawable {
 
                             int rayon = 2;
 
-                            MainActivity.debug("HERE: "+sid+" / "+getOptions().getOption(sid));
+                            //MainActivity.debug("HERE: "+sid+" / "+getOptions().getOption(sid));
 
                             if(getOptions().getOption(sid)==null ||
                                     (getOptions().getOption(sid)!=null &&

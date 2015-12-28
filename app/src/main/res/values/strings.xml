@@ -113,7 +113,7 @@
     <string name="label_pedal">Pedal position</string>
 
     <string name="label_motor_torque">Motor Torque</string>
-    <string name="label_wheel_torque">Motor Wheel Torque</string>
+    <string name="label_wheel_torque">Wheel Torque</string>
 
     <string name="default_realSpeed">#Spd</string>
     <string name="unit_SpeedKm">km/h</string>

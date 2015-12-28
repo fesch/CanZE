@@ -13,6 +13,7 @@
     android:orientation="vertical"
     >
 
+    <!--
     <TextView
         android:id="@+id/label_motor_torque"
         android:layout_width="fill_parent"
@@ -24,6 +25,7 @@
         android:layout_marginBottom="0dp"
         android:textColor="#000"
         />
+    -->
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -43,29 +45,56 @@
             android:layout_weight="1"
             >
 
-            <ProgressBar
-                android:id="@+id/pb_driver_torque_request"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:minHeight="25dp"
-                android:max="1536"
-                android:progressDrawable="@drawable/progressbar_canze_decel"
-                />
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                >
+                <ProgressBar
+                    android:id="@+id/pb_driver_torque_request"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:minHeight="25dp"
+                    android:max="1536"
+                    android:progressDrawable="@drawable/progressbar_canze_decel"
+                    />
 
-            <ProgressBar
-                android:id="@+id/MaxBreakTorque"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="9dp"
-                android:paddingTop="2dp"
-                android:layout_gravity="center_horizontal"
-                android:max="1536"
-                android:progress="10"
-                android:progressDrawable="@drawable/progressbar_canze_decel_aim"
-                />
+                <TextView
+                    android:id="@+id/text_driver_torque_request"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Wheel Torque (Nm)"
+                    android:layout_marginLeft="4dp"
+                    android:textColor="#000000"
+                    android:layout_alignRight="@+id/pb_driver_torque_request"
+                    android:layout_alignLeft="@+id/pb_driver_torque_request"
+                    android:layout_alignBottom="@+id/pb_driver_torque_request"
+                    android:layout_alignTop="@+id/pb_driver_torque_request"
+                    android:gravity="left"
+                    />
+            </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                >
+                <ProgressBar
+                    android:id="@+id/MaxBreakTorque"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="9dp"
+                    android:paddingTop="2dp"
+                    android:layout_gravity="center_horizontal"
+                    android:max="1536"
+                    android:progress="10"
+                    android:progressDrawable="@drawable/progressbar_canze_decel_aim"
+                    />
+            </RelativeLayout>
         </LinearLayout>
 
         <ProgressBar
@@ -80,6 +109,69 @@
             android:layout_weight="2"
             android:progressDrawable="@drawable/progressbar_canze_accel"
             />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="0dp"
+        android:weightSum="2"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            >
+            <ProgressBar
+                android:id="@+id/pb_instant_consumption_negative"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="25dp"
+                android:max="150"
+                android:progress="0"
+                android:progressDrawable="@drawable/progressbar_canze_decel"
+                />
+
+            <TextView
+                android:id="@+id/text_instant_consumption_negative"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Instant Consumption (kWh/100km)"
+                android:layout_marginLeft="4dp"
+                android:textColor="#000000"
+                android:layout_alignRight="@+id/pb_instant_consumption_negative"
+                android:layout_alignLeft="@+id/pb_instant_consumption_negative"
+                android:layout_alignBottom="@+id/pb_instant_consumption_negative"
+                android:layout_alignTop="@+id/pb_instant_consumption_negative"
+                android:gravity="left"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="right"
+            >
+            <ProgressBar
+                android:id="@+id/pb_instant_consumption_positive"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="25dp"
+                android:max="150"
+                android:progress="0"
+                android:progressDrawable="@drawable/progressbar_canze_accel"
+                />
+        </RelativeLayout>
 
     </LinearLayout>
 
