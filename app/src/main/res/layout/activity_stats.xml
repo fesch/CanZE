@@ -22,10 +22,10 @@
 
 
         <TextView
-            android:id="@+id/LabelSOC"
+            android:id="@+id/LabelUserSOC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_SOC"
+            android:text="@string/label_UserSOC"
             android:layout_below="@id/HeaderStats"
             android:layout_alignParentLeft="true" />
         <TextView

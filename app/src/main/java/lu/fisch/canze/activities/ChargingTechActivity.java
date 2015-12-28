@@ -33,7 +33,8 @@ import lu.fisch.canze.interfaces.FieldListener;
 public class ChargingTechActivity extends CanzeActivity implements FieldListener {
 
     public static final String SID_MaxCharge                        = "7bb.6101.336";
-    public static final String SID_SoC                              = "42e.0";          // user SOC, not raw
+    public static final String SID_UserSoC                          = "42e.0";          // user SOC, not raw
+    public static final String SID_RealSoC                          = "654.25";         // real SOC
     public static final String SID_AvChargingPower                  = "427.40";
     public static final String SID_ACPilot                          = "42e.38";
     public static final String SID_AvEnergy                         = "427.49";
@@ -84,7 +85,8 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addListener(SID_ACPilot);
         addListener(SID_TimeToFull);
         addListener(SID_PlugConnected);
-        addListener(SID_SoC);
+        addListener(SID_UserSoC);
+        addListener(SID_RealSoC);
         if (MainActivity.car==MainActivity.CAR_ZOE) {
             addListener(SID_AvChargingPower);
         }
@@ -167,9 +169,13 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                             tv = null;
                         }
                         break;
-                    case SID_SoC:
+                    case SID_UserSoC:
                         soc = field.getValue() / 100.0;
-                        tv = (TextView) findViewById(R.id.textSOC);
+                        tv = (TextView) findViewById(R.id.textUserSOC);
+                        break;
+                    case SID_RealSoC:
+                        soc = field.getValue() / 100.0;
+                        tv = (TextView) findViewById(R.id.textRealSOC);
                         break;
                     case SID_SOH:
                         tv = (TextView) findViewById(R.id.textSOH);
