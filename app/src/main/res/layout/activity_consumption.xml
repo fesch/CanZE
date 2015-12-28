@@ -74,18 +74,21 @@
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginBottom="8dp"
-                custom:min="0"
-                custom:max="160"
-                custom:majorTicks="20"
-                custom:minorTicks="10"
-                custom:fieldSID=""
+                custom:min="-200"
+                custom:max="200"
+                custom:minAlt="0"
+                custom:maxAlt="1200"
+                custom:majorTicks="100"
+                custom:minorTicks="50"
+                custom:fieldSID="186.16,18a.27,130.44"
                 custom:widget="timeplot"
-                custom:text="Motor Wheel Torque"
+                custom:text="Mean Torque (Nm) / Coasting Torque (Nm) / Driver Break Wheel Torque Request (Nm)"
                 custom:intervals="{
                                }"
                 custom:colorRanges="[
                 ]"
                 custom:options="{
+                                '130.44':'alt'
                             }"
                 />
 
