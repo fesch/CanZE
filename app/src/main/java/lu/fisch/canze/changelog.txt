@@ -1,3 +1,4 @@
+2015.12.28 [Bob] consumption screen: re-configuration
 2015.12.28 [Bob] consumption screen: configured top timeplot
 2015.12.26 [Bob] consumption screen: added motor wheel torque bar & graph
 2015.12.23 [Bob] CanzeActivity: peparations for commun field management
