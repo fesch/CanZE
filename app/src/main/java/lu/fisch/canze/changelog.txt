@@ -1,3 +1,4 @@
+2015.12.29 [Jeroen] Forgot to commit the new icon set
 2015.12.29 [Jeroen] promoted charging graphs to Technical, added icon
 2015.12.29 [Bob] consumption screen: graphical improvement
 2015.12.29 [Bob] consumption screen: label optimization
