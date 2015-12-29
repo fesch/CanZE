@@ -1,3 +1,4 @@
+2015.12.29 [Jeroen] promoted charging graphs to Technical, added icon
 2015.12.29 [Bob] consumption screen: graphical improvement
 2015.12.29 [Bob] consumption screen: label optimization
 2015.12.28 [Bob] consumption screen: scaling optimisations
