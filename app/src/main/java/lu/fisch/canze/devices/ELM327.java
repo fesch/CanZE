@@ -277,6 +277,9 @@ public class ELM327 extends Device {
 
         if (toughness == 0 ) {
             switch (elmVersion) {
+                case 13:
+                    if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, version 1.3, should work");
+                    break;
                 case 14:
                     if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, version 1.4, should work");
                     break;
