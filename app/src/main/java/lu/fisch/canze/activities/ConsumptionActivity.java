@@ -94,7 +94,7 @@ public class ConsumptionActivity extends CanzeActivity {
                         ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(Math.abs(Math.min(0, (int) field.getValue())));
                         ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(Math.max(0, (int) field.getValue()));
                         break;
-                }
+                }/**/
             }
         });
 
