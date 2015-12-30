@@ -31,6 +31,8 @@
             android:layout_marginRight="8dp"
             custom:min="0"
             custom:max="64"
+            custom:minAlt="0"
+            custom:maxAlt="40"
             custom:majorTicks="16"
             custom:minorTicks="4"
             custom:fieldSID="42e.38,427.40"
@@ -41,7 +43,9 @@
                                '42e.38':10000,
                                '427.40':10000
                                }"
-
+            custom:options="{
+                               '427.40':'alt'
+                               }"
         />
     </TableRow>
 
