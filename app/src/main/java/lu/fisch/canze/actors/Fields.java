@@ -118,7 +118,7 @@ public class Fields implements MessageListener {
                 double realSpeed = dependantFields.get(SID_RealSpeed).getValue();
 
                 if (realSpeed >= 5)
-                    return (Math.round(1000.0 * dcPwr / realSpeed) / 10.0);
+                    return -(Math.round(1000.0 * dcPwr / realSpeed) / 10.0);
                 else
                     return 0;
             }
