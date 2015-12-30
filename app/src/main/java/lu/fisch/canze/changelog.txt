@@ -1,3 +1,7 @@
+2015.12.29 [Jeroen] Charging graphs, added second axis in first graph
+
+---< Version 1.09 / 2015.12.29 >---
+
 2015.12.29 [Jeroen] Forgot to commit the new icon set
 2015.12.29 [Jeroen] promoted charging graphs to Technical, added icon
 2015.12.29 [Bob] consumption screen: graphical improvement
