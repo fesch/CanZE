@@ -41,8 +41,8 @@ public class Field {
     protected final ArrayList<FieldListener> fieldListeners = new ArrayList<>();
 
     protected Frame frame;
-    protected int from;
-    protected int to;
+    protected short from;
+    protected short to;
     protected double offset;
     //private int divider;
     //private int multiplier;
@@ -51,7 +51,7 @@ public class Field {
     protected String unit;
     protected String requestId;
     protected String responseId;
-    protected int car;
+    protected short options;           // bitwise options 0xf = car (0-15), 0x70 = type (0=unsigned, 1=signed, 2=reserved for string, 3-7 reserved)
     //private int skips;
 
     protected double value = Double.NaN;
@@ -62,7 +62,7 @@ public class Field {
 
     protected boolean virtual = false;
     
-    public Field(Frame frame, int from, int to, double resolution, int decimals, double offset, String unit, String requestId, String responseId, int car) {
+    public Field(Frame frame, short from, short to, double resolution, int decimals, double offset, String unit, String requestId, String responseId, short options) {
         this.frame=frame;
         this.from=from;
         this.to=to;
@@ -72,7 +72,7 @@ public class Field {
         this.unit = unit;
         this.requestId=requestId;
         this.responseId=responseId;
-        this.car=car;
+        this.options=options;
 
         this.lastRequest=Calendar.getInstance().getTimeInMillis();
     }
@@ -80,7 +80,7 @@ public class Field {
     @Override
     public Field clone()
     {
-        Field field = new Field(frame, from, to, resolution, decimals, offset, unit, requestId, responseId, car);
+        Field field = new Field(frame, from, to, resolution, decimals, offset, unit, requestId, responseId, options);
         field.value = value;
         field.lastRequest=lastRequest;
         field.interval=interval;
@@ -262,7 +262,7 @@ public class Field {
         return from;
     }
 
-    public void setFrom(int from) {
+    public void setFrom(short from) {
         this.from = from;
     }
 
@@ -270,7 +270,7 @@ public class Field {
         return to;
     }
 
-    public void setTo(int to) {
+    public void setTo(short to) {
         this.to = to;
     }
 
@@ -350,46 +350,15 @@ public class Field {
         this.responseId = responseId;
     }
 
-    /*
-    public int getSkips() {
-        return skips;
-    }
-
-    public void setSkips(int skips) {
-        this.skips = skips;
-    }
-
-    public int getSkipsCount() {
-        return skipsCount;
-    }
-
-    public void decSkipCount() {
-        skipsCount--;
-    }
-
-    public void setSkipsCount(int skipCount) {
-        this.skipsCount = skipCount;
-    }
-
-    public void resetSkipsCount() {
-        this.skipsCount = skips;
-    }
-*/
     public int getCar() {
-        return car;
+        return (options & 0x0f);
     }
 
-    public void setCar(int car) {
-        this.car = car;
-    }
+    public void setCar(int car) { options = (short)((options & 0xff0) + (car & 0x0f)); }
 
     public int getFrequency() {
         return frame.getInterval();
     }
-
-//    public void setFrequency(int frequency) {
-//        this.frequency = frequency;
-//    }
 
     public int getDecimals() {
         return decimals;
@@ -402,4 +371,6 @@ public class Field {
     public boolean isVirtual() {
         return virtual;
     }
+
+    public boolean isSigned () { return (this.options & 0x70) == 1; }
 }
