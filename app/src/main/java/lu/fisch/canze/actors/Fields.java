@@ -57,7 +57,7 @@ public class Fields implements MessageListener {
     private static final int FIELD_UNIT         = 6;
     private static final int FIELD_REQUEST_ID   = 7;
     private static final int FIELD_RESPONSE_ID  = 8;
-    private static final int FIELD_CAR          = 9;
+    private static final int FIELD_OPTIONS      = 9; // to be stated in HEX, no leading 0x
 
     public static final int TOAST_NONE          = 0;
     public static final int TOAST_DEVICE        = 1;
@@ -190,7 +190,7 @@ public class Fields implements MessageListener {
 
     private void fillStatic()
     {
-        String fieldDef = // startBit, endBit, divider, multiplier, offset, decimals, format, requestID, responseID
+        String fieldDef = // ID, startBit, endBit, resolution, offset, decimals, unit, requestID, responseID, options is HEX
                 ""
 /*
                         // 2015.11.21
@@ -921,13 +921,13 @@ public class Fields implements MessageListener {
                         +"0x7bb,280,295,1,0,0,,0x2104,0x6104,2\n" // Module 12 raw NTC
                         +"0x7bb,296,303,1,40,0,°C,0x2104,0x6104,2\n" // Cell 12 Temperature
                         +"0x7bb,16,31,1,0,0,,0x2104,0x6104,1\n" // Module 1 raw NTC
-                        +"0x7bb,32,39,1,0,0,°C,0x2104,0x6104,1\n" // Cell 1 Temperature
+                        +"0x7bb,32,39,1,0,0,°C,0x2104,0x6104,11\n" // Cell 1 Temperature
                         +"0x7bb,40,55,1,0,0,,0x2104,0x6104,1\n" // Module 2 raw NTC
-                        +"0x7bb,56,63,1,0,0,°C,0x2104,0x6104,1\n" // Cell 2 Temperature
+                        +"0x7bb,56,63,1,0,0,°C,0x2104,0x6104,11\n" // Cell 2 Temperature
                         +"0x7bb,64,79,1,0,0,,0x2104,0x6104,1\n" // Module 3 raw NTC
-                        +"0x7bb,80,87,1,0,0,°C,0x2104,0x6104,1\n" // Cell 3 Temperature
+                        +"0x7bb,80,87,1,0,0,°C,0x2104,0x6104,11\n" // Cell 3 Temperature
                         +"0x7bb,88,103,1,0,0,,0x2104,0x6104,1\n" // Module 4 raw NTC
-                        +"0x7bb,104,111,1,0,0,°C,0x2104,0x6104,1\n" // Cell 4 Temperature
+                        +"0x7bb,104,111,1,0,0,°C,0x2104,0x6104,11\n" // Cell 4 Temperature
                         +"0x7bb,64,79,0.001,0,3,V,0x2105,0x6105,1\n" // Threshold bad cell
                         +"0x7bb,80,95,0.001,0,3,V,0x2105,0x6105,1\n" // Threshol weak cell
                         +"0x7bb,16,31,0.001,0,3,V,0x2141,0x6141,0\n" // Cell 01 V
@@ -1091,8 +1091,8 @@ public class Fields implements MessageListener {
                     MainActivity.debug(tokens[FIELD_ID]+","+tokens[FIELD_FROM]);
                     Field field = new Field(
                             frame,
-                            Integer.parseInt(tokens[FIELD_FROM].trim()),
-                            Integer.parseInt(tokens[FIELD_TO].trim()),
+                            Short.parseShort(tokens[FIELD_FROM].trim()),
+                            Short.parseShort(tokens[FIELD_TO].trim()),
                             Double.parseDouble(tokens[FIELD_RESOLUTION].trim()),
                             Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
                             (
@@ -1105,7 +1105,7 @@ public class Fields implements MessageListener {
                             tokens[FIELD_UNIT].trim(),
                             tokens[FIELD_REQUEST_ID].trim().replace("0x", ""),
                             tokens[FIELD_RESPONSE_ID].trim().replace("0x", ""),
-                            Integer.parseInt(tokens[FIELD_CAR].trim())
+                            Short.parseShort(tokens[FIELD_OPTIONS].trim(), 16)
 /*
                             frame,
                             Integer.parseInt(tokens[FIELD_FROM].trim()),
@@ -1257,7 +1257,13 @@ public class Fields implements MessageListener {
                         // experiment with unavailable: any field >= 5 bits whose value contains only 1's
                         binString = binString.substring(field.getFrom(), field.getTo() + 1);
                         if (binString.length() <= 4 || binString.contains("0")) {
-                            int val = Integer.parseInt("0" + binString, 2);
+                            int val;
+                            if (field.isSigned() && binString.startsWith("1")) {
+                                // ugly :-(
+                                val = Integer.parseInt("-" + binString.replace('0', 'q').replace('1','0').replace('q','1'), 2) - 1;
+                            } else {
+                                val = Integer.parseInt("0" + binString, 2);
+                            }
                             //MainActivity.debug("Value of " + field.getHexId() + "." + field.getResponseId() + "." + field.getFrom()+" = "+val);
                             //MainActivity.debug("Fields: onMessageCompleteEvent > "+field.getSID()+" = "+val);
                             field.setValue(val);
