@@ -100,16 +100,21 @@
             android:layout_marginBottom="8dp"
             custom:min="0"
             custom:max="25"
+            custom:minAlt="0"
+            custom:maxAlt="40"
             custom:majorTicks="5"
             custom:minorTicks="1"
-            custom:fieldSID="427.49"
+            custom:fieldSID="427.49,42e.44"
             custom:widget="timeplot"
-            custom:text="Available energy (kWh)"
+            custom:text="Available energy (kWh) / temperature"
             custom:colorRanges="[
                 {'sid':'427.49','color':'#3ee9ff','from':0,'to':8},
                 {'sid':'427.49','color':'#008a1d','from':8,'to':17},
                 {'sid':'427.49','color':'#ffaa17','from':17,'to':25}]"
-            custom:options="{'427.49':'gradient'}"
+            custom:options="{
+                                '427.49':'gradient',
+                                '42e.44':'alt'
+                            }"
             custom:timeScale="4"
             custom:intervals="{
                                '427.49':10000
