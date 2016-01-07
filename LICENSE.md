@@ -45,8 +45,7 @@ Icons & Images
 --------------
 
     * Renault Zoé (launcher icon)
-      The icon has been designed by Bob Fisch and is part of the CanZE project.
-      Source of inspiration were his own car as well as different images found on the internet.
+      The icon has been designed by Pieter Willems and is part of the CanZE project.
 
     * Thermometer > CC BY 3.0
       Source:  https://www.iconfinder.com/icons/653255/cloud_data_forecast_rain_temperature_thermometer_thermometre_icon#size=128
@@ -80,15 +79,33 @@ Icons & Images
       Source:  https://www.iconfinder.com/icons/680268/analysis_chart_combo_data_graph_icon#size=128
       Link:    https://www.iconfinder.com/samatodedara
 
-    * Settings >  Free for commercial use
+    * Settings > Free for commercial use
       Source:  https://www.iconfinder.com/icons/66878/settings_icon#size=128
 
-    * Accept >  Free for commercial use
+    * Accept > Free for commercial use
       Source:  https://www.iconfinder.com/icons/66697/accept_icon#size=128
 
-    * Reject >  Free for commercial use
+    * Reject > Free for commercial use
       Source:  https://www.iconfinder.com/icons/66878/settings_icon#size=128
 
-    * Bluetooth >  CC BY 3.0
+    * Bluetooth > CC BY 3.0
       Source:  https://www.iconfinder.com/icons/296510/bluetooth_sync_wave_icon#size=128
       License: http://creativecommons.org/licenses/by/3.0/
+
+    * Tire >  Free for commercial use
+      Source:  https://www.iconfinder.com/icons/753921/cars_radials_stacked_tyres_wheels_icon#size=128
+
+    * ELM327 > CC ND 2.0
+      Source:  https://www.flickr.com/photos/buylaptopkeyboard/10418492796/in/photostream/
+      License: https://creativecommons.org/licenses/by-nd/2.0/
+
+    * Attention > LGPL
+      Source:  https://www.iconfinder.com/icons/18526/agt_critical_trouble_update_icon#size=256
+      License: http://www.gnu.org/licenses/lgpl.html
+
+    * Nippers > Free for commercial use
+      Source: https://www.iconfinder.com/icons/10351/spanner_technical_icon#size=48
+
+    * Experiment > CC By 3.0
+      Source: https://www.iconfinder.com/icons/50916/aqua_copy_experiments_folder_smooth_icon#size=128
+      License: http://creativecommons.org/licenses/by-nc/3.0/
