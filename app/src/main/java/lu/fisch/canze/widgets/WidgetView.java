@@ -260,7 +260,10 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                 break;
             }
 		    case MotionEvent.ACTION_MOVE: {
-                motionMove=true;
+                if (Math.abs(downX - event.getX()) + Math.abs(downY - event.getY()) > 20) {
+                    motionMove=true;
+                }
+
 			    break;
 		    }
 
