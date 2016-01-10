@@ -1,3 +1,4 @@
+2016.01.10 [Jeroen] Optimized field lookup a bit
 2016.01.10 [Bob] field logging: simple field logging
 2016.01.10 [Bob] data logging: no more empty file creation on application start
 2016.01.07 [Jeroen] added minim distance 20 pixels for move trigger in WidgetView

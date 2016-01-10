@@ -1244,6 +1244,9 @@ public class Fields implements MessageListener {
         {
             Field field = fields.get(i);
 
+            // we can stop iterating if we're above the requested ID
+            if (field.getId() > message.getField().getId()) break;
+
             if(field.getId()== message.getField().getId() &&
                     (
                             message.getField().getResponseId()==null
