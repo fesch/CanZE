@@ -83,7 +83,7 @@ public class DataLogger  implements FieldListener {
     public boolean isExternalStorageWritable() {
         String SDstate = Environment.getExternalStorageState();
         return ( Environment.MEDIA_MOUNTED.equals(SDstate));
-        }
+    }
 
     public boolean isCreated()
     {

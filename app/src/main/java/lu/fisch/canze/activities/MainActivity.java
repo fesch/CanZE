@@ -124,8 +124,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static boolean safeDrivingMode = true;
     public static boolean bluetoothBackgroundMode = false;
     public static boolean debugLogMode = false;
+    public static boolean fieldLogMode = false;
+    /*
     public static boolean dataExportMode = false;
     public static DataLogger  dataLogger = null; // rather use singleton in onCreate
+    */
     public static int car = CAR_ANY;
 
     private static boolean isDriving = false;
@@ -211,8 +214,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         safeDrivingMode = settings.getBoolean("optSafe", true);
         bluetoothBackgroundMode = settings.getBoolean("optBTBackground", false);
         milesMode = settings.getBoolean("optMiles", false);
-        dataExportMode = settings.getBoolean("optDataExport", false);
+        //dataExportMode = settings.getBoolean("optDataExport", false);
         debugLogMode = settings.getBoolean("optDebugLog", false);
+        fieldLogMode = settings.getBoolean("optFieldLog", false);
         toastLevel = settings.getInt("optToast", 1);
 
         String carStr = settings.getString("car", "Any");
@@ -348,11 +352,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        DebugLogger.getInstance().createNewLog();
-
         // always create an instance
         // dataLogger = DataLogger.getInstance();
-        dataLogger = new DataLogger();
+        //dataLogger = new DataLogger();
 
         debug("MainActivity: onCreate");
 
@@ -596,7 +598,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
 
         // after loading PREFERENCES we may have new values for "dataExportMode"
-        dataExportMode = dataLogger.activate ( dataExportMode );
+        //dataExportMode = dataLogger.activate ( dataExportMode );
     }
 
     public void reloadBluetooth() {
@@ -705,7 +707,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     protected void onDestroy() {
         debug("MainActivity: onDestroy");
 
-        dataLogger.destroy(); // clean up
+        //dataLogger.destroy(); // clean up
 
         if(device!=null) {
             // stop the device nicely

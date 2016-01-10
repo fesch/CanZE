@@ -1,4 +1,6 @@
-2066.01.07 [Jeroen] added minim distance 20 pixels for move trigger in WidgetView
+2016.01.10 [Bob] field logging: simple field logging
+2016.01.10 [Bob] data logging: no more empty file creation on application start
+2016.01.07 [Jeroen] added minim distance 20 pixels for move trigger in WidgetView
 2016.01.06 [Jeroen] Optimized field/fields, added sign bit
 2016.01.06 [Bob] consumption screen: small color update
 2015.12.29 [Jeroen] Charging graphs, added second axis in first graph

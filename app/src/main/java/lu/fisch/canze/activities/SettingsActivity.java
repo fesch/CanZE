@@ -141,7 +141,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                     // set dialog message
                     String yes = "Yes, I know what I'm doing";
-                    String no  = "No, I prefer the secure way";
+                    String no = "No, I prefer the secure way";
 
                     Display display = getWindowManager().getDefaultDisplay();
                     Point size = new Point();
@@ -149,10 +149,9 @@ public class SettingsActivity extends AppCompatActivity {
                     float width = size.x;
                     int height = size.y;
                     width = width / getResources().getDisplayMetrics().density * getResources().getDisplayMetrics().scaledDensity;
-                    if(width<=480)
-                    {
-                        yes="Yes";
-                        no ="No";
+                    if (width <= 480) {
+                        yes = "Yes";
+                        no = "No";
                     }
 
                     final Context context = SettingsActivity.this;
@@ -205,7 +204,7 @@ public class SettingsActivity extends AppCompatActivity {
                 if (btBackground.isChecked()) {
                     // set dialog message
                     String yes = "Yes, I know what I'm doing";
-                    String no  = "No, thanks";
+                    String no = "No, thanks";
 
                     Display display = getWindowManager().getDefaultDisplay();
                     Point size = new Point();
@@ -213,10 +212,9 @@ public class SettingsActivity extends AppCompatActivity {
                     float width = size.x;
                     int height = size.y;
                     width = width / getResources().getDisplayMetrics().scaledDensity;
-                    if(width<=480)
-                    {
-                        yes="Yes";
-                        no ="No";
+                    if (width <= 480) {
+                        yes = "Yes";
+                        no = "No";
                     }
 
                     final Context context = SettingsActivity.this;
@@ -260,7 +258,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        final CheckBox dataExport = (CheckBox) findViewById(R.id.dataExportMode);
+        /*final CheckBox dataExport = (CheckBox) findViewById(R.id.dataExportMode);
         dataExport.setChecked(MainActivity.dataExportMode);
         dataExport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -297,7 +295,7 @@ public class SettingsActivity extends AppCompatActivity {
                     MainActivity.dataExportMode = false; // due to SDcard not writeable
                 }
             }
-        });
+        });*/
 
         final CheckBox debugLog = (CheckBox) findViewById(R.id.debugLogMode);
         debugLog.setChecked(MainActivity.debugLogMode);
@@ -305,7 +303,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // add code here to check external SDcard is avail, writeable and has sufficient space
-                final boolean sdcardCheck = MainActivity.dataLogger.isExternalStorageWritable(); // check for space later
+                final boolean sdcardCheck = Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()); // check for space later
                 if (!sdcardCheck) {
                     final Context context = SettingsActivity.this;
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
@@ -324,6 +322,44 @@ public class SettingsActivity extends AppCompatActivity {
                                     // if this button is clicked, close
                                     // current activity
                                     debugLog.setChecked(false);
+                                    dialog.cancel();
+                                }
+                            });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
+                }
+            }
+        });
+
+        final CheckBox fieldLog = (CheckBox) findViewById(R.id.fieldLogMode);
+        fieldLog.setChecked(MainActivity.fieldLogMode);
+        fieldLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // add code here to check external SDcard is avail, writeable and has sufficient space
+                final boolean sdcardCheck = Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()); // check for space later
+                if (!sdcardCheck) {
+                    final Context context = SettingsActivity.this;
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                    // set title
+                    alertDialogBuilder.setTitle("I am sorry...");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage(Html.fromHtml("External SD card not available, not writeable " +
+                                    "or has not sufficient space left to log data." +
+                                    "<br><br><b>Data export cannot be enabled!</b>"))
+                            .setCancelable(true)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // if this button is clicked, close
+                                    // current activity
+                                    fieldLog.setChecked(false);
                                     dialog.cancel();
                                 }
                             });
@@ -410,8 +446,9 @@ public class SettingsActivity extends AppCompatActivity {
             Spinner car = (Spinner) findViewById(R.id.car);
             CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
             CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
-            CheckBox dataExport = (CheckBox) findViewById(R.id.dataExportMode);
+            //CheckBox dataExport = (CheckBox) findViewById(R.id.dataExportMode);
             CheckBox debugLog = (CheckBox) findViewById(R.id.debugLogMode);
+            CheckBox fieldLog = (CheckBox) findViewById(R.id.fieldLogMode);
             CheckBox btBackground = (CheckBox) findViewById(R.id.btBackgrounding);
             Spinner toastLevel = (Spinner) findViewById(R.id.toastLevel);
             if(deviceList.getSelectedItem()!=null) {
@@ -424,8 +461,9 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putBoolean("optBTBackground", btBackground.isChecked());
                 editor.putBoolean("optSafe", safe.isChecked());
                 editor.putBoolean("optMiles", miles.isChecked());
-                editor.putBoolean("optDataExport", dataExport.isChecked());
+                //editor.putBoolean("optDataExport", dataExport.isChecked());
                 editor.putBoolean("optDebugLog", debugLog.isChecked());
+                editor.putBoolean("optFieldLog", fieldLog.isChecked());
                 editor.putInt("optToast", toastLevel.getSelectedItemPosition());
             }
             editor.commit();
