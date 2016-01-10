@@ -85,7 +85,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Remote Device"
+                            android:text="Remote device"
                             android:id="@+id/textViewDevice" />
                         <Spinner
                             android:layout_width="fill_parent"
@@ -156,18 +156,39 @@
                             android:text="Miles"
                             android:id="@+id/milesMode" />
 
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="SD card logging"
+                            android:id="@+id/textViewLogging" />
+
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Write debug log to SD card"
+                            android:text="Debug"
                             android:id="@+id/debugLogMode" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="Fields"
+                            android:id="@+id/fieldLogMode" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="This logs all fields requested by the actual screen."
+                            android:layout_marginBottom="16dp"
+                            android:id="@+id/fieldLogModeExpl" />
+<!--
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="Log to sdcard1"
                             android:id="@+id/dataExportMode" />
-
+-->
 
                         <TextView
                             android:layout_width="fill_parent"

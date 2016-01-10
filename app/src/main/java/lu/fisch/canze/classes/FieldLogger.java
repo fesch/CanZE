@@ -15,17 +15,17 @@ import static lu.fisch.canze.activities.MainActivity.debug;
  * Created by Chris Mattheis on 03/11/15.
  * don't use yet - still work in progress
  */
-public class DebugLogger {
+public class FieldLogger {
 
     /* ****************************
      * Singleton stuff
      * ****************************/
 
-    private static DebugLogger instance = new DebugLogger();
+    private static FieldLogger instance = new FieldLogger();
 
-    private DebugLogger() {}
+    private FieldLogger() {}
 
-    public static DebugLogger getInstance() {
+    public static FieldLogger getInstance() {
         return instance;
     }
 
@@ -43,7 +43,7 @@ public class DebugLogger {
     private boolean createNewLog() {
         boolean result = false;
 
-        //debug(this.getClass().getSimpleName()+": create new debug logfile");
+        //debug(this.getClass().getSimpleName()+": create new field logfile");
 
         // ensure that there is a CanZE Folder in SDcard
         String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
@@ -57,7 +57,7 @@ public class DebugLogger {
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-        String exportdataFileName = file_path + "debug-" + sdf.format(Calendar.getInstance().getTime()) + ".log";
+        String exportdataFileName = file_path + "field-" + sdf.format(Calendar.getInstance().getTime()) + ".log";
 
         logFile = new File(exportdataFileName);
         if (!logFile.exists()) {
@@ -80,6 +80,8 @@ public class DebugLogger {
             //}
             bufferedWriter.close();
             result = true;
+
+            log("SID,value");
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -93,17 +95,15 @@ public class DebugLogger {
      */
     public void log(String text)
     {
-        boolean goon = true;
-        if(logFile==null) goon=createNewLog();
+        if(logFile==null) createNewLog();
 
-        if(goon) {
-            try {
-                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
-                bufferedWriter.append(text + "\n");
-                bufferedWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
+            bufferedWriter.append(text+"\n");
+            bufferedWriter.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -31,6 +31,7 @@ import android.widget.TextView;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.classes.FieldLogger;
 import lu.fisch.canze.interfaces.MessageListener;
 import lu.fisch.canze.interfaces.VirtualFieldAction;
 
@@ -1243,6 +1244,9 @@ public class Fields implements MessageListener {
         {
             Field field = fields.get(i);
 
+            // we can stop iterating if we're above the requested ID
+            if (field.getId() > message.getField().getId()) break;
+
             if(field.getId()== message.getField().getId() &&
                     (
                             message.getField().getResponseId()==null
@@ -1269,6 +1273,9 @@ public class Fields implements MessageListener {
                             field.setValue(val);
                             // update the fields last request date
                             field.updateLastRequest();
+                            // do field logging
+                            if(MainActivity.fieldLogMode)
+                                FieldLogger.getInstance().log(field.getSID()+","+val);
                         } else {
                             field.setValue(Double.NaN);
                         }
