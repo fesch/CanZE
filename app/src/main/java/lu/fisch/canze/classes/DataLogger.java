@@ -63,6 +63,7 @@ public class DataLogger  implements FieldListener {
     private double dcVolt                           = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     private int    odo                              = 0;
     private double realSpeed                        = 0;
+    private double dcPwr                            = 0;
 
     private String var_SoC;
     private String var_Pedal;
@@ -70,6 +71,8 @@ public class DataLogger  implements FieldListener {
     private String var_Odometer;
     private String var_realSpeed;
     private String var_Consumption;
+    private String var_dcVolt;
+    private String var_dcPwr;
     private String var_rangeInBat;
 
     private ArrayList<Field> subscribedFields;
@@ -87,6 +90,15 @@ public class DataLogger  implements FieldListener {
 
         debug("DataLogger: constructor called");
 
+    }
+    private String getDateString(long milliSeconds, String dateFormat)
+    {
+        // Create a DateFormatter object for displaying date in specified format.
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+        // Create a calendar object that will convert the date and time value in milliseconds to date.
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(milliSeconds);
+        return formatter.format(calendar.getTime());
     }
 
     public boolean isExternalStorageWritable() {
@@ -136,7 +148,7 @@ public class DataLogger  implements FieldListener {
             debug("DataLogger: file_path:" + file_path);
 
             // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-            String exportdataFileName = file_path + "data" + sdf.format(Calendar.getInstance().getTime()) + ".log";
+            String exportdataFileName = file_path + "data-" + sdf.format(Calendar.getInstance().getTime()) + ".log";
 
             logFile = new File(exportdataFileName);
             if (!logFile.exists()) {
@@ -166,7 +178,8 @@ public class DataLogger  implements FieldListener {
         return result;
     }
 
-    private long intervall = 5000;
+    // private long intervall = 5000;
+    private int intervall = 5000;
 
     private Handler handler = new Handler();
 
@@ -189,15 +202,22 @@ public class DataLogger  implements FieldListener {
             //catch (IOException e) {
             //    e.printStackTrace();
             //}
-            String dataWithNewLine =  timestamp + ";" + var_SoC
-                    + ";" +  var_Pedal
-                    + ";" +  var_MeanEffectiveTorque
-                    + ";" +  var_Odometer
-                    + ";" +  var_realSpeed
-                    + ";" +  var_Consumption
-                    + ";" +  var_rangeInBat
-                    + System.getProperty("line.separator");
-            log ( dataWithNewLine );
+
+            if ( realSpeed + dcPwr > 0 ) { // only log while driving or charging
+                String dataWithNewLine = timestamp
+                        + ";" + getDateString(tsLong, "yyyy-MM-dd-HH:mm:ss")
+                        + ";" + var_SoC
+                        + ";" + var_dcVolt
+                        + ";" + var_dcPwr
+                        + ";" + var_Pedal
+                        + ";" + var_MeanEffectiveTorque
+                        + ";" + var_Odometer
+                        + ";" + var_realSpeed
+                        + ";" + var_Consumption
+                        + ";" + var_rangeInBat
+                        + System.getProperty("line.separator");
+                log(dataWithNewLine);
+            }
             handler.postDelayed(this, intervall);
         }
     };
@@ -292,19 +312,19 @@ public class DataLogger  implements FieldListener {
 
         // Make sure to add ISO-TP listeners grouped by ID
 
-        addListener(SID_Consumption, 2000);
-        addListener(SID_Pedal, 2000);
-        addListener(SID_MeanEffectiveTorque, 2000);
-        addListener(SID_DriverBrakeWheel_Torque_Request, 2000);
-        addListener(SID_ElecBrakeWheelsTorqueApplied, 2000);
-        addListener(SID_RealSpeed, 2000);
-        addListener(SID_SoC, 3600);
-        addListener(SID_RangeEstimate, 3600);
+        addListener(SID_Consumption, intervall ); // 2000
+        addListener(SID_Pedal, intervall );       // 2000
+        addListener(SID_MeanEffectiveTorque, intervall ); // 2000
+        addListener(SID_DriverBrakeWheel_Torque_Request, intervall ); // 2000
+        addListener(SID_ElecBrakeWheelsTorqueApplied, intervall); // 2000
+        addListener(SID_RealSpeed, intervall); // 2000
+        addListener(SID_SoC, intervall); // 3600
+        addListener(SID_RangeEstimate, intervall); // 3600
 
         //addListener(SID_EVC_SoC);
-        addListener(SID_EVC_Odometer, 6000);
-        addListener(SID_EVC_TractionBatteryVoltage, 5000);
-        addListener(SID_EVC_TractionBatteryCurrent, 2000);
+        addListener(SID_EVC_Odometer, intervall );  // 6000
+        addListener(SID_EVC_TractionBatteryVoltage, intervall ); // 5000
+        addListener(SID_EVC_TractionBatteryCurrent, intervall ); // 2000
         //addListener(SID_PEB_Torque);
     }
 
@@ -356,10 +376,12 @@ public class DataLogger  implements FieldListener {
                     case SID_EVC_TractionBatteryVoltage: // DC volts
                         // save DC voltage for DC power purposes
                         dcVolt = field.getValue();
+                        var_dcVolt = field.getPrintValue();
                         break;
                     case SID_EVC_TractionBatteryCurrent: // DC amps
                         // calculate DC power
-                        double dcPwr = Math.round(dcVolt * field.getValue() / 100.0) / 10.0;
+                        dcPwr = Math.round(dcVolt * field.getValue() / 100.0) / 10.0;
+                        var_dcPwr = field.getPrintValue();
                         break;
                     case SID_Consumption:
                         dcPwr = field.getValue();
