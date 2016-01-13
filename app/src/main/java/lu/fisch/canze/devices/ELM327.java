@@ -182,13 +182,16 @@ public class ELM327 extends Device {
         if (toughness == 0 ) {
             // the default 500mS should be enough to answer, however, the answer contains various <cr>'s, so we need to set untilEmpty to true
             response = sendAndWaitForAnswer("atws", 0, true, -1 , true);
+            MainActivity.debug("ELM327: version = "+response);
         }
         else if (toughness == 1) {
             response = sendAndWaitForAnswer("atws", 0, true, -1 , true);
+            MainActivity.debug("ELM327: version = "+response);
         }
         else {
             // not used
             response = sendAndWaitForAnswer("atd", 0, true, -1 , true);
+            MainActivity.debug("ELM327: version = "+response);
         }
 
         if (response.trim().equals("")) {
@@ -199,7 +202,9 @@ public class ELM327 extends Device {
 
         // only do version control at a full reset
         if (toughness <= 1) {
-            if (response.toUpperCase().contains("V1.4")) {
+            if (response.toUpperCase().contains("V1.3")) {
+                elmVersion = 13;
+            } else if (response.toUpperCase().contains("V1.4")) {
                 elmVersion = 14;
             } else if (response.toUpperCase().contains("V1.5")) {
                 elmVersion = 15;
