@@ -258,7 +258,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        /*final CheckBox dataExport = (CheckBox) findViewById(R.id.dataExportMode);
+        final CheckBox dataExport = (CheckBox) findViewById(R.id.dataExportMode);
         dataExport.setChecked(MainActivity.dataExportMode);
         dataExport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -295,7 +295,7 @@ public class SettingsActivity extends AppCompatActivity {
                     MainActivity.dataExportMode = false; // due to SDcard not writeable
                 }
             }
-        });*/
+        });
 
         final CheckBox debugLog = (CheckBox) findViewById(R.id.debugLogMode);
         debugLog.setChecked(MainActivity.debugLogMode);
@@ -446,7 +446,7 @@ public class SettingsActivity extends AppCompatActivity {
             Spinner car = (Spinner) findViewById(R.id.car);
             CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
             CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
-            //CheckBox dataExport = (CheckBox) findViewById(R.id.dataExportMode);
+            CheckBox dataExport = (CheckBox) findViewById(R.id.dataExportMode);
             CheckBox debugLog = (CheckBox) findViewById(R.id.debugLogMode);
             CheckBox fieldLog = (CheckBox) findViewById(R.id.fieldLogMode);
             CheckBox btBackground = (CheckBox) findViewById(R.id.btBackgrounding);
@@ -461,7 +461,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putBoolean("optBTBackground", btBackground.isChecked());
                 editor.putBoolean("optSafe", safe.isChecked());
                 editor.putBoolean("optMiles", miles.isChecked());
-                //editor.putBoolean("optDataExport", dataExport.isChecked());
+                editor.putBoolean("optDataExport", dataExport.isChecked());
                 editor.putBoolean("optDebugLog", debugLog.isChecked());
                 editor.putBoolean("optFieldLog", fieldLog.isChecked());
                 editor.putInt("optToast", toastLevel.getSelectedItemPosition());

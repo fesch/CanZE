@@ -182,13 +182,12 @@
                             android:text="This logs all fields requested by the actual screen."
                             android:layout_marginBottom="16dp"
                             android:id="@+id/fieldLogModeExpl" />
-<!--
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Log to sdcard1"
                             android:id="@+id/dataExportMode" />
--->
+
 
                         <TextView
                             android:layout_width="fill_parent"
