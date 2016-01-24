@@ -90,17 +90,30 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/text_wheel_torque"
+                android:id="@+id/text_wheel_torque_label"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Nm"
+                android:layout_height="25dp"
+                android:text="Wheel Torque"
                 android:layout_marginLeft="4dp"
                 android:textColor="#000000"
                 android:layout_alignRight="@+id/bar_torque"
                 android:layout_alignLeft="@+id/bar_torque"
                 android:layout_alignTop="@+id/bar_torque"
+                android:gravity="left"
+                />
+
+            <TextView
+                android:id="@+id/text_wheel_torque"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Nm"
+                android:layout_marginRight="4dp"
+                android:textColor="#000000"
+                android:layout_alignRight="@+id/bar_torque"
+                android:layout_alignLeft="@+id/bar_torque"
+                android:layout_alignTop="@+id/bar_torque"
                 android:layout_alignBottom="@+id/bar_torque"
-                android:gravity="center"
+                android:gravity="right"
                 />
         </RelativeLayout>
 
@@ -155,17 +168,30 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/text_instant_consumption_negative"
+                    android:id="@+id/text_instant_consumption_negative_label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="kWh/100km"
+                    android:text="Instant Consumption"
                     android:layout_marginLeft="4dp"
                     android:textColor="#000000"
                     android:layout_alignRight="@+id/bar"
                     android:layout_alignLeft="@+id/bar"
                     android:layout_alignBottom="@+id/bar"
                     android:layout_alignTop="@+id/bar"
-                    android:gravity="center"
+                    android:gravity="left"
+                    />
+                <TextView
+                    android:id="@+id/text_instant_consumption_negative"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="kWh/100km"
+                    android:layout_marginRight="4dp"
+                    android:textColor="#000000"
+                    android:layout_alignRight="@+id/bar"
+                    android:layout_alignLeft="@+id/bar"
+                    android:layout_alignBottom="@+id/bar"
+                    android:layout_alignTop="@+id/bar"
+                    android:gravity="right"
                     />
             </RelativeLayout>
 

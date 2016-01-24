@@ -1,3 +1,5 @@
+2016.01.24 [Bob] tried to put back the label in the top bars of the consumption screen
+2016.01.24 [Jeroen] https://github.com/fesch/CanZE/pull/306
 2016.01.12 [Chris] DataExport Mode re-activated
 2016.01.10 [Jeroen] Optimized field lookup a bit
 2016.01.10 [Bob] field logging: simple field logging
