@@ -46,7 +46,11 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     public static final String SID_ChargingStatusDisplay            = "65b.41";
     public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
     public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
+    public static final String SID_CapacityFluKan                   = "7bb.6101.348";
+    public static final String SID_CapacityZoe                      = "";
+    public static final String SID_12V                              = "7bb.622005.24";
     public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
+
 
     public static final String cha_Status [] = {"No charge", "Waiting (planned)", "Ended", "In progress", "Failure", "Waiting", "Flap open", "Unavailable"};
     public static final String plu_Status [] = {"Not connected", "Connected"};
@@ -89,10 +93,13 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addListener(SID_RealSoC);
         if (MainActivity.car==MainActivity.CAR_ZOE) {
             addListener(SID_AvChargingPower);
+        } else {
+            addListener(SID_CapacityFluKan);
         }
         addListener(SID_AvEnergy);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
+        addListener(SID_12V);
         addListener(SID_ChargingStatusDisplay);
         addListener(SID_TractionBatteryVoltage);
         addListener(SID_TractionBatteryCurrent);
@@ -221,6 +228,17 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                             tv.setText("" + (Math.round((field.getValue() * (1-soc) / soc) * 10.0) / 10.0));
                         }
                         tv = (TextView) findViewById(R.id.textAvEner);
+                        break;
+                    case SID_12V:
+                        tv = (TextView) findViewById(R.id.text12V);
+                        tv.setText("" + field.getValue());
+                        tv = null;
+                        break;
+                    case SID_CapacityFluKan:
+                    case SID_CapacityZoe:
+                        tv = (TextView) findViewById(R.id.textCapacity);
+                        tv.setText("" + field.getValue());
+                        tv = null;
                         break;
                     case SID_ChargingStatusDisplay:
                         chargingStatus = (int) field.getValue();

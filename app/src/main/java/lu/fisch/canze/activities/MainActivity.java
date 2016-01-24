@@ -98,12 +98,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public final static int SETTINGS_ACTIVITY = 7;
     public final static int LEAVE_BLUETOOTH_ON= 11;
 
-    public static final int CAR_ANY             = 0;
-    public static final int CAR_FLUENCE         = 1;
-    public static final int CAR_ZOE             = 2;
-    public static final int CAR_KANGOO          = 3;
-    public static final int CAR_TWIZY           = 4;    // you'll never know ;-)
-    public static final int CAR_X10             = 5;
+    public static final int CAR_NONE            = 0x00;
+    //public static final int CAR_ANY             = 0x1f;
+    public static final int CAR_FLUENCE         = 0x01;
+    public static final int CAR_ZOE             = 0x02;
+    public static final int CAR_KANGOO          = 0x04;
+    public static final int CAR_TWIZY           = 0x08;    // you'll never know ;-)
+    public static final int CAR_X10             = 0x10;
 
     private StringBuilder sb = new StringBuilder();
     private String buffer = "";
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static boolean dataExportMode = false;
     public static DataLogger  dataLogger = null; // rather use singleton in onCreate
 
-    public static int car = CAR_ANY;
+    public static int car = CAR_NONE;
 
     private static boolean isDriving = false;
 
@@ -219,11 +220,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         fieldLogMode = settings.getBoolean("optFieldLog", false);
         toastLevel = settings.getInt("optToast", 1);
 
-        String carStr = settings.getString("car", "Any");
+        String carStr = settings.getString("car", "None");
         switch (carStr) {
-            case "Any":
+            case "None":
                 // Fields.getInstance().setCar(Fields.CAR_ANY);
-                car = CAR_ANY;
+                car = CAR_NONE;
                 break;
             case "Zoé":
                 // Fields.getInstance().setCar(Fields.CAR_ZOE);
@@ -258,7 +259,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 break;
         }
 
-        // since the car type may have changed, reload the grame timings
+        // since the car type may have changed, reload the frame timings
+        fields.load();
         Frames.getInstance().reloadTiming();
 
         if(device!=null) {

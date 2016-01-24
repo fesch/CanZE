@@ -60,12 +60,15 @@
     <string name="label_max_pilot">Max AC charge pilot Amp</string>
     <string name="default_max_pilot">#Max AC ch</string>
 
-    <string name="default_Phases">#Pha</string>
     <string name="label_Phases">Phases</string>
+    <string name="default_Phases">#Pha</string>
 
     <string name="label_UserSOC">User state of charge %</string>
     <string name="label_RealSOC">Real state of charge %</string>
     <string name="default_SOC">#SOC</string>
+
+    <string name="label_Capacity">Capacity Ah</string>
+    <string name="default_Capacity">#AH</string>
 
     <string name="label_HvTemp">Mean battery temperature</string>
     <string name="default_HvTemp">#HVT</string>
@@ -96,6 +99,9 @@
 
     <string name="label_AvEner">Available Energy kWh</string>
     <string name="default_AvEner">#AE</string>
+
+    <string name="label_12V">12 volt systemh</string>
+    <string name="default_12V">#12V</string>
 
     <string name="label_ChaStatus">Charging Status</string>
     <string name="default_ChaStatus">#STA</string>
