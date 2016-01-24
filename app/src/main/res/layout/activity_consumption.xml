@@ -92,14 +92,15 @@
             <TextView
                 android:id="@+id/text_wheel_torque"
                 android:layout_width="0dp"
-                android:layout_height="25dp"
-                android:text="Wheel Torque (Nm)"
+                android:layout_height="wrap_content"
+                android:text="Nm"
                 android:layout_marginLeft="4dp"
                 android:textColor="#000000"
                 android:layout_alignRight="@+id/bar_torque"
                 android:layout_alignLeft="@+id/bar_torque"
                 android:layout_alignTop="@+id/bar_torque"
-                android:gravity="left"
+                android:layout_alignBottom="@+id/bar_torque"
+                android:gravity="center"
                 />
         </RelativeLayout>
 
@@ -157,14 +158,14 @@
                     android:id="@+id/text_instant_consumption_negative"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Instant Consumption (kWh/100km)"
+                    android:text="kWh/100km"
                     android:layout_marginLeft="4dp"
                     android:textColor="#000000"
                     android:layout_alignRight="@+id/bar"
                     android:layout_alignLeft="@+id/bar"
                     android:layout_alignBottom="@+id/bar"
                     android:layout_alignTop="@+id/bar"
-                    android:gravity="left"
+                    android:gravity="center"
                     />
             </RelativeLayout>
 
@@ -241,13 +242,13 @@
                 android:layout_marginBottom="8dp"
                 custom:min="0"
                 custom:max="160"
-                custom:minAlt="-160"
-                custom:maxAlt="160"
+                custom:minAlt="5"
+                custom:maxAlt="25"
                 custom:majorTicks="20"
                 custom:minorTicks="10"
-                custom:fieldSID="5d7.0,800.6100.24"
+                custom:fieldSID="5d7.0,800.6104.24"
                 custom:widget="timeplot"
-                custom:text="Speed (km/h) / Instant consumption (kWh/100km)"
+                custom:text="Speed (km/h) / Consumption (kWh/100km)"
                 custom:intervals="{
                                    }"
                 custom:colorRanges="[
@@ -260,7 +261,7 @@
                     ]"
                 custom:options="{
                                    '5d7.0':'gradient',
-                                   '800.6100.24':'alt'
+                                   '800.6104.24':'alt'
                                 }"
                 />
 

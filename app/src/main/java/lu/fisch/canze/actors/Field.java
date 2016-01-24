@@ -354,7 +354,7 @@ public class Field {
         return (options & 0x0f);
     }
 
-    public void setCar(int car) { options = (short)((options & 0xff0) + (car & 0x0f)); }
+    public void setCar(int car) { options = (short)((options & 0xfe0) + (car & 0x1f)); }
 
     public int getFrequency() {
         return frame.getInterval();
@@ -372,5 +372,5 @@ public class Field {
         return virtual;
     }
 
-    public boolean isSigned () { return (this.options & 0x70) == 1; }
+    public boolean isSigned () { return (this.options & 0xe0) == 1; }
 }

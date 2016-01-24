@@ -71,6 +71,7 @@ public class ConsumptionActivity extends CanzeActivity {
             public void run() {
                 String fieldId = field.getSID();
                 ProgressBar pb;
+                TextView tv;
 
                 switch (fieldId) {
                     case SID_MeanEffectiveTorque:
@@ -89,10 +90,14 @@ public class ConsumptionActivity extends CanzeActivity {
                         driverBrakeWheel_Torque_Request = field.getValue() + coasting_Torque;
                         pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
                         if (pb != null) pb.setProgress((int) driverBrakeWheel_Torque_Request);
+                        tv = (TextView) findViewById(R.id.text_wheel_torque);
+                        if (tv != null) tv.setText(((int) field.getValue()) + " " + field.getUnit());
                         break;
                     case SID_Instant_Consumption:
                         ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(Math.abs(Math.min(0, (int) field.getValue())));
                         ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(Math.max(0, (int) field.getValue()));
+                        tv = (TextView) findViewById(R.id.text_instant_consumption_negative);
+                        if (tv != null) tv.setText(((int)field.getValue()) + " " + field.getUnit());
                         break;
                 }/**/
             }

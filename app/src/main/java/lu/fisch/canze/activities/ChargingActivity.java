@@ -85,7 +85,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
 //        addListener(SID_TractionBatteryVoltage);
 //        addListener(SID_TractionBatteryCurrent);
         addListener(SID_DcPower);
-        if (MainActivity.car==MainActivity.CAR_ZOE) {
+        if (MainActivity.car == MainActivity.CAR_ZOE) {
             addListener(SID_AvChargingPower);
             addListener(SID_HvTemp);
         } else { //FLuKan
