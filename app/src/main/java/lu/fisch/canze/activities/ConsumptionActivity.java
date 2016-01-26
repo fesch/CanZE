@@ -38,8 +38,9 @@ public class ConsumptionActivity extends CanzeActivity {
     public static final String SID_Instant_Consumption                  = "800.6100.24";
 
 
-    private double coasting_Torque                  = 0;
-    private double driverBrakeWheel_Torque_Request  = 0;
+    private int coasting_Torque                     = 0;
+    private int driverBrakeWheel_Torque_Request     = 0;
+    private int tempTorque                          = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,36 +75,55 @@ public class ConsumptionActivity extends CanzeActivity {
                 TextView tv;
 
                 switch (fieldId) {
+                    // positive torque
                     case SID_MeanEffectiveTorque:
+                        tempTorque = (int)(field.getValue() * 9.3); // --> translate from motor torque to wheel torque
                         pb = (ProgressBar) findViewById(R.id.MeanEffectiveAccTorque);
-                        pb.setProgress((int) (field.getValue() * 9.3)); // --> translate from motor torque to wheel torque
+                        pb.setProgress(tempTorque);
+                        if (tempTorque <= 1) break;
+                        tv = (TextView) findViewById(R.id.text_wheel_torque);
+                        if (tv != null) tv.setText(tempTorque + " " + field.getUnit());
+                        break;
+
+                    // negative torque
+                    case SID_DriverBrakeWheel_Torque_Request:
+                        driverBrakeWheel_Torque_Request = (int)field.getValue();
+                        tempTorque = driverBrakeWheel_Torque_Request + coasting_Torque;
+                        pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
+                        if (pb != null) pb.setProgress(tempTorque);
+                        if (tempTorque <= 1) break;
+                        tv = (TextView) findViewById(R.id.text_wheel_torque);
+                        if (tv != null) tv.setText(-tempTorque + " " + field.getUnit());
                         break;
                     case SID_Coasting_Torque:
-                        coasting_Torque = field.getValue() * 9.3; // it seems this torque is given in motor torque, not in wheel torque. Maybe another adjustment by a factor 05 is needed (two wheels)
+                        coasting_Torque = (int)(field.getValue() * 9.3); // it seems this torque is given in motor torque, not in wheel torque. Maybe another adjustment by a factor 05 is needed (two wheels)
+                        tempTorque = driverBrakeWheel_Torque_Request + coasting_Torque;
+                        pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
+                        if (pb != null) pb.setProgress(tempTorque);
+                        if (tempTorque <= 1) break;
+                        tv = (TextView) findViewById(R.id.text_wheel_torque);
+                        if (tv != null) tv.setText(-tempTorque + " " + field.getUnit());
                         break;
+
+                    // negative blue bar
                     case SID_TotalPotentialResistiveWheelsTorque:
                         int tprwt = -((int) field.getValue());
                         pb = (ProgressBar) findViewById(R.id.MaxBreakTorque);
                         if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 10);
                         break;
-                    case SID_DriverBrakeWheel_Torque_Request:
-                        driverBrakeWheel_Torque_Request = field.getValue() + coasting_Torque;
-                        pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
-                        if (pb != null) pb.setProgress((int) driverBrakeWheel_Torque_Request);
-                        tv = (TextView) findViewById(R.id.text_wheel_torque);
-                        if (tv != null) tv.setText(((int) field.getValue()) + " " + field.getUnit());
-                        break;
+
+                    // consumption
                     case SID_Instant_Consumption:
                         ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(Math.abs(Math.min(0, (int) field.getValue())));
                         ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(Math.max(0, (int) field.getValue()));
                         tv = (TextView) findViewById(R.id.text_instant_consumption_negative);
-                        if (tv != null) tv.setText(((int)field.getValue()) + " " + field.getUnit());
+                        if (tv != null)
+                            tv.setText(((int) field.getValue()) + " " + field.getUnit());
                         break;
                 }/**/
             }
         });
 
     }
-
 
 }

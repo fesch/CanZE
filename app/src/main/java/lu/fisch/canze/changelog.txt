@@ -1,3 +1,7 @@
+2016.01.26 [Jeroen] Bug fix in numerical torque display
+2016.01.25 [Jeroen] Enlarged numerical vales in consumption screen (top bars)
+2016.01.25 [Jeroen] Changed consumption scale from 5-25 to 0 - 40
+2016.01.25 [Jeroen] Fixed non display of positive torque in consumption (untested)
 2016.01.24 [Bob] tried to put back the label in the top bars of the consumption screen
 2016.01.24 [Jeroen] Changed car to bit-map in fields.
 2016.01.24 [Jeroen] Changed immediate consumption graph to a Low pass filtered value in a much more limited range. A bit experimental.

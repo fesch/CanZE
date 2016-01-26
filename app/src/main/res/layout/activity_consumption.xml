@@ -114,7 +114,8 @@
                 android:layout_alignTop="@+id/bar_torque"
                 android:layout_alignBottom="@+id/bar_torque"
                 android:gravity="right"
-                />
+                android:textStyle="bold"
+                android:textSize="20sp" />
         </RelativeLayout>
 
         <LinearLayout
@@ -192,7 +193,8 @@
                     android:layout_alignBottom="@+id/bar"
                     android:layout_alignTop="@+id/bar"
                     android:gravity="right"
-                    />
+                    android:textStyle="bold"
+                    android:textSize="20sp" />
             </RelativeLayout>
 
 
@@ -268,8 +270,8 @@
                 android:layout_marginBottom="8dp"
                 custom:min="0"
                 custom:max="160"
-                custom:minAlt="5"
-                custom:maxAlt="25"
+                custom:minAlt="0"
+                custom:maxAlt="40"
                 custom:majorTicks="20"
                 custom:minorTicks="10"
                 custom:fieldSID="5d7.0,800.6104.24"
