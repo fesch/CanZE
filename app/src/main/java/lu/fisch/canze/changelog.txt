@@ -1,3 +1,4 @@
+2016.01.26 [Jeroen] Brighten progress bar colors to make numericals readable
 2016.01.26 [Jeroen] Bug fix in numerical torque display
 2016.01.25 [Jeroen] Enlarged numerical vales in consumption screen (top bars)
 2016.01.25 [Jeroen] Changed consumption scale from 5-25 to 0 - 40

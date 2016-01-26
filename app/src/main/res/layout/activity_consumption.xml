@@ -56,7 +56,6 @@
                             android:layout_gravity="center_horizontal"
                             android:minHeight="25dp"
                             android:max="1536"
-                            android:progress="100"
                             android:progressDrawable="@drawable/progressbar_canze_decel"
                             />
 
@@ -69,7 +68,6 @@
                             android:paddingTop="2dp"
                             android:layout_gravity="center_horizontal"
                             android:max="1536"
-                            android:progress="1536"
                             android:progressDrawable="@drawable/progressbar_canze_decel_aim"
                             />
                 </LinearLayout>
@@ -82,7 +80,6 @@
                     android:layout_gravity="center_horizontal"
                     android:minHeight="25dp"
                     android:max="2048"
-                    android:progress="0"
                     android:layout_weight="2"
                     android:progressDrawable="@drawable/progressbar_canze_accel"
                     />
@@ -161,7 +158,6 @@
                         android:layout_height="wrap_content"
                         android:minHeight="25dp"
                         android:max="150"
-                        android:progress="0"
                         android:progressDrawable="@drawable/progressbar_canze_accel"
                         android:layout_weight="1"
                         />
