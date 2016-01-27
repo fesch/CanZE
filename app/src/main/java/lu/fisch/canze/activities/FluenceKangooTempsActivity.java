@@ -40,7 +40,7 @@ public class FluenceKangooTempsActivity extends CanzeActivity implements FieldLi
     public static final String SID_WaterTemperatureHeating              = "5da.0";
     public static final String SID_DcDcConverterTemperature             = "77e.623018.24";
     public static final String SID_InverterTemperature                  = "77e.62302b.24";
-    public static final String SID_ExternalTemperature                  = "543.32";
+    public static final String SID_ExternalTemperature                  = "534.32";
     public static final String SID_ExternalTemperatureZoe               = "656.48";
     public static final String SID_InternalTemperature                  = "764.6121.8";
     public static final String SID_MotorWaterPumpSpeed                  = "7ec.623318.24";
