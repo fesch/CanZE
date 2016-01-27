@@ -123,7 +123,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
     private void initListeners() {
         subscribedFields = new ArrayList<>();
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
-            if (ecu.getFromId() != 0) {
+            if (ecu.getFromId() > 0 && ecu.getFromId() < 0x800) {
                 addListener(Integer.toHexString (ecu.getFromId()).toLowerCase() + ".6180.144");
             }
         }
