@@ -23,6 +23,7 @@
     <string name="title_activity_heatmap_cellvoltage">Voltage heatmap</string>
     <string name="title_activity_tyres">Tires info</string>
     <string name="title_activity_charging_graph">Charging graphs</string>
+    <string name="title_activity_clima_tech">Clima Battery interaction</string>
 
     <!-- nonsense -->
 
@@ -216,7 +217,9 @@
     <string name="label_TyreRLPressure">Rear left pressure mbar</string>
     <string name="label_TyreRRPressure">Rear right pressure mbar</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- clima tech -->
+
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
