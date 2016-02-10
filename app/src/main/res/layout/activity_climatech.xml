@@ -1,0 +1,156 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:keepScreenOn="true"
+    android:layout_height="fill_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="lu.fisch.canze.activities.ChargingTechActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="Climate Battery interaction"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000" />
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+                <TextView
+                    android:text="Engine fan speed"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:id="@+id/text_EFS"
+                    android:text="#EFS"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:text="@string/label_DcPwr"
+                    android:layout_weight="2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/text_DCP"
+                    android:text="@string/default_DcPwr"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="HV battery temp"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:id="@+id/text_HVT"
+                    android:text="#HVT"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="Charging Power"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:id="@+id/text_CPO"
+                    android:text="#CPO"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="HV cooling state"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:id="@+id/text_HCS"
+                    android:text="#HCS"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/LabelAvChPwr"
+                    android:text="HV Evaporation temp"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:id="@+id/text_HET"
+                    android:text="#HET"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:id="@+id/LabelTTF"
+                    android:text="HV Bat conditioning mode"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:text="#HCM"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:id="@+id/text_HCM" />
+
+            </TableRow>
+
+        </TableLayout>
+
+
+    </LinearLayout>
+
+
+    <!-- debug line -->
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        >
+
+        <TableRow>
+            <TextView
+                android:text="@string/label_debug"
+                android:textColor="#000"
+                />
+            <TextView
+                android:id="@+id/textDebug"
+                android:paddingLeft="8dp"
+                android:text="@string/default_debug"
+                />
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>
