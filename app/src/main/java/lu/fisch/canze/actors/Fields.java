@@ -821,17 +821,17 @@ public class Fields implements MessageListener {
 //+"0x42a,56,60,5,0,0,%,,,2\n" // Engine Fan Speed Request PWM
                         +"0x42e,0,12,0.02,0,2,%,,,3\n" // State of Charge
 //+"0x42e,18,19,1,0,0,,,,1f\n" // HV Bat Level2 Failure
-//+"0x42e,20,24,5,0,0,%,,,2\n" // Engine Fan Speed
+                        +"0x42e,20,24,5,0,0,%,,,2\n" // Engine Fan Speed
 //+"0x42e,25,34,0.5,0,0,V,,,1f\n" // HV Network Voltage
                         +"0x42e,38,43,1,0,1,A,,,3\n" // Charging Pilot Current
                         +"0x42e,44,50,1,40,0,°C,,,3\n" // HV Battery Temp
-//+"0x42e,56,63,0.3,0,1,kW,,,1f\n" // Charging Power
+                        +"0x42e,56,63,0.3,0,1,kW,,,1f\n" // Charging Power
 //+"0x430,0,9,10,0,0,rpm,,,2\n" // Clim Compressor Speed RPM Request
 //+"0x430,16,22,1,0,0,%,,,2\n" // High Voltage PTC Request PWM
 //+"0x430,24,33,0.5,30,1,°C,,,2\n" // Comp Temperature Discharge
 //+"0x430,34,35,1,0,0,,,,2\n" // DeIcing Request
 //+"0x430,36,37,1,0,0,,,,2\n" // Clim Panel PC Activation Request
-//+"0x430,38,39,1,0,0,,,,2\n" // HV Battery Cooling State
+                        +"0x430,38,39,1,0,0,,,,2\n" // HV Battery Cooling State
                         +"0x430,40,49,0.1,40,1,°C,,,2\n" // HV Battery Evaporator Temp
 //+"0x430,50,59,0.1,40,1,°C,,,2\n" // HV Battery Evaporator Setpoint
 //+"0x432,0,1,1,0,0,,,,2\n" // Bat VE Shut Down Alert
@@ -842,7 +842,7 @@ public class Fields implements MessageListener {
 //+"0x432,20,22,1,0,0,,,,2\n" // Clim Comp Default Status
 //+"0x432,26,28,1,0,0,,,,2\n" // PTC Default Status
 //+"0x432,29,35,1,40,0,°C,,,2\n" // HV Batt Cond Temp Average
-//+"0x432,36,37,1,0,0,,,,2\n" // HV Bat Conditionning Mode
+                        +"0x432,36,37,1,0,0,,,,2\n" // HV Bat Conditionning Mode
 //+"0x432,40,41,1,0,0,,,,2\n" // Eco Mode Request
 //+"0x432,42,48,100,0,0,Wh,,,2\n" // Climate Available Energy
 //+"0x432,56,57,1,0,0,,,,2\n" // Low Voltage Unballast Request

@@ -122,6 +122,10 @@
             android:name=".activities.ChargingGraphActivity"
             android:label="@string/title_activity_charging_graph" >
         </activity>
+        <activity
+            android:name=".activities.ClimaTechActivity"
+            android:label="@string/title_activity_clima_tech" >
+        </activity>
     </application>
 
 </manifest>

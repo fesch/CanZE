@@ -36,6 +36,7 @@ import lu.fisch.canze.activities.AlexandreActivity;
 import lu.fisch.canze.activities.BatteryTempActivity;
 import lu.fisch.canze.activities.ChargingGraphActivity;
 import lu.fisch.canze.activities.ChargingTechActivity;
+import lu.fisch.canze.activities.ClimaTechActivity;
 import lu.fisch.canze.activities.DtcActivity;
 import lu.fisch.canze.activities.ElmTestActivity;
 import lu.fisch.canze.activities.FluenceKangooTempsActivity;
@@ -145,7 +146,7 @@ public class ExperimentalFragment extends Fragment {
                 if(!MainActivity.isSafe()) return;
                 if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), ChargingGraphActivity.class);
+                Intent intent = new Intent(MainActivity.getInstance(), ClimaTechActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });
