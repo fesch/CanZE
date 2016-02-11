@@ -101,8 +101,11 @@
     <string name="label_AvEner">Available Energy kWh</string>
     <string name="default_AvEner">#AE</string>
 
-    <string name="label_12V">12 volt systemh</string>
+    <string name="label_12V">12 volt system</string>
     <string name="default_12V">#12V</string>
+
+    <string name="label_HKM">Battery kilometers</string>
+    <string name="default_HKM">#HKM</string>
 
     <string name="label_ChaStatus">Charging Status</string>
     <string name="default_ChaStatus">#STA</string>
