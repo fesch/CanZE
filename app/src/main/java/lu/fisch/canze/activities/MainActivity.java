@@ -270,6 +270,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             // register application wide fields
             registerApplicationFields();
         }
+
+        // after loading PREFERENCES we may have new values for "dataExportMode"
+        dataExportMode = dataLogger.activate ( dataExportMode );
     }
 
     private void registerApplicationFields() {
@@ -598,9 +601,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             // show it
             alertDialog.show();
         }
-
-        // after loading PREFERENCES we may have new values for "dataExportMode"
-        dataExportMode = dataLogger.activate ( dataExportMode );
     }
 
     public void reloadBluetooth() {

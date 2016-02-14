@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
@@ -59,6 +60,7 @@ public class DataLogger  implements FieldListener {
     //  public static final String SID_EVC_Pedal                            = "7ec.62202e.24"; //  (EVC)
     public static final String SID_EVC_TractionBatteryVoltage           = "7ec.623203.24"; //  (EVC)
     public static final String SID_EVC_TractionBatteryCurrent           = "7ec.623204.24"; //  (EVC)
+    public static final String SID_MaxCharge                            = "7bb.6101.336";
 
     private double dcVolt                           = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     private int    odo                              = 0;
@@ -91,13 +93,18 @@ public class DataLogger  implements FieldListener {
         debug("DataLogger: constructor called");
 
     }
+
+    // milliSeconds == 0 --> get current time
+    // milliSeconds > 0 --> use the time given as parameter
     private String getDateString(long milliSeconds, String dateFormat)
     {
         // Create a DateFormatter object for displaying date in specified format.
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
         // Create a calendar object that will convert the date and time value in milliseconds to date.
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(milliSeconds);
+        if ( milliSeconds > 0 ) {
+            calendar.setTimeInMillis(milliSeconds);
+        }
         return formatter.format(calendar.getTime());
     }
 
@@ -188,8 +195,13 @@ public class DataLogger  implements FieldListener {
         @Override
         public void run() {
             // write data to file
-            Long tsLong = System.currentTimeMillis()/1000;
+            // Long tsLong = System.currentTimeMillis(); // Method 1
+            Long tsLong = new Date().getTime(); // Method 2
+
+            String DateString = getDateString( 0 , "yyyy-MM-dd-HH:mm:ss");
+            tsLong >>= 8;
             String timestamp = tsLong.toString();
+
             // String dataWithNewLine= sdf.format(Calendar.getInstance()) + data + System.getProperty("line.separator");
 
             // if(!isCreated()) createNewLog();
@@ -205,7 +217,9 @@ public class DataLogger  implements FieldListener {
 
             if ( realSpeed + dcPwr > 0 ) { // only log while driving or charging
                 String dataWithNewLine = timestamp
-                        + ";" + getDateString(tsLong, "yyyy-MM-dd-HH:mm:ss")
+                        + ";" + DateString
+                        + ";" + String.format ("%.3f", realSpeed )
+                        + ";" + String.format ("%.3f", dcPwr )
                         + ";" + var_SoC
                         + ";" + var_dcVolt
                         + ";" + var_dcPwr
@@ -214,8 +228,7 @@ public class DataLogger  implements FieldListener {
                         + ";" + var_Odometer
                         + ";" + var_realSpeed
                         + ";" + var_Consumption
-                        + ";" + var_rangeInBat
-                        + System.getProperty("line.separator");
+                        + ";" + var_rangeInBat;
                 log(dataWithNewLine);
             }
             handler.postDelayed(this, intervall);
@@ -233,7 +246,7 @@ public class DataLogger  implements FieldListener {
 
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
-            bufferedWriter.append(text+"\n");
+            bufferedWriter.append(text+ System.getProperty("line.separator"));
             bufferedWriter.close();
         }
         catch (IOException e) {
@@ -271,18 +284,6 @@ public class DataLogger  implements FieldListener {
         debug("DataLogger: stop - and logFile = null");
         return result;
     }
-
-    // Bob: Useless
-    /*
-    // @Override
-    // protected void onCreate(Bundle savedInstanceState) {
-    //    super.onCreate(savedInstanceState);
-    public void create() {
-        // start timer in 400ms
-        boolean result = start();
-        // handler.postDelayed(runnable, 400 );
-    }
-    */
 
     public void destroy() {
         handler.removeCallbacks(runnable);
@@ -408,25 +409,5 @@ public class DataLogger  implements FieldListener {
 
     }
 
-    // Bob: This is no activity ...
-    /*
-    public void onPause() {
-        onDestroy();
-    }
-    */
-
-    // Bob: This is no activity ...
-    /*
-    public void onResume() {
-        onCreate();
-    }
-    */
-
-
-    // only for test and trace purposes - delete later on
-    public void add14() {
-        z += 14;
-        debug( "DataLogger: " + z );
-    }
 }
 
