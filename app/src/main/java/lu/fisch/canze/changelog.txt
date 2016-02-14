@@ -1,3 +1,5 @@
+---< Version 1.10 / 2016.02.14 >---
+
 2016.02.11 [Jeroen] Added battery KM to CahrgingTech (request Harm)
 2016.02.10 [Jeroen] Added clima/battery parameters in Playground JM
 2016.02.08 [Jeroen] Made firmware screen scrollable, issue #311
