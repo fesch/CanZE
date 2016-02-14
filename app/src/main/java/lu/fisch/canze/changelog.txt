@@ -1,3 +1,5 @@
+2016.02.14 [ChrisMa] DataLogger Output fixed: empty NL removed, date corrected
+2016.02.14 [ChrisMa] DataLogger-Activation moved to loadSettings in MainActivity
 ---< Version 1.10 / 2016.02.14 >---
 
 2016.02.11 [Jeroen] Added battery KM to CahrgingTech (request Harm)
