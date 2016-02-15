@@ -102,11 +102,12 @@ public class Fields implements MessageListener {
 
         // It would be easier use SID_Consumption = "1fd.48" (dash kWh) instead of V*A
 
-        // create a list of field this new virtual field will depend on
-        HashMap<String, Field> dependantFields = new HashMap<>();
         final String SID_EVC_TractionBatteryVoltage = "7ec.623203.24";  // unit = V
         final String SID_EVC_TractionBatteryCurrent = "7ec.623204.24";  // unit = A
         final String SID_RealSpeed = "5d7.0";                           // unit = km/h
+/*
+        // create a list of field this new virtual field will depend on
+        HashMap<String, Field> dependantFields = new HashMap<>();
         dependantFields.put(SID_EVC_TractionBatteryVoltage, getBySID(SID_EVC_TractionBatteryVoltage));
         dependantFields.put(SID_EVC_TractionBatteryCurrent, getBySID(SID_EVC_TractionBatteryCurrent));
         dependantFields.put(SID_RealSpeed, getBySID(SID_RealSpeed));
@@ -129,15 +130,33 @@ public class Fields implements MessageListener {
         });
         // add it to the list of fields
         add(virtualField);
+*/
+        addVirtualFieldCommon ("6100", "kWh/100km", SID_EVC_TractionBatteryVoltage+";"+SID_EVC_TractionBatteryCurrent+";"+SID_RealSpeed, new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String, Field> dependantFields) {
+                // get voltage
+                double dcVolt = dependantFields.get(SID_EVC_TractionBatteryVoltage).getValue();
+                // get current
+                double dcPwr = dcVolt * dependantFields.get(SID_EVC_TractionBatteryCurrent).getValue() / 1000.0;
+                // get real speed
+                double realSpeed = dependantFields.get(SID_RealSpeed).getValue();
+
+                if (realSpeed >= 5)
+                    return -(Math.round(1000.0 * dcPwr / realSpeed) / 10.0);
+                else
+                    return 0;
+            }
+        });
     }
 
     private void addVirtualFieldFrictionTorque() {
-        // create a list of field this new virtual field will depend on
-        HashMap<String, Field> dependantFields = new HashMap<>();
         final String SID_DriverBrakeWheel_Torque_Request        = "130.44"; //UBP braking wheel torque the driver wants
         final String SID_ElecBrakeWheelsTorqueApplied           = "1f8.28"; //10ms
-        dependantFields.put(SID_DriverBrakeWheel_Torque_Request,getBySID(SID_DriverBrakeWheel_Torque_Request));
-        dependantFields.put(SID_ElecBrakeWheelsTorqueApplied,getBySID(SID_ElecBrakeWheelsTorqueApplied));
+/*
+        // create a list of field this new virtual field will depend on
+        HashMap<String, Field> dependantFields = new HashMap<>();
+        dependantFields.put(SID_DriverBrakeWheel_Torque_Request, getBySID(SID_DriverBrakeWheel_Torque_Request));
+        dependantFields.put(SID_ElecBrakeWheelsTorqueApplied, getBySID(SID_ElecBrakeWheelsTorqueApplied));
         // create a new virtual field. Define it's ID and how it is being calculated
         VirtualField virtualField = new VirtualField("6101", dependantFields, "Nm", new VirtualFieldAction() {
             @Override
@@ -148,15 +167,23 @@ public class Fields implements MessageListener {
         });
         // add it to the list of fields
         add(virtualField);
+*/
+        addVirtualFieldCommon ("6101", "Nm", SID_DriverBrakeWheel_Torque_Request+";"+SID_ElecBrakeWheelsTorqueApplied, new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String,Field> dependantFields) {
+
+                return dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue();
+            }
+        });
     }
 
     private void addVirtualFieldFrictionPower() {
-        // create a list of field this new virtual field will depend on
-        HashMap<String, Field> dependantFields = new HashMap<>();
         final String SID_DriverBrakeWheel_Torque_Request        = "130.44"; //UBP braking wheel torque the driver wants
         final String SID_ElecBrakeWheelsTorqueApplied           = "1f8.28"; //10ms
         final String SID_ElecEngineRPM                          = "1f8.40"; //10ms
-
+/*
+        // create a list of field this new virtual field will depend on
+        HashMap<String, Field> dependantFields = new HashMap<>();
         dependantFields.put(SID_DriverBrakeWheel_Torque_Request,getBySID(SID_DriverBrakeWheel_Torque_Request));
         dependantFields.put(SID_ElecBrakeWheelsTorqueApplied,getBySID(SID_ElecBrakeWheelsTorqueApplied));
         dependantFields.put(SID_ElecEngineRPM,getBySID(SID_ElecEngineRPM));
@@ -170,13 +197,22 @@ public class Fields implements MessageListener {
         });
         // add it to the list of fields
         add(virtualField);
+*/
+        addVirtualFieldCommon ("6102", "kW", SID_DriverBrakeWheel_Torque_Request+";"+SID_ElecBrakeWheelsTorqueApplied+";"+SID_ElecEngineRPM, new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String,Field> dependantFields) {
+
+                return (dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue()) * dependantFields.get(SID_ElecEngineRPM).getValue() / 9.3;
+            }
+        });
     }
 
     private void addVirtualFieldDcPower() {
-        // create a list of field this new virtual field will depend on
-        HashMap<String, Field> dependantFields = new HashMap<>();
         final String SID_TractionBatteryVoltage             = "7ec.623203.24";
         final String SID_TractionBatteryCurrent             = "7ec.623204.24";
+/*
+        // create a list of field this new virtual field will depend on
+        HashMap<String, Field> dependantFields = new HashMap<>();
         dependantFields.put(SID_TractionBatteryVoltage,getBySID(SID_TractionBatteryVoltage));
         dependantFields.put(SID_TractionBatteryCurrent,getBySID(SID_TractionBatteryCurrent));
         // create a new virtual field. Define it's ID and how it is being calculated
@@ -189,15 +225,25 @@ public class Fields implements MessageListener {
         });
         // add it to the list of fields
         add(virtualField);
+*/
+        addVirtualFieldCommon ("6103", "kW", SID_TractionBatteryVoltage+";"+SID_TractionBatteryCurrent, new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String,Field> dependantFields) {
+
+                return dependantFields.get(SID_TractionBatteryVoltage).getValue() * dependantFields.get(SID_TractionBatteryCurrent).getValue() / 1000;
+            }
+        });
+
     }
 
     private void addVirtualFieldUsageLpf() {
 
         // It would be easier use SID_Consumption = "1fd.48" (dash kWh) instead of V*A
 
+        final String SID_VirtualUsage               = "800.6100.24";
+/*
         // create a list of field this new virtual field will depend on
         HashMap<String, Field> dependantFields = new HashMap<>();
-        final String SID_VirtualUsage               = "800.6100.24";
         dependantFields.put(SID_VirtualUsage, getBySID(SID_VirtualUsage));
         // create a new virtual field. Define it's ID and how it is being calculated
         VirtualField virtualField = new VirtualField("6104", dependantFields, "kWh/100km", new VirtualFieldAction() {
@@ -212,8 +258,38 @@ public class Fields implements MessageListener {
         });
         // add it to the list of fields
         add(virtualField);
+*/
+        addVirtualFieldCommon ("6104", "kWh/100km", SID_VirtualUsage, new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String, Field> dependantFields) {
+                double value = dependantFields.get(SID_VirtualUsage).getValue();
+                if (value != 0) {
+                    runningUsage = runningUsage * 0.95 + value * 0.05;
+                }
+                return runningUsage;
+            }
+        });
     }
 
+    private void addVirtualFieldCommon (String virtualId, String unit, String dependantIds, VirtualFieldAction virtualFieldAction) {
+        // create a list of field this new virtual field will depend on
+        HashMap<String, Field> dependantFields = new HashMap<>();
+        boolean allOk = true;
+        for (String idStr: dependantIds.split(";")){
+            Field field = getBySID(idStr);
+            if (field != null) {
+                dependantFields.put(idStr, field);
+            } else {
+                allOk = false;
+            }
+        }
+        if (allOk) {
+            VirtualField virtualField = new VirtualField(virtualId, dependantFields, unit, virtualFieldAction);
+            // add it to the list of fields
+            add(virtualField);
+
+        }
+    }
 
     private void fillStatic()
     {
@@ -828,7 +904,7 @@ public class Fields implements MessageListener {
                         +"0x42e,56,63,0.3,0,1,kW,,,1f\n" // Charging Power
 //+"0x430,0,9,10,0,0,rpm,,,2\n" // Clim Compressor Speed RPM Request
 //+"0x430,16,22,1,0,0,%,,,2\n" // High Voltage PTC Request PWM
-//+"0x430,24,33,0.5,30,1,°C,,,2\n" // Comp Temperature Discharge
+                        +"0x430,24,33,0.5,30,1,°C,,,2\n" // Comp Temperature Discharge
 //+"0x430,34,35,1,0,0,,,,2\n" // DeIcing Request
 //+"0x430,36,37,1,0,0,,,,2\n" // Clim Panel PC Activation Request
                         +"0x430,38,39,1,0,0,,,,2\n" // HV Battery Cooling State
@@ -1039,7 +1115,7 @@ public class Fields implements MessageListener {
 //+"0x699,0,1,1,0,0,,,,2\n" // Clima off Request display
 //+"0x699,2,3,1,0,0,,,,2\n" // Clima read defrost Request display
 //+"0x699,4,6,1,1,0,,,,2\n" // Cima mode
-//+"0x699,8,15,0.5,0,0,°C,,,2\n" // Temperature
+                        +"0x699,8,15,0.5,0,0,°C,,,2\n" // Temperature
 //+"0x699,16,19,1,0,0,,,,2\n" // Clima Flow
 //+"0x699,20,21,1,0,0,,,,2\n" // Forced recycling
 //+"0x699,22,23,1,0,0,,,,2\n" //
