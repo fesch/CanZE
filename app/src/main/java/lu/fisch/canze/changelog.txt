@@ -1,5 +1,9 @@
 2016.02.15 [Jeroen] Simplified virtual field initialisation, check for dependant field existence (issue #318)
 2016.02.15 [Jeroen] Added a few temperature testing fields to techclima (research #316)
+2016.02.14 [ChrisMa] DataLogger Output fixed: empty NL removed, date corrected
+2016.02.14 [ChrisMa] DataLogger-Activation moved to loadSettings in MainActivity
+---< Version 1.10 / 2016.02.14 >---
+
 2016.02.11 [Jeroen] Added battery KM to CahrgingTech (request Harm)
 2016.02.10 [Jeroen] Added clima/battery parameters in Playground JM
 2016.02.08 [Jeroen] Made firmware screen scrollable, issue #311
