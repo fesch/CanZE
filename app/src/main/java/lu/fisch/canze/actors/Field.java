@@ -149,9 +149,9 @@ public class Field {
         double val =  (value-offset)* resolution;
         if (MainActivity.milesMode) {
             if (unit.toLowerCase().startsWith("km"))
-                val = val / 1.609344;
+                val = Math.round(val / 1.609344 * 10.0) / 10.0;
             else if (unit.toLowerCase().endsWith("km"))
-                val = val*1.609344;
+                val = Math.round(val * 1.609344 * 10.0) / 10.0;
             //setUnit(getUnit().replace("km", "mi"));
             return val;
         }
