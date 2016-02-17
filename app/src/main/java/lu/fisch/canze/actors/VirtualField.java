@@ -30,7 +30,8 @@ public class VirtualField extends Field implements FieldListener {
 
         // register dependant listeners
         for (Field field : dependantFields.values()) {
-            field.addListener(this);
+            if(field!=null)
+                field.addListener(this);
         }
 
         this.dependantFields    = dependantFields;
