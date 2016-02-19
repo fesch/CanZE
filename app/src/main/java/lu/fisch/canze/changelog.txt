@@ -1,3 +1,4 @@
+2016.02.19 [ChrisMa] GPS Tracker class added and GPSTestActivity (still experimental)
 2016.02.16 [Jeroen] Miles rounding
 
 ---< Version 1.11 / 2016.02.15 >---

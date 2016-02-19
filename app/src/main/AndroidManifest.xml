@@ -4,6 +4,7 @@
 
     <!--<uses-sdk android:minSdkVersion="11" />-->
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -125,6 +126,10 @@
         <activity
             android:name=".activities.ClimaTechActivity"
             android:label="@string/title_activity_clima_tech" >
+        </activity>
+        <activity
+            android:name=".activities.GPSTestActivity"
+            android:label="@string/title_activity_gps_test" >
         </activity>
     </application>
 

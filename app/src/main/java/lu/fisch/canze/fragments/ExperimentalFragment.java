@@ -40,6 +40,7 @@ import lu.fisch.canze.activities.ClimaTechActivity;
 import lu.fisch.canze.activities.DtcActivity;
 import lu.fisch.canze.activities.ElmTestActivity;
 import lu.fisch.canze.activities.FluenceKangooTempsActivity;
+import lu.fisch.canze.activities.GPSTestActivity;
 import lu.fisch.canze.activities.HarmActivity;
 import lu.fisch.canze.activities.LeafSpyActivity;
 import lu.fisch.canze.activities.MainActivity;
@@ -159,6 +160,18 @@ public class ExperimentalFragment extends Fragment {
                 if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), AlexandreActivity.class);
+                ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
+            }
+        });
+
+        button = (Button) view.findViewById(R.id.buttonGPSTest);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MainActivity.isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                MainActivity.getInstance().leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.getInstance(), GPSTestActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });

@@ -24,6 +24,7 @@
     <string name="title_activity_tyres">Tires info</string>
     <string name="title_activity_charging_graph">Charging graphs</string>
     <string name="title_activity_clima_tech">Clima Battery interaction</string>
+    <string name="title_activity_gps_test">GPS Test</string>
 
     <!-- nonsense -->
 
