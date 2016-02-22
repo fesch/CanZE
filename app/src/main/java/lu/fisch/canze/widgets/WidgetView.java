@@ -94,7 +94,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 
 	public WidgetView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		init(context,attrs);
+		init(context, attrs);
         setOnTouchListener(this);
 	}
 
@@ -180,31 +180,31 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     if(optionsJson!=null && !optionsJson.trim().isEmpty())
                         drawable.setOptions(new Options(optionsJson.replace("'", "\"")));
 
-                    drawable.setMinAlt(attributes.getInt(R.styleable.WidgetView_minAlt,-1));
+                    drawable.setMinAlt(attributes.getInt(R.styleable.WidgetView_minAlt, -1));
                     drawable.setMaxAlt(attributes.getInt(R.styleable.WidgetView_maxAlt, -1));
                     drawable.setTimeScale(attributes.getInt(R.styleable.WidgetView_timeScale,1));
 
                     fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
-                    String[] sids = fieldSID.split(",");
-                    for(int s=0; s<sids.length; s++) {
-                        Field field = MainActivity.fields.getBySID(sids[s]);
-                        if (field == null) {
-                            MainActivity.debug("WidgetView: init: Field with SID <" + sids[s] + "> (index <" + s + "> in <" + R.styleable.WidgetView_text + "> not found!");
-                        }
-                        else {
-                            // add field to list of registered sids for this widget
-                            drawable.addField(field.getSID());
-                            // add listener
-                            field.addListener(drawable);
-                            // add filter to reader
-                            int interval = drawable.getIntervals().getInterval(field.getSID());
-                            if(interval==-1)
-                                MainActivity.device.addActivityField(field);
-                            else
-                                MainActivity.device.addActivityField(field,interval);
+                    if(fieldSID!=null) {
+                        String[] sids = fieldSID.split(",");
+                        for (int s = 0; s < sids.length; s++) {
+                            Field field = MainActivity.fields.getBySID(sids[s]);
+                            if (field == null) {
+                                MainActivity.debug("WidgetView: init: Field with SID <" + sids[s] + "> (index <" + s + "> in <" + R.styleable.WidgetView_text + "> not found!");
+                            } else {
+                                // add field to list of registered sids for this widget
+                                drawable.addField(field.getSID());
+                                // add listener
+                                field.addListener(drawable);
+                                // add filter to reader
+                                int interval = drawable.getIntervals().getInterval(field.getSID());
+                                if (interval == -1)
+                                    MainActivity.device.addActivityField(field);
+                                else
+                                    MainActivity.device.addActivityField(field, interval);
+                            }
                         }
                     }
-
                     //MainActivity.debug("WidgetView: My SID is "+fieldSID);
 
                     if(MainActivity.milesMode) drawable.setTitle(drawable.getTitle().replace("km","mi"));
@@ -249,7 +249,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 	    // get masked (not specific to a pointer) action
 	    int maskedAction = event.getActionMasked();
 
-        MainActivity.debug("WidgetView: maskedAction = "+maskedAction);
+        MainActivity.debug("WidgetView: maskedAction = " + maskedAction);
 
 	    switch (maskedAction) {
 		    case MotionEvent.ACTION_DOWN:

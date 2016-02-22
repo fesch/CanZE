@@ -147,9 +147,10 @@ public class Plotter extends Drawable {
             }
         }
 
-        /*MainActivity.debug("Values "+values.size());
+        /*
+        MainActivity.debug("Values "+values.size());
         MainActivity.debug("Values min "+minValues.size());
-        MainActivity.debug("Values max "+maxValues.size());*/
+        MainActivity.debug("Values max "+maxValues.size());/**/
 
         // draw the graph
         g.drawRect(x+width-barWidth, y, barWidth, height);
@@ -313,4 +314,7 @@ public class Plotter extends Drawable {
     }
 
 
+    public void setValues(ArrayList<Double> values) {
+        this.values     = values;
+    }
 }

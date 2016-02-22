@@ -17,7 +17,7 @@
     <string name="title_activity_stats">StatsActivity</string>
     <string name="title_activity_harm">Harm\'s playground</string>
     <string name="title_activity_alexandre">Alexandre\'s playground</string>
-    <string name="title_activity_battery" >Battery</string>
+    <string name="title_activity_battery">Battery</string>
     <string name="title_activity_dtc">Diagnostic Trouble Codes</string>
     <string name="title_activity_heatmap_bat">Compartment heatmap</string>
     <string name="title_activity_heatmap_cellvoltage">Voltage heatmap</string>
@@ -154,12 +154,12 @@
     <string name="activity_braking">Braking</string>
 
     <string name="label_driver_torque_request">Requested Torque</string>
-<!--<string name="label_eb_torque_request">Electrical Brake Wheels Torque Request</string>
+    <!--<string name="label_eb_torque_request">Electrical Brake Wheels Torque Request</string>
     <string name="label_coasting_torque">Coasting Torque</string>
     <string name="label_braking_pressure">Friction braking pressure</string> -->
     <string name="label_ElecBrakeWheelsTorqueApplied">Applied Electrical Torque (regeneration)</string>
     <string name="label_diff_friction_torque">Applied Friction Torque (losses)</string>
-<!--<string name="label_TotalPotentialResistiveWheelsTorque">Total Potential Resistive Wheels Torque</string>
+    <!--<string name="label_TotalPotentialResistiveWheelsTorque">Total Potential Resistive Wheels Torque</string>
 
     <string name="label_hbb_malfunction">HBB malfunction</string>
     <string name="default_hbb_malfunction">#hbm</string>
@@ -230,5 +230,6 @@
     <string name="title_FZ_section2">Driving</string>
     <string name="title_FZ_section1">General</string>
     <string name="title_FZ_section0">Battery</string>
+    <string name="title_activity_prediction">Charging Prediction</string>
 
 </resources>

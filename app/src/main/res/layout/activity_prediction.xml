@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:keepScreenOn="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    tools:context="lu.fisch.canze.activities.PredictionActivity"
+    android:id="@+id/table"
+    android:orientation="vertical"
+    >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        tools:context="lu.fisch.canze.activities.ConsumptionActivity"
+        android:id="@+id/table2"
+        >
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <lu.fisch.canze.widgets.WidgetView
+                android:id="@+id/predictionPlotter"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                custom:min="0"
+                custom:max="100"
+                custom:majorTicks="20"
+                custom:minorTicks="10"
+                custom:widget="plotter"
+                custom:colorRanges="[
+                    {'sid':'1fd.48','color':'#cc00ff','from':0,'to':20},
+                    {'sid':'1fd.48','color':'#3ee9ff','from':20,'to':40},
+                    {'sid':'1fd.48','color':'#008a1d','from':40,'to':60},
+                    {'sid':'1fd.48','color':'#ffaa17','from':60,'to':80},
+                    {'sid':'1fd.48','color':'#FF0000','from':80,'to':100}]"
+                custom:text="Charging prediction"
+                />
+
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

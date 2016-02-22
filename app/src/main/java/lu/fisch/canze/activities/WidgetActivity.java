@@ -24,6 +24,8 @@ package lu.fisch.canze.activities;
 import android.os.Bundle;
 import android.view.Menu;
 
+import java.util.Timer;
+
 import lu.fisch.canze.R;
 import lu.fisch.canze.widgets.WidgetView;
 
@@ -47,6 +49,8 @@ public class WidgetActivity extends CanzeActivity {
         }
 
     }
+
+
 
     @Override
     protected void onDestroy() {
