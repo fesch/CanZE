@@ -1,3 +1,4 @@
+2016.02.28 [Jeroen] Added Battery model to the prediction fragment with some fixed values
 2016.02.26 [Jeroen] Added Battery model
 2016.02.22 [Bob] Added Prediction fragement with demo code on how to use the plotter without any field
 2016.02.19 [ChrisMa] GPS Tracker class added and GPSTestActivity (still experimental)
