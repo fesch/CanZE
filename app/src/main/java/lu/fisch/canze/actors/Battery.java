@@ -32,6 +32,7 @@ public class Battery {
      *
      * Battery battery;
      * // initialize the values. No need to initialize dcPower
+     * battery = new Battery();
      * battery.setTemperature (...);
      * battery.setStateOfCharge (...);
      * battery.setChargerPower (...);
@@ -45,32 +46,38 @@ public class Battery {
      */
 
     private double temperature = 10.0;
-    private double stateOfCharge = 11.0;
-    private double chargerPower = 11.0;
-    private double capacity = 22.0;
-    private double dcPower = 0;
+    private double stateOfCharge = 11.0;                // watch it: in kWh!!!
+    private double chargerPower = 11.0;                 // in kW
+    private double capacity = 22.0;                     // in kWh
+    private double maxDcPower = 0;                      // in kW. This excludes the max imposed by the external charger
+    private double dcPower = 0;                         // in kW This includes the max imposed by the external charger
 
-
-    private void predictDcPower () {
-        if (stateOfCharge > capacity) {
-            dcPower = 0.0;
+    private void predictMaxDcPower () {
+        if (stateOfCharge >= capacity) {
+            maxDcPower = 0.0;
         } else {
+            double stateOfChargePercentage = stateOfCharge * 100.0 / capacity;
             int intTemperature = (int )temperature;
-            dcPower = 19.0 + 3.6*temperature - 0.026 * stateOfCharge*temperature - 0.34*stateOfCharge;
-            if (dcPower > 40.0) {
-                dcPower = 40.0;
-            } else if (dcPower < 2.0) {
-                dcPower = 2.0;
+            maxDcPower = 19.0 + 3.6*temperature - 0.026 * stateOfChargePercentage*temperature - 0.34*stateOfChargePercentage;
+            if (maxDcPower > 40.0) {
+                maxDcPower = 40.0;
+            } else if (maxDcPower < 2.0) {
+                maxDcPower = 2.0;
             }
-
-            double efficiency = 0.80 + dcPower * 0.00375;
-            double requestedAcPower = dcPower / efficiency;
-            if (requestedAcPower > chargerPower) {
-                efficiency = 0.80 + chargerPower * 0.00375;
-                dcPower = chargerPower * efficiency;
-            }
-
         }
+    }
+
+    private void predictDcPower() {
+        predictMaxDcPower();
+        double efficiency = 0.80 + maxDcPower * 0.00375;
+        double requestedAcPower = maxDcPower / efficiency;
+        if (requestedAcPower > chargerPower) {
+            efficiency = 0.80 + chargerPower * 0.00375;
+            dcPower = chargerPower * efficiency;
+        } else {
+            dcPower = maxDcPower;
+        }
+
     }
 
     /*
@@ -82,6 +89,10 @@ public class Battery {
         setTemperature (temperature + (seconds * dcPower / 7200)); // assume one degree per 40 kW per 3 minutes (180 seconds)
         setStateOfCharge (stateOfCharge + (dcPower * 0.95) / 60); // 1kW adds 95% of 1kWh in 60 minutes
     }
+
+    /*
+     * Getters and setters
+     */
 
     public double getTemperature() {
         return temperature;
@@ -114,13 +125,12 @@ public class Battery {
             this.chargerPower = 1.84;
         }
     }
+    public double getMaxDcPower() {
+        return maxDcPower;
+    }
 
     public double getDcPower() {
         predictDcPower ();
         return dcPower;
-    }
-
-    public void setDcPower(double dcPower) {
-        this.dcPower = dcPower;
     }
 }
