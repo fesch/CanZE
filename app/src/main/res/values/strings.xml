@@ -102,8 +102,14 @@
     <string name="label_AvEner">Available Energy kWh</string>
     <string name="default_AvEner">#AE</string>
 
-    <string name="label_12V">12 volt system</string>
+    <string name="label_12V">12 volt voltage</string>
     <string name="default_12V">#12V</string>
+
+    <string name="label_12A">12 volt current</string>
+    <string name="default_12A">#12C</string>
+
+    <string name="label_DcLoad">DC Load</string>
+    <string name="default_DcLoad">#DCL</string>
 
     <string name="label_HKM">Battery kilometers</string>
     <string name="default_HKM">#HKM</string>

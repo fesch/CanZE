@@ -34,7 +34,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
 
     public static final String SID_MaxCharge                        = "7bb.6101.336";
     public static final String SID_UserSoC                          = "42e.0";          // user SOC, not raw
-    public static final String SID_RealSoC                          = "654.25";         // real SOC
+//   public static final String SID_RealSoC                          = "654.25";         // real SOC
     public static final String SID_AvChargingPower                  = "427.40";
     public static final String SID_ACPilot                          = "42e.38";
     public static final String SID_AvEnergy                         = "427.49";
@@ -48,7 +48,10 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
     public static final String SID_CapacityFluKan                   = "7bb.6101.348";
     public static final String SID_CapacityZoe                      = "";
+    public static final String SID_RealSoC                          = "7bb.6103.192";
     public static final String SID_12V                              = "7ec.622005.24";
+    public static final String SID_12A                              = "7ec.623028.24";
+    public static final String SID_DcLoad                           = "1fd.0";
     public static final String SID_HvKilometers                     = "7bb.6161.104";
     public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
 
@@ -101,6 +104,8 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
         addListener(SID_12V);
+        addListener(SID_12A);
+        addListener(SID_DcLoad);
         addListener(SID_HvKilometers);
         addListener(SID_ChargingStatusDisplay);
         addListener(SID_TractionBatteryVoltage);
@@ -233,6 +238,16 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         break;
                     case SID_12V:
                         tv = (TextView) findViewById(R.id.text12V);
+                        tv.setText("" + field.getValue());
+                        tv = null;
+                        break;
+                    case SID_12A:
+                        tv = (TextView) findViewById(R.id.text12A);
+                        tv.setText("" + field.getValue());
+                        tv = null;
+                        break;
+                    case SID_DcLoad:
+                        tv = (TextView) findViewById(R.id.textDcLoad);
                         tv.setText("" + field.getValue());
                         tv = null;
                         break;
