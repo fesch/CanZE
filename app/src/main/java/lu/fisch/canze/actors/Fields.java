@@ -814,7 +814,7 @@ public class Fields implements MessageListener {
 //+"0x1f8,52,54,1,0,0,,,,1f\n" // EVC_Clock
 //+"0x1f8,56,58,1,0,0,,,,1f\n" // GearRangeEngagedCurrent
 //+"0x1f8,62,63,1,0,0,,,,1f\n" // DeclutchInProgress
-//+"0x1fd,0,7,0.390625,0,1,%,,,1f\n" // 12V Battery Current?
+                        +"0x1fd,0,7,0.390625,0,1,%,,,1f\n" // 12V Battery Current?
 //+"0x1fd,8,9,1,0,0,,,,1f\n" // SCH Refuse to Sleep
 //+"0x1fd,17,18,1,0,0,,,,1f\n" // Stop Preheating Counter
 //+"0x1fd,19,20,1,0,0,,,,1f\n" // Start Preheating Counter
@@ -1208,6 +1208,7 @@ public class Fields implements MessageListener {
                         +"0x7bb,56,71,10,0,0,°C,0x2103,0x6103,5\n" // Mean battery compartment temp
 //+"0x7bb,104,119,1,0,0,mV,0x2103,0x6103,5\n" // Highest cell voltage
 //+"0x7bb,120,135,1,0,0,mV,0x2103,0x6103,5\n" // Lowest cell voltage
+                        +"0x7bb,192,207,0.01,0,2,%,0x2103,0x6103,2\n" // Real State of Charge
 //+"0x7bb,16,31,1,0,0,,0x2104,0x6104,2\n" // Module 1 raw NTC
                         +"0x7bb,32,39,1,40,0,°C,0x2104,0x6104,2\n" // Cell 1 Temperature
 //+"0x7bb,40,55,1,0,0,,0x2104,0x6104,2\n" // Module 2 raw NTC
@@ -1382,8 +1383,9 @@ public class Fields implements MessageListener {
 //+"0x7ec,24,39,0.01,0,2,,0x222050,0x622050,1f\n" // Speed
 //+"0x7ec,24,31,1,0,0,,0x22204b,0x62204b,5\n" // Steering wheel CC/SL buttons
 //+"0x7ec,24,31,1,0,0,,0x222c04,0x622c04,1f\n" // Gear
-                        +"0x7ec,24,39,0.5,0,2,V,0x223203,0x623203,1f\n" // Battery voltage
-                        +"0x7ec,24,39,0.25,0x8000,2,A,0x223204,0x623204,1f\n" // Battery current
+                        +"0x7ec,24,31,0.5,0,1,A,0x223028,0x623028,1f\n" // 14V current?
+                        +"0x7ec,24,39,0.5,0,2,V,0x223203,0x623203,1f\n" // HV Battery voltage
+                        +"0x7ec,24,39,0.25,0x8000,2,A,0x223204,0x623204,1f\n" // HV Battery current
                         +"0x7ec,24,31,1,0,0,%,0x223206,0x623206,1f\n" // Battery health in %
                         +"0x7ec,24,31,1,1,0,,0x223318,0x623318,1f\n" // Motor Water pump speed
                         +"0x7ec,24,31,1,1,0,,0x223319,0x623319,1f\n" // Charger pump speed

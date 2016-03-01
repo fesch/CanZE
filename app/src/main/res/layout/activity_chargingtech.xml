@@ -282,6 +282,32 @@
 
                 <TableRow>
                     <TextView
+                        android:text="@string/label_12A"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/text12A"
+                        android:text="@string/default_12A"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_DcLoad"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textDcLoad"
+                        android:text="@string/default_DcLoad"
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
                         android:text="@string/label_HKM"
                         android:layout_weight="2"
                         />
