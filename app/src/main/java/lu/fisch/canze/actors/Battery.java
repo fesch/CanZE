@@ -58,7 +58,7 @@ public class Battery {
         } else {
             double stateOfChargePercentage = stateOfCharge * 100.0 / capacity;
             int intTemperature = (int )temperature;
-            maxDcPower = 19.0 + 3.6*temperature - 0.026 * stateOfChargePercentage*temperature - 0.34*stateOfChargePercentage;
+            maxDcPower = 19.0 + (3.6 * intTemperature) - (0.026 * stateOfChargePercentage * intTemperature) - (0.34 * stateOfChargePercentage);
             if (maxDcPower > 40.0) {
                 maxDcPower = 40.0;
             } else if (maxDcPower < 2.0) {

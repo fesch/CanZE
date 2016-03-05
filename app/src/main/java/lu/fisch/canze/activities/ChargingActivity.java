@@ -35,20 +35,20 @@ import lu.fisch.canze.interfaces.FieldListener;
 public class ChargingActivity extends CanzeActivity implements FieldListener {
 
     public static final String SID_MaxCharge                        = "7bb.6101.336";
-    public static final String SID_UserSoC                          = "42e.0";          // user SOC, not raw
-    public static final String SID_RealSoC                          = "654.25";         // real SOC
+    public static final String SID_UserSoC                          = "42e.0";
+//  public static final String SID_RealSoC                          = "654.25";
+    public static final String SID_RealSoC                          = "7bb.6103.192";
     public static final String SID_AvChargingPower                  = "427.40";
     public static final String SID_ACPilot                          = "42e.38";
     public static final String SID_HvTemp                           = "42e.44";
     public static final String SID_HvTempFluKan                     = "7bb.6103.56";
 
-    //  public static final String SID_SOH                          = "658.33";
+//  public static final String SID_SOH                              = "658.33";
     public static final String SID_RangeEstimate                    = "654.42";
-//    public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
-//    public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
+//  public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
+//  public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
     public static final String SID_DcPower                          = "800.6103.24"; // Virtual field
     public static final String SID_SOH                              = "7ec.623206.24";
-    double dcVolt       = 0; // holds the DC voltage, so we can calculate the power when the amps come in
 
     private ArrayList<Field> subscribedFields;
     double avChPwr;
@@ -82,8 +82,6 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
         addListener(SID_RealSoC);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
-//        addListener(SID_TractionBatteryVoltage);
-//        addListener(SID_TractionBatteryCurrent);
         addListener(SID_DcPower);
         if (MainActivity.car == MainActivity.CAR_ZOE) {
             addListener(SID_AvChargingPower);
@@ -165,22 +163,6 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                     case SID_DcPower:
                         tv = (TextView) findViewById(R.id.textDcPwr);
                         break;
-/*
-                    case SID_TractionBatteryVoltage: // DC volts
-                        // save DC voltage for DC power purposes
-                        dcVolt = field.getValue();
-                        // continue
-                        tv = (TextView) findViewById(R.id.textVolt);
-                        break;
-                    case SID_TractionBatteryCurrent: // DC amps
-                        // calculate DC power
-                        double dcPwr = (double)Math.round(dcVolt * field.getValue() / 100.0) / 10.0;
-                        tv = (TextView) findViewById(R.id.textDcPwr);
-                        tv.setText("" + (dcPwr));
-                        // continue
-                        tv = (TextView) findViewById(R.id.textAmps);
-                        break;
-*/
                     case SID_AvChargingPower:
                         avChPwr = field.getValue();
                         tv = (TextView) findViewById(R.id.textAvChPwr);
@@ -201,27 +183,4 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
         });
 
     }
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_text, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-*/
 }

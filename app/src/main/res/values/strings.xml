@@ -65,7 +65,7 @@
     <string name="label_Phases">Phases</string>
     <string name="default_Phases">#Pha</string>
 
-    <string name="label_UserSOC">User state of charge %</string>
+    <string name="label_UserSOC">Usable state of charge %</string>
     <string name="label_RealSOC">Real state of charge %</string>
     <string name="default_SOC">#SOC</string>
 
