@@ -1,3 +1,4 @@
+2016.03.06 [Bob] Battery screen: uncommented SOH field, modified scale for voltage (issue #329)
 2016.03.04 [Jeroen] Improved description of SOC fields. Improved Class Battery to use int of temperature
 2016.03.02 [Jeroen] Added two 14V system fields to the Charge Tech. Trying to figure current
 2016.02.28 [Jeroen] Added Battery model to the prediction fragment with some fixed values

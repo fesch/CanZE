@@ -1063,7 +1063,7 @@ public class Fields implements MessageListener {
 //+"0x657,10,11,1,0,0,,,,1f\n" // TechnicalWakeUpType
 //+"0x657,12,13,1,0,0,,,,1f\n" // UnlockChargingPlugRequestedByKey
 //+"0x658,0,31,1,0,0,,,,1f\n" // Battery Serial N°
-//+"0x658,33,39,1,0,0,%,,,1f\n" // Battery Health
+                        +"0x658,33,39,1,0,0,%,,,1f\n" // Battery Health
 //+"0x658,42,42,1,0,0,,,,1f\n" // Charging
 //+"0x65b,0,10,1,0,0,min,,,1f\n" // Schedule timer 1 min
 //+"0x65b,12,22,1,0,0,min,,,1f\n" // Schedule timer 2 min
