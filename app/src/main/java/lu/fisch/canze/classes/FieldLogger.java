@@ -35,6 +35,8 @@ public class FieldLogger {
 
     private File logFile = null;
 
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+
     private boolean isCreated()
     {
         return (logFile!=null);
@@ -56,7 +58,6 @@ public class FieldLogger {
             //debug(this.getClass().getSimpleName()+": SDcard dir CanZE created");
         }
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         String exportdataFileName = file_path + "field-" + sdf.format(Calendar.getInstance().getTime()) + ".log";
 
         logFile = new File(exportdataFileName);
@@ -81,7 +82,7 @@ public class FieldLogger {
             bufferedWriter.close();
             result = true;
 
-            log("SID,value");
+            log("time,SID,value");
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -99,7 +100,7 @@ public class FieldLogger {
 
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
-            bufferedWriter.append(text+"\n");
+            bufferedWriter.append(sdf.format(Calendar.getInstance().getTime())+","+text+"\n");
             bufferedWriter.close();
         }
         catch (IOException e) {
