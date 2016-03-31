@@ -1,3 +1,4 @@
+2016.03.31 [Bob] Modified Prediction fragement to work with Timeplot instead of plotter
 2016.03.13 [Bob] Added timestamp to field logger
 2016.03.06 [Bob] Battery screen: uncommented SOH field, modified scale for voltage (issue #329)
 2016.03.04 [Jeroen] Improved description of SOC fields. Improved Class Battery to use int of temperature

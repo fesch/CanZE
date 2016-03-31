@@ -389,22 +389,28 @@ public class Timeplot extends Drawable {
                 ArrayList<TimePoint> values = this.values.get(sid);
                 Field field = Fields.getInstance().getBySID(sid);
 
+                String text;
+
                 if(field !=null) {
-                    String text = String.format("%." + String.valueOf(field.getDecimals()) + "f", field.getValue());
-
-                    g.setTextSize(40);
-
-                    if(values.isEmpty())
-                        g.setColor(getColor(s));
-                    else
-                        g.setColor(colorRanges.getColor(sid, values.get(values.size()-1).value, getColor(s)));
-
-                    int tw = g.stringWidth(text);
-                    int th = g.stringHeight(text);
-                    int tx = getX()+width-tw-8-spaceAlt;
-                    int ty = getY()+(s+1)*(th+4);
-                    g.drawString(text, tx, ty);
+                    text = String.format("%." + String.valueOf(field.getDecimals()) + "f", field.getValue());
                 }
+                else {
+                    if(values.size()==0) text="N/A";
+                    else text = String.valueOf(values.get(values.size()-1).value);
+                }
+
+                g.setTextSize(40);
+
+                if(values.isEmpty())
+                    g.setColor(getColor(s));
+                else
+                    g.setColor(colorRanges.getColor(sid, values.get(values.size()-1).value, getColor(s)));
+
+                int tw = g.stringWidth(text);
+                int th = g.stringHeight(text);
+                int tx = getX()+width-tw-8-spaceAlt;
+                int ty = getY()+(s+1)*(th+4);
+                g.drawString(text, tx, ty);
             }
         }
 
@@ -452,4 +458,17 @@ public class Timeplot extends Drawable {
             values.put(sid, new ArrayList<TimePoint>());
         }
     }
+
+    public void setValues(HashMap<String, ArrayList<TimePoint>> values) {
+        sids.clear();
+
+        for (String key : values.keySet())
+        {
+            sids.add(key);
+        }
+
+        this.values = values;
+    }
 }
+
+

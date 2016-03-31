@@ -45,14 +45,8 @@
                 custom:max="100"
                 custom:majorTicks="20"
                 custom:minorTicks="10"
-                custom:widget="plotter"
-                custom:colorRanges="[
-                    {'sid':'1fd.48','color':'#cc00ff','from':0,'to':20},
-                    {'sid':'1fd.48','color':'#3ee9ff','from':20,'to':40},
-                    {'sid':'1fd.48','color':'#008a1d','from':40,'to':60},
-                    {'sid':'1fd.48','color':'#ffaa17','from':60,'to':80},
-                    {'sid':'1fd.48','color':'#FF0000','from':80,'to':100}]"
-                custom:text="Charging prediction"
+                custom:widget="timeplot"
+                custom:text="Graph is loading ..."
                 />
 
         </TableRow>

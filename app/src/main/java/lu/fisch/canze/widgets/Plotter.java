@@ -28,7 +28,9 @@ import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
 
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import lu.fisch.canze.activities.MainActivity;
@@ -90,6 +92,17 @@ public class Plotter extends Drawable {
         // calculate fill height
         int fillHeight = (int) ((value-min)/(double)(max-min)*(height-1));
         int barWidth = width-Math.max(g.stringWidth(min+""),g.stringWidth(max+""))-10-10;
+        int spaceAlt = Math.max(g.stringWidth(minAlt+""),g.stringWidth(maxAlt+""))+10+10;
+        // reduce with if second y-axe is used
+        if (minAlt==-1 && maxAlt==-1)
+        {
+            spaceAlt=0;
+        }
+        barWidth-=spaceAlt;
+
+        // what is the graph height
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        int graphHeight = height-g.stringHeight(sdf.format(Calendar.getInstance().getTime()))-5;
 
         // draw the ticks
         if(minorTicks>0 || majorTicks>0)
@@ -146,6 +159,17 @@ public class Plotter extends Drawable {
                 sum+=minorTicks;
             }
         }
+
+        // draw the horizontal grid
+        /*
+        g.setColor(getIntermediate());
+        long start = Calendar.getInstance().getTimeInMillis()/1000;
+        int interval = 60/timeSale;
+        for(long x=width-(start%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
+        {
+            g.drawLine(x, 1, x, graphHeight + 5);
+        }
+        */
 
         /*
         MainActivity.debug("Values "+values.size());
