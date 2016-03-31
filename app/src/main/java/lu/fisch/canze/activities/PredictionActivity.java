@@ -59,6 +59,8 @@ public class PredictionActivity extends AppCompatActivity {
                 "{'sid':'SOC','color':'#FF0000','from':80,'to':100}]");
         plotter.setColorRanges(colorRanges);
 
+        plotter.setTimeScale(2);
+
         // fix the titles
         final String[] titles = {"DC Power","Max DC Power","SOC","Temperature"};
         // generate some values
