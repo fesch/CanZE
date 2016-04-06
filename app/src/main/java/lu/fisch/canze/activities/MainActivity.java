@@ -195,11 +195,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public static void toast(final String message)
     {
-        instance.runOnUiThread(new Runnable() {
+        if(instance!=null)
+            instance.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
-            }
+                 Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
+                }
         });
     }
 
@@ -506,6 +507,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     @Override
     public void onResume() {
         debug("MainActivity: onResume");
+
+        instance = this;
 
         visible=true;
         super.onResume();
