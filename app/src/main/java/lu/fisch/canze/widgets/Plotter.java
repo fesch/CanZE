@@ -37,6 +37,7 @@ import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.database.CanzeDataSource;
+import lu.fisch.canze.fragments.MainFragment;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
 
 /**
@@ -232,6 +233,7 @@ public class Plotter extends Drawable {
             }
         }
         // values
+        //MainActivity.debug("PLOTTER SIZE: "+values.size());
         if(values.size()>0)
         {
             double w = (double) barWidth/values.size();
@@ -275,9 +277,9 @@ public class Plotter extends Drawable {
     public void onFieldUpdateEvent(Field field) {
         // only take data fofr valid cars
         //MainActivity.debug("Plotter: "+field.getSID()+" --> "+field.getValue());
-        //MainActivity.debug("Car = "+MainActivity.car+" / "+field.getCar());
+        //MainActivity.debug("Car = "+MainActivity.car+" / "+field.getCar()+" / "+field.isCar(MainActivity.car));
 
-        if(field.getCar()==0 || field.getCar()== MainActivity.car) {
+        if(field.isCar(MainActivity.car)) {
             String sid = field.getSID();
 
             //MainActivity.debug("!! Plotter: "+sid+" --> "+field.getValue());

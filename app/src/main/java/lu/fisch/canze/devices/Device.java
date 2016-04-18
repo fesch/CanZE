@@ -45,7 +45,7 @@ import lu.fisch.canze.database.CanzeDataSource;
 public abstract class Device {
 
     private final double minIntervalMultiplicator = 1.3;
-    private final double maxIntervalMultiplicator = 2.0;
+    private final double maxIntervalMultiplicator = 2.5;
     protected double intervalMultiplicator = minIntervalMultiplicator;
 
     /* ----------------------------------------------------------------

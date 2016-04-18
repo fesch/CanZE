@@ -354,6 +354,11 @@ public class Field {
         return (options & 0x0f);
     }
 
+    public boolean isCar(int car)
+    {
+        return (options & car)==car;
+    }
+
     public void setCar(int car) { options = (short)((options & 0xfe0) + (car & 0x1f)); }
 
     public int getFrequency() {
