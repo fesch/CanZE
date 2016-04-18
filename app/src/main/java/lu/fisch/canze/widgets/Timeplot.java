@@ -285,49 +285,53 @@ public class Timeplot extends Drawable {
                             if (i < values.size() - 1) {
                                 if(getOptions().getOption(sid)!=null &&
                                         getOptions().getOption(sid).contains("full")) {
-                                    Polygon p = new Polygon();
-                                    p.addPoint(getX() + getWidth() - barWidth + (int) lastX-spaceAlt,
-                                            getY() + (int) lastY);
-                                    p.addPoint(getX() + getWidth() - barWidth + (int) mx-spaceAlt,
-                                            getY() + (int) my);
-                                    p.addPoint(getX() + getWidth() - barWidth + (int) mx-spaceAlt,
-                                            (int) (getY() + zy));
-                                    p.addPoint(getX() + getWidth() - barWidth + (int) lastX-spaceAlt,
-                                            (int) (getY() + zy));
-                                    g.fillPolygon(p);
+                                    if((lastY!=Double.NaN) && (lastX!=Double.NaN)) {
+                                        Polygon p = new Polygon();
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
+                                                getY() + (int) lastY);
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) mx - spaceAlt,
+                                                getY() + (int) my);
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) mx - spaceAlt,
+                                                (int) (getY() + zy));
+                                        p.addPoint(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
+                                                (int) (getY() + zy));
+                                        g.fillPolygon(p);
+                                    }
                                 }
                                 else if(getOptions().getOption(sid)!=null &&
                                         getOptions().getOption(sid).contains("gradient")) {
 
                                     if(i<values.size() && values.get(i+1)!=null) {
-                                        Polygon p = new Polygon();
-                                        p.addPoint(getX() + getWidth() - barWidth + (int) lastX-spaceAlt,
-                                                getY() + (int) lastY);
-                                        p.addPoint(getX() + getWidth() - barWidth + (int) mx-spaceAlt,
-                                                getY() + (int) my);
-                                        p.addPoint(getX() + getWidth() - barWidth + (int) mx-spaceAlt,
-                                                (int) (getY() + zy));
-                                        p.addPoint(getX() + getWidth() - barWidth + (int) lastX-spaceAlt,
-                                                (int) (getY() + zy));
+                                        if((lastY!=Double.NaN) && (lastX!=Double.NaN)) {
+                                            Polygon p = new Polygon();
+                                            p.addPoint(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
+                                                    getY() + (int) lastY);
+                                            p.addPoint(getX() + getWidth() - barWidth + (int) mx - spaceAlt,
+                                                    getY() + (int) my);
+                                            p.addPoint(getX() + getWidth() - barWidth + (int) mx - spaceAlt,
+                                                    (int) (getY() + zy));
+                                            p.addPoint(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
+                                                    (int) (getY() + zy));
 
-                                        /*if ((values.get(i + 1).value > 0 && tp.value > 0) || (values.get(i + 1).value < 0 && tp.value < 0)) {
-                                            if (tp.value > 0)
-                                                g.fillPolygon(p, 0, (int) zy, 0, 0, colorRanges.getColors(sid, tp.value > 0), colorRanges.getSpacings(sid, 0, max, tp.value > 0));
+                                            /*if ((values.get(i + 1).value > 0 && tp.value > 0) || (values.get(i + 1).value < 0 && tp.value < 0)) {
+                                                if (tp.value > 0)
+                                                    g.fillPolygon(p, 0, (int) zy, 0, 0, colorRanges.getColors(sid, tp.value > 0), colorRanges.getSpacings(sid, 0, max, tp.value > 0));
+                                                else
+                                                    g.fillPolygon(p, 0, graphHeight, 0, (int) zy, colorRanges.getColors(sid, tp.value > 0), colorRanges.getSpacings(sid, min, 0, tp.value > 0));
+                                            }
                                             else
-                                                g.fillPolygon(p, 0, graphHeight, 0, (int) zy, colorRanges.getColors(sid, tp.value > 0), colorRanges.getSpacings(sid, min, 0, tp.value > 0));
-                                        }
-                                        else
-                                        {
-                                            g.fillPolygon(p, 0, graphHeight, 0, 0, colorRanges.getColors(sid), colorRanges.getSpacings(sid, min, max));
-                                        }*/
-                                        int[] colors = colorRanges.getColors(sid);
-                                        float[] spacings = colorRanges.getSpacings(sid, min, max);
-                                        if(colors.length==spacings.length)
-                                            g.setGradient(0, graphHeight, 0, 0, colors, spacings);
-                                        g.fillPolygon(p);
-                                        g.clearGradient();
+                                            {
+                                                g.fillPolygon(p, 0, graphHeight, 0, 0, colorRanges.getColors(sid), colorRanges.getSpacings(sid, min, max));
+                                            }*/
+                                            int[] colors = colorRanges.getColors(sid);
+                                            float[] spacings = colorRanges.getSpacings(sid, min, max);
+                                            if (colors.length == spacings.length)
+                                                g.setGradient(0, graphHeight, 0, 0, colors, spacings);
+                                            g.fillPolygon(p);
+                                            g.clearGradient();
 
-                                        //else MainActivity.debug("size not equal: "+colors.length+"=="+spacings.length);
+                                            //else MainActivity.debug("size not equal: "+colors.length+"=="+spacings.length);
+                                        }
                                     }
                                 }
                                 else
