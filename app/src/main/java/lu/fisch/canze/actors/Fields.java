@@ -1311,7 +1311,7 @@ public class Fields implements MessageListener {
                         +"0x7bb,976,991,0.001,0,3,V,0x2141,0x6141,1f\n" // Cell 61 V
                         +"0x7bb,992,1007,0.001,0,3,V,0x2141,0x6141,1f\n" // Cell 62 V
                         +"0x7bb,16,31,0.001,0,3,V,0x2142,0x6142,1f\n" // Cell 63 V
-                        +"0x7bb,32,47,0.001,0,3,V,0x2142,0x6142,1f\n" // Cell 64 V
+                        +"0x7bb,32,47,0.001,0,3,V,0x2142,0x6142,1f\n" // Cell 64 Vl
                         +"0x7bb,48,63,0.001,0,3,V,0x2142,0x6142,1f\n" // Cell 65 V
                         +"0x7bb,64,79,0.001,0,3,V,0x2142,0x6142,1f\n" // Cell 66 V
                         +"0x7bb,80,95,0.001,0,3,V,0x2142,0x6142,1f\n" // Cell 67 V
@@ -1346,7 +1346,7 @@ public class Fields implements MessageListener {
                         +"0x7bb,544,559,0.001,0,3,V,0x2142,0x6142,1f\n" // Cell 96 V
 //+"0x7bb,60,79,0.0001,0,4,Ah,0x2161,0x6161,5\n" // Ah of the battery
 //+"0x7bb,80,87,0.05,0,2,%,0x2161,0x6161,5\n" // Battery State of Health
-                        +"0x7bb,104,119,1,0,0,km,0x2161,0x6161,1f\n" // Battery mileage in km
+                        +"0x7bb,96,119,1,0,0,km,0x2161,0x6161,1f\n" // Battery mileage in km
 //+"0x7bb,136,151,1,0,0,kWh,0x2161,0x6161,5\n" // Total energy output of battery?
                         +"0x7bb,144,159,1,0,0,,0x2180,0x6180,1f\n" // Software version
                         +"0x7bb,128,143,1,0,0,,0x2180,0x6180,1f\n" // PG number %04lx
