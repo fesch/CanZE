@@ -188,7 +188,9 @@ public class Frames {
     }
 
     public Frame getById (int id) {
-        for (Frame frame : frames) {
+        for(int i=0; i<frames.size(); i++)
+        {
+            Frame frame = frames.get(i);
             if (frame.getId() == id) return frame;
         }
         return null;

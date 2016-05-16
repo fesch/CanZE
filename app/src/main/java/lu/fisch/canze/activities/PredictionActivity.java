@@ -60,6 +60,7 @@ public class PredictionActivity extends AppCompatActivity {
         plotter.setColorRanges(colorRanges);
 
         plotter.setTimeScale(2);
+        plotter.setBackward(false);
 
         // fix the titles
         final String[] titles = {"DC Power","Max DC Power","SOC","Temperature"};
@@ -79,7 +80,7 @@ public class PredictionActivity extends AppCompatActivity {
 
                 if (plotter != null) {
 
-                    // init the array to fille
+                    // init the array to fill
                     values.put(titles[graphToShow],new ArrayList<TimePoint>());
 
                     long actual = Calendar.getInstance().getTimeInMillis()-100*23*1000;
