@@ -21,27 +21,18 @@
 
 package lu.fisch.canze.activities;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.interfaces.FieldListener;
-import lu.fisch.canze.widgets.Drawable;
 import lu.fisch.canze.widgets.WidgetView;
 
 /**
@@ -58,6 +49,7 @@ public class CanzeActivity extends AppCompatActivity implements FieldListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if(MainActivity.device!=null)
             if(!BluetoothManager.getInstance().isConnected())
                 // restart Bluetooth
