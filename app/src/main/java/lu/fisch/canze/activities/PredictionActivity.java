@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,14 +18,20 @@ import java.util.TimerTask;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Battery;
-import lu.fisch.canze.classes.ColorRange;
+import lu.fisch.canze.actors.Field;
+//import lu.fisch.canze.classes.ColorRange;
 import lu.fisch.canze.classes.ColorRanges;
 import lu.fisch.canze.classes.TimePoint;
-import lu.fisch.canze.widgets.Plotter;
+import lu.fisch.canze.interfaces.FieldListener;
+//import lu.fisch.canze.widgets.Plotter;
 import lu.fisch.canze.widgets.Timeplot;
 import lu.fisch.canze.widgets.WidgetView;
 
-public class PredictionActivity extends AppCompatActivity {
+public class PredictionActivity extends AppCompatActivity implements FieldListener {
+
+    public static final String SID_AvChargingPower                  = "427.40";
+    public static final String SID_UserSoC                          = "42e.0";          // user SOC, not raw
+    public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
 
     private Timer timer;
     private WidgetView widgetView;
@@ -32,6 +39,15 @@ public class PredictionActivity extends AppCompatActivity {
 
     private Battery battery;
     private int graphToShow = 0;
+
+    private double car_soc                  = 5;
+    private double car_bat_temp             = 10;
+    private double car_bat_temp_ar []       = {0,15,15,15,15,15,15,15,15,15,15,15,15};
+    private double car_charger_ac_power     = 22;
+    private int car_status                  = 7;//0;
+    private int seconds_per_tick            = 1;
+
+    private ArrayList<Field> subscribedFields;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +73,9 @@ public class PredictionActivity extends AppCompatActivity {
                 "{'sid':'SOC','color':'#008a1d','from':40,'to':60}," +
                 "{'sid':'SOC','color':'#ffaa17','from':60,'to':80}," +
                 "{'sid':'SOC','color':'#FF0000','from':80,'to':100}]");
-        plotter.setColorRanges(colorRanges);
+        //plotter.setColorRanges(colorRanges);
 
-        plotter.setTimeScale(2);
-        plotter.setBackward(false);
+        plotter.setTimeScale(4); //2); // 4 = 40 minutes in the past
 
         // fix the titles
         final String[] titles = {"DC Power","Max DC Power","SOC","Temperature"};
@@ -72,29 +87,54 @@ public class PredictionActivity extends AppCompatActivity {
             values.put(titles[i], new ArrayList<TimePoint>());
         }
 
+        // start collecting data from the car
+        initListeners();
 
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
 
-                if (plotter != null) {
+                TextView tv;
+
+                // the calculations and plotter redraws will only be performed when there is a plotter and when all data has been collected from the car
+                if (plotter != null && car_status == 0x07) {
 
                     // init the array to fill
                     values.put(titles[graphToShow],new ArrayList<TimePoint>());
 
-                    long actual = Calendar.getInstance().getTimeInMillis()-100*23*1000;
+                    car_bat_temp = 0;
+                    for (int temp_index = (MainActivity.car==MainActivity.CAR_ZOE) ? 12 : 4; temp_index > 0; temp_index--) {
+                        car_bat_temp += car_bat_temp_ar [temp_index];
+                    }
+                    car_bat_temp /= (MainActivity.car==MainActivity.CAR_ZOE) ? 12 : 4;
 
-                    battery.setTemperature (10.0);
-                    battery.setStateOfCharge(5.0);
+                    // force debug
+                    car_bat_temp = 20;
+                    car_soc = 10;
+                    car_charger_ac_power = 11;
+
+                    // set the battery object to an initial state equal to the real battery (
+                    battery.setTemperature (car_bat_temp);
+                    battery.setStateOfChargePerc(car_soc);
+
+                    // set the external maximum charger capacity
+                    battery.setChargerPower(car_charger_ac_power);
+
+                    seconds_per_tick = (int )(1000 / battery.getChargerPower()); // @ 43kW a tick is roughly 23 seconds, total time 2300 sec = 38 min
+                    //long actual = Calendar.getInstance().getTimeInMillis() - 100000 * seconds_per_tick;
+                    long actual = Calendar.getInstance().getTimeInMillis();
+
+                    // now start iterating over time
                     for (int t = 1; t <=100; t++) { // 100 ticks
-                        battery.iterateCharging((int)(1000 / battery.getChargerPower())); // @ 43kW a tick is roughly 23 seconds, total time 2300 sec = 38 min
+                        battery.iterateCharging(seconds_per_tick);
                         switch (graphToShow) {
                             case 0:
                                 //values.add(battery.getDcPower() * 2.5);
-                                values.get(titles[graphToShow]).add(new TimePoint(actual, battery.getDcPower() * 2.5));
+                                //values.get(titles[graphToShow]).add(new TimePoint(actual, battery.getDcPower() * 2.5));
+                                values.get(titles[graphToShow]).add(new TimePoint(actual, t));
                                 break;
-                            case 1:
+/*                          case 1:
                                 values.get(titles[graphToShow]).add(new TimePoint(actual, battery.getMaxDcPower() * 2.5));
                                 break;
                             case 2:
@@ -102,23 +142,12 @@ public class PredictionActivity extends AppCompatActivity {
                                 break;
                             case 3:
                                 values.get(titles[graphToShow]).add(new TimePoint(actual, battery.getTemperature() * 4.0 - 30));
-                                break;
+                                break; */
                         }
-                        actual += 23*1000;
-                        //draw (battery, t); // imaginary method that plots SOC, range, time
+                        actual += seconds_per_tick * 1000;
                     }
 
                     if (++graphToShow > 3) graphToShow = 0;
-
-//
-//                    Random random = new Random();
-//                    values.add(random.nextDouble()*100);
-//                    for (int i = 0; i < 100; i++) {
-//                        values.add(Math.max(Math.min((1+(random.nextDouble()/4-1/8.)) * values.get(values.size()-1),100),0));
-//                    }
-
-                    //for(int i=0; i< titles.length; i++)
-                    //    MainActivity.debug("Values "+i+" > "+values.get(titles[i]).toString());
 
                     // set the plotters title
                     plotter.setTitle(PredictionActivity.implode(" / ",titles));
@@ -143,6 +172,104 @@ public class PredictionActivity extends AppCompatActivity {
         }
         return result;
     }
+
+
+    private void initListeners() {
+
+        subscribedFields = new ArrayList<>();
+
+        addListener(SID_AvChargingPower, 15000);
+        addListener(SID_UserSoC, 15000);
+        // Battery compartment temperatures
+        int lastCell = (MainActivity.car==MainActivity.CAR_ZOE) ? 296 : 104;
+        for (int i = 32; i <= lastCell; i += 24) {
+            String sid = SID_Preamble_CompartmentTemperatures + i;
+            addListener(sid, 15000);
+        }
+    }
+
+
+    private void addListener(String sid, int intervalMs) {
+        Field field;
+        field = MainActivity.fields.getBySID(sid);
+        if (field != null) {
+            field.addListener(this);
+            MainActivity.device.addActivityField(field, intervalMs);
+            subscribedFields.add(field);
+        } else {
+            MainActivity.toast("sid " + sid + " does not exist in class Fields");
+        }
+
+    }
+
+
+    public void onFieldUpdateEvent(final Field field) {
+        String fieldId = field.getSID();
+        TextView tv;
+        // get the text field
+        switch (fieldId) {
+
+            case SID_AvChargingPower:
+                car_charger_ac_power = field.getValue();
+                car_status |= 0x01;
+                break;
+            case SID_UserSoC:
+                car_soc = field.getValue();
+                car_status |= 0x02;
+                break;
+            case SID_Preamble_CompartmentTemperatures + "32":
+                car_bat_temp_ar[1] = field.getValue();
+                break;
+            case SID_Preamble_CompartmentTemperatures + "56":
+                car_bat_temp_ar[2] = field.getValue();
+                break;
+            case SID_Preamble_CompartmentTemperatures + "80":
+                car_bat_temp_ar[3] = field.getValue();
+                break;
+            case SID_Preamble_CompartmentTemperatures + "104":
+                car_bat_temp_ar[4] = field.getValue();
+                // set temp to valid when the last module temperature is in
+                if (MainActivity.car != MainActivity.CAR_ZOE) car_status |= 0x04;
+                break;
+            case SID_Preamble_CompartmentTemperatures + "128":
+                car_bat_temp_ar[5] = field.getValue();
+                break;
+            case SID_Preamble_CompartmentTemperatures + "152":
+                car_bat_temp_ar[6] = field.getValue();
+                break;
+            case SID_Preamble_CompartmentTemperatures + "176":
+                car_bat_temp_ar[7] = field.getValue();
+                break;
+            case SID_Preamble_CompartmentTemperatures + "200":
+                car_bat_temp_ar[8] = field.getValue();
+                break;
+            case SID_Preamble_CompartmentTemperatures + "224":
+                car_bat_temp_ar[9] = field.getValue();
+                break;
+            case SID_Preamble_CompartmentTemperatures + "248":
+                car_bat_temp_ar[10] = field.getValue();
+                break;
+            case SID_Preamble_CompartmentTemperatures + "272":
+                car_bat_temp_ar[11] = field.getValue();
+                break;
+            case SID_Preamble_CompartmentTemperatures + "296":
+                car_bat_temp_ar[12] = field.getValue();
+                // set temp to valid when the last module temperature is in
+                car_status |= 0x04;
+                break;
+        }
+        tv = (TextView) findViewById(R.id.textDebug);
+        tv.setText(fieldId + ", status:" + car_status);
+        // display the debug values
+        tv = (TextView) findViewById(R.id.textacpwr);
+        tv.setText("" + car_charger_ac_power);
+        tv = (TextView) findViewById(R.id.textsoc);
+        tv.setText("" + car_soc);
+        tv = (TextView) findViewById(R.id.texttemp);
+        tv.setText("" + car_bat_temp);
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
