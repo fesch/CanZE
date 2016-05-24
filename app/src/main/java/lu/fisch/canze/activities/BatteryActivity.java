@@ -41,6 +41,18 @@ public class BatteryActivity extends CanzeActivity {
         textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

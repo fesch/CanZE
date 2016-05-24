@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CMCanZE.iml" filepath="$PROJECT_DIR$/CMCanZE.iml" />
       <module fileurl="file://$PROJECT_DIR$/CanZE.iml" filepath="$PROJECT_DIR$/CanZE.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

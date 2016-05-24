@@ -43,6 +43,9 @@ public class Battery {
      *
      * Some rough parameters derived from this document: http://www.cse.anl.gov/us%2Dchina%2Dworkshop%2D2011/pdfs/batteries/LiFePO4%20battery%20performances%20testing%20for%20BMS.pdf
      *
+     * Still to implement
+     * - state of health
+     *
      */
 
     private double temperature = 10.0;
@@ -58,7 +61,9 @@ public class Battery {
         } else {
             double stateOfChargePercentage = stateOfCharge * 100.0 / capacity;
             int intTemperature = (int )temperature;
-            maxDcPower = 19.0 + (3.6 * intTemperature) - (0.026 * stateOfChargePercentage * intTemperature) - (0.34 * stateOfChargePercentage);
+            //maxDcPower = 19.0 + (3.6 * intTemperature) - (0.026 * stateOfChargePercentage * intTemperature) - (0.34 * stateOfChargePercentage);
+            maxDcPower = 27.1 + (0.76 * intTemperature) - (0.27 * stateOfChargePercentage);
+
             if (maxDcPower > 40.0) {
                 maxDcPower = 40.0;
             } else if (maxDcPower < 2.0) {
@@ -87,7 +92,7 @@ public class Battery {
     public void iterateCharging (int seconds) {
         predictDcPower ();
         setTemperature (temperature + (seconds * dcPower / 7200)); // assume one degree per 40 kW per 3 minutes (180 seconds)
-        setStateOfCharge (stateOfCharge + (dcPower * 0.95) / 60); // 1kW adds 95% of 1kWh in 60 minutes
+        setStateOfChargeKw(stateOfCharge + (dcPower * 0.95) / 60); // 1kW adds 95% of 1kWh in 60 minutes
     }
 
     /*
@@ -101,16 +106,20 @@ public class Battery {
     public void setTemperature(double temperature) {
         this.temperature = temperature;
         capacity = temperature > 15.0 ? 22.0 : (temperature > 0 ? 19.8 + temperature * 2.2 /15.0 : (19.8 + temperature * 4.4 /15.0));
-        setStateOfCharge (getStateOfCharge());
+        setStateOfChargeKw(getStateOfCharge());
     }
 
     public double getStateOfCharge() {
         return stateOfCharge;
     }
 
-    public void setStateOfCharge(double stateOfCharge) {
+    public void setStateOfChargeKw(double stateOfCharge) {
         this.stateOfCharge = stateOfCharge;
         if (this.stateOfCharge > this.capacity) this.stateOfCharge = this.capacity;
+    }
+
+    public void setStateOfChargePerc(double stateOfCharge) {
+        setStateOfChargeKw(stateOfCharge * this.capacity / 100);
     }
 
     public double getChargerPower() {

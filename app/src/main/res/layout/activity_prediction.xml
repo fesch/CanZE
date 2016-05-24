@@ -51,6 +51,51 @@
 
         </TableRow>
 
+        <TableRow>
+            <TextView
+                android:text="temp"
+                android:textColor="#000"
+                />
+            <TextView
+                android:id="@+id/texttemp"
+                android:paddingLeft="8dp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="acpwr"
+                android:textColor="#000"
+                />
+            <TextView
+                android:id="@+id/textacpwr"
+                android:paddingLeft="8dp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="soc"
+                android:textColor="#000"
+                />
+            <TextView
+                android:id="@+id/textsoc"
+                android:paddingLeft="8dp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="@string/label_debug"
+                android:textColor="#000"
+                />
+            <TextView
+                android:id="@+id/textDebug"
+                android:paddingLeft="8dp"
+                android:text="@string/default_debug"
+                />
+        </TableRow>
+
     </TableLayout>
 
 </LinearLayout>
