@@ -1,89 +1,313 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:keepScreenOn="true"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
-    android:paddingBottom="0dp"
-    tools:context="lu.fisch.canze.activities.PredictionActivity"
-    android:id="@+id/table"
     android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:keepScreenOn="true"
+    android:layout_height="fill_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="lu.fisch.canze.activities.PredictionActivity"
     >
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        tools:context="lu.fisch.canze.activities.ConsumptionActivity"
-        android:id="@+id/table2"
-        >
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
-        <TableRow
-            android:id="@+id/tableRow2"
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/predictionPlotter"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
-                custom:min="0"
-                custom:max="100"
-                custom:majorTicks="20"
-                custom:minorTicks="10"
-                custom:widget="timeplot"
-                custom:text="Graph is loading ..."
-                />
+            <TextView
+                android:text="Charging prediction"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000" />
 
-        </TableRow>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
 
-        <TableRow>
-            <TextView
-                android:text="temp"
-                android:textColor="#000"
-                />
-            <TextView
-                android:id="@+id/texttemp"
-                android:paddingLeft="8dp"
-                />
-        </TableRow>
+                <!--  <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
 
-        <TableRow>
-            <TextView
-                android:text="acpwr"
-                android:textColor="#000"
-                />
-            <TextView
-                android:id="@+id/textacpwr"
-                android:paddingLeft="8dp"
-                />
-        </TableRow>
+                  <lu.fisch.canze.widgets.WidgetView
+                        android:id="@+id/predictionPlotter"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="fill_parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        custom:min="0"
+                        custom:max="100"
+                        custom:majorTicks="20"
+                        custom:minorTicks="10"
+                        custom:widget="timeplot"
+                        custom:text="Graph is loading ..."
+                        />
 
-        <TableRow>
-            <TextView
-                android:text="soc"
-                android:textColor="#000"
-                />
-            <TextView
-                android:id="@+id/textsoc"
-                android:paddingLeft="8dp"
-                />
-        </TableRow>
+                </TableRow> -->
 
+
+                <TableRow>
+                    <TextView
+                        android:text="Time"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:text="SOC"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:text="Range"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textTIM10"
+                        android:text="0:10"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textSOC10"
+                        android:text="#SOC"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textRAN10"
+                        android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textTIM20"
+                        android:text="0:20"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textSOC20"
+                        android:text="#SOC"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textRAN20"
+                        android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textTIM30"
+                        android:text="0:30"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textSOC30"
+                        android:text="#SOC"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textRAN30"
+                        android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textTIM40"
+                        android:text="0:40"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textSOC40"
+                        android:text="#SOC"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textRAN40"
+                        android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textTIM50"
+                        android:text="0:50"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textSOC50"
+                        android:text="#SOC"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textRAN50"
+                        android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textTIM60"
+                        android:text="1:00"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textSOC60"
+                        android:text="#SOC"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textRAN60"
+                        android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textTIM70"
+                        android:text="1:10"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textSOC70"
+                        android:text="#SOC"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textRAN70"
+                        android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textTIM80"
+                        android:text="1:20"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textSOC80"
+                        android:text="#SOC"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textRAN80"
+                        android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textTIM90"
+                        android:text="1:30"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textSOC90"
+                        android:text="#SOC"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textRAN90"
+                        android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textTIM100"
+                        android:text="1:40"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textSOC100"
+                        android:text="#SOC"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textRAN100"
+                        android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/HeaderDC"
+                android:text="@string/header_Battery"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000" />
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <TextView
+                        android:text="temp"
+                        />
+                    <TextView
+                        android:id="@+id/texttemp"
+                        android:paddingLeft="8dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="acpwr"
+                        />
+                    <TextView
+                        android:id="@+id/textacpwr"
+                        android:paddingLeft="8dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="soc"
+                        />
+                    <TextView
+                        android:id="@+id/textsoc"
+                        android:paddingLeft="8dp"
+                        />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- debug line -->
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        >
         <TableRow>
             <TextView
                 android:text="@string/label_debug"
@@ -98,4 +322,4 @@
 
     </TableLayout>
 
-</LinearLayout>
+</RelativeLayout>
