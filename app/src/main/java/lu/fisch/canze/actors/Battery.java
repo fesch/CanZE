@@ -106,16 +106,20 @@ public class Battery {
     public void setTemperature(double temperature) {
         this.temperature = temperature;
         capacity = temperature > 15.0 ? 22.0 : (temperature > 0 ? 19.8 + temperature * 2.2 /15.0 : (19.8 + temperature * 4.4 /15.0));
-        setStateOfChargeKw(getStateOfCharge());
+        setStateOfChargeKw(getStateOfChargeKw());
     }
 
-    public double getStateOfCharge() {
+    public double getStateOfChargeKw() {
         return stateOfCharge;
     }
 
     public void setStateOfChargeKw(double stateOfCharge) {
         this.stateOfCharge = stateOfCharge;
         if (this.stateOfCharge > this.capacity) this.stateOfCharge = this.capacity;
+    }
+
+    public double getStateOfChargePerc() {
+        return stateOfCharge * 100 / this.capacity;
     }
 
     public void setStateOfChargePerc(double stateOfCharge) {
