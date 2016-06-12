@@ -52,7 +52,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     public static final String SID_12V                              = "7ec.622005.24";
     public static final String SID_12A                              = "7ec.623028.24";
     public static final String SID_DcLoad                           = "1fd.0";
-    public static final String SID_HvKilometers                     = "7bb.6161.104";
+    public static final String SID_HvKilometers                     = "7bb.6161.96";
     public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
 
 
