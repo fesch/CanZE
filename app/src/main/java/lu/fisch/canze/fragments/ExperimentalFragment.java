@@ -201,18 +201,6 @@ public class ExperimentalFragment extends Fragment {
             }
         });
 
-        button = (Button) view.findViewById(R.id.buttonChargingPrediction);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), PredictionActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
         return view;
     }
 

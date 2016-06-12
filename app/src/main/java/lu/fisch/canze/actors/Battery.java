@@ -54,6 +54,7 @@ public class Battery {
     private double capacity = 22.0;                     // in kWh
     private double maxDcPower = 0;                      // in kW. This excludes the max imposed by the external charger
     private double dcPower = 0;                         // in kW This includes the max imposed by the external charger
+    private int secondsRunning = 0;                     // seconds in iteration, reset by setStateOfChargePerc
 
     private void predictMaxDcPower () {
         if (stateOfCharge >= capacity) {
@@ -61,8 +62,8 @@ public class Battery {
         } else {
             double stateOfChargePercentage = stateOfCharge * 100.0 / capacity;
             int intTemperature = (int )temperature;
-            //maxDcPower = 19.0 + (3.6 * intTemperature) - (0.026 * stateOfChargePercentage * intTemperature) - (0.34 * stateOfChargePercentage);
-            maxDcPower = 27.1 + (0.76 * intTemperature) - (0.27 * stateOfChargePercentage);
+            maxDcPower = 19.0 + (3.6 * intTemperature) - (0.026 * stateOfChargePercentage * intTemperature) - (0.34 * stateOfChargePercentage);
+            //maxDcPower = 27.1 + (0.76 * intTemperature) - (0.27 * stateOfChargePercentage);
 
             if (maxDcPower > 40.0) {
                 maxDcPower = 40.0;
@@ -90,9 +91,10 @@ public class Battery {
      */
 
     public void iterateCharging (int seconds) {
+        secondsRunning += seconds;
         predictDcPower ();
         setTemperature (temperature + (seconds * dcPower / 7200)); // assume one degree per 40 kW per 3 minutes (180 seconds)
-        setStateOfChargeKw(stateOfCharge + (dcPower * 0.95) / 60); // 1kW adds 95% of 1kWh in 60 minutes
+        setStateOfChargeKw (stateOfCharge + (dcPower * seconds * 0.95) / 3600); // 1kW adds 95% of 1kWh in 60 minutes
     }
 
     /*
@@ -145,5 +147,11 @@ public class Battery {
     public double getDcPower() {
         predictDcPower ();
         return dcPower;
+    }
+
+    public int getTimeRunning () { return secondsRunning; }
+
+    public void setTimeRunning (int secondsRunning) {
+        this.secondsRunning = secondsRunning;
     }
 }

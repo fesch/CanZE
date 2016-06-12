@@ -60,7 +60,7 @@
 
                 <TableRow>
                     <TextView
-                        android:text="Time"
+                        android:text="Duration (hh:mm)"
                         android:layout_weight="1"
                         />
                     <TextView

@@ -106,13 +106,7 @@
             android:label="@string/title_activity_gps_test"></activity>
         <activity
             android:name=".activities.PredictionActivity"
-            android:label="@string/title_activity_prediction"
-            android:parentActivityName=".activities.CanzeActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="lu.fisch.canze.activities.CanzeActivity" />
-        </activity>
+            android:label="@string/title_activity_prediction"></activity>
     </application>
 
 </manifest>
