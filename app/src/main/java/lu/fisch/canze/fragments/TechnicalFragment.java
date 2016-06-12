@@ -41,6 +41,7 @@ import lu.fisch.canze.activities.FirmwareActivity;
 import lu.fisch.canze.activities.HarmActivity;
 import lu.fisch.canze.activities.LeafSpyActivity;
 import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.activities.PredictionActivity;
 import lu.fisch.canze.activities.StatsActivity;
 import lu.fisch.canze.activities.TachoActivity;
 import lu.fisch.canze.activities.TemperatureActivity;
@@ -64,15 +65,39 @@ public class TechnicalFragment extends Fragment {
 
         Button button;
 
-        button = (Button) view.findViewById(R.id.buttonElmTest);
+        button = (Button) view.findViewById(R.id.buttonChargingTech);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!MainActivity.isSafe()) return;
                 if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), ElmTestActivity.class);
-                TechnicalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
+                Intent intent = new Intent(MainActivity.getInstance(), ChargingTechActivity.class);
+                TechnicalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
+            }
+        });
+
+        button = (Button) view.findViewById(R.id.buttonChargingGraphs);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MainActivity.isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                MainActivity.getInstance().leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.getInstance(), ChargingGraphActivity.class);
+                TechnicalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
+            }
+        });
+
+        button = (Button) view.findViewById(R.id.buttonChargingPrediction);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MainActivity.isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                MainActivity.getInstance().leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.getInstance(), PredictionActivity.class);
+                TechnicalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });
 
@@ -84,18 +109,6 @@ public class TechnicalFragment extends Fragment {
                 if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), DtcActivity.class);
-                TechnicalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) view.findViewById(R.id.buttonChargingTech);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), ChargingTechActivity.class);
                 TechnicalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });
@@ -113,15 +126,15 @@ public class TechnicalFragment extends Fragment {
             }
         });
 
-        button = (Button) view.findViewById(R.id.buttonChargingGraphs);
+        button = (Button) view.findViewById(R.id.buttonElmTest);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!MainActivity.isSafe()) return;
                 if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), ChargingGraphActivity.class);
-                TechnicalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
+                Intent intent = new Intent(MainActivity.getInstance(), ElmTestActivity.class);
+                TechnicalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });
 

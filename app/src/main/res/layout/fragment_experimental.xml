@@ -208,8 +208,8 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="4dp"
-            android:text="Charging PRediction"
-            android:id="@+id/buttonChargingPrediction"
+            android:text="---"
+            android:id="@+id/notAffected1"
             android:layout_column="0" />
 
         <Button
@@ -221,7 +221,7 @@
             android:layout_marginRight="4dp"
             android:layout_marginBottom="4dp"
             android:text="---"
-            android:id="@+id/notAffected"
+            android:id="@+id/notAffected2"
             android:layout_column="1" />
 
     </TableRow>
