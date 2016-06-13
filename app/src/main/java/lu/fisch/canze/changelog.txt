@@ -3,12 +3,12 @@
 2016.06.16 [Jeroen] fixed many bugs in prediction and battery, moved to Tech section
 2016.06.16 [Jeroen] fixed bug in HV kilomters
 2016.05.16 [Bob] added forward mode to graphs
+
+---< Version 1.13 / 2016.05.15 >---
+
 2016.05.14 [Jeroen] Added 8 bits to HV kilometers (bringing it in line with car kms), attempted fix issue #337
 2016.04.18 [Jeroen] Added (untested) code to get battery data into the prediction plotter
 2016.04.18 [Jeroen] Small improvements to the Battery model
-
----< Version 1.13 / 2016.05.23 >---
-
 2016.04.18 [Bob] Trying to fix issue #310
 2016.04.18 [Bob] The plotter on the Battery screen has been fixed
 
