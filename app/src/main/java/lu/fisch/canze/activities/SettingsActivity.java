@@ -95,7 +95,8 @@ public class SettingsActivity extends AppCompatActivity {
 
         // fill cars
         arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
-        arrayAdapter.add("Zoé");
+        //arrayAdapter.add("Zoé");
+        arrayAdapter.add("ZOE");
         arrayAdapter.add("Fluence");
         arrayAdapter.add("Kangoo");
         arrayAdapter.add("X10");
