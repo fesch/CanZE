@@ -71,6 +71,10 @@
                         android:text="Range"
                         android:layout_weight="1"
                         />
+                    <TextView
+                        android:text="DC power"
+                        android:layout_weight="1"
+                        />
                 </TableRow>
 
                 <TableRow>
@@ -87,6 +91,11 @@
                     <TextView
                         android:id="@+id/textRAN10"
                         android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textPWR10"
+                        android:text="#PWR"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -107,6 +116,11 @@
                         android:text="#RNG"
                         android:layout_weight="1"
                         />
+                    <TextView
+                        android:id="@+id/textPWR20"
+                        android:text="#PWR"
+                        android:layout_weight="1"
+                        />
                 </TableRow>
 
                 <TableRow>
@@ -123,6 +137,11 @@
                     <TextView
                         android:id="@+id/textRAN30"
                         android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textPWR30"
+                        android:text="#PWR"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -143,6 +162,11 @@
                         android:text="#RNG"
                         android:layout_weight="1"
                         />
+                    <TextView
+                        android:id="@+id/textPWR40"
+                        android:text="#PWR"
+                        android:layout_weight="1"
+                        />
                 </TableRow>
 
                 <TableRow>
@@ -159,6 +183,11 @@
                     <TextView
                         android:id="@+id/textRAN50"
                         android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textPWR50"
+                        android:text="#PWR"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -179,6 +208,11 @@
                         android:text="#RNG"
                         android:layout_weight="1"
                         />
+                    <TextView
+                        android:id="@+id/textPWR60"
+                        android:text="#PWR"
+                        android:layout_weight="1"
+                        />
                 </TableRow>
 
                 <TableRow>
@@ -195,6 +229,11 @@
                     <TextView
                         android:id="@+id/textRAN70"
                         android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textPWR70"
+                        android:text="#PWR"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -215,6 +254,11 @@
                         android:text="#RNG"
                         android:layout_weight="1"
                         />
+                    <TextView
+                        android:id="@+id/textPWR80"
+                        android:text="#PWR"
+                        android:layout_weight="1"
+                        />
                 </TableRow>
 
                 <TableRow>
@@ -231,6 +275,11 @@
                     <TextView
                         android:id="@+id/textRAN90"
                         android:text="#RNG"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textPWR90"
+                        android:text="#PWR"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -251,6 +300,11 @@
                         android:text="#RNG"
                         android:layout_weight="1"
                         />
+                    <TextView
+                        android:id="@+id/textPWR100"
+                        android:text="#PWR"
+                        android:layout_weight="1"
+                        />
                 </TableRow>
 
 
@@ -258,7 +312,7 @@
 
             <TextView
                 android:id="@+id/HeaderDC"
-                android:text="@string/header_Battery"
+                android:text="State at this moment"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -270,7 +324,7 @@
 
                 <TableRow>
                     <TextView
-                        android:text="temp"
+                        android:text="Temperature"
                         />
                     <TextView
                         android:id="@+id/texttemp"
@@ -280,7 +334,7 @@
 
                 <TableRow>
                     <TextView
-                        android:text="acpwr"
+                        android:text="AC power"
                         />
                     <TextView
                         android:id="@+id/textacpwr"
@@ -290,7 +344,7 @@
 
                 <TableRow>
                     <TextView
-                        android:text="soc"
+                        android:text="State of charge"
                         />
                     <TextView
                         android:id="@+id/textsoc"
