@@ -57,14 +57,27 @@ public class Battery {
     private int secondsRunning = 0;                     // seconds in iteration, reset by setStateOfChargePerc
 
     private void predictMaxDcPower () {
+
+        // if the state of charge (in kW) exceeds the capacity of the battery
         if (stateOfCharge >= capacity) {
+
+            // stop charging
             maxDcPower = 0.0;
+
+        // if there is capacity left to charge
         } else {
+
+            // calculate the SOC in percantage
             double stateOfChargePercentage = stateOfCharge * 100.0 / capacity;
+
+            // get a rounded temperature
             int intTemperature = (int )temperature;
+
+            // now use a model to calculate the DC power, based on SOC and temperature
             maxDcPower = 19.0 + (3.6 * intTemperature) - (0.026 * stateOfChargePercentage * intTemperature) - (0.34 * stateOfChargePercentage);
             //maxDcPower = 27.1 + (0.76 * intTemperature) - (0.27 * stateOfChargePercentage);
 
+            // respect the limits
             if (maxDcPower > 40.0) {
                 maxDcPower = 40.0;
             } else if (maxDcPower < 2.0) {
@@ -74,16 +87,31 @@ public class Battery {
     }
 
     private void predictDcPower() {
+
+        // calculate what the battery can take
         predictMaxDcPower();
+
+        // predict the efficiency of the charger (assuming it will run at the cpacity the battery can take)
         double efficiency = 0.80 + maxDcPower * 0.00375;
+
+        // predict what is needed on the AC side to give thabattery what it can take
         double requestedAcPower = maxDcPower / efficiency;
+
+        // if this is more than what the charger can deliver
         if (requestedAcPower > chargerPower) {
+
+            // recalculate the efficiency based on the maximum the charger can deliver
             efficiency = 0.80 + chargerPower * 0.00375;
+
+            // DC is maximum AC corrected for efficiency
             dcPower = chargerPower * efficiency;
+
+        // if this is less than the charger can delever
         } else {
+
+            // DC is what the battery can take
             dcPower = maxDcPower;
         }
-
     }
 
     /*

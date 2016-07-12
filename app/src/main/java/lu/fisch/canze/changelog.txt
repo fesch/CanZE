@@ -1,3 +1,5 @@
+2016.07.12 [Jeroen] major update in prediction logic
+
 ---< Version 1.14 / 2016.06.13 >---
 
 2016.06.16 [Jeroen] fixed many bugs in prediction and battery, moved to Tech section
