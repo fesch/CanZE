@@ -117,7 +117,6 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
         } else {
             MainActivity.toast("sid " + sid + " does not exist in class Fields");
         }
-
     }
 
     // This is the event fired as soon as this the registered fields are

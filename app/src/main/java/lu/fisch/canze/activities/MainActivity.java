@@ -228,6 +228,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 car = CAR_NONE;
                 break;
             case "Zoé":
+            case "ZOE":
                 // Fields.getInstance().setCar(Fields.CAR_ZOE);
                 car = CAR_ZOE;
                 break;
