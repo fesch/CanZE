@@ -237,7 +237,7 @@ public class Plotter extends Drawable {
         if(values.size()>0)
         {
             double w = (double) barWidth/values.size();
-            double h = (double) getHeight()/(getMax()-getMin()+1);
+            double h = (double) getHeight()/(getMax()-getMin());
 
             double lastX = Double.NaN;
             double lastY = Double.NaN;
@@ -245,6 +245,7 @@ public class Plotter extends Drawable {
             for(int i=0; i<values.size(); i++)
             {
                 //MainActivity.debug("Value "+i+": "+values.get(i));
+                //MainActivity.debug("Value "+i+": "+values.get(i)+" Max: "+getMax()+" Min: "+getMin()+" height: "+getHeight()+" h: "+h);
                 double mx = w/2+i*w;
                 double my = getHeight()-(values.get(i)-getMin())*h;
                 int rayon = 2;

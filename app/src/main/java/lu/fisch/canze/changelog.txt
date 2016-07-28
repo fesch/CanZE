@@ -1,8 +1,8 @@
+2016.07.28 [Bob] Fixed a scaling error in Plotter & BarGraph widgets
 2016.07.12 [Jeroen] updated Zoé to ZOE (official Renault verbiage)
 2016.07.12 [Jeroen] major update in prediction logic
 
 ---< Version 1.14 / 2016.06.13 >---
-
 2016.06.16 [Jeroen] fixed many bugs in prediction and battery, moved to Tech section
 2016.06.16 [Jeroen] fixed bug in HV kilomters
 2016.05.16 [Bob] added forward mode to graphs
