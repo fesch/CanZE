@@ -233,10 +233,10 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
         updatePrediction("textacpwr", ((int) (car_charger_ac_power * 10)) / 10 + " kW");
         battery.setChargerPower(car_charger_ac_power);
 
-        if (car_charger_ac_power > 20) {
+        if (car_charger_ac_power > 17) {
             //seconds_per_tick = 60; // 100 minutes = 1:40
             seconds_per_tick = 36; // 60 minutes = 1:00
-        } else if (car_charger_ac_power > 6) {
+        } else if (car_charger_ac_power > 5) {
             //seconds_per_tick = 120; // 200 minutes = 3:20
             seconds_per_tick = 108; // 180 minutes = 3:00
         } else {
