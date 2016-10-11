@@ -76,7 +76,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
 
         subscribedFields = new ArrayList<>();
 
-        if (MainActivity.car==MainActivity.CAR_ZOE) {
+        if (MainActivity.car==MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) {
             addListener(SID_EngineFanSpeed);
             addListener(SID_DcPower);
             addListener(SID_HvBattTemp);

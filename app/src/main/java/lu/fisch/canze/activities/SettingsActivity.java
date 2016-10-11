@@ -73,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
         String device=settings.getString("device", "Arduino");
 
         // fill devices
-        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         arrayAdapter.add("ELM327");
         //arrayAdapter.add("Arduino Due");
         arrayAdapter.add("Bob Due");
@@ -96,16 +96,18 @@ public class SettingsActivity extends AppCompatActivity {
         // fill cars
         arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         //arrayAdapter.add("Zoé");
-        arrayAdapter.add("ZOE");
+        arrayAdapter.add("ZOE Q210");
+        arrayAdapter.add("ZOE R240");
         arrayAdapter.add("Fluence");
         arrayAdapter.add("Kangoo");
         arrayAdapter.add("X10");
 
         index = 0;
-        if(MainActivity.car==MainActivity.CAR_ZOE) index=0;
-        else if(MainActivity.car==MainActivity.CAR_FLUENCE) index=1;
-        else if(MainActivity.car==MainActivity.CAR_KANGOO) index=2;
-        else if(MainActivity.car==MainActivity.CAR_X10) index=3;
+        if(MainActivity.car==MainActivity.CAR_ZOE_Q210) index=0;
+        else if (MainActivity.car == MainActivity.CAR_ZOE_R240) index = 1;
+        else if(MainActivity.car==MainActivity.CAR_FLUENCE) index=2;
+        else if(MainActivity.car==MainActivity.CAR_KANGOO) index=3;
+        else if(MainActivity.car==MainActivity.CAR_X10) index=4;
 
         // display the list
         Spinner carList = (Spinner) findViewById(R.id.car);
@@ -526,7 +528,7 @@ public class SettingsActivity extends AppCompatActivity {
             SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
             String deviceAddress=settings.getString("deviceAddress", null);
 
-            ArrayAdapter arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
             // loop through paired devices
             int i = 0;
             int index=-1;

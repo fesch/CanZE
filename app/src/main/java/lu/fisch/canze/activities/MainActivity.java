@@ -101,10 +101,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static final int CAR_NONE            = 0x00;
     //public static final int CAR_ANY             = 0x1f;
     public static final int CAR_FLUENCE         = 0x01;
-    public static final int CAR_ZOE             = 0x02;
+    public static final int CAR_ZOE_Q210        = 0x02;
     public static final int CAR_KANGOO          = 0x04;
     public static final int CAR_TWIZY           = 0x08;    // you'll never know ;-)
     public static final int CAR_X10             = 0x10;
+    public static final int CAR_ZOE_R240        = 0x20;
 
     private StringBuilder sb = new StringBuilder();
     private String buffer = "";
@@ -224,24 +225,23 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         String carStr = settings.getString("car", "None");
         switch (carStr) {
             case "None":
-                // Fields.getInstance().setCar(Fields.CAR_ANY);
                 car = CAR_NONE;
                 break;
             case "Zoé":
             case "ZOE":
-                // Fields.getInstance().setCar(Fields.CAR_ZOE);
-                car = CAR_ZOE;
+            case "ZOE Q210":
+                car = CAR_ZOE_Q210;
+                break;
+            case "ZOE R240":
+                car = CAR_ZOE_R240;
                 break;
             case "Fluence":
-                // Fields.getInstance().setCar(Fields.CAR_FLUENCE);
                 car = CAR_FLUENCE;
                 break;
             case "Kangoo":
-                // Fields.getInstance().setCar(Fields.CAR_KANGOO);
                 car = CAR_KANGOO;
                 break;
             case "X10":
-                // Fields.getInstance().setCar(Fields.CAR_X10);
                 car = CAR_X10;
                 break;
         }

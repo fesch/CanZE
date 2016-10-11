@@ -28,7 +28,6 @@ import java.util.ArrayList;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldListener to the fields.
@@ -74,7 +73,7 @@ public class FluenceKangooTempsActivity extends CanzeActivity implements FieldLi
 
         subscribedFields = new ArrayList<>();
 
-        if (MainActivity.car == MainActivity.CAR_ZOE) {
+        if (MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) {
             addListener(SID_ExternalTemperatureZoe, 10000);
             addListener(SID_HVEvaporatorTemperature, 10000);
         } else {

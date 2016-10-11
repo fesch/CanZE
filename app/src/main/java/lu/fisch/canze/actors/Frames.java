@@ -21,7 +21,6 @@
 
 package lu.fisch.canze.actors;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
 import lu.fisch.canze.activities.MainActivity;
@@ -163,7 +162,7 @@ public class Frames {
                     MainActivity.debug("Ecu does not exist:" + tokens[3].trim());
                 } else {
                     int frameId = Integer.parseInt(tokens[0].trim().replace("0x", ""), 16);
-                    int interval = MainActivity.car == MainActivity.CAR_ZOE ? Integer.parseInt(tokens[1].trim(), 10) : Integer.parseInt(tokens[2].trim(), 10);
+                    int interval = MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240 ? Integer.parseInt(tokens[1].trim(), 10) : Integer.parseInt(tokens[2].trim(), 10);
                     Frame frame = getById(frameId);
                     if (frame == null) {
                         frame = new Frame(

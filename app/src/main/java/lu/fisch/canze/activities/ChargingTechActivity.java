@@ -95,7 +95,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addListener(SID_PlugConnected);
         addListener(SID_UserSoC);
         addListener(SID_RealSoC);
-        if (MainActivity.car==MainActivity.CAR_ZOE) {
+        if (MainActivity.car==MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) {
             addListener(SID_AvChargingPower);
         } else {
             addListener(SID_CapacityFluKan);
@@ -112,7 +112,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addListener(SID_TractionBatteryCurrent);
 
         // Battery compartment temperatures
-        int lastCell = (MainActivity.car==MainActivity.CAR_ZOE) ? 296 : 104;
+        int lastCell = (MainActivity.car==MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) ? 296 : 104;
         for (int i = 32; i <= lastCell; i += 24) {
             String sid = SID_Preamble_CompartmentTemperatures + i;
             addListener(sid);
@@ -162,7 +162,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                     case SID_ACPilot:
                         // save pilot amps
                         pilot = field.getValue();
-                        if (MainActivity.car != MainActivity.CAR_ZOE) { // for FluKan, aprocimate pgases (always 1) and AvChPwr (amps * 0.225)
+                        if (MainActivity.car != MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) { // for FluKan, aproximate phases (always 1) and AvChPwr (amps * 0.225)
                             double avChPwr = (double) Math.round(pilot * 2.25) / 10.0;
                             tv = (TextView) findViewById(R.id.textPhases);
                             tv.setText("1");
@@ -171,7 +171,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         }
                         // continue
                         tv = (TextView) findViewById(R.id.text_max_pilot);
-                        if (chargingStatus != 3 && MainActivity.car != MainActivity.CAR_ZOE) {
+                        if (chargingStatus != 3 && (MainActivity.car != MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240)) {
                             tv.setText("-");
                             tv = null;
                         }
