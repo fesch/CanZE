@@ -31,7 +31,6 @@ import java.util.ArrayList;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class StatsActivity extends CanzeActivity implements FieldListener {
@@ -59,7 +58,7 @@ public class StatsActivity extends CanzeActivity implements FieldListener {
         // Battery compartment temperatures
 
         int lastCell;
-        if(MainActivity.car==MainActivity.CAR_ZOE) {
+        if(MainActivity.car==MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) {
             lastCell = 296;
         }
         else

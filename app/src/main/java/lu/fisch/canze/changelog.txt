@@ -1,3 +1,6 @@
+2016.10.11 [Jeroen] Refined length of prediction interval
+2016.08.24 [Jeroen] Split ZOE into ZOE Q210 and ZOE R240 for battery prediction
+
 ---< Version 1.15 / 2016.08.10 >---
 2016.07.28 [Bob] Fixed a scaling error in Plotter & BarGraph widgets
 2016.07.12 [Jeroen] updated Zoé to ZOE (official Renault verbiage)

@@ -31,7 +31,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
     private double car_charger_ac_power = 22;
     private int car_status = 0;
     private int charging_status = 0;
-    private int seconds_per_tick = 1;
+    private int seconds_per_tick = 288; // time 100 iterations = 8 hours
     private double car_range_est = 1;
 
     private ArrayList<Field> subscribedFields;
@@ -43,6 +43,11 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
 
         // initialize the battery model
         battery = new Battery();
+        // more adjustments are needed her for other car types than ZOE
+        if (MainActivity.car == MainActivity.CAR_ZOE_R240) {
+            battery.setDcPowerLowerLimit(1.0);
+            battery.setDcPowerUpperLimit(20.0);
+        }
     }
 
     @Override
@@ -87,7 +92,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
         addListener(SID_UserSoC, 10000);
         addListener(SID_ChargingStatusDisplay, 10000);
         // Battery compartment temperatures
-        int lastCell = (MainActivity.car == MainActivity.CAR_ZOE) ? 296 : 104;
+        int lastCell = (MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) ? 296 : 104;
         for (int i = 32; i <= lastCell; i += 24) {
             String sid = SID_Preamble_CompartmentTemperatures + i;
             addListener(sid, 10000);
@@ -150,7 +155,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
             case SID_Preamble_CompartmentTemperatures + "104":
                 car_bat_temp_ar[4] = fieldVal;
                 // set temp to valid when the last module temperature is in
-                if (MainActivity.car != MainActivity.CAR_ZOE) {
+                if (MainActivity.car != MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) {
                     car_bat_temp = 0;
                     for (int temp_index = 4; temp_index > 0; temp_index--) {
                         car_bat_temp += car_bat_temp_ar[temp_index];
@@ -233,6 +238,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
         updatePrediction("textacpwr", ((int) (car_charger_ac_power * 10)) / 10 + " kW");
         battery.setChargerPower(car_charger_ac_power);
 
+        /*
         if (car_charger_ac_power > 17) {
             //seconds_per_tick = 60; // 100 minutes = 1:40
             seconds_per_tick = 36; // 60 minutes = 1:00
@@ -243,19 +249,41 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
             //seconds_per_tick = 300; // 500 minutes = 8:20
             seconds_per_tick = 270; // 450 minutes = 7:30
         }
+        */
 
         // now start iterating over time
+        int iter_at_99 = 100; // tick when the battery is full
         for (int t = 1; t <= 100; t++) { // 100 ticks
             battery.iterateCharging(seconds_per_tick);
-
+            double soc = battery.getStateOfChargePerc();
+            // save the earliest tick when the battery is full
+            if (soc >= 99 && t < iter_at_99) iter_at_99 = t;
             // optimization
             if ((t % 10) == 0) {
-                double soc = battery.getStateOfChargePerc();
                 updatePrediction("textTIM" + t, "" + formatTime(battery.getTimeRunning()));
                 updatePrediction("textSOC" + t, "" + ((int) soc));
                 updatePrediction("textRAN" + t, "" + ((int) (car_range_est * soc / car_soc)));
                 updatePrediction("textPWR" + t, "" + ((int) battery.getDcPower()));
             }
+        }
+
+        // adjust the tick time if neccesary. Note that this is
+        // effective on th next iteration
+
+        if (iter_at_99 == 100 && seconds_per_tick < 288) {
+            // if we were unable to go to 99% and below 8 hours, double tick step
+            seconds_per_tick *= 2;
+        } else if (iter_at_99 > 50) {
+            // if we were full after half the table size
+            // do nothing
+        } else if (iter_at_99 > 25 && seconds_per_tick > 18) {
+            // if we were full after a quarter of the table size
+            // and over half an hour, half the tick step
+            seconds_per_tick /= 2;
+        } else if (iter_at_99 > 12 && seconds_per_tick > 18) {
+            // if we were full after an eighth of the table size
+            // and over half an hour, quarter the tick step
+            seconds_per_tick /= 4;
         }
     }
 

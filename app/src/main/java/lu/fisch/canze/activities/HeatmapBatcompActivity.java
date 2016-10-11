@@ -46,7 +46,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(MainActivity.car == MainActivity.CAR_ZOE ? R.layout.activity_heatmap_batcomp : R.layout.activity_heatmap_batcomp2);
+        setContentView(MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240 ? R.layout.activity_heatmap_batcomp : R.layout.activity_heatmap_batcomp2);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
 
     private void initListeners() {
         subscribedFields = new ArrayList<>();
-        if(MainActivity.car == MainActivity.CAR_ZOE) {
+        if(MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) {
             lastCell = 12;
         }
         for (int i = 1; i <= lastCell; i++) {

@@ -2,21 +2,14 @@ package lu.fisch.canze.activities;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.util.Calendar;
-
 import lu.fisch.canze.R;
-import lu.fisch.canze.actors.Dtcs;
-import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
-import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
