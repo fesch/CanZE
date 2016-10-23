@@ -106,6 +106,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static final int CAR_TWIZY           = 0x08;    // you'll never know ;-)
     public static final int CAR_X10             = 0x10;
     public static final int CAR_ZOE_R240        = 0x20;
+    public static final int CAR_ZOE_Q90         = 0x40;
+    public static final int CAR_ZOE_R90         = 0x80;
 
     private StringBuilder sb = new StringBuilder();
     private String buffer = "";
@@ -234,6 +236,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 break;
             case "ZOE R240":
                 car = CAR_ZOE_R240;
+                break;
+            case "ZOE Q90":
+                car = CAR_ZOE_Q90;
+                break;
+            case "ZOE R90":
+                car = CAR_ZOE_R90;
                 break;
             case "Fluence":
                 car = CAR_FLUENCE;
