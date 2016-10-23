@@ -171,7 +171,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         }
                         // continue
                         tv = (TextView) findViewById(R.id.text_max_pilot);
-                        if (chargingStatus != 3 && (MainActivity.car != MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240)) {
+                        if (chargingStatus != 3 && (MainActivity.car != MainActivity.CAR_ZOE_Q210 && MainActivity.car == MainActivity.CAR_ZOE_R240 && MainActivity.car != MainActivity.CAR_ZOE_Q90 && MainActivity.car == MainActivity.CAR_ZOE_R90)) {
                             tv.setText("-");
                             tv = null;
                         }

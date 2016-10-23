@@ -98,6 +98,8 @@ public class SettingsActivity extends AppCompatActivity {
         //arrayAdapter.add("Zoé");
         arrayAdapter.add("ZOE Q210");
         arrayAdapter.add("ZOE R240");
+        arrayAdapter.add("ZOE Q90");
+        arrayAdapter.add("ZOE R90");
         arrayAdapter.add("Fluence");
         arrayAdapter.add("Kangoo");
         arrayAdapter.add("X10");
@@ -105,9 +107,11 @@ public class SettingsActivity extends AppCompatActivity {
         index = 0;
         if(MainActivity.car==MainActivity.CAR_ZOE_Q210) index=0;
         else if (MainActivity.car == MainActivity.CAR_ZOE_R240) index = 1;
-        else if(MainActivity.car==MainActivity.CAR_FLUENCE) index=2;
-        else if(MainActivity.car==MainActivity.CAR_KANGOO) index=3;
-        else if(MainActivity.car==MainActivity.CAR_X10) index=4;
+        else if (MainActivity.car == MainActivity.CAR_ZOE_Q90) index = 2;
+        else if (MainActivity.car == MainActivity.CAR_ZOE_R90) index = 3;
+        else if(MainActivity.car==MainActivity.CAR_FLUENCE) index=4;
+        else if(MainActivity.car==MainActivity.CAR_KANGOO) index=5;
+        else if(MainActivity.car==MainActivity.CAR_X10) index=6;
 
         // display the list
         Spinner carList = (Spinner) findViewById(R.id.car);
