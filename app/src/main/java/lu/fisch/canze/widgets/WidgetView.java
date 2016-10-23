@@ -112,6 +112,18 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
         repaint();
     }
 
+    public String extractCarValue(String[] values)
+    {
+        // the first value is the default one
+        String carValue = values[0];
+
+        for(int i=1; i<values.length; i++)
+            if(values[i].startsWith(String.valueOf(MainActivity.car)+":"))
+                carValue=values[i].split(":")[1];
+
+        return carValue;
+    }
+
     public void init(final Context context, AttributeSet attrs)
 	{
         // register our interest in hearing about changes to our surface
@@ -143,10 +155,14 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     drawable = (Drawable) constructor.newInstance();
                     drawable.setDrawSurface(WidgetView.this);
                     // apply attributes
-                    drawable.setMin(attributes.getInt(R.styleable.WidgetView_min, 0));
-                    drawable.setMax(attributes.getInt(R.styleable.WidgetView_max, 0));
-                    drawable.setMajorTicks(attributes.getInt(R.styleable.WidgetView_majorTicks, 0));
-                    drawable.setMinorTicks(attributes.getInt(R.styleable.WidgetView_minorTicks, 0));
+                    drawable.setMin(Integer.valueOf(extractCarValue(attributes.getString(R.styleable.WidgetView_min).split(","))));
+                    drawable.setMax(Integer.valueOf(extractCarValue(attributes.getString(R.styleable.WidgetView_max).split(","))));
+                    //drawable.setMin(attributes.getInt(R.styleable.WidgetView_min, 0));
+                    //drawable.setMax(attributes.getInt(R.styleable.WidgetView_max, 0));
+                    drawable.setMajorTicks(Integer.valueOf(extractCarValue(attributes.getString(R.styleable.WidgetView_majorTicks).split(","))));
+                    drawable.setMinorTicks(Integer.valueOf(extractCarValue(attributes.getString(R.styleable.WidgetView_minorTicks).split(","))));
+                    //drawable.setMajorTicks(attributes.getInt(R.styleable.WidgetView_majorTicks, 0));
+                    //drawable.setMinorTicks(attributes.getInt(R.styleable.WidgetView_minorTicks, 0));
                     drawable.setTitle(attributes.getString(R.styleable.WidgetView_text));
                     drawable.setShowLabels(attributes.getBoolean(R.styleable.WidgetView_showLabels, true));
                     drawable.setShowValue(attributes.getBoolean(R.styleable.WidgetView_showValue, true));
@@ -180,8 +196,10 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     if(optionsJson!=null && !optionsJson.trim().isEmpty())
                         drawable.setOptions(new Options(optionsJson.replace("'", "\"")));
 
-                    drawable.setMinAlt(attributes.getInt(R.styleable.WidgetView_minAlt, -1));
-                    drawable.setMaxAlt(attributes.getInt(R.styleable.WidgetView_maxAlt, -1));
+                    //drawable.setMinAlt(attributes.getInt(R.styleable.WidgetView_minAlt, -1));
+                    //drawable.setMaxAlt(attributes.getInt(R.styleable.WidgetView_maxAlt, -1));
+                    drawable.setMinAlt(Integer.valueOf(extractCarValue(attributes.getString(R.styleable.WidgetView_minAlt).split(","))));
+                    drawable.setMaxAlt(Integer.valueOf(extractCarValue(attributes.getString(R.styleable.WidgetView_maxAlt).split(","))));
                     drawable.setTimeScale(attributes.getInt(R.styleable.WidgetView_timeScale,1));
 
                     fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);

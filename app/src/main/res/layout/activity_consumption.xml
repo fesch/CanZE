@@ -227,7 +227,7 @@
                 custom:min="-30"
                 custom:max="70"
                 custom:minAlt="0"
-                custom:maxAlt="25"
+                custom:maxAlt="25,32:45"
                 custom:majorTicks="15"
                 custom:minorTicks="5"
                 custom:fieldSID="1fd.48,427.49"

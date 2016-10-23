@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="WidgetView">
-        <attr name="min" format="integer" />
-        <attr name="max" format="integer" />
-        <attr name="minAlt" format="integer" />
-        <attr name="maxAlt" format="integer" />
+        <attr name="min" format="string" />
+        <attr name="max" format="string" />
+        <attr name="minAlt" format="string" />
+        <attr name="maxAlt" format="string" />
         <attr name="timeScale" format="integer" />
-        <attr name="majorTicks" format="integer" />
-        <attr name="minorTicks" format="integer" />
+        <attr name="majorTicks" format="string" />
+        <attr name="minorTicks" format="string" />
         <attr name="showLabels" format="boolean" />
         <attr name="showValue" format="boolean" />
         <attr name="isInverted" format="boolean" />
