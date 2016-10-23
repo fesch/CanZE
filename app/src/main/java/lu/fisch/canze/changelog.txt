@@ -1,3 +1,5 @@
+2016.11.23 [Jeroen] Split ZOE into ZOE Q210, ZOE R240, ZOE Q90 and ZOE R90 for battery prediction
+
 ---< Version 1.16 / 2016.10.19 >---
 
 2016.10.11 [Jeroen] Refined length of prediction interval

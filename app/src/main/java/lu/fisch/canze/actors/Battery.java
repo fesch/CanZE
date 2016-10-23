@@ -21,6 +21,8 @@
 
 package lu.fisch.canze.actors;
 
+import lu.fisch.canze.activities.MainActivity;
+
 /**
  * Battery
  *
@@ -61,8 +63,9 @@ public class Battery {
     private double maxDcPower = 0;                      // in kW. This excludes the max imposed by the external charger
     private double dcPower = 0;                         // in kW This includes the max imposed by the external charger
     private int secondsRunning = 0;                     // seconds in iteration, reset by setStateOfChargePerc
-    private double dcPowerUpperLimit = 40.0;            // for R240 use 20
-    private double dcPowerLowerLimit = 2.0;             // for R240 use 20
+    private double dcPowerUpperLimit = 40.0;            // for R240/R90 use 20
+    private double dcPowerLowerLimit = 2.0;             // for R240/R90 use 1
+    private double rawCapacity = 22;                    // R90/Q90 use 41
 
     private void predictMaxDcPower () {
 
@@ -143,12 +146,7 @@ public class Battery {
 
     public void setTemperature(double temperature) {
         this.temperature = temperature;
-
-        // adjust for capacity loss due to temperature differences (system wide)
-        capacity = temperature > 15.0 ? 22.0 : (temperature > 0 ? 19.8 + temperature * 2.2 /15.0 : (19.8 + temperature * 4.4 /15.0));
-
-        // ensure the SOC is refreshed. This is only relevant for a very full battery
-        setStateOfChargeKw(getStateOfChargeKw());
+        setRawCapacity(getRawCapacity());
     }
 
     public double getStateOfChargeKw() {
@@ -209,5 +207,26 @@ public class Battery {
 
     public void setDcPowerLowerLimit(double dcPowerLowerLimit) {
         this.dcPowerLowerLimit = dcPowerLowerLimit;
+    }
+
+    public double getRawCapacity() {
+        return rawCapacity;
+    }
+
+    public void setRawCapacity(double rawCapacity) {
+        this.rawCapacity = rawCapacity;
+
+        // adjust for capacity loss due to temperature differences (system wide)
+        if (temperature > 15.0) {
+            capacity = rawCapacity;
+        } else if (temperature > 0) {
+            capacity = 0.9 * rawCapacity + temperature * 2.2 / 15.0;
+        } else {
+            capacity = 0.9 * rawCapacity + temperature * 4.4 / 15.0;
+        }
+
+        // ensure the SOC is refreshed. This is only relevant for a very full battery
+        setStateOfChargeKw(getStateOfChargeKw());
+
     }
 }
