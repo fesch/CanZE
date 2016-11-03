@@ -885,8 +885,8 @@ public class Fields implements MessageListener {
 //+"0x427,2,3,1,0,0,,,,ff\n" // Charging Alert
 //+"0x427,4,5,1,0,0,,,,ff\n" // HV Battery Locked
 //+"0x427,26,28,1,0,0,,,,ff\n" // Pre Heating Progress
-                        +"0x427,40,47,0.3,0,0,kW,,,2\n" // Available Charging Power
-                        +"0x427,49,57,0.1,0,1,kWh,,,2\n" // Available Energy
+                        +"0x427,40,47,0.3,0,0,kW,,,e2\n" // Available Charging Power
+                        +"0x427,49,57,0.1,0,1,kWh,,,e2\n" // Available Energy
 //+"0x427,58,58,1,0,0,,,,2\n" // Charge Available
 //+"0x42a,0,0,1,0,0,,,,2\n" // PreHeating Request
 //+"0x42a,6,15,0.1,40,1,°C,,,2\n" // Evaporator Temp Set Point
@@ -895,50 +895,50 @@ public class Fields implements MessageListener {
 //+"0x42a,48,49,1,0,0,,,,2\n" // Clim Loop Mode
 //+"0x42a,51,52,1,0,0,,,,2\n" // PTC Activation Request
 //+"0x42a,56,60,5,0,0,%,,,2\n" // Engine Fan Speed Request PWM
-                        +"0x42e,0,12,0.02,0,2,%,,,3\n" // State of Charge
+                        +"0x42e,0,12,0.02,0,2,%,,,e3\n" // State of Charge
 //+"0x42e,18,19,1,0,0,,,,ff\n" // HV Bat Level2 Failure
-                        +"0x42e,20,24,5,0,0,%,,,2\n" // Engine Fan Speed
+                        +"0x42e,20,24,5,0,0,%,,,e2\n" // Engine Fan Speed
 //+"0x42e,25,34,0.5,0,0,V,,,ff\n" // HV Network Voltage
-                        +"0x42e,38,43,1,0,1,A,,,3\n" // Charging Pilot Current
-                        +"0x42e,44,50,1,40,0,°C,,,3\n" // HV Battery Temp
+                        +"0x42e,38,43,1,0,1,A,,,e3\n" // Charging Pilot Current
+                        +"0x42e,44,50,1,40,0,°C,,,e3\n" // HV Battery Temp
                         +"0x42e,56,63,0.3,0,1,kW,,,ff\n" // Charging Power
-//+"0x430,0,9,10,0,0,rpm,,,2\n" // Clim Compressor Speed RPM Request
-//+"0x430,16,22,1,0,0,%,,,2\n" // High Voltage PTC Request PWM
-                        +"0x430,24,33,0.5,30,1,°C,,,2\n" // Comp Temperature Discharge
-//+"0x430,34,35,1,0,0,,,,2\n" // DeIcing Request
-//+"0x430,36,37,1,0,0,,,,2\n" // Clim Panel PC Activation Request
-                        +"0x430,38,39,1,0,0,,,,2\n" // HV Battery Cooling State
-                        +"0x430,40,49,0.1,40,1,°C,,,2\n" // HV Battery Evaporator Temp
-//+"0x430,50,59,0.1,40,1,°C,,,2\n" // HV Battery Evaporator Setpoint
-//+"0x432,0,1,1,0,0,,,,2\n" // Bat VE Shut Down Alert
-//+"0x432,2,3,1,0,0,,,,2\n" // Immediate Preheating Authorization Status
-//+"0x432,4,5,1,0,0,,,,2\n" // HV Battery Level Alert
-//+"0x432,6,9,1,0,0,,,,2\n" // HVBatCondPriorityLevel
-//+"0x432,10,19,10,0,0,rpm,,,2\n" // Clim Comp RPM Status
-//+"0x432,20,22,1,0,0,,,,2\n" // Clim Comp Default Status
-//+"0x432,26,28,1,0,0,,,,2\n" // PTC Default Status
-//+"0x432,29,35,1,40,0,°C,,,2\n" // HV Batt Cond Temp Average
-                        +"0x432,36,37,1,0,0,,,,2\n" // HV Bat Conditionning Mode
-//+"0x432,40,41,1,0,0,,,,2\n" // Eco Mode Request
-//+"0x432,42,48,100,0,0,Wh,,,2\n" // Climate Available Energy
-//+"0x432,56,57,1,0,0,,,,2\n" // Low Voltage Unballast Request
-//+"0x432,59,60,1,0,0,,,,2\n" // DeIcing Authorisation
-//+"0x433,0,2,1,0,0,,,,2\n" // AQM Frag Select Request
-//+"0x433,7,8,1,0,0,,,,2\n" // AQM Ioniser Mode Selection Req
-//+"0x433,9,12,1,0,0,,,,2\n" // AQM Frag Intensity Request
-//+"0x433,15,16,1,0,0,,,,2\n" // Clim AQS Activation Request
-//+"0x433,28,29,1,0,0,,,,2\n" // Ioniser Auto Launch Request
+//+"0x430,0,9,10,0,0,rpm,,,e2\n" // Clim Compressor Speed RPM Request
+//+"0x430,16,22,1,0,0,%,,,e2\n" // High Voltage PTC Request PWM
+                        +"0x430,24,33,0.5,30,1,°C,,,e2\n" // Comp Temperature Discharge
+//+"0x430,34,35,1,0,0,,,,e2\n" // DeIcing Request
+//+"0x430,36,37,1,0,0,,,,e2\n" // Clim Panel PC Activation Request
+                        +"0x430,38,39,1,0,0,,,,e2\n" // HV Battery Cooling State
+                        +"0x430,40,49,0.1,40,1,°C,,,e2\n" // HV Battery Evaporator Temp
+//+"0x430,50,59,0.1,40,1,°C,,,e2\n" // HV Battery Evaporator Setpoint
+//+"0x432,0,1,1,0,0,,,,e2\n" // Bat VE Shut Down Alert
+//+"0x432,2,3,1,0,0,,,,e2\n" // Immediate Preheating Authorization Status
+//+"0x432,4,5,1,0,0,,,,e2\n" // HV Battery Level Alert
+//+"0x432,6,9,1,0,0,,,,e2\n" // HVBatCondPriorityLevel
+//+"0x432,10,19,10,0,0,rpm,,,e2\n" // Clim Comp RPM Status
+//+"0x432,20,22,1,0,0,,,,e2\n" // Clim Comp Default Status
+//+"0x432,26,28,1,0,0,,,,e2\n" // PTC Default Status
+//+"0x432,29,35,1,40,0,°C,,,e2\n" // HV Batt Cond Temp Average
+                        +"0x432,36,37,1,0,0,,,,e2\n" // HV Bat Conditionning Mode
+//+"0x432,40,41,1,0,0,,,,e2\n" // Eco Mode Request
+//+"0x432,42,48,100,0,0,Wh,,,e2\n" // Climate Available Energy
+//+"0x432,56,57,1,0,0,,,,e2\n" // Low Voltage Unballast Request
+//+"0x432,59,60,1,0,0,,,,e2\n" // DeIcing Authorisation
+//+"0x433,0,2,1,0,0,,,,e2\n" // AQM Frag Select Request
+//+"0x433,7,8,1,0,0,,,,e2\n" // AQM Ioniser Mode Selection Req
+//+"0x433,9,12,1,0,0,,,,e2\n" // AQM Frag Intensity Request
+//+"0x433,15,16,1,0,0,,,,e2\n" // Clim AQS Activation Request
+//+"0x433,28,29,1,0,0,,,,e2\n" // Ioniser Auto Launch Request
 //+"0x4f8,0,1,-1,-2,0,,,,ff\n" // Start
 //+"0x4f8,4,5,-1,-2,0,,,,ff\n" // Parking Break
 //+"0x4f8,8,9,1,0,0,,,,ff\n" // AIRBAG Malfunction Lamp State
 //+"0x4f8,12,12,1,0,0,,,,ff\n" // Cluster Driven Lamps Auto Check
 //+"0x4f8,13,13,1,0,0,,,,ff\n" // Displayed Speed Unit
 //+"0x4f8,24,39,0.01,0,2,,,,ff\n" // Speed on Display
-                        +"0x534,32,40,1,40,0,°C,,,5\n" // Temp out
+                        +"0x534,32,40,1,40,0,°C,,,e5\n" // Temp out
                         +"0x5d7,0,15,0.01,0,2,km/h,,,ff\n" // Speed
 //+"0x5d7,16,43,0.01,0,2,km,,,ff\n" // Odometer
 //+"0x5d7,50,54,0.04,0,2,cm,,,ff\n" // Fine distance
-                        +"0x5da,0,7,1,40,0,ºC,,,5\n" // Water temperature
+                        +"0x5da,0,7,1,40,0,ºC,,,e5\n" // Water temperature
 //+"0x5de,1,1,1,0,0,,,,ff\n" // Right Indicator
 //+"0x5de,2,2,1,0,0,,,,ff\n" // Left Indicator
 //+"0x5de,3,3,1,0,0,,,,ff\n" // Rear Fog Light
@@ -1056,8 +1056,8 @@ public class Fields implements MessageListener {
 //+"0x656,3,3,1,0,0,,,,ff\n" // Trip Data Reset
 //+"0x656,21,31,1,0,0,min,,,ff\n" // Cluster Scheduled Time
 //+"0x656,32,42,1,0,0,min,,,ff\n" // Cluster Scheduled Time 2
-                        +"0x656,48,55,1,40,0,°C,,,2\n" // External Temp
-//+"0x656,56,57,1,0,0,,,,2\n" // Clim PC Customer Activation
+                        +"0x656,48,55,1,40,0,°C,,,e2\n" // External Temp
+//+"0x656,56,57,1,0,0,,,,e2\n" // Clim PC Customer Activation
 //+"0x657,0,1,1,0,0,,,,ff\n" // PreHeatingActivationRequest
 //+"0x657,8,9,1,0,0,,,,ff\n" // PreHeatingActivationRequestedByKey
 //+"0x657,10,11,1,0,0,,,,ff\n" // TechnicalWakeUpType
@@ -1112,25 +1112,25 @@ public class Fields implements MessageListener {
                         +"0x673,40,47,13.725,0,0,mbar,,,ff\n" // Front left wheel pressure
 //+"0x68b,0,3,1,0,0,,,,ff\n" // MM action counter
 //+"0x68c,21,31,1,0,0,min,,,ff\n" // Local Time
-//+"0x699,0,1,1,0,0,,,,2\n" // Clima off Request display
-//+"0x699,2,3,1,0,0,,,,2\n" // Clima read defrost Request display
-//+"0x699,4,6,1,1,0,,,,2\n" // Cima mode
-                        +"0x699,8,15,0.5,0,0,°C,,,2\n" // Temperature
-//+"0x699,16,19,1,0,0,,,,2\n" // Clima Flow
-//+"0x699,20,21,1,0,0,,,,2\n" // Forced recycling
-//+"0x699,22,23,1,0,0,,,,2\n" //
-//+"0x699,24,27,1,0,0,,,,2\n" //
-//+"0x699,28,31,1,0,0,,,,2\n" // Clim Last Func Modified By Customer
-//+"0x699,32,33,1,0,0,,,,2\n" // Clim MMI Activation Request
-//+"0x699,34,39,2,0,0,%,,,2\n" // Clim AQS Indicator
-//+"0x699,40,45,1,0,0,min,,,2\n" // Clim AQM Ioniser Max Timer Display
-//+"0x699,46,51,1,0,0,min,,,2\n" // Clim AQM Ioniser Timer Display
-//+"0x699,52,53,1,0,0,,,,2\n" // Clim Auto Display
-//+"0x699,54,55,1,0,0,,,,2\n" // Clim AC Off Display
-//+"0x699,56,57,1,0,0,,,,2\n" // Clim Clearness Display
-//+"0x699,58,59,1,0,0,,,,2\n" // Clim Display Menu PC
-//+"0x699,60,61,1,0,0,,,,2\n" // Energy Flow For Thermal Comfort Display
-//+"0x699,63,63,1,0,0,,,,2\n" // Clim Eco Low Soc Display
+//+"0x699,0,1,1,0,0,,,,e2\n" // Clima off Request display
+//+"0x699,2,3,1,0,0,,,,e2\n" // Clima read defrost Request display
+//+"0x699,4,6,1,1,0,,,,e2\n" // Cima mode
+                        +"0x699,8,15,0.5,0,0,°C,,,e2\n" // Temperature
+//+"0x699,16,19,1,0,0,,,,e2\n" // Clima Flow
+//+"0x699,20,21,1,0,0,,,,e2\n" // Forced recycling
+//+"0x699,22,23,1,0,0,,,,e2\n" //
+//+"0x699,24,27,1,0,0,,,,e2\n" //
+//+"0x699,28,31,1,0,0,,,,e2\n" // Clim Last Func Modified By Customer
+//+"0x699,32,33,1,0,0,,,,e2\n" // Clim MMI Activation Request
+//+"0x699,34,39,2,0,0,%,,,e2\n" // Clim AQS Indicator
+//+"0x699,40,45,1,0,0,min,,,e2\n" // Clim AQM Ioniser Max Timer Display
+//+"0x699,46,51,1,0,0,min,,,e2\n" // Clim AQM Ioniser Timer Display
+//+"0x699,52,53,1,0,0,,,,e2\n" // Clim Auto Display
+//+"0x699,54,55,1,0,0,,,,e2\n" // Clim AC Off Display
+//+"0x699,56,57,1,0,0,,,,e2\n" // Clim Clearness Display
+//+"0x699,58,59,1,0,0,,,,e2\n" // Clim Display Menu PC
+//+"0x699,60,61,1,0,0,,,,e2\n" // Energy Flow For Thermal Comfort Display
+//+"0x699,63,63,1,0,0,,,,e2\n" // Clim Eco Low Soc Display
 //+"0x69f,0,31,1,0,0,,,,ff\n" // Car Serial N°
 //+"0x6f8,0,1,1,0,0,,,,ff\n" // USM Refuse to Sleep
 //+"0x6f8,4,4,1,0,0,,,,ff\n" // Ignition Supply Confirmation
@@ -1144,7 +1144,7 @@ public class Fields implements MessageListener {
                         +"0x760,128,143,1,0,0,,0x2180,0x6180,ff\n" // PG number %04lx
                         +"0x760,0,7,1,0,0,,0x14ffff,0x54,ff\n" // Reset DTC
                         +"0x760,0,23,1,0,0,,0x19023b,0x5902ff,ff\n" // Query DTC
-//+"0x760,24,31,1,0,0,bar,0x224b0e,0x624b0e,2\n" // Master cylinder pressure
+//+"0x760,24,31,1,0,0,bar,0x224b0e,0x624b0e,e2\n" // Master cylinder pressure
                         +"0x762,144,159,1,0,0,,0x2180,0x6180,ff\n" // Software version
                         +"0x762,128,143,1,0,0,,0x2180,0x6180,ff\n" // PG number %04lx
                         +"0x762,0,7,1,0,0,,0x14ffff,0x54,ff\n" // Reset DTC
@@ -1204,43 +1204,43 @@ public class Fields implements MessageListener {
 //+"0x7bb,208,223,0.01,0,2,kW,0x2101,0x6101,5\n" // Maximum battery output power
 //+"0x7bb,348,367,0.0001,0,4,Ah,0x2101,0x6101,5\n" // Ah of the battery
 //+"0x7bb,316,335,0.0001,0,4,%,0x2101,0x6101,5\n" // Real State of Charge
-                        +"0x7bb,336,351,0.01,0,2,kW,0x2101,0x6101,2\n" // Maximum battery input power
+                        +"0x7bb,336,351,0.01,0,2,kW,0x2101,0x6101,e2\n" // Maximum battery input power
                         +"0x7bb,56,71,10,0,0,°C,0x2103,0x6103,5\n" // Mean battery compartment temp
 //+"0x7bb,104,119,1,0,0,mV,0x2103,0x6103,5\n" // Highest cell voltage
 //+"0x7bb,120,135,1,0,0,mV,0x2103,0x6103,5\n" // Lowest cell voltage
-                        +"0x7bb,192,207,0.01,0,2,%,0x2103,0x6103,2\n" // Real State of Charge
-//+"0x7bb,16,31,1,0,0,,0x2104,0x6104,2\n" // Module 1 raw NTC
-                        +"0x7bb,32,39,1,40,0,°C,0x2104,0x6104,2\n" // Cell 1 Temperature
-//+"0x7bb,40,55,1,0,0,,0x2104,0x6104,2\n" // Module 2 raw NTC
-                        +"0x7bb,56,63,1,40,0,°C,0x2104,0x6104,2\n" // Cell 2 Temperature
-//+"0x7bb,64,79,1,0,0,,0x2104,0x6104,2\n" // Module 3 raw NTC
-                        +"0x7bb,80,87,1,40,0,°C,0x2104,0x6104,2\n" // Cell 3 Temperature
-//+"0x7bb,88,103,1,0,0,,0x2104,0x6104,2\n" // Module 4 raw NTC
-                        +"0x7bb,104,111,1,40,0,°C,0x2104,0x6104,2\n" // Cell 4 Temperature
-//+"0x7bb,112,127,1,0,0,,0x2104,0x6104,2\n" // Module 5 raw NTC
-                        +"0x7bb,128,135,1,40,0,°C,0x2104,0x6104,2\n" // Cell 5 Temperature
-//+"0x7bb,136,151,1,0,0,,0x2104,0x6104,2\n" // Module 6 raw NTC
-                        +"0x7bb,152,159,1,40,0,°C,0x2104,0x6104,2\n" // Cell 6 Temperature
-//+"0x7bb,160,175,1,0,0,,0x2104,0x6104,2\n" // Module 7 raw NTC
-                        +"0x7bb,176,183,1,40,0,°C,0x2104,0x6104,2\n" // Cell 7 Temperature
-//+"0x7bb,184,199,1,0,0,,0x2104,0x6104,2\n" // Module 8 raw NTC
-                        +"0x7bb,200,207,1,40,0,°C,0x2104,0x6104,2\n" // Cell 8 Temperature
-//+"0x7bb,208,223,1,0,0,,0x2104,0x6104,2\n" // Module 9 raw NTC
-                        +"0x7bb,224,231,1,40,0,°C,0x2104,0x6104,2\n" // Cell 9 Temperature
-//+"0x7bb,232,247,1,0,0,,0x2104,0x6104,2\n" // Module 10 raw NTC
-                        +"0x7bb,248,255,1,40,0,°C,0x2104,0x6104,2\n" // Cell 10 Temperature
-//+"0x7bb,256,271,1,0,0,,0x2104,0x6104,2\n" // Module 11 raw NTC
-                        +"0x7bb,272,279,1,40,0,°C,0x2104,0x6104,2\n" // Cell 11 Temperature
-//+"0x7bb,280,295,1,0,0,,0x2104,0x6104,2\n" // Module 12 raw NTC
-                        +"0x7bb,296,303,1,40,0,°C,0x2104,0x6104,2\n" // Cell 12 Temperature
+                        +"0x7bb,192,207,0.01,0,2,%,0x2103,0x6103,e2\n" // Real State of Charge
+//+"0x7bb,16,31,1,0,0,,0x2104,0x6104,e2\n" // Module 1 raw NTC
+                        +"0x7bb,32,39,1,40,0,°C,0x2104,0x6104,e2\n" // Cell 1 Temperature
+//+"0x7bb,40,55,1,0,0,,0x2104,0x6104,e2\n" // Module 2 raw NTC
+                        +"0x7bb,56,63,1,40,0,°C,0x2104,0x6104,e2\n" // Cell 2 Temperature
+//+"0x7bb,64,79,1,0,0,,0x2104,0x6104,e2\n" // Module 3 raw NTC
+                        +"0x7bb,80,87,1,40,0,°C,0x2104,0x6104,e2\n" // Cell 3 Temperature
+//+"0x7bb,88,103,1,0,0,,0x2104,0x6104,e2\n" // Module 4 raw NTC
+                        +"0x7bb,104,111,1,40,0,°C,0x2104,0x6104,e2\n" // Cell 4 Temperature
+//+"0x7bb,112,127,1,0,0,,0x2104,0x6104,e2\n" // Module 5 raw NTC
+                        +"0x7bb,128,135,1,40,0,°C,0x2104,0x6104,e2\n" // Cell 5 Temperature
+//+"0x7bb,136,151,1,0,0,,0x2104,0x6104,e2\n" // Module 6 raw NTC
+                        +"0x7bb,152,159,1,40,0,°C,0x2104,0x6104,e2\n" // Cell 6 Temperature
+//+"0x7bb,160,175,1,0,0,,0x2104,0x6104,e2\n" // Module 7 raw NTC
+                        +"0x7bb,176,183,1,40,0,°C,0x2104,0x6104,e2\n" // Cell 7 Temperature
+//+"0x7bb,184,199,1,0,0,,0x2104,0x6104,e2\n" // Module 8 raw NTC
+                        +"0x7bb,200,207,1,40,0,°C,0x2104,0x6104,e2\n" // Cell 8 Temperature
+//+"0x7bb,208,223,1,0,0,,0x2104,0x6104,e2\n" // Module 9 raw NTC
+                        +"0x7bb,224,231,1,40,0,°C,0x2104,0x6104,e2\n" // Cell 9 Temperature
+//+"0x7bb,232,247,1,0,0,,0x2104,0x6104,e2\n" // Module 10 raw NTC
+                        +"0x7bb,248,255,1,40,0,°C,0x2104,0x6104,e2\n" // Cell 10 Temperature
+//+"0x7bb,256,271,1,0,0,,0x2104,0x6104,e2\n" // Module 11 raw NTC
+                        +"0x7bb,272,279,1,40,0,°C,0x2104,0x6104,e2\n" // Cell 11 Temperature
+//+"0x7bb,280,295,1,0,0,,0x2104,0x6104,e2\n" // Module 12 raw NTC
+                        +"0x7bb,296,303,1,40,0,°C,0x2104,0x6104,e2\n" // Cell 12 Temperature
 //+"0x7bb,16,31,1,0,0,,0x2104,0x6104,1\n" // Module 1 raw NTC
-                        +"0x7bb,32,39,1,0,0,°C,0x2104,0x6104,25\n" // Cell 1 Temperature
+                        +"0x7bb,32,39,1,0,0,°C,0x2104,0x6104,5\n" // Cell 1 Temperature
 //+"0x7bb,40,55,1,0,0,,0x2104,0x6104,1\n" // Module 2 raw NTC
-                        +"0x7bb,56,63,1,0,0,°C,0x2104,0x6104,25\n" // Cell 2 Temperature
+                        +"0x7bb,56,63,1,0,0,°C,0x2104,0x6104,5\n" // Cell 2 Temperature
 //+"0x7bb,64,79,1,0,0,,0x2104,0x6104,1\n" // Module 3 raw NTC
-                        +"0x7bb,80,87,1,0,0,°C,0x2104,0x6104,25\n" // Cell 3 Temperature
+                        +"0x7bb,80,87,1,0,0,°C,0x2104,0x6104,5\n" // Cell 3 Temperature
 //+"0x7bb,88,103,1,0,0,,0x2104,0x6104,1\n" // Module 4 raw NTC
-                        +"0x7bb,104,111,1,0,0,°C,0x2104,0x6104,25\n" // Cell 4 Temperature
+                        +"0x7bb,104,111,1,0,0,°C,0x2104,0x6104,5\n" // Cell 4 Temperature
 //+"0x7bb,64,79,0.001,0,3,V,0x2105,0x6105,1\n" // Threshold bad cell
 //+"0x7bb,80,95,0.001,0,3,V,0x2105,0x6105,1\n" // Threshol weak cell
 //+"0x7bb,20,20,1,0,0,,0x2107,0x6107,1\n" // Cell 01 Balancing Shunt Active
@@ -1369,9 +1369,9 @@ public class Fields implements MessageListener {
                         +"0x7ec,0,7,1,0,0,,0x14ffff,0x54,ff\n" // Reset DTC
                         +"0x7ec,0,23,1,0,0,,0x19023b,0x5902ff,ff\n" // Query DTC
 //+"0x7ec,24,31,1,40,0,C,0x222001,0x622001,ff\n" // Bat temp
-                        +"0x7ec,24,39,2,0,2,%,0x222002,0x622002,2\n" // SOC
-                        +"0x7ec,24,39,2.083333333,0,2,%,0x222002,0x622002,5\n" // SOC
-//+"0x7ec,24,39,0.01,0,2,km/h,0x222003,0x622003,5\n" // Speed
+                        +"0x7ec,24,39,2,0,2,%,0x222002,0x622002,e2\n" // SOC
+                        +"0x7ec,24,39,2.083333333,0,2,%,0x222002,0x622002,e5\n" // SOC
+//+"0x7ec,24,39,0.01,0,2,km/h,0x222003,0x622003,e5\n" // Speed
 //+"0x7ec,24,39,0.5,0,2,V,0x222004,0x622004,ff\n" // Motor Voltage
                         +"0x7ec,24,39,0.01,0,2,V,0x222005,0x622005,ff\n" // 12V battery voltage
                         +"0x7ec,24,47,1,0,0,km,0x222006,0x622006,ff\n" // Odometer
@@ -1381,7 +1381,7 @@ public class Fields implements MessageListener {
 //+"0x7ec,24,39,1,0,0,,0x22202e,0x62202e,ff\n" // Accelerator Pedal
 //+"0x7ec,24,31,1,0,0,km/h,0x222035,0x622035,ff\n" // CC/SL set speed
 //+"0x7ec,24,39,0.01,0,2,,0x222050,0x622050,ff\n" // Speed
-//+"0x7ec,24,31,1,0,0,,0x22204b,0x62204b,5\n" // Steering wheel CC/SL buttons
+//+"0x7ec,24,31,1,0,0,,0x22204b,0x62204b,e5\n" // Steering wheel CC/SL buttons
 //+"0x7ec,24,31,1,0,0,,0x222c04,0x622c04,ff\n" // Gear
                         +"0x7ec,24,31,0.5,0,1,A,0x223028,0x623028,ff\n" // 14V current?
                         +"0x7ec,24,39,0.5,0,2,V,0x223203,0x623203,ff\n" // HV Battery voltage
