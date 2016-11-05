@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public final static int LEAVE_BLUETOOTH_ON= 11;
 
     public static final int CAR_NONE            = 0x00;
-    //public static final int CAR_ANY             = 0x1f;
+    //public static final int CAR_ANY             = 0xff;
     public static final int CAR_FLUENCE         = 0x01;
     public static final int CAR_ZOE_Q210        = 0x02;
     public static final int CAR_KANGOO          = 0x04;
