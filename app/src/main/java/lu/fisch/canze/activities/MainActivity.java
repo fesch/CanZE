@@ -109,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static final int CAR_ZOE_Q90         = 0x40;
     public static final int CAR_ZOE_R90         = 0x80;
 
+    public static final double reduction        = 9.32;     // update suggested by Loc Dao
+
     private StringBuilder sb = new StringBuilder();
     private String buffer = "";
 

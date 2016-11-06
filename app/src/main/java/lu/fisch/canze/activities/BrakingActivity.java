@@ -141,7 +141,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
                         if (tv != null) tv.setText(((int) diff_friction_torque) + " Nm");
                         break;
                     case SID_Coasting_Torque:
-                        coasting_Torque = field.getValue() * 9.3; // it seems this torque is given in motor torque, not in wheel torque.
+                        coasting_Torque = field.getValue() * MainActivity.reduction; // This torque is given in motor torque, not in wheel torque.
                         break;
                 }
                 tv = (TextView) findViewById(R.id.textDebug);
