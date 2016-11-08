@@ -1,8 +1,12 @@
+---< Version 1.18 / 2016.11.08 >---
+
+2016.11.08 [Bob] Fixed a bug leading to non displaying some values
+
 ---< Version 1.17 / 2016.10.31 >---
 
-2016.11.23 [Bob] Made widgets ready for different cars
-2016.11.23 [Bob] Application crashed for any selection of ZOE R240, ZOE Q90 and ZOE R90
-2016.11.23 [Jeroen] Split ZOE into ZOE Q210, ZOE R240, ZOE Q90 and ZOE R90 for battery prediction
+2016.10.23 [Bob] Made widgets ready for different cars
+2016.10.23 [Bob] Application crashed for any selection of ZOE R240, ZOE Q90 and ZOE R90
+2016.10.23 [Jeroen] Split ZOE into ZOE Q210, ZOE R240, ZOE Q90 and ZOE R90 for battery prediction
 
 ---< Version 1.16 / 2016.10.19 >---
 

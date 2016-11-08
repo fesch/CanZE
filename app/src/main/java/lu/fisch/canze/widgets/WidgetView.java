@@ -198,8 +198,15 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 
                     //drawable.setMinAlt(attributes.getInt(R.styleable.WidgetView_minAlt, -1));
                     //drawable.setMaxAlt(attributes.getInt(R.styleable.WidgetView_maxAlt, -1));
-                    drawable.setMinAlt(Integer.valueOf(extractCarValue(attributes.getString(R.styleable.WidgetView_minAlt).split(","))));
-                    drawable.setMaxAlt(Integer.valueOf(extractCarValue(attributes.getString(R.styleable.WidgetView_maxAlt).split(","))));
+
+                    String minAlt = attributes.getString(R.styleable.WidgetView_minAlt);
+                    if(minAlt!=null && !minAlt.trim().isEmpty())
+                        drawable.setMinAlt(Integer.valueOf(extractCarValue(minAlt.split(","))));
+
+                    String maxAlt = attributes.getString(R.styleable.WidgetView_maxAlt);
+                    if(maxAlt!=null && !maxAlt.trim().isEmpty())
+                        drawable.setMaxAlt(Integer.valueOf(extractCarValue(maxAlt.split(","))));
+
                     drawable.setTimeScale(attributes.getInt(R.styleable.WidgetView_timeScale,1));
 
                     fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
