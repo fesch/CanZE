@@ -51,7 +51,7 @@ public class Field {
     protected String unit;
     protected String requestId;
     protected String responseId;
-    protected short options;           // bitwise options 0xf = car (0-15), 0x70 = type (0=unsigned, 1=signed, 2=reserved for string, 3-7 reserved)
+    protected short options;           // see the options definitions in MainActivity
     //private int skips;
 
     protected double value = Double.NaN;
@@ -377,5 +377,5 @@ public class Field {
         return virtual;
     }
 
-    public boolean isSigned () { return (this.options & 0xe0) == 1; }
+    public boolean isSigned () { return (this.options & MainActivity.FIELD_TYPE_MASK) == MainActivity.FIELD_TYPE_SIGNED; }
 }

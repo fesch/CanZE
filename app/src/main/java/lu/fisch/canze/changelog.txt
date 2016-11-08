@@ -1,3 +1,5 @@
+2016.10.23 [Jeroen] Get options field back in line and update mains spreadsheet to that and cars
+
 ---< Version 1.18 / 2016.11.08 >---
 
 2016.11.08 [Bob] Fixed a bug leading to non displaying some values

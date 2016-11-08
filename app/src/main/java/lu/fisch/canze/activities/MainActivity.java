@@ -98,16 +98,26 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public final static int SETTINGS_ACTIVITY = 7;
     public final static int LEAVE_BLUETOOTH_ON= 11;
 
-    public static final int CAR_NONE            = 0x00;
-    //public static final int CAR_ANY             = 0xff;
-    public static final int CAR_FLUENCE         = 0x01;
-    public static final int CAR_ZOE_Q210        = 0x02;
-    public static final int CAR_KANGOO          = 0x04;
-    public static final int CAR_TWIZY           = 0x08;    // you'll never know ;-)
-    public static final int CAR_X10             = 0x10;
-    public static final int CAR_ZOE_R240        = 0x20;
-    public static final int CAR_ZOE_Q90         = 0x40;
-    public static final int CAR_ZOE_R90         = 0x80;
+    // note that the CAR constants are stored in the option property of the field object
+    // this is a short
+
+    public static final short CAR_MASK            = 0xff;
+
+    public static final short CAR_NONE            = 0x000;
+    //public static final int CAR_ANY             = 0x0ff;
+    public static final short CAR_FLUENCE         = 0x001;
+    public static final short CAR_ZOE_Q210        = 0x002;
+    public static final short CAR_KANGOO          = 0x004;
+    public static final short CAR_TWIZY           = 0x008;     // you'll never know ;-)
+    public static final short CAR_X10             = 0x010;     // not used
+    public static final short CAR_ZOE_R240        = 0x020;
+    public static final short CAR_ZOE_Q90         = 0x040;
+    public static final short CAR_ZOE_R90         = 0x080;
+
+    public static final short FIELD_TYPE_MASK     = 0x700;
+    public static final short FIELD_TYPE_UNSIGNED = 0x000;
+    public static final short FIELD_TYPE_SIGNED   = 0x100;
+    public static final short FIELD_TYPE_STRING   = 0x200;      // not implemented yet
 
     public static final double reduction        = 9.32;     // update suggested by Loc Dao
 

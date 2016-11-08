@@ -1234,13 +1234,13 @@ public class Fields implements MessageListener {
 //+"0x7bb,280,295,1,0,0,,0x2104,0x6104,e2\n" // Module 12 raw NTC
                         +"0x7bb,296,303,1,40,0,°C,0x2104,0x6104,e2\n" // Cell 12 Temperature
 //+"0x7bb,16,31,1,0,0,,0x2104,0x6104,1\n" // Module 1 raw NTC
-                        +"0x7bb,32,39,1,0,0,°C,0x2104,0x6104,5\n" // Cell 1 Temperature
+                        +"0x7bb,32,39,1,0,0,°C,0x2104,0x6104,105\n" // Cell 1 Temperature
 //+"0x7bb,40,55,1,0,0,,0x2104,0x6104,1\n" // Module 2 raw NTC
-                        +"0x7bb,56,63,1,0,0,°C,0x2104,0x6104,5\n" // Cell 2 Temperature
+                        +"0x7bb,56,63,1,0,0,°C,0x2104,0x6104,105\n" // Cell 2 Temperature
 //+"0x7bb,64,79,1,0,0,,0x2104,0x6104,1\n" // Module 3 raw NTC
-                        +"0x7bb,80,87,1,0,0,°C,0x2104,0x6104,5\n" // Cell 3 Temperature
+                        +"0x7bb,80,87,1,0,0,°C,0x2104,0x6104,105\n" // Cell 3 Temperature
 //+"0x7bb,88,103,1,0,0,,0x2104,0x6104,1\n" // Module 4 raw NTC
-                        +"0x7bb,104,111,1,0,0,°C,0x2104,0x6104,5\n" // Cell 4 Temperature
+                        +"0x7bb,104,111,1,0,0,°C,0x2104,0x6104,105\n" // Cell 4 Temperature
 //+"0x7bb,64,79,0.001,0,3,V,0x2105,0x6105,1\n" // Threshold bad cell
 //+"0x7bb,80,95,0.001,0,3,V,0x2105,0x6105,1\n" // Threshol weak cell
 //+"0x7bb,20,20,1,0,0,,0x2107,0x6107,1\n" // Cell 01 Balancing Shunt Active
