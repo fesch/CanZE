@@ -996,8 +996,8 @@ public class Fields implements MessageListener {
 //+"0x5ee,59,59,1,0,0,,,,ff\n" // Day Running Light Request
 //+"0x5ee,60,63,50,0,0,W/m2,,,ff\n" // Visible Solar Level Info
 //+"0x62c,0,1,1,0,0,,,,ff\n" // EPS Warning
-//+"0x62d,0,9,10,0,0,kWh/100km,,,ff\n" // Worst Average Consumption
-//+"0x62d,10,19,10,0,0,kWh/100km,,,ff\n" // Best Average Consumption
+                        +"0x62d,0,9,0.1,0,0,kWh/100km,,,ff\n" // Worst Average Consumption
+                        +"0x62d,10,19,0.1,0,0,kWh/100km,,,ff\n" // Best Average Consumption
 //+"0x62d,20,28,0.01,0,0,W,,,ff\n" // BCB Power Mains
 //+"0x634,0,1,1,0,0,,,,ff\n" // TCU Refuse to Sleep
 //+"0x634,2,3,1,0,0,,,,ff\n" // Ecall Function Failure Display
@@ -1051,7 +1051,7 @@ public class Fields implements MessageListener {
                         +"0x654,25,31,1,0,0,,,,ff\n" // State of Charge
                         +"0x654,32,41,1,0,0,min,,,ff\n" // Time to Full
                         +"0x654,42,51,1,0,0,km,,,ff\n" // Available Distance
-//+"0x654,52,61,0.1,0,1,kWh/100km,,,ff\n" // Average Consumption
+                        +"0x654,52,61,0.1,0,1,kWh/100km,,,ff\n" // Average Consumption
 //+"0x654,62,62,1,0,0,,,,ff\n" // HV Battery Low
 //+"0x656,3,3,1,0,0,,,,ff\n" // Trip Data Reset
 //+"0x656,21,31,1,0,0,min,,,ff\n" // Cluster Scheduled Time

@@ -45,6 +45,7 @@ import lu.fisch.canze.activities.HarmActivity;
 import lu.fisch.canze.activities.LeafSpyActivity;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.activities.PredictionActivity;
+import lu.fisch.canze.activities.RangeActivity;
 import lu.fisch.canze.activities.StatsActivity;
 import lu.fisch.canze.activities.TachoActivity;
 import lu.fisch.canze.activities.TemperatureActivity;
@@ -200,6 +201,7 @@ public class ExperimentalFragment extends Fragment {
                 ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });
+
 
         return view;
     }

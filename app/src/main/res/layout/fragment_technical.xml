@@ -127,6 +127,39 @@
 
             </TableRow>
 
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="Range"
+                    android:id="@+id/buttonRange"
+                    android:drawableLeft="@mipmap/button_range"
+                    android:layout_column="0" />
+
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="---"
+                    android:id="@+id/notAffected2"
+                    android:layout_column="1" />
+
+            </TableRow>
+
+
         </TableLayout>
 
     </ScrollView>
