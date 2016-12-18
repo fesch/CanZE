@@ -26,6 +26,7 @@ import java.util.Calendar;
 
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
@@ -139,9 +140,9 @@ public class BobDue extends Device {
     }
 
     @Override
-    public Message requestFreeFrame(Field field) {
+    public Message requestFreeFrame(Frame frame) {
         // send the command and wait fir an answer, no delay
-        String data = sendAndWaitForAnswer("g" + field.getHexId(), 0);
+        String data = sendAndWaitForAnswer("g" + frame.getHexId(), 0);
         // handle empty answer
         if(data.trim().isEmpty()) wrongCount++;
         if(wrongCount>WRONG_THRESHOLD) {
@@ -154,13 +155,13 @@ public class BobDue extends Device {
                 }
             })).start();
         }
-        return responseToMessage(field,data);
+        return responseToMessage(frame,data);
     }
 
     @Override
-    public Message requestIsoTpFrame(Field field) {
+    public Message requestIsoTpFrame(Frame frame) {
         // build the command string to send to the remote device
-        String command = "i" + field.getHexId() + "," + field.getRequestId() + "," + field.getResponseId();
+        String command = "i" + frame.getHexId() + "," + frame.getRequestId() + "," + frame.getResponseId();
         String data = sendAndWaitForAnswer(command, 0);
         // handle empty answer
         if(data.trim().isEmpty()) wrongCount++;
@@ -175,15 +176,15 @@ public class BobDue extends Device {
             })).start();
         }
         // send and wait fir an answer, no delay
-        return responseToMessage(field,data);
+        return responseToMessage(frame,data);
     }
 
-    private Message responseToMessage(Field field, String text)
+    private Message responseToMessage(Frame frame, String text)
     {
         // split up the fields
         String[] pieces = text.trim().split(",");
         if(pieces.length>1)
-            return new Message(field,pieces[1].trim());
+            return new Message(frame, pieces[1].trim());
         else
         {
             MainActivity.debug("BobDue: Got > "+text.trim());

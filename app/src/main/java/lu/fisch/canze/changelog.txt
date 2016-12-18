@@ -1,4 +1,23 @@
-2016.10.23 [Jeroen] Get options field back in line and update mains spreadsheet to that and cars
+2016.12.18 [Jeroen] Put dummy gateway server online
+2016.12.18 [Jeroen] Class ELM327Http added
+2016.12.18 [Jeroen] Class Settingsactivity ELM327Http and Http added
+2016.12.14 [Jeroen] Class BluetoothManager implemented dummyMode
+2016.12.04 [Jeroen] Class Mainactivity registerApplicationFields() changed to public. Avoid null exception when
+                        speed field is not available, loadsettings sets BT dummyMode
+2016.12.04 [Jeroen] Class Frames structure for initialization now identical to Fields (subframes)
+2016.12.04 [Jeroen] Added EcuDiagLBC with a small init string
+2016.11.29 [Jeroen] Class (Virtual)Field and Fields: added decent String and List support
+2016.11.29 [Jeroen] DtcActivity: added doDiag and corresponding button in activity
+2016.11.29 [Jeroen] Class Ecu: added dtcs and frames and possibily for dynamic loading. Probably unneeded
+2016.11.29 [Jeroen] Class Field: added getFrame, optional name and optional list. Offset to int
+2016.11.29 [Jeroen] Class VirtualField: match with Field
+2016.11.29 [Jeroen] Class Frame: added fields, addField and getAllFields to optimize Fields.onMessageCompleteEvent
+2016.11.29 [Jeroen] Class Device: minor reformatting
+2016.12.18 [Jeroen] Changed overall logic that frames and messages are bound to a device, not fields
+2016.11.29 [Jeroen] Class Fields: optimized Fields.onMessageCompleteEvent massively. Added fillDynamic, overloaded load()
+                        get options field back in line and update mains spreadsheet to that and cars
+                        Removed all 0x from codes
+2016.10.23 [Jeroen] Ensure frames are reloaded before fields
 
 ---< Version 1.18 / 2016.11.08 >---
 

@@ -33,6 +33,8 @@ public class Ecu {
     private int toId;
     private String mnemonic;
     private String aliases; // semicolon separated
+    private Fields fields;
+    private Dtcs dtcs;
 
     public Ecu(String name, int renaultId, String networks, int fromId, int toId, String mnemonic, String aliases) {
         this.name = name;
@@ -60,8 +62,16 @@ public class Ecu {
         return fromId;
     }
 
+    public String getHexFromId() {
+        return Integer.toHexString(fromId);
+    }
+
     public int getToId() {
         return toId;
+    }
+
+    public String getHexToId() {
+        return Integer.toHexString(toId);
     }
 
     public String getMnemonic() {
@@ -72,4 +82,11 @@ public class Ecu {
         return aliases;
     }
 
+    public Fields getFields() {
+        return fields;
+    }
+
+    public void setFields(Fields field) {
+        this.fields = fields;
+    }
 }

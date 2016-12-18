@@ -75,6 +75,7 @@ public class BluetoothManager {
 
     private BluetoothAdapter bluetoothAdapter = null;
     private BluetoothSocket bluetoothSocket = null;
+    private boolean dummyMode = false;
 
     private BluetoothEvent bluetoothEvent;
 
@@ -108,6 +109,9 @@ public class BluetoothManager {
     public int getHardwareState() {
         // Check for Bluetooth support and then check to make sure it is turned on
         // Emulator doesn't support Bluetooth and will return null
+
+        if (dummyMode) return STATE_BLUETOOTH_ACTIVE;
+
         if(bluetoothAdapter ==null)
         {
             return STATE_BLUETOOTH_NOT_AVAILABLE;
@@ -160,6 +164,9 @@ public class BluetoothManager {
     }
 
     public void connect(final String bluetoothAddress, final boolean secure, final int retries) {
+
+        if (dummyMode) return;
+
         retry = true;
         privateConnect(bluetoothAddress, secure, retries);
     }
@@ -284,6 +291,9 @@ public class BluetoothManager {
 
     public void disconnect()
     {
+
+        if (dummyMode) return;
+
         try {
             // execute attached event
             if(bluetoothEvent!=null) bluetoothEvent.onBeforeDisconnect(bluetoothSocket);
@@ -319,6 +329,9 @@ public class BluetoothManager {
 
     // write a message to the output stream
     public void write(String message) {
+
+        if (dummyMode) return;
+
         if(bluetoothSocket.isConnected()) {
             byte[] msgBuffer = message.getBytes();
             try {
@@ -342,6 +355,9 @@ public class BluetoothManager {
     }
 
     public int read(byte[] buffer) throws IOException {
+
+        if (dummyMode) return 0;
+
         if(bluetoothSocket.isConnected())
             return inputStream.read(buffer);
         else
@@ -349,6 +365,9 @@ public class BluetoothManager {
     }
 
     public int read() throws IOException {
+
+        if (dummyMode) return -1;
+
         if(bluetoothSocket.isConnected())
             return inputStream.read();
         else
@@ -356,6 +375,9 @@ public class BluetoothManager {
     }
 
     public int available() throws IOException {
+
+        if (dummyMode) return 0;
+
         if(bluetoothSocket.isConnected())
             return inputStream.available();
         else
@@ -364,6 +386,9 @@ public class BluetoothManager {
 
     public boolean isConnected()
     {
+
+        if (dummyMode) return true;
+
         if(bluetoothSocket==null) return false;
         return bluetoothSocket.isConnected();
     }
@@ -373,6 +398,14 @@ public class BluetoothManager {
      \ ------------------------------ */
 
     public void setBluetoothEvent(BluetoothEvent bluetoothEvent) {
+
+        if (dummyMode) return;
+
         this.bluetoothEvent = bluetoothEvent;
     }
+
+    public void setDummyMode (boolean dummyMode) {
+        this.dummyMode = dummyMode;
+    }
+
 }

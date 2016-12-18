@@ -33,11 +33,15 @@ package lu.fisch.canze.actors;
  */
 public class Message {
 
-    protected Field field;
+    // a message represents a message coming from a device as a result from a frame request
+    // since a message contains frame data, we can pop through to the frame but should not
+    // not do so for ISO-TP diagnostics frames
+
+    protected Frame frame;
     protected String data;
 
-    public Message(Field field, String data) {
-        this.field=field;
+    public Message(Frame frame, String data) {
+        this.frame=frame;
         this.data=data;
     }
 
@@ -53,12 +57,12 @@ public class Message {
         this.data = data;
     }
 
-    public Field getField() {
-        return field;
+    public Frame getFrame() {
+        return frame;
     }
 
-    public void setField(Field field) {
-        this.field = field;
+    public void setFrame(Frame frame) {
+        this.frame = frame;
     }
 
     /* --------------------------------

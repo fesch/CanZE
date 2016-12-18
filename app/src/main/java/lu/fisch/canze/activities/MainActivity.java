@@ -70,6 +70,7 @@ import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.devices.BobDue;
 import lu.fisch.canze.devices.Device;
 import lu.fisch.canze.devices.ELM327;
+import lu.fisch.canze.devices.ELM327OverHttp;
 import lu.fisch.canze.fragments.ExperimentalFragment;
 import lu.fisch.canze.fragments.MainFragment;
 import lu.fisch.canze.fragments.TechnicalFragment;
@@ -236,6 +237,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         fieldLogMode = settings.getBoolean("optFieldLog", false);
         toastLevel = settings.getInt("optToast", 1);
 
+        BluetoothManager.getInstance().setDummyMode(bluetoothDeviceName.compareTo("HTTP") == 0);
+
         String carStr = settings.getString("car", "None");
         switch (carStr) {
             case "None":
@@ -276,39 +279,46 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             case "ELM327":
                 device = new ELM327();
                 break;
+            case "ELM327Http":
+                device = new ELM327OverHttp();
+                break;
             default:
                 device = null;
                 break;
         }
 
-        // since the car type may have changed, reload the frame timings
+        // since the car type may have changed, reload the frame timings and fields
+        Frames.getInstance().load();
         fields.load();
-        Frames.getInstance().reloadTiming();
 
         if(device!=null) {
             // initialise the connection
             device.initConnection();
 
             // register application wide fields
-            registerApplicationFields();
+            // registerApplicationFields(); // now done in Fields.load
         }
 
         // after loading PREFERENCES we may have new values for "dataExportMode"
         dataExportMode = dataLogger.activate ( dataExportMode );
     }
 
-    private void registerApplicationFields() {
+    public void registerApplicationFields() {
         if (safeDrivingMode) {
             // speed
             Field field = fields.getBySID("5d7.0");
-            field.addListener(MainActivity.getInstance());
-            if(device!=null)
-                device.addApplicationField(field,1000); // query every second
+            if (field != null) {
+                field.addListener(MainActivity.getInstance()); // callback is onFieldUpdateEvent
+                if (device != null)
+                    device.addApplicationField(field, 1000); // query every second
+            }
         } else {
             Field field = fields.getBySID("5d7.0");
-            field.removeListener(MainActivity.getInstance());
-            if(device!=null)
-                device.removeApplicationField(field);
+            if (field != null) {
+                field.removeListener(MainActivity.getInstance());
+                if (device != null)
+                    device.removeApplicationField(field);
+            }
         }
     }
 

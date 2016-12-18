@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <supports-screens
         android:largeScreens="true"
@@ -31,83 +32,82 @@
         </activity>
         <activity
             android:name=".activities.SettingsActivity"
-            android:label="@string/title_activity_settings" />
+            android:label="@string/title_activity_settings"></activity>
         <activity
             android:name=".activities.WidgetActivity"
-            android:label="@string/title_activity_widget" />
+            android:label="@string/title_activity_widget"></activity>
         <activity
             android:name=".activities.TachoActivity"
-            android:label="@string/title_activity_tacho" />
+            android:label="@string/title_activity_tacho"></activity>
         <activity
             android:name=".activities.ChargingTechActivity"
-            android:label="@string/title_activity_charging" />
+            android:label="@string/title_activity_charging"></activity>
         <activity
             android:name=".activities.ChargingActivity"
-            android:label="@string/title_activity_charging" />
+            android:label="@string/title_activity_charging"></activity>
         <activity
             android:name=".activities.DrivingActivity"
-            android:label="@string/title_activity_driving" />
+            android:label="@string/title_activity_driving"></activity>
         <activity
             android:name=".activities.BatteryTempActivity"
-            android:label="@string/title_activity_battery_temp" />
+            android:label="@string/title_activity_battery_temp"></activity>
         <activity
             android:name=".activities.TemperatureActivity"
-            android:label="@string/title_activity_temperatures" />
+            android:label="@string/title_activity_temperatures"></activity>
         <activity
             android:name=".activities.BrakingActivity"
-            android:label="@string/title_activity_braking" />
+            android:label="@string/title_activity_braking"></activity>
         <activity
             android:name=".activities.LeafSpyActivity"
-            android:label="@string/title_activity_leaf_spy" />
+            android:label="@string/title_activity_leaf_spy"></activity>
         <activity
             android:name=".activities.ConsumptionActivity"
-            android:label="@string/title_activity_test" />
+            android:label="@string/title_activity_test"></activity>
         <activity
             android:name=".activities.ElmTestActivity"
-            android:label="@string/title_activity_elm_test" />
+            android:label="@string/title_activity_elm_test"></activity>
         <activity
             android:name=".activities.StatsActivity"
-            android:label="@string/title_activity_stats" />
+            android:label="@string/title_activity_stats"></activity>
         <activity
             android:name=".activities.FirmwareActivity"
-            android:label="@string/title_activity_firmware" />
+            android:label="@string/title_activity_firmware"></activity>
         <activity
             android:name=".activities.BatteryActivity"
-            android:label="@string/title_activity_battery" />
+            android:label="@string/title_activity_battery"></activity>
         <activity
             android:name=".activities.HarmActivity"
-            android:label="@string/title_activity_harm" />
+            android:label="@string/title_activity_harm"></activity>
         <activity
             android:name=".activities.AlexandreActivity"
-            android:label="@string/title_activity_alexandre" />
+            android:label="@string/title_activity_alexandre"></activity>
         <activity
             android:name=".activities.DtcActivity"
-            android:label="@string/title_activity_dtc" />
+            android:label="@string/title_activity_dtc"></activity>
         <activity
             android:name=".activities.HeatmapBatcompActivity"
-            android:label="@string/title_activity_heatmap_bat" />
+            android:label="@string/title_activity_heatmap_bat"></activity>
         <activity
             android:name=".activities.HeatmapCellvoltageActivity"
-            android:label="@string/title_activity_heatmap_cellvoltage" />
+            android:label="@string/title_activity_heatmap_cellvoltage"></activity>
         <activity
             android:name=".activities.FluenceKangooTempsActivity"
-            android:label="Fluence Kangoo Temp" />
+            android:label="Fluence Kangoo Temp"></activity>
         <activity
             android:name=".activities.TyresActivity"
-            android:label="@string/title_activity_tyres" />
+            android:label="@string/title_activity_tyres"></activity>
         <activity
             android:name=".activities.ChargingGraphActivity"
-            android:label="@string/title_activity_charging_graph" />
+            android:label="@string/title_activity_charging_graph"></activity>
         <activity
             android:name=".activities.ClimaTechActivity"
-            android:label="@string/title_activity_clima_tech" />
+            android:label="@string/title_activity_clima_tech"></activity>
         <activity
             android:name=".activities.GPSTestActivity"
-            android:label="@string/title_activity_gps_test" />
+            android:label="@string/title_activity_gps_test"></activity>
         <activity
             android:name=".activities.PredictionActivity"
-            android:label="@string/title_activity_prediction" />
-        <activity android:name=".activities.RangeActivity"></activity>
+            android:label="@string/title_activity_prediction"></activity>
     </application>
 
 </manifest>

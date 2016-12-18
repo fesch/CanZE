@@ -72,17 +72,19 @@ public class SettingsActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
         String device=settings.getString("device", "Arduino");
 
-        // fill devices
+        // fill remote devices
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         arrayAdapter.add("ELM327");
         //arrayAdapter.add("Arduino Due");
         arrayAdapter.add("Bob Due");
+        arrayAdapter.add("ELM327Http");
         //arrayAdapter.add("ELM327 Experimental");
 
         int index = 0;
         if(device.equals("ELM327")) index=0;
         //else if(device.equals("Arduino Due")) index=1;
         else if(device.equals("Bob Due")) index=1;
+        else if(device.equals("ELM327Http")) index=2;
         //else if(device.equals("ELM327 Experimental")) index=3;
 
         // display the list
@@ -522,6 +524,15 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void fillDeviceList()
     {
+        SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
+        String deviceAddress=settings.getString("deviceAddress", null);
+        int index=-1;
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+        arrayAdapter.add("HTTP\nhttp://wemos-1.notice.lan/");
+        if("HTTP".equals(deviceAddress))
+            index=0;
+
         // get the bluetooth adapter
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         // get the devices
@@ -529,13 +540,10 @@ public class SettingsActivity extends AppCompatActivity {
         // if there are paired devices
         if (pairedDevices.size() > 0)
         {
-            SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
-            String deviceAddress=settings.getString("deviceAddress", null);
 
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+
             // loop through paired devices
             int i = 0;
-            int index=-1;
             for (BluetoothDevice device : pairedDevices) {
                 // add the name and address to an array adapter to show in a ListView
 
@@ -556,15 +564,16 @@ public class SettingsActivity extends AppCompatActivity {
                 arrayAdapter.add(deviceAlias + "\n" + device.getAddress());
                 // get the index of the selected item
                 if(device.getAddress().equals(deviceAddress))
-                    index=i;
+                    index= i + 1; // plus one as HTTP is always first in list
                 i++;
             }
-            // display the list
-            Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
-            deviceList.setAdapter(arrayAdapter);
-            // select the actual device
-            deviceList.setSelection(index);
-            deviceList.setSelected(true);
+
         }
+        // display the list
+        Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
+        deviceList.setAdapter(arrayAdapter);
+        // select the actual device
+        deviceList.setSelection(index);
+        deviceList.setSelected(true);
     }
 }

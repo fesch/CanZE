@@ -66,7 +66,12 @@ public class Ecus {
                         + "Horn,2138,E,0,0,,-\n"
                         + "VirtualField computer,9999,E,800,800,VFC,-\n"
 
-                        +"";
+                        + "";
+
+        fillDynamic(ecuDef);
+    }
+
+    private void fillDynamic (String ecuDef) {
         String[] lines = ecuDef.split("\n");
         for (String line : lines) {
             //Get all tokens available in line
@@ -123,5 +128,20 @@ public class Ecus {
     public ArrayList<Ecu> getAllEcus () {
         return ecus;
     }
+
+    public void load ()
+    {
+        ecus.clear();
+        fillStatic();
+    }
+
+    public void load (String initString)
+    {
+        ecus.clear();
+        fillDynamic(initString);
+    }
+
+
+
 
 }
