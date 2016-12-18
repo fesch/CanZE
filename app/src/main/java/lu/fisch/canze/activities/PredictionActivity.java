@@ -270,8 +270,8 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
             // if we were full after a quarter of the table size
             // and over half an hour, half the tick step
             seconds_per_tick /= 2;
-        } else if (iter_at_99 > 12 && seconds_per_tick > 18) {
-            // if we were full after an eighth of the table size
+        } else if (seconds_per_tick > 18) {
+            // if we were full before or equal a quarter of the table size
             // and over half an hour, quarter the tick step
             seconds_per_tick /= 4;
         }

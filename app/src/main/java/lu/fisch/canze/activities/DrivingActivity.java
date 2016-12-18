@@ -268,7 +268,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_MeanEffectiveTorque:
                         pb = (ProgressBar) findViewById(R.id.MeanEffectiveAccTorque);
-                        pb.setProgress((int) (field.getValue() * 9.3)); // --> translate from motor torque to wheel torque
+                        pb.setProgress((int) (field.getValue() * MainActivity.reduction)); // --> translate from motor torque to wheel torque
                         break;
                     case SID_EVC_Odometer:
                         odo = (int ) field.getValue();
@@ -310,7 +310,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         break;
 
                     case SID_Coasting_Torque:
-                        coasting_Torque = field.getValue() * 9.3; // it seems this torque is given in motor torque, not in wheel torque. Maybe another adjustment by a factor 05 is needed (two wheels)
+                        coasting_Torque = field.getValue() * MainActivity.reduction; // this torque is given in motor torque, not in wheel torque
                         break;
 
                     case SID_TotalPotentialResistiveWheelsTorque:

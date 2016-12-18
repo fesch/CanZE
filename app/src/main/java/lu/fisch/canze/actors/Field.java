@@ -43,26 +43,38 @@ public class Field {
     protected Frame frame;
     protected short from;
     protected short to;
-    protected double offset;
+    protected int offset;
     //private int divider;
     //private int multiplier;
     protected int decimals;
     protected double resolution;
     protected String unit;
-    protected String requestId;
     protected String responseId;
-    protected short options;           // bitwise options 0xf = car (0-15), 0x70 = type (0=unsigned, 1=signed, 2=reserved for string, 3-7 reserved)
+    protected short options;           // see the options definitions in MainActivity
+    protected String name;
+    protected String list;
     //private int skips;
 
     protected double value = Double.NaN;
+    protected String strVal = "";
     //private int skipsCount = 0;
 
     protected long lastRequest = 0;
     protected int interval = Integer.MAX_VALUE;
 
     protected boolean virtual = false;
-    
-    public Field(Frame frame, short from, short to, double resolution, int decimals, double offset, String unit, String requestId, String responseId, short options) {
+
+    /*
+        Please note that the offset is applied BEFORE scaling
+        The request and response Ids should be stated as HEX strings without leading 0x
+        The name is optional and can be used for diagnostice printouts
+        The list is optional and can contain a string, comma-separated containing a description
+          of the value, 0 based
+     */
+
+
+
+    public Field(Frame frame, short from, short to, double resolution, int decimals, int offset, String unit, String responseId, short options, String name, String list) {
         this.frame=frame;
         this.from=from;
         this.to=to;
@@ -70,9 +82,10 @@ public class Field {
         this.resolution = resolution;
         this.decimals = decimals;
         this.unit = unit;
-        this.requestId=requestId;
         this.responseId=responseId;
         this.options=options;
+        this.name=name;
+        this.list=list;
 
         this.lastRequest=Calendar.getInstance().getTimeInMillis();
     }
@@ -80,7 +93,7 @@ public class Field {
     @Override
     public Field clone()
     {
-        Field field = new Field(frame, from, to, resolution, decimals, offset, unit, requestId, responseId, options);
+        Field field = new Field(frame, from, to, resolution, decimals, offset, unit, responseId, options, name, list);
         field.value = value;
         field.lastRequest=lastRequest;
         field.interval=interval;
@@ -143,10 +156,19 @@ public class Field {
         return result.trim();
     }
 
+    public String getListValue()
+    {
+        if (list == "") return ("");
+        if (Double.isNaN(value)) return ("");
+        String[] lines = list.split(",");
+        if (value < 0 || value >= lines.length) return ("");
+        return lines[(int)value];
+    }
+
     public double getValue()
     {
         //double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
-        double val =  (value-offset)* resolution;
+        double val =  (value-offset) * resolution;
         if (MainActivity.milesMode) {
             if (unit.toLowerCase().startsWith("km"))
                 val = Math.round(val / 1.609344 * 10.0) / 10.0;
@@ -291,6 +313,11 @@ public class Field {
         if (!Double.isNaN(value)) notifyFieldListeners();
     }
 
+    public void setValue(String value) {
+        this.strVal = value;
+        notifyFieldListeners();
+    }
+
     public void setCalculatedValue(double value) {
         // inverted conversion
         if (MainActivity.milesMode)
@@ -308,7 +335,7 @@ public class Field {
         return frame.getId();
     }
     public String getHexId() {
-        return Integer.toHexString(frame.getId());
+        return frame.getHexId();
     }
 
 //    public void setId(int id) {
@@ -334,12 +361,11 @@ public class Field {
         this.unit = unit;
     }
 
-    public String getRequestId() {
-        return requestId;
-    }
-
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
+    public String getRequestId () {
+        if (responseId.compareTo("") == 0) return ("");
+        char[] tmpChars = responseId.toCharArray();
+        tmpChars[0] -= 0x20;
+        return String.valueOf(tmpChars);
     }
 
     public String getResponseId() {
@@ -377,5 +403,27 @@ public class Field {
         return virtual;
     }
 
-    public boolean isSigned () { return (this.options & 0xe0) == 1; }
+    public boolean isSigned () {
+        return (this.options & MainActivity.FIELD_TYPE_MASK) == MainActivity.FIELD_TYPE_SIGNED;
+    }
+
+    public boolean isString () {
+        return (this.options & MainActivity.FIELD_TYPE_MASK) == MainActivity.FIELD_TYPE_STRING;
+    }
+
+    public boolean isList () {
+        return list != "";
+    }
+
+    public String getName () {
+        return name;
+    }
+
+    public Frame getFrame() {
+        return frame;
+    }
+
+    public void setFrame(Frame frame) {
+        this.frame = frame;
+    }
 }

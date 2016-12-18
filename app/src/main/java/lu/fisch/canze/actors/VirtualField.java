@@ -26,7 +26,7 @@ public class VirtualField extends Field implements FieldListener {
         // virtual frame added in the initialization block
         // super(Frames.getInstance().createVirtualIfNotExists(id), 0, 0, 1, 1, 0, unit, "", "", 0);
         // We're creating a new Field, frame 800, bit position 24-31, resolution 1, decimals 0, offset 0, given unit, empty requestId, given responseId, generic car
-        super(Frames.getInstance().getById(0x800), (short)24, (short)31, 1, 0, 0, unit, "", responseId, (short)0);
+        super(Frames.getInstance().getById(0x800), (short)24, (short)31, 1, 0, 0, unit, responseId, (short)0, null, null);
 
         // register dependant listeners
         for (Field field : dependantFields.values()) {

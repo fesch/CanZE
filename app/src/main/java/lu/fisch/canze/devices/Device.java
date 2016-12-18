@@ -29,6 +29,7 @@ import java.util.Comparator;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.actors.VirtualField;
 import lu.fisch.canze.bluetooth.BluetoothManager;
@@ -214,7 +215,7 @@ public abstract class Device {
                     MainActivity.debug("Device: queryNextFilter: " + field.getSID());
 
                     // get the data
-                    Message message = requestField(field);
+                    Message message = requestFrame(field.getFrame());
                     // test if we got something
                     if(message!=null && !someThingWrong) {
                         Fields.getInstance().onMessageCompleteEvent(message);
@@ -680,21 +681,20 @@ public abstract class Device {
     /**
      * Request a field from the device depending on the
      * type of field.
-     * @param field     the field to be requested
+     * @param frame     the field to be requested
      * @return
      */
-    public Message requestField(Field field)
+    public Message requestFrame(Frame frame)
     {
         Message msg = null;
 
-        // check that only non virtual fields are being queried
-        if(!field.isVirtual()) {
-
-            if (field.isIsoTp()) msg = requestIsoTpFrame(field);
-            else msg = requestFreeFrame(field);
+            if (frame.isIsoTp())
+                msg = requestIsoTpFrame(frame);
+            else
+                msg = requestFreeFrame(frame);
 
             if (msg == null || msg.getData().isEmpty()) {
-                MainActivity.debug("Device: request for " + field.getSID() + " is empty ...");
+                MainActivity.debug("Device: request for " + frame.getRID() + " is empty ...");
                 // theory: when the answer is empty, the timeout is to low --> increase it!
                 // jm: but never beyond 2
                 if (intervalMultiplicator < maxIntervalMultiplicator) intervalMultiplicator += 0.1;
@@ -705,26 +705,23 @@ public abstract class Device {
                 if (intervalMultiplicator > minIntervalMultiplicator) intervalMultiplicator -= 0.01;
                 MainActivity.debug("Device: intervalMultiplicator = " + intervalMultiplicator);
             }
-        }
-        else
-            MainActivity.debug("Device: ignoring virtual field " + field.getSID());
 
         return msg;
     }
 
     /**
      * Request a free-frame type field from the device
-     * @param field
+     * @param frame
      * @return
      */
-    public abstract Message requestFreeFrame(Field field);
+    public abstract Message requestFreeFrame(Frame frame);
 
     /**
      * Request an ISO-TP frame type from the device
-     * @param field
+     * @param frame
      * @return
      */
-    public abstract Message requestIsoTpFrame(Field field);
+    public abstract Message requestIsoTpFrame(Frame frame);
 
     public abstract boolean initDevice(int toughness);
 

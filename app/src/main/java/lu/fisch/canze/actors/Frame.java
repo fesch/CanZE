@@ -21,23 +21,49 @@
 
 package lu.fisch.canze.actors;
 
+import java.util.ArrayList;
+
 /**
  * Frame
  */
 public class Frame {
 
     private int id;
+    private String responseId = null;
     private int interval; // in ms
     private Ecu sendingEcu;
+    private final ArrayList<Field> fields = new ArrayList<>();
+    private Frame containingFrame = null;
 
-    public Frame (int id, int interval, Ecu sendingEcu) {
+    public Frame (int id, int interval, Ecu sendingEcu, String responseId, Frame containingFrame) {
         this.id = id;
         this.interval = interval;
         this.sendingEcu = sendingEcu;
+        this.responseId = responseId;
+        this.containingFrame = containingFrame;
+    }
+
+    public boolean isIsoTp()
+    {
+        if (this.responseId == null) return false;
+        return !responseId.trim().isEmpty();
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getRID()
+    {
+        if(responseId!=null && !responseId.trim().isEmpty())
+            return (getHexId()+"."+responseId.trim()).toLowerCase();
+        else
+            return (getHexId()).toLowerCase();
+    }
+
+
+    public String getHexId() {
+        return Integer.toHexString(id);
     }
 
     public int getInterval() {
@@ -50,4 +76,26 @@ public class Frame {
         return sendingEcu;
     }
 
+    public String getResponseId() {
+        return responseId;
+    }
+
+    public ArrayList<Field> getAllFields() {
+        return fields;
+    }
+
+    public void addField(Field field) {
+        this.fields.add(field);
+    }
+
+    public String getRequestId () {
+        if (responseId.compareTo("") == 0) return ("");
+        char[] tmpChars = responseId.toCharArray();
+        tmpChars[0] -= 0x20;
+        return String.valueOf(tmpChars);
+    }
+
+    public Frame getContainingFrame() {
+        return containingFrame;
+    }
 }

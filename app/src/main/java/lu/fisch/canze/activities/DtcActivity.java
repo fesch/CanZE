@@ -24,7 +24,6 @@ package lu.fisch.canze.activities;
 import android.view.View.OnClickListener;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -37,9 +36,12 @@ import java.util.Calendar;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Dtcs;
 import lu.fisch.canze.actors.Ecu;
+import lu.fisch.canze.actors.EcuDiagLBC;
 import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.actors.Frame;
+import lu.fisch.canze.actors.Frames;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
@@ -67,7 +69,6 @@ public class DtcActivity  extends CanzeActivity {
         btnQuery.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //MainActivity.toast("On Button Click : " + "\n" + String.valueOf(spinnerEcu.getSelectedItem()));
                 doQueryEcu(Ecus.getInstance().getByMnemonic(String.valueOf(spinnerEcu.getSelectedItem())));
             }
         });
@@ -76,8 +77,15 @@ public class DtcActivity  extends CanzeActivity {
         btnClear.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                //MainActivity.toast("On Button Click : " + "\n" + String.valueOf(spinnerEcu.getSelectedItem()));
                 doClearEcu(Ecus.getInstance().getByMnemonic(String.valueOf(spinnerEcu.getSelectedItem())));
+            }
+        });
+
+        final Button btnDiag = (Button) findViewById(R.id.ecuDiag);
+        btnDiag.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doDiagEcu(Ecus.getInstance().getByMnemonic(String.valueOf(spinnerEcu.getSelectedItem())));
             }
         });
 
@@ -95,7 +103,6 @@ public class DtcActivity  extends CanzeActivity {
                     appendResult("\nNo connection. Close this screen and make sure your device paired and connected\n");
                     return;
                 }
-
                 appendResult("\nReady");
             }
         }).start();
@@ -104,21 +111,22 @@ public class DtcActivity  extends CanzeActivity {
     void doQueryEcu(Ecu ecu) {
         Field field;
         String filter;
+        Message message;
+        String backRes;
 
         clearResult();
 
         appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
 
+        /*
+        if (ecu.getDtcs() == null) {
+            appendResult("Loading DTCs....\n");
+            ecu.setDtcs(null); // do it here!!!!
+            appendResult("Done loading DTCs\n");
+        } */
+
         // get the from ID from the selected ECU
         filter = Integer.toHexString(ecu.getFromId());
-
-        // compile the field query and get the Field object
-        field = Fields.getInstance().getBySID(filter + ".5902ff.0"); // get DTC
-        if (field == null) {
-            appendResult("Field does not exist\n");
-            return;
-        }
-
         // re-initialize the device
         appendResult("\nSending initialisation sequence\n");
         if (!MainActivity.device.initDevice(1)) {
@@ -126,14 +134,106 @@ public class DtcActivity  extends CanzeActivity {
             return;
         }
 
+        // still trying desperately to get to the BCB!!!1
+        if (filter.equals("793")) {
+            // we are a tester
+            appendResult("\nSending start tester session sequence\n");
+            field = Fields.getInstance().getBySID(filter + ".7e01.0");
+            if (field == null) {
+                appendResult("Start session field does not exist\n");
+                return;
+            }
+
+            // query the Field
+            message = MainActivity.device.requestFrame(field.getFrame());
+            if (message == null) {
+                appendResult("Msg is null. Is the car switched on?\n");
+                return;
+            }
+
+            backRes = message.getData();
+            if (backRes == null) {
+                appendResult("Data is null. This should never happen, please report\n");
+                return;
+            }
+
+            // check the response
+            if (!backRes.toLowerCase().startsWith("7e")) {
+                appendResult("Query send, but unexpected result received:[" + backRes + "\n");
+                return;
+            }
+
+            // start a tester session
+            appendResult("\nSending start tester session sequence\n");
+            field = Fields.getInstance().getBySID(filter + ".5081.0");
+            if (field == null) {
+                appendResult("Start session field does not exist\n");
+                return;
+            }
+
+            // query the Field
+            message = MainActivity.device.requestFrame(field.getFrame());
+            if (message == null) {
+                appendResult("Msg is null. Is the car switched on?\n");
+                return;
+            }
+
+            backRes = message.getData();
+            if (backRes == null) {
+                appendResult("Data is null. This should never happen, please report\n");
+                return;
+            }
+
+            // check the response
+            if (!backRes.startsWith("50")) {
+                appendResult("Query send, but unexpected result received:[" + backRes + "\n");
+                return;
+            }
+
+            // start a tester2 session
+            appendResult("\nSending start tester2 session sequence\n");
+            field = Fields.getInstance().getBySID(filter + ".50c0.0");
+            if (field == null) {
+                appendResult("Start session field does not exist\n");
+                return;
+            }
+
+            // query the Field
+            message = MainActivity.device.requestFrame(field.getFrame());
+            if (message == null) {
+                appendResult("Msg is null. Is the car switched on?\n");
+                return;
+            }
+
+            backRes = message.getData();
+            if (backRes == null) {
+                appendResult("Data is null. This should never happen, please report\n");
+                return;
+            }
+
+            // check the response
+            if (!backRes.startsWith("50")) {
+                appendResult("Query send, but unexpected result received:[" + backRes + "\n");
+                return;
+            }
+        }
+
+        // compile the field query and get the Field object
+        appendResult("\nSending start DTCs sequence\n");
+        field = Fields.getInstance().getBySID(filter + ".5902ff.0"); // get DTC
+        if (field == null) {
+            appendResult("Get DTCs field does not exist\n");
+            return;
+        }
+
         // query the Field
-        Message message = MainActivity.device.requestField(field);
+        message = MainActivity.device.requestFrame(field.getFrame());
         if (message == null) {
             appendResult("Msg is null. Is the car switched on?\n");
             return;
         }
 
-        String backRes = message.getData();
+        backRes = message.getData();
         if (backRes == null) {
             appendResult("Data is null. This should never happen, please report\n");
             return;
@@ -168,6 +268,7 @@ public class DtcActivity  extends CanzeActivity {
 
     void doClearEcu(Ecu ecu) {
         Field field;
+        Frame frame;
         String filter;
 
         clearResult();
@@ -182,6 +283,7 @@ public class DtcActivity  extends CanzeActivity {
             appendResult("- field does not exist\n");
             return;
         }
+        frame = field.getFrame();
 
         // re-initialize the device
         appendResult("\nSending initialisation sequence\n");
@@ -191,7 +293,7 @@ public class DtcActivity  extends CanzeActivity {
         }
 
         // query the Field
-        Message message = MainActivity.device.requestField(field);
+        Message message = MainActivity.device.requestFrame (frame);
         if (message == null) {
             appendResult("Msg is null. Is the car switched on?\n");
             return;
@@ -210,6 +312,50 @@ public class DtcActivity  extends CanzeActivity {
         }
 
         appendResult("Clear seems succesful, please query DTCs\n");
+    }
+
+
+    void doDiagEcu(Ecu ecu) {
+        String filter;
+
+        // here initialize this particular ECU diagnostics fields
+        Fields.getInstance().load (EcuDiagLBC.fieldsString ());
+
+        clearResult();              // clear the screen
+
+        // re-initialize the device
+        appendResult("\nSending initialisation sequence\n");
+        if (!MainActivity.device.initDevice(1)) {
+            appendResult("\nInitialisation failed\n");
+            return;
+        }
+
+        for (Frame frame : Frames.getInstance().getAllFrames()) {
+
+            if (frame.getContainingFrame() != null) { // only use subframes
+
+                // query the Frame
+                Message message = MainActivity.device.requestFrame(frame);
+                if (message != null) {
+                    // process the frame by going through all the containing fields
+                    // setting their values and notifying all listeners (there should be none)
+                    Fields.getInstance().onMessageCompleteEvent(message);
+
+
+                    for (Field field : frame.getAllFields()) {
+                        if (field.isString()) {
+                            appendResult(field.getName() + ":" + field.getStringValue() + "\n");
+                        } else if (field.isList()) {
+                            appendResult(field.getName() + ":" + field.getListValue() + "\n");
+                        } else {
+                            appendResult(field.getName() + ":" + field.getValue() + "\n");
+                        }
+                    }
+                } else {
+                    appendResult(frame.getHexId() + ":" + "Msg is null. Is the car switched on?\n");
+                }
+            }
+        }
     }
 
 
@@ -293,9 +439,18 @@ public class DtcActivity  extends CanzeActivity {
     // UI elements
     @Override
     protected void onDestroy() {
+
+
+        // Reload the frame & timings
+        Frames.getInstance().load();
+        Fields.getInstance().load();
+
         // restart the poller
-        if (MainActivity.device != null)
+        if (MainActivity.device != null) {
             MainActivity.device.initConnection();
+            // register application wide fields
+            MainActivity.getInstance().registerApplicationFields();
+        }
 
         super.onDestroy();
     }
@@ -306,52 +461,5 @@ public class DtcActivity  extends CanzeActivity {
         getMenuInflater().inflate(R.menu.menu_empty, menu);
         return true;
     }
-/*
-    private int ecuMnemonicToId(String ecuMnemonic) { // this function should be moved to a separate class, or a function in Fields
-        Ecu ecu = Ecus.getInstance().getByMnemonic(ecuMnemonic);
-        return ecu == null ? 0 : ecu.getToId();
 
-        switch (ecu) {
-            case "BCB":
-                return 0x793;
-            case "CLIMA":
-            case "CLIMBOX":
-                return 0x764;
-            case "CLUSTER":
-                return 0x763;
-            case "EVC":
-            case "EVCBRIDGE":
-            case "SCH":
-                return 0x7ec;
-            case "TCU":
-                return 0x7da;
-            case "LBC":
-                return 0x7bb;
-            case "PEB":
-                return 0x77e;
-            case "AIBAG":
-            case "AIRBAG":
-                return 0x772;
-            case "USM":
-            case "UCM":
-            case "UPC":
-                return 0x76d;
-            case "EPS":
-                return 0x762;
-            case "ABS":
-            case "ESC":
-                return 0x760;
-            case "UBP":
-                return 0x7bc;
-            case "BCM":
-            case "UCH":
-                return 0x765;
-            case "UPA":
-                return 0x76e;
-            case "LBC2":
-                return 0x76e;
-        }
-        return 0;
-
-    } */
 }

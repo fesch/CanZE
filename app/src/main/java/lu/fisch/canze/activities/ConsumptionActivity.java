@@ -77,7 +77,7 @@ public class ConsumptionActivity extends CanzeActivity {
                 switch (fieldId) {
                     // positive torque
                     case SID_MeanEffectiveTorque:
-                        tempTorque = (int)(field.getValue() * 9.3); // --> translate from motor torque to wheel torque
+                        tempTorque = (int)(field.getValue() * MainActivity.reduction); // --> translate from motor torque to wheel torque
                         pb = (ProgressBar) findViewById(R.id.MeanEffectiveAccTorque);
                         pb.setProgress(tempTorque);
                         if (tempTorque <= 1) break;
@@ -96,7 +96,7 @@ public class ConsumptionActivity extends CanzeActivity {
                         if (tv != null) tv.setText(-tempTorque + " " + field.getUnit());
                         break;
                     case SID_Coasting_Torque:
-                        coasting_Torque = (int)(field.getValue() * 9.3); // it seems this torque is given in motor torque, not in wheel torque. Maybe another adjustment by a factor 05 is needed (two wheels)
+                        coasting_Torque = (int)(field.getValue() * MainActivity.reduction); // torque is given in motor torque, not in wheel torque
                         tempTorque = driverBrakeWheel_Torque_Request + coasting_Torque;
                         pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
                         if (pb != null) pb.setProgress(tempTorque);

@@ -28,6 +28,7 @@ import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Ecu;
 import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
@@ -518,25 +519,7 @@ public class ELM327 extends Device {
     }
 
     private int getRequestId(int responseId)
-    {                     //from        // to
- /*      if     (responseId==0x7ec) return 0x7e4;  // EVC / SCH
-        else if(responseId==0x7da) return 0x7ca;  // TCU
-        else if(responseId==0x7bb) return 0x79b;  // LBC
-        else if(responseId==0x77e) return 0x75a;  // PEB
-        else if(responseId==0x772) return 0x752;  // Airbag
-        else if(responseId==0x76d) return 0x74d;  // USM / UDP
-        else if(responseId==0x763) return 0x743;  // CLUSTER / instrument panel
-        else if(responseId==0x762) return 0x742;  // PAS
-        else if(responseId==0x760) return 0x740;  // ABS
-        else if(responseId==0x7bc) return 0x79c;  // UBP
-        else if(responseId==0x765) return 0x745;  // BCM
-        else if(responseId==0x764) return 0x744;  // CLIM
-        else if(responseId==0x76e) return 0x74e;  // UPA
-        else if(responseId==0x793) return 0x792;  // BCB
-        else if(responseId==0x7b6) return 0x796;  // LBC2
-        else if(responseId==0x722) return 0x702;  // LINSCH
-        else return 0; */
-
+    {
         Ecu ecu = Ecus.getInstance().getByFromId(responseId);
         return ecu != null ? ecu.getToId() : 0;
     }
@@ -553,11 +536,11 @@ public class ELM327 extends Device {
     }
 
     @Override
-    public Message requestFreeFrame(Field field) {
+    public Message requestFreeFrame(Frame frame) {
 
         String hexData = "";
 
-        MainActivity.debug("ELM327: requestFreeFrame: " + field.getSID());
+        // MainActivity.debug("ELM327: requestFreeFrame: " + frame.getId());
 
         if (someThingWrong) { return null ; }
 
@@ -565,7 +548,7 @@ public class ELM327 extends Device {
         lastCommandWasFreeFrame = true;
 
         // EML needs the filter to be 3 symbols and contains the from CAN id of the ECU
-        String emlFilter = field.getHexId() + "";
+        String emlFilter = frame.getHexId() + "";
         while (emlFilter.length() < 3) emlFilter = "0" + emlFilter;
 
         MainActivity.debug("ELM327: requestFreeFrame: atcra" + emlFilter);
@@ -575,7 +558,7 @@ public class ELM327 extends Device {
         if (!someThingWrong) {
             //sendAndWaitForAnswer("atcra" + emlFilter, 400);
             // atma     (wait for one answer line)
-            TIMEOUT = (int) (field.getFrequency()* intervalMultiplicator + 50);
+            TIMEOUT = (int) (frame.getInterval() * intervalMultiplicator + 50);
             if (TIMEOUT < MINIMUM_TIMEOUT) TIMEOUT = MINIMUM_TIMEOUT;
             MainActivity.debug("ELM327: requestFreeFrame > TIMEOUT = "+TIMEOUT);
 
@@ -601,11 +584,11 @@ public class ELM327 extends Device {
         if(hexData.equals(""))
             return null;
         else
-            return new Message(field, hexData);
+            return new Message(frame, hexData);
     }
 
     @Override
-    public Message requestIsoTpFrame(Field field) {
+    public Message requestIsoTpFrame(Frame frame) {
 
         if (someThingWrong) { return null ; }
 
@@ -624,11 +607,11 @@ public class ELM327 extends Device {
 
         // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
         lastId = 0;
-        if (lastId != field.getId()) {
-            lastId = field.getId();
+        if (lastId != frame.getId()) {
+            lastId = frame.getId();
 
             // request contains the to CAN id of the ECU
-            String request = getRequestHexId(field.getId());
+            String request = getRequestHexId(frame.getId());
 
             // Set header
             if (!initCommandExpectOk("atsh" + request)) someThingWrong |= true;
@@ -638,11 +621,11 @@ public class ELM327 extends Device {
         }
 
         // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
-        String pre = "0" + field.getRequestId().length() / 2;
+        String pre = "0" + frame.getRequestId().length() / 2;
         //MainActivity.debug("R: "+request+" - C: "+pre+field.getRequestId());
 
         // get 0x1 frame. No delays, and no waiting until done.
-        String line0x1 = sendAndWaitForAnswer(pre + field.getRequestId(), 0, false).replace("\r", "");
+        String line0x1 = sendAndWaitForAnswer(pre + frame.getRequestId(), 0, false).replace("\r", "");
 
         if (!someThingWrong) {
             // process first line (SINGLE or FIRST frame)
@@ -704,6 +687,6 @@ public class ELM327 extends Device {
         if (hexData.equals(""))
             return null;
         else
-            return new Message(field, hexData);
+            return new Message(frame, hexData);
     }
 }

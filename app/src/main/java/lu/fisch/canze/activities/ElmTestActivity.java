@@ -112,7 +112,7 @@ public class ElmTestActivity extends CanzeActivity {
             appendResult("Requested field does not exist. This is an error in the test quite, please report\n");
             return;
         }
-        message = MainActivity.device.requestField(field);
+        message = MainActivity.device.requestFrame(field.getFrame());
         if (message == null) {
             appendResult("Msg is null. Is the car switched on?\n");
             return;
@@ -138,7 +138,7 @@ public class ElmTestActivity extends CanzeActivity {
             appendResult("Requested field does not exist. This is an error in the test quite, please report\n");
             return;
         }
-        message = MainActivity.device.requestField(field);
+        message = MainActivity.device.requestFrame(field.getFrame());
         if (message == null) {
             appendResult("Msg is null. Is the car switched on?\n");
             return;
@@ -179,7 +179,7 @@ public class ElmTestActivity extends CanzeActivity {
             appendResult("Requested field does not exist.\n");
             return;
         }
-        message = MainActivity.device.requestField(field);
+        message = MainActivity.device.requestFrame(field.getFrame());
         if (message == null) {
             appendResult("Msg is null. Is the car switched on?\n");
             return;
