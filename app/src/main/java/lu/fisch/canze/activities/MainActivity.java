@@ -237,7 +237,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         fieldLogMode = settings.getBoolean("optFieldLog", false);
         toastLevel = settings.getInt("optToast", 1);
 
-        BluetoothManager.getInstance().setDummyMode(bluetoothDeviceName.compareTo("HTTP") == 0);
+        if (bluetoothDeviceName != null)
+           BluetoothManager.getInstance().setDummyMode(bluetoothDeviceName.compareTo("HTTP") == 0);
 
         String carStr = settings.getString("car", "None");
         switch (carStr) {
