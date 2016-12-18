@@ -405,10 +405,22 @@ public class Fields implements MessageListener {
                         + "7bb,248,255,1,40,0,°C,2104,6104,e2\n" // Cell 10 Temperature
                         + "7bb,272,279,1,40,0,°C,2104,6104,e2\n" // Cell 11 Temperature
                         + "7bb,296,303,1,40,0,°C,2104,6104,e2\n" // Cell 12 Temperature
-                        + "7bb,32,39,1,0,0,°C,2104,6104,105\n" // Cell 1 Temperature
-                        + "7bb,56,63,1,0,0,°C,2104,6104,105\n" // Cell 2 Temperature
-                        + "7bb,80,87,1,0,0,°C,2104,6104,105\n" // Cell 3 Temperature
-                        + "7bb,104,111,1,0,0,°C,2104,6104,105\n" // Cell 4 Temperature
+                        + "7bb,16,23,1,0,0,,2107,6107,e2\n" // Cell 1 Balancing switch
+                        + "7bb,24,31,1,0,0,,2107,6107,e2\n" // Cell 2 Balancing switch
+                        + "7bb,32,39,1,0,0,,2107,6107,e2\n" // Cell 3 Balancing switch
+                        + "7bb,40,47,1,0,0,,2107,6107,e2\n" // Cell 4 Balancing switch
+                        + "7bb,48,55,1,0,0,,2107,6107,e2\n" // Cell 5 Balancing switch
+                        + "7bb,56,63,1,0,0,,2107,6107,e2\n" // Cell 6 Balancing switch
+                        + "7bb,64,71,1,0,0,,2107,6107,e2\n" // Cell 7 Balancing switch
+                        + "7bb,72,79,1,0,0,,2107,6107,e2\n" // Cell 8 Balancing switch
+                        + "7bb,80,87,1,0,0,,2107,6107,e2\n" // Cell 9 Balancing switch
+                        + "7bb,88,95,1,0,0,,2107,6107,e2\n" // Cell 10 Balancing switch
+                        + "7bb,96,102,1,0,0,,2107,6107,e2\n" // Cell 11 Balancing switch
+                        + "7bb,104,111,1,0,0,,2107,6107,e2\n" // Cell 12 Balancing switch
+                        + "7bb,32,39,1,0,0,°C,2104,6104,105\n" // Cell 1 Balancing switch
+                        + "7bb,56,63,1,0,0,°C,2104,6104,105\n" // Cell 2 Balancing switch
+                        + "7bb,80,87,1,0,0,°C,2104,6104,105\n" // Cell 3 Balancing switch
+                        + "7bb,104,111,1,0,0,°C,2104,6104,105\n" // Cell 4 Balancing switch
                         + "7bb,16,31,0.001,0,3,V,2141,6141,ff\n" // Cell 01 V
                         + "7bb,32,47,0.001,0,3,V,2141,6141,ff\n" // Cell 02 V
                         + "7bb,48,63,0.001,0,3,V,2141,6141,ff\n" // Cell 03 V
@@ -565,7 +577,7 @@ public class Fields implements MessageListener {
                     // ensure this field matches the selected car
                     if ((options & MainActivity.car) != 0) {
                         //Create a new field object and fill his  data
-                        //MainActivity.debug(tokens[FIELD_ID] + "," + tokens[FIELD_FROM]);
+                        MainActivity.debug(tokens[FIELD_ID] + "." + tokens[FIELD_RESPONSE_ID] + "." + tokens[FIELD_FROM]);
                         Field field = new Field(
                                 frame,
                                 Short.parseShort(tokens[FIELD_FROM].trim()),

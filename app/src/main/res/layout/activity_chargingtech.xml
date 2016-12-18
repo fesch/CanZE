@@ -155,7 +155,7 @@
                         />
                 </TableRow>
 
-                <TableRow>
+                <!-- <TableRow>
                     <TextView
                         android:text="@string/label_Capacity"
                         android:layout_weight="2"
@@ -166,7 +166,7 @@
                         android:gravity="right"
                         android:layout_weight="1"
                         />
-                </TableRow>
+                </TableRow> -->
 
                 <TableRow>
                     <TextView
@@ -415,6 +415,54 @@
                         android:padding="3dip"
                         />
 
+                    <TextView
+                        android:id="@+id/text_bala_1_temp"
+                        android:text="00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="0px"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_bala_2_temp"
+                        android:text="00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="0px"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_bala_3_temp"
+                        android:text="00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="0px"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_bala_4_temp"
+                        android:text="00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="0px"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_bala_5_temp"
+                        android:text="00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="0px"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_bala_6_temp"
+                        android:text="00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="0px"
+                        />
+
                 </TableRow>
                 <TableRow
                     android:layout_width="fill_parent"
@@ -466,6 +514,54 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="3dip"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_bala_7_temp"
+                        android:text="00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="0px"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_bala_8_temp"
+                        android:text="00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="0px"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_bala_9_temp"
+                        android:text="00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="0px"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_bala_10_temp"
+                        android:text="00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="0px"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_bala_11_temp"
+                        android:text="00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="0px"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_bala_12_temp"
+                        android:text="00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="0px"
                         />
 
                 </TableRow>

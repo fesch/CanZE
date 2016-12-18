@@ -54,7 +54,7 @@
     <string name="header_Charging">Charger parameters</string>
     <string name="header_Battery">Battery parameters</string>
     <string name="header_DrivingCh">Driving</string>
-    <string name="header_CompTemp">Battery modules temperatures</string>
+    <string name="header_CompTemp">Battery modules temperatures and balancing</string>
 
     <string name="label_max_charge">Max battery charge/regen kW</string>
     <string name="default_max_charge">#MBR</string>

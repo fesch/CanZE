@@ -46,14 +46,15 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     public static final String SID_ChargingStatusDisplay            = "65b.41";
     public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
     public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
-    public static final String SID_CapacityFluKan                   = "7bb.6101.348";
-    public static final String SID_CapacityZoe                      = "";
+    // public static final String SID_CapacityFluKan                   = "7bb.6101.348";
+    // public static final String SID_CapacityZoe                      = "";
     public static final String SID_RealSoC                          = "7bb.6103.192";
     public static final String SID_12V                              = "7ec.622005.24";
     public static final String SID_12A                              = "7ec.623028.24";
     public static final String SID_DcLoad                           = "1fd.0";
     public static final String SID_HvKilometers                     = "7bb.6161.96";
     public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
+    public static final String SID_Preamble_BalancingBytes          = "7bb.6107.";
 
 
     public static final String cha_Status [] = {"No charge", "Waiting (planned)", "Ended", "In progress", "Failure", "Waiting", "Flap open", "Unavailable"};
@@ -95,11 +96,11 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addListener(SID_PlugConnected);
         addListener(SID_UserSoC);
         addListener(SID_RealSoC);
-        if (MainActivity.car==MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) {
-            addListener(SID_AvChargingPower);
-        } else {
-            addListener(SID_CapacityFluKan);
-        }
+        //if (MainActivity.car==MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) {
+        //    addListener(SID_AvChargingPower);
+        //} else {
+        //    addListener(SID_CapacityFluKan);
+        //}
         addListener(SID_AvEnergy);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
@@ -112,11 +113,14 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addListener(SID_TractionBatteryCurrent);
 
         // Battery compartment temperatures
-        int lastCell = (MainActivity.car==MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) ? 296 : 104;
-        for (int i = 32; i <= lastCell; i += 24) {
-            String sid = SID_Preamble_CompartmentTemperatures + i;
+        int lastCell = (MainActivity.car==MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) ? 12 : 4;
+        for (int i = 0; i < lastCell; i++) {
+            String sid = SID_Preamble_CompartmentTemperatures + (32 + i * 24);
+            addListener(sid);
+            sid = SID_Preamble_BalancingBytes + (16 + i * 8);
             addListener(sid);
         }
+
     }
 
     private void removeListeners () {
@@ -256,12 +260,12 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         tv.setText("" + field.getValue());
                         tv = null;
                         break;
-                    case SID_CapacityFluKan:
-                    case SID_CapacityZoe:
-                        tv = (TextView) findViewById(R.id.textCapacity);
-                        tv.setText("" + field.getValue());
-                        tv = null;
-                        break;
+                    //case SID_CapacityFluKan:
+                    //case SID_CapacityZoe:
+                    //    tv = (TextView) findViewById(R.id.textCapacity);
+                    //    tv.setText("" + field.getValue());
+                    //    tv = null;
+                    //    break;
                     case SID_ChargingStatusDisplay:
                         chargingStatus = (int) field.getValue();
                         tv = (TextView) findViewById(R.id.textChaStatus);
@@ -309,7 +313,66 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                     case SID_Preamble_CompartmentTemperatures + "296":
                         tv = (TextView) findViewById(R.id.text_comp_12_temp);
                         break;
-                }
+                    case SID_Preamble_BalancingBytes + "16":
+                        tv = (TextView) findViewById(R.id.text_bala_1_temp);
+                        tv.setText(String.format("%02X", (int)field.getValue()));
+                        tv = null;
+                        break;
+                    case SID_Preamble_BalancingBytes + "24":
+                        tv = (TextView) findViewById(R.id.text_bala_2_temp);
+                        tv.setText(String.format("%02X", (int)field.getValue()));
+                        tv = null;
+                        break;
+                    case SID_Preamble_BalancingBytes + "32":
+                        tv = (TextView) findViewById(R.id.text_bala_3_temp);
+                        tv.setText(String.format("%02X", (int)field.getValue()));
+                        tv = null;
+                        break;
+                    case SID_Preamble_BalancingBytes + "40":
+                        tv = (TextView) findViewById(R.id.text_bala_4_temp);
+                        tv.setText(String.format("%02X", (int)field.getValue()));
+                        tv = null;
+                        break;
+                    case SID_Preamble_BalancingBytes + "48":
+                        tv = (TextView) findViewById(R.id.text_bala_5_temp);
+                        tv.setText(String.format("%02X", (int)field.getValue()));
+                        tv = null;
+                        break;
+                    case SID_Preamble_BalancingBytes + "56":
+                        tv = (TextView) findViewById(R.id.text_bala_6_temp);
+                        tv.setText(String.format("%02X", (int)field.getValue()));
+                        tv = null;
+                        break;
+                    case SID_Preamble_BalancingBytes + "64":
+                        tv = (TextView) findViewById(R.id.text_bala_7_temp);
+                        tv.setText(String.format("%02X", (int)field.getValue()));
+                        tv = null;
+                        break;
+                    case SID_Preamble_BalancingBytes + "72":
+                        tv = (TextView) findViewById(R.id.text_bala_8_temp);
+                        tv.setText(String.format("%02X", (int)field.getValue()));
+                        tv = null;
+                        break;
+                    case SID_Preamble_BalancingBytes + "80":
+                        tv = (TextView) findViewById(R.id.text_bala_9_temp);
+                        tv.setText(String.format("%02X", (int)field.getValue()));
+                        tv = null;
+                        break;
+                    case SID_Preamble_BalancingBytes + "88":
+                        tv = (TextView) findViewById(R.id.text_bala_10_temp);
+                        tv.setText(String.format("%02X", (int)field.getValue()));
+                        tv = null;
+                        break;
+                    case SID_Preamble_BalancingBytes + "96":
+                        tv = (TextView) findViewById(R.id.text_bala_11_temp);
+                        tv.setText(String.format("%02X", (int)field.getValue()));
+                        tv = null;
+                        break;
+                    case SID_Preamble_BalancingBytes + "104":
+                        tv = (TextView) findViewById(R.id.text_bala_12_temp);
+                        tv.setText(String.format("%02X", (int)field.getValue()));
+                        tv = null;
+                        break;                }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
                     tv.setText("" + (Math.round(field.getValue() * 10.0) / 10.0));
