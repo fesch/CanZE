@@ -526,12 +526,9 @@ public class SettingsActivity extends AppCompatActivity {
     {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
         String deviceAddress=settings.getString("deviceAddress", null);
-        int index=-1;
-
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
-        arrayAdapter.add("HTTP\nhttp://wemos-1.notice.lan/");
-        if("HTTP".equals(deviceAddress))
-            index=0;
+        int index=-1;
+        int i = 0;
 
         // get the bluetooth adapter
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -543,7 +540,6 @@ public class SettingsActivity extends AppCompatActivity {
 
 
             // loop through paired devices
-            int i = 0;
             for (BluetoothDevice device : pairedDevices) {
                 // add the name and address to an array adapter to show in a ListView
 
@@ -564,11 +560,23 @@ public class SettingsActivity extends AppCompatActivity {
                 arrayAdapter.add(deviceAlias + "\n" + device.getAddress());
                 // get the index of the selected item
                 if(device.getAddress().equals(deviceAddress))
-                    index= i + 1; // plus one as HTTP is always first in list
+                    index = i; // plus one as HTTP is always first in list
                 i++;
             }
 
         }
+
+        arrayAdapter.add("HTTP1\nGateway");
+        if("Gateway".equals(deviceAddress))
+            index = i;
+        i++;
+
+        arrayAdapter.add("HTTP2\nEmulator");
+        if("Emulator".equals(deviceAddress))
+            index = i;
+        i++;
+
+
         // display the list
         Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
         deviceList.setAdapter(arrayAdapter);

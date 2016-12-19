@@ -1,3 +1,4 @@
+2016.12.19 [Jeroen] Added Range to manifest (crashed CanZE)
 2016.12.18 [Jeroen] Class Chargingtech removed Ah, added balancing switches
 2016.12.18 [Jeroen] Class Mainactivity crash after clearing data (deviceName null)
 2016.12.18 [Jeroen] Put dummy gateway server online

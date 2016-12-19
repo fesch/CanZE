@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         toastLevel = settings.getInt("optToast", 1);
 
         if (bluetoothDeviceName != null)
-           BluetoothManager.getInstance().setDummyMode(bluetoothDeviceName.compareTo("HTTP") == 0);
+           BluetoothManager.getInstance().setDummyMode(bluetoothDeviceName.substring(0, 4).compareTo("HTTP") == 0);
 
         String carStr = settings.getString("car", "None");
         switch (carStr) {
@@ -919,5 +919,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             Toast.makeText(MainActivity.instance,"Not possible while driving ...",Toast.LENGTH_LONG).show();
         }
         return safe;
+    }
+
+    public static String getBluetoothDeviceAddress() {
+        return bluetoothDeviceAddress;
     }
 }

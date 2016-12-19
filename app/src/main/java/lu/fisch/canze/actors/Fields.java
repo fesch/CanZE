@@ -311,7 +311,7 @@ public class Fields implements MessageListener {
                         + "1fd,48,55,1,80,0,kW,,,ff\n" // Consumption
                         + "427,40,47,0.3,0,0,kW,,,e2\n" // Available Charging Power
                         + "427,49,57,0.1,0,1,kWh,,,e2\n" // Available Energy
-                        + "42a,30,39,0.1,40,1,°C,,,ff\n" // Evaporator Temp Measure
+                        + "42a,30,39,0.1,400,1,°C,,,ff\n" // Evaporator Temp Measure
                         + "42e,0,12,0.02,0,2,%,,,e3\n" // State of Charge
                         + "42e,20,24,5,0,0,%,,,e2\n" // Engine Fan Speed
                         + "42e,38,43,1,0,1,A,,,e3\n" // Charging Pilot Current
@@ -319,7 +319,7 @@ public class Fields implements MessageListener {
                         + "42e,56,63,0.3,0,1,kW,,,ff\n" // Charging Power
                         + "430,24,33,0.5,30,1,°C,,,e2\n" // Comp Temperature Discharge
                         + "430,38,39,1,0,0,,,,e2\n" // HV Battery Cooling State
-                        + "430,40,49,0.1,40,1,°C,,,e2\n" // HV Battery Evaporator Temp
+                        + "430,40,49,0.1,400,1,°C,,,e2\n" // HV Battery Evaporator Temp
                         + "432,36,37,1,0,0,,,,e2\n" // HV Bat Conditionning Mode
                         + "534,32,40,1,40,0,°C,,,e5\n" // Temp out
                         + "5d7,0,15,0.01,0,2,km/h,,,ff\n" // Speed
@@ -353,6 +353,12 @@ public class Fields implements MessageListener {
                         + "763,128,143,1,0,0,,2180,6180,ff\n" // PG number %04lx
                         + "763,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "763,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
+
+                        + "764,26,35,0.1,400,0,°C,2121,6121,ff\n" // IH_InCarTemp
+                        + "764,36,43,1,0,0,%,2121,6121,ff\n" // IH_RHumidity
+                        + "764,110,117,1,40,0,%,2143,6143,ff\n" // IH_ExternalTemp
+                        + "764,40,41,1,0,0,,2167,6167,ff\n" // IH_ExternalTemp
+
                         + "764,144,159,1,0,0,,2180,6180,ff\n" // Software version
                         + "764,128,143,1,0,0,,2180,6180,ff\n" // PG number
                         + "764,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
