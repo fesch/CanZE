@@ -42,8 +42,8 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
     public static final String SID_HvEvaporationTemp                = "430.40";
     public static final String SID_BatteryConditioningMode          = "432.36";
 
-    public static final String SID_ExternalTemperature              = "656.48";
-    public static final String SID_InternalTemperature              = "430.24"; // This is NOT the internal temperature
+    public static final String SID_ExternalTemperature              = "764.6143.110"; // "656.48";
+    public static final String SID_InternalTemperature              = "764.6121.26"; //"430.24"; // This is NOT the internal temperature
     public static final String SID_TempSetting                      = "699.8";
 
 
@@ -84,9 +84,9 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
             addListener(SID_HvCoolingState);
             addListener(SID_HvEvaporationTemp);
             addListener(SID_BatteryConditioningMode);
-            addListener(SID_ExternalTemperature);
-            addListener(SID_InternalTemperature);
-            addListener(SID_TempSetting);
+            // addListener(SID_ExternalTemperature);
+            // addListener(SID_InternalTemperature);
+            // addListener(SID_TempSetting);
         }
     }
 
@@ -159,9 +159,9 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
                     case SID_InternalTemperature:
                         tv = (TextView) findViewById(R.id.textInternalTemperature);
                         break;
-                    case SID_TempSetting:
-                        tv = (TextView) findViewById(R.id.textTempSetting);
-                        break;
+                    //case SID_TempSetting:
+                    //    tv = (TextView) findViewById(R.id.textTempSetting);
+                    //    break;
 
 
 

@@ -237,5 +237,6 @@
     <string name="title_FZ_section1">General</string>
     <string name="title_FZ_section0">Battery</string>
     <string name="title_activity_prediction">Charging Prediction</string>
+    <string name="title_activity_range">Range</string>
 
 </resources>

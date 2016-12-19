@@ -108,6 +108,9 @@
         <activity
             android:name=".activities.PredictionActivity"
             android:label="@string/title_activity_prediction"></activity>
+        <activity
+            android:name=".activities.RangeActivity"
+            android:label="@string/title_activity_range"></activity>
     </application>
 
 </manifest>

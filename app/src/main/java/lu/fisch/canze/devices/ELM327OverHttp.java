@@ -52,7 +52,7 @@ public class ELM327OverHttp extends Device {
 
     private int timeoutLogLevel = MainActivity.toastLevel;
     // private String urlLeader = "http://wemos-1.notice.lan/"; // need to be picked up from settings
-    private String urlLeader = "http://solarmax.trekvalk.nl:8123/wemos/";
+    private String urlLeader;
 
     @Override
     public void registerFilter(int frameId) {
@@ -79,6 +79,8 @@ public class ELM327OverHttp extends Device {
 
     public boolean initDevice(int toughness) {
         MainActivity.debug("ELM327Http: initDevice");
+        // hard address used, the phone uses google DNS instead of the local WiFi DNS :-(
+        urlLeader = MainActivity.getBluetoothDeviceAddress().compareTo ("Emulator") == 0 ? "http://solarmax.trekvalk.nl:8123/wemos/" : "http://172.19.3.216/";
         lastInitProblem = "";
         someThingWrong = false;
         String msg = getMessage ("Init");
@@ -122,17 +124,29 @@ public class ELM327OverHttp extends Device {
         try {
             String jsonLine = httpGet (urlLeader + command);
             MainActivity.debug("ELM327Http: jsonLineResult:" + jsonLine);
+            if (jsonLine.compareTo("") == 0) {
+                someThingWrong |= true;
+                return null;
+            }
+
             JsonElement jelement = new JsonParser().parse(jsonLine);
             result = jelement.getAsJsonObject().get("R").getAsString();
 
-
             MainActivity.debug("ELM327Http: getMessageResult:[" + result + "]");
-            if (result.isEmpty()) {
+            if (result.compareTo("") == 0) {
+                MainActivity.debug("ELM327Http: getMessageResult is empty");
+                someThingWrong |= true;
+                return null;
+            }
+
+            if (result.substring(0,1).compareTo("-") == 0) {
+                MainActivity.debug("ELM327Http: getMessageResult is an error or warning");
                 someThingWrong |= true;
                 return null;
             }
 
         } catch (Exception e) {
+            MainActivity.debug("ELM327Http: Exception");
             someThingWrong |= true;
             return null;
         }
