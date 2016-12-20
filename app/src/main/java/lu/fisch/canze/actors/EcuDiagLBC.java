@@ -64,4 +64,14 @@ public class EcuDiagLBC {
                 ;
         return (fieldDef);
     }
+
+
+    static final public String framesString () {
+        String frameDef = // Id, interval, sendingEcu
+                ""
+                        + "7BB,0,0,LBC\n"
+;
+
+        return(frameDef);
+    }
 }

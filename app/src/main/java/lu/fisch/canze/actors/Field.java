@@ -158,9 +158,10 @@ public class Field {
 
     public String getListValue()
     {
+        if (list == null) return ("");
         if (list == "") return ("");
         if (Double.isNaN(value)) return ("");
-        String[] lines = list.split(",");
+        String[] lines = list.split(";");
         if (value < 0 || value >= lines.length) return ("");
         return lines[(int)value];
     }
@@ -412,7 +413,7 @@ public class Field {
     }
 
     public boolean isList () {
-        return list != "";
+        return list != null && list != "";
     }
 
     public String getName () {
