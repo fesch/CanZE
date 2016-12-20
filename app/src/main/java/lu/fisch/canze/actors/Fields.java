@@ -852,6 +852,11 @@ public class Fields implements MessageListener {
         MainActivity.getInstance().registerApplicationFields(); // this registers i.e. speed for save driving mode
     }
 
+    public void loadMore (String initString)
+    {
+        fillDynamic(initString);
+    }
+
     /* --------------------------------
      * Tests ...
      \ ------------------------------ */
