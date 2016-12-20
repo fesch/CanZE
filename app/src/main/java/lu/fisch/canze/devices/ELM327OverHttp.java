@@ -162,10 +162,12 @@ public class ELM327OverHttp extends Device {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(in));
                 String st;
                 StringBuffer stringBuffer = new StringBuffer();
-                while((st=reader.readLine())!=null) {
+                while ((st = reader.readLine()) != null) {
                     stringBuffer.append(st);
                 }
                 return stringBuffer.toString();
+            } catch(Exception e) {
+                    e.printStackTrace();
             } finally {
                 urlConnection.disconnect();
             }
