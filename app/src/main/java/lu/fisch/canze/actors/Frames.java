@@ -50,7 +50,7 @@ public class Frames {
     }
 
     private void fillStatic() {
-        String frameDef = // Id, interval, sendingEcu
+        String frameDef = // Id, intervalZOE, intervalFLUKAN, sendingEcu
                 ""
 
                         + "023,4,4,AIBAG\n"

@@ -341,13 +341,23 @@ public class DtcActivity  extends CanzeActivity {
 
 
     void doDiagEcu(Ecu ecu) {
-        String filter;
-
-        // here initialize this particular ECU diagnostics fields
-        Frames.getInstance().load (EcuDiagLBC.framesString ());
-        Fields.getInstance().load (EcuDiagLBC.fieldsString ());
 
         clearResult();              // clear the screen
+
+        // here initialize this particular ECU diagnostics fields
+        try {
+            Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
+            java.lang.reflect.Method methodLoad;
+
+            methodLoad = diagEcu.getClass().getMethod("load");
+            methodLoad.invoke(diagEcu);
+
+            //Frames.getInstance().load (diagEcu.framesString ());
+            //Fields.getInstance().load (diagEcu.fieldsString ());
+        } catch (Exception e) {
+            appendResult("\nCannot find definitions for ECU \n");
+            return;
+        }
 
         appendResult("\nSending initialisation sequence\n");
 
@@ -379,11 +389,15 @@ public class DtcActivity  extends CanzeActivity {
                                 } else if (field.isList()) {
                                     appendResult(field.getName() + ":" + field.getListValue() + "\n");
                                 } else {
-                                    appendResult(field.getName() + ":" + field.getValue() + "\n");
+                                    appendResult(field.getName() + ":" + field.getValue() + field.getUnit() + "\n");
                                 }
                             }
                         } else {
                             appendResult(frame.getHexId() + "." + frame.getResponseId() + ":" + "msg is null. Is the car switched on?\n");
+                            if (!MainActivity.device.initDevice(1)) {
+                                appendResult("\nInitialisation failed\n");
+                                return;
+                            }
                         }
                     }
                 }

@@ -1,3 +1,6 @@
+2016.12.20 [Jeroen] Changed DtcActivity to Dynamic Class loading for definitions
+2016.12.20 [Jeroen] Populated dynamic classed for CLIM and LBC
+2016.12.20 [Jeroen] Added unit to numerical Diagnose values
 2016.12.19 [Jeroen] Added Range to manifest (crashed CanZE)
 2016.12.18 [Jeroen] Class Chargingtech removed Ah, added balancing switches
 2016.12.18 [Jeroen] Class Mainactivity crash after clearing data (deviceName null)
