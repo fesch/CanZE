@@ -1,3 +1,4 @@
+2016.12.22 [Jeroen] Populated dynamic classed for EVC and BCB/JB2
 2016.12.21 [Jeroen] Class EcuDiag added dumping results to file
 2016.12.20 [Jeroen] Changed DtcActivity to Dynamic Class loading for definitions
 2016.12.20 [Jeroen] Populated dynamic classed for CLIM and LBC
