@@ -21,6 +21,7 @@
 
 package lu.fisch.canze.activities;
 
+import android.os.Environment;
 import android.view.View.OnClickListener;
 import android.os.Bundle;
 import android.view.Menu;
@@ -30,7 +31,11 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import lu.fisch.canze.R;
@@ -45,10 +50,14 @@ import lu.fisch.canze.actors.Frames;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
+import static lu.fisch.canze.activities.MainActivity.debug;
+
 
 public class DtcActivity  extends CanzeActivity {
 
     private TextView textView;
+    BufferedWriter bufferedDumpWriter = null;
+    boolean dumpInProgress = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -340,7 +349,7 @@ public class DtcActivity  extends CanzeActivity {
     }
 
 
-    void doDiagEcu(Ecu ecu) {
+    void doDiagEcu(final Ecu ecu) {
 
         clearResult();              // clear the screen
 
@@ -370,6 +379,8 @@ public class DtcActivity  extends CanzeActivity {
                     appendResult("\nInitialisation failed\n");
                     return;
                 }
+
+                dumpInProgress = createDump(ecu);
 
                 for (Frame frame : Frames.getInstance().getAllFrames()) {
 
@@ -401,6 +412,7 @@ public class DtcActivity  extends CanzeActivity {
                         }
                     }
                 }
+                closeDump();
             }
         })).start();
     }
@@ -416,6 +428,7 @@ public class DtcActivity  extends CanzeActivity {
     }
 
     private void appendResult(String str) {
+        if ( dumpInProgress) log (str);
         final String localStr = str;
         runOnUiThread(new Runnable() {
             @Override
@@ -424,6 +437,76 @@ public class DtcActivity  extends CanzeActivity {
             }
         });
     }
+
+    private void log(String text)
+    {
+        try {
+            bufferedDumpWriter.append(text+ System.getProperty("line.separator"));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isExternalStorageWritable() {
+        String SDstate = Environment.getExternalStorageState();
+        return ( Environment.MEDIA_MOUNTED.equals(SDstate));
+    }
+
+    private boolean createDump (Ecu ecu) {
+
+        boolean result = false;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+
+
+        // ensure that there is a CanZE Folder in SDcard
+        if ( ! isExternalStorageWritable()) {
+            debug ( "DiagDump: SDcard not writeable");
+            return false;
+        }
+        else {
+            String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
+            File dir = new File(file_path);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            debug("DiagDump: file_path:" + file_path);
+
+            // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+            String exportdataFileName = file_path + ecu.getMnemonic() + "-" + sdf.format(Calendar.getInstance().getTime()) + ".txt";
+
+            File logFile = new File(exportdataFileName);
+            if (!logFile.exists()) {
+                try {
+                    logFile.createNewFile();
+                    debug("DiagDump: NewFile:" +  exportdataFileName );
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            try {
+                //BufferedWriter for performance, true to set append to file flag
+                bufferedDumpWriter = new BufferedWriter(new FileWriter(logFile, true));
+                result = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+
+    private void closeDump () {
+        try {
+            bufferedDumpWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
     // UI elements
     @Override
