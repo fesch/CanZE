@@ -73,35 +73,6 @@ public class EcuDiagBCB {
                         +"793,24,39,.5,32000,0,V,22502C,62502C,ff,Raw AC mains phase 1 measured voltage\n" //
                         +"793,24,39,.5,32000,0,V,22502D,62502D,ff,Raw AC mains phase 2 measured voltage\n" //
                         +"793,24,39,.5,32000,0,V,22502E,62502E,ff,Raw AC mains phase 3 measured voltage\n" //
-                        +"793,48,48,1,0,0,,1902AF,5902AF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes\n" //
-                        +"793,55,55,1,0,0,,1902AF,5902AF,ff,DTCStatus.testFailed,0:No;1:Yes\n" //
-                        +"793,54,54,1,0,0,,1902AF,5902AF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes\n" //
-                        +"793,53,53,1,0,0,,1902AF,5902AF,ff,DTCStatus.pendingDTC,0:No;1:Yes\n" //
-                        +"793,52,52,1,0,0,,1902AF,5902AF,ff,DTCStatus.confirmedDTC,0:No;1:Yes\n" //
-                        +"793,51,51,1,0,0,,1902AF,5902AF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes\n" //
-                        +"793,50,50,1,0,0,,1902AF,5902AF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes\n" //
-                        +"793,49,49,1,0,0,,1902AF,5902AF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes\n" //
-                        +"793,40,47,1,0,0,,1902AF,5902AF,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM (Frequency Modulated) / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adjustment failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or system operation obstructed or blocked;152:component or system over temperature;241:Safety Case 1;242:Safety Case 2;243:Multiple Failure;244:Temperature too Low;245:Negative Loop Error;246:Positive Loop Error;247:Initialisation not valid;248:Overspeed;249:Limp Home;250:Specific Supplier;251:-;252:--;253:Drift low;254:Drift  high\n" //
-                        +"793,24,39,1,0,0,,1902AF,5902AF,ff,DTCDeviceAndFailureTypeOBD\n" //
-                        +"793,44,47,1,0,0,,1902AF,5902AF,ff,DTCFailureType.ManufacturerOrSupplier\n" //
-                        +"793,16,23,1,0,0,,1902AF,5902AF,ff,DTCStatusAvailabilityMask\n" //
-                        +"793,16,23,1,0,0,,1904000000FF,5904000000FF,ff,DTCRecord\n" //
-                        +"793,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC\n" //
-                        +"793,16,23,1,0,0,,190600000080,590600000080,ff,DTCRecord\n" //
-                        +"793,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC\n" //
-                        +"793,56,79,1,0,0,km,190600000080,590600000080,ff,DTCExtendedData.Mileage\n" //
-                        +"793,16,23,1,0,0,,190600000081,590600000081,ff,DTCRecord\n" //
-                        +"793,40,47,1,0,0,,190600000081,590600000081,ff,StatusOfDTC\n" //
-                        +"793,48,55,1,0,0,,190600000081,590600000081,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage\n" //
-                        +"793,56,63,1,0,0,,190600000081,590600000081,ff,DTCExtendedData.AgingCounter\n" //
-                        +"793,16,23,1,0,0,,190600000082,590600000082,ff,DTCRecord\n" //
-                        +"793,40,47,1,0,0,,190600000082,590600000082,ff,StatusOfDTC\n" //
-                        +"793,48,55,1,0,0,,190600000082,590600000082,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage\n" //
-                        +"793,56,63,1,0,0,,190600000082,590600000082,ff,DTCExtendedData.DTCOccurrenceCounter\n" //
-                        +"793,16,23,1,0,0,,1906000000FF,5906000000FF,ff,DTCRecord\n" //
-                        +"793,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC\n" //
-                        +"793,56,63,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedData.DTCOccurrenceCounter\n" //
-                        +"793,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage\n" //
                         +"793,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,1:HMLGT\n" //
                         +"793,160,167,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
                         +"793,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode\n" //
@@ -120,18 +91,6 @@ public class EcuDiagBCB {
                         +"793,48,55,1,0,0,,2184,6184,ff,Traceability Serial Number\n" //
                         +"793,16,23,1,0,0,,21B7,61B7,ff,Configuration of Electrical Vehicle Networks\n" //
                         +"793,16,23,1,0,0,,21B8,61B8,ff,List of Electrical Vehicle ECUs with After-sales diagnostic\n" //
-                        +"793,16,23,1,0,0,,190600000084,590600000084,ff,DTCRecord\n" //
-                        +"793,40,47,1,0,0,,190600000084,590600000084,ff,StatusOfDTC\n" //
-                        +"793,56,63,1,0,0,,190600000084,590600000084,ff,DTCExtendedData.DTCOccurrenceCounter_2\n" //
-                        +"793,16,23,1,0,0,,190600000085,590600000085,ff,DTCRecord\n" //
-                        +"793,40,47,1,0,0,,190600000085,590600000085,ff,StatusOfDTC\n" //
-                        +"793,56,79,1,0,0,km,190600000085,590600000085,ff,DTCExtendedData.DTCLastDiseappearMileage\n" //
-                        +"793,16,23,1,0,0,,190600000086,590600000086,ff,DTCRecord\n" //
-                        +"793,40,47,1,0,0,,190600000086,590600000086,ff,StatusOfDTC\n" //
-                        +"793,56,79,1,0,0,km,190600000086,590600000086,ff,DTCExtendedData.DTCTravelledDistanceFailurePresent\n" //
-                        +"793,16,23,1,0,0,,190600000087,590600000087,ff,DTCRecord\n" //
-                        +"793,40,47,1,0,0,,190600000087,590600000087,ff,StatusOfDTC\n" //
-                        +"793,56,79,1,0,0,km,190600000087,590600000087,ff,DTCExtendedData.DTCFirstAppearMileage\n" //
                         +"793,160,167,1,0,0,,21F0,61F0,ff,CalibrationNumber\n" //
                         +"793,56,63,1,0,0,,21F0,61F0,ff,DiagnosticIdentificationCode\n" //
                         +"793,128,135,1,0,0,,21F0,61F0,ff,SoftwareNumber\n" //
@@ -330,37 +289,6 @@ public class EcuDiagBCB {
                         +"793,35,39,.5,0,0,A,22FFF1,62FFF1,ff,DIDFFF1.Set_Output_Max_Current\n" //
                         +"793,40,47,1,40,0,°C,22FFF1,62FFF1,ff,DIDFFF1.Ambient_Temp\n" //
                         +"793,48,55,1,40,0,°C,22FFF1,62FFF1,ff,DIDFFF1.Cooling_Temp\n" //
-                        +"793,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes\n" //
-                        +"793,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes\n" //
-                        +"793,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes\n" //
-                        +"793,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,0:No;1:Yes\n" //
-                        +"793,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes\n" //
-                        +"793,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes\n" //
-                        +"793,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes\n" //
-                        +"793,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes\n" //
-                        +"793,40,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM / PWM Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or system operation obstructed/blocked;152:component or system over temperature\n" //
-                        +"793,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceAndFailureTypeOBD\n" //
-                        +"793,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier\n" //
-                        +"793,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask\n" //
-                        +"793,16,23,1,0,0,,1906000000FF,5906000000FF,ff,DTCRecord\n" //
-                        +"793,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC\n" //
-                        +"793,56,79,1,0,0,km,1906000000FF,5906000000FF,ff,DTCExtendedData.Mileage\n" //
-                        +"793,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter\n" //
-                        +"793,16,23,1,0,0,,1904000000FF,5904000000FF,ff,DTCRecord\n" //
-                        +"793,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC\n" //
-                        +"793,24,31,1,0,0,,22F180,62F180,ff,bootSoftwareIdentification\n" //
-                        +"793,16,23,1,0,0,,190600000080,590600000080,ff,DTCRecord\n" //
-                        +"793,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC\n" //
-                        +"793,56,79,1,0,0,km,190600000080,590600000080,ff,DTCExtendedData.Mileage\n" //
-                        +"793,48,55,1,0,0,,190600000080,590600000080,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter\n" //
-                        +"793,16,23,1,0,0,,190600000081,590600000081,ff,DTCRecord\n" //
-                        +"793,40,47,1,0,0,,190600000081,590600000081,ff,StatusOfDTC\n" //
-                        +"793,56,63,1,0,0,,190600000081,590600000081,ff,DTCExtendedData.AgingCounter\n" //
-                        +"793,48,55,1,0,0,,190600000081,590600000081,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter\n" //
-                        +"793,16,23,1,0,0,,190600000082,590600000082,ff,DTCRecord\n" //
-                        +"793,40,47,1,0,0,,190600000082,590600000082,ff,StatusOfDTC\n" //
-                        +"793,56,63,1,0,0,,190600000082,590600000082,ff,DTCExtendedData.DTCOccurrenceCounter\n" //
-                        +"793,48,55,1,0,0,,190600000082,590600000082,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter\n" //
                         +"793,24,31,.1,0,0,A,223105,623105,ff,BCBSlowChargeInputCurrent\n" //
                         +"793,24,31,.1,0,0,A,223109,623109,ff,EVSECurrentLimit\n" //
                         +"793,30,30,1,0,0,,22310C,62310C,ff,DID310C.Current_Ilimit,0:Not Pushed;1:Pushed\n" //
