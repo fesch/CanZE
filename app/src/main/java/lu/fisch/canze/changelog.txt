@@ -1,3 +1,5 @@
+2016.12.22 [Jeroen] Populated dynamic classed for EPS and PEB
+2016.12.22 [Jeroen] Populated dynamic classed for CLUSTER (instrument panel, oops in French)
 2016.12.22 [Jeroen] Fixed a few minor bugs in ChargingTech
 2016.12.22 [Jeroen] Added isZOE and isFLuKan
 2016.12.22 [Jeroen] Populated dynamic classed for EVC and BCB/JB2

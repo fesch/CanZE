@@ -96,11 +96,11 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addListener(SID_PlugConnected);
         addListener(SID_UserSoC);
         addListener(SID_RealSoC);
-        //if (MainActivity.car==MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) {
-        //    addListener(SID_AvChargingPower);
+        if (MainActivity.isZOE()) {
+            addListener(SID_AvChargingPower);
         //} else {
         //    addListener(SID_CapacityFluKan);
-        //}
+        }
         addListener(SID_AvEnergy);
         addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
         addListener(SID_RangeEstimate);
@@ -113,11 +113,11 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addListener(SID_TractionBatteryCurrent);
 
         // Battery compartment temperatures
-        int lastCell = (MainActivity.car==MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) ? 12 : 4;
+        int lastCell = MainActivity.isZOE() ? 12 : 4;
         for (int i = 0; i < lastCell; i++) {
             String sid = SID_Preamble_CompartmentTemperatures + (32 + i * 24);
             addListener(sid);
-            sid = SID_Preamble_BalancingBytes + (16 + i * 8);
+            if (MainActivity.isZOE()) sid = SID_Preamble_BalancingBytes + (16 + i * 8);
             addListener(sid);
         }
 
@@ -166,7 +166,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                     case SID_ACPilot:
                         // save pilot amps
                         pilot = field.getValue();
-                        if (MainActivity.car != MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) { // for FluKan, aproximate phases (always 1) and AvChPwr (amps * 0.225)
+                        if (MainActivity.isFluKan ()) { // for FluKan, aproximate phases (always 1) and AvChPwr (amps * 0.225)
                             double avChPwr = (double) Math.round(pilot * 2.25) / 10.0;
                             tv = (TextView) findViewById(R.id.textPhases);
                             tv.setText("1");
@@ -175,7 +175,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         }
                         // continue
                         tv = (TextView) findViewById(R.id.text_max_pilot);
-                        if (chargingStatus != 3 && (MainActivity.car != MainActivity.CAR_ZOE_Q210 && MainActivity.car == MainActivity.CAR_ZOE_R240 && MainActivity.car != MainActivity.CAR_ZOE_Q90 && MainActivity.car == MainActivity.CAR_ZOE_R90)) {
+                        if (chargingStatus != 3 && MainActivity.isZOE()) {
                             tv.setText("-");
                             tv = null;
                         }
