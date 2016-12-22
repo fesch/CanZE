@@ -921,6 +921,15 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return safe;
     }
 
+    public static boolean isZOE () {
+        return (car == CAR_X10 || car == CAR_ZOE_Q90 || car == CAR_ZOE_Q210 || car == CAR_ZOE_R90 || car == CAR_ZOE_R240);
+    }
+
+    public static boolean isFluKan () {
+        return (car == CAR_FLUENCE || car == CAR_KANGOO);
+    }
+
+
     public static String getBluetoothDeviceAddress() {
         return bluetoothDeviceAddress;
     }
