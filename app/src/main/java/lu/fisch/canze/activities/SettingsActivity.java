@@ -49,10 +49,12 @@ import android.widget.Toast;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.database.CanzeDataSource;
@@ -385,18 +387,27 @@ public class SettingsActivity extends AppCompatActivity {
         // display build version
         TextView tv = (TextView) findViewById(R.id.build);
         try{
+            /*
             ApplicationInfo ai = getPackageManager().getApplicationInfo(getPackageName(), 0);
             ZipFile zf = new ZipFile(ai.sourceDir);
             ZipEntry ze = zf.getEntry("classes.dex");
             long time = ze.getTime();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd @ HH:mm");
             String s = sdf.format(new java.util.Date(time));
+            zf.close(); */
+
+            Date buildDate = new Date(BuildConfig.TIMESTAMP);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd @ HH:mm");
+            String s = sdf.format(buildDate);
 
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
             String version = pInfo.versionName;
 
             tv.setText("Version: "+version+"  //  Build: "+s);
-            zf.close();
+
+            tv.setText("Version: "+version+"  //  Build: "+s);
+
+
         }
         catch(Exception e){
         }
