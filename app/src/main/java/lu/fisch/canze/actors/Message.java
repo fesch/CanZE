@@ -26,6 +26,8 @@
 package lu.fisch.canze.actors;
 
 
+import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.classes.FieldLogger;
 
 /**
  *
@@ -64,6 +66,82 @@ public class Message {
     public void setFrame(Frame frame) {
         this.frame = frame;
     }
+
+    public void onMessageCompleteEvent() {
+
+        // If a message frame comes in, simply update all fields that are defined for it.
+        // Note that for an IsoTP field, the getFrame() method returns as subframe. The subframe's
+        // getAllFields() method only returns the fields with the ssame responseId.
+
+        // this function is called from DtcActivity ("manual mode") and
+        // Device.queryNextFilter ("auto mode")
+
+        String binString = getAsBinaryString();
+        for (Field field : frame.getAllFields()) {
+            onMessageCompleteEventField(binString, field);
+        }
+    }
+
+    private void onMessageCompleteEventField(String binString, Field field) {
+        if(binString.length()>= field.getTo()) {
+            // parseInt --> signed, so the first bit is "cut-off"!
+            try {
+                binString = binString.substring(field.getFrom(), field.getTo() + 1);
+                if (field.isString()) {
+                    String val = "";
+                    for (int i = 0; i < binString.length(); i += 8) {
+                        val += Character.toString((char) Integer.parseInt("0" + binString.substring(i, i+8), 2));
+                    }
+                    field.setValue(val);
+                    // do field logging
+                    if (MainActivity.fieldLogMode)
+                        FieldLogger.getInstance().log(field.getSID() + "," + val);
+
+                } else if (binString.length() <= 4 || binString.contains("0")) {
+                    // experiment with unavailable: any field >= 5 bits whose value contains only 1's
+                    int val;
+
+                    if (field.isSigned() && binString.startsWith("1")) {
+                        // ugly method: flip bits, add a minus in front and substract one
+                        val = Integer.parseInt("-" + binString.replace('0', 'q').replace('1','0').replace('q','1'), 2) - 1;
+                    } else {
+                        val = Integer.parseInt("0" + binString, 2);
+                    }
+                    //MainActivity.debug("Value of " + field.getHexId() + "." + field.getResponseId() + "." + field.getFrom()+" = "+val);
+                    //MainActivity.debug("Fields: onMessageCompleteEvent > "+field.getSID()+" = "+val);
+
+                    // update the value of the field. This triggers updating all of all listeners of that field
+                    field.setValue(val);
+                    // do field logging
+                    if(MainActivity.fieldLogMode)
+                        FieldLogger.getInstance().log(field.getSID()+","+val);
+
+                } else {
+                    field.setValue(Double.NaN);
+                    // do field logging
+                    if(MainActivity.fieldLogMode)
+                        FieldLogger.getInstance().log(field.getSID()+",NaN");
+                }
+                // update the fields last request date
+                field.updateLastRequest();
+
+/*
+                        int val = Integer.parseInt("0" + binString.substring(field.getFrom(), field.getTo() + 1), 2);
+                        //MainActivity.debug("Value of " + field.getHexId() + "." + field.getResponseId() + "." + field.getFrom()+" = "+val);
+                        //MainActivity.debug("Fields: onMessageCompleteEvent > "+field.getSID()+" = "+val);
+                        field.setValue(val);
+                        // update the fields last request date
+                        field.updateLastRequest();
+*/
+            } catch (Exception e)
+            {
+                MainActivity.debug("Message.onMessageCompleteEventField: Exception!!");
+                // ignore
+            }
+        }
+    }
+
+
 
     /* --------------------------------
      * Some utilities

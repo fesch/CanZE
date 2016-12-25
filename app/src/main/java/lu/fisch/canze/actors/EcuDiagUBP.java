@@ -27,12 +27,11 @@ package lu.fisch.canze.actors;
 
 public class EcuDiagUBP {
 
-    // static final public String fieldsString () {
     void load () {
 
-        String fieldDef = // ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string),
-                // options (hex, see MainActivity for definitions), optional name, optional list
+        String fieldDef1 =
                 ""
+
                         +"77e,16,23,1,0,0,,2184,6184,ff,ECU traceability.calendarweek\n" //
                         +"77e,24,31,1,0,0,,2184,6184,ff,ECU traceability.year\n" //
                         +"77e,32,34,1,0,0,,2184,6184,ff,ECU traceability.plant,0:Blaichach;3:Moulins\n" //
@@ -40,44 +39,44 @@ public class EcuDiagUBP {
                         +"77e,38,39,1,0,0,,2184,6184,ff,ECU traceability.shift,0:Shift n°1;1:Shift n°2;2:Shift n°3;3:Shift n°4\n" //
                         +"77e,40,42,1,0,0,,2184,6184,ff,ECU traceability.day,0:forbidden - interdit;1:monday - lundi;2:tuesday - mardi;3:wednesday - mercredi;4:thursday - jeudi;5:friday - vendredi;6:saturday - samedi;7:sunday - dimanche\n" //
                         +"77e,43,55,1,0,0,,2184,6184,ff,ECU traceability.counter\n" //
-                        +"77e,16,23,1,0,0,,21F0,61F0,ff,PartNumber.LowerPart\n" //
+                        +"77e,16,55,1,0,0,,21F0,61F0,2ff,PartNumber.LowerPart\n" //
                         +"77e,56,63,1,0,0,,21F0,61F0,ff,DiagnosticIdentificationCode\n" //
-                        +"77e,64,71,1,0,0,,21F0,61F0,ff,SupplierNumber.ITG\n" //
-                        +"77e,88,95,1,0,0,,21F0,61F0,ff,HardwareNumber.LowerPart\n" //
-                        +"77e,128,135,1,0,0,,21F0,61F0,ff,SoftwareNumber\n" //
-                        +"77e,144,151,1,0,0,,21F0,61F0,ff,EditionNumber\n" //
-                        +"77e,160,167,1,0,0,,21F0,61F0,ff,CalibrationNumber\n" //
+                        +"77e,64,87,1,0,0,,21F0,61F0,2ff,SupplierNumber.ITG\n" //
+                        +"77e,88,127,1,0,0,,21F0,61F0,2ff,HardwareNumber.LowerPart\n" //
+                        +"77e,128,143,1,0,0,,21F0,61F0,ff,SoftwareNumber\n" //
+                        +"77e,144,159,1,0,0,,21F0,61F0,ff,EditionNumber\n" //
+                        +"77e,160,175,1,0,0,,21F0,61F0,ff,CalibrationNumber\n" //
                         +"77e,176,183,1,0,0,,21F0,61F0,ff,PartNumber.BasicPartList,0:N/A;1:47210;2:47208\n" //
                         +"77e,184,191,1,0,0,,21F0,61F0,ff,HardwareNumber.BasicPartList,0:HARDW;1:47213\n" //
                         +"77e,192,199,1,0,0,,21F0,61F0,ff,ApprovalNumber.BasicPartList,0:N/A\n" //
                         +"77e,200,207,1,0,0,,21F0,61F0,ff,ManufacturerIdentificationCode\n" //
-                        +"77e,16,23,1,0,0,,21F1,61F1,ff,ApprovalNumber.LowerPart\n" //
-                        +"77e,56,63,1,0,0,,21F1,61F1,ff,Programming site reference\n" //
-                        +"77e,96,103,1,0,0,,21F1,61F1,ff,Programming tool reference\n" //
+                        +"77e,16,55,1,0,0,,21F1,61F1,2ff,ApprovalNumber.LowerPart\n" //
+                        +"77e,56,95,1,0,0,,21F1,61F1,2ff,Programming site reference\n" //
+                        +"77e,96,135,1,0,0,,21F1,61F1,2ff,Programming tool reference\n" //
                         +"77e,136,143,1,0,0,,21F1,61F1,ff,Number of reprogrammings\n" //
-                        +"77e,144,151,1,0,0,,21F1,61F1,ff,Date of reprogramming\n" //
-                        +"77e,168,175,1,0,0,,21F1,61F1,ff,Time of reprogramming\n" //
+                        +"77e,144,167,1,0,0,,21F1,61F1,ff,Date of reprogramming\n" //
+                        +"77e,168,183,1,0,0,,21F1,61F1,ff,Time of reprogramming\n" //
                         +"77e,184,191,1,0,0,,21F1,61F1,ff,Record marking\n" //
-                        +"77e,192,199,1,0,0,,21F1,61F1,ff,CRC of log record\n" //
-                        +"77e,16,23,1,0,0,,21FE,61FE,ff,PartNumber.LowerPart\n" //
+                        +"77e,192,207,1,0,0,,21F1,61F1,ff,CRC of log record\n" //
+                        +"77e,16,55,1,0,0,,21FE,61FE,2ff,PartNumber.LowerPart\n" //
                         +"77e,56,63,1,0,0,,21FE,61FE,ff,DiagnosticIdentificationCode\n" //
-                        +"77e,64,71,1,0,0,,21FE,61FE,ff,SupplierNumber.ITG\n" //
-                        +"77e,88,95,1,0,0,,21FE,61FE,ff,HardwareNumber.LowerPart\n" //
-                        +"77e,128,135,1,0,0,,21FE,61FE,ff,SoftwareNumber\n" //
-                        +"77e,144,151,1,0,0,,21FE,61FE,ff,EditionNumber\n" //
-                        +"77e,160,167,1,0,0,,21FE,61FE,ff,CalibrationNumber\n" //
+                        +"77e,64,87,1,0,0,,21FE,61FE,2ff,SupplierNumber.ITG\n" //
+                        +"77e,88,127,1,0,0,,21FE,61FE,2ff,HardwareNumber.LowerPart\n" //
+                        +"77e,128,143,1,0,0,,21FE,61FE,ff,SoftwareNumber\n" //
+                        +"77e,144,159,1,0,0,,21FE,61FE,ff,EditionNumber\n" //
+                        +"77e,160,175,1,0,0,,21FE,61FE,ff,CalibrationNumber\n" //
                         +"77e,176,183,1,0,0,,21FE,61FE,ff,PartNumber.BasicPartList,0:N/A;1:47210;2:47208\n" //
                         +"77e,184,191,1,0,0,,21FE,61FE,ff,HardwareNumber.BasicPartList,0:HARDW;1:47213\n" //
                         +"77e,192,199,1,0,0,,21FE,61FE,ff,ApprovalNumber.BasicPartList,0:N/A\n" //
                         +"77e,200,207,1,0,0,,21FE,61FE,ff,ManufacturerIdentificationCode\n" //
-                        +"77e,16,23,1,0,0,,21FF,61FF,ff,ApprovalNumber.LowerPart\n" //
-                        +"77e,56,63,1,0,0,,21FF,61FF,ff,Programming site reference\n" //
-                        +"77e,96,103,1,0,0,,21FF,61FF,ff,Programming tool reference\n" //
+                        +"77e,16,55,1,0,0,,21FF,61FF,2ff,ApprovalNumber.LowerPart\n" //
+                        +"77e,56,95,1,0,0,,21FF,61FF,2ff,Programming site reference\n" //
+                        +"77e,96,135,1,0,0,,21FF,61FF,2ff,Programming tool reference\n" //
                         +"77e,136,143,1,0,0,,21FF,61FF,ff,Number of reprogrammings\n" //
-                        +"77e,144,151,1,0,0,,21FF,61FF,ff,Date of reprogramming\n" //
-                        +"77e,168,175,1,0,0,,21FF,61FF,ff,Time of reprogramming\n" //
+                        +"77e,144,167,1,0,0,,21FF,61FF,ff,Date of reprogramming\n" //
+                        +"77e,168,183,1,0,0,,21FF,61FF,ff,Time of reprogramming\n" //
                         +"77e,184,191,1,0,0,,21FF,61FF,ff,Record marking\n" //
-                        +"77e,192,199,1,0,0,,21FF,61FF,ff,CRC of log record\n" //
+                        +"77e,192,207,1,0,0,,21FF,61FF,ff,CRC of log record\n" //
                         +"77e,24,31,.1,0,0,V,22012F,62012F,ff,Supply voltage\n" //
                         +"77e,24,39,.01,0,0,km/h,224B00,624B00,ff,WheelSpeed FL\n" //
                         +"77e,24,39,.01,0,0,km/h,224B01,624B01,ff,WheelSpeed FR\n" //
@@ -86,7 +85,7 @@ public class EcuDiagUBP {
                         +"77e,24,39,.01,0,0,km/h,224B04,624B04,ff,Vehicle speed\n" //
                         +"77e,24,31,1,0,0,,224B70,624B70,ff,Filling status,0:To be Defined\n" //
                         +"77e,24,31,.2,127,0,°,224B36,624B36,ff,Steering wheel angle offset\n" //
-                        +"77e,24,31,1,0,0,,224B3D,624B3D,ff,Supplier fault code\n" //
+                        +"77e,24,39,1,0,0,,224B3D,624B3D,ff,Supplier fault code\n" //
                         +"77e,24,31,1,0,0,bar,224B73,624B73,ff,Master cylinder pressure\n" //
                         +"77e,24,31,1,0,0,,224B18,624B18,ff,After sales date.Day\n" //
                         +"77e,32,39,1,0,0,,224B18,624B18,ff,After sales date.Month\n" //
@@ -98,10 +97,9 @@ public class EcuDiagUBP {
                         +"77e,24,39,.1,32767,0,°,220100,620100,ff,Steering wheel angle\n" //
                         +"77e,24,39,.1,32767,0,°/s,224B42,624B42,ff,Steering wheel speed\n" //
                         +"77e,24,39,1,0,0,,224B44,624B44,ff,List of supplier internal faults\n" //
-                        +"77e,24,31,1,0,0,,22F18E,62F18E,ff,Vehicle manufacturer spare part number\n" //
-                        +"77e,16,23,1,0,0,,2181,6181,ff,Vehicle identification number\n" //
-                        +"77e,152,159,1,0,0,,2181,6181,ff,Vehicle identification number CRC\n" //
-                        +"77e,16,23,1,0,0,,3201,7201,ff,Routine.Output command status,0:Routine ready to start;1:Routine in progress;2:Routine completed and OK or ready to start;3:Routine completed and Not OK;16:Erreur d'écriture;128:Test prêt;132:Choix du roue invalide;144:Routine interrompue par l'outils de diagnostic\n" //
+                        +"77e,24,103,1,0,0,,22F18E,62F18E,2ff,Vehicle manufacturer spare part number\n" //
+                        +"77e,16,151,1,0,0,,2181,6181,2ff,Vehicle identification number\n" //
+                        +"77e,152,167,1,0,0,,2181,6181,ff,Vehicle identification number CRC\n" //
                         +"77e,28,55,10,0,0,m,224B9B,624B9B,ff,Vehicle odometer.Odometer\n" //
                         +"77e,24,27,1,0,0,,224B9B,624B9B,ff,Vehicle odometer.Reserved,0:reserved\n" //
                         +"77e,24,31,10,-1,0,s,224B9A,624B9A,ff,Brake Powerlatch duration\n" //
@@ -162,23 +160,23 @@ public class EcuDiagUBP {
                         +"77e,24,31,.2,127,0,bar,224B76,624B76,ff,Accumulator pressure offset\n" //
                         +"77e,24,31,1,0,0,,224B7F,624B7F,ff,HBA function inhibition state,0:Activated by diag;170:Deactivated by diag;255:Not implemented\n" //
                         +"77e,24,31,1,0,0,,224B86,624B86,ff,Advanced diagnosis function activation state,0:Deactivated by diag;170:Activated by diag\n" //
-                        +"77e,24,31,1,0,0,,224B82,624B82,ff,Advanced diagnostic datas memorized buffer1\n" //
-                        +"77e,24,31,1,0,0,,224B8F,624B8F,ff,Advanced diagnostic datas memorized buffer10\n" //
-                        +"77e,24,31,1,0,0,,224B83,624B83,ff,Advanced diagnostic datas memorized buffer2\n" //
-                        +"77e,24,31,1,0,0,,224B87,624B87,ff,Advanced diagnostic datas memorized buffer3\n" //
-                        +"77e,24,31,1,0,0,,224B88,624B88,ff,Advanced diagnostic datas memorized buffer4\n" //
-                        +"77e,24,31,1,0,0,,224B89,624B89,ff,Advanced diagnostic datas memorized buffer5\n" //
-                        +"77e,24,31,1,0,0,,224B8B,624B8B,ff,Advanced diagnostic datas memorized buffer6\n" //
-                        +"77e,24,31,1,0,0,,224B8C,624B8C,ff,Advanced diagnostic datas memorized buffer7\n" //
-                        +"77e,24,31,1,0,0,,224B8D,624B8D,ff,Advanced diagnostic datas memorized buffer8\n" //
-                        +"77e,24,31,1,0,0,,224B8E,624B8E,ff,Advanced diagnostic datas memorized buffer9\n" //
-                        +"77e,16,23,1,0,0,,2180,6180,ff,PartNumber.LowerPart\n" //
+                        +"77e,24,727,1,0,0,,224B82,624B82,ff,Advanced diagnostic datas memorized buffer1\n" //
+                        +"77e,24,727,1,0,0,,224B8F,624B8F,ff,Advanced diagnostic datas memorized buffer10\n" //
+                        +"77e,24,727,1,0,0,,224B83,624B83,ff,Advanced diagnostic datas memorized buffer2\n" //
+                        +"77e,24,727,1,0,0,,224B87,624B87,ff,Advanced diagnostic datas memorized buffer3\n" //
+                        +"77e,24,727,1,0,0,,224B88,624B88,ff,Advanced diagnostic datas memorized buffer4\n" //
+                        +"77e,24,727,1,0,0,,224B89,624B89,ff,Advanced diagnostic datas memorized buffer5\n" //
+                        +"77e,24,727,1,0,0,,224B8B,624B8B,ff,Advanced diagnostic datas memorized buffer6\n" //
+                        +"77e,24,727,1,0,0,,224B8C,624B8C,ff,Advanced diagnostic datas memorized buffer7\n" //
+                        +"77e,24,727,1,0,0,,224B8D,624B8D,ff,Advanced diagnostic datas memorized buffer8\n" //
+                        +"77e,24,727,1,0,0,,224B8E,624B8E,ff,Advanced diagnostic datas memorized buffer9\n" //
+                        +"77e,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart\n" //
                         +"77e,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode\n" //
-                        +"77e,64,71,1,0,0,,2180,6180,ff,SupplierNumber.ITG\n" //
-                        +"77e,88,95,1,0,0,,2180,6180,ff,HardwareNumber.LowerPart\n" //
-                        +"77e,128,135,1,0,0,,2180,6180,ff,SoftwareNumber\n" //
-                        +"77e,144,151,1,0,0,,2180,6180,ff,EditionNumber\n" //
-                        +"77e,160,167,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
+                        +"77e,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG\n" //
+                        +"77e,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart\n" //
+                        +"77e,128,143,1,0,0,,2180,6180,ff,SoftwareNumber\n" //
+                        +"77e,144,159,1,0,0,,2180,6180,ff,EditionNumber\n" //
+                        +"77e,160,175,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
                         +"77e,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;1:47210;2:47208\n" //
                         +"77e,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:HARDW;1:47213\n" //
                         +"77e,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A\n" //
@@ -187,7 +185,150 @@ public class EcuDiagUBP {
 
                 ;
 
-        Frames.getInstance().load ("7BC,0,0,UBP\n");
-        Fields.getInstance().load (fieldDef);
+        String dtcDef =
+                ""
+
+                        +"C140,Lost Communication with BCM\n" //
+                        +"C422,Invalid Data Received From BCM\n" //
+                        +"F003,Supply voltage\n" //
+                        +"4051,Steering wheel angle sensor\n" //
+                        +"5154,Invalid wheel circumference parameter\n" //
+                        +"5177,Important function deactivated\n" //
+                        +"C001,Vehicle CAN - no transmission\n" //
+                        +"C073,Vehicle CAN - Busoff\n" //
+                        +"C131,Lost Communication with EPS\n" //
+                        +"C420,Invalid Data Received From EPS\n" //
+                        +"C416,Invalid Data Received From ESC\n" //
+                        +"C122,Lost Communication with ESC\n" //
+                        +"5084,UBP EV inlet 1 switched BIVs\n" //
+                        +"5085,UBP EV inlet 2 controlled BIVc1\n" //
+                        +"5086,UBP EV inlet 3 controlled BIVc2\n" //
+                        +"5087,UBP EV outlet 1 switched BOVs\n" //
+                        +"5088,UBP EV outlet 2 controlled BOVc1\n" //
+                        +"5089,UBP EV outlet 3 controlled BOVc2\n" //
+                        +"508A,UBP Pressure sensor Sense piston PsSP\n" //
+                        +"508B,UBP Pressure sensor Master Cylinder PsBP\n" //
+                        +"508C,UBP Pressure sensor Accumulator PsAcc\n" //
+                        +"508D,UBP Pump motor control\n" //
+                        +"5050,UBP Internal failure\n" //
+                        +"5081,UBP EV Simulation1 SSV1\n" //
+                        +"5082,UBP EV Simulation2 SSV2\n" //
+                        +"5083,UBP EV by-pass BSV\n" //
+                        +"5151,Invalid UBP calibration parameter\n" //
+                        +"5182,EVC signal plausibility\n" //
+                        +"C100,Lost Communication with EVC\n" //
+                        +"C401,Invalid Data Received From EVC\n" //
+                        +"5181,ESC signal plausibility\n" //
+                        +"4042,UBP Brake pedal position sensor\n" //
+                        +"508E,UBP EV offset learning calibration parameter\n" //
+
+                ;
+
+        String testDef =
+                ""
+
+                        +"00,Device and failure type ODB codding\n" //
+                        +"01,General Electrical Failure\n" //
+                        +"02,General signal failure\n" //
+                        +"03,FM (Freq Mod) / PWM (Pulse Width Mod) Failures\n" //
+                        +"04,System Internal Failures\n" //
+                        +"05,System Programming Failures\n" //
+                        +"06,Algorithm Based Failures\n" //
+                        +"07,Mechanical Failures\n" //
+                        +"08,Bus Signal / Message Failures\n" //
+                        +"09,Component Failures\n" //
+                        +"11,circuit short to ground\n" //
+                        +"12,circuit short to battery\n" //
+                        +"13,circuit open\n" //
+                        +"14,circuit short to ground or open\n" //
+                        +"15,circuit short to battery or open\n" //
+                        +"16,circuit voltage below threshold\n" //
+                        +"17,circuit voltage above threshold\n" //
+                        +"18,circuit current below threshold\n" //
+                        +"19,circuit current above threshold\n" //
+                        +"1A,circuit resistance below threshold\n" //
+                        +"1B,circuit resistance above threshold\n" //
+                        +"1C,circuit voltage out of range\n" //
+                        +"1D,circuit current out of range\n" //
+                        +"1E,circuit resistance out of range\n" //
+                        +"1F,circuit intermittent\n" //
+                        +"21,signal amplitude < minimum\n" //
+                        +"22,signal amplitude > maximum\n" //
+                        +"23,signal stuck low\n" //
+                        +"24,signal stuck high\n" //
+                        +"25,signal shape / waveform failure\n" //
+                        +"26,signal rate of change below threshold\n" //
+                        +"27,signal rate of change above threshold\n" //
+                        +"28,signal bias level / zero adjustment failure\n" //
+                        +"29,signal signal invalid\n" //
+                        +"2F,signal erratic\n" //
+                        +"31,no signal\n" //
+                        +"32,signal low time < minimum\n" //
+                        +"33,signal low time > maximum\n" //
+                        +"34,signal high time < minimum\n" //
+                        +"35,signal high time > maximum\n" //
+                        +"36,signal frequency too low\n" //
+                        +"37,signal frequency too high\n" //
+                        +"38,signal frequency incorrect\n" //
+                        +"39,incorrect has too few pulses\n" //
+                        +"3A,incorrect has too many pulses\n" //
+                        +"41,general checksum failure\n" //
+                        +"42,general memory failure\n" //
+                        +"43,special memory failure\n" //
+                        +"44,data memory failure\n" //
+                        +"45,program memory failure\n" //
+                        +"46,calibration / parameter memory failure\n" //
+                        +"47,watchdog / safety µC failure\n" //
+                        +"48,supervision software failure\n" //
+                        +"49,internal electronic failure\n" //
+                        +"4A,incorrect component installed\n" //
+                        +"4B,over temperature\n" //
+                        +"51,not programmed\n" //
+                        +"52,not activated\n" //
+                        +"53,deactivated\n" //
+                        +"54,missing calibration\n" //
+                        +"55,not configured\n" //
+                        +"61,signal calculation failure\n" //
+                        +"62,signal compare failure\n" //
+                        +"63,circuit / component protection time-out\n" //
+                        +"64,signal plausibility failure\n" //
+                        +"65,signal has too few transitions / events\n" //
+                        +"66,signal has too many transitions / events\n" //
+                        +"67,signal incorrect after event\n" //
+                        +"68,event information\n" //
+                        +"71,actuator stuck\n" //
+                        +"72,actuator stuck open\n" //
+                        +"73,actuator stuck closed\n" //
+                        +"74,actuator slipping\n" //
+                        +"75,emergency position not reachable\n" //
+                        +"76,wrong mounting position\n" //
+                        +"77,commanded position not reachable\n" //
+                        +"78,alignment or adjustment incorrect\n" //
+                        +"79,mechanical linkage failure\n" //
+                        +"7A,fluid leak or seal failure\n" //
+                        +"7B,low fluid level\n" //
+                        +"81,invalid serial data received\n" //
+                        +"82,alive / sequence counter incorrect / not updated\n" //
+                        +"83,value of signal protection calculation incorrect\n" //
+                        +"84,signal below allowable range\n" //
+                        +"85,signal above allowable range\n" //
+                        +"86,signal invalid\n" //
+                        +"87,missing message\n" //
+                        +"88,bus off\n" //
+                        +"8F,erratic\n" //
+                        +"91,parametric\n" //
+                        +"92,performance or incorrect operation\n" //
+                        +"93,no operation\n" //
+                        +"94,unexpected operation\n" //
+                        +"95,incorrect assembly\n" //
+                        +"96,component internal failure\n" //
+                        +"97,Component or operation obstructed or blocked\n" //
+                        +"98,component or system over temperature\n" //
+
+                ;
+
+        Frames.getInstance().load("77E,0,0,UBP\n");
+        Fields.getInstance().load(fieldDef1);
+        Dtcs.getInstance().load(dtcDef, testDef);
     }
 }

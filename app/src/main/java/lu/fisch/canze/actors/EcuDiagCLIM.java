@@ -27,11 +27,9 @@ package lu.fisch.canze.actors;
 
 public class EcuDiagCLIM {
 
-    // static final public String fieldsString () {
     void load () {
 
-        String fieldDef = // ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string),
-                // options (hex, see MainActivity for definitions), optional name, optional list
+        String fieldDef1 =
                 ""
 
                         +"764,34,39,1,0,0,,2182,6182,ff,M_Bus_OFF\n" //
@@ -53,21 +51,21 @@ public class EcuDiagCLIM {
                         +"764,72,72,1,0,0,,2182,6182,ff,CurrentFaultBCM,0:False;1:True\n" //
                         +"764,200,200,1,0,0,,2182,6182,ff,CurrentFaultUSM,0:False;1:True\n" //
                         +"764,104,111,1,0,0,,2182,6182,ff,CLIM_Absent,0:False;1:True\n" //
-                        +"764,16,23,1,0,0,,2182,6182,ff,MessagesSetReference\n" //
-                        +"764,24,31,1,0,0,,22F18E,62F18E,ff,VehicleManufacturerKitAssemblyPartNumber\n" //
-                        +"764,160,167,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
+                        +"764,16,31,1,0,0,,2182,6182,ff,MessagesSetReference\n" //
+                        +"764,24,103,1,0,0,,22F18E,62F18E,2ff,VehicleManufacturerKitAssemblyPartNumber\n" //
+                        +"764,160,175,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
                         +"764,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode\n" //
-                        +"764,128,135,1,0,0,,2180,6180,ff,SoftwareNumber\n" //
-                        +"764,64,71,1,0,0,,2180,6180,ff,SupplierNumber.ITG\n" //
-                        +"764,144,151,1,0,0,,2180,6180,ff,EditionNumber\n" //
+                        +"764,128,143,1,0,0,,2180,6180,ff,SoftwareNumber\n" //
+                        +"764,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG\n" //
+                        +"764,144,159,1,0,0,,2180,6180,ff,EditionNumber\n" //
                         +"764,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;2:27531\n" //
                         +"764,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:N/A;1:28526\n" //
                         +"764,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A;1:RENO1;2:NISS1\n" //
-                        +"764,16,23,1,0,0,,2180,6180,ff,PartNumber.LowerPart\n" //
-                        +"764,88,95,1,0,0,,2180,6180,ff,HardwareNumber.LowerPart\n" //
+                        +"764,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart\n" //
+                        +"764,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart\n" //
                         +"764,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3\n" //
-                        +"764,24,31,1,0,0,,229102,629102,ff,EngineeringCalibrationNumber\n" //
-                        +"764,24,31,1,0,0,,229101,629101,ff,EngineeringSoftwareNumber\n" //
+                        +"764,24,39,1,0,0,,229102,629102,ff,EngineeringCalibrationNumber\n" //
+                        +"764,24,39,1,0,0,,229101,629101,ff,EngineeringSoftwareNumber\n" //
                         +"764,17,23,1,0,0,% of total range [min - max],2127,6127,ff,OH_FeetVentActrReq\n" //
                         +"764,41,47,1,0,0,% of total range [min - max],2127,6127,ff,OH_RecyActrReq\n" //
                         +"764,49,55,1,0,0,% of total range [min - max],2127,6127,ff,OH_RightMixActrReq\n" //
@@ -310,7 +308,7 @@ public class EcuDiagCLIM {
                         +"764,16,23,1,0,0,,2105,6105,ff,CL_CountryCfg,0:Not Configured;1:zone 1 (mild);2:zone 2;3:zone 3;4:zone 4\n" //
                         +"764,16,23,1,0,0,,2111,6111,ff,CL_ColdLoopType,0:Not Configured;1:Cold Loop inside ECU Clim;2:Cold Loop outside ECU Clim\n" //
                         +"764,16,23,1,0,0,,2107,6107,ff,CL_CompType,0:Not Configured;1:Compressor 1 (Ext Ctrl - Clutch);33:Compressor 5 (Electrical Vehicle);67:Compressor 3 (Int Ctrl - Clutch);68:Compressor 4 (Fixed Cap - Clutch);129:Compressor 2 (Ext Ctrl - Clutchless)\n" //
-                        +"764,16,23,1,0,0,,2114,6114,ff,CL_DiagnosticConfiguration\n" //
+                        +"764,16,143,1,0,0,,2114,6114,ff,CL_DiagnosticConfiguration\n" //
                         +"764,16,23,1,0,0,,2109,6109,ff,CL_WithEvapSensor,0:Not Configured;1:KL_WithoutSensor;2:KL_WithLocalSensor\n" //
                         +"764,16,23,1,0,0,,210E,610E,ff,CL_WithHumiditySensor,0:Not Configured;1:KL_WithoutSensor;2:KL_WithLocalSensor\n" //
                         +"764,16,23,1,0,0,,2104,6104,ff,CL_PTCType,0:Not Configured;1:Without PTC;9:PTC 900W;16:PTC 1000W;21:PTC 1500W;24:PTC 1800W\n" //
@@ -319,9 +317,9 @@ public class EcuDiagCLIM {
                         +"764,16,23,1,0,0,,2106,6106,ff,CL_Steering,0:Not Configured;1:Right Hand Drive;2:Left Hand Drive\n" //
                         +"764,16,23,1,0,0,,2102,6102,ff,CL_VehicleType,0:Not Configured;9:X98;16:X10\n" //
                         +"764,16,23,1,0,0,,210C,610C,ff,CL_WindshieldType,0:Not Configured;1:KL_WithoutWindshieldOption;2:KL_WithFtDefrost;3:KL_WithHeatReflecting;4:KL_WithFtDefrost&HeatReflecting\n" //
-                        +"764,24,31,1,0,0,,22F187,62F187,ff,VehiculeManufacturerSparPartNumber\n" //
-                        +"764,16,23,1,0,0,,2181,6181,ff,VIN\n" //
-                        +"764,16,23,1,0,0,,2184,6184,ff,UnitaryDataTraceability\n" //
+                        +"764,24,103,1,0,0,,22F187,62F187,2ff,VehiculeManufacturerSparPartNumber\n" //
+                        +"764,16,151,1,0,0,,2181,6181,2ff,VIN\n" //
+                        +"764,16,143,1,0,0,,2184,6184,2ff,UnitaryDataTraceability\n" //
                         +"764,16,23,1,0,0,,2116,6116,ff,CL_WithInCarTempSensor,0:Not Configured;1:KL_WithoutSensor;2:KL_WithLocalSensor\n" //
                         +"764,16,23,1,0,0,,2117,6117,ff,CL_WithHotSourceSensor,0:Not Configured;1:KL_WithoutSensor;2:KL_WithLocalSensor\n" //
                         +"764,16,23,1,0,0,,211A,611A,ff,CL_WithBatteryBlower,0:Not Configured;1:KL_WithoutOutput;2:KL_WithLocalOutput\n" //
@@ -535,6 +533,12 @@ public class EcuDiagCLIM {
                         +"764,44,44,1,0,0,,2166,6166,ff,ILB_FP_SwitchGLongPushState,0:No long push in progress;1:Long push in progress\n" //
                         +"764,45,45,1,0,0,,2166,6166,ff,ILB_FP_SwitchHPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed\n" //
                         +"764,46,46,1,0,0,,2166,6166,ff,ILB_FP_SwitchHLongPushState,0:No long push in progress;1:Long push in progress\n" //
+
+                ;
+
+        String fieldDef2 =
+                ""
+
                         +"764,47,47,1,0,0,,2166,6166,ff,ILB_FP_SwitchJPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed\n" //
                         +"764,48,48,1,0,0,,2166,6166,ff,ILB_FP_SwitchJLongPushState,0:No long push in progress;1:Long push in progress\n" //
                         +"764,49,49,1,0,0,,2166,6166,ff,ILB_FP_SwitchKPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed\n" //
@@ -602,7 +606,159 @@ public class EcuDiagCLIM {
 
                 ;
 
-        Frames.getInstance().load ("764,0,0,CLIM\n");
-        Fields.getInstance().load (fieldDef);
+        String dtcDef =
+                ""
+
+                        +"F003,VBatt\n" //
+                        +"9101,InCarTemp\n" //
+                        +"9104,EvapTemp\n" //
+                        +"9105,ECU\n" //
+                        +"9160,RecyActr\n" //
+                        +"9171,RightMixActr\n" //
+                        +"9162,FeetVentActr\n" //
+                        +"910B,AQS_Reductor\n" //
+                        +"911B,AQS_Oxydant\n" //
+                        +"912B,AQS_Supply\n" //
+                        +"913B,AQS_PreHeating\n" //
+                        +"9106,LeftSolarSensor\n" //
+                        +"9103,HumiditySensor\n" //
+                        +"9150,LIN_Bus\n" //
+                        +"9165,AQM_FragranceMotor\n" //
+                        +"9166,AQM_Ionizer\n" //
+                        +"9175,AQM_FragranceBlower\n" //
+                        +"9151,LIN2_Bus\n" //
+                        +"9176,AQM_IonizerMode\n" //
+                        +"91A7,FrontControlPanel\n" //
+                        +"9114,HotSourceTemp\n" //
+                        +"9113,BatteryEvapTemp\n" //
+                        +"9109,BlowerControl\n" //
+                        +"9184,RelayOutput\n" //
+                        +"9133,CompValve\n" //
+                        +"9185,BatteryBlowerSystem1\n" //
+                        +"9186,BatteryBlowerSystem2\n" //
+                        +"9187,CabinCoolingElectroVanne\n" //
+                        +"9188,BatteryCoolingElectroVanne\n" //
+                        +"91D4,HeatPumpECU\n" //
+                        +"91D7,HeatPumpSensor1\n" //
+                        +"91D8,HeatPumpSensor2\n" //
+                        +"91D5,HeatPumpValve1\n" //
+                        +"91D6,HeatPumpValve2\n" //
+                        +"9161,DistMildActr\n" //
+                        +"9182,BatteryCoolingActr\n" //
+                        +"9183,BatteryBlowerControl\n" //
+                        +"91BD,SpareOutput1\n" //
+                        +"91CB,SpareInput1\n" //
+                        +"91CC,SpareInput2\n" //
+                        +"9170,LeftMixActr\n" //
+
+                ;
+
+        String testDef =
+                ""
+
+                        +"00,Device and failure type ODB codding\n" //
+                        +"01,General Electrical Failure\n" //
+                        +"02,General signal failure\n" //
+                        +"03,FM (Frequency Modulated) - PWM (Pulse Width Modulated) Failures\n" //
+                        +"04,System Internal Failures\n" //
+                        +"05,System Programming Failures\n" //
+                        +"06,Algorithm Based Failures\n" //
+                        +"07,Mechanical Failures\n" //
+                        +"08,Bus Signal / Message Failures\n" //
+                        +"09,Component Failures\n" //
+                        +"11,circuit short to ground\n" //
+                        +"12,circuit short to battery\n" //
+                        +"13,circuit open\n" //
+                        +"14,circuit short to ground or open\n" //
+                        +"15,circuit short to battery or open\n" //
+                        +"16,circuit voltage below threshold\n" //
+                        +"17,circuit voltage above threshold\n" //
+                        +"18,circuit current below threshold\n" //
+                        +"19,circuit current above threshold\n" //
+                        +"1A,circuit resistance below threshold\n" //
+                        +"1B,circuit resistance above threshold\n" //
+                        +"1C,circuit voltage out of range\n" //
+                        +"1D,circuit current out of range\n" //
+                        +"1E,circuit resistance out of range\n" //
+                        +"1F,circuit intermittent\n" //
+                        +"21,signal amplitude < minimum\n" //
+                        +"22,signal amplitude > maximum\n" //
+                        +"23,signal stuck low\n" //
+                        +"24,signal stuck high\n" //
+                        +"25,signal shape / waveform failure\n" //
+                        +"26,signal rate of change below threshold\n" //
+                        +"27,signal rate of change above threshold\n" //
+                        +"28,signal bias level out of range / zero adjustment failure\n" //
+                        +"29,signal signal invalid\n" //
+                        +"2F,signal erratic\n" //
+                        +"31,no signal\n" //
+                        +"32,signal low time < minimum\n" //
+                        +"33,signal low time > maximum\n" //
+                        +"34,signal high time < minimum\n" //
+                        +"35,signal high time > maximum\n" //
+                        +"36,signal frequency too low\n" //
+                        +"37,signal frequency too high\n" //
+                        +"38,signal frequency incorrect\n" //
+                        +"39,incorrect has too few pulses\n" //
+                        +"3A,incorrect has too many pulses\n" //
+                        +"41,general checksum failure\n" //
+                        +"42,general memory failure\n" //
+                        +"43,special memory failure\n" //
+                        +"44,data memory failure\n" //
+                        +"45,program memory failure\n" //
+                        +"46,calibration / parameter memory failure\n" //
+                        +"47,watchdog / safety µC failure\n" //
+                        +"48,supervision software failure\n" //
+                        +"49,internal electronic failure\n" //
+                        +"4A,incorrect component installed\n" //
+                        +"4B,over temperature\n" //
+                        +"51,not programmed\n" //
+                        +"52,not activated\n" //
+                        +"53,deactivated\n" //
+                        +"54,missing calibration\n" //
+                        +"55,not configured\n" //
+                        +"61,signal calculation failure\n" //
+                        +"62,signal compare failure\n" //
+                        +"63,circuit / component protection time-out\n" //
+                        +"64,signal plausibility failure\n" //
+                        +"65,signal has too few transitions / events\n" //
+                        +"66,signal has too many transitions / events\n" //
+                        +"67,signal incorrect after event\n" //
+                        +"68,event information\n" //
+                        +"71,actuator stuck\n" //
+                        +"72,actuator stuck open\n" //
+                        +"73,actuator stuck closed\n" //
+                        +"74,actuator slipping\n" //
+                        +"75,emergency position not reachable\n" //
+                        +"76,wrong mounting position\n" //
+                        +"77,commanded position not reachable\n" //
+                        +"78,alignment or adjustment incorrect\n" //
+                        +"79,mechanical linkage failure\n" //
+                        +"7A,fluid leak or seal failure\n" //
+                        +"7B,low fluid level\n" //
+                        +"81,invalid serial data received\n" //
+                        +"82,alive / sequence counter incorrect / not updated\n" //
+                        +"83,value of signal protection calculation incorrect\n" //
+                        +"84,signal below allowable range\n" //
+                        +"85,signal above allowable range\n" //
+                        +"86,signal invalid\n" //
+                        +"87,missing message\n" //
+                        +"88,bus off\n" //
+                        +"8F,erratic\n" //
+                        +"91,parametric\n" //
+                        +"92,performance or incorrect operation\n" //
+                        +"93,no operation\n" //
+                        +"94,unexpected operation\n" //
+                        +"95,incorrect assembly\n" //
+                        +"96,component internal failure\n" //
+                        +"97,Component or system operation obstructed or blocked\n" //
+                        +"98,component or system over temperature\n" //
+
+                ;
+
+        Frames.getInstance().load("764,0,0,CLI\n");
+        Fields.getInstance().load(fieldDef1);
+        Fields.getInstance().load(fieldDef2);
+        Dtcs.getInstance().load(dtcDef, testDef);
     }
 }

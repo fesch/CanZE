@@ -30,8 +30,8 @@ public class EcuDiagLBC {
     //static final public String fieldsString (int index) {
 
     void load () {
-        String fieldDef1 = // ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string),
-                // options (hex, see MainActivity for definitions), optional name, optional list
+
+        String fieldDef1 =
                 ""
 
                         +"7bb,32,47,1,5000,0,A,2101,6101,ff,21_01_#05_Current sensor offset value\n" //
@@ -49,7 +49,7 @@ public class EcuDiagLBC {
                         +"7bb,354,355,1,0,0,,2101,6101,ff,21_01_#45_bit4_bit5_Interlock Status sent by CAN(regarding CAN data about interlock 'interlock battery'),0:Not used;1:Opened;2:closed;3:Unavailable\n" //
                         +"7bb,356,356,1,0,0,,2101,6101,ff,21_01_#45_bit3_HV Interlock Flag,0:opened;1:closed\n" //
                         +"7bb,16,31,1,5000,0,A,2101,6101,ff,21_01_#03 Electric_Current_of_Battery\n" //
-                        +"7bb,16,23,1,0,0,,2161,6161,ff,LID_61_données completes\n" //
+                        +"7bb,16,159,1,0,0,,2161,6161,ff,LID_61_données completes\n" //
                         +"7bb,72,79,.5,0,0,%,2161,6161,ff,21_61_#10_Battery State of Health (average)\n" //
                         +"7bb,88,119,1,0,0,km,2161,6161,ff,21_61_#12_Battery Mileage\n" //
                         +"7bb,120,151,1,0,0,kWh,2161,6161,ff,21_61_#16_Sum of kWh from beginning of Battery life\n" //
@@ -535,6 +535,12 @@ public class EcuDiagLBC {
                         +"7bb,586,586,1,0,0,,2131,6131,ff,21_31 #074_b2_MSN_HIS[23]Diag_NG_over_charge_cell\n" //
                         +"7bb,587,587,1,0,0,,2131,6131,ff,21_31 #074_b3_MSN_HIS[23]Diag_NG_over_discharge_cell\n" //
                         +"7bb,588,588,1,0,0,,2131,6131,ff,21_31 #074_b4_MSN_HIS[23]Diag_NG_over_current\n" //
+
+                ;
+
+        String fieldDef2 =
+                ""
+
                         +"7bb,589,589,1,0,0,,2131,6131,ff,21_31 #074_b5_MSN_HIS[23]Diag_NG_over_temp\n" //
                         +"7bb,592,594,1,0,0,,2131,6131,ff,21_31 #075_b0_MSN_HIS[24]Operation_type\n" //
                         +"7bb,598,606,.2,0,0,%,2131,6131,ff,21_31 #075_b6_MSN_HIS[24]User_SOC_end\n" //
@@ -809,12 +815,6 @@ public class EcuDiagLBC {
                         +"7bb,971,971,1,0,0,,2132,6132,ff,21_32 #122_b3_MSN_HIS[44]Diag_NG_over_discharge_cell\n" //
                         +"7bb,972,972,1,0,0,,2132,6132,ff,21_32 #122_b4_MSN_HIS[44]Diag_NG_over_current\n" //
                         +"7bb,973,973,1,0,0,,2132,6132,ff,21_32 #122_b5_MSN_HIS[44]Diag_NG_over_temp\n" //
-                ;
-
-    String fieldDef2 = // ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string),
-            // options (hex, see MainActivity for definitions), optional name, optional list
-            ""
-
                         +"7bb,16,18,1,0,0,,2133,6133,ff,21_33 #003_b0_MSN_HIS[45]Operation_type\n" //
                         +"7bb,22,30,.2,0,0,%,2133,6133,ff,21_33 #003_b6_MSN_HIS[45]User_SOC_end\n" //
                         +"7bb,31,39,.2,0,0,%,2133,6133,ff,21_33 #004_b7_MSN_HIS[45]User_SOC_start\n" //
@@ -1042,6 +1042,12 @@ public class EcuDiagLBC {
                         +"7bb,168,175,1,0,0,,2134,6134,ff,21_34 #022_b0_MSN_HIS[62]Ampere_hour_discharge\n" //
                         +"7bb,176,183,1,0,0,,2134,6134,ff,21_34 #023_b0_MSN_HIS[62]Ampere_hour_charge\n" //
                         +"7bb,184,191,1,40,0,,2134,6134,ff,21_34 #024_b0_MSN_HIS[62]Battery_temp_end\n" //
+
+                ;
+
+        String fieldDef3 =
+                ""
+
                         +"7bb,192,199,1,40,0,,2134,6134,ff,21_34 #025_b0_MSN_HIS[62]Battery_temp_start\n" //
                         +"7bb,200,205,1,0,0,,2134,6134,ff,defauts mission 62\n" //
                         +"7bb,201,201,1,0,0,,2134,6134,ff,21_34 #026_b1_MSN_HIS[62]Diag_NG_over_discharge_batt\n" //
@@ -1161,16 +1167,16 @@ public class EcuDiagLBC {
                         +"7bb,560,575,1,0,0,V,2142,6142,ff,21_42_#071_Sum_of_cell_voltage\n" //
                         +"7bb,576,591,1,0,0,V,2142,6142,ff,21_42_#073_Pack_Voltage\n" //
                         +"7bb,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList\n" //
-                        +"7bb,160,167,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
+                        +"7bb,160,175,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
                         +"7bb,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode\n" //
-                        +"7bb,144,151,1,0,0,,2180,6180,ff,EditionNumber\n" //
+                        +"7bb,144,159,1,0,0,,2180,6180,ff,EditionNumber\n" //
                         +"7bb,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,1:293A0\n" //
-                        +"7bb,88,95,1,0,0,,2180,6180,ff,HardwareNumber.LowerPart\n" //
+                        +"7bb,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart\n" //
                         +"7bb,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,136:5DIGITS R2;255:Renault R3;0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3\n" //
                         +"7bb,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,2:293A0\n" //
-                        +"7bb,16,23,1,0,0,,2180,6180,ff,PartNumber.LowerPart\n" //
-                        +"7bb,128,135,1,0,0,,2180,6180,ff,SoftwareNumber\n" //
-                        +"7bb,64,71,1,0,0,,2180,6180,ff,SupplierNumber.ITG\n" //
+                        +"7bb,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart\n" //
+                        +"7bb,128,143,1,0,0,,2180,6180,ff,SoftwareNumber\n" //
+                        +"7bb,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG\n" //
                         +"7bb,24,31,1,0,0,%,221404,621404,ff,1404_Battery SOC\n" //
                         +"7bb,24,31,1,0,0,%,221405,621405,ff,1405_Battery USOC\n" //
                         +"7bb,24,31,1,0,0,%,221406,621406,ff,1406_Battery SOH\n" //
@@ -1259,81 +1265,735 @@ public class EcuDiagLBC {
                         +"7bb,30,30,1,0,0,,22141B,62141B,ff,141B Relavant Module no..141B Failure Slave 10,0:No Slave Failure;1:Slave Failure\n" //
                         +"7bb,29,29,1,0,0,,22141B,62141B,ff,141B Relavant Module no..141B Failure Slave 11,0:No Slave Failure;1:Slave Failure\n" //
                         +"7bb,28,28,1,0,0,,22141B,62141B,ff,141B Relavant Module no..141B Failure Slave 12,0:No Slave Failure;1:Slave Failure\n" //
-                        +"7bb,16,23,1,0,0,,2184,6184,ff,TraceAbility_Data\n" //
-                        +"7bb,32,39,1,0,0,,2184,6184,ff,21_84#05_Energy provider\n" //
+                        +"7bb,16,175,1,0,0,,2184,6184,ff,TraceAbility_Data\n" //
+                        +"7bb,32,39,1,0,0,,2184,6184,2ff,21_84#05_Energy provider\n" //
                         +"7bb,24,31,1,0,0,,2184,6184,ff,21_84#04_Battery Supplier,76:LG\n" //
                         +"7bb,40,47,1,0,0,,2184,6184,ff,21_84#06_Battery factory,70:Flins;75:Korea\n" //
-                        +"7bb,48,55,1,0,0,,2184,6184,ff,21_84#07_Functional battery\n" //
+                        +"7bb,48,55,1,0,0,,2184,6184,2ff,21_84#07_Functional battery\n" //
                         +"7bb,56,63,1,0,0,,2184,6184,ff,21_84#08_Production year,67:2010;68:2011;69:2012;70:2013;71:2014;72:2015\n" //
                         +"7bb,64,71,1,0,0,,2184,6184,ff,21_84#09_Production month,49:Janvier;50:Fevrier;51:Mars;52:Avril;53:Mai;54:Juin;55:Jullet;56:Aout;57:Septembre;58:Octobre;59:Novembre;60:Decembre\n" //
-                        +"7bb,72,79,1,0,0,,2184,6184,ff,21_84#10_Serial number (five last bits) high part\n" //
-                        +"7bb,88,95,1,0,0,,2184,6184,ff,21_84#10_Serial number (five last bits) low part\n" //
-                        +"7bb,112,119,1,0,0,,2184,6184,ff,21_84#11_Supplier identification (LID $90) high part\n" //
-                        +"7bb,144,151,1,0,0,,2184,6184,ff,21_84#11_Supplier identification (LID $90) low part\n" //
-                        +"7bb,16,23,1,0,0,,2190,6190,ff,21_90#03 Product number for LG\n" //
-                        +"7bb,24,31,1,0,0,,2190,6190,ff,21_90#04 Product number for LG\n" //
-                        +"7bb,32,39,1,0,0,,2190,6190,ff,21_90#05 Product number for LG\n" //
-                        +"7bb,40,47,1,0,0,,2190,6190,ff,21_90#06 Product number for LG\n" //
-                        +"7bb,48,55,1,0,0,,2190,6190,ff,21_90#07 Product number for LG\n" //
-                        +"7bb,56,63,1,0,0,,2190,6190,ff,21_90#08 Product number for LG\n" //
-                        +"7bb,64,71,1,0,0,,2190,6190,ff,21_90#09 Product number for LG\n" //
-                        +"7bb,72,79,1,0,0,,2190,6190,ff,21_90#10 Product number for LG\n" //
-                                        ;
-
-    String fieldDef3 = // ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string),
-            // options (hex, see MainActivity for definitions), optional name, optional list
-            ""
-
-                        +"7bb,16,23,1,0,0,,21FF,61FF,ff,21_FF#03 ApprovalNumber\n" //
-                        +"7bb,56,63,1,0,0,,21FF,61FF,ff,21_FF#08 ProgrammingSite\n" //
-                        +"7bb,96,103,1,0,0,,21FF,61FF,ff,21_FF#13 Programming Tool reference\n" //
+                        +"7bb,72,87,1,0,0,,2184,6184,ff,21_84#10_Serial number (five last bits) high part\n" //
+                        +"7bb,88,111,1,0,0,,2184,6184,ff,21_84#10_Serial number (five last bits) low part\n" //
+                        +"7bb,112,143,1,0,0,,2184,6184,2ff,21_84#11_Supplier identification (LID $90) high part\n" //
+                        +"7bb,144,175,1,0,0,,2184,6184,2ff,21_84#11_Supplier identification (LID $90) low part\n" //
+                        +"7bb,16,23,1,0,0,,2190,6190,2ff,21_90#03 Product number for LG\n" //
+                        +"7bb,24,31,1,0,0,,2190,6190,2ff,21_90#04 Product number for LG\n" //
+                        +"7bb,32,39,1,0,0,,2190,6190,2ff,21_90#05 Product number for LG\n" //
+                        +"7bb,40,47,1,0,0,,2190,6190,2ff,21_90#06 Product number for LG\n" //
+                        +"7bb,48,55,1,0,0,,2190,6190,2ff,21_90#07 Product number for LG\n" //
+                        +"7bb,56,63,1,0,0,,2190,6190,2ff,21_90#08 Product number for LG\n" //
+                        +"7bb,64,71,1,0,0,,2190,6190,2ff,21_90#09 Product number for LG\n" //
+                        +"7bb,72,79,1,0,0,,2190,6190,2ff,21_90#10 Product number for LG\n" //
+                        +"7bb,16,55,1,0,0,,21FF,61FF,2ff,21_FF#03 ApprovalNumber\n" //
+                        +"7bb,56,95,1,0,0,,21FF,61FF,2ff,21_FF#08 ProgrammingSite\n" //
+                        +"7bb,96,135,1,0,0,,21FF,61FF,2ff,21_FF#13 Programming Tool reference\n" //
                         +"7bb,136,143,1,0,0,,21FF,61FF,ff,21_FF#18 NumberOfReprogrammings\n" //
                         +"7bb,144,167,1,0,0,,21FF,61FF,ff,21_FF#19 Date of Programming\n" //
                         +"7bb,168,183,1,0,0,,21FF,61FF,ff,21_FF#22 Reserve\n" //
                         +"7bb,184,191,1,0,0,,21FF,61FF,ff,21_FF#24 SaveMarking\n" //
-                        +"7bb,192,199,1,0,0,,21FF,61FF,ff,21_FF#25 CRC of log record\n" //
-                        +"7bb,16,23,1,0,0,,21FE,61FE,ff,21_FE#03 Part Number Lower Part\n" //
+                        +"7bb,192,207,1,0,0,,21FF,61FF,ff,21_FF#25 CRC of log record\n" //
+                        +"7bb,16,55,1,0,0,,21FE,61FE,2ff,21_FE#03 Part Number Lower Part\n" //
                         +"7bb,56,63,1,0,0,,21FE,61FE,ff,21_FE#08 Diagnostic identification code\n" //
-                        +"7bb,64,71,1,0,0,,21FE,61FE,ff,21_FE#09 Supplier Number\n" //
-                        +"7bb,88,95,1,0,0,,21FE,61FE,ff,21_FE#12 Hardware Number Lower Part\n" //
-                        +"7bb,128,135,1,0,0,,21FE,61FE,ff,21_FE#17 Software Number\n" //
-                        +"7bb,144,151,1,0,0,,21FE,61FE,ff,21_FE#19 Edition Number\n" //
-                        +"7bb,160,167,1,0,0,,21FE,61FE,ff,21_FE#21 Calibratin Number\n" //
+                        +"7bb,64,87,1,0,0,,21FE,61FE,2ff,21_FE#09 Supplier Number\n" //
+                        +"7bb,88,127,1,0,0,,21FE,61FE,2ff,21_FE#12 Hardware Number Lower Part\n" //
+                        +"7bb,128,143,1,0,0,,21FE,61FE,ff,21_FE#17 Software Number\n" //
+                        +"7bb,144,159,1,0,0,,21FE,61FE,ff,21_FE#19 Edition Number\n" //
+                        +"7bb,160,175,1,0,0,,21FE,61FE,ff,21_FE#21 Calibratin Number\n" //
                         +"7bb,176,183,1,0,0,,21FE,61FE,ff,21_FE#23 Part Number Basic Part List\n" //
                         +"7bb,184,191,1,0,0,,21FE,61FE,ff,21_FE#24 HardwareNumber Basic Part List\n" //
                         +"7bb,192,199,1,0,0,,21FE,61FE,ff,21_FE#25 ApprovalNumber Basic Part List\n" //
                         +"7bb,200,207,1,0,0,,21FE,61FE,ff,21_FE#26 Car manufacturer identification code\n" //
-                        +"7bb,16,23,1,0,0,,21F1,61F1,ff,21_F1#03 ApprovalNumber\n" //
-                        +"7bb,56,63,1,0,0,,21F1,61F1,ff,21_F1#08 ProgrammingSite\n" //
-                        +"7bb,96,103,1,0,0,,21F1,61F1,ff,21_F1#13 Programming Tool reference\n" //
+                        +"7bb,16,55,1,0,0,,21FD,61FD,2ff,21_FD#03 ApprovalNumber\n" //
+                        +"7bb,56,95,1,0,0,,21FD,61FD,2ff,21_FD#08 ProgrammingSite\n" //
+                        +"7bb,96,135,1,0,0,,21FD,61FD,2ff,21_FD#13 Programming Tool reference\n" //
+                        +"7bb,136,143,1,0,0,,21FD,61FD,ff,21_FD#18 NumberOfReprogrammings\n" //
+                        +"7bb,144,167,1,0,0,,21FD,61FD,ff,21_FD#19 Date of Programming\n" //
+                        +"7bb,168,183,1,0,0,,21FD,61FD,ff,21_FD#22 Reserve\n" //
+                        +"7bb,184,191,1,0,0,,21FD,61FD,ff,21_FD#24 SaveMarking\n" //
+                        +"7bb,192,207,1,0,0,,21FD,61FD,ff,21_FD#25 CRC of log record\n" //
+                        +"7bb,16,55,1,0,0,,21FC,61FC,2ff,21_FC#03 Part Number Lower Part\n" //
+                        +"7bb,56,63,1,0,0,,21FC,61FC,ff,21_FC#08 Diagnostic identification code\n" //
+                        +"7bb,64,87,1,0,0,,21FC,61FC,2ff,21_FC#09 Supplier Number\n" //
+                        +"7bb,88,127,1,0,0,,21FC,61FC,2ff,21_FC#12 Hardware Number Lower Part\n" //
+                        +"7bb,128,143,1,0,0,,21FC,61FC,ff,21_FC#17 Software Number\n" //
+                        +"7bb,144,159,1,0,0,,21FC,61FC,ff,21_FC#19 Edition Number\n" //
+                        +"7bb,160,175,1,0,0,,21FC,61FC,ff,21_FC#21 Calibratin Number\n" //
+                        +"7bb,176,183,1,0,0,,21FC,61FC,ff,21_FC#23 Part Number Basic Part List\n" //
+                        +"7bb,184,191,1,0,0,,21FC,61FC,ff,21_FC#24 HardwareNumber Basic Part List\n" //
+                        +"7bb,192,199,1,0,0,,21FC,61FC,ff,21_FC#25 ApprovalNumber Basic Part List\n" //
+                        +"7bb,200,207,1,0,0,,21FC,61FC,ff,21_FC#26 Car manufacturer identification code\n" //
+                        +"7bb,16,55,1,0,0,,21FB,61FB,2ff,21_FB#03 ApprovalNumber\n" //
+                        +"7bb,56,95,1,0,0,,21FB,61FB,2ff,21_FB#08 ProgrammingSite\n" //
+                        +"7bb,96,135,1,0,0,,21FB,61FB,2ff,21_FB#13 Programming Tool reference\n" //
+                        +"7bb,136,143,1,0,0,,21FB,61FB,ff,21_FB#18 NumberOfReprogrammings\n" //
+                        +"7bb,144,167,1,0,0,,21FB,61FB,ff,21_FB#19 Date of Programming\n" //
+                        +"7bb,168,183,1,0,0,,21FB,61FB,ff,21_FB#22 Reserve\n" //
+                        +"7bb,184,191,1,0,0,,21FB,61FB,ff,21_FB#24 SaveMarking\n" //
+                        +"7bb,192,207,1,0,0,,21FB,61FB,ff,21_FB#25 CRC of log record\n" //
+                        +"7bb,16,55,1,0,0,,21FA,61FA,2ff,21_FA#03 Part Number Lower Part\n" //
+                        +"7bb,56,63,1,0,0,,21FA,61FA,ff,21_FA#08 Diagnostic identification code\n" //
+                        +"7bb,64,87,1,0,0,,21FA,61FA,2ff,21_FA#09 Supplier Number\n" //
+                        +"7bb,88,127,1,0,0,,21FA,61FA,2ff,21_FA#12 Hardware Number Lower Part\n" //
+                        +"7bb,128,143,1,0,0,,21FA,61FA,ff,21_FA#17 Software Number\n" //
+                        +"7bb,144,159,1,0,0,,21FA,61FA,ff,21_FA#19 Edition Number\n" //
+                        +"7bb,160,175,1,0,0,,21FA,61FA,ff,21_FA#21 Calibratin Number\n" //
+                        +"7bb,176,183,1,0,0,,21FA,61FA,ff,21_FA#23 Part Number Basic Part List\n" //
+                        +"7bb,184,191,1,0,0,,21FA,61FA,ff,21_FA#24 HardwareNumber Basic Part List\n" //
+                        +"7bb,192,199,1,0,0,,21FA,61FA,ff,21_FA#25 ApprovalNumber Basic Part List\n" //
+                        +"7bb,200,207,1,0,0,,21FA,61FA,ff,21_FA#26 Car manufacturer identification code\n" //
+                        +"7bb,16,55,1,0,0,,21F9,61F9,2ff,21_F9#03 ApprovalNumber\n" //
+                        +"7bb,56,95,1,0,0,,21F9,61F9,2ff,21_F9#08 ProgrammingSite\n" //
+                        +"7bb,96,135,1,0,0,,21F9,61F9,2ff,21_F9#13 Programming Tool reference\n" //
+                        +"7bb,136,143,1,0,0,,21F9,61F9,ff,21_F9#18 NumberOfReprogrammings\n" //
+                        +"7bb,144,167,1,0,0,,21F9,61F9,ff,21_F9#19 Date of Programming\n" //
+                        +"7bb,168,183,1,0,0,,21F9,61F9,ff,21_F9#22 Reserve\n" //
+                        +"7bb,184,191,1,0,0,,21F9,61F9,ff,21_F9#24 SaveMarking\n" //
+                        +"7bb,192,207,1,0,0,,21F9,61F9,ff,21_F9#25 CRC of log record\n" //
+                        +"7bb,16,55,1,0,0,,21F8,61F8,2ff,21_F8#03 Part Number Lower Part\n" //
+                        +"7bb,56,63,1,0,0,,21F8,61F8,ff,21_F8#08 Diagnostic identification code\n" //
+                        +"7bb,64,87,1,0,0,,21F8,61F8,2ff,21_F8#09 Supplier Number\n" //
+                        +"7bb,88,127,1,0,0,,21F8,61F8,2ff,21_F8#12 Hardware Number Lower Part\n" //
+                        +"7bb,128,143,1,0,0,,21F8,61F8,ff,21_F8#17 Software Number\n" //
+                        +"7bb,144,159,1,0,0,,21F8,61F8,ff,21_F8#19 Edition Number\n" //
+                        +"7bb,160,175,1,0,0,,21F8,61F8,ff,21_F8#21 Calibratin Number\n" //
+                        +"7bb,176,183,1,0,0,,21F8,61F8,ff,21_F8#23 Part Number Basic Part List\n" //
+                        +"7bb,184,191,1,0,0,,21F8,61F8,ff,21_F8#24 HardwareNumber Basic Part List\n" //
+                        +"7bb,192,199,1,0,0,,21F8,61F8,ff,21_F8#25 ApprovalNumber Basic Part List\n" //
+                        +"7bb,200,207,1,0,0,,21F8,61F8,ff,21_F8#26 Car manufacturer identification code\n" //
+                        +"7bb,16,55,1,0,0,,21F7,61F7,2ff,21_F7#03 ApprovalNumber\n" //
+                        +"7bb,56,95,1,0,0,,21F7,61F7,2ff,21_F7#08 ProgrammingSite\n" //
+                        +"7bb,96,135,1,0,0,,21F7,61F7,2ff,21_F7#13 Programming Tool reference\n" //
+                        +"7bb,136,143,1,0,0,,21F7,61F7,ff,21_F7#18 NumberOfReprogrammings\n" //
+                        +"7bb,144,167,1,0,0,,21F7,61F7,ff,21_F7#19 Date of Programming\n" //
+                        +"7bb,168,183,1,0,0,,21F7,61F7,ff,21_F7#22 Reserve\n" //
+                        +"7bb,184,191,1,0,0,,21F7,61F7,ff,21_F7#24 SaveMarking\n" //
+                        +"7bb,192,207,1,0,0,,21F7,61F7,ff,21_F7#25 CRC of log record\n" //
+                        +"7bb,16,55,1,0,0,,21F6,61F6,2ff,21_F6#03 Part Number Lower Part\n" //
+                        +"7bb,56,63,1,0,0,,21F6,61F6,ff,21_F6#08 Diagnostic identification code\n" //
+                        +"7bb,64,87,1,0,0,,21F6,61F6,2ff,21_F6#09 Supplier Number\n" //
+                        +"7bb,88,127,1,0,0,,21F6,61F6,2ff,21_F6#12 Hardware Number Lower Part\n" //
+                        +"7bb,128,143,1,0,0,,21F6,61F6,ff,21_F6#17 Software Number\n" //
+                        +"7bb,144,159,1,0,0,,21F6,61F6,ff,21_F6#19 Edition Number\n" //
+                        +"7bb,160,175,1,0,0,,21F6,61F6,ff,21_F6#21 Calibratin Number\n" //
+                        +"7bb,176,183,1,0,0,,21F6,61F6,ff,21_F6#23 Part Number Basic Part List\n" //
+                        +"7bb,184,191,1,0,0,,21F6,61F6,ff,21_F6#24 HardwareNumber Basic Part List\n" //
+                        +"7bb,192,199,1,0,0,,21F6,61F6,ff,21_F6#25 ApprovalNumber Basic Part List\n" //
+                        +"7bb,200,207,1,0,0,,21F6,61F6,ff,21_F6#26 Car manufacturer identification code\n" //
+                        +"7bb,16,55,1,0,0,,21F5,61F5,2ff,21_F5#03 ApprovalNumber\n" //
+                        +"7bb,56,95,1,0,0,,21F5,61F5,2ff,21_F5#08 ProgrammingSite\n" //
+                        +"7bb,96,135,1,0,0,,21F5,61F5,2ff,21_F5#13 Programming Tool reference\n" //
+                        +"7bb,136,143,1,0,0,,21F5,61F5,ff,21_F5#18 NumberOfReprogrammings\n" //
+                        +"7bb,144,167,1,0,0,,21F5,61F5,ff,21_F5#19 Date of Programming\n" //
+                        +"7bb,168,183,1,0,0,,21F5,61F5,ff,21_F5#22 Reserve\n" //
+                        +"7bb,184,191,1,0,0,,21F5,61F5,ff,21_F5#24 SaveMarking\n" //
+                        +"7bb,192,207,1,0,0,,21F5,61F5,ff,21_F5#25 CRC of log record\n" //
+                        +"7bb,16,55,1,0,0,,21F4,61F4,2ff,21_F4#03 Part Number Lower Part\n" //
+                        +"7bb,56,63,1,0,0,,21F4,61F4,ff,21_F4#08 Diagnostic identification code\n" //
+                        +"7bb,64,87,1,0,0,,21F4,61F4,2ff,21_F4#09 Supplier Number\n" //
+                        +"7bb,88,127,1,0,0,,21F4,61F4,2ff,21_F4#12 Hardware Number Lower Part\n" //
+                        +"7bb,128,143,1,0,0,,21F4,61F4,ff,21_F4#17 Software Number\n" //
+                        +"7bb,144,159,1,0,0,,21F4,61F4,ff,21_F4#19 Edition Number\n" //
+                        +"7bb,160,175,1,0,0,,21F4,61F4,ff,21_F4#21 Calibratin Number\n" //
+                        +"7bb,176,183,1,0,0,,21F4,61F4,ff,21_F4#23 Part Number Basic Part List\n" //
+                        +"7bb,184,191,1,0,0,,21F4,61F4,ff,21_F4#24 HardwareNumber Basic Part List\n" //
+                        +"7bb,192,199,1,0,0,,21F4,61F4,ff,21_F4#25 ApprovalNumber Basic Part List\n" //
+                        +"7bb,200,207,1,0,0,,21F4,61F4,ff,21_F4#26 Car manufacturer identification code\n" //
+                        +"7bb,16,55,1,0,0,,21F3,61F3,2ff,21_F3#03 ApprovalNumber\n" //
+                        +"7bb,56,95,1,0,0,,21F3,61F3,2ff,21_F3#08 ProgrammingSite\n" //
+                        +"7bb,96,135,1,0,0,,21F3,61F3,2ff,21_F3#13 Programming Tool reference\n" //
+                        +"7bb,136,143,1,0,0,,21F3,61F3,ff,21_F3#18 NumberOfReprogrammings\n" //
+                        +"7bb,144,167,1,0,0,,21F3,61F3,ff,21_F3#19 Date of Programming\n" //
+                        +"7bb,168,183,1,0,0,,21F3,61F3,ff,21_F3#22 Reserve\n" //
+                        +"7bb,184,191,1,0,0,,21F3,61F3,ff,21_F3#24 SaveMarking\n" //
+                        +"7bb,192,207,1,0,0,,21F3,61F3,ff,21_F3#25 CRC of log record\n" //
+                        +"7bb,16,55,1,0,0,,21F2,61F2,2ff,21_F2#03 Part Number Lower Part\n" //
+                        +"7bb,56,63,1,0,0,,21F2,61F2,ff,21_F2#08 Diagnostic identification code\n" //
+                        +"7bb,64,87,1,0,0,,21F2,61F2,2ff,21_F2#09 Supplier Number\n" //
+                        +"7bb,88,127,1,0,0,,21F2,61F2,2ff,21_F2#12 Hardware Number Lower Part\n" //
+                        +"7bb,128,143,1,0,0,,21F2,61F2,ff,21_F2#17 Software Number\n" //
+                        +"7bb,144,159,1,0,0,,21F2,61F2,ff,21_F2#19 Edition Number\n" //
+                        +"7bb,160,175,1,0,0,,21F2,61F2,ff,21_F2#21 Calibratin Number\n" //
+                        +"7bb,176,183,1,0,0,,21F2,61F2,ff,21_F2#23 Part Number Basic Part List\n" //
+                        +"7bb,184,191,1,0,0,,21F2,61F2,ff,21_F2#24 HardwareNumber Basic Part List\n" //
+                        +"7bb,192,199,1,0,0,,21F2,61F2,ff,21_F2#25 ApprovalNumber Basic Part List\n" //
+                        +"7bb,200,207,1,0,0,,21F2,61F2,ff,21_F2#26 Car manufacturer identification code\n" //
+                        +"7bb,16,55,1,0,0,,21F1,61F1,2ff,21_F1#03 ApprovalNumber\n" //
+                        +"7bb,56,95,1,0,0,,21F1,61F1,2ff,21_F1#08 ProgrammingSite\n" //
+                        +"7bb,96,135,1,0,0,,21F1,61F1,2ff,21_F1#13 Programming Tool reference\n" //
                         +"7bb,136,143,1,0,0,,21F1,61F1,ff,21_F1#18 NumberOfReprogrammings\n" //
                         +"7bb,144,167,1,0,0,,21F1,61F1,ff,21_F1#19 Date of Programming\n" //
                         +"7bb,168,183,1,0,0,,21F1,61F1,ff,21_F1#22 Reserve\n" //
                         +"7bb,184,191,1,0,0,,21F1,61F1,ff,21_F1#24 SaveMarking\n" //
-                        +"7bb,192,199,1,0,0,,21F1,61F1,ff,21_F1#25 CRC of log record\n" //
-                        +"7bb,16,23,1,0,0,,21F0,61F0,ff,21_F0#03 Part Number Lower Part\n" //
+                        +"7bb,192,207,1,0,0,,21F1,61F1,ff,21_F1#25 CRC of log record\n" //
+                        +"7bb,16,55,1,0,0,,21F0,61F0,2ff,21_F0#03 Part Number Lower Part\n" //
                         +"7bb,56,63,1,0,0,,21F0,61F0,ff,21_F0#08 Diagnostic identification code\n" //
-                        +"7bb,64,71,1,0,0,,21F0,61F0,ff,21_F0#09 Supplier Number\n" //
-                        +"7bb,88,95,1,0,0,,21F0,61F0,ff,21_F0#12 Hardware Number Lower Part\n" //
-                        +"7bb,128,135,1,0,0,,21F0,61F0,ff,21_F0#17 Software Number\n" //
-                        +"7bb,144,151,1,0,0,,21F0,61F0,ff,21_F0#19 Edition Number\n" //
-                        +"7bb,160,167,1,0,0,,21F0,61F0,ff,21_F0#21 Calibratin Number\n" //
+                        +"7bb,64,87,1,0,0,,21F0,61F0,2ff,21_F0#09 Supplier Number\n" //
+                        +"7bb,88,127,1,0,0,,21F0,61F0,2ff,21_F0#12 Hardware Number Lower Part\n" //
+                        +"7bb,128,143,1,0,0,,21F0,61F0,ff,21_F0#17 Software Number\n" //
+                        +"7bb,144,159,1,0,0,,21F0,61F0,ff,21_F0#19 Edition Number\n" //
+                        +"7bb,160,175,1,0,0,,21F0,61F0,ff,21_F0#21 Calibratin Number\n" //
                         +"7bb,176,183,1,0,0,,21F0,61F0,ff,21_F0#23 Part Number Basic Part List\n" //
                         +"7bb,184,191,1,0,0,,21F0,61F0,ff,21_F0#24 HardwareNumber Basic Part List\n" //
                         +"7bb,192,199,1,0,0,,21F0,61F0,ff,21_F0#25 ApprovalNumber Basic Part List\n" //
                         +"7bb,200,207,1,0,0,,21F0,61F0,ff,21_F0#26 Car manufacturer identification code\n" //
-                        +"7bb,16,23,1,0,0,,21A0,61A0,ff,21_A0_#03_BIN\n" //
+                        +"7bb,24,39,.001,0,0,V,22141C,62141C,ff,141C Cell Voltage No.1 of Failure Slave\n" //
+                        +"7bb,24,39,.001,0,0,V,22141D,62141D,ff,141D Cell Voltage No.2 of Failure Slave\n" //
+                        +"7bb,24,39,.001,0,0,V,22141F,62141F,ff,141F Cell Voltage No.4 of Failure Slave\n" //
+                        +"7bb,24,39,.001,0,0,V,22141E,62141E,ff,141E Cell Voltage No.3 of Failure Slave\n" //
+                        +"7bb,24,39,.001,0,0,V,221421,621421,ff,1421 Cell Voltage No.6 of Failure Slave\n" //
+                        +"7bb,24,26,1,0,0,,221424,621424,ff,1424 BMS State (LBC_CANHS_R_01/02/03).1424_BMS State,0:Not Used;1:Slow charge;2:Fast charge;3:Init;4:Transitory;5:Normal;6:Quick Drop;7:Unavalaible Vlaue\n" //
+                        +"7bb,27,28,1,0,0,,221424,621424,ff,1424 BMS State (LBC_CANHS_R_01/02/03).1424_LBC RefusetoSleep,0:Not Used;1:LBC Refuse To Sleep;2:LBC Ready To Sleep;3:Not Used 2\n" //
+                        +"7bb,29,30,1,0,0,,221424,621424,ff,1424 BMS State (LBC_CANHS_R_01/02/03).1424_HVpowerConnection,1:HVPowerConnection allowed;2:HVPowerConnection Not allowed\n" //
+                        +"7bb,31,32,1,0,0,,221424,621424,ff,1424 BMS State (LBC_CANHS_R_01/02/03).1424_IsolDiagAuthorisation,0:Not Used;1:Diag of isolation allowed;2:Diag of isolation not allowed;3:Unavailable value\n" //
+                        +"7bb,33,33,1,0,0,,221424,621424,ff,1424 BMS State (LBC_CANHS_R_01/02/03).1424_HVIL 1_SD,0:Opened;1:Closed\n" //
+                        +"7bb,34,34,1,0,0,,221424,621424,ff,1424 BMS State (LBC_CANHS_R_01/02/03).1424_HVIL 2_QD,0:Opened;1:Closed\n" //
+                        +"7bb,35,39,1,0,0,,221424,621424,ff,1424 BMS State (LBC_CANHS_R_01/02/03).1424_Reserved\n" //
+                        +"7bb,24,25,1,0,0,,221425,621425,ff,1425 Request From Vehicle (SCH_CANHS__R02/R03).1425_ETS_SleepMode,2:Quick Drop;0:Normal Sleep;1:14V Battery Management;3:Unavailable Value\n" //
+                        +"7bb,26,27,1,0,0,,221425,621425,ff,1425 Request From Vehicle (SCH_CANHS__R02/R03).1425_SCH_WakeUpSleepCommand,2:Not Used 2;1:Not Used 1;0:Go to Sleep;3:Wake Up\n" //
+                        +"7bb,28,28,1,0,0,,221425,621425,ff,1425 Request From Vehicle (SCH_CANHS__R02/R03).1425_WakeUpType,0:Customer Wake Up;1:Technical Wake Up\n" //
+                        +"7bb,29,31,1,0,0,,221425,621425,ff,1425 Request From Vehicle (SCH_CANHS__R02/R03).1425_OperatingType,0:No Request;1:Slow Charge;2:Fast Charge;3:Normal;4:Quick Drop;5:Not Used 1;6:Not Used 2;7:Unavailable Value\n" //
+                        +"7bb,32,33,1,0,0,,221425,621425,ff,1425 Request From Vehicle (SCH_CANHS__R02/R03).1425_PowerRelayState,0:Precharge;2:Opened;1:Closed;3:Transitory States\n" //
+                        +"7bb,34,39,1,0,0,,221425,621425,ff,1425 Request From Vehicle (SCH_CANHS__R02/R03).1425_Reserved\n" //
+                        +"7bb,16,215,1,0,0,,21A0,61A0,2ff,21_A0_#03_BIN\n" //
+                        +"7bb,24,39,.001,0,0,V,221420,621420,ff,1420 Cell Voltage No.5 of Failure Slave\n" //
+                        +"7bb,24,39,.001,0,0,V,221422,621422,ff,1422 Cell Voltage No.7 of Failure Slave\n" //
+                        +"7bb,24,39,.001,0,0,V,221423,621423,ff,1423 Cell Voltage No.8 of Failure Slave\n" //
+                        +"7bb,24,39,1,0,0,KW,221427,621427,ff,1427 Charge Possible Power (After Restriction)\n" //
                         +"7bb,16,39,1,0,0,,2160,6160,ff,21_60_#003_AbsTimePack\n" //
                         +"7bb,40,47,1,0,0,,2160,6160,ff,21_60_#006_Simpler SOHE (RSA Model)\n" //
                         +"7bb,48,55,1,0,0,,2160,6160,ff,21_60_#007_Average SOHE (LGC Model)\n" //
                         +"7bb,64,71,1,0,0,,2160,6160,ff,21_60_#009_BMS_Update_command_applied,1:APPLIED;255:NOT APPLIED\n" //
                         +"7bb,56,63,1,0,0,,2160,6160,ff,21_60_#008_SOHE(module)_Update_command_applied,1:APPLIED;255:NOT APPLIED\n" //
                         +"7bb,72,79,1,0,0,,2160,6160,ff,21_60_#010_Storage_Update_Command_Applied,1:APPLIED 1 time;2:APPLIED 2 times;3:APPLIED 3 times;4:APPLIED 4 times;5:APPLIED 5 times;6:APPLIED 6 times;7:APPLIED 7 times;8:APPLIED 8 times;9:APPLIED 9 times;10:APPLIED 10 times;255:NOT APPLIED\n" //
+                        +"7bb,16,31,1,0,0,%,2163,6163,ff,63_03 Init SOC\n" //
+                        +"7bb,32,39,1,0,0,,2163,6163,ff,63_05 Init Method,1:SOC_EKF;2:SOC_OCV\n" //
+                        +"7bb,40,47,1,40,0,°C,2163,6163,ff,63_06 Init Min Temp\n" //
+                        +"7bb,48,79,1,0,0,Minutes,2163,6163,ff,63_07 Init Driving Time\n" //
+                        +"7bb,80,111,1,0,0,Minutes,2163,6163,ff,63_11 Init Parking Time\n" //
+                        +"7bb,112,143,1,2000000000,0,A,2163,6163,ff,63_15 Init Current Sum\n" //
+                        +"7bb,144,159,1,0,0,%,2163,6163,ff,63_19 Final SOC [Segment 1]\n" //
+                        +"7bb,160,167,1,0,0,,2163,6163,ff,63_21 Final Method [Segment 1],1:SOC_EKF;2:SOC_OCV\n" //
+                        +"7bb,168,175,1,40,0,°C,2163,6163,ff,63_22 Final Min Temp [Segment 1]\n" //
+                        +"7bb,176,207,1,0,0,Minutes,2163,6163,ff,63_23 Final Driving Time [Segment 1]\n" //
+                        +"7bb,208,239,1,0,0,Minutes,2163,6163,ff,63_27 Final Parking Time [Segment 1]\n" //
+                        +"7bb,240,271,1,2000000000,0,A,2163,6163,ff,63_31 Final Current Sum [Segment 1]\n" //
+                        +"7bb,272,287,1,0,0,%,2163,6163,ff,63_35 Final SOC [Segment 2]\n" //
+                        +"7bb,288,295,1,0,0,,2163,6163,ff,63_37 Final Method [Segment 2],1:SOC_EKF;2:SOC_OCV\n" //
+                        +"7bb,296,303,1,40,0,°C,2163,6163,ff,63_38 Final Min Temp [Segment 2]\n" //
+                        +"7bb,304,335,1,0,0,Minutes,2163,6163,ff,63_39 Final Driving Time [Segment 2]\n" //
+                        +"7bb,336,367,1,0,0,Minutes,2163,6163,ff,63_43 Final Parking Time [Segment 2]\n" //
+                        +"7bb,368,399,1,2000000000,0,A,2163,6163,ff,63_47 Final Current Sum [Segment 2]\n" //
+                        +"7bb,400,415,1,0,0,%,2163,6163,ff,63_51 Final SOC [Segment 3]\n" //
+                        +"7bb,416,423,1,0,0,,2163,6163,ff,63_53 Final Method [Segment 3],1:SOC_EKF;2:SOC_OCV\n" //
+                        +"7bb,424,431,1,40,0,°C,2163,6163,ff,63_54 Final Min Temp [Segment 3]\n" //
+                        +"7bb,432,463,1,0,0,Minutes,2163,6163,ff,63_55 Final Driving Time [Segment 3]\n" //
+                        +"7bb,464,495,1,0,0,Minutes,2163,6163,ff,63_59 Final Parking Time [Segment 3]\n" //
+                        +"7bb,496,527,1,2000000000,0,A,2163,6163,ff,63_63 Final Current Sum [Segment 3]\n" //
+                        +"7bb,528,543,1,0,0,%,2163,6163,ff,63_67 Final SOC [Segment 4]\n" //
+                        +"7bb,544,551,1,0,0,,2163,6163,ff,63_69 Final Method [Segment 4],1:SOC_EKF;2:SOC_OCV\n" //
+                        +"7bb,552,559,1,40,0,°C,2163,6163,ff,63_70 Final Min Temp [Segment 4]\n" //
+                        +"7bb,560,591,1,0,0,Minutes,2163,6163,ff,63_71 Final Driving Time [Segment 4]\n" //
+                        +"7bb,592,623,1,0,0,Minutes,2163,6163,ff,63_75 Final Parking Time [Segment 4]\n" //
+                        +"7bb,624,655,1,2000000000,0,A,2163,6163,ff,63_79 Final Current Sum [Segment 4]\n" //
+                        +"7bb,656,671,1,0,0,%,2163,6163,ff,63_83 Final SOC [Segment 5]\n" //
+                        +"7bb,672,679,1,0,0,,2163,6163,ff,63_85 Final Method [Segment 5],1:SOC_EKF;2:SOC_OCV\n" //
+                        +"7bb,680,687,1,40,0,°C,2163,6163,ff,63_86 Final Min Temp [Segment 5]\n" //
+                        +"7bb,688,719,1,0,0,Minutes,2163,6163,ff,63_87 Final Driving Time [Segment 5]\n" //
+                        +"7bb,720,751,1,0,0,Minutes,2163,6163,ff,63_91 Final Parking Time [Segment 5]\n" //
+                        +"7bb,752,783,1,2000000000,0,A,2163,6163,ff,63_95 Final Current Sum [Segment 5]\n" //
+                        +"7bb,16,31,1,0,0,%,2164,6164,ff,64_03 Latest Init SOC\n" //
+                        +"7bb,32,39,1,0,0,,2164,6164,ff,64_05 Latest Init Method,1:SOC_EKF;2:SOC_OCV\n" //
+                        +"7bb,40,47,1,40,0,°C,2164,6164,ff,64_06 Latest Init Min Temp\n" //
+                        +"7bb,48,79,1,0,0,Minutes,2164,6164,ff,64_07 Latest Init Driving Time\n" //
+                        +"7bb,80,111,1,0,0,Minutes,2164,6164,ff,64_11 Latest Init Parking Time\n" //
+                        +"7bb,112,143,1,2000000000,0,A,2164,6164,ff,64_15 Latest Init Current Sum\n" //
+                        +"7bb,144,159,1,0,0,%,2164,6164,ff,64_19 Latest Final SOC [Segment 1]\n" //
+                        +"7bb,160,167,1,0,0,,2164,6164,ff,64_21 Latest Final Method [Segment 1],1:SOC_EKF;2:SOC_OCV\n" //
+                        +"7bb,168,175,1,40,0,°C,2164,6164,ff,64_22 Latest Final Min Temp [Segment 1]\n" //
+                        +"7bb,176,207,1,0,0,Minutes,2164,6164,ff,64_23 Latest Final Driving Time [Segment 1]\n" //
+                        +"7bb,208,239,1,0,0,Minutes,2164,6164,ff,64_27 Latest Final Parking Time [Segment 1]\n" //
+                        +"7bb,240,271,1,2000000000,0,A,2164,6164,ff,64_31 Latest Final Current Sum [Segment 1]\n" //
+                        +"7bb,272,287,1,0,0,%,2164,6164,ff,64_35 Latest Final SOC [Segment 2]\n" //
+                        +"7bb,288,295,1,0,0,,2164,6164,ff,64_37 Latest Final Method [Segment 2],1:SOC_EKF;2:SOC_OCV\n" //
+                        +"7bb,296,303,1,40,0,°C,2164,6164,ff,64_38 Latest Final Min Temp [Segment 2]\n" //
+                        +"7bb,304,335,1,0,0,Minutes,2164,6164,ff,64_39 Latest Final Driving Time [Segment 2]\n" //
+                        +"7bb,336,367,1,0,0,Minutes,2164,6164,ff,64_43 Latest Final Parking Time [Segment 2]\n" //
+                        +"7bb,368,399,1,2000000000,0,A,2164,6164,ff,64_47 Latest Final Current Sum [Segment 2]\n" //
+                        +"7bb,400,415,1,0,0,%,2164,6164,ff,64_51 Latest Final SOC [Segment 3]\n" //
+                        +"7bb,416,423,1,0,0,,2164,6164,ff,64_53 Latest Final Method [Segment 3],1:SOC_EKF;2:SOC_OCV\n" //
+                        +"7bb,424,431,1,40,0,°C,2164,6164,ff,64_54 Latest Final Min Temp [Segment 3]\n" //
+                        +"7bb,432,463,1,0,0,Minutes,2164,6164,ff,64_55 Latest Final Driving Time [Segment 3]\n" //
+                        +"7bb,464,495,1,0,0,Minutes,2164,6164,ff,64_59 Latest Final Parking Time [Segment 3]\n" //
+                        +"7bb,496,527,1,2000000000,0,A,2164,6164,ff,64_63 Latest Final Current Sum [Segment 3]\n" //
+                        +"7bb,528,543,1,0,0,%,2164,6164,ff,64_67 Latest Final SOC [Segment 4]\n" //
+                        +"7bb,544,551,1,0,0,,2164,6164,ff,64_69 Latest Final Method [Segment 4],1:SOC_EKF;2:SOC_OCV\n" //
+                        +"7bb,552,559,1,40,0,°C,2164,6164,ff,64_70 Latest Final Min Temp [Segment 4]\n" //
+                        +"7bb,560,591,1,0,0,Minutes,2164,6164,ff,64_71 Latest Final Driving Time [Segment 4]\n" //
+                        +"7bb,592,623,1,0,0,Minutes,2164,6164,ff,64_75 Latest Final Parking Time [Segment 4]\n" //
+                        +"7bb,624,655,1,2000000000,0,A,2164,6164,ff,64_79 Latest Final Current Sum [Segment 4]\n" //
+                        +"7bb,656,671,1,0,0,%,2164,6164,ff,64_83 Latest Final SOC [Segment 5]\n" //
+                        +"7bb,672,679,1,0,0,,2164,6164,ff,64_85 Latest Final Method [Segment 5],1:SOC_EKF;2:SOC_OCV\n" //
+                        +"7bb,680,687,1,40,0,°C,2164,6164,ff,64_86 Latest Final Min Temp [Segment 5]\n" //
+                        +"7bb,688,719,1,0,0,Minutes,2164,6164,ff,64_87 Latest Final Driving Time [Segment 5]\n" //
+                        +"7bb,720,751,1,0,0,Minutes,2164,6164,ff,64_91 Latest Final Parking Time [Segment 5]\n" //
+                        +"7bb,752,783,1,2000000000,0,A,2164,6164,ff,64_95 Latest Final Current Sum [Segment 5]\n" //
+                        +"7bb,16,31,1,0,0,%,2165,6165,ff,65_03 Latest SOHE_1Min [#00] Segment 0->1\n" //
+                        +"7bb,32,39,1,0,0,%,2165,6165,ff,65_05 Latest WeightFactor [#00] Segment 0->1\n" //
+                        +"7bb,40,47,1,0,0,,2165,6165,ff,65_06 Latest dSOHE/SOHE [#00] Segment 0->1\n" //
+                        +"7bb,48,63,1,0,0,%,2165,6165,ff,65_07 Latest SOHE_1Min [#01] Segment 0->2\n" //
+                        +"7bb,64,71,1,0,0,%,2165,6165,ff,65_09 Latest WeightFactor [#00] Segment 0->2\n" //
+                        +"7bb,72,79,1,0,0,,2165,6165,ff,65_10 Latest dSOHE/SOHE [#01] Segment 0->2\n" //
+                        +"7bb,80,95,1,0,0,%,2165,6165,ff,65_11 Latest SOHE_1Min [#02] Segment 0->3\n" //
+                        +"7bb,96,103,1,0,0,%,2165,6165,ff,65_13 Latest WeightFactor [#02] Segment 0->3\n" //
+                        +"7bb,104,111,1,0,0,,2165,6165,ff,65_14 Latest dSOHE/SOHE [#02] Segment 0->3\n" //
+                        +"7bb,112,127,1,0,0,%,2165,6165,ff,65_15 Latest SOHE_1Min [#03] Segment 0->4\n" //
+                        +"7bb,128,135,1,0,0,%,2165,6165,ff,65_17 Latest WeightFactor [#03] Segment 0->4\n" //
+                        +"7bb,136,143,1,0,0,,2165,6165,ff,65_18 Latest dSOHE/SOHE [#03] Segment 0->4\n" //
+
                 ;
 
-        Frames.getInstance().load ("7BB,0,0,LBC\n");
-        Fields.getInstance().load (fieldDef1);
-        Fields.getInstance().loadMore (fieldDef2);
-        Fields.getInstance().loadMore (fieldDef3);
+        String fieldDef4 =
+                ""
+
+                        +"7bb,144,159,1,0,0,%,2165,6165,ff,65_19 Latest SOHE_1Min [#04] Segment 0->5\n" //
+                        +"7bb,160,167,1,0,0,%,2165,6165,ff,65_21 Latest WeightFactor [#04] Segment 0->5\n" //
+                        +"7bb,168,175,1,0,0,,2165,6165,ff,65_22 Latest dSOHE/SOHE [#04] Segment 0->5\n" //
+                        +"7bb,176,191,1,0,0,%,2165,6165,ff,65_23 Latest SOHE_1Min [#05] Segment 1->2\n" //
+                        +"7bb,192,199,1,0,0,%,2165,6165,ff,65_25 Latest WeightFactor [#05] Segment 1->2\n" //
+                        +"7bb,200,207,1,0,0,,2165,6165,ff,65_26 Latest dSOHE/SOHE [#05] Segment 1->2\n" //
+                        +"7bb,208,223,1,0,0,%,2165,6165,ff,65_27 Latest SOHE_1Min [#06] Segment 1->3\n" //
+                        +"7bb,224,231,1,0,0,%,2165,6165,ff,65_29 Latest WeightFactor [#06] Segment 1->3\n" //
+                        +"7bb,232,239,1,0,0,,2165,6165,ff,65_30 Latest dSOHE/SOHE [#06] Segment 1->3\n" //
+                        +"7bb,240,255,1,0,0,%,2165,6165,ff,65_31 Latest SOHE_1Min [#07] Segment 1->4\n" //
+                        +"7bb,256,263,1,0,0,%,2165,6165,ff,65_33 Latest WeightFactor [#07] Segment 1->4\n" //
+                        +"7bb,264,271,1,0,0,,2165,6165,ff,65_34 Latest dSOHE/SOHE [#07] Segment 1->4\n" //
+                        +"7bb,272,287,1,0,0,%,2165,6165,ff,65_35 Latest SOHE_1Min [#08] Segment 1->5\n" //
+                        +"7bb,288,295,1,0,0,%,2165,6165,ff,65_37 Latest WeightFactor [#08] Segment 1->5\n" //
+                        +"7bb,296,303,1,0,0,,2165,6165,ff,65_38 Latest dSOHE/SOHE [#08] Segment 1->5\n" //
+                        +"7bb,304,319,1,0,0,%,2165,6165,ff,65_39 Latest SOHE_1Min [#09] Segment 2->3\n" //
+                        +"7bb,320,327,1,0,0,%,2165,6165,ff,65_41 Latest WeightFactor [#09] Segment 2->3\n" //
+                        +"7bb,328,335,1,0,0,,2165,6165,ff,65_42 Latest dSOHE/SOHE [#09] Segment 2->3\n" //
+                        +"7bb,336,351,1,0,0,%,2165,6165,ff,65_43 Latest SOHE_1Min [#10] Segment 2->4\n" //
+                        +"7bb,352,359,1,0,0,%,2165,6165,ff,65_45 Latest WeightFactor [#10] Segment 2->4\n" //
+                        +"7bb,360,367,1,0,0,,2165,6165,ff,65_46 Latest dSOHE/SOHE [#10] Segment 2->4\n" //
+                        +"7bb,368,383,1,0,0,%,2165,6165,ff,65_47 Latest SOHE_1Min [#11] Segment 2->5\n" //
+                        +"7bb,384,391,1,0,0,%,2165,6165,ff,65_49 Latest WeightFactor [#11] Segment 2->5\n" //
+                        +"7bb,392,399,1,0,0,,2165,6165,ff,65_50 Latest dSOHE/SOHE [#11] Segment 2->5\n" //
+                        +"7bb,400,415,1,0,0,%,2165,6165,ff,65_51 Latest SOHE_1Min [#12] Segment 3->4\n" //
+                        +"7bb,416,423,1,0,0,%,2165,6165,ff,65_53 Latest WeightFactor [#12] Segment 3->4\n" //
+                        +"7bb,424,431,1,0,0,,2165,6165,ff,65_54 Latest dSOHE/SOHE [#12] Segment 3->4\n" //
+                        +"7bb,432,447,1,0,0,%,2165,6165,ff,65_55 Latest SOHE_1Min [#13] Segment 3->5\n" //
+                        +"7bb,448,455,1,0,0,%,2165,6165,ff,65_57 Latest WeightFactor [#13] Segment 3->5\n" //
+                        +"7bb,456,463,1,0,0,,2165,6165,ff,65_58 Latest dSOHE/SOHE [#13] Segment 3->5\n" //
+                        +"7bb,464,479,1,0,0,%,2165,6165,ff,65_59 Latest SOHE_1Min [#14] Segment 4->5\n" //
+                        +"7bb,480,487,1,0,0,%,2165,6165,ff,65_61 Latest WeightFactor [#14] Segment 4->5\n" //
+                        +"7bb,488,495,1,0,0,,2165,6165,ff,65_62 Latest dSOHE/SOHE [#14] Segment 4->5\n" //
+                        +"7bb,16,47,1,2000000000,0,A,2168,6168,ff,68_03 Current Sum [Buffer #00]\n" //
+                        +"7bb,48,63,1,0,0,%,2168,6168,ff,68_07 Init SOC [Buffer #00]\n" //
+                        +"7bb,64,79,1,0,0,%,2168,6168,ff,68_09 Final SOC [Buffer #00]]\n" //
+                        +"7bb,80,87,1,0,0,,2168,6168,ff,68_11 Init Method / Final Method [Buffer #00],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,88,95,1,0,0,,2168,6168,ff,68_12 NumOfSegmentCase [Buffer #00]\n" //
+                        +"7bb,96,111,1,0,0,%,2168,6168,ff,68_13 SOHE_1Min [Buffer #00]\n" //
+                        +"7bb,112,119,1,0,0,%,2168,6168,ff,68_15 WeightFactor [Buffer #00]\n" //
+                        +"7bb,120,127,1,0,0,,2168,6168,ff,68_16 Updated State [Buffer #00],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,128,135,1,0,0,%,2168,6168,ff,68_17 dSOHE/SOHE [#00] Segment [Buffer #00]\n" //
+                        +"7bb,136,167,1,2000000000,0,A,2168,6168,ff,68_18 Current Sum [Buffer #01]\n" //
+                        +"7bb,168,183,1,0,0,%,2168,6168,ff,68_22 Init SOC [Buffer #01]\n" //
+                        +"7bb,184,199,1,0,0,%,2168,6168,ff,68_24 Final SOC [Buffer #01]\n" //
+                        +"7bb,200,207,1,0,0,,2168,6168,ff,68_26 Init Method / Final Method [Buffer #01],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,208,215,1,0,0,,2168,6168,ff,68_27 NumOfSegmentCase [Buffer #01]\n" //
+                        +"7bb,216,231,1,0,0,%,2168,6168,ff,68_28 SOHE_1Min [Buffer #01]\n" //
+                        +"7bb,232,239,1,0,0,%,2168,6168,ff,68_30 WeightFactor [Buffer #01]\n" //
+                        +"7bb,240,247,1,0,0,,2168,6168,ff,68_31 Updated State [Buffer #01],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,248,255,1,0,0,%,2168,6168,ff,68_32 dSOHE/SOHE [#00] Segment [Buffer #01]\n" //
+                        +"7bb,256,287,1,2000000000,0,A,2168,6168,ff,68_33 Current Sum [Buffer #02]\n" //
+                        +"7bb,288,303,1,0,0,%,2168,6168,ff,68_37 Init SOC [Buffer #02]\n" //
+                        +"7bb,304,319,1,0,0,%,2168,6168,ff,68_39 Final SOC [Buffer #02]\n" //
+                        +"7bb,320,327,1,0,0,,2168,6168,ff,68_41 Init Method / Final Method [Buffer #02],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,328,335,1,0,0,,2168,6168,ff,68_42 NumOfSegmentCase [Buffer #02]\n" //
+                        +"7bb,336,351,1,0,0,%,2168,6168,ff,68_43 SOHE_1Min [Buffer #02]\n" //
+                        +"7bb,352,359,1,0,0,%,2168,6168,ff,68_45 WeightFactor [Buffer #02]\n" //
+                        +"7bb,360,367,1,0,0,,2168,6168,ff,68_46 Updated State [Buffer #02],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,368,375,1,0,0,%,2168,6168,ff,68_47 dSOHE/SOHE [#00] Segment [Buffer #02]\n" //
+                        +"7bb,376,407,1,2000000000,0,A,2168,6168,ff,68_48 Current Sum [Buffer #03]\n" //
+                        +"7bb,408,423,1,0,0,%,2168,6168,ff,68_52 Init SOC [Buffer #03]\n" //
+                        +"7bb,424,439,1,0,0,%,2168,6168,ff,68_54 Final SOC [Buffer #03]\n" //
+                        +"7bb,440,447,1,0,0,,2168,6168,ff,68_56 Init Method / Final Method [Buffer #03],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,448,455,1,0,0,,2168,6168,ff,68_57 NumOfSegmentCase [Buffer #03]\n" //
+                        +"7bb,456,471,1,0,0,%,2168,6168,ff,68_58 SOHE_1Min [Buffer #03]\n" //
+                        +"7bb,472,479,1,0,0,%,2168,6168,ff,68_60 WeightFactor [Buffer #03]\n" //
+                        +"7bb,480,487,1,0,0,,2168,6168,ff,68_61 Updated State [Buffer #03],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,488,495,1,0,0,%,2168,6168,ff,68_62 dSOHE/SOHE [#00] Segment [Buffer #03]\n" //
+                        +"7bb,496,527,1,2000000000,0,A,2168,6168,ff,68_63 Current Sum [Buffer #04]\n" //
+                        +"7bb,528,543,1,0,0,%,2168,6168,ff,68_67 Init SOC [Buffer #04]\n" //
+                        +"7bb,544,559,1,0,0,%,2168,6168,ff,68_69 Final SOC [Buffer #04]\n" //
+                        +"7bb,560,567,1,0,0,,2168,6168,ff,68_71 Init Method / Final Method [Buffer #04],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,568,575,1,0,0,,2168,6168,ff,68_72 NumOfSegmentCase [Buffer #04]\n" //
+                        +"7bb,576,591,1,0,0,%,2168,6168,ff,68_73 SOHE_1Min [Buffer #04]\n" //
+                        +"7bb,592,599,1,0,0,%,2168,6168,ff,68_75 WeightFactor [Buffer #04]\n" //
+                        +"7bb,600,607,1,0,0,,2168,6168,ff,68_76 Updated State [Buffer #04],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,608,615,1,0,0,%,2168,6168,ff,68_77 dSOHE/SOHE [#00] Segment [Buffer #04]\n" //
+                        +"7bb,616,647,1,2000000000,0,A,2168,6168,ff,68_78 Current Sum [Buffer #05]\n" //
+                        +"7bb,648,663,1,0,0,%,2168,6168,ff,68_82 Init SOC [Buffer #05]\n" //
+                        +"7bb,664,679,1,0,0,%,2168,6168,ff,68_84 Final SOC [Buffer #05]\n" //
+                        +"7bb,680,687,1,0,0,,2168,6168,ff,68_86 Init Method / Final Method [Buffer #05],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,688,695,1,0,0,,2168,6168,ff,68_87 NumOfSegmentCase [Buffer #05]\n" //
+                        +"7bb,696,711,1,0,0,%,2168,6168,ff,68_88 SOHE_1Min [Buffer #05]\n" //
+                        +"7bb,712,719,1,0,0,%,2168,6168,ff,68_90 WeightFactor [Buffer #05]\n" //
+                        +"7bb,720,727,1,0,0,,2168,6168,ff,68_91 Updated State [Buffer #05],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,728,735,1,0,0,%,2168,6168,ff,68_92 dSOHE/SOHE [#00] Segment [Buffer #05]\n" //
+                        +"7bb,736,767,1,2000000000,0,A,2168,6168,ff,68_93 Current Sum [Buffer #06]\n" //
+                        +"7bb,768,783,1,0,0,%,2168,6168,ff,68_97 Init SOC [Buffer #06]\n" //
+                        +"7bb,784,799,1,0,0,%,2168,6168,ff,68_99 Final SOC [Buffer #06]\n" //
+                        +"7bb,800,807,1,0,0,,2168,6168,ff,68_101 Init Method / Final Method [Buffer #06],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,808,815,1,0,0,,2168,6168,ff,68_102 NumOfSegmentCase [Buffer #06]\n" //
+                        +"7bb,816,831,1,0,0,%,2168,6168,ff,68_103 SOHE_1Min [Buffer #06]\n" //
+                        +"7bb,832,839,1,0,0,%,2168,6168,ff,68_105 WeightFactor [Buffer #06]\n" //
+                        +"7bb,840,847,1,0,0,,2168,6168,ff,68_106 Updated State [Buffer #06],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,848,855,1,0,0,%,2168,6168,ff,68_107 dSOHE/SOHE [#00] Segment [Buffer #06]\n" //
+                        +"7bb,856,887,1,2000000000,0,A,2168,6168,ff,68_108 Current Sum [Buffer #07]\n" //
+                        +"7bb,888,903,1,0,0,%,2168,6168,ff,68_112 Init SOC [Buffer #07]\n" //
+                        +"7bb,904,919,1,0,0,%,2168,6168,ff,68_114 Final SOC [Buffer #07]\n" //
+                        +"7bb,920,927,1,0,0,,2168,6168,ff,68_116 Init Method / Final Method [Buffer #07],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,928,935,1,0,0,,2168,6168,ff,68_117 NumOfSegmentCase [Buffer #07]\n" //
+                        +"7bb,936,951,1,0,0,%,2168,6168,ff,68_118 SOHE_1Min [Buffer #07]\n" //
+                        +"7bb,952,959,1,0,0,%,2168,6168,ff,68_120 WeightFactor [Buffer #07]\n" //
+                        +"7bb,960,967,1,0,0,,2168,6168,ff,68_121 Updated State [Buffer #07],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,968,975,1,0,0,%,2168,6168,ff,68_122 dSOHE/SOHE [#00] Segment [Buffer #07]\n" //
+                        +"7bb,976,1007,1,2000000000,0,A,2168,6168,ff,68_123 Current Sum [Buffer #08]\n" //
+                        +"7bb,1008,1023,1,0,0,%,2168,6168,ff,68_127 Init SOC [Buffer #08]\n" //
+                        +"7bb,1024,1039,1,0,0,%,2168,6168,ff,68_129 Final SOC [Buffer #08]\n" //
+                        +"7bb,1040,1047,1,0,0,,2168,6168,ff,68_131 Init Method / Final Method [Buffer #08],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,1048,1055,1,0,0,,2168,6168,ff,68_132 NumOfSegmentCase [Buffer #08]\n" //
+                        +"7bb,1056,1071,1,0,0,%,2168,6168,ff,68_133 SOHE_1Min [Buffer #08]\n" //
+                        +"7bb,1072,1079,1,0,0,%,2168,6168,ff,68_135 WeightFactor [Buffer #08]\n" //
+                        +"7bb,1080,1087,1,0,0,,2168,6168,ff,68_136 Updated State [Buffer #08],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,1088,1095,1,0,0,%,2168,6168,ff,68_137 dSOHE/SOHE [#00] Segment [Buffer #08]\n" //
+                        +"7bb,1096,1127,1,2000000000,0,A,2168,6168,ff,68_138 Current Sum [Buffer #09]\n" //
+                        +"7bb,1128,1143,1,0,0,%,2168,6168,ff,68_142 Init SOC [Buffer #09]\n" //
+                        +"7bb,1144,1159,1,0,0,%,2168,6168,ff,68_144 Final SOC [Buffer #09]\n" //
+                        +"7bb,1160,1167,1,0,0,,2168,6168,ff,68_146 Init Method / Final Method [Buffer #09],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,1168,1175,1,0,0,,2168,6168,ff,68_147 NumOfSegmentCase [Buffer #09]\n" //
+                        +"7bb,1176,1191,1,0,0,%,2168,6168,ff,68_148 SOHE_1Min [Buffer #09]\n" //
+                        +"7bb,1192,1199,1,0,0,%,2168,6168,ff,68_150 WeightFactor [Buffer #09]\n" //
+                        +"7bb,1200,1207,1,0,0,,2168,6168,ff,68_151 Updated State [Buffer #09],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,1208,1215,1,0,0,%,2168,6168,ff,68_152 dSOHE/SOHE [#00] Segment [Buffer #09]\n" //
+                        +"7bb,16,47,1,2000000000,0,A,2169,6169,ff,69_03 Current Sum [Buffer #10]\n" //
+                        +"7bb,48,63,1,0,0,%,2169,6169,ff,69_07 Init SOC [Buffer #10]\n" //
+                        +"7bb,64,79,1,0,0,%,2169,6169,ff,69_09 Final SOC [Buffer #10]]\n" //
+                        +"7bb,80,87,1,0,0,,2169,6169,ff,69_11 Init Method / Final Method [Buffer #10],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,88,95,1,0,0,,2169,6169,ff,69_12 NumOfSegmentCase [Buffer #10]\n" //
+                        +"7bb,96,111,1,0,0,%,2169,6169,ff,69_13 SOHE_1Min [Buffer #10]\n" //
+                        +"7bb,112,119,1,0,0,%,2169,6169,ff,69_15 WeightFactor [Buffer #10]\n" //
+                        +"7bb,120,127,1,0,0,,2169,6169,ff,69_16 Updated State [Buffer #10],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,128,135,1,0,0,%,2169,6169,ff,69_17 dSOHE/SOHE [#00] Segment [Buffer #10]\n" //
+                        +"7bb,136,167,1,2000000000,0,A,2169,6169,ff,69_18 Current Sum [Buffer #11]\n" //
+                        +"7bb,168,183,1,0,0,%,2169,6169,ff,69_22 Init SOC [Buffer #11]\n" //
+                        +"7bb,184,199,1,0,0,%,2169,6169,ff,69_24 Final SOC [Buffer #11]\n" //
+                        +"7bb,200,207,1,0,0,,2169,6169,ff,69_26 Init Method / Final Method [Buffer #11],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,208,215,1,0,0,,2169,6169,ff,69_27 NumOfSegmentCase [Buffer #11]\n" //
+                        +"7bb,216,231,1,0,0,%,2169,6169,ff,69_28 SOHE_1Min [Buffer #11]\n" //
+                        +"7bb,232,239,1,0,0,%,2169,6169,ff,69_30 WeightFactor [Buffer #11]\n" //
+                        +"7bb,240,247,1,0,0,,2169,6169,ff,69_31 Updated State [Buffer #11],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,248,255,1,0,0,%,2169,6169,ff,69_32 dSOHE/SOHE [#00] Segment [Buffer #11]\n" //
+                        +"7bb,256,287,1,2000000000,0,A,2169,6169,ff,69_33 Current Sum [Buffer #12]\n" //
+                        +"7bb,288,303,1,0,0,%,2169,6169,ff,69_37 Init SOC [Buffer #12]\n" //
+                        +"7bb,304,319,1,0,0,%,2169,6169,ff,69_39 Final SOC [Buffer #12]\n" //
+                        +"7bb,320,327,1,0,0,,2169,6169,ff,69_41 Init Method / Final Method [Buffer #12],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,328,335,1,0,0,,2169,6169,ff,69_42 NumOfSegmentCase [Buffer #12]\n" //
+                        +"7bb,336,351,1,0,0,%,2169,6169,ff,69_43 SOHE_1Min [Buffer #12]\n" //
+                        +"7bb,352,359,1,0,0,%,2169,6169,ff,69_45 WeightFactor [Buffer #12]\n" //
+                        +"7bb,360,367,1,0,0,,2169,6169,ff,69_46 Updated State [Buffer #12],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,368,375,1,0,0,%,2169,6169,ff,69_47 dSOHE/SOHE [#00] Segment [Buffer #12]\n" //
+                        +"7bb,376,407,1,2000000000,0,A,2169,6169,ff,69_48 Current Sum [Buffer #13]\n" //
+                        +"7bb,408,423,1,0,0,%,2169,6169,ff,69_52 Init SOC [Buffer #13]\n" //
+                        +"7bb,424,439,1,0,0,%,2169,6169,ff,69_54 Final SOC [Buffer #13]\n" //
+                        +"7bb,440,447,1,0,0,,2169,6169,ff,69_56 Init Method / Final Method [Buffer #13],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,448,455,1,0,0,,2169,6169,ff,69_57 NumOfSegmentCase [Buffer #13]\n" //
+                        +"7bb,456,471,1,0,0,%,2169,6169,ff,69_58 SOHE_1Min [Buffer #13]\n" //
+                        +"7bb,472,479,1,0,0,%,2169,6169,ff,69_60 WeightFactor [Buffer #13]\n" //
+                        +"7bb,480,487,1,0,0,,2169,6169,ff,69_61 Updated State [Buffer #13],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,488,495,1,0,0,%,2169,6169,ff,69_62 dSOHE/SOHE [#00] Segment [Buffer #13]\n" //
+                        +"7bb,496,527,1,2000000000,0,A,2169,6169,ff,69_63 Current Sum [Buffer #14]\n" //
+                        +"7bb,528,543,1,0,0,%,2169,6169,ff,69_67 Init SOC [Buffer #14]\n" //
+                        +"7bb,544,559,1,0,0,%,2169,6169,ff,69_69 Final SOC [Buffer #14]\n" //
+                        +"7bb,560,567,1,0,0,,2169,6169,ff,69_71 Init Method / Final Method [Buffer #14],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,568,575,1,0,0,,2169,6169,ff,69_72 NumOfSegmentCase [Buffer #14]\n" //
+                        +"7bb,576,591,1,0,0,%,2169,6169,ff,69_73 SOHE_1Min [Buffer #14]\n" //
+                        +"7bb,592,599,1,0,0,%,2169,6169,ff,69_75 WeightFactor [Buffer #14]\n" //
+                        +"7bb,600,607,1,0,0,,2169,6169,ff,69_76 Updated State [Buffer #14],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,608,615,1,0,0,%,2169,6169,ff,69_77 dSOHE/SOHE [#00] Segment [Buffer #14]\n" //
+                        +"7bb,616,647,1,2000000000,0,A,2169,6169,ff,69_78 Current Sum [Buffer #15]\n" //
+                        +"7bb,648,663,1,0,0,%,2169,6169,ff,69_82 Init SOC [Buffer #15]\n" //
+                        +"7bb,664,679,1,0,0,%,2169,6169,ff,69_84 Final SOC [Buffer #15]\n" //
+                        +"7bb,680,687,1,0,0,,2169,6169,ff,69_86 Init Method / Final Method [Buffer #15],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,688,695,1,0,0,,2169,6169,ff,69_87 NumOfSegmentCase [Buffer #15]\n" //
+                        +"7bb,696,711,1,0,0,%,2169,6169,ff,69_88 SOHE_1Min [Buffer #15]\n" //
+                        +"7bb,712,719,1,0,0,%,2169,6169,ff,69_90 WeightFactor [Buffer #15]\n" //
+                        +"7bb,720,727,1,0,0,,2169,6169,ff,69_91 Updated State [Buffer #15],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,728,735,1,0,0,%,2169,6169,ff,69_92 dSOHE/SOHE [#00] Segment [Buffer #15]\n" //
+                        +"7bb,736,767,1,2000000000,0,A,2169,6169,ff,69_93 Current Sum [Buffer #16]\n" //
+                        +"7bb,768,783,1,0,0,%,2169,6169,ff,69_97 Init SOC [Buffer #16]\n" //
+                        +"7bb,784,799,1,0,0,%,2169,6169,ff,69_99 Final SOC [Buffer #16]\n" //
+                        +"7bb,800,807,1,0,0,,2169,6169,ff,69_101 Init Method / Final Method [Buffer #16],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,808,815,1,0,0,,2169,6169,ff,69_102 NumOfSegmentCase [Buffer #16]\n" //
+                        +"7bb,816,831,1,0,0,%,2169,6169,ff,69_103 SOHE_1Min [Buffer #16]\n" //
+                        +"7bb,832,839,1,0,0,%,2169,6169,ff,69_105 WeightFactor [Buffer #16]\n" //
+                        +"7bb,840,847,1,0,0,,2169,6169,ff,69_106 Updated State [Buffer #16],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,848,855,1,0,0,%,2169,6169,ff,69_107 dSOHE/SOHE [#00] Segment [Buffer #16]\n" //
+                        +"7bb,856,887,1,2000000000,0,A,2169,6169,ff,69_108 Current Sum [Buffer #17]\n" //
+                        +"7bb,888,903,1,0,0,%,2169,6169,ff,69_112 Init SOC [Buffer #17]\n" //
+                        +"7bb,904,919,1,0,0,%,2169,6169,ff,69_114 Final SOC [Buffer #17]\n" //
+                        +"7bb,920,927,1,0,0,,2169,6169,ff,69_116 Init Method / Final Method [Buffer #17],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,928,935,1,0,0,,2169,6169,ff,69_117 NumOfSegmentCase [Buffer #17]\n" //
+                        +"7bb,936,951,1,0,0,%,2169,6169,ff,69_118 SOHE_1Min [Buffer #17]\n" //
+                        +"7bb,952,959,1,0,0,%,2169,6169,ff,69_120 WeightFactor [Buffer #17]\n" //
+                        +"7bb,960,967,1,0,0,,2169,6169,ff,69_121 Updated State [Buffer #17],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,968,975,1,0,0,%,2169,6169,ff,69_122 dSOHE/SOHE [#00] Segment [Buffer #17]\n" //
+                        +"7bb,976,1007,1,2000000000,0,A,2169,6169,ff,69_123 Current Sum [Buffer #18]\n" //
+                        +"7bb,1008,1023,1,0,0,%,2169,6169,ff,69_127 Init SOC [Buffer #18]\n" //
+                        +"7bb,1024,1039,1,0,0,%,2169,6169,ff,69_129 Final SOC [Buffer #18]\n" //
+                        +"7bb,1040,1047,1,0,0,,2169,6169,ff,69_131 Init Method / Final Method [Buffer #18],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,1048,1055,1,0,0,,2169,6169,ff,69_132 NumOfSegmentCase [Buffer #18]\n" //
+                        +"7bb,1056,1071,1,0,0,%,2169,6169,ff,69_133 SOHE_1Min [Buffer #18]\n" //
+                        +"7bb,1072,1079,1,0,0,%,2169,6169,ff,69_135 WeightFactor [Buffer #18]\n" //
+                        +"7bb,1080,1087,1,0,0,,2169,6169,ff,69_136 Updated State [Buffer #18],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,1088,1095,1,0,0,%,2169,6169,ff,69_137 dSOHE/SOHE [#00] Segment [Buffer #18]\n" //
+                        +"7bb,1096,1127,1,2000000000,0,A,2169,6169,ff,69_138 Current Sum [Buffer #19]\n" //
+                        +"7bb,1128,1143,1,0,0,%,2169,6169,ff,69_142 Init SOC [Buffer #19]\n" //
+                        +"7bb,1144,1159,1,0,0,%,2169,6169,ff,69_144 Final SOC [Buffer #19]\n" //
+                        +"7bb,1160,1167,1,0,0,,2169,6169,ff,69_146 Init Method / Final Method [Buffer #19],18:EKF(Init)+OCV(Final);33:OCV(Init)+EKF(Final);34:OCV(Init)+OCV(Final)\n" //
+                        +"7bb,1168,1175,1,0,0,,2169,6169,ff,69_147 NumOfSegmentCase [Buffer #19]\n" //
+                        +"7bb,1176,1191,1,0,0,%,2169,6169,ff,69_148 SOHE_1Min [Buffer #19]\n" //
+                        +"7bb,1192,1199,1,0,0,%,2169,6169,ff,69_150 WeightFactor [Buffer #19]\n" //
+                        +"7bb,1200,1207,1,0,0,,2169,6169,ff,69_151 Updated State [Buffer #19],0:Unknown (Transitory);4:Normal;5:Charge\n" //
+                        +"7bb,1208,1215,1,0,0,%,2169,6169,ff,69_152 dSOHE/SOHE [#00] Segment [Buffer #19]\n" //
+
+                ;
+
+        String dtcDef =
+                ""
+
+                        +"33E2,[P33E2]Battery High Temperature Diagnosis\n" //
+                        +"33E3,[P33E3]Battery Low Temperature Diagnosis\n" //
+                        +"0A1F,[P0A1F]BATTERY ENERGY CONTROL MODULE\n" //
+                        +"3332,[P3332] Cell 2nd Over voltage happens\n" //
+                        +"33C1,[P33C1] Temperature Sensor 14 out of range\n" //
+                        +"33C0,[P33C0] Temperature Sensor 13 out of range\n" //
+                        +"33C2,[P33C2] Temperature Sensor 15 out of range\n" //
+                        +"33C4,[P33C4] Temperature Sensor 17 out of ange\n" //
+                        +"33C5,[P33C5] Temperature Sensor 18 out of range\n" //
+                        +"33C6,[P33C6] Temperature Sensor 19 out of range\n" //
+                        +"33C7,[P33C7] Temperature Sensor 20 out of range\n" //
+                        +"33C8,[P33C8] Temperature Sensor 21 out of range\n" //
+                        +"33C9,[P33C9] Temperature Sensor 22 out of range\n" //
+                        +"33CB,[P33CB] Temperature Sensor 24 out of range\n" //
+                        +"33CA,[P33CA] Temperature Sensor 23 out of range\n" //
+                        +"33D3,[P33D3] Temperature Sensor 12 out of range\n" //
+                        +"33D2,[P33D2] Temperature Sensor 11 out of range\n" //
+                        +"33D0,[P33D0] Temperature Sensor 9 out of range\n" //
+                        +"33D1,[P33D1] Temperature Sensor 10 out of range\n" //
+                        +"33D8,[P33D8] Temperature Sensor 5 out of range\n" //
+                        +"33DD,[P33DD] Temperature Sensor 4 out of range\n" //
+                        +"33DB,[P33DB] Temperature Sensor 3 out of range\n" //
+                        +"33D9,[P33D9] Temperature Sensor 2 out of range\n" //
+                        +"33D7,[P33D7] Temperature Sensor 1 out of range\n" //
+                        +"33DC,[P33DC] Temperature Sensor 7 out of range\n" //
+                        +"33DE,[P33DE] Temperature Sensor 8 out of range\n" //
+                        +"33DA,[P33DA] Temperature Sensor 6 out of range\n" //
+                        +"33D4,[P33D4] Battery State of Health Power has low value\n" //
+                        +"33D6,[P33D6] CS (Current Sensing) Supply Failure\n" //
+                        +"308B,[P308B]Cell_Line_Failure_(ASIC1)\n" //
+                        +"308C,[P308C]Cell_Line_Failure_(ASIC2)\n" //
+                        +"308D,[P308D]Cell_Line_Failure_(ASIC3)\n" //
+                        +"308E,[P308E]Cell_Line_Failure_(ASIC4)\n" //
+                        +"308F,[P308F]Cell_Line_Failure_(ASIC5)\n" //
+                        +"3090,[P3090]Cell_Line_Failure_(ASIC6)\n" //
+                        +"3092,[P3092]Cell_Line_Failure_(ASIC8)\n" //
+                        +"3093,[P3093]Cell_Line_Failure_(ASIC9)\n" //
+                        +"3094,[P3094]Cell_Line_Failure_(ASIC10)\n" //
+                        +"3095,[P3095]Cell_Line_Failure_(ASIC11)\n" //
+                        +"3096,[P3096]Cell_Line_Failure_(ASIC12)\n" //
+                        +"3091,[P3091]Cell_Line_Failure_(ASIC7)\n" //
+                        +"0A0A,[0A0A] HV Interlock circuit failure\n" //
+                        +"0A0D,[P0A0D] SD interlock circuit failure\n" //
+                        +"3020,[P3020] Private CAN Failure\n" //
+                        +"3062,[P3062] cell balancing circuit failure\n" //
+                        +"3063,[P3063] Cell Voltage measurement Failure\n" //
+                        +"3064,[P3064]Second protection circuit failure\n" //
+                        +"30F4,[P30F4] Pack Voltage Out of Range\n" //
+                        +"30F5,[P30F5] Pack Voltage Measurement Failure\n" //
+                        +"30FC,[P30FC] Pack over Current\n" //
+                        +"30FE,[P30FE]Aux V has a Failure\n" //
+                        +"3300,[P3300] Pack Over Voltage\n" //
+                        +"3302,[P3302]Cell Over Voltage (Module1)\n" //
+                        +"3303,[P3303]Cell Over Voltage (Module2)\n" //
+                        +"3304,[P3304]Cell Over Voltage (Module3)\n" //
+                        +"3305,[P3305]Cell Over Voltage (Module4)\n" //
+                        +"3306,[P3306]Cell Over Voltage (Module5)\n" //
+                        +"3307,[P3307]Cell Over Voltage (Module6)\n" //
+                        +"3308,[P3308]Cell Over Voltage (Module7)\n" //
+                        +"3309,[P3309]Cell Over Voltage (Module8)\n" //
+                        +"330A,[P330A]Cell Over Voltage (Module9)\n" //
+                        +"330B,[P330B]Cell Over Voltage (Module10)\n" //
+                        +"330C,[P330C]Cell Over Voltage (Module11)\n" //
+                        +"330D,[P330D]Cell Over Voltage (Module12)\n" //
+                        +"3373,[P3373]Pack Under Voltage\n" //
+                        +"3375,[P3375] Cell UnderVoltage module 1\n" //
+                        +"3376,[P3376] Cell UnderVoltage module 2\n" //
+                        +"3377,[P3377] Cell UnderVoltage module 3\n" //
+                        +"3378,[P3378] Cell UnderVoltagemodule 4\n" //
+                        +"3379,[P3379] Cell UnderVoltage module 5\n" //
+                        +"337A,[P337A] Cell UnderVoltage module 6\n" //
+                        +"337B,[P337B] Cell UnderVoltage module 7\n" //
+                        +"337C,[P337C] Cell UnderVoltage module 8\n" //
+                        +"337D,[P337D] Cell UnderVoltage module 9\n" //
+                        +"337E,[P337E] Cell UnderVoltage module 10\n" //
+                        +"337F,[P337F] Cell UnderVoltage module 11\n" //
+                        +"3380,[P3380] Cell UnderVoltage module 12\n" //
+                        +"33B1,[P33B1] Battery System has many failure on thermistors (1-12)\n" //
+                        +"33B2,[P33B2] Battery System has many failure on thermistors (13-24)\n" //
+                        +"33D5,[P33D5] CS (Current Sensing) Offset high\n" //
+                        +"33C3,[P33C3] Temperature Sensor 16 out of range\n" //
+                        +"33E1,[P33E1]IR Measurement Circuit Failure\n" //
+                        +"33E6,[P33E6] Pack Unbalanced\n" //
+                        +"33ED,[P33ED]Bus Bar Fixing Failure\n" //
+                        +"D000,[D000] Loss of Communication CAN\n" //
+                        +"330E,[P330E]Cell Over Voltage (Module13)\n" //
+                        +"330F,[P330F]Cell Over Voltage (Module14)\n" //
+                        +"3310,[P3310]Cell Over Voltage (Module15)\n" //
+                        +"3311,[P3311]Cell Over Voltage (Module16)\n" //
+                        +"3312,[P3312]Cell Over Voltage (Module17)\n" //
+                        +"3313,[P3313]Cell Over Voltage (Module18)\n" //
+                        +"3314,[P3314]Cell Over Voltage (Module19)\n" //
+                        +"3315,[P3315]Cell Over Voltage (Module20)\n" //
+                        +"3316,[P3316]Cell Over Voltage (Module21)\n" //
+                        +"3317,[P3317]Cell Over Voltage (Module22)\n" //
+                        +"3318,[P3318]Cell Over Voltage (Module23)\n" //
+                        +"3319,[P3319]Cell Over Voltage (Module24)\n" //
+                        +"3381,[P3381] Cell UnderVoltage module 13\n" //
+                        +"3382,[P3382] Cell UnderVoltage module 14\n" //
+                        +"3383,[P3383] Cell UnderVoltage module 15\n" //
+                        +"3384,[P3384] Cell UnderVoltagemodule 16\n" //
+                        +"3385,[P3385] Cell UnderVoltage module 17\n" //
+                        +"3386,[P3386] Cell UnderVoltage module 18\n" //
+                        +"3387,[P3387] Cell UnderVoltage module 19\n" //
+                        +"3388,[P3388] Cell UnderVoltage module 20\n" //
+                        +"3389,[P3389] Cell UnderVoltage module 21\n" //
+                        +"338A,[P338A] Cell UnderVoltage module 22\n" //
+                        +"338B,[P338B] Cell UnderVoltage module 23\n" //
+                        +"338C,[P338C] Cell UnderVoltage module 24\n" //
+
+                ;
+
+        String testDef =
+                ""
+
+                        +"00,Device and failure type ODB codding\n" //
+                        +"01,General Electrical Failure\n" //
+                        +"02,General signal failure\n" //
+                        +"03,FM / PWM (Pulse Width Modulated) Failures\n" //
+                        +"04,System Internal Failures\n" //
+                        +"05,System Programming Failures\n" //
+                        +"06,Algorithm Based Failures\n" //
+                        +"07,Mechanical Failures\n" //
+                        +"08,Bus Signal / Message Failures\n" //
+                        +"09,Component Failures\n" //
+                        +"11,circuit short to ground\n" //
+                        +"12,circuit short to battery\n" //
+                        +"13,circuit open\n" //
+                        +"14,circuit short to ground or open\n" //
+                        +"15,circuit short to battery or open\n" //
+                        +"16,circuit voltage below threshold\n" //
+                        +"17,circuit voltage above threshold\n" //
+                        +"18,circuit current below threshold\n" //
+                        +"19,circuit current above threshold\n" //
+                        +"1A,circuit resistance below threshold\n" //
+                        +"1B,circuit resistance above threshold\n" //
+                        +"1C,circuit voltage out of range\n" //
+                        +"1D,circuit current out of range\n" //
+                        +"1E,circuit resistance out of range\n" //
+                        +"1F,circuit intermittent\n" //
+                        +"21,signal amplitude < minimum\n" //
+                        +"22,signal amplitude > maximum\n" //
+                        +"23,signal stuck low\n" //
+                        +"24,signal stuck high\n" //
+                        +"25,signal shape / waveform failure\n" //
+                        +"26,signal rate of change below threshold\n" //
+                        +"27,signal rate of change above threshold\n" //
+                        +"28,signal bias level oor / zero adjustment failure\n" //
+                        +"29,signal signal invalid\n" //
+                        +"2F,signal erratic\n" //
+                        +"31,no signal\n" //
+                        +"32,signal low time < minimum\n" //
+                        +"33,signal low time > maximum\n" //
+                        +"34,signal high time < minimum\n" //
+                        +"35,signal high time > maximum\n" //
+                        +"36,signal frequency too low\n" //
+                        +"37,signal frequency too high\n" //
+                        +"38,signal frequency incorrect\n" //
+                        +"39,incorrect has too few pulses\n" //
+                        +"3A,incorrect has too many pulses\n" //
+                        +"41,general checksum failure\n" //
+                        +"42,general memory failure\n" //
+                        +"43,special memory failure\n" //
+                        +"44,data memory failure\n" //
+                        +"45,program memory failure\n" //
+                        +"46,calibration / parameter memory failure\n" //
+                        +"47,watchdog / safety ?C failure\n" //
+                        +"48,supervision software failure\n" //
+                        +"49,internal electronic failure\n" //
+                        +"4A,incorrect component installed\n" //
+                        +"4B,over temperature\n" //
+                        +"51,not programmed\n" //
+                        +"52,not activated\n" //
+                        +"53,deactivated\n" //
+                        +"54,missing calibration\n" //
+                        +"55,not configured\n" //
+                        +"61,signal calculation failure\n" //
+                        +"62,signal compare failure\n" //
+                        +"63,circuit / component protection time-out\n" //
+                        +"64,signal plausibility failure\n" //
+                        +"65,signal has too few transitions / events\n" //
+                        +"66,signal has too many transitions / events\n" //
+                        +"67,signal incorrect after event\n" //
+                        +"68,event information\n" //
+                        +"71,actuator stuck\n" //
+                        +"72,actuator stuck open\n" //
+                        +"73,actuator stuck closed\n" //
+                        +"74,actuator slipping\n" //
+                        +"75,emergency position not reachable\n" //
+                        +"76,wrong mounting position\n" //
+                        +"77,commanded position not reachable\n" //
+                        +"78,alignment or adjustment incorrect\n" //
+                        +"79,mechanical linkage failure\n" //
+                        +"7A,fluid leak or seal failure\n" //
+                        +"7B,low fluid level\n" //
+                        +"81,invalid serial data received\n" //
+                        +"82,alive / sequence counter incorrect / not updated\n" //
+                        +"83,value of signal protection calculation incorrect\n" //
+                        +"84,signal below allowable range\n" //
+                        +"85,signal above allowable range\n" //
+                        +"86,signal invalid\n" //
+                        +"87,missing message\n" //
+                        +"88,bus off\n" //
+                        +"8F,erratic\n" //
+                        +"91,parametric\n" //
+                        +"92,performance or incorrect operation\n" //
+                        +"93,no operation\n" //
+                        +"94,unexpected operation\n" //
+                        +"95,incorrect assembly\n" //
+                        +"96,component internal failure\n" //
+                        +"97,Component or system operation obstructedorblocked\n" //
+                        +"98,component or system over temperature\n" //
+
+                ;
+
+        Frames.getInstance().load("7BB,0,0,LBC\n");
+        Fields.getInstance().loadMore(fieldDef1);
+        Fields.getInstance().loadMore(fieldDef2);
+        Fields.getInstance().load(fieldDef3);
+        Fields.getInstance().load(fieldDef4);
+        Dtcs.getInstance().load(dtcDef, testDef);
     }
 }

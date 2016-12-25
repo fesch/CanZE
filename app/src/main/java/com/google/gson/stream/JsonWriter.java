@@ -107,7 +107,7 @@ import static com.google.gson.stream.JsonScope.NONEMPTY_OBJECT;
  *
  *   public void writeUser(JsonWriter writer, User user) throws IOException {
  *     writer.beginObject();
- *     writer.name("name").value(user.getName());
+ *     writer.name("name").value(user.getDescrption());
  *     writer.name("followers_count").value(user.getFollowersCount());
  *     writer.endObject();
  *   }

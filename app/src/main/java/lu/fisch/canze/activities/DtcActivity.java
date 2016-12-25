@@ -39,6 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.actors.Dtc;
 import lu.fisch.canze.actors.Dtcs;
 import lu.fisch.canze.actors.Ecu;
 import lu.fisch.canze.actors.EcuDiagLBC;
@@ -273,7 +274,7 @@ public class DtcActivity  extends CanzeActivity {
                     // exclude 50 / 10 as it means something like "I have this DTC code, but I have never tested it"
                     if (bits != 0x50 && bits != 0x10) {
                         onePrinted = true;
-                        appendResult("\nDTC" + backRes.substring(i, i + 6) + ":" + backRes.substring(i + 6, i + 8) + ":" + Dtcs.getDescription(backRes.substring(i, i + 6)));
+                        appendResult("\nDTC" + backRes.substring(i, i + 6) + ":" + Dtcs.getInstance().getDescriptionById(backRes.substring(i, i + 6)));
                         if ((bits & 0x01) != 0) appendResult(" tstFail");
                         if ((bits & 0x02) != 0) appendResult(" tstFailThisOp");
                         if ((bits & 0x04) != 0) appendResult(" pendingDtc");
@@ -391,8 +392,8 @@ public class DtcActivity  extends CanzeActivity {
                         if (message != null) {
                             // process the frame by going through all the containing fields
                             // setting their values and notifying all listeners (there should be none)
-                            Fields.getInstance().onMessageCompleteEvent(message);
-
+                            // Fields.getInstance().onMessageCompleteEvent(message);
+                            message.onMessageCompleteEvent();
 
                             for (Field field : frame.getAllFields()) {
                                 if (field.isString()) {

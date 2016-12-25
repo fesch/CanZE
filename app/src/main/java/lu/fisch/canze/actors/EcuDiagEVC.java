@@ -27,11 +27,9 @@ package lu.fisch.canze.actors;
 
 public class EcuDiagEVC {
 
-    // static final public String fieldsString () {
     void load () {
 
-        String fieldDef1 = // ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string),
-                // options (hex, see MainActivity for definitions), optional name, optional list
+        String fieldDef1 =
                 ""
 
                         +"7ec,24,31,1,40,0,°C,222001,622001,ff,Battery Rack temperature\n" //
@@ -425,42 +423,36 @@ public class EcuDiagEVC {
                         +"7ec,31,31,1,0,0,,223424,623424,ff,P_R_N_D_L2,0:12 V;1:0V\n" //
                         +"7ec,31,31,1,0,0,,223425,623425,ff,P_R_N_D_L3,0:12 V;1:0V\n" //
                         +"7ec,31,31,1,0,0,,223426,623426,ff,P_R_N_D_L4,0:12 V;1:0V\n" //
-                       +"7ec,160,167,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
+                        +"7ec,160,175,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
                         +"7ec,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode\n" //
-                        +"7ec,128,135,1,0,0,,2180,6180,ff,SoftwareNumber\n" //
-                        +"7ec,64,71,1,0,0,,2180,6180,ff,SupplierNumber.ITG\n" //
-                        +"7ec,144,151,1,0,0,,2180,6180,ff,EditionNumber\n" //
+                        +"7ec,128,143,1,0,0,,2180,6180,ff,SoftwareNumber\n" //
+                        +"7ec,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG\n" //
+                        +"7ec,144,159,1,0,0,,2180,6180,ff,EditionNumber\n" //
                         +"7ec,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;1:237D4;2:237D3\n" //
                         +"7ec,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:N/A;1:237D4\n" //
                         +"7ec,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A;1:HMLGT\n" //
-                        +"7ec,16,23,1,0,0,,2180,6180,ff,PartNumber.LowerPart\n" //
-                        +"7ec,88,95,1,0,0,,2180,6180,ff,HardwareNumber.LowerPart\n" //
+                        +"7ec,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart\n" //
+                        +"7ec,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart\n" //
                         +"7ec,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3\n" //
-                        +"7ec,160,167,1,0,0,,21F0,61F0,ff,CalibrationNumber\n" //
+                        +"7ec,160,175,1,0,0,,21F0,61F0,ff,CalibrationNumber\n" //
                         +"7ec,56,63,1,0,0,,21F0,61F0,ff,DiagnosticIdentificationCode\n" //
-                        +"7ec,128,135,1,0,0,,21F0,61F0,ff,SoftwareNumber\n" //
-                        +"7ec,64,71,1,0,0,,21F0,61F0,ff,SupplierNumber.ITG\n" //
-                        +"7ec,144,151,1,0,0,,21F0,61F0,ff,EditionNumber\n" //
+                        +"7ec,128,143,1,0,0,,21F0,61F0,ff,SoftwareNumber\n" //
+                        +"7ec,64,87,1,0,0,,21F0,61F0,2ff,SupplierNumber.ITG\n" //
+                        +"7ec,144,159,1,0,0,,21F0,61F0,ff,EditionNumber\n" //
                         +"7ec,176,183,1,0,0,,21F0,61F0,ff,PartNumber.BasicPartList,0:N/A;1:237D4;2:237D3\n" //
                         +"7ec,184,191,1,0,0,,21F0,61F0,ff,HardwareNumber.BasicPartList,0:N/A;1:237D4\n" //
                         +"7ec,192,199,1,0,0,,21F0,61F0,ff,ApprovalNumber.BasicPartList,0:N/A;1:HMLGT\n" //
-                        +"7ec,16,23,1,0,0,,21F0,61F0,ff,PartNumber.LowerPart\n" //
-                        +"7ec,88,95,1,0,0,,21F0,61F0,ff,HardwareNumber.LowerPart\n" //
+                        +"7ec,16,55,1,0,0,,21F0,61F0,2ff,PartNumber.LowerPart\n" //
+                        +"7ec,88,127,1,0,0,,21F0,61F0,2ff,HardwareNumber.LowerPart\n" //
                         +"7ec,200,207,1,0,0,,21F0,61F0,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3\n" //
-                        +"7ec,16,23,1,0,0,,21F1,61F1,ff,ApprovalNumber.LowerPart\n" //
-                        +"7ec,56,63,1,0,0,,21F1,61F1,ff,ProgrammingSiteReference\n" //
-                        +"7ec,96,103,1,0,0,,21F1,61F1,ff,ProgrammingToolReference\n" //
+                        +"7ec,16,55,1,0,0,,21F1,61F1,2ff,ApprovalNumber.LowerPart\n" //
+                        +"7ec,56,95,1,0,0,,21F1,61F1,2ff,ProgrammingSiteReference\n" //
+                        +"7ec,96,135,1,0,0,,21F1,61F1,2ff,ProgrammingToolReference\n" //
                         +"7ec,136,143,1,0,0,,21F1,61F1,ff,NumberOfReprogrammings\n" //
-                        +"7ec,144,151,1,0,0,,21F1,61F1,ff,DateOfReprogramming\n" //
+                        +"7ec,144,167,1,0,0,,21F1,61F1,ff,DateOfReprogramming\n" //
                         +"7ec,184,191,1,0,0,,21F1,61F1,ff,SaveMarking\n" //
-                        +"7ec,192,199,1,0,0,,21F1,61F1,ff,CrcOfLogSave\n" //
-                        +"7ec,168,175,1,0,0,,21F1,61F1,ff,TimeOfReprogramming\n" //
-                ;
-
-        String fieldDef2 = // ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string),
-                // options (hex, see MainActivity for definitions), optional name, optional list
-                ""
-
+                        +"7ec,192,207,1,0,0,,21F1,61F1,ff,CrcOfLogSave\n" //
+                        +"7ec,168,183,1,0,0,,21F1,61F1,ff,TimeOfReprogramming\n" //
                         +"7ec,55,55,1,0,0,,223383,623383,ff,Reasons of cut off PTCs.-1.0 Over temperature,0:No default;1:Default present\n" //
                         +"7ec,54,54,1,0,0,,223383,623383,ff,Reasons of cut off PTCs.-1.1 Under Voltage,0:No default;1:Default present\n" //
                         +"7ec,53,53,1,0,0,,223383,623383,ff,Reasons of cut off PTCs.-1.2 Error PTC stage 1,0:No default;1:Default present\n" //
@@ -541,6 +533,12 @@ public class EcuDiagEVC {
                         +"7ec,152,167,.01,0,0,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.1\n" //
                         +"7ec,136,151,.01,0,0,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.2\n" //
                         +"7ec,120,135,.01,0,0,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.3\n" //
+
+                ;
+
+        String fieldDef2 =
+                ""
+
                         +"7ec,104,119,.01,0,0,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.4\n" //
                         +"7ec,88,103,.01,0,0,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.5\n" //
                         +"7ec,72,87,.01,0,0,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.6\n" //
@@ -624,11 +622,11 @@ public class EcuDiagEVC {
                         +"7ec,24,39,.0005,0,0,V,223432,623432,ff,Battery voltage no load estimation memorization (internal SCH)\n" //
                         +"7ec,24,31,.05,-240,0,V,223433,623433,ff,Battery voltage request (internal SCH)\n" //
                         +"7ec,29,31,1,0,0,,22342D,62342D,ff,Class of the DCDC HW Failures from PEB,0:No Failure;1:Downgraded Mode;2:Class C;3:Class D;4:Class E\n" //
-                        +"7ec,16,23,1,0,0,,2184,6184,ff,ITG Supplier Number\n" //
-                        +"7ec,40,47,1,0,0,,2184,6184,ff,Traceability Factory Code\n" //
-                        +"7ec,48,55,1,0,0,,2184,6184,ff,Traceability Serial Number\n" //
-                        +"7ec,152,159,1,0,0,,2181,6181,ff,CRC\n" //
-                        +"7ec,16,23,1,0,0,,2181,6181,ff,V.I.N\n" //
+                        +"7ec,16,39,1,0,0,,2184,6184,ff,ITG Supplier Number\n" //
+                        +"7ec,40,47,1,0,0,,2184,6184,2ff,Traceability Factory Code\n" //
+                        +"7ec,48,143,1,0,0,,2184,6184,2ff,Traceability Serial Number\n" //
+                        +"7ec,152,167,1,0,0,,2181,6181,ff,CRC\n" //
+                        +"7ec,16,151,1,0,0,,2181,6181,2ff,V.I.N\n" //
                         +"7ec,30,31,1,0,0,,22342E,62342E,ff,DCDC ready to sleep (internal EVC),0:Not Used;1:Refuse to Sleep;2:Ready To Sleep;3:Not used\n" //
                         +"7ec,30,31,1,0,0,,223434,623434,ff,PTC_Config,0:no HV PTC;1:HV PTC with water;2:HV PTC with air\n" //
                         +"7ec,30,31,1,0,0,,2233BC,6233BC,ff,HV connection request from LBC,0:Not used;1:Closing of Power Contacts Allowed;2:Closing of Power Contacts Not Allowed;3:Unavailable Value\n" //
@@ -875,28 +873,28 @@ public class EcuDiagEVC {
                         +"7ec,31,31,1,0,0,,2E346900,6E346900,ff,Flag to prevent the activation of downgraded mode when MSR function is disabled,0:No MSR Limp Home mode deactivation requested;1:MSR Limp Home mode deactivation requested\n" //
                         +"7ec,24,39,.5,0,0,V,222004,622004,ff,consolidated HV voltage\n" //
                         +"7ec,31,31,1,0,0,,223427,623427,ff,debounced signal from eco mode button,0:switch not pushed;1:switch pushed\n" //
-                        +"7ec,16,23,1,0,0,,21EF,61EF,ff,Hardware Part Number 1\n" //
-                        +"7ec,24,31,1,0,0,,21EF,61EF,ff,Hardware Part Number 2\n" //
-                        +"7ec,32,39,1,0,0,,21EF,61EF,ff,Hardware Part Number 3\n" //
-                        +"7ec,40,47,1,0,0,,21EF,61EF,ff,Hardware Part Number 4\n" //
-                        +"7ec,48,55,1,0,0,,21EF,61EF,ff,Hardware Part Number 5\n" //
-                        +"7ec,56,63,1,0,0,,21EF,61EF,ff,Hardware Part Number 6\n" //
-                        +"7ec,64,71,1,0,0,,21EF,61EF,ff,Hardware Part Number 7\n" //
-                        +"7ec,72,79,1,0,0,,21EF,61EF,ff,Hardware Part Number 8\n" //
-                        +"7ec,80,87,1,0,0,,21EF,61EF,ff,Hardware Part Number 9\n" //
-                        +"7ec,88,95,1,0,0,,21EF,61EF,ff,Hardware Part Number 10\n" //
-                        +"7ec,96,103,1,0,0,,21EF,61EF,ff,Software Part Number 1\n" //
-                        +"7ec,104,111,1,0,0,,21EF,61EF,ff,Software Part Number 2\n" //
-                        +"7ec,112,119,1,0,0,,21EF,61EF,ff,Software Part Number 3\n" //
-                        +"7ec,120,127,1,0,0,,21EF,61EF,ff,Software Part Number 4\n" //
-                        +"7ec,128,135,1,0,0,,21EF,61EF,ff,Software Part Number 5\n" //
-                        +"7ec,136,143,1,0,0,,21EF,61EF,ff,Software Part Number 6\n" //
-                        +"7ec,144,151,1,0,0,,21EF,61EF,ff,Software Part Number 7\n" //
-                        +"7ec,152,159,1,0,0,,21EF,61EF,ff,Software Part Number 8\n" //
-                        +"7ec,160,167,1,0,0,,21EF,61EF,ff,Software Part Number 9\n" //
-                        +"7ec,168,175,1,0,0,,21EF,61EF,ff,Software Part Number 10\n" //
-                        +"7ec,16,23,1,0,0,,21B7,61B7,ff,Configuration of Electrical Vehicle Networks\n" //
-                        +"7ec,16,23,1,0,0,,21B8,61B8,ff,List of Electrical Vehicle ECUs with After-sales diagnostic\n" //
+                        +"7ec,16,23,1,0,0,,21EF,61EF,2ff,Hardware Part Number 1\n" //
+                        +"7ec,24,31,1,0,0,,21EF,61EF,2ff,Hardware Part Number 2\n" //
+                        +"7ec,32,39,1,0,0,,21EF,61EF,2ff,Hardware Part Number 3\n" //
+                        +"7ec,40,47,1,0,0,,21EF,61EF,2ff,Hardware Part Number 4\n" //
+                        +"7ec,48,55,1,0,0,,21EF,61EF,2ff,Hardware Part Number 5\n" //
+                        +"7ec,56,63,1,0,0,,21EF,61EF,2ff,Hardware Part Number 6\n" //
+                        +"7ec,64,71,1,0,0,,21EF,61EF,2ff,Hardware Part Number 7\n" //
+                        +"7ec,72,79,1,0,0,,21EF,61EF,2ff,Hardware Part Number 8\n" //
+                        +"7ec,80,87,1,0,0,,21EF,61EF,2ff,Hardware Part Number 9\n" //
+                        +"7ec,88,95,1,0,0,,21EF,61EF,2ff,Hardware Part Number 10\n" //
+                        +"7ec,96,103,1,0,0,,21EF,61EF,2ff,Software Part Number 1\n" //
+                        +"7ec,104,111,1,0,0,,21EF,61EF,2ff,Software Part Number 2\n" //
+                        +"7ec,112,119,1,0,0,,21EF,61EF,2ff,Software Part Number 3\n" //
+                        +"7ec,120,127,1,0,0,,21EF,61EF,2ff,Software Part Number 4\n" //
+                        +"7ec,128,135,1,0,0,,21EF,61EF,2ff,Software Part Number 5\n" //
+                        +"7ec,136,143,1,0,0,,21EF,61EF,2ff,Software Part Number 6\n" //
+                        +"7ec,144,151,1,0,0,,21EF,61EF,2ff,Software Part Number 7\n" //
+                        +"7ec,152,159,1,0,0,,21EF,61EF,2ff,Software Part Number 8\n" //
+                        +"7ec,160,167,1,0,0,,21EF,61EF,2ff,Software Part Number 9\n" //
+                        +"7ec,168,175,1,0,0,,21EF,61EF,2ff,Software Part Number 10\n" //
+                        +"7ec,16,103,1,0,0,,21B7,61B7,ff,Configuration of Electrical Vehicle Networks\n" //
+                        +"7ec,16,103,1,0,0,,21B8,61B8,ff,List of Electrical Vehicle ECUs with After-sales diagnostic\n" //
                         +"7ec,30,31,1,0,0,,2234B2,6234B2,ff,Gasoline heater configuration V2,0:no heater;1:Eberspächer Hydronic 2;2:Do not use (2);3:Do not use (3)\n" //
                         +"7ec,30,31,1,0,0,,2234B3,6234B3,ff,PTC_Config V2,0:no HV PTC;1:HV PTC with water;2:HV PTC with air\n" //
                         +"7ec,30,31,1,0,0,,2234B1,6234B1,ff,Compressor Configuration V2,0:no compressor;1:Denso compressor;2:Do not use (2);3:Do not use (3)\n" //
@@ -986,10 +984,274 @@ public class EcuDiagEVC {
                         +"7ec,37,37,1,0,0,,222875,622875,ff,External controls denial status flag.10,0:Normal coolant temperature;1:Excessive coolant temperature\n" //
                         +"7ec,38,38,1,0,0,,222875,622875,ff,External controls denial status flag.9,0:Normal Manifold pressure;1:Manifold overpressure\n" //
                         +"7ec,39,39,1,0,0,,222875,622875,ff,External controls denial status flag.8,0:pression rail correcte;1:Excessive rail pressure\n" //
+
                 ;
 
-        Frames.getInstance().load ("7EC,0,0,EVC\n");
-        Fields.getInstance().load (fieldDef1);
-        Fields.getInstance().loadMore (fieldDef2);
+        String dtcDef =
+                ""
+
+                        +"0022,Mastervac brake assistance system\n" //
+                        +"0023,Brake assistance Vacuum Pump\n" //
+                        +"0026,Mastervac control unit\n" //
+                        +"0027,Mastervac sensor power supply\n" //
+                        +"0060,Door switch\n" //
+                        +"0070,Shift Lock electrical control circuit\n" //
+                        +"0071,Gear lever\n" //
+                        +"0080,Charge spot\n" //
+                        +"0105,Passenger compartment Thermistor\n" //
+                        +"0106,Heat water temperature sensor\n" //
+                        +"0121,Heater request relay electrical command circuit\n" //
+                        +"0130,Pulser relay power control circuit\n" //
+                        +"0140,Feedback Heater Water pump of passenger compartement\n" //
+                        +"0141,Heater Water pump of passenger compartement\n" //
+                        +"0152,Computer of Air Conditioning\n" //
+                        +"0156,Evaporator sensor for AC\n" //
+                        +"0160,Heater Led control circuit\n" //
+                        +"0170,Pulser power supply relay\n" //
+                        +"0171,Cooling Fan Motor\n" //
+                        +"0225,Accelerator Pedal Position Sensor - Track 1\n" //
+                        +"0226,Accelerator Pedal Position Sensor\n" //
+                        +"0301,Underhood switch module (USM)\n" //
+                        +"0303,EVC\n" //
+                        +"0304,Power electronic bloc\n" //
+                        +"0305,Lithium Battery Controler\n" //
+                        +"0306,Battery Charger Bloc\n" //
+                        +"0307,Power electronic bloc data\n" //
+                        +"0404,14v static converter in Default (from CAN)\n" //
+                        +"0405,14v static converter\n" //
+                        +"0406,EM inverter in Default (from CAN)\n" //
+                        +"0411,Battery Charger Bloc in Default (from CAN)\n" //
+                        +"0414,High voltage network\n" //
+                        +"0420,LBC in Default (from CAN)\n" //
+                        +"0431,Charge Interlock\n" //
+                        +"0432,Power train interlocks\n" //
+                        +"0433,Comfort or Passenger compartment Thermistor Interlock\n" //
+                        +"0434,Comfort or Air conditionned Interlock\n" //
+                        +"0440,Electric Insulation\n" //
+                        +"0441,Insulation Sensor\n" //
+                        +"0460,Engine Coolant Temperature Sensor\n" //
+                        +"0461,Cooling valve 1 control circuit\n" //
+                        +"0462,Feedback driving mode water pump\n" //
+                        +"0463,Driving mode water pump\n" //
+                        +"0464,Feedback load mode water pump\n" //
+                        +"0465,Load mode water pump\n" //
+                        +"0468,Peltier fan request electrical command circuit\n" //
+                        +"0469,Peltier external fan\n" //
+                        +"0470,HV voltage sensor\n" //
+                        +"0480,Battery high voltage power relay A\n" //
+                        +"0491,Battery high voltage lock loop 1\n" //
+                        +"0495,Temperature sensors from CAN\n" //
+                        +"0503,Mastervac Voltage supply\n" //
+                        +"0504,Brake Pedal\n" //
+                        +"0530,A/C Refrigerant Pressure Sensor\n" //
+                        +"0560,Battery Voltage 14 V\n" //
+                        +"0564,Cruise Control/Speed Limiter - Paddle Control Button\n" //
+                        +"0571,Closed Brake Sensor\n" //
+                        +"0574,Cruise Control/Speed Limiter - Displayed Speed\n" //
+                        +"0575,Cruise Control/Speed Limiter - Switch Button\n" //
+                        +"0606,Engine Control Module - Processor\n" //
+                        +"0610,ECM torque calculation\n" //
+                        +"0641,Voltage supply range 1\n" //
+                        +"0651,Voltage supply range 2\n" //
+                        +"0657,Powerlatch relay\n" //
+                        +"0703,Open Brake Pedal Switch\n" //
+                        +"0833,Begining of Clutch Pedal Move Switch\n" //
+                        +"1525,Cruise Control/Speed Limiter Deactivation\n" //
+                        +"2120,Accelerator Pedal Position Sensor - Track 2\n" //
+                        +"060B,Engine Control Module - A/D Converter\n" //
+                        +"160C,Internal Engine Control Module Error\n" //
+                        +"046A,Peltier internal fan\n" //
+                        +"046B,Feedback of Peltier external fan\n" //
+                        +"046C,Feedback of Peltier internal fan\n" //
+                        +"046D,Peltier request relay electrical command circuit\n" //
+                        +"C121,Lost Communication With Anti-Lock Brake System (ABS) Control Module\n" //
+                        +"C415,Invalid Data Received From Anti-Lock Brake System Control Module\n" //
+                        +"0525,Cruise Control Servo Control Circuit Range/Performance\n" //
+                        +"0601,Electric Motor Prestation\n" //
+                        +"0435,Interlock Sensor\n" //
+                        +"0490,Battery high voltage lock\n" //
+                        +"0020,Vacuum Sensor pressure\n" //
+                        +"046E,Peltier Temperature\n" //
+                        +"047E,Peltier Cells\n" //
+                        +"0081,Charge plug trigger\n" //
+                        +"0492,Battery high voltage lock loop 2\n" //
+                        +"0302,Air conditionned system\n" //
+                        +"0161,Self preconditioning relay\n" //
+                        +"C418,Invalid data received from uncoupled brake pedal control module\n" //
+                        +"030A,Inverter (for charge function)\n" //
+                        +"0308,Lithium battery (reductant dignosis)\n" //
+                        +"0471,HV Battery\n" //
+                        +"0502,Battery temperature sensors\n" //
+                        +"0120,Heater electrical command circuit\n" //
+                        +"0500,No ETS Sleeping that leads to a flat lead 12V battery\n" //
+                        +"0011,Reverse Light relay command\n" //
+                        +"0063,Door plug command\n" //
+                        +"0072,Gear lever sensor - track 1\n" //
+                        +"0073,Gear lever sensor - track 2\n" //
+                        +"0090,Eco mode switch\n" //
+                        +"0180,Battery Conditioning system (AC, CTP)\n" //
+                        +"0481,Battery high voltage power relay P2\n" //
+                        +"0482,Battery high voltage power relay P1\n" //
+                        +"0483,Battery high voltage power relay A or P1\n" //
+                        +"0485,Battery high voltage power relay A or P2\n" //
+                        +"0486,Battery high voltage power relay P1 or P2\n" //
+                        +"0510,State of function (SOF) of 14V battery\n" //
+                        +"0511,14V Battery current sensor\n" //
+                        +"0512,Pulse Box\n" //
+                        +"C122,Communication With Vehicle Dynamics Control Module\n" //
+                        +"C198,Communication With Telematic Control Module\n" //
+                        +"C140,Communication With Body Control Module\n" //
+                        +"C155,Communication With Instrument Panel Cluster (IPC) Control Module\n" //
+                        +"0062,Door plug status\n" //
+                        +"C146,Communication With Gateway 'A' (BIC)\n" //
+                        +"C164,Communication With HVAC Control Module\n" //
+                        +"0181,Battery CTP/THP relay 1\n" //
+                        +"0182,Battery CTP/THP relay 2\n" //
+                        +"0183,Battery CTP/THP relay 3\n" //
+                        +"0184,Battery HVAC relay electrovalve 1\n" //
+                        +"0185,Battery HVAC relay electrovalve 2\n" //
+                        +"0186,Battery HVAC fan out (command)\n" //
+                        +"0187,Battery HVAC temperature sensor\n" //
+                        +"C103,Communication With Gear Shift Control Module (Shifter)\n" //
+                        +"060A,Engine Control Module - Electronic Stability Program - Control Function (Level 2)\n" //
+                        +"C129,Communication With Brake System Control Module\n" //
+                        +"0010,Stop Light relay command\n" //
+                        +"04A0,SOC error during charge\n" //
+                        +"0188,Battery blower rotation speed feedback line\n" //
+                        +"0415,Power electronic bloc (safety level 2 detection)\n" //
+                        +"0442,Insulation motor\n" //
+                        +"0407,DCDC C class default\n" //
+                        +"C19A,Communication with CSHV Unit (Dedicated for Crash when APC is off for daimler application)\n" //
+                        +"C199,Communication with Energy Management Module\n" //
+                        +"1654,Communication with Aribag Control module\n" //
+                        +"0436,JB interlocks\n" //
+                        +"C19B,Communication with LBC8 Unit\n" //
+
+                ;
+
+        String testDef =
+                ""
+
+                        +"00,Device and failure type ODB codding\n" //
+                        +"01,General Electrical Failure\n" //
+                        +"02,General signal failure\n" //
+                        +"03,FM (Frequency Modulated) / PWM (Pulse Width Modulated) Failures\n" //
+                        +"04,System Internal Failures\n" //
+                        +"05,System Programming Failures\n" //
+                        +"06,Algorithm Based Failures\n" //
+                        +"07,Mechanical Failures\n" //
+                        +"08,Bus Signal / Message Failures\n" //
+                        +"09,Component Failures\n" //
+                        +"0A,Not compatible\n" //
+                        +"11,circuit short to ground\n" //
+                        +"12,circuit short to battery\n" //
+                        +"13,circuit open\n" //
+                        +"14,circuit short to ground or open\n" //
+                        +"15,circuit short to battery or open\n" //
+                        +"16,circuit voltage below threshold\n" //
+                        +"17,circuit voltage above threshold\n" //
+                        +"18,circuit current below threshold\n" //
+                        +"19,circuit current above threshold\n" //
+                        +"1A,circuit resistance below threshold\n" //
+                        +"1B,circuit resistance above threshold\n" //
+                        +"1C,circuit voltage out of range\n" //
+                        +"1D,circuit current out of range\n" //
+                        +"1E,circuit resistance out of range\n" //
+                        +"1F,circuit intermittent\n" //
+                        +"20,test\n" //
+                        +"21,signal amplitude < minimum\n" //
+                        +"22,signal amplitude > maximum\n" //
+                        +"23,signal stuck low\n" //
+                        +"24,signal stuck high\n" //
+                        +"25,signal shape / waveform failure\n" //
+                        +"26,signal rate of change below threshold\n" //
+                        +"27,signal rate of change above threshold\n" //
+                        +"28,signal bias level out of range / zero adjustment failure\n" //
+                        +"29,signal signal invalid\n" //
+                        +"2F,signal erratic\n" //
+                        +"31,no signal\n" //
+                        +"32,signal low time < minimum\n" //
+                        +"33,signal low time > maximum\n" //
+                        +"34,signal high time < minimum\n" //
+                        +"35,signal high time > maximum\n" //
+                        +"36,signal frequency too low\n" //
+                        +"37,signal frequency too high\n" //
+                        +"38,signal frequency incorrect\n" //
+                        +"39,incorrect has too few pulses\n" //
+                        +"3A,incorrect has too many pulses\n" //
+                        +"41,general checksum failure\n" //
+                        +"42,general memory failure\n" //
+                        +"43,special memory failure\n" //
+                        +"44,data memory failure\n" //
+                        +"45,program memory failure\n" //
+                        +"46,calibration / parameter memory failure\n" //
+                        +"47,watchdog / safety µC failure\n" //
+                        +"48,supervision software failure\n" //
+                        +"49,internal electronic failure\n" //
+                        +"4A,incorrect component installed\n" //
+                        +"4B,over temperature\n" //
+                        +"51,not programmed\n" //
+                        +"52,not activated\n" //
+                        +"53,deactivated\n" //
+                        +"54,missing calibration\n" //
+                        +"55,not configured\n" //
+                        +"61,signal calculation failure\n" //
+                        +"62,signal compare failure\n" //
+                        +"63,circuit / component protection time-out\n" //
+                        +"64,signal plausibility failure\n" //
+                        +"65,signal has too few transitions / events\n" //
+                        +"66,signal has too many transitions / events\n" //
+                        +"67,signal incorrect after event\n" //
+                        +"68,event information\n" //
+                        +"71,actuator stuck\n" //
+                        +"72,actuator stuck open\n" //
+                        +"73,actuator stuck closed\n" //
+                        +"74,actuator slipping\n" //
+                        +"75,emergency position not reachable\n" //
+                        +"76,wrong mounting position\n" //
+                        +"77,commanded position not reachable\n" //
+                        +"78,alignment or adjustment incorrect\n" //
+                        +"79,mechanical linkage failure\n" //
+                        +"7A,fluid leak or seal failure\n" //
+                        +"7B,low fluid level\n" //
+                        +"81,invalid serial data received\n" //
+                        +"82,alive / sequence counter incorrect / not updated\n" //
+                        +"83,value of signal protection calculation incorrect\n" //
+                        +"84,signal below allowable range\n" //
+                        +"85,signal above allowable range\n" //
+                        +"86,signal invalid\n" //
+                        +"87,missing message\n" //
+                        +"88,bus off\n" //
+                        +"8F,erratic\n" //
+                        +"91,parametric\n" //
+                        +"92,performance or incorrect operation\n" //
+                        +"93,no operation\n" //
+                        +"94,unexpected operation\n" //
+                        +"95,incorrect assembly\n" //
+                        +"96,component internal failure\n" //
+                        +"97,Component or system operation obstructed or blocked\n" //
+                        +"98,component or system over temperature\n" //
+                        +"F1,Safety Case 1\n" //
+                        +"F2,Safety Case 2\n" //
+                        +"F3,Multiple Failure\n" //
+                        +"F4,Temperature too Low\n" //
+                        +"F5,Negative Loop Error\n" //
+                        +"F6,Positive Loop Error\n" //
+                        +"F7,Initialisation not valid\n" //
+                        +"F8,Overspeed\n" //
+                        +"F9,Limp Home\n" //
+                        +"FA,Specific Supplier\n" //
+                        +"FB,-\n" //
+                        +"FC,--\n" //
+                        +"FD,Drift low\n" //
+                        +"FE,Drift  high\n" //
+
+                ;
+
+        Frames.getInstance().load("7EC,0,0,EVC\n");
+        Fields.getInstance().load(fieldDef1);
+        Fields.getInstance().load(fieldDef2);
+        Dtcs.getInstance().load(dtcDef, testDef);
+
     }
 }
