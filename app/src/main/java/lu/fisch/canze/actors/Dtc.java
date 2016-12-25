@@ -19,20 +19,27 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-/*
- * This class represents a stack listener.
- */
-package lu.fisch.canze.interfaces;
-
-
-import lu.fisch.canze.actors.Message;
+package lu.fisch.canze.actors;
 
 /**
- *
- * @author robertfisch
+ * ECU
  */
-public interface MessageListener {
-    public void onMessageCompleteEvent(Message message);
-    //public void onMessageCompleteEvent(int msgId, String msgData, String responseId);
+public class Dtc {
+
+    private String id;
+    private String description;
+
+    public Dtc(String id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getId() {
+        return id;
+    }
+
 }

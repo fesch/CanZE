@@ -21,37 +21,159 @@
 
 package lu.fisch.canze.actors;
 
+import java.util.ArrayList;
+
 /**
- * Quick and dirty DTC lookup. Needs to be made fast and als needs an int lookup.
+ * DTC id's usually are 3 bytes long. The first 2 bytes are an ID, the third byte reperesent a test
+ * The first nibble is often displayed in an alternative way
+ *
  */
 public class Dtcs {
 
-    private static final String [] dtc = {
-            "061263,BATTERY CHARGE CIRCUIT",
-            "066263,BATTERY CHARGE CIRCUIT",
-            "064913,BATTERY CHARGE CIRCUIT",
-            "064764,BATTERY CHARGE CIRCUIT",
-            "C10000,EVC ABSENT MULTIPLEX SIGNAL SENT",
-            "518196,ESP MULTIPLEX INFORMATION PLAUSIBILITY",
-            "C12200,NO ABS/ESP MULTIPLEX SIGNAL",
-            "518296,EVC MULTIPLEX INFORMATION PLAUSIBILITY",
-            "508E55,UBP SOLENOID VALVE",
-            "C07300,MULTIPLEXED NETWORK",
-            "C00100,NO MULTIPLEX SIGNAL",
-            "921215,LEFT-HAND DIPPED HEADLIGHT CIRCUIT",
-            "921315,RIGHT-HAND DIPPED HEADLIGHT CIRCUIT",
-            "AE01F0,COMMUNICATION PROTOCOL ERROR",
-            "041168,CAN COMMUNICATION",
-            "1525F3,CONSISTENT MULTIPLEX SIGNALS FOR CC/SL",
-            "060198,ELECTRIC MOTOR PERFORMANCE"
-    };
+    private final ArrayList<Dtc> dtcs = new ArrayList<>();
+    private final ArrayList<Test> tests = new ArrayList<>();
 
-    static public String getDescription (String dtcCode) {
-        for (String aDtc : dtc) {
-            if (aDtc.startsWith(dtcCode)) {
-                return (aDtc.substring(7));
+    private static Dtcs instance = null;
+
+    private Dtcs() {
+        fillStatic();
+    }
+
+    public static Dtcs getInstance()
+    {
+        if(instance==null) instance=new Dtcs();
+        return instance;
+    }
+
+    private void fillStatic() {
+        String dtcDef =
+                ""
+            + "061263,BATTERY CHARGE CIRCUIT\n" //
+            + "066263,BATTERY CHARGE CIRCUIT\n" //
+            + "064913,BATTERY CHARGE CIRCUIT\n" //
+            + "064764,BATTERY CHARGE CIRCUIT\n" //
+            + "C10000,EVC ABSENT MULTIPLEX SIGNAL SENT\n" //
+            + "518196,ESP MULTIPLEX INFORMATION PLAUSIBILITY\n" //
+            + "C12200,NO ABS/ESP MULTIPLEX SIGNAL\n" //
+            + "518296,EVC MULTIPLEX INFORMATION PLAUSIBILITY\n" //
+            + "508E55,UBP SOLENOID VALVE\n" //
+            + "C07300,MULTIPLEXED NETWORK\n" //
+            + "C00100,NO MULTIPLEX SIGNAL\n" //
+            + "921215,LEFT-HAND DIPPED HEADLIGHT CIRCUIT\n" //
+            + "921315,RIGHT-HAND DIPPED HEADLIGHT CIRCUIT\n" //
+            + "AE01F0,COMMUNICATION PROTOCOL ERROR\n" //
+            + "041168,CAN COMMUNICATION\n" //
+            + "1525F3,CONSISTENT MULTIPLEX SIGNALS FOR CC/SL\n" //
+            + "060198,ELECTRIC MOTOR PERFORMANCE"
+    ;
+
+        String testDef =
+                ""
+                        + "104,event information\n" //
+
+                ;
+
+        fillDynamic(dtcDef, testDef);
+}
+
+    private void fillDynamic (String dtcDef, String testDef) {
+        String[] lines = dtcDef.split("\n");
+        for (String line : lines) {
+            //Get all tokens available in line
+            String[] tokens = line.split(",");
+            if (tokens.length == 2) {
+                //Create a new dtc object and fill his  data
+                Dtc dtc = new Dtc(
+                        tokens[0].trim(),
+                        tokens[1].trim()
+                );
+                // add the dtc to the list of available fields
+                add(dtc);
             }
         }
-        return "";
+        lines = testDef.split("\n");
+        for (String line : lines) {
+            //Get all tokens available in line
+            String[] tokens = line.split(",");
+            if (tokens.length == 2) {
+                //Create a new Test object and fill his  data
+                Test test = new Test(
+                        tokens[0].trim(),
+                        tokens[1].trim()
+                );
+                // add the test to the list of available fields
+                addTest(test);
+            }
+        }
     }
+
+    public void add(Dtc dtc) {
+        dtcs.add(dtc);
+    }
+
+    public void addTest(Test test) {
+        tests.add(test);
+    }
+
+    public Dtc getDtcById (String id) {
+        for (Dtc dtc : dtcs) {
+            if (dtc.getId() == id) return dtc;
+        }
+        return null;
+    }
+
+    public Test getTestById (String id) {
+        for (Test test : tests) {
+            if (test.getId() == id) return test;
+        }
+        return null;
+    }
+
+    public String getDescriptionById (String id) {
+        Dtc dtc = null;
+        Test test = null;
+        String result = "";
+
+        if (id.length() >= 4){
+            dtc = getDtcById(id.substring(0, 4));
+            if (dtc != null) {
+                result = result + dtc.getDescription();
+            } else {
+                result = result + "Unknown DTC " + id.substring(0, 4);
+            }
+            if (id.length() >= 6) {
+                test = getTestById(id.substring(4, 6));
+                if (test != null) {
+                    result = result + ":" + test.getDescription();
+                } else {
+                    result = result + ":Unknown Test " + id.substring(4, 6);
+                }
+            }
+        } else {
+            result = "Too short DTC " + id;
+        }
+        return result;
+    }
+
+
+    public ArrayList<Dtc> getAllDtcs () {
+        return dtcs;
+    }
+
+    public ArrayList<Test> getAllTests () {
+        return tests;
+    }
+
+    public void load ()
+    {
+        dtcs.clear();
+        fillStatic();
+    }
+
+    public void load (String initDtcString, String initTestString)
+    {
+        dtcs.clear();
+        fillDynamic(initDtcString, initTestString);
+    }
+
 }

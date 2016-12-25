@@ -95,6 +95,7 @@ public class Field {
     {
         Field field = new Field(frame, from, to, resolution, decimals, offset, unit, responseId, options, name, list);
         field.value = value;
+        field.strVal = strVal;
         field.lastRequest=lastRequest;
         field.interval=interval;
         return field;
@@ -129,7 +130,11 @@ public class Field {
         return getValue()+" "+getUnit();
     }
 
-    public String getStringValue()
+    public String getStringValue () {
+        return strVal;
+    }
+
+    public String getStringValueDepreciated()
     {
         // truncate to a long
         long longValue = (long) value;

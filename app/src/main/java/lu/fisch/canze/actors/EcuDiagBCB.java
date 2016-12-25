@@ -27,181 +27,11 @@ package lu.fisch.canze.actors;
 
 public class EcuDiagBCB {
 
-    // static final public String fieldsString () {
     void load () {
 
-        String fieldDefJb2 = // ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string),
-                // options (hex, see MainActivity for definitions), optional name, optional list
+        String fieldDef1 =
                 ""
 
-                        +"793,29,31,1,0,0,,222003,622003,ff,Junction box 2 state,0:Init;1:Charge;4:Wait;5:Power Off/Sleep\n" //
-                        +"793,24,31,1,40,0,°C,222005,622005,ff,Cooling temperature from BI\n" //
-                        +"793,24,47,1,0,0,,225001,625001,ff,Plugging counter\n" //
-                        +"793,24,47,1,0,0,,225002,625002,ff,Wake Up counter\n" //
-                        +"793,31,31,1,0,0,,225003,625003,ff,Raw A/C plug interlock value,0:open;1:closed\n" //
-                        +"793,31,31,1,0,0,,225005,625005,ff,CAN activity for JB2,0:No activity;1:Activity\n" //
-                        +"793,31,31,1,0,0,,225008,625008,ff,Raw JB2 hood plug interlock value,0:open;1:closed\n" //
-                        +"793,31,31,1,0,0,,225009,625009,ff,Raw HV Battery plug interlock value,0:open;1:closed\n" //
-                        +"793,31,31,1,0,0,,22500B,62500B,ff,Raw mains interlock value,0:open;1:closed\n" //
-                        +"793,31,31,1,0,0,,22500C,62500C,ff,Mains tri phases permutation,0:v1/v2/v3 off;1:v1/v2/v3 on\n" //
-                        +"793,31,31,1,0,0,,22500D,62500D,ff,Mains voltage presence,0:Absent;1:Present\n" //
-                        +"793,31,31,1,0,0,,22500E,62500E,ff,Wake-Up request from Mains or plug presence,0:No wake-up request;1:Wake-up request\n" //
-                        +"793,31,31,1,0,0,,22500F,62500F,ff,Raw PEB plug interlock value,0:open;1:closed\n" //
-                        +"793,31,31,1,0,0,,225010,625010,ff,Raw PEB neutral interlock value,0:open;1:closed\n" //
-                        +"793,31,31,1,0,0,,225011,625011,ff,Raw PTC plug interlock value,0:open;1:closed\n" //
-                        +"793,30,31,1,0,0,,225015,625015,ff,Wake-Up / Sleep request from EVC,0:Wake-up;1:Sleep;2:UV\n" //
-                        +"793,29,31,1,0,0,,225016,625016,ff,Junction box 2 state request from EVC,0:init;1:Charge;4:Wait;5:Power Off/Sleep\n" //
-                        +"793,29,31,1,0,0,,225017,625017,ff,Mains current type,0:Nok;1:AC mono;2:AC tri;3:DC;4:AC bi\n" //
-                        +"793,30,31,1,0,0,,225018,625018,ff,Mains plug unlocking CAN request,0:Unavailable;1:Unlock request;2:No unlock request\n" //
-                        +"793,30,31,1,0,0,,225019,625019,ff,Memorized value of the wake up activation,0:Wake-up activated;1:Wake-up deactivated\n" //
-                        +"793,31,31,1,0,0,,22501A,62501A,ff,BCM wake-up by wire,0:No wake-up;1:Wake-up\n" //
-                        +"793,31,31,1,0,0,,22501C,62501C,ff,S2 relay control,0:Open;1:Close\n" //
-                        +"793,30,31,1,0,0,,22501D,62501D,ff,Charge state request,0:No charge;1:Charge;2:Emergency stop\n" //
-                        +"793,29,31,1,0,0,,22501E,62501E,ff,Global system state,0:Init;1:Actif;2:Sleep\n" //
-                        +"793,30,31,1,0,0,,22501F,62501F,ff,System Temperature State,0:Ok;1:Derating;2:Nok\n" //
-                        +"793,30,31,1,0,0,,225021,625021,ff,Cooling Temperature State,0:Ok;1:Derating;2:Nok\n" //
-                        +"793,30,31,1,0,0,,225022,625022,ff,Auto wake-up enabling,0:No change;1:Activation;2:Deactivation\n" //
-                        +"793,24,39,.0625,880,0,°C,225023,625023,ff,Raw CPU temperature value from BI\n" //
-                        +"793,24,39,.0625,3200,0,A,225024,625024,ff,Measured neutral current filtred\n" //
-                        +"793,24,39,.0625,3200,0,A,225025,625025,ff,Neutral current value from BI\n" //
-                        +"793,24,31,1,0,0,%,225026,625026,ff,J1772 control pilot raw duty cycle\n" //
-                        +"793,24,31,.25,60,0,V,225027,625027,ff,J1772 control pilot raw voltage\n" //
-                        +"793,24,31,1,40,0,°C,225028,625028,ff,Mains input filter temperature from SPI\n" //
-                        +"793,24,39,.0625,3200,0,A,225029,625029,ff,Raw AC mains phase 1 measured current\n" //
-                        +"793,24,39,.0625,3200,0,A,22502A,62502A,ff,Raw AC mains phase 2 measured current\n" //
-                        +"793,24,39,.0625,3200,0,A,22502B,62502B,ff,Raw AC mains phase 3 measured current\n" //
-                        +"793,24,39,.5,32000,0,V,22502C,62502C,ff,Raw AC mains phase 1 measured voltage\n" //
-                        +"793,24,39,.5,32000,0,V,22502D,62502D,ff,Raw AC mains phase 2 measured voltage\n" //
-                        +"793,24,39,.5,32000,0,V,22502E,62502E,ff,Raw AC mains phase 3 measured voltage\n" //
-                        +"793,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,1:HMLGT\n" //
-                        +"793,160,167,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
-                        +"793,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode\n" //
-                        +"793,144,151,1,0,0,,2180,6180,ff,EditionNumber\n" //
-                        +"793,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,1:296H5\n" //
-                        +"793,88,95,1,0,0,,2180,6180,ff,HardwareNumber.LowerPart\n" //
-                        +"793,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3\n" //
-                        +"793,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,1:296H5;2:296H0\n" //
-                        +"793,16,23,1,0,0,,2180,6180,ff,PartNumber.LowerPart\n" //
-                        +"793,128,135,1,0,0,,2180,6180,ff,SoftwareNumber\n" //
-                        +"793,64,71,1,0,0,,2180,6180,ff,SupplierNumber.ITG\n" //
-                        +"793,152,159,1,0,0,,2181,6181,ff,Vin CRC\n" //
-                        +"793,16,23,1,0,0,,2181,6181,ff,Vin In Ascii\n" //
-                        +"793,16,23,1,0,0,,2184,6184,ff,ITG Supplier Number\n" //
-                        +"793,40,47,1,0,0,,2184,6184,ff,Traceability Factory Code\n" //
-                        +"793,48,55,1,0,0,,2184,6184,ff,Traceability Serial Number\n" //
-                        +"793,16,23,1,0,0,,21B7,61B7,ff,Configuration of Electrical Vehicle Networks\n" //
-                        +"793,16,23,1,0,0,,21B8,61B8,ff,List of Electrical Vehicle ECUs with After-sales diagnostic\n" //
-                        +"793,160,167,1,0,0,,21F0,61F0,ff,CalibrationNumber\n" //
-                        +"793,56,63,1,0,0,,21F0,61F0,ff,DiagnosticIdentificationCode\n" //
-                        +"793,128,135,1,0,0,,21F0,61F0,ff,SoftwareNumber\n" //
-                        +"793,64,71,1,0,0,,21F0,61F0,ff,SupplierNumber\n" //
-                        +"793,144,151,1,0,0,,21F0,61F0,ff,EditionNumber\n" //
-                        +"793,176,183,1,0,0,,21F0,61F0,ff,PartNumber.BasicPartList,1:296H5;2:296H0\n" //
-                        +"793,184,191,1,0,0,,21F0,61F0,ff,HardwareNumber.BasicPartList,1:296H5\n" //
-                        +"793,192,199,1,0,0,,21F0,61F0,ff,ApprovalNumber.BasicPartList,1:HMLGT\n" //
-                        +"793,16,23,1,0,0,,21F0,61F0,ff,PartNumber.LowerPart\n" //
-                        +"793,88,95,1,0,0,,21F0,61F0,ff,HardwareNumber.LowerPart\n" //
-                        +"793,200,207,1,0,0,,21F0,61F0,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3\n" //
-                        +"793,16,23,1,0,0,,21F1,61F1,ff,ApprovalNumber.LowerPart\n" //
-                        +"793,56,63,1,0,0,,21F1,61F1,ff,ProgrammingSiteReference\n" //
-                        +"793,96,103,1,0,0,,21F1,61F1,ff,ProgrammingToolReference\n" //
-                        +"793,136,143,1,0,0,,21F1,61F1,ff,NumberOfReprogrammings\n" //
-                        +"793,144,151,1,0,0,,21F1,61F1,ff,DateOfReprogramming\n" //
-                        +"793,184,191,1,0,0,,21F1,61F1,ff,SaveMarking\n" //
-                        +"793,192,199,1,0,0,,21F1,61F1,ff,CrcOfLogSave\n" //
-                        +"793,168,175,1,0,0,,21F1,61F1,ff,TimeOfReprogramming\n" //
-                        +"793,24,39,.0625,3200,0,A,222001,622001,ff,Mains phase 1 current RMS value\n" //
-                        +"793,24,39,.0625,0,0,V,222002,622002,ff,CPU voltage supply from BI\n" //
-                        +"793,25,31,1,0,0,%,225007,625007,ff,MMI Green LED PWM request\n" //
-                        +"793,31,31,1,0,0,,225012,625012,ff,Mains phase 1-2 voltage presence,0:Absent;1:Present\n" //
-                        +"793,31,31,1,0,0,,225013,625013,ff,Mains phase 2-3 voltage presence,0:Absent;1:Present\n" //
-                        +"793,31,31,1,0,0,,225014,625014,ff,Mains phase 3-1 voltage presence,0:Absent;1:Present\n" //
-                        +"793,25,31,1,0,0,%,22502F,62502F,ff,MMI Red LED PWM request\n" //
-                        +"793,31,31,1,0,0,,225030,625030,ff,Raw fuse interlock value,0:open;1:closed\n" //
-                        +"793,31,31,1,0,0,,225031,625031,ff,Raw Relay box plug interlock closed,0:open;1:closed\n" //
-                        +"793,24,39,1,0,0,V,225032,625032,ff,Driver module power supply voltage from BI\n" //
-                        +"793,24,39,.0625,32768,0,mA,225035,625035,ff,Mains ground current 1st measurement\n" //
-                        +"793,24,39,.0625,32768,0,mA,225036,625036,ff,Mains ground current 2nd measurement\n" //
-                        +"793,31,31,1,0,0,,225038,625038,ff,Mains Plug Locking Switch raw information,0:Unlocked;1:Locked\n" //
-                        +"793,30,31,1,0,0,,225039,625039,ff,Mains plug locking control,0:No motion;1:Close;2:Open\n" //
-                        +"793,24,39,.0625,3200,0,A,22503A,62503A,ff,Mains phase 2 current RMS value\n" //
-                        +"793,24,39,.0625,3200,0,A,22503B,62503B,ff,Mains phase 3 current RMS value\n" //
-                        +"793,24,39,.0625,3200,0,A,22503C,62503C,ff,Mains current phase 1 mean value\n" //
-                        +"793,24,39,.0625,3200,0,A,22503D,62503D,ff,Mains current phase 2 mean value\n" //
-                        +"793,24,39,.0625,3200,0,A,22503E,62503E,ff,Mains current phase 3 mean value\n" //
-                        +"793,24,39,.5,0,0,V,22503F,62503F,ff,Mains phase 1-2 voltage RMS value\n" //
-                        +"793,24,39,.5,0,0,V,225041,625041,ff,Mains phase 2-3 voltage RMS value\n" //
-                        +"793,24,39,.5,0,0,V,225042,625042,ff,Mains phase 3-1 voltage RMS value\n" //
-                        +"793,24,39,.5,32000,0,V,225043,625043,ff,AC mains phase 1-2 measured voltage\n" //
-                        +"793,24,39,.5,32000,0,V,225044,625044,ff,AC mains phase 2-3 measured voltage\n" //
-                        +"793,24,39,.5,32000,0,V,225045,625045,ff,AC mains phase 3-1 measured voltage\n" //
-                        +"793,24,39,.5,32000,0,V,225046,625046,ff,Mains phase 1-2 mean voltage\n" //
-                        +"793,24,39,.5,32000,0,V,225047,625047,ff,Mains phase 2-3 mean voltage\n" //
-                        +"793,24,39,.5,32000,0,V,225048,625048,ff,Mains phase 3-1 mean voltage\n" //
-                        +"793,24,39,.0078125,-1280,0,Hz,225049,625049,ff,Mains phase frequency\n" //
-                        +"793,24,39,1,20000,0,W,22504A,62504A,ff,Mains active power consumed\n" //
-                        +"793,24,39,.0625,9600,0,A,22504B,62504B,ff,Mains current sum\n" //
-                        +"793,24,39,.5,32000,0,V,22504C,62504C,ff,Mains voltage sum\n" //
-                        +"793,24,39,.0625,3200,0,A,22504D,62504D,ff,HV Network measured current\n" //
-                        +"793,24,39,1,1023,0,V,22504E,62504E,ff,HV voltage\n" //
-                        +"793,24,31,1,0,0,,22504F,62504F,ff,Mains leakage current strategy state,0:OFF/Init;1:OK;2:NOK\n" //
-                        +"793,24,24,1,0,0,,225050,625050,ff,External controls denial status flags.0,0:Reserved for future use_0\n" //
-                        +"793,24,31,1,0,0,%,222004,622004,ff,System Relative Temperature in %\n" //
-                        +"793,24,39,.0002441406,0,0,V,225033,625033,ff,Raw Detection Logic line value\n" //
-                        +"793,24,31,1,40,0,°C,225051,625051,ff,CPU temperature value\n" //
-                        +"793,24,31,1,40,0,°C,225052,625052,ff,IGBT Buck arm 1 temperature\n" //
-                        +"793,24,31,1,40,0,°C,225053,625053,ff,Raw IGBT Buck arm 1 temperature\n" //
-                        +"793,24,31,1,40,0,°C,225054,625054,ff,Mains input filter hot spot temperature\n" //
-                        +"793,24,31,1,40,0,°C,225055,625055,ff,Mains input filter hot spot temperature from SPI\n" //
-                        +"793,24,31,1,40,0,°C,225056,625056,ff,Mains input filter temperature\n" //
-                        +"793,24,39,.0625,32768,0,mA,225057,625057,ff,Raw leakage current - DC part measurement\n" //
-                        +"793,24,39,.0625,32768,0,mA,225058,625058,ff,Raw leakage current - High Frequency 10kHz part measurement\n" //
-                        +"793,24,39,.0625,32768,0,mA,225059,625059,ff,Raw leakage current - High Frequency 1st part measurement\n" //
-                        +"793,24,39,.0625,32768,0,mA,22505A,62505A,ff,Raw leakage current - Low Frequency part measurement (50Hz)\n" //
-                        +"793,16,23,1,0,0,,21EF,61EF,ff,Hardware Part Number 1\n" //
-                        +"793,24,31,1,0,0,,21EF,61EF,ff,Hardware Part Number 2\n" //
-                        +"793,32,39,1,0,0,,21EF,61EF,ff,Hardware Part Number 3\n" //
-                        +"793,40,47,1,0,0,,21EF,61EF,ff,Hardware Part Number 4\n" //
-                        +"793,48,55,1,0,0,,21EF,61EF,ff,Hardware Part Number 5\n" //
-                        +"793,56,63,1,0,0,,21EF,61EF,ff,Hardware Part Number 6\n" //
-                        +"793,64,71,1,0,0,,21EF,61EF,ff,Hardware Part Number 7\n" //
-                        +"793,72,79,1,0,0,,21EF,61EF,ff,Hardware Part Number 8\n" //
-                        +"793,80,87,1,0,0,,21EF,61EF,ff,Hardware Part Number 9\n" //
-                        +"793,88,95,1,0,0,,21EF,61EF,ff,Hardware Part Number 10\n" //
-                        +"793,96,103,1,0,0,,21EF,61EF,ff,Software Part Number 1\n" //
-                        +"793,104,111,1,0,0,,21EF,61EF,ff,Software Part Number 2\n" //
-                        +"793,112,119,1,0,0,,21EF,61EF,ff,Software Part Number 3\n" //
-                        +"793,120,127,1,0,0,,21EF,61EF,ff,Software Part Number 4\n" //
-                        +"793,128,135,1,0,0,,21EF,61EF,ff,Software Part Number 5\n" //
-                        +"793,136,143,1,0,0,,21EF,61EF,ff,Software Part Number 6\n" //
-                        +"793,144,151,1,0,0,,21EF,61EF,ff,Software Part Number 7\n" //
-                        +"793,152,159,1,0,0,,21EF,61EF,ff,Software Part Number 8\n" //
-                        +"793,160,167,1,0,0,,21EF,61EF,ff,Software Part Number 9\n" //
-                        +"793,168,175,1,0,0,,21EF,61EF,ff,Software Part Number 10\n" //
-                        +"793,31,31,1,0,0,,22505B,62505B,ff,Virgin neutral current acquisition tuning detection\n" //
-                        +"793,31,31,1,0,0,,22505C,62505C,ff,Inform on spi communication error\n" //
-                        +"793,31,31,1,0,0,,22505D,62505D,ff,Global checksum result on SPI frames\n" //
-                        +"793,24,39,1,0,0,,22505E,62505E,ff,FPGA ident\n" //
-                        +"793,24,39,1,0,0,ms,225061,625061,ff,Low part of CPU clock since power up\n" //
-                        +"793,24,39,1,0,0,ms,22505F,62505F,ff,High part of CPU clock since power up\n" //
-                        +"793,24,39,1,0,0,Ohm,225062,625062,ff,Mains ground resistance\n" //
-                        +"793,24,31,1,0,0,,225063,625063,ff,Supervisor state,0:Init;1:Wait;2:ClosingS2;3:InitType;4:InitLkg;5:InitChg;6:Charge;7:ZeroAmpMode;8:EndOfChg;9:OpeningS2;10:ReadyToSleep;11:EmergencyStop;12:InitChargeDF;13:OCPStop;14:WaitS2\n" //
-                        +"793,24,31,1,0,0,,225064,625064,ff,Leakage current diagnostic stored completion status,0:init;1:HF10;3:Mains Ground Default;5:Earth Current default;9:Ground Default;17:Means Leakage DC;33:Means Leakage LF;49:Means Leakage DC+LF;65:Means Leakage HF;81:Means Leakage DC+HF;97:Means Leakage LF+HF;113:Means Leakage DC+LF+HF\n" //
-                        +"793,24,39,1,32768,0,mA,225065,625065,ff,Leakage DC current saved indicator after failure\n" //
-                        +"793,24,39,1,32768,0,mA,225066,625066,ff,Leakage HF 10kHz current saved indicator after failure\n" //
-                        +"793,24,39,1,32768,0,mA,225067,625067,ff,Leakage HF current saved indicator after failure\n" //
-                        +"793,24,39,1,32768,0,mA,225068,625068,ff,Leakage LF current saved indicator after failure\n" //
-                        +"793,24,31,1,0,0,,225069,625069,ff,LED absence configuration,0:LED present;1:LED absent\n" //
-                        +"793,24,39,1,0,0,,22506C,62506C,ff,15V from Driver flyback\n" //
-                        +"793,24,31,1,0,0,,22506A,62506A,ff,Old MMI configuration,0:New MMI;1:Old MMI\n" //
-                        +"793,24,31,1,0,0,,22506B,62506B,ff,Vehicle configuration type,0:X10 configuration;1:X07 configuration\n" //
-                        +"793,24,39,1,0,0,,22506D,62506D,ff,Saved number of quickdrop values\n" //
-
-                ;
-
-        String fieldDefBcb = // ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string),
-                // options (hex, see MainActivity for definitions), optional name, optional list
-                ""
                         +"793,24,31,.08,0,0,V,223101,623101,ff,Batt_voltage_mes\n" //
                         +"793,31,39,1,0,0,V,223102,623102,ff,BCBHighVoltage\n" //
                         +"793,24,31,1,0,0,%,223103,623103,ff,BCBTemp\n" //
@@ -289,6 +119,7 @@ public class EcuDiagBCB {
                         +"793,35,39,.5,0,0,A,22FFF1,62FFF1,ff,DIDFFF1.Set_Output_Max_Current\n" //
                         +"793,40,47,1,40,0,°C,22FFF1,62FFF1,ff,DIDFFF1.Ambient_Temp\n" //
                         +"793,48,55,1,40,0,°C,22FFF1,62FFF1,ff,DIDFFF1.Cooling_Temp\n" //
+                        +"793,24,63,1,0,0,,22F180,62F180,ff,bootSoftwareIdentification\n" //
                         +"793,24,31,.1,0,0,A,223105,623105,ff,BCBSlowChargeInputCurrent\n" //
                         +"793,24,31,.1,0,0,A,223109,623109,ff,EVSECurrentLimit\n" //
                         +"793,30,30,1,0,0,,22310C,62310C,ff,DID310C.Current_Ilimit,0:Not Pushed;1:Pushed\n" //
@@ -299,37 +130,37 @@ public class EcuDiagBCB {
                         +"793,24,31,100,0,0,%,223139,623139,ff,EPWM_Pilot\n" //
                         +"793,24,31,.5,0,0,A,22313A,62313A,ff,DCDC_Output_Current\n" //
                         +"793,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A;1:8200x\n" //
-                        +"793,160,167,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
+                        +"793,160,175,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
                         +"793,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode\n" //
-                        +"793,144,151,1,0,0,,2180,6180,ff,EditionNumber\n" //
+                        +"793,144,159,1,0,0,,2180,6180,ff,EditionNumber\n" //
                         +"793,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:N/A;1:29609\n" //
-                        +"793,88,95,1,0,0,,2180,6180,ff,HardwareNumber.LowerPart\n" //
+                        +"793,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart\n" //
                         +"793,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3\n" //
                         +"793,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;2:29609\n" //
-                        +"793,16,23,1,0,0,,2180,6180,ff,PartNumber.LowerPart\n" //
-                        +"793,128,135,1,0,0,,2180,6180,ff,SoftwareNumber\n" //
-                        +"793,64,71,1,0,0,,2180,6180,ff,SupplierNumber.ITG\n" //
-                        +"793,152,159,1,0,0,,2181,6181,ff,Vin CRC\n" //
-                        +"793,16,23,1,0,0,,2181,6181,ff,Vin In Ascii\n" //
-                        +"793,148,155,1,0,0,,2184,6184,ff,PaddingDatas\n" //
-                        +"793,136,143,1,0,0,,2184,6184,ff,Siemens serial number Byte 0 to be coded in ASCII\n" //
-                        +"793,128,135,1,0,0,,2184,6184,ff,Siemens serial number Byte 1 to be coded in ASCII\n" //
-                        +"793,56,63,1,0,0,,2184,6184,ff,Siemens serial number Byte 10 to be coded in ASCII\n" //
-                        +"793,48,55,1,0,0,,2184,6184,ff,Siemens serial number Byte 11 to be coded in ASCII\n" //
-                        +"793,40,47,1,0,0,,2184,6184,ff,Siemens serial number Byte 12 to be coded in ASCII\n" //
-                        +"793,32,39,1,0,0,,2184,6184,ff,Siemens serial number Byte 13 to be coded in ASCII\n" //
-                        +"793,24,31,1,0,0,,2184,6184,ff,Siemens serial number Byte 14 to be coded in ASCII\n" //
-                        +"793,16,23,1,0,0,,2184,6184,ff,Siemens serial number Byte 15 to be coded in ASCII\n" //
-                        +"793,120,127,1,0,0,,2184,6184,ff,Siemens serial number Byte 2 to be coded in ASCII\n" //
-                        +"793,112,119,1,0,0,,2184,6184,ff,Siemens serial number Byte 3 to be coded in ASCII\n" //
-                        +"793,104,111,1,0,0,,2184,6184,ff,Siemens serial number Byte 4 to be coded in ASCII\n" //
-                        +"793,96,103,1,0,0,,2184,6184,ff,Siemens serial number Byte 5 to be coded in ASCII\n" //
-                        +"793,88,95,1,0,0,,2184,6184,ff,Siemens serial number Byte 6 to be coded in ASCII\n" //
-                        +"793,80,87,1,0,0,,2184,6184,ff,Siemens serial number Byte 7 to be coded in ASCII\n" //
-                        +"793,72,79,1,0,0,,2184,6184,ff,Siemens serial number Byte 8 to be coded in ASCII\n" //
-                        +"793,64,71,1,0,0,,2184,6184,ff,Siemens serial number Byte 9 to be coded in ASCII\n" //
+                        +"793,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart\n" //
+                        +"793,128,143,1,0,0,,2180,6180,ff,SoftwareNumber\n" //
+                        +"793,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG\n" //
+                        +"793,152,167,1,0,0,,2181,6181,ff,Vin CRC\n" //
+                        +"793,16,151,1,0,0,,2181,6181,2ff,Vin In Ascii\n" //
+                        +"793,148,155,1,0,0,,2184,6184,2ff,PaddingDatas\n" //
+                        +"793,136,143,1,0,0,,2184,6184,2ff,Siemens serial number Byte 0 to be coded in ASCII\n" //
+                        +"793,128,135,1,0,0,,2184,6184,2ff,Siemens serial number Byte 1 to be coded in ASCII\n" //
+                        +"793,56,63,1,0,0,,2184,6184,2ff,Siemens serial number Byte 10 to be coded in ASCII\n" //
+                        +"793,48,55,1,0,0,,2184,6184,2ff,Siemens serial number Byte 11 to be coded in ASCII\n" //
+                        +"793,40,47,1,0,0,,2184,6184,2ff,Siemens serial number Byte 12 to be coded in ASCII\n" //
+                        +"793,32,39,1,0,0,,2184,6184,2ff,Siemens serial number Byte 13 to be coded in ASCII\n" //
+                        +"793,24,31,1,0,0,,2184,6184,2ff,Siemens serial number Byte 14 to be coded in ASCII\n" //
+                        +"793,16,23,1,0,0,,2184,6184,2ff,Siemens serial number Byte 15 to be coded in ASCII\n" //
+                        +"793,120,127,1,0,0,,2184,6184,2ff,Siemens serial number Byte 2 to be coded in ASCII\n" //
+                        +"793,112,119,1,0,0,,2184,6184,2ff,Siemens serial number Byte 3 to be coded in ASCII\n" //
+                        +"793,104,111,1,0,0,,2184,6184,2ff,Siemens serial number Byte 4 to be coded in ASCII\n" //
+                        +"793,96,103,1,0,0,,2184,6184,2ff,Siemens serial number Byte 5 to be coded in ASCII\n" //
+                        +"793,88,95,1,0,0,,2184,6184,2ff,Siemens serial number Byte 6 to be coded in ASCII\n" //
+                        +"793,80,87,1,0,0,,2184,6184,2ff,Siemens serial number Byte 7 to be coded in ASCII\n" //
+                        +"793,72,79,1,0,0,,2184,6184,2ff,Siemens serial number Byte 8 to be coded in ASCII\n" //
+                        +"793,64,71,1,0,0,,2184,6184,2ff,Siemens serial number Byte 9 to be coded in ASCII\n" //
                         +"793,24,39,1,0,0,Hz,223138,623138,ff,EPWM_Pilot_Frequency\n" //
-                        +"793,24,31,1,0,0,,22F18E,62F18E,ff,VehicleManufacturerKitAssemblyPartNumber\n" //
+                        +"793,24,103,1,0,0,,22F18E,62F18E,2ff,VehicleManufacturerKitAssemblyPartNumber\n" //
                         +"793,31,31,1,0,0,,22FFF5,62FFF5,ff,DIDFFF5.Download_enable\n" //
                         +"793,30,30,1,0,0,,22FFF5,62FFF5,ff,DIDFFF5.Coupler_unlocked\n" //
                         +"793,29,29,1,0,0,,22FFF5,62FFF5,ff,DIDFFF5.DCDC_Alarm\n" //
@@ -399,10 +230,159 @@ public class EcuDiagBCB {
                         +"793,34,34,1,0,0,,22FFF8,62FFF8,ff,DIDFFF8.PPP_SFY_Rx_PSupp\n" //
                         +"793,35,35,1,0,0,,22FFF8,62FFF8,ff,DIDFFF8.PPP_SFY_Rx_PSecMn\n" //
                         +"793,36,36,1,0,0,,22FFF8,62FFF8,ff,DIDFFF8.SFY_Rx_RAM_Ch\n" //
+
                 ;
 
-        Frames.getInstance().load ("764,0,0,CLIM\n");
-        Fields.getInstance().load (fieldDefBcb);
-        Fields.getInstance().load (fieldDefJb2);
+        String dtcDef =
+                ""
+
+                        +"0103,BCB_Water_Temp signal\n" //
+                        +"0104,CTRL_Pilot\n" //
+                        +"0120,RSA_NCH_DET_LOGIC\n" //
+                        +"0105,RSA_NCH_DET_LOGIC2\n" //
+                        +"0107,Wake_Up_System\n" //
+                        +"0108,LED_ILIMIT \n" //
+                        +"0110,14V_Switched logic\n" //
+                        +"0111,Battery_supply \n" //
+                        +"0113,Output PFC \n" //
+                        +"0109,K-Line\n" //
+                        +"0114,Output DCDC\n" //
+                        +"0117,HV_Battery\n" //
+                        +"0115,PWM HV Current Consign\n" //
+                        +"0116,PWM HV Voltage Consign\n" //
+                        +"0122,BCB_Amb_Temp signal 1\n" //
+                        +"0123,BCB_Amb_Temp signal 2\n" //
+                        +"0124,BCB_Amb_Temp signal 3\n" //
+                        +"011D,Relay_DCDC_P/Coil_DCDC_P\n" //
+                        +"0127,Switching Box relay 1\n" //
+                        +"0128,Switching Box relay 2\n" //
+                        +"0131,Mains Interlock\n" //
+                        +"0130,PPPrimary_Power_Module_Temp\n" //
+                        +"0112,Mains input (Line1and Line2)\n" //
+                        +"0100, Current_Limit_Switch\n" //
+                        +"0102,BCB_Amb_Temp\n" //
+                        +"010A,5V_Supply\n" //
+                        +"010B,Primary Power Plant supply\n" //
+                        +"010D,BCB_Ambient_Temp_Pim\n" //
+                        +"010E,Secondary Power Plant supply\n" //
+                        +"0118,Primary Micro Controller\n" //
+                        +"0119,Secondary Micro Controller\n" //
+                        +"011E,SCI_Supervisor_Primary\n" //
+                        +"011F,SCI_Primary_Secondary\n" //
+                        +"0121,Internal Interlock\n" //
+                        +"0125,Temperature sensors\n" //
+                        +"0126,Supervisor Micro Controller\n" //
+                        +"0129,CTRL_Pilot Failure in S2 switch\n" //
+                        +"D003,CAN Bus off\n" //
+                        +"D002,CAN node EVC missing\n" //
+
+                ;
+
+        String testDef =
+                ""
+
+                        +"00,Device and failure type ODB codding\n" //
+                        +"01,General Electrical Failure\n" //
+                        +"02,General signal failure\n" //
+                        +"03,FM / PWM Failures\n" //
+                        +"04,System Internal Failures\n" //
+                        +"05,System Programming Failures\n" //
+                        +"06,Algorithm Based Failures\n" //
+                        +"07,Mechanical Failures\n" //
+                        +"08,Bus Signal / Message Failures\n" //
+                        +"09,Component Failures\n" //
+                        +"11,circuit short to ground\n" //
+                        +"12,circuit short to battery\n" //
+                        +"13,circuit open\n" //
+                        +"14,circuit short to ground or open\n" //
+                        +"15,circuit short to battery or open\n" //
+                        +"16,circuit voltage below threshold\n" //
+                        +"17,circuit voltage above threshold\n" //
+                        +"18,circuit current below threshold\n" //
+                        +"19,circuit current above threshold\n" //
+                        +"1A,circuit resistance below threshold\n" //
+                        +"1B,circuit resistance above threshold\n" //
+                        +"1C,circuit voltage out of range\n" //
+                        +"1D,circuit current out of range\n" //
+                        +"1E,circuit resistance out of range\n" //
+                        +"1F,circuit intermittent\n" //
+                        +"21,signal amplitude < minimum\n" //
+                        +"22,signal amplitude > maximum\n" //
+                        +"23,signal stuck low\n" //
+                        +"24,signal stuck high\n" //
+                        +"25,signal shape / waveform failure\n" //
+                        +"26,signal rate of change below threshold\n" //
+                        +"27,signal rate of change above threshold\n" //
+                        +"28,signal bias level out of range\n" //
+                        +"29,signal signal invalid\n" //
+                        +"2F,signal erratic\n" //
+                        +"31,no signal\n" //
+                        +"32,signal low time < minimum\n" //
+                        +"33,signal low time > maximum\n" //
+                        +"34,signal high time < minimum\n" //
+                        +"35,signal high time > maximum\n" //
+                        +"36,signal frequency too low\n" //
+                        +"37,signal frequency too high\n" //
+                        +"38,signal frequency incorrect\n" //
+                        +"39,incorrect has too few pulses\n" //
+                        +"3A,incorrect has too many pulses\n" //
+                        +"41,general checksum failure\n" //
+                        +"42,general memory failure\n" //
+                        +"43,special memory failure\n" //
+                        +"44,data memory failure\n" //
+                        +"45,program memory failure\n" //
+                        +"46,calibration / parameter memory failure\n" //
+                        +"47,watchdog / safety µC failure\n" //
+                        +"48,supervision software failure\n" //
+                        +"49,internal electronic failure\n" //
+                        +"4A,incorrect component installed\n" //
+                        +"4B,over temperature\n" //
+                        +"51,not programmed\n" //
+                        +"52,not activated\n" //
+                        +"53,deactivated\n" //
+                        +"54,missing calibration\n" //
+                        +"55,not configured\n" //
+                        +"61,signal calculation failure\n" //
+                        +"62,signal compare failure\n" //
+                        +"63,circuit / component protection time-out\n" //
+                        +"64,signal plausibility failure\n" //
+                        +"65,signal has too few transitions / events\n" //
+                        +"66,signal has too many transitions / events\n" //
+                        +"67,signal incorrect after event\n" //
+                        +"68,event information\n" //
+                        +"71,actuator stuck\n" //
+                        +"72,actuator stuck open\n" //
+                        +"73,actuator stuck closed\n" //
+                        +"74,actuator slipping\n" //
+                        +"75,emergency position not reachable\n" //
+                        +"76,wrong mounting position\n" //
+                        +"77,commanded position not reachable\n" //
+                        +"78,alignment or adjustment incorrect\n" //
+                        +"79,mechanical linkage failure\n" //
+                        +"7A,fluid leak or seal failure\n" //
+                        +"7B,low fluid level\n" //
+                        +"81,invalid serial data received\n" //
+                        +"82,alive / sequence counter incorrect / not updated\n" //
+                        +"83,value of signal protection calculation incorrect\n" //
+                        +"84,signal below allowable range\n" //
+                        +"85,signal above allowable range\n" //
+                        +"86,signal invalid\n" //
+                        +"87,missing message\n" //
+                        +"88,bus off\n" //
+                        +"8F,erratic\n" //
+                        +"91,parametric\n" //
+                        +"92,performance or incorrect operation\n" //
+                        +"93,no operation\n" //
+                        +"94,unexpected operation\n" //
+                        +"95,incorrect assembly\n" //
+                        +"96,component internal failure\n" //
+                        +"97,Component or system operation obstructed/blocked\n" //
+                        +"98,component or system over temperature\n" //
+
+                ;
+
+        Frames.getInstance().load("793,0,0,BCB\n");
+        Fields.getInstance().load(fieldDef1);
+        Dtcs.getInstance().load(dtcDef, testDef);
     }
 }

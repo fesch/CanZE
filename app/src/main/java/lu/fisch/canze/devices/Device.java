@@ -218,7 +218,8 @@ public abstract class Device {
                     Message message = requestFrame(field.getFrame());
                     // test if we got something
                     if(message!=null && !someThingWrong) {
-                        Fields.getInstance().onMessageCompleteEvent(message);
+                        //Fields.getInstance().onMessageCompleteEvent(message);
+                        message.onMessageCompleteEvent();
                     }
 
                     // reset if something went wrong ...
