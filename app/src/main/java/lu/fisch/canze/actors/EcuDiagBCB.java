@@ -31,6 +31,8 @@ public class EcuDiagBCB {
 
         String fieldDef1 =
                 ""
+                        +"793,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        +"793,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
 
                         +"793,24,31,.08,0,0,V,223101,623101,ff,Batt_voltage_mes\n" //
                         +"793,31,39,1,0,0,V,223102,623102,ff,BCBHighVoltage\n" //

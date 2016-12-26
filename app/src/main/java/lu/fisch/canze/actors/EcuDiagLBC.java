@@ -33,6 +33,8 @@ public class EcuDiagLBC {
 
         String fieldDef1 =
                 ""
+                        +"7bb,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        +"7bb,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
 
                         +"7bb,32,47,1,5000,0,A,2101,6101,ff,21_01_#05_Current sensor offset value\n" //
                         +"7bb,176,191,.01,0,0,kW,2101,6101,ff,21_01_#23_Input Possible Power CAN Output (After Restriction)\n" //
@@ -1992,8 +1994,8 @@ public class EcuDiagLBC {
         Frames.getInstance().load("7BB,0,0,LBC\n");
         Fields.getInstance().loadMore(fieldDef1);
         Fields.getInstance().loadMore(fieldDef2);
-        Fields.getInstance().load(fieldDef3);
-        Fields.getInstance().load(fieldDef4);
+        Fields.getInstance().loadMore(fieldDef3);
+        Fields.getInstance().loadMore(fieldDef4);
         Dtcs.getInstance().load(dtcDef, testDef);
     }
 }

@@ -31,6 +31,8 @@ public class EcuDiagCLIM {
 
         String fieldDef1 =
                 ""
+                        +"764,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        +"764,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
 
                         +"764,34,39,1,0,0,,2182,6182,ff,M_Bus_OFF\n" //
                         +"764,33,33,1,0,0,,2182,6182,ff,ConfirmedFaultBus_OFF,0:False;1:True\n" //
@@ -756,7 +758,7 @@ public class EcuDiagCLIM {
 
                 ;
 
-        Frames.getInstance().load("764,0,0,CLI\n");
+        Frames.getInstance().load("764,0,0,CLIM\n");
         Fields.getInstance().load(fieldDef1);
         Fields.getInstance().load(fieldDef2);
         Dtcs.getInstance().load(dtcDef, testDef);

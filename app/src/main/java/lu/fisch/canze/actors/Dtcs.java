@@ -117,14 +117,14 @@ public class Dtcs {
 
     public Dtc getDtcById (String id) {
         for (Dtc dtc : dtcs) {
-            if (dtc.getId() == id) return dtc;
+            if (dtc.getId().compareTo(id) == 0) return dtc;
         }
         return null;
     }
 
     public Test getTestById (String id) {
         for (Test test : tests) {
-            if (test.getId() == id) return test;
+            if (test.getId().compareTo(id) == 0) return test;
         }
         return null;
     }
@@ -137,16 +137,16 @@ public class Dtcs {
         if (id.length() >= 4){
             dtc = getDtcById(id.substring(0, 4));
             if (dtc != null) {
-                result = result + dtc.getDescription();
+                result = result + "Description:" + dtc.getDescription();
             } else {
-                result = result + "Unknown DTC " + id.substring(0, 4);
+                result = result + "Unknown DTC";
             }
             if (id.length() >= 6) {
                 test = getTestById(id.substring(4, 6));
                 if (test != null) {
-                    result = result + ":" + test.getDescription();
+                    result = result + "\nTest:" + test.getDescription();
                 } else {
-                    result = result + ":Unknown Test " + id.substring(4, 6);
+                    result = result + "\nUnknown Test";
                 }
             }
         } else {
@@ -155,6 +155,20 @@ public class Dtcs {
         return result;
     }
 
+    public String getFlagDescription (int flags) {
+        String result = "";
+
+        if ((flags & 0x01) != 0) result += ", tstFail";
+        if ((flags & 0x02) != 0) result += ", tstFailThisOp";
+        if ((flags & 0x04) != 0) result += ", pendingDtc";
+        if ((flags & 0x08) != 0) result += ", confirmedDtc";
+        if ((flags & 0x10) != 0) result += ", noCplSinceClear";
+        if ((flags & 0x20) != 0) result += ", faildSinceClear";
+        if ((flags & 0x40) != 0) result += ", tstNtCpl";
+        if ((flags & 0x80) != 0) result += ", wrnLght";
+        if (result.length() == 0) return "";
+        return result.substring(2);
+    }
 
     public ArrayList<Dtc> getAllDtcs () {
         return dtcs;
