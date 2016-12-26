@@ -124,15 +124,19 @@ public class DtcActivity  extends CanzeActivity {
     void doQueryEcu(final Ecu ecu) {
 
         clearResult();
-
         appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
 
-        /*
-        if (ecu.getDtcs() == null) {
-            appendResult("Loading DTCs....\n");
-            ecu.setDtcs(null); // do it here!!!!
-            appendResult("Done loading DTCs\n");
-        } */
+        // here initialize this particular ECU diagnostics fields
+        try {
+            Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
+            java.lang.reflect.Method methodLoad;
+
+            methodLoad = diagEcu.getClass().getMethod("load");
+            methodLoad.invoke(diagEcu);
+        } catch (Exception e) {
+            appendResult("\nCannot find definitions for this ECU. DTC codes display only.\n");
+        }
+
 
         // re-initialize the device
         appendResult("\nSending initialisation sequence\n");
@@ -270,19 +274,11 @@ public class DtcActivity  extends CanzeActivity {
                 // loop trough all DTC's
                 boolean onePrinted = false;
                 for (int i = 6; i < backRes.length() - 7; i += 8) {
-                    int bits = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
+                    int flags = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
                     // exclude 50 / 10 as it means something like "I have this DTC code, but I have never tested it"
-                    if (bits != 0x50 && bits != 0x10) {
+                    if (flags != 0x50 && flags != 0x10) {
                         onePrinted = true;
-                        appendResult("\nDTC" + backRes.substring(i, i + 6) + ":" + Dtcs.getInstance().getDescriptionById(backRes.substring(i, i + 6)));
-                        if ((bits & 0x01) != 0) appendResult(" tstFail");
-                        if ((bits & 0x02) != 0) appendResult(" tstFailThisOp");
-                        if ((bits & 0x04) != 0) appendResult(" pendingDtc");
-                        if ((bits & 0x08) != 0) appendResult(" confirmedDtc");
-                        if ((bits & 0x10) != 0) appendResult(" noCplSinceClear");
-                        if ((bits & 0x20) != 0) appendResult(" faildSinceClear");
-                        if ((bits & 0x40) != 0) appendResult(" tstNtCpl");
-                        if ((bits & 0x80) != 0) appendResult(" WrnLght");
+                        appendResult("\n*** DTC" + backRes.substring(i, i + 6) + " ***\n" + Dtcs.getInstance().getDescriptionById(backRes.substring(i, i + 6)) + "\nFlags:" + Dtcs.getInstance().getFlagDescription(flags));
                     }
                 }
                 if (!onePrinted) appendResult("\nNo active DTCs\n");
