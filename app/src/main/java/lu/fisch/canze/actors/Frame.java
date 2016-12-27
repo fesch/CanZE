@@ -91,7 +91,7 @@ public class Frame {
     public String getRequestId () {
         if (responseId.compareTo("") == 0) return ("");
         char[] tmpChars = responseId.toCharArray();
-        tmpChars[0] -= 0x20;
+        tmpChars[0] -= 0x04;
         return String.valueOf(tmpChars);
     }
 

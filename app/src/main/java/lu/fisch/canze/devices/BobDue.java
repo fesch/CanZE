@@ -175,7 +175,7 @@ public class BobDue extends Device {
                 }
             })).start();
         }
-        // send and wait fir an answer, no delay
+        // send and wait for an answer, no delay
         return responseToMessage(frame,data);
     }
 
@@ -184,11 +184,11 @@ public class BobDue extends Device {
         // split up the fields
         String[] pieces = text.trim().split(",");
         if(pieces.length>1)
-            return new Message(frame, pieces[1].trim());
+            return new Message(frame, pieces[1].trim(), false);
         else
         {
             MainActivity.debug("BobDue: Got > "+text.trim());
-            return null;
+            return new Message(frame, "-E-Unexpected result", true);
         }
     }
 

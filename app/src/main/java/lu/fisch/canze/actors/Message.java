@@ -35,16 +35,20 @@ import lu.fisch.canze.classes.FieldLogger;
  */
 public class Message {
 
-    // a message represents a message coming from a device as a result from a frame request
-    // since a message contains frame data, we can pop through to the frame but should not
-    // not do so for ISO-TP diagnostics frames
+    // A message represents a message coming from a device as a result from a frame request.
+    // Note that for ISO-TP frames, a frame is always a subframe
+    // If an error occurs while fetching a message, the error flag is set to true and the data
+    // part now represents a readable error. The methods ensure that the data part is only
+    // processed when there is no error condition set
 
     protected Frame frame;
     protected String data;
+    protected boolean error;
 
-    public Message(Frame frame, String data) {
+    public Message(Frame frame, String data, boolean error) {
         this.frame=frame;
         this.data=data;
+        this.error=error;
     }
 
     /* --------------------------------
@@ -52,20 +56,24 @@ public class Message {
      \ ------------------------------ */
 
     public String getData() {
-        return data;
+        return error ? "" : data;
     }
 
-    public void setData(String data) {
+    /* public void setData(String data) {
         this.data = data;
-    }
+    }*/
 
     public Frame getFrame() {
         return frame;
     }
 
-    public void setFrame(Frame frame) {
+    /* public void setFrame(Frame frame) {
         this.frame = frame;
-    }
+    } */
+
+    public boolean isError () {return error;}
+
+    public String getError () { return error ? data : ""; }
 
     public void onMessageCompleteEvent() {
 
@@ -75,6 +83,8 @@ public class Message {
 
         // this function is called from DtcActivity ("manual mode") and
         // Device.queryNextFilter ("auto mode")
+
+        if (error) return;
 
         String binString = getAsBinaryString();
         for (Field field : frame.getAllFields()) {
@@ -150,12 +160,13 @@ public class Message {
     public String getAsBinaryString()
     {
         String result = "";
-        for(int i=0; i<data.length(); i+=2)
-        {
-            try {
-                result += String.format("%8s", Integer.toBinaryString(Integer.parseInt(data.substring(i, i + 2), 16) & 0xFF)).replace(' ', '0');
+        if (!error) {
+            for (int i = 0; i < data.length(); i += 2) {
+                try {
+                    result += String.format("%8s", Integer.toBinaryString(Integer.parseInt(data.substring(i, i + 2), 16) & 0xFF)).replace(' ', '0');
+                } catch (Exception e) {
+                }
             }
-            catch (Exception e) {}
         }
         return result;
     }

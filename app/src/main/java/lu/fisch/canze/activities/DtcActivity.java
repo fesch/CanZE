@@ -172,20 +172,15 @@ public class DtcActivity  extends CanzeActivity {
 
                     // query the Field
                     message = MainActivity.device.requestFrame(field.getFrame());
-                    if (message == null) {
-                        appendResult("Msg is null. Is the car switched on?\n");
+                    if (message.isError()) {
+                        appendResult(message.getError() + "\n");
                         return;
                     }
 
                     backRes = message.getData();
-                    if (backRes == null) {
-                        appendResult("Data is null. This should never happen, please report\n");
-                        return;
-                    }
-
                     // check the response
                     if (!backRes.toLowerCase().startsWith("7e")) {
-                        appendResult("Query send, but unexpected result received:[" + backRes + "\n");
+                        appendResult("Query send, but unexpected result received:[" + backRes + "]\n");
                         return;
                     }
 
@@ -199,20 +194,15 @@ public class DtcActivity  extends CanzeActivity {
 
                     // query the Field
                     message = MainActivity.device.requestFrame(field.getFrame());
-                    if (message == null) {
-                        appendResult("Msg is null. Is the car switched on?\n");
+                    if (message.isError()) {
+                        appendResult(message.getError() + "\n");
                         return;
                     }
 
                     backRes = message.getData();
-                    if (backRes == null) {
-                        appendResult("Data is null. This should never happen, please report\n");
-                        return;
-                    }
-
                     // check the response
                     if (!backRes.startsWith("50")) {
-                        appendResult("Query send, but unexpected result received:[" + backRes + "\n");
+                        appendResult("Query send, but unexpected result received:[" + backRes + "]\n");
                         return;
                     }
 
@@ -226,20 +216,15 @@ public class DtcActivity  extends CanzeActivity {
 
                     // query the Field
                     message = MainActivity.device.requestFrame(field.getFrame());
-                    if (message == null) {
-                        appendResult("Msg is null. Is the car switched on?\n");
+                    if (message.isError()) {
+                        appendResult(message.getError() + "\n");
                         return;
                     }
 
                     backRes = message.getData();
-                    if (backRes == null) {
-                        appendResult("Data is null. This should never happen, please report\n");
-                        return;
-                    }
-
                     // check the response
                     if (!backRes.startsWith("50")) {
-                        appendResult("Query send, but unexpected result received:[" + backRes + "\n");
+                        appendResult("Query send, but unexpected result received:[" + backRes + "]\n");
                         return;
                     }
                 }
@@ -254,31 +239,37 @@ public class DtcActivity  extends CanzeActivity {
 
                 // query the Field
                 message = MainActivity.device.requestFrame(field.getFrame());
-                if (message == null) {
-                    appendResult("Msg is null. Is the car switched on?\n");
+                if (message.isError()) {
+                    appendResult(message.getError() + "\n");
                     return;
                 }
 
                 backRes = message.getData();
-                if (backRes == null) {
-                    appendResult("Data is null. This should never happen, please report\n");
-                    return;
-                }
-
                 // check the response
                 if (!backRes.startsWith("59")) {
-                    appendResult("Query send, but unexpected result received:[" + backRes + "\n");
+                    appendResult("Query send, but unexpected result received:[" + backRes + "]\n");
                     return;
                 }
 
                 // loop trough all DTC's
+                // format of the message is
+                // blocks of 4 bytes
+                //   first 2 bytes is the DTC
+                //     first nibble of DTC is th P0 etc encoding, but we are nit using that
+                //   next byte is the test that triggered the DTC
+                //   next byte contains the flags
+                // All decoding is done in the Dtcs class
                 boolean onePrinted = false;
                 for (int i = 6; i < backRes.length() - 7; i += 8) {
                     int flags = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
                     // exclude 50 / 10 as it means something like "I have this DTC code, but I have never tested it"
                     if (flags != 0x50 && flags != 0x10) {
                         onePrinted = true;
-                        appendResult("\n*** DTC" + backRes.substring(i, i + 6) + " ***\n" + Dtcs.getInstance().getDescriptionById(backRes.substring(i, i + 6)) + "\nFlags:" + Dtcs.getInstance().getFlagDescription(flags));
+                        appendResult(
+                                "\n*** DTC" + backRes.substring(i, i + 6) + " ***\n"
+                                        + Dtcs.getInstance().getDescriptionById(backRes.substring(i, i + 6))
+                                        + "\nFlags:" + Dtcs.getInstance().getFlagDescription(flags)
+                        );
                     }
                 }
                 if (!onePrinted) appendResult("\nNo active DTCs\n");
@@ -308,7 +299,7 @@ public class DtcActivity  extends CanzeActivity {
                 // compile the field query and get the Field object
                 field = Fields.getInstance().getBySID(filter + ".54.0"); // get DTC Clear
                 if (field == null) {
-                    appendResult("- field does not exist\n");
+                    appendResult("Clear DTCs field does not exist\n");
                     return;
                 }
                 frame = field.getFrame();
@@ -322,20 +313,15 @@ public class DtcActivity  extends CanzeActivity {
 
                 // query the Field
                 Message message = MainActivity.device.requestFrame (frame);
-                if (message == null) {
+                if (message.isError()) {
                     appendResult("Msg is null. Is the car switched on?\n");
                     return;
                 }
 
                 String backRes = message.getData();
-                if (backRes == null) {
-                    appendResult("Data is null. This should never happen, please report\n");
-                    return;
-                }
-
                 // check the response
                 if (!backRes.startsWith("54")) {
-                    appendResult("Clear code send, but unexpected result received:[" + backRes + "\n");
+                    appendResult("Clear code send, but unexpected result received:[" + backRes + "]\n");
                     return;
                 }
 
@@ -385,7 +371,7 @@ public class DtcActivity  extends CanzeActivity {
 
                         // query the Frame
                         Message message = MainActivity.device.requestFrame(frame);
-                        if (message != null) {
+                        if (!message.isError()) {
                             // process the frame by going through all the containing fields
                             // setting their values and notifying all listeners (there should be none)
                             // Fields.getInstance().onMessageCompleteEvent(message);
@@ -401,7 +387,7 @@ public class DtcActivity  extends CanzeActivity {
                                 }
                             }
                         } else {
-                            appendResult(frame.getHexId() + "." + frame.getResponseId() + ":" + "msg is null. Is the car switched on?\n");
+                            appendResult(frame.getHexId() + "." + frame.getResponseId() + ":" + message.getError() + "\n");
                             if (!MainActivity.device.initDevice(1)) {
                                 appendResult("\nInitialisation failed\n");
                                 return;
@@ -501,8 +487,6 @@ public class DtcActivity  extends CanzeActivity {
             e.printStackTrace();
         }
     }
-
-
 
 
     // UI elements

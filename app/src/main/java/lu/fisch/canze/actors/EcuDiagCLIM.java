@@ -760,7 +760,7 @@ public class EcuDiagCLIM {
 
         Frames.getInstance().load("764,0,0,CLIM\n");
         Fields.getInstance().load(fieldDef1);
-        Fields.getInstance().load(fieldDef2);
+        Fields.getInstance().loadMore(fieldDef2);
         Dtcs.getInstance().load(dtcDef, testDef);
     }
 }
