@@ -82,13 +82,6 @@ public abstract class Device {
     protected Thread pollerThread;
 
     /**
-     * someThingWrong will be set when something goes wrong, usually a timeout.
-     * most command routines just won't run when someThingWrong is set
-     * someThingWrong can be reset only by calling initElm, but with toughness 100 this is the only thing it does :-)
-     */
-    boolean someThingWrong = false;
-
-    /**
      * lastInitProblem should be filled with a descriptive problem description by the initDevice implementation. In normal operation we don't care
      * because a device either initializes or not, but for testing a new device this can be very helpful.
      */
@@ -217,17 +210,17 @@ public abstract class Device {
                     // get the data
                     Message message = requestFrame(field.getFrame());
                     // test if we got something
-                    if(message!=null && !someThingWrong) {
+                    if(!message.isError()) {
                         //Fields.getInstance().onMessageCompleteEvent(message);
                         message.onMessageCompleteEvent();
-                    }
-
-                    // reset if something went wrong ...
-                    // ... but only if we are not asked to stop!
-                    if (someThingWrong && BluetoothManager.getInstance().isConnected()) {
-                        MainActivity.debug("Device: something went wrong!");
-                        // we don't want to continue, so we need to stop the poller right now!
-                        initDevice(1, 2);
+                    } else {
+                        // reset if something went wrong ...
+                        // ... but only if we are not asked to stop!
+                        if (BluetoothManager.getInstance().isConnected()) {
+                            MainActivity.debug("Device: something went wrong!");
+                            // we don't want to continue, so we need to stop the poller right now!
+                            initDevice(1, 2);
+                        }
                     }
                 }
             }
@@ -694,8 +687,8 @@ public abstract class Device {
             else
                 msg = requestFreeFrame(frame);
 
-            if (msg == null || msg.getData().isEmpty()) {
-                MainActivity.debug("Device: request for " + frame.getRID() + " is empty ...");
+            if (msg.isError()) {
+                MainActivity.debug("Device: request for " + frame.getRID() + " returned error " + msg.getError());
                 // theory: when the answer is empty, the timeout is to low --> increase it!
                 // jm: but never beyond 2
                 if (intervalMultiplicator < maxIntervalMultiplicator) intervalMultiplicator += 0.1;

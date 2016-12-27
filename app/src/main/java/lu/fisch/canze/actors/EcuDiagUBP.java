@@ -31,6 +31,8 @@ public class EcuDiagUBP {
 
         String fieldDef1 =
                 ""
+                        + "7bc,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "7bc,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
 
                         +"7bc,16,23,1,0,0,,2184,6184,ff,ECU traceability.calendarweek\n" //
                         +"7bc,24,31,1,0,0,,2184,6184,ff,ECU traceability.year\n" //

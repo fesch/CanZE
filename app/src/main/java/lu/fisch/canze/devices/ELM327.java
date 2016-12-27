@@ -53,16 +53,13 @@ public class ELM327 extends Device {
     private static final char EOM3 = '?';
 
     private int timeoutLogLevel = MainActivity.toastLevel; // 0 = none, 1=only ELM issues, 2=elm and car issues
+    private boolean someThingWrong = false;
 
     /**
      * the index of the actual field to request
      */
     private int lastId = 0;
 
-    /**
-     *
-     *
-     */
     private boolean lastCommandWasFreeFrame = false;
 
     @Override
@@ -255,7 +252,7 @@ public class ELM327 extends Device {
             return false;
         }
 
-        // atfcsh79b        Set flow control response ID to 79b (the LBC) This is needed to set the flow control response, but that one is remembered :-)
+        // atfcsh77b        Set flow control response ID to 77b. This is needed to set the flow control response, but that one is remembered :-)
         if (!initCommandExpectOk("atfcsh77b")) {
             lastInitProblem = "ATFCSH77B command problem";
             return false;
@@ -346,17 +343,21 @@ public class ELM327 extends Device {
     }
 
     private boolean initCommandExpectOk (String command) {
-        return initCommandExpectOk(command, false);
+        return initCommandExpectOk(command, false, true);
     }
 
     private boolean initCommandExpectOk (String command, boolean untilEmpty) {
+        return initCommandExpectOk(command, untilEmpty, true);
+    }
+
+    private boolean initCommandExpectOk (String command, boolean untilEmpty, boolean addReturn) {
         MainActivity.debug("ELM327: initCommandExpectOk [" + command + "] untilempty [" + untilEmpty + "]");
         String response = "";
         for (int i = 2; i > 0; i--) {
             if (untilEmpty) {
-                response = sendAndWaitForAnswer(command, 40, true, -1, true);
+                response = sendAndWaitForAnswer(command, 40, true, -1, addReturn);
             } else {
-                response = sendAndWaitForAnswer(command, 0);
+                response = sendAndWaitForAnswer(command, 0, false, -1, addReturn);
             }
             if (response.toUpperCase().contains("OK")) return true;
         }
@@ -413,13 +414,13 @@ public class ELM327 extends Device {
 
         //MainActivity.debug("Send > "+command);
         // wait if needed (JM: tbh, I think waiting here is never needed. Any waiting should be handled in the wait for an answer timeout. But that's me.
-        if(waitMillis>0) {
+/*        if(waitMillis>0) {
             try {
                 Thread.sleep(waitMillis);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        } */
         // init the buffer
         boolean stop = false;
         String readBuffer = "";
@@ -466,7 +467,7 @@ public class ELM327 extends Device {
                                 if (stop) {
                                     // wait a fraction
                                     try {
-                                        Thread.sleep(5);
+                                        Thread.sleep(50);
                                     } catch (InterruptedException e) {
                                         // do nothing
                                     }
@@ -538,11 +539,9 @@ public class ELM327 extends Device {
     @Override
     public Message requestFreeFrame(Frame frame) {
 
+        if (someThingWrong) {return new Message(frame, "-E-Re-initialisation needed", true); }
+
         String hexData = "";
-
-        // MainActivity.debug("ELM327: requestFreeFrame: " + frame.getId());
-
-        if (someThingWrong) { return null ; }
 
         // ensure the ATCRA filter is reset in the next NON free frame request
         lastCommandWasFreeFrame = true;
@@ -552,27 +551,25 @@ public class ELM327 extends Device {
         while (emlFilter.length() < 3) emlFilter = "0" + emlFilter;
 
         MainActivity.debug("ELM327: requestFreeFrame: atcra" + emlFilter);
-        if (!initCommandExpectOk("atcra" + emlFilter)) someThingWrong |= true;
+        if (!initCommandExpectOk("atcra" + emlFilter)) return new Message(frame, "-E-Problem sending atcra command", true);
 
-        // avoid starting an ATMA id the ATCRA failed
-        if (!someThingWrong) {
-            //sendAndWaitForAnswer("atcra" + emlFilter, 400);
-            // atma     (wait for one answer line)
-            TIMEOUT = (int) (frame.getInterval() * intervalMultiplicator + 50);
-            if (TIMEOUT < MINIMUM_TIMEOUT) TIMEOUT = MINIMUM_TIMEOUT;
-            MainActivity.debug("ELM327: requestFreeFrame > TIMEOUT = "+TIMEOUT);
+        //sendAndWaitForAnswer("atcra" + emlFilter, 400);
+        // atma     (wait for one answer line)
+        TIMEOUT = (int) (frame.getInterval() * intervalMultiplicator + 50);
+        if (TIMEOUT < MINIMUM_TIMEOUT) TIMEOUT = MINIMUM_TIMEOUT;
+        MainActivity.debug("ELM327: requestFreeFrame > TIMEOUT = "+TIMEOUT);
 
-            hexData = sendAndWaitForAnswer("atma", 20);
+        hexData = sendAndWaitForAnswer("atma", 20);
 
-            MainActivity.debug("ELM327: requestFreeFrame > hexData = [" + hexData + "]");
-            // the dongle starts babbling now. sendAndWaitForAnswer should stop at the first full line
-            // ensure any running operation is stopped
-            // sending a return might restart the last command. Bad plan.
-            sendNoWait("x");
-            // let it settle down, the ELM should indicate STOPPED then prompt >
-            flushWithTimeout(100, '>');
-            TIMEOUT = DEFAULT_TIMEOUT;
-        }
+        MainActivity.debug("ELM327: requestFreeFrame > hexData = [" + hexData + "]");
+        // the dongle starts babbling now. sendAndWaitForAnswer should stop at the first full line
+        // ensure any running operation is stopped
+        // sending a return might restart the last command. Bad plan.
+        sendNoWait("x");
+        // let it settle down, the ELM should indicate STOPPED then prompt >
+        flushWithTimeout(100, '>');
+        TIMEOUT = DEFAULT_TIMEOUT;
+
         // atar     (clear filter)
         // AM has suggested the atar might not be neccesary as it might only influence cra filters and they are always set
         // however, make sure proper flushing is done
@@ -582,15 +579,15 @@ public class ELM327 extends Device {
 
         hexData = hexData.trim();
         if(hexData.equals(""))
-            return null;
+            return new Message(frame, "-E-data empty", true);
         else
-            return new Message(frame, hexData);
+            return new Message(frame, hexData, false);
     }
 
     @Override
     public Message requestIsoTpFrame(Frame frame) {
 
-        if (someThingWrong) { return null ; }
+        if (someThingWrong) {return new Message(frame, "-E-Re-initialisation needed", true); }
 
         String hexData = "";
         int len = 0;
@@ -599,8 +596,7 @@ public class ELM327 extends Device {
         if (lastCommandWasFreeFrame) {
             // atar     (clear filter set by free frame capture method)
             if (!initCommandExpectOk("atar")){
-                someThingWrong |= true;
-                return null;
+                return new Message(frame, "-E-Problem sending atar command", true);
             }
             lastCommandWasFreeFrame = false;
         }
@@ -614,9 +610,9 @@ public class ELM327 extends Device {
             String request = getRequestHexId(frame.getId());
 
             // Set header
-            if (!initCommandExpectOk("atsh" + request)) someThingWrong |= true;
+            if (!initCommandExpectOk("atsh" + request)) return new Message(frame, "-E-Problem sending atsh command", true);
             // Set flow control response ID
-            if (!initCommandExpectOk("atfcsh" + request)) someThingWrong |= true;
+            if (!initCommandExpectOk("atfcsh" + request)) return new Message(frame, "-E-Problem sending atfcsh command", true);
 
         }
 
@@ -627,50 +623,60 @@ public class ELM327 extends Device {
         // get 0x1 frame. No delays, and no waiting until done.
         String line0x1 = sendAndWaitForAnswer(pre + frame.getRequestId(), 0, false).replace("\r", "");
 
-        if (!someThingWrong) {
-            // process first line (SINGLE or FIRST frame)
-            line0x1 = line0x1.trim();
-            // clean-up if there is mess around
-            if (line0x1.startsWith(">")) line0x1 = line0x1.substring(1);
-            someThingWrong |= line0x1.isEmpty();
+        if (line0x1.compareTo("CAN ERROR") == 0) {
+            return new Message(frame, "-E-Can Error", true);
         }
-        if (!someThingWrong) {
-            // get type (first nibble)
-            String type = line0x1.substring(0, 1);
+        if (line0x1.compareTo("?") == 0) {
+            return new Message(frame, "-E-Unknown command", true);
+        }
+        if (line0x1.compareTo("") == 0) {
+            return new Message(frame, "-E-Empty result", true);
+        }
 
-            switch (type) {
-                case "0": // SINGLE frame
-                    len = Integer.parseInt(line0x1.substring(1, 2), 16);
-                    // remove 2 nibbles (type + length)
-                    hexData = line0x1.substring(2);
-                    break;
-                case "1": // FIRST frame
-                    len = Integer.parseInt(line0x1.substring(1, 4), 16);
-                    // remove 4 nibbles (type + length)
-                    hexData = line0x1.substring(4);
-                    // calculate the # of frames to come. 6 byte are in and each of the 0x2 frames has a payload of 7 bytes
-                    int framesToReceive = (int) Math.ceil((len - 6) / 7.);
-                    // get remaining 0x2 (NEXT) frames
-                    String lines0x1 = sendAndWaitForAnswer(null, 0, framesToReceive);
-                    // split into lines
-                    String[] hexDataLines = lines0x1.split(String.valueOf(EOM1));
+        // process first line (SINGLE or FIRST frame)
+        line0x1 = line0x1.trim();
+        // clean-up if there is mess around
+        if (line0x1.startsWith(">")) line0x1 = line0x1.substring(1);
 
-                    for (String hexDataLine : hexDataLines) {
-                        line0x1 = hexDataLine;
-                        //MainActivity.debug("Line "+(i+1)+": " + line);
-                        if (!line0x1.isEmpty() && line0x1.length() > 2) {
-                            // cut off the first byte (type + sequence)
-                            // adding sequence checking would be wise to detect collisions
-                            hexData += line0x1.substring(2);
-                        }
+        if (line0x1.isEmpty()) {
+            return new Message(frame, "-E-unexpected ISO-TP 1st line empty", true);
+        }
+
+        // get type (first nibble)
+        String type = line0x1.substring(0, 1);
+
+        switch (type) {
+            case "0": // SINGLE frame
+                len = Integer.parseInt(line0x1.substring(1, 2), 16);
+                // remove 2 nibbles (type + length)
+                hexData = line0x1.substring(2);
+                break;
+            case "1": // FIRST frame
+                len = Integer.parseInt(line0x1.substring(1, 4), 16);
+                // remove 4 nibbles (type + length)
+                hexData = line0x1.substring(4);
+                // calculate the # of frames to come. 6 byte are in and each of the 0x2 frames has a payload of 7 bytes
+                int framesToReceive = len / 7; // read this as ((len - 6 [remaining characters]) + 6 [offset to / 7, so 0->0, 1-7->7, etc]) / 7
+                // get remaining 0x2 (NEXT) frames
+                String lines0x1 = sendAndWaitForAnswer(null, 0, framesToReceive);
+                // split into lines
+                //String[] hexDataLines = lines0x1.split(String.valueOf(EOM1));
+                String[] hexDataLines = lines0x1.replaceAll("\n", "\r").split("[\\r]+");
+                for (String hexDataLine : hexDataLines) {
+                    line0x1 = hexDataLine;
+                    //MainActivity.debug("Line "+(i+1)+": " + line);
+                    if (!line0x1.isEmpty() && line0x1.length() > 2) {
+                        // cut off the first byte (type + sequence)
+                        // adding sequence checking would be wise to detect collisions
+                        hexData += line0x1.substring(2);
                     }
-                    break;
-                default:  // a NEXT, FLOWCONTROL should not be received. Neither should any other string (such as NO DATA)
-                    someThingWrong = true;
-                    break;
-            }
-
+                }
+                break;
+            default:  // a NEXT, FLOWCONTROL should not be received. Neither should any other string (such as NO DATA)
+                flushWithTimeout(400, '>');
+                return new Message(frame, "-E-unexpected ISO-TP 1st nibble of first frame", true);
         }
+
 
         // There was spurious error here, that immediately sending another command STOPPED the still not entirely finished ISO-TP command.
         // It was probably still sending "OK>" or just ">". So, the next command files and if it was i.e. an atcra f a free frame capture,
@@ -685,8 +691,8 @@ public class ELM327 extends Device {
         hexData = (hexData.length() <= len) ? hexData.trim() : hexData.substring(0, len).trim();
 
         if (hexData.equals(""))
-            return null;
+            return new Message(frame, "-E-data empty", true);
         else
-            return new Message(frame, hexData);
+            return new Message(frame, hexData, false);
     }
 }

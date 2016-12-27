@@ -1992,7 +1992,7 @@ public class EcuDiagLBC {
                 ;
 
         Frames.getInstance().load("7BB,0,0,LBC\n");
-        Fields.getInstance().loadMore(fieldDef1);
+        Fields.getInstance().load(fieldDef1);
         Fields.getInstance().loadMore(fieldDef2);
         Fields.getInstance().loadMore(fieldDef3);
         Fields.getInstance().loadMore(fieldDef4);
