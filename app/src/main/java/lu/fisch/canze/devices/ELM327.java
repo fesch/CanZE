@@ -27,7 +27,6 @@ import java.util.Calendar;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Ecu;
 import lu.fisch.canze.actors.Ecus;
-import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
@@ -165,17 +164,7 @@ public class ELM327 extends Device {
             return true;
         }
 
-        // ensure any running operation is stopped
-        // sending a return might restart the last command. Bad plan.
-        sendNoWait("x");
-        // discard everything that still comes in
-        flushWithTimeout(200);
-        // if a command was running, it is interrupted now and the ELM is waiting for a command. However, if there was no command running, the x
-        // in the buffer will screw up the next command. There are two possibilities: Sending a Backspace and hope for the best, or sending x <CR>
-        // and being sure the ELM will report an unknow command (prompt a ? mark), as it will be processing either x <CR> or xx <CR>. We choose the latter
-        // discard the ? anser
-        sendNoWait("x\r");
-        flushWithTimeout(500);
+        killCurrentOperation ();
 
         if (toughness == 0 ) {
             // the default 500mS should be enough to answer, however, the answer contains various <cr>'s, so we need to set untilEmpty to true
@@ -304,29 +293,58 @@ public class ELM327 extends Device {
         return true;
     }
 
+    void killCurrentOperation () {
+        // ensure any running operation is stopped
+        // sending a return might restart the last command. Bad plan.
+        sendNoWait("x");
+        // discard everything that still comes in
+        flushWithTimeoutCore (200, '\0');
+        // if a command was running, it is interrupted now and the ELM is waiting for a command. However, if there was no command running, the x
+        // in the buffer will screw up the next command. There are two possibilities: Sending a Backspace and hope for the best, or sending x <CR>
+        // and being sure the ELM will report an unknow command (prompt a ? mark), as it will be processing either x <CR> or xx <CR>. We choose the latter
+        // discard the ? anser
+        sendNoWait("x\r");
+        if (!flushWithTimeoutCore (500, '\0')) {
+            MainActivity.debug("ELM327: initDevice unable to flush after x");
+        }
+    }
+
     void flushWithTimeout (int timeout) {
         flushWithTimeout(timeout, '\0');
     }
 
     void flushWithTimeout (int timeout, char eom) {
+        if (flushWithTimeoutCore(timeout, eom)) return;
+        killCurrentOperation ();
+    }
+
+    boolean flushWithTimeoutCore (int timeout, char eom) {
         // empty incoming buffer
         // just make sure there is no previous response
+        // the ELM might be in a mode where it is spewing out data, and that might put this
+        // mothod in an endless loop. If there are more than 200 character to flushed, return false
+        // this should normally be followed by a failure and thus device re-initialisation
+
+        int count = 100;
+
         try {
-            // fast track, don't use expenive calendar.....
+            // fast track, don't use expensive calendar.....
             if (timeout == 0) {
                 while (BluetoothManager.getInstance().isConnected() && BluetoothManager.getInstance().available() > 0) {
                     BluetoothManager.getInstance().read();
+                    if (count-- == 0) return false;
                 }
             } else {
                 long end = Calendar.getInstance().getTimeInMillis() + timeout;
                 while (Calendar.getInstance().getTimeInMillis() < end) {
                     // read a byte
-                    if (!BluetoothManager.getInstance().isConnected()) return;
+                    if (!BluetoothManager.getInstance().isConnected()) return false;
                     if (BluetoothManager.getInstance().available() > 0) {
                         // absorb the characters
                         while (BluetoothManager.getInstance().available() > 0) {
                             int c = BluetoothManager.getInstance().read();
-                            if (c == (int)eom) return;
+                            if (c == (int)eom) return true;
+                            if (count-- == 0) return false;
 
                         }
                         // restart the timer
@@ -340,6 +358,7 @@ public class ELM327 extends Device {
         } catch (IOException | InterruptedException e) {
             // ignore
         }
+        return true;
     }
 
     private boolean initCommandExpectOk (String command) {
@@ -366,7 +385,6 @@ public class ELM327 extends Device {
             MainActivity.toast("Err " + command + " [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
         }
 
-        // MainActivity.debug("ELM327: initCommandExpectOk > Error on > "+command);
         MainActivity.debug("ELM327: initCommandExpectOk > Response was > " + response);
 
         return false;
@@ -379,7 +397,6 @@ public class ELM327 extends Device {
         }
     }
 
-    // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis) {
         return sendAndWaitForAnswer(command,waitMillis,false,-1, true);
     }
@@ -392,11 +409,6 @@ public class ELM327 extends Device {
         return sendAndWaitForAnswer(command,waitMillis,untilEmpty,-1, true);
     }
 
-//    private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount) {
-//        return sendAndWaitForAnswer(command,waitMillis,untilEmpty,answerLinesCount, true);
-//    }
-
-    // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount, boolean addReturn)
     {
 
@@ -519,15 +531,15 @@ public class ELM327 extends Device {
         return readBuffer;
     }
 
-    private int getRequestId(int responseId)
+    private int getToId(int fromId)
     {
-        Ecu ecu = Ecus.getInstance().getByFromId(responseId);
+        Ecu ecu = Ecus.getInstance().getByFromId(fromId);
         return ecu != null ? ecu.getToId() : 0;
     }
 
-    private String getRequestHexId(int responseId)
+    private String getToIdHex(int fromId)
     {
-        return Integer.toHexString(getRequestId(responseId));
+        return Integer.toHexString(getToId(fromId));
     }
 
     @Override
@@ -606,55 +618,53 @@ public class ELM327 extends Device {
         if (lastId != frame.getId()) {
             lastId = frame.getId();
 
-            // request contains the to CAN id of the ECU
-            String request = getRequestHexId(frame.getId());
+            // request contains the to CAN id of the ECU. Note that we store the FromId in a frame
+            String toIdHex = getToIdHex(frame.getId());
 
             // Set header
-            if (!initCommandExpectOk("atsh" + request)) return new Message(frame, "-E-Problem sending atsh command", true);
+            if (!initCommandExpectOk("atsh" + toIdHex)) return new Message(frame, "-E-Problem sending atsh command", true);
             // Set flow control response ID
-            if (!initCommandExpectOk("atfcsh" + request)) return new Message(frame, "-E-Problem sending atfcsh command", true);
+            if (!initCommandExpectOk("atfcsh" + toIdHex)) return new Message(frame, "-E-Problem sending atfcsh command", true);
 
         }
 
         // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
-        String pre = "0" + frame.getRequestId().length() / 2;
-        //MainActivity.debug("R: "+request+" - C: "+pre+field.getRequestId());
+        String elmCommand = "0" + (frame.getRequestId().length() / 2) + frame.getRequestId();
+        //MainActivity.debug("R: "+request+" - C: "+pre+field.getToId());
 
         // get 0x1 frame. No delays, and no waiting until done.
-        String line0x1 = sendAndWaitForAnswer(pre + frame.getRequestId(), 0, false).replace("\r", "");
+        String elmResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
 
-        if (line0x1.compareTo("CAN ERROR") == 0) {
+        if (elmResponse.compareTo("CAN ERROR") == 0) {
             return new Message(frame, "-E-Can Error", true);
         }
-        if (line0x1.compareTo("?") == 0) {
+        if (elmResponse.compareTo("?") == 0) {
             return new Message(frame, "-E-Unknown command", true);
         }
-        if (line0x1.compareTo("") == 0) {
+        if (elmResponse.compareTo("") == 0) {
             return new Message(frame, "-E-Empty result", true);
         }
 
         // process first line (SINGLE or FIRST frame)
-        line0x1 = line0x1.trim();
+        elmResponse = elmResponse.trim();
         // clean-up if there is mess around
-        if (line0x1.startsWith(">")) line0x1 = line0x1.substring(1);
+        if (elmResponse.startsWith(">")) elmResponse = elmResponse.substring(1);
 
-        if (line0x1.isEmpty()) {
+        if (elmResponse.isEmpty()) {
             return new Message(frame, "-E-unexpected ISO-TP 1st line empty", true);
         }
 
         // get type (first nibble)
-        String type = line0x1.substring(0, 1);
-
-        switch (type) {
+        switch (elmResponse.substring(0, 1)) {
             case "0": // SINGLE frame
-                len = Integer.parseInt(line0x1.substring(1, 2), 16);
+                len = Integer.parseInt(elmResponse.substring(1, 2), 16);
                 // remove 2 nibbles (type + length)
-                hexData = line0x1.substring(2);
+                hexData = elmResponse.substring(2);
                 break;
             case "1": // FIRST frame
-                len = Integer.parseInt(line0x1.substring(1, 4), 16);
+                len = Integer.parseInt(elmResponse.substring(1, 4), 16);
                 // remove 4 nibbles (type + length)
-                hexData = line0x1.substring(4);
+                hexData = elmResponse.substring(4);
                 // calculate the # of frames to come. 6 byte are in and each of the 0x2 frames has a payload of 7 bytes
                 int framesToReceive = len / 7; // read this as ((len - 6 [remaining characters]) + 6 [offset to / 7, so 0->0, 1-7->7, etc]) / 7
                 // get remaining 0x2 (NEXT) frames
@@ -663,18 +673,18 @@ public class ELM327 extends Device {
                 //String[] hexDataLines = lines0x1.split(String.valueOf(EOM1));
                 String[] hexDataLines = lines0x1.replaceAll("\n", "\r").split("[\\r]+");
                 for (String hexDataLine : hexDataLines) {
-                    line0x1 = hexDataLine;
+                    elmResponse = hexDataLine;
                     //MainActivity.debug("Line "+(i+1)+": " + line);
-                    if (!line0x1.isEmpty() && line0x1.length() > 2) {
+                    if (!elmResponse.isEmpty() && elmResponse.length() > 2) {
                         // cut off the first byte (type + sequence)
                         // adding sequence checking would be wise to detect collisions
-                        hexData += line0x1.substring(2);
+                        hexData += elmResponse.substring(2);
                     }
                 }
                 break;
             default:  // a NEXT, FLOWCONTROL should not be received. Neither should any other string (such as NO DATA)
                 flushWithTimeout(400, '>');
-                return new Message(frame, "-E-unexpected ISO-TP 1st nibble of first frame", true);
+                return new Message(frame, "-E-unexpected ISO-TP 1st nibble of first frame:" + elmResponse, true);
         }
 
 
