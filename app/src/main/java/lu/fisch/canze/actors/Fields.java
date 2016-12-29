@@ -307,6 +307,7 @@ public class Fields {
                         + "427,40,47,0.3,0,0,kW,,,e2\n" // Available Charging Power
                         + "427,49,57,0.1,0,1,kWh,,,e2\n" // Available Energy
                         + "42a,30,39,0.1,400,1,°C,,,ff\n" // Evaporator Temp Measure
+                        + "42a,48,50,1,0,0,,,,e2\n" // ClimLoopMode
                         + "42e,0,12,0.02,0,2,%,,,e3\n" // State of Charge
                         + "42e,20,24,5,0,0,%,,,e2\n" // Engine Fan Speed
                         + "42e,38,43,1,0,1,A,,,e3\n" // Charging Pilot Current

@@ -1,4 +1,4 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
@@ -12,10 +12,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="lu.fisch.canze.activities.ChargingTechActivity">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+
 
         <TextView
             android:text="Climate Battery interaction"
@@ -34,7 +31,7 @@
                     />
                 <TextView
                     android:id="@+id/text_EFS"
-                    android:text="#EFS"
+                    android:text="@string/default_dash"
                     android:gravity="right"
                     android:layout_weight="1"
                     />
@@ -45,15 +42,12 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView4"
                     android:text="@string/label_DcPwr"
-                    android:layout_weight="2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_weight="2" />
 
                 <TextView
                     android:id="@+id/text_DCP"
-                    android:text="@string/default_DcPwr"
+                    android:text="@string/default_dash"
                     android:gravity="right"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
@@ -67,7 +61,7 @@
                     />
                 <TextView
                     android:id="@+id/text_HVT"
-                    android:text="#HVT"
+                    android:text="@string/default_dash"
                     android:gravity="right"
                     android:layout_weight="1"
                     />
@@ -80,7 +74,7 @@
                     />
                 <TextView
                     android:id="@+id/text_CPO"
-                    android:text="#CPO"
+                    android:text="@string/default_dash"
                     android:gravity="right"
                     android:layout_weight="1"
                     />
@@ -93,7 +87,7 @@
                     />
                 <TextView
                     android:id="@+id/text_HCS"
-                    android:text="#HCS"
+                    android:text="@string/default_dash"
                     android:gravity="right"
                     android:layout_weight="1"
                     />
@@ -101,13 +95,12 @@
 
             <TableRow>
                 <TextView
-                    android:id="@+id/LabelAvChPwr"
                     android:text="HV Evaporation temp"
                     android:layout_weight="2"
                     />
                 <TextView
                     android:id="@+id/text_HET"
-                    android:text="#HET"
+                    android:text="@string/default_dash"
                     android:gravity="right"
                     android:layout_weight="1"
                     />
@@ -115,16 +108,26 @@
 
             <TableRow>
                 <TextView
-                    android:id="@+id/LabelTTF"
                     android:text="HV Bat conditioning mode"
                     android:layout_weight="2"
                     />
                 <TextView
-                    android:text="#HCM"
+                    android:text="@string/default_dash"
                     android:gravity="right"
                     android:layout_weight="1"
                     android:id="@+id/text_HCM" />
+            </TableRow>
 
+            <TableRow>
+                <TextView
+                    android:text="ClimaLoopMode"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:text="@string/default_dash"
+                    android:gravity="right"
+                    android:layout_weight="1"
+                    android:id="@+id/text_CLM" />
             </TableRow>
 
         </TableLayout>
@@ -138,106 +141,62 @@
             android:layout_height="wrap_content"
             android:textColor="#000" />
 
-        <TableLayout
+<!-- use widget as filler -->
+
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/tempgr"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <!-- <TableRow>
-                <TextView
-                    android:text="External temp"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textExternalTemperature"
-                    android:text="#EXT"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="Internal temp"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textInternalTemperature"
-                    android:text="#INT"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="Temp setting"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textTempSetting"
-                    android:text="#SET"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow> -->
-            <TableRow
-                android:id="@+id/tableRow4"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-
-                <lu.fisch.canze.widgets.WidgetView
-                    android:id="@+id/tempgr"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    custom:min="-10"
-                    custom:max="40"
-                    custom:majorTicks="10"
-                    custom:minorTicks="2"
-                    custom:fieldSID="764.6143.110,764.6121.26,699.8"
-                    custom:widget="timeplot"
-                    custom:text="External (°C) / Internal (°C) / Setpoint  (°C)"
-                    custom:intervals="{
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            custom:min="-10"
+            custom:max="40"
+            custom:majorTicks="10"
+            custom:minorTicks="2"
+            custom:fieldSID="764.6143.110,764.6121.26,699.8"
+            custom:widget="timeplot"
+            custom:text="External (°C) / Internal (°C) / Setpoint  (°C)"
+            custom:intervals="{
                                    '764.6143.110':10000,
                                    '764.6121.26':10000,
                                    '699.8':10000
                                    }"
 
-                    />
-
-            </TableRow>
-        </TableLayout>
+            />
 
 
 
-    </LinearLayout>
+
+        <!-- filler
+        <TextView android:layout_height="0dip"
+            android:layout_width="fill_parent"
+            android:layout_weight="1" />  -->
 
 
     <!-- debug line -->
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        >
 
-        <TableRow>
-            <TextView
-                android:text="@string/label_debug"
-                android:textColor="#000"
-                />
-            <TextView
-                android:id="@+id/textDebug"
-                android:paddingLeft="8dp"
-                android:text="@string/default_debug"
-                />
-        </TableRow>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        >
 
-    </TableLayout>
+        <TextView
+            android:text="@string/label_debug"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-</RelativeLayout>
+            />
+        <TextView
+            android:id="@+id/textDebug"
+            android:text="@string/default_debug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

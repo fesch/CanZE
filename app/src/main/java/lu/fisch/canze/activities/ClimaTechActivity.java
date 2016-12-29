@@ -41,14 +41,12 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
     public static final String SID_HvCoolingState                   = "430.38";
     public static final String SID_HvEvaporationTemp                = "430.40";
     public static final String SID_BatteryConditioningMode          = "432.36";
+    public static final String SID_ClimaLoopMode                    = "42a.48";
 
-    public static final String SID_ExternalTemperature              = "764.6143.110"; // "656.48";
-    public static final String SID_InternalTemperature              = "764.6121.26"; //"430.24"; // This is NOT the internal temperature
-    public static final String SID_TempSetting                      = "699.8";
-
-
-    public static final String cst_Status [] = {"No", "Cooling alone", "Cooling coupled", "-"};
+    public static final String cst_Status [] = {"No", "Cooling alone", "Cooling coupled", "Unavail"};
     public static final String plu_Status [] = {"Blow req", "Cool cond req", "Heat cond req", "Unavail"};
+    public static final String clm_Status [] = {"Unavail", "AC", "AC deiceing","", "Heat pump", "", "Demisting", "Idle"};
+
 
     private ArrayList<Field> subscribedFields;
 
@@ -84,9 +82,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
             addListener(SID_HvCoolingState);
             addListener(SID_HvEvaporationTemp);
             addListener(SID_BatteryConditioningMode);
-            // addListener(SID_ExternalTemperature);
-            // addListener(SID_InternalTemperature);
-            // addListener(SID_TempSetting);
+            addListener(SID_ClimaLoopMode);
         }
     }
 
@@ -152,18 +148,11 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
                         tv.setText(cst_Status[(int) field.getValue()]);
                         tv = null;
                         break;
-
-                    case SID_ExternalTemperature:
-                        tv = (TextView) findViewById(R.id.textExternalTemperature);
+                    case SID_ClimaLoopMode:
+                        tv = (TextView) findViewById(R.id.text_CLM);
+                        tv.setText(clm_Status[(int) field.getValue()]);
+                        tv = null;
                         break;
-                    case SID_InternalTemperature:
-                        tv = (TextView) findViewById(R.id.textInternalTemperature);
-                        break;
-                    //case SID_TempSetting:
-                    //    tv = (TextView) findViewById(R.id.textTempSetting);
-                    //    break;
-
-
 
                }
                 // set regular new content, all exeptions handled above

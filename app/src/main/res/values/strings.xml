@@ -37,12 +37,16 @@
     <!-- generic -->
 
     <string name="default_zero">0</string>
+    <string name="default_dash">-</string>
+    <string name="default_yes">Yes</string>
+    <string name="default_no">No</string>
+    <string name="default_unavailable">Unavailable</string>
 
     <!-- debug (generic) -->
 
     <string name="header_Debug">Debugging info</string>
 
-    <string name="label_debug">Debug </string>
+    <string name="label_debug">Debug\u0020</string>
     <string name="default_debug">#Debug</string>
 
     <!-- -->
@@ -228,6 +232,7 @@
     <string name="label_TyreRRPressure">Rear right pressure mbar</string>
 
     <!-- clima tech -->
+    <string name="label_ClimaLoopMode">Climate loop mode</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
