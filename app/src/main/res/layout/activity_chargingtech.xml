@@ -1,4 +1,4 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -13,7 +13,8 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -573,24 +574,26 @@
     </ScrollView>
 
     <!-- debug line -->
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        >
 
-        <TableRow>
-            <TextView
-                android:text="@string/label_debug"
-                android:textColor="#000"
-                />
-            <TextView
-                android:id="@+id/textDebug"
-                android:paddingLeft="8dp"
-                android:text="@string/default_debug"
-                />
-        </TableRow>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        >
 
-    </TableLayout>
+        <TextView
+            android:text="@string/label_debug"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-</RelativeLayout>
+            />
+        <TextView
+            android:id="@+id/textDebug"
+            android:text="@string/default_debug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
