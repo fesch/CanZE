@@ -62,7 +62,7 @@ public class BarGraph extends Plotter {
             int toTicks = minorTicks;
             if(toTicks==0) toTicks=majorTicks;
             double accel = (double)height/((max-min)/(double)toTicks);
-            double ax,ay,bx=0,by=0;
+            double ax,ay,bx,by;
             int actual = min;
             int sum = 0;
             for(double i=height; i>=0; i-=accel)
@@ -125,6 +125,7 @@ public class BarGraph extends Plotter {
                 double my;
                 int padding = 2;
                 // max value
+                /*
                 if(i<maxValues.size()) {
                     my = getHeight() - (maxValues.get(i) - getMin()) * h;
                     g.setColor(Color.GREEN_DARK);
@@ -146,6 +147,7 @@ public class BarGraph extends Plotter {
                             (float) 2 //(getHeight() - my)
                     );
                 }
+                */
                 // value
                 my = getHeight()-(values.get(i)-getMin())*h;
                 g.setColor(Color.RED);
@@ -182,8 +184,8 @@ public class BarGraph extends Plotter {
             if (index == -1) {
                 sids.add(sid);
                 values.add(field.getValue());
-                minValues.add(CanzeDataSource.getInstance().getMin(sid));
-                maxValues.add(CanzeDataSource.getInstance().getMax(sid));
+                //minValues.add(CanzeDataSource.getInstance().getMin(sid));
+                //maxValues.add(CanzeDataSource.getInstance().getMax(sid));
             } else setValue(index, field.getValue());
             // only repaint if the last field has been updated
             //if(index==sids.size()-1)

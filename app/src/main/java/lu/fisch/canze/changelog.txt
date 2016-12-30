@@ -1,3 +1,4 @@
+2016.12.30 [Bob] Removed min & max values from Plotter widget #381
 2016.12.30 [Jeroen] Minor changes in Main and Battery layouts
 2016.12.30 [Jeroen] Climatech moved to technical section, better layout (use filler)
 2016.12.30 [Jeroen] ClimaTech added ClimaLoopMode, moved batt temp to graph
@@ -43,6 +44,7 @@
                         get options field back in line and update mains spreadsheet to that and cars
                         Removed all 0x from codes
 2016.10.23 [Jeroen] Ensure frames are reloaded before fields
+
 
 ---< Version 1.18 / 2016.11.08 >---
 
