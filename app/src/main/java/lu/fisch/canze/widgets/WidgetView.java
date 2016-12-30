@@ -151,7 +151,8 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     String widget = widgets[widgetIndex];
                     //MainActivity.debug("WidgetView: I am a "+widget);
                     Class clazz = Class.forName("lu.fisch.canze.widgets." + widget);
-                    Constructor<?> constructor = clazz.getConstructor(null);
+                    //Constructor<?> constructor = clazz.getConstructor(null);
+                    Constructor<?> constructor = clazz.getConstructor();
                     drawable = (Drawable) constructor.newInstance();
                     drawable.setDrawSurface(WidgetView.this);
                     // apply attributes
