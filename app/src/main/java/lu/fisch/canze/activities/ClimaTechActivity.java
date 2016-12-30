@@ -36,7 +36,6 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
 
     public static final String SID_EngineFanSpeed                   = "42e.20";
     public static final String SID_DcPower                          = "800.6103.24";
-    public static final String SID_HvBattTemp                       = "42e.44";
     public static final String SID_ChargingPower                    = "42e.56";
     public static final String SID_HvCoolingState                   = "430.38";
     public static final String SID_HvEvaporationTemp                = "430.40";
@@ -77,7 +76,6 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
         if (MainActivity.car==MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) {
             addListener(SID_EngineFanSpeed);
             addListener(SID_DcPower);
-            addListener(SID_HvBattTemp);
             addListener(SID_ChargingPower);
             addListener(SID_HvCoolingState);
             addListener(SID_HvEvaporationTemp);
@@ -128,9 +126,6 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_DcPower:
                         tv = (TextView) findViewById(R.id.text_DCP);
-                        break;
-                    case SID_HvBattTemp:
-                        tv = (TextView) findViewById(R.id.text_HVT);
                         break;
                     case SID_ChargingPower:
                         tv = (TextView) findViewById(R.id.text_CPO);

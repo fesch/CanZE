@@ -1,16 +1,16 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-xmlns:custom="http://schemas.android.com/apk/res-auto"
-android:keepScreenOn="true"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:paddingLeft="0dp"
-android:paddingRight="0dp"
-android:paddingTop="0dp"
-android:paddingBottom="0dp"
-tools:context="lu.fisch.canze.activities.BatteryActivity"
-android:stretchColumns="1"
-android:id="@+id/table"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:keepScreenOn="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    tools:context="lu.fisch.canze.activities.BatteryActivity"
+    android:stretchColumns="1"
+    android:id="@+id/table"
     >
 
     <TableRow
@@ -60,29 +60,21 @@ android:id="@+id/table"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:background="#ffd124"
-            android:layout_weight="1">
 
-            <TextView
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="2dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="---"
-                android:id="@+id/link"
-                android:layout_weight="1"
-                android:layout_gravity="center" />
-        </LinearLayout>
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffd124"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="---"
+            android:id="@+id/link"
+            android:layout_weight="1"
+            android:layout_gravity="center" />
     </TableRow>
     <TableRow
         android:id="@+id/tableRow3"
@@ -91,42 +83,42 @@ android:id="@+id/table"
         android:orientation="horizontal"
         android:layout_weight="1">
 
-    <lu.fisch.canze.widgets.WidgetView
-        android:id="@+id/voltages"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginBottom="8dp"
-        custom:min="3"
-        custom:max="5"
-        custom:majorTicks="1"
-        custom:minorTicks="0"
-        custom:fieldSID="7bb.6141.16,7bb.6141.32,7bb.6141.48,7bb.6141.64,7bb.6141.80,7bb.6141.96,7bb.6141.112,7bb.6141.128,7bb.6141.144,7bb.6141.160,7bb.6141.176,7bb.6141.192,7bb.6141.208,7bb.6141.224,7bb.6141.240,7bb.6141.256,7bb.6141.272,7bb.6141.288,7bb.6141.304,7bb.6141.320,7bb.6141.336,7bb.6141.352,7bb.6141.368,7bb.6141.384,7bb.6141.400,7bb.6141.416,7bb.6141.432,7bb.6141.448,7bb.6141.464,7bb.6141.480,7bb.6141.496,7bb.6141.512,7bb.6141.528,7bb.6141.544,7bb.6141.560,7bb.6141.576,7bb.6141.592,7bb.6141.608,7bb.6141.624,7bb.6141.640,7bb.6141.656,7bb.6141.672,7bb.6141.688,7bb.6141.704,7bb.6141.720,7bb.6141.736,7bb.6141.752,7bb.6141.768,7bb.6141.784,7bb.6141.800,7bb.6141.816,7bb.6141.832,7bb.6141.848,7bb.6141.864,7bb.6141.880,7bb.6141.896,7bb.6141.912,7bb.6141.928,7bb.6141.944,7bb.6141.960,7bb.6141.976,7bb.6141.992,7bb.6142.16,7bb.6142.32,7bb.6142.48,7bb.6142.64,7bb.6142.80,7bb.6142.96,7bb.6142.112,7bb.6142.128,7bb.6142.144,7bb.6142.160,7bb.6142.176,7bb.6142.192,7bb.6142.208,7bb.6142.224,7bb.6142.240,7bb.6142.256,7bb.6142.272,7bb.6142.288,7bb.6142.304,7bb.6142.320,7bb.6142.336,7bb.6142.352,7bb.6142.368,7bb.6142.384,7bb.6142.400,7bb.6142.416,7bb.6142.432,7bb.6142.448,7bb.6142.464,7bb.6142.480,7bb.6142.496,7bb.6142.512,7bb.6142.528,7bb.6142.544"
-        custom:widget="plotter"
-        custom:text="Cell Voltages (V)"
-        />
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/voltages"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            custom:min="3"
+            custom:max="5"
+            custom:majorTicks="1"
+            custom:minorTicks="0"
+            custom:fieldSID="7bb.6141.16,7bb.6141.32,7bb.6141.48,7bb.6141.64,7bb.6141.80,7bb.6141.96,7bb.6141.112,7bb.6141.128,7bb.6141.144,7bb.6141.160,7bb.6141.176,7bb.6141.192,7bb.6141.208,7bb.6141.224,7bb.6141.240,7bb.6141.256,7bb.6141.272,7bb.6141.288,7bb.6141.304,7bb.6141.320,7bb.6141.336,7bb.6141.352,7bb.6141.368,7bb.6141.384,7bb.6141.400,7bb.6141.416,7bb.6141.432,7bb.6141.448,7bb.6141.464,7bb.6141.480,7bb.6141.496,7bb.6141.512,7bb.6141.528,7bb.6141.544,7bb.6141.560,7bb.6141.576,7bb.6141.592,7bb.6141.608,7bb.6141.624,7bb.6141.640,7bb.6141.656,7bb.6141.672,7bb.6141.688,7bb.6141.704,7bb.6141.720,7bb.6141.736,7bb.6141.752,7bb.6141.768,7bb.6141.784,7bb.6141.800,7bb.6141.816,7bb.6141.832,7bb.6141.848,7bb.6141.864,7bb.6141.880,7bb.6141.896,7bb.6141.912,7bb.6141.928,7bb.6141.944,7bb.6141.960,7bb.6141.976,7bb.6141.992,7bb.6142.16,7bb.6142.32,7bb.6142.48,7bb.6142.64,7bb.6142.80,7bb.6142.96,7bb.6142.112,7bb.6142.128,7bb.6142.144,7bb.6142.160,7bb.6142.176,7bb.6142.192,7bb.6142.208,7bb.6142.224,7bb.6142.240,7bb.6142.256,7bb.6142.272,7bb.6142.288,7bb.6142.304,7bb.6142.320,7bb.6142.336,7bb.6142.352,7bb.6142.368,7bb.6142.384,7bb.6142.400,7bb.6142.416,7bb.6142.432,7bb.6142.448,7bb.6142.464,7bb.6142.480,7bb.6142.496,7bb.6142.512,7bb.6142.528,7bb.6142.544"
+            custom:widget="plotter"
+            custom:text="Cell Voltages (V)"
+            />
 
-    <lu.fisch.canze.widgets.WidgetView
-        android:id="@+id/temperatures"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        custom:min="0"
-        custom:max="50"
-        custom:majorTicks="10"
-        custom:minorTicks="5"
-        custom:fieldSID="7bb.6104.32,7bb.6104.56,7bb.6104.80,7bb.6104.104,7bb.6104.128,7bb.6104.152,7bb.6104.176,7bb.6104.200,7bb.6104.224,7bb.6104.248,7bb.6104.272,7bb.6104.296"
-        custom:widget="plotter"
-        custom:text="Battery Modules Temperatures (°C)"
-        />
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/temperatures"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            custom:min="0"
+            custom:max="50"
+            custom:majorTicks="10"
+            custom:minorTicks="5"
+            custom:fieldSID="7bb.6104.32,7bb.6104.56,7bb.6104.80,7bb.6104.104,7bb.6104.128,7bb.6104.152,7bb.6104.176,7bb.6104.200,7bb.6104.224,7bb.6104.248,7bb.6104.272,7bb.6104.296"
+            custom:widget="plotter"
+            custom:text="Battery Modules Temperatures (°C)"
+            />
 
-</TableRow>
+    </TableRow>
 
 </TableLayout>
 

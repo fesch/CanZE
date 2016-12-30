@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content" />
             </TableRow>
 
-            <TableRow>
+            <!-- <TableRow>
                 <TextView
                     android:text="HV battery temp"
                     android:layout_weight="2"
@@ -65,7 +65,7 @@
                     android:gravity="right"
                     android:layout_weight="1"
                     />
-            </TableRow>
+            </TableRow> -->
 
             <TableRow>
                 <TextView
@@ -156,13 +156,14 @@
             custom:max="40"
             custom:majorTicks="10"
             custom:minorTicks="2"
-            custom:fieldSID="764.6143.110,764.6121.26,699.8"
+            custom:fieldSID="764.6143.110,764.6121.26,699.8,42e.44"
             custom:widget="timeplot"
-            custom:text="External (°C) / Internal (°C) / Setpoint  (°C)"
+            custom:text="External (°C) / Internal (°C) / Setpoint  (°C) / Battery (°C)"
             custom:intervals="{
                                    '764.6143.110':10000,
                                    '764.6121.26':10000,
-                                   '699.8':10000
+                                   '699.8':10000,
+                                   '42e.44':10000
                                    }"
 
             />
