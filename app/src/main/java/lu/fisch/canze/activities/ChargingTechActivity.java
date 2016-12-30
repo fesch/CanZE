@@ -279,39 +279,63 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         break;
                     case SID_Preamble_CompartmentTemperatures + "32":
                         tv = (TextView) findViewById(R.id.text_comp_1_temp);
+                        tv.setText(String.format("%.0f", field.getValue()));
+                        tv = null;
                         break;
                     case SID_Preamble_CompartmentTemperatures + "56":
                         tv = (TextView) findViewById(R.id.text_comp_2_temp);
+                        tv.setText(String.format("%.0f", field.getValue()));
+                        tv = null;
                         break;
                     case SID_Preamble_CompartmentTemperatures + "80":
                         tv = (TextView) findViewById(R.id.text_comp_3_temp);
+                        tv.setText(String.format("%.0f", field.getValue()));
+                        tv = null;
                         break;
                     case SID_Preamble_CompartmentTemperatures + "104":
                         tv = (TextView) findViewById(R.id.text_comp_4_temp);
+                        tv.setText(String.format("%.0f", field.getValue()));
+                        tv = null;
                         break;
                     case SID_Preamble_CompartmentTemperatures + "128":
                         tv = (TextView) findViewById(R.id.text_comp_5_temp);
+                        tv.setText(String.format("%.0f", field.getValue()));
+                        tv = null;
                         break;
                     case SID_Preamble_CompartmentTemperatures + "152":
                         tv = (TextView) findViewById(R.id.text_comp_6_temp);
+                        tv.setText(String.format("%.0f", field.getValue()));
+                        tv = null;
                         break;
                     case SID_Preamble_CompartmentTemperatures + "176":
                         tv = (TextView) findViewById(R.id.text_comp_7_temp);
+                        tv.setText(String.format("%.0f", field.getValue()));
+                        tv = null;
                         break;
                     case SID_Preamble_CompartmentTemperatures + "200":
                         tv = (TextView) findViewById(R.id.text_comp_8_temp);
+                        tv.setText(String.format("%.0f", field.getValue()));
+                        tv = null;
                         break;
                     case SID_Preamble_CompartmentTemperatures + "224":
                         tv = (TextView) findViewById(R.id.text_comp_9_temp);
+                        tv.setText(String.format("%.0f", field.getValue()));
+                        tv = null;
                         break;
                     case SID_Preamble_CompartmentTemperatures + "248":
                         tv = (TextView) findViewById(R.id.text_comp_10_temp);
+                        tv.setText(String.format("%.0f", field.getValue()));
+                        tv = null;
                         break;
                     case SID_Preamble_CompartmentTemperatures + "272":
                         tv = (TextView) findViewById(R.id.text_comp_11_temp);
+                        tv.setText(String.format("%.0f", field.getValue()));
+                        tv = null;
                         break;
                     case SID_Preamble_CompartmentTemperatures + "296":
                         tv = (TextView) findViewById(R.id.text_comp_12_temp);
+                        tv.setText(String.format("%.0f", field.getValue()));
+                        tv = null;
                         break;
                     case SID_Preamble_BalancingBytes + "16":
                         tv = (TextView) findViewById(R.id.text_bala_1_temp);
@@ -372,10 +396,11 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         tv = (TextView) findViewById(R.id.text_bala_12_temp);
                         tv.setText(String.format("%02X", (int)field.getValue()));
                         tv = null;
-                        break;                }
+                        break;
+                }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText("" + (Math.round(field.getValue() * 10.0) / 10.0));
+                    tv.setText(String.format("%.1f", field.getValue()));
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);

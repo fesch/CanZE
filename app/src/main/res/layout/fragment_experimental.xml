@@ -147,7 +147,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="4dp"
-            android:text="Playground (Jeroen) clima"
+            android:text="Playground (Jeroen)"
             android:id="@+id/buttonPgJm"
             android:layout_column="0" />
 

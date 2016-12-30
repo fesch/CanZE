@@ -153,8 +153,9 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
                     android:layout_marginBottom="4dp"
-                    android:text="---"
-                    android:id="@+id/notAffected2"
+                    android:text="Climate"
+                    android:id="@+id/buttonClimaTech"
+                    android:drawableLeft="@mipmap/button_thermometer"
                     android:layout_column="1" />
 
             </TableRow>

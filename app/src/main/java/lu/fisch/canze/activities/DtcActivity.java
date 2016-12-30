@@ -266,7 +266,7 @@ public class DtcActivity  extends CanzeActivity {
                     if (flags != 0x50 && flags != 0x10) {
                         onePrinted = true;
                         appendResult(
-                                "\n*** DTC" + backRes.substring(i, i + 6) + " ***\n"
+                                "\n*** DTC" + backRes.substring(i, i + 6) + " (" + Dtcs.getInstance().getDisplayCodeById (backRes.substring(i, i + 6)) + ") ***\n"
                                         + Dtcs.getInstance().getDescriptionById(backRes.substring(i, i + 6))
                                         + "\nFlags:" + Dtcs.getInstance().getFlagDescription(flags)
                         );

@@ -137,7 +137,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="4dp"
-                android:text="Batt Voltages"
+                android:text="Batt Cell Voltages"
                 android:id="@+id/buttonHeatmapCellvoltage"
                 android:drawableLeft="@mipmap/button_lightning"
                 android:layout_column="0" />
@@ -151,7 +151,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="4dp"
-                android:text="Battery Modules"
+                android:text="Batt Module temps"
                 android:id="@+id/buttonHeatmapBatcomp"
                 android:drawableLeft="@mipmap/button_thermometer"
                 android:layout_column="0" />

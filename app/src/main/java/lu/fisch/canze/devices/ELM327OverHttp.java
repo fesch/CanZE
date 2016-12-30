@@ -44,10 +44,6 @@ import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
-/**
- * Created by robertfisch on 07.09.2015.
- * Main loop fir ELM
- */
 public class ELM327OverHttp extends Device {
 
     private int timeoutLogLevel = MainActivity.toastLevel;
@@ -74,6 +70,7 @@ public class ELM327OverHttp extends Device {
             if (initDevice(toughness)) return true;
         }
         if (timeoutLogLevel >= 1) MainActivity.toast("Hard reset failed, restarting Bluetooth ...");
+        MainActivity.debug(lastInitProblem);
         MainActivity.debug("ELM327: Hard reset failed, restarting Bluetooth ...");
         return false;
     }
@@ -86,10 +83,8 @@ public class ELM327OverHttp extends Device {
         lastInitProblem = "";
         someThingWrong = false;
         String msg = getMessage ("Init");
-        if (msg == null) return false;
-        if (msg.compareTo ("OK") == 0) {
-            return true;
-        }
+        if (msg.compareTo ("OK") == 0) return true;
+        lastInitProblem = msg;
         someThingWrong = true;
         return false;
     }
@@ -168,18 +163,18 @@ public class ELM327OverHttp extends Device {
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 BufferedReader reader = new BufferedReader(new InputStreamReader(in));
                 String st;
-                StringBuffer stringBuffer = new StringBuffer();
+                StringBuilder stringBuilder = new StringBuilder(200);
                 while ((st = reader.readLine()) != null) {
-                    stringBuffer.append(st);
+                    stringBuilder.append(st);
                 }
-                return stringBuffer.toString();
+                return stringBuilder.toString();
             } catch(Exception e) {
                     e.printStackTrace();
             } finally {
                 urlConnection.disconnect();
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return "";
     }

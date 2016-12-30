@@ -1,4 +1,10 @@
-2016.12.25 [Jeroen] Backported a few changes in teh ELM driver from gateway to CanZE
+2016.12.30 [Jeroen] Minor changes in Main and Battery layouts
+2016.12.30 [Jeroen] Climatech moved to technical section, better layout (use filler)
+2016.12.30 [Jeroen] ClimaTech added ClimaLoopMode, moved batt temp to graph
+2016.12.29 [Jeroen] Alernative DTC code display
+2016.12.29 [Jeroen] ELM327 fixed flush hanging if ELM327 babbling
+2016.12.29 [Jeroen] ELM327Http better error messages
+2016.12.25 [Jeroen] Backported a few changes in the ELM driver from gateway to CanZE
 2016.12.24 [Jeroen] Added Dtc Test class and initialisation code, completed display of DTCs
 2016.12.24 [Jeroen] Started implementing DTC messages per EcuDiagXXX
 2016.12.24 [Jeroen] Activated and debugged string fields, and loaded proper options in EcuDiagCLIM

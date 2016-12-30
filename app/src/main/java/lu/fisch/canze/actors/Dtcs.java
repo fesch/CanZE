@@ -137,22 +137,41 @@ public class Dtcs {
         if (id.length() >= 4){
             dtc = getDtcById(id.substring(0, 4));
             if (dtc != null) {
-                result = result + "Description:" + dtc.getDescription();
-            } else {
-                result = result + "Unknown DTC";
+                result += dtc.getDescription();
             }
             if (id.length() >= 6) {
                 test = getTestById(id.substring(4, 6));
                 if (test != null) {
-                    result = result + "\nTest:" + test.getDescription();
-                } else {
-                    result = result + "\nUnknown Test";
+                    result += "\n" + test.getDescription();
                 }
             }
         } else {
             result = "Too short DTC " + id;
         }
         return result;
+    }
+
+    public String getDisplayCodeById (String id) {
+        if (id.length() == 0) return ("");
+        switch (id.toUpperCase().charAt(0)) {
+            case '0': return "P0" + id.substring(2);
+            case '1': return "P1" + id.substring(2);
+            case '2': return "P2" + id.substring(2);
+            case '3': return "P3" + id.substring(2);
+            case '4': return "C0" + id.substring(2);
+            case '5': return "C1" + id.substring(2);
+            case '6': return "C2" + id.substring(2);
+            case '7': return "C3" + id.substring(2);
+            case '8': return "B0" + id.substring(2);
+            case '9': return "B1" + id.substring(2);
+            case 'A': return "B2" + id.substring(2);
+            case 'B': return "B3" + id.substring(2);
+            case 'C': return "U0" + id.substring(2);
+            case 'D': return "U1" + id.substring(2);
+            case 'E': return "U2" + id.substring(2);
+            case 'F': return "U3" + id.substring(2);
+        }
+        return id;
     }
 
     public String getFlagDescription (int flags) {
