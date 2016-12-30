@@ -1,3 +1,4 @@
+2016.12.30 [Jeroen] Tyres, Prediction, Firmware, Charging, Braking all use improved layout
 2016.12.30 [Jeroen] Minor changes in Main and Battery layouts
 2016.12.30 [Jeroen] Climatech moved to technical section, better layout (use filler)
 2016.12.30 [Jeroen] ClimaTech added ClimaLoopMode, moved batt temp to graph
