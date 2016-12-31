@@ -577,17 +577,17 @@ public class SettingsActivity extends AppCompatActivity {
 
         }
 
-        arrayAdapter.add("HTTP1\nGateway");
-        if("Gateway".equals(deviceAddress))
+        arrayAdapter.add("HTTP-B\nGateway-B");
+        if("Gateway-B".equals(deviceAddress))
             index = i;
         i++;
 
-        arrayAdapter.add("HTTP3\nGateway2");
-        if("Gateway".equals(deviceAddress))
+        arrayAdapter.add("HTTP-J\nGateway-J");
+        if("Gateway-J".equals(deviceAddress))
             index = i;
         i++;
 
-        arrayAdapter.add("HTTP2\nEmulator");
+        arrayAdapter.add("HTTP\nEmulator");
         if("Emulator".equals(deviceAddress))
             index = i;
         i++;
