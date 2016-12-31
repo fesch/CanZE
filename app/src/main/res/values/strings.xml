@@ -27,11 +27,6 @@
     <string name="title_activity_gps_test">GPS Test</string>
     <string name="title_activity_prediction">Charging Prediction</string>
 
-    <!-- nonsense -->
-
-    <string name="hello_world">Hello world!</string>
-    <string name="default_zero">0</string>
-
     <!-- menus -->
 
     <string name="action_settings">Settings</string>
