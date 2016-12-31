@@ -407,6 +407,7 @@ public class Fields {
                         + "7bb,248,255,1,40,0,°C,2104,6104,e2\n" // Cell 10 Temperature
                         + "7bb,272,279,1,40,0,°C,2104,6104,e2\n" // Cell 11 Temperature
                         + "7bb,296,303,1,40,0,°C,2104,6104,e2\n" // Cell 12 Temperature
+                        + "7bb,600,607,1,40,0,degC,2104,6104,ff\n" // 21_04_#76_Average_Battery_Temperature
                         + "7bb,16,23,1,0,0,,2107,6107,e2\n" // Cell 1 Balancing switch
                         + "7bb,24,31,1,0,0,,2107,6107,e2\n" // Cell 2 Balancing switch
                         + "7bb,32,39,1,0,0,,2107,6107,e2\n" // Cell 3 Balancing switch

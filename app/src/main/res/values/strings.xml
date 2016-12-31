@@ -9,7 +9,7 @@
     <string name="title_activity_leaf_spy">Leaf Spy Clone</string>
     <string name="title_activity_battery_temp">BatteryTempActivity</string>
     <string name="title_activity_test">Consumption</string>
-    <string name="title_activity_elm_test">elmTestActivity</string>
+    <string name="title_activity_elm_test">Test ELM327 Dongle</string>
     <string name="title_activity_charging">Charging</string>
     <string name="title_activity_driving">Driving info</string>
     <string name="title_activity_braking">Braking info</string>
@@ -25,6 +25,7 @@
     <string name="title_activity_charging_graph">Charging graphs</string>
     <string name="title_activity_clima_tech">Clima Battery interaction</string>
     <string name="title_activity_gps_test">GPS Test</string>
+    <string name="title_activity_prediction">Charging Prediction</string>
 
     <!-- nonsense -->
 
@@ -36,11 +37,12 @@
 
     <!-- generic -->
 
-    <string name="default_zero">0</string>
-    <string name="default_dash">-</string>
-    <string name="default_yes">Yes</string>
-    <string name="default_no">No</string>
-    <string name="default_unavailable">Unavailable</string>
+    <string name="default_Zero">0</string>
+    <string name="default_Dash">-</string>
+    <string name="default_Yes">Yes</string>
+    <string name="default_No">No</string>
+    <string name="default_Unavailable">Unavailable</string>
+    <string name="default_NotImplementedYet">Not implemented yet</string>
 
     <!-- debug (generic) -->
 
@@ -156,7 +158,6 @@
     <!-- elm testing -->
 
     <string name="header_ElmTest">Test results</string>
-    <string name="textNotImplementedYet">Not implemented yet</string>
 
     <!-- braking -->
 
@@ -192,9 +193,8 @@
 
     <!-- firmware -->
 
-    <string name="header_firmware">Firmware versions</string>
-
-    <string name="default_firmware">Not available</string>
+    <string name="header_Firmware">Firmware versions</string>
+    <string name="default_Firmware">Not available</string>
 
     <!-- kangoo fluence temperatures -->
 
@@ -232,16 +232,34 @@
     <string name="label_TyreRRPressure">Rear right pressure mbar</string>
 
     <!-- clima tech -->
-    <string name="label_ClimaLoopMode">Climate loop mode</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_ClimaLoopMode">Climate loop mode</string>
+    <string name="label_HVBatConditioningMode">HV Bat conditioning mode</string>
+    <string name="label_Temperatures">Temperatures</string>
+    <string name="label_HVEvaporationTemp">HV Evaporation temp</string>
+    <string name="label_HVCoolingState">HV cooling state</string>
+    <string name="label_ChargingPower">Charging Power</string>
+    <string name="label_EngineFanSpeed">Engine fan speed</string>
+    <string name="label_ClimateBatteryInteraction">Climate-Battery interaction</string>
+
+    <!-- DTC -->
+
+    <string name="label_xClimaLoopMode">Climate loop mode</string>
+
+    <!-- prediction -->
+
+    <string name="label_StateAtThisMoment">State at this moment</string>
+    <string name="label_BatteryTemperature">BatteryTemperature</string>
+    <string name="label_ACPower">AC power</string>
+    <string name="label_StateOfCharge">State of charge</string>
+
+
 
 
     <string name="title_FZ_section2">Driving</string>
     <string name="title_FZ_section1">General</string>
     <string name="title_FZ_section0">Battery</string>
-    <string name="title_activity_prediction">Charging Prediction</string>
+
     <string name="title_activity_range">Range</string>
 
 </resources>

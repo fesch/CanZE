@@ -15,7 +15,7 @@
 
 
         <TextView
-            android:text="Climate Battery interaction"
+            android:text="@string/label_ClimateBatteryInteraction"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="#000" />
@@ -26,13 +26,13 @@
 
             <TableRow>
                 <TextView
-                    android:text="Engine fan speed"
+                    android:text="@string/label_EngineFanSpeed"
                     android:layout_weight="2"
                     />
                 <TextView
                     android:id="@+id/text_EFS"
-                    android:text="@string/default_dash"
-                    android:gravity="right"
+                    android:text="@string/default_Dash"
+                    android:gravity="end"
                     android:layout_weight="1"
                     />
             </TableRow>
@@ -47,8 +47,8 @@
 
                 <TextView
                     android:id="@+id/text_DCP"
-                    android:text="@string/default_dash"
-                    android:gravity="right"
+                    android:text="@string/default_Dash"
+                    android:gravity="end"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -61,71 +61,71 @@
                     />
                 <TextView
                     android:id="@+id/text_HVT"
-                    android:text="@string/default_dash"
-                    android:gravity="right"
+                    android:text="@string/default_Dash"
+                    android:gravity="end"
                     android:layout_weight="1"
                     />
             </TableRow> -->
 
             <TableRow>
                 <TextView
-                    android:text="Charging Power"
+                    android:text="@string/label_ChargingPower"
                     android:layout_weight="2"
                     />
                 <TextView
                     android:id="@+id/text_CPO"
-                    android:text="@string/default_dash"
-                    android:gravity="right"
+                    android:text="@string/default_Dash"
+                    android:gravity="end"
                     android:layout_weight="1"
                     />
             </TableRow>
 
             <TableRow>
                 <TextView
-                    android:text="HV cooling state"
+                    android:text="@string/label_HVCoolingState"
                     android:layout_weight="2"
                     />
                 <TextView
                     android:id="@+id/text_HCS"
-                    android:text="@string/default_dash"
-                    android:gravity="right"
+                    android:text="@string/default_Dash"
+                    android:gravity="end"
                     android:layout_weight="1"
                     />
             </TableRow>
 
             <TableRow>
                 <TextView
-                    android:text="HV Evaporation temp"
+                    android:text="@string/label_HVEvaporationTemp"
                     android:layout_weight="2"
                     />
                 <TextView
                     android:id="@+id/text_HET"
-                    android:text="@string/default_dash"
-                    android:gravity="right"
+                    android:text="@string/default_Dash"
+                    android:gravity="end"
                     android:layout_weight="1"
                     />
             </TableRow>
 
             <TableRow>
                 <TextView
-                    android:text="HV Bat conditioning mode"
+                    android:text="@string/label_HVBatConditioningMode"
                     android:layout_weight="2"
                     />
                 <TextView
-                    android:text="@string/default_dash"
-                    android:gravity="right"
+                    android:text="@string/default_Dash"
+                    android:gravity="end"
                     android:layout_weight="1"
                     android:id="@+id/text_HCM" />
             </TableRow>
 
             <TableRow>
                 <TextView
-                    android:text="ClimaLoopMode"
+                    android:text="@string/label_ClimaLoopMode"
                     android:layout_weight="2"
                     />
                 <TextView
-                    android:text="@string/default_dash"
-                    android:gravity="right"
+                    android:text="@string/default_Dash"
+                    android:gravity="end"
                     android:layout_weight="1"
                     android:id="@+id/text_CLM" />
             </TableRow>
@@ -135,7 +135,7 @@
 
 
         <TextView
-            android:text="Temperatures"
+            android:text="@string/label_Temperatures"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

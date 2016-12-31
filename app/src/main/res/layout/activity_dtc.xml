@@ -23,20 +23,20 @@
                 />
             <Button
                 android:id="@+id/ecuQuery"
-                android:text="Query"
+                android:text="Query DTCs"
                 android:layout_weight="1"
                 />
         </TableRow>
         <TableRow>
             <Button
                 android:id="@+id/ecuClear"
-                android:text="Clear"
+                android:text="Clear DTCs"
                 android:layout_weight="1"
                 />
 
             <Button
                 android:id="@+id/ecuDiag"
-                android:text="Diag"
+                android:text="All data"
                 android:layout_weight="1"
                 />
         </TableRow>
