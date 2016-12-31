@@ -49,6 +49,7 @@ import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Frames;
 import lu.fisch.canze.actors.Message;
+import lu.fisch.canze.actors.StoppableThread;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 
 import static lu.fisch.canze.activities.MainActivity.debug;
@@ -59,6 +60,8 @@ public class DtcActivity  extends CanzeActivity {
     private TextView textView;
     BufferedWriter bufferedDumpWriter = null;
     boolean dumpInProgress = false;
+
+    private StoppableThread queryThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,8 +144,20 @@ public class DtcActivity  extends CanzeActivity {
         // re-initialize the device
         appendResult("\nSending initialisation sequence\n");
 
+        // try to stop previous thread
+        if(queryThread!=null)
+            if(queryThread.isAlive()) {
+                queryThread.tryToStop();
+                try {
+                    queryThread.join();
+                }
+                catch(Exception e)
+                {
+                    MainActivity.debug(e.getMessage());
+                }
+            }
 
-        (new Thread(new Runnable() {
+        queryThread = new StoppableThread(new Runnable() {
             @Override
             public void run() {
 
@@ -261,6 +276,9 @@ public class DtcActivity  extends CanzeActivity {
                 // All decoding is done in the Dtcs class
                 boolean onePrinted = false;
                 for (int i = 6; i < backRes.length() - 7; i += 8) {
+                    // see if we need to stop right now
+                    if(((StoppableThread) Thread.currentThread()).isStopped()) return;
+
                     int flags = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
                     // exclude 50 / 10 as it means something like "I have this DTC code, but I have never tested it"
                     if (flags != 0x50 && flags != 0x10) {
@@ -275,7 +293,8 @@ public class DtcActivity  extends CanzeActivity {
                 if (!onePrinted) appendResult("\nNo active DTCs\n");
             }
 
-        })).start();
+        });
+        queryThread.start();
     }
 
     void doClearEcu(final Ecu ecu) {
@@ -284,7 +303,20 @@ public class DtcActivity  extends CanzeActivity {
 
         appendResult("Clear " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
 
-        (new Thread(new Runnable() {
+        // try to stop previous thread
+        if(queryThread!=null)
+            if(queryThread.isAlive()) {
+                queryThread.tryToStop();
+                try {
+                    queryThread.join();
+                }
+                catch(Exception e)
+                {
+                    MainActivity.debug(e.getMessage());
+                }
+            }
+
+        queryThread = new StoppableThread(new Runnable() {
             @Override
             public void run() {
 
@@ -328,7 +360,8 @@ public class DtcActivity  extends CanzeActivity {
                 appendResult("Clear seems succesful, please query DTCs\n");
             }
 
-        })).start();
+        });
+        queryThread.start();
     }
 
 
@@ -353,7 +386,20 @@ public class DtcActivity  extends CanzeActivity {
 
         appendResult("\nSending initialisation sequence\n");
 
-        (new Thread(new Runnable() {
+        // try to stop previous thread
+        if(queryThread!=null)
+            if(queryThread.isAlive()) {
+                queryThread.tryToStop();
+                try {
+                    queryThread.join();
+                }
+                catch(Exception e)
+                {
+                    MainActivity.debug(e.getMessage());
+                }
+            }
+
+        queryThread = new StoppableThread(new Runnable() {
             @Override
             public void run() {
 
@@ -366,6 +412,8 @@ public class DtcActivity  extends CanzeActivity {
                 dumpInProgress = createDump(ecu);
 
                 for (Frame frame : Frames.getInstance().getAllFrames()) {
+                    // see if we need to stop right now
+                    if(((StoppableThread) Thread.currentThread()).isStopped()) return;
 
                     if (frame.getContainingFrame() != null) { // only use subframes
 
@@ -397,7 +445,8 @@ public class DtcActivity  extends CanzeActivity {
                 }
                 closeDump();
             }
-        })).start();
+        });
+        queryThread.start();
     }
 
     // Ensure all UI updates are done on the UiThread
@@ -492,6 +541,19 @@ public class DtcActivity  extends CanzeActivity {
     // UI elements
     @Override
     protected void onDestroy() {
+
+        // stop the query thread if still running
+        if(queryThread!=null)
+            if(queryThread.isAlive()) {
+                queryThread.tryToStop();
+                try {
+                    queryThread.join();
+                }
+                catch(Exception e)
+                {
+                    MainActivity.debug(e.getMessage());
+                }
+            }
 
         // Reload the frame & timings
         Frames.getInstance().load();

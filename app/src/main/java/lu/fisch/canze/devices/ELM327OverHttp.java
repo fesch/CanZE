@@ -79,7 +79,8 @@ public class ELM327OverHttp extends Device {
     public boolean initDevice(int toughness) {
         MainActivity.debug("ELM327Http: initDevice");
         // hard address used, the phone uses google DNS instead of the local WiFi DNS :-(
-        urlLeader = MainActivity.getBluetoothDeviceAddress().compareTo ("Emulator") == 0 ? "http://solarmax.trekvalk.nl:8123/wemos/" : "http://172.19.3.216/";
+        //urlLeader = MainActivity.getBluetoothDeviceAddress().compareTo ("Emulator") == 0 ? "http://solarmax.trekvalk.nl:8123/wemos/" : "http://172.19.3.216/";
+        urlLeader = MainActivity.getBluetoothDeviceAddress().compareTo ("Emulator") == 0 ? "http://solarmax.trekvalk.nl:8123/wemos/" : "http://192.168.200.135/";
         lastInitProblem = "";
         someThingWrong = false;
         String msg = getMessage ("Init");
