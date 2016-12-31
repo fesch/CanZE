@@ -37,6 +37,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Dtc;
@@ -409,7 +410,7 @@ public class DtcActivity  extends CanzeActivity {
                     return;
                 }
 
-                dumpInProgress = createDump(ecu);
+                createDump(ecu);
 
                 for (Frame frame : Frames.getInstance().getAllFrames()) {
                     // see if we need to stop right now
@@ -473,7 +474,8 @@ public class DtcActivity  extends CanzeActivity {
     private void log(String text)
     {
         try {
-            bufferedDumpWriter.append(text+ System.getProperty("line.separator"));
+            bufferedDumpWriter.append(text);
+            bufferedDumpWriter.append(System.getProperty("line.separator"));
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -485,53 +487,57 @@ public class DtcActivity  extends CanzeActivity {
         return ( Environment.MEDIA_MOUNTED.equals(SDstate));
     }
 
-    private boolean createDump (Ecu ecu) {
+    private void createDump (Ecu ecu) {
 
-        boolean result = false;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        dumpInProgress = false;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.getDefault());
 
 
         // ensure that there is a CanZE Folder in SDcard
         if ( ! isExternalStorageWritable()) {
             debug ( "DiagDump: SDcard not writeable");
-            return false;
+            return;
         }
-        else {
-            String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
-            File dir = new File(file_path);
-            if (!dir.exists()) {
-                dir.mkdirs();
+
+        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
+        File dir = new File(file_path);
+        if (!dir.exists()) {
+            if (!dir.mkdirs()) {
+                debug("DiagDump: Can't create directory:" + file_path);
+                return;
             }
-            debug("DiagDump: file_path:" + file_path);
+        }
+        debug("DiagDump: file_path:" + file_path);
 
-            // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-            String exportdataFileName = file_path + ecu.getMnemonic() + "-" + sdf.format(Calendar.getInstance().getTime()) + ".txt";
+        // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        String exportdataFileName = file_path + ecu.getMnemonic() + "-" + sdf.format(Calendar.getInstance().getTime()) + ".txt";
 
-            File logFile = new File(exportdataFileName);
-            if (!logFile.exists()) {
-                try {
-                    logFile.createNewFile();
-                    debug("DiagDump: NewFile:" +  exportdataFileName );
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
+        File logFile = new File(exportdataFileName);
+        if (!logFile.exists()) {
             try {
-                //BufferedWriter for performance, true to set append to file flag
-                bufferedDumpWriter = new BufferedWriter(new FileWriter(logFile, true));
-                result = true;
+                if (!logFile.createNewFile()) {
+                    debug("DiagDump: Can't create file:" + exportdataFileName);
+                    return;
+                }
+                debug("DiagDump: NewFile:" +  exportdataFileName );
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        return result;
+
+        try {
+            //BufferedWriter for performance, true to set append to file flag
+            bufferedDumpWriter = new BufferedWriter(new FileWriter(logFile, true));
+            dumpInProgress = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
     private void closeDump () {
         try {
-            bufferedDumpWriter.close();
+            if (dumpInProgress) bufferedDumpWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -554,6 +560,8 @@ public class DtcActivity  extends CanzeActivity {
                     MainActivity.debug(e.getMessage());
                 }
             }
+
+        closeDump();
 
         // Reload the frame & timings
         Frames.getInstance().load();
