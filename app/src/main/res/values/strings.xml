@@ -30,6 +30,7 @@
     <!-- nonsense -->
 
     <string name="hello_world">Hello world!</string>
+    <string name="default_zero">0</string>
 
     <!-- menus -->
 
