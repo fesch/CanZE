@@ -1,3 +1,4 @@
+2016.12.31 [Jeroen] Better formatting in charging and chargingtech
 2016.12.30 [Bob] Added stoppable thread for DTC reading
 2016.12.30 [Bob] Removed min & max values from Plotter widget #381
 2016.12.30 [Jeroen] Updated layouts braking, charging, driving, firmware, prediction, tyres
