@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
@@ -156,7 +157,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                         if (field.getValue() >= 1023) {
                             tv.setText("---");
                         } else {
-                            tv.setText("" + Math.round(field.getValue()));
+                            tv.setText(String.format(Locale.getDefault(), "%.0f", field.getValue()));
                         }
                         tv = null;
                         break;
@@ -174,7 +175,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText("" + (Math.round(field.getValue() * 10.0) / 10.0));
+                    tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue()));
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);
