@@ -582,6 +582,11 @@ public class SettingsActivity extends AppCompatActivity {
             index = i;
         i++;
 
+        arrayAdapter.add("HTTP3\nGateway2");
+        if("Gateway".equals(deviceAddress))
+            index = i;
+        i++;
+
         arrayAdapter.add("HTTP2\nEmulator");
         if("Emulator".equals(deviceAddress))
             index = i;
