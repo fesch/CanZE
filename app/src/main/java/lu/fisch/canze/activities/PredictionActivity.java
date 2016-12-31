@@ -18,7 +18,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
 
     public static final String SID_AvChargingPower = "427.40";
     public static final String SID_UserSoC = "42e.0";          // user SOC, not raw
-    public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
+    public static final String SID_AverageBatteryTemperature = "7bb.6104.600"; // (LBC)
     public static final String SID_RangeEstimate = "654.42";
     public static final String SID_ChargingStatusDisplay = "65b.41";
 
@@ -27,7 +27,6 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
 
     private double car_soc = 5;
     private double car_bat_temp = 10;
-    private double car_bat_temp_ar[] = {0, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15};
     private double car_charger_ac_power = 22;
     private int car_status = 0;
     private int charging_status = 0;
@@ -94,12 +93,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
         addListener(SID_AvChargingPower, 10000);
         addListener(SID_UserSoC, 10000);
         addListener(SID_ChargingStatusDisplay, 10000);
-        // Battery compartment temperatures
-        int lastCell = (MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240 || MainActivity.car == MainActivity.CAR_ZOE_Q90 || MainActivity.car == MainActivity.CAR_ZOE_R90) ? 296 : 104;
-        for (int i = 32; i <= lastCell; i += 24) {
-            String sid = SID_Preamble_CompartmentTemperatures + i;
-            addListener(sid, 10000);
-        }
+        addListener(SID_AverageBatteryTemperature, 10000);
     }
 
 
@@ -146,55 +140,8 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
                 car_soc = fieldVal;
                 car_status |= 0x02;
                 break;
-            case SID_Preamble_CompartmentTemperatures + "32":
-                car_bat_temp_ar[1] = fieldVal;
-                break;
-            case SID_Preamble_CompartmentTemperatures + "56":
-                car_bat_temp_ar[2] = fieldVal;
-                break;
-            case SID_Preamble_CompartmentTemperatures + "80":
-                car_bat_temp_ar[3] = fieldVal;
-                break;
-            case SID_Preamble_CompartmentTemperatures + "104":
-                car_bat_temp_ar[4] = fieldVal;
-                // set temp to valid when the last module temperature is in
-                if (MainActivity.car != MainActivity.CAR_ZOE_Q210 && MainActivity.car != MainActivity.CAR_ZOE_R240 && MainActivity.car != MainActivity.CAR_ZOE_Q90 && MainActivity.car != MainActivity.CAR_ZOE_R90) {
-                    car_bat_temp = 0;
-                    for (int temp_index = 4; temp_index > 0; temp_index--) {
-                        car_bat_temp += car_bat_temp_ar[temp_index];
-                    }
-                    car_bat_temp /= 4;
-                    car_status |= 0x04;
-                }
-                break;
-            case SID_Preamble_CompartmentTemperatures + "128":
-                car_bat_temp_ar[5] = fieldVal;
-                break;
-            case SID_Preamble_CompartmentTemperatures + "152":
-                car_bat_temp_ar[6] = fieldVal;
-                break;
-            case SID_Preamble_CompartmentTemperatures + "176":
-                car_bat_temp_ar[7] = fieldVal;
-                break;
-            case SID_Preamble_CompartmentTemperatures + "200":
-                car_bat_temp_ar[8] = fieldVal;
-                break;
-            case SID_Preamble_CompartmentTemperatures + "224":
-                car_bat_temp_ar[9] = fieldVal;
-                break;
-            case SID_Preamble_CompartmentTemperatures + "248":
-                car_bat_temp_ar[10] = fieldVal;
-                break;
-            case SID_Preamble_CompartmentTemperatures + "272":
-                car_bat_temp_ar[11] = fieldVal;
-                break;
-            case SID_Preamble_CompartmentTemperatures + "296":
-                car_bat_temp_ar[12] = fieldVal;
-                car_bat_temp = 0;
-                for (int temp_index = 12; temp_index > 0; temp_index--) {
-                    car_bat_temp += car_bat_temp_ar[temp_index];
-                }
-                car_bat_temp /= 12;
+            case SID_AverageBatteryTemperature:
+                car_bat_temp  = fieldVal;
                 car_status |= 0x04;
                 break;
             case SID_RangeEstimate:
@@ -266,6 +213,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
         } else if (iter_at_99 > 50) {
             // if we were full after half the table size
             // do nothing
+            seconds_per_tick *= 1;
         } else if (iter_at_99 > 25 && seconds_per_tick > 18) {
             // if we were full after a quarter of the table size
             // and over half an hour, half the tick step

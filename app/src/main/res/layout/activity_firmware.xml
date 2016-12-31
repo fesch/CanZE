@@ -24,7 +24,7 @@
                 android:id="@+id/HeaderFirmware"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/header_firmware"
+                android:text="@string/header_Firmware"
                 android:textColor="#000" />
 
             <TableLayout

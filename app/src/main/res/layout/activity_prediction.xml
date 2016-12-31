@@ -86,17 +86,17 @@
                         />
                     <TextView
                         android:id="@+id/textSOC10"
-                        android:text="#SOC"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textRAN10"
-                        android:text="#RNG"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textPWR10"
-                        android:text="#PWR"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -109,17 +109,17 @@
                         />
                     <TextView
                         android:id="@+id/textSOC20"
-                        android:text="#SOC"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textRAN20"
-                        android:text="#RNG"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textPWR20"
-                        android:text="#PWR"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -132,17 +132,17 @@
                         />
                     <TextView
                         android:id="@+id/textSOC30"
-                        android:text="#SOC"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textRAN30"
-                        android:text="#RNG"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textPWR30"
-                        android:text="#PWR"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -155,17 +155,17 @@
                         />
                     <TextView
                         android:id="@+id/textSOC40"
-                        android:text="#SOC"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textRAN40"
-                        android:text="#RNG"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textPWR40"
-                        android:text="#PWR"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -178,17 +178,17 @@
                         />
                     <TextView
                         android:id="@+id/textSOC50"
-                        android:text="#SOC"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textRAN50"
-                        android:text="#RNG"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textPWR50"
-                        android:text="#PWR"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -201,17 +201,17 @@
                         />
                     <TextView
                         android:id="@+id/textSOC60"
-                        android:text="#SOC"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textRAN60"
-                        android:text="#RNG"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textPWR60"
-                        android:text="#PWR"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -224,17 +224,17 @@
                         />
                     <TextView
                         android:id="@+id/textSOC70"
-                        android:text="#SOC"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textRAN70"
-                        android:text="#RNG"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textPWR70"
-                        android:text="#PWR"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -247,17 +247,17 @@
                         />
                     <TextView
                         android:id="@+id/textSOC80"
-                        android:text="#SOC"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textRAN80"
-                        android:text="#RNG"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textPWR80"
-                        android:text="#PWR"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -270,17 +270,17 @@
                         />
                     <TextView
                         android:id="@+id/textSOC90"
-                        android:text="#SOC"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textRAN90"
-                        android:text="#RNG"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textPWR90"
-                        android:text="#PWR"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -293,17 +293,17 @@
                         />
                     <TextView
                         android:id="@+id/textSOC100"
-                        android:text="#SOC"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textRAN100"
-                        android:text="#RNG"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
                         android:id="@+id/textPWR100"
-                        android:text="#PWR"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -313,7 +313,7 @@
 
             <TextView
                 android:id="@+id/HeaderDC"
-                android:text="State at this moment"
+                android:text="@string/label_StateAtThisMoment"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -325,31 +325,40 @@
 
                 <TableRow>
                     <TextView
-                        android:text="Temperature"
+                        android:text="@string/label_BatteryTemperature"
+                        android:layout_weight="2"
                         />
                     <TextView
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
                         android:id="@+id/texttemp"
-                        android:paddingLeft="8dp"
                         />
                 </TableRow>
 
                 <TableRow>
                     <TextView
-                        android:text="AC power"
+                        android:text="@string/label_ACPower"
+                        android:layout_weight="2"
                         />
                     <TextView
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
                         android:id="@+id/textacpwr"
-                        android:paddingLeft="8dp"
                         />
                 </TableRow>
 
                 <TableRow>
                     <TextView
-                        android:text="State of charge"
+                        android:text="@string/label_StateOfCharge"
+                        android:layout_weight="2"
                         />
                     <TextView
+                        android:gravity="right"
+                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
                         android:id="@+id/textsoc"
-                        android:paddingLeft="8dp"
                         />
                 </TableRow>
             </TableLayout>
