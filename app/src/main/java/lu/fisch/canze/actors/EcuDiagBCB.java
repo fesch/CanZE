@@ -23,6 +23,7 @@ package lu.fisch.canze.actors;
 
 /**
  * Created by jeroen on 4-12-16.
+ * Contains the BCB/JB@ Dianostics definitions
  */
 
 public class EcuDiagBCB {
@@ -31,7 +32,6 @@ public class EcuDiagBCB {
 
         String fieldDef1 =
                 ""
-                        +"793,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         +"793,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
 
                         +"793,24,31,.08,0,0,V,223101,623101,ff,Batt_voltage_mes\n" //
@@ -235,10 +235,178 @@ public class EcuDiagBCB {
 
                 ;
 
+        String fieldDef2 =
+                ""
+
+                        +"793,29,31,1,0,0,,222003,622003,ff,Junction box 2 state,0:Init;1:Charge;4:Wait;5:Power Off/Sleep\n" //
+                        +"793,24,31,1,40,0,°C,222005,622005,ff,Cooling temperature from BI\n" //
+                        +"793,24,47,1,0,0,,225001,625001,ff,Plugging counter\n" //
+                        +"793,24,47,1,0,0,,225002,625002,ff,Wake Up counter\n" //
+                        +"793,31,31,1,0,0,,225003,625003,ff,Raw A/C plug interlock value,0:open;1:closed\n" //
+                        +"793,31,31,1,0,0,,225005,625005,ff,CAN activity for JB2,0:No activity;1:Activity\n" //
+                        +"793,31,31,1,0,0,,225008,625008,ff,Raw JB2 hood plug interlock value,0:open;1:closed\n" //
+                        +"793,31,31,1,0,0,,225009,625009,ff,Raw HV Battery plug interlock value,0:open;1:closed\n" //
+                        +"793,31,31,1,0,0,,22500B,62500B,ff,Raw mains interlock value,0:open;1:closed\n" //
+                        +"793,31,31,1,0,0,,22500C,62500C,ff,Mains tri phases permutation,0:v1/v2/v3 off;1:v1/v2/v3 on\n" //
+                        +"793,31,31,1,0,0,,22500D,62500D,ff,Mains voltage presence,0:Absent;1:Present\n" //
+                        +"793,31,31,1,0,0,,22500E,62500E,ff,Wake-Up request from Mains or plug presence,0:No wake-up request;1:Wake-up request\n" //
+                        +"793,31,31,1,0,0,,22500F,62500F,ff,Raw PEB plug interlock value,0:open;1:closed\n" //
+                        +"793,31,31,1,0,0,,225010,625010,ff,Raw PEB neutral interlock value,0:open;1:closed\n" //
+                        +"793,31,31,1,0,0,,225011,625011,ff,Raw PTC plug interlock value,0:open;1:closed\n" //
+                        +"793,30,31,1,0,0,,225015,625015,ff,Wake-Up / Sleep request from EVC,0:Wake-up;1:Sleep;2:UV\n" //
+                        +"793,29,31,1,0,0,,225016,625016,ff,Junction box 2 state request from EVC,0:init;1:Charge;4:Wait;5:Power Off/Sleep\n" //
+                        +"793,29,31,1,0,0,,225017,625017,ff,Mains current type,0:Nok;1:AC mono;2:AC tri;3:DC;4:AC bi\n" //
+                        +"793,30,31,1,0,0,,225018,625018,ff,Mains plug unlocking CAN request,0:Unavailable;1:Unlock request;2:No unlock request\n" //
+                        +"793,30,31,1,0,0,,225019,625019,ff,Memorized value of the wake up activation,0:Wake-up activated;1:Wake-up deactivated\n" //
+                        +"793,31,31,1,0,0,,22501A,62501A,ff,BCM wake-up by wire,0:No wake-up;1:Wake-up\n" //
+                        +"793,31,31,1,0,0,,22501C,62501C,ff,S2 relay control,0:Open;1:Close\n" //
+                        +"793,30,31,1,0,0,,22501D,62501D,ff,Charge state request,0:No charge;1:Charge;2:Emergency stop\n" //
+                        +"793,29,31,1,0,0,,22501E,62501E,ff,Global system state,0:Init;1:Actif;2:Sleep\n" //
+                        +"793,30,31,1,0,0,,22501F,62501F,ff,System Temperature State,0:Ok;1:Derating;2:Nok\n" //
+                        +"793,30,31,1,0,0,,225021,625021,ff,Cooling Temperature State,0:Ok;1:Derating;2:Nok\n" //
+                        +"793,30,31,1,0,0,,225022,625022,ff,Auto wake-up enabling,0:No change;1:Activation;2:Deactivation\n" //
+                        +"793,24,39,.0625,880,0,°C,225023,625023,ff,Raw CPU temperature value from BI\n" //
+                        +"793,24,39,.0625,3200,0,A,225024,625024,ff,Measured neutral current filtred\n" //
+                        +"793,24,39,.0625,3200,0,A,225025,625025,ff,Neutral current value from BI\n" //
+                        +"793,24,31,1,0,0,%,225026,625026,ff,J1772 control pilot raw duty cycle\n" //
+                        +"793,24,31,.25,60,0,V,225027,625027,ff,J1772 control pilot raw voltage\n" //
+                        +"793,24,31,1,40,0,°C,225028,625028,ff,Mains input filter temperature from SPI\n" //
+                        +"793,24,39,.0625,3200,0,A,225029,625029,ff,Raw AC mains phase 1 measured current\n" //
+                        +"793,24,39,.0625,3200,0,A,22502A,62502A,ff,Raw AC mains phase 2 measured current\n" //
+                        +"793,24,39,.0625,3200,0,A,22502B,62502B,ff,Raw AC mains phase 3 measured current\n" //
+                        +"793,24,39,.5,32000,0,V,22502C,62502C,ff,Raw AC mains phase 1 measured voltage\n" //
+                        +"793,24,39,.5,32000,0,V,22502D,62502D,ff,Raw AC mains phase 2 measured voltage\n" //
+                        +"793,24,39,.5,32000,0,V,22502E,62502E,ff,Raw AC mains phase 3 measured voltage\n" //
+                        +"793,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,1:HMLGT\n" //
+                        +"793,160,175,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
+                        +"793,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode\n" //
+                        +"793,144,159,1,0,0,,2180,6180,ff,EditionNumber\n" //
+                        +"793,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,1:296H5\n" //
+                        +"793,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart\n" //
+                        +"793,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3\n" //
+                        +"793,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,1:296H5;2:296H0\n" //
+                        +"793,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart\n" //
+                        +"793,128,143,1,0,0,,2180,6180,ff,SoftwareNumber\n" //
+                        +"793,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG\n" //
+                        +"793,152,167,1,0,0,,2181,6181,ff,Vin CRC\n" //
+                        +"793,16,151,1,0,0,,2181,6181,2ff,Vin In Ascii\n" //
+                        +"793,16,39,1,0,0,,2184,6184,ff,ITG Supplier Number\n" //
+                        +"793,40,47,1,0,0,,2184,6184,2ff,Traceability Factory Code\n" //
+                        +"793,48,143,1,0,0,,2184,6184,2ff,Traceability Serial Number\n" //
+                        +"793,16,103,1,0,0,,21B7,61B7,ff,Configuration of Electrical Vehicle Networks\n" //
+                        +"793,16,103,1,0,0,,21B8,61B8,ff,List of Electrical Vehicle ECUs with After-sales diagnostic\n" //
+                        +"793,160,175,1,0,0,,21F0,61F0,ff,CalibrationNumber\n" //
+                        +"793,56,63,1,0,0,,21F0,61F0,ff,DiagnosticIdentificationCode\n" //
+                        +"793,128,143,1,0,0,,21F0,61F0,ff,SoftwareNumber\n" //
+                        +"793,64,87,1,0,0,,21F0,61F0,ff,SupplierNumber\n" //
+                        +"793,144,159,1,0,0,,21F0,61F0,ff,EditionNumber\n" //
+                        +"793,176,183,1,0,0,,21F0,61F0,ff,PartNumber.BasicPartList,1:296H5;2:296H0\n" //
+                        +"793,184,191,1,0,0,,21F0,61F0,ff,HardwareNumber.BasicPartList,1:296H5\n" //
+                        +"793,192,199,1,0,0,,21F0,61F0,ff,ApprovalNumber.BasicPartList,1:HMLGT\n" //
+                        +"793,16,55,1,0,0,,21F0,61F0,2ff,PartNumber.LowerPart\n" //
+                        +"793,88,127,1,0,0,,21F0,61F0,2ff,HardwareNumber.LowerPart\n" //
+                        +"793,200,207,1,0,0,,21F0,61F0,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3\n" //
+                        +"793,16,55,1,0,0,,21F1,61F1,2ff,ApprovalNumber.LowerPart\n" //
+                        +"793,56,95,1,0,0,,21F1,61F1,2ff,ProgrammingSiteReference\n" //
+                        +"793,96,135,1,0,0,,21F1,61F1,2ff,ProgrammingToolReference\n" //
+                        +"793,136,143,1,0,0,,21F1,61F1,ff,NumberOfReprogrammings\n" //
+                        +"793,144,167,1,0,0,,21F1,61F1,ff,DateOfReprogramming\n" //
+                        +"793,184,191,1,0,0,,21F1,61F1,ff,SaveMarking\n" //
+                        +"793,192,207,1,0,0,,21F1,61F1,ff,CrcOfLogSave\n" //
+                        +"793,168,183,1,0,0,,21F1,61F1,ff,TimeOfReprogramming\n" //
+                        +"793,24,39,.0625,3200,0,A,222001,622001,ff,Mains phase 1 current RMS value\n" //
+                        +"793,24,39,.0625,0,0,V,222002,622002,ff,CPU voltage supply from BI\n" //
+                        +"793,25,31,1,0,0,%,225007,625007,ff,MMI Green LED PWM request\n" //
+                        +"793,31,31,1,0,0,,225012,625012,ff,Mains phase 1-2 voltage presence,0:Absent;1:Present\n" //
+                        +"793,31,31,1,0,0,,225013,625013,ff,Mains phase 2-3 voltage presence,0:Absent;1:Present\n" //
+                        +"793,31,31,1,0,0,,225014,625014,ff,Mains phase 3-1 voltage presence,0:Absent;1:Present\n" //
+                        +"793,25,31,1,0,0,%,22502F,62502F,ff,MMI Red LED PWM request\n" //
+                        +"793,31,31,1,0,0,,225030,625030,ff,Raw fuse interlock value,0:open;1:closed\n" //
+                        +"793,31,31,1,0,0,,225031,625031,ff,Raw Relay box plug interlock closed,0:open;1:closed\n" //
+                        +"793,24,39,1,0,0,V,225032,625032,ff,Driver module power supply voltage from BI\n" //
+                        +"793,24,39,.0625,32768,0,mA,225035,625035,ff,Mains ground current 1st measurement\n" //
+                        +"793,24,39,.0625,32768,0,mA,225036,625036,ff,Mains ground current 2nd measurement\n" //
+                        +"793,31,31,1,0,0,,225038,625038,ff,Mains Plug Locking Switch raw information,0:Unlocked;1:Locked\n" //
+                        +"793,30,31,1,0,0,,225039,625039,ff,Mains plug locking control,0:No motion;1:Close;2:Open\n" //
+                        +"793,24,39,.0625,3200,0,A,22503A,62503A,ff,Mains phase 2 current RMS value\n" //
+                        +"793,24,39,.0625,3200,0,A,22503B,62503B,ff,Mains phase 3 current RMS value\n" //
+                        +"793,24,39,.0625,3200,0,A,22503C,62503C,ff,Mains current phase 1 mean value\n" //
+                        +"793,24,39,.0625,3200,0,A,22503D,62503D,ff,Mains current phase 2 mean value\n" //
+                        +"793,24,39,.0625,3200,0,A,22503E,62503E,ff,Mains current phase 3 mean value\n" //
+                        +"793,24,39,.5,0,0,V,22503F,62503F,ff,Mains phase 1-2 voltage RMS value\n" //
+                        +"793,24,39,.5,0,0,V,225041,625041,ff,Mains phase 2-3 voltage RMS value\n" //
+                        +"793,24,39,.5,0,0,V,225042,625042,ff,Mains phase 3-1 voltage RMS value\n" //
+                        +"793,24,39,.5,32000,0,V,225043,625043,ff,AC mains phase 1-2 measured voltage\n" //
+                        +"793,24,39,.5,32000,0,V,225044,625044,ff,AC mains phase 2-3 measured voltage\n" //
+                        +"793,24,39,.5,32000,0,V,225045,625045,ff,AC mains phase 3-1 measured voltage\n" //
+                        +"793,24,39,.5,32000,0,V,225046,625046,ff,Mains phase 1-2 mean voltage\n" //
+                        +"793,24,39,.5,32000,0,V,225047,625047,ff,Mains phase 2-3 mean voltage\n" //
+                        +"793,24,39,.5,32000,0,V,225048,625048,ff,Mains phase 3-1 mean voltage\n" //
+                        +"793,24,39,.0078125,-1280,0,Hz,225049,625049,ff,Mains phase frequency\n" //
+                        +"793,24,39,1,20000,0,W,22504A,62504A,ff,Mains active power consumed\n" //
+                        +"793,24,39,.0625,9600,0,A,22504B,62504B,ff,Mains current sum\n" //
+                        +"793,24,39,.5,32000,0,V,22504C,62504C,ff,Mains voltage sum\n" //
+                        +"793,24,39,.0625,3200,0,A,22504D,62504D,ff,HV Network measured current\n" //
+                        +"793,24,39,1,1023,0,V,22504E,62504E,ff,HV voltage\n" //
+                        +"793,24,31,1,0,0,,22504F,62504F,ff,Mains leakage current strategy state,0:OFF/Init;1:OK;2:NOK\n" //
+                        +"793,24,24,1,0,0,,225050,625050,ff,External controls denial status flags.0,0:Reserved for future use_0\n" //
+                        +"793,24,31,1,0,0,%,222004,622004,ff,System Relative Temperature in %\n" //
+                        +"793,24,39,.0002441406,0,0,V,225033,625033,ff,Raw Detection Logic line value\n" //
+                        +"793,24,31,1,40,0,°C,225051,625051,ff,CPU temperature value\n" //
+                        +"793,24,31,1,40,0,°C,225052,625052,ff,IGBT Buck arm 1 temperature\n" //
+                        +"793,24,31,1,40,0,°C,225053,625053,ff,Raw IGBT Buck arm 1 temperature\n" //
+                        +"793,24,31,1,40,0,°C,225054,625054,ff,Mains input filter hot spot temperature\n" //
+                        +"793,24,31,1,40,0,°C,225055,625055,ff,Mains input filter hot spot temperature from SPI\n" //
+                        +"793,24,31,1,40,0,°C,225056,625056,ff,Mains input filter temperature\n" //
+                        +"793,24,39,.0625,32768,0,mA,225057,625057,ff,Raw leakage current - DC part measurement\n" //
+                        +"793,24,39,.0625,32768,0,mA,225058,625058,ff,Raw leakage current - High Frequency 10kHz part measurement\n" //
+                        +"793,24,39,.0625,32768,0,mA,225059,625059,ff,Raw leakage current - High Frequency 1st part measurement\n" //
+                        +"793,24,39,.0625,32768,0,mA,22505A,62505A,ff,Raw leakage current - Low Frequency part measurement (50Hz)\n" //
+                        +"793,16,23,1,0,0,,21EF,61EF,2ff,Hardware Part Number 1\n" //
+                        +"793,24,31,1,0,0,,21EF,61EF,2ff,Hardware Part Number 2\n" //
+                        +"793,32,39,1,0,0,,21EF,61EF,2ff,Hardware Part Number 3\n" //
+                        +"793,40,47,1,0,0,,21EF,61EF,2ff,Hardware Part Number 4\n" //
+                        +"793,48,55,1,0,0,,21EF,61EF,2ff,Hardware Part Number 5\n" //
+                        +"793,56,63,1,0,0,,21EF,61EF,2ff,Hardware Part Number 6\n" //
+                        +"793,64,71,1,0,0,,21EF,61EF,2ff,Hardware Part Number 7\n" //
+                        +"793,72,79,1,0,0,,21EF,61EF,2ff,Hardware Part Number 8\n" //
+                        +"793,80,87,1,0,0,,21EF,61EF,2ff,Hardware Part Number 9\n" //
+                        +"793,88,95,1,0,0,,21EF,61EF,2ff,Hardware Part Number 10\n" //
+                        +"793,96,103,1,0,0,,21EF,61EF,2ff,Software Part Number 1\n" //
+                        +"793,104,111,1,0,0,,21EF,61EF,2ff,Software Part Number 2\n" //
+                        +"793,112,119,1,0,0,,21EF,61EF,2ff,Software Part Number 3\n" //
+                        +"793,120,127,1,0,0,,21EF,61EF,2ff,Software Part Number 4\n" //
+                        +"793,128,135,1,0,0,,21EF,61EF,2ff,Software Part Number 5\n" //
+                        +"793,136,143,1,0,0,,21EF,61EF,2ff,Software Part Number 6\n" //
+                        +"793,144,151,1,0,0,,21EF,61EF,2ff,Software Part Number 7\n" //
+                        +"793,152,159,1,0,0,,21EF,61EF,2ff,Software Part Number 8\n" //
+                        +"793,160,167,1,0,0,,21EF,61EF,2ff,Software Part Number 9\n" //
+                        +"793,168,175,1,0,0,,21EF,61EF,2ff,Software Part Number 10\n" //
+                        +"793,31,31,1,0,0,,22505B,62505B,ff,Virgin neutral current acquisition tuning detection\n" //
+                        +"793,31,31,1,0,0,,22505C,62505C,ff,Inform on spi communication error\n" //
+                        +"793,31,31,1,0,0,,22505D,62505D,ff,Global checksum result on SPI frames\n" //
+                        +"793,24,39,1,0,0,,22505E,62505E,ff,FPGA ident\n" //
+                        +"793,24,39,1,0,0,ms,225061,625061,ff,Low part of CPU clock since power up\n" //
+                        +"793,24,39,1,0,0,ms,22505F,62505F,ff,High part of CPU clock since power up\n" //
+                        +"793,24,39,1,0,0,Ohm,225062,625062,ff,Mains ground resistance\n" //
+                        +"793,24,31,1,0,0,,225063,625063,ff,Supervisor state,0:Init;1:Wait;2:ClosingS2;3:InitType;4:InitLkg;5:InitChg;6:Charge;7:ZeroAmpMode;8:EndOfChg;9:OpeningS2;10:ReadyToSleep;11:EmergencyStop;12:InitChargeDF;13:OCPStop;14:WaitS2\n" //
+                        +"793,24,31,1,0,0,,225064,625064,ff,Leakage current diagnostic stored completion status,0:init;1:HF10;3:Mains Ground Default;5:Earth Current default;9:Ground Default;17:Means Leakage DC;33:Means Leakage LF;49:Means Leakage DC+LF;65:Means Leakage HF;81:Means Leakage DC+HF;97:Means Leakage LF+HF;113:Means Leakage DC+LF+HF\n" //
+                        +"793,24,39,1,32768,0,mA,225065,625065,ff,Leakage DC current saved indicator after failure\n" //
+                        +"793,24,39,1,32768,0,mA,225066,625066,ff,Leakage HF 10kHz current saved indicator after failure\n" //
+                        +"793,24,39,1,32768,0,mA,225067,625067,ff,Leakage HF current saved indicator after failure\n" //
+                        +"793,24,39,1,32768,0,mA,225068,625068,ff,Leakage LF current saved indicator after failure\n" //
+                        +"793,24,31,1,0,0,,225069,625069,ff,LED absence configuration,0:LED present;1:LED absent\n" //
+                        +"793,24,39,1,0,0,,22506C,62506C,ff,15V from Driver flyback\n" //
+                        +"793,24,31,1,0,0,,22506A,62506A,ff,Old MMI configuration,0:New MMI;1:Old MMI\n" //
+                        +"793,24,31,1,0,0,,22506B,62506B,ff,Vehicle configuration type,0:X10 configuration;1:X07 configuration\n" //
+                        +"793,24,39,1,0,0,,22506D,62506D,ff,Saved number of quickdrop values\n" //
+
+                ;
+
         String dtcDef =
                 ""
 
-                        +"0103,BCB_Water_Temp signal\n" //
+                        +"0103,BCB_Water_Temp signal\n" // this block for BCB
                         +"0104,CTRL_Pilot\n" //
                         +"0120,RSA_NCH_DET_LOGIC\n" //
                         +"0105,RSA_NCH_DET_LOGIC2\n" //
@@ -275,7 +443,67 @@ public class EcuDiagBCB {
                         +"0125,Temperature sensors\n" //
                         +"0126,Supervisor Micro Controller\n" //
                         +"0129,CTRL_Pilot Failure in S2 switch\n" //
-                        +"D003,CAN Bus off\n" //
+
+                        +"030D,EVC\n" // this block for JB2
+                        +"0305,Lithium Battery Controler\n" //
+                        +"030C,BCM (Body Control Module)\n" //
+                        +"0309,CAN\n" //
+                        +"0436,Junction box hood interlock\n" //
+                        +"0437,HV Battery interlock\n" //
+                        +"0438,Mains plug interlock\n" //
+                        +"0439,PEB interlock\n" //
+                        +"043A,PEB neutral interlock\n" //
+                        +"043E,PTC interlock\n" //
+                        +"0466,Cooling Temperature Sensor\n" //
+                        +"046F,Cooling temperature\n" //
+                        +"0602,Charging stop\n" //
+                        +"0613,Charge yield\n" //
+                        +"0612,S2 relay control\n" //
+                        +"0620,CPU temperature\n" //
+                        +"0621,Electronic card voltage supply\n" //
+                        +"0622,CPU Temperature sensor\n" //
+                        +"0630,Electronic power driver\n" //
+                        +"0632,Electronic power driver temperature sensor\n" //
+                        +"0631,Electronic power driver temperature\n" //
+                        +"0640,Mains identification\n" //
+                        +"0669,Mains communication line\n" //
+                        +"0642,Mains phase 1 current\n" //
+                        +"0643,Mains phase 2 current\n" //
+                        +"0644,Mains phase 3 current\n" //
+                        +"0645,Mains phase mono current\n" //
+                        +"0646,Mains current regulation\n" //
+                        +"0647,Mains locking input line\n" //
+                        +"0649,Mains phases voltage\n" //
+                        +"064A,Mains phase 1 voltage sensor\n" //
+                        +"064B,Mains phase 2 voltage sensor\n" //
+                        +"064C,Mains phase 3 voltage sensor\n" //
+                        +"064D,Mains mono phased voltage sensors\n" //
+                        +"065E,Mains phase 1 current sensor\n" //
+                        +"065F,Mains phase 2 current sensor\n" //
+                        +"0660,Mains phase 3 current sensor\n" //
+                        +"0670,Neutral current sensor\n" //
+                        +"0671,Neutral current regulation\n" //
+                        +"043D,Air conditionned Interlock\n" //
+                        +"043B,Fuse interlock\n" //
+                        +"043C,Relay box interlock\n" //
+                        +"0623,Internal power supply voltage (+5V)\n" //
+                        +"0625,SPI communication\n" //
+                        +"0662,Mains locking motor command\n" //
+                        +"0663,Mains ground\n" //
+                        +"0664,Capacity module\n" //
+                        +"0626,Rectifier micro-controler\n" //
+                        +"0665,Mains phase current sensor\n" //
+                        +"0666,Mains phase voltage sensor\n" //
+                        +"0668,Earth current sensor\n" //
+                        +"0680,Blue Led\n" //
+                        +"0681,Red Led\n" //
+                        +"066A,Input filter temperature\n" //
+                        +"066B,Input filter i\n" //
+                        +"066C,Mains neutral/phase3\n" //
+                        +"0648,Mains leakage\n" //
+                        +"0627,Driver Flyback\n" //
+
+                        +"D003,CAN Bus off\n" // this block for BCB
                         +"D002,CAN node EVC missing\n" //
 
                 ;
@@ -380,11 +608,27 @@ public class EcuDiagBCB {
                         +"96,component internal failure\n" //
                         +"97,Component or system operation obstructed/blocked\n" //
                         +"98,component or system over temperature\n" //
+                        +"F1,Safety Case 1\n" // extra's  for JB2
+                        +"F2,Safety Case 2\n" //
+                        +"F3,Multiple Failure\n" //
+                        +"F4,Temperature too Low\n" //
+                        +"F5,Negative Loop Error\n" //
+                        +"F6,Positive Loop Error\n" //
+                        +"F7,Initialisation not valid\n" //
+                        +"F8,Overspeed\n" //
+                        +"F9,Limp Home\n" //
+                        +"FA,Specific Supplier\n" //
+                        +"FB,-\n" //
+                        +"FC,--\n" //
+                        +"FD,Drift low\n" //
+                        +"FE,Drift  high\n" //
 
                 ;
 
         Frames.getInstance().load("793,0,0,BCB\n");
-        Fields.getInstance().load(fieldDef1);
+        Frames.getInstance().load("793,0,0,BCB\n");
+        Fields.getInstance().load(fieldDef1); // BCB
+        Fields.getInstance().load(fieldDef2); // JB2
         Dtcs.getInstance().load(dtcDef, testDef);
     }
 }
