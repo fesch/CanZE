@@ -1,3 +1,4 @@
+2017.01.02 [Bob] Modified settings to add configurable address if HTTP selected
 2016.12.31 [Jeroen] Better formatting in charging and chargingtech
 2016.12.30 [Bob] Added stoppable thread for DTC reading
 2016.12.30 [Bob] Removed min & max values from Plotter widget #381
