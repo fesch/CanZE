@@ -110,7 +110,7 @@
     <string name="label_12A">12 volt current</string>
     <string name="default_12A">#12C</string>
 
-    <string name="label_DcLoad">DC Load</string>
+    <string name="label_DcLoad">DCDC Load %</string>
     <string name="default_DcLoad">#DCL</string>
 
     <string name="label_HKM">Battery kilometers</string>
@@ -136,12 +136,12 @@
     <string name="label_wheel_torque">Wheel Torque</string>
 
     <string name="default_realSpeed">#Spd</string>
-    <string name="unit_SpeedKm">km/h</string>
-    <string name="unit_SpeedMi">mi/h</string>
+    <string name="unit_SpeedKm">\u0020km/h</string>
+    <string name="unit_SpeedMi">\u0020mi/h</string>
 
     <string name="default_consumption">#Con</string>
-    <string name="unit_ConsumptionKm">kWh/100km</string>
-    <string name="unit_ConsumptionMi">kWh/100mi</string>
+    <string name="unit_ConsumptionKm">\u0020kWh/100km</string>
+    <string name="unit_ConsumptionMi">\u0020kWh/100mi</string>
 
     <string name="label_DistToDest">Distance to destination</string>
     <string name="default_DistToDest">#ktd</string>
@@ -191,6 +191,7 @@
 
     <string name="header_Firmware">Firmware versions</string>
     <string name="default_Firmware">Not available</string>
+    <string name="help_Ecus"><![CDATA[Learn more about the car\'s computers <a href="http://canze.fisch.lu/computers/">here</a>.]]></string>
 
     <!-- kangoo fluence temperatures -->
 
@@ -241,6 +242,10 @@
     <!-- DTC -->
 
     <string name="label_xClimaLoopMode">Climate loop mode</string>
+    <string name="button_QueryDTCs">Query DTCs</string>
+    <string name="button_ClearDTCs">Clear DTCs</string>
+    <string name="button_AllData">All data</string>
+    <string name="help_DTC">To enable clearing DTC\'s:\n\nEnter key card\n\nGear to D\n\nHold start button for approximately 5 seconds until the \'Remove card\' message appears\n\nGear to P</string>
 
     <!-- prediction -->
 
@@ -249,6 +254,12 @@
     <string name="label_ACPower">AC power</string>
     <string name="label_StateOfCharge">State of charge</string>
 
+    <!-- consumption -->
+
+    <string name="label_WheelTorque">Wheel torque</string>
+    <string name="unit_Nm">Nm</string>
+    <string name="label_InstantConsumption">Instant Consumption</string>
+    <string name="label_kWh100km">kWh/100km</string>
 
 
 
