@@ -99,7 +99,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
         }
 
         TextView textView = (TextView) findViewById(R.id.link);
-        textView.setText(Html.fromHtml("Learn more about the car's computers <a href='http://canze.fisch.lu/computers/'>here</a>."));
+        textView.setText(Html.fromHtml(getString(R.string.help_Ecus)));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
      }
 

@@ -116,34 +116,36 @@
                         android:layout_marginTop="10dp"
                         />
             -->
-            <TableLayout
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal">
-                <TableRow>
                     <TextView
                         android:id="@+id/textRealSpeed"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="@string/default_realSpeed"
                         android:textColor="#000"
                         android:textSize="96sp"
-                        android:gravity="right"
+                        android:gravity="end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         />
                     <TextView
                         android:id="@+id/textSpeedUnit"
                         android:text="@string/unit_SpeedKm"
-                        android:paddingLeft="8dp"
                         android:textSize="24sp"
-                        android:gravity="left"
+                        android:gravity="start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         />
-                </TableRow>
-            </TableLayout>
+            </LinearLayout>
 
-            <TableLayout
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal">
-                <TableRow>
 
                     <TextView
                         android:id="@+id/textConsumption"
@@ -151,17 +153,19 @@
                         android:text="@string/default_consumption"
                         android:textColor="#000"
                         android:textSize="48sp"
-                        android:gravity="right"
+                        android:gravity="end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         />
                     <TextView
                         android:id="@+id/textConsumptionUnit"
                         android:text="@string/unit_ConsumptionKm"
-                        android:paddingLeft="8dp"
                         android:textSize="12sp"
-                        android:gravity="left"
+                        android:gravity="start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         />
-                </TableRow>
-            </TableLayout>
+            </LinearLayout>
 
 
             <TableLayout
@@ -179,7 +183,7 @@
                         android:id="@+id/textDistToDest"
                         android:text="@string/default_Zero"
                         android:textSize="24sp"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:layout_weight="2"
                         />
                 </TableRow>
@@ -194,7 +198,7 @@
                         android:id="@+id/textDistAVailAtDest"
                         android:text="@string/default_Zero"
                         android:textSize="24sp"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:layout_weight="2"
                         />
                 </TableRow>
@@ -208,7 +212,7 @@
                     <TextView
                         android:id="@+id/textSOC"
                         android:text="@string/default_SOC"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:layout_weight="2"
                         />
                 </TableRow>
