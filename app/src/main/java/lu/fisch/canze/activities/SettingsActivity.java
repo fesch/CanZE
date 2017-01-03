@@ -31,7 +31,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -48,14 +47,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Set;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+// import java.util.zip.ZipEntry;
+// import java.util.zip.ZipFile;
 
 import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
@@ -64,7 +62,7 @@ import lu.fisch.canze.database.CanzeDataSource;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    public static final int YES_NO_CALL = 13;
+    //public static final int YES_NO_CALL = 13;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,7 +191,7 @@ public class SettingsActivity extends AppCompatActivity {
                     Point size = new Point();
                     display.getSize(size);
                     float width = size.x;
-                    int height = size.y;
+                    //int height = size.y;
                     width = width / getResources().getDisplayMetrics().density * getResources().getDisplayMetrics().scaledDensity;
                     if (width <= 480) {
                         yes = "Yes";
@@ -256,7 +254,7 @@ public class SettingsActivity extends AppCompatActivity {
                     Point size = new Point();
                     display.getSize(size);
                     float width = size.x;
-                    int height = size.y;
+                    //int height = size.y;
                     width = width / getResources().getDisplayMetrics().scaledDensity;
                     if (width <= 480) {
                         yes = "Yes";
