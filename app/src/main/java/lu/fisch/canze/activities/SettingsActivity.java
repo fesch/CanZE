@@ -39,9 +39,11 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,6 +76,30 @@ public class SettingsActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
         String device=settings.getString("device", "Arduino");
 
+        // device address
+        final EditText deviceAddress = (EditText) findViewById(R.id.editTextDeviceAddress);
+        deviceAddress.setEnabled(false);
+        deviceAddress.setText(settings.getString("deviceAddress",""));
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(deviceAddress.getWindowToken(), 0);
+
+        final Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
+        deviceList.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                if(deviceList.getSelectedItemPosition()>=4){
+                    //deviceAddress.setText("");
+                    deviceAddress.setEnabled(true);
+                }
+                else {
+                    String device = (String) deviceList.getSelectedItem();
+                    String[] pieces = device.split("\n");
+                    deviceAddress.setText(pieces[1]);
+                    deviceAddress.setEnabled(false);
+                }
+            }
+        });
+
         // fill remote devices
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         arrayAdapter.add("ELM327");
@@ -90,11 +116,11 @@ public class SettingsActivity extends AppCompatActivity {
         //else if(device.equals("ELM327 Experimental")) index=3;
 
         // display the list
-        Spinner deviceList = (Spinner) findViewById(R.id.remoteDevice);
-        deviceList.setAdapter(arrayAdapter);
+        Spinner remoteDeviceList = (Spinner) findViewById(R.id.remoteDevice);
+        remoteDeviceList.setAdapter(arrayAdapter);
         // select the actual device
-        deviceList.setSelection(index);
-        deviceList.setSelected(true);
+        remoteDeviceList.setSelection(index);
+        remoteDeviceList.setSelected(true);
 
 
         // fill cars
@@ -471,10 +497,12 @@ public class SettingsActivity extends AppCompatActivity {
             CheckBox fieldLog = (CheckBox) findViewById(R.id.fieldLogMode);
             CheckBox btBackground = (CheckBox) findViewById(R.id.btBackgrounding);
             Spinner toastLevel = (Spinner) findViewById(R.id.toastLevel);
+            EditText deviceAddress = (EditText) findViewById(R.id.editTextDeviceAddress);
             if(deviceList.getSelectedItem()!=null) {
                 MainActivity.debug("Settings.deviceAddress = " + deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 MainActivity.debug("Settings.deviceName = " + deviceList.getSelectedItem().toString().split("\n")[0].trim());
-                editor.putString("deviceAddress", deviceList.getSelectedItem().toString().split("\n")[1].trim());
+                //editor.putString("deviceAddress", deviceList.getSelectedItem().toString().split("\n")[1].trim());
+                editor.putString("deviceAddress", String.valueOf(deviceAddress.getText()));
                 editor.putString("deviceName", deviceList.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("device", device.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("car", car.getSelectedItem().toString().split("\n")[0].trim());
@@ -537,6 +565,9 @@ public class SettingsActivity extends AppCompatActivity {
     {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
         String deviceAddress=settings.getString("deviceAddress", null);
+        String deviceName=settings.getString("deviceName", null);
+        MainActivity.debug("SELECT: deviceAddress = "+deviceAddress);
+        MainActivity.debug("SELECT: deviceName = "+deviceName);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
         int index=-1;
         int i = 0;
@@ -570,27 +601,30 @@ public class SettingsActivity extends AppCompatActivity {
 
                 arrayAdapter.add(deviceAlias + "\n" + device.getAddress());
                 // get the index of the selected item
-                if(device.getAddress().equals(deviceAddress))
+                //if(device.getAddress().equals(deviceAddress))
+                if(deviceAlias.equals(deviceName)) {
                     index = i; // plus one as HTTP is always first in list
+                    //MainActivity.debug("SELECT: found = "+i+" ("+deviceAlias+")");
+                }
                 i++;
             }
 
         }
 
-        arrayAdapter.add("HTTP-B\nGateway-B");
-        if("Gateway-B".equals(deviceAddress))
+        arrayAdapter.add("HTTP Gateway\n-");
+        if("HTTP Gateway".equals(deviceName))
             index = i;
         i++;
 
-        arrayAdapter.add("HTTP-J\nGateway-J");
+        /*arrayAdapter.add("HTTP-J\nGateway-J");
         if("Gateway-J".equals(deviceAddress))
             index = i;
         i++;
 
-        arrayAdapter.add("HTTP\nEmulator");
-        if("Emulator".equals(deviceAddress))
+        arrayAdapter.add("HTTP Emulator\n-");
+        if("HTTP Emulator".equals(deviceName))
             index = i;
-        i++;
+        i++;*/
 
 
         // display the list

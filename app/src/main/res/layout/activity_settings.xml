@@ -9,7 +9,8 @@
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
     tools:context="lu.fisch.canze.activities.SettingsActivity"
-    android:id="@+id/activity_settings">
+    android:id="@+id/activity_settings"
+    android:windowSoftInputMode="stateHidden">
 
     <ScrollView
         android:id="@+id/ScrlView"
@@ -19,6 +20,7 @@
         android:paddingRight="0px"
         android:paddingTop="0px"
         android:paddingBottom="0px"
+        android:windowSoftInputMode="stateHidden"
         >
 
         <LinearLayout
@@ -29,6 +31,7 @@
             android:paddingRight="0px"
             android:paddingTop="0px"
             android:paddingBottom="0px"
+            android:windowSoftInputMode="stateHidden"
             >
 
             <TextView
@@ -51,6 +54,7 @@
                 android:paddingBottom="0dp"
                 android:stretchColumns="2"
                 android:id="@+id/table"
+                android:windowSoftInputMode="stateHidden"
                 >
                 <TableRow
                     android:id="@+id/tableRow1"
@@ -68,12 +72,21 @@
                         android:paddingRight="20px"
                         android:paddingTop="0px"
                         android:paddingBottom="0px"
+                        android:windowSoftInputMode="stateHidden"
                         >
+
+                        <!-- Dummy item to prevent AutoCompleteTextView from receiving focus -->
+                        <LinearLayout
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:layout_width="0px"
+                            android:layout_height="0px"/>
+
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Bluetooth device"
+                            android:text="Remote device"
                             android:id="@+id/textViewBluetoothDevice" />
                         <Spinner
                             android:layout_width="fill_parent"
@@ -85,7 +98,21 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Remote device"
+                            android:text="Device address"
+                            android:id="@+id/textViewDeviceAddress" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:ems="10"
+                            android:id="@+id/editTextDeviceAddress" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:text="Device Type"
                             android:id="@+id/textViewDevice" />
                         <Spinner
                             android:layout_width="fill_parent"
