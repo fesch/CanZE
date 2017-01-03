@@ -52,6 +52,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -87,12 +88,14 @@ public class SettingsActivity extends AppCompatActivity {
         deviceList.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                if(deviceList.getSelectedItemPosition()>=4){
+                String device = (String) deviceList.getSelectedItem();
+                //if(deviceList.getSelectedItemPosition()>=4){
+                if(device.substring(0,4).compareTo("HTTP") == 0){
                     //deviceAddress.setText("");
                     deviceAddress.setEnabled(true);
                 }
                 else {
-                    String device = (String) deviceList.getSelectedItem();
+                    //String device = (String) deviceList.getSelectedItem();
                     String[] pieces = device.split("\n");
                     deviceAddress.setText(pieces[1]);
                     deviceAddress.setEnabled(false);
@@ -109,11 +112,17 @@ public class SettingsActivity extends AppCompatActivity {
         //arrayAdapter.add("ELM327 Experimental");
 
         int index = 0;
-        if(device.equals("ELM327")) index=0;
-        //else if(device.equals("Arduino Due")) index=1;
-        else if(device.equals("Bob Due")) index=1;
-        else if(device.equals("ELM327Http")) index=2;
-        //else if(device.equals("ELM327 Experimental")) index=3;
+        switch (device) {
+            case "ELM327":
+                index = 0;
+                break;
+            case "Bob Due":
+                index = 1;
+                break;
+            case "ELM327Http":
+                index = 2;
+                break;
+        }
 
         // display the list
         Spinner remoteDeviceList = (Spinner) findViewById(R.id.remoteDevice);
@@ -413,8 +422,7 @@ public class SettingsActivity extends AppCompatActivity {
         // display build version
         TextView tv = (TextView) findViewById(R.id.build);
         try{
-            /*
-            ApplicationInfo ai = getPackageManager().getApplicationInfo(getPackageName(), 0);
+        /*  ApplicationInfo ai = getPackageManager().getApplicationInfo(getPackageName(), 0);
             ZipFile zf = new ZipFile(ai.sourceDir);
             ZipEntry ze = zf.getEntry("classes.dex");
             long time = ze.getTime();
@@ -423,7 +431,7 @@ public class SettingsActivity extends AppCompatActivity {
             zf.close(); */
 
             Date buildDate = new Date(BuildConfig.TIMESTAMP);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd @ HH:mm");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd @ HH:mm", Locale.getDefault());
             String s = sdf.format(buildDate);
 
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
@@ -431,11 +439,8 @@ public class SettingsActivity extends AppCompatActivity {
 
             tv.setText("Version: "+version+"  //  Build: "+s);
 
-            tv.setText("Version: "+version+"  //  Build: "+s);
-
-
-        }
-        catch(Exception e){
+        } catch(Exception e) {
+            e.printStackTrace();
         }
 
         Button button = (Button) findViewById(R.id.buttonClearSettings);
@@ -446,13 +451,15 @@ public class SettingsActivity extends AppCompatActivity {
                 SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.clear();
-                editor.commit();
+                // editor.commit();
+                editor.apply();
 
                 // clear data file
                 settings = getSharedPreferences(MainActivity.DATA_FILE, 0);
                 editor = settings.edit();
                 editor.clear();
-                editor.commit();
+                // editor.commit();
+                editor.apply();
 
                 // clear database
                 CanzeDataSource.getInstance().clear();
@@ -514,7 +521,8 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putBoolean("optFieldLog", fieldLog.isChecked());
                 editor.putInt("optToast", toastLevel.getSelectedItemPosition());
             }
-            editor.commit();
+            // editor.commit();
+            editor.apply();
             // finish
             finish();
             return true;
@@ -568,7 +576,7 @@ public class SettingsActivity extends AppCompatActivity {
         String deviceName=settings.getString("deviceName", null);
         MainActivity.debug("SELECT: deviceAddress = "+deviceAddress);
         MainActivity.debug("SELECT: deviceName = "+deviceName);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         int index=-1;
         int i = 0;
 
@@ -591,11 +599,13 @@ public class SettingsActivity extends AppCompatActivity {
                     if(method != null) {
                         deviceAlias = (String)method.invoke(device);
                     }
-                } catch (NoSuchMethodException e) {
+                } catch (Exception e) {
+                    e.printStackTrace();
+                // catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                //} catch (InvocationTargetException e) {
                     // e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    // e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                //} catch (IllegalAccessException e) {
                     // e.printStackTrace();
                 }
 
@@ -614,7 +624,7 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("HTTP Gateway\n-");
         if("HTTP Gateway".equals(deviceName))
             index = i;
-        i++;
+        //i++;
 
         /*arrayAdapter.add("HTTP-J\nGateway-J");
         if("Gateway-J".equals(deviceAddress))
