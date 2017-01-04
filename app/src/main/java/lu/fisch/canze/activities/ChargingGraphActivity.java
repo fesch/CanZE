@@ -22,7 +22,6 @@
 package lu.fisch.canze.activities;
 
 import android.os.Bundle;
-import android.view.Menu;
 
 import lu.fisch.canze.R;
 

@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
@@ -36,14 +37,14 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
 
     public static final String SID_EngineFanSpeed                   = "42e.20";
     public static final String SID_DcPower                          = "800.6103.24";
-    public static final String SID_ChargingPower                    = "42e.56";
+    // public static final String SID_ChargingPower                    = "42e.56";
     public static final String SID_HvCoolingState                   = "430.38";
     public static final String SID_HvEvaporationTemp                = "430.40";
     public static final String SID_BatteryConditioningMode          = "432.36";
     public static final String SID_ClimaLoopMode                    = "42a.48";
 
     public static final String cst_Status [] = {"No", "Cooling alone", "Cooling coupled", "Unavail"};
-    public static final String plu_Status [] = {"Blow req", "Cool cond req", "Heat cond req", "Unavail"};
+    //public static final String plu_Status [] = {"Blow req", "Cool cond req", "Heat cond req", "Unavail"};
     public static final String clm_Status [] = {"Unavail", "AC", "AC deiceing","", "Heat pump", "", "Demisting", "Idle"};
 
 
@@ -76,7 +77,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
         if (MainActivity.car==MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) {
             addListener(SID_EngineFanSpeed);
             addListener(SID_DcPower);
-            addListener(SID_ChargingPower);
+            // addListener(SID_ChargingPower);
             addListener(SID_HvCoolingState);
             addListener(SID_HvEvaporationTemp);
             addListener(SID_BatteryConditioningMode);
@@ -127,9 +128,9 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
                     case SID_DcPower:
                         tv = (TextView) findViewById(R.id.text_DCP);
                         break;
-                    case SID_ChargingPower:
-                        tv = (TextView) findViewById(R.id.text_CPO);
-                        break;
+                    // case SID_ChargingPower:
+                    //     tv = (TextView) findViewById(R.id.text_CPO);
+                    //     break;
                     case SID_HvCoolingState:
                         tv = (TextView) findViewById(R.id.text_HCS);
                         tv.setText(cst_Status[(int) field.getValue()]);
@@ -152,7 +153,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
                }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText("" + (Math.round(field.getValue() * 10.0) / 10.0));
+                    tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue()));
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);

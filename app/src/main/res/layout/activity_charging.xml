@@ -16,203 +16,203 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TableLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <TableRow>
-                <TextView
-                    android:id="@+id/LabelAvChPwr"
-                    android:text="@string/label_AvChPwr"
-                    android:gravity="center"
-                    android:layout_weight="5"
-                    android:background="#ffc0c0c0"
-                    />
-                <TextView
-                    android:text=""
-                    android:layout_width="20dp"
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/LabelMaxCharge"
-                    android:text="@string/label_max_charge"
-                    android:gravity="center"
-                    android:layout_weight="5"
-                    android:background="#ffc0c0c0" />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:id="@+id/textAvChPwr"
-                    android:text="@string/default_AvChPwr"
-                    android:textColor="#000"
-                    android:textSize="48sp"
-                    android:gravity="center"
-                    android:layout_weight="5"
-                    android:background="#ffc0c0c0" />
-                <TextView
-                    android:text="  "
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/text_max_charge"
-                    android:text="@string/default_max_charge"
-                    android:textColor="#000"
-                    android:textSize="48sp"
-                    android:gravity="center"
-                    android:layout_weight="5"
-                    android:background="#ffc0c0c0" />
-            </TableRow>
-        </TableLayout>
-
-        <TextView
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="  "
-            android:layout_weight="1" />
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/LabelAvChPwr"
+                        android:text="@string/label_AvChPwr"
+                        android:gravity="center"
+                        android:layout_weight="5"
+                        android:background="#ffc0c0c0"
+                        />
+                    <TextView
+                        android:text=""
+                        android:layout_width="20dp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/LabelMaxCharge"
+                        android:text="@string/label_max_charge"
+                        android:gravity="center"
+                        android:layout_weight="5"
+                        android:background="#ffc0c0c0" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textAvChPwr"
+                        android:text="@string/default_AvChPwr"
+                        android:textColor="#000"
+                        android:textSize="48sp"
+                        android:gravity="center"
+                        android:layout_weight="5"
+                        android:background="#ffc0c0c0" />
+                    <TextView
+                        android:text="@string/default_DoubleSpace"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/text_max_charge"
+                        android:text="@string/default_max_charge"
+                        android:textColor="#000"
+                        android:textSize="48sp"
+                        android:gravity="center"
+                        android:layout_weight="5"
+                        android:background="#ffc0c0c0" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:text="@string/default_DoubleSpace"
+                android:layout_weight="1" />
 
 
-        <TableLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
 
 
-            <TableRow>
-                <TextView
-                    android:text="  "
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/LabelDcPwr"
-                    android:text="@string/label_DcPwr"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:background="#ffc0c0c0"
-                    />
-                <TextView
-                    android:text="  "
-                    android:layout_weight="1" />
-            </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="@string/default_DoubleSpace"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/LabelDcPwr"
+                        android:text="@string/label_DcPwr"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="#ffc0c0c0"
+                        />
+                    <TextView
+                        android:text="@string/default_DoubleSpace"
+                        android:layout_weight="1" />
+                </TableRow>
 
-            <TableRow>
-                <TextView
-                    android:text="  "
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/textDcPwr"
-                    android:text="@string/default_DcPwr"
-                    android:textColor="#000"
-                    android:textSize="48sp"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:background="#ffc0c0c0"
-                    />
-                <TextView
-                    android:text="  "
-                    android:layout_weight="1" />
+                <TableRow>
+                    <TextView
+                        android:text="@string/default_DoubleSpace"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/textDcPwr"
+                        android:text="@string/default_DcPwr"
+                        android:textColor="#000"
+                        android:textSize="48sp"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="#ffc0c0c0"
+                        />
+                    <TextView
+                        android:text="@string/default_DoubleSpace"
+                        android:layout_weight="1" />
 
-            </TableRow>
+                </TableRow>
 
-            <TableRow android:layout_marginTop="20dp">
-                <TextView
-                    android:text="  "
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/LabelKMA"
-                    android:text="@string/label_DISTA"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:background="#ffc0c0c0"
-                    />
-                <TextView
-                    android:text="  "
-                    android:layout_weight="1" />
-            </TableRow>
+                <TableRow android:layout_marginTop="20dp">
+                    <TextView
+                        android:text="@string/default_DoubleSpace"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/LabelKMA"
+                        android:text="@string/label_DISTA"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="#ffc0c0c0"
+                        />
+                    <TextView
+                        android:text="@string/default_DoubleSpace"
+                        android:layout_weight="1" />
+                </TableRow>
 
-            <TableRow>
-                <TextView
-                    android:text="  "
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/textKMA"
-                    android:text="@string/default_DISTA"
-                    android:textColor="#000"
-                    android:textSize="48sp"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:background="#ffc0c0c0"
-                    />
-                <TextView
-                    android:text="  "
-                    android:layout_weight="1" />
-            </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="@string/default_DoubleSpace"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/textKMA"
+                        android:text="@string/default_DISTA"
+                        android:textColor="#000"
+                        android:textSize="48sp"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="#ffc0c0c0"
+                        />
+                    <TextView
+                        android:text="@string/default_DoubleSpace"
+                        android:layout_weight="1" />
+                </TableRow>
 
 
-        </TableLayout>
+            </TableLayout>
 
-        <TableLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
 
-            <TableRow android:layout_marginTop="20dp">
-                <TextView
-                    android:text="@string/label_UserSOC"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textUserSOC"
-                    android:text="@string/default_SOC"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
+                <TableRow android:layout_marginTop="20dp">
+                    <TextView
+                        android:text="@string/label_UserSOC"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textUserSOC"
+                        android:text="@string/default_SOC"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
 
-            <TableRow>
-                <TextView
-                    android:text="@string/label_RealSOC"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textRealSOC"
-                    android:text="@string/default_SOC"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_RealSOC"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textRealSOC"
+                        android:text="@string/default_SOC"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
 
-            <TableRow>
-                <TextView
-                    android:id="@+id/LabelSOH"
-                    android:text="@string/label_SOH"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textSOH"
-                    android:text="@string/default_SOH"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/LabelSOH"
+                        android:text="@string/label_SOH"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textSOH"
+                        android:text="@string/default_SOH"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
 
-            <TableRow>
-                <TextView
-                    android:id="@+id/LabelHvTemp"
-                    android:text="@string/label_HvTemp"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textHvTemp"
-                    android:text="@string/default_HvTemp"
-                    android:gravity="right"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/LabelHvTemp"
+                        android:text="@string/label_HvTemp"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textHvTemp"
+                        android:text="@string/default_HvTemp"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
 
-        </TableLayout>
+            </TableLayout>
 
-    </LinearLayout>
+        </LinearLayout>
 
     </ScrollView>
 

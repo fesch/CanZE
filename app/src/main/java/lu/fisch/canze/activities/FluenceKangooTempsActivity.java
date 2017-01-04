@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
@@ -166,7 +167,7 @@ public class FluenceKangooTempsActivity extends CanzeActivity implements FieldLi
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText("" + (Math.round(field.getValue() * 10.0) / 10.0));
+                    tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue()));
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);

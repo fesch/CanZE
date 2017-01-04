@@ -1,4 +1,4 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -11,180 +11,186 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="lu.fisch.canze.activities.FluenceKangooTempsActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <TextView
-            android:text="@string/header_KangooFluenceTemperatures"
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000" />
+            android:orientation="vertical">
 
-        <TableLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            <TextView
+                android:text="@string/header_KangooFluenceTemperatures"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000" />
 
-            <TableRow>
-                <TextView
-                    android:text="@string/label_EvaporatorTemperature"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textEvaporatorTemperature"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
 
-            <TableRow>
-                <TextView
-                    android:text="@string/label_WaterTemperatureHeating"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textWaterTemperatureHeating"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_EvaporatorTemperature"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textEvaporatorTemperature"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
 
-            <TableRow>
-                <TextView
-                    android:text="@string/label_DcDcConverterTemperature"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textDcDcConverterTemperature"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_WaterTemperatureHeating"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textWaterTemperatureHeating"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
 
-            <TableRow>
-                <TextView
-                    android:text="@string/label_InverterTemperature"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textInverterTemperature"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_DcDcConverterTemperature"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textDcDcConverterTemperature"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
 
-            <TableRow>
-                <TextView
-                    android:text="@string/label_ExternalTemperature"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textExternalTemperature"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_InverterTemperature"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textInverterTemperature"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
 
-            <TableRow>
-                <TextView
-                    android:text="@string/label_InternalTemperature"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textInternalTemperature"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_ExternalTemperature"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textExternalTemperature"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
 
-        </TableLayout>
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_InternalTemperature"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textInternalTemperature"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+            </TableLayout>
+
+            <TextView
+                android:text="@string/header_KangooFluenceFansPumps"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000" />
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_MotorWaterPumpSpeed"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textMotorWaterPumpSpeed"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_ChargerWaterPumpSpeed"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textChargerWaterPumpSpeed"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/LabelAvEner"
+                        android:text="@string/label_HeatingWaterPumpSpeed"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textHeatingWaterPumpSpeed"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_BatteryCoolingFansSpeed"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textBatteryCoolingFansSpeed"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        >
 
         <TextView
-            android:text="@string/header_KangooFluenceFansPumps"
-            android:layout_marginTop="10dp"
+            android:text="@string/label_debug"
+            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000" />
 
-        <TableLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_MotorWaterPumpSpeed"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textMotorWaterPumpSpeed"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_ChargerWaterPumpSpeed"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textChargerWaterPumpSpeed"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:id="@+id/LabelAvEner"
-                    android:text="@string/label_HeatingWaterPumpSpeed"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textHeatingWaterPumpSpeed"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_BatteryCoolingFansSpeed"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textBatteryCoolingFansSpeed"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-        </TableLayout>
+            />
+        <TextView
+            android:id="@+id/textDebug"
+            android:text="@string/default_debug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
 
     </LinearLayout>
 
-
-    <!-- debug line -->
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        >
-
-        <TableRow>
-            <TextView
-                android:text="@string/label_debug"
-                android:textColor="#000"
-                />
-            <TextView
-                android:id="@+id/textDebug"
-                android:paddingLeft="8dp"
-                android:text="@string/default_debug"
-                />
-        </TableRow>
-
-    </TableLayout>
-
-</RelativeLayout>
+</LinearLayout>

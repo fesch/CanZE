@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
@@ -129,14 +130,15 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
                 mean /= lastCell;
 
                 // the update has to be done in a separate thread
-                // otherwise the UI will not be repainted doing that here only when the entire temperature buls is (supposed to be) in,
+                // otherwise the UI will not be repainted doing that here only when the entire temperature array is (supposed to be) in,
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         for (int i = 1; i <= lastCell; i++) {
                             TextView tv = (TextView) findViewById(getResources().getIdentifier("text_comp_" + i + "_temp", "id", getPackageName()));
                             if (tv != null) {
-                                tv.setText("" + lastVal[i]);
+                                // tv.setText("" + lastVal[i]);
+                                tv.setText(String.format(Locale.getDefault(), "%.0f", lastVal[i]));
                                 int color = (int) (50 * (lastVal[i] - mean)); // color is temp minus mean
                                 if (color > 62) {
                                     color = 0xffffc0c0;

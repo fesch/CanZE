@@ -1,3 +1,5 @@
+2017.01.04 [Jeroen] Improved temp/balances part in chargingtech, removed possible charging pwr from climatech
+2017.01.04 [Jeroen] Cleanup of Lint (almost everywhere, not complete)
 2017.01.03 [Jeroen] Modified gateway settings to enable on "HTTP" instead of >4th device and a bit of cleanup
 2017.01.03 [Jeroen] Fixed layouts and string resources in Firmware, Consumption, Driving, DTC, ELMtest
 2017.01.02 [Bob] Modified settings to add configurable address if HTTP selected
