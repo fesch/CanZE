@@ -37,7 +37,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Build: "
+                android:text="@string/build"
                 android:id="@+id/build"
                 android:background="#ffd900"
                 android:textStyle="bold"
@@ -68,8 +68,10 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="0px"
-                        android:paddingRight="20px"
+                        android:paddingLeft="0dp"
+                        android:paddingStart="0dp"
+                        android:paddingRight="20dp"
+                        android:paddingEnd="0dp"
                         android:paddingTop="0px"
                         android:paddingBottom="0px"
                         android:windowSoftInputMode="stateHidden"
@@ -86,7 +88,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Remote device"
+                            android:text="@string/label_RemoteDevice"
                             android:id="@+id/textViewBluetoothDevice" />
                         <Spinner
                             android:layout_width="fill_parent"
@@ -98,7 +100,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Device address"
+                            android:text="@string/label_DeviceAddress"
                             android:id="@+id/textViewDeviceAddress" />
 
                         <EditText
@@ -112,7 +114,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Device Type"
+                            android:text="@string/label_DeviceType"
                             android:id="@+id/textViewDevice" />
                         <Spinner
                             android:layout_width="fill_parent"
@@ -124,7 +126,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Car"
+                            android:text="@string/label_Car"
                             android:id="@+id/textViewCar" />
                         <Spinner
                             android:layout_width="fill_parent"
@@ -136,7 +138,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Log level"
+                            android:text="@string/label_LogLevel"
                             android:id="@+id/textToastLevel" />
                         <Spinner
                             android:layout_width="fill_parent"
@@ -151,10 +153,12 @@
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20px"
-                        android:paddingRight="0px"
+                        android:paddingLeft="20dp"
+                        android:paddingStart="20dp"
+                        android:paddingRight="0dp"
+                        android:paddingEnd="0dp"
                         android:paddingTop="0px"
-                        android:paddingBottom="0px"
+                        android:paddingBottom="0dp"
                         >
 
 
@@ -162,57 +166,57 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Options"
+                            android:text="@string/label_Options"
                             android:id="@+id/textViewOptions" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Safe Driving Mode"
+                            android:text="@string/label_SafeDrivingMode"
                             android:id="@+id/safeDrivingMode" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Bluetooth Background Mode"
+                            android:text="@string/label_BluetoothBackgroundMode"
                             android:id="@+id/btBackgrounding" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Miles"
+                            android:text="@string/label_Miles"
                             android:id="@+id/milesMode" />
 
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="SD card logging"
+                            android:text="@string/label_SdCardLogging"
                             android:id="@+id/textViewLogging" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Debug"
+                            android:text="@string/label_Debug"
                             android:id="@+id/debugLogMode" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Fields"
+                            android:text="@string/label_Fields"
                             android:id="@+id/fieldLogMode" />
 
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="This logs all fields requested by the actual screen."
+                            android:text="@string/help_Fields"
                             android:layout_marginBottom="16dp"
                             android:id="@+id/fieldLogModeExpl" />
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Log to sdcard1"
+                            android:text="@string/label_LogToSdcard1"
                             android:id="@+id/dataExportMode" />
 
 
@@ -220,7 +224,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="Actions"
+                            android:text="@string/label_Actions"
                             android:id="@+id/textViewActions" />
                         <LinearLayout
                             android:orientation="horizontal"
@@ -229,7 +233,7 @@
                             <Button
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Clear cached data"
+                                android:text="@string/label_ClearCachedData"
                                 android:id="@+id/buttonClearSettings" />
 
                         </LinearLayout>
