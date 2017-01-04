@@ -59,8 +59,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     public static final String SID_Preamble_BalancingBytes          = "7bb.6107.";
 
     public static final String DefaultFormatTemperature             = "%3.0f°";
-    public static final String DefaultFormatBalancingFirst          = "%02X";
-    public static final String DefaultFormatBalancing               = "-%02X";
+    public static final String DefaultFormatBalancing               = "%02X";
 
 
 
@@ -346,7 +345,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         break;
                     case SID_Preamble_BalancingBytes + "16":
                         tv = (TextView) findViewById(R.id.text_bala_1_temp);
-                        tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancingFirst, (int)field.getValue()));
+                        tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancing, (int)field.getValue()));
                         tv = null;
                         break;
                     case SID_Preamble_BalancingBytes + "24":
@@ -376,7 +375,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         break;
                     case SID_Preamble_BalancingBytes + "64":
                         tv = (TextView) findViewById(R.id.text_bala_7_temp);
-                        tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancingFirst, (int)field.getValue()));
+                        tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancing, (int)field.getValue()));
                         tv = null;
                         break;
                     case SID_Preamble_BalancingBytes + "72":
