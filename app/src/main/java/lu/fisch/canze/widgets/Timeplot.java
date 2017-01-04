@@ -205,7 +205,7 @@ public class Timeplot extends Drawable {
             }
         }
 
-        // draw the horizontal grid
+        // draw the vertical grid
         g.setColor(getIntermediate());
         long start = Calendar.getInstance().getTimeInMillis()/1000;
         int interval = 60/timeSale;
@@ -221,6 +221,7 @@ public class Timeplot extends Drawable {
                     long thisDate = list.get(list.size()-1).date;
                     if(thisDate>start) start=thisDate;
                 }
+                //MainActivity.debug("Start: "+sdf.format(start));
                 for(long x=width-(start%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
                 {
                     g.drawLine(x, 1, x, graphHeight + 5);
@@ -242,6 +243,7 @@ public class Timeplot extends Drawable {
             }
         }
         catch(Exception e) {
+            //MainActivity.debug("Exception: "+e.getMessage());
             for(long x=width-(start%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
             {
                 g.drawLine(x, 1, x, graphHeight + 5);
@@ -479,7 +481,10 @@ public class Timeplot extends Drawable {
                 if(c%(5*ts)==0) {
                     g.setColor(getForeground());
                     g.drawLine(x, graphHeight, x, graphHeight + 10);
-                    String date = sdf.format((start - ((start % interval))*timeSale - interval * c*timeSale) * 1000);
+                    //String date = sdf.format((start - ((start % interval))*timeSale - interval * c*timeSale) * 1000);
+                    String date = sdf.format((start - ((start % interval))*timeSale - interval * c*timeSale));
+                    //String date = sdf.format(start-(start%interval)-interval*c);
+                    //MainActivity.debug("Tick 1: "+sdf.format(start-(start%interval)-interval*c));
                     g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
                 }
                 else
@@ -498,7 +503,8 @@ public class Timeplot extends Drawable {
                 if(c%(5*ts)==0) {
                     g.setColor(getForeground());
                     g.drawLine(x, graphHeight, x, graphHeight + 10);
-                    String date = sdf.format( start + (interval * c*timeSale) * 1000);
+                    //String date = sdf.format( start + (interval * c*timeSale) * 1000);
+                    String date = sdf.format( start + (interval * c*timeSale));
                     g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
                 }
                 else

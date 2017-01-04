@@ -1,3 +1,4 @@
+2017.01.04 [Bob] Fixed timeplotter x-axis label problem
 2017.01.04 [Jeroen] Improved temp/balances part in chargingtech, removed possible charging pwr from climatech
 2017.01.04 [Jeroen] Cleanup of Lint (almost everywhere, not complete)
 2017.01.03 [Jeroen] Modified gateway settings to enable on "HTTP" instead of >4th device and a bit of cleanup
