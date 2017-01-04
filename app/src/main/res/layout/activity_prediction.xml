@@ -23,7 +23,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:text="Charging prediction"
+                android:text="@string/label_ChargingPrediction"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#000" />
@@ -61,19 +61,19 @@
 
                 <TableRow>
                     <TextView
-                        android:text="Duration (hh:mm)"
+                        android:text="@string/label_Duration"
                         android:layout_weight="1"
                         />
                     <TextView
-                        android:text="SOC"
+                        android:text="@string/label_Soc"
                         android:layout_weight="1"
                         />
                     <TextView
-                        android:text="Range"
+                        android:text="@string/label_Range"
                         android:layout_weight="1"
                         />
                     <TextView
-                        android:text="DC power"
+                        android:text="@string/label_DcPower"
                         android:layout_weight="1"
                         />
                 </TableRow>
@@ -81,7 +81,7 @@
                 <TableRow>
                     <TextView
                         android:id="@+id/textTIM10"
-                        android:text="0:10"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
@@ -104,7 +104,7 @@
                 <TableRow>
                     <TextView
                         android:id="@+id/textTIM20"
-                        android:text="0:20"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
@@ -127,7 +127,7 @@
                 <TableRow>
                     <TextView
                         android:id="@+id/textTIM30"
-                        android:text="0:30"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
@@ -150,7 +150,7 @@
                 <TableRow>
                     <TextView
                         android:id="@+id/textTIM40"
-                        android:text="0:40"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
@@ -173,7 +173,7 @@
                 <TableRow>
                     <TextView
                         android:id="@+id/textTIM50"
-                        android:text="0:50"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
@@ -196,7 +196,7 @@
                 <TableRow>
                     <TextView
                         android:id="@+id/textTIM60"
-                        android:text="1:00"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
@@ -219,7 +219,7 @@
                 <TableRow>
                     <TextView
                         android:id="@+id/textTIM70"
-                        android:text="1:10"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
@@ -242,7 +242,7 @@
                 <TableRow>
                     <TextView
                         android:id="@+id/textTIM80"
-                        android:text="1:20"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
@@ -265,7 +265,7 @@
                 <TableRow>
                     <TextView
                         android:id="@+id/textTIM90"
-                        android:text="1:30"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
@@ -288,7 +288,7 @@
                 <TableRow>
                     <TextView
                         android:id="@+id/textTIM100"
-                        android:text="1:40"
+                        android:text="@string/default_Dash"
                         android:layout_weight="1"
                         />
                     <TextView
@@ -329,7 +329,7 @@
                         android:layout_weight="2"
                         />
                     <TextView
-                        android:gravity="right"
+                        android:gravity="end"
                         android:layout_weight="1"
                         android:text="@string/default_Dash"
                         android:id="@+id/texttemp"
@@ -342,7 +342,7 @@
                         android:layout_weight="2"
                         />
                     <TextView
-                        android:gravity="right"
+                        android:gravity="end"
                         android:layout_weight="1"
                         android:text="@string/default_Dash"
                         android:id="@+id/textacpwr"
@@ -355,7 +355,7 @@
                         android:layout_weight="2"
                         />
                     <TextView
-                        android:gravity="right"
+                        android:gravity="end"
                         android:layout_weight="1"
                         android:text="@string/default_Dash"
                         android:id="@+id/textsoc"

@@ -184,8 +184,8 @@ public class SettingsActivity extends AppCompatActivity {
                 if (!safe.isChecked()) {
 
                     // set dialog message
-                    String yes = "Yes, I know what I'm doing";
-                    String no = "No, I prefer the secure way";
+                    String yes = getString(R.string.prompt_YesIKnow);
+                    String no = getString(R.string.prompt_NoSecureWay);
 
                     Display display = getWindowManager().getDefaultDisplay();
                     Point size = new Point();
@@ -194,22 +194,19 @@ public class SettingsActivity extends AppCompatActivity {
                     //int height = size.y;
                     width = width / getResources().getDisplayMetrics().density * getResources().getDisplayMetrics().scaledDensity;
                     if (width <= 480) {
-                        yes = "Yes";
-                        no = "No";
+                        yes = getString(R.string.default_Yes);
+                        no = getString(R.string.default_No);
                     }
 
                     final Context context = SettingsActivity.this;
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
                     // set title
-                    alertDialogBuilder.setTitle("ATTENTION");
+                    alertDialogBuilder.setTitle(R.string.prompt_Attention);
 
                     // set dialog message
                     alertDialogBuilder
-                            .setMessage("Driving and not paying full attention to traffic is extremely dangerous " +
-                                    "and will put your life and the life of those around you at risk. " +
-                                    "Disabling of this mode is not recommended at all!\n\n" +
-                                    "Are you sure you want to continue disabling the Safe Driving Mode?")
+                            .setMessage(getString(R.string.prompt_WarningDriving))
                             .setCancelable(true)
                             .setPositiveButton(yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -247,8 +244,8 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (btBackground.isChecked()) {
                     // set dialog message
-                    String yes = "Yes, I know what I'm doing";
-                    String no = "No, thanks";
+                    String yes = getString(R.string.prompt_YesIKnow);
+                    String no = getString(R.string.prompt_NoThanks);
 
                     Display display = getWindowManager().getDefaultDisplay();
                     Point size = new Point();
@@ -257,8 +254,8 @@ public class SettingsActivity extends AppCompatActivity {
                     //int height = size.y;
                     width = width / getResources().getDisplayMetrics().scaledDensity;
                     if (width <= 480) {
-                        yes = "Yes";
-                        no = "No";
+                        yes = getString(R.string.default_Yes);
+                        no = getString(R.string.default_No);
                     }
 
                     final Context context = SettingsActivity.this;
@@ -269,12 +266,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                     // set dialog message
                     alertDialogBuilder
-                            .setMessage(Html.fromHtml("Leaving the Bluetooth active while the application goes to background " +
-                                    "may interfere with other applications using the Bluetooth feature. It also " +
-                                    "may drain your battery if you forget to kill CanZE or disable this option." +
-                                    "<br><br><b>If using this feature, the connection will stay alive, even if you power cycle " +
-                                    "your Android device!</b><br><br>" +
-                                    "Are you sure you want to continue enabling the Bluetooth Background Mode?"))
+                            .setMessage(Html.fromHtml(getString(R.string.prompt_BluetoothOn)))
                             .setCancelable(true)
                             .setPositiveButton(yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -313,14 +305,11 @@ public class SettingsActivity extends AppCompatActivity {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
                     // set title
-                    alertDialogBuilder.setTitle("I am sorry...");
+                    alertDialogBuilder.setTitle(R.string.prompt_Sorry);
 
                     // set dialog message
                     alertDialogBuilder
-                            .setMessage("External SDcard not available " +
-                                    "or not writeable " +
-                                    "or has not sufficient space left to log data\n\n" +
-                                    "Data export cannot be enabled")
+                            .setMessage(Html.fromHtml(getString(R.string.prompt_NoSd)))
                             .setCancelable(true)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -353,13 +342,11 @@ public class SettingsActivity extends AppCompatActivity {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
                     // set title
-                    alertDialogBuilder.setTitle("I am sorry...");
+                    alertDialogBuilder.setTitle(R.string.prompt_Sorry);
 
                     // set dialog message
                     alertDialogBuilder
-                            .setMessage(Html.fromHtml("External SD card not available, not writeable " +
-                                    "or has not sufficient space left to log data." +
-                                    "<br><br><b>Data export cannot be enabled!</b>"))
+                            .setMessage(Html.fromHtml(getString(R.string.prompt_NoSd)))
                             .setCancelable(true)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -391,13 +378,11 @@ public class SettingsActivity extends AppCompatActivity {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
                     // set title
-                    alertDialogBuilder.setTitle("I am sorry...");
+                    alertDialogBuilder.setTitle(R.string.prompt_Sorry);
 
                     // set dialog message
                     alertDialogBuilder
-                            .setMessage(Html.fromHtml("External SD card not available, not writeable " +
-                                    "or has not sufficient space left to log data." +
-                                    "<br><br><b>Data export cannot be enabled!</b>"))
+                            .setMessage(Html.fromHtml(getString(R.string.prompt_NoSd)))
                             .setCancelable(true)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -430,12 +415,8 @@ public class SettingsActivity extends AppCompatActivity {
 
             Date buildDate = new Date(BuildConfig.TIMESTAMP);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd @ HH:mm", Locale.getDefault());
-            String s = sdf.format(buildDate);
-
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            String version = pInfo.versionName;
-
-            tv.setText("Version: "+version+"  //  Build: "+s);
+            tv.setText( R.string.version+pInfo.versionName+"  //  " + R.string.build+sdf.format(buildDate));
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -463,14 +444,14 @@ public class SettingsActivity extends AppCompatActivity {
                 CanzeDataSource.getInstance().clear();
 
                 MainActivity.fields.clearAllFields();
-                MainActivity.toast("Cache has been cleared ...");
+                MainActivity.toast(getString(R.string.toast_CacheCleared));
             }
         });
     }
 
     @Override
     public void onBackPressed() {
-        MainActivity.toast("Please use one of the top buttons to quit the settings ...");
+        MainActivity.toast(getString(R.string.toast_PleaseUseTop));
     }
 
 
@@ -550,7 +531,7 @@ public class SettingsActivity extends AppCompatActivity {
         // get the bluetooth adapter
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null) {
-            Toast.makeText(SettingsActivity.this, "This device does not have any bluetooth adapter.\n\nSorry...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SettingsActivity.this, R.string.toast_NoBluetooth, Toast.LENGTH_SHORT).show();
             return;
         }
         // test if enabled ...
@@ -624,20 +605,10 @@ public class SettingsActivity extends AppCompatActivity {
             index = i;
         //i++;
 
-        /*arrayAdapter.add("HTTP-J\nGateway-J");
-        if("Gateway-J".equals(deviceAddress))
-            index = i;
-        i++;
-
-        arrayAdapter.add("HTTP Emulator\n-");
-        if("HTTP Emulator".equals(deviceName))
-            index = i;
-        i++;*/
-
-
         // display the list
         Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
         deviceList.setAdapter(arrayAdapter);
+
         // select the actual device
         deviceList.setSelection(index);
         deviceList.setSelected(true);

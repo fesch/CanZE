@@ -26,6 +26,7 @@
     <string name="title_activity_clima_tech">Clima Battery interaction</string>
     <string name="title_activity_gps_test">GPS Test</string>
     <string name="title_activity_prediction">Charging Prediction</string>
+    <string name="title_activity_range">Range</string>
 
     <!-- menus -->
 
@@ -256,6 +257,11 @@
     <string name="label_BatteryTemperature">BatteryTemperature</string>
     <string name="label_ACPower">AC power</string>
     <string name="label_StateOfCharge">State of charge</string>
+    <string name="label_ChargingPrediction">Charging prediction</string>
+    <string name="label_Duration">Duration (hh:mm)</string>
+    <string name="label_Soc">SOC</string>
+    <string name="label_Range">Range</string>
+    <string name="label_DcPower">DC power</string>
 
     <!-- consumption -->
 
@@ -265,6 +271,7 @@
     <string name="label_kWh100km">kWh/100km</string>
 
     <!-- heatmap voltages -->
+
     <string name="_1">1</string>
     <string name="_9">9</string>
     <string name="_17">17</string>
@@ -278,11 +285,40 @@
     <string name="_81">81</string>
     <string name="_89">89</string>
 
+    <!-- Settings -->
+
+    <string name="build">Build:</string>
+    <string name="version">Version:</string>
+    <string name="label_RemoteDevice">Remote device</string>
+    <string name="label_DeviceAddress">Device address</string>
+    <string name="label_DeviceType">Device Type</string>
+    <string name="label_Car">Car</string>
+    <string name="label_LogLevel">Log level</string>
+    <string name="label_Options">Options</string>
+    <string name="label_SafeDrivingMode">Safe Driving Mode</string>
+    <string name="label_BluetoothBackgroundMode">Bluetooth Background Mode</string>
+    <string name="label_Miles">Miles</string>
+    <string name="label_SdCardLogging">SD card logging</string>
+    <string name="label_Debug">Debug</string>
+    <string name="label_Fields">Fields</string>
+    <string name="help_Fields">This logs all fields requested by the actual screen.</string>
+    <string name="label_LogToSdcard1">Log to sdcard1</string>
+    <string name="label_Actions">Actions</string>
+    <string name="label_ClearCachedData">Clear cached data</string>
+    <string name="prompt_YesIKnow">Yes, I know what I\'m doing</string>
+    <string name="prompt_NoSecureWay">No, I prefer the secure way</string>
+    <string name="prompt_Attention">ATTENTION</string>
+    <string name="prompt_WarningDriving">Driving and not paying full attention to traffic is extremely dangerous and will put your life and the life of those around you at risk. Disabling of this mode is not recommended at all!\n\n Are you sure you want to continue disabling the Safe Driving Mode?</string>
+    <string name="prompt_NoThanks">No, thanks</string>
+    <string name="prompt_BluetoothOn">Leaving the Bluetooth active while the application goes to background may interfere with other applications using the Bluetooth feature. It also may drain your battery if you forget to kill CanZE or disable this option. <br/><br/><b>If using this feature, the connection will stay alive, even if you power cycle your Android device!</b><br/><br/>Are you sure you want to continue enabling the Bluetooth Background Mode?</string>
+    <string name="prompt_NoSd">External SD card not available, not writeable or has not sufficient space left to log data.<br/><br/><b>Data export cannot be enabled!</b></string>
+    <string name="prompt_Sorry">I am sorry…</string>
+    <string name="toast_CacheCleared">Cache has been cleared …</string>
+    <string name="toast_PleaseUseTop">Please use one of the top buttons to quit the settings …</string>
+    <string name="toast_NoBluetooth">This device does not have any bluetooth adapter.\n\nSorry…</string>
     <string name="title_FZ_section2">Driving</string>
     <string name="title_FZ_section1">General</string>
     <string name="title_FZ_section0">Battery</string>
-
-    <string name="title_activity_range">Range</string>
 
 
 </resources>
