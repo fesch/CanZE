@@ -39,6 +39,7 @@
     <string name="default_No">No</string>
     <string name="default_Unavailable">Unavailable</string>
     <string name="default_NotImplementedYet">Not implemented yet</string>
+    <string name="default_DoubleSpace">  </string>
 
     <!-- debug (generic) -->
 
@@ -166,6 +167,8 @@
     <string name="label_braking_pressure">Friction braking pressure</string> -->
     <string name="label_ElecBrakeWheelsTorqueApplied">Applied Electrical Torque (regeneration)</string>
     <string name="label_diff_friction_torque">Applied Friction Torque (losses)</string>
+    <string name="default_ZeroNm">0 Nm</string>
+    <string name="help_AllTorques">Al torques are given in combined wheel torques, not motor torques.</string>
     <!--<string name="label_TotalPotentialResistiveWheelsTorque">Total Potential Resistive Wheels Torque</string>
 
     <string name="label_hbb_malfunction">HBB malfunction</string>
@@ -261,12 +264,25 @@
     <string name="label_InstantConsumption">Instant Consumption</string>
     <string name="label_kWh100km">kWh/100km</string>
 
-
+    <!-- heatmap voltages -->
+    <string name="_1">1</string>
+    <string name="_9">9</string>
+    <string name="_17">17</string>
+    <string name="_25">25</string>
+    <string name="_33">33</string>
+    <string name="_41">41</string>
+    <string name="_49">49</string>
+    <string name="_57">57</string>
+    <string name="_65">65</string>
+    <string name="_73">73</string>
+    <string name="_81">81</string>
+    <string name="_89">89</string>
 
     <string name="title_FZ_section2">Driving</string>
     <string name="title_FZ_section1">General</string>
     <string name="title_FZ_section0">Battery</string>
 
     <string name="title_activity_range">Range</string>
+
 
 </resources>

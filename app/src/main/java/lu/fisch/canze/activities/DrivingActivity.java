@@ -21,6 +21,7 @@
 
 package lu.fisch.canze.activities;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -35,6 +36,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Locale;
+
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.FieldListener;
@@ -154,6 +157,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         final Context context = DrivingActivity.this;
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater = getLayoutInflater();
+        // we allow this SuppressLint as this is a pop up Dialog
+        @SuppressLint("InflateParams")
         final View distToDestView = inflater.inflate(R.layout.set_dist_to_dest, null);
 
         // set dialog message
@@ -286,7 +291,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         double dcPwr = field.getValue();
                         tv = (TextView) findViewById(R.id.textConsumption);
                         if (realSpeed > 5) {
-                            tv.setText("" + (Math.round(1000.0 * dcPwr / realSpeed) / 10.0));
+                            tv.setText(String.format(Locale.getDefault(), "%.1f", 100.0 * dcPwr / realSpeed));
+                            // tv.setText("" + (Math.round(1000.0 * dcPwr / realSpeed) / 10.0));
                         } else {
                             tv.setText("-");
                         }
@@ -329,7 +335,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText("" + (Math.round(field.getValue() * 10.0) / 10.0));
+                    tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue()));
                 }
 
                 tv = (TextView) findViewById(R.id.textDebug);

@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
@@ -149,7 +150,8 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
                         for (int i = 1; i <= lastCell; i++) {
                             TextView tv = (TextView) findViewById(getResources().getIdentifier("text_cell_" + i + "_voltage", "id", getPackageName()));
                             if (tv != null) {
-                                tv.setText(String.format("%.3f", lastVoltage[i]));
+                                // tv.setText(String.format("%.3f", lastVoltage[i]));
+                                tv.setText(String.format(Locale.getDefault(), "%.3f", lastVoltage[i]));
                                 int color = (int) (5000 * (lastVoltage[i] - mean)); // color is temp minus mean. 1mV difference is 5 color ticks
                                 if (lastVoltage[i] <= cutoff) {
                                     color = 0xffff4040;

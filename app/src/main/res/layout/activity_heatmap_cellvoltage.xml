@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
@@ -12,17 +11,12 @@
     tools:context="lu.fisch.canze.activities.HeatmapCellvoltageActivity">
 
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_above="@+id/tableLayout"
-        android:layout_alignParentTop="true">
 
         <TableLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="0dp"
             android:stretchColumns="*"
+            android:layout_weight="1"
             >
 
             <TableRow
@@ -31,7 +25,7 @@
                 >
                 <TextView
                     android:textSize="12sp"
-                    android:text="1"
+                    android:text="@string/_1"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:gravity="center"
@@ -115,7 +109,7 @@
                 >
                 <TextView
                     android:textSize="12sp"
-                    android:text="9"
+                    android:text="@string/_9"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:gravity="center"
@@ -200,7 +194,7 @@
                 >
                 <TextView
                     android:textSize="12sp"
-                    android:text="17"
+                    android:text="@string/_17"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:gravity="center"
@@ -285,7 +279,7 @@
                 >
                 <TextView
                     android:textSize="12sp"
-                    android:text="25"
+                    android:text="@string/_25"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:gravity="center"
@@ -370,7 +364,7 @@
                 >
                 <TextView
                     android:textSize="12sp"
-                    android:text="33"
+                    android:text="@string/_33"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:gravity="center"
@@ -454,7 +448,7 @@
                 >
                 <TextView
                     android:textSize="12sp"
-                    android:text="41"
+                    android:text="@string/_41"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:gravity="center"
@@ -538,7 +532,7 @@
                 >
                 <TextView
                     android:textSize="12sp"
-                    android:text="49"
+                    android:text="@string/_49"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:gravity="center"
@@ -623,7 +617,7 @@
                 >
                 <TextView
                     android:textSize="12sp"
-                    android:text="57"
+                    android:text="@string/_57"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:gravity="center"
@@ -708,7 +702,7 @@
                 >
                 <TextView
                     android:textSize="12sp"
-                    android:text="65"
+                    android:text="@string/_65"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:gravity="center"
@@ -793,7 +787,7 @@
                 >
                 <TextView
                     android:textSize="12sp"
-                    android:text="73"
+                    android:text="@string/_73"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:gravity="center"
@@ -877,7 +871,7 @@
                 >
                 <TextView
                     android:textSize="12sp"
-                    android:text="81"
+                    android:text="@string/_81"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:gravity="center"
@@ -961,7 +955,7 @@
                 >
                 <TextView
                     android:textSize="12sp"
-                    android:text="89"
+                    android:text="@string/_89"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:gravity="center"
@@ -1041,32 +1035,27 @@
             </TableRow>
 
         </TableLayout>
+    <!-- debug line -->
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        >
 
+        <TextView
+            android:text="@string/label_debug"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-
+            />
+        <TextView
+            android:id="@+id/textDebug"
+            android:text="@string/default_debug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
 
     </LinearLayout>
 
-    <!-- debug line -->
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/tableLayout">
-
-        <TableRow>
-            <TextView
-                android:text="@string/label_debug"
-                android:textColor="#000"
-                />
-            <TextView
-                android:id="@+id/textDebug"
-                android:paddingLeft="8dp"
-                android:text="@string/default_debug"
-                />
-        </TableRow>
-
-    </TableLayout>
-
-</RelativeLayout>
+</LinearLayout>

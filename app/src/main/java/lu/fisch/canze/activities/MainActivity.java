@@ -49,15 +49,13 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.UUID;
+import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
@@ -77,13 +75,12 @@ import lu.fisch.canze.fragments.TechnicalFragment;
 import lu.fisch.canze.interfaces.BluetoothEvent;
 import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.ui.AppSectionsPagerAdapter;
-import lu.fisch.canze.widgets.WidgetView;
 
 public class MainActivity extends AppCompatActivity implements FieldListener /*, android.support.v7.app.ActionBar.TabListener */{
     public static final String TAG = "  CanZE";
 
     // SPP UUID service
-    private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    // private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     public final static String PREFERENCES_FILE = "lu.fisch.canze.settings";
     public final static String DATA_FILE = "lu.fisch.canze.data";
@@ -91,10 +88,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     // MAC-address of Bluetooth module (you must edit this line)
     private static String bluetoothDeviceAddress = null;
     private static String bluetoothDeviceName = null;
-    private static String dataFormat = "bob";
-    private static String deviceName = "Arduino";
 
-    public final static int RECEIVE_MESSAGE   = 1;
+    // public final static int RECEIVE_MESSAGE   = 1;
     public final static int REQUEST_ENABLE_BT = 3;
     public final static int SETTINGS_ACTIVITY = 7;
     public final static int LEAVE_BLUETOOTH_ON= 11;
@@ -102,31 +97,31 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     // note that the CAR constants are stored in the option property of the field object
     // this is a short
 
-    public static final short CAR_MASK            = 0xff;
+    // public static final short CAR_MASK            = 0xff;
 
     public static final short CAR_NONE            = 0x000;
     //public static final int CAR_ANY             = 0x0ff;
     public static final short CAR_FLUENCE         = 0x001;
     public static final short CAR_ZOE_Q210        = 0x002;
     public static final short CAR_KANGOO          = 0x004;
-    public static final short CAR_TWIZY           = 0x008;     // you'll never know ;-)
+    // public static final short CAR_TWIZY           = 0x008;     // you'll never know ;-)
     public static final short CAR_X10             = 0x010;     // not used
     public static final short CAR_ZOE_R240        = 0x020;
     public static final short CAR_ZOE_Q90         = 0x040;
     public static final short CAR_ZOE_R90         = 0x080;
 
     public static final short FIELD_TYPE_MASK     = 0x700;
-    public static final short FIELD_TYPE_UNSIGNED = 0x000;
+    //public static final short FIELD_TYPE_UNSIGNED = 0x000;
     public static final short FIELD_TYPE_SIGNED   = 0x100;
     public static final short FIELD_TYPE_STRING   = 0x200;      // not implemented yet
 
     public static final double reduction        = 9.32;     // update suggested by Loc Dao
 
-    private StringBuilder sb = new StringBuilder();
-    private String buffer = "";
+    // private StringBuilder sb = new StringBuilder();
+    // private String buffer = "";
 
-    private int count;
-    private long start;
+    // private int count;
+    // private long start;
 
     private boolean visible = true;
     public boolean leaveBluetoothOn = false;
@@ -169,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            BluetoothDevice bluetoothDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+            // BluetoothDevice bluetoothDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
             if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
                 //Device has disconnected
@@ -204,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     {
         Log.d(TAG, text);
         if(debugLogMode) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault());
             DebugLogger.getInstance().log(sdf.format(Calendar.getInstance().getTime()) + ": " + text);
         }
     }
@@ -227,8 +222,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
         bluetoothDeviceAddress =settings.getString("deviceAddress", null);
         bluetoothDeviceName =settings.getString("deviceName", null);
-        dataFormat = settings.getString("dataFormat", "crdt");
-        deviceName = settings.getString("device", "Arduino");
+        // String dataFormat = settings.getString("dataFormat", "crdt");
+        String deviceName = settings.getString("device", "Arduino");
         safeDrivingMode = settings.getBoolean("optSafe", true);
         bluetoothBackgroundMode = settings.getBoolean("optBTBackground", false);
         milesMode = settings.getBoolean("optMiles", false);
@@ -323,9 +318,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
+    /*
     private ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)
     {
-        ArrayList<WidgetView> result = new ArrayList<WidgetView>();
+        ArrayList<WidgetView> result = new ArrayList<>();
 
         for (int i = 0; i < viewGroup.getChildCount(); i++) {
             View v = viewGroup.getChildAt(i);
@@ -340,7 +336,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         return result;
     }
-
+*/
     protected void updateActionBar()
     {
         switch (viewPager.getCurrentItem())
@@ -385,7 +381,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     private ViewPager viewPager;
-    private AppSectionsPagerAdapter appSectionsPagerAdapter;
     private ActionBar actionBar ;
 
     @Override
@@ -404,7 +399,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
 
         // navigation bar
-        appSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
+        AppSectionsPagerAdapter appSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
         actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -582,7 +577,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             Point size = new Point();
             display.getSize(size);
             float width = size.x;
-            int height = size.y;
+            // int height = size.y;
             width = width / getResources().getDisplayMetrics().scaledDensity;
             if(width<=480)
             {
@@ -612,7 +607,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                             // if this button is clicked, close
                             SharedPreferences.Editor editor = settings.edit();
                             editor.putBoolean("disclaimer", true);
-                            editor.commit();
+                            // editor.commit();
+                            editor.apply();
                             // current activity
                             dialog.cancel();
                         }
@@ -825,6 +821,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                             }
                             else
                             {
+                                //noinspection deprecation
                                 imageView.setBackgroundDrawable(drawable);
                             }
                             AnimationDrawable frameAnimation = (AnimationDrawable) imageView.getBackground();

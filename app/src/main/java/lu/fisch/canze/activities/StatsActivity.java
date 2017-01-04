@@ -28,6 +28,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
@@ -39,8 +40,8 @@ public class StatsActivity extends CanzeActivity implements FieldListener {
     public static final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
     public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
 
-    int lastOdo = 0;
-    int kmInBat = 0;
+    // int lastOdo = 0;
+    // int kmInBat = 0;
     private ArrayList<Field> subscribedFields;
 
     @Override
@@ -107,7 +108,7 @@ public class StatsActivity extends CanzeActivity implements FieldListener {
             public void run() {
                 String fieldId = field.getSID();
                 TextView tv = null;
-                ProgressBar pb = null;
+                // ProgressBar pb = null;
 
                 // get the text field
                 switch (fieldId) {
@@ -115,15 +116,14 @@ public class StatsActivity extends CanzeActivity implements FieldListener {
                         tv = (TextView) findViewById(R.id.textSOC);
                         break;
                     case SID_EVC_Odometer:
-                        int odo = (int) field.getValue();
-
+                        // int odo = (int) field.getValue();
                         tv = null;
                         break;
 
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText("" + field.getValue());
+                    tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue()));
                 }
 
                 //tv = (TextView) findViewById(R.id.textDebug);

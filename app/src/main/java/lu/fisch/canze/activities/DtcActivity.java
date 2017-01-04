@@ -21,11 +21,11 @@
 
 package lu.fisch.canze.activities;
 
-import android.os.Environment;
-import android.view.View.OnClickListener;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -40,10 +40,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
-import lu.fisch.canze.actors.Dtc;
 import lu.fisch.canze.actors.Dtcs;
 import lu.fisch.canze.actors.Ecu;
-import lu.fisch.canze.actors.EcuDiagLBC;
 import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
