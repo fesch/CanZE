@@ -45,9 +45,14 @@
     <!-- debug (generic) -->
 
     <string name="header_Debug">Debugging info</string>
-
     <string name="label_debug">Debug\u0020</string>
     <string name="default_debug">#Debug</string>
+
+    <!-- To be tossed -->
+    <!-- <string name="title_FZ_section2">Driving</string>
+    <string name="title_FZ_section1">General</string>
+    <string name="title_FZ_section0">Battery</string> -->
+
 
     <!-- -->
 
@@ -316,9 +321,23 @@
     <string name="toast_CacheCleared">Cache has been cleared …</string>
     <string name="toast_PleaseUseTop">Please use one of the top buttons to quit the settings …</string>
     <string name="toast_NoBluetooth">This device does not have any bluetooth adapter.\n\nSorry…</string>
-    <string name="title_FZ_section2">Driving</string>
-    <string name="title_FZ_section1">General</string>
-    <string name="title_FZ_section0">Battery</string>
+
+    <!-- experimental (fragment) -->
+
+    <string name="help_Experimental">buttons below are for testing purposes only</string>
+    <string name="button_LeafspyBob">LeafSpy (Bob)</string>
+    <string name="button_BatteryTemperturesBob">BatteryTemperturesActivity (Bob)</string>
+    <string name="button_FluenceKangooTemps">Fluence Kangoo Temps</string>
+    <string name="button_Charging">Charging</string>
+    <string name="button_DtcReadout">DTC readout</string>
+    <string name="button_ChargingGraphs">Charging graphs</string>
+    <string name="button_Firmware">Firmware</string>
+    <string name="button_ChargingPrediction">Charging Prediction</string>
+    <string name="button_ElmTesting">ELM testing</string>
+    <string name="button_Range">Range</string>
+    <string name="button_Climate">Climate</string>
+
+    <!-- technical (fragment) -->
 
 
 </resources>

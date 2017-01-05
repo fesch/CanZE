@@ -31,22 +31,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import lu.fisch.canze.R;
-import lu.fisch.canze.activities.AlexandreActivity;
-import lu.fisch.canze.activities.BatteryTempActivity;
 import lu.fisch.canze.activities.ChargingGraphActivity;
 import lu.fisch.canze.activities.ChargingTechActivity;
 import lu.fisch.canze.activities.ClimaTechActivity;
 import lu.fisch.canze.activities.DtcActivity;
 import lu.fisch.canze.activities.ElmTestActivity;
 import lu.fisch.canze.activities.FirmwareActivity;
-import lu.fisch.canze.activities.HarmActivity;
-import lu.fisch.canze.activities.LeafSpyActivity;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.activities.PredictionActivity;
 import lu.fisch.canze.activities.RangeActivity;
-import lu.fisch.canze.activities.StatsActivity;
-import lu.fisch.canze.activities.TachoActivity;
-import lu.fisch.canze.activities.TemperatureActivity;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -32,35 +32,18 @@ import android.widget.Button;
 
 
 import lu.fisch.canze.R;
-import lu.fisch.canze.activities.AlexandreActivity;
-import lu.fisch.canze.activities.BatteryTempActivity;
-import lu.fisch.canze.activities.ChargingGraphActivity;
-import lu.fisch.canze.activities.ChargingTechActivity;
-import lu.fisch.canze.activities.ClimaTechActivity;
-import lu.fisch.canze.activities.DtcActivity;
-import lu.fisch.canze.activities.ElmTestActivity;
 import lu.fisch.canze.activities.FluenceKangooTempsActivity;
-import lu.fisch.canze.activities.GPSTestActivity;
-import lu.fisch.canze.activities.HarmActivity;
 import lu.fisch.canze.activities.LeafSpyActivity;
 import lu.fisch.canze.activities.MainActivity;
-import lu.fisch.canze.activities.PredictionActivity;
-import lu.fisch.canze.activities.RangeActivity;
-import lu.fisch.canze.activities.StatsActivity;
-import lu.fisch.canze.activities.TachoActivity;
-import lu.fisch.canze.activities.TemperatureActivity;
-import lu.fisch.canze.activities.TyresActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ExperimentalFragment extends Fragment {
 
-
     public ExperimentalFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,42 +52,6 @@ public class ExperimentalFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_experimental, container, false);
 
         Button button;
-
-        button = (Button) view.findViewById(R.id.buttonTacho);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), TachoActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) view.findViewById(R.id.buttonBatTemp);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), BatteryTempActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) view.findViewById(R.id.buttonTemperature);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), TemperatureActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
 
         button = (Button) view.findViewById(R.id.buttonLeafSpy);
         button.setOnClickListener(new View.OnClickListener() {
@@ -118,79 +65,8 @@ public class ExperimentalFragment extends Fragment {
             }
         });
 
-        button = (Button) view.findViewById(R.id.buttonStats);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), StatsActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
 
-        button = (Button) view.findViewById(R.id.buttonPgHo);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), HarmActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) view.findViewById(R.id.buttonPgJm);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), ClimaTechActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) view.findViewById(R.id.buttonPgAm);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), AlexandreActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = (Button) view.findViewById(R.id.buttonGPSTest);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), GPSTestActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        /*button = (Button) view.findViewById(R.id.buttonDtc);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), DtcActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });*/
-
-        button = (Button) view.findViewById(R.id.buttonFluenceKangooTemps);
+         button = (Button) view.findViewById(R.id.buttonFluenceKangooTemps);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,9 +78,28 @@ public class ExperimentalFragment extends Fragment {
             }
         });
 
+        // activateButton(view, R.id.buttonLeafSpy,                LeafSpyActivity.class);
+        // activateButton(view, R.id.buttonFluenceKangooTemps,     FluenceKangooTempsActivity.class);
 
         return view;
     }
+
+    private void activateButton (View view, int buttonId, final Class<?> activityClass) {
+        Button button = (Button) view.findViewById(buttonId);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MainActivity.isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                MainActivity.getInstance().leaveBluetoothOn = true;
+                Intent intent = new Intent(MainActivity.getInstance(), activityClass);
+                ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
+            }
+        });
+    }
+
+
+
 
 
     @Override

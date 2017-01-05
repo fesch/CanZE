@@ -319,7 +319,7 @@ public class Fields {
                         + "432,36,37,1,0,0,,,,e2\n" // HV Bat Conditionning Mode
                         + "534,32,40,1,40,0,°C,,,e5\n" // Temp out
                         + "5d7,0,15,0.01,0,2,km/h,,,ff\n" // Speed
-                        + "5da,0,7,1,40,0,ºC,,,e5\n" // Water temperature
+                        + "5da,0,7,1,40,0,ºC,,,e7\n" // Water temperature
                         + "654,2,2,1,0,0,,,,ff\n" // Charging Plug Connected
                         + "654,25,31,1,0,0,,,,ff\n" // State of Charge
                         + "654,32,41,1,0,0,min,,,ff\n" // Time to Full
@@ -349,9 +349,10 @@ public class Fields {
                         + "763,128,143,1,0,0,,2180,6180,ff\n" // PG number %04lx
                         + "763,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "763,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
-
-                        + "764,26,35,0.1,400,0,°C,2121,6121,ff\n" // IH_InCarTemp
-                        + "764,36,43,1,0,0,%,2121,6121,ff\n" // IH_RHumidity
+                        + "764,26,35,0.1,400,0,°C,2121,6121,e2\n" // IH_InCarTemp
+                        + "764,8,15,0.4,100,0,°C,2121,6121,5\n" // IH_InCarTemp
+                        + "764,36,43,1,0,0,%,2121,6121,e2\n" // IH_RHumidity
+                        + "764,16,23,1,0,0,%,2121,6121,5\n" // IH_RHumidity
                         + "764,110,117,1,40,0,%,2143,6143,ff\n" // IH_ExternalTemp
                         + "764,40,41,1,0,0,,2167,6167,ff\n" // IH_ExternalTemp
 

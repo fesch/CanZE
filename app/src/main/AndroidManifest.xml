@@ -37,9 +37,6 @@
             android:name=".activities.WidgetActivity"
             android:label="@string/title_activity_widget"></activity>
         <activity
-            android:name=".activities.TachoActivity"
-            android:label="@string/title_activity_tacho"></activity>
-        <activity
             android:name=".activities.ChargingTechActivity"
             android:label="@string/title_activity_charging"></activity>
         <activity
@@ -48,12 +45,6 @@
         <activity
             android:name=".activities.DrivingActivity"
             android:label="@string/title_activity_driving"></activity>
-        <activity
-            android:name=".activities.BatteryTempActivity"
-            android:label="@string/title_activity_battery_temp"></activity>
-        <activity
-            android:name=".activities.TemperatureActivity"
-            android:label="@string/title_activity_temperatures"></activity>
         <activity
             android:name=".activities.BrakingActivity"
             android:label="@string/title_activity_braking"></activity>
@@ -67,20 +58,11 @@
             android:name=".activities.ElmTestActivity"
             android:label="@string/title_activity_elm_test"></activity>
         <activity
-            android:name=".activities.StatsActivity"
-            android:label="@string/title_activity_stats"></activity>
-        <activity
             android:name=".activities.FirmwareActivity"
             android:label="@string/title_activity_firmware"></activity>
         <activity
             android:name=".activities.BatteryActivity"
             android:label="@string/title_activity_battery"></activity>
-        <activity
-            android:name=".activities.HarmActivity"
-            android:label="@string/title_activity_harm"></activity>
-        <activity
-            android:name=".activities.AlexandreActivity"
-            android:label="@string/title_activity_alexandre"></activity>
         <activity
             android:name=".activities.DtcActivity"
             android:label="@string/title_activity_dtc"></activity>
@@ -102,9 +84,6 @@
         <activity
             android:name=".activities.ClimaTechActivity"
             android:label="@string/title_activity_clima_tech"></activity>
-        <activity
-            android:name=".activities.GPSTestActivity"
-            android:label="@string/title_activity_gps_test"></activity>
         <activity
             android:name=".activities.PredictionActivity"
             android:label="@string/title_activity_prediction"></activity>
