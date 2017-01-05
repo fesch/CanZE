@@ -73,61 +73,85 @@ public class SettingsActivity extends AppCompatActivity {
 
         // load settings
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
-        String device=settings.getString("device", "Arduino");
+        String device = settings.getString("device", "ELM327");
 
         // device address
         final EditText deviceAddress = (EditText) findViewById(R.id.editTextDeviceAddress);
-        deviceAddress.setEnabled(false);
-        deviceAddress.setText(settings.getString("deviceAddress",""));
+
+        // remote Device
+        final Spinner remoteDeviceList = (Spinner) findViewById(R.id.remoteDevice);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        arrayAdapter.add("ELM327");
+        arrayAdapter.add("Bob Due");
+        arrayAdapter.add("ELM327Http");
+        remoteDeviceList.setAdapter(arrayAdapter);
+
+
+        if("HTTP Gateway".equals(device)) {
+            deviceAddress.setText(settings.getString("gatewayUrl",""));
+            deviceAddress.setEnabled(true);
+            remoteDeviceList.setSelection(2);
+            remoteDeviceList.setSelected(false);
+        } else {
+            deviceAddress.setText(settings.getString("deviceAddress",""));
+            deviceAddress.setEnabled(false);
+            int index = 0;
+            switch (device) {
+                case "ELM327":
+                    index = 0;
+                    break;
+                case "Bob Due":
+                    index = 1;
+                    break;
+                case "ELM327Http":
+                    index = 2;
+                    break;
+            }
+            remoteDeviceList.setSelection(index);
+            remoteDeviceList.setSelected(true);
+        }
+
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(deviceAddress.getWindowToken(), 0);
 
+        final String gatewayUrl = settings.getString("gatewayUrl", "");
         final Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
         deviceList.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
                 String device = (String) deviceList.getSelectedItem();
+                String[] pieces = device.split("\n");
                 //if(deviceList.getSelectedItemPosition()>=4){
-                if(device.substring(0,4).compareTo("HTTP") == 0){
+                // if(device.substring(0,4).compareTo("HTTP") == 0){
+                if("HTTP Gateway".equals(pieces[0])) {
                     //deviceAddress.setText("");
+                    deviceAddress.setText(gatewayUrl);
                     deviceAddress.setEnabled(true);
+                    remoteDeviceList.setSelection(2);
+                    remoteDeviceList.setSelected(false);
                 }
                 else {
                     //String device = (String) deviceList.getSelectedItem();
-                    String[] pieces = device.split("\n");
                     deviceAddress.setText(pieces[1]);
                     deviceAddress.setEnabled(false);
+                    int index = 0;
+                    switch (device) {
+                        case "ELM327":
+                            index = 0;
+                            break;
+                        case "Bob Due":
+                            index = 1;
+                            break;
+                        case "ELM327Http":
+                            index = 2;
+                            break;
+                    }
+                    remoteDeviceList.setSelection(index);
+                    remoteDeviceList.setSelected(true);
                 }
             }
         });
 
-        // fill remote devices
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
-        arrayAdapter.add("ELM327");
-        //arrayAdapter.add("Arduino Due");
-        arrayAdapter.add("Bob Due");
-        arrayAdapter.add("ELM327Http");
-        //arrayAdapter.add("ELM327 Experimental");
-
-        int index = 0;
-        switch (device) {
-            case "ELM327":
-                index = 0;
-                break;
-            case "Bob Due":
-                index = 1;
-                break;
-            case "ELM327Http":
-                index = 2;
-                break;
-        }
-
-        // display the list
-        Spinner remoteDeviceList = (Spinner) findViewById(R.id.remoteDevice);
-        remoteDeviceList.setAdapter(arrayAdapter);
-        // select the actual device
-        remoteDeviceList.setSelection(index);
-        remoteDeviceList.setSelected(true);
 
 
         // fill cars
@@ -141,7 +165,7 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("Kangoo");
         arrayAdapter.add("X10");
 
-        index = 0;
+        int index = 0;
         if(MainActivity.car==MainActivity.CAR_ZOE_Q210) index=0;
         else if (MainActivity.car == MainActivity.CAR_ZOE_R240) index = 1;
         else if (MainActivity.car == MainActivity.CAR_ZOE_Q90) index = 2;
@@ -488,8 +512,10 @@ public class SettingsActivity extends AppCompatActivity {
                 MainActivity.debug("Settings.deviceAddress = " + deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 MainActivity.debug("Settings.deviceName = " + deviceList.getSelectedItem().toString().split("\n")[0].trim());
                 //editor.putString("deviceAddress", deviceList.getSelectedItem().toString().split("\n")[1].trim());
+                String deviceNameString = deviceList.getSelectedItem().toString().split("\n")[0].trim();
+                editor.putString("deviceName", deviceNameString);
                 editor.putString("deviceAddress", String.valueOf(deviceAddress.getText()));
-                editor.putString("deviceName", deviceList.getSelectedItem().toString().split("\n")[0].trim());
+                if("HTTP Gateway".equals(deviceNameString)) editor.putString("gatewayUrl", String.valueOf(deviceAddress.getText()));
                 editor.putString("device", device.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putString("car", car.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putBoolean("optBTBackground", btBackground.isChecked());

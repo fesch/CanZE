@@ -89,6 +89,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     private static String bluetoothDeviceAddress = null;
     private static String bluetoothDeviceName = null;
 
+    // url of gateway if in use
+    private static String gatewayUrl = null;
+
     // public final static int RECEIVE_MESSAGE   = 1;
     public final static int REQUEST_ENABLE_BT = 3;
     public final static int SETTINGS_ACTIVITY = 7;
@@ -220,8 +223,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         debug("MainActivity: loadSettings");
 
         SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
-        bluetoothDeviceAddress =settings.getString("deviceAddress", null);
-        bluetoothDeviceName =settings.getString("deviceName", null);
+        bluetoothDeviceName = settings.getString("deviceName", null);
+        bluetoothDeviceAddress = settings.getString("deviceAddress", null);
+        gatewayUrl = settings.getString("gatewayUrl", null);
         // String dataFormat = settings.getString("dataFormat", "crdt");
         String deviceName = settings.getString("device", "Arduino");
         safeDrivingMode = settings.getBoolean("optSafe", true);
@@ -928,6 +932,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
 
     public static String getBluetoothDeviceAddress() {
+        if("HTTP Gateway".equals(bluetoothDeviceName))
+            return gatewayUrl;
         return bluetoothDeviceAddress;
     }
 }
