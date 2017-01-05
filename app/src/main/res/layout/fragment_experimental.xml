@@ -17,19 +17,19 @@
     >
 
     <LinearLayout
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#ffd124">
-
-    <TextView
-        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="buttons below are for testing purposes only"
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal" />
-</LinearLayout>
+        android:background="#ffd124">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="buttons below are for testing purposes only"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
 
 
     <ScrollView
@@ -41,194 +41,72 @@
         android:fadeScrollbars="false">
 
 
-<TableLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:stretchColumns="*">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="Harm (Harm)"
-            android:id="@+id/buttonPgHo"
-            android:layout_column="0" />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/default_Dash"
+                    android:id="@+id/buttonPgHo"
+                    android:layout_column="0" />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="LeafSpy (Bob)"
-            android:id="@+id/buttonLeafSpy"
-            android:layout_column="1" />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/button_LeafspyBob"
+                    android:id="@+id/buttonLeafSpy"
+                    android:layout_column="1" />
 
-    </TableRow>
+            </TableRow>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="Screen Tests (Bob)"
-            android:id="@+id/buttonTemperature"
-            android:layout_column="0" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/default_Dash"
+                android:id="@+id/notAffected1"
+                android:layout_column="0" />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="Stats (Henrik)"
-            android:id="@+id/buttonStats"
-            android:layout_column="1" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="BatteryTemperturesActivity (Bob)"
-            android:id="@+id/buttonBatTemp"
-            android:layout_column="0" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="TachoActivity (Bob)"
-            android:id="@+id/buttonTacho"
-            android:layout_column="1" />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="Playground (Jeroen)"
-            android:id="@+id/buttonPgJm"
-            android:layout_column="0" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="Fluence Kangoo Temps"
-            android:id="@+id/buttonFluenceKangooTemps"
-            android:layout_column="1" />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/button_FluenceKangooTemps"
+                    android:id="@+id/buttonFluenceKangooTemps"
+                    android:layout_column="1" />
 
 
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="Playground (Alexandre)"
-            android:id="@+id/buttonPgAm"
-            android:layout_column="0" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="GPSTest (Chris)"
-            android:id="@+id/buttonGPSTest"
-            android:layout_column="1" />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="---"
-            android:id="@+id/notAffected1"
-            android:layout_column="0" />
-
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="---"
-            android:id="@+id/notAffected2"
-            android:layout_column="1" />
-
-    </TableRow>
-
-
-</TableLayout>
+            </TableRow>
+        </TableLayout>
 
     </ScrollView>
 

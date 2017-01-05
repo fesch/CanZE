@@ -43,6 +43,7 @@ public class FluenceKangooTempsActivity extends CanzeActivity implements FieldLi
     public static final String SID_ExternalTemperature                  = "534.32";
     public static final String SID_ExternalTemperatureZoe               = "656.48";
     public static final String SID_InternalTemperature                  = "764.6121.8";
+    public static final String SID_InternalTemperatureZoe               = "764.6121.26";
     public static final String SID_MotorWaterPumpSpeed                  = "7ec.623318.24";
     public static final String SID_ChargerWaterPumpSpeed                = "7ec.623319.24";
     public static final String SID_HeatingWaterPumpSpeed                = "7ec.62331a.24";
@@ -74,17 +75,18 @@ public class FluenceKangooTempsActivity extends CanzeActivity implements FieldLi
 
         subscribedFields = new ArrayList<>();
 
-        if (MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) {
+        if (MainActivity.isZOE()) {
             addListener(SID_ExternalTemperatureZoe, 10000);
+            addListener(SID_InternalTemperatureZoe, 10000);
             addListener(SID_HVEvaporatorTemperature, 10000);
         } else {
             addListener(SID_ExternalTemperature, 10000);
+            addListener(SID_InternalTemperature, 10000);
         }
         addListener(SID_EvaporatorTemperature, 10000);
         addListener(SID_WaterTemperatureHeating, 10000);
         addListener(SID_DcDcConverterTemperature, 10000);
         addListener(SID_InverterTemperature, 10000);
-        addListener(SID_InternalTemperature, 10000);
         addListener(SID_MotorWaterPumpSpeed, 2000);
         addListener(SID_ChargerWaterPumpSpeed, 2000);
         addListener(SID_HeatingWaterPumpSpeed, 2000);
