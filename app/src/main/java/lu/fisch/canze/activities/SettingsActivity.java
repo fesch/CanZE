@@ -33,12 +33,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.internal.widget.AdapterViewCompat;
 import android.text.Html;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -83,6 +85,7 @@ public class SettingsActivity extends AppCompatActivity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         arrayAdapter.add("ELM327");
         arrayAdapter.add("Bob Due");
+        //arrayAdapter.add("ELM327Http");
         deviceType.setAdapter(arrayAdapter);
 
         if("HTTP Gateway".equals(remoteDevice)) {
@@ -110,15 +113,16 @@ public class SettingsActivity extends AppCompatActivity {
 
         final String gatewayUrl = settings.getString("gatewayUrl", "");
         final Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
-        deviceList.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+        deviceList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String device = (String) deviceList.getSelectedItem();
                 String[] pieces = device.split("\n");
                 //if(deviceList.getSelectedItemPosition()>=4){
                 // if(device.substring(0,4).compareTo("HTTP") == 0){
                 if("HTTP Gateway".equals(pieces[0])) {
                     //deviceAddress.setText("");
+                    MainActivity.debug("Settings: gatewayUrl = "+gatewayUrl);
                     deviceAddress.setText(gatewayUrl);
                     deviceAddress.setEnabled(true);
                     deviceType.setEnabled(false);
@@ -130,9 +134,12 @@ public class SettingsActivity extends AppCompatActivity {
                     deviceType.setEnabled(true);
                 }
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
-
-
 
         // fill cars
         arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
