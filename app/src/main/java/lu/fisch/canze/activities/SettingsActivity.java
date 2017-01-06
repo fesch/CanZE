@@ -73,42 +73,36 @@ public class SettingsActivity extends AppCompatActivity {
 
         // load settings
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
-        String device = settings.getString("device", "ELM327");
+        String remoteDevice = settings.getString("device", "ELM327");
 
         // device address
         final EditText deviceAddress = (EditText) findViewById(R.id.editTextDeviceAddress);
 
         // remote Device
-        final Spinner remoteDeviceList = (Spinner) findViewById(R.id.remoteDevice);
+        final Spinner deviceType = (Spinner) findViewById(R.id.deviceType);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         arrayAdapter.add("ELM327");
         arrayAdapter.add("Bob Due");
-        arrayAdapter.add("ELM327Http");
-        remoteDeviceList.setAdapter(arrayAdapter);
+        deviceType.setAdapter(arrayAdapter);
 
-
-        if("HTTP Gateway".equals(device)) {
+        if("HTTP Gateway".equals(remoteDevice)) {
             deviceAddress.setText(settings.getString("gatewayUrl",""));
             deviceAddress.setEnabled(true);
-            remoteDeviceList.setSelection(2);
-            remoteDeviceList.setSelected(false);
+            deviceType.setEnabled(false);
         } else {
             deviceAddress.setText(settings.getString("deviceAddress",""));
             deviceAddress.setEnabled(false);
             int index = 0;
-            switch (device) {
+            switch (remoteDevice) {
                 case "ELM327":
                     index = 0;
                     break;
                 case "Bob Due":
                     index = 1;
                     break;
-                case "ELM327Http":
-                    index = 2;
-                    break;
             }
-            remoteDeviceList.setSelection(index);
-            remoteDeviceList.setSelected(true);
+            deviceType.setSelection(index);
+            deviceType.setEnabled(true);
         }
 
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -127,27 +121,13 @@ public class SettingsActivity extends AppCompatActivity {
                     //deviceAddress.setText("");
                     deviceAddress.setText(gatewayUrl);
                     deviceAddress.setEnabled(true);
-                    remoteDeviceList.setSelection(2);
-                    remoteDeviceList.setSelected(false);
+                    deviceType.setEnabled(false);
                 }
                 else {
                     //String device = (String) deviceList.getSelectedItem();
                     deviceAddress.setText(pieces[1]);
                     deviceAddress.setEnabled(false);
-                    int index = 0;
-                    switch (device) {
-                        case "ELM327":
-                            index = 0;
-                            break;
-                        case "Bob Due":
-                            index = 1;
-                            break;
-                        case "ELM327Http":
-                            index = 2;
-                            break;
-                    }
-                    remoteDeviceList.setSelection(index);
-                    remoteDeviceList.setSelected(true);
+                    deviceType.setEnabled(true);
                 }
             }
         });
@@ -497,8 +477,8 @@ public class SettingsActivity extends AppCompatActivity {
             // save settings
             SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
             SharedPreferences.Editor editor = settings.edit();
-            Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
-            Spinner device = (Spinner) findViewById(R.id.remoteDevice);
+            Spinner remoteDevice = (Spinner) findViewById(R.id.bluetoothDeviceList);
+            Spinner deviceType = (Spinner) findViewById(R.id.deviceType);
             Spinner car = (Spinner) findViewById(R.id.car);
             CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
             CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
@@ -508,15 +488,19 @@ public class SettingsActivity extends AppCompatActivity {
             CheckBox btBackground = (CheckBox) findViewById(R.id.btBackgrounding);
             Spinner toastLevel = (Spinner) findViewById(R.id.toastLevel);
             EditText deviceAddress = (EditText) findViewById(R.id.editTextDeviceAddress);
-            if(deviceList.getSelectedItem()!=null) {
-                MainActivity.debug("Settings.deviceAddress = " + deviceList.getSelectedItem().toString().split("\n")[1].trim());
-                MainActivity.debug("Settings.deviceName = " + deviceList.getSelectedItem().toString().split("\n")[0].trim());
+            if(remoteDevice.getSelectedItem()!=null) {
+                MainActivity.debug("Settings.deviceAddress = " + remoteDevice.getSelectedItem().toString().split("\n")[1].trim());
+                MainActivity.debug("Settings.deviceName = " + remoteDevice.getSelectedItem().toString().split("\n")[0].trim());
                 //editor.putString("deviceAddress", deviceList.getSelectedItem().toString().split("\n")[1].trim());
-                String deviceNameString = deviceList.getSelectedItem().toString().split("\n")[0].trim();
+                String deviceNameString = remoteDevice.getSelectedItem().toString().split("\n")[0].trim();
                 editor.putString("deviceName", deviceNameString);
                 editor.putString("deviceAddress", String.valueOf(deviceAddress.getText()));
-                if("HTTP Gateway".equals(deviceNameString)) editor.putString("gatewayUrl", String.valueOf(deviceAddress.getText()));
-                editor.putString("device", device.getSelectedItem().toString().split("\n")[0].trim());
+                if("HTTP Gateway".equals(deviceNameString)){
+                    editor.putString("gatewayUrl", String.valueOf(deviceAddress.getText()));
+                    editor.putString("device", "ELM327Http");
+                } else {
+                    editor.putString("device", deviceType.getSelectedItem().toString().trim());
+                }
                 editor.putString("car", car.getSelectedItem().toString().split("\n")[0].trim());
                 editor.putBoolean("optBTBackground", btBackground.isChecked());
                 editor.putBoolean("optSafe", safe.isChecked());

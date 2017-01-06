@@ -88,8 +88,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="@string/label_RemoteDevice"
-                            android:id="@+id/textViewBluetoothDevice" />
+                            android:text="@string/label_RemoteDevice" />
                         <Spinner
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
@@ -100,8 +99,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="@string/label_DeviceAddress"
-                            android:id="@+id/textViewDeviceAddress" />
+                            android:text="@string/label_DeviceAddress" />
 
                         <EditText
                             android:layout_width="match_parent"
@@ -114,20 +112,18 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="@string/label_DeviceType"
-                            android:id="@+id/textViewDevice" />
+                            android:text="@string/label_DeviceType" />
                         <Spinner
                             android:layout_width="fill_parent"
                             android:layout_height="25dp"
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:id="@+id/remoteDevice" />
+                            android:id="@+id/deviceType" />
 
                         <TextView
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="@string/label_Car"
-                            android:id="@+id/textViewCar" />
+                            android:text="@string/label_Car" />
                         <Spinner
                             android:layout_width="fill_parent"
                             android:layout_height="25dp"
@@ -138,8 +134,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="@string/label_LogLevel"
-                            android:id="@+id/textToastLevel" />
+                            android:text="@string/label_LogLevel" />
                         <Spinner
                             android:layout_width="fill_parent"
                             android:layout_height="25dp"
@@ -166,8 +161,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="@string/label_Options"
-                            android:id="@+id/textViewOptions" />
+                            android:text="@string/label_Options" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
@@ -191,8 +185,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="@string/label_SdCardLogging"
-                            android:id="@+id/textViewLogging" />
+                            android:text="@string/label_SdCardLogging" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
@@ -211,8 +204,7 @@
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:text="@string/help_Fields"
-                            android:layout_marginBottom="16dp"
-                            android:id="@+id/fieldLogModeExpl" />
+                            android:layout_marginBottom="16dp" />
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -224,8 +216,7 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:text="@string/label_Actions"
-                            android:id="@+id/textViewActions" />
+                            android:text="@string/label_Actions" />
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="fill_parent"
