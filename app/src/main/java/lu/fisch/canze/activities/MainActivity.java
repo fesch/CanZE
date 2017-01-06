@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         bluetoothDeviceAddress = settings.getString("deviceAddress", null);
         gatewayUrl = settings.getString("gatewayUrl", null);
         // String dataFormat = settings.getString("dataFormat", "crdt");
-        String deviceName = settings.getString("device", "Arduino");
+        String deviceType = settings.getString("device", "Arduino");
         safeDrivingMode = settings.getBoolean("optSafe", true);
         bluetoothBackgroundMode = settings.getBoolean("optBTBackground", false);
         milesMode = settings.getBoolean("optMiles", false);
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // as the settings may have changed, we need to reload different things
 
         // create a new device
-        switch (deviceName) {
+        switch (deviceType) {
             case "Bob Due":
                 device = new BobDue();
                 break;
