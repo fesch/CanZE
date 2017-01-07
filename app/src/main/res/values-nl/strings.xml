@@ -1,22 +1,9 @@
 <resources>
     <string name="app_name">CanZE</string>
 
-    <string name="title_activity_widget">WidgetActivity</string>
-    <string name="title_activity_text">TextActivity</string>
-    <string name="title_activity_temperatures">Temperaturen</string>
-    <string name="title_activity_leaf_spy">Leaf Spy Kloon</string>
-    <string name="title_activity_battery_temp">Batterij Temperatuur</string>
-    <string name="title_activity_elm_test">Test ELM327 Dongle</string>
-    <string name="title_activity_charging">Opladen</string>
-    <string name="title_activity_driving">Rij informatie</string>
-    <string name="title_activity_firmware">Firmware</string>
-    <string name="title_activity_heatmap_bat">Moduletemperaturen</string>
-    <string name="title_activity_heatmap_cellvoltage">Celspanningen</string>
-    <string name="title_activity_tyres">Bandenspanning</string>
-    <string name="title_activity_charging_graph">Laadgrafieken</string>
-    <string name="title_activity_clima_tech">Airconditioning</string>
-    <string name="title_activity_prediction">Laadvoorspelling</string>
-    <string name="title_activity_range">Bereik</string>
+    <!-- <string name="title_activity_text">TextActivity</string> -->
+    <!-- <string name="title_activity_temperatures">Temperaturen</string> -->
+    <!-- <string name="title_activity_battery_temp">Batterij Temperatuur</string> -->
 
     <!-- Menus -->
 
@@ -42,8 +29,6 @@
     <string name="label_debug">Debug\u0020</string>
     <string name="default_debug">#Debug</string>
 
-    <!-- *************************** MAIN FRAGMENT ACTIVITIES ******************************** -->
-
     <!-- Battery -->
 
     <string name="title_activity_battery">Batterij</string>
@@ -52,18 +37,21 @@
     <string name="graph_RealIndicatedSoc">Werkelijke vs. aangegeven lading (%)</string>
     <string name="help_QA"><![CDATA[Meer gedetaileerde informatie over deze gegevens kunt u vinden op de <a href=\'http://canze.fisch.lu/qa/\'>Q & A pagina</a> van de <a href=\'http://canze.fisch.lu/\'>CanZE website</a>.]]></string>
     <string name="graph_CellVoltages">Celspanningen (V)</string>
+    <string name="graph_ModuleTemperatures">Temperaturen batterijmodules</string>
 
-    <!-- braking -->
+    <!-- Braking -->
 
     <string name="title_activity_braking">Rem informatie</string>
+    <!-- <string name="activity_braking">Remmen</string> -->
+    <string name="header_braking">Status remsysteem</string>
     <string name="label_driver_torque_request">Gevraagde torsie</string>
     <string name="label_ElecBrakeWheelsTorqueApplied">Elektrische remtorsie (regeneratie)</string>
     <string name="label_diff_friction_torque">Remtorsie door frictie (verlies)</string>
-    <!-- <string name="default_ZeroNm">0 Nm</string> -->
     <string name="help_AllTorques">Alle torsies zijn uitgedrukt in wieltorsies, geen motortorsies.</string>
 
     <!-- Charging and ChargingTech -->
 
+    <string name="title_activity_charging">Opladen</string>
     <string name="header_Charging">Details opladen</string>
     <string name="header_Battery">Batterij</string>
     <string name="header_DrivingCh">Rijden</string>
@@ -107,12 +95,14 @@
 
     <!-- Charging graph -->
 
+    <string name="title_activity_charging_graph">Laadgrafieken</string>
     <string name="graph_PilotPower">Pilot amp (A) / Charger power (kW)</string>
     <string name="graph_MaxRealChPwr">Max battery charge (kW) / DC Charging power (kW)</string>
     <string name="graph_EnergyTemperature">Available energy (kWh) / temperature (°C)</string>
 
-    <!-- clima tech -->
+    <!-- Clima tech -->
 
+    <string name="title_activity_clima_tech">Airconditioning</string>
     <string name="label_ClimaLoopMode">Aircocircuitmode</string>
     <string name="label_HVBatConditioningMode">Tractiebatterij koelingmode</string>
     <string name="label_Temperatures">Temperaturen</string>
@@ -156,6 +146,7 @@
 
     <!-- Driving -->
 
+    <string name="title_activity_driving">Rij informatie</string>
     <string name="header_Driving">Gegevens rijden</string>
     <string name="label_pedal">Positie pedaal</string>
     <string name="label_motor_torque">Motortorsie</string>
@@ -185,14 +176,15 @@
     <string name="message_UnexpectedResult">Verzoek gestuurd, maar onverwacht resultaat:[</string>
     <string name="message_GetDtcs">\nVerzoek DTCs…\n</string>
     <string name="message_NoGetDtcsField">Verzoek DTCs veld neit gevonden\n</string>
-    <string name="messageNoActiveDtcs">\nGeen actieve DTCs\n</string>
+    <string name="message_NoActiveDtcs">\nGeen actieve DTCs\n</string>
     <string name="message_clear">"Wis "</string>
     <string name="message_NoClearDtcField">Wis DTCs veld niet gevonden\n</string>
     <string name="message_MessageNull">Bericht is leeg. Is de auto gestart?\n</string>
     <string name="message_ClearSuccessful">Wissen lijkt gelukt. Vraag de DTCs opniew op\n</string>
 
-    <!-- elm testing -->
+    <!-- Elm testing -->
 
+    <string name="title_activity_elm_test">Test ELM327 Dongle</string>
     <string name="header_ElmTest">Test resultaten</string>
     <string name="message_ExpectedResult">Verwacht resultaat ontvangen\n==========\n</string>
     <string name="message_FieldNotExists">Gevraagd veld bestaat niet. Dit is een fout in de test suite. Gaarne rapporteren\n</string>
@@ -204,49 +196,54 @@
     <string name="message_PrepFree">\nVerwerking voorbereid free frame PARK BRAKE\n</string>
     <string name="message_DevicePassed">\nUw apparaat werkt voor alle testen. Het zal waarschijnlijk goed werken\n</string>
 
-    <!-- firmware -->
+    <!-- Firmware -->
 
+    <string name="title_activity_firmware">Firmware</string>
     <string name="header_Firmware">Firmware versies</string>
     <string name="default_Firmware">Not beschikbaar</string>
     <string name="help_Ecus"><![CDATA[Meer over de computers van de auto vind u <a href="http://canze.fisch.lu/computers/">hier</a>.]]></string>
 
-    <!-- kangoo fluence temperatures -->
+    <!-- Heatmap battery modules -->
 
+    <string name="title_activity_heatmap_bat">Moduletemperaturen</string>
+
+    <!-- Heatmap voltages -->
+
+    <string name="title_activity_heatmap_cellvoltage">Celspanningen</string>
+
+    <!-- Kangoo Fluence temperatures -->
+
+    <string name="title_activity_fluence_kangoo_temp">Fluence Kangoo temperaturen</string>
     <string name="header_KangooFluenceTemperatures">Temperaturen</string>
-
     <string name="label_EvaporatorTemperature">Temperatuur verdamper</string>
     <string name="label_WaterTemperatureHeating">Watertemperatuur verwarming</string>
     <string name="label_DcDcConverterTemperature">Temperatuur DCDC omzetter</string>
     <string name="label_InverterTemperature">Temperatuur inverter</string>
     <string name="label_ExternalTemperature">Buitentemperatuur</string>
     <string name="label_InternalTemperature">Binnentemperatuur</string>
-
     <string name="header_KangooFluenceFansPumps">Ventilatoren en pompen (beschrijvingen toe te voegen)</string>
-
     <string name="label_MotorWaterPumpSpeed">Snelheid waterpompmotor</string>
     <string name="label_ChargerWaterPumpSpeed">Snelheid waterpomp lader</string>
     <string name="label_HeatingWaterPumpSpeed">Snelheid waterpomp verwarrming</string>
     <string name="label_BatteryCoolingFansSpeed">Snelheid ventilator batterijkoeling</string>
 
-    <!-- tyres -->
+    <!-- Leaf spy -->
 
-    <string name="header_Tyres">Banden</string>
-    <string name="label_TyreSpdPresMisadaption">Afwijking snelheid-druk</string>
-    <string name="label_TyreFL">Linksvoor</string>
-    <string name="label_TyreFR">Rechtsvoor</string>
-    <string name="label_TyreRL">Linksachter</string>
-    <string name="label_TyreRR">Rechtsachter</string>
-    <string name="label_TyreFLState">Status linksvoor</string>
-    <string name="label_TyreFRState">Status rechtsvoor</string>
-    <string name="label_TyreRLState">Status linksachter</string>
-    <string name="label_TyreRRState">Status rechtsachter</string>
-    <string name="label_TyreFLPressure">Druk linksvoor mbar</string>
-    <string name="label_TyreFRPressure">Druk rechtsvoor mbar</string>
-    <string name="label_TyreRLPressure">Druk linksachter mbar</string>
-    <string name="label_TyreRRPressure">Druk rechtsachter mbar</string>
+    <string name="title_activity_leaf_spy">Leaf Spy Kloon</string>
 
-    <!-- prediction -->
+    <!-- Mainactivity -->
 
+    <string name="toast_InitWidgets">Initialisatie van de widgets</string>
+    <string name="toast_BluetoothLost">Bluetooth verbinding verbroken!</string>
+    <string name="prompt_Accept">Ja, ik begrijp het</string>
+    <string name="prompt_Decline">Nee, ik begrijp er niets van</string>
+    <string name="toast_Reconnecting">Opnieuw met Bluetoothverbinden…</string>
+    <string name="toast_WaitingSettings">Stoppen Bluetooth. Instellingen worden geladen…</string>
+    <string name="toast_NotWhileDriving">Niet mogelijk terwijl u rijdt</string>
+
+    <!-- Prediction -->
+
+    <string name="title_activity_prediction">Laadvoorspelling</string>
     <string name="label_StateAtThisMoment">Huidige status</string>
     <string name="label_BatteryTemperature">Batterijtemperatuur</string>
     <string name="label_ACPower">AC vermogen</string>
@@ -256,6 +253,14 @@
     <string name="label_Soc">SOC</string>
     <string name="label_Range">Bereik</string>
     <string name="label_DcPower">DC vermogen</string>
+
+    <!-- Range -->
+
+    <string name="title_activity_range">Bereik</string>
+    <string name="label_RangeRemaining">Remaining range by car:</string>
+    <string name="label_RangeRemainingCanZE">Remaining range by CanZE:</string>
+    <string name="label_EstimatedDrivingStyleLoss">Estimated driving style energy loss:</string>
+    <string name="graph_DistanceEnergy">Beschibare range (km) / Beschikbare energie (kWh)</string>
 
     <!-- Settings -->
 
@@ -286,17 +291,49 @@
     <string name="prompt_BluetoothOn">Als u Bluetooth aan laat staan terwijl de applicatie in de achtergronf actief is heeft mogelijk uitwerking op andere toepassingen die Bluetooth gebruiken. Ook is het mogelijk dat uw batterij sneller leegloopt als u CanZE vergeet geforceerd af te sluiten dan wel deze optie uit te schakelen.<br/><br/><b>Als u deze mogelijkheid inschaket, zal de verbinding in stand blijven, zelfs als u uw android apparaat uit- en aanzet!</b><br/><br/>Weet u zeker da u de Bluetooth Achtergrond mode wilt inschakelen?</string>
     <string name="prompt_NoSd">Externe SD kaart is niet beschikbaar, is vergrendeld of heeft onvoldoende ruimte om data op te slaan.<br/><br/><b>Data export kan niet worden aangezet!</b></string>
     <string name="prompt_Sorry">Sorry…</string>
-    <string name="toast_CacheCleared">Cache is opgeschoond …</string>
+    <string name="toast_CacheCleared">Cache is opgeschoond…</string>
     <string name="toast_PleaseUseTop">Gebruik alstublieft een van de knoppen bovenaan om de instelingen af te sluiten …</string>
     <string name="toast_NoBluetooth">Dit apparaat heeft geen Bluetooth adapter.\n\nSorry…</string>
 
-    <!-- experimental (fragment) -->
+    <!-- Tyres -->
 
+    <string name="title_activity_tyres">Bandenspanning</string>
+    <string name="header_Tyres">Banden</string>
+    <string name="help_PressuresMbar">Alle bandenspanning in mbar</string>
+    <string name="label_TyreSpdPresMisadaption">Afwijking snelheid-druk</string>
+    <string name="label_TyreFL">Linksvoor</string>
+    <string name="label_TyreFR">Rechtsvoor</string>
+    <string name="label_TyreRL">Linksachter</string>
+    <string name="label_TyreRR">Rechtsachter</string>
+    <string name="label_TyreFLState">Status linksvoor</string>
+    <string name="label_TyreFRState">Status rechtsvoor</string>
+    <string name="label_TyreRLState">Status linksachter</string>
+    <string name="label_TyreRRState">Status rechtsachter</string>
+    <string name="label_TyreFLPressure">Druk linksvoor mbar</string>
+    <string name="label_TyreFRPressure">Druk rechtsvoor mbar</string>
+    <string name="label_TyreRLPressure">Druk linksachter mbar</string>
+    <string name="label_TyreRRPressure">Druk rechtsachter mbar</string>
+
+    <!-- Widgets only -->
+
+    <string name="title_activity_widget">WidgetActivity</string>
+
+    <!-- Main (fragment) -->
+
+    <string name="menu_Main">Hoofd</string>
+    <string name="button_Charging">Opladen</string>
+
+    <!-- Experimental (fragment) -->
+
+    <string name="menu_Experimental">Experimenteel</string>
     <string name="help_Experimental">De knoppen hieronder zijn alleen voor testgebruik</string>
     <string name="button_LeafspyBob">LeafSpy (Bob)</string>
-    <string name="button_BatteryTemperturesBob">BatteryTemperturesActivity (Bob)</string>
     <string name="button_FluenceKangooTemps">Fluence Kangoo Temp.</string>
-    <string name="button_Charging">Opladen</string>
+    <string name="help_TestingButtons">Onderstaande knoppen zijn alleen voor testdoeleinden</string>
+
+    <!-- Technical (fragment) -->
+
+    <string name="menu_Technical">Technisch</string>
     <string name="button_DtcReadout">DTCs opvragen</string>
     <string name="button_ChargingGraphs">Grafieken opladen</string>
     <string name="button_Firmware">Firmware</string>
@@ -304,11 +341,7 @@
     <string name="button_ElmTesting">ELM test</string>
     <string name="button_Range">Bereik</string>
     <string name="button_Climate">Airco</string>
-    <string name="activity_braking">Remmen</string>
-    <string name="graph_ModuleTemperatures">Temperaturen batterijmodules</string>
-    <string name="header_braking">Status remsysteem</string>
 
-    <!-- technical (fragment) -->
 
 
 </resources>

@@ -425,9 +425,9 @@ public class SettingsActivity extends AppCompatActivity {
             zf.close(); */
 
             Date buildDate = new Date(BuildConfig.TIMESTAMP);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd @ HH:mm", Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.format_YMDHM), Locale.getDefault());
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            tv.setText( R.string.version+pInfo.versionName+"  //  " + R.string.build+sdf.format(buildDate));
+            tv.setText(getString(R.string.version)+pInfo.versionName+"  //  " + getString(R.string.build)+sdf.format(buildDate));
 
         } catch(Exception e) {
             e.printStackTrace();

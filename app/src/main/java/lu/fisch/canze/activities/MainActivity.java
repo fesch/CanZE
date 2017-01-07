@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                     // inform user
                     setTitle(TAG + " - disconnected");
                     setBluetoothState(BLUETOOTH_DISCONNECTED);
-                    Toast.makeText(MainActivity.this.getBaseContext(),"Bluetooth connection lost!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this.getBaseContext(), R.string.toast_BluetoothLost,Toast.LENGTH_LONG).show();
 
                     // try to reconnect
                     onResume();
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     {
         Log.d(TAG, text);
         if(debugLogMode) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat(instance.getString(R.string.format_YMDHMSs), Locale.getDefault());
             DebugLogger.getInstance().log(sdf.format(Calendar.getInstance().getTime()) + ": " + text);
         }
     }
@@ -595,11 +595,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
             // set title
-            alertDialogBuilder.setTitle("Formal Disclaimer");
+            alertDialogBuilder.setTitle(R.string.prompt_Disclaimer);
 
             // set dialog message
-            String yes = "Yes, I got it!";
-            String no  = "No, I didn't understand a word ...";
+            String yes = getString(R.string.prompt_Accept);
+            String no  = getString(R.string.prompt_Decline);
 
             Display display = getWindowManager().getDefaultDisplay();
             Point size = new Point();
@@ -609,26 +609,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             width = width / getResources().getDisplayMetrics().scaledDensity;
             if(width<=480)
             {
-                yes="Yes";
-                no ="No";
+                yes=getString(R.string.default_Yes);
+                no =getString(R.string.default_No);
             }
 
             alertDialogBuilder
-                    .setMessage(Html.fromHtml("<html>CanZE (“the software”) is provided as is. Use the software at your own risk. " +
-                            "The authors make no warranties as to performance or fitness for a particular purpose, " +
-                            "or any other warranties whether expressed or implied. No oral or written communication " +
-                            "from or information provided by the authors shall create a warranty. Under no circumstances " +
-                            "shall the authors be liable for direct, indirect, special, incidental, or consequential " +
-                            "damages resulting from the use, misuse, or inability to use the software, even if the author " +
-                            "has been advised of the possibility of such damages. These exclusions and limitations may not " +
-                            "apply in all jurisdictions. You may have additional rights and some of these limitations may not " +
-                            "apply to you. This software is only intended for scientific usage." +
-                            "<br>" +
-                            "<br>" +
-                            "<b>By using this software you are interfering with your car and doing that with hardware and " +
-                            "software beyond your control, created by a loose team of interested amateurs in this field. Any " +
-                            "car is a possibly lethal piece of machinery and you might hurt or kill yourself or others using " +
-                            "it, or even paying attention to the displays instead of watching the road.</b></html>"))
+                    .setMessage(Html.fromHtml(getString(R.string.prompt_DisclaimerText)))
                     .setCancelable(true)
                     .setPositiveButton(yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -805,7 +791,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 (new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        toast("Reconnecting Bluetooth ...");
+                        toast(getString(R.string.toast_Reconnecting));
                         stopBluetooth();
                         reloadBluetooth();
                     }
@@ -873,7 +859,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             if(isSafe())
             {
                 // run a toast
-                Toast.makeText(MainActivity.this, "Stopping Bluetooth. Settings are being loaded. Please wait ....", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, R.string.toast_WaitingSettings, Toast.LENGTH_SHORT).show();
 
                 (new Thread(new Runnable() {
                     @Override
@@ -941,7 +927,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         boolean safe = !isDriving || !safeDrivingMode;
         if(!safe)
         {
-            Toast.makeText(MainActivity.instance,"Not possible while driving ...",Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.instance, R.string.toast_NotWhileDriving,Toast.LENGTH_LONG).show();
         }
         return safe;
     }

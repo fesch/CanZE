@@ -8,7 +8,7 @@
     <item
         android:id="@+id/action_setDistanceToDestination"
         android:orderInCategory="100"
-        android:title="Distance to destination"
+        android:title="@string/label_DistToDest"
         android:visible="true"
         />
 

@@ -73,7 +73,7 @@
             android:label="@string/title_activity_heatmap_cellvoltage" />
         <activity
             android:name=".activities.FluenceKangooTempsActivity"
-            android:label="Fluence Kangoo Temp" />
+            android:label="@string/title_activity_fluence_kangoo_temp" />
         <activity
             android:name=".activities.TyresActivity"
             android:label="@string/title_activity_tyres" />

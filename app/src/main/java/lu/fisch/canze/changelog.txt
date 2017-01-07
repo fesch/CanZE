@@ -1,5 +1,9 @@
+2017.01.07 [Jeroen] Separated all strings, Dutch translation as example. Minor fixes
+2017.01.07 [Jeroen] Changed initListeners to be abstract, removed repeated code for addListeners
+                    and fiels subscription management. Still bug in zoom one widget
 2017.01.07 [Bob] Fixed timeplotter x-axis label problem (second try)
 2017.01.06 [Bob] Fixed a wrong event for Settings.deviceList
+2017.01.05 [Jeroen] Settings changed so the last http address is retained after choosing BT device
 2017.01.04 [Bob] Fixed timeplotter x-axis label problem
 2017.01.04 [Jeroen] Improved temp/balances part in chargingtech, removed possible charging pwr from climatech
 2017.01.04 [Jeroen] Cleanup of Lint (almost everywhere, not complete)

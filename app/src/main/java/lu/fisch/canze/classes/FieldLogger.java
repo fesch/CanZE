@@ -1,5 +1,6 @@
 package lu.fisch.canze.classes;
 
+import android.content.res.Resources;
 import android.os.Environment;
 
 import java.io.BufferedWriter;
@@ -8,6 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
+
+import lu.fisch.canze.R;
 
 import static lu.fisch.canze.activities.MainActivity.debug;
 
@@ -35,7 +39,7 @@ public class FieldLogger {
 
     private File logFile = null;
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+    private SimpleDateFormat sdf = new SimpleDateFormat(Resources.getSystem().getString(R.string.format_YMDHMS), Locale.getDefault());
 
     private boolean isCreated()
     {

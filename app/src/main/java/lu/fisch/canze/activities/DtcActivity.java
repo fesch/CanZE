@@ -497,7 +497,7 @@ public class DtcActivity  extends CanzeActivity {
     private void createDump (Ecu ecu) {
 
         dumpInProgress = false;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.format_YMDHMS), Locale.getDefault());
 
 
         // ensure that there is a CanZE Folder in SDcard
