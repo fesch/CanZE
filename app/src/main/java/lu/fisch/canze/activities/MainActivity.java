@@ -211,11 +211,35 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     {
         if(instance!=null)
             instance.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                 Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
+                @Override
+                public void run() {
+                    Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
                 }
-        });
+            });
+    }
+
+    public static void toast(String format, Object... arguments)
+    {
+        final String finalMessage = String.format(Locale.getDefault(), format, arguments);
+        if(instance!=null)
+            instance.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
+                }
+            });
+    }
+
+    public static void toast(final int resource)
+    {
+        if(instance!=null)
+            instance.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    final String finalMessage = instance.getString (resource);
+                    Toast.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
+                }
+            });
     }
 
     public void loadSettings()

@@ -21,6 +21,7 @@
 
 package lu.fisch.canze.activities;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.TextView;
 import java.util.ArrayList;
@@ -61,17 +62,17 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     public static final String DefaultFormatTemperature             = "%3.0f°";
     public static final String DefaultFormatBalancing               = "%02X";
 
+    final Resources res = getResources();
 
+    //public static final String cha_Status [] = {"No charge", "Waiting (planned)", "Ended", "In progress", "Failure", "Waiting", "Flap open", "Unavailable"};
+    final String charging_Status [] = res.getStringArray(R.array.list_ChargingStatus);
+    //public static final String plu_Status [] = {"Not connected", "Connected"};
+    final String plug_Status [] = res.getStringArray(R.array.list_PlugStatus);
 
-
-    public static final String cha_Status [] = {"No charge", "Waiting (planned)", "Ended", "In progress", "Failure", "Waiting", "Flap open", "Unavailable"};
-    public static final String plu_Status [] = {"Not connected", "Connected"};
     double dcVolt       = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     double pilot        = 0;
     int chargingStatus  = 7;
     double soc          = 0;
-
-    private ArrayList<Field> subscribedFields;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,77 +80,38 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         setContentView(R.layout.activity_chargingtech);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // initialise the widgets
-        initListeners();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        removeListeners();
-    }
-
-    private void initListeners() {
-
-        subscribedFields = new ArrayList<>();
-
-        addListener(SID_MaxCharge);
-        addListener(SID_ACPilot);
-        addListener(SID_TimeToFull);
-        addListener(SID_PlugConnected);
-        addListener(SID_UserSoC);
-        addListener(SID_RealSoC);
+    protected void initListeners() {
+        addField(SID_MaxCharge);
+        addField(SID_ACPilot);
+        addField(SID_TimeToFull);
+        addField(SID_PlugConnected);
+        addField(SID_UserSoC);
+        addField(SID_RealSoC);
         if (MainActivity.isZOE()) {
-            addListener(SID_AvailableChargingPower);
+            addField(SID_AvailableChargingPower);
         //} else {
-        //    addListener(SID_CapacityFluKan);
+        //    addFields(SID_CapacityFluKan);
         }
-        addListener(SID_AvEnergy);
-        addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
-        addListener(SID_RangeEstimate);
-        addListener(SID_12V);
-        addListener(SID_12A);
-        addListener(SID_DcLoad);
-        addListener(SID_HvKilometers);
-        addListener(SID_ChargingStatusDisplay);
-        addListener(SID_TractionBatteryVoltage);
-        addListener(SID_TractionBatteryCurrent);
+        addField(SID_AvEnergy);
+        addField(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
+        addField(SID_RangeEstimate);
+        addField(SID_12V);
+        addField(SID_12A);
+        addField(SID_DcLoad);
+        addField(SID_HvKilometers);
+        addField(SID_ChargingStatusDisplay);
+        addField(SID_TractionBatteryVoltage);
+        addField(SID_TractionBatteryCurrent);
 
         // Battery compartment temperatures
         int lastCell = MainActivity.isZOE() ? 12 : 4;
         for (int i = 0; i < lastCell; i++) {
             String sid = SID_Preamble_CompartmentTemperatures + (32 + i * 24);
-            addListener(sid);
+            addField(sid);
             if (MainActivity.isZOE()) sid = SID_Preamble_BalancingBytes + (16 + i * 8);
-            addListener(sid);
+            addField(sid);
         }
 
-    }
-
-    private void removeListeners () {
-        // empty the query loop
-        MainActivity.device.clearFields();
-        // free up the listeners again
-        for (Field field : subscribedFields) {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
-    }
-
-    private void addListener(String sid) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            field.addListener(this);
-            MainActivity.device.addActivityField(field);
-            subscribedFields.add(field);
-        } else {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -275,12 +237,12 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                     case SID_ChargingStatusDisplay:
                         chargingStatus = (int) field.getValue();
                         tv = (TextView) findViewById(R.id.textChaStatus);
-                        tv.setText(cha_Status[chargingStatus]);
+                        tv.setText(charging_Status[chargingStatus]);
                         tv = null;
                         break;
                     case SID_PlugConnected:
                         tv = (TextView) findViewById(R.id.textPlug);
-                        tv.setText(plu_Status[(int) field.getValue()]);
+                        tv.setText(plug_Status[(int) field.getValue()]);
                         tv = null;
                         break;
                     case SID_Preamble_CompartmentTemperatures + "32":

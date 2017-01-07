@@ -48,7 +48,7 @@
                 <TableRow>
                     <TextView
                         android:id="@+id/textAvChPwr"
-                        android:text="@string/default_AvChPwr"
+                        android:text="@string/default_Dash"
                         android:textColor="#000"
                         android:textSize="48sp"
                         android:gravity="center"
@@ -59,7 +59,7 @@
                         android:layout_weight="1" />
                     <TextView
                         android:id="@+id/text_max_charge"
-                        android:text="@string/default_max_charge"
+                        android:text="@string/default_Dash"
                         android:textColor="#000"
                         android:textSize="48sp"
                         android:gravity="center"
@@ -102,7 +102,7 @@
                         android:layout_weight="1" />
                     <TextView
                         android:id="@+id/textDcPwr"
-                        android:text="@string/default_DcPwr"
+                        android:text="@string/default_Dash"
                         android:textColor="#000"
                         android:textSize="48sp"
                         android:gravity="center"
@@ -137,7 +137,7 @@
                         android:layout_weight="1" />
                     <TextView
                         android:id="@+id/textKMA"
-                        android:text="@string/default_DISTA"
+                        android:text="@string/default_Dash"
                         android:textColor="#000"
                         android:textSize="48sp"
                         android:gravity="center"
@@ -163,7 +163,7 @@
                         />
                     <TextView
                         android:id="@+id/textUserSOC"
-                        android:text="@string/default_SOC"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -176,7 +176,7 @@
                         />
                     <TextView
                         android:id="@+id/textRealSOC"
-                        android:text="@string/default_SOC"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -190,7 +190,7 @@
                         />
                     <TextView
                         android:id="@+id/textSOH"
-                        android:text="@string/default_SOH"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -204,7 +204,7 @@
                         />
                     <TextView
                         android:id="@+id/textHvTemp"
-                        android:text="@string/default_HvTemp"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />

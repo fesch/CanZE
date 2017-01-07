@@ -21,6 +21,7 @@
 
 package lu.fisch.canze.activities;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -43,12 +44,15 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
     public static final String SID_BatteryConditioningMode          = "432.36";
     public static final String SID_ClimaLoopMode                    = "42a.48";
 
-    public static final String cst_Status [] = {"No", "Cooling alone", "Cooling coupled", "Unavail"};
-    //public static final String plu_Status [] = {"Blow req", "Cool cond req", "Heat cond req", "Unavail"};
-    public static final String clm_Status [] = {"Unavail", "AC", "AC deiceing","", "Heat pump", "", "Demisting", "Idle"};
+    final Resources res = getResources();
 
+    //public static final String cst_Status [] = {"No", "Cooling alone", "Cooling coupled", "Unavail"};
+    final String cooling_Status [] = res.getStringArray(R.array.list_CoolingStatus);
+    //public static final String clm_Status [] = {"Unavail", "AC", "AC deiceing","", "Heat pump", "", "Demisting", "Idle"};
+    final String conditioning_Status [] = res.getStringArray(R.array.list_ConditioningStatus);
+    final String climate_Status [] = res.getStringArray(R.array.list_ClimateStatus);
 
-    private ArrayList<Field> subscribedFields;
+    // private ArrayList<Field> subscribedFields;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,56 +60,18 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
         setContentView(R.layout.activity_climatech);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // initialise the widgets
-        initListeners();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        removeListeners();
-    }
-
-    private void initListeners() {
-
-        subscribedFields = new ArrayList<>();
-
-        if (MainActivity.car==MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) {
-            addListener(SID_EngineFanSpeed);
-            addListener(SID_DcPower);
+    protected void initListeners() {
+        if (MainActivity.isZOE()) {
+            addField(SID_EngineFanSpeed, 0);
+            addField(SID_DcPower, 0);
             // addListener(SID_ChargingPower);
-            addListener(SID_HvCoolingState);
-            addListener(SID_HvEvaporationTemp);
-            addListener(SID_BatteryConditioningMode);
-            addListener(SID_ClimaLoopMode);
+            addField(SID_HvCoolingState, 0);
+            addField(SID_HvEvaporationTemp, 0);
+            addField(SID_BatteryConditioningMode, 0);
+            addField(SID_ClimaLoopMode, 0);
         }
     }
 
-    private void removeListeners () {
-        // empty the query loop
-        MainActivity.device.clearFields();
-        // free up the listeners again
-        for (Field field : subscribedFields) {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
-    }
-
-    private void addListener(String sid) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            field.addListener(this);
-            MainActivity.device.addActivityField(field);
-            subscribedFields.add(field);
-        } else {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
-    }
 
     // This is the event fired as soon as this the registered fields are
     // getting updated by the corresponding reader class.
@@ -133,7 +99,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
                     //     break;
                     case SID_HvCoolingState:
                         tv = (TextView) findViewById(R.id.text_HCS);
-                        tv.setText(cst_Status[(int) field.getValue()]);
+                        tv.setText(cooling_Status[(int) field.getValue()]);
                         tv = null;
                         break;
                     case SID_HvEvaporationTemp:
@@ -141,12 +107,12 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
                         break;
                     case SID_BatteryConditioningMode:
                         tv = (TextView) findViewById(R.id.text_HCM);
-                        tv.setText(cst_Status[(int) field.getValue()]);
+                        tv.setText(conditioning_Status[(int) field.getValue()]);
                         tv = null;
                         break;
                     case SID_ClimaLoopMode:
                         tv = (TextView) findViewById(R.id.text_CLM);
-                        tv.setText(clm_Status[(int) field.getValue()]);
+                        tv.setText(climate_Status[(int) field.getValue()]);
                         tv = null;
                         break;
 

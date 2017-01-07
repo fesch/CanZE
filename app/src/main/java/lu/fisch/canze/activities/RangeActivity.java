@@ -43,11 +43,6 @@ public class RangeActivity extends CanzeActivity {
         seekBar.setProgress(lossSetting);
         ((TextView) findViewById(R.id.lossView)).setText(seekBar.getProgress()+"%");
 
-        addField(SID_AvailableDistance, 0);
-        addField(SID_AvailableEnvergy, 0);
-        addField(SID_AverageConsumption, 0);
-        addField(SID_WorstAverageConsumption, 0);
-        addField(SID_BestAverageConsumption, 0);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -80,11 +75,12 @@ public class RangeActivity extends CanzeActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_empty, menu);
-        return true;
+    protected void initListeners () {
+        addField(SID_AvailableDistance, 0);
+        addField(SID_AvailableEnvergy, 0);
+        addField(SID_AverageConsumption, 0);
+        addField(SID_WorstAverageConsumption, 0);
+        addField(SID_BestAverageConsumption, 0);
     }
 
     private void updateRange()

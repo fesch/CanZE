@@ -39,8 +39,6 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
     public static final String SID_Preamble_CellVoltages1 = "7bb.6141."; // (LBC)
     public static final String SID_Preamble_CellVoltages2 = "7bb.6142."; // (LBC)
 
-    private ArrayList<Field> subscribedFields;
-
     private double mean = 0;
     private double cutoff;
     private double lastVoltage[] = {0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4};
@@ -53,56 +51,16 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
         setContentView(R.layout.activity_heatmap_cellvoltage);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // initialise the widgets
-        initListeners();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        removeListeners();
-    }
-
-    private void initListeners() {
-
-        subscribedFields = new ArrayList<>();
-
+    protected void initListeners() {
         // Battery compartment temperatures
         for (int i = 1; i <= 62; i++) {
             String sid = SID_Preamble_CellVoltages1 + (i * 16); // remember, first is pos 16, i starts s at 1
-            addListener(sid);
+            addField(sid);
         }
         for (int i = 63; i <= 96; i++) {
             String sid = SID_Preamble_CellVoltages2 + ((i - 62) * 16); // remember, first is pos 16, i starts s at 1
-            addListener(sid);
+            addField(sid);
         }
-    }
-
-    private void removeListeners () {
-        // empty the query loop
-        MainActivity.device.clearFields();
-        // free up the listeners again
-        for (Field field : subscribedFields) {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
-    }
-
-    private void addListener(String sid) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            field.addListener(this);
-            MainActivity.device.addActivityField(field);
-            subscribedFields.add(field);
-        } else {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
-
     }
 
     // This is the event fired as soon as this the registered fields are

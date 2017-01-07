@@ -22,6 +22,7 @@
 package lu.fisch.canze.activities;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -54,15 +55,12 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
 
     private static int versions [] = null;
 
-
-    private ArrayList<Field> subscribedFields;
+    @SuppressLint("StringFormatMatches")
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firmware);
-
-        subscribedFields = new ArrayList<>();
 
         switch (MainActivity.car) {
             case MainActivity.CAR_FLUENCE:
@@ -87,13 +85,13 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
                 if (tv != null) {
                     tv.setText(ecu.getMnemonic() + " (" + ecu.getName() + ")");
                 } else {
-                    MainActivity.toast("No view with id 'lEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase() + "'");
+                    MainActivity.toast(getString(R.string.format_NoView), "lEcu", Integer.toHexString (ecu.getFromId()).toLowerCase());
                 }
                 tv = (TextView) findViewById(getResources().getIdentifier("vEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase(), "id", getPackageName()));
                 if (tv != null) {
                     tv.setText("-");
                 } else {
-                    MainActivity.toast("No view with id 'vEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase() + "'");
+                    MainActivity.toast(getString(R.string.format_NoView), "vEcu", Integer.toHexString (ecu.getFromId()).toLowerCase());
                 }
             }
         }
@@ -103,49 +101,11 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
         textView.setMovementMethod(LinkMovementMethod.getInstance());
      }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // initialise the widgets
-        initListeners();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        removeListeners();
-    }
-
-    private void initListeners() {
-        subscribedFields = new ArrayList<>();
+    protected void initListeners() {
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
             if (ecu.getFromId() > 0 && ecu.getFromId() < 0x800) {
-                addListener(Integer.toHexString (ecu.getFromId()).toLowerCase() + ".6180.144");
+                addField(Integer.toHexString (ecu.getFromId()).toLowerCase() + ".6180.144", 0);
             }
-        }
-    }
-
-    private void removeListeners () {
-        // empty the query loop
-        MainActivity.device.clearFields();
-        // free up the listeners again
-        for (Field field : subscribedFields) {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
-    }
-
-    private void addListener(String sid) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            field.addListener(this);
-            if(MainActivity.device!=null)
-                MainActivity.device.addActivityField(field);
-            subscribedFields.add(field);
-        } else {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
         }
     }
 

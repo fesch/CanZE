@@ -33,4 +33,6 @@ public class ChargingGraphActivity extends CanzeActivity {
         setContentView(R.layout.activity_charging_graph);
     }
 
+    protected void initListeners () {}
+
 }

@@ -37,10 +37,11 @@ public class BatteryActivity extends CanzeActivity {
         setContentView(R.layout.activity_battery);
 
         TextView textView = (TextView) findViewById(R.id.link);
-        textView.setText(Html.fromHtml("More detailed information about these data can be found in the <a href='http://canze.fisch.lu/qa/'>Q & A section</a> of the <a href='http://canze.fisch.lu/'>CanZE homepage</a>."));
+        textView.setText(Html.fromHtml(getString(R.string.help_QA)));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
+    protected void initListeners () {}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

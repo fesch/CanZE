@@ -50,7 +50,7 @@ public class WidgetActivity extends CanzeActivity {
 
     }
 
-
+    protected void initListeners () {}
 
     @Override
     protected void onDestroy() {

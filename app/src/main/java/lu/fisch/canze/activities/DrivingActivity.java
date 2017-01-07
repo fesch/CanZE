@@ -68,8 +68,6 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
     private double driverBrakeWheel_Torque_Request  = 0;
     private double coasting_Torque                  = 0;
 
-    private ArrayList<Field> subscribedFields;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,63 +90,22 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // initialise the widgets
-        initListeners();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        removeListeners();
-    }
-
-    private void initListeners() {
-
-        subscribedFields = new ArrayList<>();
-
+    protected void initListeners() {
         getDestOdo();
 
         // Make sure to add ISO-TP listeners grouped by ID
 
-        addListener(SID_Consumption, 0);
-        addListener(SID_Pedal, 0);
-        addListener(SID_MeanEffectiveTorque, 0);
-        addListener(SID_DriverBrakeWheel_Torque_Request, 0);
-        addListener(SID_ElecBrakeWheelsTorqueApplied, 0);
-        addListener(SID_Coasting_Torque, 0);
-        addListener(SID_TotalPotentialResistiveWheelsTorque, 7200);
-        addListener(SID_RealSpeed, 0);
-        addListener(SID_SoC, 7200);
-        addListener(SID_RangeEstimate, 7200);
-        addListener(SID_EVC_Odometer, 6000);
-    }
-
-
-    private void removeListeners () {
-        // empty the query loop
-        MainActivity.device.clearFields();
-        // free up the listeners again
-        for (Field field : subscribedFields) {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
-    }
-
-
-    private void addListener(String sid, int intervalMs) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            field.addListener(this);
-            MainActivity.device.addActivityField(field, intervalMs);
-            subscribedFields.add(field);
-        } else {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
+        addField(SID_Consumption, 0);
+        addField(SID_Pedal, 0);
+        addField(SID_MeanEffectiveTorque, 0);
+        addField(SID_DriverBrakeWheel_Torque_Request, 0);
+        addField(SID_ElecBrakeWheelsTorqueApplied, 0);
+        addField(SID_Coasting_Torque, 0);
+        addField(SID_TotalPotentialResistiveWheelsTorque, 7200);
+        addField(SID_RealSpeed, 0);
+        addField(SID_SoC, 7200);
+        addField(SID_RangeEstimate, 7200);
+        addField(SID_EVC_Odometer, 6000);
     }
 
     void setDistanceToDestination () {
@@ -164,12 +121,11 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         // set dialog message
         alertDialogBuilder
                 .setView(distToDestView)
-                .setTitle("REMAINING DISTANCE")
-                .setMessage("Please enter the distance to your destination. The display will estimate " +
-                        "the remaining driving distance available in your battery on arrival")
+                .setTitle(R.string.prompt_Distance)
+                .setMessage(getString(R.string.prompt_SetDistance))
 
                 .setCancelable(true)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.default_Ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
@@ -180,7 +136,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         dialog.cancel();
                     }
                 })
-                .setNeutralButton("Double", new DialogInterface.OnClickListener() {
+                .setNeutralButton(R.string.button_Double, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
@@ -191,7 +147,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                         dialog.cancel();
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.default_Cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
@@ -347,7 +303,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate the menu; this adds items to the action bar if it is present. This menu
+        // is another way to set the distance
         getMenuInflater().inflate(R.menu.menu_driving, menu);
         return true;
     }

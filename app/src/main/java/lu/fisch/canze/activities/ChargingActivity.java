@@ -31,7 +31,7 @@ import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.FieldListener;
 
-// If you want to monitor changes, you must add a FieldListener to the fields.
+// If you want to monitor changes, you must add a FieldField to the fields.
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
 public class ChargingActivity extends CanzeActivity implements FieldListener {
 
@@ -51,7 +51,6 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
     public static final String SID_DcPower                          = "800.6103.24"; // Virtual field
     public static final String SID_SOH                              = "7ec.623206.24";
 
-    private ArrayList<Field> subscribedFields;
     double avChPwr;
 
     @Override
@@ -60,61 +59,21 @@ public class ChargingActivity extends CanzeActivity implements FieldListener {
         setContentView(R.layout.activity_charging);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // initialise the widgets
-        initListeners();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        removeListeners();
-    }
-
-    private void initListeners() {
-
-        subscribedFields = new ArrayList<>();
-
-        addListener(SID_MaxCharge);
-        addListener(SID_UserSoC);
-        addListener(SID_RealSoC);
-        addListener(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
-        addListener(SID_RangeEstimate);
-        addListener(SID_DcPower);
+    protected void initListeners() {
+        addField(SID_MaxCharge);
+        addField(SID_UserSoC);
+        addField(SID_RealSoC);
+        addField(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
+        addField(SID_RangeEstimate);
+        addField(SID_DcPower);
         if (MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240 || MainActivity.car == MainActivity.CAR_ZOE_Q90 || MainActivity.car == MainActivity.CAR_ZOE_R90) {
-            addListener(SID_AvChargingPower);
-            addListener(SID_HvTemp);
+            addField(SID_AvChargingPower);
+            addField(SID_HvTemp);
         } else { //FLuKan
-            addListener(SID_HvTempFluKan);
-            addListener(SID_ACPilot);
+            addField(SID_HvTempFluKan);
+            addField(SID_ACPilot);
         }
     }
-
-    private void removeListeners () {
-        // empty the query loop
-        MainActivity.device.clearFields();
-        // free up the listeners again
-        for (Field field : subscribedFields) {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
-    }
-
-    private void addListener(String sid) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            field.addListener(this);
-            MainActivity.device.addActivityField(field);
-            subscribedFields.add(field);
-        } else {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
-    }
-
 
     // This is the event fired as soon as this the registered fields are
     // getting updated by the corresponding reader class.

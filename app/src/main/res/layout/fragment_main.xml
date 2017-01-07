@@ -44,7 +44,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="4dp"
-                android:text="Battery"
+                android:text="@string/button_Battery"
                 android:id="@+id/buttonBattery"
                 android:drawableLeft="@mipmap/button_battery"
                 android:layout_column="0" />
