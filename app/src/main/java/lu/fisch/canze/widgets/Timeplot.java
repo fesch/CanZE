@@ -111,7 +111,8 @@ public class Timeplot extends Drawable {
         int barWidth = width-Math.max(g.stringWidth(min+""),g.stringWidth(max+""))-10-10;
         int spaceAlt = Math.max(g.stringWidth(minAlt+""),g.stringWidth(maxAlt+""))+10+10;
         // reduce with if second y-axe is used
-        if (minAlt==-1 && maxAlt==-1)
+        //MainActivity.debug("Alt: "+minAlt+" - "+maxAlt);
+        if (minAlt==0 && maxAlt==0)
         {
             spaceAlt=0;
         }
@@ -474,6 +475,7 @@ public class Timeplot extends Drawable {
         int c = 0;
         int ts = (int) timeSale;
 
+        //MainActivity.debug("Start : "+sdf.format(start));
         if(backward)
         {
             for(long x=width-(start%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
@@ -481,10 +483,7 @@ public class Timeplot extends Drawable {
                 if(c%(5*ts)==0) {
                     g.setColor(getForeground());
                     g.drawLine(x, graphHeight, x, graphHeight + 10);
-                    //String date = sdf.format((start - ((start % interval))*timeSale - interval * c*timeSale) * 1000);
-                    String date = sdf.format((start - ((start % interval))*timeSale - interval * c*timeSale));
-                    //String date = sdf.format(start-(start%interval)-interval*c);
-                    //MainActivity.debug("Tick 1: "+sdf.format(start-(start%interval)-interval*c));
+                    String date = sdf.format((start - ((start % interval))*timeSale - interval * c*timeSale*1000));
                     g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
                 }
                 else
@@ -503,8 +502,7 @@ public class Timeplot extends Drawable {
                 if(c%(5*ts)==0) {
                     g.setColor(getForeground());
                     g.drawLine(x, graphHeight, x, graphHeight + 10);
-                    //String date = sdf.format( start + (interval * c*timeSale) * 1000);
-                    String date = sdf.format( start + (interval * c*timeSale));
+                    String date = sdf.format( start + (interval * c*timeSale*1000));
                     g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
                 }
                 else
