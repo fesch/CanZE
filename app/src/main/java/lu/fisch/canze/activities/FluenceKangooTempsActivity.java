@@ -47,9 +47,6 @@ public class FluenceKangooTempsActivity extends CanzeActivity implements FieldLi
     public static final String SID_MotorWaterPumpSpeed                  = "7ec.623318.24";
     public static final String SID_ChargerWaterPumpSpeed                = "7ec.623319.24";
     public static final String SID_HeatingWaterPumpSpeed                = "7ec.62331a.24";
-    // public static final String SID_BatteryCoolingFansSpeed              = "7bb.6101.335";
-
-    private ArrayList<Field> subscribedFields;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,65 +54,23 @@ public class FluenceKangooTempsActivity extends CanzeActivity implements FieldLi
         setContentView(R.layout.activity_fluence_kangoo_temps);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // initialise the widgets
-        initListeners();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        removeListeners();
-    }
-
-    private void initListeners() {
-
-        subscribedFields = new ArrayList<>();
-
+    protected void initListeners() {
         if (MainActivity.isZOE()) {
-            addListener(SID_ExternalTemperatureZoe, 10000);
-            addListener(SID_InternalTemperatureZoe, 10000);
-            addListener(SID_HVEvaporatorTemperature, 10000);
+            addField(SID_ExternalTemperatureZoe, 10000);
+            addField(SID_InternalTemperatureZoe, 10000);
+            addField(SID_HVEvaporatorTemperature, 10000);
         } else {
-            addListener(SID_ExternalTemperature, 10000);
-            addListener(SID_InternalTemperature, 10000);
+            addField(SID_ExternalTemperature, 10000);
+            addField(SID_InternalTemperature, 10000);
         }
-        addListener(SID_EvaporatorTemperature, 10000);
-        addListener(SID_WaterTemperatureHeating, 10000);
-        addListener(SID_DcDcConverterTemperature, 10000);
-        addListener(SID_InverterTemperature, 10000);
-        addListener(SID_MotorWaterPumpSpeed, 2000);
-        addListener(SID_ChargerWaterPumpSpeed, 2000);
-        addListener(SID_HeatingWaterPumpSpeed, 2000);
+        addField(SID_EvaporatorTemperature, 10000);
+        addField(SID_WaterTemperatureHeating, 10000);
+        addField(SID_DcDcConverterTemperature, 10000);
+        addField(SID_InverterTemperature, 10000);
+        addField(SID_MotorWaterPumpSpeed, 2000);
+        addField(SID_ChargerWaterPumpSpeed, 2000);
+        addField(SID_HeatingWaterPumpSpeed, 2000);
     }
-
-    private void removeListeners () {
-        // empty the query loop
-        MainActivity.device.clearFields();
-        // free up the listeners again
-        for (Field field : subscribedFields) {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
-    }
-
-    private void addListener(String sid, int intervalMs) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            field.addListener(this);
-            MainActivity.device.addActivityField(field, intervalMs);
-            subscribedFields.add(field);
-        } else {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
-
-    }
-
-
 
     // This is the event fired as soon as this the registered fields are
     // getting updated by the corresponding reader class.

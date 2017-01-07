@@ -104,7 +104,7 @@ public class DtcActivity  extends CanzeActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                appendResult("\n\nPlease wait while the poller thread is stopped...\n");
+                appendResult(R.string.message_PollerStopping);
 
                 if (MainActivity.device != null) {
                     // stop the poller thread
@@ -112,16 +112,15 @@ public class DtcActivity  extends CanzeActivity {
                 }
 
                 if (!BluetoothManager.getInstance().isConnected()) {
-                    appendResult("\nNo connection. Close this screen and make sure your device paired and connected\n");
+                    appendResult(R.string.message_NoConnection);
                     return;
                 }
-                appendResult("\nReady");
+                appendResult(getString(R.string.message_Ready));
             }
         }).start();
     }
 
-
-
+    protected void initListeners () {}
 
     void doQueryEcu(final Ecu ecu) {
 
@@ -136,12 +135,12 @@ public class DtcActivity  extends CanzeActivity {
             methodLoad = diagEcu.getClass().getMethod("load");
             methodLoad.invoke(diagEcu);
         } catch (Exception e) {
-            appendResult("\nCannot find definitions for this ECU. DTC codes display only.\n");
+            appendResult(R.string.message_NoEcuDefinition);
         }
 
 
         // re-initialize the device
-        appendResult("\nSending initialisation sequence\n");
+        appendResult(R.string.message_SendingInit);
 
         // try to stop previous thread
         if(queryThread!=null)
@@ -170,17 +169,17 @@ public class DtcActivity  extends CanzeActivity {
 
 
                 if (!MainActivity.device.initDevice(1)) {
-                    appendResult("\nInitialisation failed\n");
+                    appendResult(R.string.message_InitFailed);
                     return;
                 }
 
                 // still trying desperately to get to the BCB!!!1
                 if (filter.equals("793")) {
                     // we are a tester
-                    appendResult("\nSending start tester session sequence\n");
+                    appendResult(R.string.message_StartTestSession);
                     field = Fields.getInstance().getBySID(filter + ".7e01.0");
                     if (field == null) {
-                        appendResult("Start session field does not exist\n");
+                        appendResult(R.string.message_NoTestSessionField);
                         return;
                     }
 
@@ -194,15 +193,15 @@ public class DtcActivity  extends CanzeActivity {
                     backRes = message.getData();
                     // check the response
                     if (!backRes.toLowerCase().startsWith("7e")) {
-                        appendResult("Query send, but unexpected result received:[" + backRes + "]\n");
+                        appendResult(getString(R.string.message_UnexpectedResult) + backRes + "]\n");
                         return;
                     }
 
                     // start a tester session
-                    appendResult("\nSending start tester session sequence\n");
+                    appendResult(R.string.message_StartTestSession);
                     field = Fields.getInstance().getBySID(filter + ".5081.0");
                     if (field == null) {
-                        appendResult("Start session field does not exist\n");
+                        appendResult(R.string.message_NoTestSessionField);
                         return;
                     }
 
@@ -216,15 +215,15 @@ public class DtcActivity  extends CanzeActivity {
                     backRes = message.getData();
                     // check the response
                     if (!backRes.startsWith("50")) {
-                        appendResult("Query send, but unexpected result received:[" + backRes + "]\n");
+                        appendResult(getString(R.string.message_UnexpectedResult) + backRes + "]\n");
                         return;
                     }
 
                     // start a tester2 session
-                    appendResult("\nSending start tester2 session sequence\n");
+                    appendResult(R.string.message_StartTestSession);
                     field = Fields.getInstance().getBySID(filter + ".50c0.0");
                     if (field == null) {
-                        appendResult("Start session field does not exist\n");
+                        appendResult(R.string.message_NoTestSessionField);
                         return;
                     }
 
@@ -238,16 +237,16 @@ public class DtcActivity  extends CanzeActivity {
                     backRes = message.getData();
                     // check the response
                     if (!backRes.startsWith("50")) {
-                        appendResult("Query send, but unexpected result received:[" + backRes + "]\n");
+                        appendResult(getString(R.string.message_UnexpectedResult) + backRes + "]\n");
                         return;
                     }
                 }
 
                 // compile the field query and get the Field object
-                appendResult("\nSending start DTCs sequence\n");
+                appendResult(R.string.message_GetDtcs);
                 field = Fields.getInstance().getBySID(filter + ".5902ff.0"); // get DTC
                 if (field == null) {
-                    appendResult("Get DTCs field does not exist\n");
+                    appendResult(R.string.message_NoGetDtcsField);
                     return;
                 }
 
@@ -261,7 +260,7 @@ public class DtcActivity  extends CanzeActivity {
                 backRes = message.getData();
                 // check the response
                 if (!backRes.startsWith("59")) {
-                    appendResult("Query send, but unexpected result received:[" + backRes + "]\n");
+                    appendResult(getString(R.string.message_UnexpectedResult) + backRes + "]\n");
                     return;
                 }
 
@@ -289,7 +288,7 @@ public class DtcActivity  extends CanzeActivity {
                         );
                     }
                 }
-                if (!onePrinted) appendResult("\nNo active DTCs\n");
+                if (!onePrinted) appendResult(R.string.message_NoActiveDtcs);
             }
 
         });
@@ -300,7 +299,7 @@ public class DtcActivity  extends CanzeActivity {
 
         clearResult();
 
-        appendResult("Clear " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
+        appendResult(getString(R.string.message_clear) + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
 
         // try to stop previous thread
         if(queryThread!=null)
@@ -330,33 +329,33 @@ public class DtcActivity  extends CanzeActivity {
                 // compile the field query and get the Field object
                 field = Fields.getInstance().getBySID(filter + ".54.0"); // get DTC Clear
                 if (field == null) {
-                    appendResult("Clear DTCs field does not exist\n");
+                    appendResult(R.string.message_NoClearDtcField);
                     return;
                 }
                 frame = field.getFrame();
 
                 // re-initialize the device
-                appendResult("\nSending initialisation sequence\n");
+                appendResult(R.string.message_SendingInit);
                 if (!MainActivity.device.initDevice(1)) {
-                    appendResult("\nInitialisation failed\n");
+                    appendResult(R.string.message_InitFailed);
                     return;
                 }
 
                 // query the Field
                 Message message = MainActivity.device.requestFrame (frame);
                 if (message.isError()) {
-                    appendResult("Msg is null. Is the car switched on?\n");
+                    appendResult(R.string.message_MessageNull);
                     return;
                 }
 
                 String backRes = message.getData();
                 // check the response
                 if (!backRes.startsWith("54")) {
-                    appendResult("Clear code send, but unexpected result received:[" + backRes + "]\n");
+                    appendResult(getString(R.string.message_UnexpectedResult) + backRes + "]\n");
                     return;
                 }
 
-                appendResult("Clear seems succesful, please query DTCs\n");
+                appendResult(R.string.message_ClearSuccessful);
             }
 
         });
@@ -379,11 +378,11 @@ public class DtcActivity  extends CanzeActivity {
             //Frames.getInstance().load (diagEcu.framesString ());
             //Fields.getInstance().load (diagEcu.fieldsString ());
         } catch (Exception e) {
-            appendResult("\nCannot find definitions for ECU \n");
+            appendResult(R.string.message_NoEcuDefinition2);
             return;
         }
 
-        appendResult("\nSending initialisation sequence\n");
+        appendResult(R.string.message_SendingInit);
 
         // try to stop previous thread
         if(queryThread!=null)
@@ -404,7 +403,7 @@ public class DtcActivity  extends CanzeActivity {
 
                 // re-initialize the device
                 if (!MainActivity.device.initDevice(1)) {
-                    appendResult("\nInitialisation failed\n");
+                    appendResult(R.string.message_InitFailed);
                     return;
                 }
 
@@ -436,7 +435,7 @@ public class DtcActivity  extends CanzeActivity {
                         } else {
                             appendResult(frame.getHexId() + "." + frame.getResponseId() + ":" + message.getError() + "\n");
                             if (!MainActivity.device.initDevice(1)) {
-                                appendResult("\nInitialisation failed\n");
+                                appendResult(getString(R.string.message_InitFailed));
                                 return;
                             }
                         }
@@ -461,6 +460,16 @@ public class DtcActivity  extends CanzeActivity {
     private void appendResult(String str) {
         if ( dumpInProgress) log (str);
         final String localStr = str;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                textView.append(localStr);
+            }
+        });
+    }
+
+    private void appendResult(int strResource) {
+        final String localStr = getString(strResource);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

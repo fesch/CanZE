@@ -42,62 +42,20 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
     private double lastVal [] = {0,15,15,15,15,15,15,15,15,15,15,15,15};
     private int lastCell = 4;
 
-    private ArrayList<Field> subscribedFields;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240 ? R.layout.activity_heatmap_batcomp : R.layout.activity_heatmap_batcomp2);
+        setContentView(MainActivity.isZOE() ? R.layout.activity_heatmap_batcomp : R.layout.activity_heatmap_batcomp2);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // initialise the widgets
-        initListeners();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        removeListeners ();
-    }
-
-    private void initListeners() {
-        subscribedFields = new ArrayList<>();
-        if(MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240) {
+    protected void initListeners() {
+        if(MainActivity.isZOE()) {
             lastCell = 12;
         }
         for (int i = 1; i <= lastCell; i++) {
             String sid = SID_Preamble_CompartmentTemperatures + (8 + i * 24); // remember, first is pos 32, i starts s at 1
-            addListener(sid);
+            addField(sid);
         }
-    }
-
-    private void removeListeners () {
-        // empty the query loop
-        MainActivity.device.clearFields();
-        // free up the listeners again
-        for (Field field : subscribedFields) {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
-    }
-
-    private void addListener(String sid) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            // activate callback to this object when a value is updated
-            field.addListener(this);
-            // add querying this field in the queryloop
-            MainActivity.device.addActivityField(field);
-            subscribedFields.add(field);
-        } else {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
-
     }
 
     // This is the event fired as soon as this the registered fields are

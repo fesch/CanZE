@@ -33,8 +33,6 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
     private int seconds_per_tick = 288; // time 100 iterations = 8 hours
     private double car_range_est = 1;
 
-    private ArrayList<Field> subscribedFields;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,73 +50,12 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // debugging
-        if (debug) {
-            updatePrediction("textDebug", "Emulation");
-            final Handler h = new Handler();
-            h.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    car_status = 0x1f;
-                    car_bat_temp = 20;
-                    car_soc = 10;
-                    car_charger_ac_power = 43;
-                    car_range_est = 14;
-                    charging_status = 0;
-                    runPrediction();
-                    car_status = 0;
-                    h.postDelayed(this, 10000);
-                }
-            }, 1);
-        } else {
-            initListeners();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-            removeListeners();
-    }
-
-    private void initListeners() {
-
-        subscribedFields = new ArrayList<>();
-
-        addListener(SID_RangeEstimate, 10000);
-        addListener(SID_AvChargingPower, 10000);
-        addListener(SID_UserSoC, 10000);
-        addListener(SID_ChargingStatusDisplay, 10000);
-        addListener(SID_AverageBatteryTemperature, 10000);
-    }
-
-
-    private void removeListeners() {
-        // empty the query loop
-        MainActivity.device.clearFields();
-        // free up the listeners again
-        for (Field field : subscribedFields) {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
-    }
-
-    private void addListener(String sid, int intervalMs) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            // activate callback to this object when a value is updated
-            field.addListener(this);
-            // add querying this field in the queryloop
-            MainActivity.device.addActivityField(field, intervalMs);
-            subscribedFields.add(field);
-        } else {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
+    protected void initListeners() {
+        addField(SID_RangeEstimate, 10000);
+        addField(SID_AvChargingPower, 10000);
+        addField(SID_UserSoC, 10000);
+        addField(SID_ChargingStatusDisplay, 10000);
+        addField(SID_AverageBatteryTemperature, 10000);
     }
 
     // This is the event fired as soon as this the registered fields are

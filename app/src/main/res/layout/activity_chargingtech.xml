@@ -40,7 +40,7 @@
                         />
                     <TextView
                         android:id="@+id/textChaStatus"
-                        android:text="@string/default_ChaStatus"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -54,7 +54,7 @@
                         />
                     <TextView
                         android:id="@+id/textPlug"
-                        android:text="@string/default_Plug"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -68,7 +68,7 @@
                         />
                     <TextView
                         android:id="@+id/text_max_pilot"
-                        android:text="@string/default_max_pilot"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -82,7 +82,7 @@
                         />
                     <TextView
                         android:id="@+id/textPhases"
-                        android:text="@string/default_Phases"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -96,7 +96,7 @@
                         />
                     <TextView
                         android:id="@+id/textAvChPwr"
-                        android:text="@string/default_AvChPwr"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -110,7 +110,7 @@
                         />
                     <TextView
                         android:id="@+id/textTTF"
-                        android:text="@string/default_TTF"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -137,7 +137,7 @@
                         />
                     <TextView
                         android:id="@+id/textUserSOC"
-                        android:text="@string/default_SOC"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -150,7 +150,7 @@
                         />
                     <TextView
                         android:id="@+id/textRealSOC"
-                        android:text="@string/default_SOC"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -177,7 +177,7 @@
                         />
                     <TextView
                         android:id="@+id/text_max_charge"
-                        android:text="@string/default_max_charge"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -191,7 +191,7 @@
                         />
                     <TextView
                         android:id="@+id/textAvEner"
-                        android:text="@string/default_AvEner"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -206,7 +206,7 @@
                         />
                     <TextView
                         android:id="@+id/textETF"
-                        android:text="@string/default_ETF"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -220,7 +220,7 @@
                         />
                     <TextView
                         android:id="@+id/textDcPwr"
-                        android:text="@string/default_DcPwr"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -234,7 +234,7 @@
                         />
                     <TextView
                         android:id="@+id/textAmps"
-                        android:text="@string/default_Amps"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -248,7 +248,7 @@
                         />
                     <TextView
                         android:id="@+id/textVolt"
-                        android:text="@string/default_Volt"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -262,7 +262,7 @@
                         />
                     <TextView
                         android:id="@+id/textSOH"
-                        android:text="@string/default_SOH"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -275,7 +275,7 @@
                         />
                     <TextView
                         android:id="@+id/text12V"
-                        android:text="@string/default_12V"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -288,7 +288,7 @@
                         />
                     <TextView
                         android:id="@+id/text12A"
-                        android:text="@string/default_12A"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -301,7 +301,7 @@
                         />
                     <TextView
                         android:id="@+id/textDcLoad"
-                        android:text="@string/default_DcLoad"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -314,7 +314,7 @@
                         />
                     <TextView
                         android:id="@+id/textHKM"
-                        android:text="@string/default_HKM"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -342,7 +342,7 @@
                         />
                     <TextView
                         android:id="@+id/textKMA"
-                        android:text="@string/default_DISTA"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
                         />
@@ -370,7 +370,7 @@
 
                     <TextView
                         android:id="@+id/text_comp_1_temp"
-                        android:text="@string/default_CompT"
+                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -379,7 +379,7 @@
 
                     <TextView
                         android:id="@+id/text_comp_2_temp"
-                        android:text="@string/default_CompT"
+                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -388,7 +388,7 @@
 
                     <TextView
                         android:id="@+id/text_comp_3_temp"
-                        android:text="@string/default_CompT"
+                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -397,7 +397,7 @@
 
                     <TextView
                         android:id="@+id/text_comp_4_temp"
-                        android:text="@string/default_CompT"
+                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -406,7 +406,7 @@
 
                     <TextView
                         android:id="@+id/text_comp_5_temp"
-                        android:text="@string/default_CompT"
+                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -415,7 +415,7 @@
 
                     <TextView
                         android:id="@+id/text_comp_6_temp"
-                        android:text="@string/default_CompT"
+                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -423,7 +423,7 @@
                         />
                     <TextView
                         android:id="@+id/text_comp_7_temp"
-                        android:text="@string/default_CompT"
+                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -432,7 +432,7 @@
 
                     <TextView
                         android:id="@+id/text_comp_8_temp"
-                        android:text="@string/default_CompT"
+                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -441,7 +441,7 @@
 
                     <TextView
                         android:id="@+id/text_comp_9_temp"
-                        android:text="@string/default_CompT"
+                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -450,7 +450,7 @@
 
                     <TextView
                         android:id="@+id/text_comp_10_temp"
-                        android:text="@string/default_CompT"
+                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -459,7 +459,7 @@
 
                     <TextView
                         android:id="@+id/text_comp_11_temp"
-                        android:text="@string/default_CompT"
+                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -468,7 +468,7 @@
 
                     <TextView
                         android:id="@+id/text_comp_12_temp"
-                        android:text="@string/default_CompT"
+                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -483,7 +483,7 @@
 
                     <TextView
                         android:id="@+id/text_bala_1_temp"
-                        android:text="@string/default_CompT"
+                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"

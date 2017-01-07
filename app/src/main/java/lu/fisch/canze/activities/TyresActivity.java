@@ -48,64 +48,22 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
     public static final String val_TyreState               []   = {"OK", "No info", "-", "-", "-", "Flat", "Under infl."};
     public static final String val_Unavailable                  = "-";
 
-    private ArrayList<Field> subscribedFields;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tyres);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // initialise the widgets
-        initListeners();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        removeListeners();
-    }
-
-    private void initListeners() {
-
-        subscribedFields = new ArrayList<>();
-
-        addListener(SID_TyreSpdPresMisadaption, 6000);
-        addListener(SID_TyreFLState, 6000);
-        addListener(SID_TyreFLPressure, 6000);
-        addListener(SID_TyreFRState, 6000);
-        addListener(SID_TyreFRPressure, 6000);
-        addListener(SID_TyreRLState, 6000);
-        addListener(SID_TyreRLPressure, 6000);
-        addListener(SID_TyreRRState, 6000);
-        addListener(SID_TyreRRPressure, 6000);
-    }
-
-    private void removeListeners () {
-        // empty the query loop
-        MainActivity.device.clearFields();
-        // free up the listeners again
-        for (Field field : subscribedFields) {
-            field.removeListener(this);
-        }
-        subscribedFields.clear();
-    }
-
-    private void addListener(String sid, int intervalMs) {
-        Field field;
-        field = MainActivity.fields.getBySID(sid);
-        if (field != null) {
-            field.addListener(this);
-            MainActivity.device.addActivityField(field, intervalMs);
-            subscribedFields.add(field);
-        } else {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
-        }
-
+    protected void initListeners() {
+        addField(SID_TyreSpdPresMisadaption, 6000);
+        addField(SID_TyreFLState, 6000);
+        addField(SID_TyreFLPressure, 6000);
+        addField(SID_TyreFRState, 6000);
+        addField(SID_TyreFRPressure, 6000);
+        addField(SID_TyreRLState, 6000);
+        addField(SID_TyreRLPressure, 6000);
+        addField(SID_TyreRRState, 6000);
+        addField(SID_TyreRRPressure, 6000);
     }
 
     // This is the event fired as soon as this the registered fields are

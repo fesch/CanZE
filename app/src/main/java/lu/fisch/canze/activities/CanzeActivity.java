@@ -38,7 +38,7 @@ import lu.fisch.canze.widgets.WidgetView;
 /**
  * Created by robertfisch on 30.09.2015.
  */
-public class CanzeActivity extends AppCompatActivity implements FieldListener {
+public abstract class CanzeActivity extends AppCompatActivity implements FieldListener {
 
     private boolean iLeftMyOwn = false;
     private boolean back = false;
@@ -85,6 +85,7 @@ public class CanzeActivity extends AppCompatActivity implements FieldListener {
             // remember we paused ourselves
             iLeftMyOwn=true;
         }
+        removeFieldListeners();
     }
 
     @Override
@@ -104,6 +105,7 @@ public class CanzeActivity extends AppCompatActivity implements FieldListener {
             initWidgets();
         }
         widgetClicked=false;
+        initListeners();
     }
 
     @Override
@@ -138,7 +140,7 @@ public class CanzeActivity extends AppCompatActivity implements FieldListener {
     {
         final ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(android.R.id.content));
         if(!widgets.isEmpty())
-            MainActivity.toast("Initialising widgets and loading data ...");
+            MainActivity.toast(R.string.toast_InitWidgets);
 
         new Thread(new Runnable() {
             @Override
@@ -230,6 +232,10 @@ public class CanzeActivity extends AppCompatActivity implements FieldListener {
 
     protected ArrayList<Field> subscribedFields = new ArrayList<>();;
 
+    protected void addField(String sid) {
+        addField(sid, 0);
+    }
+
     protected void addField(String sid, int intervalMs)
     {
         Field field = MainActivity.fields.getBySID(sid);
@@ -261,5 +267,7 @@ public class CanzeActivity extends AppCompatActivity implements FieldListener {
     public void onFieldUpdateEvent(Field field) {
         // empty --> descents should override this
     }
+
+    protected abstract void initListeners();
 }
 

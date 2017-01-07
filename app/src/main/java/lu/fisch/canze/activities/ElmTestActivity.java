@@ -44,7 +44,7 @@ public class ElmTestActivity extends CanzeActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                appendResult("\n\nPlease wait while the poller thread is stopped...");
+                appendResult(getString(R.string.message_PollerStopping));
 
                 if (MainActivity.device != null){
                     // stop the poller thread
@@ -52,7 +52,7 @@ public class ElmTestActivity extends CanzeActivity {
                 }
 
                 if (!BluetoothManager.getInstance().isConnected()) {
-                    appendResult("\nNo connection. Close this screen and make sure your device paired and connected\n");
+                    appendResult(getString(R.string.message_NoConnection));
                     return;
                 }
 
@@ -62,6 +62,8 @@ public class ElmTestActivity extends CanzeActivity {
         }).start();
     }
 
+    protected void initListeners () {}
+
     void doTest () {
 
         Field field;
@@ -69,67 +71,59 @@ public class ElmTestActivity extends CanzeActivity {
         String backRes;
         clearResult();
 
-        appendResult("\nSending initialisation sequence...\n");
+        appendResult(R.string.message_SendingInit);
         if (!MainActivity.device.initDevice(1)) {
-            appendResult("\nInitialisation failed\n");
-            appendResult("Problem:" + MainActivity.device.getLastInitProblem() + "\n");
+            appendResult(getString(R.string.message_InitFailed));
+            appendResult(getString(R.string.message_Problem) + MainActivity.device.getLastInitProblem() + "\n");
             return;
         }
-        appendResult("Received expected result\n==========\n");
+        appendResult(R.string.message_ExpectedResult);
 
-        appendResult("\nProcessing prepped ISO-TP command CLUSTER SW \n");
+        appendResult(R.string.message_PrepIsoTp);
         field = Fields.getInstance().getBySID("763.6180.144");
         if (field == null) {
-            appendResult("Requested field does not exist. This is an error in the test quite, please report\n");
+            appendResult(R.string.message_FieldNotExists);
             return;
         }
         message = MainActivity.device.requestFrame(field.getFrame());
-        if (message == null) {
-            appendResult("Msg is null. Is the car switched on?\n");
+        if (message.isError()) {
+            appendResult(message.getError() + "\n");
             return;
         }
         backRes = message.getData();
-        if (backRes == null) {
-            appendResult("Data is null. This should never happen, please report\n");
-            return;
-        }
         if (backRes.equals("")) {
-            appendResult("Result is empty. Your dongle will not work\n");
+            appendResult(R.string.message_ResultEmpty);
             return;
         }
         if (!backRes.startsWith("6180")) {
-            appendResult("Unexpected result:" + backRes.replace('\r', '•') + "\n");
+            appendResult(getString(R.string.message_UnexpectedResult) + backRes.replace('\r', '•') + "]\n");
             return;
         }
-        appendResult("Received expected result\n==========\n");
+        appendResult(R.string.message_ExpectedResult);
 
-        appendResult("\nProcessing prepped free frame PARK BRAKE\n");
+        appendResult(R.string.message_PrepFree);
         field = Fields.getInstance().getBySID("4f8.4");
         if (field == null) {
-            appendResult("Requested field does not exist. This is an error in the test quite, please report\n");
+            appendResult(R.string.message_FieldNotExists);
             return;
         }
         message = MainActivity.device.requestFrame(field.getFrame());
-        if (message == null) {
-            appendResult("Msg is null. Is the car switched on?\n");
+        if (message.isError()) {
+            appendResult(R.string.message_MessageNull);
             return;
         }
         backRes = message.getData();
-        if (backRes == null) {
-            appendResult("Data is null. This should never happen, please report\n");
-            return;
-        }
         if (backRes.equals("")) {
-            appendResult("Result is empty. Your dongle will not work\n");
+            appendResult(R.string.message_ResultEmpty);
             return;
         }
         if (backRes.length() != 10) {
-            appendResult("Unexpected result:" + backRes.replace('\r', '•') + "\n");
+            appendResult(getString(R.string.message_UnexpectedResult) + backRes.replace('\r', '•') + "]\n");
             return;
         }
-        appendResult("Received expected result\n==========\n");
+        appendResult(R.string.message_ExpectedResult);
 
-        appendResult("\nYour device passed all the tests, it will probably work just fine\n");
+        appendResult(R.string.message_DevicePassed);
     }
 
 
@@ -146,6 +140,16 @@ public class ElmTestActivity extends CanzeActivity {
 
     private void appendResult(String str) {
         final String localStr = str;
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                textView.append(localStr);
+            }
+        });
+    }
+
+    private void appendResult(int strResource) {
+        final String localStr = getString(strResource);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

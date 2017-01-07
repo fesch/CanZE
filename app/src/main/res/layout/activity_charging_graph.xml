@@ -37,7 +37,7 @@
             custom:minorTicks="4"
             custom:fieldSID="42e.38,427.40"
             custom:widget="timeplot"
-            custom:text="Pilot amp (A) / Charger power (kW)"
+            custom:text="@string/graph_PilotPower"
             custom:timeScale="4"
             custom:intervals="{
                                '42e.38':10000,
@@ -72,7 +72,7 @@
             custom:minorTicks="5"
             custom:fieldSID="7bb.6101.336,800.6103.24"
             custom:widget="timeplot"
-            custom:text="Max battery charge (kW) / DC Charging power (kW)"
+            custom:text="@string/graph_MaxRealChPwr"
             custom:timeScale="4"
             custom:intervals="{
                                '7bb.6101.336':10000,
@@ -107,7 +107,7 @@
             custom:minorTicks="1"
             custom:fieldSID="427.49,42e.44"
             custom:widget="timeplot"
-            custom:text="Available energy (kWh) / temperature (°C)"
+            custom:text="@string/graph_EnergyTemperature"
             custom:colorRanges="[
                 {'sid':'427.49','color':'#3ee9ff','from':0,'to':8},
                 {'sid':'427.49','color':'#008a1d','from':8,'to':17},

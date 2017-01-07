@@ -104,18 +104,6 @@
 
             </LinearLayout>
 
-
-
-            <!--
-                    <TextView
-                        android:id="@+id/HeaderDriving"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/header_Driving"
-                        android:textColor="#000"
-                        android:layout_marginTop="10dp"
-                        />
-            -->
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
@@ -124,7 +112,7 @@
                     <TextView
                         android:id="@+id/textRealSpeed"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="@string/default_realSpeed"
+                        android:text="@string/default_Dash"
                         android:textColor="#000"
                         android:textSize="96sp"
                         android:gravity="end"
@@ -150,7 +138,7 @@
                     <TextView
                         android:id="@+id/textConsumption"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="@string/default_consumption"
+                        android:text="@string/default_Dash"
                         android:textColor="#000"
                         android:textSize="48sp"
                         android:gravity="end"
@@ -211,7 +199,7 @@
                         />
                     <TextView
                         android:id="@+id/textSOC"
-                        android:text="@string/default_SOC"
+                        android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="2"
                         />

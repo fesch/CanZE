@@ -42,16 +42,18 @@ public class ConsumptionActivity extends CanzeActivity {
     private int driverBrakeWheel_Torque_Request     = 0;
     private int tempTorque                          = 0;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consumption);
-
+    public void initListeners () {
         addField(SID_MeanEffectiveTorque, 0);
         addField(SID_DriverBrakeWheel_Torque_Request, 0);
         addField(SID_Coasting_Torque, 0);
         addField(SID_TotalPotentialResistiveWheelsTorque, 7200);
         addField(SID_Instant_Consumption, 0);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_consumption);
     }
 
     @Override

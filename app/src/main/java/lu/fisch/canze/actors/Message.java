@@ -56,7 +56,7 @@ public class Message {
      \ ------------------------------ */
 
     public String getData() {
-        return error ? "" : data;
+        return (error || data == null) ? "" : data;
     }
 
     /* public void setData(String data) {
