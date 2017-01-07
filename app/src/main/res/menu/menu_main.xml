@@ -6,7 +6,7 @@
     <item
         android:id="@+id/action_main"
         android:orderInCategory="100"
-        android:title="Main"
+        android:title="@string/menu_Main"
         android:visible="true"
         app:showAsAction="never"
         />
@@ -14,7 +14,7 @@
     <item
         android:id="@+id/action_technical"
         android:orderInCategory="100"
-        android:title="Technical"
+        android:title="@string/menu_Technical"
         android:visible="true"
         app:showAsAction="never"
         />
@@ -22,7 +22,7 @@
     <item
         android:id="@+id/action_experimental"
         android:orderInCategory="100"
-        android:title="Experimental"
+        android:title="@string/menu_Experimental"
         android:visible="true"
         app:showAsAction="never"
         />
@@ -30,7 +30,7 @@
     <item
         android:id="@+id/action_bluetooth"
         android:orderInCategory="100"
-        android:title="Bluetooth"
+        android:title="@string/menu_Bluetooth"
         android:visible="true"
         app:showAsAction="always"
         />

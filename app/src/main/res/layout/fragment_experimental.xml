@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="buttons below are for testing purposes only"
+            android:text="@string/help_TestingButtons"
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
@@ -51,6 +51,7 @@
                 android:layout_height="match_parent">
 
                 <Button
+                    style="?android:attr/button"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="fill_parent"
@@ -63,6 +64,7 @@
                     android:layout_column="0" />
 
                 <Button
+                    style="?android:attr/button"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="fill_parent"
@@ -81,6 +83,7 @@
                 android:layout_height="match_parent">
 
             <Button
+                style="?android:attr/button"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -93,6 +96,7 @@
                 android:layout_column="0" />
 
                 <Button
+                    style="?android:attr/button"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="fill_parent"

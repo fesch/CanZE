@@ -14,14 +14,14 @@
     >
 
     <TextView
-        android:text="Remaining range by car:"
+        android:text="@string/label_RangeRemaining"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView12"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
-        android:text="car"
+        android:text="@string/default_Dash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/carRange"
@@ -31,14 +31,14 @@
         />
 
     <TextView
-        android:text="Remaining range by CanZE:"
+        android:text="@string/label_RangeRemainingCanZE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView6"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
-        android:text="canze"
+        android:text="@string/default_Dash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/canzeRange"
@@ -57,13 +57,13 @@
         android:orientation="horizontal"
         >
         <TextView
-            android:text="Estimated driving style energy loss:"
+            android:text="@string/label_EstimatedDrivingStyleLoss"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView7"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         <TextView
-            android:text="10%"
+            android:text="@string/default_Dash"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/lossView"
@@ -97,7 +97,7 @@
         custom:minorTicks="10"
         custom:fieldSID="654.42,427.49"
         custom:widget="timeplot"
-        custom:text="Available distance (km) / Available energy (kWh)"
+        custom:text="@string/graph_DistanceEnergy"
         custom:options="{
                 }"
         />

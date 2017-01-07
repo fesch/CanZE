@@ -32,33 +32,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
-                <!--  <TableRow
-                    android:id="@+id/tableRow2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:orientation="horizontal"
-                    android:layout_weight="1">
-
-                  <lu.fisch.canze.widgets.WidgetView
-                        android:id="@+id/predictionPlotter"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="fill_parent"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginBottom="8dp"
-                        custom:min="0"
-                        custom:max="100"
-                        custom:majorTicks="20"
-                        custom:minorTicks="10"
-                        custom:widget="timeplot"
-                        custom:text="Graph is loading ..."
-                        />
-
-                </TableRow> -->
-
-
                 <TableRow>
                     <TextView
                         android:text="@string/label_Duration"

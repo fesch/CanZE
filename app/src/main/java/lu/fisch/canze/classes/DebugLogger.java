@@ -1,13 +1,17 @@
 package lu.fisch.canze.classes;
 
+import android.content.res.Resources;
 import android.os.Environment;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
+import android.content.Context;
+
+import lu.fisch.canze.R;
 
 import static lu.fisch.canze.activities.MainActivity.debug;
 
@@ -56,7 +60,8 @@ public class DebugLogger {
             //debug(this.getClass().getSimpleName()+": SDcard dir CanZE created");
         }
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        // SimpleDateFormat sdf = new SimpleDateFormat(Resources.getSystem().getString(R.string.format_YMDHMSs), Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault());
         String exportdataFileName = file_path + "debug-" + sdf.format(Calendar.getInstance().getTime()) + ".log";
 
         logFile = new File(exportdataFileName);

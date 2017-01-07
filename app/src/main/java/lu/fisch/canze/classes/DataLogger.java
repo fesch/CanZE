@@ -1,5 +1,6 @@
 package lu.fisch.canze.classes;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -12,7 +13,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
+import lu.fisch.canze.R;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.FieldListener;
@@ -85,7 +88,9 @@ public class DataLogger  implements FieldListener {
 
     private long z = 2;
 
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+    // SimpleDateFormat sdf = new SimpleDateFormat(Resources.getSystem().getString(R.string.format_YMDHMS), Locale.getDefault());
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.getDefault());
+
     // Checks if external storage is available for read and write
 
     public DataLogger() {
@@ -198,7 +203,8 @@ public class DataLogger  implements FieldListener {
             // Long tsLong = System.currentTimeMillis(); // Method 1
             Long tsLong = new Date().getTime(); // Method 2
 
-            String DateString = getDateString( 0 , "yyyy-MM-dd-HH:mm:ss");
+            // String DateString = getDateString( 0 , Resources.getSystem().getString(R.string.format_YMDHMS));
+            String DateString = getDateString( 0 , "yyyy-MM-dd-HH-mm-ss");
             tsLong >>= 8;
             String timestamp = tsLong.toString();
 
