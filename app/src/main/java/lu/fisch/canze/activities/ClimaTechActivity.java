@@ -44,7 +44,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
     public static final String SID_BatteryConditioningMode          = "432.36";
     public static final String SID_ClimaLoopMode                    = "42a.48";
 
-    final Resources res = getResources();
+    final Resources res = MainActivity.getInstance().getResources();
 
     //public static final String cst_Status [] = {"No", "Cooling alone", "Cooling coupled", "Unavail"};
     final String cooling_Status [] = res.getStringArray(R.array.list_CoolingStatus);
