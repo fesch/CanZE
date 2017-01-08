@@ -36,6 +36,9 @@ import lu.fisch.canze.widgets.WidgetView;
 
 /**
  * Created by robertfisch on 30.09.2015.
+ *
+ * Abstract for all screens
+ *
  */
 public abstract class CanzeActivity extends AppCompatActivity implements FieldListener {
 
@@ -59,14 +62,14 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
                 // restart Bluetooth
                 BluetoothManager.getInstance().connect();
         MainActivity.debug("CanzeActivity: onCreate ("+this.getClass().getSimpleName()+")");
-        if(!widgetView) {
+        //if(!widgetView) {
             // register all fields
             // --> not needed as these frames are now application bound and will not be cleared anyway
             // MainActivity.registerFields();
             // initialise the widgets (if any present)
             // --> not needed as onResume will call it!
             //initWidgets();
-        }
+        //}
     }
 
     @Override
@@ -176,8 +179,8 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             String sid = wv.getFieldSID();
             if(sid!=null) {
                 String[] sids = sid.split(",");
-                for (int s = 0; s < sids.length; s++) {
-                    Field field = MainActivity.fields.getBySID(sids[s]);
+                for (String sid1 : sids) {
+                    Field field = MainActivity.fields.getBySID(sid1);
                     if (field != null) {
                         field.removeListener(wv.getDrawable());
                     }
@@ -189,7 +192,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
 
     protected ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)
     {
-        ArrayList<WidgetView> result = new ArrayList<WidgetView>();
+        ArrayList<WidgetView> result = new ArrayList<>();
 
         if(viewGroup!=null)
         for (int i = 0; i < viewGroup.getChildCount(); i++) {
@@ -236,7 +239,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
 
     /******* activity field stuff ********************/
 
-    protected ArrayList<Field> subscribedFields = new ArrayList<>();;
+    protected ArrayList<Field> subscribedFields = new ArrayList<>();
 
     protected void addField(String sid) {
         addField(sid, 0);

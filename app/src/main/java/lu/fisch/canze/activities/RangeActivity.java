@@ -1,12 +1,11 @@
 package lu.fisch.canze.activities;
 
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
@@ -41,35 +40,39 @@ public class RangeActivity extends CanzeActivity {
 
         SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
         seekBar.setProgress(lossSetting);
-        ((TextView) findViewById(R.id.lossView)).setText(seekBar.getProgress()+"%");
+        //((TextView) findViewById(R.id.lossView)).setText(seekBar.getProgress()+"%");
+        ((TextView) findViewById(R.id.lossView)).setText(String.format(Locale.getDefault(), "%d%%", seekBar.getProgress()));
 
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 loss = seekBar.getProgress()/100.;
-                ((TextView) findViewById(R.id.lossView)).setText(seekBar.getProgress()+"%");
+                //((TextView) findViewById(R.id.lossView)).setText(seekBar.getProgress()+"%");
+                ((TextView) findViewById(R.id.lossView)).setText(String.format(Locale.getDefault(), "%d%%", seekBar.getProgress()));
                 updateRange();
 
                 // save value
                 SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putInt("loss",(int) (loss*100));
-                editor.commit();
+                editor.apply();
                 MainActivity.debug("LOSS (save): "+loss);
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 loss = seekBar.getProgress()/100.;
-                ((TextView) findViewById(R.id.lossView)).setText(seekBar.getProgress()+"%");
+                //((TextView) findViewById(R.id.lossView)).setText(seekBar.getProgress()+"%");
+                ((TextView) findViewById(R.id.lossView)).setText(String.format(Locale.getDefault(), "%d%%", seekBar.getProgress()));
                 updateRange();
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 loss = seekBar.getProgress()/100.;
-                ((TextView) findViewById(R.id.lossView)).setText(seekBar.getProgress()+"%");
+                //((TextView) findViewById(R.id.lossView)).setText(seekBar.getProgress()+"%");
+                ((TextView) findViewById(R.id.lossView)).setText(String.format(Locale.getDefault(), "%d%%", seekBar.getProgress()));
                 updateRange();
             }
         });
@@ -100,13 +103,14 @@ public class RangeActivity extends CanzeActivity {
             @Override
             public void run() {
                 String fieldId = field.getSID();
-                ProgressBar pb;
-                TextView tv;
+                // ProgressBar pb;
+                // TextView tv;
 
                 switch (fieldId) {
                     case SID_AvailableDistance:
                         distance = field.getValue();
-                        ((TextView) findViewById(R.id.carRange)).setText(((distance*100)/1)/100.+"");
+                        //((TextView) findViewById(R.id.carRange)).setText(((distance*100)/1)/100.+"");
+                        ((TextView) findViewById(R.id.carRange)).setText(String.format(Locale.getDefault(), "%.1f", ((distance*100)/1)/100.));
                         break;
                     case SID_AvailableEnvergy:
                         energy = field.getValue();

@@ -21,8 +21,6 @@
 
 package lu.fisch.canze.actors;
 
-import lu.fisch.canze.activities.MainActivity;
-
 /**
  * Battery
  *

@@ -86,7 +86,7 @@ public class Ecu {
         return fields;
     }
 
-    public void setFields(Fields field) {
+    public void setFields(Fields fields) {
         this.fields = fields;
     }
 }

@@ -35,7 +35,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import java.util.ArrayList;
+
 import java.util.Locale;
 
 import lu.fisch.canze.R;

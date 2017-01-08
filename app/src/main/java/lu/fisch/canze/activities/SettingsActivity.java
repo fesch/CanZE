@@ -21,9 +21,6 @@
 
 package lu.fisch.canze.activities;
 
-import android.content.pm.PackageInfo;
-import android.graphics.Point;
-import android.os.Environment;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -31,9 +28,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
+import android.content.pm.PackageInfo;
+import android.graphics.Point;
 import android.os.Bundle;
-import android.support.v7.internal.widget.AdapterViewCompat;
+import android.os.Environment;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.Display;
 import android.view.Menu;
@@ -54,13 +53,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Set;
-// import java.util.zip.ZipEntry;
-// import java.util.zip.ZipFile;
 
 import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.database.CanzeDataSource;
+
+// import java.util.zip.ZipEntry;
+// import java.util.zip.ZipFile;
 
 public class SettingsActivity extends AppCompatActivity {
 
