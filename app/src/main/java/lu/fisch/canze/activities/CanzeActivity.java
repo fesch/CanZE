@@ -43,6 +43,11 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     private boolean back = false;
 
     protected boolean widgetView = false;
+
+    public void setWidgetClicked(boolean widgetClicked) {
+        this.widgetClicked = widgetClicked;
+    }
+
     protected boolean widgetClicked = false;
 
     @Override
@@ -153,6 +158,8 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
                     if (wv == null) {
                         throw new ExceptionInInitializerError("CanzeActivity: initWidgets: Widget <" + i + "> is NULL!");
                     }
+
+                    wv.setCanzeActivity(CanzeActivity.this);
 
                     MainActivity.debug("CanzeActivity: initWidgets: Widget: " + wv.getDrawable().getTitle() + " ("+wv.getFieldSID()+")");
                 }

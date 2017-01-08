@@ -42,6 +42,7 @@ import java.lang.reflect.Constructor;
 
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
+import lu.fisch.canze.activities.CanzeActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.classes.ColorRanges;
 import lu.fisch.canze.classes.Intervals;
@@ -63,6 +64,10 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
     private boolean clickable = true;
 
     protected boolean landscape = true;
+
+    private CanzeActivity canzeActivity = null;
+
+
 
     // for data sharing
     public static Drawable selectedDrawable = null;
@@ -297,6 +302,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
 		    case MotionEvent.ACTION_POINTER_UP:
             {
                 if(!motionMove && clickable && MainActivity.isSafe()) {
+                    canzeActivity.setWidgetClicked(true);
                     Intent intent = new Intent(this.getContext(), WidgetActivity.class);
                     selectedDrawable = this.getDrawable();
                     this.getContext().startActivity(intent);
@@ -420,6 +426,9 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
         }
         // set it to null, so that a new one can be created in case of a resume
         drawThread=null;
+        // set parent
+        //if(canzeActivity!=null)
+        //    canzeActivity.setWidgetClicked(false);
 	}
 
     /* *************************************
@@ -445,4 +454,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
         this.fieldSID = fieldSID;
     }
 
+    public void setCanzeActivity(CanzeActivity canzeActivity) {
+        this.canzeActivity = canzeActivity;
+    }
 }

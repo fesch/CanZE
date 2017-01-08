@@ -70,9 +70,9 @@ public class ELM327OverHttp extends Device {
             MainActivity.debug("ELM327Http: initDevice ("+toughness+"), "+retries+" retries left");
             if (initDevice(toughness)) return true;
         }
-        if (timeoutLogLevel >= 1) MainActivity.toast("Hard reset failed, restarting Bluetooth ...");
+        if (timeoutLogLevel >= 1) MainActivity.toast("Hard reset failed, restarting device ...");
         MainActivity.debug(lastInitProblem);
-        MainActivity.debug("ELM327: Hard reset failed, restarting Bluetooth ...");
+        MainActivity.debug("ELM327Http: Hard reset failed, restarting device ...");
         return false;
     }
 
