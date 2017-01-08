@@ -44,13 +44,9 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
     public static final String SID_BatteryConditioningMode          = "432.36";
     public static final String SID_ClimaLoopMode                    = "42a.48";
 
-    final Resources res = getResources();
-
-    //public static final String cst_Status [] = {"No", "Cooling alone", "Cooling coupled", "Unavail"};
-    final String cooling_Status [] = res.getStringArray(R.array.list_CoolingStatus);
-    //public static final String clm_Status [] = {"Unavail", "AC", "AC deiceing","", "Heat pump", "", "Demisting", "Idle"};
-    final String conditioning_Status [] = res.getStringArray(R.array.list_ConditioningStatus);
-    final String climate_Status [] = res.getStringArray(R.array.list_ClimateStatus);
+    String cooling_Status [];
+    String conditioning_Status [];
+    String climate_Status [];
 
     // private ArrayList<Field> subscribedFields;
 
@@ -58,6 +54,11 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_climatech);
+
+        final Resources res = getResources();
+        cooling_Status = res.getStringArray(R.array.list_CoolingStatus);
+        conditioning_Status = res.getStringArray(R.array.list_ConditioningStatus);
+        climate_Status = res.getStringArray(R.array.list_ClimateStatus);
     }
 
     protected void initListeners() {
