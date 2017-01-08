@@ -1,3 +1,5 @@
+2017.01.08 [Bob] Fixed a crash of the charging screen
+2017.01.08 [Bob] Fixed a crash of the climate screen
 2017.01.07 [Jeroen] Separated all strings, Dutch translation as example. Minor fixes
 2017.01.07 [Jeroen] Changed initListeners to be abstract, removed repeated code for addListeners
                     and fiels subscription management. Still bug in zoom one widget

@@ -62,7 +62,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     public static final String DefaultFormatTemperature             = "%3.0f°";
     public static final String DefaultFormatBalancing               = "%02X";
 
-    final Resources res = getResources();
+    final Resources res = MainActivity.getInstance().getResources();
 
     //public static final String cha_Status [] = {"No charge", "Waiting (planned)", "Ended", "In progress", "Failure", "Waiting", "Flap open", "Unavailable"};
     final String charging_Status [] = res.getStringArray(R.array.list_ChargingStatus);
