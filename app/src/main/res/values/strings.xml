@@ -54,10 +54,10 @@
     <string name="graph_CellVoltages">Cell Voltages (V)</string>
     <string name="graph_ModuleTemperatures">Battery Modules Temperatures (°C)</string>
 
-    <!-- braking -->
+    <!-- Braking -->
 
     <string name="title_activity_braking">Braking info</string>
-    <!-- <string name="activity_braking">Braking</string> -->
+    <string name="button_Braking">Braking</string>
     <string name="header_braking">Braking system status</string>
     <string name="label_driver_torque_request">Requested Torque</string>
     <string name="label_ElecBrakeWheelsTorqueApplied">Applied Electrical Torque (regeneration)</string>
@@ -68,6 +68,7 @@
     <!-- Charging and ChargingTech -->
 
     <string name="title_activity_charging">Charging</string>
+    <string name="button_Charging">Charging</string>
     <string name="header_Charging">Charger parameters</string>
     <string name="header_Battery">Battery parameters</string>
     <string name="header_DrivingCh">Driving</string>
@@ -112,13 +113,19 @@
     <!-- Charging graph -->
 
     <string name="title_activity_charging_graph">Charging graphs</string>
+    <string name="button_ChargingGraphs">Charging graphs</string>
     <string name="graph_PilotPower">Pilot amp (A) / Charger power (kW)</string>
     <string name="graph_MaxRealChPwr">Max battery charge (kW) / DC Charging power (kW)</string>
     <string name="graph_EnergyTemperature">Available energy (kWh) / temperature (°C)</string>
 
+    <!-- Charging prediction -->
+
+    <string name="button_ChargingPrediction">Charging Prediction</string>
+
     <!-- Clima tech -->
 
-    <string name="title_activity_clima_tech">Clima</string>
+    <string name="title_activity_clima_tech">Climate</string>
+    <string name="button_Climate">Climate</string>
     <string name="label_ClimaLoopMode">Climate loop mode</string>
     <string name="label_HVBatConditioningMode">HV Bat conditioning mode</string>
     <string name="label_Temperatures">Temperatures</string>
@@ -153,6 +160,7 @@
     <!-- Consumption -->
 
     <string name="title_activity_consumption">Consumption</string>
+    <string name="button_Consumption">Consumption</string>
     <string name="label_WheelTorque">Wheel torque</string>
     <string name="label_InstantConsumption">Instant Consumption</string>
     <string name="label_kWh100km">kWh/100km</string>
@@ -163,6 +171,7 @@
     <!-- Driving -->
 
     <string name="title_activity_driving">Driving info</string>
+    <string name="button_Driving">Driving</string>
     <string name="header_Driving">Driving parameters</string>
     <string name="label_pedal">Pedal position</string>
     <string name="label_motor_torque">Motor Torque</string>
@@ -178,6 +187,7 @@
     <!-- DTC -->
 
     <string name="title_activity_dtc">Diagnostic Trouble Codes</string>
+    <string name="button_DtcReadout">DTC readout</string>
     <string name="button_QueryDTCs">Query DTCs</string>
     <string name="button_ClearDTCs">Clear DTCs</string>
     <string name="button_AllData">All data</string>
@@ -202,6 +212,7 @@
     <!-- Elm testing -->
 
     <string name="title_activity_elm_test">Test ELM327 Dongle</string>
+    <string name="button_ElmTesting">ELM testing</string>
     <string name="header_ElmTest">Test results</string>
     <string name="message_ExpectedResult">Received expected result\n==========\n</string>
     <string name="message_FieldNotExists">Requested field does not exist. This is an error in the test suite, please report\n</string>
@@ -216,17 +227,24 @@
     <!-- Firmware -->
 
     <string name="title_activity_firmware">Firmware</string>
+    <string name="button_Firmware">Firmware</string>
     <string name="header_Firmware">Firmware versions</string>
     <string name="default_Firmware">Not available</string>
     <string name="help_Ecus"><![CDATA[Learn more about the car\'s computers <a href="http://canze.fisch.lu/computers/">here</a>.]]></string>
 
+    <!-- Fluence Kangoo Temps -->
+
+    <string name="button_FluenceKangooTemps">Fluence Kangoo Temps</string>
+
     <!-- Heatmap battery modules -->
 
-    <string name="title_activity_heatmap_bat">Compartment heatmap</string>
+    <string name="title_activity_heatmap_bat">Temperature heatmap</string>
+    <string name="button_HeatmapTemperature">Temperature heatmap</string>
 
     <!-- Heatmap voltages -->
 
     <string name="title_activity_heatmap_cellvoltage">Voltage heatmap</string>
+    <string name="button_HeatmapVoltage">Voltage heatmap</string>
     <string name="_1" translatable="false">1</string>
     <string name="_9" translatable="false">9</string>
     <string name="_17" translatable="false">17</string>
@@ -259,32 +277,7 @@
     <!-- Leaf spy -->
 
     <string name="title_activity_leaf_spy">Leaf Spy Clone</string>
-
-    <!-- Mainactivity -->
-
-    <string name="toast_InitWidgets">Initialising widgets</string>
-    <string name="toast_BluetoothLost">Bluetooth connection lost!</string>
-    <string name="prompt_Disclaimer">Formal Disclaimer</string>
-    <string name="prompt_Accept">Yes, I got it!</string>
-    <string name="prompt_Decline">No, I didn\'t understand a word ...</string>
-    <string name="prompt_DisclaimerText"><![CDATA[<html>CanZE (“the software”) is provided as is. Use the software at your own
-                            risk. The authors make no warranties as to performance or fitness for a particular purpose,
-                            or any other warranties whether expressed or implied. No oral or written communication
-                            from or information provided by the authors shall create a warranty. Under no circumstances
-                            shall the authors be liable for direct, indirect, special, incidental, or consequential
-                            damages resulting from the use, misuse, or inability to use the software, even if the author
-                            has been advised of the possibility of such damages. These exclusions and limitations may not
-                            apply in all jurisdictions. You may have additional rights and some of these limitations may not
-                            apply to you. This software is only intended for scientific usage.
-                            <br>
-                            <br>
-                            <b>By using this software you are interfering with your car and doing that with hardware and
-                            software beyond your control, created by a loose team of interested amateurs in this field. Any
-                            car is a possibly lethal piece of machinery and you might hurt or kill yourself or others using
-                            it, or even paying attention to the displays instead of watching the road.</b></html></string>]]></string>
-    <string name="toast_Reconnecting">Reconnecting Bluetooth...</string>
-    <string name="toast_WaitingSettings">Stopping Bluetooth. Settings are being loaded. Please wait ....</string>
-    <string name="toast_NotWhileDriving">Not possible while driving ...</string>
+    <string name="button_LeafspyBob">LeafSpy (Bob)</string>
 
     <!-- Prediction -->
 
@@ -302,6 +295,7 @@
     <!-- Range -->
 
     <string name="title_activity_range">Range</string>
+    <string name="button_Range">Range</string>
     <string name="label_RangeRemaining">Remaining range by car:</string>
     <string name="label_RangeRemainingCanZE">Remaining range by CanZE:</string>
     <string name="label_EstimatedDrivingStyleLoss">Estimated driving style energy loss:</string>
@@ -343,6 +337,7 @@
     <!-- Tyres -->
 
     <string name="title_activity_tyres">Tires info</string>
+    <string name="button_Tyres">Tires</string>
     <string name="header_Tyres">Tyres</string>
     <string name="help_PressuresMbar">All pressures in mbar</string>
     <string name="label_TyreSpdPresMisadaption">Speed-pressure misadaption</string>
@@ -363,29 +358,45 @@
 
     <string name="title_activity_widget">WidgetActivity</string>
 
+    <!-- Mainactivity -->
+
+    <string name="toast_InitWidgets">Initialising widgets</string>
+    <string name="toast_BluetoothLost">Bluetooth connection lost!</string>
+    <string name="prompt_Disclaimer" translatable="false">Formal Disclaimer</string>
+    <string name="prompt_Accept">Yes, I got it!</string>
+    <string name="prompt_Decline">No, I didn\'t understand a word ...</string>
+    <string name="prompt_DisclaimerText" translatable="false"><![CDATA[<html>CanZE (“the software”) is provided as is. Use the software at your own
+                            risk. The authors make no warranties as to performance or fitness for a particular purpose,
+                            or any other warranties whether expressed or implied. No oral or written communication
+                            from or information provided by the authors shall create a warranty. Under no circumstances
+                            shall the authors be liable for direct, indirect, special, incidental, or consequential
+                            damages resulting from the use, misuse, or inability to use the software, even if the author
+                            has been advised of the possibility of such damages. These exclusions and limitations may not
+                            apply in all jurisdictions. You may have additional rights and some of these limitations may not
+                            apply to you. This software is only intended for scientific usage.
+                            <br>
+                            <br>
+                            <b>By using this software you are interfering with your car and doing that with hardware and
+                            software beyond your control, created by a loose team of interested amateurs in this field. Any
+                            car is a possibly lethal piece of machinery and you might hurt or kill yourself or others using
+                            it, or even paying attention to the displays instead of watching the road.</b></html></string>]]></string>
+    <string name="toast_Reconnecting">Reconnecting Bluetooth...</string>
+    <string name="toast_WaitingSettings">Stopping Bluetooth. Settings are being loaded. Please wait ....</string>
+    <string name="toast_NotWhileDriving">Not possible while driving ...</string>
+
     <!-- Main (fragment) -->
 
     <string name="menu_Main">Main</string>
-    <string name="button_Charging">Charging</string>
+    <string name="help_Main">Use swipe gestures to switch between Main, Technical and Experimental screens.</string>
+
+    <!-- Technical (fragment) -->
+
+    <string name="menu_Technical">Technical</string>
 
     <!-- Experimental (fragment) -->
 
     <string name="menu_Experimental">Experimental</string>
     <string name="help_Experimental">buttons below are for testing purposes only</string>
-    <string name="button_LeafspyBob">LeafSpy (Bob)</string>
-    <string name="button_FluenceKangooTemps">Fluence Kangoo Temps</string>
-    <string name="help_TestingButtons">Buttons below are for testing purposes only</string>
-
-    <!-- technical (fragment) -->
-
-    <string name="menu_Technical">Technical</string>
-    <string name="button_DtcReadout">DTC readout</string>
-    <string name="button_ChargingGraphs">Charging graphs</string>
-    <string name="button_Firmware">Firmware</string>
-    <string name="button_ChargingPrediction">Charging Prediction</string>
-    <string name="button_ElmTesting">ELM testing</string>
-    <string name="button_Range">Range</string>
-    <string name="button_Climate">Climate</string>
 
 
 </resources>
