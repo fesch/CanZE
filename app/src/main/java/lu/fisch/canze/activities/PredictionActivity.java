@@ -1,11 +1,8 @@
 package lu.fisch.canze.activities;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Battery;
@@ -13,8 +10,6 @@ import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class PredictionActivity extends CanzeActivity implements FieldListener {
-
-    private static final boolean debug = false; // set true for emulation
 
     public static final String SID_AvChargingPower = "427.40";
     public static final String SID_UserSoC = "42e.0";          // user SOC, not raw

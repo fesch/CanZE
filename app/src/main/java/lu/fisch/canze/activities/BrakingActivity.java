@@ -25,7 +25,6 @@ import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 import lu.fisch.canze.R;

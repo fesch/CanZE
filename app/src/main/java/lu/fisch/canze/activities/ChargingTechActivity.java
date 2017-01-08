@@ -24,7 +24,7 @@ package lu.fisch.canze.activities;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.TextView;
-import java.util.ArrayList;
+
 import java.util.Locale;
 
 import lu.fisch.canze.R;

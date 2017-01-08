@@ -21,21 +21,17 @@
 
 package lu.fisch.canze.activities;
 
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Ecu;
 import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.FieldListener;
-
 
 // Jeroen
 
