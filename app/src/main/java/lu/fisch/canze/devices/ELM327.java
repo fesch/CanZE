@@ -42,10 +42,10 @@ public class ELM327 extends Device {
     //private final String SEPARATOR = "\r\n";
 
 
-    // define the timeout we may wait to get an answer
+    // define the Timeout we may wait to get an answer
     private static int DEFAULT_TIMEOUT = 500;
     private static int MINIMUM_TIMEOUT = 100;
-    private int TIMEOUT = 500;
+    private int generalTimeout = 500;
     // define End Of Message for this type of reader
     private static final char EOM1 = '\r';
     private static final char EOM2 = '>';
@@ -293,7 +293,7 @@ public class ELM327 extends Device {
         return true;
     }
 
-    void killCurrentOperation () {
+    private void killCurrentOperation() {
         // ensure any running operation is stopped
         // sending a return might restart the last command. Bad plan.
         sendNoWait("x");
@@ -309,16 +309,16 @@ public class ELM327 extends Device {
         }
     }
 
-    void flushWithTimeout (int timeout) {
+    private void flushWithTimeout(int timeout) {
         flushWithTimeout(timeout, '\0');
     }
 
-    void flushWithTimeout (int timeout, char eom) {
+    private void flushWithTimeout(int timeout, char eom) {
         if (flushWithTimeoutCore(timeout, eom)) return;
         killCurrentOperation ();
     }
 
-    boolean flushWithTimeoutCore (int timeout, char eom) {
+    private boolean flushWithTimeoutCore(int timeout, char eom) {
         // empty incoming buffer
         // just make sure there is no previous response
         // the ELM might be in a mode where it is spewing out data, and that might put this
@@ -437,7 +437,7 @@ public class ELM327 extends Device {
         boolean stop = false;
         String readBuffer = "";
         // wait for answer
-        long end = Calendar.getInstance().getTimeInMillis() + TIMEOUT;
+        long end = Calendar.getInstance().getTimeInMillis() + generalTimeout;
         boolean timedOut = false;
         while(!stop && !timedOut)
         {
@@ -450,7 +450,7 @@ public class ELM327 extends Device {
                     //MainActivity.debug("... done");
                     // if it is a real one
                     if (data != -1) {
-                        // we might be JUST approaching the TIMEOUT, so give it a chance to get to the EOM,
+                        // we might be JUST approaching the generalTimeout, so give it a chance to get to the EOM,
                         // end = end + 2;
                         // convert it to a character
                         char ch = (char) data;
@@ -470,7 +470,7 @@ public class ELM327 extends Device {
                                 }
                                 else // the number of lines is NOT in
                                 {
-                                    end = Calendar.getInstance().getTimeInMillis() + TIMEOUT; // so restart the timeout
+                                    end = Calendar.getInstance().getTimeInMillis() + generalTimeout; // so restart the timeout
                                 }
                             }
                             else { // if (untilEmpty) {
@@ -553,7 +553,7 @@ public class ELM327 extends Device {
 
         if (someThingWrong) {return new Message(frame, "-E-Re-initialisation needed", true); }
 
-        String hexData = "";
+        String hexData;
 
         // ensure the ATCRA filter is reset in the next NON free frame request
         lastCommandWasFreeFrame = true;
@@ -567,9 +567,9 @@ public class ELM327 extends Device {
 
         //sendAndWaitForAnswer("atcra" + emlFilter, 400);
         // atma     (wait for one answer line)
-        TIMEOUT = (int) (frame.getInterval() * intervalMultiplicator + 50);
-        if (TIMEOUT < MINIMUM_TIMEOUT) TIMEOUT = MINIMUM_TIMEOUT;
-        MainActivity.debug("ELM327: requestFreeFrame > TIMEOUT = "+TIMEOUT);
+        generalTimeout = (int) (frame.getInterval() * intervalMultiplicator + 50);
+        if (generalTimeout < MINIMUM_TIMEOUT) generalTimeout = MINIMUM_TIMEOUT;
+        MainActivity.debug("ELM327: requestFreeFrame > TIMEOUT = "+ generalTimeout);
 
         hexData = sendAndWaitForAnswer("atma", 20);
 
@@ -580,7 +580,7 @@ public class ELM327 extends Device {
         sendNoWait("x");
         // let it settle down, the ELM should indicate STOPPED then prompt >
         flushWithTimeout(100, '>');
-        TIMEOUT = DEFAULT_TIMEOUT;
+        generalTimeout = DEFAULT_TIMEOUT;
 
         // atar     (clear filter)
         // AM has suggested the atar might not be neccesary as it might only influence cra filters and they are always set
@@ -601,7 +601,7 @@ public class ELM327 extends Device {
 
         if (someThingWrong) {return new Message(frame, "-E-Re-initialisation needed", true); }
 
-        String hexData = "";
+        String hexData;
         int len = 0;
 
         // PERFORMANCE ENHANCEMENT: only send ATAR if coming from a free frame
