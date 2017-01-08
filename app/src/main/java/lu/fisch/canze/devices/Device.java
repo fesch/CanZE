@@ -28,7 +28,6 @@ import java.util.Comparator;
 
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
-import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.actors.VirtualField;
@@ -47,7 +46,7 @@ public abstract class Device {
 
     private final double minIntervalMultiplicator = 1.3;
     private final double maxIntervalMultiplicator = 2.5;
-    protected double intervalMultiplicator = minIntervalMultiplicator;
+    double intervalMultiplicator = minIntervalMultiplicator;
 
     /* ----------------------------------------------------------------
      * Attributes
@@ -62,13 +61,13 @@ public abstract class Device {
     /**
      * Some fields will be custom, activity based
      */
-    protected ArrayList<Field> activityFieldsScheduled = new ArrayList<>();
-    protected ArrayList<Field> activityFieldsAsFastAsPossible = new ArrayList<>();
+    private ArrayList<Field> activityFieldsScheduled = new ArrayList<>();
+    private ArrayList<Field> activityFieldsAsFastAsPossible = new ArrayList<>();
     /**
      * Some other fields will have to be queried anyway,
      * such as e.g. the speed --> safe mode driving
      */
-    protected ArrayList<Field> applicationFields = new ArrayList<>();
+    private ArrayList<Field> applicationFields = new ArrayList<>();
 
     /**
      * The index of the actual field to query.
@@ -76,16 +75,16 @@ public abstract class Device {
      */
     //protected int fieldIndex = 0;
 
-    protected int activityFieldIndex = 0;
+    private int activityFieldIndex = 0;
 
-    protected boolean pollerActive = false;
-    protected Thread pollerThread;
+    private boolean pollerActive = false;
+    Thread pollerThread;
 
     /**
      * lastInitProblem should be filled with a descriptive problem description by the initDevice implementation. In normal operation we don't care
      * because a device either initializes or not, but for testing a new device this can be very helpful.
      */
-    protected String lastInitProblem = "";
+    String lastInitProblem = "";
 
     /* ----------------------------------------------------------------
      * Abstract methods (to be implemented in each "real" device)
@@ -184,7 +183,7 @@ public abstract class Device {
     }
 
     // query the device for the next filter
-    protected void queryNextFilter()
+    private void queryNextFilter()
     {
         if (applicationFields.size()+activityFieldsScheduled.size()+activityFieldsAsFastAsPossible.size() > 0)
         {
@@ -369,7 +368,7 @@ public abstract class Device {
      * For this reason we don't need to query these fields multiple times
      * in one turn.
      * @param _field    the field to be tested
-     * @return
+     * @return boolean  true if field's frame is already monitored
      */
     private boolean containsField(Field _field)
     {
@@ -559,34 +558,6 @@ public abstract class Device {
 
     }
 
-    /**
-     * This method removes a field from the list of monitored fields
-     * and unregisters the corresponding filter.
-     * @param field
-     */
-    /*public void removeActivityField(final Field field)
-    {
-        synchronized (fields) {
-            // only remove from the custom fields
-            if(activityFieldsScheduled.remove(field))
-            {
-                // remove it from the database if it is not on the other list
-                if(!containsApplicationField(field)) {
-                    // un-register it ...
-                    field.removeListener(CanzeDataSource.getInstance());
-                }
-                // launch the field registration asynchronously
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        unregisterFilter(field.getId());
-                    }
-                })).start();
-            }
-        }
-
-    }*/
-
     public void removeApplicationField(final Field field)
     {
         synchronized (fields) {
@@ -613,10 +584,10 @@ public abstract class Device {
 
         // remove depenand fields
         // ATTENTION; remove the field, despite if it is used by some other VF or not!
-        if(field.isVirtual())
-        {
+        //if(field.isVirtual())
+        //{
             // may break something, so please do it manually if really needed!
-        }
+        //}
     }
 
     /* ----------------------------------------------------------------
@@ -664,11 +635,11 @@ public abstract class Device {
         MainActivity.debug("Device: poller stopped");
     }
 
-    public boolean isPollerActive() {
+    private boolean isPollerActive() {
         return pollerActive;
     }
 
-    public void setPollerActive(boolean pollerActive) {
+    void setPollerActive(boolean pollerActive) {
         this.pollerActive = pollerActive;
     }
 
@@ -676,11 +647,11 @@ public abstract class Device {
      * Request a field from the device depending on the
      * type of field.
      * @param frame     the field to be requested
-     * @return
+     * @return Message  containing the response or an error
      */
     public Message requestFrame(Frame frame)
     {
-        Message msg = null;
+        Message msg;
 
             if (frame.isIsoTp())
                 msg = requestIsoTpFrame(frame);
@@ -705,15 +676,15 @@ public abstract class Device {
 
     /**
      * Request a free-frame type field from the device
-     * @param frame
-     * @return
+     * @param frame         The frame requested
+     * @return Message
      */
     public abstract Message requestFreeFrame(Frame frame);
 
     /**
      * Request an ISO-TP frame type from the device
-     * @param frame
-     * @return
+     * @param frame         The frame requested
+     * @return Message
      */
     public abstract Message requestIsoTpFrame(Frame frame);
 
