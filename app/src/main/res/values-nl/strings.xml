@@ -42,7 +42,7 @@
     <!-- Braking -->
 
     <string name="title_activity_braking">Rem informatie</string>
-    <!-- <string name="activity_braking">Remmen</string> -->
+    <string name="button_Braking">Remmen</string>
     <string name="header_braking">Status remsysteem</string>
     <string name="label_driver_torque_request">Gevraagde torsie</string>
     <string name="label_ElecBrakeWheelsTorqueApplied">Elektrische remtorsie (regeneratie)</string>
@@ -52,6 +52,7 @@
     <!-- Charging and ChargingTech -->
 
     <string name="title_activity_charging">Opladen</string>
+    <string name="button_Charging">Opladen</string>
     <string name="header_Charging">Details opladen</string>
     <string name="header_Battery">Batterij</string>
     <string name="header_DrivingCh">Rijden</string>
@@ -96,13 +97,19 @@
     <!-- Charging graph -->
 
     <string name="title_activity_charging_graph">Laadgrafieken</string>
+    <string name="button_ChargingGraphs">Grafieken opladen</string>
     <string name="graph_PilotPower">Pilot amp (A) / Charger power (kW)</string>
     <string name="graph_MaxRealChPwr">Max battery charge (kW) / DC Charging power (kW)</string>
     <string name="graph_EnergyTemperature">Available energy (kWh) / temperature (°C)</string>
 
+    <!-- Charging prediction -->
+
+    <string name="button_ChargingPrediction">Voorspelling opladen</string>
+
     <!-- Clima tech -->
 
     <string name="title_activity_clima_tech">Airconditioning</string>
+    <string name="button_Climate">Airco</string>
     <string name="label_ClimaLoopMode">Aircocircuitmode</string>
     <string name="label_HVBatConditioningMode">Tractiebatterij koelingmode</string>
     <string name="label_Temperatures">Temperaturen</string>
@@ -137,6 +144,7 @@
     <!-- Consumption -->
 
     <string name="title_activity_consumption">Verbruik</string>
+    <string name="button_Consumption">Verbruik</string>
     <string name="label_WheelTorque">Wieltorsie</string>
     <string name="label_InstantConsumption">Verbruik</string>
     <string name="label_kWh100km">kWh/100km</string>
@@ -147,6 +155,7 @@
     <!-- Driving -->
 
     <string name="title_activity_driving">Rij informatie</string>
+    <string name="button_Driving">Rijden</string>
     <string name="header_Driving">Gegevens rijden</string>
     <string name="label_pedal">Positie pedaal</string>
     <string name="label_motor_torque">Motortorsie</string>
@@ -161,6 +170,7 @@
     <!-- DTC -->
 
     <string name="title_activity_dtc">Diagnostic Trouble Codes</string>
+    <string name="button_DtcReadout">DTCs opvragen</string>
     <string name="button_QueryDTCs">Opvragen DTCs</string>
     <string name="button_ClearDTCs">Wissen DTCs</string>
     <string name="button_AllData">Alle data</string>
@@ -185,6 +195,7 @@
     <!-- Elm testing -->
 
     <string name="title_activity_elm_test">Test ELM327 Dongle</string>
+    <string name="button_ElmTesting">ELM test</string>
     <string name="header_ElmTest">Test resultaten</string>
     <string name="message_ExpectedResult">Verwacht resultaat ontvangen\n==========\n</string>
     <string name="message_FieldNotExists">Gevraagd veld bestaat niet. Dit is een fout in de test suite. Gaarne rapporteren\n</string>
@@ -199,6 +210,7 @@
     <!-- Firmware -->
 
     <string name="title_activity_firmware">Firmware</string>
+    <string name="button_Firmware">Firmware</string>
     <string name="header_Firmware">Firmware versies</string>
     <string name="default_Firmware">Not beschikbaar</string>
     <string name="help_Ecus"><![CDATA[Meer over de computers van de auto vind u <a href="http://canze.fisch.lu/computers/">hier</a>.]]></string>
@@ -206,14 +218,17 @@
     <!-- Heatmap battery modules -->
 
     <string name="title_activity_heatmap_bat">Moduletemperaturen</string>
+    <string name="button_HeatmapTemperature">Heatmap temperatuur</string>
 
     <!-- Heatmap voltages -->
 
     <string name="title_activity_heatmap_cellvoltage">Celspanningen</string>
+    <string name="button_HeatmapVoltage">Heatmap spanning</string>
 
     <!-- Kangoo Fluence temperatures -->
 
     <string name="title_activity_fluence_kangoo_temp">Fluence Kangoo temperaturen</string>
+    <string name="button_FluenceKangooTemps">Fluence Kangoo Temp.</string>
     <string name="header_KangooFluenceTemperatures">Temperaturen</string>
     <string name="label_EvaporatorTemperature">Temperatuur verdamper</string>
     <string name="label_WaterTemperatureHeating">Watertemperatuur verwarming</string>
@@ -230,6 +245,7 @@
     <!-- Leaf spy -->
 
     <string name="title_activity_leaf_spy">Leaf Spy Kloon</string>
+    <string name="button_LeafspyBob">LeafSpy (Bob)</string>
 
     <!-- Mainactivity -->
 
@@ -257,6 +273,7 @@
     <!-- Range -->
 
     <string name="title_activity_range">Bereik</string>
+    <string name="button_Range">Bereik</string>
     <string name="label_RangeRemaining">Remaining range by car:</string>
     <string name="label_RangeRemainingCanZE">Remaining range by CanZE:</string>
     <string name="label_EstimatedDrivingStyleLoss">Estimated driving style energy loss:</string>
@@ -298,6 +315,7 @@
     <!-- Tyres -->
 
     <string name="title_activity_tyres">Bandenspanning</string>
+    <string name="button_Tyres">Banden</string>
     <string name="header_Tyres">Banden</string>
     <string name="help_PressuresMbar">Alle bandenspanning in mbar</string>
     <string name="label_TyreSpdPresMisadaption">Afwijking snelheid-druk</string>
@@ -321,27 +339,15 @@
     <!-- Main (fragment) -->
 
     <string name="menu_Main">Hoofd</string>
-    <string name="button_Charging">Opladen</string>
+    <string name="help_Main">Swipe tussen de Hoofd-, Technisch- en Experimenteelschermen</string>
+
+    <!-- Technical (fragment) -->
+
+    <string name="menu_Technical">Technisch</string>
 
     <!-- Experimental (fragment) -->
 
     <string name="menu_Experimental">Experimenteel</string>
     <string name="help_Experimental">De knoppen hieronder zijn alleen voor testgebruik</string>
-    <string name="button_LeafspyBob">LeafSpy (Bob)</string>
-    <string name="button_FluenceKangooTemps">Fluence Kangoo Temp.</string>
-    <string name="help_TestingButtons">Onderstaande knoppen zijn alleen voor testdoeleinden</string>
-
-    <!-- Technical (fragment) -->
-
-    <string name="menu_Technical">Technisch</string>
-    <string name="button_DtcReadout">DTCs opvragen</string>
-    <string name="button_ChargingGraphs">Grafieken opladen</string>
-    <string name="button_Firmware">Firmware</string>
-    <string name="button_ChargingPrediction">Voorspelling opladen</string>
-    <string name="button_ElmTesting">ELM test</string>
-    <string name="button_Range">Bereik</string>
-    <string name="button_Climate">Airco</string>
-
-
 
 </resources>
