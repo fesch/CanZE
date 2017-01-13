@@ -586,7 +586,7 @@ public abstract class Device {
         // ATTENTION; remove the field, despite if it is used by some other VF or not!
         //if(field.isVirtual())
         //{
-            // may break something, so please do it manually if really needed!
+        // may break something, so please do it manually if really needed!
         //}
     }
 
@@ -653,23 +653,23 @@ public abstract class Device {
     {
         Message msg;
 
-            if (frame.isIsoTp())
-                msg = requestIsoTpFrame(frame);
-            else
-                msg = requestFreeFrame(frame);
+        if (frame.isIsoTp())
+            msg = requestIsoTpFrame(frame);
+        else
+            msg = requestFreeFrame(frame);
 
-            if (msg.isError()) {
-                MainActivity.debug("Device: request for " + frame.getRID() + " returned error " + msg.getError());
-                // theory: when the answer is empty, the timeout is to low --> increase it!
-                // jm: but never beyond 2
-                if (intervalMultiplicator < maxIntervalMultiplicator) intervalMultiplicator += 0.1;
-                MainActivity.debug("Device: intervalMultiplicator = " + intervalMultiplicator);
-            } else {
-                // theory: when the answer is good, we might recover slowly --> decrease it!
-                // jm: but never below 1 ----> 2015-12-14 changed 10 1.3
-                if (intervalMultiplicator > minIntervalMultiplicator) intervalMultiplicator -= 0.01;
-                MainActivity.debug("Device: intervalMultiplicator = " + intervalMultiplicator);
-            }
+        if (msg.isError()) {
+            MainActivity.debug("Device: request for " + frame.getRID() + " returned error " + msg.getError());
+            // theory: when the answer is empty, the timeout is to low --> increase it!
+            // jm: but never beyond 2
+            if (intervalMultiplicator < maxIntervalMultiplicator) intervalMultiplicator += 0.1;
+            MainActivity.debug("Device: intervalMultiplicator = " + intervalMultiplicator);
+        } else {
+            // theory: when the answer is good, we might recover slowly --> decrease it!
+            // jm: but never below 1 ----> 2015-12-14 changed 10 1.3
+            if (intervalMultiplicator > minIntervalMultiplicator) intervalMultiplicator -= 0.01;
+            MainActivity.debug("Device: intervalMultiplicator = " + intervalMultiplicator);
+        }
 
         return msg;
     }

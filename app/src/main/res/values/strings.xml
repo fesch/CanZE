@@ -130,6 +130,7 @@
     <string name="label_HVBatConditioningMode">HV Bat conditioning mode</string>
     <string name="label_Temperatures">Temperatures</string>
     <string name="label_HVEvaporationTemp">HV Evaporation temp</string>
+    <string name="label_ACPressure">Pressure</string>
     <string name="label_HVCoolingState">HV cooling state</string>
     <string name="label_ChargingPower">Charging Power</string>
     <string name="label_EngineFanSpeed">Engine fan speed</string>

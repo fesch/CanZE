@@ -12,6 +12,7 @@ import java.util.Locale;
 import android.content.Context;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.activities.MainActivity;
 
 import static lu.fisch.canze.activities.MainActivity.debug;
 
@@ -60,8 +61,8 @@ public class DebugLogger {
             //debug(this.getClass().getSimpleName()+": SDcard dir CanZE created");
         }
 
-        // SimpleDateFormat sdf = new SimpleDateFormat(Resources.getSystem().getString(R.string.format_YMDHMSs), Locale.getDefault());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMSs), Locale.getDefault());
+        // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault());
         String exportdataFileName = file_path + "debug-" + sdf.format(Calendar.getInstance().getTime()) + ".log";
 
         logFile = new File(exportdataFileName);
