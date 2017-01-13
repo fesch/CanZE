@@ -38,31 +38,28 @@ import java.util.Calendar;
  */
 public class Field {
 
-    protected final ArrayList<FieldListener> fieldListeners = new ArrayList<>();
+    final ArrayList<FieldListener> fieldListeners = new ArrayList<>();
 
-    protected Frame frame;
-    protected short from;
-    protected short to;
-    protected int offset;
-    //private int divider;
-    //private int multiplier;
-    protected int decimals;
-    protected double resolution;
-    protected String unit;
-    protected String responseId;
-    protected short options;           // see the options definitions in MainActivity
-    protected String name;
-    protected String list;
-    //private int skips;
+    private Frame frame;
+    private short from;
+    private short to;
+    private int offset;
+    private int decimals;
+    private double resolution;
+    private String unit;
+    private String responseId;
+    private short options;           // see the options definitions in MainActivity
+    private String name;
+    private String list;
 
-    protected double value = Double.NaN;
-    protected String strVal = "";
+    private double value = Double.NaN;
+    private String strVal = "";
     //private int skipsCount = 0;
 
-    protected long lastRequest = 0;
+    private long lastRequest = 0;
     protected int interval = Integer.MAX_VALUE;
 
-    protected boolean virtual = false;
+    boolean virtual = false;
 
     /*
         Please note that the offset is applied BEFORE scaling
@@ -90,9 +87,9 @@ public class Field {
         this.lastRequest=Calendar.getInstance().getTimeInMillis();
     }
     
-    @Override
-    public Field clone()
+    private Field fieldClone()
     {
+        // cloning is only used in this class, method notifyFieldListeners
         Field field = new Field(frame, from, to, resolution, decimals, offset, unit, responseId, options, name, list);
         field.value = value;
         field.strVal = strVal;
@@ -107,7 +104,7 @@ public class Field {
         return getSID()+" : "+getPrintValue();
     }
 
-    public boolean isIsoTp()
+    boolean isIsoTp()
     {
         return !responseId.trim().isEmpty();
     }
@@ -119,11 +116,11 @@ public class Field {
         else
             return (Integer.toHexString(frame.getId())+"."+from).toLowerCase();
     }
-
+    /*
     public String getUniqueID()
     {
         return getCar()+"."+getSID();
-    }
+    } */
     
     public String getPrintValue()
     {
@@ -134,6 +131,7 @@ public class Field {
         return strVal;
     }
 
+    /*
     public String getStringValueDepreciated()
     {
         // truncate to a long
@@ -159,12 +157,12 @@ public class Field {
             result=result+(char) intArray[i];
         // return trimmed result
         return result.trim();
-    }
+    } */
 
     public String getListValue()
     {
         if (list == null) return ("");
-        if (list == "") return ("");
+        if (list.equals ("")) return ("");
         if (Double.isNaN(value)) return ("");
         String[] lines = list.split(";");
         if (value < 0 || value >= lines.length) return ("");
@@ -220,7 +218,7 @@ public class Field {
     /**
      * Notify all listeners synchronously
      */
-    public void notifyFieldListeners()
+    private void notifyFieldListeners()
     {
         notifyFieldListeners(false);
     }
@@ -231,20 +229,23 @@ public class Field {
      */
     private void notifyFieldListeners(boolean async)
     {
+        // this is the only part where cloning is used. Therefor we don't need to worry
+        // about cloned frames in the complex frame / field interaction, esp in the Device Class
         if(!async) {
             for(int i=0; i<fieldListeners.size(); i++) {
-                fieldListeners.get(i).onFieldUpdateEvent(this.clone());
+                fieldListeners.get(i).onFieldUpdateEvent(this.fieldClone());
             }
         } else {
-            // clone the frame to make sure modifications will 
-            final Field clone = this.clone();
+            // clone the frame to make sure modifications will
+            // TODO why double cloning?
+            final Field clone = this.fieldClone();
             for(int i=0; i<fieldListeners.size(); i++) {
                 final int index = i;
                 (new Thread(new Runnable() {
 
                     @Override
                     public void run() {
-                        fieldListeners.get(index).onFieldUpdateEvent(clone.clone());                   
+                        fieldListeners.get(index).onFieldUpdateEvent(clone.fieldClone());
                     }
                 })).start();
             }
@@ -256,7 +257,7 @@ public class Field {
     \ ------------------------------ */
 
 
-    public void updateLastRequest()
+    void updateLastRequest()
     {
         lastRequest = Calendar.getInstance().getTimeInMillis();
     }
@@ -409,7 +410,7 @@ public class Field {
         return virtual;
     }
 
-    public boolean isSigned () {
+    boolean isSigned() {
         return (this.options & MainActivity.FIELD_TYPE_MASK) == MainActivity.FIELD_TYPE_SIGNED;
     }
 
@@ -418,7 +419,7 @@ public class Field {
     }
 
     public boolean isList () {
-        return list != null && list != "";
+        return list != null && !list.equals("");
     }
 
     public String getName () {
@@ -432,4 +433,5 @@ public class Field {
     public void setFrame(Frame frame) {
         this.frame = frame;
     }
+
 }

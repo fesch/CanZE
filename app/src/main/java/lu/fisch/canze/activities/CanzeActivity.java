@@ -36,9 +36,6 @@ import lu.fisch.canze.widgets.WidgetView;
 
 /**
  * Created by robertfisch on 30.09.2015.
- *
- * Abstract for all screens
- *
  */
 public abstract class CanzeActivity extends AppCompatActivity implements FieldListener {
 

@@ -32,6 +32,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
@@ -151,8 +152,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static boolean milesMode = false;
     public static int toastLevel = 1;
 
-    private Fragment actualFragment;
+    // private Fragment actualFragment;
 
+    static private Resources res;
 
     // bluetooth stuff
     private MenuItem bluetoothMenutItem = null;
@@ -261,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         toastLevel = settings.getInt("optToast", 1);
 
         if (bluetoothDeviceName != null)
-           BluetoothManager.getInstance().setDummyMode(bluetoothDeviceName.substring(0, 4).compareTo("HTTP") == 0);
+            BluetoothManager.getInstance().setDummyMode(bluetoothDeviceName.substring(0, 4).compareTo("HTTP") == 0);
 
         String carStr = settings.getString("car", "None");
         switch (carStr) {
@@ -346,25 +348,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
-    /*
-    private ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)
-    {
-        ArrayList<WidgetView> result = new ArrayList<>();
-
-        for (int i = 0; i < viewGroup.getChildCount(); i++) {
-            View v = viewGroup.getChildAt(i);
-            if (v instanceof ViewGroup) {
-                result.addAll(getWidgetViewArrayList((ViewGroup) v));
-            }
-            else if (v instanceof WidgetView)
-            {
-                result.add((WidgetView)v);
-            }
-        }
-
-        return result;
-    }
-*/
     protected void updateActionBar()
     {
         switch (viewPager.getCurrentItem())
@@ -383,37 +366,16 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
-    protected void loadFragement(Fragment newFragment)
-    {
-        if(actualFragment==null || !actualFragment.getClass().equals(newFragment.getClass())) {
-
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
-            if(newFragment instanceof  MainFragment)
-                actionBar.setIcon(R.mipmap.ic_launcher);
-            else if(newFragment instanceof  ExperimentalFragment)
-                actionBar.setIcon(R.mipmap.fragement_experimental);
-            else if(newFragment instanceof  TechnicalFragment)
-                actionBar.setIcon(R.mipmap.fragement_technical);
-
-            actualFragment=newFragment;
-            // Create fragment and give it an argument specifying the article it should show
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            // Replace whatever is in the fragment_container view with this fragment,
-            // and add the transaction to the back stack so the user can navigate back
-            transaction.replace(R.id.main, newFragment);
-            //transaction.addToBackStack(null);
-            // Commit the transaction
-            transaction.commit();
-        }
-    }
-
     private ViewPager viewPager;
     private ActionBar actionBar ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // always create an instance
+
+        // needed to get strings from resources in non-Activity classes
+        res = getResources();
+
         // dataLogger = DataLogger.getInstance();
         dataLogger = new DataLogger();
 
@@ -457,7 +419,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         setTitle(TAG + " - not connected");
         setBluetoothState(BLUETOOTH_DISCONNECTED);
-
 
         // tabs
         //final ActionBar actionBar = getSupportActionBar();
@@ -946,4 +907,14 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             return gatewayUrl;
         return bluetoothDeviceAddress;
     }
+
+    public static String getStringSingle (int resId) {
+        return res.getString(resId);
+    }
+
+    public static String [] getStringList (int resId) {
+        return res.getStringArray(resId);
+    }
+
+
 }

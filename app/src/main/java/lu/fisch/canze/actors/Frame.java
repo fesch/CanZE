@@ -22,6 +22,7 @@
 package lu.fisch.canze.actors;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Frame
@@ -33,7 +34,11 @@ public class Frame {
     private int interval; // in ms
     private Ecu sendingEcu;
     private final ArrayList<Field> fields = new ArrayList<>();
+    private final ArrayList<Field> queriedFields = new ArrayList<>();
     private Frame containingFrame = null;
+
+    protected long lastRequest = 0;
+
 
     public Frame (int id, int interval, Ecu sendingEcu, String responseId, Frame containingFrame) {
         this.id = id;
@@ -42,6 +47,31 @@ public class Frame {
         this.responseId = responseId;
         this.containingFrame = containingFrame;
     }
+
+    /* --------------------------------
+     * Scheduling
+     * ------------------------------ */
+
+    public void updateLastRequest()
+    {
+        lastRequest = Calendar.getInstance().getTimeInMillis();
+    }
+
+    public long getLastRequest()
+    {
+        return lastRequest;
+    }
+
+    public boolean isDue(long referenceTime)
+    {
+        return lastRequest+interval<referenceTime;
+    }
+
+    public int getInterval() {
+        return interval;
+    }
+
+    public void setInterval (int interval) { this.interval = interval; }
 
     public boolean isIsoTp()
     {
@@ -66,12 +96,6 @@ public class Frame {
         return Integer.toHexString(id);
     }
 
-    public int getInterval() {
-        return interval;
-    }
-
-    public void setInterval (int interval) { this.interval = interval; }
-
     public Ecu getSendingEcu() {
         return sendingEcu;
     }
@@ -88,6 +112,18 @@ public class Frame {
         this.fields.add(field);
     }
 
+    public ArrayList<Field> getQueriedFields() {
+        return queriedFields;
+    }
+
+    public void addQueriedField(Field field) {
+        this.queriedFields.add(field);
+    }
+
+    public void removeQueriedField(Field field) {
+        this.queriedFields.remove(field);
+    }
+
     public String getRequestId () {
         if (responseId.compareTo("") == 0) return ("");
         char[] tmpChars = responseId.toCharArray();
@@ -98,4 +134,5 @@ public class Frame {
     public Frame getContainingFrame() {
         return containingFrame;
     }
+
 }

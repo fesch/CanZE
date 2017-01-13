@@ -95,6 +95,19 @@
 
             <TableRow>
                 <TextView
+                    android:text="@string/label_ACPressure"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:id="@+id/text_PRE"
+                    android:text="@string/default_Dash"
+                    android:gravity="end"
+                    android:layout_weight="1"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <TextView
                     android:text="@string/label_HVBatConditioningMode"
                     android:layout_weight="2"
                     />

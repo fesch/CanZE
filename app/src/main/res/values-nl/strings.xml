@@ -114,6 +114,7 @@
     <string name="label_HVBatConditioningMode">Tractiebatterij koelingmode</string>
     <string name="label_Temperatures">Temperaturen</string>
     <string name="label_HVEvaporationTemp">Temperatuur batterijverdamper</string>
+    <string name="label_ACPressure">Druk</string>
     <string name="label_HVCoolingState">Status batterijkoeling</string>
     <string name="label_ChargingPower">Oplaadvermogen</string>
     <string name="label_EngineFanSpeed">Ventilatorsnelheid</string>
