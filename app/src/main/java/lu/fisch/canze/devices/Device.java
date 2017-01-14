@@ -213,6 +213,7 @@ public abstract class Device {
                         //Fields.getInstance().onMessageCompleteEvent(message);
                         message.onMessageCompleteEvent();
                     } else {
+                        message.onMessageIncompleteEvent();
                         // reset if something went wrong ...
                         // ... but only if we are not asked to stop!
                         if (BluetoothManager.getInstance().isConnected()) {

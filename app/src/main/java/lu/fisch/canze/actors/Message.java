@@ -75,6 +75,13 @@ public class Message {
 
     public String getError () { return error ? data : ""; }
 
+    public void onMessageIncompleteEvent () {
+        for (Field field : frame.getAllFields()) {
+            field.updateLastRequest();
+        }
+    }
+
+
     public void onMessageCompleteEvent() {
 
         // If a message frame comes in, simply update all fields that are defined for it.
