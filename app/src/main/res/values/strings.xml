@@ -157,6 +157,7 @@
         <item>Demisting</item>
         <item>Idle</item>
     </string-array>
+    <string name="graph_Climatech">External (°C) / Internal (°C) / Setpoint (°C) / Battery (°C)</string>
 
     <!-- Consumption -->
 
@@ -365,7 +366,7 @@
     <string name="toast_BluetoothLost">Bluetooth connection lost!</string>
     <string name="prompt_Disclaimer" translatable="false">Formal Disclaimer</string>
     <string name="prompt_Accept">Yes, I got it!</string>
-    <string name="prompt_Decline">No, I didn\'t understand a word ...</string>
+    <string name="prompt_Decline">No, I didn\'t understand a word…</string>
     <string name="prompt_DisclaimerText" translatable="false"><![CDATA[<html>CanZE (“the software”) is provided as is. Use the software at your own
                             risk. The authors make no warranties as to performance or fitness for a particular purpose,
                             or any other warranties whether expressed or implied. No oral or written communication
@@ -381,9 +382,9 @@
                             software beyond your control, created by a loose team of interested amateurs in this field. Any
                             car is a possibly lethal piece of machinery and you might hurt or kill yourself or others using
                             it, or even paying attention to the displays instead of watching the road.</b></html></string>]]></string>
-    <string name="toast_Reconnecting">Reconnecting Bluetooth...</string>
+    <string name="toast_Reconnecting">Reconnecting Bluetooth…</string>
     <string name="toast_WaitingSettings">Stopping Bluetooth. Settings are being loaded. Please wait ....</string>
-    <string name="toast_NotWhileDriving">Not possible while driving ...</string>
+    <string name="toast_NotWhileDriving">Not possible while driving…</string>
 
     <!-- Main (fragment) -->
 
