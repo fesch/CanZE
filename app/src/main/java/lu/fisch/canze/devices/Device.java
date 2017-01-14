@@ -44,9 +44,14 @@ import lu.fisch.canze.database.CanzeDataSource;
 
 public abstract class Device {
 
-    private final double minIntervalMultiplicator = 1.3;
-    private final double maxIntervalMultiplicator = 2.5;
-    double intervalMultiplicator = minIntervalMultiplicator;
+    public static final int TOUGHNESS_HARD              = 0;    // hardest reset possible (ie atz)
+    public static final int TOUGHNESS_MEDIUM            = 1;    // medium reset (i.e. atws)
+    public static final int TOUGHNESS_SOFT              = 2;    // softest reset (i.e atd for ELM)
+    public static final int TOUGHNESS_NONE              = 100;  // just clear error status
+
+    private final double minIntervalMultiplicator       = 1.3;
+    private final double maxIntervalMultiplicator       = 2.5;
+    double intervalMultiplicator                        = minIntervalMultiplicator;
 
     /* ----------------------------------------------------------------
      * Attributes
@@ -109,7 +114,7 @@ public abstract class Device {
                     @Override
                     public void run() {
                         // if the device has been initialised and we got an answer
-                        if(initDevice(0)) {
+                        if(initDevice(TOUGHNESS_HARD)) {
                             while (isPollerActive()) {
                                 MainActivity.debug("Device: inside poller thread");
                                 if (applicationFields.size()+activityFieldsScheduled.size()+activityFieldsAsFastAsPossible.size() == 0
@@ -203,9 +208,8 @@ public abstract class Device {
                 }
                 else
                 {
-                    long start = Calendar.getInstance().getTimeInMillis();
+                    // long start = Calendar.getInstance().getTimeInMillis();
                     MainActivity.debug("Device: queryNextFilter: " + field.getSID());
-
                     // get the data
                     Message message = requestFrame(field.getFrame());
                     // test if we got something
@@ -213,13 +217,23 @@ public abstract class Device {
                         //Fields.getInstance().onMessageCompleteEvent(message);
                         message.onMessageCompleteEvent();
                     } else {
-                        message.onMessageIncompleteEvent();
-                        // reset if something went wrong ...
-                        // ... but only if we are not asked to stop!
-                        if (BluetoothManager.getInstance().isConnected()) {
-                            MainActivity.debug("Device: something went wrong!");
-                            // we don't want to continue, so we need to stop the poller right now!
-                            initDevice(1, 2);
+                        // one plain retry
+                        message = requestFrame(field.getFrame());
+                        if(!message.isError()) {
+                            message.onMessageCompleteEvent();
+                        } else {
+                            // failed after single retry
+                            // mark underlying fields as uodated to avoid queue clogging
+                            // the will have to get backk to the end of the queue
+                            message.onMessageIncompleteEvent();
+                            // reset if something went wrong ...
+                            // ... but only if we are not asked to stop!
+                            if (BluetoothManager.getInstance().isConnected()) {
+                                MainActivity.debug("Device: something went wrong!");
+                                // we don't want to continue, so we need to stop the poller right now!
+                                // TODO but are we? I don't believe this comment is correct is it?
+                                initDevice(TOUGHNESS_MEDIUM, 2); // toughness = 1, retries = 2
+                            }
                         }
                     }
                 }

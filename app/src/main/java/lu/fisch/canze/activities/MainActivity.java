@@ -93,33 +93,37 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     // url of gateway if in use
     private static String gatewayUrl = null;
 
-    // public final static int RECEIVE_MESSAGE   = 1;
-    public final static int REQUEST_ENABLE_BT = 3;
-    public final static int SETTINGS_ACTIVITY = 7;
-    public final static int LEAVE_BLUETOOTH_ON= 11;
+    // public final static int RECEIVE_MESSAGE      = 1;
+    public final static int REQUEST_ENABLE_BT       = 3;
+    public final static int SETTINGS_ACTIVITY       = 7;
+    public final static int LEAVE_BLUETOOTH_ON      = 11;
 
     // note that the CAR constants are stored in the option property of the field object
     // this is a short
 
     // public static final short CAR_MASK            = 0xff;
 
-    public static final short CAR_NONE            = 0x000;
-    //public static final int CAR_ANY             = 0x0ff;
-    public static final short CAR_FLUENCE         = 0x001;
-    public static final short CAR_ZOE_Q210        = 0x002;
-    public static final short CAR_KANGOO          = 0x004;
-    // public static final short CAR_TWIZY           = 0x008;     // you'll never know ;-)
-    public static final short CAR_X10             = 0x010;     // not used
-    public static final short CAR_ZOE_R240        = 0x020;
-    public static final short CAR_ZOE_Q90         = 0x040;
-    public static final short CAR_ZOE_R90         = 0x080;
+    public static final short CAR_NONE              = 0x000;
+    //public static final int CAR_ANY               = 0x0ff;
+    public static final short CAR_FLUENCE           = 0x001;
+    public static final short CAR_ZOE_Q210          = 0x002;
+    public static final short CAR_KANGOO            = 0x004;
+    // public static final short CAR_TWIZY          = 0x008;     // you'll never know ;-)
+    public static final short CAR_X10               = 0x010;     // not used
+    public static final short CAR_ZOE_R240          = 0x020;
+    public static final short CAR_ZOE_Q90           = 0x040;
+    public static final short CAR_ZOE_R90           = 0x080;
 
-    public static final short FIELD_TYPE_MASK     = 0x700;
+    public static final short FIELD_TYPE_MASK       = 0x700;
     //public static final short FIELD_TYPE_UNSIGNED = 0x000;
-    public static final short FIELD_TYPE_SIGNED   = 0x100;
-    public static final short FIELD_TYPE_STRING   = 0x200;      // not implemented yet
+    public static final short FIELD_TYPE_SIGNED     = 0x100;
+    public static final short FIELD_TYPE_STRING     = 0x200;      // not implemented yet
 
-    public static final double reduction        = 9.32;     // update suggested by Loc Dao
+    public static final short TOAST_NONE            = 0;
+    public static final short TOAST_ELM             = 1;
+    public static final short TOAST_ELMCAR          = 2;
+
+    public static final double reduction            = 9.32;     // update suggested by Loc Dao
 
     // private StringBuilder sb = new StringBuilder();
     // private String buffer = "";
@@ -207,6 +211,19 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             SimpleDateFormat sdf = new SimpleDateFormat(instance.getString(R.string.format_YMDHMSs), Locale.getDefault());
             DebugLogger.getInstance().log(sdf.format(Calendar.getInstance().getTime()) + ": " + text);
         }
+    }
+
+    /* TODO we should move to simply always provide the level in the toast() call instead of all those if's in the code */
+    public static void toast(int level, final String message)
+    {
+        if (level <= toastLevel) return;
+        if(instance!=null)
+            instance.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
+                }
+            });
     }
 
     public static void toast(final String message)
