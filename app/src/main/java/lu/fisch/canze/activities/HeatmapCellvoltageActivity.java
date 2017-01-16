@@ -28,12 +28,13 @@ import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 /**
  * Heatmap by jeroen on 27-10-15.
  */
-public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldListener {
+public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     public static final String SID_Preamble_CellVoltages1 = "7bb.6141."; // (LBC)
     public static final String SID_Preamble_CellVoltages2 = "7bb.6142."; // (LBC)
@@ -51,6 +52,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
     }
 
     protected void initListeners() {
+        MainActivity.getInstance().setDebugListener(this);
         // Battery compartment temperatures
         for (int i = 1; i <= 62; i++) {
             String sid = SID_Preamble_CellVoltages1 + (i * 16); // remember, first is pos 16, i starts s at 1
@@ -76,14 +78,6 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
         }
         if (cell > 0 && cell <= lastCell) {
             final double value = field.getValue();
-
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    TextView tv = (TextView) findViewById(R.id.textDebug);
-                    tv.setText(fieldId + ":" + value);
-                }
-            });
 
             lastVoltage[cell] = value;
             if (cell == lastCell) {

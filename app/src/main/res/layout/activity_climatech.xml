@@ -158,7 +158,7 @@
             custom:minorTicks="2"
             custom:fieldSID="764.6143.110,764.6121.26,699.8,42e.44"
             custom:widget="timeplot"
-            custom:text="External (°C) / Internal (°C) / Setpoint  (°C) / Battery (°C)"
+            custom:text="@string/graph_Climatech"
             custom:colorRanges="[
                     {'sid':'42e.44','color':'#000000','from':-100,'to':100}
                     ]"

@@ -29,9 +29,10 @@ import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
-public class BrakingActivity extends CanzeActivity implements FieldListener {
+public class BrakingActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
@@ -51,6 +52,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
     }
 
     protected void initListeners() {
+        MainActivity.getInstance().setDebugListener(this);
         addField(SID_DriverBrakeWheel_Torque_Request);
         addField(SID_ElecBrakeWheelsTorqueApplied);
         addField(SID_Coasting_Torque);
@@ -102,8 +104,6 @@ public class BrakingActivity extends CanzeActivity implements FieldListener {
                         coasting_Torque = field.getValue() * MainActivity.reduction; // This torque is given in motor torque, not in wheel torque.
                         break;
                 }
-                tv = (TextView) findViewById(R.id.textDebug);
-                tv.setText(fieldId);
             }
         });
 

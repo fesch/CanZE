@@ -51,8 +51,7 @@ public class ELM327 extends Device {
     private static final char EOM2 = '>';
     private static final char EOM3 = '?';
 
-    private int timeoutLogLevel = MainActivity.toastLevel; // 0 = none, 1=only ELM issues, 2=elm and car issues
-    private boolean someThingWrong = false;
+    private boolean deviceIsInitialized = false;
 
     /**
      * the index of the actual field to request
@@ -71,44 +70,6 @@ public class ELM327 extends Device {
         // not needed for this device
     }
 
-    /*
-    @Override
-    protected ArrayList<Message> processData(String inputString) {
-        ArrayList<Message> result = new ArrayList<>();
-
-        // add to buffer as characters
-        buffer+=inputString;
-
-
-        //MainActivity.debug("Buffer: "+buffer);
-
-        // split by <new line>
-        String[] messages = buffer.split(SEPARATOR);
-        // let assume the last message is fine
-        int last = messages.length;
-        // but if it is not, do not consider it
-        if (!buffer.endsWith(SEPARATOR)) last--;
-
-        // process each message
-        for (int i = 0; i < last; i++) {
-            // decode into a frame
-            Message message = lineToMessage(messages[i].trim());
-            // store if valid
-            if (message != null)
-                result.add(message);
-        }
-        // adapt the buffer
-        if (!buffer.endsWith(SEPARATOR))
-            // retain the last uncompleted message
-            buffer = messages[messages.length - 1];
-        else
-            // empty the entire buffer
-            buffer = "";
-        // we are done
-
-        return result;
-    }
-    */
 
     protected boolean initDevice (int toughness, int retries) {
         if (initDevice(toughness)) return true;
@@ -118,7 +79,7 @@ public class ELM327 extends Device {
             MainActivity.debug("ELM327: initDevice("+toughness+"), "+retries+" retries left");
             if (initDevice(toughness)) return true;
         }
-        if (timeoutLogLevel >= 1) MainActivity.toast("Hard reset failed, restarting Bluetooth ...");
+        MainActivity.toast(MainActivity.TOAST_ELM, "Hard reset failed, restarting Bluetooth ...");
         MainActivity.debug("ELM327: Hard reset failed, restarting Bluetooth ...");
 
         ///----- WE ARE HERE INSIDE THE POLLER THREAD, SO
@@ -159,23 +120,23 @@ public class ELM327 extends Device {
         lastId = 0;
 
         // extremely soft, just clear the global error condition
-        if (toughness == 100){
-            someThingWrong = false;
-            return true;
+        if (toughness == TOUGHNESS_NONE){
+            deviceIsInitialized = true;
+            return deviceIsInitialized;
         }
 
         killCurrentOperation ();
 
-        if (toughness == 0 ) {
+        if (toughness == TOUGHNESS_HARD ) {
             // the default 500mS should be enough to answer, however, the answer contains various <cr>'s, so we need to set untilEmpty to true
             response = sendAndWaitForAnswer("atws", 0, true, -1 , true);
             MainActivity.debug("ELM327: version = "+response);
         }
-        else if (toughness == 1) {
+        else if (toughness == TOUGHNESS_MEDIUM) {
             response = sendAndWaitForAnswer("atws", 0, true, -1 , true);
             MainActivity.debug("ELM327: version = "+response);
         }
-        else {
+        else { // TOUGHNESS_WEAK
             // not used
             response = sendAndWaitForAnswer("atd", 0, true, -1 , true);
             MainActivity.debug("ELM327: version = "+response);
@@ -183,12 +144,12 @@ public class ELM327 extends Device {
 
         if (response.trim().equals("")) {
             lastInitProblem = "ELM is not responding (toughness = "+toughness+")";
-            if (timeoutLogLevel >= 1) MainActivity.toast(lastInitProblem);
+            MainActivity.toast(MainActivity.TOAST_ELM, lastInitProblem);
             return false;
         }
 
         // only do version control at a full reset
-        if (toughness <= 1) {
+        if (toughness <= TOUGHNESS_MEDIUM) {
             if (response.toUpperCase().contains("V1.3")) {
                 elmVersion = 13;
             } else if (response.toUpperCase().contains("V1.4")) {
@@ -201,7 +162,7 @@ public class ELM327 extends Device {
                 elmVersion = 8015;
             } else {
                 lastInitProblem = "Unrecognized ELM version response [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]";
-                if (timeoutLogLevel >= 1) MainActivity.toast(lastInitProblem);
+                MainActivity.toast(MainActivity.TOAST_ELM, lastInitProblem);
                 return false;
             }
         }
@@ -210,7 +171,8 @@ public class ELM327 extends Device {
         // ate0 (no echo)
         if (!initCommandExpectOk("ate0", true)) {
             lastInitProblem = "ATE0 command problem";
-            return false;
+            deviceIsInitialized = false;
+            return deviceIsInitialized;
         }
 
         // at this point, echo is finally off so we can safely check for OK messages. If the app starts responding with toasts showing the responses
@@ -220,13 +182,15 @@ public class ELM327 extends Device {
         // ats0 (no spaces)
         if (!initCommandExpectOk("ats0")) {
             lastInitProblem = "ATS0 command problem";
-            return false;
+            deviceIsInitialized = false;
+            return deviceIsInitialized;
         }
 
         // atsp6 (CAN 500K 11 bit)
         if (!initCommandExpectOk("atsp6")) {
             lastInitProblem = "ATSP6 command problem";
-            return false;
+            deviceIsInitialized = false;
+            return deviceIsInitialized;
         }
 
         // atat1 (auto timing)
@@ -238,13 +202,15 @@ public class ELM327 extends Device {
         // atcaf0 (no formatting)
         if (!initCommandExpectOk("atcaf0")) {
             lastInitProblem = "ATCAF0 command problem";
-            return false;
+            deviceIsInitialized = false;
+            return deviceIsInitialized;
         }
 
         // atfcsh77b        Set flow control response ID to 77b. This is needed to set the flow control response, but that one is remembered :-)
         if (!initCommandExpectOk("atfcsh77b")) {
             lastInitProblem = "ATFCSH77B command problem";
-            return false;
+            deviceIsInitialized = false;
+            return deviceIsInitialized;
         }
 
         // atfcsd300020     Set the flow control response data to 300010 (flow control, clear to send,
@@ -253,44 +219,46 @@ public class ELM327 extends Device {
         //                  First Frame (not a Next Frame)
         if (!initCommandExpectOk("atfcsd300010")) {
             lastInitProblem = "ATFCSD300010 command problem";
-            return false;
+            deviceIsInitialized = false;
+            return deviceIsInitialized;
         }
 
         // atfcsm1          Set flow control mode 1 (ID and data suplied)
         if (!initCommandExpectOk("atfcsm1")) {
             lastInitProblem = "ATFCSM1 command problem";
-            return false;
+            deviceIsInitialized = false;
+            return deviceIsInitialized;
         }
 
-        if (toughness == 0 ) {
+        if (toughness == TOUGHNESS_HARD ) {
             switch (elmVersion) {
                 case 13:
-                    if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, version 1.3, should work");
+                   MainActivity.toast(MainActivity.TOAST_ELM, "ELM ready, version 1.3, should work");
                     break;
                 case 14:
-                    if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, version 1.4, should work");
+                    MainActivity.toast(MainActivity.TOAST_ELM, "ELM ready, version 1.4, should work");
                     break;
                 case 15:
-                    if (timeoutLogLevel >= 1) MainActivity.toast("ELM is now ready");
+                    MainActivity.toast(MainActivity.TOAST_ELM, "ELM is now ready");
                     break;
                 case 20:
                     lastInitProblem = "ELM ready, version 2.x, will probably not work, please report if it does";
-                    if (timeoutLogLevel >= 1) MainActivity.toast(lastInitProblem);
+                    MainActivity.toast(MainActivity.TOAST_ELM, lastInitProblem);
                     break;
                 case 8015:
-                    if (timeoutLogLevel >= 1) MainActivity.toast("ELM ready, version innocar, should work");
+                    MainActivity.toast(MainActivity.TOAST_ELM, "ELM ready, version innocar, should work");
                     break;
 
                 // default should never be reached!!
                 default:
                     lastInitProblem = "ELM ready, unknown version, will probably not work, please report if it does";
-                    if (timeoutLogLevel >= 1) MainActivity.toast(lastInitProblem);
+                    MainActivity.toast(MainActivity.TOAST_ELM, lastInitProblem);
                     break;
             }
         }
 
-        someThingWrong = false;
-        return true;
+        deviceIsInitialized = true;
+        return deviceIsInitialized;
     }
 
     private void killCurrentOperation() {
@@ -305,7 +273,7 @@ public class ELM327 extends Device {
         // discard the ? anser
         sendNoWait("x\r");
         if (!flushWithTimeoutCore (500, '\0')) {
-            MainActivity.debug("ELM327: initDevice unable to flush after x");
+            MainActivity.debug("ELM327: KillCurrentOperation unable to flush after x");
         }
     }
 
@@ -374,17 +342,18 @@ public class ELM327 extends Device {
         String response = "";
         for (int i = 2; i > 0; i--) {
             if (untilEmpty) {
-                response = sendAndWaitForAnswer(command, 40, true, -1, addReturn);
+                response = sendAndWaitForAnswer(command, 40, true, -1, addReturn); // wait 40 ms for untilempty
             } else {
-                response = sendAndWaitForAnswer(command, 0, false, -1, addReturn);
+                response = sendAndWaitForAnswer(command, 0, false, -1, addReturn); // // just one line
             }
-            if (response.toUpperCase().contains("OK")) return true;
+            if (response.toUpperCase().contains("OK")) return true; // we're done if we got an OK
         }
 
-        if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && !command.startsWith("atma") && command.startsWith("at"))) {
+        // we've tried and tried and failed here
+        /* if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && !command.startsWith("atma") && command.startsWith("at"))) {
             MainActivity.toast("Err " + command + " [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
-        }
-
+        } */
+        MainActivity.toast(MainActivity.TOAST_ELM, "Error [" + command + "] [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
         MainActivity.debug("ELM327: initCommandExpectOk > Response was > " + response);
 
         return false;
@@ -518,11 +487,11 @@ public class ELM327 extends Device {
 
         // set the flag that a timeout has occurred. someThingWrong can be inspected anywhere, but we reset the device after a full filter has been run
         if (timedOut) {
-            if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && (command==null || (!command.startsWith("atma") && command.startsWith("at"))))) {
+            /* if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && (command==null || (!command.startsWith("atma") && command.startsWith("at"))))) {
                 MainActivity.toast("Timeout on [" + command + "][" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
-            }
-            MainActivity.debug("ELM327: sendAndWaitForAnswer > timed out on [" + command + "][" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
-            someThingWrong |= true;
+            } */
+            MainActivity.toast(MainActivity.TOAST_ELM, "Timeout on [" + command + "] [" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
+            MainActivity.debug("ELM327: sendAndWaitForAnswer > timed out on [" + command + "] [" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
             return ("");
         }
 
@@ -551,7 +520,7 @@ public class ELM327 extends Device {
     @Override
     public Message requestFreeFrame(Frame frame) {
 
-        if (someThingWrong) {return new Message(frame, "-E-Re-initialisation needed", true); }
+        if (!deviceIsInitialized) {return new Message(frame, "-E-Re-initialisation needed", true); }
 
         String hexData;
 
@@ -599,7 +568,7 @@ public class ELM327 extends Device {
     @Override
     public Message requestIsoTpFrame(Frame frame) {
 
-        if (someThingWrong) {return new Message(frame, "-E-Re-initialisation needed", true); }
+        if (!deviceIsInitialized) {return new Message(frame, "-E-Re-initialisation needed", true); }
 
         String hexData;
         int len = 0;

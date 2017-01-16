@@ -26,11 +26,12 @@ import android.widget.TextView;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldListener to the fields.
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
-public class TyresActivity extends CanzeActivity implements FieldListener {
+public class TyresActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     public static final String SID_TyreSpdPresMisadaption       = "673.0";
     public static final String SID_TyreFLState                  = "673.11";
@@ -53,6 +54,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener {
     }
 
     protected void initListeners() {
+        MainActivity.getInstance().setDebugListener(this);
         addField(SID_TyreSpdPresMisadaption, 6000);
         addField(SID_TyreFLState, 6000);
         addField(SID_TyreFLPressure, 6000);

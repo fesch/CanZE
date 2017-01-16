@@ -29,11 +29,12 @@ import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldListener to the fields.
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
-public class ChargingTechActivity extends CanzeActivity implements FieldListener {
+public class ChargingTechActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     public static final String SID_MaxCharge                        = "7bb.6101.336";
     public static final String SID_UserSoC                          = "42e.0";          // user SOC, not raw
@@ -81,6 +82,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     }
 
     protected void initListeners() {
+        MainActivity.getInstance().setDebugListener(this);
         addField(SID_MaxCharge);
         addField(SID_ACPilot);
         addField(SID_TimeToFull);
@@ -370,9 +372,6 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                 if (tv != null) {
                     tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue()));
                 }
-
-                tv = (TextView) findViewById(R.id.textDebug);
-                tv.setText(fieldId);
             }
         });
 

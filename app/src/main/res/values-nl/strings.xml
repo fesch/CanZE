@@ -111,13 +111,13 @@
     <string name="title_activity_clima_tech">Airconditioning</string>
     <string name="button_Climate">Airco</string>
     <string name="label_ClimaLoopMode">Aircocircuitmode</string>
-    <string name="label_HVBatConditioningMode">Tractiebatterij koelingmode</string>
+    <string name="label_HVBatConditioningMode">Koelen Tractiebatterij</string>
     <string name="label_Temperatures">Temperaturen</string>
-    <string name="label_HVEvaporationTemp">Temperatuur batterijverdamper</string>
-    <string name="label_ACPressure">Druk</string>
+    <string name="label_HVEvaporationTemp">Temperatuur batterijverdamper °C</string>
+    <string name="label_ACPressure">Druk bar</string>
     <string name="label_HVCoolingState">Status batterijkoeling</string>
-    <string name="label_ChargingPower">Oplaadvermogen</string>
-    <string name="label_EngineFanSpeed">Ventilatorsnelheid</string>
+    <string name="label_ChargingPower">Oplaadvermogen kW </string>
+    <string name="label_EngineFanSpeed">Ventilatorsnelheid %</string>
     <string name="label_ClimateBatteryInteraction">Werking airconditioning</string>
     <string-array name="list_CoolingStatus">
         <item>Nee</item>
@@ -141,6 +141,7 @@
         <item>Ontwaseming</item>
         <item>Vrijloop</item>
     </string-array>
+    <string name="graph_Climatech">Buiten (°C) / Binnen (°C) / Instelling (°C) / Batterij (°C)</string>
 
     <!-- Consumption -->
 
