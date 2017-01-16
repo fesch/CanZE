@@ -210,8 +210,11 @@ public abstract class Device {
                 {
                     // long start = Calendar.getInstance().getTimeInMillis();
                     MainActivity.debug("Device: queryNextFilter: " + field.getSID());
+                    MainActivity.getInstance().dropDebugMessage(field.getSID());
+
                     // get the data
                     Message message = requestFrame(field.getFrame());
+
                     // test if we got something
                     if(!message.isError()) {
                         //Fields.getInstance().onMessageCompleteEvent(message);

@@ -28,8 +28,10 @@ import android.widget.TextView;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.interfaces.DebugListener;
+import lu.fisch.canze.interfaces.FieldListener;
 
-public class ConsumptionActivity extends CanzeActivity {
+public class ConsumptionActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
     public static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //UBP 10ms
@@ -43,6 +45,7 @@ public class ConsumptionActivity extends CanzeActivity {
     private int tempTorque                          = 0;
 
     public void initListeners () {
+        MainActivity.getInstance().setDebugListener(this);
         addField(SID_MeanEffectiveTorque, 0);
         addField(SID_DriverBrakeWheel_Torque_Request, 0);
         addField(SID_Coasting_Torque, 0);

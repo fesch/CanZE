@@ -72,7 +72,7 @@ public class ELM327OverHttp extends Device {
         MainActivity.debug("ELM327Http: initDevice, Using URL = "+urlLeader);
         lastInitProblem = "";
         deviceIsInitialized = false;
-        String msg = getMessage ("Init");
+        String msg = getMessage ("Init?f=1");
         deviceIsInitialized = (msg.compareTo ("OK") == 0);
         return deviceIsInitialized;
     }

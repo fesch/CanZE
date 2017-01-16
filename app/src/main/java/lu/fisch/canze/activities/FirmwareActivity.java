@@ -31,11 +31,12 @@ import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Ecu;
 import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // Jeroen
 
-public class FirmwareActivity extends CanzeActivity implements FieldListener {
+public class FirmwareActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     // There are hardware dependencies here (i.e. different CLIMA ECU's with different software loads) that we do not yet fully understand.
 
@@ -98,6 +99,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
      }
 
     protected void initListeners() {
+        MainActivity.getInstance().setDebugListener(this);
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
             if (ecu.getFromId() > 0 && ecu.getFromId() < 0x800) {
                 addField(Integer.toHexString (ecu.getFromId()).toLowerCase() + ".6180.144", 0);
@@ -202,8 +204,6 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
                     }
                 }
 
-                tv = (TextView) findViewById(R.id.textDebug);
-                tv.setText(fieldId);
             }
         });
     }

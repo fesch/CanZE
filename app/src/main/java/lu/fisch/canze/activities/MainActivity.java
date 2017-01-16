@@ -74,6 +74,7 @@ import lu.fisch.canze.fragments.ExperimentalFragment;
 import lu.fisch.canze.fragments.MainFragment;
 import lu.fisch.canze.fragments.TechnicalFragment;
 import lu.fisch.canze.interfaces.BluetoothEvent;
+import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.ui.AppSectionsPagerAdapter;
 
@@ -155,6 +156,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public static boolean milesMode = false;
     public static int toastLevel = 1;
+
+    private DebugListener debugListener = null;
 
     // private Fragment actualFragment;
 
@@ -931,6 +934,14 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public static String [] getStringList (int resId) {
         return res.getStringArray(resId);
+    }
+
+    public void setDebugListener (DebugListener debugListener) {
+        this.debugListener = debugListener;
+    }
+
+    public void dropDebugMessage (String msg) {
+        if (debugListener != null) debugListener.dropDebugMessage (msg);
     }
 
 

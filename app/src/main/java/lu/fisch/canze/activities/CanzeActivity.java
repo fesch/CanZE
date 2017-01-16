@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -90,6 +91,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             iLeftMyOwn=true;
         }
         removeFieldListeners();
+        MainActivity.getInstance().setDebugListener(null);
     }
 
     @Override
@@ -267,6 +269,16 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             field.removeListener(this);
         }
         subscribedFields.clear();
+    }
+
+    public void dropDebugMessage (final String msg) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                TextView tv = (TextView) findViewById(R.id.textDebug);
+                if (tv != null) tv.setText(msg);
+            }
+        });
     }
 
     @Override

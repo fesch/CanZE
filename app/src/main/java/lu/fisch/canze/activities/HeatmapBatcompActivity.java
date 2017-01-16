@@ -28,12 +28,13 @@ import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 /**
  * Heatmap by jeroen on 27-10-15.
  */
-public class HeatmapBatcompActivity extends CanzeActivity implements FieldListener {
+public class HeatmapBatcompActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
 
@@ -48,6 +49,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
     }
 
     protected void initListeners() {
+        MainActivity.getInstance().setDebugListener(this);
         if(MainActivity.isZOE()) {
             lastCell = 12;
         }
@@ -68,15 +70,6 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
         if (fieldId.startsWith(SID_Preamble_CompartmentTemperatures)) {
             int cell = (Integer.parseInt(fieldId.split("[.]")[2]) - 8) / 24; // cell is 1-based
             final double value = field.getValue();
-
-            runOnUiThread(new Runnable() {
-                              @Override
-                              public void run() {
-                                  TextView tv = (TextView) findViewById(R.id.textDebug);
-                                  tv.setText(fieldId + ":" + value);
-                              }
-                          });
-
             lastVal[cell] = value;
             // calculate the mean value of the previous full round
             if (cell == lastCell) {
