@@ -254,6 +254,7 @@ public abstract class Device {
 
         synchronized (fields) {
             if(applicationFields.size()>0) {
+                /*
                 // sort the applicationFields
                 Collections.sort(applicationFields, new Comparator<Field>() {
                     @Override
@@ -261,10 +262,17 @@ public abstract class Device {
                         return (int) (lhs.getLastRequest()+lhs.getInterval() - (rhs.getLastRequest()+rhs.getInterval()));
                     }
                 });
-
+                // get the first field (the one with the smallest lastRequest time
+                Field field = applicationFields.get(0); */
 
                 // get the first field (the one with the smallest lastRequest time
-                Field field = applicationFields.get(0);
+                Field field = Collections.min(applicationFields, new Comparator<Field>() {
+                    @Override
+                    public int compare(Field lhs, Field rhs) {
+                        return (int) (lhs.getLastRequest()+lhs.getInterval() - (rhs.getLastRequest()+rhs.getInterval()));
+                    }
+                });
+
                 // return it's index in the global registered field array
                 if(field.isDue(referenceTime)) {
                     //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
@@ -275,6 +283,7 @@ public abstract class Device {
             // take the next costum field
             if(activityFieldsScheduled.size()>0)
             {
+                /*
                 // sort the activityFields
                 Collections.sort(activityFieldsScheduled, new Comparator<Field>() {
                     @Override
@@ -284,7 +293,16 @@ public abstract class Device {
                 });
 
                 // get the first field (the one with the smallest lastRequest time
-                Field field = activityFieldsScheduled.get(0);
+                Field field = activityFieldsScheduled.get(0); */
+
+                // get the first field (the one with the smallest lastRequest time
+                Field field = Collections.min(activityFieldsScheduled, new Comparator<Field>() {
+                    @Override
+                    public int compare(Field lhs, Field rhs) {
+                        return (int) (lhs.getLastRequest()+lhs.getInterval() - (rhs.getLastRequest()+rhs.getInterval()));
+                    }
+                });
+
                 // return it's index in the global registered field array
                 if(field.isDue(referenceTime)) {
                     //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
