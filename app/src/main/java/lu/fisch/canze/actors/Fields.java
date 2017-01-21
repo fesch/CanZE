@@ -337,16 +337,22 @@ public class Fields {
                         + "673,32,39,13.725,0,0,mbar,,,ff\n" // Front right wheel pressure
                         + "673,40,47,13.725,0,0,mbar,,,ff\n" // Front left wheel pressure
                         + "699,8,15,0.5,0,0,°C,,,e2\n" // Temperature
-                        + "760,144,159,1,0,0,,2180,6180,ff\n" // Software version
-                        + "760,128,143,1,0,0,,2180,6180,ff\n" // PG number %04lx
+                        + "760,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "760,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "760,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "760,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "760,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "760,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
-                        + "762,144,159,1,0,0,,2180,6180,ff\n" // Software version
-                        + "762,128,143,1,0,0,,2180,6180,ff\n" // PG number %04lx
+                        + "762,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "762,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "762,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "762,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "762,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "762,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
-                        + "763,144,159,1,0,0,,2180,6180,ff\n" // Software version
-                        + "763,128,143,1,0,0,,2180,6180,ff\n" // PG number %04lx
+                        + "763,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "763,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "763,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "763,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "763,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "763,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "764,26,35,0.1,400,0,°C,2121,6121,e2\n" // IH_InCarTemp
@@ -356,29 +362,40 @@ public class Fields {
                         + "764,110,117,1,40,0,%,2143,6143,ff\n" // IH_ExternalTemp
                         + "764,134,142,.1,0,0,bar,2143,6143,ff\n" // IH_ACHighPressureSensor
                         + "764,40,41,1,0,0,,2167,6167,ff\n" // IH_ExternalTemp
-
-                        + "764,144,159,1,0,0,,2180,6180,ff\n" // Software version
-                        + "764,128,143,1,0,0,,2180,6180,ff\n" // PG number
+                        + "764,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "764,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "764,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "764,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "764,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "764,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
-                        + "765,144,159,1,0,0,,2180,6180,ff\n" // Software version
-                        + "765,128,143,1,0,0,,2180,6180,ff\n" // PG number
+                        + "765,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "765,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "765,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "765,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "765,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "765,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
-                        + "76d,144,159,1,0,0,,2180,6180,ff\n" // Software version
-                        + "76d,128,143,1,0,0,,2180,6180,ff\n" // PG number
+                        + "76d,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "76d,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "76d,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "76d,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "76d,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "76d,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
-                        + "76e,144,159,1,0,0,,2180,6180,ff\n" // Software version
-                        + "76e,128,143,1,0,0,,2180,6180,ff\n" // PG number
+                        + "76e,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "76e,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "76e,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "76e,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "76e,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "76e,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
-                        + "772,144,159,1,0,0,,2180,6180,ff\n" // Software version
-                        + "772,128,143,1,0,0,,2180,6180,ff\n" // PG number
+                        + "772,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "772,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "772,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "772,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "772,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "772,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
-                        + "77e,144,159,1,0,0,,2180,6180,ff\n" // Software version
-                        + "77e,128,143,1,0,0,,2180,6180,ff\n" // PG number
+                        + "77e,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "77e,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "77e,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "77e,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "77e,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "77e,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "77e,24,39,0.015625,0,2,ºC,223018,623018,ff\n" // DCDC converter temperature
@@ -386,12 +403,16 @@ public class Fields {
                         + "793,0,0,1,0,0,,1081,5081,ff\n" // start diag
                         + "793,0,0,1,0,0,,10c0,50c0,ff\n" // start diag
                         + "793,0,0,1,0,0,,3e01,7e01,ff\n" // Tester present
-                        + "793,144,159,1,0,0,,2180,6180,ff\n" // Software version
-                        + "793,128,143,1,0,0,,2180,6180,ff\n" // PG number %04lx
+                        + "793,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "793,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "793,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "793,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "793,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "793,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
-                        + "7b6,144,159,1,0,0,,2180,6180,ff\n" // Software version
-                        + "7b6,128,143,1,0,0,,2180,6180,ff\n" // PG number
+                        + "7b6,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "7b6,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "7b6,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "7b6,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "7b6,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "7b6,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "7bb,336,351,0.01,0,2,kW,2101,6101,e2\n" // Maximum battery input power
@@ -523,20 +544,28 @@ public class Fields {
                         + "7bb,528,543,0.001,0,3,V,2142,6142,ff\n" // Cell 95 V
                         + "7bb,544,559,0.001,0,3,V,2142,6142,ff\n" // Cell 96 V
                         + "7bb,96,119,1,0,0,km,2161,6161,ff\n" // Battery mileage in km
-                        + "7bb,144,159,1,0,0,,2180,6180,ff\n" // Software version
-                        + "7bb,128,143,1,0,0,,2180,6180,ff\n" // PG number %04lx
+                        + "7bb,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "7bb,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "7bb,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "7bb,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "7bb,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "7bb,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
-                        + "7bc,144,159,1,0,0,,2180,6180,ff\n" // Request firmware version
-                        + "7bc,128,143,1,0,0,,2180,6180,ff\n" // PG number
+                        + "7bc,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "7bc,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "7bc,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "7bc,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "7bc,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "7bc,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
-                        + "7da,144,159,1,0,0,,2180,6180,ff\n" // Request firmware version
-                        + "7da,128,143,1,0,0,,2180,6180,ff\n" // PG number
+                        + "7da,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "7da,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "7da,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "7da,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "7da,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "7da,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
-                        + "7ec,144,159,1,0,0,,2180,6180,ff\n" // Request firmware version
-                        + "7ec,128,143,1,0,0,,2180,6180,ff\n" // PG number
+                        + "7ec,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
+                        + "7ec,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
+                        + "7ec,128,143,1,0,0,,2180,6180,ff\n" // Soft
+                        + "7ec,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "7ec,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "7ec,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "7ec,24,39,2,0,2,%,222002,622002,e2\n" // SOC

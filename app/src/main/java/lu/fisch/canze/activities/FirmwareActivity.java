@@ -22,17 +22,20 @@
 package lu.fisch.canze.activities;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Ecu;
 import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Frames;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.actors.StoppableThread;
@@ -63,6 +66,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
                     tv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            showSelected (v);
                             showDetails(thisEcu);
                         }
                     });
@@ -71,6 +75,10 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
                 }
             }
         }
+
+        TextView textView = (TextView) findViewById(R.id.link);
+        textView.setText(Html.fromHtml(getString(R.string.help_Ecus)));
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
 
         new Thread(new Runnable() {
             @Override
@@ -81,6 +89,29 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
                 }
             }
         }).start();
+    }
+
+    void showSelected (View v) {
+        View tv;
+        int bgColor = 0xfff3f3f3;
+        TypedValue a = new TypedValue();
+        getTheme().resolveAttribute(android.R.attr.windowBackground, a, true);
+        if (a.type >= TypedValue.TYPE_FIRST_COLOR_INT && a.type <= TypedValue.TYPE_LAST_COLOR_INT) {
+            bgColor = a.data;
+        }
+        for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
+            if (ecu.getFromId() > 0 && ecu.getFromId() < 0x800) {
+                tv = findViewById(getResources().getIdentifier("lEcu" + Integer.toHexString(ecu.getFromId()).toLowerCase(), "id", getPackageName()));
+                if (tv != null) {
+                    tv.setBackgroundColor(bgColor);
+                }
+            }
+        }
+        v.setBackgroundColor(0xff808080); // selected color
+        setSoftwareValue(R.id.textDiagVersion, null, "");
+        setSoftwareValue(R.id.textSupplier, null, "");
+        setSoftwareValue(R.id.textSoft, null, "");
+        setSoftwareValue(R.id.textVersion, null, "");
     }
 
 
@@ -103,60 +134,54 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
             public void run() {
 
                 // query the Frame
-                Message message = MainActivity.device.requestFrame(Frames.getInstance().getById(ecu.getFromId(), "6180")); //  field.getFrame());
+                Frame frame = Frames.getInstance().getById(ecu.getFromId(), "6180");
+                Message message = MainActivity.device.requestFrame(frame); //  field.getFrame());
                 if (message.isError()) {
                     MainActivity.getInstance().dropDebugMessage(message.getError());
                     return;
                 }
 
-                String backRes = message.getData();
-                // check the response
-                if (!backRes.startsWith("59")) {
-                    MainActivity.getInstance().dropDebugMessage(getString(R.string.message_UnexpectedResult) + backRes + "]");
-                    return;
+                message.onMessageCompleteEvent(); // set the value of all fields in the frame of this message
+                for (Field field : frame.getAllFields()) {
+                    switch (field.getFrom()) {
+                        case 56:
+                            setSoftwareValue(R.id.textDiagVersion, field, "DiagVersion: ");
+                            break;
+                        case 64:
+                            setSoftwareValue(R.id.textSupplier, field, "Supplier: ");
+                            break;
+                        case 128:
+                            setSoftwareValue(R.id.textSoft, field, "Soft: ");
+                            break;
+                        case 144:
+                            setSoftwareValue(R.id.textVersion, field, "Version: ");
+                            break;
+                    }
                 }
-
-
-
-                final Context context = FirmwareActivity.this;
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                LayoutInflater inflater = getLayoutInflater();
-                // we allow this SuppressLint as this is a pop up Dialog
-                @SuppressLint("InflateParams")
-                final View softwareView = inflater.inflate(R.layout.alert_software, null);
-
-                // set dialog message
-                alertDialogBuilder
-                        .setView(softwareView)
-                        .setTitle(R.string.prompt_Distance)
-                        .setMessage(getString(R.string.title_activity_firmware))
-                        .setCancelable(true);
-
-                setValueInAlert(R.id.AlertDiagVersion, ecu);
-                setValueInAlert(R.id.AlertSupplier, ecu);
-                setValueInAlert(R.id.AlertSoft, ecu);
-                setValueInAlert(R.id.AlertVersion, ecu);
-
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-
-                //InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                ///imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-
-                // show it
-                alertDialog.show();
 
             }
         });
-
-
-
-
+        queryThread.start();
     }
 
-    void setValueInAlert (int id, Ecu ecu) {
-        TextView tv = (TextView) findViewById(id);
-        tv.setText("TEST1!");
+    void setSoftwareValue(final int id, final Field field, final String label) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                TextView tv = (TextView) findViewById(id);
+                if (tv != null) {
+                    if (field == null) {
+                        tv.setText("");
+                    } else if (field.isString()) {
+                        tv.setText(label + field.getStringValue());
+                    } else if ((field.getTo() - field.getFrom()) < 8) {
+                        tv.setText(label + String.format(Locale.getDefault(), "%02X", (int)field.getValue()));
+                    } else {
+                        tv.setText(label + String.format(Locale.getDefault(), "%04X", (int)field.getValue()));
+                    }
+                }
+            }
+        });
     }
 
     // UI elements
