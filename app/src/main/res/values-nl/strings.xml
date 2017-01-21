@@ -61,7 +61,7 @@
     <string name="label_max_pilot">Max AC laad pilootstroom A</string>
     <string name="label_Phases">Fases</string>
     <string name="label_UserSOC">Bruikbare lading %</string>
-    <string name="label_RealSOC">Wekelijke lading %</string>
+    <string name="label_RealSOC">Werkelijke lading %</string>
     <string name="label_Capacity">Capaciteit Ah</string>
     <string name="label_HvTemp">Gemiddelde batterij temperatuur</string>
     <string name="label_SOH">Batterijgezondheid %</string>
