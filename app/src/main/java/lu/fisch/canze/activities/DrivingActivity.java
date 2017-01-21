@@ -117,7 +117,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         LayoutInflater inflater = getLayoutInflater();
         // we allow this SuppressLint as this is a pop up Dialog
         @SuppressLint("InflateParams")
-        final View distToDestView = inflater.inflate(R.layout.set_dist_to_dest, null);
+        final View distToDestView = inflater.inflate(R.layout.alert_dist_to_dest, null);
 
         // set dialog message
         alertDialogBuilder
