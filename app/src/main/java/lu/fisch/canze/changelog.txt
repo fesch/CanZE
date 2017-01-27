@@ -1,3 +1,4 @@
+2017.01.28 [Jeroen] Added compressor power to Clima screen
 2017.01.20 [Jeroen] Sped up / simplified selecting next frame by using .min instead of .sort in the queues
 2017.01.14 [Jeroen] Implemented DebugListener so Device can send debug lines to Activity without Toasts
 2017.01.14 [Jeroen] Reduced device resets (one retry without reset)

@@ -360,6 +360,7 @@ public class Fields {
                         + "764,36,43,1,0,0,%,2121,6121,e2\n" // IH_RHumidity
                         + "764,16,23,1,0,0,%,2121,6121,5\n" // IH_RHumidity
                         + "764,110,117,1,40,0,%,2143,6143,ff\n" // IH_ExternalTemp
+                        + "764,88,92,100,0,0,W,2143,6143,ff\n" // Compressor power
                         + "764,134,142,.1,0,0,bar,2143,6143,ff\n" // IH_ACHighPressureSensor
                         + "764,40,41,1,0,0,,2167,6167,ff\n" // IH_ExternalTemp
                         + "764,56,63,1,0,0,,2180,6180,ff\n" // diagVersion

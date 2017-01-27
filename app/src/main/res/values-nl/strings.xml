@@ -141,6 +141,7 @@
         <item>Ontwaseming</item>
         <item>Vrijloop</item>
     </string-array>
+    <string name="label_IH_ElectricalPowerDrived">Vermogen compressor</string>
     <string name="graph_Climatech">Buiten (°C) / Binnen (°C) / Instelling (°C) / Batterij (°C)</string>
 
     <!-- Consumption -->

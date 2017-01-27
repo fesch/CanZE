@@ -130,6 +130,18 @@
                     android:id="@+id/text_CLM" />
             </TableRow>
 
+            <TableRow>
+                <TextView
+                    android:text="@string/label_IH_ElectricalPowerDrived"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:text="@string/default_Dash"
+                    android:gravity="end"
+                    android:layout_weight="1"
+                    android:id="@+id/text_CPW" />
+            </TableRow>
+
         </TableLayout>
 
 
