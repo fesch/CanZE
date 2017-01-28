@@ -25,31 +25,28 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.TypedValue;
+import android.view.View;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Ecu;
 import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Frame;
+import lu.fisch.canze.actors.Frames;
+import lu.fisch.canze.actors.Message;
+import lu.fisch.canze.actors.StoppableThread;
+import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // Jeroen
 
-public class FirmwareActivity extends CanzeActivity implements FieldListener {
+public class FirmwareActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    // There are hardware dependencies here (i.e. different CLIMA ECU's with different software loads) that we do not yet fully understand.
-
-    //                                             EVC     TCU     LBC     PEB     AIBAG   USM     CLUSTER EPS     ABS     UBP     BCM     CLIM    UPA     BCB     LBC2    LINSCH
-//  private static final int [] zoeVersions     = {0x0203, 0x0767, 0x0751, 0x0a06, 0x0470, 0xc630, 0x0507, 0x014a, 0x1178, 0x1523, 0x140e, 0x0702, 0x0017, 0x0210, 0x0751,      0};
-//  private static final int [] fluenceVersions = {0x0202, 0x0172, 0x7505, 0x02ba, 0x0305, 0x0907, 0x0026, 0x014a, 0x8160,      0, 0x140e, 0x0007, 0x0024, 0xd300, 0x5c0a,      0};
-//  private static final int [] kangooVersions  = {0x0201, 0x1011, 0x7505, 0x0205,      1,      1, 0x003d,      1,      1,      1, 0x0003,      1,      1, 0xd300, 0x5c0a,      1};
-//  private static final int [] x10Versions     = zoeVersions;
-    private static final int [] zoeVersions     = {0x0790, 0x1203, 0x5000, 0x0602, 0x7004, 0x3024, 0x0705, 0x4a08, 0x780e, 0x160c, 0x0000, 0x0515, 0x1700, 0x0000, 0x5000, 0x0000};
-    private static final int [] fluenceVersions = {0x0830, 0x0000, 0x0000, 0x1668, 0x0000, 0x0400, 0x0400, 0x0000, 0x4009, 0x0000, 0x0000, 0xe504, 0x0000, 0x3066, 0x0000, 0x0000};
-    private static final int [] kangooVersions  = {0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000};
-    private static final int [] x10Versions     = zoeVersions;
-
-    private static int versions [] = null;
+    private StoppableThread queryThread;
 
     @SuppressLint("StringFormatMatches")
 
@@ -58,36 +55,23 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firmware);
 
-        switch (MainActivity.car) {
-            case MainActivity.CAR_FLUENCE:
-                versions = fluenceVersions;
-                break;
-            case MainActivity.CAR_KANGOO:
-                versions = kangooVersions;
-                break;
-            case MainActivity.CAR_X10:
-                versions = x10Versions;
-                break;
-            default:
-                versions = zoeVersions;
-                break;
-        }
-
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
             // ensure we are only selecting true (as in physical boxes) and reachable (as in, i.e. skipping R-LINK) ECU's
             if (ecu.getFromId() > 0 && ecu.getFromId() < 0x800) {
                 TextView tv;
                 tv = (TextView) findViewById(getResources().getIdentifier("lEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase(), "id", getPackageName()));
                 if (tv != null) {
+                    final Ecu thisEcu = ecu;
                     tv.setText(ecu.getMnemonic() + " (" + ecu.getName() + ")");
+                    tv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showSelected (v);
+                            showDetails(thisEcu);
+                        }
+                    });
                 } else {
                     MainActivity.toast(getString(R.string.format_NoView), "lEcu", Integer.toHexString (ecu.getFromId()).toLowerCase());
-                }
-                tv = (TextView) findViewById(getResources().getIdentifier("vEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase(), "id", getPackageName()));
-                if (tv != null) {
-                    tv.setText("-");
-                } else {
-                    MainActivity.toast(getString(R.string.format_NoView), "vEcu", Integer.toHexString (ecu.getFromId()).toLowerCase());
                 }
             }
         }
@@ -95,116 +79,141 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener {
         TextView textView = (TextView) findViewById(R.id.link);
         textView.setText(Html.fromHtml(getString(R.string.help_Ecus)));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
-     }
 
-    protected void initListeners() {
-        for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
-            if (ecu.getFromId() > 0 && ecu.getFromId() < 0x800) {
-                addField(Integer.toHexString (ecu.getFromId()).toLowerCase() + ".6180.144", 0);
-            }
-        }
-    }
-
-    // This is the event fired as soon as this the registered fields are
-    // getting updated by the corresponding reader class.
-    @Override
-    public void onFieldUpdateEvent(final Field field) {
-        // the update has to be done in a separate thread
-        // otherwise the UI will not be repainted
-        runOnUiThread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                String fieldId = field.getSID();
-                TextView tv = null;
-                int refVersion = 0;
+                if (MainActivity.device != null) {
+                    // stop the poller thread
+                    MainActivity.device.stopAndJoin();
+                }
+            }
+        }).start();
+    }
 
-                // get the text field
-                switch (fieldId) {
+    void showSelected (View v) {
+        View tv;
+        int bgColor = 0xfff3f3f3;
+        TypedValue a = new TypedValue();
+        getTheme().resolveAttribute(android.R.attr.windowBackground, a, true);
+        if (a.type >= TypedValue.TYPE_FIRST_COLOR_INT && a.type <= TypedValue.TYPE_LAST_COLOR_INT) {
+            bgColor = a.data;
+        }
+        for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
+            if (ecu.getFromId() > 0 && ecu.getFromId() < 0x800) {
+                tv = findViewById(getResources().getIdentifier("lEcu" + Integer.toHexString(ecu.getFromId()).toLowerCase(), "id", getPackageName()));
+                if (tv != null) {
+                    tv.setBackgroundColor(bgColor);
+                }
+            }
+        }
+        v.setBackgroundColor(0xff808080); // selected color
+        setSoftwareValue(R.id.textDiagVersion, null, "");
+        setSoftwareValue(R.id.textSupplier, null, "");
+        setSoftwareValue(R.id.textSoft, null, "");
+        setSoftwareValue(R.id.textVersion, null, "");
+    }
 
-                    case "7ec.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu7ec);
-                        refVersion = versions [0];
-                        break;
-                    case "7da.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu7da);
-                        refVersion = versions [1];
-                        break;
-                    case "7bb.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu7bb);
-                        refVersion = versions [2];
-                        break;
-                    case "77e.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu77e);
-                        refVersion = versions [3];
-                        break;
-                    case "772.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu772);
-                        refVersion = versions [4];
-                        break;
-                    case "76d.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu76d);
-                        refVersion = versions [5];
-                        break;
-                    case "763.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu763);
-                        refVersion = versions [6];
-                        break;
-                    case "762.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu762);
-                        refVersion = versions [7];
-                        break;
-                    case "760.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu760);
-                        refVersion = versions [8];
-                        break;
-                    case "7bc.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu7bc);
-                        refVersion = versions [9];
-                        break;
-                    case "765.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu765);
-                        refVersion = versions [10];
-                        break;
-                    case "764.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu764);
-                        refVersion = versions [11];
-                        break;
-                    case "76e.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu76e);
-                        refVersion = versions [12];
-                        break;
-                    case "793.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu793);
-                        refVersion = versions [13];
-                        break;
-                    case "7b6.6180.144":
-                        tv = (TextView) findViewById(R.id.vEcu7b6);
-                        refVersion = versions [14];
-                        break;
+
+    void showDetails(final Ecu ecu) {
+
+        // try to stop previous thread
+        if(queryThread!=null) {
+            if (queryThread.isAlive()) {
+                queryThread.tryToStop();
+                try {
+                    queryThread.join();
+                } catch (Exception e) {
+                    MainActivity.debug(e.getMessage());
+                }
+            }
+        }
+
+        queryThread = new StoppableThread(new Runnable() {
+            @Override
+            public void run() {
+
+                // query the Frame
+                Frame frame = Frames.getInstance().getById(ecu.getFromId(), "6180");
+                Message message = MainActivity.device.requestFrame(frame); //  field.getFrame());
+                if (message.isError()) {
+                    MainActivity.getInstance().dropDebugMessage(message.getError());
+                    return;
                 }
 
-                // set regular new content, all exeptions handled above
-                if (tv != null) {
-                    int curVersion = (int) field.getValue();
-                    if (curVersion != 0) {
-                        String hexCurVersion = Integer.toHexString(curVersion);
-                        hexCurVersion = ("0000" + hexCurVersion).substring(hexCurVersion.length());
-                        if (refVersion != 0) {
-                            String hexRefVersion = Integer.toHexString(refVersion);
-                            hexRefVersion = ("0000" + hexRefVersion).substring(hexRefVersion.length());
-                            if (curVersion > refVersion) {
-                                hexCurVersion += " > " + hexRefVersion;
-                            } else if (curVersion < refVersion) {
-                                hexCurVersion += " < " + hexRefVersion;
-                            }
-                        }
-                        tv.setText(hexCurVersion);
+                message.onMessageCompleteEvent(); // set the value of all fields in the frame of this message
+                for (Field field : frame.getAllFields()) {
+                    switch (field.getFrom()) {
+                        case 56:
+                            setSoftwareValue(R.id.textDiagVersion, field, "DiagVersion: ");
+                            break;
+                        case 64:
+                            setSoftwareValue(R.id.textSupplier, field, "Supplier: ");
+                            break;
+                        case 128:
+                            setSoftwareValue(R.id.textSoft, field, "Soft: ");
+                            break;
+                        case 144:
+                            setSoftwareValue(R.id.textVersion, field, "Version: ");
+                            break;
                     }
                 }
 
-                tv = (TextView) findViewById(R.id.textDebug);
-                tv.setText(fieldId);
+            }
+        });
+        queryThread.start();
+    }
+
+    void setSoftwareValue(final int id, final Field field, final String label) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                TextView tv = (TextView) findViewById(id);
+                if (tv != null) {
+                    if (field == null) {
+                        tv.setText("");
+                    } else if (field.isString()) {
+                        tv.setText(label + field.getStringValue());
+                    } else if ((field.getTo() - field.getFrom()) < 8) {
+                        tv.setText(label + String.format(Locale.getDefault(), "%02X", (int)field.getValue()));
+                    } else {
+                        tv.setText(label + String.format(Locale.getDefault(), "%04X", (int)field.getValue()));
+                    }
+                }
             }
         });
     }
+
+    // UI elements
+    @Override
+    protected void onDestroy() {
+
+        // stop the query thread if still running
+        if(queryThread!=null)
+            if(queryThread.isAlive()) {
+                queryThread.tryToStop();
+                try {
+                    queryThread.join();
+                }
+                catch(Exception e)
+                {
+                    MainActivity.debug(e.getMessage());
+                }
+            }
+
+        // restart the poller
+        if (MainActivity.device != null) {
+            MainActivity.device.initConnection();
+            // register application wide fields
+            MainActivity.getInstance().registerApplicationFields();
+        }
+
+        super.onDestroy();
+    }
+
+
+    protected void initListeners() {}
+
+    @Override
+    public void onFieldUpdateEvent(final Field field) {}
 }

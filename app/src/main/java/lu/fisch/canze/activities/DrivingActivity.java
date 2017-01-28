@@ -40,9 +40,10 @@ import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
-public class DrivingActivity extends CanzeActivity implements FieldListener {
+public class DrivingActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
@@ -94,7 +95,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         getDestOdo();
 
         // Make sure to add ISO-TP listeners grouped by ID
-
+        MainActivity.getInstance().setDebugListener(this);
         addField(SID_Consumption, 0);
         addField(SID_Pedal, 0);
         addField(SID_MeanEffectiveTorque, 0);
@@ -116,7 +117,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
         LayoutInflater inflater = getLayoutInflater();
         // we allow this SuppressLint as this is a pop up Dialog
         @SuppressLint("InflateParams")
-        final View distToDestView = inflater.inflate(R.layout.set_dist_to_dest, null);
+        final View distToDestView = inflater.inflate(R.layout.alert_dist_to_dest, null);
 
         // set dialog message
         alertDialogBuilder
@@ -293,9 +294,6 @@ public class DrivingActivity extends CanzeActivity implements FieldListener {
                 if (tv != null) {
                     tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue()));
                 }
-
-                tv = (TextView) findViewById(R.id.textDebug);
-                tv.setText(fieldId);
             }
         });
 

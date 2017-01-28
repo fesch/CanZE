@@ -7,9 +7,10 @@ import android.widget.TextView;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Battery;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
-public class PredictionActivity extends CanzeActivity implements FieldListener {
+public class PredictionActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     public static final String SID_AvChargingPower = "427.40";
     public static final String SID_UserSoC = "42e.0";          // user SOC, not raw
@@ -46,6 +47,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
     }
 
     protected void initListeners() {
+        MainActivity.getInstance().setDebugListener(this);
         addField(SID_RangeEstimate, 10000);
         addField(SID_AvChargingPower, 10000);
         addField(SID_UserSoC, 10000);
@@ -85,7 +87,6 @@ public class PredictionActivity extends CanzeActivity implements FieldListener {
                     car_status |= 0x10;
         }
         // display the debug values
-        updatePrediction("textDebug", fieldId + ", value:" + fieldVal + ", status:" + car_status);
         if (car_status == 0x1f) {
             runPrediction();
             car_status = 0;

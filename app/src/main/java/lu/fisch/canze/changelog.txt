@@ -1,5 +1,9 @@
----< Version 1.19 / 2017.01.28 >---
-
+2017.01.20 [Jeroen] Sped up / simplified selecting next frame by using .min instead of .sort in the queues
+2017.01.14 [Jeroen] Implemented DebugListener so Device can send debug lines to Activity without Toasts
+2017.01.14 [Jeroen] Reduced device resets (one retry without reset)
+2017.01.14 [Jeroen] Fixed graph title in clima to resources
+2017.01.14 [Jeroen] Added debugging to ELM327http to find hangup
+2017.01.13 [Jeroen] More code cleanup and String separation
 2017.01.08 [Bob] Fixed a zoomin problem
 2017.01.08 [Bob] Fixed a crash of the charging screen
 2017.01.08 [Bob] Fixed a crash of the climate screen

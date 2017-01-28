@@ -28,11 +28,12 @@ import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldListener to the fields.
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
-public class ClimaTechActivity extends CanzeActivity implements FieldListener {
+public class ClimaTechActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     public static final String SID_EngineFanSpeed                   = "42e.20";
     public static final String SID_DcPower                          = "800.6103.24";
@@ -55,6 +56,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
     }
 
     protected void initListeners() {
+        MainActivity.getInstance().setDebugListener(this);
         if (MainActivity.isZOE()) {
             addField(SID_EngineFanSpeed, 0);
             addField(SID_DcPower, 0);
@@ -120,10 +122,11 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener {
                     tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue()));
                 }
 
-                tv = (TextView) findViewById(R.id.textDebug);
-                tv.setText(fieldId);
+                //tv = (TextView) findViewById(R.id.textDebug);
+                //tv.setText(fieldId);
             }
         });
 
     }
+
 }

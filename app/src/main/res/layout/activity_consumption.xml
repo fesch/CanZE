@@ -129,11 +129,15 @@
 
             <LinearLayout
                 android:id="@+id/bar"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="2"
-                >
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:weightSum="3" >
+
 
                 <ProgressBar
                     android:id="@+id/pb_instant_consumption_negative"
