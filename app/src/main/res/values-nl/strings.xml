@@ -216,6 +216,10 @@
     <string name="header_Firmware">Firmware versies</string>
     <string name="default_Firmware">Not beschikbaar</string>
     <string name="help_Ecus"><![CDATA[Meer over de computers van de auto vind u <a href="http://canze.fisch.lu/computers/">hier</a>.]]></string>
+    <string name="alert_Version">Version</string>
+    <string name="alert_Soft">Soft</string>
+    <string name="alert_Supplier">Supplier</string>
+    <string name="alert_DiagVersion">DiagVersion</string>
 
     <!-- Heatmap battery modules -->
 

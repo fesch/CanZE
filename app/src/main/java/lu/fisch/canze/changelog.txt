@@ -1,3 +1,9 @@
+---< Version 1.20 / 2017.01.28 >---
+2017.01.28 [Bob] Forgot to pull before compiling!!!
+2017.01.28 [Bob] Added missing FR strings
+
+---< Version 1.19 / 2017.01.28 >---
+
 2017.01.20 [Jeroen] Sped up / simplified selecting next frame by using .min instead of .sort in the queues
 2017.01.14 [Jeroen] Implemented DebugListener so Device can send debug lines to Activity without Toasts
 2017.01.14 [Jeroen] Reduced device resets (one retry without reset)
