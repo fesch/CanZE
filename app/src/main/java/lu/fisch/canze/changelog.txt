@@ -1,3 +1,5 @@
+2017.01.29 [Bob] Fixing issue: V1.20 crashes #407
+
 ---< Version 1.20 / 2017.01.28 >---
 2017.01.28 [Bob] Forgot to pull before compiling!!!
 2017.01.28 [Bob] Added missing FR strings

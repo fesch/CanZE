@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.activities.MainActivity;
 
 import static lu.fisch.canze.activities.MainActivity.debug;
 
@@ -39,7 +40,8 @@ public class FieldLogger {
 
     private File logFile = null;
 
-    private SimpleDateFormat sdf = new SimpleDateFormat(Resources.getSystem().getString(R.string.format_YMDHMS), Locale.getDefault());
+
+    private SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getInstance().getApplicationContext().getString(R.string.format_YMDHMS), Locale.getDefault());
 
     private boolean isCreated()
     {
