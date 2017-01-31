@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CanZE</string>
+
+    <!-- <string name="title_activity_text">TextActivity</string> -->
+    <!-- <string name="title_activity_temperatures">Temperatures</string> -->
+    <!-- <string name="title_activity_battery_temp">BatteryTempActivity</string> -->
+
+    <!-- Menus -->
+
+    <string name="action_settings">Nastavitve</string>
+
+    <!-- Generic -->
+
+    <string name="default_Yes">Da</string>
+    <string name="default_No">Ne</string>
+    <string name="default_Ok">OK</string>
+    <string name="default_Cancel">Prekliči</string>
+    <string name="default_Unavailable">Ni na voljo</string>
+    <string name="default_NotImplementedYet"> Še ni implementirano</string>
+
+    <!-- Formats -->
+
+    <string name="format_NoSid" formatted="false">Sid %s ne obstaja v razredu Fields</string>
+    <string name="format_NoView" formatted="false">Ni pogleda z id \'%s%s\'</string>
+
+    <!-- Debug (generic) -->
+
+    <string name="header_Debug">Debug info</string>
+    <string name="label_debug">Debug\u0020</string>
+    <string name="default_debug">#Debug</string>
+
+    <!-- Battery -->
+
+    <string name="title_activity_battery">Baterija</string>
+    <string name="button_Battery">Baterija</string>
+    <string name="graph_SOH">Zdravje baterije (%)</string>
+    <string name="graph_RealIndicatedSoc">Pravo in Prikazano stanje napolnjenosti (%)</string>
+    <string name="help_QA"><![CDATA[Več informacij o teh podatkih najdete na <a href=\'http://canze.fisch.lu/qa/\'>Q & A delu</a> strani <a href=\'http://canze.fisch.lu/\'>CanZE</a>.]]></string>
+    <string name="graph_CellVoltages">Napetosti celic (V)</string>
+    <string name="graph_ModuleTemperatures">Temperature baterijskih modulov (°C)</string>
+
+    <!-- Braking -->
+
+    <string name="title_activity_braking">Informacije o zaviranju</string>
+    <string name="button_Braking">Zaviranje</string>
+    <string name="header_braking">Stanje sistema za zaviranje</string>
+    <string name="label_driver_torque_request">Zahtevan navor</string>
+    <string name="label_ElecBrakeWheelsTorqueApplied">Trenuten električen navor (regeneracija)</string>
+    <string name="label_diff_friction_torque">Trenuten navor zavor (izgube)</string>
+    <string name="help_AllTorques">Vsi navori so podani kot skupen navor na kolesih, ne na motorju.</string>
+
+    <!-- Charging and ChargingTech -->
+
+    <string name="title_activity_charging">Polnjenje</string>
+    <string name="button_Charging">Polnjenje</string>
+    <string name="header_Charging">Parametri polnjenja</string>
+    <string name="header_Battery">Parametri baterije</string>
+    <string name="header_DrivingCh">Vožnja</string>
+    <string name="header_CompTemp">Temperature baterijskih modulov in balansiranje celic</string>
+    <string name="label_max_charge">Max moč baterije kW</string>
+    <string name="label_max_pilot">Max AC pilotni signal Amp</string>
+    <string name="label_Phases">Faze</string>
+    <string name="label_UserSOC">Uporabna napolnjenost %</string>
+    <string name="label_RealSOC">Prava napolnjenost %</string>
+    <string name="label_Capacity">Kapaciteta Ah</string>
+    <string name="label_HvTemp">Srednja temperatura baterij</string>
+    <string name="label_SOH">Zdravje baterije %</string>
+    <string name="label_TTF">Čas do napolnjenja min</string>
+    <string name="label_ETF">Energija do napolnjenja kWh</string>
+    <string name="label_DISTA">Doseg</string>
+    <string name="label_Volt">Volti HV Baterija</string>
+    <string name="label_Amps">Amperi HV Baterija</string>
+    <string name="label_DcPwr">DC Moč kW</string>
+    <string name="label_AvChPwr">Razpoložljiva moč kW</string>
+    <string name="label_AvEner">Razpoložljiva energija kWh</string>
+    <string name="label_12V">12 voltna napetost</string>
+    <string name="label_12A">12 voltni tok</string>
+    <string name="label_DcLoad">DCDC breme %</string>
+    <string name="label_HKM">Kilometri baterije</string>
+    <string name="label_ChaStatus">Status polnjenja</string>
+    <string name="label_Plug">Status priključka</string>
+    <string-array name="list_ChargingStatus">
+        <item>Ni spremembe</item>
+        <item>Čakanje (načrtovano)</item>
+        <item>Končano</item>
+        <item>V teku</item>
+        <item>Napaka</item>
+        <item>Čakanje</item>
+        <item>Pokrov odprt</item>
+        <item>Ni na voljo</item>
+    </string-array>
+    <string-array name="list_PlugStatus">
+        <item>Ni priključen</item>
+        <item>Priključen</item>
+    </string-array>
+
+    <!-- Charging graph -->
+
+    <string name="title_activity_charging_graph">Graf polnjenja</string>
+    <string name="button_ChargingGraphs">Graf polnjenja</string>
+    <string name="graph_PilotPower">Pilot (A) / Moč polnilnice (kW)</string>
+    <string name="graph_MaxRealChPwr">Max polnilna moč (kW) / DC polnilna moč (kW)</string>
+    <string name="graph_EnergyTemperature">Razpoložljiva energija (kWh) / temperatura (°C)</string>
+
+    <!-- Charging prediction -->
+
+    <string name="button_ChargingPrediction">Predvidevanje polnjenja</string>
+
+    <!-- Clima tech -->
+
+    <string name="title_activity_clima_tech">Klima</string>
+    <string name="button_Climate">Klima</string>
+    <string name="label_ClimaLoopMode">Klima (loop mode)</string>
+    <string name="label_HVBatConditioningMode">HV Tretma baterije</string>
+    <string name="label_Temperatures">Temperature</string>
+    <string name="label_HVEvaporationTemp">HV temp uparjevalnika</string>
+    <string name="label_ACPressure">Tlak</string>
+    <string name="label_HVCoolingState">HV stanje hlajenja</string>
+    <string name="label_ChargingPower">Moč polnjenja</string>
+    <string name="label_EngineFanSpeed">Hitrost ventilatorja motorja</string>
+    <string name="label_ClimateBatteryInteraction">Klima-Batera odnos</string>
+    <string-array name="list_CoolingStatus">
+        <item>Ni</item>
+        <item>Samostojno hlajenje</item>
+        <item>Povezano hlajenje</item>
+        <item>Ni na voljo</item>
+    </string-array>
+    <string-array name="list_ConditioningStatus">
+        <item>Blow req</item>
+        <item>Cool cond req</item>
+        <item>Heat cond req</item>
+        <item>Ni na voljo</item>
+    </string-array>
+    <string-array name="list_ClimateStatus">
+        <item>Ni na voljo</item>
+        <item>AC</item>
+        <item>AC odtaljevanje</item>
+        <item> </item>
+        <item>Toplotna črpalka</item>
+        <item> </item>
+        <item>Odroševanje</item>
+        <item>Idle</item>
+    </string-array>
+    <string name="graph_Climatech">Zunanja (°C) / otranja (°C) / Nastavljena (°C) / Baterija (°C)</string>
+
+    <!-- Consumption -->
+
+    <string name="title_activity_consumption">Poraba</string>
+    <string name="button_Consumption">Poraba</string>
+    <string name="label_WheelTorque">Kolesni navor</string>
+    <string name="label_InstantConsumption">Trenutna poraba</string>
+    <string name="label_kWh100km">kWh/100km</string>
+    <string name="graph_PowerEnergy">Moč (kw) / Razpoložljiva energija (kWh)</string>
+    <string name="graph_SpeedConsumption">Hitrost (km/h) / Poraba (kWh/100km)</string>
+    <string name="graph_RangeSoc">Doseg (km) / Napolnjenost (%)</string>
+
+    <!-- Driving -->
+
+    <string name="title_activity_driving">Vožnja</string>
+    <string name="button_Driving">Vožnja</string>
+    <string name="header_Driving">Parametri vožnje</string>
+    <string name="label_pedal">Pozicija pedala</string>
+    <string name="label_motor_torque">Motorni navor</string>
+    <string name="label_wheel_torque">Kolesni navor</string>
+    <string name="label_DistToDest">Razdalja do cilja</string>
+    <string name="label_DistAvailAtDest">Doseg na cilju</string>
+    <string name="label_friction">Zaviranje (izgube)</string>
+    <string name="button_Double">Dvojno</string>
+    <string name="prompt_Distance">PREOSTALI DOSEG</string>
+    <string name="prompt_SetDistance">Vpiši razdaljo do cilja. Prikazan bo ocenjen doseg po prihodu na cilj.</string>
+
+    <!-- DTC -->
+
+    <string name="title_activity_dtc">DTC Diagnostične kode </string>
+    <string name="button_DtcReadout">DTC koda</string>
+    <string name="button_QueryDTCs">Preberi DTCje</string>
+    <string name="button_ClearDTCs">Briši DTCje</string>
+    <string name="button_AllData">Vsi podatki</string>
+    <string name="help_DTC">Za brisanje DTCjev:\n\nVstavi kartico\n\nPrestavi v D\n\nDrži START gumb 5 sekund oziroma dokler se ne pojavi napis  \'Remove card\' \n\nPrestavi v P</string>
+    <string name="message_PollerStopping">\n\nPočakajte da se delovni proces zaključi...\n</string>
+    <string name="message_NoConnection">\nNi povezave. Zapri to okno in se prepričaj da je povezava vzpostavljena.\n</string>
+    <string name="message_NoEcuDefinition">\nNe najdem definicij za ta ECU. Prikaz le DTC kod\n</string>
+    <string name="message_NoEcuDefinition2">\nNe najdem definicij za ta ECU.\n</string>
+    <string name="message_SendingInit">\nPošiljam inicializacijsko sekvenco\n</string>
+    <string name="message_InitFailed">\nInicializacija ni uspela\n</string>
+    <string name="message_StartTestSession">\nPošiljam začetno testno sekvenco za začetek seje\n</string>
+    <string name="message_NoTestSessionField">Polje za začetek seje ne obstaja\n</string>
+    <string name="message_UnexpectedResult">Poizvedba poslana, Nepričakovan rezultat:[</string>
+    <string name="message_GetDtcs">\nPošiljam start DTCs sekvenco\n</string>
+    <string name="message_NoGetDtcsField">Get DTC polje ne obstaja\n</string>
+    <string name="message_NoActiveDtcs">\nNi aktivnih DTCjev\n</string>
+    <string name="message_clear">"Briši "</string>
+    <string name="message_NoClearDtcField">Briši DTC polje ne obstaja\n</string>
+    <string name="message_MessageNull">Sporočilo je prazno. Je avto vključen?\n</string>
+    <string name="message_ClearSuccessful">Brisanje izgleda uspešno, prosim preveri DTCje\n</string>
+
+    <!-- Elm testing -->
+
+    <string name="title_activity_elm_test">Test ELM327 Ključka</string>
+    <string name="button_ElmTesting">ELM test</string>
+    <string name="header_ElmTest">Rezultati testa</string>
+    <string name="message_ExpectedResult">Pričakovani rezultati\n==========\n</string>
+    <string name="message_FieldNotExists">Zahtevano polje ne obstaja. To je napaka v testu, prosim prijavi jo\n</string>
+    <string name="message_Ready">\nPripravljen</string>
+    <string name="message_ResultEmpty">Ni rezultata. Ključek ne bo deloval\n</string>
+    <string name="message_Problem">Težava:</string>
+    <string name="message_PrepIsoTp">\nISO-TP command CLUSTER SW\n</string>
+    <string name="message_PrepFree">\nFree frame PARK BRAKE\n</string>
+    <string name="message_DevicePassed">\nKljuček je uspešno prestal vse preizkuse, verjetno bo deloval dobro.\n</string>
+    <!-- <string name="message_DeviceFailed">\nKljuček verjetno ne bo deloval\n</string> -->
+
+    <!-- Firmware -->
+
+    <string name="title_activity_firmware">Programska oprema</string>
+    <string name="button_Firmware">Programska oprema</string>
+    <string name="header_Firmware">Verzije programske opreme</string>
+    <string name="default_Firmware">Ni na voljo</string>
+    <string name="help_Ecus"><![CDATA[Learn more about the car\'s computers <a href="http://canze.fisch.lu/computers/">here</a>.]]></string>
+    <string name="alert_Version">Verzija</string>
+    <string name="alert_Soft">SW</string>
+    <string name="alert_Supplier">Dobavitelj</string>
+    <string name="alert_DiagVersion">DiagVer</string>
+
+    <!-- Heatmap battery modules -->
+
+    <string name="title_activity_heatmap_bat">Razporeditev temperatur</string>
+    <string name="button_HeatmapTemperature">Razporeditev temperatur</string>
+
+    <!-- Heatmap voltages -->
+
+    <string name="title_activity_heatmap_cellvoltage">Razporeditev napetosti</string>
+    <string name="button_HeatmapVoltage">Razporeditev napetosti</string>
+
+    <!-- Kangoo fluence temperatures -->
+
+    <string name="title_activity_fluence_kangoo_temp">Fluence Kangoo Temp</string>
+    <string name="button_FluenceKangooTemps">Fluence Kangoo Temp</string>
+    <string name="header_KangooFluenceTemperatures">Temperature</string>
+    <string name="label_EvaporatorTemperature">Temperatura uparjevalnika</string>
+    <string name="label_WaterTemperatureHeating">Temperatura hladilne tekočine</string>
+    <string name="label_DcDcConverterTemperature">Temperatura DC-DC konverterja</string>
+    <string name="label_InverterTemperature">Temperatura Inverterja</string>
+    <string name="label_ExternalTemperature">Zunanja temperatura</string>
+    <string name="label_InternalTemperature">Notranja temperatura</string>
+    <string name="header_KangooFluenceFansPumps">Ventilatorji in črpalke</string>
+    <string name="label_MotorWaterPumpSpeed">Hitrost vodne črpalke motorja</string>
+    <string name="label_ChargerWaterPumpSpeed">Hitrost vodne črpalke polnilca</string>
+    <string name="label_HeatingWaterPumpSpeed">Hitrost vodne črpalke grelca</string>
+    <string name="label_BatteryCoolingFansSpeed">Hitrost ventilatorja baterije</string>
+
+    <!-- Leaf spy -->
+
+    <string name="title_activity_leaf_spy">Leaf Spy Clone</string>
+    <string name="button_LeafspyBob">LeafSpy (Bob)</string>
+
+    <!-- Mainactivity -->
+
+    <string name="toast_InitWidgets">Inicializacija widgetov</string>
+    <string name="toast_BluetoothLost">Bluetooth povezava izgubljena!</string>
+    <string name="prompt_Accept">Da, razumem!</string>
+    <string name="prompt_Decline">Ne, nisem razumen niti besede…</string>
+    <string name="toast_Reconnecting">Ponovno povezujem Bluetooth…</string>
+    <string name="toast_WaitingSettings">Usavljam Bluetooth. Nastavitve so naložene. Prosim počakaj ....</string>
+    <string name="toast_NotWhileDriving">Ne med vožnjo…</string>
+
+    <!-- Prediction -->
+
+    <string name="title_activity_prediction">Napoved polnjenja</string>
+    <string name="label_StateAtThisMoment">Trenutno stanje</string>
+    <string name="label_BatteryTemperature">Temperatura baterije</string>
+    <string name="label_ACPower">AC moč</string>
+    <string name="label_StateOfCharge">Napolnjenost</string>
+    <string name="label_ChargingPrediction">Napoved polnjenja</string>
+    <string name="label_Duration">Čas (hh:mm)</string>
+    <string name="label_Soc">SOC</string>
+    <string name="label_Range">Doseg</string>
+    <string name="label_DcPower">DC moč</string>
+
+    <!-- Range -->
+
+    <string name="title_activity_range">Doseg</string>
+    <string name="button_Range">Doseg</string>
+    <string name="label_RangeRemaining">Doseg (car):</string>
+    <string name="label_RangeRemainingCanZE">Doseg (CanZE):</string>
+    <string name="label_EstimatedDrivingStyleLoss">Ocenjene izgube ob vožnji:</string>
+    <string name="graph_DistanceEnergy">Doseg (km) / Razpoložljiva energija (kWh)</string>
+
+    <!-- Settings -->
+
+    <string name="title_activity_settings">Nastavitve</string>
+    <string name="build">Build:</string>
+    <string name="version">Verzija:</string>
+    <string name="label_RemoteDevice">Oddaljena naprava</string>
+    <string name="label_DeviceAddress">Naslov naprave</string>
+    <string name="label_DeviceType">Tip naprave</string>
+    <string name="label_Car">Avto</string>
+    <string name="label_LogLevel">Nivo logiranja</string>
+    <string name="label_Options">Opcije</string>
+    <string name="label_SafeDrivingMode">Način varne vožnje</string>
+    <string name="label_BluetoothBackgroundMode">Bluetooth v ozadju</string>
+    <string name="label_Miles">Milje</string>
+    <string name="label_SdCardLogging">Log na SD kartici</string>
+    <string name="label_Debug">Debug</string>
+    <string name="label_Fields">Polja</string>
+    <string name="help_Fields">Logiraj vsa polja zahtevana od trenutne strani.</string>
+    <string name="label_LogToSdcard1">Logiraj na sdcard1</string>
+    <string name="label_Actions">Akcije</string>
+    <string name="label_ClearCachedData">počisti začasne podatke</string>
+    <string name="prompt_YesIKnow">Da</string>
+    <string name="prompt_NoSecureWay">Ne</string>
+    <string name="prompt_Attention">POZOR</string>
+    <string name="prompt_WarningDriving">Vožnja zahteva vašo polno pozornost. Uporaba aplikacije med vožnjo lahko resno ogrozi vaše in življenja drugih. Uporaba tega načina je močno odsvetovana!\n\n Ste prepričani da želite izključiti način varne vožnje.</string>
+    <string name="prompt_NoThanks">Ne, hvala</string>
+    <string name="prompt_BluetoothOn">Vklopljen Bluetooth, medtem ko je aplikacija v ozadju lahko moti druge aplikacije ki prav tako uporabljajo  to možnost. Če ga pozabite izklopit lahko v ozadju izprazni baterijo v kratkem času. <br/><br/><b>Z uporabo tega načina bo povezava ostala vzpostavljena, tudi če vmes ugasnete napravo.</b><br/><br/>Ste prepričani da želite vključit način Bluetooth v ozadju?</string>
+    <string name="prompt_NoSd">Zunanja SD kartica ni na voljo, se nanjo ne da zapisovati, ali pa nima zadosti prostora za zapis podatkov.<br/><br/><b>Izvoz podatkov ne more biti vključen!</b></string>
+    <string name="prompt_Sorry">Žal…</string>
+    <string name="toast_CacheCleared">Začasni podatki so bili izbrisani…</string>
+    <string name="toast_PleaseUseTop">Uporabi enega od zgornjih gumbov za izhod iz nastavitev</string>
+    <string name="toast_NoBluetooth">Ta naprava nima Bluetooth povezave\n\nŽal…</string>
+
+    <!-- Tyres -->
+
+    <string name="title_activity_tyres">Gume</string>
+    <string name="button_Tyres">Gume</string>
+    <string name="header_Tyres">Gume</string>
+    <string name="help_PressuresMbar">Vsi tlaki so v mbar</string>
+    <string name="label_TyreSpdPresMisadaption">Hitrost-tlak korekcija</string>
+    <string name="label_TyreFL">Spredaj levo</string>
+    <string name="label_TyreFR">Spredaj desno</string>
+    <string name="label_TyreRL">Zadaj levo</string>
+    <string name="label_TyreRR">Zadaj desno</string>
+    <string name="label_TyreFLState">Stanje spredaj levo</string>
+    <string name="label_TyreFRState">Stanje spredaj desno</string>
+    <string name="label_TyreRLState">Stanje zadaj levo</string>
+    <string name="label_TyreRRState">Stanje zadaj desno</string>
+    <string name="label_TyreFLPressure">Tlak spredaj levo mbar</string>
+    <string name="label_TyreFRPressure">Tlak spredaj desno mbar</string>
+    <string name="label_TyreRLPressure">Tlak zadaj levo mbar</string>
+    <string name="label_TyreRRPressure">Tlak zadaj desno mbar</string>
+
+    <!-- Widgets only -->
+
+    <string name="title_activity_widget">WidgetActivity</string>
+
+    <!-- Main (fragment) -->
+
+    <string name="menu_Main">Glavni</string>
+    <string name="help_Main">Podrsaj levo in desno za menjavo menijev med Glvni, Tehnični in Eksperimentalni.</string>
+
+    <!-- Technical (fragment) -->
+
+    <string name="menu_Technical">Tehnični</string>
+
+    <!-- Experimental (fragment) -->
+
+    <string name="menu_Experimental">Eksperimentalni</string>
+    <string name="help_Experimental">spodnji gumbi so le za namene testiranja</string>
+
+<!--     <string name="prompt_Disclaimer" translatable="false">Uradno obvestilo</string>
+     <string name="prompt_DisclaimerText" translatable="false"><![CDATA[<html>CanZE (“aplikacija”) je takšna kot je. Uporablja se na lastno odgovornost. Avtorji ne dajejo nobenih garancij na delovanje, niti za primernost za uporabo v kakršnikoli situaaciji. Nobena vrsta komunikacije z avtorji, ne pomeni garancije za delovanje. V nobenem primeru avtorji niso odgovorni za škodo nastalo z njeno uporabo. Aplikacija je namenjena le izobraževalnim namenom.
+                            <br>
+                            <br>
+                            <b>Z uporabo aplikacije posegaš v svoj avtomobil prek HW in SW ki ni pod tvojo domeno, razvit iz strani navdušenih amaterjev. Vožnja avtomobila je lahko nevarna, še toliko bolj če gledaš na zaslon telefona, raje kot na cesto!</b></html></string>]]></string>
+-->
+</resources>
