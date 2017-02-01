@@ -92,6 +92,9 @@
         <activity
             android:name=".activities.HarmonicsActivity"
             android:label="@string/title_activity_harmonics" />
+        <activity
+            android:name=".activities.BcbActivity"
+            android:label="@string/title_activity_bcb" />
     </application>
 
 </manifest>
