@@ -242,6 +242,15 @@
 
     <string name="button_FluenceKangooTemps">Fluence Kangoo Temps</string>
 
+    <!-- Harmonics -->
+
+    <string name="title_activity_harmonics">Harmonics leak currents</string>
+    <string name="label_LeakCurrentDc">Leak current DC (mA)</string>
+    <string name="label_LeakCurrentLf">Leak current LF (mA)</string>
+    <string name="label_LeakCurrentHf">Leak current HF (mA)</string>
+    <string name="label_LeakCurrentEhf">Leak current EHF (mA)</string>
+
+
     <!-- Heatmap battery modules -->
 
     <string name="title_activity_heatmap_bat">Temperature heatmap</string>
@@ -403,6 +412,5 @@
 
     <string name="menu_Experimental">Experimental</string>
     <string name="help_Experimental">buttons below are for testing purposes only</string>
-
 
 </resources>

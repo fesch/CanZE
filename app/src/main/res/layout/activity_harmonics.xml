@@ -1,0 +1,115 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:keepScreenOn="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    tools:context="lu.fisch.canze.activities.HarmonicsActivity"
+    android:id="@+id/table"
+    >
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/leak_dc"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            custom:min="0"
+            custom:max="100"
+            custom:majorTicks="50"
+            custom:minorTicks="10"
+            custom:fieldSID="793.625057.24"
+            custom:widget="timeplot"
+            custom:text="@string/label_LeakCurrentDc"
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/leak_lf"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            custom:min="0"
+            custom:max="100"
+            custom:majorTicks="50"
+            custom:minorTicks="10"
+            custom:fieldSID="793.62505a.24"
+            custom:widget="timeplot"
+            custom:text="@string/label_LeakCurrentLf"
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/leak_hf"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            custom:min="0"
+            custom:max="100"
+            custom:majorTicks="50"
+            custom:minorTicks="10"
+            custom:fieldSID="793.625059.24"
+            custom:widget="timeplot"
+            custom:text="@string/label_LeakCurrentHf"
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <lu.fisch.canze.widgets.WidgetView
+            android:id="@+id/leak_ehf"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            custom:min="0"
+            custom:max="100"
+            custom:majorTicks="50"
+            custom:minorTicks="10"
+            custom:fieldSID="793.625058.24"
+            custom:widget="timeplot"
+            custom:text="@string/label_LeakCurrentEhf"
+            />
+
+    </TableRow>
+
+</TableLayout>

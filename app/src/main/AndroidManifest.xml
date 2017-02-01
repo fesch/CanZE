@@ -89,6 +89,9 @@
         <activity
             android:name=".activities.RangeActivity"
             android:label="@string/title_activity_range" />
+        <activity
+            android:name=".activities.HarmonicsActivity"
+            android:label="@string/title_activity_harmonics" />
     </application>
 
 </manifest>

@@ -409,6 +409,10 @@ public class Fields {
                         + "793,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "793,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "793,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
+                        + "793,24,39,0.0625,128,0,mA,19023b,625057,ff\n" // DataRead.Raw leakage current - DC part measurement
+                        + "793,24,39,0.0625,128,0,mA,19023b,625058,ff\n" // DataRead.Raw leakage current - High Frequency 10kHz part measurement
+                        + "793,24,39,0.0625,128,0,mA,19023b,625059,ff\n" // DataRead.Raw leakage current - High Frequency 1st part measurement
+                        + "793,24,39,0.0625,128,0,mA,19023b,62505a,ff\n" // DataRead.Raw leakage current - Low Frequency part measurement (50Hz)
                         + "7b6,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "7b6,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "7b6,128,143,1,0,0,,2180,6180,ff\n" // Soft
