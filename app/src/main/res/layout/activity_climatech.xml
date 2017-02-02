@@ -206,7 +206,7 @@
             custom:max="40"
             custom:majorTicks="10"
             custom:minorTicks="2"
-            custom:fieldSID="764.6143.110,764.6121.26,699.8,42e.44"
+            custom:fieldSID="764.6143.110,764.6121.26,800.6104.24,42e.44"
             custom:widget="timeplot"
             custom:text="@string/graph_Climatech"
             custom:colorRanges="[
@@ -215,7 +215,7 @@
             custom:intervals="{
                                    '764.6143.110':10000,
                                    '764.6121.26':10000,
-                                   '699.8':10000,
+                                   '800.6104.24':2000,
                                    '42e.44':10000
                                    }"
 
