@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     /* TODO we should move to simply always provide the level in the toast() call instead of all those if's in the code */
     public static void toast(int level, final String message)
     {
-        if (level <= toastLevel) return;
+        if (level > toastLevel) return;
         if(instance!=null)
             instance.runOnUiThread(new Runnable() {
                 @Override
