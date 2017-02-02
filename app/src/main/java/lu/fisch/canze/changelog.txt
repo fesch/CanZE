@@ -1,3 +1,4 @@
+2017.02.02 [Jeroen] Compressor power dissed, replaced with RPM.
 2017.02.02 [Jeroen] Hotfix on master: log level #417
 2017.02.02 [Jeroen] Added German (Thank you Stefan!)
 2017.02.01 [Jeroen] Climatech, climate replaced power by a graph
