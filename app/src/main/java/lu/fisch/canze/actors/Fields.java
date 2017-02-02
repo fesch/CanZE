@@ -245,6 +245,7 @@ public class Fields {
                         + "430,38,39,1,0,0,,,,e2\n" // HV Battery Cooling State
                         + "430,40,49,0.1,400,1,°C,,,e2\n" // HV Battery Evaporator Temp
                         + "432,36,37,1,0,0,,,,e2\n" // HV Bat Conditionning Mode
+                        + "4f8,4,5,1,0,0,,,,ff\n" // Parking brake
                         + "534,32,40,1,40,0,°C,,,e5\n" // Temp out
                         + "5d7,0,15,0.01,0,2,km/h,,,ff\n" // Speed
                         + "5da,0,7,1,40,0,ºC,,,e7\n" // Water temperature
