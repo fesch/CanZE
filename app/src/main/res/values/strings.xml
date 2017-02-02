@@ -157,6 +157,7 @@
         <item>Demisting</item>
         <item>Idle</item>
     </string-array>
+    <string name="label_IH_ElectricalPowerDrived">Power compressor</string>
     <string name="graph_Climatech">External (°C) / Internal (°C) / Setpoint (°C) / Battery (°C)</string>
 
     <!-- Consumption -->
