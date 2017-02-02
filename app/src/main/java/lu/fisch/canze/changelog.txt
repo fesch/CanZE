@@ -1,4 +1,7 @@
+2017.02.02 [Jeroen] Hotfix on master: log level #417
+2017.02.02 [Jeroen] Added German (Thank you Stefan!)
 2017.02.01 [Jeroen] Climatech, climate replaced power by a graph
+2017.01.31 [Jeroen] Added Slovenian (Thank you Zdenko!)
 2017.01.29 [Bob] Fixing issue: V1.20 crashes #407
 2017.01.27 [Jeroen] Climatech, Power as extra field
 
