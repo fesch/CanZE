@@ -549,20 +549,14 @@ public class SettingsActivity extends AppCompatActivity {
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null) {
             Toast.makeText(SettingsActivity.this, R.string.toast_NoBluetooth, Toast.LENGTH_SHORT).show();
-            return;
+        } else {
+            if (!bluetoothAdapter.isEnabled()) {
+                // launch the system activity
+                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBtIntent, MainActivity.REQUEST_ENABLE_BT);
+            }
         }
-        // test if enabled ...
-        if (!bluetoothAdapter.isEnabled())
-        {
-            // launch the system activity
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, MainActivity.REQUEST_ENABLE_BT);
-        }
-        else
-        {
-            // fill the list
-            fillDeviceList();
-        }
+        fillDeviceList(); // if no BT, still allow the http devices
     }
 
     private void fillDeviceList()
@@ -578,43 +572,42 @@ public class SettingsActivity extends AppCompatActivity {
 
         // get the bluetooth adapter
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        // get the devices
-        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
-        // if there are paired devices
-        if (pairedDevices.size() > 0)
-        {
+        if (bluetoothAdapter != null) {
+            // get the devices
+            Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+            // if there are paired devices
+            if (pairedDevices.size() > 0) {
+                // loop through paired devices
+                for (BluetoothDevice device : pairedDevices) {
+                    // add the name and address to an array adapter to show in a ListView
 
-
-            // loop through paired devices
-            for (BluetoothDevice device : pairedDevices) {
-                // add the name and address to an array adapter to show in a ListView
-
-                String deviceAlias = device.getName();
-                try {
-                    Method method = device.getClass().getMethod("getAliasName");
-                    if(method != null) {
-                        deviceAlias = (String)method.invoke(device);
+                    String deviceAlias = device.getName();
+                    try {
+                        Method method = device.getClass().getMethod("getAliasName");
+                        if (method != null) {
+                            deviceAlias = (String) method.invoke(device);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        // catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                        //} catch (InvocationTargetException e) {
+                        // e.printStackTrace();
+                        //} catch (IllegalAccessException e) {
+                        // e.printStackTrace();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                // catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                //} catch (InvocationTargetException e) {
-                    // e.printStackTrace();
-                //} catch (IllegalAccessException e) {
-                    // e.printStackTrace();
+
+                    arrayAdapter.add(deviceAlias + "\n" + device.getAddress());
+                    // get the index of the selected item
+                    //if(device.getAddress().equals(deviceAddress))
+                    if (deviceAlias.equals(deviceName)) {
+                        index = i; // plus one as HTTP is always first in list
+                        //MainActivity.debug("SELECT: found = "+i+" ("+deviceAlias+")");
+                    }
+                    i++;
                 }
 
-                arrayAdapter.add(deviceAlias + "\n" + device.getAddress());
-                // get the index of the selected item
-                //if(device.getAddress().equals(deviceAddress))
-                if(deviceAlias.equals(deviceName)) {
-                    index = i; // plus one as HTTP is always first in list
-                    //MainActivity.debug("SELECT: found = "+i+" ("+deviceAlias+")");
-                }
-                i++;
             }
-
         }
 
         arrayAdapter.add("HTTP Gateway\n-");
