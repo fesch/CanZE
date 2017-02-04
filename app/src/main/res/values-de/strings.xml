@@ -111,10 +111,10 @@
 
     <string name="title_activity_clima_tech">Klimaanlage</string>
     <string name="button_Climate">Klima</string>
-    <string name="label_ClimaLoopMode">Umluft</string>
+    <string name="label_ClimaLoopMode">Klima Kreis Modus</string>
     <string name="label_HVBatConditioningMode">Kühlungmodus der Traktionsbatterie</string>
     <string name="label_Temperatures">Temperaturen</string>
-    <string name="label_HVEvaporationTemp">Kompressortemp. Batterie</string>
+    <string name="label_HVEvaporationTemp">Verdampfertemp. Batterie</string>
     <string name="label_HVCoolingState">Kühlungsstatus Tracktionsbatterie</string>
     <string name="label_ChargingPower">Ladeleistung kW</string>
     <string name="label_EngineFanSpeed">Motor Lüfter Geschw.</string>
@@ -139,7 +139,7 @@
         <item>Wärmepumpe</item>
         <item> </item>
         <item>Freimachen</item>
-        <item>inaktiv</item>
+        <item>Inaktiv</item>
     </string-array>
 
     <!-- Consumption -->
