@@ -195,8 +195,8 @@ public class SettingsActivity extends AppCompatActivity {
                 if (!safe.isChecked()) {
 
                     // set dialog message
-                    String yes = getString(R.string.prompt_YesIKnow);
-                    String no = getString(R.string.prompt_NoSecureWay);
+                    String yes = MainActivity.getStringSingle(R.string.prompt_YesIKnow);
+                    String no = MainActivity.getStringSingle(R.string.prompt_NoSecureWay);
 
                     Display display = getWindowManager().getDefaultDisplay();
                     Point size = new Point();
@@ -205,8 +205,8 @@ public class SettingsActivity extends AppCompatActivity {
                     //int height = size.y;
                     width = width / getResources().getDisplayMetrics().density * getResources().getDisplayMetrics().scaledDensity;
                     if (width <= 480) {
-                        yes = getString(R.string.default_Yes);
-                        no = getString(R.string.default_No);
+                        yes = MainActivity.getStringSingle(R.string.default_Yes);
+                        no = MainActivity.getStringSingle(R.string.default_No);
                     }
 
                     final Context context = SettingsActivity.this;
@@ -217,7 +217,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                     // set dialog message
                     alertDialogBuilder
-                            .setMessage(getString(R.string.prompt_WarningDriving))
+                            .setMessage(MainActivity.getStringSingle(R.string.prompt_WarningDriving))
                             .setCancelable(true)
                             .setPositiveButton(yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -255,8 +255,8 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (btBackground.isChecked()) {
                     // set dialog message
-                    String yes = getString(R.string.prompt_YesIKnow);
-                    String no = getString(R.string.prompt_NoThanks);
+                    String yes = MainActivity.getStringSingle(R.string.prompt_YesIKnow);
+                    String no = MainActivity.getStringSingle(R.string.prompt_NoThanks);
 
                     Display display = getWindowManager().getDefaultDisplay();
                     Point size = new Point();
@@ -265,8 +265,8 @@ public class SettingsActivity extends AppCompatActivity {
                     //int height = size.y;
                     width = width / getResources().getDisplayMetrics().scaledDensity;
                     if (width <= 480) {
-                        yes = getString(R.string.default_Yes);
-                        no = getString(R.string.default_No);
+                        yes = MainActivity.getStringSingle(R.string.default_Yes);
+                        no = MainActivity.getStringSingle(R.string.default_No);
                     }
 
                     final Context context = SettingsActivity.this;
@@ -277,7 +277,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                     // set dialog message
                     alertDialogBuilder
-                            .setMessage(Html.fromHtml(getString(R.string.prompt_BluetoothOn)))
+                            .setMessage(Html.fromHtml(MainActivity.getStringSingle(R.string.prompt_BluetoothOn)))
                             .setCancelable(true)
                             .setPositiveButton(yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -320,7 +320,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                     // set dialog message
                     alertDialogBuilder
-                            .setMessage(Html.fromHtml(getString(R.string.prompt_NoSd)))
+                            .setMessage(Html.fromHtml(MainActivity.getStringSingle(R.string.prompt_NoSd)))
                             .setCancelable(true)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -357,7 +357,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                     // set dialog message
                     alertDialogBuilder
-                            .setMessage(Html.fromHtml(getString(R.string.prompt_NoSd)))
+                            .setMessage(Html.fromHtml(MainActivity.getStringSingle(R.string.prompt_NoSd)))
                             .setCancelable(true)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -393,7 +393,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                     // set dialog message
                     alertDialogBuilder
-                            .setMessage(Html.fromHtml(getString(R.string.prompt_NoSd)))
+                            .setMessage(Html.fromHtml(MainActivity.getStringSingle(R.string.prompt_NoSd)))
                             .setCancelable(true)
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -425,9 +425,9 @@ public class SettingsActivity extends AppCompatActivity {
             zf.close(); */
 
             Date buildDate = new Date(BuildConfig.TIMESTAMP);
-            SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.format_YMDHM), Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHM), Locale.getDefault());
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            tv.setText(getString(R.string.version)+pInfo.versionName+"  //  " + getString(R.string.build)+sdf.format(buildDate));
+            tv.setText(MainActivity.getStringSingle(R.string.version)+pInfo.versionName+"  //  " + MainActivity.getStringSingle(R.string.build)+sdf.format(buildDate));
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -455,14 +455,14 @@ public class SettingsActivity extends AppCompatActivity {
                 CanzeDataSource.getInstance().clear();
 
                 MainActivity.fields.clearAllFields();
-                MainActivity.toast(getString(R.string.toast_CacheCleared));
+                MainActivity.toast(MainActivity.getStringSingle(R.string.toast_CacheCleared));
             }
         });
     }
 
     @Override
     public void onBackPressed() {
-        MainActivity.toast(getString(R.string.toast_PleaseUseTop));
+        MainActivity.toast(MainActivity.getStringSingle(R.string.toast_PleaseUseTop));
     }
 
 

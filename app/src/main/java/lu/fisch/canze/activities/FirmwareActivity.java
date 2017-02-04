@@ -71,13 +71,13 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
                         }
                     });
                 } else {
-                    MainActivity.toast(getString(R.string.format_NoView), "lEcu", Integer.toHexString (ecu.getFromId()).toLowerCase());
+                    MainActivity.toast(MainActivity.getStringSingle(R.string.format_NoView), "lEcu", Integer.toHexString (ecu.getFromId()).toLowerCase());
                 }
             }
         }
 
         TextView textView = (TextView) findViewById(R.id.link);
-        textView.setText(Html.fromHtml(getString(R.string.help_Ecus)));
+        textView.setText(Html.fromHtml(MainActivity.getStringSingle(R.string.help_Ecus)));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
 
         new Thread(new Runnable() {

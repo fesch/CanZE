@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     {
         Log.d(TAG, text);
         if(debugLogMode) {
-            SimpleDateFormat sdf = new SimpleDateFormat(instance.getString(R.string.format_YMDHMSs), Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat(getStringSingle(R.string.format_YMDHMSs), Locale.getDefault());
             DebugLogger.getInstance().log(sdf.format(Calendar.getInstance().getTime()) + ": " + text);
         }
     }
@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             instance.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    final String finalMessage = instance.getString (resource);
+                    final String finalMessage = getStringSingle (resource);
                     Toast.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
                 }
             });
@@ -579,8 +579,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             alertDialogBuilder.setTitle(R.string.prompt_Disclaimer);
 
             // set dialog message
-            String yes = getString(R.string.prompt_Accept);
-            String no  = getString(R.string.prompt_Decline);
+            String yes = getStringSingle(R.string.prompt_Accept);
+            String no  = getStringSingle(R.string.prompt_Decline);
 
             Display display = getWindowManager().getDefaultDisplay();
             Point size = new Point();
@@ -590,12 +590,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             width = width / getResources().getDisplayMetrics().scaledDensity;
             if(width<=480)
             {
-                yes=getString(R.string.default_Yes);
-                no =getString(R.string.default_No);
+                yes=getStringSingle(R.string.default_Yes);
+                no =getStringSingle(R.string.default_No);
             }
 
             alertDialogBuilder
-                    .setMessage(Html.fromHtml(getString(R.string.prompt_DisclaimerText)))
+                    .setMessage(Html.fromHtml(getStringSingle(R.string.prompt_DisclaimerText)))
                     .setCancelable(true)
                     .setPositiveButton(yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -772,7 +772,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 (new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        toast(getString(R.string.toast_Reconnecting));
+                        toast(getStringSingle(R.string.toast_Reconnecting));
                         stopBluetooth();
                         reloadBluetooth();
                     }

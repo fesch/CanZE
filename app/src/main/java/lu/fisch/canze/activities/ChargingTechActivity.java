@@ -63,12 +63,10 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     public static final String DefaultFormatTemperature             = "%3.0f°";
     public static final String DefaultFormatBalancing               = "%02X";
 
-    final Resources res = MainActivity.getInstance().getResources();
-
     //public static final String cha_Status [] = {"No charge", "Waiting (planned)", "Ended", "In progress", "Failure", "Waiting", "Flap open", "Unavailable"};
-    final String charging_Status [] = res.getStringArray(R.array.list_ChargingStatus);
+    final String charging_Status [] = MainActivity.getStringList(R.array.list_ChargingStatus);
     //public static final String plu_Status [] = {"Not connected", "Connected"};
-    final String plug_Status [] = res.getStringArray(R.array.list_PlugStatus);
+    final String plug_Status [] = MainActivity.getStringList(R.array.list_PlugStatus);
 
     double dcVolt       = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     double pilot        = 0;

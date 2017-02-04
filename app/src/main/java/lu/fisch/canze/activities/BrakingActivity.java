@@ -80,7 +80,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener, Deb
                         pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
                         pb.setProgress((int) driverBrakeWheel_Torque_Request);
                         tv = (TextView) findViewById(R.id.text_driver_torque_request);
-                        if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + getString(R.string.unit_Nm), driverBrakeWheel_Torque_Request));
+                        if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + MainActivity.getStringSingle(R.string.unit_Nm), driverBrakeWheel_Torque_Request));
                         break;
                     case SID_TotalPotentialResistiveWheelsTorque:
                         int tprwt = - ((int) field.getValue());
@@ -92,13 +92,13 @@ public class BrakingActivity extends CanzeActivity implements FieldListener, Deb
                         pb = (ProgressBar) findViewById(R.id.pb_ElecBrakeWheelsTorqueApplied);
                         pb.setProgress((int) elecBrakeWheelsTorqueApplied);
                         tv = (TextView) findViewById(R.id.text_ElecBrakeWheelsTorqueApplied);
-                        if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + getString(R.string.unit_Nm), elecBrakeWheelsTorqueApplied));
+                        if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + MainActivity.getStringSingle(R.string.unit_Nm), elecBrakeWheelsTorqueApplied));
 
                         double diff_friction_torque = driverBrakeWheel_Torque_Request - elecBrakeWheelsTorqueApplied;
                         pb = (ProgressBar) findViewById(R.id.pb_diff_friction_torque);
                         pb.setProgress((int) diff_friction_torque);
                         tv = (TextView) findViewById(R.id.text_diff_friction_torque);
-                        if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + getString(R.string.unit_Nm), diff_friction_torque));
+                        if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + MainActivity.getStringSingle(R.string.unit_Nm), diff_friction_torque));
                         break;
                     case SID_Coasting_Torque:
                         coasting_Torque = field.getValue() * MainActivity.reduction; // This torque is given in motor torque, not in wheel torque.

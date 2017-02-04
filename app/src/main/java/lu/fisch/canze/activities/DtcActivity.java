@@ -115,7 +115,7 @@ public class DtcActivity  extends CanzeActivity {
                     appendResult(R.string.message_NoConnection);
                     return;
                 }
-                appendResult(getString(R.string.message_Ready));
+                appendResult(MainActivity.getStringSingle(R.string.message_Ready));
             }
         }).start();
     }
@@ -193,7 +193,7 @@ public class DtcActivity  extends CanzeActivity {
                     backRes = message.getData();
                     // check the response
                     if (!backRes.toLowerCase().startsWith("7e")) {
-                        appendResult(getString(R.string.message_UnexpectedResult) + backRes + "]\n");
+                        appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes + "]\n");
                         return;
                     }
 
@@ -215,7 +215,7 @@ public class DtcActivity  extends CanzeActivity {
                     backRes = message.getData();
                     // check the response
                     if (!backRes.startsWith("50")) {
-                        appendResult(getString(R.string.message_UnexpectedResult) + backRes + "]\n");
+                        appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes + "]\n");
                         return;
                     }
 
@@ -237,7 +237,7 @@ public class DtcActivity  extends CanzeActivity {
                     backRes = message.getData();
                     // check the response
                     if (!backRes.startsWith("50")) {
-                        appendResult(getString(R.string.message_UnexpectedResult) + backRes + "]\n");
+                        appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes + "]\n");
                         return;
                     }
                 }
@@ -260,7 +260,7 @@ public class DtcActivity  extends CanzeActivity {
                 backRes = message.getData();
                 // check the response
                 if (!backRes.startsWith("59")) {
-                    appendResult(getString(R.string.message_UnexpectedResult) + backRes + "]\n");
+                    appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes + "]\n");
                     return;
                 }
 
@@ -299,7 +299,7 @@ public class DtcActivity  extends CanzeActivity {
 
         clearResult();
 
-        appendResult(getString(R.string.message_clear) + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
+        appendResult(MainActivity.getStringSingle(R.string.message_clear) + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
 
         // try to stop previous thread
         if(queryThread!=null)
@@ -351,7 +351,7 @@ public class DtcActivity  extends CanzeActivity {
                 String backRes = message.getData();
                 // check the response
                 if (!backRes.startsWith("54")) {
-                    appendResult(getString(R.string.message_UnexpectedResult) + backRes + "]\n");
+                    appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes + "]\n");
                     return;
                 }
 
@@ -435,7 +435,7 @@ public class DtcActivity  extends CanzeActivity {
                         } else {
                             appendResult(frame.getHexId() + "." + frame.getResponseId() + ":" + message.getError() + "\n");
                             if (!MainActivity.device.initDevice(1)) {
-                                appendResult(getString(R.string.message_InitFailed));
+                                appendResult(MainActivity.getStringSingle(R.string.message_InitFailed));
                                 return;
                             }
                         }
@@ -469,7 +469,7 @@ public class DtcActivity  extends CanzeActivity {
     }
 
     private void appendResult(int strResource) {
-        final String localStr = getString(strResource);
+        final String localStr = MainActivity.getStringSingle(strResource);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -497,7 +497,7 @@ public class DtcActivity  extends CanzeActivity {
     private void createDump (Ecu ecu) {
 
         dumpInProgress = false;
-        SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.format_YMDHMS), Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMS), Locale.getDefault());
 
 
         // ensure that there is a CanZE Folder in SDcard

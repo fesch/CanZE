@@ -37,7 +37,7 @@ public class BatteryActivity extends CanzeActivity {
         setContentView(R.layout.activity_battery);
 
         TextView textView = (TextView) findViewById(R.id.link);
-        textView.setText(Html.fromHtml(getString(R.string.help_QA)));
+        textView.setText(Html.fromHtml(MainActivity.getStringSingle(R.string.help_QA)));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
