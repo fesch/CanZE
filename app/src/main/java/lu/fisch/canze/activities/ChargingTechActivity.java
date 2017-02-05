@@ -60,7 +60,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
     public static final String SID_Preamble_BalancingBytes          = "7bb.6107.";
 
-    public static final String DefaultFormatTemperature             = "%3.0f°";
+    public static final String DefaultFormatTemperature             = "%3.0f";
     public static final String DefaultFormatBalancing               = "%02X";
 
     //public static final String cha_Status [] = {"No charge", "Waiting (planned)", "Ended", "In progress", "Failure", "Waiting", "Flap open", "Unavailable"};
