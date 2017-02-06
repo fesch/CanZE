@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                     // inform user
                     setTitle(TAG + " - disconnected");
                     setBluetoothState(BLUETOOTH_DISCONNECTED);
-                    Toast.makeText(MainActivity.this.getBaseContext(), R.string.toast_BluetoothLost,Toast.LENGTH_LONG).show();
+                    toast (R.string.toast_BluetoothLost);
 
                     // try to reconnect
                     onResume();
@@ -504,7 +504,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // detect hardware status
         int BT_STATE = BluetoothManager.getInstance().getHardwareState();
         if(BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_AVAILABLE)
-            Toast.makeText(this.getBaseContext(),"Sorry, but your device doesn't seem to have Bluetooth support!",Toast.LENGTH_LONG).show();
+            toast ("Sorry, but your device doesn't seem to have Bluetooth support!");
         else if (BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_ACTIVE)
         {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -840,7 +840,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             if(isSafe())
             {
                 // run a toast
-                Toast.makeText(MainActivity.this, R.string.toast_WaitingSettings, Toast.LENGTH_SHORT).show();
+                toast (R.string.toast_WaitingSettings);
 
                 (new Thread(new Runnable() {
                     @Override

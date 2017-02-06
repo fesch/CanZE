@@ -46,7 +46,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
@@ -58,6 +57,8 @@ import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.database.CanzeDataSource;
+
+import static lu.fisch.canze.activities.MainActivity.toast;
 
 // import java.util.zip.ZipEntry;
 // import java.util.zip.ZipFile;
@@ -455,14 +456,14 @@ public class SettingsActivity extends AppCompatActivity {
                 CanzeDataSource.getInstance().clear();
 
                 MainActivity.fields.clearAllFields();
-                MainActivity.toast(MainActivity.getStringSingle(R.string.toast_CacheCleared));
+                toast(MainActivity.getStringSingle(R.string.toast_CacheCleared));
             }
         });
     }
 
     @Override
     public void onBackPressed() {
-        MainActivity.toast(MainActivity.getStringSingle(R.string.toast_PleaseUseTop));
+        toast(MainActivity.getStringSingle(R.string.toast_PleaseUseTop));
     }
 
 
@@ -548,7 +549,7 @@ public class SettingsActivity extends AppCompatActivity {
         // get the bluetooth adapter
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null) {
-            Toast.makeText(SettingsActivity.this, R.string.toast_NoBluetooth, Toast.LENGTH_SHORT).show();
+            MainActivity.toast(R.string.toast_NoBluetooth);
         } else {
             if (!bluetoothAdapter.isEnabled()) {
                 // launch the system activity
