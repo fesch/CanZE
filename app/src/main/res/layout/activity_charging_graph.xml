@@ -100,7 +100,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 custom:min="0"
-                custom:max="25"
+                custom:max="25,64:45,128:45"
                 custom:minAlt="0"
                 custom:maxAlt="40"
                 custom:majorTicks="5"
