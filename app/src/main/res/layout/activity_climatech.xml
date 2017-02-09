@@ -159,14 +159,12 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="0dp"
                     custom:min="0"
-                    custom:max="3000"
+                    custom:max="4000"
                     custom:majorTicks="1000"
                     custom:minorTicks="500"
                     custom:fieldSID="764.6144.107"
                     custom:widget="timeplot"
                     custom:text="@string/label_IH_ClimCompRPMStatus"
-                    custom:intervals="{
-                                   }"
                     custom:colorRanges="[
                     {'sid':'764.6144.107','color':'#008a1d','from':0,'to':750},
                     {'sid':'764.6144.107','color':'#ffaa17','from':750,'to':1500},
