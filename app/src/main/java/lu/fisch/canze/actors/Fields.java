@@ -270,20 +270,14 @@ public class Fields {
                         + "760,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "760,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "760,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "760,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "760,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "762,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "762,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "762,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "762,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "762,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "762,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "763,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "763,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "763,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "763,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "763,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "763,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "764,26,35,0.1,400,0,°C,2121,6121,e2\n" // IH_InCarTemp
                         + "764,8,15,0.4,100,0,°C,2121,6121,5\n" // IH_InCarTemp
                         + "764,36,43,1,0,0,%,2121,6121,e2\n" // IH_RHumidity
@@ -297,38 +291,26 @@ public class Fields {
                         + "764,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "764,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "764,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "764,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "764,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "765,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "765,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "765,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "765,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "765,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "765,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "76d,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "76d,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "76d,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "76d,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "76d,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "76d,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "76e,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "76e,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "76e,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "76e,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "76e,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "76e,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "772,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "772,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "772,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "772,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "772,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "772,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "77e,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "77e,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "77e,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "77e,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "77e,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "77e,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "77e,24,39,0.015625,0,2,ºC,223018,623018,ff\n" // DCDC converter temperature
                         + "77e,24,31,0.015625,0,2,°C,22302b,62302b,ff\n" // inverter temperature
                         + "793,0,0,1,0,0,,1081,5081,ff\n" // start diag
@@ -338,14 +320,10 @@ public class Fields {
                         + "793,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "793,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "793,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "793,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "793,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "7b6,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "7b6,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "7b6,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "7b6,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "7b6,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "7b6,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "7bb,336,351,0.01,0,2,kW,2101,6101,e2\n" // Maximum battery input power
                         + "7bb,56,71,10,0,0,°C,2103,6103,5\n" // Mean battery compartment temp
                         + "7bb,192,207,0.01,0,2,%,2103,6103,e2\n" // Real State of Charge
@@ -479,26 +457,18 @@ public class Fields {
                         + "7bb,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "7bb,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "7bb,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "7bb,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "7bb,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "7bc,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "7bc,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "7bc,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "7bc,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "7bc,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "7bc,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "7da,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "7da,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "7da,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "7da,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "7da,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "7da,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "7ec,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "7ec,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "7ec,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "7ec,144,159,1,0,0,,2180,6180,ff\n" // Version
-                        + "7ec,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "7ec,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "7ec,24,39,2,0,2,%,222002,622002,e2\n" // SOC
                         + "7ec,24,39,2.083333333,0,2,%,222002,622002,e5\n" // SOC
                         + "7ec,24,39,0.01,0,2,V,222005,622005,ff\n" // 12V battery voltage

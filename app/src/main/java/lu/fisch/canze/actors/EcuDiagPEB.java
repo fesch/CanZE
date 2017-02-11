@@ -32,7 +32,7 @@ public class EcuDiagPEB {
         String fieldDef1 =
                 ""
                         +"77e,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        +"77e,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
+                        +"77e,0,23,1,0,0,,1902ff,5902ff,ff\n" // Query DTC
 
                         +"77e,28,51,1,0,0,km,223008,623008,ff,DistanceTotalizer\n" //
                         +"77e,24,39,1,0,0,V,223009,623009,ff,BatteryVoltage\n" //

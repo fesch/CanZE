@@ -28,15 +28,15 @@ public class Ecu {
 
     private String name;
     private int renaultId;
-    private String networks; // single letter network names, semicolon separated, V, M, O, E
+    private String networks;    // single letter network names, semicolon separated, V, M, O, E
     private int fromId;
     private int toId;
     private String mnemonic;
-    private String aliases; // semicolon separated
+    private String aliases;     // semicolon separated
     private Fields fields;
-    private Dtcs dtcs;
+    private String getDtcs;   // semicolon separated
 
-    public Ecu(String name, int renaultId, String networks, int fromId, int toId, String mnemonic, String aliases) {
+    public Ecu(String name, int renaultId, String networks, int fromId, int toId, String mnemonic, String aliases, String getDtcs) {
         this.name = name;
         this.renaultId = renaultId;
         this.networks = networks;
@@ -44,6 +44,7 @@ public class Ecu {
         this.toId = toId;
         this.mnemonic = mnemonic;
         this.aliases = aliases;
+        this.getDtcs = getDtcs;
     }
 
     public String getName() {
@@ -88,5 +89,9 @@ public class Ecu {
 
     public void setFields(Fields fields) {
         this.fields = fields;
+    }
+
+    public String getGetDtcs() {
+        return getDtcs;
     }
 }

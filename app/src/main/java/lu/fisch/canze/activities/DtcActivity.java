@@ -244,7 +244,7 @@ public class DtcActivity  extends CanzeActivity {
 
                 // compile the field query and get the Field object
                 appendResult(R.string.message_GetDtcs);
-                field = Fields.getInstance().getBySID(filter + ".5902ff.0"); // get DTC
+                field = Fields.getInstance().getBySID(filter + "." + ecu.getGetDtcs() + ".0"); // get DTC
                 if (field == null) {
                     appendResult(R.string.message_NoGetDtcsField);
                     return;
