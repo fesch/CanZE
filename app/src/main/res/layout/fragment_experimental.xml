@@ -59,8 +59,8 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
                     android:layout_marginBottom="4dp"
-                    android:text="@string/default_Dash"
-                    android:id="@+id/buttonPgHo"
+                    android:text="@string/button_charging_history"
+                    android:id="@+id/buttonChargingHistory"
                     android:layout_column="0" />
 
                 <Button

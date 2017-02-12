@@ -32,6 +32,7 @@ import android.widget.Button;
 
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.activities.ChargingHistActivity;
 import lu.fisch.canze.activities.FluenceKangooTempsActivity;
 import lu.fisch.canze.activities.LeafSpyActivity;
 import lu.fisch.canze.activities.MainActivity;
@@ -53,6 +54,19 @@ public class ExperimentalFragment extends Fragment {
 
         Button button;
 
+        button = (Button) view.findViewById(R.id.buttonChargingHistory);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MainActivity.isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                MainActivity.getInstance().leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.getInstance(), ChargingHistActivity.class);
+                ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
+            }
+        });
+
+
         button = (Button) view.findViewById(R.id.buttonLeafSpy);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +80,7 @@ public class ExperimentalFragment extends Fragment {
         });
 
 
-         button = (Button) view.findViewById(R.id.buttonFluenceKangooTemps);
+        button = (Button) view.findViewById(R.id.buttonFluenceKangooTemps);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

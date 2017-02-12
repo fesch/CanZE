@@ -120,9 +120,32 @@
     <string name="graph_MaxRealChPwr">Max battery charge (kW) / DC Charging power (kW)</string>
     <string name="graph_EnergyTemperature">Available energy (kWh) / temperature (°C)</string>
 
-    <!-- Charging prediction -->
+    <!-- Charging history -->
 
-    <string name="button_ChargingPrediction">Charging Prediction</string>
+    <string name="title_activity_charging_history">Charging history</string>
+    <string name="button_charging_history">Charging history</string>
+    <string name="header_ChargingHistory">Last 10 sessions</string>
+    <string-array name="list_ChargingHistEnd">
+        <item>Full</item>
+        <item>Unpl c</item>
+        <item>Cut ch</item>
+        <item>Fail</item>
+        <item>Sched</item>
+        <item>Flt1</item>
+        <item>Flt22</item>
+        <item>Flt3</item>
+        <item>Flt4</item>
+        <item>Flt5</item>
+        <item>Flt6</item>
+    </string-array>
+    <string-array name="list_ChargingHistTyp">
+        <item>Slow</item>
+        <item>Quick</item>
+        <item>Drop</item>
+        <item>Unknw</item>
+        <item>Sched</item>
+    </string-array>
+
 
     <!-- Clima tech -->
 
@@ -292,6 +315,7 @@
     <!-- Prediction -->
 
     <string name="title_activity_prediction">Charging Prediction</string>
+    <string name="button_ChargingPrediction">Charging Prediction</string>
     <string name="label_StateAtThisMoment">State at this moment</string>
     <string name="label_BatteryTemperature">BatteryTemperature</string>
     <string name="label_ACPower">AC power</string>
@@ -407,6 +431,12 @@
 
     <string name="menu_Experimental">Experimental</string>
     <string name="help_Experimental">buttons below are for testing purposes only</string>
+    <string name="label_distance">Km</string>
+    <string name="label_EndOfChargeStatus">End</string>
+    <string name="label_TypeOfCharge">Type</string>
+    <string name="label_EndSoc">SOC</string>
+    <string name="label_EndBatteryTemp">Temp</string>
+    <string name="label_HistDuration">Dura</string>
 
 
 </resources>
