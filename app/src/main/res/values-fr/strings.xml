@@ -359,5 +359,7 @@
 
     <string name="menu_Experimental">Expérimental</string>
     <string name="help_Experimental">Les boutons ci-dessous sont à des fins de test uniquement</string>
+    <string name="label_IH_ClimCompRPMStatus">Compressor RPM</string>
+    <string name="label_EnergyConsumed">Energy consumed kWh</string>
 
 </resources>

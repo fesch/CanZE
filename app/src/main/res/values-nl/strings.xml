@@ -356,5 +356,6 @@
 
     <string name="menu_Experimental">Experimenteel</string>
     <string name="help_Experimental">De knoppen hieronder zijn alleen voor testgebruik</string>
+    <string name="label_IH_ClimCompRPMStatus">Compressor RPM</string>
 
 </resources>

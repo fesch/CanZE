@@ -362,6 +362,9 @@ Diesen Modus zu entsperren ist nicht empfohlen.\n\n Bist du sicher, dass du den 
     <string name="alert_Version">Version</string>
     <string name="graph_Climatech">Aussen (°C) / Innen (°C) / Voreinstellung (°C) / Batterie (°C)</string>
     <string name="label_ACPressure">Druck</string>
+    <string name="label_IH_ElectricalPowerDrived">Electrical Power Drived</string>
+    <string name="label_IH_ClimCompRPMStatus">Compressor RPM</string>
+    <string name="label_EnergyConsumed">Energy consumed kWh</string>
 
 
 </resources>

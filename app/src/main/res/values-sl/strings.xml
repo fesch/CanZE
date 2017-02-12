@@ -356,11 +356,14 @@
 
     <string name="menu_Experimental">Eksperimentalni</string>
     <string name="help_Experimental">spodnji gumbi so le za namene testiranja</string>
+    <string name="label_IH_ElectricalPowerDrived">Electrical Power Drived</string>
+    <string name="label_IH_ClimCompRPMStatus">Compressor RPM</string>
+    <string name="label_EnergyConsumed">Energy consumed kWh</string>
 
-<!--     <string name="prompt_Disclaimer" translatable="false">Uradno obvestilo</string>
-     <string name="prompt_DisclaimerText" translatable="false"><![CDATA[<html>CanZE (“aplikacija”) je takšna kot je. Uporablja se na lastno odgovornost. Avtorji ne dajejo nobenih garancij na delovanje, niti za primernost za uporabo v kakršnikoli situaaciji. Nobena vrsta komunikacije z avtorji, ne pomeni garancije za delovanje. V nobenem primeru avtorji niso odgovorni za škodo nastalo z njeno uporabo. Aplikacija je namenjena le izobraževalnim namenom.
-                            <br>
-                            <br>
-                            <b>Z uporabo aplikacije posegaš v svoj avtomobil prek HW in SW ki ni pod tvojo domeno, razvit iz strani navdušenih amaterjev. Vožnja avtomobila je lahko nevarna, še toliko bolj če gledaš na zaslon telefona, raje kot na cesto!</b></html></string>]]></string>
--->
+    <!--     <string name="prompt_Disclaimer" translatable="false">Uradno obvestilo</string>
+         <string name="prompt_DisclaimerText" translatable="false"><![CDATA[<html>CanZE (“aplikacija”) je takšna kot je. Uporablja se na lastno odgovornost. Avtorji ne dajejo nobenih garancij na delovanje, niti za primernost za uporabo v kakršnikoli situaaciji. Nobena vrsta komunikacije z avtorji, ne pomeni garancije za delovanje. V nobenem primeru avtorji niso odgovorni za škodo nastalo z njeno uporabo. Aplikacija je namenjena le izobraževalnim namenom.
+                                <br>
+                                <br>
+                                <b>Z uporabo aplikacije posegaš v svoj avtomobil prek HW in SW ki ni pod tvojo domeno, razvit iz strani navdušenih amaterjev. Vožnja avtomobila je lahko nevarna, še toliko bolj če gledaš na zaslon telefona, raje kot na cesto!</b></html></string>]]></string>
+    -->
 </resources>

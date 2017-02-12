@@ -8,13 +8,9 @@
     <!-- Menus -->
 
     <string name="action_settings">Ajustes</string>
-    <string name="menu_Bluetooth" translatable="false">Bluetooth</string>
 
     <!-- Generic -->
 
-    <string name="default_Zero" translatable="false">0</string>
-    <string name="default_Dash" translatable="false">-</string>
-    <string name="default_DoubleSpace" translatable="false">\u0020\u0020</string>
     <string name="default_Yes">Si</string>
     <string name="default_No">No</string>
     <string name="default_Ok">OK</string>
@@ -26,17 +22,10 @@
 
     <string name="format_NoSid" formatted="false">El campo %s no existe en la clase Fields</string>
     <string name="format_NoView" formatted="false">Ninguna vista con el id \'%s%s\'</string>
-    <string name="format_YMDHMSs" translatable="false">yyyy-MM-dd HH:mm:ss.SSS</string> <!-- for logging and debugging -->
-    <string name="format_YMDHM" translatable="false">yyyy.MM.dd @ HH:mm</string>
-    <string name="format_YMDHMS" translatable="false">yyyy-MM-dd-HH-mm-ss</string> <!-- for log file filename -->
+    <!-- for logging and debugging -->
+    <!-- for log file filename -->
 
     <!-- Units -->
-
-    <string name="unit_Nm" translatable="false">Nm</string>
-    <string name="unit_SpeedKm" translatable="false">\u0020km/h</string>
-    <string name="unit_SpeedMi" translatable="false">\u0020mi/h</string>
-    <string name="unit_ConsumptionKm" translatable="false">\u0020kWh/100km</string>
-    <string name="unit_ConsumptionMi" translatable="false">\u0020kWh/100mi</string>
 
     <!-- Debug (generic) -->
 
@@ -62,7 +51,6 @@
     <string name="label_driver_torque_request">Par solicitado</string>
     <string name="label_ElecBrakeWheelsTorqueApplied">Par Eléctrico Aplicado (regeneración)</string>
     <string name="label_diff_friction_torque">Par de Fricción aplicado (pérdidas)</string>
-    <string name="default_ZeroNm" translatable="false">0 Nm</string>
     <string name="help_AllTorques">El par se indica como par combinado en la rueda, no par motor.</string>
 
     <!-- Charging and ChargingTech -->
@@ -251,18 +239,6 @@
 
     <string name="title_activity_heatmap_cellvoltage">Tensión celdas</string>
     <string name="button_HeatmapVoltage">Tensión de las celdas</string>
-    <string name="_1" translatable="false">1</string>
-    <string name="_9" translatable="false">9</string>
-    <string name="_17" translatable="false">17</string>
-    <string name="_25" translatable="false">25</string>
-    <string name="_33" translatable="false">33</string>
-    <string name="_41" translatable="false">41</string>
-    <string name="_49" translatable="false">49</string>
-    <string name="_57" translatable="false">57</string>
-    <string name="_65" translatable="false">65</string>
-    <string name="_73" translatable="false">73</string>
-    <string name="_81" translatable="false">81</string>
-    <string name="_89" translatable="false">89</string>
 
     <!-- Kangoo fluence temperatures -->
 
@@ -368,24 +344,8 @@
 
     <string name="toast_InitWidgets">Inicializando widgets</string>
     <string name="toast_BluetoothLost">¡Perdida la conexión Bluetooth!</string>
-    <string name="prompt_Disclaimer" translatable="false">Formal Disclaimer</string>
     <string name="prompt_Accept">Sí, ¡Lo tengo!</string>
     <string name="prompt_Decline">No, no he entendido ni jota…</string>
-    <string name="prompt_DisclaimerText" translatable="false"><![CDATA[<html>CanZE (“the software”) is provided as is. Use the software at your own
-                            risk. The authors make no warranties as to performance or fitness for a particular purpose,
-                            or any other warranties whether expressed or implied. No oral or written communication
-                            from or information provided by the authors shall create a warranty. Under no circumstances
-                            shall the authors be liable for direct, indirect, special, incidental, or consequential
-                            damages resulting from the use, misuse, or inability to use the software, even if the author
-                            has been advised of the possibility of such damages. These exclusions and limitations may not
-                            apply in all jurisdictions. You may have additional rights and some of these limitations may not
-                            apply to you. This software is only intended for scientific usage.
-                            <br>
-                            <br>
-                            <b>By using this software you are interfering with your car and doing that with hardware and
-                            software beyond your control, created by a loose team of interested amateurs in this field. Any
-                            car is a possibly lethal piece of machinery and you might hurt or kill yourself or others using
-                            it, or even paying attention to the displays instead of watching the road.</b></html></string>]]></string>
     <string name="toast_Reconnecting">Reconectando el Bluetooth…</string>
     <string name="toast_WaitingSettings">Deteniendo el Bluetooth. Cargando los ajustes. Por favor espere ....</string>
     <string name="toast_NotWhileDriving">Imposible durante la conducción…</string>
@@ -403,6 +363,9 @@
 
     <string name="menu_Experimental">Experimental</string>
     <string name="help_Experimental"> only</string>
+    <string name="label_IH_ElectricalPowerDrived">Electrical Power Drived</string>
+    <string name="label_IH_ClimCompRPMStatus">Compressor RPM</string>
+    <string name="label_EnergyConsumed">Energy consumed kWh</string>
 
 
 </resources>

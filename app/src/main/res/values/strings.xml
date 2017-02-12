@@ -407,6 +407,7 @@
 
     <string name="menu_Experimental">Experimental</string>
     <string name="help_Experimental">buttons below are for testing purposes only</string>
+    <string name="label_IH_ElectricalPowerDrived">Electrical Power Drived</string>
 
 
 </resources>
