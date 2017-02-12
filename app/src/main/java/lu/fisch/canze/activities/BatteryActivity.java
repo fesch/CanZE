@@ -28,8 +28,9 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.interfaces.DebugListener;
 
-public class BatteryActivity extends CanzeActivity {
+public class BatteryActivity extends CanzeActivity implements DebugListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +38,13 @@ public class BatteryActivity extends CanzeActivity {
         setContentView(R.layout.activity_battery);
 
         TextView textView = (TextView) findViewById(R.id.link);
-        textView.setText(Html.fromHtml(getString(R.string.help_QA)));
+        textView.setText(Html.fromHtml(MainActivity.getStringSingle(R.string.help_QA)));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
-    protected void initListeners () {}
+    protected void initListeners () {
+        MainActivity.getInstance().setDebugListener(this);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

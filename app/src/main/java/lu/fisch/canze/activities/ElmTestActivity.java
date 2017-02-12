@@ -44,7 +44,7 @@ public class ElmTestActivity extends CanzeActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                appendResult(getString(R.string.message_PollerStopping));
+                appendResult(MainActivity.getStringSingle(R.string.message_PollerStopping));
 
                 if (MainActivity.device != null){
                     // stop the poller thread
@@ -52,7 +52,7 @@ public class ElmTestActivity extends CanzeActivity {
                 }
 
                 if (!BluetoothManager.getInstance().isConnected()) {
-                    appendResult(getString(R.string.message_NoConnection));
+                    appendResult(MainActivity.getStringSingle(R.string.message_NoConnection));
                     return;
                 }
 
@@ -73,8 +73,8 @@ public class ElmTestActivity extends CanzeActivity {
 
         appendResult(R.string.message_SendingInit);
         if (!MainActivity.device.initDevice(1)) {
-            appendResult(getString(R.string.message_InitFailed));
-            appendResult(getString(R.string.message_Problem) + MainActivity.device.getLastInitProblem() + "\n");
+            appendResult(MainActivity.getStringSingle(R.string.message_InitFailed));
+            appendResult(MainActivity.getStringSingle(R.string.message_Problem) + MainActivity.device.getLastInitProblem() + "\n");
             return;
         }
         appendResult(R.string.message_ExpectedResult);
@@ -96,7 +96,7 @@ public class ElmTestActivity extends CanzeActivity {
             return;
         }
         if (!backRes.startsWith("6180")) {
-            appendResult(getString(R.string.message_UnexpectedResult) + backRes.replace('\r', '•') + "]\n");
+            appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes.replace('\r', '•') + "]\n");
             return;
         }
         appendResult(R.string.message_ExpectedResult);
@@ -118,7 +118,7 @@ public class ElmTestActivity extends CanzeActivity {
             return;
         }
         if (backRes.length() != 10) {
-            appendResult(getString(R.string.message_UnexpectedResult) + backRes.replace('\r', '•') + "]\n");
+            appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes.replace('\r', '•') + "]\n");
             return;
         }
         appendResult(R.string.message_ExpectedResult);
@@ -149,7 +149,7 @@ public class ElmTestActivity extends CanzeActivity {
     }
 
     private void appendResult(int strResource) {
-        final String localStr = getString(strResource);
+        final String localStr = MainActivity.getStringSingle(strResource);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

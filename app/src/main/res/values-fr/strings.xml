@@ -144,6 +144,7 @@
         <item>Dégivrage</item>
         <item>Ralenti</item>
     </string-array>
+    <string name="label_IH_ElectricalPowerDrived">Puissance compresseur</string>
     <string name="graph_Climatech">Extérieure (°C) / Habitacle (°C) / Consigne (°C) / Batterie (°C)</string>
 
     <!-- Consumption -->

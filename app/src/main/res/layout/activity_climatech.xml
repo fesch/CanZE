@@ -130,13 +130,61 @@
                     android:id="@+id/text_CLM" />
             </TableRow>
 
+            <!-- <TableRow>
+                <TextView
+                    android:text="@string/label_IH_ElectricalPowerDrived"
+                    android:layout_weight="2"
+                    />
+                <TextView
+                    android:text="@string/default_Dash"
+                    android:gravity="end"
+                    android:layout_weight="1"
+                    android:id="@+id/text_CPW" />
+            </TableRow> -->
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <lu.fisch.canze.widgets.WidgetView
+                    android:id="@+id/speed"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="0dp"
+                    custom:min="0"
+                    custom:max="4000"
+                    custom:majorTicks="1000"
+                    custom:minorTicks="500"
+                    custom:fieldSID="764.6144.107"
+                    custom:widget="timeplot"
+                    custom:text="@string/label_IH_ClimCompRPMStatus"
+                    custom:colorRanges="[
+                    {'sid':'764.6144.107','color':'#008a1d','from':0,'to':750},
+                    {'sid':'764.6144.107','color':'#ffaa17','from':750,'to':1500},
+                    {'sid':'764.6144.107','color':'#FF0000','from':1500,'to':2250},
+                    {'sid':'764.6144.107','color':'#cc00ff','from':2250,'to':3000}
+                    ]"
+                    custom:options="{
+                                   '764.6144.107':'gradient'
+                                }"
+                    />
+
+            </TableRow>
+
         </TableLayout>
 
 
 
         <TextView
             android:text="@string/label_Temperatures"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000" />
@@ -156,7 +204,7 @@
             custom:max="40"
             custom:majorTicks="10"
             custom:minorTicks="2"
-            custom:fieldSID="764.6143.110,764.6121.26,699.8,42e.44"
+            custom:fieldSID="764.6143.110,764.6121.26,800.6105.24,42e.44"
             custom:widget="timeplot"
             custom:text="@string/graph_Climatech"
             custom:colorRanges="[
@@ -165,7 +213,7 @@
             custom:intervals="{
                                    '764.6143.110':10000,
                                    '764.6121.26':10000,
-                                   '699.8':10000,
+                                   '800.6105.24':2000,
                                    '42e.44':10000
                                    }"
 

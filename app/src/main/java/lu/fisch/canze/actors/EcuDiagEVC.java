@@ -31,8 +31,8 @@ public class EcuDiagEVC {
 
         String fieldDef1 =
                 ""
-                        +"7ec,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        +"7ec,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
+                        +"7ec,0,7,1,0,0,,14ffffff,54,ff\n" // Reset DTC
+                        +"7ec,0,23,1,0,0,,1902af,5902af,ff\n" // Query DTC
 
                         +"7ec,24,31,1,40,0,°C,222001,622001,ff,Battery Rack temperature\n" //
                         +"7ec,24,39,.02,0,0,%,222002,622002,ff,State Of Charge (SOC) HV battery\n" //

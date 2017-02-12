@@ -41,7 +41,7 @@ public class FieldLogger {
     private File logFile = null;
 
 
-    private SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getInstance().getApplicationContext().getString(R.string.format_YMDHMS), Locale.getDefault());
+    private SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMS), Locale.getDefault());
 
     private boolean isCreated()
     {

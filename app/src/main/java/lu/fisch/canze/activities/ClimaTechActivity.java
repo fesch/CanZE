@@ -40,6 +40,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
     // public static final String SID_ChargingPower                    = "42e.56";
     public static final String SID_HvCoolingState                   = "430.38";
     public static final String SID_HvEvaporationTemp                = "430.40";
+    // public static final String SID_ClimaCompressorPower             = "764.6143.88";
     public static final String SID_Pressure                         = "764.6143.134";
     public static final String SID_BatteryConditioningMode          = "432.36";
     public static final String SID_ClimaLoopMode                    = "42a.48";
@@ -63,6 +64,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
             // addListener(SID_ChargingPower);
             addField(SID_HvCoolingState, 0);
             addField(SID_HvEvaporationTemp, 0);
+            // addField(SID_ClimaCompressorPower,0);
             addField(SID_Pressure, 0);
             addField(SID_BatteryConditioningMode, 0);
             addField(SID_ClimaLoopMode, 0);
@@ -115,6 +117,9 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
                         tv.setText(climate_Status[(int) field.getValue()]);
                         tv = null;
                         break;
+                    //case SID_ClimaCompressorPower:
+                        // tv = (TextView) findViewById(R.id.text_CPW);
+                        // break;
 
                 }
                 // set regular new content, all exeptions handled above

@@ -320,6 +320,19 @@
                         />
                 </TableRow>
 
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_EnergyConsumed"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textENC"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
             </TableLayout>
 
             <TextView
@@ -336,7 +349,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelKMA"
                         android:text="@string/label_DISTA"
                         android:layout_weight="2"
                         />
@@ -347,6 +359,7 @@
                         android:layout_weight="1"
                         />
                 </TableRow>
+
             </TableLayout>
 
 
@@ -475,6 +488,14 @@
                         android:padding="3dip"
                         />
 
+                    <TextView
+                        android:text="@string/unit_Celsius"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:padding="3dip"
+                        />
+
                 </TableRow>
                 <TableRow
                     android:layout_width="fill_parent"
@@ -583,6 +604,13 @@
                     <TextView
                         android:id="@+id/text_bala_12_temp"
                         android:text="@string/default_Dash"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:padding="3dip"
+                        />
+
+                    <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"

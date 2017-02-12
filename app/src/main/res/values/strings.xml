@@ -37,6 +37,7 @@
     <string name="unit_SpeedMi" translatable="false">\u0020mi/h</string>
     <string name="unit_ConsumptionKm" translatable="false">\u0020kWh/100km</string>
     <string name="unit_ConsumptionMi" translatable="false">\u0020kWh/100mi</string>
+    <string name="unit_Celsius" translatable="false">°C</string>
 
     <!-- Debug (generic) -->
 
@@ -84,6 +85,7 @@
     <string name="label_TTF">Time to full min</string>
     <string name="label_ETF">Energy to full kWh</string>
     <string name="label_DISTA">Available range</string>
+    <string name="label_EnergyConsumed">Energy consumed kWh</string>
     <string name="label_Volt">Volts HV Battery</string>
     <string name="label_Amps">Amps HV Battery</string>
     <string name="label_DcPwr">DC Power kW</string>
@@ -157,6 +159,8 @@
         <item>Demisting</item>
         <item>Idle</item>
     </string-array>
+    <!-- <string name="label_IH_ElectricalPowerDrived">Power compressor</string> -->
+    <string name="label_IH_ClimCompRPMStatus">Compressor RPM</string>
     <string name="graph_Climatech">External (°C) / Internal (°C) / Setpoint (°C) / Battery (°C)</string>
 
     <!-- Consumption -->

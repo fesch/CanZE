@@ -33,7 +33,7 @@ public class EcuDiagEPS {
         String fieldDef1 =
                 ""
                         +"762,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        +"762,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
+                        +"762,0,23,1,0,0,,1902ff,5902ff,ff\n" // Query DTC
 
                         +"762,16,47,1,0,0,,2192,6192,ff,APV.ECU production date\n" //
                         +"762,32,39,1,0,0,,2182,6182,ff,BUS OFF parameter\n" //

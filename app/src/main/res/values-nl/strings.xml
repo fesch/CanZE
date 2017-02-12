@@ -68,6 +68,7 @@
     <string name="label_TTF">Tijd to 100% geladen min</string>
     <string name="label_ETF">Energie tot 100% geladen kWh</string>
     <string name="label_DISTA">Beschikbaar bereik</string>
+    <string name="label_EnergyConsumed">Verbruikte energie kWh</string>
     <string name="label_Volt">Spanning tractiebatterij</string>
     <string name="label_Amps">Stroom tractiebatterij</string>
     <string name="label_DcPwr">DC vermogen kW</string>
@@ -141,6 +142,7 @@
         <item>Ontwaseming</item>
         <item>Vrijloop</item>
     </string-array>
+    <string name="label_IH_ElectricalPowerDrived">Vermogen compressor</string>
     <string name="graph_Climatech">Buiten (°C) / Binnen (°C) / Instelling (°C) / Batterij (°C)</string>
 
     <!-- Consumption -->
@@ -202,7 +204,6 @@
     <string name="message_ExpectedResult">Verwacht resultaat ontvangen\n==========\n</string>
     <string name="message_FieldNotExists">Gevraagd veld bestaat niet. Dit is een fout in de test suite. Gaarne rapporteren\n</string>
     <string name="message_Ready">\nGereed</string>
-    <!-- <string name="message_ResultNull">Result is null. This should never happen, please report\n</string> -->
     <string name="message_ResultEmpty">Resultaat is leeg. Uw apparaat zal niet werken\n</string>
     <string name="message_Problem">Probleem:</string>
     <string name="message_PrepIsoTp">\nVerwerking voorbereid ISO-TP commando CLUSTER SW\n</string>

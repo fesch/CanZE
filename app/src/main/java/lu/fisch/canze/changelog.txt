@@ -1,3 +1,26 @@
+2017.02.12 [Jeroen] Added total energy to ChargingTech #430
+2017.02.12 [Bob] Spanish language file added, many thanks to the contributors
+2017.02.11 [Jeroen] Improved code to get DTC's
+2017.02.11 [Jeroen] Added TCU to the DTC reporting
+2017.02.11 [Jeroen] Changed http interface to use RequestID instead of ResponseID
+2017.02.09 [Jeroen] Added compressor RPM graph (0-4000) in climatech
+2017.02.09 [Jeroen] Fixed Y axis on ChargingGraphs for model 90s
+2017.02.06 [Jeroen] Fixed formatting problem in ChargingTech
+2017.02.05 [Jeroen] Code fixup on getting strings from language packs
+2017.02.05 [Jeroen] Added debug lines to all running screens
+2017.02.05 [Jeroen] Lots of code and layout cleanup
+2017.02.03 [Jeroen] Allow operation without BT adapter so runs on emulator
+2017.02.02 [Jeroen] Fixed ELM test
+2017.02.02 [Jeroen] Fixed ELM test #427
+2017.02.02 [Bob] Merged German with file received from Roland Klose <rkl.fritzbox@gmx.de>
+2017.02.02 [Jeroen] Compressor power dissed, replaced with RPM.
+2017.02.02 [Jeroen] Hotfix on master: log level #417
+2017.02.02 [Jeroen] Added German (Thank you Stefan!)
+2017.02.01 [Jeroen] Climatech, climate replaced power by a graph
+2017.01.31 [Jeroen] Added Slovenian (Thank you Zdenko!)
+2017.01.27 [Jeroen] Climatech, Power as extra field
+
+---< Version 1.21 / 2017.01.29 >---2017.01.29 [Bob] Fixing issue: V1.20 crashes #407
 2017.01.29 [Bob] Fixing issue: V1.20 crashes #407
 
 ---< Version 1.20 / 2017.01.28 >---
