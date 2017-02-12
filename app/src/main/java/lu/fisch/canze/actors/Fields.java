@@ -480,6 +480,7 @@ public class Fields {
                         + "7ec,24,31,1,1,0,,223318,623318,ff\n" // Motor Water pump speed
                         + "7ec,24,31,1,1,0,,223319,623319,ff\n" // Charger pump speed
                         + "7ec,24,31,1,1,0,,22331A,62331A,ff\n" // Heater water pump speed
+                        + "7ec,24,47,0.001,1,0,kWh,2233dc,6233dc,ff\n" // Consumed domestic energy
 
                 ;
 

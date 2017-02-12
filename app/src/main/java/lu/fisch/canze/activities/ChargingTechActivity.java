@@ -50,6 +50,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     public static final String SID_ChargingStatusDisplay            = "65b.41";
     public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
     public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
+    public static final String SID_EnergyConsumed                   = "7ec.6233dc.24";
     // public static final String SID_CapacityFluKan                   = "7bb.6101.348";
     // public static final String SID_CapacityZoe                      = "";
     public static final String SID_RealSoC                          = "7bb.6103.192";
@@ -99,6 +100,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addField(SID_12A);
         addField(SID_DcLoad);
         addField(SID_HvKilometers);
+        addField(SID_EnergyConsumed);
         addField(SID_ChargingStatusDisplay);
         addField(SID_TractionBatteryVoltage);
         addField(SID_TractionBatteryCurrent);
@@ -227,6 +229,9 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         tv = (TextView) findViewById(R.id.textHKM);
                         tv.setText(String.format(Locale.getDefault(), "%.0f", field.getValue()));
                         tv = null;
+                        break;
+                    case SID_EnergyConsumed:
+                        tv = (TextView) findViewById(R.id.textENC);
                         break;
                     //case SID_CapacityFluKan:
                     //case SID_CapacityZoe:
@@ -368,7 +373,8 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue()));
+                    double val = field.getValue();
+                    tv.setText(Double.isNaN(val) ? "" : String.format(Locale.getDefault(), "%.1f", val));
                 }
             }
         });

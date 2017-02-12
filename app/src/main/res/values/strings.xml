@@ -85,6 +85,7 @@
     <string name="label_TTF">Time to full min</string>
     <string name="label_ETF">Energy to full kWh</string>
     <string name="label_DISTA">Available range</string>
+    <string name="label_EnergyConsumed">Energy consumed kWh</string>
     <string name="label_Volt">Volts HV Battery</string>
     <string name="label_Amps">Amps HV Battery</string>
     <string name="label_DcPwr">DC Power kW</string>
