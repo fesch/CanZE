@@ -36,10 +36,10 @@ import lu.fisch.canze.interfaces.FieldListener;
 public class ChargingHistActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     public static final String SID_Preamble_KM                      = "7ec.6233d4."; // 240 - 24
-    public static final String SID_Preamble_END                     = "7ec.6233d5."; // 96 - 8
-    public static final String SID_Preamble_TYP                     = "7ec.6233d6."; // 96 - 8
+    public static final String SID_Preamble_END                     = "7ec.6233d5."; //  96 -  8
+    public static final String SID_Preamble_TYP                     = "7ec.6233d6."; //  96 -  8
     public static final String SID_Preamble_SOC                     = "7ec.6233d7."; // 168 - 16
-    public static final String SID_Preamble_TMP                     = "7ec.6233d8."; // 96 - 8
+    public static final String SID_Preamble_TMP                     = "7ec.6233d8."; //  96 -  8
     public static final String SID_Preamble_DUR                     = "7ec.6233d9."; // 168 - 16
 
     final String charging_HistEnd [] = MainActivity.getStringList(R.array.list_ChargingHistEnd);
@@ -70,8 +70,9 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
         }
     }
 
-    // This is the event fired as soon as this the registered fields are
-    // getting updated by the corresponding reader class.
+    // This event is fired as soon as any registered field is set through its setValue() method
+    // by the Message.onMessageCompleteEvent event.
+
     @Override
     public void onFieldUpdateEvent(final Field field) {
         // the update has to be done in a separate thread
@@ -79,47 +80,38 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                String fieldId = field.getSID().substring(0,11); // 7e4.2233D4.
-                String bitpos = field.getSID().substring(11); // 240 = 0 etc
-                String id;
-                TextView tv = null;
+                String sidPreamble = field.getSID().substring(0,11); // 7e4.2233D4.
+                String startBit    = field.getSID().substring(11); // 240 = 0 etc
+                double val         = field.getValue();
+                TextView tv        = null;
 
-                MainActivity.debug("ChargingHistActivity:" + fieldId);
-
-                // get the text field
-                switch (fieldId) {
+                // get the text column, select the row through the bit position
+                switch (sidPreamble) {
                     case SID_Preamble_KM:
-                        id = "textKM" + (11 - Integer.parseInt(bitpos) / 24);
-                        tv = (TextView) findViewById(getResources().getIdentifier(id, "id", getPackageName()));
+                        tv = (TextView) findViewById(getResources().getIdentifier("textKM"  + ((264 - Integer.parseInt(startBit)) / 24), "id", getPackageName()));
                         break;
                     case SID_Preamble_END:
-                        id = "textEND" + (13 - Integer.parseInt(bitpos) / 8);
-                        tv = (TextView) findViewById(getResources().getIdentifier(id, "id", getPackageName()));
-                        tv.setText(charging_HistEnd[(int) field.getValue()]);
+                        tv = (TextView) findViewById(getResources().getIdentifier("textEND" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
+                        if (tv != null) tv.setText(Double.isNaN(val) ? "" : charging_HistEnd[(int) field.getValue()]);
                         tv = null;
                         break;
                     case SID_Preamble_TYP:
-                        id = "textTYP" + (13 - Integer.parseInt(bitpos) / 8);
-                        tv = (TextView) findViewById(getResources().getIdentifier(id, "id", getPackageName()));
-                        tv.setText(charging_HistTyp[(int) field.getValue()]);
+                        tv = (TextView) findViewById(getResources().getIdentifier("textTYP" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
+                        if (tv != null) tv.setText(Double.isNaN(val) ? "" : charging_HistTyp[(int) field.getValue()]);
                         tv = null;
                         break;
                     case SID_Preamble_SOC:
-                        id = "textSOC" + (12 - Integer.parseInt(bitpos) / 16);
-                        tv = (TextView) findViewById(getResources().getIdentifier(id, "id", getPackageName()));
+                        tv = (TextView) findViewById(getResources().getIdentifier("textSOC" + ((184 - Integer.parseInt(startBit)) / 16), "id", getPackageName()));
                         break;
                     case SID_Preamble_TMP:
-                        id = "textTMP" + (13 - Integer.parseInt(bitpos) / 8);
-                        tv = (TextView) findViewById(getResources().getIdentifier(id, "id", getPackageName()));
+                        tv = (TextView) findViewById(getResources().getIdentifier("textTMP" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
                         break;
                     case SID_Preamble_DUR:
-                        id = "textDUR" + (12 - Integer.parseInt(bitpos) / 16);
-                        tv = (TextView) findViewById(getResources().getIdentifier(id, "id", getPackageName()));
+                        tv = (TextView) findViewById(getResources().getIdentifier("textDUR" + ((184 - Integer.parseInt(startBit)) / 16), "id", getPackageName()));
                         break;
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    double val = field.getValue();
                     tv.setText(Double.isNaN(val) ? "" : String.format(Locale.getDefault(), "%.0f", val));
                 }
             }
