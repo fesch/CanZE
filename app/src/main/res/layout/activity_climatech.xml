@@ -162,18 +162,22 @@
                     custom:max="4000"
                     custom:majorTicks="1000"
                     custom:minorTicks="500"
-                    custom:fieldSID="764.6144.107"
+                    custom:fieldSID="764.6144.107,764.6143.86"
                     custom:widget="timeplot"
                     custom:text="@string/label_IH_ClimCompRPMStatus"
                     custom:colorRanges="[
                     {'sid':'764.6144.107','color':'#008a1d','from':0,'to':750},
                     {'sid':'764.6144.107','color':'#ffaa17','from':750,'to':1500},
                     {'sid':'764.6144.107','color':'#FF0000','from':1500,'to':2250},
-                    {'sid':'764.6144.107','color':'#cc00ff','from':2250,'to':3000}
+                    {'sid':'764.6144.107','color':'#cc00ff','from':2250,'to':3000},
+                    {'sid':'764.6143.86','color':'#008a1d','from':1,'to':1},
+                    {'sid':'764.6143.86','color':'#ffffff','from':2,'to':2}
                     ]"
                     custom:options="{
-                                   '764.6144.107':'gradient'
+                                   '764.6144.107':'gradient',
+                                   '764.6143.86':'colorline[3900],dot'
                                 }"
+
                     />
 
             </TableRow>
