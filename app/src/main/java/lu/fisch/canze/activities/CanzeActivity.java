@@ -55,10 +55,13 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         if(MainActivity.device!=null)
-            if(!BluetoothManager.getInstance().isConnected())
+            if(!BluetoothManager.getInstance().isConnected()) {
                 // restart Bluetooth
+                MainActivity.debug("CanzeActivity: restarting BT");
                 BluetoothManager.getInstance().connect();
+            }
         MainActivity.debug("CanzeActivity: onCreate ("+this.getClass().getSimpleName()+")");
         //if(!widgetView) {
             // register all fields
@@ -103,8 +106,12 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             MainActivity.debug("CanzeActivity: onResume > reloadBluetooth");
             // restart Bluetooth
             MainActivity.getInstance().reloadBluetooth(false);
-            iLeftMyOwn=false;
+            iLeftMyOwn = false;
         }
+
+        if(BluetoothManager.getInstance().isDummyMode())
+            MainActivity.device.initConnection();
+
         if(!widgetClicked) {
             MainActivity.debug("CanzeActivity: onResume > initWidgets");
             // initialise the widgets (if any present)
