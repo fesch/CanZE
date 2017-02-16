@@ -282,6 +282,7 @@ public class Fields {
                         + "764,8,15,0.4,100,0,°C,2121,6121,5\n" // IH_InCarTemp
                         + "764,36,43,1,0,0,%,2121,6121,e2\n" // IH_RHumidity
                         + "764,16,23,1,0,0,%,2121,6121,5\n" // IH_RHumidity
+                        + "764,86,87,1,0,0,,2143,6143,ff\n" // Eco mode requested
                         + "764,110,117,1,40,0,%,2143,6143,ff\n" // IH_ExternalTemp
                       //+ "764,88,92,100,0,0,W,2143,6143,ff\n" // Compressor power
                         + "764,134,142,.1,0,0,bar,2143,6143,ff\n" // IH_ACHighPressureSensor
