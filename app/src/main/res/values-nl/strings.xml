@@ -68,6 +68,7 @@
     <string name="label_TTF">Tijd to 100% geladen min</string>
     <string name="label_ETF">Energie tot 100% geladen kWh</string>
     <string name="label_DISTA">Beschikbaar bereik</string>
+    <string name="label_EnergyConsumed">Verbruikte energie kWh</string>
     <string name="label_Volt">Spanning tractiebatterij</string>
     <string name="label_Amps">Stroom tractiebatterij</string>
     <string name="label_DcPwr">DC vermogen kW</string>

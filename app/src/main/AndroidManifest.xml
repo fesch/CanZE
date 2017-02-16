@@ -89,6 +89,9 @@
         <activity
             android:name=".activities.RangeActivity"
             android:label="@string/title_activity_range" />
+        <activity
+            android:name=".activities.ChargingHistActivity"
+            android:label="@string/title_activity_charging_history" />
     </application>
 
 </manifest>

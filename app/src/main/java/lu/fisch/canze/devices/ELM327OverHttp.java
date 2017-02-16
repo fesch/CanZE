@@ -101,7 +101,7 @@ public class ELM327OverHttp extends Device {
 
         if (!deviceIsInitialized) {return new Message(frame, "-E-Re-initialisation needed", true); }
 
-        String msg = getMessage ("IsoTp?f=" + frame.getSendingEcu().getHexFromId() + "." + frame.getSendingEcu().getHexToId() + "." + frame.getResponseId());
+        String msg = getMessage ("IsoTp?f=" + frame.getSendingEcu().getHexFromId() + "." + frame.getSendingEcu().getHexToId() + "." + frame.getRequestId());
         MainActivity.debug("ELM327Http: request IsoTp frame result " + msg);
 
         return new Message (frame, msg, msg.substring(0,1).compareTo("-") == 0);
@@ -141,23 +141,24 @@ public class ELM327OverHttp extends Device {
 
     private String httpGet (String urlString) {
         try {
+            MainActivity.debug("ELM327Http: httpGet url:" + urlString);
             URL url = new URL(urlString);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             try {
                 urlConnection.setConnectTimeout(10000);
-                MainActivity.debug("ELM327Http: httpGet start connection and get result");
+                // MainActivity.debug("ELM327Http: httpGet start connection and get result");
                 InputStream ips = urlConnection.getInputStream();
-                MainActivity.debug("ELM327Http: httpGet ips opened");
+                // MainActivity.debug("ELM327Http: httpGet ips opened");
                 BufferedInputStream in = new BufferedInputStream(ips);
-                MainActivity.debug("ELM327Http: httpGet in opened");
+                // MainActivity.debug("ELM327Http: httpGet in opened");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(in));
                 String st;
                 StringBuilder stringBuilder = new StringBuilder(200);
                 while ((st = reader.readLine()) != null) {
-                    MainActivity.debug("ELM327Http: httpGet append " + st);
+                    // MainActivity.debug("ELM327Http: httpGet append " + st);
                     stringBuilder.append(st);
                 }
-                MainActivity.debug("ELM327Http: httpGet return " + stringBuilder.toString());
+                // MainActivity.debug("ELM327Http: httpGet return " + stringBuilder.toString());
                 return stringBuilder.toString();
             } catch(Exception e) {
                     e.printStackTrace();

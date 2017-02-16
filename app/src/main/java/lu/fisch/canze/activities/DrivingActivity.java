@@ -42,6 +42,7 @@ import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
+import lu.fisch.canze.activities.MainActivity;
 
 public class DrivingActivity extends CanzeActivity implements FieldListener, DebugListener {
 
@@ -85,9 +86,9 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         if (MainActivity.milesMode) {
             TextView tv;
             tv = (TextView) findViewById(R.id.textSpeedUnit);
-            tv.setText(getResources().getString(R.string.unit_SpeedMi));
+            tv.setText(MainActivity.getStringSingle(R.string.unit_SpeedMi));
             tv = (TextView) findViewById(R.id.textConsumptionUnit);
-            tv.setText(getResources().getString(R.string.unit_ConsumptionMi));
+            tv.setText(MainActivity.getStringSingle(R.string.unit_ConsumptionMi));
         }
     }
 
@@ -123,7 +124,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         alertDialogBuilder
                 .setView(distToDestView)
                 .setTitle(R.string.prompt_Distance)
-                .setMessage(getString(R.string.prompt_SetDistance))
+                .setMessage(MainActivity.getStringSingle(R.string.prompt_SetDistance))
 
                 .setCancelable(true)
                 .setPositiveButton(R.string.default_Ok, new DialogInterface.OnClickListener() {

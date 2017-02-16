@@ -33,7 +33,7 @@ public class EcuDiagCLUSTER {
         String fieldDef1 =
                 ""
                         +"763,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        +"763,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
+                        +"763,0,23,1,0,0,,1902ff,5902ff,ff\n" // Query DTC
 
                         +"763,24,55,1,0,0,Km,220206,620206,ff,Config Entretien_Odometre general\n" //
                         +"763,24,39,1,0,0,km,220202,620202,ff,Config Entretien_Vidange courant. distance\n" //

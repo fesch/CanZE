@@ -111,10 +111,10 @@
 
     <string name="title_activity_clima_tech">Klimaanlage</string>
     <string name="button_Climate">Klima</string>
-    <string name="label_ClimaLoopMode">Umluft</string>
+    <string name="label_ClimaLoopMode">Klima Kreis Modus</string>
     <string name="label_HVBatConditioningMode">Kühlungmodus der Traktionsbatterie</string>
     <string name="label_Temperatures">Temperaturen</string>
-    <string name="label_HVEvaporationTemp">Kompressortemp. Batterie</string>
+    <string name="label_HVEvaporationTemp">Verdampfertemp. Batterie</string>
     <string name="label_HVCoolingState">Kühlungsstatus Tracktionsbatterie</string>
     <string name="label_ChargingPower">Ladeleistung kW</string>
     <string name="label_EngineFanSpeed">Motor Lüfter Geschw.</string>
@@ -139,7 +139,7 @@
         <item>Wärmepumpe</item>
         <item> </item>
         <item>Freimachen</item>
-        <item>inaktiv</item>
+        <item>Inaktiv</item>
     </string-array>
 
     <!-- Consumption -->
@@ -187,7 +187,7 @@
     <string name="message_NoTestSessionField">Session starten Feld existiert nicht\n</string>
     <string name="message_UnexpectedResult">Anfrage gesendet, aber unerwartetes Ergebnis bekommen:[</string>
     <string name="message_GetDtcs">\nSende Start DTCs Sequenz\n</string>
-    <string name="message_NoGetDtcsField">Hole DTCs Feld existiert nicht\n</string>
+    <string name="message_NoGetDtcsField">Das DTC Feld existiert nicht\n</string>
     <string name="message_NoActiveDtcs">\nKeine aktiven DTCs\n</string>
     <string name="message_clear">"Löschen "</string>
     <string name="message_NoClearDtcField">Lösche DTCs Feld existiert nicht\n</string>
@@ -238,7 +238,7 @@
     <string name="label_EvaporatorTemperature">Temperatur Kompressor</string>
     <string name="label_WaterTemperatureHeating">Wasser Temperaturen für Heizung</string>
     <string name="label_DcDcConverterTemperature">DC-DC Konverter Temperatur</string>
-    <string name="label_InverterTemperature">Inverter Temperatur</string>
+    <string name="label_InverterTemperature">Wechselrichtertemperatur</string>
     <string name="label_ExternalTemperature">Außentemperatur</string>
     <string name="label_InternalTemperature">Innenraumtemperatur</string>
     <string name="header_KangooFluenceFansPumps">Ventilatoren und Pumpen (Beschreibung folgt)</string>
@@ -256,7 +256,7 @@
 
     <string name="title_activity_prediction">Ladevorhersage</string>
     <string name="label_StateAtThisMoment">momentaner Zustand</string>
-    <string name="label_BatteryTemperature">Batterie Temperatur</string>
+    <string name="label_BatteryTemperature">Batterietemperatur</string>
     <string name="label_ACPower">Wechselspannung</string>
     <string name="label_StateOfCharge">Ladezustand</string>
     <string name="label_ChargingPrediction">Ladevorhersage</string>
@@ -339,14 +339,14 @@ Diesen Modus zu entsperren ist nicht empfohlen.\n\n Bist du sicher, dass du den 
     <string name="toast_BluetoothLost">Bluetooth Verbindung verloren!</string>
     <string name="prompt_Accept">Ja, Ich habe verstanden!</string>
     <string name="prompt_Decline">Nein, Ich verstehe kein Wort...</string>
-    <string name="toast_Reconnecting">Wiederverbinde mit Bluetooth…</string>
+    <string name="toast_Reconnecting">Wiederverbinden mit Bluetooth…</string>
     <string name="toast_WaitingSettings">Bluetooth wird gestoppt. Einstellungen werden geladen. Bitte warten ....</string>
     <string name="toast_NotWhileDriving">Während der Fahrt nicht möglich …</string>
 
     <!-- Main (fragment) -->
 
     <string name="menu_Main">Hauptmenü</string>
-    <string name="help_Main">Verwende Wisch-Gesten um zwishcen Hauptmenü, technischen Anzeigen und experimentalen Anzeigen zu wechseln.</string>
+    <string name="help_Main">Verwende Wisch-Gesten um zwischen Hauptmenü, technischen Anzeigen und experimentalen Anzeigen zu wechseln.</string>
 
     <!-- Technical (fragment) -->
 
