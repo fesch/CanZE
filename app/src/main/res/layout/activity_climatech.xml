@@ -175,7 +175,7 @@
                     ]"
                     custom:options="{
                                    '764.6144.107':'gradient',
-                                   '764.6143.86':'colorline[3900]'
+                                   '764.6143.86':'colorline[3900],dot'
                                 }"
 
                     />
