@@ -1,6 +1,9 @@
+---< Version 1.23 / 2017.02.19 >---
 2017.02.16 [Bob] Repair poller restart for HTTP based device
 2017.02.16 [Bob] Fixed some imprecisions in widget Timeplot
 2017.02.16 [Bob] Added option colorline[x] for widget Timeplot
+
+---< Version 1.22 / 2017.02.12 >---
 2017.02.12 [Jeroen] Added total energy to ChargingTech #430
 2017.02.12 [Bob] Spanish language file added, many thanks to the contributors
 2017.02.11 [Jeroen] Improved code to get DTC's
