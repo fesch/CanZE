@@ -75,6 +75,11 @@ public class BluetoothManager {
 
     private BluetoothAdapter bluetoothAdapter = null;
     private BluetoothSocket bluetoothSocket = null;
+
+    public boolean isDummyMode() {
+        return dummyMode;
+    }
+
     private boolean dummyMode = false;
 
     private BluetoothEvent bluetoothEvent;
@@ -159,6 +164,8 @@ public class BluetoothManager {
 
     public void connect()
     {
+        if (dummyMode) return;
+
         if(connectBluetoothAddress==null) throw new InvalidParameterException("connect() has to be called at least once with parameters!");
         connect(connectBluetoothAddress, connectSecure, connectRetries);
     }

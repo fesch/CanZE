@@ -122,11 +122,13 @@ public class Timeplot extends Drawable {
         int graphHeight = height-g.stringHeight(sdf.format(Calendar.getInstance().getTime()))-5;
 
         // draw the ticks
+        double realMaxAlt=getMaxAlt();
         if(minorTicks>0 || majorTicks>0)
         {
             int toTicks = minorTicks;
             if(toTicks==0) toTicks=majorTicks;
-            double accel = (double)graphHeight/((max-min)/(double)toTicks);
+            double intervals = ((max-min)/(double)toTicks);
+            double accel = (double)graphHeight/intervals;
             double ax,ay,bx=0,by=0;
             int actual = min;
             int actualAlt = minAlt;
@@ -200,10 +202,13 @@ public class Timeplot extends Drawable {
                     }
 
                     actual+=majorTicks;
-                    actualAlt+=(maxAlt-minAlt)/((max-min)/majorTicks);
+                    actualAlt+= Math.round((double) (maxAlt - minAlt) / (max - min) * majorTicks);
                 }
                 sum+=minorTicks;
             }
+            // calculate real max alt
+            double altTicks = Math.round((double) (maxAlt - minAlt) / (max - min) * majorTicks)/((double)majorTicks/toTicks);
+            realMaxAlt=intervals*altTicks+getMinAlt();
         }
 
         // draw the vertical grid
@@ -268,8 +273,8 @@ public class Timeplot extends Drawable {
             if (values.size() > 0) {
 
                 double w = (double) barWidth / values.size();
-                double h = (double) graphHeight / (getMax() - getMin() + 1);
-                double hAlt = (double) graphHeight / (getMaxAlt() - getMinAlt() + 1);
+                double h = (double) graphHeight / (getMax() - getMin());
+                double hAlt = (double) graphHeight / (realMaxAlt - getMinAlt());
 
                 double lastX = Double.NaN;
                 double lastY = Double.NaN;
@@ -291,15 +296,43 @@ public class Timeplot extends Drawable {
                             if (mx < 0) {
                                 values.remove(i);
                             } else {
-                                double my = graphHeight - (tp.value - min) * h;
-                                double zy = graphHeight - (0 - min) * h;
-
-                                // draw on alternate scale if requested
+                                // determine Y
+                                double my;
+                                // distinct "alt" vs "normal"
                                 if (getOptions().getOption(sid) != null &&
-                                        getOptions().getOption(sid).contains("alt")) {
+                                        getOptions().getOption(sid).contains("alt"))
                                     my = graphHeight - (tp.value - minAlt) * hAlt;
-                                    zy = graphHeight - (0 - minAlt) * hAlt;
+                                else
+                                    my = graphHeight - (tp.value - min) * h;
+
+                                // check if y should be fixed: colorline[value-of-y]
+                                if ((getOptions().getOption(sid) != null &&
+                                        !getOptions().getOption(sid).isEmpty() &&
+                                        getOptions().getOption(sid).contains("colorline"))) {
+
+                                    // parse out position of line
+                                    String options = getOptions().getOption(sid);
+                                    int index = options.indexOf("colorline");
+                                    index += ("colorline").length() + 1;
+                                    String value = "";
+                                    while (index < options.length() && options.charAt(index) != ']') {
+                                        value += options.charAt(index);
+                                        index++;
+                                    }
+                                    if (getOptions().getOption(sid) != null &&
+                                            getOptions().getOption(sid).contains("alt"))
+                                        my = graphHeight - (Double.valueOf(value) - minAlt) * hAlt;
+                                    else
+                                        my = graphHeight - (Double.valueOf(value) - min) * h;
                                 }
+
+                                // now get ZY
+                                double zy;
+                                if (getOptions().getOption(sid) != null &&
+                                        getOptions().getOption(sid).contains("alt"))
+                                    zy = graphHeight - (0 - minAlt) * hAlt;
+                                else
+                                    zy = graphHeight - (0 - min) * h;
 
                                 int rayon = 2;
 
@@ -356,10 +389,11 @@ public class Timeplot extends Drawable {
                                         }
                                     } else {
                                         if(lastX!=Double.NaN && lastY!=Double.NaN) {
-                                            g.drawLine(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
-                                                    getY() + (int) lastY,
-                                                    getX() + getWidth() - barWidth + (int) mx - spaceAlt,
-                                                    getY() + (int) my);
+
+                                                g.drawLine(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
+                                                        getY() + (int) lastY,
+                                                        getX() + getWidth() - barWidth + (int) mx - spaceAlt,
+                                                        getY() + (int) my);
                                         }
                                     }
                                 }
@@ -386,6 +420,24 @@ public class Timeplot extends Drawable {
                                     //values.remove(i);
                                 } else {
                                     double my = graphHeight - (tp.value - min) * h;
+
+                                    // check if y should be fixed: colorline[value-of-y]
+                                    if ((getOptions().getOption(sid) != null &&
+                                            !getOptions().getOption(sid).isEmpty() &&
+                                            getOptions().getOption(sid).contains("colorline"))) {
+
+                                        // parse out position of line
+                                        String options = getOptions().getOption(sid);
+                                        int index = options.indexOf("colorline");
+                                        index += ("colorline").length() + 1;
+                                        String value = "";
+                                        while (index < options.length() && options.charAt(index) != ']') {
+                                            value += options.charAt(index);
+                                            index++;
+                                        }
+                                        my = graphHeight - (Double.valueOf(value) - min) * h;
+                                    }
+
                                     double zy = graphHeight - (0 - min) * h;
 
                                     // draw on alternate scale if requested
