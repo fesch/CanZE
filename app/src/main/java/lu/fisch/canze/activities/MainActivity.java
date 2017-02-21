@@ -267,86 +267,94 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public void loadSettings()
     {
         debug("MainActivity: loadSettings");
+        try {
+            SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
+            bluetoothDeviceName = settings.getString("deviceName", null);
+            bluetoothDeviceAddress = settings.getString("deviceAddress", null);
+            gatewayUrl = settings.getString("gatewayUrl", null);
+            // String dataFormat = settings.getString("dataFormat", "crdt");
+            String deviceType = settings.getString("device", "Arduino");
+            safeDrivingMode = settings.getBoolean("optSafe", true);
+            bluetoothBackgroundMode = settings.getBoolean("optBTBackground", false);
+            milesMode = settings.getBoolean("optMiles", false);
+            dataExportMode = settings.getBoolean("optDataExport", false);
+            debugLogMode = settings.getBoolean("optDebugLog", false);
+            fieldLogMode = settings.getBoolean("optFieldLog", false);
+            toastLevel = settings.getInt("optToast", 1);
 
-        SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
-        bluetoothDeviceName = settings.getString("deviceName", null);
-        bluetoothDeviceAddress = settings.getString("deviceAddress", null);
-        gatewayUrl = settings.getString("gatewayUrl", null);
-        // String dataFormat = settings.getString("dataFormat", "crdt");
-        String deviceType = settings.getString("device", "Arduino");
-        safeDrivingMode = settings.getBoolean("optSafe", true);
-        bluetoothBackgroundMode = settings.getBoolean("optBTBackground", false);
-        milesMode = settings.getBoolean("optMiles", false);
-        dataExportMode = settings.getBoolean("optDataExport", false);
-        debugLogMode = settings.getBoolean("optDebugLog", false);
-        fieldLogMode = settings.getBoolean("optFieldLog", false);
-        toastLevel = settings.getInt("optToast", 1);
+            if (bluetoothDeviceName != null && !bluetoothDeviceName.isEmpty() && bluetoothDeviceName.length()>4)
+                BluetoothManager.getInstance().setDummyMode(bluetoothDeviceName.substring(0, 4).compareTo("HTTP") == 0);
 
-        if (bluetoothDeviceName != null)
-            BluetoothManager.getInstance().setDummyMode(bluetoothDeviceName.substring(0, 4).compareTo("HTTP") == 0);
+            String carStr = settings.getString("car", "None");
+            switch (carStr) {
+                case "None":
+                    car = CAR_NONE;
+                    break;
+                case "Zoé":
+                case "ZOE":
+                case "ZOE Q210":
+                    car = CAR_ZOE_Q210;
+                    break;
+                case "ZOE R240":
+                    car = CAR_ZOE_R240;
+                    break;
+                case "ZOE Q90":
+                    car = CAR_ZOE_Q90;
+                    break;
+                case "ZOE R90":
+                    car = CAR_ZOE_R90;
+                    break;
+                case "Fluence":
+                    car = CAR_FLUENCE;
+                    break;
+                case "Kangoo":
+                    car = CAR_KANGOO;
+                    break;
+                case "X10":
+                    car = CAR_X10;
+                    break;
+            }
 
-        String carStr = settings.getString("car", "None");
-        switch (carStr) {
-            case "None":
-                car = CAR_NONE;
-                break;
-            case "Zoé":
-            case "ZOE":
-            case "ZOE Q210":
-                car = CAR_ZOE_Q210;
-                break;
-            case "ZOE R240":
-                car = CAR_ZOE_R240;
-                break;
-            case "ZOE Q90":
-                car = CAR_ZOE_Q90;
-                break;
-            case "ZOE R90":
-                car = CAR_ZOE_R90;
-                break;
-            case "Fluence":
-                car = CAR_FLUENCE;
-                break;
-            case "Kangoo":
-                car = CAR_KANGOO;
-                break;
-            case "X10":
-                car = CAR_X10;
-                break;
+            // as the settings may have changed, we need to reload different things
+
+            // create a new device
+            switch (deviceType) {
+                case "Bob Due":
+                    device = new BobDue();
+                    break;
+                case "ELM327":
+                    device = new ELM327();
+                    break;
+                case "ELM327Http":
+                    device = new ELM327OverHttp();
+                    break;
+                default:
+                    device = null;
+                    break;
+            }
+
+            // since the car type may have changed, reload the frame timings and fields
+            Frames.getInstance().load();
+            fields.load();
+
+            if (device != null) {
+                // initialise the connection
+                device.initConnection();
+
+                // register application wide fields
+                // registerApplicationFields(); // now done in Fields.load
+            }
+
+            // after loading PREFERENCES we may have new values for "dataExportMode"
+            dataExportMode = dataLogger.activate(dataExportMode);
         }
-
-        // as the settings may have changed, we need to reload different things
-
-        // create a new device
-        switch (deviceType) {
-            case "Bob Due":
-                device = new BobDue();
-                break;
-            case "ELM327":
-                device = new ELM327();
-                break;
-            case "ELM327Http":
-                device = new ELM327OverHttp();
-                break;
-            default:
-                device = null;
-                break;
+        catch(Exception e)
+        {
+            MainActivity.debug(e.getMessage());
+            StackTraceElement[] st = e.getStackTrace();
+            for(int i=0; i<st.length; i++)
+                MainActivity.debug(st[i].toString());
         }
-
-        // since the car type may have changed, reload the frame timings and fields
-        Frames.getInstance().load();
-        fields.load();
-
-        if(device!=null) {
-            // initialise the connection
-            device.initConnection();
-
-            // register application wide fields
-            // registerApplicationFields(); // now done in Fields.load
-        }
-
-        // after loading PREFERENCES we may have new values for "dataExportMode"
-        dataExportMode = dataLogger.activate ( dataExportMode );
     }
 
     public void registerApplicationFields() {
