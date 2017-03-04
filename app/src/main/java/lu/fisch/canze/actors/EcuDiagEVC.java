@@ -1252,7 +1252,7 @@ public class EcuDiagEVC {
 
         Frames.getInstance().load("7EC,0,0,EVC\n");
         Fields.getInstance().load(fieldDef1);
-        Fields.getInstance().loadMore(fieldDef1);
+        // Fields.getInstance().loadMore(fieldDef1);
         Fields.getInstance().loadMore(fieldDef2);
         Dtcs.getInstance().load(dtcDef, testDef);
 
