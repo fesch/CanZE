@@ -59,6 +59,7 @@
     <!-- BCB -->
 
     <string name="title_activity_bcb">BCB</string>
+    <string name="button_Bcb">BCB</string>
     <string name="header_ChargerKeyParameters">Charger key parameters</string>
     <string name="label_MainsPhaseCurrentRms">Mains phase 1 current RMS A</string>
     <string name="label_MainsCurrentType">Mains current type</string>
@@ -191,11 +192,6 @@
         <item>-</item>
         <item>Means Leakage DC+LF+HF</item>
     </string-array>
-
-
-
-
-
 
     <!-- Braking -->
 
@@ -414,6 +410,7 @@
     <!-- Harmonics -->
 
     <string name="title_activity_harmonics">Harmonics leak currents</string>
+    <string name="button_Harmonics">Harmonics</string>
     <string name="label_LeakCurrentDc">Leak current DC (mA)</string>
     <string name="label_LeakCurrentLf">Leak current LF (mA)</string>
     <string name="label_LeakCurrentHf">Leak current HF (mA)</string>
