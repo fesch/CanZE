@@ -36,22 +36,23 @@ import lu.fisch.canze.activities.MainActivity;
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
 public class BcbActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_Phase1currentRMS             = "793.622001.24";
     public static final String SID_MainsCurrentType             = "793.625017.29";
-    public static final String SID_PhaseCurrent1                = "793.625029.24"; // Raw
-    public static final String SID_PhaseCurrent2                = "793.62502A.24";
-    public static final String SID_PhaseCurrent3                = "793.62502B.25";
+    public static final String SID_Phase1currentRMS             = "793.622001.24";
+    public static final String SID_Phase2CurrentRMS             = "793.62503A.24"; // Raw <= this seems to be instant DC coupled value
+    public static final String SID_Phase3CurrentRMS             = "793.62503B.24";
     public static final String SID_PhaseVoltage1                = "793.62502C.24"; // Raw
     public static final String SID_PhaseVoltage2                = "793.62502D.24";
     public static final String SID_PhaseVoltage3                = "793.62502E.24";
-    public static final String SID_InterPhaseVoltage12          = "793.625043.24"; // Measured
-    public static final String SID_InterPhaseVoltage23          = "793.625044.24";
-    public static final String SID_InterPhaseVoltage31          = "793.625045.24";
-    public static final String SID_MainsActivePower             = "793.62504a.29";
-    public static final String SID_GroundResistance             = "793.625062.29";
-    public static final String SID_CompletionStatus             = "793.625064.29";
+    public static final String SID_InterPhaseVoltage12          = "793.62503F.24"; // Measured
+    public static final String SID_InterPhaseVoltage23          = "793.625041.24";
+    public static final String SID_InterPhaseVoltage31          = "793.625042.24";
+    public static final String SID_MainsActivePower             = "793.62504a.24";
+    public static final String SID_GroundResistance             = "793.625062.24";
+    public static final String SID_SupervisorState              = "793.625063.24";
+    public static final String SID_CompletionStatus             = "793.625064.24";
 
     final String mains_Current_Type [] = MainActivity.getInstance().getStringList(R.array.list_MainsCurrentType);
+    final String supervisor_State   [] = MainActivity.getInstance().getStringList(R.array.list_SupervisorState);
     final String completion_Status  [] = MainActivity.getInstance().getStringList(R.array.list_CompletionStatus);
 
     @Override
@@ -62,11 +63,10 @@ public class BcbActivity extends CanzeActivity implements FieldListener, DebugLi
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_Phase1currentRMS);
         addField(SID_MainsCurrentType);
-        addField(SID_PhaseCurrent1);
-        addField(SID_PhaseCurrent2);
-        addField(SID_PhaseCurrent3);
+        addField(SID_Phase1currentRMS);
+        addField(SID_Phase2CurrentRMS);
+        addField(SID_Phase3CurrentRMS);
         addField(SID_PhaseVoltage1);
         addField(SID_PhaseVoltage2);
         addField(SID_PhaseVoltage3);
@@ -75,6 +75,7 @@ public class BcbActivity extends CanzeActivity implements FieldListener, DebugLi
         addField(SID_InterPhaseVoltage31);
         addField(SID_MainsActivePower);
         addField(SID_GroundResistance);
+        addField(SID_SupervisorState);
         addField(SID_CompletionStatus);
     }
 
@@ -93,22 +94,19 @@ public class BcbActivity extends CanzeActivity implements FieldListener, DebugLi
                 // get the text field
                 switch (fieldId) {
 
-                    case SID_Phase1currentRMS:
-                        tv = (TextView) findViewById(R.id.textPhase1currentRMS);
-                        break;
                     case SID_MainsCurrentType:
                         tv = (TextView) findViewById(R.id.textMainsCurrentType);
                         tv.setText(mains_Current_Type[(int) field.getValue()]);
                         tv = null;
                         break;
-                    case SID_PhaseCurrent1:
-                        tv = (TextView) findViewById(R.id.textPhaseCurrent1);
+                    case SID_Phase1currentRMS:
+                        tv = (TextView) findViewById(R.id.textPhase1CurrentRMS);
                         break;
-                    case SID_PhaseCurrent2:
-                        tv = (TextView) findViewById(R.id.textPhaseCurrent2);
+                    case SID_Phase2CurrentRMS:
+                        tv = (TextView) findViewById(R.id.textPhase2CurrentRMS);
                         break;
-                    case SID_PhaseCurrent3:
-                        tv = (TextView) findViewById(R.id.textPhaseCurrent3);
+                    case SID_Phase3CurrentRMS:
+                        tv = (TextView) findViewById(R.id.textPhase3CurrentRMS);
                         break;
                     case SID_PhaseVoltage1:
                         tv = (TextView) findViewById(R.id.textPhaseVoltage1);
@@ -133,6 +131,11 @@ public class BcbActivity extends CanzeActivity implements FieldListener, DebugLi
                         break;
                     case SID_GroundResistance:
                         tv = (TextView) findViewById(R.id.textGroundResistance);
+                        break;
+                    case SID_SupervisorState:
+                        tv = (TextView) findViewById(R.id.textSupervisorState);
+                        tv.setText(supervisor_State[(int) field.getValue()]);
+                        tv = null;
                         break;
                     case SID_CompletionStatus:
                         tv = (TextView) findViewById(R.id.textCompletionStatus);

@@ -409,23 +409,23 @@ public class Fields {
                         + "793,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "793,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
                         + "793,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
-                        + "793,24,39,0.0625,128,0,mA,225057,625057,ff\n" // DataRead.Raw leakage current - DC part measurement
-                        + "793,24,39,0.0625,128,0,mA,225058,625058,ff\n" // DataRead.Raw leakage current - High Frequency 10kHz part measurement
-                        + "793,24,39,0.0625,128,0,mA,225059,625059,ff\n" // DataRead.Raw leakage current - High Frequency 1st part measurement
-                        + "793,24,39,0.0625,128,0,mA,22505a,62505a,ff\n" // DataRead.Raw leakage current - Low Frequency part measurement (50Hz)
+                        + "793,24,39,0.0625,32768,0,mA,225057,625057,ff\n" // DataRead.Raw leakage current - DC part measurement
+                        + "793,24,39,0.0625,32768,0,mA,225058,625058,ff\n" // DataRead.Raw leakage current - High Frequency 10kHz part measurement
+                        + "793,24,39,0.0625,32768,0,mA,225059,625059,ff\n" // DataRead.Raw leakage current - High Frequency 1st part measurement
+                        + "793,24,39,0.0625,32768,0,mA,22505a,62505a,ff\n" // DataRead.Raw leakage current - Low Frequency part measurement (50Hz)
                         + "793,24,39,.0625,3200,0,A,222001,622001,ff\n" // Mains phase 1 current RMS value
+                        + "793,24,39,.0625,3200,0,A,22503A,62503A,ff\n" // Mains phase 2 current RMS
+                        + "793,24,39,.0625,3200,0,A,22503B,62503B,ff\n" // Mains phase 3 current RMS
                         + "793,29,31,1,0,0,,225017,625017,ff\n" // Mains current type,0:Nok;1:AC mono;2:AC tri;3:DC;4:AC bi
-                        + "793,24,39,.0625,3200,0,A,225029,625029,ff\n" // Raw AC mains phase 1 measured current
-                        + "793,24,39,.0625,3200,0,A,22502A,62502A,ff\n" // Raw AC mains phase 2 measured current
-                        + "793,24,39,.0625,3200,0,A,22502B,62502B,ff\n" // Raw AC mains phase 3 measured current
                         + "793,24,39,.5,32000,0,V,22502C,62502C,ff\n" // Raw AC mains phase 1 measured voltage
                         + "793,24,39,.5,32000,0,V,22502D,62502D,ff\n" // Raw AC mains phase 2 measured voltage
                         + "793,24,39,.5,32000,0,V,22502E,62502E,ff\n" // Raw AC mains phase 3 measured voltage
-                        + "793,24,39,.5,32000,0,V,225043,625043,ff\n" // AC mains phase 1-2 measured voltage
-                        + "793,24,39,.5,32000,0,V,225044,625044,ff\n" // AC mains phase 2-3 measured voltage
-                        + "793,24,39,.5,32000,0,V,225045,625045,ff\n" // AC mains phase 3-1 measured voltage
+                        + "793,24,39,.5,0,0,V,22503f,62503f,ff\n" // Mains phase 1-2 voltage RMS value
+                        + "793,24,39,.5,0,0,V,225041,625041,ff\n" // Mains phase 2-3 voltage RMS value
+                        + "793,24,39,.5,0,0,V,225042,625042,ff\n" // Mains phase 3-1 voltage RMS value
                         + "793,24,39,1,20000,0,W,22504A,62504A,ff\n" // Mains active power consumed
                         + "793,24,39,1,0,0,Ohm,225062,625062,ff\n" // Mains ground resistance
+                        + "793,24,31,1,0,0,,225063,625063,ff\n" // Supervisor state,0:Init;1:Wait;2:ClosingS2;3:InitType;4:InitLkg;5:InitChg;6:Charge;7:ZeroAmpMode;8:EndOfChg;9:OpeningS2;10:ReadyToSleep;11:EmergencyStop;12:InitChargeDF;13:OCPStop;14:WaitS2
                         + "793,24,31,1,0,0,,225064,625064,ff\n" // Leakage current diagnostic stored completion status,0:init;1:HF10;3:Mains Ground Default;5:Earth Current default;9:Ground Default;17:Means Leakage DC;33:Means Leakage LF;49:Means Leakage DC+LF;65:Means Leakage HF;81:Means Leakage DC+HF;97:Means Leakage LF+HF;113:Means Leakage DC+LF+HF
                         + "7b6,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "7b6,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)

@@ -34,19 +34,6 @@
 
                 <TableRow>
                     <TextView
-                        android:text="@string/label_MainsPhaseCurrentRms"
-                        android:layout_weight="2"
-                        />
-                    <TextView
-                        android:id="@+id/textPhase1currentRMS"
-                        android:text="@string/default_Dash"
-                        android:gravity="end"
-                        android:layout_weight="1"
-                        />
-                </TableRow>
-
-                <TableRow>
-                    <TextView
                         android:text="@string/label_MainsCurrentType"
                         android:layout_weight="2"
                         />
@@ -64,7 +51,7 @@
                         android:layout_weight="2"
                         />
                     <TextView
-                        android:id="@+id/textPhaseCurrent1"
+                        android:id="@+id/textPhase1CurrentRMS"
                         android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
@@ -75,7 +62,7 @@
                         android:layout_weight="1"
                         />
                     <TextView
-                        android:id="@+id/textPhaseCurrent2"
+                        android:id="@+id/textPhase2CurrentRMS"
                         android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
@@ -86,7 +73,7 @@
                         android:layout_weight="1"
                         />
                     <TextView
-                        android:id="@+id/textPhaseCurrent3"
+                        android:id="@+id/textPhase3CurrentRMS"
                         android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
@@ -183,6 +170,19 @@
                         />
                     <TextView
                         android:id="@+id/textGroundResistance"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_SupervisorState"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textSupervisorState"
                         android:text="@string/default_Dash"
                         android:gravity="end"
                         android:layout_weight="1"
