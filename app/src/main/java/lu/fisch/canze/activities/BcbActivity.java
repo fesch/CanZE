@@ -36,20 +36,20 @@ import lu.fisch.canze.activities.MainActivity;
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
 public class BcbActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_Phase1currentRMS             = "793.222001.24";
-    public static final String SID_MainsCurrentType             = "793.225017.29";
-    public static final String SID_PhaseCurrent1                = "793.225029.24";
-    public static final String SID_PhaseCurrent2                = "793.22502A.24";
-    public static final String SID_PhaseCurrent3                = "793.22502B.25";
-    public static final String SID_PhaseVoltage1                = "793.22502C.24";
-    public static final String SID_PhaseVoltage2                = "793.22502D.24";
-    public static final String SID_PhaseVoltage3                = "793.22502E.24";
-    public static final String SID_InterPhaseVoltage12          = "793.225012.24";
-    public static final String SID_InterPhaseVoltage23          = "793.225013.24";
-    public static final String SID_InterPhaseVoltage31          = "793.225014.24";
-    public static final String SID_MainsActivePower             = "793.22504a.29";
-    public static final String SID_GroundResistance             = "793.225062.29";
-    public static final String SID_CompletionStatus             = "793.225064.29";
+    public static final String SID_Phase1currentRMS             = "793.622001.24";
+    public static final String SID_MainsCurrentType             = "793.625017.29";
+    public static final String SID_PhaseCurrent1                = "793.625029.24"; // Raw
+    public static final String SID_PhaseCurrent2                = "793.62502A.24";
+    public static final String SID_PhaseCurrent3                = "793.62502B.25";
+    public static final String SID_PhaseVoltage1                = "793.62502C.24"; // Raw
+    public static final String SID_PhaseVoltage2                = "793.62502D.24";
+    public static final String SID_PhaseVoltage3                = "793.62502E.24";
+    public static final String SID_InterPhaseVoltage12          = "793.625043.24"; // Measured
+    public static final String SID_InterPhaseVoltage23          = "793.625044.24";
+    public static final String SID_InterPhaseVoltage31          = "793.625045.24";
+    public static final String SID_MainsActivePower             = "793.62504a.29";
+    public static final String SID_GroundResistance             = "793.625062.29";
+    public static final String SID_CompletionStatus             = "793.625064.29";
 
     final String mains_Current_Type [] = MainActivity.getInstance().getStringList(R.array.list_MainsCurrentType);
     final String completion_Status  [] = MainActivity.getInstance().getStringList(R.array.list_CompletionStatus);
