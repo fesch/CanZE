@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static final short CAR_FLUENCE           = 0x001;
     public static final short CAR_ZOE_Q210          = 0x002;
     public static final short CAR_KANGOO            = 0x004;
-    // public static final short CAR_TWIZY          = 0x008;     // you'll never know ;-)
+    public static final short CAR_TWIZY             = 0x008;     // you'll never know ;-)
     public static final short CAR_X10               = 0x010;     // not used
     public static final short CAR_ZOE_R240          = 0x020;
     public static final short CAR_ZOE_Q90           = 0x040;
@@ -309,6 +309,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                     break;
                 case "Kangoo":
                     car = CAR_KANGOO;
+                    break;
+                case "Twizy":
+                    car = CAR_TWIZY;
                     break;
                 case "X10":
                     car = CAR_X10;
@@ -927,6 +930,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public static boolean isFluKan () {
         return (car == CAR_FLUENCE || car == CAR_KANGOO);
+    }
+
+    public static boolean isTwizy() {
+        return (car == CAR_TWIZY);
     }
 
 
