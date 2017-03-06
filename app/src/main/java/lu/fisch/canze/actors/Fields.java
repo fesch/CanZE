@@ -92,6 +92,7 @@ public class Fields {
         addVirtualFieldFrictionTorque();
         addVirtualFieldFrictionPower();
         addVirtualFieldDcPower();
+        addVirtualFieldHeaterSetpoint();
     }
 
 
@@ -256,6 +257,7 @@ public class Fields {
         // add it to the list of fields
         add(virtualField);
 */
+
         addVirtualFieldCommon ("6104", "kWh/100km", SID_VirtualUsage, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
@@ -264,6 +266,25 @@ public class Fields {
                     runningUsage = runningUsage * 0.95 + value * 0.05;
                 }
                 return runningUsage;
+            }
+        });
+    }
+
+    private void addVirtualFieldHeaterSetpoint() {
+        final String SID_VirtualUsage               = "699.8";
+
+        addVirtualFieldCommon ("6105", "°C", SID_VirtualUsage, new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String, Field> dependantFields) {
+                double value = dependantFields.get(SID_VirtualUsage).getValue();
+                if (value == 0) {
+                    return Double.NaN;
+                } else if (value == 4) {
+                    return -10.0;
+                } else if (value == 5) {
+                    return 40.0;
+                }
+                return value;
             }
         });
     }
@@ -359,8 +380,10 @@ public class Fields {
                         + "764,8,15,0.4,100,0,°C,2121,6121,5\n" // IH_InCarTemp
                         + "764,36,43,1,0,0,%,2121,6121,e2\n" // IH_RHumidity
                         + "764,16,23,1,0,0,%,2121,6121,5\n" // IH_RHumidity
+                        + "764,86,87,1,0,0,,2143,6143,ff\n" // IH_EcoModeRequest,0:Unavailable Value;1:Eco mode requested;2:Eco mode not requested;3:Not used
                         + "764,110,117,1,40,0,%,2143,6143,ff\n" // IH_ExternalTemp
                         + "764,134,142,.1,0,0,bar,2143,6143,ff\n" // IH_ACHighPressureSensor
+                        + "764,107,116,10,0,0,rpm,2144,6144,ff\n" // IH_ClimCompRPMStatus
                         + "764,40,41,1,0,0,,2167,6167,ff\n" // IH_ExternalTemp
                         + "764,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "764,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)

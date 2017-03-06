@@ -25,8 +25,9 @@ import android.os.Bundle;
 import android.view.Menu;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.interfaces.DebugListener;
 
-public class HarmonicsActivity extends CanzeActivity {
+public class HarmonicsActivity extends CanzeActivity implements DebugListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
