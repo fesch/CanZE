@@ -35,7 +35,9 @@ public class HarmonicsActivity extends CanzeActivity implements DebugListener {
         setContentView(R.layout.activity_harmonics);
     }
 
-    protected void initListeners () {}
+    protected void initListeners () {
+        MainActivity.getInstance().setDebugListener(this);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
