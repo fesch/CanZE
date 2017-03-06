@@ -151,6 +151,7 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("ZOE R90");
         arrayAdapter.add("Fluence");
         arrayAdapter.add("Kangoo");
+        arrayAdapter.add("Twizy");
         arrayAdapter.add("X10");
 
         int index = 0;
