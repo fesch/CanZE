@@ -319,7 +319,7 @@
                         android:layout_weight="1"
                         />
                 </TableRow>
-
+<!-- does not work
                 <TableRow>
                     <TextView
                         android:text="@string/label_EnergyConsumed"
@@ -332,7 +332,7 @@
                         android:layout_weight="1"
                         />
                 </TableRow>
-
+-->
             </TableLayout>
 
             <TextView
