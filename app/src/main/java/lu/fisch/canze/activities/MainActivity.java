@@ -367,7 +367,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             if (field != null) {
                 field.addListener(MainActivity.getInstance()); // callback is onFieldUpdateEvent
                 if (device != null)
-                    device.addApplicationField(field, 1000); // query every second
+                    device.addApplicationField(field, 10000); // query every second
             }
         } else {
             Field field = fields.getBySID("5d7.0");
