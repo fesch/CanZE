@@ -99,9 +99,9 @@
 
     <string name="title_activity_charging_graph">Laadgrafieken</string>
     <string name="button_ChargingGraphs">Grafieken opladen</string>
-    <string name="graph_PilotPower">Pilot amp (A) / Charger power (kW)</string>
+    <string name="graph_PilotPower">Pilot amp (A), Charger power (kW)</string>
     <string name="graph_MaxRealChPwr">Max battery charge (kW) / DC Charging power (kW)</string>
-    <string name="graph_EnergyTemperature">Available energy (kWh) / temperature (°C)</string>
+    <string name="graph_EnergyTemperature">Available energy (kWh), temperature (°C)</string>
 
     <!-- Charging history -->
 
@@ -169,7 +169,7 @@
         <item>Vrijloop</item>
     </string-array>
     <string name="label_IH_ElectricalPowerDrived">Vermogen compressor</string>
-    <string name="graph_Climatech">Buiten (°C) / Binnen (°C) / Instelling (°C) / Batterij (°C)</string>
+    <string name="graph_Climatech">Buiten (°C), Binnen (°C), Instelling (°C), Batterij (°C)</string>
 
     <!-- Consumption -->
 
@@ -178,9 +178,9 @@
     <string name="label_WheelTorque">Wieltorsie</string>
     <string name="label_InstantConsumption">Verbruik</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Vermogen (kw) / Beschikbare energie (kWh)</string>
-    <string name="graph_SpeedConsumption">Snelheid (km/h) / Verbruik (kWh/100km)</string>
-    <string name="graph_RangeSoc">Bereik (km) / Lading (%)</string>
+    <string name="graph_PowerEnergy">Vermogen (kw), Beschikbare energie (kWh)</string>
+    <string name="graph_SpeedConsumption">Snelheid (km/h), Verbruik (kWh/100km)</string>
+    <string name="graph_RangeSoc">Bereik (km), Lading (%)</string>
 
     <!-- Driving -->
 
@@ -310,7 +310,7 @@
     <string name="label_RangeRemaining">Remaining range by car:</string>
     <string name="label_RangeRemainingCanZE">Remaining range by CanZE:</string>
     <string name="label_EstimatedDrivingStyleLoss">Estimated driving style energy loss:</string>
-    <string name="graph_DistanceEnergy">Beschibare range (km) / Beschikbare energie (kWh)</string>
+    <string name="graph_DistanceEnergy">Beschibare range (km), Beschikbare energie (kWh)</string>
 
     <!-- Settings -->
 

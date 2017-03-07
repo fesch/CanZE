@@ -99,9 +99,9 @@
 
     <string name="title_activity_charging_graph">Graf polnjenja</string>
     <string name="button_ChargingGraphs">Graf polnjenja</string>
-    <string name="graph_PilotPower">Pilot (A) / Moč polnilnice (kW)</string>
+    <string name="graph_PilotPower">Pilot (A), Moč polnilnice (kW)</string>
     <string name="graph_MaxRealChPwr">Max polnilna moč (kW) / DC polnilna moč (kW)</string>
-    <string name="graph_EnergyTemperature">Razpoložljiva energija (kWh) / temperatura (°C)</string>
+    <string name="graph_EnergyTemperature">Razpoložljiva energija (kWh), temperatura (°C)</string>
 
     <!-- Charging history -->
 
@@ -168,7 +168,7 @@
         <item>Odroševanje</item>
         <item>Idle</item>
     </string-array>
-    <string name="graph_Climatech">Zunanja (°C) / otranja (°C) / Nastavljena (°C) / Baterija (°C)</string>
+    <string name="graph_Climatech">Zunanja (°C), otranja (°C), Nastavljena (°C), Baterija (°C)</string>
 
     <!-- Consumption -->
 
@@ -177,9 +177,9 @@
     <string name="label_WheelTorque">Kolesni navor</string>
     <string name="label_InstantConsumption">Trenutna poraba</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Moč (kw) / Razpoložljiva energija (kWh)</string>
-    <string name="graph_SpeedConsumption">Hitrost (km/h) / Poraba (kWh/100km)</string>
-    <string name="graph_RangeSoc">Doseg (km) / Napolnjenost (%)</string>
+    <string name="graph_PowerEnergy">Moč (kw), Razpoložljiva energija (kWh)</string>
+    <string name="graph_SpeedConsumption">Hitrost (km/h), Poraba (kWh/100km)</string>
+    <string name="graph_RangeSoc">Doseg (km), Napolnjenost (%)</string>
 
     <!-- Driving -->
 
@@ -310,7 +310,7 @@
     <string name="label_RangeRemaining">Doseg (car):</string>
     <string name="label_RangeRemainingCanZE">Doseg (CanZE):</string>
     <string name="label_EstimatedDrivingStyleLoss">Ocenjene izgube ob vožnji:</string>
-    <string name="graph_DistanceEnergy">Doseg (km) / Razpoložljiva energija (kWh)</string>
+    <string name="graph_DistanceEnergy">Doseg (km), Razpoložljiva energija (kWh)</string>
 
     <!-- Settings -->
 

@@ -102,9 +102,9 @@
 
     <string name="title_activity_charging_graph">Gráficos de Carga</string>
     <string name="button_ChargingGraphs">Gráficos de Carga</string>
-    <string name="graph_PilotPower">Intensidad piloto (A) / Potencia cargador (kW)</string>
+    <string name="graph_PilotPower">Intensidad piloto (A), Potencia cargador (kW)</string>
     <string name="graph_MaxRealChPwr">Max battery charge (kW) / DC Charging power (kW)</string>
-    <string name="graph_EnergyTemperature">Energía disponible (kWh) / temperatura (°C)</string>
+    <string name="graph_EnergyTemperature">Energía disponible (kWh), temperatura (°C)</string>
 
     <!-- Charging history -->
 
@@ -171,7 +171,7 @@
         <item>Desempañado</item>
         <item>Ralentí</item>
     </string-array>
-    <string name="graph_Climatech">Externa (°C) / Interna (°C) / Ajuste (°C) / Batería (°C)</string>
+    <string name="graph_Climatech">Externa (°C), Interna (°C), Ajuste (°C), Batería (°C)</string>
 
     <!-- Consumption -->
 
@@ -180,9 +180,9 @@
     <string name="label_WheelTorque">Par en la rueda</string>
     <string name="label_InstantConsumption">Consumo instantáneo</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Potencia (kw) / Energía disponible (kWh)</string>
-    <string name="graph_SpeedConsumption">Velocidad (km/h) / Consumo (kWh/100km)</string>
-    <string name="graph_RangeSoc">Autonomía (km) / Estado de Carga SoC (%)</string>
+    <string name="graph_PowerEnergy">Potencia (kw), Energía disponible (kWh)</string>
+    <string name="graph_SpeedConsumption">Velocidad (km/h), Consumo (kWh/100km)</string>
+    <string name="graph_RangeSoc">Autonomía (km), Estado de Carga SoC (%)</string>
 
     <!-- Driving -->
 
@@ -307,7 +307,7 @@
     <string name="label_RangeRemaining">Autonomía según el coche:</string>
     <string name="label_RangeRemainingCanZE">Autonomía según CanZE:</string>
     <string name="label_EstimatedDrivingStyleLoss">Pérdida de energía estimada por estilo de conducción:</string>
-    <string name="graph_DistanceEnergy">Autonomía (km) / Energía disponible (kWh)</string>
+    <string name="graph_DistanceEnergy">Autonomía (km), Energía disponible (kWh)</string>
 
     <!-- Settings -->
 

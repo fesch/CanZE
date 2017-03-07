@@ -102,9 +102,9 @@
 
     <string name="title_activity_charging_graph">Graphiques de charge</string>
     <string name="button_ChargingGraphs">Graphiques de charge</string>
-    <string name="graph_PilotPower">Courant pilote (A) / Puissance de charge (kW)</string>
+    <string name="graph_PilotPower">Courant pilote (A), Puissance de charge (kW)</string>
     <string name="graph_MaxRealChPwr">Puissance max de charge batterie (kW) / Puissance de charge DC (kW)</string>
-    <string name="graph_EnergyTemperature">Energie disponible (kWh) / Température (°C)</string>
+    <string name="graph_EnergyTemperature">Energie disponible (kWh), Température (°C)</string>
 
     <!-- Charging history -->
 
@@ -172,7 +172,7 @@
         <item>Ralenti</item>
     </string-array>
     <string name="label_IH_ElectricalPowerDrived">Puissance compresseur</string>
-    <string name="graph_Climatech">Extérieure (°C) / Habitacle (°C) / Consigne (°C) / Batterie (°C)</string>
+    <string name="graph_Climatech">Extérieure (°C), Habitacle (°C), Consigne (°C), Batterie (°C)</string>
 
     <!-- Consumption -->
 
@@ -181,9 +181,9 @@
     <string name="label_WheelTorque">Couple (à la roue)</string>
     <string name="label_InstantConsumption">Consommation instantanée</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Puissance (kW) / Energie disponible (kWh)</string>
-    <string name="graph_SpeedConsumption">Vitesse (km/h) / Consommation (kWh/100km)</string>
-    <string name="graph_RangeSoc">Autonomie (km) / Etat de la charge (%)</string>
+    <string name="graph_PowerEnergy">Puissance (kW), Energie disponible (kWh)</string>
+    <string name="graph_SpeedConsumption">Vitesse (km/h), Consommation (kWh/100km)</string>
+    <string name="graph_RangeSoc">Autonomie (km), Etat de la charge (%)</string>
 
     <!-- Driving -->
 
@@ -314,7 +314,7 @@
     <string name="label_RangeRemaining">Autonomie donnée par la voiture:</string>
     <string name="label_RangeRemainingCanZE">Autonomie calculée par CanZE:</string>
     <string name="label_EstimatedDrivingStyleLoss">Estimation de la perte d\'énergie due au style de conduite:</string>
-    <string name="graph_DistanceEnergy">Autonomie (km) / Energie disponible (kWh)</string>
+    <string name="graph_DistanceEnergy">Autonomie (km), Energie disponible (kWh)</string>
 
     <!-- Settings -->
 

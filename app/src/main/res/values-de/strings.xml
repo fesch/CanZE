@@ -99,9 +99,9 @@
 
     <string name="title_activity_charging_graph">Ladegrafiken</string>
     <string name="button_ChargingGraphs">Ladegrafiken</string>
-    <string name="graph_PilotPower">Pilotsignal (A) / Ladeleistung (kW)</string>
+    <string name="graph_PilotPower">Pilotsignal (A), Ladeleistung (kW)</string>
     <string name="graph_MaxRealChPwr">Max Batterieleistung (kW) / Gleichstromladeleistung (kW)</string>
-    <string name="graph_EnergyTemperature">Verfügbare Energie (kWh) / Temperatur (°C)</string>
+    <string name="graph_EnergyTemperature">Verfügbare Energie (kWh), Temperatur (°C)</string>
 
     <!-- Charging history -->
 
@@ -175,9 +175,9 @@
     <string name="label_WheelTorque">Drehmoment (Räder)</string>
     <string name="label_InstantConsumption">aktueller Verbrauch</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Leistung (kW) / Verfügbare Energie (kWh)</string>
-    <string name="graph_SpeedConsumption">Geschwindigkeit (km/h) / Verbrauch (kWh/100km)</string>
-    <string name="graph_RangeSoc">Reichweite (km) / Kapazität (%)</string>
+    <string name="graph_PowerEnergy">Leistung (kW), Verfügbare Energie (kWh)</string>
+    <string name="graph_SpeedConsumption">Geschwindigkeit (km/h), Verbrauch (kWh/100km)</string>
+    <string name="graph_RangeSoc">Reichweite (km), Kapazität (%)</string>
 
     <!-- Driving -->
 
@@ -298,7 +298,7 @@
     <string name="label_RangeRemaining">Restreichweite nach Fahrzeug:</string>
     <string name="label_RangeRemainingCanZE">Restreichweite nach CanZE:</string>
     <string name="label_EstimatedDrivingStyleLoss">Voraussichtlicher Energieverlust durch Fahrweise:</string>
-    <string name="graph_DistanceEnergy">Verfügbare Reichweite (km) / Verfügbare Energie (kWh)</string>
+    <string name="graph_DistanceEnergy">Verfügbare Reichweite (km), Verfügbare Energie (kWh)</string>
 
     <!-- Settings -->
 
@@ -386,7 +386,7 @@ Diesen Modus zu entsperren ist nicht empfohlen.\n\n Bist du sicher, dass du den 
     <string name="alert_DiagVersion">DiagVersion</string>
     <string name="alert_Supplier">Supplier</string>
     <string name="alert_Version">Version</string>
-    <string name="graph_Climatech">Aussen (°C) / Innen (°C) / Voreinstellung (°C) / Batterie (°C)</string>
+    <string name="graph_Climatech">Aussen (°C), Innen (°C), Voreinstellung (°C), Batterie (°C)</string>
     <string name="label_ACPressure">Druck</string>
     <string name="label_EndBatteryTemp">Temp</string>
     <string name="label_EndOfChargeStatus">Ende</string>
