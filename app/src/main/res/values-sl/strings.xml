@@ -387,15 +387,166 @@
     <string name="label_EndSoc">SOC</string>
     <string name="label_EnergyConsumed">Energy consumed kWh</string>
     <string name="label_HistDuration">Dura</string>
-    <string name="label_IH_ClimCompRPMStatus"></string>
+    <string name="label_IH_ClimCompRPMStatus">Compressor RPM / ECO mode</string>
     <string name="label_IH_ElectricalPowerDrived">Compressor power</string>
     <string name="label_TypeOfCharge">Type</string>
     <string name="label_distance">Km</string>
+    <string name="header_ChargerKeyParameters">Charger key parameters</string>
+    <string name="label_CompletionStatus">Completion status</string>
+    <string name="label_GroundResistanceOhm">Ground resistance Ohm</string>
+    <string name="button_Bcb">BCB</string>
+    <string name="button_Harmonics">Harmonics</string>
+    <string name="label_InterPhaseVoltage">Inter phase voltage 12/23/31 V</string>
+    <string name="label_LeakCurrentDc">Leak current DC (mA)</string>
+    <string name="label_LeakCurrentEhf">Leak current DC (mA)</string>
+    <string name="label_LeakCurrentHf">Leak current DC (mA)</string>
+    <string name="label_LeakCurrentLf">Leak current DC (mA)</string>
+    <string name="label_MainsActivePowerConsumed">Mains active power consumed W</string>
+    <string name="label_MainsCurrentType">Mains current type</string>
+    <string name="label_PhaseVoltage">Phase voltage 1/2/3 V</string>
+    <string name="label_SupervisorState">Supervisor State</string>
+    <string name="label_phaseCurrent">Phase current RMS 1/2/3 A</string>
+    <string name="title_activity_bcb">BCB</string>
+    <string name="title_activity_harmonics">Harmonics leak currents</string>
+    <string-array name="list_MainsCurrentType">
+        <item>Nok</item>
+        <item>AC mono</item>
+        <item>AC tri</item>
+        <item>DC</item>
+        <item>AC bi</item>
+    </string-array>
+    <string-array name="list_CompletionStatus">
+        <item>Init</item>
+        <item>HF10</item>
+        <item>-</item>
+        <item>Mains Ground Default</item>
+        <item>-</item>
+        <item>Earth Current default</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Ground Default</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage DC</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage LF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage DC+LF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage DC+HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage LF+HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage DC+LF+HF</item>
+    </string-array>
+    <string-array name="list_SupervisorState">
+        <item>Init</item>
+        <item>Wait</item>
+        <item>ClosingS2</item>
+        <item>InitType</item>
+        <item>InitLkg</item>
+        <item>InitChg</item>
+        <item>Charge</item>
+        <item>ZeroAmpMode</item>
+        <item>EndOfChg</item>
+        <item>OpeningS2</item>
+        <item>ReadyToSleep</item>
+        <item>EmergencyStop</item>
+        <item>InitChargeDF</item>
+        <item>OCPStop</item>
+        <item>WaitS2</item>
+    </string-array>
 
-    <!--     <string name="prompt_Disclaimer" translatable="false">Uradno obvestilo</string>
-         <string name="prompt_DisclaimerText" translatable="false"><![CDATA[<html>CanZE (“aplikacija”) je takšna kot je. Uporablja se na lastno odgovornost. Avtorji ne dajejo nobenih garancij na delovanje, niti za primernost za uporabo v kakršnikoli situaaciji. Nobena vrsta komunikacije z avtorji, ne pomeni garancije za delovanje. V nobenem primeru avtorji niso odgovorni za škodo nastalo z njeno uporabo. Aplikacija je namenjena le izobraževalnim namenom.
-                                <br>
-                                <br>
-                                <b>Z uporabo aplikacije posegaš v svoj avtomobil prek HW in SW ki ni pod tvojo domeno, razvit iz strani navdušenih amaterjev. Vožnja avtomobila je lahko nevarna, še toliko bolj če gledaš na zaslon telefona, raje kot na cesto!</b></html></string>]]></string>
-    -->
 </resources>
