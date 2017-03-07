@@ -141,6 +141,12 @@
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
                             android:id="@+id/toastLevel" />
 
+                        <Button
+                            android:id="@+id/logButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Logging settings" />
+
                     </LinearLayout>
 
                     <LinearLayout

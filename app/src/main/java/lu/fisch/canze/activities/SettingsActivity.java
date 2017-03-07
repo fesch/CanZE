@@ -460,6 +460,15 @@ public class SettingsActivity extends AppCompatActivity {
                 toast(MainActivity.getStringSingle(R.string.toast_CacheCleared));
             }
         });
+
+        final Button logButton = (Button) findViewById(R.id.logButton);
+        logButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this, LoggingActivity.class);
+                startActivityForResult(intent, 4);
+            }
+        });
     }
 
     @Override
