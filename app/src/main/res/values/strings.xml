@@ -271,9 +271,9 @@
 
     <string name="title_activity_charging_graph">Charging graphs</string>
     <string name="button_ChargingGraphs">Charging graphs</string>
-    <string name="graph_PilotPower">Pilot amp (A) / Charger power (kW)</string>
+    <string name="graph_PilotPower">Pilot amp (A), Charger power (kW)</string>
     <string name="graph_MaxRealChPwr">Max battery charge (kW) / DC Charging power (kW)</string>
-    <string name="graph_EnergyTemperature">Available energy (kWh) / temperature (°C)</string>
+    <string name="graph_EnergyTemperature">Available energy (kWh), temperature (°C)</string>
 
     <!-- Charging history -->
 
@@ -339,7 +339,7 @@
     </string-array>
     <!-- <string name="label_IH_ElectricalPowerDrived">Power compressor</string> -->
     <string name="label_IH_ClimCompRPMStatus">Compressor RPM / ECO mode</string>
-    <string name="graph_Climatech">External (°C) / Internal (°C) / Setpoint (°C) / Battery (°C)</string>
+    <string name="graph_Climatech">External (°C), Internal (°C), Setpoint (°C), Battery (°C)</string>
 
     <!-- Consumption -->
 
@@ -348,9 +348,9 @@
     <string name="label_WheelTorque">Wheel torque</string>
     <string name="label_InstantConsumption">Instant Consumption</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Power (kw) / Available energy (kWh)</string>
-    <string name="graph_SpeedConsumption">Speed (km/h) / Consumption (kWh/100km)</string>
-    <string name="graph_RangeSoc">Range (km) / State of Charge (%)</string>
+    <string name="graph_PowerEnergy">Power (kw), Available energy (kWh)</string>
+    <string name="graph_SpeedConsumption">Speed (km/h), Consumption (kWh/100km)</string>
+    <string name="graph_RangeSoc">Range (km), State of Charge (%)</string>
 
     <!-- Driving -->
 
@@ -498,7 +498,7 @@
     <string name="label_RangeRemaining">Remaining range by car:</string>
     <string name="label_RangeRemainingCanZE">Remaining range by CanZE:</string>
     <string name="label_EstimatedDrivingStyleLoss">Estimated driving style energy loss:</string>
-    <string name="graph_DistanceEnergy">Available distance (km) / Available energy (kWh)</string>
+    <string name="graph_DistanceEnergy">Available distance (km), Available energy (kWh)</string>
 
     <!-- Settings -->
 

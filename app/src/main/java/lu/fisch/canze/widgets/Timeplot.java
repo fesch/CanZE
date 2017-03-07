@@ -574,10 +574,44 @@ public class Timeplot extends Drawable {
         {
             g.setColor(getTitleColor());
             g.setTextSize(20);
+
+            // draw multi-line title
+            title = title.replace(" / ",", "); // let's be lazy
+            String[] parts = title.split(",");
+            int tx = getX()+width-barWidth+8-spaceAlt;
+            for(int s=0; s<sids.size(); s++) {
+                String sid = sids.get(s);
+                ArrayList<TimePoint> values = this.values.get(sid);
+
+                int th = g.stringHeight(title);
+                int ty = getY()+th+4;
+
+                if(values.isEmpty())
+                    g.setColor(getColor(s));
+                else
+                    g.setColor(colorRanges.getColor(sid, values.get(values.size()-1).value, getColor(s)));
+
+                if(s<parts.length) {
+                    g.drawString(parts[s].trim(), tx, ty);
+                    tx+=g.stringWidth(parts[s].trim());
+                }
+
+                // draw " / " if needed
+                if(s<sids.size()-1)
+                {
+                    g.setColor(getTitleColor());
+                    g.drawString(" / ",tx,ty);
+                    tx+=g.stringWidth(" /-"); // " / " will _not_ work!
+                }
+            }
+
+            /*
+            // draw single line title
             int th = g.stringHeight(title);
             int tx = getX()+width-barWidth+8-spaceAlt;
             int ty = getY()+th+4;
             g.drawString(title,tx,ty);
+            */
         }
 
         // draw the value
