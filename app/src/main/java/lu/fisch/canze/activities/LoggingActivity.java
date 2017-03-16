@@ -1,5 +1,6 @@
 package lu.fisch.canze.activities;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,9 +9,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.adapters.FieldAdapter;
 import lu.fisch.canze.classes.LoggingLogger;
 
 public class LoggingActivity extends AppCompatActivity {
@@ -19,6 +24,12 @@ public class LoggingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logging);
+
+        MainActivity.debug("LoggingActivity: onCreate");
+
+        // load logging logger
+        LoggingLogger.getInstance();
+        updateList();
 
         ArrayAdapter arrayAdapter;
 
@@ -53,18 +64,23 @@ public class LoggingActivity extends AppCompatActivity {
         });
     }
 
+
     private void updateList()
     {
         ListView listView = (ListView) findViewById(R.id.selectedFieldsList);
+        FieldAdapter fieldAdapter = new FieldAdapter(MainActivity.getInstance() ,R.layout.logger_field, LoggingLogger.getInstance().getLoggingFields());
+        listView.setAdapter(fieldAdapter);
 
+        /*
         ArrayAdapter arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
 
         LoggingLogger loggingLogger = LoggingLogger.getInstance();
         MainActivity.debug("Logger: actual fields in list = "+loggingLogger.size());
         for(int i=0; i<loggingLogger.size(); i++) {
-            arrayAdapter.add(loggingLogger.getField(i)+"\n"+loggingLogger.getItnerval(i)+" s");
+            arrayAdapter.add(loggingLogger.getField(i)+"\n"+loggingLogger.getIntnerval(i)+" s");
         }
         listView.setAdapter(arrayAdapter);
+        */
     }
 
 }

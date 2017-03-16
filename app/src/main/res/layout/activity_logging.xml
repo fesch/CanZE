@@ -22,7 +22,7 @@
             android:id="@+id/field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown" />
 
 
     <TextView
@@ -35,7 +35,7 @@
             android:id="@+id/interval"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:spinnerMode="dropdown"/>
+            android:spinnerMode="dropdown"/>
 
     <Button
         android:id="@+id/addButton"

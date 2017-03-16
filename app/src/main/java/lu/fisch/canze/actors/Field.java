@@ -101,7 +101,7 @@ public class Field {
     @Override
     public String toString()
     {
-        return getSID()+" : "+getPrintValue();
+        return getSID()+" : "+getName()+" ["+getUnit()+"]";
     }
 
     boolean isIsoTp()

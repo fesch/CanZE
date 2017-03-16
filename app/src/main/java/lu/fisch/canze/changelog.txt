@@ -1,7 +1,8 @@
 2017.03.06 [Bob] Enabled Twizy. More to come soon ...
-2017.03.07 [Bob] Prepared new logging feature
+2017.03.07 [Bob] Prepared new logging feature (NLF)
 2017.03.07 [Bob] Fixed #452: Charts: Color of description the same as color of line
 2017.03.08 [Bob] Fixed #451: x-axis of charts going back and forth during logging
+2017.03.16 [Bob] NLF: save/load/modify list of fields to log
 
 ---< Version 1.24 / 2017.02.21 >---
 2017.02.21 [Bob] Hotfix for issue #441
