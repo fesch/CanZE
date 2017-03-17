@@ -62,7 +62,7 @@ public class FieldAdapter extends ArrayAdapter {
         final LoggerField loggerField = data.get(position);
         // fill the list items
         holder.field.setText(loggerField.field.toString());
-        holder.interval.setText(loggerField.interval+"");
+        holder.interval.setText(loggerField.interval+" s");
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
