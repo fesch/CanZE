@@ -1,3 +1,4 @@
+---< Version 1.25 / 2017.06.02 >---
 2017.03.06 [Bob] Enabled Twizy. More to come soon ...
 2017.03.07 [Bob] Prepared new logging feature (NLF)
 2017.03.07 [Bob] Fixed #452: Charts: Color of description the same as color of line
