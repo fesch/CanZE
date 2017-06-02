@@ -82,18 +82,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <Button
-                style="?android:attr/button"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginBottom="4dp"
-                android:text="@string/default_Dash"
-                android:id="@+id/notAffected1"
-                android:layout_column="0" />
+                <Button
+                    style="?android:attr/button"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/default_Dash"
+                    android:id="@+id/notAffected1"
+                    android:layout_column="0" />
 
                 <Button
                     style="?android:attr/button"
@@ -106,6 +106,38 @@
                     android:layout_marginBottom="4dp"
                     android:text="@string/button_FluenceKangooTemps"
                     android:id="@+id/buttonFluenceKangooTemps"
+                    android:layout_column="1" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    style="?android:attr/button"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/button_Bcb"
+                    android:id="@+id/buttonBcb"
+                    android:layout_column="0" />
+
+                <Button
+                    style="?android:attr/button"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/button_Harmonics"
+                    android:id="@+id/buttonHarmonics"
                     android:layout_column="1" />
 
 

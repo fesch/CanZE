@@ -151,6 +151,7 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("ZOE R90");
         arrayAdapter.add("Fluence");
         arrayAdapter.add("Kangoo");
+        arrayAdapter.add("Twizy");
         arrayAdapter.add("X10");
 
         int index = 0;
@@ -457,6 +458,15 @@ public class SettingsActivity extends AppCompatActivity {
 
                 MainActivity.fields.clearAllFields();
                 toast(MainActivity.getStringSingle(R.string.toast_CacheCleared));
+            }
+        });
+
+        final Button logButton = (Button) findViewById(R.id.logButton);
+        logButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this, LoggingActivity.class);
+                startActivityForResult(intent, 4);
             }
         });
     }

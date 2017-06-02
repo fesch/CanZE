@@ -213,7 +213,7 @@ public class Timeplot extends Drawable {
 
         // draw the vertical grid
         g.setColor(getIntermediate());
-        long start = Calendar.getInstance().getTimeInMillis()/1000;
+        long start = (Calendar.getInstance().getTimeInMillis()/1000);
         int interval = 60/timeSale;
 
         try
@@ -221,13 +221,15 @@ public class Timeplot extends Drawable {
             if(backward)
             {
                 ArrayList<TimePoint> list = this.values.get(sids.get(0));
-                start = list.get(list.size()-1).date;
+                start = list.get(list.size()-1).date/1000;
                 for(int s=0; s<sids.size(); s++) {
                     list = this.values.get(sids.get(s));
-                    long thisDate = list.get(list.size()-1).date;
+                    long thisDate = list.get(list.size()-1).date/1000;
                     if(thisDate>start) start=thisDate;
                 }
-                //MainActivity.debug("Start: "+sdf.format(start));
+                //MainActivity.debug("Start: "+start);
+                //MainActivity.debug("Start: "+interval);
+                //MainActivity.debug("Start: "+(start%interval));
                 for(long x=width-(start%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
                 {
                     g.drawLine(x, 1, x, graphHeight + 5);
@@ -236,10 +238,10 @@ public class Timeplot extends Drawable {
             else
             {
                 ArrayList<TimePoint> list = this.values.get(sids.get(0));
-                start = list.get(0).date;
+                start = list.get(0).date/1000;
                 for(int s=0; s<sids.size(); s++) {
                     list = this.values.get(sids.get(s));
-                    long thisDate = list.get(0).date;
+                    long thisDate = list.get(0).date/1000;
                     if(thisDate<start) start=thisDate;
                 }
                 for(long x=width-barWidth-spaceAlt; x<width-spaceAlt; x+=interval)
@@ -283,7 +285,7 @@ public class Timeplot extends Drawable {
                 if(isBackward())
                 {
 
-                    long maxTime = start; //values.get(values.size() - 1).date;
+                    long maxTime = start*1000; //values.get(values.size() - 1).date;
 
                     for (int i = values.size() - 1; i >= 0; i--) {
                         TimePoint tp = values.get(i);
@@ -405,7 +407,7 @@ public class Timeplot extends Drawable {
                 }
                 else // forward
                 {
-                    long minTime = start; //values.get(0).date;
+                    long minTime = start*1000; //values.get(0).date;
 
                     for (int i = 0; i < values.size() ; i++) {
                             TimePoint tp = values.get(i);
@@ -574,10 +576,44 @@ public class Timeplot extends Drawable {
         {
             g.setColor(getTitleColor());
             g.setTextSize(20);
+
+            // draw multi-line title
+            title = title.replace(" / ",", "); // let's be lazy
+            String[] parts = title.split(",");
+            int tx = getX()+width-barWidth+8-spaceAlt;
+            for(int s=0; s<sids.size(); s++) {
+                String sid = sids.get(s);
+                ArrayList<TimePoint> values = this.values.get(sid);
+
+                int th = g.stringHeight(title);
+                int ty = getY()+th+4;
+
+                if(values.isEmpty())
+                    g.setColor(getColor(s));
+                else
+                    g.setColor(colorRanges.getColor(sid, values.get(values.size()-1).value, getColor(s)));
+
+                if(s<parts.length) {
+                    g.drawString(parts[s].trim(), tx, ty);
+                    tx+=g.stringWidth(parts[s].trim());
+                }
+
+                // draw " / " if needed
+                if(s<sids.size()-1)
+                {
+                    g.setColor(getTitleColor());
+                    g.drawString(" / ",tx,ty);
+                    tx+=g.stringWidth(" /-"); // " / " will _not_ work!
+                }
+            }
+
+            /*
+            // draw single line title
             int th = g.stringHeight(title);
             int tx = getX()+width-barWidth+8-spaceAlt;
             int ty = getY()+th+4;
             g.drawString(title,tx,ty);
+            */
         }
 
         // draw the value

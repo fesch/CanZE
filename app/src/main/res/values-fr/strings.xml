@@ -102,9 +102,9 @@
 
     <string name="title_activity_charging_graph">Graphiques de charge</string>
     <string name="button_ChargingGraphs">Graphiques de charge</string>
-    <string name="graph_PilotPower">Courant pilote (A) / Puissance de charge (kW)</string>
+    <string name="graph_PilotPower">Courant pilote (A), Puissance de charge (kW)</string>
     <string name="graph_MaxRealChPwr">Puissance max de charge batterie (kW) / Puissance de charge DC (kW)</string>
-    <string name="graph_EnergyTemperature">Energie disponible (kWh) / Température (°C)</string>
+    <string name="graph_EnergyTemperature">Energie disponible (kWh), Température (°C)</string>
 
     <!-- Charging history -->
 
@@ -172,7 +172,7 @@
         <item>Ralenti</item>
     </string-array>
     <string name="label_IH_ElectricalPowerDrived">Puissance compresseur</string>
-    <string name="graph_Climatech">Extérieure (°C) / Habitacle (°C) / Consigne (°C) / Batterie (°C)</string>
+    <string name="graph_Climatech">Extérieure (°C), Habitacle (°C), Consigne (°C), Batterie (°C)</string>
 
     <!-- Consumption -->
 
@@ -181,9 +181,9 @@
     <string name="label_WheelTorque">Couple (à la roue)</string>
     <string name="label_InstantConsumption">Consommation instantanée</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Puissance (kW) / Energie disponible (kWh)</string>
-    <string name="graph_SpeedConsumption">Vitesse (km/h) / Consommation (kWh/100km)</string>
-    <string name="graph_RangeSoc">Autonomie (km) / Etat de la charge (%)</string>
+    <string name="graph_PowerEnergy">Puissance (kW), Energie disponible (kWh)</string>
+    <string name="graph_SpeedConsumption">Vitesse (km/h), Consommation (kWh/100km)</string>
+    <string name="graph_RangeSoc">Autonomie (km), Etat de la charge (%)</string>
 
     <!-- Driving -->
 
@@ -314,7 +314,7 @@
     <string name="label_RangeRemaining">Autonomie donnée par la voiture:</string>
     <string name="label_RangeRemainingCanZE">Autonomie calculée par CanZE:</string>
     <string name="label_EstimatedDrivingStyleLoss">Estimation de la perte d\'énergie due au style de conduite:</string>
-    <string name="graph_DistanceEnergy">Autonomie (km) / Energie disponible (kWh)</string>
+    <string name="graph_DistanceEnergy">Autonomie (km), Energie disponible (kWh)</string>
 
     <!-- Settings -->
 
@@ -395,5 +395,162 @@
     <string name="label_HistDuration">Dura</string>
     <string name="label_TypeOfCharge">Type</string>
     <string name="label_distance">Km</string>
+    <string name="header_ChargerKeyParameters">Charger key parameters</string>
+    <string name="label_CompletionStatus">Completion status</string>
+    <string name="label_GroundResistanceOhm">Ground resistance Ohm</string>
+    <string name="label_LeakCurrentDc">Leak current DC (mA)</string>
+    <string name="label_LeakCurrentEhf">Leak current EHF (mA)</string>
+    <string name="label_LeakCurrentHf">Leak current HF (mA)</string>
+    <string name="label_LeakCurrentLf">Leak current LF (mA)</string>
+    <string name="button_Bcb">BCB</string>
+    <string name="button_Harmonics">Harmonics</string>
+    <string name="label_InterPhaseVoltage">Inter phase voltage 12/23/31 V</string>
+    <string name="label_MainsActivePowerConsumed">Mains active power consumed W</string>
+    <string name="label_MainsCurrentType">Mains current type</string>
+    <string name="label_PhaseVoltage">Phase voltage 1/2/3 V</string>
+    <string name="label_SupervisorState">Supervisor State</string>
+    <string name="label_phaseCurrent">Phase current RMS 1/2/3 A</string>
+    <string name="title_activity_bcb">BCB</string>
+    <string name="title_activity_harmonics">Harmonics leak currents</string>
+    <string-array name="list_MainsCurrentType">
+        <item>Nok</item>
+        <item>AC mono</item>
+        <item>AC tri</item>
+        <item>DC</item>
+        <item>AC bi</item>
+    </string-array>
+    <string-array name="list_CompletionStatus">
+        <item>Init</item>
+        <item>HF10</item>
+        <item>-</item>
+        <item>Mains Ground Default</item>
+        <item>-</item>
+        <item>Earth Current default</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Ground Default</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage DC</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage LF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage DC+LF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage DC+HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage LF+HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage DC+LF+HF</item>
+    </string-array>
+    <string-array name="list_SupervisorState">
+        <item>Init</item>
+        <item>Wait</item>
+        <item>ClosingS2</item>
+        <item>InitType</item>
+        <item>InitLkg</item>
+        <item>InitChg</item>
+        <item>Charge</item>
+        <item>ZeroAmpMode</item>
+        <item>EndOfChg</item>
+        <item>OpeningS2</item>
+        <item>ReadyToSleep</item>
+        <item>EmergencyStop</item>
+        <item>InitChargeDF</item>
+        <item>OCPStop</item>
+        <item>WaitS2</item>
+    </string-array>
 
 </resources>

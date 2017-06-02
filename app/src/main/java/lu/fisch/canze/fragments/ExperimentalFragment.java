@@ -32,8 +32,10 @@ import android.widget.Button;
 
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.activities.BcbActivity;
 import lu.fisch.canze.activities.ChargingHistActivity;
 import lu.fisch.canze.activities.FluenceKangooTempsActivity;
+import lu.fisch.canze.activities.HarmonicsActivity;
 import lu.fisch.canze.activities.LeafSpyActivity;
 import lu.fisch.canze.activities.MainActivity;
 
@@ -95,6 +97,9 @@ public class ExperimentalFragment extends Fragment {
         // activateButton(view, R.id.buttonLeafSpy,                LeafSpyActivity.class);
         // activateButton(view, R.id.buttonFluenceKangooTemps,     FluenceKangooTempsActivity.class);
 
+        activateButton(view, R.id.buttonBcb,                    BcbActivity.class);
+        activateButton(view, R.id.buttonHarmonics,              HarmonicsActivity.class);
+
         return view;
     }
 
@@ -111,10 +116,6 @@ public class ExperimentalFragment extends Fragment {
             }
         });
     }
-
-
-
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
