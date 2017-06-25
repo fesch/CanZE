@@ -135,6 +135,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
 
                 // query the Frame
                 Frame frame = Frames.getInstance().getById(ecu.getFromId(), "6180");
+                MainActivity.getInstance().dropDebugMessage(frame.getHexId() + "." + frame.getResponseId());
                 Message message = MainActivity.device.requestFrame(frame); //  field.getFrame());
                 if (message.isError()) {
                     MainActivity.getInstance().dropDebugMessage(message.getError());
@@ -211,9 +212,9 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
         super.onDestroy();
     }
 
-
-    protected void initListeners() {}
-
+    protected void initListeners () {
+        MainActivity.getInstance().setDebugListener(this);
+    }
     @Override
     public void onFieldUpdateEvent(final Field field) {}
 }

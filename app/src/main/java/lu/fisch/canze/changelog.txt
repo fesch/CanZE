@@ -1,3 +1,20 @@
+2017.03.06 [Bob] Enabled Twizy. More to come soon ...
+2017.03.07 [Bob] Prepared new logging feature (NLF)
+2017.03.07 [Bob] Fixed #452: Charts: Color of description the same as color of line
+2017.03.08 [Bob] Fixed #451: x-axis of charts going back and forth during logging
+2017.03.16 [Bob] NLF: save/load/modify list of fields to log
+2017.03.17 [Bob] NLF: make listing nicer
+
+---< Version 1.24 / 2017.02.21 >---
+2017.02.21 [Bob] Hotfix for issue #441
+2017.02.21 [Bob] Trying to fix #310
+
+---< Version 1.23 / 2017.02.19 >---
+2017.02.16 [Bob] Repair poller restart for HTTP based device
+2017.02.16 [Bob] Fixed some imprecisions in widget Timeplot
+2017.02.16 [Bob] Added option colorline[x] for widget Timeplot
+
+---< Version 1.22 / 2017.02.12 >---
 2017.02.12 [Jeroen] Added total energy to ChargingTech #430
 2017.02.12 [Bob] Spanish language file added, many thanks to the contributors
 2017.02.11 [Jeroen] Improved code to get DTC's

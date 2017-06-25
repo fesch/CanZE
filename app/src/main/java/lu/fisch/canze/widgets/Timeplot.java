@@ -122,11 +122,13 @@ public class Timeplot extends Drawable {
         int graphHeight = height-g.stringHeight(sdf.format(Calendar.getInstance().getTime()))-5;
 
         // draw the ticks
+        double realMaxAlt=getMaxAlt();
         if(minorTicks>0 || majorTicks>0)
         {
             int toTicks = minorTicks;
             if(toTicks==0) toTicks=majorTicks;
-            double accel = (double)graphHeight/((max-min)/(double)toTicks);
+            double intervals = ((max-min)/(double)toTicks);
+            double accel = (double)graphHeight/intervals;
             double ax,ay,bx=0,by=0;
             int actual = min;
             int actualAlt = minAlt;
@@ -200,15 +202,18 @@ public class Timeplot extends Drawable {
                     }
 
                     actual+=majorTicks;
-                    actualAlt+=(maxAlt-minAlt)/((max-min)/majorTicks);
+                    actualAlt+= Math.round((double) (maxAlt - minAlt) / (max - min) * majorTicks);
                 }
                 sum+=minorTicks;
             }
+            // calculate real max alt
+            double altTicks = Math.round((double) (maxAlt - minAlt) / (max - min) * majorTicks)/((double)majorTicks/toTicks);
+            realMaxAlt=intervals*altTicks+getMinAlt();
         }
 
         // draw the vertical grid
         g.setColor(getIntermediate());
-        long start = Calendar.getInstance().getTimeInMillis()/1000;
+        long start = (Calendar.getInstance().getTimeInMillis()/1000);
         int interval = 60/timeSale;
 
         try
@@ -216,13 +221,15 @@ public class Timeplot extends Drawable {
             if(backward)
             {
                 ArrayList<TimePoint> list = this.values.get(sids.get(0));
-                start = list.get(list.size()-1).date;
+                start = list.get(list.size()-1).date/1000;
                 for(int s=0; s<sids.size(); s++) {
                     list = this.values.get(sids.get(s));
-                    long thisDate = list.get(list.size()-1).date;
+                    long thisDate = list.get(list.size()-1).date/1000;
                     if(thisDate>start) start=thisDate;
                 }
-                //MainActivity.debug("Start: "+sdf.format(start));
+                //MainActivity.debug("Start: "+start);
+                //MainActivity.debug("Start: "+interval);
+                //MainActivity.debug("Start: "+(start%interval));
                 for(long x=width-(start%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
                 {
                     g.drawLine(x, 1, x, graphHeight + 5);
@@ -231,10 +238,10 @@ public class Timeplot extends Drawable {
             else
             {
                 ArrayList<TimePoint> list = this.values.get(sids.get(0));
-                start = list.get(0).date;
+                start = list.get(0).date/1000;
                 for(int s=0; s<sids.size(); s++) {
                     list = this.values.get(sids.get(s));
-                    long thisDate = list.get(0).date;
+                    long thisDate = list.get(0).date/1000;
                     if(thisDate<start) start=thisDate;
                 }
                 for(long x=width-barWidth-spaceAlt; x<width-spaceAlt; x+=interval)
@@ -268,8 +275,8 @@ public class Timeplot extends Drawable {
             if (values.size() > 0) {
 
                 double w = (double) barWidth / values.size();
-                double h = (double) graphHeight / (getMax() - getMin() + 1);
-                double hAlt = (double) graphHeight / (getMaxAlt() - getMinAlt() + 1);
+                double h = (double) graphHeight / (getMax() - getMin());
+                double hAlt = (double) graphHeight / (realMaxAlt - getMinAlt());
 
                 double lastX = Double.NaN;
                 double lastY = Double.NaN;
@@ -278,7 +285,7 @@ public class Timeplot extends Drawable {
                 if(isBackward())
                 {
 
-                    long maxTime = start; //values.get(values.size() - 1).date;
+                    long maxTime = start*1000; //values.get(values.size() - 1).date;
 
                     for (int i = values.size() - 1; i >= 0; i--) {
                         TimePoint tp = values.get(i);
@@ -291,15 +298,43 @@ public class Timeplot extends Drawable {
                             if (mx < 0) {
                                 values.remove(i);
                             } else {
-                                double my = graphHeight - (tp.value - min) * h;
-                                double zy = graphHeight - (0 - min) * h;
-
-                                // draw on alternate scale if requested
+                                // determine Y
+                                double my;
+                                // distinct "alt" vs "normal"
                                 if (getOptions().getOption(sid) != null &&
-                                        getOptions().getOption(sid).contains("alt")) {
+                                        getOptions().getOption(sid).contains("alt"))
                                     my = graphHeight - (tp.value - minAlt) * hAlt;
-                                    zy = graphHeight - (0 - minAlt) * hAlt;
+                                else
+                                    my = graphHeight - (tp.value - min) * h;
+
+                                // check if y should be fixed: colorline[value-of-y]
+                                if ((getOptions().getOption(sid) != null &&
+                                        !getOptions().getOption(sid).isEmpty() &&
+                                        getOptions().getOption(sid).contains("colorline"))) {
+
+                                    // parse out position of line
+                                    String options = getOptions().getOption(sid);
+                                    int index = options.indexOf("colorline");
+                                    index += ("colorline").length() + 1;
+                                    String value = "";
+                                    while (index < options.length() && options.charAt(index) != ']') {
+                                        value += options.charAt(index);
+                                        index++;
+                                    }
+                                    if (getOptions().getOption(sid) != null &&
+                                            getOptions().getOption(sid).contains("alt"))
+                                        my = graphHeight - (Double.valueOf(value) - minAlt) * hAlt;
+                                    else
+                                        my = graphHeight - (Double.valueOf(value) - min) * h;
                                 }
+
+                                // now get ZY
+                                double zy;
+                                if (getOptions().getOption(sid) != null &&
+                                        getOptions().getOption(sid).contains("alt"))
+                                    zy = graphHeight - (0 - minAlt) * hAlt;
+                                else
+                                    zy = graphHeight - (0 - min) * h;
 
                                 int rayon = 2;
 
@@ -317,7 +352,7 @@ public class Timeplot extends Drawable {
                                 if (i < values.size() - 1) {
                                     if (getOptions().getOption(sid) != null &&
                                             getOptions().getOption(sid).contains("full")) {
-                                        if ((lastY != Double.NaN) && (lastX != Double.NaN)) {
+                                        if ((lastY != Double.NaN) && (lastX != Double.NaN) && (lastY != 0.0) && (lastX != 0.0)) {
                                             Polygon p = new Polygon();
                                             p.addPoint(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
                                                     getY() + (int) lastY);
@@ -333,7 +368,7 @@ public class Timeplot extends Drawable {
                                             getOptions().getOption(sid).contains("gradient")) {
 
                                         if (i < values.size() && values.get(i + 1) != null) {
-                                            if ((lastY != Double.NaN) && (lastX != Double.NaN)) {
+                                            if ((lastY != Double.NaN) && (lastX != Double.NaN) && (lastY != 0.0) && (lastX != 0.0)) {
                                                 Polygon p = new Polygon();
                                                 p.addPoint(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
                                                         getY() + (int) lastY);
@@ -355,11 +390,12 @@ public class Timeplot extends Drawable {
                                             }
                                         }
                                     } else {
-                                        if(lastX!=Double.NaN && lastY!=Double.NaN) {
-                                            g.drawLine(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
-                                                    getY() + (int) lastY,
-                                                    getX() + getWidth() - barWidth + (int) mx - spaceAlt,
-                                                    getY() + (int) my);
+                                        if(lastX!=Double.NaN && lastY!=Double.NaN && lastX!=0.0 && lastY!=0.0) {
+
+                                                g.drawLine(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
+                                                        getY() + (int) lastY,
+                                                        getX() + getWidth() - barWidth + (int) mx - spaceAlt,
+                                                        getY() + (int) my);
                                         }
                                     }
                                 }
@@ -371,7 +407,7 @@ public class Timeplot extends Drawable {
                 }
                 else // forward
                 {
-                    long minTime = start; //values.get(0).date;
+                    long minTime = start*1000; //values.get(0).date;
 
                     for (int i = 0; i < values.size() ; i++) {
                             TimePoint tp = values.get(i);
@@ -386,6 +422,24 @@ public class Timeplot extends Drawable {
                                     //values.remove(i);
                                 } else {
                                     double my = graphHeight - (tp.value - min) * h;
+
+                                    // check if y should be fixed: colorline[value-of-y]
+                                    if ((getOptions().getOption(sid) != null &&
+                                            !getOptions().getOption(sid).isEmpty() &&
+                                            getOptions().getOption(sid).contains("colorline"))) {
+
+                                        // parse out position of line
+                                        String options = getOptions().getOption(sid);
+                                        int index = options.indexOf("colorline");
+                                        index += ("colorline").length() + 1;
+                                        String value = "";
+                                        while (index < options.length() && options.charAt(index) != ']') {
+                                            value += options.charAt(index);
+                                            index++;
+                                        }
+                                        my = graphHeight - (Double.valueOf(value) - min) * h;
+                                    }
+
                                     double zy = graphHeight - (0 - min) * h;
 
                                     // draw on alternate scale if requested
@@ -411,7 +465,7 @@ public class Timeplot extends Drawable {
                                     if (i > 0) {
                                         if (getOptions().getOption(sid) != null &&
                                                 getOptions().getOption(sid).contains("full")) {
-                                            if ((lastY != Double.NaN) && (lastX != Double.NaN)) {
+                                            if ((lastY != Double.NaN) && (lastX != Double.NaN) && (lastY != 0.0) && (lastX != 0.0)) {
                                                 Polygon p = new Polygon();
                                                 p.addPoint(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
                                                         getY() + (int) lastY);
@@ -427,7 +481,7 @@ public class Timeplot extends Drawable {
                                                 getOptions().getOption(sid).contains("gradient")) {
 
                                             //if (i < values.size() && values.get(i - 1) != null) {
-                                                if ((lastY != Double.NaN) && (lastX != Double.NaN)) {
+                                                if ((lastY != Double.NaN) && (lastX != Double.NaN) && (lastY != 0.0) && (lastX != 0.0)) {
                                                     Polygon p = new Polygon();
                                                     p.addPoint(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
                                                             getY() + (int) lastY);
@@ -449,7 +503,7 @@ public class Timeplot extends Drawable {
                                                 }
                                             //}
                                         } else {
-                                            if(lastX!=Double.NaN && lastY!=Double.NaN)
+                                            if(lastX!=Double.NaN && lastY!=Double.NaN && (lastY != 0.0) && (lastX != 0.0))
                                             {
                                                 g.drawLine(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
                                                         getY() + (int) lastY,
@@ -522,10 +576,44 @@ public class Timeplot extends Drawable {
         {
             g.setColor(getTitleColor());
             g.setTextSize(20);
+
+            // draw multi-line title
+            title = title.replace(" / ",", "); // let's be lazy
+            String[] parts = title.split(",");
+            int tx = getX()+width-barWidth+8-spaceAlt;
+            for(int s=0; s<sids.size(); s++) {
+                String sid = sids.get(s);
+                ArrayList<TimePoint> values = this.values.get(sid);
+
+                int th = g.stringHeight(title);
+                int ty = getY()+th+4;
+
+                if(values.isEmpty())
+                    g.setColor(getColor(s));
+                else
+                    g.setColor(colorRanges.getColor(sid, values.get(values.size()-1).value, getColor(s)));
+
+                if(s<parts.length) {
+                    g.drawString(parts[s].trim(), tx, ty);
+                    tx+=g.stringWidth(parts[s].trim());
+                }
+
+                // draw " / " if needed
+                if(s<sids.size()-1)
+                {
+                    g.setColor(getTitleColor());
+                    g.drawString(" / ",tx,ty);
+                    tx+=g.stringWidth(" /-"); // " / " will _not_ work!
+                }
+            }
+
+            /*
+            // draw single line title
             int th = g.stringHeight(title);
             int tx = getX()+width-barWidth+8-spaceAlt;
             int ty = getY()+th+4;
             g.drawString(title,tx,ty);
+            */
         }
 
         // draw the value

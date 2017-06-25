@@ -97,12 +97,38 @@ public class Fields {
 
 
     private void addVirtualFieldUsage() {
+
+        // It would be easier use SID_Consumption = "1fd.48" (dash kWh) instead of V*A
+
         final String SID_EVC_TractionBatteryVoltage = "7ec.623203.24";  // unit = V
         final String SID_EVC_TractionBatteryCurrent = "7ec.623204.24";  // unit = A
         final String SID_RealSpeed = "5d7.0";                           // unit = km/h
+/*
+        // create a list of field this new virtual field will depend on
+        HashMap<String, Field> dependantFields = new HashMap<>();
+        dependantFields.put(SID_EVC_TractionBatteryVoltage, getBySID(SID_EVC_TractionBatteryVoltage));
+        dependantFields.put(SID_EVC_TractionBatteryCurrent, getBySID(SID_EVC_TractionBatteryCurrent));
+        dependantFields.put(SID_RealSpeed, getBySID(SID_RealSpeed));
+        // create a new virtual field. Define it's ID and how it is being calculated
+        VirtualField virtualField = new VirtualField("6100", dependantFields, "kWh/100km", new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String, Field> dependantFields) {
+                // get voltage
+                double dcVolt = dependantFields.get(SID_EVC_TractionBatteryVoltage).getValue();
+                // get current
+                double dcPwr = dcVolt * dependantFields.get(SID_EVC_TractionBatteryCurrent).getValue() / 1000.0;
+                // get real speed
+                double realSpeed = dependantFields.get(SID_RealSpeed).getValue();
 
-        // It would be easier use SID_Consumption = "1fd.48" (dash kWh) instead of V*A, but dash is not precise and includes other consumers
-
+                if (realSpeed >= 5)
+                    return -(Math.round(1000.0 * dcPwr / realSpeed) / 10.0);
+                else
+                    return 0;
+            }
+        });
+        // add it to the list of fields
+        add(virtualField);
+*/
         addVirtualFieldCommon ("6100", "kWh/100km", SID_EVC_TractionBatteryVoltage+";"+SID_EVC_TractionBatteryCurrent+";"+SID_RealSpeed, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
@@ -124,7 +150,22 @@ public class Fields {
     private void addVirtualFieldFrictionTorque() {
         final String SID_DriverBrakeWheel_Torque_Request        = "130.44"; //UBP braking wheel torque the driver wants
         final String SID_ElecBrakeWheelsTorqueApplied           = "1f8.28"; //10ms
+/*
+        // create a list of field this new virtual field will depend on
+        HashMap<String, Field> dependantFields = new HashMap<>();
+        dependantFields.put(SID_DriverBrakeWheel_Torque_Request, getBySID(SID_DriverBrakeWheel_Torque_Request));
+        dependantFields.put(SID_ElecBrakeWheelsTorqueApplied, getBySID(SID_ElecBrakeWheelsTorqueApplied));
+        // create a new virtual field. Define it's ID and how it is being calculated
+        VirtualField virtualField = new VirtualField("6101", dependantFields, "Nm", new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String,Field> dependantFields) {
 
+                return dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue();
+            }
+        });
+        // add it to the list of fields
+        add(virtualField);
+*/
         addVirtualFieldCommon ("6101", "Nm", SID_DriverBrakeWheel_Torque_Request+";"+SID_ElecBrakeWheelsTorqueApplied, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String,Field> dependantFields) {
@@ -138,7 +179,23 @@ public class Fields {
         final String SID_DriverBrakeWheel_Torque_Request        = "130.44"; //UBP braking wheel torque the driver wants
         final String SID_ElecBrakeWheelsTorqueApplied           = "1f8.28"; //10ms
         final String SID_ElecEngineRPM                          = "1f8.40"; //10ms
+/*
+        // create a list of field this new virtual field will depend on
+        HashMap<String, Field> dependantFields = new HashMap<>();
+        dependantFields.put(SID_DriverBrakeWheel_Torque_Request,getBySID(SID_DriverBrakeWheel_Torque_Request));
+        dependantFields.put(SID_ElecBrakeWheelsTorqueApplied,getBySID(SID_ElecBrakeWheelsTorqueApplied));
+        dependantFields.put(SID_ElecEngineRPM,getBySID(SID_ElecEngineRPM));
+        // create a new virtual field. Define it's ID and how it is being calculated
+        VirtualField virtualField = new VirtualField("6102", dependantFields, "kW", new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String,Field> dependantFields) {
 
+                return (dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue()) * dependantFields.get(SID_ElecEngineRPM).getValue() / 9.3;
+            }
+        });
+        // add it to the list of fields
+        add(virtualField);
+*/
         addVirtualFieldCommon ("6102", "kW", SID_DriverBrakeWheel_Torque_Request+";"+SID_ElecBrakeWheelsTorqueApplied+";"+SID_ElecEngineRPM, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String,Field> dependantFields) {
@@ -151,7 +208,22 @@ public class Fields {
     private void addVirtualFieldDcPower() {
         final String SID_TractionBatteryVoltage             = "7ec.623203.24";
         final String SID_TractionBatteryCurrent             = "7ec.623204.24";
+/*
+        // create a list of field this new virtual field will depend on
+        HashMap<String, Field> dependantFields = new HashMap<>();
+        dependantFields.put(SID_TractionBatteryVoltage,getBySID(SID_TractionBatteryVoltage));
+        dependantFields.put(SID_TractionBatteryCurrent,getBySID(SID_TractionBatteryCurrent));
+        // create a new virtual field. Define it's ID and how it is being calculated
+        VirtualField virtualField = new VirtualField("6103", dependantFields, "kW", new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String,Field> dependantFields) {
 
+                return dependantFields.get(SID_TractionBatteryVoltage).getValue() * dependantFields.get(SID_TractionBatteryCurrent).getValue() / 1000;
+            }
+        });
+        // add it to the list of fields
+        add(virtualField);
+*/
         addVirtualFieldCommon ("6103", "kW", SID_TractionBatteryVoltage+";"+SID_TractionBatteryCurrent, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String,Field> dependantFields) {
@@ -163,7 +235,28 @@ public class Fields {
     }
 
     private void addVirtualFieldUsageLpf() {
+
+        // It would be easier use SID_Consumption = "1fd.48" (dash kWh) instead of V*A
+
         final String SID_VirtualUsage               = "800.6100.24";
+/*
+        // create a list of field this new virtual field will depend on
+        HashMap<String, Field> dependantFields = new HashMap<>();
+        dependantFields.put(SID_VirtualUsage, getBySID(SID_VirtualUsage));
+        // create a new virtual field. Define it's ID and how it is being calculated
+        VirtualField virtualField = new VirtualField("6104", dependantFields, "kWh/100km", new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String, Field> dependantFields) {
+                double value = dependantFields.get(SID_VirtualUsage).getValue();
+                if (value != 0) {
+                    runningUsage = runningUsage * 0.95 + value * 0.05;
+                }
+                return runningUsage;
+            }
+        });
+        // add it to the list of fields
+        add(virtualField);
+*/
 
         addVirtualFieldCommon ("6104", "kWh/100km", SID_VirtualUsage, new VirtualFieldAction() {
             @Override
@@ -245,7 +338,6 @@ public class Fields {
                         + "430,38,39,1,0,0,,,,e2\n" // HV Battery Cooling State
                         + "430,40,49,0.1,400,1,°C,,,e2\n" // HV Battery Evaporator Temp
                         + "432,36,37,1,0,0,,,,e2\n" // HV Bat Conditionning Mode
-                        + "4f8,4,5,1,0,0,,,,ff\n" // Parking brake
                         + "534,32,40,1,40,0,°C,,,e5\n" // Temp out
                         + "5d7,0,15,0.01,0,2,km/h,,,ff\n" // Speed
                         + "5da,0,7,1,40,0,ºC,,,e7\n" // Water temperature
@@ -270,47 +362,65 @@ public class Fields {
                         + "760,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "760,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "760,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "760,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "760,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "762,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "762,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "762,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "762,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "762,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "762,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "763,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "763,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "763,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "763,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "763,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "763,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "764,26,35,0.1,400,0,°C,2121,6121,e2\n" // IH_InCarTemp
                         + "764,8,15,0.4,100,0,°C,2121,6121,5\n" // IH_InCarTemp
                         + "764,36,43,1,0,0,%,2121,6121,e2\n" // IH_RHumidity
                         + "764,16,23,1,0,0,%,2121,6121,5\n" // IH_RHumidity
+                        + "764,86,87,1,0,0,,2143,6143,ff\n" // IH_EcoModeRequest,0:Unavailable Value;1:Eco mode requested;2:Eco mode not requested;3:Not used
                         + "764,110,117,1,40,0,%,2143,6143,ff\n" // IH_ExternalTemp
-                      //+ "764,88,92,100,0,0,W,2143,6143,ff\n" // Compressor power
                         + "764,134,142,.1,0,0,bar,2143,6143,ff\n" // IH_ACHighPressureSensor
-                        + "764,107,116,10,0,0,rpm,2144,6144,ff\n" // Compressor RPM
+                        + "764,107,116,10,0,0,rpm,2144,6144,ff\n" // IH_ClimCompRPMStatus
                         + "764,40,41,1,0,0,,2167,6167,ff\n" // IH_ExternalTemp
                         + "764,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "764,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "764,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "764,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "764,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "764,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "765,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "765,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "765,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "765,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "765,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "765,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "76d,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "76d,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "76d,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "76d,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "76d,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "76d,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "76e,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "76e,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "76e,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "76e,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "76e,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "76e,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "772,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "772,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "772,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "772,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "772,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "772,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "77e,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "77e,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "77e,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "77e,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "77e,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "77e,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "77e,24,39,0.015625,0,2,ºC,223018,623018,ff\n" // DCDC converter temperature
                         + "77e,24,31,0.015625,0,2,°C,22302b,62302b,ff\n" // inverter temperature
                         + "793,0,0,1,0,0,,1081,5081,ff\n" // start diag
@@ -320,10 +430,32 @@ public class Fields {
                         + "793,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "793,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "793,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "793,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "793,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
+                        + "793,24,39,0.0625,32768,0,mA,225057,625057,ff\n" // DataRead.Raw leakage current - DC part measurement
+                        + "793,24,39,0.0625,32768,0,mA,225058,625058,ff\n" // DataRead.Raw leakage current - High Frequency 10kHz part measurement
+                        + "793,24,39,0.0625,32768,0,mA,225059,625059,ff\n" // DataRead.Raw leakage current - High Frequency 1st part measurement
+                        + "793,24,39,0.0625,32768,0,mA,22505a,62505a,ff\n" // DataRead.Raw leakage current - Low Frequency part measurement (50Hz)
+                        + "793,24,39,.0625,3200,0,A,222001,622001,ff\n" // Mains phase 1 current RMS value
+                        + "793,24,39,.0625,3200,0,A,22503A,62503A,ff\n" // Mains phase 2 current RMS
+                        + "793,24,39,.0625,3200,0,A,22503B,62503B,ff\n" // Mains phase 3 current RMS
+                        + "793,29,31,1,0,0,,225017,625017,ff\n" // Mains current type,0:Nok;1:AC mono;2:AC tri;3:DC;4:AC bi
+                        + "793,24,39,.5,32000,0,V,22502C,62502C,ff\n" // Raw AC mains phase 1 measured voltage
+                        + "793,24,39,.5,32000,0,V,22502D,62502D,ff\n" // Raw AC mains phase 2 measured voltage
+                        + "793,24,39,.5,32000,0,V,22502E,62502E,ff\n" // Raw AC mains phase 3 measured voltage
+                        + "793,24,39,.5,0,0,V,22503f,62503f,ff\n" // Mains phase 1-2 voltage RMS value
+                        + "793,24,39,.5,0,0,V,225041,625041,ff\n" // Mains phase 2-3 voltage RMS value
+                        + "793,24,39,.5,0,0,V,225042,625042,ff\n" // Mains phase 3-1 voltage RMS value
+                        + "793,24,39,1,20000,0,W,22504A,62504A,ff\n" // Mains active power consumed
+                        + "793,24,39,1,0,0,Ohm,225062,625062,ff\n" // Mains ground resistance
+                        + "793,24,31,1,0,0,,225063,625063,ff\n" // Supervisor state,0:Init;1:Wait;2:ClosingS2;3:InitType;4:InitLkg;5:InitChg;6:Charge;7:ZeroAmpMode;8:EndOfChg;9:OpeningS2;10:ReadyToSleep;11:EmergencyStop;12:InitChargeDF;13:OCPStop;14:WaitS2
+                        + "793,24,31,1,0,0,,225064,625064,ff\n" // Leakage current diagnostic stored completion status,0:init;1:HF10;3:Mains Ground Default;5:Earth Current default;9:Ground Default;17:Means Leakage DC;33:Means Leakage LF;49:Means Leakage DC+LF;65:Means Leakage HF;81:Means Leakage DC+HF;97:Means Leakage LF+HF;113:Means Leakage DC+LF+HF
                         + "7b6,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "7b6,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "7b6,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "7b6,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "7b6,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "7b6,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "7bb,336,351,0.01,0,2,kW,2101,6101,e2\n" // Maximum battery input power
                         + "7bb,56,71,10,0,0,°C,2103,6103,5\n" // Mean battery compartment temp
                         + "7bb,192,207,0.01,0,2,%,2103,6103,e2\n" // Real State of Charge
@@ -457,18 +589,26 @@ public class Fields {
                         + "7bb,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "7bb,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "7bb,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "7bb,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "7bb,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "7bc,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "7bc,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "7bc,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "7bc,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "7bc,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "7bc,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "7da,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "7da,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "7da,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "7da,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "7da,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "7da,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "7ec,56,63,1,0,0,,2180,6180,ff\n" // diagVersion
                         + "7ec,64,87,1,0,0,,2180,6180,2ff\n" // Supplier (string!)
                         + "7ec,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "7ec,144,159,1,0,0,,2180,6180,ff\n" // Version
+                        + "7ec,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
+                        + "7ec,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
                         + "7ec,24,39,2,0,2,%,222002,622002,e2\n" // SOC
                         + "7ec,24,39,2.083333333,0,2,%,222002,622002,e5\n" // SOC
                         + "7ec,24,39,0.01,0,2,V,222005,622005,ff\n" // 12V battery voltage
@@ -479,68 +619,68 @@ public class Fields {
                         + "7ec,24,31,1,0,0,%,223206,623206,ff\n" // Battery health in %
                         + "7ec,24,31,1,1,0,,223318,623318,ff\n" // Motor Water pump speed
                         + "7ec,24,31,1,1,0,,223319,623319,ff\n" // Charger pump speed
-                        + "7ec,24,31,1,1,0,,22331a,62331a,ff\n" // Heater water pump speed
+                        + "7ec,24,31,1,1,0,,22331A,62331A,ff\n" // Heater water pump speed
                         + "7ec,24,47,0.001,1,0,kWh,2233dc,6233dc,ff\n" // Consumed domestic energy
-                        +"7ec,240,263,1,0,0,km,2233d4,6233d4,ff\n" //
-                        +"7ec,216,239,1,0,0,km,2233d4,6233d4,ff\n" //
-                        +"7ec,192,215,1,0,0,km,2233d4,6233d4,ff\n" //
-                        +"7ec,168,191,1,0,0,km,2233d4,6233d4,ff\n" //
-                        +"7ec,144,167,1,0,0,km,2233d4,6233d4,ff\n" //
-                        +"7ec,120,143,1,0,0,km,2233d4,6233d4,ff\n" //
-                        +"7ec,96,119,1,0,0,km,2233d4,6233d4,ff\n" //
-                        +"7ec,72,95,1,0,0,km,2233d4,6233d4,ff\n" //
-                        +"7ec,48,71,1,0,0,km,2233d4,6233d4,ff\n" //
-                        +"7ec,24,47,1,0,0,km,2233d4,6233d4,ff\n" //
-                        +"7ec,96,103,1,0,0,,2233d5,6233d5,ff,\n" //
-                        +"7ec,88,95,1,0,0,,2233d5,6233d5,ff\n" //
-                        +"7ec,80,87,1,0,0,,2233d5,6233d5,ff\n" //
-                        +"7ec,72,79,1,0,0,,2233d5,6233d5,ff\n" //
-                        +"7ec,64,71,1,0,0,,2233d5,6233d5,ff\n" //
-                        +"7ec,56,63,1,0,0,,2233d5,6233d5,ff\n" //
-                        +"7ec,48,55,1,0,0,,2233d5,6233d5,ff\n" //
-                        +"7ec,40,47,1,0,0,,2233d5,6233d5,ff\n" //
-                        +"7ec,32,39,1,0,0,,2233d5,6233d5,ff\n" //
-                        +"7ec,24,31,1,0,0,,2233d5,6233d5,ff\n" //
-                        +"7ec,96,103,1,0,0,,2233d6,6233d6,ff\n" //
-                        +"7ec,88,95,1,0,0,,2233d6,6233d6,ff\n" //
-                        +"7ec,80,87,1,0,0,,2233d6,6233d6,ff\n" //
-                        +"7ec,72,79,1,0,0,,2233d6,6233d6,ff\n" //
-                        +"7ec,64,71,1,0,0,,2233d6,6233d6,ff\n" //
-                        +"7ec,56,63,1,0,0,,2233d6,6233d6,ff\n" //
-                        +"7ec,48,55,1,0,0,,2233d6,6233d6,ff\n" //
-                        +"7ec,40,47,1,0,0,,2233d6,6233d6,ff\n" //
-                        +"7ec,32,39,1,0,0,,2233d6,6233d6,ff\n" //
-                        +"7ec,24,31,1,0,0,,2233d6,6233d6,ff\n" //
-                        +"7ec,168,183,.2,0,0,%,2233d7,6233d7,ff\n" //
-                        +"7ec,152,167,.2,0,0,%,2233d7,6233d7,ff\n" //
-                        +"7ec,136,151,.2,0,0,%,2233d7,6233d7,ff\n" //
-                        +"7ec,120,135,.2,0,0,%,2233d7,6233d7,ff\n" //
-                        +"7ec,104,119,.2,0,0,%,2233d7,6233d7,ff\n" //
-                        +"7ec,88,103,.2,0,0,%,2233d7,6233d7,ff\n" //
-                        +"7ec,72,87,.2,0,0,%,2233d7,6233d7,ff\n" //
-                        +"7ec,56,71,.2,0,0,%,2233d7,6233d7,ff\n" //
-                        +"7ec,40,55,.2,0,0,%,2233d7,6233d7,ff\n" //
-                        +"7ec,24,39,.2,0,0,%,2233d7,6233d7,ff\n" //
-                        +"7ec,96,103,1,40,0,°C,2233d8,6233d8,ff\n" //
-                        +"7ec,88,95,1,40,0,°C,2233d8,6233d8,ff\n" //
-                        +"7ec,80,87,1,40,0,°C,2233d8,6233d8,ff\n" //
-                        +"7ec,72,79,1,40,0,°C,2233d8,6233d8,ff\n" //
-                        +"7ec,64,71,1,40,0,°C,2233d8,6233d8,ff\n" //
-                        +"7ec,56,63,1,40,0,°C,2233d8,6233d8,ff\n" //
-                        +"7ec,48,55,1,40,0,°C,2233d8,6233d8,ff\n" //
-                        +"7ec,40,47,1,40,0,°C,2233d8,6233d8,ff\n" //
-                        +"7ec,32,39,1,40,0,°C,2233d8,6233d8,ff\n" //
-                        +"7ec,24,31,1,40,0,°C,2233d8,6233d8,ff\n" //
-                        +"7ec,168,183,1,0,0,min,2233d9,6233d9,ff\n" //
-                        +"7ec,152,167,1,0,0,min,2233d9,6233d9,ff\n" //
-                        +"7ec,136,151,1,0,0,min,2233d9,6233d9,ff\n" //
-                        +"7ec,120,135,1,0,0,min,2233d9,6233d9,ff\n" //
-                        +"7ec,104,119,1,0,0,min,2233d9,6233d9,ff\n" //
-                        +"7ec,88,103,1,0,0,min,2233d9,6233d9,ff\n" //
-                        +"7ec,72,87,1,0,0,min,2233d9,6233d9,ff\n" //
-                        +"7ec,56,71,1,0,0,min,2233d9,6233d9,ff\n" //
-                        +"7ec,40,55,1,0,0,min,2233d9,6233d9,ff\n" //
-                        +"7ec,24,39,1,0,0,min,2233d9,6233d9,ff\n" //
+                        + "7ec,240,263,1,0,0,km,2233d4,6233d4,ff\n" //
+                        + "7ec,216,239,1,0,0,km,2233d4,6233d4,ff\n" //
+                        + "7ec,192,215,1,0,0,km,2233d4,6233d4,ff\n" //
+                        + "7ec,168,191,1,0,0,km,2233d4,6233d4,ff\n" //
+                        + "7ec,144,167,1,0,0,km,2233d4,6233d4,ff\n" //
+                        + "7ec,120,143,1,0,0,km,2233d4,6233d4,ff\n" //
+                        + "7ec,96,119,1,0,0,km,2233d4,6233d4,ff\n" //
+                        + "7ec,72,95,1,0,0,km,2233d4,6233d4,ff\n" //
+                        + "7ec,48,71,1,0,0,km,2233d4,6233d4,ff\n" //
+                        + "7ec,24,47,1,0,0,km,2233d4,6233d4,ff\n" //
+                        + "7ec,96,103,1,0,0,,2233d5,6233d5,ff,\n" //
+                        + "7ec,88,95,1,0,0,,2233d5,6233d5,ff\n" //
+                        + "7ec,80,87,1,0,0,,2233d5,6233d5,ff\n" //
+                        + "7ec,72,79,1,0,0,,2233d5,6233d5,ff\n" //
+                        + "7ec,64,71,1,0,0,,2233d5,6233d5,ff\n" //
+                        + "7ec,56,63,1,0,0,,2233d5,6233d5,ff\n" //
+                        + "7ec,48,55,1,0,0,,2233d5,6233d5,ff\n" //
+                        + "7ec,40,47,1,0,0,,2233d5,6233d5,ff\n" //
+                        + "7ec,32,39,1,0,0,,2233d5,6233d5,ff\n" //
+                        + "7ec,24,31,1,0,0,,2233d5,6233d5,ff\n" //
+                        + "7ec,96,103,1,0,0,,2233d6,6233d6,ff\n" //
+                        + "7ec,88,95,1,0,0,,2233d6,6233d6,ff\n" //
+                        + "7ec,80,87,1,0,0,,2233d6,6233d6,ff\n" //
+                        + "7ec,72,79,1,0,0,,2233d6,6233d6,ff\n" //
+                        + "7ec,64,71,1,0,0,,2233d6,6233d6,ff\n" //
+                        + "7ec,56,63,1,0,0,,2233d6,6233d6,ff\n" //
+                        + "7ec,48,55,1,0,0,,2233d6,6233d6,ff\n" //
+                        + "7ec,40,47,1,0,0,,2233d6,6233d6,ff\n" //
+                        + "7ec,32,39,1,0,0,,2233d6,6233d6,ff\n" //
+                        + "7ec,24,31,1,0,0,,2233d6,6233d6,ff\n" //
+                        + "7ec,168,183,.2,0,0,%,2233d7,6233d7,ff\n" //
+                        + "7ec,152,167,.2,0,0,%,2233d7,6233d7,ff\n" //
+                        + "7ec,136,151,.2,0,0,%,2233d7,6233d7,ff\n" //
+                        + "7ec,120,135,.2,0,0,%,2233d7,6233d7,ff\n" //
+                        + "7ec,104,119,.2,0,0,%,2233d7,6233d7,ff\n" //
+                        + "7ec,88,103,.2,0,0,%,2233d7,6233d7,ff\n" //
+                        + "7ec,72,87,.2,0,0,%,2233d7,6233d7,ff\n" //
+                        + "7ec,56,71,.2,0,0,%,2233d7,6233d7,ff\n" //
+                        + "7ec,40,55,.2,0,0,%,2233d7,6233d7,ff\n" //
+                        + "7ec,24,39,.2,0,0,%,2233d7,6233d7,ff\n" //
+                        + "7ec,96,103,1,40,0,°C,2233d8,6233d8,ff\n" //
+                        + "7ec,88,95,1,40,0,°C,2233d8,6233d8,ff\n" //
+                        + "7ec,80,87,1,40,0,°C,2233d8,6233d8,ff\n" //
+                        + "7ec,72,79,1,40,0,°C,2233d8,6233d8,ff\n" //
+                        + "7ec,64,71,1,40,0,°C,2233d8,6233d8,ff\n" //
+                        + "7ec,56,63,1,40,0,°C,2233d8,6233d8,ff\n" //
+                        + "7ec,48,55,1,40,0,°C,2233d8,6233d8,ff\n" //
+                        + "7ec,40,47,1,40,0,°C,2233d8,6233d8,ff\n" //
+                        + "7ec,32,39,1,40,0,°C,2233d8,6233d8,ff\n" //
+                        + "7ec,24,31,1,40,0,°C,2233d8,6233d8,ff\n" //
+                        + "7ec,168,183,1,0,0,min,2233d9,6233d9,ff\n" //
+                        + "7ec,152,167,1,0,0,min,2233d9,6233d9,ff\n" //
+                        + "7ec,136,151,1,0,0,min,2233d9,6233d9,ff\n" //
+                        + "7ec,120,135,1,0,0,min,2233d9,6233d9,ff\n" //
+                        + "7ec,104,119,1,0,0,min,2233d9,6233d9,ff\n" //
+                        + "7ec,88,103,1,0,0,min,2233d9,6233d9,ff\n" //
+                        + "7ec,72,87,1,0,0,min,2233d9,6233d9,ff\n" //
+                        + "7ec,56,71,1,0,0,min,2233d9,6233d9,ff\n" //
+                        + "7ec,40,55,1,0,0,min,2233d9,6233d9,ff\n" //
+                        + "7ec,24,39,1,0,0,min,2233d9,6233d9,ff\n" //
 
                 ;
 

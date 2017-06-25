@@ -8,13 +8,9 @@
     <!-- Menus -->
 
     <string name="action_settings">Ajustes</string>
-    <string name="menu_Bluetooth" translatable="false">Bluetooth</string>
 
     <!-- Generic -->
 
-    <string name="default_Zero" translatable="false">0</string>
-    <string name="default_Dash" translatable="false">-</string>
-    <string name="default_DoubleSpace" translatable="false">\u0020\u0020</string>
     <string name="default_Yes">Si</string>
     <string name="default_No">No</string>
     <string name="default_Ok">OK</string>
@@ -26,17 +22,10 @@
 
     <string name="format_NoSid" formatted="false">El campo %s no existe en la clase Fields</string>
     <string name="format_NoView" formatted="false">Ninguna vista con el id \'%s%s\'</string>
-    <string name="format_YMDHMSs" translatable="false">yyyy-MM-dd HH:mm:ss.SSS</string> <!-- for logging and debugging -->
-    <string name="format_YMDHM" translatable="false">yyyy.MM.dd @ HH:mm</string>
-    <string name="format_YMDHMS" translatable="false">yyyy-MM-dd-HH-mm-ss</string> <!-- for log file filename -->
+    <!-- for logging and debugging -->
+    <!-- for log file filename -->
 
     <!-- Units -->
-
-    <string name="unit_Nm" translatable="false">Nm</string>
-    <string name="unit_SpeedKm" translatable="false">\u0020km/h</string>
-    <string name="unit_SpeedMi" translatable="false">\u0020mi/h</string>
-    <string name="unit_ConsumptionKm" translatable="false">\u0020kWh/100km</string>
-    <string name="unit_ConsumptionMi" translatable="false">\u0020kWh/100mi</string>
 
     <!-- Debug (generic) -->
 
@@ -62,7 +51,6 @@
     <string name="label_driver_torque_request">Par solicitado</string>
     <string name="label_ElecBrakeWheelsTorqueApplied">Par Eléctrico Aplicado (regeneración)</string>
     <string name="label_diff_friction_torque">Par de Fricción aplicado (pérdidas)</string>
-    <string name="default_ZeroNm" translatable="false">0 Nm</string>
     <string name="help_AllTorques">El par se indica como par combinado en la rueda, no par motor.</string>
 
     <!-- Charging and ChargingTech -->
@@ -114,9 +102,35 @@
 
     <string name="title_activity_charging_graph">Gráficos de Carga</string>
     <string name="button_ChargingGraphs">Gráficos de Carga</string>
-    <string name="graph_PilotPower">Intensidad piloto (A) / Potencia cargador (kW)</string>
+    <string name="graph_PilotPower">Intensidad piloto (A), Potencia cargador (kW)</string>
     <string name="graph_MaxRealChPwr">Max battery charge (kW) / DC Charging power (kW)</string>
-    <string name="graph_EnergyTemperature">Energía disponible (kWh) / temperatura (°C)</string>
+    <string name="graph_EnergyTemperature">Energía disponible (kWh), temperatura (°C)</string>
+
+    <!-- Charging history -->
+
+    <string name="title_activity_charging_history">Charging history</string>
+    <string name="button_charging_history">Charging history</string>
+    <string name="header_ChargingHistory">Last 10 sessions</string>
+    <string-array name="list_ChargingHistEnd">
+        <item>Full</item>
+        <item>Unpl c</item>
+        <item>Cut ch</item>
+        <item>Fail</item>
+        <item>Sched</item>
+        <item>Flt1</item>
+        <item>Flt22</item>
+        <item>Flt3</item>
+        <item>Flt4</item>
+        <item>Flt5</item>
+        <item>Flt6</item>
+    </string-array>
+    <string-array name="list_ChargingHistTyp">
+        <item>Slow</item>
+        <item>Quick</item>
+        <item>Drop</item>
+        <item>Unknw</item>
+        <item>Sched</item>
+    </string-array>
 
     <!-- Charging prediction -->
 
@@ -157,7 +171,7 @@
         <item>Desempañado</item>
         <item>Ralentí</item>
     </string-array>
-    <string name="graph_Climatech">Externa (°C) / Interna (°C) / Ajuste (°C) / Batería (°C)</string>
+    <string name="graph_Climatech">Externa (°C), Interna (°C), Ajuste (°C), Batería (°C)</string>
 
     <!-- Consumption -->
 
@@ -166,9 +180,9 @@
     <string name="label_WheelTorque">Par en la rueda</string>
     <string name="label_InstantConsumption">Consumo instantáneo</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Potencia (kw) / Energía disponible (kWh)</string>
-    <string name="graph_SpeedConsumption">Velocidad (km/h) / Consumo (kWh/100km)</string>
-    <string name="graph_RangeSoc">Autonomía (km) / Estado de Carga SoC (%)</string>
+    <string name="graph_PowerEnergy">Potencia (kw), Energía disponible (kWh)</string>
+    <string name="graph_SpeedConsumption">Velocidad (km/h), Consumo (kWh/100km)</string>
+    <string name="graph_RangeSoc">Autonomía (km), Estado de Carga SoC (%)</string>
 
     <!-- Driving -->
 
@@ -251,18 +265,6 @@
 
     <string name="title_activity_heatmap_cellvoltage">Tensión celdas</string>
     <string name="button_HeatmapVoltage">Tensión de las celdas</string>
-    <string name="_1" translatable="false">1</string>
-    <string name="_9" translatable="false">9</string>
-    <string name="_17" translatable="false">17</string>
-    <string name="_25" translatable="false">25</string>
-    <string name="_33" translatable="false">33</string>
-    <string name="_41" translatable="false">41</string>
-    <string name="_49" translatable="false">49</string>
-    <string name="_57" translatable="false">57</string>
-    <string name="_65" translatable="false">65</string>
-    <string name="_73" translatable="false">73</string>
-    <string name="_81" translatable="false">81</string>
-    <string name="_89" translatable="false">89</string>
 
     <!-- Kangoo fluence temperatures -->
 
@@ -305,7 +307,7 @@
     <string name="label_RangeRemaining">Autonomía según el coche:</string>
     <string name="label_RangeRemainingCanZE">Autonomía según CanZE:</string>
     <string name="label_EstimatedDrivingStyleLoss">Pérdida de energía estimada por estilo de conducción:</string>
-    <string name="graph_DistanceEnergy">Autonomía (km) / Energía disponible (kWh)</string>
+    <string name="graph_DistanceEnergy">Autonomía (km), Energía disponible (kWh)</string>
 
     <!-- Settings -->
 
@@ -368,24 +370,8 @@
 
     <string name="toast_InitWidgets">Inicializando widgets</string>
     <string name="toast_BluetoothLost">¡Perdida la conexión Bluetooth!</string>
-    <string name="prompt_Disclaimer" translatable="false">Formal Disclaimer</string>
     <string name="prompt_Accept">Sí, ¡Lo tengo!</string>
     <string name="prompt_Decline">No, no he entendido ni jota…</string>
-    <string name="prompt_DisclaimerText" translatable="false"><![CDATA[<html>CanZE (“the software”) is provided as is. Use the software at your own
-                            risk. The authors make no warranties as to performance or fitness for a particular purpose,
-                            or any other warranties whether expressed or implied. No oral or written communication
-                            from or information provided by the authors shall create a warranty. Under no circumstances
-                            shall the authors be liable for direct, indirect, special, incidental, or consequential
-                            damages resulting from the use, misuse, or inability to use the software, even if the author
-                            has been advised of the possibility of such damages. These exclusions and limitations may not
-                            apply in all jurisdictions. You may have additional rights and some of these limitations may not
-                            apply to you. This software is only intended for scientific usage.
-                            <br>
-                            <br>
-                            <b>By using this software you are interfering with your car and doing that with hardware and
-                            software beyond your control, created by a loose team of interested amateurs in this field. Any
-                            car is a possibly lethal piece of machinery and you might hurt or kill yourself or others using
-                            it, or even paying attention to the displays instead of watching the road.</b></html></string>]]></string>
     <string name="toast_Reconnecting">Reconectando el Bluetooth…</string>
     <string name="toast_WaitingSettings">Deteniendo el Bluetooth. Cargando los ajustes. Por favor espere ....</string>
     <string name="toast_NotWhileDriving">Imposible durante la conducción…</string>
@@ -403,6 +389,171 @@
 
     <string name="menu_Experimental">Experimental</string>
     <string name="help_Experimental"> only</string>
-
+    <string name="label_EndBatteryTemp">Temp</string>
+    <string name="label_EndOfChargeStatus">End</string>
+    <string name="label_EndSoc">SOC</string>
+    <string name="label_EnergyConsumed">Energy consumed kWh</string>
+    <string name="label_HistDuration">Dura</string>
+    <string name="label_IH_ClimCompRPMStatus">Compressor RPM / ECO mode</string>
+    <string name="label_IH_ElectricalPowerDrived">Compressor power</string>
+    <string name="label_TypeOfCharge">Type</string>
+    <string name="label_distance">Km</string>
+    <string name="header_ChargerKeyParameters">Charger key parameters</string>
+    <string name="label_CompletionStatus">Completion status</string>
+    <string name="label_GroundResistanceOhm">Ground resistance Ohm</string>
+    <string name="label_LeakCurrentDc">Leak current DC (mA)</string>
+    <string name="label_LeakCurrentEhf">Leak current EHF (mA)</string>
+    <string name="label_LeakCurrentHf">Leak current HF (mA)</string>
+    <string name="label_LeakCurrentLf">Leak current LF (mA)</string>
+    <string name="button_Bcb">BCB</string>
+    <string name="button_Harmonics">Harmonics</string>
+    <string name="label_InterPhaseVoltage">Inter phase voltage 12/23/31 V</string>
+    <string name="label_MainsActivePowerConsumed">Mains active power consumed W</string>
+    <string name="label_MainsCurrentType">Mains current type</string>
+    <string name="label_PhaseVoltage">Phase voltage 1/2/3 V</string>
+    <string name="label_SupervisorState">Supervisor State</string>
+    <string name="label_phaseCurrent">Phase current RMS 1/2/3 A</string>
+    <string name="title_activity_bcb">BCB</string>
+    <string name="title_activity_harmonics">Harmonics leak currents</string>
+    <string-array name="list_MainsCurrentType">
+        <item>Nok</item>
+        <item>AC mono</item>
+        <item>AC tri</item>
+        <item>DC</item>
+        <item>AC bi</item>
+    </string-array>
+    <string-array name="list_CompletionStatus">
+        <item>Init</item>
+        <item>HF10</item>
+        <item>-</item>
+        <item>Mains Ground Default</item>
+        <item>-</item>
+        <item>Earth Current default</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Ground Default</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage DC</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage LF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage DC+LF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage DC+HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage LF+HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Means Leakage DC+LF+HF</item>
+    </string-array>
+    <string-array name="list_SupervisorState">
+        <item>Init</item>
+        <item>Wait</item>
+        <item>ClosingS2</item>
+        <item>InitType</item>
+        <item>InitLkg</item>
+        <item>InitChg</item>
+        <item>Charge</item>
+        <item>ZeroAmpMode</item>
+        <item>EndOfChg</item>
+        <item>OpeningS2</item>
+        <item>ReadyToSleep</item>
+        <item>EmergencyStop</item>
+        <item>InitChargeDF</item>
+        <item>OCPStop</item>
+        <item>WaitS2</item>
+    </string-array>
 
 </resources>
