@@ -627,9 +627,8 @@ public class EcuDiagBCB {
                 ;
 
         Frames.getInstance().load("793,0,0,BCB\n");
-        Frames.getInstance().load("793,0,0,BCB\n");
         Fields.getInstance().load(fieldDef1); // BCB
-        Fields.getInstance().load(fieldDef2); // JB2
+        Fields.getInstance().loadMore(fieldDef2); // JB2
         Dtcs.getInstance().load(dtcDef, testDef);
     }
 }
