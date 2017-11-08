@@ -325,6 +325,7 @@ public class Fields {
                         + "1f8,40,50,10,0,0,Rpm,,,ff\n" // ElecEngineRPM
                         + "1fd,0,7,0.390625,0,1,%,,,ff\n" // 12V Battery Current?
                         + "1fd,48,55,1,80,0,kW,,,ff\n" // Consumption
+                        + "35c,5,7,1,0,0,,,,ff\n" // Vehicle state
                         + "427,40,47,0.3,0,0,kW,,,e2\n" // Available Charging Power
                         + "427,49,57,0.1,0,1,kWh,,,e2\n" // Available Energy
                         + "42a,30,39,0.1,400,1,°C,,,ff\n" // Evaporator Temp Measure

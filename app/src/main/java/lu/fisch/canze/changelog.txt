@@ -1,3 +1,5 @@
+2017.11.08 [Jeroen] Fixed spurious error in MainActivity (null pointer in setBluetoothState)
+2017.11.08 [Jeroen] Added aux battery
 2017.10.22 [Jeroen] Fixed bug calculating energy until full issue #470
 2017.10.05 [Jeroen] Fixed loading fields bug in EcuDiagBcb
 

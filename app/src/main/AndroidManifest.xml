@@ -99,7 +99,11 @@
         <activity
             android:name=".activities.ChargingHistActivity"
             android:label="@string/title_activity_charging_history" />
-        <activity android:name=".activities.LoggingActivity"></activity>
+        <activity
+            android:name=".activities.AuxBattTechActivity"
+            android:label="@string/title_activity_auxbatt" />
+        <activity
+            android:name=".activities.LoggingActivity" />
     </application>
 
 </manifest>

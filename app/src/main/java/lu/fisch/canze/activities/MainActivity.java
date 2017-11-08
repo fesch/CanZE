@@ -798,7 +798,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     private void setBluetoothState(int btState)
     {
         if(bluetoothMenutItem!=null) {
-            final ImageView imageView = (ImageView) bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
+            View view = bluetoothMenutItem.getActionView();
+            if (view == null) return;
+            final ImageView imageView = (ImageView) view.findViewById(R.id.animated_menu_item_action);
 
             // stop the animation if there is one running
             AnimationDrawable frameAnimation;

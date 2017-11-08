@@ -553,6 +553,34 @@
     <string name="label_TyreRLPressure">Rear left pressure mbar</string>
     <string name="label_TyreRRPressure">Rear right pressure mbar</string>
 
+    <!-- Auxiliary battery -->
+
+    <string name="title_activity_auxbatt">12 volt battery</string>
+    <string name="button_auxbatt">12 volt batt</string>
+    <string name="header_auxbatt">12 volt battery</string>
+    <string name="label_auxbat">Voltage, Vehicle state, Charging state</string>
+    <string name="label_auxbatvolt">Voltage</string>
+    <string name="label_vehiclestate">Vehicle state</string>
+    <string-array name="list_VehicleState">
+        <item>Asleep, off (red)</item>
+        <item>Awake, off (green)</item>
+        <item>Ignition on (blue)</item>
+        <item>Starting (yellow)</item>
+        <item>AWake, on (cyan)</item>
+        <item> </item>
+        <item> </item>
+        <item> </item>
+    </string-array>
+    <string-array name="list_ChargingStatus2">
+        <item>No charge (red)</item>
+        <item>Waiting (planned, green)</item>
+        <item>Ended (blue)</item>
+        <item>In progress (yellow)</item>
+        <item>Failure (cyan)</item>
+        <item>Waiting (purple)</item>
+        <item>Flap open (black)</item>
+        <item>Unavailable (grey)</item>
+    </string-array>
     <!-- Widgets only -->
 
     <string name="title_activity_widget">WidgetActivity</string>
