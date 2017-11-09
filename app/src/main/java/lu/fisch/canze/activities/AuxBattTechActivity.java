@@ -82,6 +82,7 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
                         if (tv != null && value >= 0 && value <= 7)
                             tv.setText(vehicle_Status[value]);
                         tv = null;
+                        break;
                     case SID_ChargingStatusDisplay:
                         tv = (TextView) findViewById(R.id.textChaStatus);
                         value = (int) field.getValue();
