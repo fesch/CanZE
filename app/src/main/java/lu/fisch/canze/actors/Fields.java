@@ -66,6 +66,7 @@ public class Fields {
 
     private static Fields instance = null;
     private double runningUsage = 0;
+    public  double realRangeReference = 0;
 
     //private int car = CAR_ANY;
 
@@ -93,6 +94,7 @@ public class Fields {
         addVirtualFieldFrictionPower();
         addVirtualFieldDcPower();
         addVirtualFieldHeaterSetpoint();
+        addVirtualFieldRealRange();
     }
 
 
@@ -285,6 +287,25 @@ public class Fields {
                     return 40.0;
                 }
                 return value;
+            }
+        });
+    }
+
+    private void addVirtualFieldRealRange() {
+        final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
+        final String SID_RangeEstimate                        = "654.42"; //  (EVC)
+
+        addVirtualFieldCommon ("6106", "km", SID_EVC_Odometer, new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String, Field> dependantFields) {
+                double value = dependantFields.get(SID_EVC_Odometer).getValue();
+                if (realRangeReference == 0.0) {
+                    double gom = dependantFields.get(SID_RangeEstimate).getValue();
+                    if (gom != 0.0) {
+                        realRangeReference = value + gom;
+                    }
+                }
+                return realRangeReference - value;
             }
         });
     }
