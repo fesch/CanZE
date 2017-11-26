@@ -213,7 +213,7 @@ public class Timeplot extends Drawable {
 
         // draw the vertical grid
         g.setColor(getIntermediate());
-        long start = (Calendar.getInstance().getTimeInMillis()); ///1000);
+        long start = (Calendar.getInstance().getTimeInMillis()/1000);
         int interval = 60/timeSale;
 
         try
@@ -221,10 +221,10 @@ public class Timeplot extends Drawable {
             if(backward)
             {
                 ArrayList<TimePoint> list = this.values.get(sids.get(0));
-                start = list.get(list.size()-1).date; ///1000;
+                start = list.get(list.size()-1).date/1000;
                 for(int s=0; s<sids.size(); s++) {
                     list = this.values.get(sids.get(s));
-                    long thisDate = list.get(list.size()-1).date; ///1000;
+                    long thisDate = list.get(list.size()-1).date/1000;
                     if(thisDate>start) start=thisDate;
                 }
                 //MainActivity.debug("Start: "+start);
@@ -238,10 +238,10 @@ public class Timeplot extends Drawable {
             else
             {
                 ArrayList<TimePoint> list = this.values.get(sids.get(0));
-                start = list.get(0).date; ///1000;
+                start = list.get(0).date/1000;
                 for(int s=0; s<sids.size(); s++) {
                     list = this.values.get(sids.get(s));
-                    long thisDate = list.get(0).date; ///1000;
+                    long thisDate = list.get(0).date/1000;
                     if(thisDate<start) start=thisDate;
                 }
                 for(long x=width-barWidth-spaceAlt; x<width-spaceAlt; x+=interval)
@@ -529,15 +529,16 @@ public class Timeplot extends Drawable {
         int c = 0;
         int ts = (int) timeSale;
 
-        MainActivity.debug("Start : "+sdf.format(start));
+        //MainActivity.debug("Start : "+sdf.format(start));
         if(backward)
         {
-            for(long x=width-(start%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
+            long newStart = start*1000;
+            for(long x=width-(newStart%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
             {
                 if(c%(5*ts)==0) {
                     g.setColor(getForeground());
                     g.drawLine(x, graphHeight, x, graphHeight + 10);
-                    String date = sdf.format((start - ((start % interval))*timeSale - interval * c*timeSale*1000));
+                    String date = sdf.format((newStart - ((newStart % interval))*timeSale - interval * c*timeSale*1000));
                     g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
                 }
                 else
@@ -551,12 +552,13 @@ public class Timeplot extends Drawable {
         else
         {
             //MainActivity.debug("START: "+sdf.format(start));
+            long newStart = start*1000;
             for(long x=width-barWidth-spaceAlt; x<width-spaceAlt; x+=interval)
             {
                 if(c%(5*ts)==0) {
                     g.setColor(getForeground());
                     g.drawLine(x, graphHeight, x, graphHeight + 10);
-                    String date = sdf.format( start + (interval * c*timeSale*1000));
+                    String date = sdf.format( newStart + (interval * c*timeSale*1000));
                     g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
                 }
                 else
