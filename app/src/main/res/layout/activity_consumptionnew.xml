@@ -229,9 +229,12 @@
                     {'sid':'1fd.48','color':'#3ee9ff','from':-1,'to':1},
                     {'sid':'1fd.48','color':'#008a1d','from':1,'to':20},
                     {'sid':'1fd.48','color':'#ffaa17','from':20,'to':33},
-                    {'sid':'1fd.48','color':'#FF0000','from':33,'to':100}]"
+                    {'sid':'1fd.48','color':'#FF0000','from':33,'to':100}
+                ]"
                 custom:text="Power (kWh), SOC (%)"
-                custom:intervals="{'654.25':10000}"
+                custom:intervals="{
+                    '654.25':10000
+                }"
                 custom:options="{
                     '1fd.48':'gradient',
                     '654.25':'alt,dot'
@@ -264,7 +267,7 @@
                 custom:widget="timeplot"
                 custom:text="@string/graph_SpeedConsumption"
                 custom:intervals="{
-                                   }"
+                }"
                 custom:colorRanges="[
                     {'sid':'800.6100.24','color':'#000000','from':-1000,'to':0},
                     {'sid':'800.6100.24','color':'#AA0000','from':0,'to':11000},
@@ -272,11 +275,11 @@
                     {'sid':'5d7.0','color':'#ffaa17','from':70,'to':100},
                     {'sid':'5d7.0','color':'#FF0000','from':100,'to':130},
                     {'sid':'5d7.0','color':'#cc00ff','from':130,'to':160}
-                    ]"
+                ]"
                 custom:options="{
-                                   '5d7.0':'gradient',
-                                   '800.6104.24':'alt'
-                                }"
+                    '5d7.0':'gradient',
+                    '800.6104.24':'alt'
+                }"
                 />
 
         </TableRow>
@@ -305,15 +308,15 @@
                 custom:widget="timeplot"
                 custom:text="Range (km), Traveled (km)"
                 custom:intervals="{
-                                   '654.42':10000,
-                                   '800.6106.24':10000
-                                   }"
+                    '654.42':10000,
+                    '800.6106.24':10000
+                }"
                 custom:colorRanges="[
-                    {'sid':'800.6106.24','color':'#000000','from':-1000,'to':11000}
-                    ]"
+                    {'sid':'800.6106.24','color':'#000000','from':-10,'to':1000}
+                ]"
                 custom:options="{
-                                '654.25':'alt,dot'
-                                }"
+                    '654.25':'alt,dot'
+                }"
                 />
 
         </TableRow>
