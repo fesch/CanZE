@@ -104,6 +104,9 @@
             android:label="@string/title_activity_auxbatt" />
         <activity
             android:name=".activities.LoggingActivity" />
+        <activity
+            android:name=".activities.ConsumptionNewActivity"
+            android:label="@string/title_activity_consumption" />
     </application>
 
 </manifest>
