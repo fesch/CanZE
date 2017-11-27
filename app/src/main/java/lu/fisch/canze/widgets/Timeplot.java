@@ -565,7 +565,7 @@ public class Timeplot extends Drawable {
                 }
                 c++;
             }
-        }
+    }
         else
         {
             ArrayList<TimePoint> list = this.values.get(sids.get(0));
