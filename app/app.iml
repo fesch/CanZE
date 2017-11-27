@@ -119,8 +119,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="com.android.support:support-annotations:22.2.1@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-v4-22.2.1" level="project" />
-    <orderEntry type="library" name="com.android.support.constraint:constraint-layout-1.1.0-beta3" level="project" />
-    <orderEntry type="library" name="com.android.support.constraint:constraint-layout-solver:1.1.0-beta3@jar" level="project" />
+    <orderEntry type="library" name="com.android.support.constraint:constraint-layout-solver:1.0.2@jar" level="project" />
+    <orderEntry type="library" name="com.android.support.constraint:constraint-layout-1.0.2" level="project" />
     <orderEntry type="library" name="com.android.support:appcompat-v7-22.2.1" level="project" />
     <orderEntry type="library" name="com.android.support:design-22.2.1" level="project" />
     <orderEntry type="library" name="android-android-22" level="project" />

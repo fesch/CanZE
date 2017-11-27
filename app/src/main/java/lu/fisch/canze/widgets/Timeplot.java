@@ -230,7 +230,9 @@ public class Timeplot extends Drawable {
                 //MainActivity.debug("Start: "+start);
                 //MainActivity.debug("Start: "+interval);
                 //MainActivity.debug("Start: "+(start%interval));
-                for(long x=width-(start%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
+                long newStart = start;
+                //MainActivity.debug("Start 1: "+sdf.format(newStart));
+                for(long x=width-(newStart%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
                 {
                     g.drawLine(x, 1, x, graphHeight + 5);
                 }
@@ -530,10 +532,25 @@ public class Timeplot extends Drawable {
         int ts = (int) timeSale;
 
         //MainActivity.debug("Start : "+sdf.format(start));
+
+        sdf = new SimpleDateFormat("HH:mm");
         if(backward)
         {
-            long newStart = start*1000;
-            for(long x=width-(newStart%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
+            ArrayList<TimePoint> list = this.values.get(sids.get(0));
+            long newStart = (Calendar.getInstance().getTimeInMillis());
+            if(!list.isEmpty()) {
+                newStart = list.get(list.size() - 1).date;
+                for (int s = 0; s < sids.size(); s++) {
+                    list = this.values.get(sids.get(s));
+                    if(!list.isEmpty()) {
+                        long thisDate = list.get(list.size() - 1).date;
+                        if (thisDate > start) newStart = thisDate;
+                    }
+                }
+            }
+            //long newStart = start*1000;
+            //MainActivity.debug("Start 2: "+sdf.format(newStart));
+            for(long x=width-(   start%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
             {
                 if(c%(5*ts)==0) {
                     g.setColor(getForeground());
@@ -551,8 +568,21 @@ public class Timeplot extends Drawable {
         }
         else
         {
+            ArrayList<TimePoint> list = this.values.get(sids.get(0));
+
+            long newStart = (Calendar.getInstance().getTimeInMillis());
+            if(!list.isEmpty()) {
+                newStart = list.get(list.size() - 1).date;
+                for (int s = 0; s < sids.size(); s++) {
+                    list = this.values.get(sids.get(s));
+                    if(!list.isEmpty()) {
+                        long thisDate = list.get(0).date;
+                        if (thisDate < start) newStart = thisDate;
+                    }
+                }
+            }
             //MainActivity.debug("START: "+sdf.format(start));
-            long newStart = start*1000;
+            //long newStart = start*1000;
             for(long x=width-barWidth-spaceAlt; x<width-spaceAlt; x+=interval)
             {
                 if(c%(5*ts)==0) {
