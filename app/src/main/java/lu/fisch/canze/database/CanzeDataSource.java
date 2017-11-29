@@ -122,6 +122,23 @@ public class CanzeDataSource implements FieldListener
         return data;
     }
 
+    public long getLastTime(String sid)
+    {
+        long data = -1;
+
+        Cursor c = database.rawQuery("SELECT * FROM data WHERE sid='"+sid+"' ORDER BY moment DESC LIMIT 1", null);
+        //MainActivity.debug("CanzeDataSource: getting last for "+sid);
+        c.moveToFirst();
+        if (!c.isAfterLast()) {
+            data = c.getLong(c.getColumnIndex("moment"));
+            //MainActivity.debug("CanzeDataSource: got value "+data);
+        }
+        // make sure to close the cursor
+        c.close();
+
+        return data;
+    }
+
     public double getMax(String sid)
     {
         double data = Double.NaN;
