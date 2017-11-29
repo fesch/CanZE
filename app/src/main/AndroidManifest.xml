@@ -107,6 +107,9 @@
         <activity
             android:name=".activities.ConsumptionNewActivity"
             android:label="@string/title_activity_consumption" />
+        <activity
+            android:name=".activities.ConsumptionNew2Activity"
+            android:label="@string/title_activity_consumption" />
     </application>
 
 </manifest>

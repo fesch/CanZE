@@ -34,6 +34,7 @@ import android.widget.Button;
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.BcbActivity;
 import lu.fisch.canze.activities.ChargingHistActivity;
+import lu.fisch.canze.activities.ConsumptionNew2Activity;
 import lu.fisch.canze.activities.ConsumptionNewActivity;
 import lu.fisch.canze.activities.FluenceKangooTempsActivity;
 import lu.fisch.canze.activities.HarmonicsActivity;
@@ -101,6 +102,7 @@ public class ExperimentalFragment extends Fragment {
         activateButton(view, R.id.buttonBcb,                    BcbActivity.class);
         activateButton(view, R.id.buttonHarmonics,              HarmonicsActivity.class);
         activateButton(view, R.id.buttonConsumptionNew,         ConsumptionNewActivity.class);
+        activateButton(view, R.id.buttonConsumptionNew2,        ConsumptionNew2Activity.class);
 
         return view;
     }
