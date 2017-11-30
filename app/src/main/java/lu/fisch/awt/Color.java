@@ -24,6 +24,7 @@ package lu.fisch.awt;
 
 public class Color 
 {
+	private int alpha = 0xff;
 	private int red   = 0;
 	private int green = 0;
 	private int blue  = 0;
@@ -47,9 +48,19 @@ public class Color
 	public Color()
 	{
 	}
-	
+
+
 	public Color(int red, int green, int blue)
 	{
+		this.alpha=0xff;
+		this.red=red;
+		this.green=green;
+		this.blue=blue;
+	}
+
+	public Color(int alpha, int red, int green, int blue)
+	{
+		this.alpha=alpha;
 		this.red=red;
 		this.green=green;
 		this.blue=blue;
@@ -57,7 +68,7 @@ public class Color
 	
 	public int getAndroidColor()
 	{
-		return android.graphics.Color.rgb(red, green, blue);
+		return android.graphics.Color.argb(alpha,red, green, blue);
 	}
 	
 	// original JDK code
@@ -65,9 +76,15 @@ public class Color
 	{
 			Integer intval = Integer.decode(nm);
 			int i = intval.intValue();
-			return new Color((i >> 16) & 0xFF, (i >> 8) & 0xFF, i & 0xFF);
+			if (i< 0x1000000) return new Color((i >> 16) & 0xFF, (i >> 8) & 0xFF, i & 0xFF);
+			return new Color((i >> 24) & 0xFF, (i >> 16) & 0xFF, (i >> 8) & 0xFF, i & 0xFF);
 	}
-	
+
+	public int getAlpha()
+	{
+		return alpha;
+	}
+
 	public int getRed()
 	{
 		return red;

@@ -211,14 +211,18 @@ public class Fields {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
                 double odo = dependantFields.get(SID_EVC_Odometer).getValue();
+                double gom = dependantFields.get(SID_RangeEstimate).getValue();
                 if (Double.isNaN(realRangeReference)) {
-                    double gom = dependantFields.get(SID_RangeEstimate).getValue();
                     if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
                         realRangeReference = odo + gom;
                     }
                 }
                 if (Double.isNaN(realRangeReference)) {
                     return Double.NaN;
+                }
+                double delta = realRangeReference - odo - gom;
+                if (delta > 10.0 || delta < -10.0) {
+                    realRangeReference = odo + gom;
                 }
                 return realRangeReference - odo;
             }
@@ -243,7 +247,12 @@ public class Fields {
                 if (Double.isNaN(realRangeReference)) {
                     return Double.NaN;
                 }
-                return realRangeReference - odo - gom;
+                double delta = realRangeReference - odo - gom;
+                if (delta > 10.0 || delta < -10.0) {
+                    realRangeReference = odo + gom;
+                    delta = 0.0;
+                }
+                return delta;
             }
         });
     }
