@@ -221,7 +221,7 @@ public class Fields {
                     return Double.NaN;
                 }
                 double delta = realRangeReference - odo - gom;
-                if (delta > 10.0 || delta < -10.0) {
+                if (delta > 12.0 || delta < -12.0) {
                     realRangeReference = odo + gom;
                 }
                 return realRangeReference - odo;
@@ -248,7 +248,7 @@ public class Fields {
                     return Double.NaN;
                 }
                 double delta = realRangeReference - odo - gom;
-                if (delta > 10.0 || delta < -10.0) {
+                if (delta > 12.0 || delta < -12.0) {
                     realRangeReference = odo + gom;
                     delta = 0.0;
                 }

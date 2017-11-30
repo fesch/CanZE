@@ -74,10 +74,17 @@ public class Color
 	// original JDK code
 	public static Color decode(String nm) throws NumberFormatException 
 	{
-			Integer intval = Integer.decode(nm);
-			int i = intval.intValue();
-			if (i< 0x1000000) return new Color((i >> 16) & 0xFF, (i >> 8) & 0xFF, i & 0xFF);
-			return new Color((i >> 24) & 0xFF, (i >> 16) & 0xFF, (i >> 8) & 0xFF, i & 0xFF);
+			Long longval = Long.decode(nm);
+			long i = longval.longValue();
+			if (i< 0x1000000) return new Color(
+					(int)((i >> 16) & 0xFF),
+					(int)((i >> 8) & 0xFF),
+					(int)(i & 0xFF));
+			return new Color(
+					(int)((i >> 24) & 0xFF),
+					(int)((i >> 16) & 0xFF),
+					(int)((i >> 8) & 0xFF),
+					(int)(i & 0xFF));
 	}
 
 	public int getAlpha()
