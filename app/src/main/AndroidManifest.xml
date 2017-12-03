@@ -58,6 +58,9 @@
             android:name=".activities.ElmTestActivity"
             android:label="@string/title_activity_elm_test" />
         <activity
+            android:name=".activities.ElmDumpActivity"
+            android:label="@string/title_activity_elm_dump" />
+        <activity
             android:name=".activities.FirmwareActivity"
             android:label="@string/title_activity_firmware" />
         <activity
@@ -106,6 +109,9 @@
             android:name=".activities.LoggingActivity" />
         <activity
             android:name=".activities.ConsumptionNewActivity"
+            android:label="@string/title_activity_consumption" />
+        <activity
+            android:name=".activities.ConsumptionNew2Activity"
             android:label="@string/title_activity_consumption" />
     </application>
 

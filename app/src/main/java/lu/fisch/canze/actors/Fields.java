@@ -97,6 +97,7 @@ public class Fields {
         addVirtualFieldDcPower();
         addVirtualFieldHeaterSetpoint();
         addVirtualFieldRealRange();
+        addVirtualFieldRealDelta();
     }
 
 
@@ -213,7 +214,7 @@ public class Fields {
             public double updateValue(HashMap<String, Field> dependantFields) {
                 double odo = dependantFields.get(SID_EVC_Odometer).getValue();
 
-                // timestamp of last inserted dot in MILLISECONDS
+              // timestamp of last inserted dot in MILLISECONDS
                 long lastInsertedTime = CanzeDataSource.getInstance().getLastTime(SID_RangeEstimate);
                 if (    // timeout of 5 minutes
                         (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 5*60*1000)
@@ -222,6 +223,7 @@ public class Fields {
                    )
                 {
                     double gom = dependantFields.get(SID_RangeEstimate).getValue();
+                  
                     if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
                         realRangeReference = odo + gom;
                     }
@@ -229,11 +231,42 @@ public class Fields {
                 if (Double.isNaN(realRangeReference)) {
                     return Double.NaN;
                 }
+                double delta = realRangeReference - odo - gom;
+                if (delta > 12.0 || delta < -12.0) {
+                    realRangeReference = odo + gom;
+                }
                 return realRangeReference - odo;
             }
         });
     }
 
+
+    private void addVirtualFieldRealDelta() {
+        final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
+        final String SID_RangeEstimate                        = "654.42"; //  (EVC)
+
+        addVirtualFieldCommon ("6107", "km", SID_EVC_Odometer + ";" + SID_RangeEstimate, new VirtualFieldAction() {
+            @Override
+            public double updateValue(HashMap<String, Field> dependantFields) {
+                double odo = dependantFields.get(SID_EVC_Odometer).getValue();
+                double gom = dependantFields.get(SID_RangeEstimate).getValue();
+                if (Double.isNaN(realRangeReference)) {
+                    if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
+                        realRangeReference = odo + gom;
+                    }
+                }
+                if (Double.isNaN(realRangeReference)) {
+                    return Double.NaN;
+                }
+                double delta = realRangeReference - odo - gom;
+                if (delta > 12.0 || delta < -12.0) {
+                    realRangeReference = odo + gom;
+                    delta = 0.0;
+                }
+                return delta;
+            }
+        });
+    }
     private void addVirtualFieldCommon (String virtualId, String unit, String dependantIds, VirtualFieldAction virtualFieldAction) {
         // create a list of field this new virtual field will depend on
         HashMap<String, Field> dependantFields = new HashMap<>();

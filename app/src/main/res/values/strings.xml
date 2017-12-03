@@ -631,5 +631,6 @@
     <string name="label_EndBatteryTemp">Temp</string>
     <string name="label_HistDuration">Dura</string>
     <string name="label_IH_ElectricalPowerDrived">Compressor power</string>
+    <string name="title_activity_elm_dump">ELM Dump</string>
 
 </resources>

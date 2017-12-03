@@ -34,7 +34,9 @@ import android.widget.Button;
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.BcbActivity;
 import lu.fisch.canze.activities.ChargingHistActivity;
+import lu.fisch.canze.activities.ConsumptionNew2Activity;
 import lu.fisch.canze.activities.ConsumptionNewActivity;
+import lu.fisch.canze.activities.ElmDumpActivity;
 import lu.fisch.canze.activities.FluenceKangooTempsActivity;
 import lu.fisch.canze.activities.HarmonicsActivity;
 import lu.fisch.canze.activities.LeafSpyActivity;
@@ -82,6 +84,18 @@ public class ExperimentalFragment extends Fragment {
             }
         });
 
+        button = (Button) view.findViewById(R.id.buttonElmDump);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MainActivity.isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                MainActivity.getInstance().leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.getInstance(), ElmDumpActivity.class);
+                ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
+            }
+        });
+
 
         button = (Button) view.findViewById(R.id.buttonFluenceKangooTemps);
         button.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +115,7 @@ public class ExperimentalFragment extends Fragment {
         activateButton(view, R.id.buttonBcb,                    BcbActivity.class);
         activateButton(view, R.id.buttonHarmonics,              HarmonicsActivity.class);
         activateButton(view, R.id.buttonConsumptionNew,         ConsumptionNewActivity.class);
+        activateButton(view, R.id.buttonConsumptionNew2,        ConsumptionNew2Activity.class);
 
         return view;
     }
