@@ -365,6 +365,35 @@
     <string name="label_TyreRLPressure">Tlak zadaj levo mbar</string>
     <string name="label_TyreRRPressure">Tlak zadaj desno mbar</string>
 
+    <!-- Auxiliary battery -->
+
+    <string name="title_activity_auxbatt">12 volt battery</string>
+    <string name="button_auxbatt">12 volt batt</string>
+    <string name="header_auxbatt">12 volt battery</string>
+    <string name="label_auxbat">Voltage, Vehicle state, Charging state</string>
+    <string name="label_auxbatvolt">Voltage</string>
+    <string name="label_vehiclestate">Vehicle state</string>
+    <string-array name="list_VehicleState">
+        <item>Asleep, off (0:red)</item>
+        <item>Awake, off (1:green)</item>
+        <item>Ignition on (2:blue)</item>
+        <item>Starting (3:yellow)</item>
+        <item>Awake, on (4:cyan)</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="list_ChargingStatus2">
+        <item>No charge (0:red)</item>
+        <item>Waiting (planned, 1:green)</item>
+        <item>Ended (2:blue)</item>
+        <item>In progress (3:yellow)</item>
+        <item>Failure (4:cyan)</item>
+        <item>Waiting (5:purple)</item>
+        <item>Flap open (6:black)</item>
+        <item>Unavailable (7:grey)</item>
+    </string-array>
+
     <!-- Widgets only -->
 
     <string name="title_activity_widget">WidgetActivity</string>
@@ -408,6 +437,7 @@
     <string name="label_phaseCurrent">Phase current RMS 1/2/3 A</string>
     <string name="title_activity_bcb">BCB</string>
     <string name="title_activity_harmonics">Harmonics leak currents</string>
+    <string name="title_activity_elm_dump">ELM Dump</string>
     <string-array name="list_MainsCurrentType">
         <item>Nok</item>
         <item>AC mono</item>
