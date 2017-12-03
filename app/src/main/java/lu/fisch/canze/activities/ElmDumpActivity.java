@@ -91,10 +91,13 @@ public class ElmDumpActivity extends CanzeActivity {
             else
             {
                 appendResult(" >> "+message.getData() + "\n");
+
+                message.onMessageCompleteEvent();
+
                 for(int i=0; i<message.getFrame().getAllFields().size(); i++)
                 {
                     Field field = message.getFrame().getAllFields().get(i);
-                    appendResult("Field: "+field.getSID()+" = "+field.getPrintValue()+"\n");
+                    appendResult("          Field: "+field.getSID()+" = "+field.getPrintValue()+"\n");
                 }
             }
         }
