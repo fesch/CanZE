@@ -214,7 +214,9 @@ public class Fields {
             public double updateValue(HashMap<String, Field> dependantFields) {
                 double odo = dependantFields.get(SID_EVC_Odometer).getValue();
 
-              // timestamp of last inserted dot in MILLISECONDS
+                double gom = dependantFields.get(SID_RangeEstimate).getValue();
+
+                // timestamp of last inserted dot in MILLISECONDS
                 long lastInsertedTime = CanzeDataSource.getInstance().getLastTime(SID_RangeEstimate);
                 if (    // timeout of 5 minutes
                         (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 5*60*1000)
@@ -222,12 +224,12 @@ public class Fields {
                         Double.isNaN(realRangeReference)
                    )
                 {
-                    double gom = dependantFields.get(SID_RangeEstimate).getValue();
-                  
+
                     if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
                         realRangeReference = odo + gom;
                     }
                 }
+
                 if (Double.isNaN(realRangeReference)) {
                     return Double.NaN;
                 }
@@ -235,6 +237,7 @@ public class Fields {
                 if (delta > 12.0 || delta < -12.0) {
                     realRangeReference = odo + gom;
                 }
+
                 return realRangeReference - odo;
             }
         });
@@ -250,7 +253,15 @@ public class Fields {
             public double updateValue(HashMap<String, Field> dependantFields) {
                 double odo = dependantFields.get(SID_EVC_Odometer).getValue();
                 double gom = dependantFields.get(SID_RangeEstimate).getValue();
-                if (Double.isNaN(realRangeReference)) {
+
+                // timestamp of last inserted dot in MILLISECONDS
+                long lastInsertedTime = CanzeDataSource.getInstance().getLastTime(SID_RangeEstimate);
+                if (    // timeout of 5 minutes
+                        (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 5*60*1000)
+                        ||
+                        Double.isNaN(realRangeReference)
+                   )
+                {
                     if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
                         realRangeReference = odo + gom;
                     }
