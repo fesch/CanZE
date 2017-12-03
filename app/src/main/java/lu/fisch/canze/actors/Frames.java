@@ -197,6 +197,10 @@ public class Frames {
         frames.add(frame);
     }
 
+    public Frame get (int position) {
+        return frames.get(position);
+    }
+
     public Frame getById (int id) {
         for(int i=0; i<frames.size(); i++)
         {
