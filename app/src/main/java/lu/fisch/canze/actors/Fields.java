@@ -29,6 +29,7 @@ package lu.fisch.canze.actors;
 import android.os.Environment;
 
 import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.interfaces.VirtualFieldAction;
 
 import java.io.BufferedReader;
@@ -36,6 +37,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 /**
@@ -211,8 +213,17 @@ public class Fields {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
                 double odo = dependantFields.get(SID_EVC_Odometer).getValue();
-                double gom = dependantFields.get(SID_RangeEstimate).getValue();
-                if (Double.isNaN(realRangeReference)) {
+
+              // timestamp of last inserted dot in MILLISECONDS
+                long lastInsertedTime = CanzeDataSource.getInstance().getLastTime(SID_RangeEstimate);
+                if (    // timeout of 5 minutes
+                        (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 5*60*1000)
+                        ||
+                        Double.isNaN(realRangeReference)
+                   )
+                {
+                    double gom = dependantFields.get(SID_RangeEstimate).getValue();
+                  
                     if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
                         realRangeReference = odo + gom;
                     }
