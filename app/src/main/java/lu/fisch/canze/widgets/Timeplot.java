@@ -351,7 +351,7 @@ public class Timeplot extends Drawable {
                                             2 * rayon + 1);
                                 }
 
-                                if (i < values.size() - 1) {
+                                if (i < values.size() - 1 && mx!=0 && my!=0) {
                                     if (getOptions().getOption(sid) != null &&
                                             getOptions().getOption(sid).contains("full")) {
                                         if ((lastY != Double.NaN) && (lastX != Double.NaN) && (lastY != 0.0) && (lastX != 0.0)) {
@@ -464,7 +464,7 @@ public class Timeplot extends Drawable {
                                                 2 * rayon + 1);
                                     }
 
-                                    if (i > 0) {
+                                    if (i > 0 && mx!=0 && my!=0) {
                                         if (getOptions().getOption(sid) != null &&
                                                 getOptions().getOption(sid).contains("full")) {
                                             if ((lastY != Double.NaN) && (lastX != Double.NaN) && (lastY != 0.0) && (lastX != 0.0)) {
@@ -505,7 +505,7 @@ public class Timeplot extends Drawable {
                                                 }
                                             //}
                                         } else {
-                                            if(lastX!=Double.NaN && lastY!=Double.NaN && (lastY != 0.0) && (lastX != 0.0))
+                                                if(lastX!=Double.NaN && lastY!=Double.NaN && (lastY != 0.0) && (lastX != 0.0))
                                             {
                                                 g.drawLine(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
                                                         getY() + (int) lastY,
