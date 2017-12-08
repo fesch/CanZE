@@ -467,7 +467,7 @@ public class Timeplot extends Drawable {
                                     if (i > 0 && mx!=0 && my!=0) {
                                         if (getOptions().getOption(sid) != null &&
                                                 getOptions().getOption(sid).contains("full")) {
-                                            if ((lastY != Double.NaN) && (lastX != Double.NaN) && (lastY != 0.0) && (lastX != 0.0)) {
+                                            if ((lastY != Double.NaN) && (lastX != Double.NaN) && !testErrorPoint(lastX, lastY, "last full") && !testErrorPoint(mx, my, "m full")) {
                                                 Polygon p = new Polygon();
                                                 p.addPoint(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
                                                         getY() + (int) lastY);
@@ -483,7 +483,7 @@ public class Timeplot extends Drawable {
                                                 getOptions().getOption(sid).contains("gradient")) {
 
                                             //if (i < values.size() && values.get(i - 1) != null) {
-                                                if ((lastY != Double.NaN) && (lastX != Double.NaN) && (lastY != 0.0) && (lastX != 0.0)) {
+                                                if ((lastY != Double.NaN) && (lastX != Double.NaN) && !testErrorPoint(lastX, lastY, "last grad") && !testErrorPoint(mx, my, "m grad")) {
                                                     Polygon p = new Polygon();
                                                     p.addPoint(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
                                                             getY() + (int) lastY);
@@ -505,7 +505,7 @@ public class Timeplot extends Drawable {
                                                 }
                                             //}
                                         } else {
-                                                if(lastX!=Double.NaN && lastY!=Double.NaN && (lastY != 0.0) && (lastX != 0.0))
+                                                if(lastX!=Double.NaN && lastY!=Double.NaN && !testErrorPoint(mx, my, "m line"))
                                             {
                                                 g.drawLine(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
                                                         getY() + (int) lastY,
@@ -745,6 +745,13 @@ public class Timeplot extends Drawable {
     public void setBackward(boolean backward) {
         this.backward = backward;
     }
+
+    private boolean testErrorPoint (double x, double y, String er) {
+        double maxdelta = 2.0;
+        if (x >= -maxdelta && x <= maxdelta && y >= -maxdelta && y <= maxdelta) {
+            MainActivity.toast ("x:" + x + ", y:" + y + ", " + er);
+            return true;
+        }
+        return false;
+    }
 }
-
-
