@@ -209,11 +209,13 @@ public class Fields {
         final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
         final String SID_RangeEstimate                        = "654.42"; //  (EVC)
 
+        if(Double.isNaN(realRangeReference))
+            realRangeReference = CanzeDataSource.getInstance().getLast(SID_RangeEstimate);
+
         addVirtualFieldCommon ("6106", "km", SID_EVC_Odometer + ";" + SID_RangeEstimate, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
                 double odo = dependantFields.get(SID_EVC_Odometer).getValue();
-
                 double gom = dependantFields.get(SID_RangeEstimate).getValue();
 
                 // timestamp of last inserted dot in MILLISECONDS
@@ -248,11 +250,22 @@ public class Fields {
         final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
         final String SID_RangeEstimate                        = "654.42"; //  (EVC)
 
+        // get last value for realRange from internal database
+        MainActivity.debug("realRange 1: "+realRangeReference);
+        if(Double.isNaN(realRangeReference)) {
+            realRangeReference = CanzeDataSource.getInstance().getLast(SID_RangeEstimate);
+            MainActivity.debug("realRange >> getLast");
+        }
+        MainActivity.debug("realRange 2: "+realRangeReference);
+
         addVirtualFieldCommon ("6107", "km", SID_EVC_Odometer + ";" + SID_RangeEstimate, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
                 double odo = dependantFields.get(SID_EVC_Odometer).getValue();
                 double gom = dependantFields.get(SID_RangeEstimate).getValue();
+
+                MainActivity.debug("realRange ODO: "+odo);
+                MainActivity.debug("realRange GOM: "+gom);
 
                 // timestamp of last inserted dot in MILLISECONDS
                 long lastInsertedTime = CanzeDataSource.getInstance().getLastTime(SID_RangeEstimate);
