@@ -235,10 +235,11 @@ public class Fields {
                 if (Double.isNaN(realRangeReference)) {
                     return Double.NaN;
                 }
+                /*
                 double delta = realRangeReference - odo - gom;
                 if (delta > 12.0 || delta < -12.0) {
                     realRangeReference = odo + gom;
-                }
+                } */
 
                 return realRangeReference - odo;
             }

@@ -300,22 +300,24 @@
                 android:layout_marginBottom="8dp"
                 custom:min="0"
                 custom:max="180,64:320,128:320"
-                custom:minAlt="0"
-                custom:maxAlt="180,64:320,128:320"
+                custom:minAlt="-12"
+                custom:maxAlt="12"
                 custom:majorTicks="30"
                 custom:minorTicks="10"
-                custom:fieldSID="654.42,800.6106.24"
+                custom:fieldSID="654.42,800.6107.24"
                 custom:widget="timeplot"
-                custom:text="Range (km), Traveled (km)"
+                custom:text="Range (km),Delta with reality (km)"
                 custom:intervals="{
                     '654.42':10000,
-                    '800.6106.24':10000
+                    '800.6107.24':10000
                 }"
                 custom:colorRanges="[
-                    {'sid':'800.6106.24','color':'#000000','from':-10,'to':1000}
+                    {'sid':'800.6107.24','color':'#8000ff00','from':-12,'to':0},
+                    {'sid':'800.6107.24','color':'#80ff0000','from':0,'to':12}
                 ]"
                 custom:options="{
-                    '654.25':'alt,dot'
+                    '654.42':'dot',
+                    '800.6107.24':'alt,gradient'
                 }"
                 />
 
