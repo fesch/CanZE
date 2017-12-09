@@ -163,7 +163,7 @@
 
 
                 <Button
-                    android:id="@+id/buttonConsumptionNew2"
+                    android:id="@+id/buttonDummy1"
                     style="?android:attr/button"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
@@ -173,9 +173,7 @@
                     android:layout_marginRight="4dp"
                     android:layout_marginTop="4dp"
                     android:layout_weight="1"
-                    android:drawableLeft="@mipmap/button_consumption"
-                    android:drawableStart="@mipmap/button_consumption"
-                    android:text="Consumption alt" />
+                    android:text="-" />
 
             </TableRow>
 
