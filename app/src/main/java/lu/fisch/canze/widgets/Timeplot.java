@@ -505,7 +505,7 @@ public class Timeplot extends Drawable {
                                                 }
                                             //}
                                         } else {
-                                                if(lastX!=Double.NaN && lastY!=Double.NaN && ((lastY != 0.0) || (lastX != 0.0)))
+                                            if(lastX!=Double.NaN && lastY!=Double.NaN && !testErrorPoint(mx, my, "m line"))
                                             {
                                                 g.drawLine(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
                                                         getY() + (int) lastY,
@@ -748,10 +748,18 @@ public class Timeplot extends Drawable {
 
     private boolean testErrorPoint (double x, double y, String er) {
         double maxdelta = 2.0;
+        if (Double.isNaN(x)) {
+            MainActivity.toast ("x is NaN, " + er);
+            return true;
+        }
+        if (Double.isNaN(y)) {
+            MainActivity.toast ("y is NaN, " + er);
+            return true;
+        }
         if (x >= -maxdelta && x <= maxdelta && y >= -maxdelta && y <= maxdelta) {
             MainActivity.toast ("x:" + x + ", y:" + y + ", " + er);
             return true;
-        }
+        } else
         return false;
     }
 }
