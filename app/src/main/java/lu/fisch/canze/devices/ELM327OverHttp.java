@@ -72,7 +72,7 @@ public class ELM327OverHttp extends Device {
         MainActivity.debug("ELM327Http: initDevice, Using URL = "+urlLeader);
         lastInitProblem = "";
         deviceIsInitialized = false;
-        String msg = getMessage ("Init?f=1");
+        String msg = getMessage ("Init.php?f=1");
         deviceIsInitialized = (msg.compareTo ("OK") == 0);
         return deviceIsInitialized;
     }
@@ -89,7 +89,7 @@ public class ELM327OverHttp extends Device {
 
         if (!deviceIsInitialized) {return new Message(frame, "-E-Re-initialisation needed", true); }
 
-        String msg = getMessage ("Free?f=" + frame.getHexId() + "." + frame.getInterval());
+        String msg = getMessage ("Free.php?f=" + frame.getHexId() + "." + frame.getInterval());
         MainActivity.debug("ELM327Http: request Free frame result " + msg);
 
         return new Message (frame, msg, msg.substring(0,1).compareTo("-") == 0);
@@ -101,7 +101,7 @@ public class ELM327OverHttp extends Device {
 
         if (!deviceIsInitialized) {return new Message(frame, "-E-Re-initialisation needed", true); }
 
-        String msg = getMessage ("IsoTp?f=" + frame.getSendingEcu().getHexFromId() + "." + frame.getSendingEcu().getHexToId() + "." + frame.getRequestId());
+        String msg = getMessage ("IsoTp.php?f=" + frame.getSendingEcu().getHexFromId() + "." + frame.getSendingEcu().getHexToId() + "." + frame.getRequestId());
         MainActivity.debug("ELM327Http: request IsoTp frame result " + msg);
 
         return new Message (frame, msg, msg.substring(0,1).compareTo("-") == 0);
