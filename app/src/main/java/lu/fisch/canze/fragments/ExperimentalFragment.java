@@ -34,7 +34,8 @@ import android.widget.Button;
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.BcbActivity;
 import lu.fisch.canze.activities.ChargingHistActivity;
-import lu.fisch.canze.activities.ConsumptionNewActivity;
+import lu.fisch.canze.activities.ConsumptionActivity;
+import lu.fisch.canze.activities.ConsumptionOldActivity;
 import lu.fisch.canze.activities.ElmDumpActivity;
 import lu.fisch.canze.activities.FluenceKangooTempsActivity;
 import lu.fisch.canze.activities.HarmonicsActivity;
@@ -58,6 +59,7 @@ public class ExperimentalFragment extends Fragment {
 
         Button button;
 
+        /*
         button = (Button) view.findViewById(R.id.buttonChargingHistory);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,9 +70,9 @@ public class ExperimentalFragment extends Fragment {
                 Intent intent = new Intent(MainActivity.getInstance(), ChargingHistActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
             }
-        });
+        }); */
 
-
+        /*
         button = (Button) view.findViewById(R.id.buttonLeafSpy);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,8 +83,9 @@ public class ExperimentalFragment extends Fragment {
                 Intent intent = new Intent(MainActivity.getInstance(), LeafSpyActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
             }
-        });
+        }); */
 
+        /*
         button = (Button) view.findViewById(R.id.buttonElmDump);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,9 +96,9 @@ public class ExperimentalFragment extends Fragment {
                 Intent intent = new Intent(MainActivity.getInstance(), ElmDumpActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
             }
-        });
+        }); */
 
-
+        /*
         button = (Button) view.findViewById(R.id.buttonFluenceKangooTemps);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,14 +109,18 @@ public class ExperimentalFragment extends Fragment {
                 Intent intent = new Intent(MainActivity.getInstance(), FluenceKangooTempsActivity.class);
                 ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
             }
-        });
+        }); */
 
-        // activateButton(view, R.id.buttonLeafSpy,                LeafSpyActivity.class);
-        // activateButton(view, R.id.buttonFluenceKangooTemps,     FluenceKangooTempsActivity.class);
+        activateButton(view, R.id.buttonChargingHistory,        ChargingHistActivity.class);
+        activateButton(view, R.id.buttonLeafSpy,                LeafSpyActivity.class);
+
+        activateButton(view, R.id.buttonElmDump,                ElmDumpActivity.class);
+        activateButton(view, R.id.buttonFluenceKangooTemps,     FluenceKangooTempsActivity.class);
 
         activateButton(view, R.id.buttonBcb,                    BcbActivity.class);
         activateButton(view, R.id.buttonHarmonics,              HarmonicsActivity.class);
-        activateButton(view, R.id.buttonConsumptionNew,         ConsumptionNewActivity.class);
+
+        activateButton(view, R.id.buttonConsumptionOld,         ConsumptionOldActivity.class);
 
         return view;
     }

@@ -85,7 +85,7 @@ public class ELM327OverHttp extends Device {
 
     @Override
     public Message requestFreeFrame(Frame frame) {
-        MainActivity.debug("ELM327Http: request Free frame");
+        // MainActivity.debug("ELM327Http: request Free frame");
 
         if (!deviceIsInitialized) {return new Message(frame, "-E-Re-initialisation needed", true); }
 
@@ -97,7 +97,7 @@ public class ELM327OverHttp extends Device {
 
     @Override
     public Message requestIsoTpFrame(Frame frame) {
-        MainActivity.debug("ELM327Http: request IsoTp frame");
+        // MainActivity.debug("ELM327Http: request IsoTp frame");
 
         if (!deviceIsInitialized) {return new Message(frame, "-E-Re-initialisation needed", true); }
 
