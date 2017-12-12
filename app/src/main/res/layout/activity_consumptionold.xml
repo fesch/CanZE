@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="lu.fisch.canze.activities.ConsumptionNewActivity"
+    tools:context="lu.fisch.canze.activities.ConsumptionOldActivity"
     android:orientation="vertical"
     >
 
@@ -219,25 +219,22 @@
                 custom:min="-30"
                 custom:max="70"
                 custom:minAlt="0"
-                custom:maxAlt="100"
+                custom:maxAlt="25,64:45,128:45"
                 custom:majorTicks="15"
                 custom:minorTicks="5"
-                custom:fieldSID="1fd.48,654.25"
+                custom:fieldSID="1fd.48,427.49"
                 custom:widget="timeplot"
                 custom:colorRanges="[
                     {'sid':'1fd.48','color':'#cc00ff','from':-100,'to':-1},
                     {'sid':'1fd.48','color':'#3ee9ff','from':-1,'to':1},
                     {'sid':'1fd.48','color':'#008a1d','from':1,'to':20},
                     {'sid':'1fd.48','color':'#ffaa17','from':20,'to':33},
-                    {'sid':'1fd.48','color':'#FF0000','from':33,'to':100}
-                ]"
-                custom:text="Power (kWh), SOC (%)"
-                custom:intervals="{
-                    '654.25':10000
-                }"
+                    {'sid':'1fd.48','color':'#FF0000','from':33,'to':100}]"
+                custom:text="@string/graph_PowerEnergy"
+                custom:intervals="{'427.49':10000}"
                 custom:options="{
                     '1fd.48':'gradient',
-                    '654.25':'alt,dot'
+                    '427.49':'alt,dot'
                 }"
                 />
 
@@ -267,7 +264,7 @@
                 custom:widget="timeplot"
                 custom:text="@string/graph_SpeedConsumption"
                 custom:intervals="{
-                }"
+                                   }"
                 custom:colorRanges="[
                     {'sid':'800.6100.24','color':'#000000','from':-1000,'to':0},
                     {'sid':'800.6100.24','color':'#AA0000','from':0,'to':11000},
@@ -275,11 +272,11 @@
                     {'sid':'5d7.0','color':'#ffaa17','from':70,'to':100},
                     {'sid':'5d7.0','color':'#FF0000','from':100,'to':130},
                     {'sid':'5d7.0','color':'#cc00ff','from':130,'to':160}
-                ]"
+                    ]"
                 custom:options="{
-                    '5d7.0':'gradient',
-                    '800.6104.24':'alt'
-                }"
+                                   '5d7.0':'gradient',
+                                   '800.6104.24':'alt'
+                                }"
                 />
 
         </TableRow>
@@ -300,25 +297,23 @@
                 android:layout_marginBottom="8dp"
                 custom:min="0"
                 custom:max="180,64:320,128:320"
-                custom:minAlt="-12"
-                custom:maxAlt="12"
+                custom:minAlt="0"
+                custom:maxAlt="120"
                 custom:majorTicks="30"
                 custom:minorTicks="10"
-                custom:fieldSID="654.42,800.6107.24"
+                custom:fieldSID="654.42,654.25"
                 custom:widget="timeplot"
-                custom:text="Range (km),Delta with reality (km)"
+                custom:text="@string/graph_RangeSoc"
                 custom:intervals="{
-                    '654.42':10000,
-                    '800.6107.24':10000
-                }"
+                                   '654.42':10000,
+                                   '654.25':60000
+                                   }"
                 custom:colorRanges="[
-                    {'sid':'800.6107.24','color':'#8000ff00','from':-12,'to':0},
-                    {'sid':'800.6107.24','color':'#80ff0000','from':0,'to':12}
-                ]"
+                    {'sid':'654.25','color':'#000000','from':-1000,'to':11000}
+                    ]"
                 custom:options="{
-                    '654.42':'dot',
-                    '800.6107.24':'alt,gradient'
-                }"
+                                '654.25':'alt,dot'
+                                }"
                 />
 
         </TableRow>

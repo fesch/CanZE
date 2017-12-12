@@ -31,7 +31,7 @@ import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
-public class ConsumptionNewActivity extends CanzeActivity implements FieldListener, DebugListener {
+public class ConsumptionOldActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
     public static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //UBP 10ms
@@ -56,7 +56,7 @@ public class ConsumptionNewActivity extends CanzeActivity implements FieldListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consumptionnew);
+        setContentView(R.layout.activity_consumptionold);
     }
 
     @Override

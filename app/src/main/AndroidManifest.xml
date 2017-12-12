@@ -52,7 +52,7 @@
             android:name=".activities.LeafSpyActivity"
             android:label="@string/title_activity_leaf_spy" />
         <activity
-            android:name=".activities.ConsumptionActivity"
+            android:name=".activities.ConsumptionOldActivity"
             android:label="@string/title_activity_consumption" />
         <activity
             android:name=".activities.ElmTestActivity"
@@ -108,7 +108,7 @@
         <activity
             android:name=".activities.LoggingActivity" />
         <activity
-            android:name=".activities.ConsumptionNewActivity"
+            android:name=".activities.ConsumptionActivity"
             android:label="@string/title_activity_consumption" />
     </application>
 
