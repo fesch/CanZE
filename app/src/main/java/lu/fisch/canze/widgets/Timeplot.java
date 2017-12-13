@@ -342,7 +342,7 @@ public class Timeplot extends Drawable {
 
                                 //MainActivity.debug("HERE: "+sid+" / "+getOptions().getOption(sid));
 
-                                MainActivity.debug("mx:" + mx + ", my:" + my);
+                                // MainActivity.debug("mx:" + mx + ", my:" + my);
 
 
                                 if (getOptions().getOption(sid) == null ||
@@ -750,15 +750,15 @@ public class Timeplot extends Drawable {
     private boolean testErrorPoint (double x, double y, String er) {
         double maxdelta = 2.0;
         if (Double.isNaN(x)) {
-            MainActivity.toast ("x is NaN, " + er);
+            // MainActivity.toast ("x is NaN, " + er);
             return true;
         }
         if (Double.isNaN(y)) {
-            MainActivity.toast ("y is NaN, " + er);
+            // MainActivity.toast ("y is NaN, " + er);
             return true;
         }
         if (x >= -maxdelta && x <= maxdelta && y >= -maxdelta && y <= maxdelta) {
-            MainActivity.toast ("x:" + x + ", y:" + y + ", " + er);
+            // MainActivity.toast ("x:" + x + ", y:" + y + ", " + er);
             return true;
         } else
         return false;
