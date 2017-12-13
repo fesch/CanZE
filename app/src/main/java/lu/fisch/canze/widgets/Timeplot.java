@@ -292,7 +292,7 @@ public class Timeplot extends Drawable {
                     for (int i = values.size() - 1; i >= 0; i--) {
                         TimePoint tp = values.get(i);
 
-                        if (tp != null) {
+                        if (tp != null && !Double.isNaN(tp.value) && tp.date!=0) {
                             g.setColor(colorRanges.getColor(sid, tp.value, getColor(s)));
 
                             double mx = barWidth - ((maxTime - tp.date) / timeSale / 1000);
@@ -416,7 +416,7 @@ public class Timeplot extends Drawable {
                     for (int i = 0; i < values.size() ; i++) {
                             TimePoint tp = values.get(i);
 
-                            if (tp != null) {
+                            if (tp != null && !Double.isNaN(tp.value) && tp.date!=0) {
                                 g.setColor(colorRanges.getColor(sid, tp.value, getColor(s)));
 
                                 double mx =  ((tp.date-minTime) / timeSale / 1000);
