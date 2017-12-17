@@ -72,7 +72,7 @@ public class ELM327OverHttp extends Device {
         MainActivity.debug("ELM327Http: initDevice, Using URL = "+urlLeader);
         lastInitProblem = "";
         deviceIsInitialized = false;
-        String msg = getMessage ("Init?f=1");
+        String msg = getMessage ("Init.php?f=1");
         deviceIsInitialized = (msg.compareTo ("OK") == 0);
         return deviceIsInitialized;
     }
@@ -85,24 +85,24 @@ public class ELM327OverHttp extends Device {
 
     @Override
     public Message requestFreeFrame(Frame frame) {
-        MainActivity.debug("ELM327Http: request Free frame");
+        // MainActivity.debug("ELM327Http: request Free frame");
 
         if (!deviceIsInitialized) {return new Message(frame, "-E-Re-initialisation needed", true); }
 
-        String msg = getMessage ("Free?f=" + frame.getHexId() + "." + frame.getInterval());
-        MainActivity.debug("ELM327Http: request Free frame result " + msg);
+        String msg = getMessage ("Free.php?f=" + frame.getHexId() + "." + frame.getInterval());
+        // MainActivity.debug("ELM327Http: request Free frame result " + msg);
 
         return new Message (frame, msg, msg.substring(0,1).compareTo("-") == 0);
     }
 
     @Override
     public Message requestIsoTpFrame(Frame frame) {
-        MainActivity.debug("ELM327Http: request IsoTp frame");
+        // MainActivity.debug("ELM327Http: request IsoTp frame");
 
         if (!deviceIsInitialized) {return new Message(frame, "-E-Re-initialisation needed", true); }
 
-        String msg = getMessage ("IsoTp?f=" + frame.getSendingEcu().getHexFromId() + "." + frame.getSendingEcu().getHexToId() + "." + frame.getRequestId());
-        MainActivity.debug("ELM327Http: request IsoTp frame result " + msg);
+        String msg = getMessage ("IsoTp.php?f=" + frame.getSendingEcu().getHexFromId() + "." + frame.getSendingEcu().getHexToId() + "." + frame.getRequestId());
+        // MainActivity.debug("ELM327Http: request IsoTp frame result " + msg);
 
         return new Message (frame, msg, msg.substring(0,1).compareTo("-") == 0);
     }
@@ -113,7 +113,7 @@ public class ELM327OverHttp extends Device {
 
         try {
             String jsonLine = httpGet (urlLeader + command);
-            MainActivity.debug("ELM327Http: jsonLineResult:" + jsonLine);
+            //MainActivity.debug("ELM327Http: jsonLineResult:" + jsonLine);
             if (jsonLine.compareTo("") == 0) {
                 return "-E-result from httpGet empty";
             }
@@ -121,7 +121,7 @@ public class ELM327OverHttp extends Device {
             JsonElement jelement = new JsonParser().parse(jsonLine);
             result = jelement.getAsJsonObject().get("R").getAsString();
 
-            MainActivity.debug("ELM327Http: getMessageResult:[" + result + "]");
+            //MainActivity.debug("ELM327Http: getMessageResult:[" + result + "]");
             if (result.compareTo("") == 0) {
                 MainActivity.debug("ELM327Http: getMessageResult is empty");
                 return "-E-result from json element R empty";
@@ -141,7 +141,7 @@ public class ELM327OverHttp extends Device {
 
     private String httpGet (String urlString) {
         try {
-            MainActivity.debug("ELM327Http: httpGet url:" + urlString);
+            // MainActivity.debug("ELM327Http: httpGet url:" + urlString);
             URL url = new URL(urlString);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             try {

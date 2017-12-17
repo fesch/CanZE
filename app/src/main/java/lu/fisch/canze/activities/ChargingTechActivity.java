@@ -72,7 +72,8 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     double dcVolt       = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     double pilot        = 0;
     int chargingStatus  = 7;
-    double soc          = 0;
+    double usoc          = 0;
+    double rsoc          = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,11 +162,11 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         tv = null;
                         break;
                     case SID_UserSoC:
-                        soc = field.getValue() / 100.0;
+                        usoc = field.getValue() / 100.0;
                         tv = (TextView) findViewById(R.id.textUserSOC);
                         break;
                     case SID_RealSoC:
-                        soc = field.getValue() / 100.0;
+                        rsoc = field.getValue() / 100.0;
                         tv = (TextView) findViewById(R.id.textRealSOC);
                         break;
                     case SID_SOH:
@@ -209,9 +210,9 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         tv = (TextView) findViewById(R.id.textAvChPwr);
                         break;
                     case SID_AvEnergy:
-                        if (soc > 0) {
+                        if (usoc > 0) {
                             tv = (TextView) findViewById(R.id.textETF);
-                            tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue() * (1-soc) / soc));
+                            tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue() * (1-usoc) / usoc));
                             //tv.setText("" + (Math.round((field.getValue() * (1-soc) / soc) * 10.0) / 10.0));
                         }
                         tv = (TextView) findViewById(R.id.textAvEner);

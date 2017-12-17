@@ -694,17 +694,23 @@ public abstract class Device {
         else
             msg = requestFreeFrame(frame);
 
+        MainActivity.debug("Device: request for " + frame.getRID() + " returned data " + msg.getData());
+
         if (msg.isError()) {
             MainActivity.debug("Device: request for " + frame.getRID() + " returned error " + msg.getError());
             // theory: when the answer is empty, the timeout is to low --> increase it!
             // jm: but never beyond 2
-            if (intervalMultiplicator < maxIntervalMultiplicator) intervalMultiplicator += 0.1;
-            MainActivity.debug("Device: intervalMultiplicator = " + intervalMultiplicator);
+            if (intervalMultiplicator < maxIntervalMultiplicator) {
+                intervalMultiplicator += 0.1;
+                MainActivity.debug("Device: intervalMultiplicator+ = " + intervalMultiplicator);
+            }
         } else {
             // theory: when the answer is good, we might recover slowly --> decrease it!
             // jm: but never below 1 ----> 2015-12-14 changed 10 1.3
-            if (intervalMultiplicator > minIntervalMultiplicator) intervalMultiplicator -= 0.01;
-            MainActivity.debug("Device: intervalMultiplicator = " + intervalMultiplicator);
+            if (intervalMultiplicator > minIntervalMultiplicator) {
+                intervalMultiplicator -= 0.01;
+                MainActivity.debug("Device: intervalMultiplicator- = " + intervalMultiplicator);
+            }
         }
 
         return msg;
