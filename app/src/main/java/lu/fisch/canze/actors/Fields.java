@@ -220,8 +220,8 @@ public class Fields {
 
                 // timestamp of last inserted dot in MILLISECONDS
                 long lastInsertedTime = CanzeDataSource.getInstance().getLastTime(SID_RangeEstimate);
-                if (    // timeout of 5 minutes
-                        (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 5*60*1000)
+                if (    // timeout of 15 minutes
+                        (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 15*60*1000)
                         ||
                         Double.isNaN(realRangeReference)
                    )
@@ -252,12 +252,12 @@ public class Fields {
         final String SID_RangeEstimate                        = "654.42"; //  (EVC)
 
         // get last value for realRange from internal database
-        MainActivity.debug("realRange 1: "+realRangeReference);
+        //MainActivity.debug("realRange 1: "+realRangeReference);
         if(Double.isNaN(realRangeReference)) {
             realRangeReference = CanzeDataSource.getInstance().getLast(SID_RangeEstimate);
-            MainActivity.debug("realRange >> getLast");
+            //MainActivity.debug("realRange >> getLast");
         }
-        MainActivity.debug("realRange 2: "+realRangeReference);
+        //MainActivity.debug("realRange 2: "+realRangeReference);
 
         addVirtualFieldCommon ("6107", "km", SID_EVC_Odometer + ";" + SID_RangeEstimate, new VirtualFieldAction() {
             @Override
@@ -265,13 +265,13 @@ public class Fields {
                 double odo = dependantFields.get(SID_EVC_Odometer).getValue();
                 double gom = dependantFields.get(SID_RangeEstimate).getValue();
 
-                MainActivity.debug("realRange ODO: "+odo);
-                MainActivity.debug("realRange GOM: "+gom);
+                //MainActivity.debug("realRange ODO: "+odo);
+                //MainActivity.debug("realRange GOM: "+gom);
 
                 // timestamp of last inserted dot in MILLISECONDS
                 long lastInsertedTime = CanzeDataSource.getInstance().getLastTime(SID_RangeEstimate);
-                if (    // timeout of 5 minutes
-                        (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 5*60*1000)
+                if (    // timeout of 15 minutes
+                        (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 15*60*1000)
                         ||
                         Double.isNaN(realRangeReference)
                    )
