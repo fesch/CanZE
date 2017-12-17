@@ -79,7 +79,7 @@ import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.ui.AppSectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity implements FieldListener /*, android.support.v7.app.ActionBar.TabListener */{
-    public static final String TAG = "  CanZE";
+    public static final String TAG = "CanZE";
 
     // SPP UUID service
     // private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -798,7 +798,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     private void setBluetoothState(int btState)
     {
         if(bluetoothMenutItem!=null) {
-            final ImageView imageView = (ImageView) bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
+            View view = bluetoothMenutItem.getActionView();
+            if (view == null) return;
+            final ImageView imageView = (ImageView) view.findViewById(R.id.animated_menu_item_action);
 
             // stop the animation if there is one running
             AnimationDrawable frameAnimation;

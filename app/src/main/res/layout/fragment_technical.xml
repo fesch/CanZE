@@ -1,28 +1,26 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:keepScreenOn="true"
+    android:id="@+id/table"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_column="1"
+    android:layout_row="3"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    android:paddingBottom="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    android:paddingBottom="0dp"
-    tools:context="lu.fisch.canze.fragments.TechnicalFragment"
     android:stretchColumns="3"
-    android:id="@+id/table"
-    android:layout_column="1"
-    android:layout_row="3"
-    android:orientation="vertical"
-    >
+    tools:context="lu.fisch.canze.fragments.TechnicalFragment">
 
     <ScrollView
         android:id="@+id/scroller_main"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
         android:fillViewport="true"
-        android:fadeScrollbars="false">
+        android:scrollbars="vertical">
 
         <TableLayout
             android:layout_width="match_parent"
@@ -34,34 +32,34 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    style="?android:attr/button"
                     android:id="@+id/buttonChargingTech"
+                    style="?android:attr/button"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="fill_parent"
-                    android:layout_marginTop="4dp"
+                    android:layout_column="0"
+                    android:layout_marginBottom="4dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/button_Charging"
-                    android:drawableStart="@mipmap/button_charge"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
                     android:drawableLeft="@mipmap/button_charge"
-                    android:layout_column="0" />
+                    android:drawableStart="@mipmap/button_charge"
+                    android:text="@string/button_Charging" />
 
                 <Button
-                    style="?android:attr/button"
                     android:id="@+id/buttonDtc"
+                    style="?android:attr/button"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="fill_parent"
-                    android:layout_marginTop="4dp"
+                    android:layout_column="1"
+                    android:layout_marginBottom="4dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/button_DtcReadout"
-                    android:drawableStart="@mipmap/button_attention"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
                     android:drawableLeft="@mipmap/button_attention"
-                    android:layout_column="1" />
+                    android:drawableStart="@mipmap/button_attention"
+                    android:text="@string/button_DtcReadout" />
 
 
             </TableRow>
@@ -71,34 +69,34 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    style="?android:attr/button"
                     android:id="@+id/buttonChargingGraphs"
+                    style="?android:attr/button"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="fill_parent"
-                    android:layout_marginTop="4dp"
+                    android:layout_column="0"
+                    android:layout_marginBottom="4dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/button_ChargingGraphs"
-                    android:drawableStart="@mipmap/button_charging_graphs"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
                     android:drawableLeft="@mipmap/button_charging_graphs"
-                    android:layout_column="0" />
+                    android:drawableStart="@mipmap/button_charging_graphs"
+                    android:text="@string/button_ChargingGraphs" />
 
                 <Button
-                    style="?android:attr/button"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/button_Firmware"
                     android:id="@+id/buttonFirmware"
-                    android:drawableStart="@mipmap/button_firmware"
+                    style="?android:attr/button"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
                     android:drawableLeft="@mipmap/button_firmware"
-                    android:layout_column="1" />
+                    android:drawableStart="@mipmap/button_firmware"
+                    android:text="@string/button_Firmware" />
 
             </TableRow>
 
@@ -107,34 +105,34 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    style="?android:attr/button"
                     android:id="@+id/buttonChargingPrediction"
+                    style="?android:attr/button"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="fill_parent"
-                    android:layout_marginTop="4dp"
+                    android:layout_column="0"
+                    android:layout_marginBottom="4dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/button_ChargingPrediction"
-                    android:drawableStart="@mipmap/button_charge"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
                     android:drawableLeft="@mipmap/button_charge"
-                    android:layout_column="0" />
+                    android:drawableStart="@mipmap/button_charge"
+                    android:text="@string/button_ChargingPrediction" />
 
                 <Button
-                    style="?android:attr/button"
                     android:id="@+id/buttonElmTest"
+                    style="?android:attr/button"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="fill_parent"
-                    android:layout_marginTop="4dp"
+                    android:layout_column="1"
+                    android:layout_marginBottom="4dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/button_ElmTesting"
-                    android:drawableStart="@mipmap/button_elm327"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
                     android:drawableLeft="@mipmap/button_elm327"
-                    android:layout_column="1" />
+                    android:drawableStart="@mipmap/button_elm327"
+                    android:text="@string/button_ElmTesting" />
 
 
             </TableRow>
@@ -144,35 +142,71 @@
                 android:layout_height="match_parent">
 
                 <Button
+                    android:id="@+id/buttonRange"
                     style="?android:attr/button"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="fill_parent"
-                    android:layout_marginTop="4dp"
+                    android:layout_column="0"
+                    android:layout_marginBottom="4dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/button_Range"
-                    android:id="@+id/buttonRange"
-                    android:drawableStart="@mipmap/button_range"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
                     android:drawableLeft="@mipmap/button_range"
-                    android:layout_column="0" />
+                    android:drawableStart="@mipmap/button_range"
+                    android:text="@string/button_Range" />
 
 
                 <Button
+                    android:id="@+id/buttonClimaTech"
                     style="?android:attr/button"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="fill_parent"
-                    android:layout_marginTop="4dp"
+                    android:layout_column="1"
+                    android:layout_marginBottom="4dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/button_Climate"
-                    android:id="@+id/buttonClimaTech"
-                    android:drawableStart="@mipmap/button_thermometer"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
                     android:drawableLeft="@mipmap/button_thermometer"
-                    android:layout_column="1" />
+                    android:drawableStart="@mipmap/button_thermometer"
+                    android:text="@string/button_Climate" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/buttonAuxBatt"
+                    style="?android:attr/button"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_column="0"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@mipmap/button_auxbat"
+                    android:drawableStart="@mipmap/button_auxbat"
+                    android:text="@string/button_auxbatt" />
+
+
+                <Button
+                    android:id="@+id/buttonDummy1"
+                    style="?android:attr/button"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="" />
 
             </TableRow>
 

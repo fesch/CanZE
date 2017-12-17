@@ -52,11 +52,14 @@
             android:name=".activities.LeafSpyActivity"
             android:label="@string/title_activity_leaf_spy" />
         <activity
-            android:name=".activities.ConsumptionActivity"
+            android:name=".activities.ConsumptionOldActivity"
             android:label="@string/title_activity_consumption" />
         <activity
             android:name=".activities.ElmTestActivity"
             android:label="@string/title_activity_elm_test" />
+        <activity
+            android:name=".activities.ElmDumpActivity"
+            android:label="@string/title_activity_elm_dump" />
         <activity
             android:name=".activities.FirmwareActivity"
             android:label="@string/title_activity_firmware" />
@@ -99,7 +102,14 @@
         <activity
             android:name=".activities.ChargingHistActivity"
             android:label="@string/title_activity_charging_history" />
-        <activity android:name=".activities.LoggingActivity"></activity>
+        <activity
+            android:name=".activities.AuxBattTechActivity"
+            android:label="@string/title_activity_auxbatt" />
+        <activity
+            android:name=".activities.LoggingActivity" />
+        <activity
+            android:name=".activities.ConsumptionActivity"
+            android:label="@string/title_activity_consumption" />
     </application>
 
 </manifest>

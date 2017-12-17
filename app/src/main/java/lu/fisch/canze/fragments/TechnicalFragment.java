@@ -31,6 +31,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.activities.AuxBattTechActivity;
 import lu.fisch.canze.activities.ChargingGraphActivity;
 import lu.fisch.canze.activities.ChargingTechActivity;
 import lu.fisch.canze.activities.ClimaTechActivity;
@@ -153,6 +154,18 @@ public class TechnicalFragment extends Fragment {
                 if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
                 MainActivity.getInstance().leaveBluetoothOn=true;
                 Intent intent = new Intent(MainActivity.getInstance(), ClimaTechActivity.class);
+                TechnicalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
+            }
+        });
+
+        button = (Button) view.findViewById(R.id.buttonAuxBatt);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MainActivity.isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                MainActivity.getInstance().leaveBluetoothOn=true;
+                Intent intent = new Intent(MainActivity.getInstance(), AuxBattTechActivity.class);
                 TechnicalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });

@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion '25.0.0'
+    //buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "lu.fisch.canze"
         minSdkVersion 15
         targetSdkVersion 22
-        versionName '1.24'
-        versionCode 25
+        versionName '1.26'
+        versionCode 27
     }
     buildTypes {
         release {
