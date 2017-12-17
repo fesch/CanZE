@@ -1,9 +1,11 @@
+---< Version 1.26 / 2017.12.17 >---
 2017.12.12 [Jeroen] Finalized new consumpion, added alpha color, some plot debugging code
 2017.11.26 [Jeroen] Added NewConsumption branch
 2017.11.08 [Jeroen] Fixed spurious error in MainActivity (null pointer in setBluetoothState)
 2017.11.08 [Jeroen] Added aux battery
 2017.10.22 [Jeroen] Fixed bug calculating energy until full issue #470
 2017.10.05 [Jeroen] Fixed loading fields bug in EcuDiagBcb
+2017.12.10 [Bob] Fixed the triangle timeplot issue #310
 
 ---< Version 1.25 / 2017.06.02 >---
 2017.03.06 [Bob] Enabled Twizy. More to come soon ...
