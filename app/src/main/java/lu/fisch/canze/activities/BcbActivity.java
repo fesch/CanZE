@@ -90,13 +90,16 @@ public class BcbActivity extends CanzeActivity implements FieldListener, DebugLi
             public void run() {
                 String fieldId = field.getSID();
                 TextView tv = null;
+                int value;
 
                 // get the text field
                 switch (fieldId) {
 
                     case SID_MainsCurrentType:
                         tv = (TextView) findViewById(R.id.textMainsCurrentType);
-                        tv.setText(mains_Current_Type[(int) field.getValue()]);
+                        value = (int) field.getValue();
+                        if (tv != null && mains_Current_Type != null && value >= 0 && value < mains_Current_Type.length)
+                            tv.setText(mains_Current_Type[value]);
                         tv = null;
                         break;
                     case SID_Phase1currentRMS:
@@ -134,12 +137,16 @@ public class BcbActivity extends CanzeActivity implements FieldListener, DebugLi
                         break;
                     case SID_SupervisorState:
                         tv = (TextView) findViewById(R.id.textSupervisorState);
-                        tv.setText(supervisor_State[(int) field.getValue()]);
+                        value = (int) field.getValue();
+                        if (tv != null && supervisor_State != null && value >= 0 && value < supervisor_State.length)
+                            tv.setText(supervisor_State[value]);
                         tv = null;
                         break;
                     case SID_CompletionStatus:
                         tv = (TextView) findViewById(R.id.textCompletionStatus);
-                        tv.setText(completion_Status[(int) field.getValue()]);
+                        value = (int) field.getValue();
+                        if (tv != null && completion_Status != null && value >= 0 && value < completion_Status.length)
+                            tv.setText(completion_Status[value]);
                         tv = null;
                         break;
                 }
