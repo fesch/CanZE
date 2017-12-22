@@ -946,10 +946,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     public static String getStringSingle (int resId) {
-        return res.getString(resId);
+        if (res == null) return "";
+        String result = res.getString(resId);
+        return result == null ? "" : result;
     }
 
     public static String [] getStringList (int resId) {
+        if (res == null) return null;
         return res.getStringArray(resId);
     }
 
