@@ -946,7 +946,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     public static String getStringSingle (int resId) {
-        return res.getString(resId);
+        if(res!=null)
+            return res.getString(resId);
+        return null;
     }
 
     public static String [] getStringList (int resId) {
