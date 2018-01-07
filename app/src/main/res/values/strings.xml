@@ -382,10 +382,10 @@
     <string name="message_NoEcuDefinition2">\nCannot find definitions for this ECU\n</string>
     <string name="message_SendingInit">\nSending initialisation sequence\n</string>
     <string name="message_InitFailed">\nInitialisation failed\n</string>
-    <string name="message_StartTestSession">\nSending start tester session sequence\n</string>
+    <string name="message_StartTestSession">\nSending start tester session sequence</string>
     <string name="message_NoTestSessionField">Start session field does not exist\n</string>
     <string name="message_UnexpectedResult">Query send, but unexpected result received:[</string>
-    <string name="message_GetDtcs">\nSending start DTCs sequence\n</string>
+    <string name="message_GetDtcs">\nSending start DTCs sequence:[</string>
     <string name="message_NoGetDtcsField">Get DTCs field does not exist\n</string>
     <string name="message_NoActiveDtcs">\nNo active DTCs\n</string>
     <string name="message_clear">"Clear "</string>

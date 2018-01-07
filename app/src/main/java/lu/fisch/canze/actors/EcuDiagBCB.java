@@ -35,6 +35,10 @@ public class EcuDiagBCB {
                         +"793,0,23,1,0,0,,1902ff,5902ff,ff\n" // Query DTC BCB
                         +"793,0,23,1,0,0,,1902af,5902af,ff\n" // Query DTC JB2
 
+                        +"793,0,0,1,0,0,,3e01,7e01,ff\n" // Tester present
+                        +"793,0,0,1,0,0,,1081,5081,ff\n" // start diag
+                        +"793,0,0,1,0,0,,10c0,50c0,ff\n" // start diag
+
                         +"793,24,31,.08,0,0,V,223101,623101,ff,Batt_voltage_mes\n" //
                         +"793,31,39,1,0,0,V,223102,623102,ff,BCBHighVoltage\n" //
                         +"793,24,31,1,0,0,%,223103,623103,ff,BCBTemp\n" //
@@ -278,22 +282,22 @@ public class EcuDiagBCB {
                         +"793,24,39,.5,32000,0,V,22502C,62502C,ff,Raw AC mains phase 1 measured voltage\n" //
                         +"793,24,39,.5,32000,0,V,22502D,62502D,ff,Raw AC mains phase 2 measured voltage\n" //
                         +"793,24,39,.5,32000,0,V,22502E,62502E,ff,Raw AC mains phase 3 measured voltage\n" //
-                        +"793,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,1:HMLGT\n" //
-                        +"793,160,175,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
-                        +"793,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode\n" //
-                        +"793,144,159,1,0,0,,2180,6180,ff,EditionNumber\n" //
-                        +"793,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,1:296H5\n" //
-                        +"793,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart\n" //
-                        +"793,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3\n" //
-                        +"793,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,1:296H5;2:296H0\n" //
-                        +"793,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart\n" //
-                        +"793,128,143,1,0,0,,2180,6180,ff,SoftwareNumber\n" //
-                        +"793,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG\n" //
-                        +"793,152,167,1,0,0,,2181,6181,ff,Vin CRC\n" //
-                        +"793,16,151,1,0,0,,2181,6181,2ff,Vin In Ascii\n" //
-                        +"793,16,39,1,0,0,,2184,6184,ff,ITG Supplier Number\n" //
-                        +"793,40,47,1,0,0,,2184,6184,2ff,Traceability Factory Code\n" //
-                        +"793,48,143,1,0,0,,2184,6184,2ff,Traceability Serial Number\n" //
+                        //+"793,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,1:HMLGT\n" //
+                        //+"793,160,175,1,0,0,,2180,6180,ff,CalibrationNumber\n" //
+                        //+"793,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode\n" //
+                        //+"793,144,159,1,0,0,,2180,6180,ff,EditionNumber\n" //
+                        //+"793,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,1:296H5\n" //
+                        //+"793,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart\n" //
+                        //+"793,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3\n" //
+                        //+"793,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,1:296H5;2:296H0\n" //
+                        //+"793,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart\n" //
+                        //+"793,128,143,1,0,0,,2180,6180,ff,SoftwareNumber\n" //
+                        //+"793,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG\n" //
+                        //+"793,152,167,1,0,0,,2181,6181,ff,Vin CRC\n" //
+                        //+"793,16,151,1,0,0,,2181,6181,2ff,Vin In Ascii\n" //
+                        //+"793,16,39,1,0,0,,2184,6184,ff,ITG Supplier Number\n" //
+                        //+"793,40,47,1,0,0,,2184,6184,2ff,Traceability Factory Code\n" //
+                        //+"793,48,143,1,0,0,,2184,6184,2ff,Traceability Serial Number\n" //
                         +"793,16,103,1,0,0,,21B7,61B7,ff,Configuration of Electrical Vehicle Networks\n" //
                         +"793,16,103,1,0,0,,21B8,61B8,ff,List of Electrical Vehicle ECUs with After-sales diagnostic\n" //
                         +"793,160,175,1,0,0,,21F0,61F0,ff,CalibrationNumber\n" //
