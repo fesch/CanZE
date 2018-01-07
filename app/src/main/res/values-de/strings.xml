@@ -241,7 +241,7 @@
     <string name="button_Firmware">Firmware</string>
     <string name="header_Firmware">Firmware Versionen</string>
     <string name="default_Firmware">Nicht verfügbar</string>
-    <string name="help_Ecus"><![CDATA[Mehr erfahren <a href="http://canze.fisch.lu/computers/">hier</a>.]]></string>
+    <string name="help_Ecus"><![CDATA[Klick auf ein ECU um Details anzuzeigen. Mehr erfahren <a href="http://canze.fisch.lu/computers/">hier</a>.]]></string>
 
     <!-- Fluence Kangoo Temps -->
 

@@ -246,7 +246,7 @@
     <string name="button_Firmware">Firmware</string>
     <string name="header_Firmware">Versiones de Firmware</string>
     <string name="default_Firmware">No disponible</string>
-    <string name="help_Ecus"><![CDATA[Infórmese sobre los ordenadores del vehículo <a href="http://canze.fisch.lu/computers/">aquí</a> (en inglés).]]></string>
+    <string name="help_Ecus"><![CDATA[Click on an ECU to get details. Infórmese sobre los ordenadores del vehículo <a href="http://canze.fisch.lu/computers/">aquí</a> (en inglés).]]></string>
     <string name="alert_Version">Versión</string>
     <string name="alert_Soft">Soft</string>
     <string name="alert_Supplier">Suministrador</string>
