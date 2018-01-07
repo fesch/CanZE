@@ -65,7 +65,7 @@ public class EcuDiagTCU {
                         +"7da,92,103,1,0,0,,22FE02,62FE02,ff,Parameters.Status.SENSE_MUTE\n" //
                         +"7da,76,87,1,0,0,,22FE02,62FE02,ff,Parameters.Status.OUTPUT_ON_REQ_SENSE\n" //
                         +"7da,124,135,1,0,0,,22FE02,62FE02,ff,Parameters.Status.SENSE_MIC_OUT_P\n" //
-                        +"7da,28,39,219.3,-23.8139534883721,0,,22FE04,62FE04,ff,Rtc.Data.12V_BAT_SENSE\n" //
+                        +"7da,28,39,1,0,0,,22FE04,62FE04,ff,Rtc.Data.12V_BAT_SENSE\n" //
                         +"7da,60,71,36,0,0,,22FE04,62FE04,ff,Rtc.Data.SENSE_3V_PMC\n" //
                         +"7da,44,55,1,0,0,,22FE04,62FE04,ff,Rtc.Data.SGN_WAKE_UP_SENSE,0:signal is not present;4096:signal Failure\n" //
                         +"7da,76,87,1,0,0,,22FE04,62FE04,ff,Rtc.Data.SGN_WAKE_UP2_SENSE,0:signal is not present;4096:signal Failure\n" //
@@ -169,11 +169,11 @@ public class EcuDiagTCU {
                         +"7da,24,31,1,0,0,,22FD71,62FD71,ff,Registered to communication network,0:non registered;1:registered;2:Not Registered - searching;3:Denied register;4:Unknown;5:Registered (Roaming mode)\n" //
                         +"7da,24,47,1,0,0,,22FE64,62FE64,2ff,TCU test mode\n" //
                         +"7da,24,47,1,0,0,,22FE63,62FE63,ff,FICOSA TCU EOL mode\n" //
-                        +"7da,28,39,219.3,-95.2558139534884,0,V,22FE01,62FE01,ff,C_V.Status.12V_BAT_SENSE\n" //
+                        +"7da,28,39,219.3,0,0,V,22FE01,62FE01,ff,C_V.Status.12V_BAT_SENSE\n" //
                         +"7da,140,151,3,1024,0,,22FE01,62FE01,ff,C_V.Status.BATTERY_CURRENT_SENSE\n" //
                         +"7da,156,167,9,0,0,,22FE01,62FE01,ff,C_V.Status.BATTERY_VOLTAGE_SENSE\n" //
                         +"7da,172,183,300,0,0,,22FE01,62FE01,ff,C_V.Status.GPS_RF_SUP_CURRENT_SENS\n" //
-                        +"7da,188,199,1563,-133.650671785029,0,,22FE01,62FE01,ff,C_V.Status.KLINE_SENSE\n" //
+                        +"7da,188,199,1563,0,0,,22FE01,62FE01,ff,C_V.Status.KLINE_SENSE\n" //
                         +"7da,76,87,36,0,0,,22FE01,62FE01,ff,C_V.Status.SENSE_3V\n" //
                         +"7da,108,119,36,0,0,,22FE01,62FE01,ff,C_V.Status.SENSE_3V_GPS\n" //
                         +"7da,124,135,6,0,0,,22FE01,62FE01,ff,C_V.Status.SENSE_4.4V_VBAT_AUXWR\n" //
