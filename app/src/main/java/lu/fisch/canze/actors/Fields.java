@@ -459,7 +459,7 @@ public class Fields {
                         + "7b6,128,143,1,0,0,,2180,6180,ff\n" // Soft
                         + "7b6,144,159,1,0,0,,2180,6180,ff\n" // Version
                         + "7b6,0,7,1,0,0,,14ffff,54,ff\n" // Reset DTC
-                        + "7b6,0,23,1,0,0,,19023b,5902ff,ff\n" // Query DTC
+                        + "7b6,0,23,1,0,0,,19023b,59020f,ff\n" // Query DTC
                         + "7bb,336,351,0.01,0,2,kW,2101,6101,e2\n" // Maximum battery input power
                         + "7bb,56,71,10,0,0,°C,2103,6103,5\n" // Mean battery compartment temp
                         + "7bb,192,207,0.01,0,2,%,2103,6103,e2\n" // Real State of Charge
