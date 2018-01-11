@@ -822,6 +822,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                         @SuppressLint("NewApi")
                         @Override
                         public void run() {
+                            /* JM commented this out as R.anim.animation_bluetooth gives type casting errors
                             AnimationDrawable drawable = (AnimationDrawable) ContextCompat.getDrawable(getApplicationContext(), R.anim.animation_bluetooth);
                             // Use setBackgroundDrawable() for API 14 and 15 and setBackground() for API 16+:
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -832,6 +833,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                                 //noinspection deprecation
                                 imageView.setBackgroundDrawable(drawable);
                             }
+
+                            */
+
+                            // added this, reference  https://developer.android.com/reference/android/graphics/drawable/AnimationDrawable.html
+                            // had to move animated_bluetooth to drawable (as show in above document), and update animated_menu_item.xml accordingly
+                            imageView.setBackgroundResource(R.drawable.animation_bluetooth);
+
                             AnimationDrawable frameAnimation = (AnimationDrawable) imageView.getBackground();
                             frameAnimation.start();
                         }
@@ -946,10 +954,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     public static String getStringSingle (int resId) {
-        return res.getString(resId);
+        if (res == null) return "";
+        String result = res.getString(resId);
+        return result == null ? "" : result;
     }
 
     public static String [] getStringList (int resId) {
+        if (res == null) return null;
         return res.getStringArray(resId);
     }
 

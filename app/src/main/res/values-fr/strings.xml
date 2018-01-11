@@ -246,7 +246,7 @@
     <string name="button_Firmware">Firmware</string>
     <string name="header_Firmware">Versions Firmware</string>
     <string name="default_Firmware">Non disponible</string>
-    <string name="help_Ecus"><![CDATA[Plus d\'informations sur les calculateurs de la voiture <a href="http://canze.fisch.lu/computers/">ici</a>.]]></string>
+    <string name="help_Ecus"><![CDATA[Cliquez sur un ECU pour afficher les détails. Plus d\'informations sur les calculateurs de la voiture <a href="http://canze.fisch.lu/computers/">ici</a>.]]></string>
     <string name="alert_Version">Version</string>
     <string name="alert_Soft">Logiciel</string>
     <string name="alert_Supplier">Founisseur</string>

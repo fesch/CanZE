@@ -11,7 +11,7 @@
         android:id="@+id/animated_menu_item_action"
         android:layout_width="24dp"
         android:layout_height="match_parent"
-        android:background="@anim/animation_bluetooth"
+        android:background="@drawable/animation_bluetooth"
         android:visibility="visible" />
 
 </LinearLayout>

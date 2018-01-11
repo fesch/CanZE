@@ -131,7 +131,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:weightSum="3" >
+                android:weightSum="2" >
 
 
                 <ProgressBar

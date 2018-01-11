@@ -84,6 +84,7 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
                 String startBit    = field.getSID().substring(11); // 240 = 0 etc
                 double val         = field.getValue();
                 TextView tv        = null;
+                int value;
 
                 // get the text column, select the row through the bit position
                 switch (sidPreamble) {
@@ -92,12 +93,16 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
                         break;
                     case SID_Preamble_END:
                         tv = (TextView) findViewById(getResources().getIdentifier("textEND" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
-                        if (tv != null) tv.setText(Double.isNaN(val) ? "" : charging_HistEnd[(int) field.getValue()]);
+                        value = (int) val;
+                        if (tv != null && !Double.isNaN(val) && charging_HistEnd != null && value >= 0 && value < charging_HistEnd.length)
+                            tv.setText(charging_HistEnd[value]);
                         tv = null;
                         break;
                     case SID_Preamble_TYP:
                         tv = (TextView) findViewById(getResources().getIdentifier("textTYP" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
-                        if (tv != null) tv.setText(Double.isNaN(val) ? "" : charging_HistTyp[(int) field.getValue()]);
+                        value = (int) val;
+                        if (tv != null && !Double.isNaN(val) && charging_HistTyp != null && value >= 0 && value < charging_HistTyp.length)
+                            tv.setText(charging_HistTyp[value]);
                         tv = null;
                         break;
                     case SID_Preamble_SOC:
