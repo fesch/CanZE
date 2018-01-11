@@ -83,6 +83,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
             public void run() {
                 String fieldId = field.getSID();
                 TextView tv = null;
+                int value;
 
                 // get the text field
                 switch (fieldId) {
@@ -97,8 +98,10 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
                     //     tv = (TextView) findViewById(R.id.text_CPO);
                     //     break;
                     case SID_HvCoolingState:
+                        value = (int) field.getValue();
                         tv = (TextView) findViewById(R.id.text_HCS);
-                        tv.setText(cooling_Status[(int) field.getValue()]);
+                        if (tv != null && cooling_Status != null && value >= 0 && value < cooling_Status.length)
+                            tv.setText(cooling_Status[value]);
                         tv = null;
                         break;
                     case SID_HvEvaporationTemp:
@@ -108,13 +111,17 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
                         tv = (TextView) findViewById(R.id.text_PRE);
                         break;
                     case SID_BatteryConditioningMode:
+                        value = (int) field.getValue();
                         tv = (TextView) findViewById(R.id.text_HCM);
-                        tv.setText(conditioning_Status[(int) field.getValue()]);
+                        if (tv != null && conditioning_Status != null && value >= 0 && value < conditioning_Status.length)
+                            tv.setText(conditioning_Status[value]);
                         tv = null;
                         break;
                     case SID_ClimaLoopMode:
+                        value = (int) field.getValue();
                         tv = (TextView) findViewById(R.id.text_CLM);
-                        tv.setText(climate_Status[(int) field.getValue()]);
+                        if (tv != null && climate_Status != null && value >= 0 && value < climate_Status.length)
+                            tv.setText(climate_Status[value]);
                         tv = null;
                         break;
                     //case SID_ClimaCompressorPower:

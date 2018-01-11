@@ -382,10 +382,10 @@
     <string name="message_NoEcuDefinition2">\nCannot find definitions for this ECU\n</string>
     <string name="message_SendingInit">\nSending initialisation sequence\n</string>
     <string name="message_InitFailed">\nInitialisation failed\n</string>
-    <string name="message_StartTestSession">\nSending start tester session sequence\n</string>
+    <string name="message_StartTestSession">\nSending start tester session sequence</string>
     <string name="message_NoTestSessionField">Start session field does not exist\n</string>
     <string name="message_UnexpectedResult">Query send, but unexpected result received:[</string>
-    <string name="message_GetDtcs">\nSending start DTCs sequence\n</string>
+    <string name="message_GetDtcs">\nSending start DTCs sequence:[</string>
     <string name="message_NoGetDtcsField">Get DTCs field does not exist\n</string>
     <string name="message_NoActiveDtcs">\nNo active DTCs\n</string>
     <string name="message_clear">"Clear "</string>
@@ -414,7 +414,7 @@
     <string name="button_Firmware">Firmware</string>
     <string name="header_Firmware">Firmware versions</string>
     <string name="default_Firmware">Not available</string>
-    <string name="help_Ecus"><![CDATA[Learn more about the car\'s computers <a href="http://canze.fisch.lu/computers/">here</a>.]]></string>
+    <string name="help_Ecus"><![CDATA[Click on an ECU to get details. Learn more about the car\'s computers <a href="http://canze.fisch.lu/computers/">here</a>.]]></string>
     <string name="alert_Version">Version</string>
     <string name="alert_Soft">Soft</string>
     <string name="alert_Supplier">Supplier</string>

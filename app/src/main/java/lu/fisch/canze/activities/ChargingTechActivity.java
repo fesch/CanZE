@@ -128,6 +128,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
             public void run() {
                 String fieldId = field.getSID();
                 TextView tv = null;
+                int value;
 
                 // get the text field
                 switch (fieldId) {
@@ -243,12 +244,15 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                     case SID_ChargingStatusDisplay:
                         chargingStatus = (int) field.getValue();
                         tv = (TextView) findViewById(R.id.textChaStatus);
-                        tv.setText(charging_Status[chargingStatus]);
+                        if (tv != null && charging_Status != null && chargingStatus >= 0 && chargingStatus < charging_Status.length)
+                            tv.setText(charging_Status[chargingStatus]);
                         tv = null;
                         break;
                     case SID_PlugConnected:
+                        value = (int) field.getValue();
                         tv = (TextView) findViewById(R.id.textPlug);
-                        tv.setText(plug_Status[(int) field.getValue()]);
+                        if (tv != null && plug_Status != null && value >= 0 && value < plug_Status.length)
+                            tv.setText(plug_Status[value]);
                         tv = null;
                         break;
                     case SID_Preamble_CompartmentTemperatures + "32":

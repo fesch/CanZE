@@ -94,7 +94,8 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             iLeftMyOwn=true;
         }
         removeFieldListeners();
-        MainActivity.getInstance().setDebugListener(null);
+        if(MainActivity.getInstance()!=null)
+            MainActivity.getInstance().setDebugListener(null);
     }
 
     @Override

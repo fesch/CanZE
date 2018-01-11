@@ -35,7 +35,8 @@ public class ChargingGraphActivity extends CanzeActivity implements DebugListene
     }
 
     protected void initListeners () {
-        MainActivity.getInstance().setDebugListener(this);
+        if(MainActivity.getInstance()!=null)
+            MainActivity.getInstance().setDebugListener(this);
     }
 
 }
