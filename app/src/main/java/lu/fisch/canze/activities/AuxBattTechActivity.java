@@ -37,8 +37,10 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
 
     final String charging_Status [] = MainActivity.getStringList(R.array.list_ChargingStatus2);
     final String vehicle_Status [] = MainActivity.getStringList(R.array.list_VehicleState);
+    final String aux_Status [] = MainActivity.getStringList(R.array.list_AuxStatus);
 
     public static final String SID_AuxVoltage                       = "7ec.622005.24"; //"7bb.6101.224";
+    public static final String SID_AuxStatus                        = "638.37";
     public static final String SID_VehicleState                     = "35c.5";
     public static final String SID_ChargingStatusDisplay            = "65b.41";
 
@@ -52,6 +54,7 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
         addField(SID_AuxVoltage);
+        addField(SID_AuxStatus);
         addField(SID_VehicleState);
         addField(SID_ChargingStatusDisplay);
     }
@@ -75,6 +78,13 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
 
                     case SID_AuxVoltage:
                         tv = (TextView) findViewById(R.id.text_12V);
+                        break;
+                    case SID_AuxStatus:
+                        tv = (TextView) findViewById(R.id.textAuxStatus);
+                        value = (int) field.getValue();
+                        if (tv != null && aux_Status != null && value >= 0 && value <= 7)
+                            tv.setText(aux_Status[value]);
+                        tv = null;
                         break;
                     case SID_VehicleState:
                         tv = (TextView) findViewById(R.id.text_vehicle_state);
