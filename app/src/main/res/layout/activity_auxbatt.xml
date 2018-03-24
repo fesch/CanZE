@@ -52,6 +52,19 @@
                 android:text="@string/default_Dash" />
         </TableRow>
 
+        <TableRow>
+            <TextView
+                android:id="@+id/LabelAuxStatus"
+                android:layout_weight="2"
+                android:text="@string/label_AuxStatus" />
+
+            <TextView
+                android:id="@+id/textAuxStatus"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+        </TableRow>
+
     </TableLayout>
 
 
