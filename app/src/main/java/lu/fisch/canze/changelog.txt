@@ -1,3 +1,4 @@
+---< Version 1.28 / 2018.05.07 >---
 2018-03-24 [Jeroen] Added 1 volt battery replacement advice to activity_auxbat
 2018-01-18 [Jeroen] Re-enabled Energy consumed on request
 
