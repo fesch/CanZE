@@ -345,6 +345,7 @@ public class Fields {
                         + "534,32,40,1,40,0,°C,,,e5\n" // Temp out
                         + "5d7,0,15,0.01,0,2,km/h,,,ff\n" // Speed
                         + "5da,0,7,1,40,0,ºC,,,e7\n" // Water temperature
+                        + "638,37,39,1,0,0,,,,ff\n" // Battery 14v To Be Changed Display
                         + "654,2,2,1,0,0,,,,ff\n" // Charging Plug Connected
                         + "654,25,31,1,0,0,,,,ff\n" // State of Charge
                         + "654,32,41,1,0,0,min,,,ff\n" // Time to Full
