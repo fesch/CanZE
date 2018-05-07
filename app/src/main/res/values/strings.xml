@@ -560,6 +560,7 @@
     <string name="header_auxbatt">12 volt battery</string>
     <string name="label_auxbat">Voltage, Vehicle state, Charging state</string>
     <string name="label_auxbatvolt">Voltage</string>
+    <string name="label_AuxStatus">Replacement advice</string>
     <string name="label_vehiclestate">Vehicle state</string>
     <string-array name="list_VehicleState">
         <item>Asleep, off (0:red)</item>
@@ -580,6 +581,16 @@
         <item>Waiting (5:purple)</item>
         <item>Flap open (6:black)</item>
         <item>Unavailable (7:grey)</item>
+    </string-array>
+    <string-array name="list_AuxStatus">
+        <item>None</item>
+        <item>1</item>
+        <item>2</item>
+        <item>Soon</item>
+        <item>4</item>
+        <item>Now</item>
+        <item>6</item>
+        <item>7</item>
     </string-array>
     <!-- Widgets only -->
 
