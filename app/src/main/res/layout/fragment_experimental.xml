@@ -159,7 +159,7 @@
                     android:layout_weight="1"
                     android:drawableLeft="@mipmap/button_consumption"
                     android:drawableStart="@mipmap/button_consumption"
-                    android:text="Consumption old" />
+                    android:text="Tests Bob" />
 
 
                 <Button
