@@ -181,15 +181,46 @@ public class BobDue extends Device {
 
     private Message responseToMessage(Frame frame, String text)
     {
+        // remove all whitespaces
+        text = text.replaceAll("\\s", "");
+        if (text.length() == 0) {
+            // if nothing is left, don't even boter to toast / debug
+            return new Message(frame, "-E-BobDue.rtm.empty", true);
+        }
+
         // split up the fields
         String[] pieces = text.trim().split(",");
-        if(pieces.length>1)
-            return new Message(frame, pieces[1].trim(), false);
-        else
-        {
-            MainActivity.debug("BobDue: Got > "+text.trim());
-            return new Message(frame, "-E-Unexpected result", true);
+        if (pieces.length < 2) {
+            MainActivity.debug("BobDue.rtm.nocomma [" + text + "]");
+            return new Message(frame, "-E-BobDue.rtm.nocomma", true);
         }
+
+        int id;
+        try {
+            id = Integer.parseInt(pieces[0].trim(), 16);
+        } catch (NumberFormatException e) {
+            MainActivity.debug("BobDue.rtm.Nan [" + text + "]");
+            return new Message(frame, "-E-BobDue.rtm.Nan", true);
+        }
+
+/*        if (frame.getId() < 0x700) {
+            if (id != frame.getId()) {
+                MainActivity.debug("BobDue.rtm.difffree [" + text + "]");
+                return new Message(frame, "-E-BobDue.rtm.difffree", true);
+            }
+        } else {
+            if (id < 0x700 || id > 0x7ff) { // crude but I don't know the exact behavior of BobDue here
+                MainActivity.debug("BobDue.rtm.diffiso [" + text + "]");
+                return new Message(frame, "BobDue.rtm.diffiso", true);
+            }
+        } */
+        if (id != frame.getId()) {
+            MainActivity.debug("BobDue.rtm.diffid [" + text + "]");
+            return new Message(frame, "-E-BobDue.rtm.diffid", true);
+        }
+
+        // we could add answer length but that is not in the frame definition now
+        return new Message(frame, pieces[1].trim(), false);
     }
 
     @Override

@@ -129,6 +129,7 @@ public class Message {
 
                     // update the value of the field. This triggers updating all of all listeners of that field
                     field.setValue(val);
+
                     // do field logging
                     if(MainActivity.fieldLogMode)
                         FieldLogger.getInstance().log(field.getSID()+","+val);
@@ -164,7 +165,7 @@ public class Message {
      * Some utilities
      \ ------------------------------ */
 
-    public String getAsBinaryString()
+    private String getAsBinaryString()
     {
         String result = "";
         if (!error) {
@@ -172,6 +173,7 @@ public class Message {
                 try {
                     result += String.format("%8s", Integer.toBinaryString(Integer.parseInt(data.substring(i, i + 2), 16) & 0xFF)).replace(' ', '0');
                 } catch (Exception e) {
+                    // do nothing
                 }
             }
         }
