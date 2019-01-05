@@ -69,6 +69,7 @@ public class Fields {
     private static Fields instance = null;
     private double runningUsage = 0;
     private double realRangeReference = Double.NaN;
+    private static long start = Calendar.getInstance().getTimeInMillis();
 
     //private int car = CAR_ANY;
 
@@ -112,17 +113,19 @@ public class Fields {
         addVirtualFieldCommon ("6100", "kWh/100km", SID_EVC_TractionBatteryVoltage+";"+SID_EVC_TractionBatteryCurrent+";"+SID_RealSpeed, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
+                // get real speed
+                double realSpeed = dependantFields.get(SID_RealSpeed).getValue();
+                if (realSpeed < 0 || realSpeed > 150) return Double.NaN;
+                if (realSpeed < 5) return 0;
                 // get voltage
                 double dcVolt = dependantFields.get(SID_EVC_TractionBatteryVoltage).getValue();
                 // get current
-                double dcPwr = dcVolt * dependantFields.get(SID_EVC_TractionBatteryCurrent).getValue() / 1000.0;
-                // get real speed
-                double realSpeed = dependantFields.get(SID_RealSpeed).getValue();
-
-                if (realSpeed >= 5)
-                    return -(Math.round(1000.0 * dcPwr / realSpeed) / 10.0);
-                else
-                    return 0;
+                double dcCur = dependantFields.get(SID_EVC_TractionBatteryCurrent).getValue();
+                if (dcVolt < 300 || dcVolt > 450 || dcCur < -200 || dcCur > 100) return Double.NaN;
+                // power in kW
+                double dcPwr = dcVolt * dcCur / 1000.0;
+                double usage = -(Math.round(1000.0 * dcPwr / realSpeed) / 10.0);
+                if (usage < -150) return -150; else if (usage > 150) return 150; else return usage;
             }
         });
     }
@@ -171,6 +174,7 @@ public class Fields {
     private void addVirtualFieldUsageLpf() {
 
         // It would be easier use SID_Consumption = "1fd.48" (dash kWh) instead of V*A
+        // need to use real timer. Now the averaging is dependant on dongle speed
 
         final String SID_VirtualUsage               = "800.6100.24";
 
@@ -178,8 +182,14 @@ public class Fields {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
                 double value = dependantFields.get(SID_VirtualUsage).getValue();
-                if (value != 0) {
-                    runningUsage = runningUsage * 0.95 + value * 0.05;
+                if (!Double.isNaN(value)) {
+                    long now = Calendar.getInstance().getTimeInMillis();
+                    long since = now - start;
+                    if (since > 1000) since = 1000; // use a maximim of 1 second
+                    start = now;
+
+                    double factor = since * 0.00005; // 0.05 per second
+                    runningUsage = runningUsage * (1 - factor) + value * factor;
                 }
                 return runningUsage;
             }
