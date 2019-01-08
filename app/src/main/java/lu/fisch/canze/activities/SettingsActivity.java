@@ -469,6 +469,15 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivityForResult(intent, 4);
             }
         });
+
+        final Button btsCanSee = (Button) findViewById(R.id.btnCanSee);
+        btsCanSee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this, CanSeeActivity.class);
+                startActivityForResult(intent, 4);
+            }
+        });
     }
 
     @Override
