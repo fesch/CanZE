@@ -62,18 +62,18 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_MaxCharge);
-        addField(SID_UserSoC);
-        addField(SID_RealSoC);
-        addField(SID_SOH); // state of health gives continious timeouts. This frame is send at a very low rate
-        addField(SID_RangeEstimate);
-        addField(SID_DcPower);
+        addField(SID_MaxCharge, 5000);
+        addField(SID_UserSoC, 5000);
+        addField(SID_RealSoC, 5000);
+        addField(SID_SOH, 5000); // state of health gives continious timeouts. This frame is send at a very low rate
+        addField(SID_RangeEstimate, 5000);
+        addField(SID_DcPower, 5000);
         if (MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240 || MainActivity.car == MainActivity.CAR_ZOE_Q90 || MainActivity.car == MainActivity.CAR_ZOE_R90) {
-            addField(SID_AvChargingPower);
-            addField(SID_HvTemp);
+            addField(SID_AvChargingPower, 5000);
+            addField(SID_HvTemp, 5000);
         } else { //FLuKan
-            addField(SID_HvTempFluKan);
-            addField(SID_ACPilot);
+            addField(SID_HvTempFluKan, 5000);
+            addField(SID_ACPilot, 5000);
         }
     }
 
@@ -98,23 +98,23 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
                         if (maxCharge < (avChPwr * 0.8)) {
                             color = 0xffffc0c0;
                         }
-                        tv = (TextView) findViewById(R.id.text_max_charge);
+                        tv = findViewById(R.id.text_max_charge);
                         tv.setBackgroundColor(color);
                         break;
                     case SID_UserSoC:
-                        tv = (TextView) findViewById(R.id.textUserSOC);
+                        tv = findViewById(R.id.textUserSOC);
                         break;
                     case SID_RealSoC:
-                        tv = (TextView) findViewById(R.id.textRealSOC);
+                        tv = findViewById(R.id.textRealSOC);
                         break;
                     case SID_HvTemp:
-                        tv = (TextView) findViewById(R.id.textHvTemp);
+                        tv = findViewById(R.id.textHvTemp);
                         break;
                     case SID_SOH:
-                        tv = (TextView) findViewById(R.id.textSOH);
+                        tv = findViewById(R.id.textSOH);
                         break;
                     case SID_RangeEstimate:
-                        tv = (TextView) findViewById(R.id.textKMA);
+                        tv = findViewById(R.id.textKMA);
                         if (field.getValue() >= 1023) {
                             tv.setText("---");
                         } else {
@@ -123,15 +123,15 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
                         tv = null;
                         break;
                     case SID_DcPower:
-                        tv = (TextView) findViewById(R.id.textDcPwr);
+                        tv = findViewById(R.id.textDcPwr);
                         break;
                     case SID_AvChargingPower:
                         avChPwr = field.getValue();
-                        tv = (TextView) findViewById(R.id.textAvChPwr);
+                        tv = findViewById(R.id.textAvChPwr);
                         break;
                     case SID_ACPilot:
                         avChPwr = field.getValue() * 0.225;
-                        tv = (TextView) findViewById(R.id.textAvChPwr);
+                        tv = findViewById(R.id.textAvChPwr);
                         break;
                 }
                 // set regular new content, all exeptions handled above

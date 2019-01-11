@@ -55,7 +55,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
         }
         for (int i = 1; i <= lastCell; i++) {
             String sid = SID_Preamble_CompartmentTemperatures + (8 + i * 24); // remember, first is pos 32, i starts s at 1
-            addField(sid);
+            addField(sid, 5000);
         }
     }
 
@@ -85,7 +85,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
                     @Override
                     public void run() {
                         for (int i = 1; i <= lastCell; i++) {
-                            TextView tv = (TextView) findViewById(getResources().getIdentifier("text_comp_" + i + "_temp", "id", getPackageName()));
+                            TextView tv = findViewById(getResources().getIdentifier("text_comp_" + i + "_temp", "id", getPackageName()));
                             if (tv != null) {
                                 // tv.setText("" + lastVal[i]);
                                 tv.setText(String.format(Locale.getDefault(), "%.0f", lastVal[i]));

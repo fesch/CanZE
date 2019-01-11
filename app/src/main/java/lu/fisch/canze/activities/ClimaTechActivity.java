@@ -63,9 +63,9 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
             addField(SID_DcPower, 0);
             // addListener(SID_ChargingPower);
             addField(SID_HvCoolingState, 0);
-            addField(SID_HvEvaporationTemp, 0);
+            addField(SID_HvEvaporationTemp, 10000);
             // addField(SID_ClimaCompressorPower,0);
-            addField(SID_Pressure, 0);
+            addField(SID_Pressure, 1000);
             addField(SID_BatteryConditioningMode, 0);
             addField(SID_ClimaLoopMode, 0);
         }
@@ -89,43 +89,43 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
                 switch (fieldId) {
 
                     case SID_EngineFanSpeed:
-                        tv = (TextView) findViewById(R.id.text_EFS);
+                        tv = findViewById(R.id.text_EFS);
                         break;
                     case SID_DcPower:
-                        tv = (TextView) findViewById(R.id.text_DCP);
+                        tv = findViewById(R.id.text_DCP);
                         break;
                     // case SID_ChargingPower:
                     //     tv = (TextView) findViewById(R.id.text_CPO);
                     //     break;
                     case SID_HvCoolingState:
                         value = (int) field.getValue();
-                        tv = (TextView) findViewById(R.id.text_HCS);
+                        tv = findViewById(R.id.text_HCS);
                         if (tv != null && cooling_Status != null && value >= 0 && value < cooling_Status.length)
                             tv.setText(cooling_Status[value]);
                         tv = null;
                         break;
                     case SID_HvEvaporationTemp:
-                        tv = (TextView) findViewById(R.id.text_HET);
+                        tv = findViewById(R.id.text_HET);
                         break;
                     case SID_Pressure:
-                        tv = (TextView) findViewById(R.id.text_PRE);
+                        tv = findViewById(R.id.text_PRE);
                         break;
                     case SID_BatteryConditioningMode:
                         value = (int) field.getValue();
-                        tv = (TextView) findViewById(R.id.text_HCM);
+                        tv = findViewById(R.id.text_HCM);
                         if (tv != null && conditioning_Status != null && value >= 0 && value < conditioning_Status.length)
                             tv.setText(conditioning_Status[value]);
                         tv = null;
                         break;
                     case SID_ClimaLoopMode:
                         value = (int) field.getValue();
-                        tv = (TextView) findViewById(R.id.text_CLM);
+                        tv = findViewById(R.id.text_CLM);
                         if (tv != null && climate_Status != null && value >= 0 && value < climate_Status.length)
                             tv.setText(climate_Status[value]);
                         tv = null;
                         break;
                     //case SID_ClimaCompressorPower:
-                        // tv = (TextView) findViewById(R.id.text_CPW);
+                        // tv = findViewById(R.id.text_CPW);
                         // break;
 
                 }
