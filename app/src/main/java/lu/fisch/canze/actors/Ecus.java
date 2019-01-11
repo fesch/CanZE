@@ -55,7 +55,7 @@ public class Ecus {
                         + "Electrical Power Steering,1232,V,762,742,EPS,PAS,5902ff\n"     // Has Diag class
                         + "Electronic Stability Control,1094,V,760,740,ESC,ABS,5902ff\n"
                         + "Uncoupled Braking Pedal,2197,V,7bc,79c,UBP,-,5902ff\n"         // Has Diag class
-                        + "Body Control Module,645,V;O,765,845,BCM,UCH,5902ff\n"
+                        + "Body Control Module,645,V;O,765,745,BCM,UCH,5902ff\n"
                         + "Climate Control,419,V,764,744,CLIM,CLIMA;CLIMBOX,5902ff\n"     // Has Diag class
                         + "Park Assist,1222,O,76e,74e,UPA,-,5902ff\n"
                         + "Battery Connection Box,2093,E,793,792,BCB,-,5902ff;5902af\n"   // Has Diag class

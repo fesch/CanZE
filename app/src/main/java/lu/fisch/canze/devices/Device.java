@@ -44,10 +44,10 @@ import lu.fisch.canze.database.CanzeDataSource;
 
 public abstract class Device {
 
-    public static final int TOUGHNESS_HARD              = 0;    // hardest reset possible (ie atz)
-    public static final int TOUGHNESS_MEDIUM            = 1;    // medium reset (i.e. atws)
-    public static final int TOUGHNESS_SOFT              = 2;    // softest reset (i.e atd for ELM)
-    public static final int TOUGHNESS_NONE              = 100;  // just clear error status
+    private static final int TOUGHNESS_HARD              = 0;    // hardest reset possible (ie atz)
+    private static final int TOUGHNESS_MEDIUM            = 1;    // medium reset (i.e. atws)
+    private static final int TOUGHNESS_SOFT              = 2;    // softest reset (i.e atd for ELM)
+    private static final int TOUGHNESS_NONE              = 100;  // just clear error status
 
     private final double minIntervalMultiplicator       = 1.3;
     private final double maxIntervalMultiplicator       = 2.5;
@@ -204,7 +204,6 @@ public abstract class Device {
                     } catch(Exception e) {
                         // ignore a sleep exception
                     }
-                    return;
                 }
                 else
                 {
@@ -365,6 +364,7 @@ public abstract class Device {
 
     /**
      * This method unregisters all filters from the remote device
+     * Lint suggests it can be private so probably never used externally
      */
     public void unregisterFilters()
     {
@@ -455,7 +455,7 @@ public abstract class Device {
      * The field is also immediately registered onto the device.
      * @param field the field to be added
      */
-    public void addActivityField(final Field field) {
+    private void addActivityField(final Field field) {
         // ass already present listeners are no being re-registered, do this always
         // register it to be saved to the database
         field.addListener(CanzeDataSource.getInstance());
@@ -499,15 +499,28 @@ public abstract class Device {
             }
         }
     }
+/*
+JM: I made addActivity without interval private, as to change the behavior with interval 0, which
+is used throughout the code to mean "we don't care, as fast as possible"
 
+
+
+ */
     public void addActivityField(final Field field, int interval)
     {
-        // if the interval is 0 or below, the field should be
+        // if the interval is below 0, the field should be
         // added to the list of "as fast as possible" fields.
-        if (interval <=0 )
+        // JM CHanged this from <=0 to <0. Rationale:
+        // With the super fast CanSee dongle we query free frames faster than they are updated by
+        // the car. This effecively slows CanZE down, getting and processing unchanged information
+        // interval = -1 still and adding ISOTP frames has the same meaning (ASAP). A free frame
+        // requested with interval = 0 will be requested at it's frame update rate.
+        if (interval < 0 )
         {
             addActivityField(field);
             return;
+        } else if (interval == 0) {
+            interval = field.getFrame().getInterval();
         }
 
         // ass already present listeners are no being re-registered, do this always

@@ -88,7 +88,7 @@ public class Frames {
                         + "534,100,100,BCM\n"
                         + "552,100,100,BCM\n"
                         + "563,100,100,EPS\n"
-                        + "5D1,0,0,CLUSTER\n"
+                        + "5D1,60000,60000,CLUSTER\n" // this frame is AFAIK only sent at bootup
                         + "5D7,100,100,ESC\n"
                         + "5DA,100,100,EVC\n"
                         + "5DE,100,100,BCM\n"
@@ -120,41 +120,41 @@ public class Frames {
                         + "69F,1000,1000,BCM\n"
                         + "6F8,100,100,USM\n"
                         + "6FB,3000,3000,CLUSTER\n"
-                        + "702,0,0,\n"
-                        + "722,0,0,LINSCH\n"
-                        + "740,0,0,\n"
-                        + "742,0,0,\n"
-                        + "743,0,0,\n"
-                        + "744,0,0,\n"
-                        + "745,0,0,\n"
-                        + "74D,0,0,\n"
-                        + "74E,0,0,\n"
-                        + "752,0,0,\n"
-                        + "75A,0,0,\n"
-                        + "760,0,0,ESC\n"
-                        + "762,0,0,EPS\n"
-                        + "763,0,0,CLUSTER\n"
-                        + "764,0,0,CLIM\n"
-                        + "765,0,0,BCM\n"
-                        + "76D,0,0,USM\n"
-                        + "76E,0,0,UPA\n"
-                        + "772,0,0,AIBAG\n"
-                        + "77E,0,0,PEB\n"
-                        + "792,0,0,\n"
-                        + "793,0,0,BCB\n"
-                        + "796,0,0,\n"
-                        + "79B,0,0,\n"
-                        + "79C,0,0,\n"
-                        + "7B6,0,0,LBC2\n"
-                        + "7BB,0,0,LBC\n"
-                        + "7BC,0,0,UBP\n"
-                        + "7CA,0,0,\n"
-                        + "7DA,0,0,TCU\n"
-                        + "7DF,0,0,\n"
-                        + "7E4,0,0,\n"
-                        + "7EC,0,0,EVC\n"
+                        + "702,100,100,\n"          // LINSCH
+                        + "722,100,100,LINSCH\n"
+                        + "740,100,100,\n"          // ESC
+                        + "742,100,100,\n"          // EPS
+                        + "743,100,100,\n"          // CLUSTER
+                        + "744,100,100,\n"          // CLIM
+                        + "745,100,100,\n"          // BCM
+                        + "74D,100,100,\n"          // USM
+                        + "74E,100,100,\n"          // UPA
+                        + "752,100,100,\n"          // AIBAG
+                        + "75A,100,100,\n"          // PEB
+                        + "760,100,100,ESC\n"
+                        + "762,100,100,EPS\n"
+                        + "763,100,100,CLUSTER\n"
+                        + "764,100,100,CLIM\n"
+                        + "765,100,100,BCM\n"
+                        + "76D,100,100,USM\n"
+                        + "76E,100,100,UPA\n"
+                        + "772,100,100,AIBAG\n"
+                        + "77E,100,100,PEB\n"
+                        + "792,100,100,\n"          // BCB
+                        + "793,100,100,BCB\n"
+                        + "796,100,100,\n"          // LBC2
+                        + "79B,100,100,\n"          // LBC
+                        + "79C,100,100,\n"          // UBP
+                        + "7B6,100,100,LBC2\n"
+                        + "7BB,100,100,LBC\n"
+                        + "7BC,100,100,UBP\n"
+                        + "7CA,100,100,\n"          // TCU
+                        + "7DA,100,100,TCU\n"
+                        + "7DF,100,100,\n"          // Broadcast
+                        + "7E4,100,100,\n"          // EVC
+                        + "7EC,100,100,EVC\n"
 
-                        + "800,0,0,VFC";
+                        + "800,100,100,VFC";
 
         fillDynamic(frameDef);
     }
@@ -201,6 +201,7 @@ public class Frames {
         return frames.get(position);
     }
 
+    // Lint mark as can be private so probably never used externally
     public Frame getById (int id) {
         for(int i=0; i<frames.size(); i++)
         {
