@@ -127,6 +127,10 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
                     case SID_AvChargingPower:
                         avChPwr = field.getValue();
                         tv = findViewById(R.id.textAvChPwr);
+                        if (avChPwr > 45.0) {
+                            tv.setText("---");
+                            tv = null;
+                        }
                         break;
                     case SID_ACPilot:
                         avChPwr = field.getValue() * 0.225;
