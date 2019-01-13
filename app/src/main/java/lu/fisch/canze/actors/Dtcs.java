@@ -21,7 +21,11 @@
 
 package lu.fisch.canze.actors;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import lu.fisch.canze.activities.MainActivity;
 
 /**
  * DTC id's usually are 3 bytes long. The first 2 bytes are an ID, the third byte reperesent a test
@@ -36,78 +40,90 @@ public class Dtcs {
     private static Dtcs instance = null;
 
     private Dtcs() {
-        fillStatic();
+        load();
     }
 
-    public static Dtcs getInstance()
-    {
-        if(instance==null) instance=new Dtcs();
+    public static Dtcs getInstance() {
+        if (instance == null) instance = new Dtcs();
         return instance;
     }
 
-    private void fillStatic() {
-        String dtcDef =
-                ""
-            + "061263,BATTERY CHARGE CIRCUIT\n" //
-            + "066263,BATTERY CHARGE CIRCUIT\n" //
-            + "064913,BATTERY CHARGE CIRCUIT\n" //
-            + "064764,BATTERY CHARGE CIRCUIT\n" //
-            + "C10000,EVC ABSENT MULTIPLEX SIGNAL SENT\n" //
-            + "518196,ESP MULTIPLEX INFORMATION PLAUSIBILITY\n" //
-            + "C12200,NO ABS/ESP MULTIPLEX SIGNAL\n" //
-            + "518296,EVC MULTIPLEX INFORMATION PLAUSIBILITY\n" //
-            + "508E55,UBP SOLENOID VALVE\n" //
-            + "C07300,MULTIPLEXED NETWORK\n" //
-            + "C00100,NO MULTIPLEX SIGNAL\n" //
-            + "921215,LEFT-HAND DIPPED HEADLIGHT CIRCUIT\n" //
-            + "921315,RIGHT-HAND DIPPED HEADLIGHT CIRCUIT\n" //
-            + "AE01F0,COMMUNICATION PROTOCOL ERROR\n" //
-            + "041168,CAN COMMUNICATION\n" //
-            + "1525F3,CONSISTENT MULTIPLEX SIGNALS FOR CC/SL\n" //
-            + "060198,ELECTRIC MOTOR PERFORMANCE"
-    ;
 
-        String testDef =
-                ""
-                        + "104,event information\n" //
-
-                ;
-
-        fillDynamic(dtcDef, testDef);
-}
-
-    private void fillDynamic (String dtcDef, String testDef) {
-        String[] lines = dtcDef.split("\n");
-        for (String line : lines) {
-            //Get all tokens available in line
-            String[] tokens = line.split(",");
-            if (tokens.length == 2) {
-                //Create a new dtc object and fill his  data
-                Dtc dtc = new Dtc(
-                        tokens[0].trim(),
-                        tokens[1].trim()
-                );
-                // add the dtc to the list of available fields
-                add(dtc);
-            }
-        }
-        lines = testDef.split("\n");
-        for (String line : lines) {
-            //Get all tokens available in line
-            String[] tokens = line.split(",");
-            if (tokens.length == 2) {
-                //Create a new Test object and fill his  data
-                Test test = new Test(
-                        tokens[0].trim(),
-                        tokens[1].trim()
-                );
-                // add the test to the list of available fields
-                addTest(test);
-            }
+    private void fillOneDtcLine(String line) {
+        if (line.contains("#")) line = line.substring(0, line.indexOf('#'));
+        //Get all tokens available in line
+        String[] tokens = line.split(",");
+        if (tokens.length == 2) {
+            //Create a new dtc object and fill his  data
+            Dtc dtc = new Dtc(
+                    tokens[0].trim(),
+                    tokens[1].trim()
+            );
+            // add the dtc to the list of available fields
+            addDtc(dtc);
         }
     }
 
-    public void add(Dtc dtc) {
+    private void fillOneTestLine(String line) {
+        if (line.contains("#")) line = line.substring(0, line.indexOf('#'));
+        //Get all tokens available in line
+        String[] tokens = line.split(",");
+        if (tokens.length == 2) {
+            //Create a new Test object and fill his  data
+            Test test = new Test(
+                    tokens[0].trim(),
+                    tokens[1].trim()
+            );
+            // add the test to the list of available fields
+            addTest(test);
+        }
+    }
+
+
+    private void fillFromAsset (String dtcsAssetName, String testsAssetName) {
+        //Read text from asset
+        AssetLoadHelper assetLoadHelper = new AssetLoadHelper(MainActivity.getInstance());
+        BufferedReader bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(dtcsAssetName);
+        try {
+            String line;
+            while ((line = bufferedReader.readLine()) != null)
+                fillOneDtcLine(line);
+            bufferedReader.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(testsAssetName);
+        try {
+            String line;
+            while ((line = bufferedReader.readLine()) != null)
+                fillOneTestLine(line);
+            bufferedReader.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return;
+    }
+
+    public void load ()
+    {
+        load ("", "");
+    }
+
+    public void load (String dtcsAssetName, String testsAssetName)
+    {
+        dtcs.clear();
+        tests.clear();
+        if (dtcsAssetName.equals("")) {
+            fillFromAsset("_Dtcs.csv", "_Tests.csv");
+        } else {
+            fillFromAsset(dtcsAssetName, testsAssetName);
+        }
+    }
+
+
+    public void addDtc(Dtc dtc) {
         dtcs.add(dtc);
     }
 
@@ -195,18 +211,6 @@ public class Dtcs {
 
     public ArrayList<Test> getAllTests () {
         return tests;
-    }
-
-    public void load ()
-    {
-        dtcs.clear();
-        fillStatic();
-    }
-
-    public void load (String initDtcString, String initTestString)
-    {
-        dtcs.clear();
-        fillDynamic(initDtcString, initTestString);
     }
 
 }
