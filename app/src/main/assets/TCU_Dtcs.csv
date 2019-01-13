@@ -1,0 +1,44 @@
+93F0,BAT
+9302,GSM External Antenna Failure
+93D9,USB Host Presence not detected
+AE21,Output_On_Request
+93E1,CAN-M Failure
+9341,TCU
+9304,GSM Internal Antenna Failure
+AE00,SMS
+AE03,GDC Fonctional
+AE05,GDC Configuration
+9324,GPS External Antenna
+AEF0,Internal battery
+AE02,GDC Authentification
+AE80,WMP SPI communications failure
+AE81,PMC SPI communications failure
+AE82,I2C communications failure
+AE83,TCU reset procedure failure
+AE84,WMP Flash memory corrupted
+AE85,WMP secure memory corrupted
+AE22,K-line IN SVT failure
+AE23,K-line OUT SVT failure
+AE24,SVT Blocking
+9328,Mic out line Failure
+9305,Mic in Line failure
+AE11,Temperature Sensor Failure
+930D,AUDIO_HU_OUT Line Failure
+AE10,GPS Internal Antenna Failure
+AE30,LIN Failure
+AE31,MMI Audio Out Line Failure
+AE32,MMI Supply 4V Failure
+AE91,MMI Ecall Button Failure
+AE92,MMI Bcall Button Failure
+AE33,MMI Led Failure
+AE34,MMI Supply 7V Failure
+AE12,Accelerometer Failure
+AE04,Internal SIM internal Failure
+AE06,External SIM internal Failure
+AE01,PPP Data Communication Authentication
+AE07,Invalid TCU Certificate
+AE08,TCU datas discarded by GDC
+9360,Voice Communication Failure (GSM)
+AE13,GPS Communication Failure
+93E2,CAN-V Failure
+933B,AUX_IN_INFO Line Failure

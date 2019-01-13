@@ -1,0 +1,275 @@
+7da,0,7,1,0,0,,14ffffff,54,ff # Reset DTC
+7da,0,23,1,0,0,,19023b,5902ff,ff # Query DTC
+7da,24,39,1,0,0,,22FE12,62FE12,ff,Last Wake Up Cause.Cause of last Wake Up,0:None;1:Reset;2:RTC;8:Movement sensor;16:Wake up 1;32:Wake up 2;64:LIN;128:CAN
+7da,24,31,1,0,0,,226C52,626C52,ff,PPP Connection Retry
+7da,24,39,1,0,0,s,226C54,626C54,ff,PPP Failure Time out
+7da,24,39,1,0,0,s,226C56,626C56,ff,PPP Disconnection time out
+7da,24,31,1,0,0,,226C58,626C58,ff,PPP Rejection retry,0:No retry until next ON cycle;1:Retry as PPP sequence timeout
+7da,24,39,1,0,0,,220107,620107,ff,Vehicle Definition,0:Default value;1:X61VE;2:X61ice;17:X61ph2;256:L38VE;257:L38ph2;513:X10;1025:X98;1538:X62th;2049:X45;2305:X87;2561:X95ph2;3585:X43
+7da,36,36,1,0,0,,226C6A,626C6A,ff,Probe Service Activation Status.REMOTE_DIAG.activation,0:do nothing;1:activate REMOTE DIAG
+7da,30,30,1,0,0,,226C6A,626C6A,ff,Probe Service Activation Status.PAYD.Deactivation,0:do nothing;1:Deactivate PAYD
+7da,38,38,1,0,0,,226C6A,626C6A,ff,Probe Service Activation Status.PAYD.activation,0:do nothing;1:activate PAYD
+7da,31,31,1,0,0,,226C6A,626C6A,ff,Probe Service Activation Status.FLEET.Deactivation,0:do nothing;1:Deactivate FLEET
+7da,39,39,1,0,0,,226C6A,626C6A,ff,Probe Service Activation Status.FLEET.activation,0:do nothing;1:activate FLEET
+7da,29,29,1,0,0,,226C6A,626C6A,ff,Probe Service Activation Status.ECO.Deactivation,0:do nothing;1:Deactivate ECO
+7da,37,37,1,0,0,,226C6A,626C6A,ff,Probe Service Activation Status.ECO.activation,0:do nothing;1:activate ECO
+7da,28,28,1,0,0,,226C6A,626C6A,ff,Probe Service Activation Status.REMOTE_DIAG.Deactivation,0:do nothing;1:Deactivate REMOTE DIAG
+7da,24,47,1,0,0,s,226C6B,626C6B,ff,Probe Status Data Frequency Upload
+7da,24,39,1,0,0,s,226C6C,626C6C,ff,Probe Server Demand Checking Frequency
+7da,24,47,1,0,0,h,226C6E,626C6E,ff,EV Status Data Frequency Upload
+7da,24,39,1,0,0,s,226C76,626C76,ff,EV ChargeIn Progress TimeOut
+7da,24,39,1,0,0,s,226C74,626C74,ff,EV WakeUp Frequency
+7da,24,1047,1,0,0,,226C10,626C10,2ff,OBS URL
+7da,24,279,1,0,0,,226C12,626C12,2ff,OBS PORT
+7da,24,31,1,0,0,,226C62,626C62,ff,External GSM Antenna,0:No External GSM antenna connection;1:External GSM antenna connection
+7da,29,39,1,0,0,,22FE03,62FE03,ff,Temperature Status.PCBTEMPSENSE
+7da,45,55,1,0,0,,22FE03,62FE03,ff,Temperature Status.BATTERY_TEMP_SENSE
+7da,108,119,1,0,0,,22FE02,62FE02,ff,Parameters.Status.SPK_MMI_N_SENS
+7da,28,39,1,0,0,,22FE02,62FE02,ff,Parameters.Status.SENSE_MIC1_P
+7da,60,71,1,0,0,,22FE02,62FE02,ff,Parameters.Status.SPK_HU_P_SENS
+7da,44,55,1,0,0,,22FE02,62FE02,ff,Parameters.Status.SPK_HU_N_SENS
+7da,92,103,1,0,0,,22FE02,62FE02,ff,Parameters.Status.SENSE_MUTE
+7da,76,87,1,0,0,,22FE02,62FE02,ff,Parameters.Status.OUTPUT_ON_REQ_SENSE
+7da,124,135,1,0,0,,22FE02,62FE02,ff,Parameters.Status.SENSE_MIC_OUT_P
+7da,28,39,1,0,0,,22FE04,62FE04,ff,Rtc.Data.12V_BAT_SENSE
+7da,60,71,36,0,0,,22FE04,62FE04,ff,Rtc.Data.SENSE_3V_PMC
+7da,44,55,1,0,0,,22FE04,62FE04,ff,Rtc.Data.SGN_WAKE_UP_SENSE,0:signal is not present;4096:signal Failure
+7da,76,87,1,0,0,,22FE04,62FE04,ff,Rtc.Data.SGN_WAKE_UP2_SENSE,0:signal is not present;4096:signal Failure
+7da,16,39,1,0,0,,2184,6184,2ff,SupplierNumber.ITG
+7da,40,71,1,0,0,,2184,6184,2ff,Traceability year
+7da,72,87,1,0,0,,2184,6184,2ff,Traceability week
+7da,88,135,1,0,0,,2184,6184,2ff,Tracability serial number
+7da,16,55,1,0,0,,21FC,61FC,2ff,IdentPreviousZone.RenaultReference
+7da,56,63,1,0,0,,21FC,61FC,ff,IdentPreviousZone.DiagnosticIdentificationCode
+7da,64,87,1,0,0,,21FC,61FC,2ff,IdentPreviousZone.SupplierNumber
+7da,88,127,1,0,0,,21FC,61FC,2ff,IdentPreviousZone.HardwareNumber.LowerPart
+7da,128,143,1,0,0,,21FC,61FC,ff,IdentPreviousZone.SoftwareNumber
+7da,144,159,1,0,0,,21FC,61FC,ff,IdentPreviousZone.EditionNumber
+7da,160,175,1,0,0,,21FC,61FC,ff,IdentPreviousZone.CalibrationNumber
+7da,176,183,1,0,0,,21FC,61FC,ff,IdentPreviousZone.PartNumber.BasicPartList
+7da,184,191,1,0,0,,21FC,61FC,ff,IdentPreviousZone.HardwareNumber.BasicPartList
+7da,192,199,1,0,0,,21FC,61FC,ff,IdentPreviousZone.ApprovalNumber.BasicPartList
+7da,200,207,1,0,0,,21FC,61FC,ff,IdentPreviousZone.ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+7da,16,55,1,0,0,,21F0,61F0,2ff,IdentFirstZone.RenaultReference
+7da,56,63,1,0,0,,21F0,61F0,ff,IdentFirstZone.DiagnosticIdentificationCode
+7da,64,87,1,0,0,,21F0,61F0,2ff,IdentFirstZone.SupplierNumber
+7da,88,127,1,0,0,,21F0,61F0,2ff,IdentFirstZone.HardwareNumber.LowerPart
+7da,128,143,1,0,0,,21F0,61F0,ff,IdentFirstZone.SoftwareNumber
+7da,144,159,1,0,0,,21F0,61F0,ff,IdentFirstZone.EditionNumber
+7da,160,175,1,0,0,,21F0,61F0,ff,IdentFirstZone.CalibrationNumber
+7da,176,183,1,0,0,,21F0,61F0,ff,IdentFirstZone.PartNumber.BasicPartList
+7da,184,191,1,0,0,,21F0,61F0,ff,IdentFirstZone.HardwareNumber.BasicPartList
+7da,192,199,1,0,0,,21F0,61F0,ff,IdentFirstZone.ApprovalNumber.BasicPartList
+7da,200,207,1,0,0,,21F0,61F0,ff,IdentFirstZone.ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+7da,16,55,1,0,0,,21FE,61FE,2ff,IdentCurrentZone.RenaultReference
+7da,56,63,1,0,0,,21FE,61FE,ff,IdentCurrentZone.DiagnosticIdentificationCode
+7da,64,87,1,0,0,,21FE,61FE,2ff,IdentCurrentZone.SupplierNumber
+7da,88,127,1,0,0,,21FE,61FE,2ff,IdentCurrentZone.HardwareNumber.LowerPart
+7da,128,143,1,0,0,,21FE,61FE,ff,IdentCurrentZone.SoftwareNumber
+7da,144,159,1,0,0,,21FE,61FE,ff,IdentCurrentZone.EditionNumber
+7da,160,175,1,0,0,,21FE,61FE,ff,IdentCurrentZone.CalibrationNumber
+7da,176,183,1,0,0,,21FE,61FE,ff,IdentCurrentZone.PartNumber.BasicPartList
+7da,184,191,1,0,0,,21FE,61FE,ff,IdentCurrentZone.HardwareNumber.BasicPartList
+7da,192,199,1,0,0,,21FE,61FE,ff,IdentCurrentZone.ApprovalNumber.BasicPartList
+7da,200,207,1,0,0,,21FE,61FE,ff,IdentCurrentZone.ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+7da,96,135,1,0,0,,21F1,61F1,2ff,LogFirstZone.SoftDownloadToolRef
+7da,144,167,1,0,0,,21F1,61F1,ff,LogFirstZone.DateOfFirstSoftDownload
+7da,192,207,1,0,0,,21F1,61F1,ff,LogFirstZone.CRClogRecord
+7da,56,95,1,0,0,,21F1,61F1,2ff,LogFirstZone.SoftDownloadSiteRef
+7da,168,183,1,0,0,,21F1,61F1,ff,LogFirstZone.HourOfSoftwareDownloads
+7da,136,143,1,0,0,,21F1,61F1,ff,LogFirstZone.NumberOfSoftwareDownloads
+7da,96,135,1,0,0,,21FD,61FD,2ff,LogPreviousZone.SoftDownloadToolRef
+7da,144,167,1,0,0,,21FD,61FD,ff,LogPreviousZone.DateOfFirstSoftDownload
+7da,192,207,1,0,0,,21FD,61FD,ff,LogPreviousZone.CRClogRecord
+7da,56,95,1,0,0,,21FD,61FD,2ff,LogPreviousZone.SoftDownloadSiteRef
+7da,168,183,1,0,0,,21FD,61FD,ff,LogPreviousZone.HourOfSoftwareDownloads
+7da,136,143,1,0,0,,21FD,61FD,ff,LogPreviousZone.NumberOfSoftwareDownloads
+7da,96,135,1,0,0,,21FF,61FF,2ff,LogCurrentZone.SoftDownloadToolRef
+7da,144,167,1,0,0,,21FF,61FF,ff,LogCurrentZone.DateOfFirstSoftDownload
+7da,192,207,1,0,0,,21FF,61FF,ff,LogCurrentZone.CRClogRecord
+7da,56,95,1,0,0,,21FF,61FF,2ff,LogCurrentZone.SoftDownloadSiteRef
+7da,136,143,1,0,0,,21FF,61FF,ff,LogCurrentZone.NumberOfSoftwareDownloads
+7da,168,183,1,0,0,,21FF,61FF,ff,LogCurrentZone.HourOfSoftwareDownloads
+7da,88,95,1,0,0,,2185,6185,ff,CANM.AudioECU_FaultCounter
+7da,32,39,1,0,0,,2185,6185,ff,CANM.CANmBussOffCounter
+7da,40,47,1,0,0,,2185,6185,ff,CANM.CANmMuteCounter
+7da,56,63,1,0,0,,2185,6185,ff,CANM.CentralSwitchECU_FaultCounter
+7da,152,159,1,0,0,,2185,6185,ff,CANM.GATEWAY_ECU_FaultCounter
+7da,280,287,1,0,0,,2185,6185,ff,CANM.NavigationECU_FaultCounter
+7da,112,119,1,0,0,,2185,6185,ff,CANM.RearCameraECU_FaultCounter
+7da,48,55,1,0,0,,2185,6185,ff,CANM.TCU_ECU_FaultCounter
+7da,200,207,1,0,0,,2182,6182,ff,CANV.USMAbsentCounter
+7da,672,679,1,0,0,,2182,6182,ff,CANV.TCUCounter
+7da,424,431,1,0,0,,2182,6182,ff,CANV.SCH_EVC_AbsentCounter
+7da,184,191,1,0,0,,2182,6182,ff,CANV.EPSAbsentCounter
+7da,48,55,1,0,0,,2182,6182,ff,CANV.ECMAbsentCounter
+7da,64,71,1,0,0,,2182,6182,ff,CANV.ClusterAbsentCounter
+7da,40,47,1,0,0,,2182,6182,ff,CANV.CANvMuteCounter
+7da,32,39,1,0,0,,2182,6182,ff,CANV.CANvBussOffCounter
+7da,56,63,1,0,0,,2182,6182,ff,CANV.BrakeAbsentCounter
+7da,72,79,1,0,0,,2182,6182,ff,CANV.BCMAbsentCounter
+7da,80,87,1,0,0,,2182,6182,ff,CANV.AIRBAGAbsentCounter
+7da,152,167,1,0,0,,2181,6181,ff,VIN.CRC
+7da,16,151,1,0,0,,2181,6181,2ff,VIN.VIN
+7da,32,71,1,0,0,,22FD05,62FD05,2ff,Speaker Settings.TCU Vol Speaker
+7da,24,135,1,0,0,,22FD05,62FD05,2ff,Speaker Settings.all
+7da,128,135,1,0,0,,22FD05,62FD05,ff,Speaker Settings.Politone
+7da,80,119,1,0,0,,22FD05,62FD05,2ff,Speaker Settings.Gain
+7da,72,79,1,0,0,,22FD05,62FD05,ff,Speaker Settings.Echo
+7da,120,127,1,0,0,,22FD05,62FD05,ff,Speaker Settings.Beep
+7da,280,535,1,0,0,,22FD10,62FD10,2ff,InSIM GPRS Parameters.User
+7da,536,791,1,0,0,,22FD10,62FD10,2ff,InSIM GPRS Parameters.Password
+7da,1048,1303,1,0,0,,22FD10,62FD10,2ff,InSIM GPRS Parameters.DNS2
+7da,792,1047,1,0,0,,22FD10,62FD10,2ff,InSIM GPRS Parameters.DNS1
+7da,24,279,1,0,0,,22FD10,62FD10,2ff,InSIM GPRS Parameters.APN
+7da,24,279,1,0,0,,22FD11,62FD11,2ff,Application parameters.Application name
+7da,536,791,1,0,0,,22FD11,62FD11,2ff,Application parameters.Application Version
+7da,280,535,1,0,0,,22FD11,62FD11,2ff,Application parameters.Company name
+7da,280,535,1,0,0,,22FD30,62FD30,2ff,External SIM GPRS Parameters.User
+7da,536,791,1,0,0,,22FD30,62FD30,2ff,External SIM GPRS Parameters.Password
+7da,1048,1303,1,0,0,,22FD30,62FD30,2ff,External SIM GPRS Parameters.DNS2
+7da,24,279,1,0,0,,22FD30,62FD30,2ff,External SIM GPRS Parameters.APN
+7da,792,1047,1,0,0,,22FD30,62FD30,2ff,External SIM GPRS Parameters.DNS1
+7da,24,223,1,0,0,,22FD70,62FD70,2ff,Communication network name.name
+7da,224,423,1,0,0,,22FD70,62FD70,2ff,Communication network name.id
+7da,24,31,1,0,0,,22FD71,62FD71,ff,Registered to communication network,0:non registered;1:registered;2:Not Registered - searching;3:Denied register;4:Unknown;5:Registered (Roaming mode)
+7da,24,47,1,0,0,,22FE64,62FE64,2ff,TCU test mode
+7da,24,47,1,0,0,,22FE63,62FE63,ff,FICOSA TCU EOL mode
+7da,28,39,219.3,0,0,V,22FE01,62FE01,ff,C_V.Status.12V_BAT_SENSE
+7da,140,151,3,1024,0,,22FE01,62FE01,ff,C_V.Status.BATTERY_CURRENT_SENSE
+7da,156,167,9,0,0,,22FE01,62FE01,ff,C_V.Status.BATTERY_VOLTAGE_SENSE
+7da,172,183,300,0,0,,22FE01,62FE01,ff,C_V.Status.GPS_RF_SUP_CURRENT_SENS
+7da,188,199,1563,0,0,,22FE01,62FE01,ff,C_V.Status.KLINE_SENSE
+7da,76,87,36,0,0,,22FE01,62FE01,ff,C_V.Status.SENSE_3V
+7da,108,119,36,0,0,,22FE01,62FE01,ff,C_V.Status.SENSE_3V_GPS
+7da,124,135,6,0,0,,22FE01,62FE01,ff,C_V.Status.SENSE_4.4V_VBAT_AUXWR
+7da,60,71,6,0,0,,22FE01,62FE01,ff,C_V.Status.SENSE_5V
+7da,44,55,1,0,0,V,22FE01,62FE01,ff,C_V.Status.SENSE_7.1V
+7da,92,103,1,0,0,,22FE01,62FE01,ff,C_V.Status.SENSE_V_BAT_GPS
+7da,204,215,1,0,0,,22FE01,62FE01,ff,C_V.Status.VCC_2V8_SENSE
+7da,220,231,1,0,0,,22FE01,62FE01,ff,C_V.Status.VCC_1V8_SENSE
+7da,236,247,1,0,0,,22FE01,62FE01,ff,C_V.Status.SENSE_5V_B_PIN
+7da,252,263,1,0,0,,22FE01,62FE01,ff,C_V.Status.SENSE_5V_ANT_PIN
+7da,268,279,1,0,0,,22FE01,62FE01,ff,C_V.Status.SENSE_3V_PMC
+7da,24,143,1,0,0,,22FD1C,62FD1C,2ff,IMEI
+7da,24,31,1,0,0,,22FD1D,62FD1D,ff,RSSI
+7da,24,31,1,0,0,,22FE08,62FE08,ff,TCU State,20:TCU ON;42:TCU OFF GSM
+7da,24,279,1,0,0,,226C22,626C22,2ff,inSIM SMS Center
+7da,24,31,1,0,0,,226C29,626C29,ff,Ecall Number Selection,0:ecall number - Operational;1:ecall number - Life cycle Test
+7da,24,31,1,0,0,,226C2A,626C2A,ff,Ecall Number Selection Ing,0:ecall number - Operational;1:ecall number - Life cycle Test;10:ecall number - Validation Test
+7da,24,279,1,0,0,,226C2B,626C2B,2ff,BCall Number
+7da,24,31,1,0,0,,226C2F,626C2F,ff,ECall Auto Activation,0:ecall auto activated;1:ecall auto deactivated
+7da,24,31,1,0,0,,226C42,626C42,ff,InSIM PIN use,0:Deactivated;1:activated
+7da,24,279,1,0,0,,226C40,626C40,2ff,InSIM PIN
+7da,24,31,1,0,0,,226C46,626C46,ff,ExtSIM PIN use,0:Deactivated;1:activated
+7da,24,279,1,0,0,,226C44,626C44,2ff,ExtSIM PIN
+7da,24,31,1,0,0,,220114,620114,ff,USB connected input line,0:Not connected;1:connected
+7da,24,31,1,0,0,,220111,620111,ff,Blocking the charge status,0:not use;1:NO (allow the charge);16:YES (block the charge);17:INVALID
+7da,24,31,1,0,0,,22011A,62011A,ff,LIN
+7da,24,31,1,0,0,,226C64,626C64,ff,External GPS Antenna,0:No External GPS antenna connection;1:External GPS antenna connection
+7da,24,31,1,0,0,,226C91,626C91,ff,WakeUp by CAN,0:Wake Up by CAN;1:BAT VBR
+7da,24,279,1,0,0,,226C93,626C93,2ff,InSIM ISDN
+7da,24,279,1,0,0,,226C95,626C95,2ff,ExtSIM ISDN
+7da,24,279,1,0,0,,226C38,626C38,2ff,PID InSIM UserID
+7da,24,279,1,0,0,,226C3A,626C3A,2ff,PWD InSIM Password
+7da,24,279,1,0,0,,226C24,626C24,2ff,ExtSIM SMS Center
+7da,24,279,1,0,0,,226C3C,626C3C,2ff,PID ExtSIM UserID
+7da,24,279,1,0,0,,226C3D,626C3D,2ff,PWD ExtSIM Password
+7da,24,39,1,0,0,,226C8E,626C8E,ff,EV VSOC transmission Frequency
+7da,24,31,1,0,0,,22012A,62012A,ff,K_Line SVT In
+7da,24,31,1,0,0,,22012D,62012D,ff,K_Line SVT out
+7da,24,31,1,0,0,,220124,620124,ff,MMI SUPPLY ON_OFF output line,0:Supply OFF;1:Supply ON
+7da,24,31,1,0,0,,220117,620117,ff,USB supply ON_OFF,0:supply OFF;1:supply ON
+7da,28,39,1,0,0,,22FE27,62FE27,ff,MMI supply Value.3V sense
+7da,44,55,1,0,0,,22FE27,62FE27,ff,MMI supply Value.5V sense
+7da,24,279,1,0,0,,226C26,626C26,2ff,Ecall Number _ Operational
+7da,24,279,1,0,0,,226C28,626C28,2ff,Ecall Number _ Life cycle Test
+7da,24,31,1,0,0,,226C6D,626C6D,ff,EV Service Activation Status,0:Desactivated;1:Activated
+7da,24,31,1,0,0,,22FD04,62FD04,ff,GSM external antenna sensing,0:antenna OK;1:antenna SC GND;2:antenna SC 16V;3:antenna removed
+7da,24,111,1,0,0,,22FD06,62FD06,ff,Microphone Settings 1.all
+7da,64,103,1,0,0,,22FD06,62FD06,ff,Microphone Settings 1.Gain_MIC
+7da,104,111,1,0,0,,22FD06,62FD06,ff,Microphone Settings 1.Filter_MIC
+7da,104,111,1,0,0,,22FD20,62FD20,ff,Microphone Settings 2.Filter_MIC
+7da,64,103,1,0,0,,22FD20,62FD20,ff,Microphone Settings 2.Gain_MIC
+7da,24,111,1,0,0,,22FD20,62FD20,ff,Microphone Settings 2.all
+7da,24,279,1,0,0,,226C2C,626C2C,2ff,CCall Number
+7da,160,175,1,0,0,,22F190,62F190,ff,DID_VIN.CRC
+7da,24,159,1,0,0,,22F190,62F190,2ff,DID_VIN.VIN
+7da,24,127,1,0,0,,22F192,62F192,2ff,ECUHardware.Number
+7da,128,151,1,0,0,,22F192,62F192,2ff,ECUHardware.VersionNumber
+7da,24,127,1,0,0,,22F194,62F194,2ff,ECUSoftware.Number
+7da,128,151,1,0,0,,22F194,62F194,2ff,ECUSoftware.VersionNumber
+7da,8,15,1,0,0,,23121E3301,63121E3301,ff,USM_GeneralStatus.APCLineStatus
+7da,24,31,1,0,0,,226C8C,626C8C,ff,EV BSOC Difference For Transmission
+7da,24,31,1,0,0,s,226CA5,626CA5,ff,EV Activation Time Check
+7da,24,31,1,0,0,s,226CA8,626CA8,ff,EV SMS Waiting Time
+7da,24,31,1,0,0,,22FD26,62FD26,ff,GPS number of satellites
+7da,24,31,1,0,0,,22FD23,62FD23,ff,GPS Sensing
+7da,24,31,1,0,0,,226C02,626C02,ff,Ecall Vehicle Type,1:M1;4:N1
+7da,24,31,1,0,0,,226C04,626C04,ff,Ecall Vehicle Propulsion Storage
+7da,24,31,1,0,0,,226CB0,626CB0,ff,Ecall Activation Status,0:Ecall activated;1:Ecall Deactivated
+7da,24,31,1,0,0,,226CB2,626CB2,ff,Bcall Activation Status,0:Ecall activated;1:Ecall Deactivated
+7da,24,31,1,0,0,,220138,620138,ff,MMI Bcall button Status,0:Button not activated;1:Button activated
+7da,24,31,1,0,0,,220133,620133,ff,MMI Ecall button Status,0:Button not activated;1:Button activated
+7da,8,15,1,0,0,,23121E1C01,63121E1C01,ff,Airbag.DriverSafetyBeltSwitch
+7da,8,15,1,0,0,,23121E1E01,63121E1E01,ff,Airbag.crashdetectionoutoforder_84
+7da,8,15,1,0,0,,23121E1D01,63121E1D01,ff,Airbag.PassengerAIRBAG_OFF
+7da,8,15,1,0,0,,23121E1701,63121E1701,ff,BCM.DiagMuxOn_BCM
+7da,8,15,1,0,0,,23121E1B01,63121E1B01,ff,BCM.ExternalTemp_84
+7da,8,15,1,0,0,,23121E1801,63121E1801,ff,BCM.CloseActiveBrakeSwitch_UCH
+7da,8,15,1,0,0,,23121E0B01,63121E0B01,ff,Brake.ABSinRegulation
+7da,8,15,1,0,0,,23121E0C01,63121E0C01,ff,Brake.ABSMalfunction
+7da,8,15,1,0,0,,23121E0A01,63121E0A01,ff,Brake.ASRinRegulation
+7da,8,15,1,0,0,,23121E0701,63121E0701,ff,Brake.ASRMalfunction
+7da,8,15,1,0,0,,23121E0801,63121E0801,ff,Brake.MSRDisabled
+7da,8,15,1,0,0,,23121E0901,63121E0901,ff,Brake.MSRinRegulation
+7da,8,23,1,0,0,,23121E0D02,63121E0D02,ff,Brake.VehicleSpeed
+7da,8,15,1,0,0,,23121E1401,63121E1401,ff,Cluster.BrakeSystemMalfunction
+7da,8,39,1,0,0,,23121E1004,63121E1004,ff,Cluster.DistanceTotalizer
+7da,8,23,1,0,0,,23121E1502,63121E1502,ff,Cluster.ShortVehicleID
+7da,8,15,1,0,0,,23121E0501,63121E0501,ff,ECM.RawPedal
+7da,8,15,1,0,0,,23121E0F01,63121E0F01,ff,EPS.SteeringFailure
+7da,8,23,1,0,0,,23121DF902,63121DF902,ff,MMI_SCH_CANHS.AverageConsumption
+7da,8,15,1,0,0,,23121E0101,63121E0101,ff,MMI_SCH_CANHS.ChargingPlugConnected
+7da,8,15,1,0,0,,23121E0001,63121E0001,ff,MMI_SCH_CANHS.ElectricalChargingType
+7da,8,15,1,0,0,,23121E0401,63121E0401,ff,MMI_SCH_CANHS.ETAlertETSDefault
+7da,8,15,1,0,0,,23121DFF01,63121DFF01,ff,MMI_SCH_CANHS.HVBatteryEnergyLevel
+7da,8,15,1,0,0,,23121DF801,63121DF801,ff,MMI_SCH_CANHS.HVBatteryLow
+7da,8,23,1,0,0,,23121DFD02,63121DFD02,ff,MMI_SCH_CANHS.SlowChargeRemainingTime
+7da,8,23,1,0,0,,23121E0202,63121E0202,ff,MMI_SCH_CANHS.TotalConsumption
+7da,8,23,1,0,0,,23121DFB02,63121DFB02,ff,MMI_SCH_CANHS.VehicleAutonomy
+7da,8,15,1,0,0,,23121DF501,63121DF501,ff,SCH_CANHS.ChargeInProgress
+7da,8,15,1,0,0,,23121DF601,63121DF601,ff,SCH_CANHS.HVBatHealth
+7da,8,15,1,0,0,,23121E0601,63121E0601,ff,ECM.EngineStatus_84
+7da,24,31,1,0,0,,226CAA,626CAA,ff,MFD NFA definition,0:Nothing connected (nothing configured);1:MFD present (and USB);2:NFA present (no USB)
+7da,160,175,1,0,0,,2180,6180,ff,Identification.CalibrationNumber
+7da,56,63,1,0,0,,2180,6180,ff,Identification.DiagnosticIdentificationCode
+7da,128,143,1,0,0,,2180,6180,ff,Identification.SoftwareNumber
+7da,144,159,1,0,0,,2180,6180,ff,Identification.EditionNumber
+7da,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,2:28275;3:28277
+7da,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:48651
+7da,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A
+7da,16,55,1,0,0,,2180,6180,2ff,Identification.PartNumber.LowerPart
+7da,88,127,1,0,0,,2180,6180,2ff,Identification.HardwareNumber.LowerPart
+7da,200,207,1,0,0,,2180,6180,ff,Identification.ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+7da,64,87,1,0,0,,2180,6180,2ff,Identification.SupplierNumber
+7da,16,95,1,0,0,,21EF,61EF,2ff,DaimlerHardwarePartNumber
+7da,96,175,1,0,0,,21EF,61EF,2ff,DaimlerSoftwarePartNumber
+7da,30,31,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Charging Spot Finder 3 points.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,28,29,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Charge Spot short term booking.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,26,27,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Battery charging.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,24,25,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Charging historical.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,38,39,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Charging activation or stop by remote.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,36,37,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Charging schedular.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,34,35,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Remote HVAC control.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,32,33,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Plug In missing.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,46,47,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Low battery alert upgrade on remote phone.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,44,45,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Battery usage and charge history.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,42,43,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Inhibition Desinhibition of Charge as no pay upgrade.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,40,41,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Charging Spot Finder upgrade 3 to 24 spots.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,54,55,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Create private charge spot off board and download OTA.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,52,53,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Charging Spot Finder upgrade availability and compatibility.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,50,51,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.FLEET Probe service 1.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,48,49,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.Internet_widget widget store.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,60,61,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.LIVE All Tomtom Services.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used
+7da,62,63,1,0,0,,226C6F,626C6F,ff,EV Service Provisionning Functions configuration.ECO Scoring Challenge Service.status.activation,0:unavailable function;1:deactivated function;2:activated function;3:not used

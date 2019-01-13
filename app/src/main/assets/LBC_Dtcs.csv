@@ -1,0 +1,109 @@
+33E2,[P33E2]Battery High Temperature Diagnosis
+33E3,[P33E3]Battery Low Temperature Diagnosis
+0A1F,[P0A1F]BATTERY ENERGY CONTROL MODULE
+3332,[P3332] Cell 2nd Over voltage happens
+33C1,[P33C1] Temperature Sensor 14 out of range
+33C0,[P33C0] Temperature Sensor 13 out of range
+33C2,[P33C2] Temperature Sensor 15 out of range
+33C4,[P33C4] Temperature Sensor 17 out of ange
+33C5,[P33C5] Temperature Sensor 18 out of range
+33C6,[P33C6] Temperature Sensor 19 out of range
+33C7,[P33C7] Temperature Sensor 20 out of range
+33C8,[P33C8] Temperature Sensor 21 out of range
+33C9,[P33C9] Temperature Sensor 22 out of range
+33CB,[P33CB] Temperature Sensor 24 out of range
+33CA,[P33CA] Temperature Sensor 23 out of range
+33D3,[P33D3] Temperature Sensor 12 out of range
+33D2,[P33D2] Temperature Sensor 11 out of range
+33D0,[P33D0] Temperature Sensor 9 out of range
+33D1,[P33D1] Temperature Sensor 10 out of range
+33D8,[P33D8] Temperature Sensor 5 out of range
+33DD,[P33DD] Temperature Sensor 4 out of range
+33DB,[P33DB] Temperature Sensor 3 out of range
+33D9,[P33D9] Temperature Sensor 2 out of range
+33D7,[P33D7] Temperature Sensor 1 out of range
+33DC,[P33DC] Temperature Sensor 7 out of range
+33DE,[P33DE] Temperature Sensor 8 out of range
+33DA,[P33DA] Temperature Sensor 6 out of range
+33D4,[P33D4] Battery State of Health Power has low value
+33D6,[P33D6] CS (Current Sensing) Supply Failure
+308B,[P308B]Cell_Line_Failure_(ASIC1)
+308C,[P308C]Cell_Line_Failure_(ASIC2)
+308D,[P308D]Cell_Line_Failure_(ASIC3)
+308E,[P308E]Cell_Line_Failure_(ASIC4)
+308F,[P308F]Cell_Line_Failure_(ASIC5)
+3090,[P3090]Cell_Line_Failure_(ASIC6)
+3092,[P3092]Cell_Line_Failure_(ASIC8)
+3093,[P3093]Cell_Line_Failure_(ASIC9)
+3094,[P3094]Cell_Line_Failure_(ASIC10)
+3095,[P3095]Cell_Line_Failure_(ASIC11)
+3096,[P3096]Cell_Line_Failure_(ASIC12)
+3091,[P3091]Cell_Line_Failure_(ASIC7)
+0A0A,[0A0A] HV Interlock circuit failure
+0A0D,[P0A0D] SD interlock circuit failure
+3020,[P3020] Private CAN Failure
+3062,[P3062] cell balancing circuit failure
+3063,[P3063] Cell Voltage measurement Failure
+3064,[P3064]Second protection circuit failure
+30F4,[P30F4] Pack Voltage Out of Range
+30F5,[P30F5] Pack Voltage Measurement Failure
+30FC,[P30FC] Pack over Current
+30FE,[P30FE]Aux V has a Failure
+3300,[P3300] Pack Over Voltage
+3302,[P3302]Cell Over Voltage (Module1)
+3303,[P3303]Cell Over Voltage (Module2)
+3304,[P3304]Cell Over Voltage (Module3)
+3305,[P3305]Cell Over Voltage (Module4)
+3306,[P3306]Cell Over Voltage (Module5)
+3307,[P3307]Cell Over Voltage (Module6)
+3308,[P3308]Cell Over Voltage (Module7)
+3309,[P3309]Cell Over Voltage (Module8)
+330A,[P330A]Cell Over Voltage (Module9)
+330B,[P330B]Cell Over Voltage (Module10)
+330C,[P330C]Cell Over Voltage (Module11)
+330D,[P330D]Cell Over Voltage (Module12)
+3373,[P3373]Pack Under Voltage
+3375,[P3375] Cell UnderVoltage module 1
+3376,[P3376] Cell UnderVoltage module 2
+3377,[P3377] Cell UnderVoltage module 3
+3378,[P3378] Cell UnderVoltagemodule 4
+3379,[P3379] Cell UnderVoltage module 5
+337A,[P337A] Cell UnderVoltage module 6
+337B,[P337B] Cell UnderVoltage module 7
+337C,[P337C] Cell UnderVoltage module 8
+337D,[P337D] Cell UnderVoltage module 9
+337E,[P337E] Cell UnderVoltage module 10
+337F,[P337F] Cell UnderVoltage module 11
+3380,[P3380] Cell UnderVoltage module 12
+33B1,[P33B1] Battery System has many failure on thermistors (1-12)
+33B2,[P33B2] Battery System has many failure on thermistors (13-24)
+33D5,[P33D5] CS (Current Sensing) Offset high
+33C3,[P33C3] Temperature Sensor 16 out of range
+33E1,[P33E1]IR Measurement Circuit Failure
+33E6,[P33E6] Pack Unbalanced
+33ED,[P33ED]Bus Bar Fixing Failure
+D000,[D000] Loss of Communication CAN
+330E,[P330E]Cell Over Voltage (Module13)
+330F,[P330F]Cell Over Voltage (Module14)
+3310,[P3310]Cell Over Voltage (Module15)
+3311,[P3311]Cell Over Voltage (Module16)
+3312,[P3312]Cell Over Voltage (Module17)
+3313,[P3313]Cell Over Voltage (Module18)
+3314,[P3314]Cell Over Voltage (Module19)
+3315,[P3315]Cell Over Voltage (Module20)
+3316,[P3316]Cell Over Voltage (Module21)
+3317,[P3317]Cell Over Voltage (Module22)
+3318,[P3318]Cell Over Voltage (Module23)
+3319,[P3319]Cell Over Voltage (Module24)
+3381,[P3381] Cell UnderVoltage module 13
+3382,[P3382] Cell UnderVoltage module 14
+3383,[P3383] Cell UnderVoltage module 15
+3384,[P3384] Cell UnderVoltagemodule 16
+3385,[P3385] Cell UnderVoltage module 17
+3386,[P3386] Cell UnderVoltage module 18
+3387,[P3387] Cell UnderVoltage module 19
+3388,[P3388] Cell UnderVoltage module 20
+3389,[P3389] Cell UnderVoltage module 21
+338A,[P338A] Cell UnderVoltage module 22
+338B,[P338B] Cell UnderVoltage module 23
+338C,[P338C] Cell UnderVoltage module 24

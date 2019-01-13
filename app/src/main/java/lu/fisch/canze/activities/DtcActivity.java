@@ -130,16 +130,20 @@ public class DtcActivity extends CanzeActivity {
 
         // here initialize this particular ECU diagnostics fields
         try {
-            Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
-            java.lang.reflect.Method methodLoad;
+            //Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
+            //java.lang.reflect.Method methodLoad;
 
-            methodLoad = diagEcu.getClass().getMethod("load");
-            methodLoad.invoke(diagEcu);
+            //methodLoad = diagEcu.getClass().getMethod("load");
+            //methodLoad.invoke(diagEcu);
+            Frames.getInstance().load (ecu);
+            Fields.getInstance().load (ecu.getMnemonic() + "_Fields.csv");
+            Dtcs.getInstance().load(ecu.getMnemonic() + "_Dtcs.csv", ecu.getMnemonic() + "_Tests.csv");
         } catch (Exception e) {
             appendResult(R.string.message_NoEcuDefinition);
             // Reload the default frame & timings
             Frames.getInstance().load();
             Fields.getInstance().load();
+            // Don't care about DTC's and tests
         }
 
 
