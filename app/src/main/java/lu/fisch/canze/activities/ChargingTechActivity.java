@@ -21,7 +21,6 @@
 
 package lu.fisch.canze.activities;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -33,7 +32,7 @@ import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldListener to the fields.
-// For the simple activity, the easiest way is to implement it in the actitviy itself.
+// For the simple activity, the easiest way is to implement it in the activity itself.
 public class ChargingTechActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     public static final String SID_MaxCharge                        = "7bb.6101.336";
@@ -73,7 +72,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     double pilot        = 0;
     int chargingStatus  = 7;
     double usoc          = 0;
-    double rsoc          = 0;
+    //double rsoc          = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +94,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         //    addFields(SID_CapacityFluKan, 5000);
         }
         addField(SID_AvEnergy, 5000);
-        addField(SID_SOH, 5000); // state of health gives continious timeouts. This frame is send at a very low rate
+        addField(SID_SOH, 5000); // state of health gives continuous timeouts. This frame is send at a very low rate
         addField(SID_RangeEstimate, 5000);
         addField(SID_12V, 5000);
         addField(SID_12A, 5000);
@@ -139,7 +138,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                     case SID_ACPilot:
                         // save pilot amps
                         pilot = field.getValue();
-                        if (MainActivity.isFluKan ()) { // for FluKan, aproximate phases (always 1) and AvChPwr (amps * 0.225)
+                        if (MainActivity.isFluKan ()) { // for FluKan, approximate phases (always 1) and AvChPwr (amps * 0.225)
                             double avChPwr = (double) Math.round(pilot * 2.25) / 10.0;
                             tv = findViewById(R.id.textPhases);
                             tv.setText("1");
@@ -167,7 +166,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         tv = findViewById(R.id.textUserSOC);
                         break;
                     case SID_RealSoC:
-                        rsoc = field.getValue() / 100.0;
+                        //rsoc = field.getValue() / 100.0;
                         tv = findViewById(R.id.textRealSOC);
                         break;
                     case SID_SOH:
@@ -376,7 +375,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         tv = null;
                         break;
                 }
-                // set regular new content, all exeptions handled above
+                // set regular new content, all exceptions handled above
                 if (tv != null) {
                     double val = field.getValue();
                     tv.setText(Double.isNaN(val) ? "" : String.format(Locale.getDefault(), "%.1f", val));
