@@ -44,10 +44,10 @@ import lu.fisch.canze.database.CanzeDataSource;
 
 public abstract class Device {
 
-    private static final int TOUGHNESS_HARD              = 0;    // hardest reset possible (ie atz)
-    private static final int TOUGHNESS_MEDIUM            = 1;    // medium reset (i.e. atws)
-    private static final int TOUGHNESS_SOFT              = 2;    // softest reset (i.e atd for ELM)
-    private static final int TOUGHNESS_NONE              = 100;  // just clear error status
+    protected static final int TOUGHNESS_HARD              = 0;    // hardest reset possible (ie atz)
+    protected static final int TOUGHNESS_MEDIUM            = 1;    // medium reset (i.e. atws)
+    protected static final int TOUGHNESS_SOFT              = 2;    // softest reset (i.e atd for ELM)
+    protected static final int TOUGHNESS_NONE              = 100;  // just clear error status
 
     private final double minIntervalMultiplicator       = 1.3;
     private final double maxIntervalMultiplicator       = 2.5;
