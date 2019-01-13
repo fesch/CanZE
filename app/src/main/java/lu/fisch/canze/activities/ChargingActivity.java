@@ -24,7 +24,6 @@ package lu.fisch.canze.activities;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
@@ -33,7 +32,7 @@ import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 // If you want to monitor changes, you must add a FieldField to the fields.
-// For the simple activity, the easiest way is to implement it in the actitviy itself.
+// For the simple activity, the easiest way is to implement it in the activity itself.
 public class ChargingActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     public static final String SID_MaxCharge                        = "7bb.6101.336";
@@ -65,7 +64,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
         addField(SID_MaxCharge, 5000);
         addField(SID_UserSoC, 5000);
         addField(SID_RealSoC, 5000);
-        addField(SID_SOH, 5000); // state of health gives continious timeouts. This frame is send at a very low rate
+        addField(SID_SOH, 5000); // state of health gives continuous timeouts. This frame is send at a very low rate
         addField(SID_RangeEstimate, 5000);
         addField(SID_DcPower, 5000);
         if (MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240 || MainActivity.car == MainActivity.CAR_ZOE_Q90 || MainActivity.car == MainActivity.CAR_ZOE_R90) {
@@ -95,7 +94,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
                     case SID_MaxCharge:
                         double maxCharge = field.getValue();
                         int color = 0xffc0c0c0; // standard grey
-                        if (maxCharge < (avChPwr * 0.8)) {
+                        if (maxCharge < (avChPwr * 0.8) && avChPwr < 45.0) {
                             color = 0xffffc0c0;
                         }
                         tv = findViewById(R.id.text_max_charge);
@@ -134,7 +133,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
                         tv = findViewById(R.id.textAvChPwr);
                         break;
                 }
-                // set regular new content, all exeptions handled above
+                // set regular new content, all exceptions handled above
                 if (tv != null) {
                     tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue()));
                 }
