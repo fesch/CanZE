@@ -51,7 +51,7 @@ public class Ecus {
         if (line.contains("#")) line = line.substring(0, line.indexOf('#'));
         //Get all tokens available in line
         String[] tokens = line.split(",");
-        if (tokens.length == 8) {
+        if (tokens.length == 9) {
             //Create a new field object and fill his  data
             Ecu ecu = new Ecu(
                     tokens[0].trim(),                           // name
@@ -61,7 +61,8 @@ public class Ecus {
                     Integer.parseInt(tokens[4].trim(), 16),     // To ID
                     tokens[5].trim(),                           // Mnemonic
                     tokens[6].trim(),                           // Aliasses, semicolon separated
-                    tokens [7].trim()                           // GetDtc responseIDs, semicolon separated
+                    tokens [7].trim(),                          // GetDtc responseIDs, semicolon separated
+                    tokens [8].trim().compareTo("1") == 0       // Session required
             );
             // add the field to the list of available fields
             add(ecu);
@@ -82,7 +83,6 @@ public class Ecus {
         catch (IOException e) {
             e.printStackTrace();
         }
-        return;
     }
 
     public void load ()
