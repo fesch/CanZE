@@ -40,6 +40,7 @@ public class Field {
 
     final ArrayList<FieldListener> fieldListeners = new ArrayList<>();
 
+    private String sid;
     private Frame frame;
     private short from;
     private short to;
@@ -56,7 +57,7 @@ public class Field {
     private String strVal = "";
     //private int skipsCount = 0;
 
-    private long lastRequest = 0;
+    private long lastRequest;
     protected int interval = Integer.MAX_VALUE;
 
     boolean virtual = false;
@@ -65,13 +66,21 @@ public class Field {
         Please note that the offset is applied BEFORE scaling
         The request and response Ids should be stated as HEX strings without leading 0x
         The name is optional and can be used for diagnostice printouts
-        The list is optional and can contain a string, comma-separated containing a description
+        The list is optional and can contain a string, semicolon-separated containing a description
           of the value, 0 based
      */
 
 
 
-    public Field(Frame frame, short from, short to, double resolution, int decimals, int offset, String unit, String responseId, short options, String name, String list) {
+    public Field(String sid, Frame frame, short from, short to, double resolution, int decimals, int offset, String unit, String responseId, short options, String name, String list) {
+        if (sid == null || sid.equals("")) {
+            if (responseId != null && !responseId.trim().isEmpty ())
+                this.sid = (Integer.toHexString(frame.getId()) + "." + responseId.trim() + "." + from).toLowerCase();
+            else
+                this.sid = (Integer.toHexString(frame.getId())+"."+from).toLowerCase();
+        } else {
+            this.sid = sid;
+        }
         this.frame=frame;
         this.from=from;
         this.to=to;
@@ -86,18 +95,18 @@ public class Field {
 
         this.lastRequest=Calendar.getInstance().getTimeInMillis();
     }
-    
+
     private Field fieldClone()
     {
         // cloning is only used in this class, method notifyFieldListeners
-        Field field = new Field(frame, from, to, resolution, decimals, offset, unit, responseId, options, name, list);
+        Field field = new Field(sid, frame, from, to, resolution, decimals, offset, unit, responseId, options, name, list);
         field.value = value;
         field.strVal = strVal;
         field.lastRequest=lastRequest;
         field.interval=interval;
         return field;
     }
-    
+
     @Override
     public String toString()
     {
@@ -111,17 +120,9 @@ public class Field {
 
     public String getSID()
     {
-        if(responseId!=null && !responseId.trim().isEmpty())
-            return (Integer.toHexString(frame.getId())+"."+responseId.trim()+"."+from).toLowerCase();
-        else
-            return (Integer.toHexString(frame.getId())+"."+from).toLowerCase();
+        return sid;
     }
-    /*
-    public String getUniqueID()
-    {
-        return getCar()+"."+getSID();
-    } */
-    
+
     public String getPrintValue()
     {
         return getValue()+" "+getUnit();
@@ -131,33 +132,6 @@ public class Field {
         return strVal;
     }
 
-    /*
-    public String getStringValueDepreciated()
-    {
-        // truncate to a long
-        long longValue = (long) value;
-        // prepare to cut into 8 bit pieces
-        int[] intArray = new int[8];
-        // initialise the array
-        for(int i=0; i<intArray.length; i++) intArray[i]=0;
-        // as long as there is something
-        int i=0;
-        while(longValue>0)
-        {
-            // get 8 bits
-            intArray[i]=(int) (longValue & 0xFF);
-            // move the other bits
-            longValue >>= 8;
-            i++;
-        }
-        // initialise the result
-        String result = "";
-        // assemble as string
-        for(i=0; i<intArray.length; i++)
-            result=result+(char) intArray[i];
-        // return trimmed result
-        return result.trim();
-    } */
 
     public String getListValue()
     {
@@ -183,7 +157,7 @@ public class Field {
         }
         return val;
     }
-    
+
     public double getMax()
     {
         double val = (int) Math.pow(2, to-from+1);
@@ -200,7 +174,7 @@ public class Field {
     /* --------------------------------
      * Listeners management
      \ ------------------------------ */
-    
+
     public void addListener(FieldListener fieldListener)
     {
         if(!fieldListeners.contains(fieldListener)) {
@@ -209,12 +183,12 @@ public class Field {
             fieldListener.onFieldUpdateEvent(this);
         }
     }
-    
+
     public void removeListener(FieldListener fieldListener)
     {
         fieldListeners.remove(fieldListener);
     }
-    
+
     /**
      * Notify all listeners synchronously
      */
