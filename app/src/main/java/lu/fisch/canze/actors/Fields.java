@@ -42,18 +42,19 @@ import java.util.HashMap;
  */
 public class Fields {
 
-    private static final int FIELD_ID           = 0; // to be stated in HEX, no leading 0x
-    private static final int FIELD_FROM         = 1; // decimal
-    private static final int FIELD_TO           = 2; // decimal
-    private static final int FIELD_RESOLUTION   = 3; // double
-    private static final int FIELD_OFFSET       = 4; // double
-    private static final int FIELD_DECIMALS     = 5; // decimal
-    private static final int FIELD_UNIT         = 6;
-    private static final int FIELD_REQUEST_ID   = 7; // to be stated in HEX, no leading 0x
-    private static final int FIELD_RESPONSE_ID  = 8; // to be stated in HEX, no leading 0x
-    private static final int FIELD_OPTIONS      = 9; // to be stated in HEX, no leading 0x
-    private static final int FIELD_NAME         = 10; // can be displayed/saved. Now only used for Diag ISO-TP
-    private static final int FIELD_LIST         = 11; // same
+    private static final int FIELD_SID          = 0; // to be stated in HEX, no leading 0x
+    private static final int FIELD_ID           = 1; // to be stated in HEX, no leading 0x
+    private static final int FIELD_FROM         = 2; // decimal
+    private static final int FIELD_TO           = 3; // decimal
+    private static final int FIELD_RESOLUTION   = 4; // double
+    private static final int FIELD_OFFSET       = 5; // double
+    private static final int FIELD_DECIMALS     = 6; // decimal
+    private static final int FIELD_UNIT         = 7;
+    private static final int FIELD_REQUEST_ID   = 8; // to be stated in HEX, no leading 0x
+    private static final int FIELD_RESPONSE_ID  = 9; // to be stated in HEX, no leading 0x
+    private static final int FIELD_OPTIONS      = 10; // to be stated in HEX, no leading 0x
+    private static final int FIELD_NAME         = 11; // can be displayed/saved. Now only used for Diag ISO-TP
+    private static final int FIELD_LIST         = 12; // same
 
     public static final int TOAST_NONE          = 0;
     public static final int TOAST_DEVICE        = 1;
@@ -228,9 +229,9 @@ public class Fields {
                 long lastInsertedTime = CanzeDataSource.getInstance().getLastTime(SID_RangeEstimate);
                 if (    // timeout of 15 minutes
                         (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 15*60*1000)
-                        ||
-                        Double.isNaN(realRangeReference)
-                   )
+                                ||
+                                Double.isNaN(realRangeReference)
+                )
                 {
 
                     if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
@@ -278,9 +279,9 @@ public class Fields {
                 long lastInsertedTime = CanzeDataSource.getInstance().getLastTime(SID_RangeEstimate);
                 if (    // timeout of 15 minutes
                         (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 15*60*1000)
-                        ||
-                        Double.isNaN(realRangeReference)
-                   )
+                                ||
+                                Double.isNaN(realRangeReference)
+                )
                 {
                     if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
                         realRangeReference = odo + gom;
@@ -331,8 +332,9 @@ public class Fields {
                 // ensure this field matches the selected car
                 if ((options & MainActivity.car) != 0) {
                     //Create a new field object and fill his  data
-                    MainActivity.debug(tokens[FIELD_ID] + "." + tokens[FIELD_RESPONSE_ID] + "." + tokens[FIELD_FROM]);
+                    MainActivity.debug(tokens[FIELD_SID] + " " + tokens[FIELD_ID] + "." + tokens[FIELD_RESPONSE_ID] + "." + tokens[FIELD_FROM]);
                     Field field = new Field(
+                            tokens[FIELD_SID].trim(),
                             frame,
                             Short.parseShort(tokens[FIELD_FROM].trim()),
                             Short.parseShort(tokens[FIELD_TO].trim()),
@@ -387,7 +389,6 @@ public class Fields {
         catch (IOException e) {
             e.printStackTrace();
         }
-        return;
     }
 
     public void load ()
@@ -410,8 +411,7 @@ public class Fields {
     }
 
     public Field getBySID(String sid) {
-        Field tryField = fieldsBySid.get(sid.toLowerCase());
-        return tryField;
+        return fieldsBySid.get(sid.toLowerCase());
     }
 
     public int size() {
