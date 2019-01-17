@@ -257,8 +257,6 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         result = result + String.format ("%06x", valuerl);
         result = result + String.format ("%06x", valuerr);
 
-        MainActivity.toast(-100, result);
-
         Frame frame;
         frame = Frames.getInstance().getById(0x765, "50c0");
         MainActivity.device.requestFrame(frame);
