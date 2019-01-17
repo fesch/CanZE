@@ -268,9 +268,15 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         frame = new Frame (0x765, 0, null, result, null);
         Message message = MainActivity.device.requestFrame(frame);
         if (!message.isError() || !message.getData().startsWith("7b5d")) {
-            MainActivity.toast(-100, "Could not write TPMS valves");
+            MainActivity.toast(-100, "Could not write TPMS valves (is it connected?)");
             return;
         }
+
+        if (!message.getData().startsWith("3b5d")) {
+            MainActivity.toast(-100, "Not the proper response from the car (does it have TPMS?)");
+            return;
+        }
+        MainActivity.toast(-100, "TPMS valves written. Read again to verify");
     }
 
 }
