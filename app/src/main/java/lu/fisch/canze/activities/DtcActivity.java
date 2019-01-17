@@ -185,7 +185,6 @@ public class DtcActivity extends CanzeActivity {
             // Don't care about DTC's and tests
         }
 
-
         // re-initialize the device
         appendResult(R.string.message_SendingInit);
 
@@ -287,8 +286,27 @@ public class DtcActivity extends CanzeActivity {
     void doClearEcu(final Ecu ecu) {
 
         clearResult();
-
         appendResult(MainActivity.getStringSingle(R.string.message_clear) + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
+
+        // here initialize this particular ECU diagnostics fields
+        try {
+            //Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
+            //java.lang.reflect.Method methodLoad;
+
+            //methodLoad = diagEcu.getClass().getMethod("load");
+            //methodLoad.invoke(diagEcu);
+            Frames.getInstance().load (ecu);
+            Fields.getInstance().load (ecu.getMnemonic() + "_Fields.csv");
+        } catch (Exception e) {
+            appendResult(R.string.message_NoEcuDefinition);
+            // Reload the default frame & timings
+            Frames.getInstance().load();
+            Fields.getInstance().load();
+            // Don't care about DTC's and tests
+        }
+
+        // re-initialize the device
+        appendResult(R.string.message_SendingInit);
 
         // try to stop previous thread
         if (queryThread != null)
@@ -356,22 +374,27 @@ public class DtcActivity extends CanzeActivity {
     void doDiagEcu(final Ecu ecu) {
 
         clearResult();              // clear the screen
+        appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
 
         // here initialize this particular ECU diagnostics fields
         try {
-            Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
-            java.lang.reflect.Method methodLoad;
+            //Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
+            //java.lang.reflect.Method methodLoad;
 
-            methodLoad = diagEcu.getClass().getMethod("load");
-            methodLoad.invoke(diagEcu);
-
-            //Frames.getInstance().load (diagEcu.framesString ());
-            //Fields.getInstance().load (diagEcu.fieldsString ());
+            //methodLoad = diagEcu.getClass().getMethod("load");
+            //methodLoad.invoke(diagEcu);
+            Frames.getInstance().load (ecu);
+            Fields.getInstance().load (ecu.getMnemonic() + "_Fields.csv");
+            Dtcs.getInstance().load(ecu.getMnemonic() + "_Dtcs.csv", ecu.getMnemonic() + "_Tests.csv");
         } catch (Exception e) {
-            appendResult(R.string.message_NoEcuDefinition2);
-            return;
+            appendResult(R.string.message_NoEcuDefinition);
+            // Reload the default frame & timings
+            Frames.getInstance().load();
+            Fields.getInstance().load();
+            // Don't care about DTC's and tests
         }
 
+        // re-initialize the device
         appendResult(R.string.message_SendingInit);
 
         // try to stop previous thread

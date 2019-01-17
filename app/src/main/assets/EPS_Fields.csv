@@ -1,71 +1,71 @@
-762,0,7,1,0,0,,14ffff,54,ff # Reset DTC
-762,0,23,1,0,0,,1902ff,5902ff,ff # Query DTC
-762,16,47,1,0,0,,2192,6192,ff,APV.ECU production date
-762,32,39,1,0,0,,2182,6182,ff,BUS OFF parameter
-762,40,47,1,0,0,,2182,6182,ff,Mute Module parameter
-762,16,31,1,0,0,,2182,6182,ff,MUX.messaging reference
-762,56,63,1,0,0,,2182,6182,ff,MUX.Producer ABS/ESP absent parameter
-762,184,191,1,0,0,,2182,6182,ff,MUX.Producer DAE absent parameter
-762,48,55,1,0,0,,2182,6182,ff,MUX.Producer ECM Absent parameter
-762,64,71,1,0,0,,2182,6182,ff,MUX.Producer TdB absent parameter
-762,72,79,1,0,0,,2182,6182,ff,MUX.Producer UCH absent parameter
-762,192,247,1,0,0,,2182,6182,ff,MUX.Producers 19 -> 25 absent parameter
-762,80,183,1,0,0,,2182,6182,ff,MUX.Producers 5 -> 17 absent parameter
-762,16,175,1,0,0,,2184,6184,2ff,APV.Traceability Information
-762,152,167,1,0,0,,2181,6181,ff,APV.CRC VIN
-762,16,151,1,0,0,,2181,6181,2ff,APV.VIN
-762,8,23,24414,0,0,%,2303FF8CC00003,6303FF8CC00003,ff,NSK.usm_FadeGain
-762,8,23,24414,0,0,%,2303FF8CC80003,6303FF8CC80003,ff,NSK.ssm_CurGain
-762,8,23,3418,0,0,Nm,2303FF8C6C0003,6303FF8C6C0003,ff,NSK.ssm_ExtendTrq
-762,160,175,1,0,0,,2180,6180,ff,CalibrationNumber
-762,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode
-762,128,143,1,0,0,,2180,6180,ff,SoftwareNumber
-762,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
-762,144,159,1,0,0,,2180,6180,ff,EditionNumber
-762,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;2:28504
-762,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:HARDW;1:28500
-762,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A
-762,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
-762,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
-762,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
-762,8,15,2,0,0,kph,2303FF94E70003,6303FF94E70003,ff,NSK.b_speed
-762,24,31,1,0,0,,220139,620139,ff,DID - Angle sensor index status,0:Turn not detected;1:Turn detected
-762,24,31,1,0,0,,220102,620102,ff,DID - Angle sensor internal status.DID - SWA status.Internal status
-762,29,29,1,0,0,,220102,620102,ff,DID - Angle sensor internal status.DID - SWA status.Calibration status,0:Not calibrated;1:Calibrated
-762,30,30,1,0,0,,220102,620102,ff,DID - Angle sensor internal status.DID - SWA status.Failure,0:No failure;1:Failure
-762,24,31,1,0,0,,22015B,62015B,ff,DID - Angle sensor mode,0:Sensorless;1:Real sensor
-762,24,31,1,0,0,%,220115,620115,ff,DID - Assistance level
-762,24,39,1,0,0,Nm,22011F,62011F,ff,DID - Assistance torque demand
-762,24,31,1,0,0,%,220160,620160,ff,DID - Derating assistance level
-762,24,31,1,0,0,,22015E,62015E,ff,DID - Derating Status,0:No derating;1:Derating active
-762,24,31,1,0,0,,220500,620500,ff,DID - DiagMuxON,0:Disabled;1:Enabled
-762,24,31,1,0,0,,221024,621024,ff,DID - Tuning number
-762,24,31,1,0,0,,220167,620167,ff,DID - WheelSpeedSensorsCfg
-762,24,31,1,0,0,,220168,620168,ff,DID - WheelSpeedIndexMapSelector,0:Default;1:MAP 1;2:MAP 2;3:MAP 3;4:MAP 4;5:MAP 5;6:MAP 6;7:MAP 7;8:MAP 8;9:MAP 9;10:MAP 10;11:MAP 11;12:MAP 12
-762,24,31,1,0,0,,220162,620162,ff,DID - Tuning Number (selected)
-762,24,119,1,0,0,,22015C,62015C,ff,DID - Tuning version number
-762,24,39,1,0,0,km/h,220204,620204,ff,DID - Vehicle speed (CAN)
-762,24,31,1,0,0,km/h,220116,620116,ff,DID - Vehicle speed (filtered)
-762,24,31,1,0,0,,220119,620119,ff,DID - System mode,1:System stop;2:Power-up tests;3:Ramp-up Normal operation;4:Very soft ramp-down;5:Soft ramp-down;6:Wait for shutdown
-762,24,39,1,0,0,V,22012F,62012F,ff,DID - Supply voltage
-762,24,31,1,0,0,,220163,620163,ff,DID - Supplier fault code
-762,24,39,1,0,0,°/s,220101,620101,ff,DID - Steering velocity
-762,24,31,1,0,0,°,220103,620103,ff,DID - Steering angle offset
-762,24,39,1,0,0,°,220104,620104,ff,DID - Steering angle
-762,24,31,2,0,0,°C,22012D,62012D,ff,DID - Motor temperature
-762,24,31,1,0,0,A,220113,620113,ff,DID - Motor current demand
-762,24,31,1,0,0,A,22012C,62012C,ff,DID - Motor current
-762,24,103,1,0,0,,220161,620161,ff,DID - Internal fault store (Supplier)
-762,24,31,1,0,0,,220131,620131,ff,DID - Ignition status,0:OFF;1:ON
-762,24,31,1,0,0,,22011E,62011E,ff,DID - IGN counter
-762,24,31,1,0,0,,22011A,62011A,ff,DID - Fault Indicator,0:No failure;1:Minor failure;2:Major failure
-762,24,31,1,0,0,,220501,620501,ff,DID - Engine Status (CAN),0:Stopped;1:Reserved;2:Running;3:Driven
-762,24,31,2,0,0,°C,22012E,62012E,ff,DID - ECU temperature
-762,24,39,1,0,0,Nm,220112,620112,ff,DID - Driver Torque
-762,24,31,1,0,0,,220164,620164,ff,DID - Dongle state,1:Operational learnt;2:Operational blank;3:Not operational
-762,24,31,1,0,0,,220165,620165,ff,DID - Dongle pairing counter
-762,24,31,1,0,0,,220166,620166,ff,DID - Dongle error,0:No error;1:EEPROM problem on Dongle_ID;2:EEPROM problem on Dongle_pairing_counter;3:Motor disconnected from ECU
-762,24,31,1,0,0,,22012A,62012A,ff,DID - RES On_Off,0:Disable (default);1:Enable
-762,24,103,1,0,0,,22F187,62F187,2ff,DID - Spare part number
-762,8,23,1,0,0,°,2303FF8B9C0002,6303FF8B9C0002,ff,NSK.angle_estimation_wodb1
-762,24,11975,1,0,0,,22015D,62015D,ff,TuningParameter
+,762,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,762,0,23,1,0,0,,1902ff,5902ff,ff,Query DTC
+,762,16,47,1,0,0,,2192,6192,ff,APV.ECU production date
+,762,32,39,1,0,0,,2182,6182,ff,BUS OFF parameter
+,762,40,47,1,0,0,,2182,6182,ff,Mute Module parameter
+,762,16,31,1,0,0,,2182,6182,ff,MUX.messaging reference
+,762,56,63,1,0,0,,2182,6182,ff,MUX.Producer ABS/ESP absent parameter
+,762,184,191,1,0,0,,2182,6182,ff,MUX.Producer DAE absent parameter
+,762,48,55,1,0,0,,2182,6182,ff,MUX.Producer ECM Absent parameter
+,762,64,71,1,0,0,,2182,6182,ff,MUX.Producer TdB absent parameter
+,762,72,79,1,0,0,,2182,6182,ff,MUX.Producer UCH absent parameter
+,762,192,247,1,0,0,,2182,6182,ff,MUX.Producers 19 -> 25 absent parameter
+,762,80,183,1,0,0,,2182,6182,ff,MUX.Producers 5 -> 17 absent parameter
+,762,16,175,1,0,0,,2184,6184,2ff,APV.Traceability Information
+,762,152,167,1,0,0,,2181,6181,ff,APV.CRC VIN
+,762,16,151,1,0,0,,2181,6181,2ff,APV.VIN
+,762,8,23,24414,0,0,%,2303FF8CC00003,6303FF8CC00003,ff,NSK.usm_FadeGain
+,762,8,23,24414,0,0,%,2303FF8CC80003,6303FF8CC80003,ff,NSK.ssm_CurGain
+,762,8,23,3418,0,0,Nm,2303FF8C6C0003,6303FF8C6C0003,ff,NSK.ssm_ExtendTrq
+,762,160,175,1,0,0,,2180,6180,ff,CalibrationNumber
+,762,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode
+,762,128,143,1,0,0,,2180,6180,ff,SoftwareNumber
+,762,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
+,762,144,159,1,0,0,,2180,6180,ff,EditionNumber
+,762,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;2:28504
+,762,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:HARDW;1:28500
+,762,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A
+,762,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
+,762,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
+,762,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+,762,8,15,2,0,0,kph,2303FF94E70003,6303FF94E70003,ff,NSK.b_speed
+,762,24,31,1,0,0,,220139,620139,ff,DID - Angle sensor index status,0:Turn not detected;1:Turn detected
+,762,24,31,1,0,0,,220102,620102,ff,DID - Angle sensor internal status.DID - SWA status.Internal status
+,762,29,29,1,0,0,,220102,620102,ff,DID - Angle sensor internal status.DID - SWA status.Calibration status,0:Not calibrated;1:Calibrated
+,762,30,30,1,0,0,,220102,620102,ff,DID - Angle sensor internal status.DID - SWA status.Failure,0:No failure;1:Failure
+,762,24,31,1,0,0,,22015B,62015B,ff,DID - Angle sensor mode,0:Sensorless;1:Real sensor
+,762,24,31,1,0,0,%,220115,620115,ff,DID - Assistance level
+,762,24,39,1,0,0,Nm,22011F,62011F,ff,DID - Assistance torque demand
+,762,24,31,1,0,0,%,220160,620160,ff,DID - Derating assistance level
+,762,24,31,1,0,0,,22015E,62015E,ff,DID - Derating Status,0:No derating;1:Derating active
+,762,24,31,1,0,0,,220500,620500,ff,DID - DiagMuxON,0:Disabled;1:Enabled
+,762,24,31,1,0,0,,221024,621024,ff,DID - Tuning number
+,762,24,31,1,0,0,,220167,620167,ff,DID - WheelSpeedSensorsCfg
+,762,24,31,1,0,0,,220168,620168,ff,DID - WheelSpeedIndexMapSelector,0:Default;1:MAP 1;2:MAP 2;3:MAP 3;4:MAP 4;5:MAP 5;6:MAP 6;7:MAP 7;8:MAP 8;9:MAP 9;10:MAP 10;11:MAP 11;12:MAP 12
+,762,24,31,1,0,0,,220162,620162,ff,DID - Tuning Number (selected)
+,762,24,119,1,0,0,,22015C,62015C,ff,DID - Tuning version number
+,762,24,39,1,0,0,km/h,220204,620204,ff,DID - Vehicle speed (CAN)
+,762,24,31,1,0,0,km/h,220116,620116,ff,DID - Vehicle speed (filtered)
+,762,24,31,1,0,0,,220119,620119,ff,DID - System mode,1:System stop;2:Power-up tests;3:Ramp-up Normal operation;4:Very soft ramp-down;5:Soft ramp-down;6:Wait for shutdown
+,762,24,39,1,0,0,V,22012F,62012F,ff,DID - Supply voltage
+,762,24,31,1,0,0,,220163,620163,ff,DID - Supplier fault code
+,762,24,39,1,0,0,°/s,220101,620101,ff,DID - Steering velocity
+,762,24,31,1,0,0,°,220103,620103,ff,DID - Steering angle offset
+,762,24,39,1,0,0,°,220104,620104,ff,DID - Steering angle
+,762,24,31,2,0,0,°C,22012D,62012D,ff,DID - Motor temperature
+,762,24,31,1,0,0,A,220113,620113,ff,DID - Motor current demand
+,762,24,31,1,0,0,A,22012C,62012C,ff,DID - Motor current
+,762,24,103,1,0,0,,220161,620161,ff,DID - Internal fault store (Supplier)
+,762,24,31,1,0,0,,220131,620131,ff,DID - Ignition status,0:OFF;1:ON
+,762,24,31,1,0,0,,22011E,62011E,ff,DID - IGN counter
+,762,24,31,1,0,0,,22011A,62011A,ff,DID - Fault Indicator,0:No failure;1:Minor failure;2:Major failure
+,762,24,31,1,0,0,,220501,620501,ff,DID - Engine Status (CAN),0:Stopped;1:Reserved;2:Running;3:Driven
+,762,24,31,2,0,0,°C,22012E,62012E,ff,DID - ECU temperature
+,762,24,39,1,0,0,Nm,220112,620112,ff,DID - Driver Torque
+,762,24,31,1,0,0,,220164,620164,ff,DID - Dongle state,1:Operational learnt;2:Operational blank;3:Not operational
+,762,24,31,1,0,0,,220165,620165,ff,DID - Dongle pairing counter
+,762,24,31,1,0,0,,220166,620166,ff,DID - Dongle error,0:No error;1:EEPROM problem on Dongle_ID;2:EEPROM problem on Dongle_pairing_counter;3:Motor disconnected from ECU
+,762,24,31,1,0,0,,22012A,62012A,ff,DID - RES On_Off,0:Disable (default);1:Enable
+,762,24,103,1,0,0,,22F187,62F187,2ff,DID - Spare part number
+,762,8,23,1,0,0,°,2303FF8B9C0002,6303FF8B9C0002,ff,NSK.angle_estimation_wodb1
+,762,24,11975,1,0,0,,22015D,62015D,ff,TuningParameter
