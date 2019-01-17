@@ -322,7 +322,7 @@ public class Fields {
     private void fillOneLine (String line) {
         if (line.contains ("#")) line = line.substring(0, line.indexOf('#'));
         String[] tokens = line.split(",");
-        if (tokens.length >= 10) {
+        if (tokens.length > FIELD_OPTIONS) {
             int frameId = Integer.parseInt(tokens[FIELD_ID].trim(), 16);
             Frame frame = Frames.getInstance().getById(frameId);
             if (frame == null) {
@@ -332,44 +332,47 @@ public class Fields {
                 // ensure this field matches the selected car
                 if ((options & MainActivity.car) != 0) {
                     //Create a new field object and fill his  data
-                    MainActivity.debug(tokens[FIELD_SID] + " " + tokens[FIELD_ID] + "." + tokens[FIELD_RESPONSE_ID] + "." + tokens[FIELD_FROM]);
-                    Field field = new Field(
-                            tokens[FIELD_SID].trim(),
-                            frame,
-                            Short.parseShort(tokens[FIELD_FROM].trim()),
-                            Short.parseShort(tokens[FIELD_TO].trim()),
-                            Double.parseDouble(tokens[FIELD_RESOLUTION].trim()),
-                            Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
-                            Integer.parseInt(tokens[FIELD_OFFSET].trim()),
-                            tokens[FIELD_UNIT].trim(),
-                            //tokens[FIELD_REQUEST_ID].trim(),
-                            tokens[FIELD_RESPONSE_ID].trim(),
-                            options,
-                            tokens.length >= 11 ? tokens[FIELD_NAME] : null,
-                            tokens.length >= 12 ? tokens[FIELD_LIST] : null
-                    );
+                    MainActivity.debug(tokens[FIELD_SID] + " " + tokens[FIELD_ID] + "." + tokens[FIELD_FROM] + "." + tokens[FIELD_RESPONSE_ID]);
+                    try {
+                        Field field = new Field(
+                                tokens[FIELD_SID].trim(),
+                                frame,
+                                Short.parseShort(tokens[FIELD_FROM].trim()),
+                                Short.parseShort(tokens[FIELD_TO].trim()),
+                                Double.parseDouble(tokens[FIELD_RESOLUTION].trim()),
+                                Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
+                                Integer.parseInt(tokens[FIELD_OFFSET].trim()),
+                                tokens[FIELD_UNIT].trim(),
+                                tokens[FIELD_RESPONSE_ID].trim(),
+                                options,
+                                (tokens.length > FIELD_NAME) ? tokens[FIELD_NAME] : "",
+                                (tokens.length > FIELD_LIST) ? tokens[FIELD_LIST] : ""
+                        );
 
-                    // we are maintaining a list of all fields in a frame so we can very
-                    // quickly update all fields when a message (=frame data) comes in
-                    // note that for free frames a frame is identified by it's ID and itś definition
-                    // is entirely given
-                    // for an ISOTP frame (diagnostics) frame, the frame is just a skeleton and
-                    // the definition is entirely dependant on the responseID. Therefor, when an
-                    // ISOTP field is defined, new frames are created dynamically
-                    if (field.isIsoTp()) {
-                        Frame subFrame = Frames.getInstance().getById(frameId, field.getResponseId());
-                        if (subFrame == null) {
-                            subFrame = new Frame(frame.getId(),frame.getInterval(),frame.getSendingEcu(),field.getResponseId(),frame);
-                            Frames.getInstance().add (subFrame);
+                        // we are maintaining a list of all fields in a frame so we can very
+                        // quickly update all fields when a message (=frame data) comes in
+                        // note that for free frames a frame is identified by it's ID and itś definition
+                        // is entirely given
+                        // for an ISOTP frame (diagnostics) frame, the frame is just a skeleton and
+                        // the definition is entirely dependant on the responseID. Therefor, when an
+                        // ISOTP field is defined, new frames are created dynamically
+                        if (field.isIsoTp()) {
+                            Frame subFrame = Frames.getInstance().getById(frameId, field.getResponseId());
+                            if (subFrame == null) {
+                                subFrame = new Frame(frame.getId(),frame.getInterval(),frame.getSendingEcu(),field.getResponseId(),frame);
+                                Frames.getInstance().add (subFrame);
+                            }
+                            subFrame.addField(field);
+                            field.setFrame(subFrame);
+                        } else {
+                            frame.addField(field);
                         }
-                        subFrame.addField(field);
-                        field.setFrame(subFrame);
-                    } else {
-                        frame.addField(field);
-                    }
 
-                    // add the field to the list of available fields
-                    add(field);
+                        // add the field to the list of available fields
+                        add(field);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
