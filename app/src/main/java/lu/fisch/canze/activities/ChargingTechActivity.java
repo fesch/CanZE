@@ -200,7 +200,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                     case SID_AvailableChargingPower: // won't be called for FluKan
                         double avChPwr = field.getValue();
                         tv = findViewById(R.id.textPhases);
-                        if (pilot == 0) {
+                        if (pilot == 0 || avChPwr > 45.0) {
                             tv.setText("-");
                         } else if (avChPwr > (pilot * 0.250)) {
                             tv.setText("3");

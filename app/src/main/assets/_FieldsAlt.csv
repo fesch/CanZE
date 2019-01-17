@@ -14,7 +14,7 @@
 # 1f8,40,50,10,0,0,Rpm,,,ff,ElecEngineRPM
 1f8.40,7bc,24,39,10,32768,0,0,223045,623045, ff,ElecEngineRPM
 # 1fd,0,7,0.390625,0,1,%,,,ff,12V Battery Current?
-1fd.0,7bc,
+1fd.0,7bc,24,31,1,0,1,A,223025,623025,ff,14V DCDC current measure (verkeerde id, dit req is van de EVC)
 # 1fd,48,55,1,80,0,kW,,,ff,Consumption
 1fd.48,7bc,
 # 35c,5,7,1,0,0,,,,ff,Vehicle state
@@ -84,7 +84,7 @@
 # 673,32,39,13.725,0,0,mbar,,,ff,Front right wheel pressure
 673.32,765,
 # 673,40,47,13.725,0,0,mbar,,,ff,Front left wheel pressure
-67.40,765,
+67.40,765,2174,6174
 # 699,8,15,0.5,0,0,°C,,,e2,Temperature
 699.8,764,
 ,760,56,63,1,0,0,,2180,6180,ff,diagVersion
