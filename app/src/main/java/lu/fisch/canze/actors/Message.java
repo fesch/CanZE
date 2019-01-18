@@ -47,6 +47,13 @@ public class Message {
 
     public Message(Frame frame, String data, boolean error) {
         this.frame=frame;
+        if (frame.isIsoTp()) {
+            if (data.startsWith("7f")) {
+                this.error = true;
+                this.data = "-E-Message.isotp.startswith7f";
+                return;
+            }
+        }
         this.data=data;
         this.error=error;
     }
