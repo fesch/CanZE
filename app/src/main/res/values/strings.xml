@@ -38,6 +38,7 @@
     <string name="unit_SpeedMi" translatable="false">\u0020mi/h</string>
     <string name="unit_ConsumptionKm" translatable="false">\u0020kWh/100km</string>
     <string name="unit_ConsumptionMi" translatable="false">\u0020kWh/100mi</string>
+    <string name="unit_ConsumptionMiAlt" translatable="false">\u0020mi/kWh</string>
     <string name="unit_Celsius" translatable="false">°C</string>
 
     <!-- Debug (generic) -->
