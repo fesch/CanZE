@@ -438,11 +438,11 @@ public class DtcActivity extends CanzeActivity {
 
                             for (Field field : frame.getAllFields()) {
                                 if (field.isString()) {
-                                    appendResult(field.getName() + ":" + field.getStringValue() + "\n");
+                                    appendResult(field.getSID() + " " + field.getName() + ":" + field.getStringValue() + "\n");
                                 } else if (field.isList()) {
-                                    appendResult(field.getName() + ":" + field.getListValue() + "\n");
+                                    appendResult(field.getSID() + " " + field.getName() + ":" + field.getListValue() + "\n");
                                 } else {
-                                    appendResult(field.getName() + ":" + field.getValue() + field.getUnit() + "\n");
+                                    appendResult(field.getSID() + " " + field.getName() + ":" + field.getValue() + field.getUnit() + "\n");
                                 }
                             }
                         } else {
@@ -455,6 +455,8 @@ public class DtcActivity extends CanzeActivity {
                     }
                 }
                 closeDump();
+                MainActivity.toast (-100, "Done. Logfile created:");
+
             }
         });
         queryThread.start();
@@ -547,6 +549,8 @@ public class DtcActivity extends CanzeActivity {
             //BufferedWriter for performance, true to set append to file flag
             bufferedDumpWriter = new BufferedWriter(new FileWriter(logFile, true));
             dumpInProgress = true;
+            MainActivity.toast (-100, "Wait, writing " + exportdataFileName);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -555,7 +559,10 @@ public class DtcActivity extends CanzeActivity {
 
     private void closeDump() {
         try {
-            if (dumpInProgress) bufferedDumpWriter.close();
+            if (dumpInProgress) {
+                bufferedDumpWriter.close();
+                MainActivity.toast (-100, "Done.");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
