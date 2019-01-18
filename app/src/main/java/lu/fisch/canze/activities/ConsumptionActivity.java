@@ -122,26 +122,26 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
 
                     // consumption
                     case SID_Instant_Consumption:
-                        ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(Math.abs(Math.min(0, (int) field.getValue())));
-                        ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(Math.max(0, (int) field.getValue()));
+                        consumption = field.getValue();
                         tv = findViewById(R.id.text_instant_consumption_negative);
-                        if (tv != null) {
-                            consumption = field.getValue();
-                            if (!Double.isNaN(consumption)) {
-                                if (!MainActivity.milesMode) {
-                                    tv.setText(((int) consumption) + " " + field.getUnit());
-                                } else if (consumption != 0.0) {
-                                    tv.setText(((int) (100.0 / consumption)) + " " + field.getUnit());
-                                } else {
-                                    tv.setText("-");
-                                }
+                        if (!Double.isNaN(consumption)) {
+                            if (!MainActivity.milesMode) {
+                                ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(-(Math.min(0, (int)consumption)));
+                                ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(  Math.max(0, (int)consumption) );
+                                tv.setText(((int) consumption) + " " + field.getUnit());
+                            } else if (consumption != 0.0) {
+                                ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(-(Math.min(0, (int)(consumption / 1.6))));
+                                ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(  Math.max(0, (int)(consumption / 1.6)) );
+                                tv.setText(String.format (Locale.getDefault(),"%.2f %s", (100.0 / consumption), MainActivity.getStringSingle(R.string.unit_ConsumptionMiAlt)));
                             } else {
                                 tv.setText("-");
                             }
+                        } else {
+                            tv.setText("-");
                         }
                         break;
-                    }
                 }
+            }
             });
     }
 
