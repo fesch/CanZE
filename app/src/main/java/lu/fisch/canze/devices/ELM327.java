@@ -404,7 +404,7 @@ public class ELM327 extends Device {
         } */
         // init the buffer
         boolean stop = false;
-        String readBuffer = "";
+        StringBuilder readBuffer = new StringBuilder();
         // wait for answer
         long end = Calendar.getInstance().getTimeInMillis() + generalTimeout;
         boolean timedOut = false;
@@ -424,7 +424,7 @@ public class ELM327 extends Device {
                         // convert it to a character
                         char ch = (char) data;
                         // add it to the readBuffer
-                        readBuffer += ch;
+                        readBuffer.append (ch);
                         // if we reach the end of a line
                         if (ch == EOM1 || ch == EOM2 || ch == EOM3)
                         {
@@ -490,14 +490,14 @@ public class ELM327 extends Device {
             /* if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && (command==null || (!command.startsWith("atma") && command.startsWith("at"))))) {
                 MainActivity.toast("Timeout on [" + command + "][" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
             } */
-            MainActivity.toast(MainActivity.TOAST_ELM, "Timeout on [" + command + "] [" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
-            MainActivity.debug("ELM327: sendAndWaitForAnswer > timed out on [" + command + "] [" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
+            MainActivity.toast(MainActivity.TOAST_ELM, "Timeout on [" + command + "] [" + readBuffer.toString().replace("\r", "<cr>").replace(" ", "<sp>") + "]");
+            MainActivity.debug("ELM327: sendAndWaitForAnswer > timed out on [" + command + "] [" + readBuffer.toString().replace("\r", "<cr>").replace(" ", "<sp>") + "]");
             return ("");
         }
 
         //MainActivity.debug("ALC: "+answerLinesCount+" && Stop: "+stop+" && Delta: "+(Calendar.getInstance().getTimeInMillis()-start));
         //MainActivity.debug("Recv < "+readBuffer);
-        return readBuffer;
+        return readBuffer.toString();
     }
 
     private int getToId(int fromId)
@@ -527,9 +527,8 @@ public class ELM327 extends Device {
         // ensure the ATCRA filter is reset in the next NON free frame request
         lastCommandWasFreeFrame = true;
 
-        // EML needs the filter to be 3 symbols and contains the from CAN id of the ECU
-        String emlFilter = frame.getHexId() + "";
-        while (emlFilter.length() < 3) emlFilter = "0" + emlFilter;
+        // EML needs the filter to be 3 symbols and contains the from CAN id of the ECU. getHexId resturns 3 chars
+        String emlFilter = frame.getHexId();
 
         MainActivity.debug("ELM327: requestFreeFrame: atcra" + emlFilter);
         if (!initCommandExpectOk("atcra" + emlFilter)) return new Message(frame, "-E-Problem sending atcra command", true);
@@ -571,7 +570,7 @@ public class ELM327 extends Device {
         if (!deviceIsInitialized) {return new Message(frame, "-E-Re-initialisation needed", true); }
 
         String hexData;
-        int len = 0;
+        int len;
 
         // PERFORMANCE ENHANCEMENT: only send ATAR if coming from a free frame
         if (lastCommandWasFreeFrame) {
@@ -597,12 +596,43 @@ public class ELM327 extends Device {
 
         }
 
-        // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
-        String elmCommand = "0" + (frame.getRequestId().length() / 2) + frame.getRequestId();
-        //MainActivity.debug("R: "+request+" - C: "+pre+field.getToId());
-
-        // get 0x1 frame. No delays, and no waiting until done.
-        String elmResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
+        int outgoingLength = frame.getRequestId().length();
+        String elmResponse;
+        if (outgoingLength <= 12) {
+            // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
+            String elmCommand = "0" + (outgoingLength) + frame.getRequestId();
+            // send SING frame.
+            elmResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
+        } else {
+            int startIndex = 0;
+            int endIndex = 12;
+            // send FRST frame.
+            String elmCommand = String.format("1%03X", outgoingLength) + frame.getRequestId().substring(startIndex, endIndex);
+            String elmFlowResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
+            startIndex += 12;
+            if (startIndex > outgoingLength) startIndex = outgoingLength;
+            endIndex += 12;
+            if (endIndex > outgoingLength) endIndex = outgoingLength;
+            int next = 1;
+            while (startIndex < outgoingLength) {
+                // send NEXT frame.
+                elmCommand = String.format("2%01X", next) + frame.getRequestId().substring(startIndex, endIndex);
+                // for the moment we ignore block size, just 1 or all. Also ignore delay
+                if (elmFlowResponse.startsWith("300")) {
+                    elmFlowResponse = sendAndWaitForAnswer(elmCommand.substring(startIndex, endIndex), 0, false);
+                } else if (elmFlowResponse.startsWith("30")) {
+                    elmFlowResponse = sendAndWaitForAnswer(elmCommand.substring(startIndex, endIndex), 0, false);
+                } else {
+                    return new Message(frame, "-E-ISOTP tx flow Error", true);
+                }
+                startIndex += 14;
+                if (startIndex > outgoingLength) startIndex = outgoingLength;
+                endIndex += 14;
+                if (endIndex > outgoingLength) endIndex = outgoingLength;
+                if (next == 15) next = 0; else next++;
+            }
+            elmResponse = elmFlowResponse; // the very last response is the start of the answer
+        }
 
         if (elmResponse.compareTo("CAN ERROR") == 0) {
             return new Message(frame, "-E-Can Error", true);
