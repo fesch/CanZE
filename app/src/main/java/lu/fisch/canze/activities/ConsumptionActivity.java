@@ -129,7 +129,7 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
                                 ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(-(Math.min(0, (int)consumption)));
                                 ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(  Math.max(0, (int)consumption) );
                                 tv.setText(((int) consumption) + " " + field.getUnit());
-                            } else if (consumption != 0.0) {
+                            } else if (consumption != 0.0) { // remember, consumption is now in kWh/100mi
                                 ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(-(Math.min(0, (int)(consumption / 1.6))));
                                 ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(  Math.max(0, (int)(consumption / 1.6)) );
                                 tv.setText(String.format (Locale.getDefault(),"%.2f %s", (100.0 / consumption), MainActivity.getStringSingle(R.string.unit_ConsumptionMiAlt)));
