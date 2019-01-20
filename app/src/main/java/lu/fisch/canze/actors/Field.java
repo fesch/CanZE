@@ -147,7 +147,10 @@ public class Field {
     {
         //double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
         double val =  (value-offset) * resolution;
-        if (MainActivity.milesMode) {
+        // This is a tricky one. If we are in miles mode, in a virtual field the sources for that
+        // field have already been corrected, so this should not be done twice. I.O.W. virtual
+        // field values are, by definition already properly corrected.
+        if (MainActivity.milesMode && fieldClone().isVirtual()) {
             if (unit.toLowerCase().startsWith("km"))
                 val = Math.round(val / 1.609344 * 10.0) / 10.0;
             else if (unit.toLowerCase().endsWith("km"))
@@ -300,8 +303,8 @@ public class Field {
     }
 
     public void setCalculatedValue(double value) {
-        // inverted conversion
-        if (MainActivity.milesMode)
+        // inverted conversion.
+        if (MainActivity.milesMode & !fieldClone().isVirtual())
         {
             if (getUnit().toLowerCase().startsWith("km"))
                 value = value * 1.609344;

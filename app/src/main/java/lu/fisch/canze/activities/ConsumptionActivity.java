@@ -58,7 +58,11 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consumption);
+        if (MainActivity.milesMode) {
+            setContentView(R.layout.activity_consumption_mi);
+        } else {
+            setContentView(R.layout.activity_consumption);
+        }
     }
 
     @Override
@@ -125,13 +129,13 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
                         consumption = field.getValue();
                         tv = findViewById(R.id.text_instant_consumption_negative);
                         if (!Double.isNaN(consumption)) {
+                            // progress bars are rescaled to miles by the layout
+                            ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(-(Math.min(0, (int)consumption)));
+                            ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(  Math.max(0, (int)consumption) );
                             if (!MainActivity.milesMode) {
-                                ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(-(Math.min(0, (int)consumption)));
-                                ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(  Math.max(0, (int)consumption) );
                                 tv.setText(((int) consumption) + " " + field.getUnit());
-                            } else if (consumption != 0.0) { // remember, consumption is now in kWh/100mi
-                                ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(-(Math.min(0, (int)(consumption / 1.6))));
-                                ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(  Math.max(0, (int)(consumption / 1.6)) );
+                            } else if (consumption != 0.0) { // consumption is now in kWh/100mi, so rescale progress bar
+                                // display the value in imperial format (100 / consumption, meaning mi/kwh)
                                 tv.setText(String.format (Locale.getDefault(),"%.2f %s", (100.0 / consumption), MainActivity.getStringSingle(R.string.unit_ConsumptionMiAlt)));
                             } else {
                                 tv.setText("-");

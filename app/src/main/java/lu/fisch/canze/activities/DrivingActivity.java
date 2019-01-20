@@ -252,6 +252,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         if (!MainActivity.milesMode && realSpeed > 5) {
                             tv.setText(String.format(Locale.getDefault(), "%.1f", 100.0 * dcPwr / realSpeed));
                         } else if (MainActivity.milesMode && dcPwr != 0) {
+                            // real speed has already been returned in miles, so no conversions should be done
                             tv.setText(String.format(Locale.getDefault(), "%.2f", realSpeed / dcPwr));
                         } else {
                             tv.setText("-");
