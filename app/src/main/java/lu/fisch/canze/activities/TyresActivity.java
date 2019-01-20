@@ -252,10 +252,10 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
             MainActivity.toast(-100, "Those are not all valid hex values other than 000000");
         }
 
-        result = result + String.format ("%06x", valuefl);
-        result = result + String.format ("%06x", valuefr);
-        result = result + String.format ("%06x", valuerl);
-        result = result + String.format ("%06x", valuerr);
+        result = result + String.format ("%06X", valuefl);
+        result = result + String.format ("%06X", valuefr);
+        result = result + String.format ("%06X", valuerl);
+        result = result + String.format ("%06X", valuerr);
 
         Frame frame;
         frame = Frames.getInstance().getById(0x765, "50c0");
