@@ -119,6 +119,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                         value = val_TyreSpdPresMisadaption[intValue];
                         break;
                     case SID_TyreFLState:
+                        if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TyreFLState);
                         if (intValue > 1) color = 0xffffc0c0;
                         value = val_TyreState[intValue];
@@ -128,6 +129,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                         value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
                     case SID_TyreFRState:
+                        if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TyreFRState);
                         if (intValue > 1) color = 0xffffc0c0;
                         value = val_TyreState[intValue];
@@ -137,6 +139,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                         value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
                     case SID_TyreRLState:
+                        if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TyreRLState);
                         if (intValue > 1) color = 0xffffc0c0;
                         value = val_TyreState[intValue];
@@ -146,6 +149,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                         value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
                     case SID_TyreRRState:
+                        if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TyreRRState);
                         if (intValue > 1) color = 0xffffc0c0;
                         value = val_TyreState[intValue];
