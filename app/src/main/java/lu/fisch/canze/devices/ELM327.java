@@ -607,7 +607,7 @@ public class ELM327 extends Device {
             int startIndex = 0;
             int endIndex = 12;
             // send FRST frame.
-            String elmCommand = String.format("1%03X", outgoingLength) + frame.getRequestId().substring(startIndex, endIndex);
+            String elmCommand = String.format("1%03X", outgoingLength / 2) + frame.getRequestId().substring(startIndex, endIndex);
             String elmFlowResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
             startIndex += 12;
             if (startIndex > outgoingLength) startIndex = outgoingLength;
