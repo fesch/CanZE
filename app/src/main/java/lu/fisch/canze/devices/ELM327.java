@@ -199,6 +199,12 @@ public class ELM327 extends Device {
             return false;
         }
 
+        // atal (allow 8 byte messages
+        if (!initCommandExpectOk("atal")) {
+            lastInitProblem = "ATAL command problem";
+            return false;
+        }
+
         // atcaf0 (no formatting)
         if (!initCommandExpectOk("atcaf0")) {
             lastInitProblem = "ATCAF0 command problem";
