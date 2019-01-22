@@ -127,22 +127,18 @@ public class ELM327 extends Device {
 
         killCurrentOperation ();
 
-        if (toughness == TOUGHNESS_HARD ) {
+        if (toughness == TOUGHNESS_HARD || toughness == TOUGHNESS_MEDIUM) {
             // the default 500mS should be enough to answer, however, the answer contains various <cr>'s, so we need to set untilEmpty to true
             response = sendAndWaitForAnswer("atws", 0, true, -1 , true);
-            MainActivity.debug("ELM327: version = "+response);
-        }
-        else if (toughness == TOUGHNESS_MEDIUM) {
-            response = sendAndWaitForAnswer("atws", 0, true, -1 , true);
-            MainActivity.debug("ELM327: version = "+response);
         }
         else { // TOUGHNESS_WEAK
-            // not used
             response = sendAndWaitForAnswer("atd", 0, true, -1 , true);
-            MainActivity.debug("ELM327: version = "+response);
+            MainActivity.debug("ELM327: version = " + response);
         }
+        MainActivity.debug("ELM327: version: [" + response + "]");
 
-        if (response.trim().equals("")) {
+        response = response.trim();
+        if (response.equals("")) {
             lastInitProblem = "ELM is not responding (toughness = "+toughness+")";
             MainActivity.toast(MainActivity.TOAST_ELM, lastInitProblem);
             return false;
@@ -167,79 +163,67 @@ public class ELM327 extends Device {
             }
         }
 
-        // at this point, echo is still on (except when atd was issued), so we still need to absorb the echoed command
-        // ate0 (no echo)
-        if (!initCommandExpectOk("ate0", true)) {
-            lastInitProblem = "ATE0 command problem";
-            deviceIsInitialized = false;
-            return deviceIsInitialized;
-        }
 
-        // at this point, echo is finally off so we can safely check for OK messages. If the app starts responding with toasts showing the responses
-        // in brackets equal to the commands, somehow the echo was not executed. so maybe we need to check for that specific condition in the next
-        // command.
+        deviceIsInitialized = false;
 
-        // ats0 (no spaces)
-        if (!initCommandExpectOk("ats0")) {
-            lastInitProblem = "ATS0 command problem";
-            deviceIsInitialized = false;
-            return deviceIsInitialized;
-        }
 
-        // atsp6 (CAN 500K 11 bit)
-        if (!initCommandExpectOk("atsp6")) {
-            lastInitProblem = "ATSP6 command problem";
-            deviceIsInitialized = false;
-            return deviceIsInitialized;
-        }
+        // ***** CanZE version *******************************************************************
+        // ate0         (no echo. At this point, echo is still on (except when atd was issued), so
+        //              we still need to absorb the echoed command. After this point, echo is
+        //              finally off so we can safely check for OK messages. If the app starts
+        //              responding with toasts showing the responses in brackets equal to the
+        //              commands, somehow the echo was not executed. so maybe we need to check for
+        //              that specific condition in the next command.)
+        // ats0         (no spaces)
+        // atsp6        (CAN 500K 11 bit)
+        // atat1        (auto timing)
+        // atcaf0       (no formatting)
+        // atfcsh77b    (flow control response ID to 77b. This is needed to be able to set the flow
+        //               control response. Any ID would be fine
+        // atfcsd300010 (the flow control response data to 300010 (flow control, clear to send,
+        //               all frames, 16 ms wait between frames. Note that it is not possible to let
+        //               the ELM request each frame as the Altered Flow Control only responds to a
+        //               FRST, not a NEXT)
+        // atfcsm1 (flow control mode 1: ID and data suplied)
 
-        // atat1 (auto timing)
-        if (!initCommandExpectOk("atat1")) {
-            lastInitProblem = "ATAT1 command problem";
-            return false;
-        }
+        //String[] commands = "ate0;ats0;atsp6;atat1;atcaf0;atfcsh77b;atfcsd300010;atfcsm1".split(";");
 
-        // atal (allow 8 byte messages
-        if (!initCommandExpectOk("atal")) {
-            lastInitProblem = "ATAL command problem";
-            return false;
-        }
+        // ***** DDT4ALL version *****************************************************************
+        // ate1         (echo on) ==> we don't do this
+        // ats0         (no spaces)
+        // ath0         (headers off = default)
+        // atl0         (Linefeeds off)
+        // atal         (allow long messages)
+        // atcaf0       (no formatting)
+        //              Here they stop initialization and do the remainder per ECU.
+        //              We do ATSH and ATFCSH too per request (since we constantly switch ECU's,
+        //              (we can optimize that, remember last ECU), however they also do flow control
+        //              initialisation and bus speed, per ECU, which we prefer to do here.
+        //              We also skip ATCRA (see comments at freeframe)
+        // atfcsh77b    (flow control response ID to 77b. This is needed to be able to set the flow
+        //               control response. Any ID would be fine
+        // atfcsd300000 (the flow control response data to 300010 (flow control, clear to send,
+        //               all frames, no wait between frames. Note that it is not possible to let
+        //               the ELM request each frame as the Altered Flow Control only responds to a
+        //               FRST, not a NEXT)
+        // atsp6        (CAN 500K 11 bit) ==> might need to change that if we want to support
+        //               pin re-assignment to ie the MM bus
 
-        // atcaf0 (no formatting)
-        if (!initCommandExpectOk("atcaf0")) {
-            lastInitProblem = "ATCAF0 command problem";
-            deviceIsInitialized = false;
-            return deviceIsInitialized;
-        }
+        String[] commands = "ate0;ats0;ath0;atl0;atal;atcaf0;atfcsh77b;atfcsd300000;atfcsm1;atsp6".split(";");
 
-        // atfcsh77b        Set flow control response ID to 77b. This is needed to set the flow control response, but that one is remembered :-)
-        if (!initCommandExpectOk("atfcsh77b")) {
-            lastInitProblem = "ATFCSH77B command problem";
-            deviceIsInitialized = false;
-            return deviceIsInitialized;
-        }
-
-        // atfcsd300020     Set the flow control response data to 300010 (flow control, clear to send,
-        //                  all frames, 16 ms wait between frames. Note that it is not possible to let
-        //                  the ELM request each frame as the Altered Flow Control only responds to a
-        //                  First Frame (not a Next Frame)
-        if (!initCommandExpectOk("atfcsd300010")) {
-            lastInitProblem = "ATFCSD300010 command problem";
-            deviceIsInitialized = false;
-            return deviceIsInitialized;
-        }
-
-        // atfcsm1          Set flow control mode 1 (ID and data suplied)
-        if (!initCommandExpectOk("atfcsm1")) {
-            lastInitProblem = "ATFCSM1 command problem";
-            deviceIsInitialized = false;
-            return deviceIsInitialized;
+        boolean first = true;
+        for (String command:commands) {
+            if (!initCommandExpectOk(command, first)) {
+                lastInitProblem = command + " command problem";
+                return deviceIsInitialized;
+            }
+            first = false;
         }
 
         if (toughness == TOUGHNESS_HARD ) {
             switch (elmVersion) {
                 case 13:
-                   MainActivity.toast(MainActivity.TOAST_ELM, "ELM ready, version 1.3, should work");
+                    MainActivity.toast(MainActivity.TOAST_ELM, "ELM ready, version 1.3, should work");
                     break;
                 case 14:
                     MainActivity.toast(MainActivity.TOAST_ELM, "ELM ready, version 1.4, should work");
@@ -588,6 +572,7 @@ public class ELM327 extends Device {
         }
 
         // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
+        // disable for now
         lastId = 0;
         if (lastId != frame.getId()) {
             lastId = frame.getId();
@@ -597,6 +582,8 @@ public class ELM327 extends Device {
 
             // Set header
             if (!initCommandExpectOk("atsh" + toIdHex)) return new Message(frame, "-E-Problem sending atsh command", true);
+            // Set filter
+            if (!initCommandExpectOk("atcra" + Integer.toHexString(frame.getId()))) return new Message(frame, "-E-Problem sending atfcsh command", true);
             // Set flow control response ID
             if (!initCommandExpectOk("atfcsh" + toIdHex)) return new Message(frame, "-E-Problem sending atfcsh command", true);
 
@@ -606,7 +593,7 @@ public class ELM327 extends Device {
         String elmResponse;
         if (outgoingLength <= 12) {
             // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
-            String elmCommand = "0" + (outgoingLength) + frame.getRequestId();
+            String elmCommand = "0" + (outgoingLength / 2) + frame.getRequestId();
             // send SING frame.
             elmResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
         } else {
@@ -621,13 +608,16 @@ public class ELM327 extends Device {
             if (endIndex > outgoingLength) endIndex = outgoingLength;
             int next = 1;
             while (startIndex < outgoingLength) {
-                // send NEXT frame.
+                // prepare NEXT frame.
                 elmCommand = String.format("2%01X", next) + frame.getRequestId().substring(startIndex, endIndex);
                 // for the moment we ignore block size, just 1 or all. Also ignore delay
                 if (elmFlowResponse.startsWith("300")) {
-                    elmFlowResponse = sendAndWaitForAnswer(elmCommand.substring(startIndex, endIndex), 0, false);
+                    // this needs to be tested. I expect if the receiving ECU expects all data to be
+                    // sent without further flow control, the ELM still answers with at least a \n
+                    // after each sent frame. But I might be wrong and things could happen async
+                    elmFlowResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
                 } else if (elmFlowResponse.startsWith("30")) {
-                    elmFlowResponse = sendAndWaitForAnswer(elmCommand.substring(startIndex, endIndex), 0, false);
+                    elmFlowResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
                 } else {
                     return new Message(frame, "-E-ISOTP tx flow Error", true);
                 }
