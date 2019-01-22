@@ -208,7 +208,9 @@ public class ELM327 extends Device {
         //               FRST, not a NEXT)
         // atsp6        (CAN 500K 11 bit) ==> might need to change that if we want to support
         //               pin re-assignment to ie the MM bus
-        String[] commands = "ete0;ats0;ath0;atl0;atal;atcaf0;atfcsh77b;atfcsd300000;atsp6".split(";");
+
+        String[] commands = "ate0;ats0;ath0;atl0;atal;atcaf0;atfcsh77b;atfcsd300000;atfcsm1;atsp6".split(";");
+
         boolean first = true;
         for (String command:commands) {
             if (!initCommandExpectOk(command, first)) {
@@ -570,6 +572,7 @@ public class ELM327 extends Device {
         }
 
         // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
+        // disable for now
         lastId = 0;
         if (lastId != frame.getId()) {
             lastId = frame.getId();
@@ -579,6 +582,8 @@ public class ELM327 extends Device {
 
             // Set header
             if (!initCommandExpectOk("atsh" + toIdHex)) return new Message(frame, "-E-Problem sending atsh command", true);
+            // Set filter
+            if (!initCommandExpectOk("atcra" + Integer.toHexString(frame.getId()))) return new Message(frame, "-E-Problem sending atfcsh command", true);
             // Set flow control response ID
             if (!initCommandExpectOk("atfcsh" + toIdHex)) return new Message(frame, "-E-Problem sending atfcsh command", true);
 
@@ -588,7 +593,7 @@ public class ELM327 extends Device {
         String elmResponse;
         if (outgoingLength <= 12) {
             // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
-            String elmCommand = "0" + (outgoingLength) + frame.getRequestId();
+            String elmCommand = "0" + (outgoingLength / 2) + frame.getRequestId();
             // send SING frame.
             elmResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
         } else {
@@ -610,9 +615,9 @@ public class ELM327 extends Device {
                     // this needs to be tested. I expect if the receiving ECU expects all data to be
                     // sent without further flow control, the ELM still answers with at least a \n
                     // after each sent frame. But I might be wrong and things could happen async
-                    elmFlowResponse = sendAndWaitForAnswer(elmCommand.substring(startIndex, endIndex), 0, false).replace("\r", "");
+                    elmFlowResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
                 } else if (elmFlowResponse.startsWith("30")) {
-                    elmFlowResponse = sendAndWaitForAnswer(elmCommand.substring(startIndex, endIndex), 0, false).replace("\r", "");
+                    elmFlowResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
                 } else {
                     return new Message(frame, "-E-ISOTP tx flow Error", true);
                 }
