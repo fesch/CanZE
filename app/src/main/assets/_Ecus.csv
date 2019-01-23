@@ -1,3 +1,5 @@
+# Descriptive name, Renault ID, Network (s), From ID, To ID, Mnemonic, Alias(ses), GetDtc responseID (s),  Session required
+# If more than one, semicolon separated
 Electric Vehicle Controller,946,V;E,7ec,7e4,EVC,SCH,5902af,0
 Telematics Control Unit,2152,V;M,7da,7ca,TCU,-,5902ff,0
 Lithium Battery Controller,938,E,7bb,79b,LBC,-,59020f,0
@@ -13,8 +15,8 @@ Climate Control,419,V,764,744,CLIM,CLIMA;CLIMBOX,5902ff,0
 Park Assist,1222,O,76e,74e,UPA,-,5902ff,0
 Battery Connection Box,2093,E,793,792,BCB,-,5902ff;5902af,1
 Lithium Battery Controller 2,938,E,7b6,796,LBC2,-,59020f,0
-Tuner,261,M,0,0,,-,-,0
+Tuner,261,M,0,0,,RADIO,-,0
 Joystick,1657,M,0,0,,-,-,0
-R-Link,1127,M,0,0,,-,-,0
+R-Link,1127,M,0,0,,AUTOS,-,0
 Horn,2138,E,0,0,,-,-,0
 VirtualField computer,9999,E,800,800,VFC,-,-,0
