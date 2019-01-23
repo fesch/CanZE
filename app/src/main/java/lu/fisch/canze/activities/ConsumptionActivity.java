@@ -21,9 +21,16 @@
 
 package lu.fisch.canze.activities;
 
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -32,6 +39,7 @@ import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
+import lu.fisch.canze.widgets.WidgetView;
 
 public class ConsumptionActivity extends CanzeActivity implements FieldListener, DebugListener {
 
@@ -58,10 +66,27 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (MainActivity.milesMode) {
-            setContentView(R.layout.activity_consumption_mi);
-        } else {
-            setContentView(R.layout.activity_consumption);
+
+        // dash = 1280x400
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        float width = size.x;
+        float height = size.y;
+        //width = width / getResources().getDisplayMetrics().scaledDensity;
+        height = height / getResources().getDisplayMetrics().scaledDensity;
+
+        if(height<480 || width<480) {
+            setContentView(R.layout.activity_consumption_dash);
+        }
+        else
+        {
+            if (MainActivity.milesMode) {
+                setContentView(R.layout.activity_consumption_mi);
+            } else {
+                setContentView(R.layout.activity_consumption);
+            }
         }
     }
 
