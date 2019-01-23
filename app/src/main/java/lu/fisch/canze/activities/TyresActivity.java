@@ -212,6 +212,8 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         }
         if (valuefl == 0 || valuefr == 0 || valuerl == 0 || valuerr == 0) {
             MainActivity.toast(-100, "No TPMS valves found");
+            //valuefl = valuefr = valuerl = valuerr = 0xa; // this is temp for quicker testing
+            return;
         }
 
 
@@ -236,7 +238,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
 
 
     public void onButtonWrite() {
-        String result = "7b5d";
+        String command = "7b5d";
         int valuefl;
         int valuefr;
         int valuerl;
@@ -254,12 +256,13 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
 
         if (valuefl == 0 || valuefr == 0 || valuerl == 0 || valuerr == 0) {
             MainActivity.toast(-100, "Those are not all valid hex values other than 000000");
+            //return;
         }
 
-        result = result + String.format ("%06X", valuefl);
-        result = result + String.format ("%06X", valuefr);
-        result = result + String.format ("%06X", valuerl);
-        result = result + String.format ("%06X", valuerr);
+        command = command + String.format ("%06X", valuefl);
+        command = command + String.format ("%06X", valuefr);
+        command = command + String.format ("%06X", valuerl);
+        command = command + String.format ("%06X", valuerr);
 
         Frame frame;
         frame = Frames.getInstance().getById(0x765, "50c0");
@@ -267,7 +270,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         frame = Frames.getInstance().getById(0x765, "7e01");
         MainActivity.device.requestFrame(frame);
 
-        frame = new Frame (0x765, 0, null, result, null);
+        frame = new Frame (0x765, 0, null, command, null);
         Message message = MainActivity.device.requestFrame(frame);
         if (message.isError()) {
             MainActivity.toast(-100, "Could not write TPMS valves (is it connected?)");
