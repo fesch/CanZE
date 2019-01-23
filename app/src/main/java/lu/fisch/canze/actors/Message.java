@@ -46,6 +46,7 @@ public class Message {
     private final boolean error;
 
     public Message(Frame frame, String data, boolean error) {
+        MainActivity.debug("Message.new.data:" + data);
         this.frame=frame;
         if (frame.isIsoTp()) {
             if (data.startsWith("7f")) {

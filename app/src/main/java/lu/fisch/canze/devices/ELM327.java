@@ -259,7 +259,7 @@ public class ELM327 extends Device {
         flushWithTimeoutCore (200, '\0');
         // if a command was running, it is interrupted now and the ELM is waiting for a command. However, if there was no command running, the x
         // in the buffer will screw up the next command. There are two possibilities: Sending a Backspace and hope for the best, or sending x <CR>
-        // and being sure the ELM will report an unknow command (prompt a ? mark), as it will be processing either x <CR> or xx <CR>. We choose the latter
+        // and being sure the ELM will report an unknown command (prompt a ? mark), as it will be processing either x <CR> or xx <CR>. We choose the latter
         // discard the ? anser
         sendNoWait("x\r");
         if (!flushWithTimeoutCore (500, '\0')) {
@@ -280,7 +280,7 @@ public class ELM327 extends Device {
         // empty incoming buffer
         // just make sure there is no previous response
         // the ELM might be in a mode where it is spewing out data, and that might put this
-        // mothod in an endless loop. If there are more than 200 character to flushed, return false
+        // method in an endless loop. If there are more than 100 character flushed, return false
         // this should normally be followed by a failure and thus device re-initialisation
 
         int count = 100;
@@ -328,7 +328,6 @@ public class ELM327 extends Device {
     }
 
     private boolean initCommandExpectOk (String command, boolean untilEmpty, boolean addReturn) {
-        MainActivity.debug("ELM327: initCommandExpectOk [" + command + "] untilempty [" + untilEmpty + "]");
         String response = "";
         for (int i = 2; i > 0; i--) {
             if (untilEmpty) {
@@ -344,7 +343,7 @@ public class ELM327 extends Device {
             MainActivity.toast("Err " + command + " [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
         } */
         MainActivity.toast(MainActivity.TOAST_ELM, "Error [" + command + "] [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
-        MainActivity.debug("ELM327: initCommandExpectOk > Response was > " + response);
+        MainActivity.debug("ELM327.initCommandExpectOk c:" + command + ", untilempty:" + untilEmpty + " res:" + response);
 
         return false;
     }
@@ -377,7 +376,7 @@ public class ELM327 extends Device {
         if(!BluetoothManager.getInstance().isConnected()) return "";
 
         if(command!=null) {
-            flushWithTimeout (10);
+            flushWithTimeout (100, '>');
             // send the command
             //connectedBluetoothThread.write(command + "\r\n");
             BluetoothManager.getInstance().write(command + (addReturn ? "\r" : ""));
@@ -413,6 +412,7 @@ public class ELM327 extends Device {
                         // end = end + 2;
                         // convert it to a character
                         char ch = (char) data;
+			if (ch == '\n') ch = '\r';
                         // add it to the readBuffer
                         readBuffer.append (ch);
                         // if we reach the end of a line
@@ -424,7 +424,7 @@ public class ELM327 extends Device {
                             // if we not asked to keep on and we got enough lines, stop
                             if(!untilEmpty){
                                 if(answerLinesCount<=0) { // the number of lines is in
-                                    MainActivity.debug("ELM327: sendAndWaitForAnswer > stop on decimal char [" + data + "]");
+                                    //MainActivity.debug("ELM327: sendAndWaitForAnswer > stop on decimal char [" + data + "]");
                                     stop = true; // so quit
                                 }
                                 else // the number of lines is NOT in
@@ -529,7 +529,8 @@ public class ELM327 extends Device {
         if (generalTimeout < MINIMUM_TIMEOUT) generalTimeout = MINIMUM_TIMEOUT;
         MainActivity.debug("ELM327: requestFreeFrame > TIMEOUT = "+ generalTimeout);
 
-        hexData = sendAndWaitForAnswer("atma", 20);
+	// 10 ms plus repeat time timeout, do not wait until empty, do not count lines, add \r to command
+        hexData = sendAndWaitForAnswer("atma", frame.getInterval() + 10);
 
         MainActivity.debug("ELM327: requestFreeFrame > hexData = [" + hexData + "]");
         // the dongle starts babbling now. sendAndWaitForAnswer should stop at the first full line
@@ -600,6 +601,7 @@ public class ELM327 extends Device {
             int endIndex = 12;
             // send FRST frame.
             String elmCommand = String.format("1%03X", outgoingLength / 2) + frame.getRequestId().substring(startIndex, endIndex);
+            //flushWithTimeout(500, '>');
             String elmFlowResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
             startIndex = endIndex;
             if (startIndex > outgoingLength) startIndex = outgoingLength;
@@ -615,12 +617,14 @@ public class ELM327 extends Device {
                     // the ELM still answers with at least a \n after each sent frame.
                     // Since there are no further flow control frames, we just pretent the answer
                     // of each frame is the actual answer and won't change the FlowResponse
+                    //flushWithTimeout(500, '>');
                     elmResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
                 } else if (elmFlowResponse.startsWith("30")) {
                     // The receiving ECU expects the next frame of data to be sent, and it will
                     // respond with the next flow control command, or the actual answer. We just
                     // pretent the answer of the frame is both the actual answer as wel as the next
                     // FlowResponse
+                    //flushWithTimeout(500, '>');
                     elmFlowResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
                     elmResponse = elmFlowResponse;
                 } else {
@@ -664,11 +668,12 @@ public class ELM327 extends Device {
                 // get all remaining 0x2 (NEXT) frames
                 String lines0x1 = sendAndWaitForAnswer(null, 0, framesToReceive);
                 // split into lines with hex data
-                String[] hexDataLines = lines0x1.replaceAll("\n", "\r").split("[\\r]+");
+                String[] hexDataLines = lines0x1.split("[\\r]+");
                 int next = 1;
                 for (String hexDataLine : hexDataLines) {
                     // ignore empty lines
-                    if (!hexDataLine.isEmpty() && hexDataLine.length() > 2) {
+                    hexDataLine = hexDataLine.trim();
+                    if (hexDataLine.length() > 2) {
                         // check the proper sequence
                         if (hexDataLine.startsWith(String.format("2%01X", next))) {
                             // cut off the first byte (type + sequence) and add to the result
@@ -696,7 +701,7 @@ public class ELM327 extends Device {
 
         // Having less data than specified in length is actually an error, but at least we do not need so substr it
         // if there is more data than specified in length, that is OK (filler bytes in the last frame), so cut those away
-        hexData = (hexData.length() <= len) ? hexData.trim() : hexData.substring(0, len).trim();
+        hexData = (hexData.length() <= len) ? hexData.trim().toLowerCase() : hexData.substring(0, len).trim().toLowerCase();
 
         if (hexData.equals(""))
             return new Message(frame, "-E-data empty", true);

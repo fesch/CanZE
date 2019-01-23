@@ -707,8 +707,6 @@ is used throughout the code to mean "we don't care, as fast as possible"
         else
             msg = requestFreeFrame(frame);
 
-        MainActivity.debug("Device: request for " + frame.getRID() + " returned data " + msg.getData());
-
         if (msg.isError()) {
             MainActivity.debug("Device: request for " + frame.getRID() + " returned error " + msg.getError());
             // theory: when the answer is empty, the timeout is to low --> increase it!
@@ -718,6 +716,7 @@ is used throughout the code to mean "we don't care, as fast as possible"
                 MainActivity.debug("Device: intervalMultiplicator+ = " + intervalMultiplicator);
             }
         } else {
+            MainActivity.debug("Device: request for " + frame.getRID() + " returned data " + msg.getData());
             // theory: when the answer is good, we might recover slowly --> decrease it!
             // jm: but never below 1 ----> 2015-12-14 changed 10 1.3
             if (intervalMultiplicator > minIntervalMultiplicator) {
