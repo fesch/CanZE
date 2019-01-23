@@ -583,14 +583,13 @@ public class ELM327 extends Device {
             // Set header
             if (!initCommandExpectOk("atsh" + toIdHex)) return new Message(frame, "-E-Problem sending atsh command", true);
             // Set filter
-            if (!initCommandExpectOk("atcra" + Integer.toHexString(frame.getId()))) return new Message(frame, "-E-Problem sending atfcsh command", true);
+            if (!initCommandExpectOk("atcra" + Integer.toHexString(frame.getId()))) return new Message(frame, "-E-Problem sending atcra command", true);
             // Set flow control response ID
             if (!initCommandExpectOk("atfcsh" + toIdHex)) return new Message(frame, "-E-Problem sending atfcsh command", true);
-
         }
 
         int outgoingLength = frame.getRequestId().length();
-        String elmResponse;
+        String elmResponse = "";
         if (outgoingLength <= 12) {
             // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
             String elmCommand = "0" + (outgoingLength / 2) + frame.getRequestId();
@@ -602,59 +601,59 @@ public class ELM327 extends Device {
             // send FRST frame.
             String elmCommand = String.format("1%03X", outgoingLength / 2) + frame.getRequestId().substring(startIndex, endIndex);
             String elmFlowResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
-            startIndex += 12;
+            startIndex = endIndex;
             if (startIndex > outgoingLength) startIndex = outgoingLength;
-            endIndex += 12;
+            endIndex += 14;
             if (endIndex > outgoingLength) endIndex = outgoingLength;
             int next = 1;
             while (startIndex < outgoingLength) {
                 // prepare NEXT frame.
                 elmCommand = String.format("2%01X", next) + frame.getRequestId().substring(startIndex, endIndex);
                 // for the moment we ignore block size, just 1 or all. Also ignore delay
-                if (elmFlowResponse.startsWith("300")) {
-                    // this needs to be tested. I expect if the receiving ECU expects all data to be
-                    // sent without further flow control, the ELM still answers with at least a \n
-                    // after each sent frame. But I might be wrong and things could happen async
-                    elmFlowResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
+                if (elmFlowResponse.startsWith("3000")) {
+                    // The receiving ECU expects all data to be sent without further flow control,
+                    // the ELM still answers with at least a \n after each sent frame.
+                    // Since there are no further flow control frames, we just pretent the answer
+                    // of each frame is the actual answer and won't change the FlowResponse
+                    elmResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
                 } else if (elmFlowResponse.startsWith("30")) {
+                    // The receiving ECU expects the next frame of data to be sent, and it will
+                    // respond with the next flow control command, or the actual answer. We just
+                    // pretent the answer of the frame is both the actual answer as wel as the next
+                    // FlowResponse
                     elmFlowResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
+                    elmResponse = elmFlowResponse;
                 } else {
                     return new Message(frame, "-E-ISOTP tx flow Error", true);
                 }
-                startIndex += 14;
+                startIndex = endIndex;
                 if (startIndex > outgoingLength) startIndex = outgoingLength;
                 endIndex += 14;
                 if (endIndex > outgoingLength) endIndex = outgoingLength;
                 if (next == 15) next = 0; else next++;
             }
-            elmResponse = elmFlowResponse; // the very last response is the start of the answer
         }
 
+        // clean-up if there is mess around
+        elmResponse = elmResponse.trim();
+        if (elmResponse.startsWith(">")) elmResponse = elmResponse.substring(1);
+
+        // quit on error conditions
         if (elmResponse.compareTo("CAN ERROR") == 0) {
             return new Message(frame, "-E-Can Error", true);
-        }
-        if (elmResponse.compareTo("?") == 0) {
+        } else if (elmResponse.compareTo("?") == 0) {
             return new Message(frame, "-E-Unknown command", true);
-        }
-        if (elmResponse.compareTo("") == 0) {
+        } else if (elmResponse.compareTo("") == 0) {
             return new Message(frame, "-E-Empty result", true);
         }
 
-        // process first line (SINGLE or FIRST frame)
-        elmResponse = elmResponse.trim();
-        // clean-up if there is mess around
-        if (elmResponse.startsWith(">")) elmResponse = elmResponse.substring(1);
-
-        if (elmResponse.isEmpty()) {
-            return new Message(frame, "-E-unexpected ISO-TP 1st line empty", true);
-        }
-
-        // get type (first nibble)
+        // get type (first nibble of first line)
         switch (elmResponse.substring(0, 1)) {
             case "0": // SINGLE frame
                 len = Integer.parseInt(elmResponse.substring(1, 2), 16);
                 // remove 2 nibbles (type + length)
                 hexData = elmResponse.substring(2);
+                // and we're done
                 break;
             case "1": // FIRST frame
                 len = Integer.parseInt(elmResponse.substring(1, 4), 16);
@@ -662,24 +661,28 @@ public class ELM327 extends Device {
                 hexData = elmResponse.substring(4);
                 // calculate the # of frames to come. 6 byte are in and each of the 0x2 frames has a payload of 7 bytes
                 int framesToReceive = len / 7; // read this as ((len - 6 [remaining characters]) + 6 [offset to / 7, so 0->0, 1-7->7, etc]) / 7
-                // get remaining 0x2 (NEXT) frames
+                // get all remaining 0x2 (NEXT) frames
                 String lines0x1 = sendAndWaitForAnswer(null, 0, framesToReceive);
-                // split into lines
-                //String[] hexDataLines = lines0x1.split(String.valueOf(EOM1));
+                // split into lines with hex data
                 String[] hexDataLines = lines0x1.replaceAll("\n", "\r").split("[\\r]+");
+                int next = 1;
                 for (String hexDataLine : hexDataLines) {
-                    elmResponse = hexDataLine;
-                    //MainActivity.debug("Line "+(i+1)+": " + line);
-                    if (!elmResponse.isEmpty() && elmResponse.length() > 2) {
-                        // cut off the first byte (type + sequence)
-                        // adding sequence checking would be wise to detect collisions
-                        hexData += elmResponse.substring(2);
+                    // ignore empty lines
+                    if (!hexDataLine.isEmpty() && hexDataLine.length() > 2) {
+                        // check the proper sequence
+                        if (hexDataLine.startsWith(String.format("2%01X", next))) {
+                            // cut off the first byte (type + sequence) and add to the result
+                            hexData += hexDataLine.substring(2);
+                        } else {
+                            return new Message(frame, "-E-out of sequence ISO-TP frame", true);
+                        }
+                        if (next == 15) next = 0; else next++;
                     }
                 }
                 break;
             default:  // a NEXT, FLOWCONTROL should not be received. Neither should any other string (such as NO DATA)
                 flushWithTimeout(400, '>');
-                return new Message(frame, "-E-unexpected ISO-TP 1st nibble of first frame:" + elmResponse, true);
+                return new Message(frame, "-E-unexpected ISO-TP 1st nibble of 1st frame:" + elmResponse, true);
         }
 
 
