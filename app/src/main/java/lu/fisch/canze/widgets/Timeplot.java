@@ -21,6 +21,9 @@
 
 package lu.fisch.canze.widgets;
 
+import android.content.res.Resources;
+import android.util.TypedValue;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -608,7 +611,7 @@ public class Timeplot extends Drawable {
         if(title!=null && !title.equals(""))
         {
             g.setColor(getTitleColor());
-            g.setTextSize(20);
+            g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, Resources.getSystem().getDisplayMetrics()));
 
             // draw multi-line title
             title = title.replace(" / ",", "); // let's be lazy
@@ -667,7 +670,8 @@ public class Timeplot extends Drawable {
                     else text = String.valueOf(values.get(values.size()-1).value);
                 }
 
-                g.setTextSize(40);
+                //g.setTextSize(40);
+                g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, Resources.getSystem().getDisplayMetrics()));
 
                 if(values.isEmpty())
                     g.setColor(getColor(s));

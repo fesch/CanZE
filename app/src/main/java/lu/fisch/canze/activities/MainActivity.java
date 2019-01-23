@@ -46,6 +46,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -597,9 +598,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             Point size = new Point();
             display.getSize(size);
             float width = size.x;
+            float height = size.y;
             // int height = size.y;
             width = width / getResources().getDisplayMetrics().scaledDensity;
-            if(width<=480)
+            height = height / getResources().getDisplayMetrics().scaledDensity;
+            if(width<=480 || height<=480)
             {
                 yes=getStringSingle(R.string.default_Yes);
                 no =getStringSingle(R.string.default_No);
@@ -637,6 +640,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
             // show it
             alertDialog.show();
+            //alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(TypedValue.COMPLEX_UNIT_SP, 25.0f);
+            //alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextSize(TypedValue.COMPLEX_UNIT_SP, 25.0f);
         }
     }
 
