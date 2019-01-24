@@ -150,7 +150,7 @@ public class Field {
         // This is a tricky one. If we are in miles mode, in a virtual field the sources for that
         // field have already been corrected, so this should not be done twice. I.O.W. virtual
         // field values are, by definition already properly corrected.
-        if (MainActivity.milesMode && fieldClone().isVirtual()) {
+        if (MainActivity.milesMode & !virtual) {
             if (unit.toLowerCase().startsWith("km"))
                 val = Math.round(val / 1.609344 * 10.0) / 10.0;
             else if (unit.toLowerCase().endsWith("km"))
@@ -304,11 +304,10 @@ public class Field {
 
     public void setCalculatedValue(double value) {
         // inverted conversion.
-        if (MainActivity.milesMode & !fieldClone().isVirtual())
-        {
-            if (getUnit().toLowerCase().startsWith("km"))
+        if (MainActivity.milesMode & !virtual) {
+            if (unit.toLowerCase().startsWith("km"))
                 value = value * 1.609344;
-            else if (getUnit().toLowerCase().endsWith("km"))
+            else if (unit.toLowerCase().endsWith("km"))
                 value = value / 1.609344;
         }
         // inverted calculation
