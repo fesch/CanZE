@@ -138,7 +138,7 @@
                 custom:max="70"
                 custom:majorTicks="10"
                 custom:minorTicks="5"
-                custom:fieldSID="654.25"
+                custom:fieldSID="1fd.48"
                 custom:widget="tacho"
                 custom:text="Power (kWh)"
                 />
