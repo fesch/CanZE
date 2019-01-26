@@ -231,8 +231,8 @@
                     {'sid':'1fd.48','color':'#008a1d','from':1,'to':20},
                     {'sid':'1fd.48','color':'#ffaa17','from':20,'to':33},
                     {'sid':'1fd.48','color':'#FF0000','from':33,'to':100},
-                    {'sid':'800.6107.24','color':'#ff0000','from':-20,'to':0},
-                    {'sid':'800.6107.24','color':'#5cb700','from':0,'to':20}
+                    {'sid':'800.6107.24','color':'#77011d','from':-20,'to':0},
+                    {'sid':'800.6107.24','color':'#017720','from':0,'to':20}
                 ]"
                 custom:text="Power (kWh), Delta with reality (km)"
                 custom:intervals="{
@@ -241,7 +241,7 @@
                 }"
                 custom:options="{
                     '1fd.48':'gradient',
-                    '800.6107.24':'alt,gradient'
+                    '800.6107.24':'alt'
                 }"
                 />
 
