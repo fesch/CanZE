@@ -264,9 +264,9 @@
                 custom:max="450"
                 custom:majorTicks="50"
                 custom:minorTicks="10"
-                custom:fieldSID="77e.62300e.24"
+                custom:fieldSID="646.33"
                 custom:widget="tacho"
-                custom:text="Battery Voltage (V)"
+                custom:text="Trip cons."
                 />
 
             <lu.fisch.canze.widgets.WidgetView
@@ -279,9 +279,9 @@
                 custom:max="32"
                 custom:majorTicks="8"
                 custom:minorTicks="2"
-                custom:fieldSID="77e.62301d.24"
+                custom:fieldSID="637.0"
                 custom:widget="tacho"
-                custom:text="Battery Current (A)"
+                custom:text="Mis. cons."
                 />
 
         </TableRow>
@@ -304,9 +304,9 @@
                 custom:max="450"
                 custom:majorTicks="50"
                 custom:minorTicks="10"
-                custom:fieldSID="7ec.623203.24"
+                custom:fieldSID="7bb.6161.136"
                 custom:widget="tacho"
-                custom:text="Requested Voltage (V)"
+                custom:text="Bat. cons."
                 />
 
             <lu.fisch.canze.widgets.WidgetView
