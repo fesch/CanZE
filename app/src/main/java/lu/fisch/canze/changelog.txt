@@ -1,13 +1,30 @@
----< Version 1.28 / 2019.01.27 >---
-2019-01-26 [Bob] Updated some frames for streched displays like dashcam
-2019-01-25 [Jeroen] Added TMPS support
-2019-01-24 [Jeroen] Improvements for the CanSee dongle
-2018-12-20 [Jeroen & Bob] Development of the CanSee dongle
-2018-03-24 [Jeroen] Added 1 volt battery replacement advice to activity_auxbat
+---< Version 1.27 / 2019-01.27 >---
+2019-01-26 [Jeroen] Clima RPM replaced for Watt
+2019-01-23 [Bob] Dash device screen for consumption added
+2019-01-18 [Jeroen] Implemented multi frame outgoing ISO-TP messages, fixes in ELM code
+2019-01-18 [Jeroen] Improvments in DTC dump. BCB now works
+2019-01-18 [Jeroen] Removed ConsumptionOld
+2019-01-18 [Jeroen] Slowed down Charging history queries
+2019-01-17 [Jeroen] Better miles display, fixed miles problem in virtual fields
+2019-01-16 [Jeroen] Prepared code and CSVs for ISO-TP only option
+2019-01-13 [Jeroen] Removed all ECU classes and replaced by external CSVs
+2019-01-13 [Jeroen] Fixed minor errors in charging screens
+2019-01-12 [Jeroen] Slowed down temperature queries
+2019-01-08 [Bob] Added setttings for CanSee dongle (hidden)
+2019-01-05 [Jeroen] Cleanup BobDue code for CanSee dongle, added integrity checks
+2019-01-04 [Jeroen] Several internal settings (Android Studio, Gradle, .gitignore)
+
+---< Version 1.28 / 2018.05.08 >---
+2018-03-24 [Jeroen] Added 12 volt battery replacement advice to activity_auxbat
 2018-01-18 [Jeroen] Re-enabled Energy consumed on request
 
 ---< Version 1.27 / 2018.01.11 >---
-???
+2018-01-07 [Jeroen] Fixed small issue for dongle emulator
+2018-01-07 [Jeroen] Fixed issue with DTC of the TCU
+2017-12-22 [Bob] Fixed nullpointer exception
+2017-12-22 [Bob] Fixed midpoint in instant consumption
+2017-12-17 [Jeroen] Fixed runtime crash by adding bounds checking in several message loopkups
+2017-12-17 [Bob, Jeroen] Internal settings after upgrade Android Studio, removed new compile errors
 
 ---< Version 1.26 / 2017.12.17 >---
 2017.12.12 [Jeroen] Finalized new consumpion, added alpha color, some plot debugging code

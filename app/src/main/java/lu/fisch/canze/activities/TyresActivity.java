@@ -30,6 +30,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Frames;
@@ -44,15 +45,15 @@ import static lu.fisch.canze.activities.MainActivity.toast;
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
 public class TyresActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_TyreSpdPresMisadaption = "673.0";
-    public static final String SID_TyreFLState = "673.11";
-    public static final String SID_TyreFLPressure = "673.40";
-    public static final String SID_TyreFRState = "673.8";
-    public static final String SID_TyreFRPressure = "673.32";
-    public static final String SID_TyreRLState = "673.5";
-    public static final String SID_TyreRLPressure = "673.24";
-    public static final String SID_TyreRRState = "673.2";
-    public static final String SID_TyreRRPressure = "673.16";
+    public static final String SID_TyreSpdPresMisadaption   = "673.0";
+    public static final String SID_TyreFLState              = "673.11";
+    public static final String SID_TyreFLPressure           = "673.40";
+    public static final String SID_TyreFRState              = "673.8";
+    public static final String SID_TyreFRPressure           = "673.32";
+    public static final String SID_TyreRLState              = "673.5";
+    public static final String SID_TyreRLPressure           = "673.24";
+    public static final String SID_TyreRRState              = "673.2";
+    public static final String SID_TyreRRPressure           = "673.16";
 
     public static final String val_TyreSpdPresMisadaption[] = {"OK", "Not OK"};
     public static final String val_TyreState[] = {"OK", "No info", "-", "-", "-", "Flat", "Under infl."};
@@ -62,13 +63,16 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tyres);
+
+        // do not display the keyboard immediately
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
+        // set the two button handlers
         Button button = findViewById(R.id.button_TyresRead);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onButtonRead();
+                stopReadStart();
             }
         });
 
@@ -76,12 +80,12 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onButtonWrite();
+                stopWriteStart();
             }
         });
-
     }
 
+    // set the fields the poller should query
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
         addField(SID_TyreSpdPresMisadaption, 6000);
@@ -95,8 +99,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         addField(SID_TyreRRPressure, 6000);
     }
 
-    // This is the event fired as soon as this the registered fields are
-    // getting updated by the corresponding reader class.
+    // fired event when any of the registered fields are getting updated by the device
     @Override
     public void onFieldUpdateEvent(final Field field) {
         // the update has to be done in a separate thread
@@ -172,32 +175,55 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
     }
 
 
-    private void onButtonRead() {
-        EditText et;
+    // Using these wrapper functions to easily facilitate early returns
+    private void stopReadStart() {
+        // stop the poller
+        MainActivity.device.stopAndJoin();
+
+        // read TPMS
+        buttonRead();
+
+        // restart the poller
+        if(MainActivity.device!=null)
+            MainActivity.device.initConnection();
+
+    }
+
+
+    private void displayId (int fieldId, int val) {
+        EditText et = findViewById(fieldId);
+        if (et != null) et.setText(String.format("%06x", val));
+    }
+
+
+    private void buttonRead() {
         int valuefl = 0;
         int valuefr = 0;
         int valuerl = 0;
         int valuerr = 0;
         Frame frame;
 
+        // send a start diagnostic session
         frame = Frames.getInstance().getById(0x765, "50c0");
         MainActivity.device.requestFrame(frame);
 
+        // send a keepalive
         frame = Frames.getInstance().getById(0x765, "7e01");
         MainActivity.device.requestFrame(frame);
 
-        // query the Frame
+        // query TPMS data
         frame = Frames.getInstance().getById(0x765, "6171");
         Message message = MainActivity.device.requestFrame(frame);
         if (message.isError()) {
-            MainActivity.toast(-100, "Could not read TPMS valves");
+            MainActivity.toast(-100, "Could not read TPMS valves:" + message.getData());
             return;
         }
 
         // process the frame by going through all the containing fields
         // setting their values and notifying all listeners (there should be none)
-        // Fields.getInstance().onMessageCompleteEvent(message);
         message.onMessageCompleteEvent();
+
+        // now process all fields in the frame. Select only the ones we are interested in
         for (Field field : frame.getAllFields()) {
             switch (field.getFrom()) {
                 case 24:
@@ -210,78 +236,81 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                     valuerr = (int)field.getValue();
             }
         }
+
         if (valuefl == 0 || valuefr == 0 || valuerl == 0 || valuerr == 0) {
             MainActivity.toast(-100, "No TPMS valves found");
-            //valuefl = valuefr = valuerl = valuerr = 0xa; // this is temp for quicker testing
             return;
         }
 
-
-        et = findViewById(R.id.text_TyreFLId);
-        et.setText(String.format("%06x", valuefl));
-        et = findViewById(R.id.text_TyreFRId);
-        et.setText(String.format("%06x", valuefr));
-        et = findViewById(R.id.text_TyreRLId);
-        et.setText(String.format("%06x", valuerl));
-        et = findViewById(R.id.text_TyreRRId);
-        et.setText(String.format("%06x", valuerr));
+        // display the fetched values
+        displayId(R.id.text_TyreFLId, valuefl);
+        displayId(R.id.text_TyreFRId, valuefr);
+        displayId(R.id.text_TyreRLId, valuerl);
+        displayId(R.id.text_TyreRRId, valuerr);
         MainActivity.toast(-100, "TPMS valves read");
     }
 
-    private int simpleIntParse (String p) {
-        try {
-            return Integer.parseInt(p, 16);
-        } catch (Exception e) {
+    // Using these wrapper functions to easily facilitate early returns
+    private void stopWriteStart() {
+        // stop the poller
+        MainActivity.device.stopAndJoin();
+
+        // write TPMS
+        buttonWrite();
+
+        // restart the poller
+        //if(MainActivity.device!=null)
+        //    MainActivity.device.initConnection();
+    }
+
+    private int simpleIntParse (int fieldId) {
+        EditText et = findViewById(fieldId);
+        if (et != null) {
+            try {
+                return Integer.parseInt(et.getText().toString(), 16);
+            } catch (Exception e) {
+                return 0;
+            }
+        } else {
             return 0;
         }
     }
 
-
-    public void onButtonWrite() {
-        String command = "7b5d";
-        int valuefl;
-        int valuefr;
-        int valuerl;
-        int valuerr;
-        EditText et;
-
-        et = findViewById(R.id.text_TyreFLId);
-        valuefl = simpleIntParse(et.getText().toString());
-        et = findViewById(R.id.text_TyreFRId);
-        valuefr = simpleIntParse(et.getText().toString());
-        et = findViewById(R.id.text_TyreRLId);
-        valuerl = simpleIntParse(et.getText().toString());
-        et = findViewById(R.id.text_TyreRRId);
-        valuerr = simpleIntParse(et.getText().toString());
+    public void buttonWrite() {
+        int valuefl = simpleIntParse(R.id.text_TyreFLId);
+        int valuefr = simpleIntParse(R.id.text_TyreFRId);
+        int valuerl = simpleIntParse(R.id.text_TyreRLId);
+        int valuerr = simpleIntParse(R.id.text_TyreRRId);
 
         if (valuefl == 0 || valuefr == 0 || valuerl == 0 || valuerr == 0) {
             MainActivity.toast(-100, "Those are not all valid hex values other than 000000");
             //return;
         }
 
-        command = command + String.format ("%06X", valuefl);
-        command = command + String.format ("%06X", valuefr);
-        command = command + String.format ("%06X", valuerl);
-        command = command + String.format ("%06X", valuerr);
-
         Frame frame;
+        // send a start diagnostic session
         frame = Frames.getInstance().getById(0x765, "50c0");
         MainActivity.device.requestFrame(frame);
+
+        // send a keepalive
         frame = Frames.getInstance().getById(0x765, "7e01");
         MainActivity.device.requestFrame(frame);
 
-        frame = new Frame (0x765, 0, null, command, null);
+        // write TPMS data
+        // Create a new frame (it isn't in the predefined frames list
+        frame = new Frame (0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format ("7b5d%06X%06X%06X%06X", valuefl, valuefr, valuerl, valuerr),null);
+
+        // request the data and return the result in a message
         Message message = MainActivity.device.requestFrame(frame);
         if (message.isError()) {
-            MainActivity.toast(-100, "Could not write TPMS valves (is it connected?)");
+            MainActivity.toast(-100, "Could not write TPMS valves:" + message.getData());
             return;
         }
 
         if (!message.getData().startsWith("7b5d")) {
-            MainActivity.toast(-100, "Not the proper response from the car (does it have TPMS?)");
+            MainActivity.toast(-100, "Could not write TPMS valves:" + message.getData());
             return;
         }
         MainActivity.toast(-100, "TPMS valves written. Read again to verify");
     }
-
 }

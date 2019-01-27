@@ -40,7 +40,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
     // public static final String SID_ChargingPower                    = "42e.56";
     public static final String SID_HvCoolingState                   = "430.38";
     public static final String SID_HvEvaporationTemp                = "430.40";
-    // public static final String SID_ClimaCompressorPower             = "764.6143.88";
+    //public static final String SID_ClimaCompressorPower             = "7ec.6233A7.24";
     public static final String SID_Pressure                         = "764.6143.134";
     public static final String SID_BatteryConditioningMode          = "432.36";
     public static final String SID_ClimaLoopMode                    = "42a.48";
