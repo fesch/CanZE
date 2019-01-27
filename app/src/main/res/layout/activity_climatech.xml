@@ -159,22 +159,22 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="0dp"
                     custom:min="0"
-                    custom:max="4000"
+                    custom:max="2500"
                     custom:majorTicks="1000"
                     custom:minorTicks="500"
-                    custom:fieldSID="7ec.6233A7.24,764.6143.86"
+                    custom:fieldSID="7ec.6233a7.24,764.6143.86"
                     custom:widget="timeplot"
                     custom:text="@string/label_IH_ClimCompPWRStatus"
                     custom:colorRanges="[
-                    {'sid':'7ec.6233A7.24','color':'#008a1d','from':0,'to':750},
-                    {'sid':'7ec.6233A7.24','color':'#ffaa17','from':750,'to':1500},
-                    {'sid':'7ec.6233A7.24','color':'#FF0000','from':1500,'to':2250},
-                    {'sid':'7ec.6233A7.24','color':'#cc00ff','from':2250,'to':3000},
+                    {'sid':'7ec.6233a7.24','color':'#008a1d','from':0,'to':750},
+                    {'sid':'7ec.6233a7.24','color':'#ffaa17','from':750,'to':1500},
+                    {'sid':'7ec.6233a7.24','color':'#ff0000','from':1500,'to':2250},
+                    {'sid':'7ec.6233a7.24','color':'#cc00ff','from':2250,'to':3000},
                     {'sid':'764.6143.86','color':'#008a1d','from':1,'to':1},
                     {'sid':'764.6143.86','color':'#ffffff','from':2,'to':2}
                     ]"
                     custom:options="{
-                                   '7ec.6233A7.24':'gradient',
+                                   '7ec.6233a7.24':'gradient',
                                    '764.6143.86':'colorline[3900],dot'
                                 }"
 
