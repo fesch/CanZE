@@ -127,22 +127,18 @@ public class ELM327 extends Device {
 
         killCurrentOperation ();
 
-        if (toughness == TOUGHNESS_HARD ) {
+        if (toughness == TOUGHNESS_HARD || toughness == TOUGHNESS_MEDIUM) {
             // the default 500mS should be enough to answer, however, the answer contains various <cr>'s, so we need to set untilEmpty to true
             response = sendAndWaitForAnswer("atws", 0, true, -1 , true);
-            MainActivity.debug("ELM327: version = "+response);
-        }
-        else if (toughness == TOUGHNESS_MEDIUM) {
-            response = sendAndWaitForAnswer("atws", 0, true, -1 , true);
-            MainActivity.debug("ELM327: version = "+response);
         }
         else { // TOUGHNESS_WEAK
-            // not used
             response = sendAndWaitForAnswer("atd", 0, true, -1 , true);
-            MainActivity.debug("ELM327: version = "+response);
+            MainActivity.debug("ELM327: version = " + response);
         }
+        MainActivity.debug("ELM327: version: [" + response + "]");
 
-        if (response.trim().equals("")) {
+        response = response.trim();
+        if (response.equals("")) {
             lastInitProblem = "ELM is not responding (toughness = "+toughness+")";
             MainActivity.toast(MainActivity.TOAST_ELM, lastInitProblem);
             return false;
@@ -167,73 +163,67 @@ public class ELM327 extends Device {
             }
         }
 
-        // at this point, echo is still on (except when atd was issued), so we still need to absorb the echoed command
-        // ate0 (no echo)
-        if (!initCommandExpectOk("ate0", true)) {
-            lastInitProblem = "ATE0 command problem";
-            deviceIsInitialized = false;
-            return deviceIsInitialized;
-        }
 
-        // at this point, echo is finally off so we can safely check for OK messages. If the app starts responding with toasts showing the responses
-        // in brackets equal to the commands, somehow the echo was not executed. so maybe we need to check for that specific condition in the next
-        // command.
+        deviceIsInitialized = false;
 
-        // ats0 (no spaces)
-        if (!initCommandExpectOk("ats0")) {
-            lastInitProblem = "ATS0 command problem";
-            deviceIsInitialized = false;
-            return deviceIsInitialized;
-        }
 
-        // atsp6 (CAN 500K 11 bit)
-        if (!initCommandExpectOk("atsp6")) {
-            lastInitProblem = "ATSP6 command problem";
-            deviceIsInitialized = false;
-            return deviceIsInitialized;
-        }
+        // ***** CanZE version *******************************************************************
+        // ate0         (no echo. At this point, echo is still on (except when atd was issued), so
+        //              we still need to absorb the echoed command. After this point, echo is
+        //              finally off so we can safely check for OK messages. If the app starts
+        //              responding with toasts showing the responses in brackets equal to the
+        //              commands, somehow the echo was not executed. so maybe we need to check for
+        //              that specific condition in the next command.)
+        // ats0         (no spaces)
+        // atsp6        (CAN 500K 11 bit)
+        // atat1        (auto timing)
+        // atcaf0       (no formatting)
+        // atfcsh77b    (flow control response ID to 77b. This is needed to be able to set the flow
+        //               control response. Any ID would be fine
+        // atfcsd300010 (the flow control response data to 300010 (flow control, clear to send,
+        //               all frames, 16 ms wait between frames. Note that it is not possible to let
+        //               the ELM request each frame as the Altered Flow Control only responds to a
+        //               FRST, not a NEXT)
+        // atfcsm1 (flow control mode 1: ID and data suplied)
 
-        // atat1 (auto timing)
-        if (!initCommandExpectOk("atat1")) {
-            lastInitProblem = "ATAT1 command problem";
-            return false;
-        }
+        //String[] commands = "ate0;ats0;atsp6;atat1;atcaf0;atfcsh77b;atfcsd300010;atfcsm1".split(";");
 
-        // atcaf0 (no formatting)
-        if (!initCommandExpectOk("atcaf0")) {
-            lastInitProblem = "ATCAF0 command problem";
-            deviceIsInitialized = false;
-            return deviceIsInitialized;
-        }
+        // ***** DDT4ALL version *****************************************************************
+        // ate1         (echo on) ==> we don't do this
+        // ats0         (no spaces)
+        // ath0         (headers off = default)
+        // atl0         (Linefeeds off)
+        // atal         (allow long messages)
+        // atcaf0       (no formatting)
+        //              Here they stop initialization and do the remainder per ECU.
+        //              We do ATSH and ATFCSH too per request (since we constantly switch ECU's,
+        //              (we can optimize that, remember last ECU), however they also do flow control
+        //              initialisation and bus speed, per ECU, which we prefer to do here.
+        //              We also skip ATCRA (see comments at freeframe)
+        // atfcsh77b    (flow control response ID to 77b. This is needed to be able to set the flow
+        //               control response. Any ID would be fine
+        // atfcsd300000 (the flow control response data to 300010 (flow control, clear to send,
+        //               all frames, no wait between frames. Note that it is not possible to let
+        //               the ELM request each frame as the Altered Flow Control only responds to a
+        //               FRST, not a NEXT)
+        // atsp6        (CAN 500K 11 bit) ==> might need to change that if we want to support
+        //               pin re-assignment to ie the MM bus
 
-        // atfcsh77b        Set flow control response ID to 77b. This is needed to set the flow control response, but that one is remembered :-)
-        if (!initCommandExpectOk("atfcsh77b")) {
-            lastInitProblem = "ATFCSH77B command problem";
-            deviceIsInitialized = false;
-            return deviceIsInitialized;
-        }
+        String[] commands = "ate0;ats0;ath0;atl0;atal;atcaf0;atfcsh77b;atfcsd300000;atfcsm1;atsp6".split(";");
 
-        // atfcsd300020     Set the flow control response data to 300010 (flow control, clear to send,
-        //                  all frames, 16 ms wait between frames. Note that it is not possible to let
-        //                  the ELM request each frame as the Altered Flow Control only responds to a
-        //                  First Frame (not a Next Frame)
-        if (!initCommandExpectOk("atfcsd300010")) {
-            lastInitProblem = "ATFCSD300010 command problem";
-            deviceIsInitialized = false;
-            return deviceIsInitialized;
-        }
-
-        // atfcsm1          Set flow control mode 1 (ID and data suplied)
-        if (!initCommandExpectOk("atfcsm1")) {
-            lastInitProblem = "ATFCSM1 command problem";
-            deviceIsInitialized = false;
-            return deviceIsInitialized;
+        boolean first = true;
+        for (String command:commands) {
+            if (!initCommandExpectOk(command, first)) {
+                lastInitProblem = command + " command problem";
+                return deviceIsInitialized;
+            }
+            first = false;
         }
 
         if (toughness == TOUGHNESS_HARD ) {
             switch (elmVersion) {
                 case 13:
-                   MainActivity.toast(MainActivity.TOAST_ELM, "ELM ready, version 1.3, should work");
+                    MainActivity.toast(MainActivity.TOAST_ELM, "ELM ready, version 1.3, should work");
                     break;
                 case 14:
                     MainActivity.toast(MainActivity.TOAST_ELM, "ELM ready, version 1.4, should work");
@@ -269,7 +259,7 @@ public class ELM327 extends Device {
         flushWithTimeoutCore (200, '\0');
         // if a command was running, it is interrupted now and the ELM is waiting for a command. However, if there was no command running, the x
         // in the buffer will screw up the next command. There are two possibilities: Sending a Backspace and hope for the best, or sending x <CR>
-        // and being sure the ELM will report an unknow command (prompt a ? mark), as it will be processing either x <CR> or xx <CR>. We choose the latter
+        // and being sure the ELM will report an unknown command (prompt a ? mark), as it will be processing either x <CR> or xx <CR>. We choose the latter
         // discard the ? anser
         sendNoWait("x\r");
         if (!flushWithTimeoutCore (500, '\0')) {
@@ -290,7 +280,7 @@ public class ELM327 extends Device {
         // empty incoming buffer
         // just make sure there is no previous response
         // the ELM might be in a mode where it is spewing out data, and that might put this
-        // mothod in an endless loop. If there are more than 200 character to flushed, return false
+        // method in an endless loop. If there are more than 100 character flushed, return false
         // this should normally be followed by a failure and thus device re-initialisation
 
         int count = 100;
@@ -338,7 +328,6 @@ public class ELM327 extends Device {
     }
 
     private boolean initCommandExpectOk (String command, boolean untilEmpty, boolean addReturn) {
-        MainActivity.debug("ELM327: initCommandExpectOk [" + command + "] untilempty [" + untilEmpty + "]");
         String response = "";
         for (int i = 2; i > 0; i--) {
             if (untilEmpty) {
@@ -354,7 +343,7 @@ public class ELM327 extends Device {
             MainActivity.toast("Err " + command + " [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
         } */
         MainActivity.toast(MainActivity.TOAST_ELM, "Error [" + command + "] [" + response.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
-        MainActivity.debug("ELM327: initCommandExpectOk > Response was > " + response);
+        MainActivity.debug("ELM327.initCommandExpectOk c:" + command + ", untilempty:" + untilEmpty + " res:" + response);
 
         return false;
     }
@@ -387,7 +376,7 @@ public class ELM327 extends Device {
         if(!BluetoothManager.getInstance().isConnected()) return "";
 
         if(command!=null) {
-            flushWithTimeout (10);
+            flushWithTimeout (100, '>');
             // send the command
             //connectedBluetoothThread.write(command + "\r\n");
             BluetoothManager.getInstance().write(command + (addReturn ? "\r" : ""));
@@ -404,7 +393,7 @@ public class ELM327 extends Device {
         } */
         // init the buffer
         boolean stop = false;
-        String readBuffer = "";
+        StringBuilder readBuffer = new StringBuilder();
         // wait for answer
         long end = Calendar.getInstance().getTimeInMillis() + generalTimeout;
         boolean timedOut = false;
@@ -423,8 +412,9 @@ public class ELM327 extends Device {
                         // end = end + 2;
                         // convert it to a character
                         char ch = (char) data;
+			if (ch == '\n') ch = '\r';
                         // add it to the readBuffer
-                        readBuffer += ch;
+                        readBuffer.append (ch);
                         // if we reach the end of a line
                         if (ch == EOM1 || ch == EOM2 || ch == EOM3)
                         {
@@ -434,7 +424,7 @@ public class ELM327 extends Device {
                             // if we not asked to keep on and we got enough lines, stop
                             if(!untilEmpty){
                                 if(answerLinesCount<=0) { // the number of lines is in
-                                    MainActivity.debug("ELM327: sendAndWaitForAnswer > stop on decimal char [" + data + "]");
+                                    //MainActivity.debug("ELM327: sendAndWaitForAnswer > stop on decimal char [" + data + "]");
                                     stop = true; // so quit
                                 }
                                 else // the number of lines is NOT in
@@ -490,14 +480,14 @@ public class ELM327 extends Device {
             /* if (timeoutLogLevel >= 2 || (timeoutLogLevel >= 1 && (command==null || (!command.startsWith("atma") && command.startsWith("at"))))) {
                 MainActivity.toast("Timeout on [" + command + "][" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
             } */
-            MainActivity.toast(MainActivity.TOAST_ELM, "Timeout on [" + command + "] [" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
-            MainActivity.debug("ELM327: sendAndWaitForAnswer > timed out on [" + command + "] [" + readBuffer.replace("\r", "<cr>").replace(" ", "<sp>") + "]");
+            MainActivity.toast(MainActivity.TOAST_ELM, "Timeout on [" + command + "] [" + readBuffer.toString().replace("\r", "<cr>").replace(" ", "<sp>") + "]");
+            MainActivity.debug("ELM327: sendAndWaitForAnswer > timed out on [" + command + "] [" + readBuffer.toString().replace("\r", "<cr>").replace(" ", "<sp>") + "]");
             return ("");
         }
 
         //MainActivity.debug("ALC: "+answerLinesCount+" && Stop: "+stop+" && Delta: "+(Calendar.getInstance().getTimeInMillis()-start));
         //MainActivity.debug("Recv < "+readBuffer);
-        return readBuffer;
+        return readBuffer.toString();
     }
 
     private int getToId(int fromId)
@@ -527,9 +517,8 @@ public class ELM327 extends Device {
         // ensure the ATCRA filter is reset in the next NON free frame request
         lastCommandWasFreeFrame = true;
 
-        // EML needs the filter to be 3 symbols and contains the from CAN id of the ECU
-        String emlFilter = frame.getHexId() + "";
-        while (emlFilter.length() < 3) emlFilter = "0" + emlFilter;
+        // EML needs the filter to be 3 symbols and contains the from CAN id of the ECU. getHexId resturns 3 chars
+        String emlFilter = frame.getHexId();
 
         MainActivity.debug("ELM327: requestFreeFrame: atcra" + emlFilter);
         if (!initCommandExpectOk("atcra" + emlFilter)) return new Message(frame, "-E-Problem sending atcra command", true);
@@ -540,7 +529,8 @@ public class ELM327 extends Device {
         if (generalTimeout < MINIMUM_TIMEOUT) generalTimeout = MINIMUM_TIMEOUT;
         MainActivity.debug("ELM327: requestFreeFrame > TIMEOUT = "+ generalTimeout);
 
-        hexData = sendAndWaitForAnswer("atma", 20);
+	// 10 ms plus repeat time timeout, do not wait until empty, do not count lines, add \r to command
+        hexData = sendAndWaitForAnswer("atma", frame.getInterval() + 10);
 
         MainActivity.debug("ELM327: requestFreeFrame > hexData = [" + hexData + "]");
         // the dongle starts babbling now. sendAndWaitForAnswer should stop at the first full line
@@ -571,7 +561,7 @@ public class ELM327 extends Device {
         if (!deviceIsInitialized) {return new Message(frame, "-E-Re-initialisation needed", true); }
 
         String hexData;
-        int len = 0;
+        int len;
 
         // PERFORMANCE ENHANCEMENT: only send ATAR if coming from a free frame
         if (lastCommandWasFreeFrame) {
@@ -583,6 +573,7 @@ public class ELM327 extends Device {
         }
 
         // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
+        // disable for now
         lastId = 0;
         if (lastId != frame.getId()) {
             lastId = frame.getId();
@@ -592,43 +583,81 @@ public class ELM327 extends Device {
 
             // Set header
             if (!initCommandExpectOk("atsh" + toIdHex)) return new Message(frame, "-E-Problem sending atsh command", true);
+            // Set filter
+            if (!initCommandExpectOk("atcra" + Integer.toHexString(frame.getId()))) return new Message(frame, "-E-Problem sending atcra command", true);
             // Set flow control response ID
             if (!initCommandExpectOk("atfcsh" + toIdHex)) return new Message(frame, "-E-Problem sending atfcsh command", true);
-
         }
 
-        // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
-        String elmCommand = "0" + (frame.getRequestId().length() / 2) + frame.getRequestId();
-        //MainActivity.debug("R: "+request+" - C: "+pre+field.getToId());
+        int outgoingLength = frame.getRequestId().length();
+        String elmResponse = "";
+        if (outgoingLength <= 12) {
+            // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
+            String elmCommand = "0" + (outgoingLength / 2) + frame.getRequestId();
+            // send SING frame.
+            elmResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
+        } else {
+            int startIndex = 0;
+            int endIndex = 12;
+            // send FRST frame.
+            String elmCommand = String.format("1%03X", outgoingLength / 2) + frame.getRequestId().substring(startIndex, endIndex);
+            //flushWithTimeout(500, '>');
+            String elmFlowResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
+            startIndex = endIndex;
+            if (startIndex > outgoingLength) startIndex = outgoingLength;
+            endIndex += 14;
+            if (endIndex > outgoingLength) endIndex = outgoingLength;
+            int next = 1;
+            while (startIndex < outgoingLength) {
+                // prepare NEXT frame.
+                elmCommand = String.format("2%01X", next) + frame.getRequestId().substring(startIndex, endIndex);
+                // for the moment we ignore block size, just 1 or all. Also ignore delay
+                if (elmFlowResponse.startsWith("3000")) {
+                    // The receiving ECU expects all data to be sent without further flow control,
+                    // the ELM still answers with at least a \n after each sent frame.
+                    // Since there are no further flow control frames, we just pretent the answer
+                    // of each frame is the actual answer and won't change the FlowResponse
+                    //flushWithTimeout(500, '>');
+                    elmResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
+                } else if (elmFlowResponse.startsWith("30")) {
+                    // The receiving ECU expects the next frame of data to be sent, and it will
+                    // respond with the next flow control command, or the actual answer. We just
+                    // pretent the answer of the frame is both the actual answer as wel as the next
+                    // FlowResponse
+                    //flushWithTimeout(500, '>');
+                    elmFlowResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
+                    elmResponse = elmFlowResponse;
+                } else {
+                    return new Message(frame, "-E-ISOTP tx flow Error", true);
+                }
+                startIndex = endIndex;
+                if (startIndex > outgoingLength) startIndex = outgoingLength;
+                endIndex += 14;
+                if (endIndex > outgoingLength) endIndex = outgoingLength;
+                if (next == 15) next = 0; else next++;
+            }
+        }
 
-        // get 0x1 frame. No delays, and no waiting until done.
-        String elmResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
+        // clean-up if there is mess around
+        elmResponse = elmResponse.trim();
+        if (elmResponse.startsWith(">")) elmResponse = elmResponse.substring(1);
 
+        // quit on error conditions
         if (elmResponse.compareTo("CAN ERROR") == 0) {
             return new Message(frame, "-E-Can Error", true);
-        }
-        if (elmResponse.compareTo("?") == 0) {
+        } else if (elmResponse.compareTo("?") == 0) {
             return new Message(frame, "-E-Unknown command", true);
-        }
-        if (elmResponse.compareTo("") == 0) {
+        } else if (elmResponse.compareTo("") == 0) {
             return new Message(frame, "-E-Empty result", true);
         }
 
-        // process first line (SINGLE or FIRST frame)
-        elmResponse = elmResponse.trim();
-        // clean-up if there is mess around
-        if (elmResponse.startsWith(">")) elmResponse = elmResponse.substring(1);
-
-        if (elmResponse.isEmpty()) {
-            return new Message(frame, "-E-unexpected ISO-TP 1st line empty", true);
-        }
-
-        // get type (first nibble)
+        // get type (first nibble of first line)
         switch (elmResponse.substring(0, 1)) {
             case "0": // SINGLE frame
                 len = Integer.parseInt(elmResponse.substring(1, 2), 16);
                 // remove 2 nibbles (type + length)
                 hexData = elmResponse.substring(2);
+                // and we're done
                 break;
             case "1": // FIRST frame
                 len = Integer.parseInt(elmResponse.substring(1, 4), 16);
@@ -636,24 +665,29 @@ public class ELM327 extends Device {
                 hexData = elmResponse.substring(4);
                 // calculate the # of frames to come. 6 byte are in and each of the 0x2 frames has a payload of 7 bytes
                 int framesToReceive = len / 7; // read this as ((len - 6 [remaining characters]) + 6 [offset to / 7, so 0->0, 1-7->7, etc]) / 7
-                // get remaining 0x2 (NEXT) frames
+                // get all remaining 0x2 (NEXT) frames
                 String lines0x1 = sendAndWaitForAnswer(null, 0, framesToReceive);
-                // split into lines
-                //String[] hexDataLines = lines0x1.split(String.valueOf(EOM1));
-                String[] hexDataLines = lines0x1.replaceAll("\n", "\r").split("[\\r]+");
+                // split into lines with hex data
+                String[] hexDataLines = lines0x1.split("[\\r]+");
+                int next = 1;
                 for (String hexDataLine : hexDataLines) {
-                    elmResponse = hexDataLine;
-                    //MainActivity.debug("Line "+(i+1)+": " + line);
-                    if (!elmResponse.isEmpty() && elmResponse.length() > 2) {
-                        // cut off the first byte (type + sequence)
-                        // adding sequence checking would be wise to detect collisions
-                        hexData += elmResponse.substring(2);
+                    // ignore empty lines
+                    hexDataLine = hexDataLine.trim();
+                    if (hexDataLine.length() > 2) {
+                        // check the proper sequence
+                        if (hexDataLine.startsWith(String.format("2%01X", next))) {
+                            // cut off the first byte (type + sequence) and add to the result
+                            hexData += hexDataLine.substring(2);
+                        } else {
+                            return new Message(frame, "-E-out of sequence ISO-TP frame", true);
+                        }
+                        if (next == 15) next = 0; else next++;
                     }
                 }
                 break;
             default:  // a NEXT, FLOWCONTROL should not be received. Neither should any other string (such as NO DATA)
                 flushWithTimeout(400, '>');
-                return new Message(frame, "-E-unexpected ISO-TP 1st nibble of first frame:" + elmResponse, true);
+                return new Message(frame, "-E-unexpected ISO-TP 1st nibble of 1st frame:" + elmResponse, true);
         }
 
 
@@ -667,7 +701,7 @@ public class ELM327 extends Device {
 
         // Having less data than specified in length is actually an error, but at least we do not need so substr it
         // if there is more data than specified in length, that is OK (filler bytes in the last frame), so cut those away
-        hexData = (hexData.length() <= len) ? hexData.trim() : hexData.substring(0, len).trim();
+        hexData = (hexData.length() <= len) ? hexData.trim().toLowerCase() : hexData.substring(0, len).trim().toLowerCase();
 
         if (hexData.equals(""))
             return new Message(frame, "-E-data empty", true);

@@ -1,0 +1,33 @@
+C140,Lost Communication with BCM
+C422,Invalid Data Received From BCM
+F003,Supply voltage
+4051,Steering wheel angle sensor
+5154,Invalid wheel circumference parameter
+5177,Important function deactivated
+C001,Vehicle CAN - no transmission
+C073,Vehicle CAN - Busoff
+C131,Lost Communication with EPS
+C420,Invalid Data Received From EPS
+C416,Invalid Data Received From ESC
+C122,Lost Communication with ESC
+5084,UBP EV inlet 1 switched BIVs
+5085,UBP EV inlet 2 controlled BIVc1
+5086,UBP EV inlet 3 controlled BIVc2
+5087,UBP EV outlet 1 switched BOVs
+5088,UBP EV outlet 2 controlled BOVc1
+5089,UBP EV outlet 3 controlled BOVc2
+508A,UBP Pressure sensor Sense piston PsSP
+508B,UBP Pressure sensor Master Cylinder PsBP
+508C,UBP Pressure sensor Accumulator PsAcc
+508D,UBP Pump motor control
+5050,UBP Internal failure
+5081,UBP EV Simulation1 SSV1
+5082,UBP EV Simulation2 SSV2
+5083,UBP EV by-pass BSV
+5151,Invalid UBP calibration parameter
+5182,EVC signal plausibility
+C100,Lost Communication with EVC
+C401,Invalid Data Received From EVC
+5181,ESC signal plausibility
+4042,UBP Brake pedal position sensor
+508E,UBP EV offset learning calibration parameter

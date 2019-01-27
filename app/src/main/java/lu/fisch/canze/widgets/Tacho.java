@@ -22,7 +22,9 @@
 
 package lu.fisch.canze.widgets;
 
+import android.content.res.Resources;
 import android.graphics.Point;
+import android.util.TypedValue;
 
 import com.google.gson.Gson;
 
@@ -168,7 +170,8 @@ public class Tacho extends Drawable {
             if(showValue)
             {
                 if(field !=null) {
-                    g.setTextSize(Math.min(width / 7, 40));
+                    //g.setTextSize(Math.min(width / 7, 40));
+                    g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 22, Resources.getSystem().getDisplayMetrics()));
                     String text = String.format("%." + String.valueOf(field.getDecimals()) + "f", field.getValue());
                     int tw = g.stringWidth(text);
                     int th = g.stringHeight(text);
@@ -185,8 +188,9 @@ public class Tacho extends Drawable {
         // draw the title
             if(title!=null && !title.equals(""))
             {
-                g.setColor(Color.BLUE);
-                g.setTextSize(20);
+                //g.setColor(Color.BLUE);
+                g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 14, Resources.getSystem().getDisplayMetrics()));
+                //g.setTextSize(20);
                 int tw = g.stringWidth(title);
                 //int th = g.stringHeight(title);
                 int tx = getX()+getWidth()/2-tw/2;

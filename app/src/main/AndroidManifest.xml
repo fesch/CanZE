@@ -51,10 +51,7 @@
         <activity
             android:name=".activities.LeafSpyActivity"
             android:label="@string/title_activity_leaf_spy" />
-        <activity
-            android:name=".activities.ConsumptionOldActivity"
-            android:label="@string/title_activity_consumption" />
-        <activity
+       <activity
             android:name=".activities.ElmTestActivity"
             android:label="@string/title_activity_elm_test" />
         <activity
@@ -105,11 +102,11 @@
         <activity
             android:name=".activities.AuxBattTechActivity"
             android:label="@string/title_activity_auxbatt" />
-        <activity
-            android:name=".activities.LoggingActivity" />
+        <activity android:name=".activities.LoggingActivity" />
         <activity
             android:name=".activities.ConsumptionActivity"
             android:label="@string/title_activity_consumption" />
+        <activity android:name=".activities.CanSeeActivity"></activity>
     </application>
 
 </manifest>

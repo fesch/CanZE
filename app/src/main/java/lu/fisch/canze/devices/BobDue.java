@@ -39,12 +39,16 @@ public class BobDue extends Device {
     //private String buffer = "";
     //private final String separator = "\n";
 
-    private static final int WRONG_THRESHOLD = 20;
+    // If there are more than WRONG_THRESHOLD empyy answer strings (meaning either just
+    // EOM as answer or no answer in TIMEOUT milliseconds, Bluetooth will be restarted
+    private static final    int     WRONG_THRESHOLD     = 20;
+    private                 int     wrongCount          = 0;
 
     // define the timeout we may wait to get an answer
-    private static final int TIMEOUT = 500;
+    private static final    int     TIMEOUT_FREE        = 50;
+    private static final    int     TIMEOUT_ISO         = 1000;
     // define End Of Message for this type of reader
-    private static final char EOM = '\n';
+    private static final    char    EOM                 = '\n';
     // the actual filter
     //private int fieldIndex = 0;
     // the thread that polls the data to the stack
@@ -72,10 +76,9 @@ public class BobDue extends Device {
     }
 
     // send a command and wait for an answer
-    private String sendAndWaitForAnswer(String command, int waitMillis)
+    private String sendAndWaitForAnswer(String command, int waitMillis, int timeout)
     {
-        // empty incoming buffer
-        // just make sure there is no previous response
+        // empty incoming buffer. This is neccesary to ensure things get not horribly out of sync
         try {
             while(BluetoothManager.getInstance().available()>0)
             {
@@ -87,10 +90,11 @@ public class BobDue extends Device {
         // send the command
         if(command!=null)
             // prefix fir EOM to make sure the previous command is done!
-            BluetoothManager.getInstance().write("\r\n"+command + "\r\n");
+            //BluetoothManager.getInstance().write("\r\n"+command + "\r\n");
+            BluetoothManager.getInstance().write(command + "\n");
         //MainActivity.debug("Send > "+command);
         // wait if needed
-        if(waitMillis>0)
+        if(waitMillis > 0)
             try {
                 Thread.sleep(waitMillis);
             } catch (InterruptedException e) {
@@ -98,40 +102,39 @@ public class BobDue extends Device {
             }
         // init the buffer
         boolean stop = false;
-        String readBuffer = "";
+        StringBuffer readBuffer = new StringBuffer ();
         // wait for answer
         long start = Calendar.getInstance().getTimeInMillis();
-        while(!stop && Calendar.getInstance().getTimeInMillis()-start<TIMEOUT)
+        long runtime = 0;
+        while(!stop && runtime < timeout)
         {
             //MainActivity.debug("Delta = "+(Calendar.getInstance().getTimeInMillis()-start));
             try {
-                // read a byte
-                if(BluetoothManager.getInstance().available()>0) {
-                    //MainActivity.debug("Reading ...");
+                if(BluetoothManager.getInstance().available()>0) { // read a byte
                     int data = BluetoothManager.getInstance().read();
-                    //MainActivity.debug("... done");
-                    // if it is a real one
-                    if (data != -1) {
-                        // convert it to a character
-                        char ch = (char) data;
-                        // add it to the readBuffer
-                        readBuffer += ch;
-                        // stop if we reached the end or if no more data is available
-                        if ((ch == EOM || BluetoothManager.getInstance().available() <= 0) &&
-                                !readBuffer.trim().isEmpty())  stop = true;
+                    //MainActivity.debug("Received byte:" + Integer.toHexString(data));
+                    if (data != -1) {              // if it is a real one
+                        char ch = (char) data;     // convert it to a character
+                        if (ch == EOM) {           // stop if we reached the end or if no more data is available
+                            stop = true;
+                        } else {
+                            // add it to the readBufferr
+                            readBuffer.append (ch);
+                        }
                     }
+                } else {
+                    //stop = true;
                 }
             }
             catch (IOException e)
             {
                 e.printStackTrace();
             }
+            runtime = Calendar.getInstance().getTimeInMillis()- start;
         }
-        //MainActivity.debug("Recv < "+readBuffer);
-        return readBuffer;
+        //MainActivity.debug("Recv < " + readBuffer + ", runtime:" + runtime);
+        return readBuffer.toString ().replaceAll("\\s", ""); // all whitespace is removed
     }
-
-    private int wrongCount = 0;
 
     @Override
     public void clearFields() {
@@ -141,55 +144,72 @@ public class BobDue extends Device {
 
     @Override
     public Message requestFreeFrame(Frame frame) {
-        // send the command and wait fir an answer, no delay
-        String data = sendAndWaitForAnswer("g" + frame.getHexId(), 0);
-        // handle empty answer
-        if(data.trim().isEmpty()) wrongCount++;
-        if(wrongCount>WRONG_THRESHOLD) {
-            wrongCount=0;
-            (new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    MainActivity.getInstance().stopBluetooth(false);
-                    MainActivity.getInstance().reloadBluetooth(false);
-                }
-            })).start();
-        }
-        return responseToMessage(frame,data);
+        // build the command string to send to the remote device
+        String command = "g" + frame.getHexId();
+        return responseToMessage(frame, command, TIMEOUT_FREE);
     }
 
     @Override
     public Message requestIsoTpFrame(Frame frame) {
         // build the command string to send to the remote device
         String command = "i" + frame.getHexId() + "," + frame.getRequestId() + "," + frame.getResponseId();
-        String data = sendAndWaitForAnswer(command, 0);
-        // handle empty answer
-        if(data.trim().isEmpty()) wrongCount++;
-        if(wrongCount>WRONG_THRESHOLD) {
-            wrongCount=0;
-            (new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    MainActivity.getInstance().stopBluetooth(false);
-                    MainActivity.getInstance().reloadBluetooth(false);
-                }
-            })).start();
-        }
-        // send and wait for an answer, no delay
-        return responseToMessage(frame,data);
+        return responseToMessage(frame, command, TIMEOUT_ISO);
     }
 
-    private Message responseToMessage(Frame frame, String text)
+    private Message responseToMessage(Frame frame, String command, int timeout)
     {
+        //MainActivity.debug("BobDue.rtm.send [" + command + "]");
+        String text = sendAndWaitForAnswer(command, 0, timeout);    // send and wait for an answer, no delay
+        if (text.length() == 0) {
+            //wrongCount++;
+            if(wrongCount > WRONG_THRESHOLD) {
+                wrongCount = 0;
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        MainActivity.getInstance().stopBluetooth(false);
+                        MainActivity.getInstance().reloadBluetooth(false);
+                    }
+                })).start();
+            }
+            return new Message(frame, "-E-BobDue.rtm.empty", true);
+        }
+
         // split up the fields
         String[] pieces = text.trim().split(",");
-        if(pieces.length>1)
-            return new Message(frame, pieces[1].trim(), false);
-        else
-        {
-            MainActivity.debug("BobDue: Got > "+text.trim());
-            return new Message(frame, "-E-Unexpected result", true);
+        if (pieces.length < 2) {
+            MainActivity.debug("BobDue.rtm.nocomma [" + text + "]");
+            return new Message(frame, "-E-BobDue.rtm.nocomma", true);
         }
+
+        int id;
+        try {
+            id = Integer.parseInt(pieces[0].trim(), 16);
+        } catch (NumberFormatException e) {
+            MainActivity.debug("BobDue.rtm.Nan [" + text + "]");
+            return new Message(frame, "-E-BobDue.rtm.Nan", true);
+        }
+
+/*        if (frame.getId() < 0x700) {
+            if (id != frame.getId()) {
+                MainActivity.debug("BobDue.rtm.difffree [" + text + "]");
+                return new Message(frame, "-E-BobDue.rtm.difffree", true);
+            }
+        } else {
+            if (id < 0x700 || id > 0x7ff) { // crude but I don't know the exact behavior of BobDue here
+                MainActivity.debug("BobDue.rtm.diffiso [" + text + "]");
+                return new Message(frame, "BobDue.rtm.diffiso", true);
+            }
+        } */
+        if (id != frame.getId()) {
+            MainActivity.debug("BobDue.rtm.diffid [" + text + "]");
+            return new Message(frame, "-E-BobDue.rtm.diffid", true);
+        }
+
+        // we could add answer length but that is not in the frame definition now
+        //  everything is fine so
+        wrongCount = 0;
+        return new Message(frame, pieces[1].trim(), false);
     }
 
     @Override

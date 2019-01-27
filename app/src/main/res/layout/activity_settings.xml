@@ -102,11 +102,11 @@
                             android:text="@string/label_DeviceAddress" />
 
                         <EditText
-                            android:layout_width="match_parent"
+                            android:id="@+id/editTextDeviceAddress"
+                            android:layout_width="164dp"
                             android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
                             android:ems="10"
-                            android:id="@+id/editTextDeviceAddress" />
+                            android:inputType="textPersonName" />
 
                         <TextView
                             android:layout_width="fill_parent"
@@ -143,9 +143,17 @@
 
                         <Button
                             android:id="@+id/logButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Logging settings" />
+                            android:layout_width="164dp"
+                            android:layout_height="33dp"
+                            android:text="Logging settings"
+                            android:textSize="8sp" />
+
+                        <Button
+                            android:id="@+id/btnCanSee"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:text="CanSee Settings"
+                            android:textSize="8sp" />
 
                     </LinearLayout>
 

@@ -21,15 +21,25 @@
 
 package lu.fisch.canze.activities;
 
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
+import lu.fisch.canze.widgets.WidgetView;
 
 public class ConsumptionActivity extends CanzeActivity implements FieldListener, DebugListener {
 
@@ -56,7 +66,28 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consumption);
+
+        // dash = 1280x400
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        float width = size.x;
+        float height = size.y;
+        //width = width / getResources().getDisplayMetrics().scaledDensity;
+        height = height / getResources().getDisplayMetrics().scaledDensity;
+
+        if(height<480 || width<480) {
+            setContentView(R.layout.activity_consumption_dash);
+        }
+        else
+        {
+            if (MainActivity.milesMode) {
+                setContentView(R.layout.activity_consumption_mi);
+            } else {
+                setContentView(R.layout.activity_consumption);
+            }
+        }
     }
 
     @Override
@@ -78,15 +109,16 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
                 String fieldId = field.getSID();
                 ProgressBar pb;
                 TextView tv;
+                double consumption;
 
                 switch (fieldId) {
                     // positive torque
                     case SID_MeanEffectiveTorque:
                         tempTorque = (int)(field.getValue() * MainActivity.reduction); // --> translate from motor torque to wheel torque
-                        pb = (ProgressBar) findViewById(R.id.MeanEffectiveAccTorque);
+                        pb = findViewById(R.id.MeanEffectiveAccTorque);
                         pb.setProgress(tempTorque);
                         if (tempTorque <= 1) break;
-                        tv = (TextView) findViewById(R.id.text_wheel_torque);
+                        tv = findViewById(R.id.text_wheel_torque);
                         if (tv != null) tv.setText(tempTorque + " " + field.getUnit());
                         break;
 
@@ -94,41 +126,52 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
                     case SID_DriverBrakeWheel_Torque_Request:
                         driverBrakeWheel_Torque_Request = (int)field.getValue();
                         tempTorque = driverBrakeWheel_Torque_Request + coasting_Torque;
-                        pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
+                        pb = findViewById(R.id.pb_driver_torque_request);
                         if (pb != null) pb.setProgress(tempTorque);
                         if (tempTorque <= 1) break;
-                        tv = (TextView) findViewById(R.id.text_wheel_torque);
+                        tv = findViewById(R.id.text_wheel_torque);
                         if (tv != null) tv.setText(-tempTorque + " " + field.getUnit());
                         break;
                     case SID_Coasting_Torque:
                         coasting_Torque = (int)(field.getValue() * MainActivity.reduction); // torque is given in motor torque, not in wheel torque
                         tempTorque = driverBrakeWheel_Torque_Request + coasting_Torque;
-                        pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
+                        pb = findViewById(R.id.pb_driver_torque_request);
                         if (pb != null) pb.setProgress(tempTorque);
                         if (tempTorque <= 1) break;
-                        tv = (TextView) findViewById(R.id.text_wheel_torque);
+                        tv = findViewById(R.id.text_wheel_torque);
                         if (tv != null) tv.setText(-tempTorque + " " + field.getUnit());
                         break;
 
                     // negative blue bar
                     case SID_TotalPotentialResistiveWheelsTorque:
                         int tprwt = -((int) field.getValue());
-                        pb = (ProgressBar) findViewById(R.id.MaxBreakTorque);
+                        pb = findViewById(R.id.MaxBreakTorque);
                         if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 10);
                         break;
 
                     // consumption
                     case SID_Instant_Consumption:
-                        ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(Math.abs(Math.min(0, (int) field.getValue())));
-                        ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(Math.max(0, (int) field.getValue()));
-                        tv = (TextView) findViewById(R.id.text_instant_consumption_negative);
-                        if (tv != null)
-                            tv.setText(((int) field.getValue()) + " " + field.getUnit());
+                        consumption = field.getValue();
+                        tv = findViewById(R.id.text_instant_consumption_negative);
+                        if (!Double.isNaN(consumption)) {
+                            // progress bars are rescaled to miles by the layout
+                            ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(-(Math.min(0, (int)consumption)));
+                            ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(  Math.max(0, (int)consumption) );
+                            if (!MainActivity.milesMode) {
+                                tv.setText(((int) consumption) + " " + field.getUnit());
+                            } else if (consumption != 0.0) { // consumption is now in kWh/100mi, so rescale progress bar
+                                // display the value in imperial format (100 / consumption, meaning mi/kwh)
+                                tv.setText(String.format (Locale.getDefault(),"%.2f %s", (100.0 / consumption), MainActivity.getStringSingle(R.string.unit_ConsumptionMiAlt)));
+                            } else {
+                                tv.setText("-");
+                            }
+                        } else {
+                            tv.setText("-");
+                        }
                         break;
-                }/**/
+                }
             }
-        });
-
+            });
     }
 
 }

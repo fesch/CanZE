@@ -376,6 +376,7 @@
     <string name="header_auxbatt">12 volt battery</string>
     <string name="label_auxbat">Voltage, Vehicle state, Charging state</string>
     <string name="label_auxbatvolt">Voltage</string>
+    <string name="label_AuxStatus">Replacement advice</string>
     <string name="label_vehiclestate">Vehicle state</string>
     <string-array name="list_VehicleState">
         <item>Asleep, off (0:red)</item>
@@ -415,8 +416,8 @@
 
     <string name="menu_Experimental">Expérimental</string>
     <string name="help_Experimental">Les boutons ci-dessous sont à des fins de test uniquement</string>
-    <string name="label_IH_ClimCompRPMStatus">Compressor RPM</string>
-
+    <!-- <string name="label_IH_ClimCompRPMStatus">Compressor RPM, ECO</string> -->
+    <string name="label_IH_ClimCompPWRStatus">Consommation Clima (W), ECO</string>
     <string name="label_EndBatteryTemp">Temp</string>
     <string name="label_EndOfChargeStatus">Fin</string>
     <string name="label_EndSoc">SOC</string>

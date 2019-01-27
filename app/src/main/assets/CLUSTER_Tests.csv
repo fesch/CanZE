@@ -1,0 +1,97 @@
+47,watchdog / safety µC failure
+76,wrong mounting position
+83,value of signal protection calculation incorrect
+05,System Programming Failures
+04,System Internal Failures
+48,supervision software failure
+43,special memory failure
+23,signal stuck low
+24,signal stuck high
+29,signal signal invalid
+25,signal shape / waveform failure
+26,signal rate of change below threshold
+27,signal rate of change above threshold
+64,signal plausibility failure
+33,signal low time > maximum
+32,signal low time < minimum
+86,signal invalid
+67,signal incorrect after event
+35,signal high time > maximum
+34,signal high time < minimum
+66,signal has too many transitions / events
+65,signal has too few transitions / events
+36,signal frequency too low
+37,signal frequency too high
+38,signal frequency incorrect
+2F,signal erratic
+62,signal compare failure
+61,signal calculation failure
+28,signal bias level out of range / 0 adjust failure
+84,signal below allowable range
+22,signal amplitude > maximum
+21,signal amplitude < minimum
+85,signal above allowable range
+45,program memory failure
+92,performance or incorrect operation
+91,parametric
+4B,over temperature
+51,not programmed
+55,not configured
+52,not activated
+31,no signal
+93,no operation
+87,missing message
+54,missing calibration
+79,mechanical linkage failure
+07,Mechanical Failures
+7B,low fluid level
+81,invalid serial data received
+49,internal electronic failure
+3A,incorrect has too many pulses
+39,incorrect has too few pulses
+4A,incorrect component installed
+94,unexpected operation
+02,General signal failure
+42,general memory failure
+01,General Electrical Failure
+41,general checksum failure
+03,FM (Frequency Modulated) / PWM  Failures
+7A,fluid leak or seal failure
+68,event information
+8F,erratic
+75,emergency position not reachable
+00,Device and failure type ODB codding
+53,deactivated
+44,data memory failure
+95,incorrect assembly
+97,Component or system operation obstructed or blocke
+96,component internal failure
+09,Component Failures
+77,commanded position not reachable
+1C,circuit voltage out of range
+16,circuit voltage below threshold
+17,circuit voltage above threshold
+14,circuit short to ground or open
+11,circuit short to ground
+15,circuit short to battery or open
+12,circuit short to battery
+1E,circuit resistance out of range
+1A,circuit resistance below threshold
+1B,circuit resistance above threshold
+13,circuit open
+1F,circuit intermittent
+1D,circuit current out of range
+18,circuit current below threshold
+19,circuit current above threshold
+63,circuit / component protection time-out
+46,calibration / parameter memory failure
+08,Bus Signal / Message Failures
+88,bus off
+82,alive / sequence counter incorrect / not updated
+78,alignment or adjustment incorrect
+06,Algorithm Based Failures
+72,actuator stuck open
+73,actuator stuck closed
+71,actuator stuck
+74,actuator slipping
+98,component or system over temperature
