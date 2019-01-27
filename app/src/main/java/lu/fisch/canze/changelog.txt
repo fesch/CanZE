@@ -1,8 +1,13 @@
+---< Version 1.28 / 2019.01.27 >---
+2019-01-26 [Bob] Updated some frames for streched displays like dashcam
+2019-01-25 [Jeroen] Added TMPS support
+2019-01-24 [Jeroen] Improvements for the CanSee dongle
+2018-12-20 [Jeroen & Bob] Development of the CanSee dongle
 2018-03-24 [Jeroen] Added 1 volt battery replacement advice to activity_auxbat
 2018-01-18 [Jeroen] Re-enabled Energy consumed on request
 
 ---< Version 1.27 / 2018.01.11 >---
-??
+???
 
 ---< Version 1.26 / 2017.12.17 >---
 2017.12.12 [Jeroen] Finalized new consumpion, added alpha color, some plot debugging code
