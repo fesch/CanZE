@@ -156,9 +156,10 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
                     android:layout_marginTop="4dp"
-                    android:text=""
-                    android:layout_column="0"/>
-
+                    android:layout_weight="1"
+                    android:drawableLeft="@mipmap/button_consumption"
+                    android:drawableStart="@mipmap/button_consumption"
+                    android:text="Tests Bob" />
 
                 <Button
                     android:id="@+id/buttonDummy2"

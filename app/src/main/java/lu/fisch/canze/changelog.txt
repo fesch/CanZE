@@ -1,4 +1,4 @@
----< Version 1.27 / 2019-01.27 >---
+---< Version 1.29 / 2019-01.27 >---
 2019-01-26 [Jeroen] Clima RPM replaced for Watt
 2019-01-23 [Bob] Dash device screen for consumption added
 2019-01-18 [Jeroen] Implemented multi frame outgoing ISO-TP messages, fixes in ELM code
@@ -16,6 +16,7 @@
 
 ---< Version 1.28 / 2018.05.08 >---
 2018-03-24 [Jeroen] Added 12 volt battery replacement advice to activity_auxbat
+2018-03-24 [Jeroen] Added 1 volt battery replacement advice to activity_auxbat
 2018-01-18 [Jeroen] Re-enabled Energy consumed on request
 
 ---< Version 1.27 / 2018.01.11 >---

@@ -205,6 +205,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public static MainActivity getInstance()
     {
+        if(instance==null)
+            instance = new MainActivity();
         return instance;
     }
 
