@@ -412,8 +412,8 @@
 
     <string name="menu_Experimental">Experimenteel</string>
     <string name="help_Experimental">De knoppen hieronder zijn alleen voor testgebruik</string>
-    <!-- <string name="label_IH_ClimCompRPMStatus">Compressor RPM</string> -->
-    <string name="label_IH_ClimCompPWRStatus">Verbruik Klimaat (W) / ECO</string>
+    <!-- <string name="label_IH_ClimCompRPMStatus">Compressor RPM, ECO</string> -->
+    <string name="label_IH_ClimCompPWRStatus">Verbruik Klimaat (W), ECO</string>
     <string name="label_EndBatteryTemp">Temp</string>
     <string name="label_EndOfChargeStatus">End</string>
     <string name="label_EndSoc">SOC</string>

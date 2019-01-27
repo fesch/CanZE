@@ -423,8 +423,8 @@ Diesen Modus zu entsperren ist nicht empfohlen.\n\n Bist du sicher, dass du den 
     <string name="label_EndSoc">SOC</string>
     <string name="label_EnergyConsumed">Energieverbrauch in kWh</string>
     <string name="label_HistDuration">Dura</string>
-    <!-- <string name="label_IH_ClimCompRPMStatus">Compressor RPM / ECO mode</string> -->
-    <string name="label_IH_ClimCompPWRStatus">Kompressor verbrauch (W) / ECO</string>
+    <!-- <string name="label_IH_ClimCompRPMStatus">Compressor RPM, ECO mode</string> -->
+    <string name="label_IH_ClimCompPWRStatus">Kompressor verbrauch (W), ECO</string>
     <string name="label_IH_ElectricalPowerDrived">Compressor power</string>
     <string name="label_distance">Km</string>
     <string name="label_TypeOfCharge">Typ</string>
