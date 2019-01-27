@@ -372,6 +372,7 @@
     <string name="header_auxbatt">12 volt battery</string>
     <string name="label_auxbat">Voltage, Vehicle state, Charging state</string>
     <string name="label_auxbatvolt">Voltage</string>
+    <string name="label_AuxStatus">Replacement advice</string>
     <string name="label_vehiclestate">Vehicle state</string>
     <string-array name="list_VehicleState">
         <item>Asleep, off (0:red)</item>
@@ -416,7 +417,8 @@
     <string name="label_EndSoc">SOC</string>
     <string name="label_EnergyConsumed">Energy consumed kWh</string>
     <string name="label_HistDuration">Dura</string>
-    <string name="label_IH_ClimCompRPMStatus">Compressor RPM / ECO mode</string>
+    <!-- <string name="label_IH_ClimCompRPMStatus">Compressor RPM, ECO mode</string> -->
+    <string name="label_IH_ClimCompPWRStatus">Compressor power (W), ECO mode</string>
     <string name="label_IH_ElectricalPowerDrived">Compressor power</string>
     <string name="label_TypeOfCharge">Type</string>
     <string name="label_distance">Km</string>
