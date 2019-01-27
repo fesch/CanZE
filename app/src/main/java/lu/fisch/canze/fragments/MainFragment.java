@@ -34,7 +34,6 @@ import lu.fisch.canze.activities.BatteryActivity;
 import lu.fisch.canze.activities.BrakingActivity;
 import lu.fisch.canze.activities.ChargingActivity;
 import lu.fisch.canze.activities.ConsumptionActivity;
-import lu.fisch.canze.activities.ConsumptionOldActivity;
 import lu.fisch.canze.activities.DrivingActivity;
 import lu.fisch.canze.activities.HeatmapBatcompActivity;
 import lu.fisch.canze.activities.HeatmapCellvoltageActivity;
@@ -58,7 +57,7 @@ public class MainFragment extends Fragment {
 
         Button button;
 
-        button = (Button) view.findViewById(R.id.buttonBattery);
+        button = view.findViewById(R.id.buttonBattery);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +70,7 @@ public class MainFragment extends Fragment {
             }
         });
 
-        button = (Button) view.findViewById(R.id.buttonChargingActivity);
+        button = view.findViewById(R.id.buttonChargingActivity);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +83,7 @@ public class MainFragment extends Fragment {
             }
         });
 
-        button = (Button) view.findViewById(R.id.buttonDrivingActivity);
+        button = view.findViewById(R.id.buttonDrivingActivity);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +96,7 @@ public class MainFragment extends Fragment {
             }
         });
 
-        button = (Button) view.findViewById(R.id.buttonConsumption);
+        button = view.findViewById(R.id.buttonConsumption);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +109,7 @@ public class MainFragment extends Fragment {
             }
         });
 
-        button = (Button) view.findViewById(R.id.buttonBraking);
+        button = view.findViewById(R.id.buttonBraking);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,7 +122,7 @@ public class MainFragment extends Fragment {
             }
         });
 
-        button = (Button) view.findViewById(R.id.buttonHeatmapBatcomp);
+        button = view.findViewById(R.id.buttonHeatmapBatcomp);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,7 +134,7 @@ public class MainFragment extends Fragment {
             }
         });
 
-        button = (Button) view.findViewById(R.id.buttonHeatmapCellvoltage);
+        button = view.findViewById(R.id.buttonHeatmapCellvoltage);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,7 +146,7 @@ public class MainFragment extends Fragment {
             }
         });
 
-        button = (Button) view.findViewById(R.id.buttonTyres);
+        button = view.findViewById(R.id.buttonTyres);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

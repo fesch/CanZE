@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="lu.fisch.canze.activities.ConsumptionOldActivity"
+    tools:context="lu.fisch.canze.activities.ConsumptionActivity"
     android:orientation="vertical"
     >
 
@@ -117,8 +117,9 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/instantConsumption"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0px"
             android:layout_gravity="start"
             >
 
@@ -131,7 +132,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:weightSum="3" >
+                android:weightSum="2" >
 
 
                 <ProgressBar
@@ -218,23 +219,28 @@
                 android:layout_marginTop="8dp"
                 custom:min="-30"
                 custom:max="70"
-                custom:minAlt="0"
-                custom:maxAlt="25,64:45,128:45"
+                custom:minAlt="-15"
+                custom:maxAlt="15"
                 custom:majorTicks="15"
                 custom:minorTicks="5"
-                custom:fieldSID="1fd.48,427.49"
+                custom:fieldSID="1fd.48,800.6107.24"
                 custom:widget="timeplot"
                 custom:colorRanges="[
                     {'sid':'1fd.48','color':'#cc00ff','from':-100,'to':-1},
                     {'sid':'1fd.48','color':'#3ee9ff','from':-1,'to':1},
                     {'sid':'1fd.48','color':'#008a1d','from':1,'to':20},
                     {'sid':'1fd.48','color':'#ffaa17','from':20,'to':33},
-                    {'sid':'1fd.48','color':'#FF0000','from':33,'to':100}]"
-                custom:text="@string/graph_PowerEnergy"
-                custom:intervals="{'427.49':10000}"
+                    {'sid':'1fd.48','color':'#FF0000','from':33,'to':100},
+                    {'sid':'800.6107.24','color':'#017720','from':-20,'to':0},
+                    {'sid':'800.6107.24','color':'#77011d','from':0,'to':20}
+                ]"
+                custom:text="Power (kWh), Delta with reality (km)"
+                custom:intervals="{
+                    '800.6107.24':2000
+                }"
                 custom:options="{
                     '1fd.48':'gradient',
-                    '427.49':'alt,dot'
+                    '800.6107.24':'alt'
                 }"
                 />
 
@@ -264,7 +270,7 @@
                 custom:widget="timeplot"
                 custom:text="@string/graph_SpeedConsumption"
                 custom:intervals="{
-                                   }"
+                }"
                 custom:colorRanges="[
                     {'sid':'800.6100.24','color':'#000000','from':-1000,'to':0},
                     {'sid':'800.6100.24','color':'#AA0000','from':0,'to':11000},
@@ -272,74 +278,17 @@
                     {'sid':'5d7.0','color':'#ffaa17','from':70,'to':100},
                     {'sid':'5d7.0','color':'#FF0000','from':100,'to':130},
                     {'sid':'5d7.0','color':'#cc00ff','from':130,'to':160}
-                    ]"
+                ]"
                 custom:options="{
-                                   '5d7.0':'gradient',
-                                   '800.6104.24':'alt'
-                                }"
+                    '5d7.0':'gradient',
+                    '800.6104.24':'alt'
+                }"
                 />
 
         </TableRow>
 
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="horizontal"
-            android:layout_weight="1">
 
-            <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/socandco"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="8dp"
-                custom:min="0"
-                custom:max="180,64:320,128:320"
-                custom:minAlt="0"
-                custom:maxAlt="120"
-                custom:majorTicks="30"
-                custom:minorTicks="10"
-                custom:fieldSID="654.42,654.25"
-                custom:widget="timeplot"
-                custom:text="@string/graph_RangeSoc"
-                custom:intervals="{
-                                   '654.42':10000,
-                                   '654.25':60000
-                                   }"
-                custom:colorRanges="[
-                    {'sid':'654.25','color':'#000000','from':-1000,'to':11000}
-                    ]"
-                custom:options="{
-                                '654.25':'alt,dot'
-                                }"
-                />
-
-        </TableRow>
 
     </TableLayout>
-    <!-- debug line -->
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        >
-
-        <TextView
-            android:text="@string/label_debug"
-            android:textColor="#000"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            />
-        <TextView
-            android:id="@+id/textDebug"
-            android:text="@string/default_debug"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-    </LinearLayout>
 
 </LinearLayout>

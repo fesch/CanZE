@@ -49,7 +49,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
-    public static final String SID_Consumption                          = "1fd.48"; //EVC
+    public static final String SID_DcPower                              = "1fd.48"; //EVC
     public static final String SID_Pedal                                = "186.40"; //EVC
     public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
     public static final String SID_Coasting_Torque                      = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
@@ -75,7 +75,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driving);
 
-        final TextView distkmToDest = (TextView) findViewById(R.id.LabelDistToDest);
+        final TextView distkmToDest = findViewById(R.id.LabelDistToDest);
         distkmToDest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,10 +85,11 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
 
         if (MainActivity.milesMode) {
             TextView tv;
-            tv = (TextView) findViewById(R.id.textSpeedUnit);
+            tv = findViewById(R.id.textSpeedUnit);
             tv.setText(MainActivity.getStringSingle(R.string.unit_SpeedMi));
-            tv = (TextView) findViewById(R.id.textConsumptionUnit);
-            tv.setText(MainActivity.getStringSingle(R.string.unit_ConsumptionMi));
+            tv = findViewById(R.id.textConsumptionUnit);
+            //tv.setText(MainActivity.getStringSingle(R.string.unit_ConsumptionMi));
+            tv.setText(MainActivity.getStringSingle(R.string.unit_ConsumptionMiAlt));
         }
     }
 
@@ -97,7 +98,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
 
         // Make sure to add ISO-TP listeners grouped by ID
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_Consumption, 0);
+        addField(SID_DcPower, 0);
         addField(SID_Pedal, 0);
         addField(SID_MeanEffectiveTorque, 0);
         addField(SID_DriverBrakeWheel_Torque_Request, 0);
@@ -131,7 +132,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                     public void onClick(DialogInterface dialog, int id) {
                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
-                        EditText dialogDistToDest = (EditText) distToDestView.findViewById(R.id.dialog_dist_to_dest);
+                        EditText dialogDistToDest = distToDestView.findViewById(R.id.dialog_dist_to_dest);
                         if (dialogDistToDest != null) {
                             saveDestOdo(odo + Integer.parseInt(dialogDistToDest.getText().toString()));
                         }
@@ -142,7 +143,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                     public void onClick(DialogInterface dialog, int id) {
                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
-                        EditText dialogDistToDest = (EditText) distToDestView.findViewById(R.id.dialog_dist_to_dest);
+                        EditText dialogDistToDest = distToDestView.findViewById(R.id.dialog_dist_to_dest);
                         if (dialogDistToDest != null) {
                             saveDestOdo(odo + 2 * Integer.parseInt(dialogDistToDest.getText().toString()));
                         }
@@ -199,9 +200,9 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
 
     private void setDestToDest(String distance1, String distance2) {
         TextView tv;
-        tv = (TextView) findViewById(R.id.textDistToDest);
+        tv = findViewById(R.id.textDistToDest);
         tv.setText(distance1);
-        tv = (TextView) findViewById(R.id.textDistAVailAtDest);
+        tv = findViewById(R.id.textDistAVailAtDest);
         tv.setText(distance2);
     }
 
@@ -222,15 +223,15 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                 switch (fieldId) {
                     case SID_SoC:
 //                  case SID_EVC_SoC:
-                        tv = (TextView) findViewById(R.id.textSOC);
+                        tv = findViewById(R.id.textSOC);
                         break;
                     case SID_Pedal:
 //                  case SID_EVC_Pedal:
-                        pb = (ProgressBar) findViewById(R.id.pedalBar);
+                        pb = findViewById(R.id.pedalBar);
                         pb.setProgress((int) field.getValue());
                         break;
                     case SID_MeanEffectiveTorque:
-                        pb = (ProgressBar) findViewById(R.id.MeanEffectiveAccTorque);
+                        pb = findViewById(R.id.MeanEffectiveAccTorque);
                         pb.setProgress((int) (field.getValue() * MainActivity.reduction)); // --> translate from motor torque to wheel torque
                         break;
                     case SID_EVC_Odometer:
@@ -239,18 +240,20 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         tv = null;
                         break;
                     case SID_MaxCharge:
-                        tv = (TextView) findViewById(R.id.text_max_charge);
+                        tv = findViewById(R.id.text_max_charge);
                         break;
                     case SID_RealSpeed:
                         realSpeed = (Math.round(field.getValue() * 10.0) / 10.0);
-                        tv = (TextView) findViewById(R.id.textRealSpeed);
+                        tv = findViewById(R.id.textRealSpeed);
                         break;
-                    case SID_Consumption:
+                    case SID_DcPower:
                         double dcPwr = field.getValue();
-                        tv = (TextView) findViewById(R.id.textConsumption);
-                        if (realSpeed > 5) {
+                        tv = findViewById(R.id.textConsumption);
+                        if (!MainActivity.milesMode && realSpeed > 5) {
                             tv.setText(String.format(Locale.getDefault(), "%.1f", 100.0 * dcPwr / realSpeed));
-                            // tv.setText("" + (Math.round(1000.0 * dcPwr / realSpeed) / 10.0));
+                        } else if (MainActivity.milesMode && dcPwr != 0) {
+                            // real speed has already been returned in miles, so no conversions should be done
+                            tv.setText(String.format(Locale.getDefault(), "%.2f", realSpeed / dcPwr));
                         } else {
                             tv.setText("-");
                         }
@@ -279,14 +282,14 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
 
                     case SID_TotalPotentialResistiveWheelsTorque:
                         int tprwt = - ((int) field.getValue());
-                        pb = (ProgressBar) findViewById(R.id.MaxBreakTorque);
+                        pb = findViewById(R.id.MaxBreakTorque);
                         if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 10);
-                        tv = null; // (TextView) findViewById(R.id.textTPRWT);
+                        tv = null; // findViewById(R.id.textTPRWT);
                         break;
 
                     case SID_DriverBrakeWheel_Torque_Request:
                         driverBrakeWheel_Torque_Request = field.getValue() + coasting_Torque;
-                        pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
+                        pb = findViewById(R.id.pb_driver_torque_request);
                         if (pb != null) pb.setProgress((int) driverBrakeWheel_Torque_Request);
                         tv = null;
                         break;

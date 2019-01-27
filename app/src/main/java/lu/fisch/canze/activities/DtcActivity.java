@@ -61,23 +61,24 @@ public class DtcActivity extends CanzeActivity {
     boolean dumpInProgress = false;
 
     private StoppableThread queryThread;
+    private long ticker = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dtc);
 
-        textView = (TextView) findViewById(R.id.textResult);
+        textView = findViewById(R.id.textResult);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
             if (ecu.getFromId() != 0) arrayAdapter.add(ecu.getMnemonic());
         }
         // display the list
-        final Spinner spinnerEcu = (Spinner) findViewById(R.id.ecuList);
+        final Spinner spinnerEcu = findViewById(R.id.ecuList);
         spinnerEcu.setAdapter(arrayAdapter);
 
-        final Button btnQuery = (Button) findViewById(R.id.ecuQuery);
+        final Button btnQuery = findViewById(R.id.ecuQuery);
         btnQuery.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +86,7 @@ public class DtcActivity extends CanzeActivity {
             }
         });
 
-        final Button btnClear = (Button) findViewById(R.id.ecuClear);
+        final Button btnClear = findViewById(R.id.ecuClear);
         btnClear.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +94,7 @@ public class DtcActivity extends CanzeActivity {
             }
         });
 
-        final Button btnDiag = (Button) findViewById(R.id.ecuDiag);
+        final Button btnDiag = findViewById(R.id.ecuDiag);
         btnDiag.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +124,44 @@ public class DtcActivity extends CanzeActivity {
     protected void initListeners() {
     }
 
+    private void testerKeepalive() {
+        ticker = Calendar.getInstance().getTimeInMillis();
+    }
+    private void testerKeepalive(Ecu ecu) {
+        if (!ecu.getSessionRequired()) return;
+        if (Calendar.getInstance().getTimeInMillis() < ticker) return;
+        MainActivity.device.requestFrame(Frames.getInstance().getById(ecu.getFromId(), "7e01"));
+        ticker = ticker + 1500;
+    }
+
+    private boolean testerInit(Ecu ecu) {
+        if (!ecu.getSessionRequired()) return true;
+        String filter = Integer.toHexString(ecu.getFromId());
+        // we are a testerInit
+        appendResult(MainActivity.getStringSingle(R.string.message_StartTestSession) + " (testerInit)\n");
+        //field = Fields.getInstance().getBySID(filter + ".7e01.0");
+        Field field = Fields.getInstance().getBySID(filter + ".50c0.0");
+        if (field != null) {
+            // query the Field
+            Message message = MainActivity.device.requestFrame(field.getFrame());
+            if (!message.isError()) {
+                String backRes = message.getData();
+                // check the response
+                if (backRes.toLowerCase().startsWith("50c0")) {
+                    testerKeepalive();
+                    return true;
+                } else {
+                    appendResult("Start Diag Session, unexpected result [" + backRes + "]\n");
+                }
+            } else {
+                appendResult("Start Diag Session, error result [" + message.getError() + "]\n");
+            }
+        } else {
+            appendResult(R.string.message_NoTestSessionField);
+        }
+        return false;
+    }
+
     void doQueryEcu(final Ecu ecu) {
 
         clearResult();
@@ -130,18 +169,21 @@ public class DtcActivity extends CanzeActivity {
 
         // here initialize this particular ECU diagnostics fields
         try {
-            Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
-            java.lang.reflect.Method methodLoad;
+            //Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
+            //java.lang.reflect.Method methodLoad;
 
-            methodLoad = diagEcu.getClass().getMethod("load");
-            methodLoad.invoke(diagEcu);
+            //methodLoad = diagEcu.getClass().getMethod("load");
+            //methodLoad.invoke(diagEcu);
+            Frames.getInstance().load (ecu);
+            Fields.getInstance().load (ecu.getMnemonic() + "_Fields.csv");
+            Dtcs.getInstance().load(ecu.getMnemonic() + "_Dtcs.csv", ecu.getMnemonic() + "_Tests.csv");
         } catch (Exception e) {
             appendResult(R.string.message_NoEcuDefinition);
             // Reload the default frame & timings
             Frames.getInstance().load();
             Fields.getInstance().load();
+            // Don't care about DTC's and tests
         }
-
 
         // re-initialize the device
         appendResult(R.string.message_SendingInit);
@@ -176,67 +218,14 @@ public class DtcActivity extends CanzeActivity {
                 }
 
                 // still trying desperately to get to the BCB!!!1
-                if (filter.equals("793")) {
-                    // we are a tester
-                    appendResult(MainActivity.getStringSingle(R.string.message_StartTestSession) + " (tester)\n");
-                    field = Fields.getInstance().getBySID(filter + ".7e01.0");
-                    if (field != null) {
-                        // query the Field
-                        message = MainActivity.device.requestFrame(field.getFrame());
-                        if (!message.isError()) {
-                            backRes = message.getData();
-                            // check the response
-                            if (!backRes.toLowerCase().startsWith("7e")) {
-                                appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes + "]\n");
-                            }
-                        } else {
-                            appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + message.getError() + "]\n");
-                        }
-                    } else {
-                        appendResult(R.string.message_NoTestSessionField);
-                    }
-
-                    // start a diag 1 session
-                    appendResult(MainActivity.getStringSingle(R.string.message_StartTestSession) + " (diag 1)\n");
-                    field = Fields.getInstance().getBySID(filter + ".5081.0");
-                    if (field != null) {
-                        // query the Field
-                        message = MainActivity.device.requestFrame(field.getFrame());
-                        if (!message.isError()) {
-                            backRes = message.getData();
-                            // check the response
-                            if (!backRes.toLowerCase().startsWith("7e")) {
-                                appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes + "]\n");
-                            }
-                        } else {
-                            appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + message.getError() + "]\n");
-                        }
-                    } else {
-                        appendResult(R.string.message_NoTestSessionField);
-                    }
-
-                    // start a diag 2 session
-                    appendResult(MainActivity.getStringSingle(R.string.message_StartTestSession) + " (diag 2)\n");
-                    field = Fields.getInstance().getBySID(filter + ".50c0.0");
-                    if (field != null) {
-                        // query the Field
-                        message = MainActivity.device.requestFrame(field.getFrame());
-                        if (!message.isError()) {
-                            backRes = message.getData();
-                            // check the response
-                            if (!backRes.toLowerCase().startsWith("7e")) {
-                                appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes + "]\n");
-                            }
-                        } else {
-                            appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + message.getError() + "]\n");
-                        }
-                    } else {
-                        appendResult(R.string.message_NoTestSessionField);
-                    }
+                if (!testerInit(ecu)) {
+                    appendResult(R.string.message_InitFailed);
+                    return;
                 }
 
                 boolean onePrinted = false;
                 for (String getDtc : ecu.getGetDtcs().split(";")) {
+                    testerKeepalive(ecu);
                     // compile the field query and get the Field object
                     appendResult(MainActivity.getStringSingle(R.string.message_GetDtcs) + getDtc + "]\n");
                     field = Fields.getInstance().getBySID(filter + "." + getDtc + ".0"); // get DTC
@@ -297,8 +286,27 @@ public class DtcActivity extends CanzeActivity {
     void doClearEcu(final Ecu ecu) {
 
         clearResult();
-
         appendResult(MainActivity.getStringSingle(R.string.message_clear) + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
+
+        // here initialize this particular ECU diagnostics fields
+        try {
+            //Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
+            //java.lang.reflect.Method methodLoad;
+
+            //methodLoad = diagEcu.getClass().getMethod("load");
+            //methodLoad.invoke(diagEcu);
+            Frames.getInstance().load (ecu);
+            Fields.getInstance().load (ecu.getMnemonic() + "_Fields.csv");
+        } catch (Exception e) {
+            appendResult(R.string.message_NoEcuDefinition);
+            // Reload the default frame & timings
+            Frames.getInstance().load();
+            Fields.getInstance().load();
+            // Don't care about DTC's and tests
+        }
+
+        // re-initialize the device
+        appendResult(R.string.message_SendingInit);
 
         // try to stop previous thread
         if (queryThread != null)
@@ -338,6 +346,9 @@ public class DtcActivity extends CanzeActivity {
                     return;
                 }
 
+                testerInit(ecu);
+                testerKeepalive();
+
                 // query the Field
                 Message message = MainActivity.device.requestFrame(frame);
                 if (message.isError()) {
@@ -363,22 +374,27 @@ public class DtcActivity extends CanzeActivity {
     void doDiagEcu(final Ecu ecu) {
 
         clearResult();              // clear the screen
+        appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
 
         // here initialize this particular ECU diagnostics fields
         try {
-            Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
-            java.lang.reflect.Method methodLoad;
+            //Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
+            //java.lang.reflect.Method methodLoad;
 
-            methodLoad = diagEcu.getClass().getMethod("load");
-            methodLoad.invoke(diagEcu);
-
-            //Frames.getInstance().load (diagEcu.framesString ());
-            //Fields.getInstance().load (diagEcu.fieldsString ());
+            //methodLoad = diagEcu.getClass().getMethod("load");
+            //methodLoad.invoke(diagEcu);
+            Frames.getInstance().load (ecu);
+            Fields.getInstance().load (ecu.getMnemonic() + "_Fields.csv");
+            Dtcs.getInstance().load(ecu.getMnemonic() + "_Dtcs.csv", ecu.getMnemonic() + "_Tests.csv");
         } catch (Exception e) {
-            appendResult(R.string.message_NoEcuDefinition2);
-            return;
+            appendResult(R.string.message_NoEcuDefinition);
+            // Reload the default frame & timings
+            Frames.getInstance().load();
+            Fields.getInstance().load();
+            // Don't care about DTC's and tests
         }
 
+        // re-initialize the device
         appendResult(R.string.message_SendingInit);
 
         // try to stop previous thread
@@ -403,8 +419,10 @@ public class DtcActivity extends CanzeActivity {
                 }
 
                 createDump(ecu);
+                testerInit(ecu);
 
                 for (Frame frame : Frames.getInstance().getAllFrames()) {
+                    testerKeepalive();
                     // see if we need to stop right now
                     if (((StoppableThread) Thread.currentThread()).isStopped()) return;
 
@@ -420,11 +438,11 @@ public class DtcActivity extends CanzeActivity {
 
                             for (Field field : frame.getAllFields()) {
                                 if (field.isString()) {
-                                    appendResult(field.getName() + ":" + field.getStringValue() + "\n");
+                                    appendResult(field.getSID() + " " + field.getName() + ":" + field.getStringValue() + "\n");
                                 } else if (field.isList()) {
-                                    appendResult(field.getName() + ":" + field.getListValue() + "\n");
+                                    appendResult(field.getSID() + " " + field.getName() + ":" + field.getListValue() + "\n");
                                 } else {
-                                    appendResult(field.getName() + ":" + field.getValue() + field.getUnit() + "\n");
+                                    appendResult(field.getSID() + " " + field.getName() + ":" + field.getValue() + field.getUnit() + "\n");
                                 }
                             }
                         } else {
@@ -437,6 +455,8 @@ public class DtcActivity extends CanzeActivity {
                     }
                 }
                 closeDump();
+                MainActivity.toast (-100, "Done. Logfile created:");
+
             }
         });
         queryThread.start();
@@ -529,6 +549,8 @@ public class DtcActivity extends CanzeActivity {
             //BufferedWriter for performance, true to set append to file flag
             bufferedDumpWriter = new BufferedWriter(new FileWriter(logFile, true));
             dumpInProgress = true;
+            MainActivity.toast (-100, "Wait, writing " + exportdataFileName);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -537,7 +559,10 @@ public class DtcActivity extends CanzeActivity {
 
     private void closeDump() {
         try {
-            if (dumpInProgress) bufferedDumpWriter.close();
+            if (dumpInProgress) {
+                bufferedDumpWriter.close();
+                MainActivity.toast (-100, "Done.");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

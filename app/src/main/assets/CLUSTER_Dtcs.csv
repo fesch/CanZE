@@ -1,0 +1,22 @@
+940D,Paramètre CAN produit Vitesse Affichée
+934C,Surveillance du controleur CAN-V
+9309,Surveillance de la sortie SYS-ON
+934D,Surveillance du controleur CAN-M
+9408,Surv Com Témoin Ceinture
+9404,Surv Témoin Défaut Airbag
+940C,Surv E2prom
+F003,Surv Alimentation
+C452,ValidAirbagInformation = 0 pendant 60 s
+C418,Surveillance VehicleSpeed Invalide
+C127,Perte trames TPMS (SSPP)_Id 0x673
+C134,Perte trames TCU_ Id 0x634
+C131,Perte trames EPS_ Id 0x62C
+C133,Perte trames UBP_ Id 0x66D
+C132,Perte trames Clim_ Id 0x668
+C159,Perte trames UPA_ Id 0x5E9
+C151,Perte trames Airbag_Id 0x653
+C140,Perte trames BCM_Id 0x35C
+C129,Perte trames Brake (ABS)_Id 0x5D7
+C111,Perte trames USM_Id 0x212
+C100,Perte trames SCH (EVC) _ Id 0x652
+9412,sonde temperature

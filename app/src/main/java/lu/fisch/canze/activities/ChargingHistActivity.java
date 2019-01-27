@@ -56,17 +56,17 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
         MainActivity.getInstance().setDebugListener(this);
         for (int i = 0; i < 10; i++) {
             sid = SID_Preamble_KM  + (240 - i * 24);
-            addField(sid);
+            addField(sid, 6000);
             sid = SID_Preamble_END + ( 96 - i *  8);
-            addField(sid);
+            addField(sid, 6000);
             sid = SID_Preamble_TYP + ( 96 - i *  8);
-            addField(sid);
+            addField(sid, 6000);
             sid = SID_Preamble_SOC + (168 - i * 16);
-            addField(sid);
+            addField(sid, 6000);
             sid = SID_Preamble_TMP + ( 96 - i *  8);
-            addField(sid);
+            addField(sid, 6000);
             sid = SID_Preamble_DUR + (168 - i * 16);
-            addField(sid);
+            addField(sid, 6000);
         }
     }
 
@@ -89,30 +89,30 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
                 // get the text column, select the row through the bit position
                 switch (sidPreamble) {
                     case SID_Preamble_KM:
-                        tv = (TextView) findViewById(getResources().getIdentifier("textKM"  + ((264 - Integer.parseInt(startBit)) / 24), "id", getPackageName()));
+                        tv = findViewById(getResources().getIdentifier("textKM"  + ((264 - Integer.parseInt(startBit)) / 24), "id", getPackageName()));
                         break;
                     case SID_Preamble_END:
-                        tv = (TextView) findViewById(getResources().getIdentifier("textEND" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
+                        tv = findViewById(getResources().getIdentifier("textEND" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
                         value = (int) val;
                         if (tv != null && !Double.isNaN(val) && charging_HistEnd != null && value >= 0 && value < charging_HistEnd.length)
                             tv.setText(charging_HistEnd[value]);
                         tv = null;
                         break;
                     case SID_Preamble_TYP:
-                        tv = (TextView) findViewById(getResources().getIdentifier("textTYP" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
+                        tv = findViewById(getResources().getIdentifier("textTYP" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
                         value = (int) val;
                         if (tv != null && !Double.isNaN(val) && charging_HistTyp != null && value >= 0 && value < charging_HistTyp.length)
                             tv.setText(charging_HistTyp[value]);
                         tv = null;
                         break;
                     case SID_Preamble_SOC:
-                        tv = (TextView) findViewById(getResources().getIdentifier("textSOC" + ((184 - Integer.parseInt(startBit)) / 16), "id", getPackageName()));
+                        tv = findViewById(getResources().getIdentifier("textSOC" + ((184 - Integer.parseInt(startBit)) / 16), "id", getPackageName()));
                         break;
                     case SID_Preamble_TMP:
-                        tv = (TextView) findViewById(getResources().getIdentifier("textTMP" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
+                        tv = findViewById(getResources().getIdentifier("textTMP" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
                         break;
                     case SID_Preamble_DUR:
-                        tv = (TextView) findViewById(getResources().getIdentifier("textDUR" + ((184 - Integer.parseInt(startBit)) / 16), "id", getPackageName()));
+                        tv = findViewById(getResources().getIdentifier("textDUR" + ((184 - Integer.parseInt(startBit)) / 16), "id", getPackageName()));
                         break;
                 }
                 // set regular new content, all exeptions handled above

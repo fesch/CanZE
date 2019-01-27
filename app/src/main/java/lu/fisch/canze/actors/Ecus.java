@@ -21,7 +21,11 @@
 
 package lu.fisch.canze.actors;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import lu.fisch.canze.activities.MainActivity;
 
 /**
  * Ecus
@@ -33,7 +37,7 @@ public class Ecus {
     private static Ecus instance = null;
 
     private Ecus() {
-        fillStatic();
+        load();
     }
 
     public static Ecus getInstance()
@@ -42,57 +46,61 @@ public class Ecus {
         return instance;
     }
 
-    private void fillStatic() {
-        String ecuDef = // name,renaultId,networks,fromId,toId,mnemonic,aliases
-                ""
-                        + "Electric Vehicle Controller,946,V;E,7ec,7e4,EVC,SCH,5902af\n"  // Has Diag class
-                        + "Telematics Control Unit,2152,V;M,7da,7ca,TCU,-,5902ff\n"
-                        + "Lithium Battery Controller,938,E,7bb,79b,LBC,-,59020f\n"       // Has Diag class
-                        + "Power Electronics Block,2092,E,77e,75a,PEB,-,5902ff\n"         // Has Diag class
-                        + "Airbag,756,V,772,752,AIBAG,AIRBAG,5902ff\n"
-                        + "U Safety Module,1337,V,76d,74d,USM,UPC;UCM,5902ff\n"
-                        + "Instrument panel,247,V;M,763,743,CLUSTER,BIC,5902ff\n"         // Has Diag class
-                        + "Electrical Power Steering,1232,V,762,742,EPS,PAS,5902ff\n"     // Has Diag class
-                        + "Electronic Stability Control,1094,V,760,740,ESC,ABS,5902ff\n"
-                        + "Uncoupled Braking Pedal,2197,V,7bc,79c,UBP,-,5902ff\n"         // Has Diag class
-                        + "Body Control Module,645,V;O,765,845,BCM,UCH,5902ff\n"
-                        + "Climate Control,419,V,764,744,CLIM,CLIMA;CLIMBOX,5902ff\n"     // Has Diag class
-                        + "Park Assist,1222,O,76e,74e,UPA,-,5902ff\n"
-                        + "Battery Connection Box,2093,E,793,792,BCB,-,5902ff;5902af\n"   // Has Diag class
-                        + "Lithium Battery Controller 2,938,E,7b6,796,LBC2,-,59020f\n"
-                        + "Tuner,261,M,0,0,,-,-\n"
-                        + "Joystick,1657,M,0,0,,-,-\n"
-                        + "R-Link,1127,M,0,0,,-,-\n"
-                        + "Horn,2138,E,0,0,,-,-\n"
-                        + "VirtualField computer,9999,E,800,800,VFC,-,-\n"
 
-                        + "";
-
-        fillDynamic(ecuDef);
-    }
-
-    private void fillDynamic (String ecuDef) {
-        String[] lines = ecuDef.split("\n");
-        for (String line : lines) {
-            //Get all tokens available in line
-            String[] tokens = line.split(",");
-            if (tokens.length == 8) {
-                //Create a new field object and fill his  data
-                Ecu ecu = new Ecu(
-                        tokens[0].trim(),                           // name
-                        Integer.parseInt(tokens[1].trim()),         // Renault ID
-                        tokens[2].trim(),                           // Network
-                        Integer.parseInt(tokens[3].trim(), 16),     // From ID
-                        Integer.parseInt(tokens[4].trim(), 16),     // To ID
-                        tokens[5].trim(),                           // Mnemonic
-                        tokens[6].trim(),                           // Aliasses, semicolon separated
-                        tokens [7].trim()                           // GetDtc responseIDs, semicolon separated
-                );
-                // add the field to the list of available fields
-                add(ecu);
-            }
+    private void fillOneLine(String line) {
+        if (line.contains("#")) line = line.substring(0, line.indexOf('#'));
+        //Get all tokens available in line
+        String[] tokens = line.split(",");
+        if (tokens.length == 9) {
+            //Create a new field object and fill his  data
+            Ecu ecu = new Ecu(
+                    tokens[0].trim(),                           // name
+                    Integer.parseInt(tokens[1].trim()),         // Renault ID
+                    tokens[2].trim(),                           // Network
+                    Integer.parseInt(tokens[3].trim(), 16),     // From ID
+                    Integer.parseInt(tokens[4].trim(), 16),     // To ID
+                    tokens[5].trim(),                           // Mnemonic
+                    tokens[6].trim(),                           // Aliasses, semicolon separated
+                    tokens [7].trim(),                          // GetDtc responseIDs, semicolon separated
+                    tokens [8].trim().compareTo("1") == 0       // Session required
+            );
+            // add the field to the list of available fields
+            add(ecu);
         }
     }
+
+
+    private void fillFromAsset (String assetName) {
+        //Read text from asset
+        AssetLoadHelper assetLoadHelper = new AssetLoadHelper(MainActivity.getInstance());
+        BufferedReader bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(assetName);
+        try {
+            String line;
+            while ((line = bufferedReader.readLine()) != null)
+                fillOneLine(line);
+            bufferedReader.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void load ()
+    {
+        load ("");
+    }
+
+
+    public void load (String assetName)
+    {
+        ecus.clear();
+        if (assetName.equals("")) {
+            fillFromAsset("_Ecus.csv");
+        } else {
+            fillFromAsset(assetName);
+        }
+    }
+
 
     public void add(Ecu ecu) {
         ecus.add(ecu);
@@ -129,20 +137,5 @@ public class Ecus {
     public ArrayList<Ecu> getAllEcus () {
         return ecus;
     }
-
-    public void load ()
-    {
-        ecus.clear();
-        fillStatic();
-    }
-
-    public void load (String initString)
-    {
-        ecus.clear();
-        fillDynamic(initString);
-    }
-
-
-
 
 }

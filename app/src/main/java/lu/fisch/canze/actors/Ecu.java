@@ -35,8 +35,9 @@ public class Ecu {
     private String aliases;     // semicolon separated
     private Fields fields;
     private String getDtcs;   // semicolon separated
+    private boolean sessionRequired;
 
-    public Ecu(String name, int renaultId, String networks, int fromId, int toId, String mnemonic, String aliases, String getDtcs) {
+    public Ecu(String name, int renaultId, String networks, int fromId, int toId, String mnemonic, String aliases, String getDtcs, boolean sessionRequired) {
         this.name = name;
         this.renaultId = renaultId;
         this.networks = networks;
@@ -45,6 +46,7 @@ public class Ecu {
         this.mnemonic = mnemonic;
         this.aliases = aliases;
         this.getDtcs = getDtcs;
+        this.sessionRequired = sessionRequired;
     }
 
     public String getName() {
@@ -93,5 +95,9 @@ public class Ecu {
 
     public String getGetDtcs() {
         return getDtcs;
+    }
+
+    public boolean getSessionRequired() {
+        return sessionRequired;
     }
 }

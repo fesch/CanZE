@@ -30,12 +30,12 @@ import java.util.Calendar;
 public class Frame {
 
     private int id;
-    private String responseId = null;
+    private String responseId;
     private int interval; // in ms
     private Ecu sendingEcu;
     private final ArrayList<Field> fields = new ArrayList<>();
     private final ArrayList<Field> queriedFields = new ArrayList<>();
-    private Frame containingFrame = null;
+    private Frame containingFrame;
 
     protected long lastRequest = 0;
 
@@ -93,7 +93,7 @@ public class Frame {
 
 
     public String getHexId() {
-        return Integer.toHexString(id);
+        return String.format("%03x", id);
     }
 
     public Ecu getSendingEcu() {

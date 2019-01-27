@@ -30,12 +30,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.BcbActivity;
 import lu.fisch.canze.activities.ChargingHistActivity;
-import lu.fisch.canze.activities.ConsumptionActivity;
-import lu.fisch.canze.activities.ConsumptionOldActivity;
 import lu.fisch.canze.activities.ElmDumpActivity;
 import lu.fisch.canze.activities.FluenceKangooTempsActivity;
 import lu.fisch.canze.activities.HarmonicsActivity;
@@ -119,8 +116,6 @@ public class ExperimentalFragment extends Fragment {
 
         activateButton(view, R.id.buttonBcb,                    BcbActivity.class);
         activateButton(view, R.id.buttonHarmonics,              HarmonicsActivity.class);
-
-        activateButton(view, R.id.buttonConsumptionOld,         ConsumptionOldActivity.class);
 
         return view;
     }

@@ -230,7 +230,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                                 // add filter to reader
                                 int interval = drawable.getIntervals().getInterval(field.getSID());
                                 if (interval == -1)
-                                    MainActivity.device.addActivityField(field);
+                                    MainActivity.device.addActivityField(field, 0); // JM added 0, see that method for rationale
                                 else
                                     MainActivity.device.addActivityField(field, interval);
                             }
