@@ -43,6 +43,9 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
     public static final String SID_AuxStatus                        = "638.37";
     public static final String SID_VehicleState                     = "35c.5";
     public static final String SID_ChargingStatusDisplay            = "65b.41";
+    public static final String SID_VoltageUnderLoad                 = "7ec.623485.24"; // Voltage measurement given by BCS Battery Current Sensor
+    public static final String SID_CurrentUnderLoad                 = "7ec.623484.24"; // Current measurement given by BCS Battery Current Sensor
+ 
 
 
     @Override
@@ -54,9 +57,11 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
         addField(SID_AuxVoltage);
-        addField(SID_AuxStatus);
+        addField(SID_AuxStatus, 1000);
         addField(SID_VehicleState);
-        addField(SID_ChargingStatusDisplay);
+        addField(SID_ChargingStatusDisplay, 1000);
+        addField(SID_VoltageUnderLoad, 6000);
+        addField(SID_CurrentUnderLoad, 6000);
     }
 
 
@@ -77,30 +82,35 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
                 switch (fieldId) {
 
                     case SID_AuxVoltage:
-                        tv = (TextView) findViewById(R.id.text_12V);
+                        tv = findViewById(R.id.text_12V);
                         break;
                     case SID_AuxStatus:
-                        tv = (TextView) findViewById(R.id.textAuxStatus);
+                        tv = findViewById(R.id.textAuxStatus);
                         value = (int) field.getValue();
                         if (tv != null && aux_Status != null && value >= 0 && value <= 7)
                             tv.setText(aux_Status[value]);
                         tv = null;
                         break;
                     case SID_VehicleState:
-                        tv = (TextView) findViewById(R.id.text_vehicle_state);
+                        tv = findViewById(R.id.text_vehicle_state);
                         value = (int) field.getValue();
                         if (tv != null && vehicle_Status != null && value >= 0 && value <= 7)
                             tv.setText(vehicle_Status[value]);
                         tv = null;
                         break;
                     case SID_ChargingStatusDisplay:
-                        tv = (TextView) findViewById(R.id.textChaStatus);
+                        tv = findViewById(R.id.textChaStatus);
                         value = (int) field.getValue();
                         if (tv != null && charging_Status != null && value >= 0 && value <= 7)
                             tv.setText(charging_Status[value]);
                         tv = null;
                         break;
-
+                    case SID_VoltageUnderLoad:
+                        tv = findViewById(R.id.textVoltageLoad);
+                        break;
+                    case SID_CurrentUnderLoad:
+                        tv = findViewById(R.id.textCurrentLoad);
+                        break;
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
