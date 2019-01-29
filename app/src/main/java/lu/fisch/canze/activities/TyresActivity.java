@@ -72,7 +72,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopReadStart();
+                buttonRead();
             }
         });
 
@@ -80,7 +80,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopWriteStart();
+                buttonWrite();
             }
         });
     }
@@ -174,21 +174,46 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         });
     }
 
+/*
+    // start a diagnostic session and send a keepalive. We are not really interested in the result,
+    // if things fail; the final write will probably fail too and that is enough for the user.
+    // However, logging to the debugger is good for troubleshooting
+    private void diagnosticSession () {
+        Frame frame;
+        Message message;
+
+        // send a start diagnostic session
+        frame = Frames.getInstance().getById(0x765, "50c0");
+        message = MainActivity.device.requestFrame(frame);
+        if (message.isError()) {
+            MainActivity.debug ("tyresactivity.diagnosticsession.errorsendingstartdiag:" + message.getData());
+        } else if (!message.getData().startsWith("50c0")) {
+            MainActivity.debug ("tyresactivity.diagnosticsession.errorreplystartdiag:" + message.getData());
+        }
+
+        // send a keepalive
+        frame = Frames.getInstance().getById(0x765, "7e01");
+        message = MainActivity.device.requestFrame(frame);
+        if (message.isError()) {
+            MainActivity.debug ("tyresactivity.diagnosticsession.errorsendingkeepalive:" + message.getData());
+        } else if (!message.getData().startsWith("7e")) { // keepalive only answers with 7e
+            MainActivity.debug ("tyresactivity.diagnosticsession.errorreplykeepalive:" + message.getData());
+        }
+    }
+
 
     // Using these wrapper functions to easily facilitate early returns
     private void stopReadStart() {
-        // stop the poller
+        // stop the poller thread
         MainActivity.device.stopAndJoin();
 
         // read TPMS
         buttonRead();
 
-        // restart the poller
-        if(MainActivity.device!=null)
-            MainActivity.device.initConnection();
-
+        // start a new poller
+        MainActivity.device.initConnection();
     }
-
+*/
 
     private void displayId (int fieldId, int val) {
         EditText et = findViewById(fieldId);
@@ -197,23 +222,17 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
 
 
     private void buttonRead() {
-        int valuefl = 0;
-        int valuefr = 0;
-        int valuerl = 0;
-        int valuerr = 0;
-        Frame frame;
+        int idFrontLeft  = 0;
+        int idFrontRight = 0;
+        int idRearLeft   = 0;
+        int idRearRight  = 0;
+        Frame [] frames = new Frame [3];
 
-        // send a start diagnostic session
-        frame = Frames.getInstance().getById(0x765, "50c0");
-        MainActivity.device.requestFrame(frame);
+        frames [0] = Frames.getInstance().getById(0x765, "50c0");
+        frames [1] = Frames.getInstance().getById(0x765, "7e01");
+        frames [2] = Frames.getInstance().getById(0x765, "6171");
 
-        // send a keepalive
-        frame = Frames.getInstance().getById(0x765, "7e01");
-        MainActivity.device.requestFrame(frame);
-
-        // query TPMS data
-        frame = Frames.getInstance().getById(0x765, "6171");
-        Message message = MainActivity.device.requestFrame(frame);
+        Message message = MainActivity.device.injectRequests(frames);
         if (message.isError()) {
             MainActivity.toast(-100, "Could not read TPMS valves:" + message.getData());
             return;
@@ -224,45 +243,44 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         message.onMessageCompleteEvent();
 
         // now process all fields in the frame. Select only the ones we are interested in
-        for (Field field : frame.getAllFields()) {
+        for (Field field : frames[2].getAllFields()) {
             switch (field.getFrom()) {
                 case 24:
-                    valuefl = (int)field.getValue();
+                    idFrontLeft  = (int)field.getValue();
                 case 48:
-                    valuefr = (int)field.getValue();
+                    idFrontRight = (int)field.getValue();
                 case 72:
-                    valuerl = (int)field.getValue();
+                    idRearLeft   = (int)field.getValue();
                 case 96:
-                    valuerr = (int)field.getValue();
+                    idRearRight   = (int)field.getValue();
             }
         }
 
-        if (valuefl == 0 || valuefr == 0 || valuerl == 0 || valuerr == 0) {
+        if (idFrontLeft == 0 || idFrontRight == 0 || idRearLeft == 0 || idRearRight == 0) {
             MainActivity.toast(-100, "No TPMS valves found");
             return;
         }
 
         // display the fetched values
-        displayId(R.id.text_TyreFLId, valuefl);
-        displayId(R.id.text_TyreFRId, valuefr);
-        displayId(R.id.text_TyreRLId, valuerl);
-        displayId(R.id.text_TyreRRId, valuerr);
+        displayId(R.id.text_TyreFLId, idFrontLeft);
+        displayId(R.id.text_TyreFRId, idFrontRight);
+        displayId(R.id.text_TyreRLId, idRearLeft);
+        displayId(R.id.text_TyreRRId, idRearRight);
         MainActivity.toast(-100, "TPMS valves read");
     }
-
+/*
     // Using these wrapper functions to easily facilitate early returns
     private void stopWriteStart() {
-        // stop the poller
+        // stop the poller thread
         MainActivity.device.stopAndJoin();
 
         // write TPMS
         buttonWrite();
 
-        // restart the poller
-        //if(MainActivity.device!=null)
-        //    MainActivity.device.initConnection();
+        // start a new poller
+        MainActivity.device.initConnection();
     }
-
+*/
     private int simpleIntParse (int fieldId) {
         EditText et = findViewById(fieldId);
         if (et != null) {
@@ -277,31 +295,23 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
     }
 
     public void buttonWrite() {
-        int valuefl = simpleIntParse(R.id.text_TyreFLId);
-        int valuefr = simpleIntParse(R.id.text_TyreFRId);
-        int valuerl = simpleIntParse(R.id.text_TyreRLId);
-        int valuerr = simpleIntParse(R.id.text_TyreRRId);
+        int idFrontLeft = simpleIntParse(R.id.text_TyreFLId);
+        int idFrontRight = simpleIntParse(R.id.text_TyreFRId);
+        int idRearLeft = simpleIntParse(R.id.text_TyreRLId);
+        int idRearRight = simpleIntParse(R.id.text_TyreRRId);
 
-        if (valuefl == 0 || valuefr == 0 || valuerl == 0 || valuerr == 0) {
+        if (idFrontLeft == 0 || idFrontRight == 0 || idRearLeft == 0 || idRearRight == 0) {
             MainActivity.toast(-100, "Those are not all valid hex values other than 000000");
-            //return;
+            return;
         }
 
-        Frame frame;
-        // send a start diagnostic session
-        frame = Frames.getInstance().getById(0x765, "50c0");
-        MainActivity.device.requestFrame(frame);
+        Frame [] frames = new Frame [3];
 
-        // send a keepalive
-        frame = Frames.getInstance().getById(0x765, "7e01");
-        MainActivity.device.requestFrame(frame);
+        frames [0] = Frames.getInstance().getById(0x765, "50c0");
+        frames [1] = Frames.getInstance().getById(0x765, "7e01");
+        frames [2] = new Frame (0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format ("7b5d%06X%06X%06X%06X", idFrontLeft, idFrontRight, idRearLeft, idRearRight),null);
 
-        // write TPMS data
-        // Create a new frame (it isn't in the predefined frames list
-        frame = new Frame (0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format ("7b5d%06X%06X%06X%06X", valuefl, valuefr, valuerl, valuerr),null);
-
-        // request the data and return the result in a message
-        Message message = MainActivity.device.requestFrame(frame);
+        Message message = MainActivity.device.injectRequests(frames);
         if (message.isError()) {
             MainActivity.toast(-100, "Could not write TPMS valves:" + message.getData());
             return;
