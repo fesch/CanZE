@@ -187,6 +187,38 @@ public abstract class Device {
         }
     }
 
+    // stop the poller and request a frame (new!)
+    public Message injectRequest (Frame frame)
+    {
+        // stop the poller and wait for it to become inactive
+        stopAndJoin();
+
+        Message message = requestFrame(frame);
+
+        // restart the poller
+        initConnection();
+
+        // return the captured message
+        return message;
+    }
+
+    // stop the poller and request multiple frames (new!)
+    public Message injectRequests(Frame[] frames)
+    {
+        // stop the poller and wait for it to become inactive
+        stopAndJoin();
+
+        Message message = null;
+        for(int i=0; i<frames.length; i++)
+            message = requestFrame(frames[i]);
+
+        // restart the poller
+        initConnection();
+
+        // return the captured message
+        return message;
+    }
+
     // query the device for the next filter
     private void queryNextFilter()
     {
