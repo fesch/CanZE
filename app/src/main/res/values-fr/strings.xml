@@ -159,7 +159,7 @@
         <item>Demande de ventilation</item>
         <item>Refroidissement demandé</item>
         <item>Chauffage demandé</item>
-        <item>Indisponible</item>
+        <item>Cond not req</item>
     </string-array>
     <string-array name="list_ClimateStatus">
         <item>Indisponible</item>

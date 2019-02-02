@@ -155,7 +155,7 @@
         <item>Luft req</item>
         <item>Kühlen cond req</item>
         <item>Heizen cond req</item>
-        <item>Nicht verf.</item>
+        <item>Kein cond req</item>
     </string-array>
     <string-array name="list_ClimateStatus">
         <item>Nicht verfügbar</item>
