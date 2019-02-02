@@ -326,7 +326,7 @@
         <item>Blow req</item>
         <item>Cool cond req</item>
         <item>Heat cond req</item>
-        <item>Unavail</item>
+        <item>Cond not req</item>
     </string-array>
     <string-array name="list_ClimateStatus">
         <item>Unavailable</item>

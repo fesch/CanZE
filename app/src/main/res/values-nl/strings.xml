@@ -156,7 +156,7 @@
         <item>Ventilatie verzoek</item>
         <item>Koeling verzoek</item>
         <item>Verwarming verzoek</item>
-        <item>Niet beschikbaar</item>
+        <item>Geen conditionering</item>
     </string-array>
     <string-array name="list_ClimateStatus">
         <item>Niet beschikbaar</item>
