@@ -430,7 +430,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         viewPager = findViewById(R.id.main);
         viewPager.setAdapter(appSectionsPagerAdapter);
-        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        // viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 //actionBar.setSelectedNavigationItem(position);
@@ -439,25 +440,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         });
         updateActionBar();
 
-        /*
-        for (int i = 0; i < appSectionsPagerAdapter.getCount(); i++) {
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText(appSectionsPagerAdapter.getPageTitle(i))
-                            .setTabListener(MainActivity.this));
-        }
-        */
-
-
-        // load the initial "main" fragment
-        //loadFragement(new MainFragment());
-
         setTitle(TAG + " - not connected");
         setBluetoothState(BLUETOOTH_DISCONNECTED);
-
-        // tabs
-        //final ActionBar actionBar = getSupportActionBar();
-        // Specify that tabs should be displayed in the action bar.
 
         // open the database
         CanzeDataSource.getInstance(getBaseContext()).open();
@@ -978,6 +962,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public void dropDebugMessage (String msg) {
         if (debugListener != null) debugListener.dropDebugMessage (msg);
+    }
+
+    public void appendDebugMessage (String msg) {
+        if (debugListener != null) debugListener.appendDebugMessage (msg);
     }
 
 
