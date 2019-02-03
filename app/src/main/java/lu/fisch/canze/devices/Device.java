@@ -209,17 +209,34 @@ public abstract class Device {
     // stop the poller and request multiple frames (new!)
     public Message injectRequests(Frame[] frames)
     {
+        return injectRequests(frames, false, false);
+    }
+
+
+    // stop the poller and request multiple frames (new!)
+    // this variant will be very useful for ie LoadAllData
+    public Message injectRequests(Frame[] frames, boolean stopOnError, boolean callOnMessageComplete)
+    {
         // stop the poller and wait for it to become inactive
         stopAndJoin();
 
         Message message = null;
-        for(int i=0; i<frames.length; i++)
-            message = requestFrame(frames[i]);
+        for (Frame frame : frames) {
+            message = requestFrame(frame);
+            if (stopOnError && message.isError()) return null;
+            if (callOnMessageComplete) {
+                if (!message.isError()) {
+                    message.onMessageCompleteEvent();
+                } else {
+                    message.onMessageIncompleteEvent();
+                }
+            }
+        }
 
         // restart the poller
         initConnection();
 
-        // return the captured message
+        // return the last captured message
         return message;
     }
 
