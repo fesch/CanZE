@@ -305,6 +305,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                     car = CAR_ZOE_Q90;
                     break;
                 case "ZOE R90":
+                case "ZOE R90/110":
                     car = CAR_ZOE_R90;
                     break;
                 case "Fluence":
@@ -357,9 +358,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         catch(Exception e)
         {
             MainActivity.debug(e.getMessage());
-            StackTraceElement[] st = e.getStackTrace();
-            for(int i=0; i<st.length; i++)
-                MainActivity.debug(st[i].toString());
+            for (StackTraceElement traceElement:e.getStackTrace()) {
+                MainActivity.debug(traceElement.toString());
+            }
         }
     }
 
@@ -425,9 +426,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // navigation bar
         AppSectionsPagerAdapter appSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
         actionBar = getSupportActionBar();
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
+        if (actionBar != null) actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        viewPager = (ViewPager) findViewById(R.id.main);
+        viewPager = findViewById(R.id.main);
         viewPager.setAdapter(appSectionsPagerAdapter);
         viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -782,7 +783,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // set the correct initial state
         setBluetoothState(BLUETOOTH_DISCONNECTED);
         // get access to the image view
-        ImageView imageView = (ImageView) bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
+        ImageView imageView = bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
         // define an action
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -807,7 +808,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         if(bluetoothMenutItem!=null) {
             View view = bluetoothMenutItem.getActionView();
             if (view == null) return;
-            final ImageView imageView = (ImageView) view.findViewById(R.id.animated_menu_item_action);
+            final ImageView imageView = view.findViewById(R.id.animated_menu_item_action);
 
             // stop the animation if there is one running
             AnimationDrawable frameAnimation;
