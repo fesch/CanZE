@@ -84,6 +84,7 @@ public class Message {
     public String getError () { return error ? data : ""; }
 
     public void onMessageIncompleteEvent () {
+        // simply update the fields last request date to send them to the end of the queue
         for (Field field : frame.getAllFields()) {
             field.updateLastRequest();
         }
@@ -152,14 +153,6 @@ public class Message {
                 // update the fields last request date
                 field.updateLastRequest();
 
-/*
-                        int val = Integer.parseInt("0" + binString.substring(field.getFrom(), field.getTo() + 1), 2);
-                        //MainActivity.debug("Value of " + field.getHexId() + "." + field.getResponseId() + "." + field.getFrom()+" = "+val);
-                        //MainActivity.debug("Fields: onMessageCompleteEvent > "+field.getSID()+" = "+val);
-                        field.setValue(val);
-                        // update the fields last request date
-                        field.updateLastRequest();
-*/
             } catch (Exception e)
             {
                 MainActivity.debug("Message.onMessageCompleteEventField: Exception!!");
