@@ -208,6 +208,10 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                             tv.setText("1");
                         }
                         tv = findViewById(R.id.textAvChPwr);
+                        if (avChPwr > 45.0) {
+                            tv.setText("-");
+                            tv = null;
+                        }
                         break;
                     case SID_AvEnergy:
                         if (usoc > 0) {
