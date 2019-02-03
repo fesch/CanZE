@@ -36,13 +36,17 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
 
         // initialize the battery model
         battery = new Battery();
-        // more adjustments are needed her for other car types than ZOE Q210
+
+        // set charger limit
         if (MainActivity.car == MainActivity.CAR_ZOE_R240 || MainActivity.car == MainActivity.CAR_ZOE_R90) {
             battery.setDcPowerLowerLimit(1.0);
             battery.setDcPowerUpperLimit(20.0);
         }
+
         if (MainActivity.car == MainActivity.CAR_ZOE_Q90 || MainActivity.car == MainActivity.CAR_ZOE_R90) {
-            battery.setRawCapacity(41.0);
+            battery.setBatteryType(41);
+        } else {
+            battery.setBatteryType(22);
         }
     }
 
