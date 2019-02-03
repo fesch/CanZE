@@ -64,6 +64,11 @@ public class Battery {
     private double dcPowerUpperLimit = 40.0;            // for R240/R90 use 20
     private double dcPowerLowerLimit = 2.0;             // for R240/R90 use 1
     private double rawCapacity = 22;                    // R90/Q90 use 41
+    private int batteryType = 22;                       //
+    private double cons;
+    private double tempx;
+    private double socy;
+    private double tempxsocy;
 
     private void predictMaxDcPower () {
 
@@ -83,7 +88,8 @@ public class Battery {
             int intTemperature = (int )temperature;
 
             // now use a model to calculate the DC power, based on SOC and temperature
-            maxDcPower = 19.0 + (3.6 * intTemperature) - (0.026 * stateOfChargePercentage * intTemperature) - (0.34 * stateOfChargePercentage);
+            maxDcPower = cons + (tempx * intTemperature) + (socy * stateOfChargePercentage * intTemperature) + (tempxsocy * stateOfChargePercentage);
+            //maxDcPower = 19.0 + (3.6 * intTemperature) - (0.026 * stateOfChargePercentage * intTemperature) - (0.34 * stateOfChargePercentage);
             //maxDcPower = 27.1 + (0.76 * intTemperature) - (0.27 * stateOfChargePercentage);
 
             if (maxDcPower > dcPowerUpperLimit) {
@@ -126,7 +132,6 @@ public class Battery {
     /*
      * iteration is in effect numerical integration of the power function to the SOC, respecting temperature and energy efficiency effects
      */
-
     public void iterateCharging (int seconds) {
         secondsRunning += seconds;
         predictDcPower ();
@@ -134,9 +139,45 @@ public class Battery {
         setStateOfChargeKw (stateOfCharge + (dcPower * seconds * 0.95) / 3600); // 1kW adds 95% of 1kWh in 60 minutes
     }
 
+    private void adjustRawCapacity () {
+        // adjust for capacity loss due to temperature differences (system wide)
+        if (temperature > 15.0) {
+            capacity = rawCapacity;
+        } else if (temperature > 0) {
+            capacity = 0.9 * rawCapacity + temperature * 2.2 / 15.0;
+        } else {
+            capacity = 0.9 * rawCapacity + temperature * 4.4 / 15.0;
+        }
+
+        // ensure the SOC is refreshed. This is only relevant for a very full battery
+        setStateOfChargeKw(getStateOfChargeKw());
+    }
+
+
+    public void setBatteryType (int batteryType) {
+        switch (batteryType) {
+            case 22:
+                setRawCapacity(22);
+                setCoefficients (19.00,  3.600, -0.026, -0.34000);
+                break;
+            case 41:
+                setCoefficients (14.93,  1.101, -0.145, -0.00824);
+                setRawCapacity(41.0);
+                break;
+        }
+    }
+
+
     /*
      * Getters and setters
      */
+
+    private void setCoefficients (double cons, double tempx, double socy, double tempxsocy) {
+        this.cons = cons;
+        this.tempx = tempx;
+        this.socy = socy;
+        this.tempxsocy = tempxsocy;
+    }
 
     public double getTemperature() {
         return temperature;
@@ -144,7 +185,7 @@ public class Battery {
 
     public void setTemperature(double temperature) {
         this.temperature = temperature;
-        setRawCapacity(getRawCapacity());
+        adjustRawCapacity();
     }
 
     public double getStateOfChargeKw() {
@@ -214,17 +255,6 @@ public class Battery {
     public void setRawCapacity(double rawCapacity) {
         this.rawCapacity = rawCapacity;
 
-        // adjust for capacity loss due to temperature differences (system wide)
-        if (temperature > 15.0) {
-            capacity = rawCapacity;
-        } else if (temperature > 0) {
-            capacity = 0.9 * rawCapacity + temperature * 2.2 / 15.0;
-        } else {
-            capacity = 0.9 * rawCapacity + temperature * 4.4 / 15.0;
-        }
-
-        // ensure the SOC is refreshed. This is only relevant for a very full battery
-        setStateOfChargeKw(getStateOfChargeKw());
-
+        adjustRawCapacity();
     }
 }
