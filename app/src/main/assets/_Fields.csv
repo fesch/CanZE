@@ -377,3 +377,6 @@
 ,7ec,24,39,1,0,0,min,2233d9,6233d9,ff
 ,7ec,24,39,1,32767,0,A,223484,623484,ff,Current measurement given by BCS Battery Current Sensor
 ,7ec,24,39,.001,0,0,V,223485,623485,ff,Voltage measurement given by BCS Battery Current Sensor
+,7ec,31,31,1,0,0,,223498,623498,ff,Battery relay PTC n°1
+,7ec,31,31,1,0,0,,22349a,62349a,ff,Battery relay PTC n°2
+,7ec,31,31,1,0,0,,22349c,62349c,ff,Battery relay PTC n°3

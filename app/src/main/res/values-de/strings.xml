@@ -167,6 +167,13 @@
         <item>Freimachen</item>
         <item>Inaktiv</item>
     </string-array>
+    <string name="label_PtcRelay1">PTC Relay 1</string>
+    <string name="label_PtcRelay2">PTC Relay 2</string>
+    <string name="label_PtcRelay3">PTC Relay 3</string>
+    <string-array name="list_PtcRelay">
+        <item>Ein</item>
+        <item>Aus</item>
+    </string-array>
 
     <!-- Consumption -->
 
