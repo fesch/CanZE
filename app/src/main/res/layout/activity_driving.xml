@@ -194,6 +194,23 @@
 
                 <TableRow>
                     <TextView
+                        android:id="@+id/LabelTripConsumption"
+                        android:text="@string/label_TripConsumption"
+                        android:textSize="24sp"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textTripConsumption"
+                        android:text="@string/default_Zero"
+                        android:textSize="24sp"
+                        android:gravity="end"
+                        android:layout_weight="2"
+                        />
+                </TableRow>
+
+
+                <TableRow>
+                    <TextView
                         android:text="@string/label_UserSOC"
                         android:layout_weight="2"
                         />
