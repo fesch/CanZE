@@ -27,12 +27,12 @@ import android.view.Menu;
 import lu.fisch.canze.R;
 import lu.fisch.canze.interfaces.DebugListener;
 
-public class HarmonicsActivity extends CanzeActivity implements DebugListener {
+public class LeakCurrentsActivity extends CanzeActivity implements DebugListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_harmonics);
+        setContentView(R.layout.activity_leak_currents);
     }
 
     protected void initListeners () {

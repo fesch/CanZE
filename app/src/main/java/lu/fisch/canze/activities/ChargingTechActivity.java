@@ -49,7 +49,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     public static final String SID_ChargingStatusDisplay            = "65b.41";
     public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
     public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
-    public static final String SID_EnergyConsumed                   = "7ec.6233dc.24";
+    //public static final String SID_EnergyConsumed                   = "7ec.6233db.24";
     // public static final String SID_CapacityFluKan                   = "7bb.6101.348";
     // public static final String SID_CapacityZoe                      = "";
     public static final String SID_RealSoC                          = "7bb.6103.192";
@@ -100,7 +100,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addField(SID_12A, 5000);
         addField(SID_DcLoad, 5000);
         addField(SID_HvKilometers, 5000);
-        addField(SID_EnergyConsumed, 5000);
+        //addField(SID_EnergyConsumed, 5000);
         addField(SID_ChargingStatusDisplay, 5000);
         addField(SID_TractionBatteryVoltage, 5000);
         addField(SID_TractionBatteryCurrent, 5000);
@@ -235,9 +235,9 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         tv.setText(String.format(Locale.getDefault(), "%.0f", field.getValue()));
                         tv = null;
                         break;
-                    case SID_EnergyConsumed: // see http://canze.fisch.lu/qa/#comment-1074. Seems another field is needed for R240
-                        tv = findViewById(R.id.textENC);
-                        break;
+                    //case SID_EnergyConsumed: // see http://canze.fisch.lu/qa/#comment-1074. Seems another field is needed for R240
+                    //    tv = findViewById(R.id.textENC);
+                    //    break;
                     //case SID_CapacityFluKan:
                     //case SID_CapacityZoe:
                     //    tv = findViewById(R.id.textCapacity);

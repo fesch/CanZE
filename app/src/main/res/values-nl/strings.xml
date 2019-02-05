@@ -199,6 +199,7 @@
     <string name="label_wheel_torque">Wieltorsie</string>
     <string name="label_DistToDest">Afstand tot bestemming</string>
     <string name="label_DistAvailAtDest">Bereik op bestemming</string>
+    <string name="label_TripConsumption">Ritverbruik</string>
     <string name="label_friction">Frictierem (vermijden)</string>
     <string name="button_Double">Dubbel</string>
     <string name="prompt_Distance">AF TE LEGGEN AFSTAND</string>
@@ -435,7 +436,7 @@
     <string name="label_LeakCurrentHf">Leak current HF (mA)</string>
     <string name="label_LeakCurrentLf">Leak current LF (mA)</string>
     <string name="button_Bcb">BCB</string>
-    <string name="button_Harmonics">Harmonics</string>
+    <string name="button_LeakCurrents">Harmonics</string>
     <string name="label_InterPhaseVoltage">Inter phase voltage 12/23/31 V</string>
     <string name="label_MainsActivePowerConsumed">Mains active power consumed W</string>
     <string name="label_MainsCurrentType">Mains current type</string>
@@ -443,7 +444,7 @@
     <string name="label_SupervisorState">Supervisor State</string>
     <string name="label_phaseCurrent">Phase current RMS 1/2/3 A</string>
     <string name="title_activity_bcb">BCB</string>
-    <string name="title_activity_harmonics">Harmonics leak currents</string>
+    <string name="title_activity_leakCurrents">Harmonics leak currents</string>
     <string name="title_activity_elm_dump">ELM Dump</string>
     <string-array name="list_MainsCurrentType">
         <item>Nok</item>

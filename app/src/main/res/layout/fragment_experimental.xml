@@ -136,8 +136,8 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
                     android:layout_marginBottom="4dp"
-                    android:text="@string/button_Harmonics"
-                    android:id="@+id/buttonHarmonics"
+                    android:text="@string/button_LeakCurrents"
+                    android:id="@+id/buttonLeakCurrents"
                     android:layout_column="1" />
 
             </TableRow>

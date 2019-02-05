@@ -371,6 +371,7 @@
     <string name="label_wheel_torque">Wheel Torque</string>
     <string name="label_DistToDest">Distance to destination</string>
     <string name="label_DistAvailAtDest">Dist. available at dest.</string>
+    <string name="label_TripConsumption">Trip consumption</string>
     <string name="label_friction">Friction braking (avoid)</string>
     <string name="button_Double">Double</string>
     <string name="prompt_Distance">REMAINING DISTANCE</string>
@@ -433,14 +434,14 @@
 
     <string name="button_FluenceKangooTemps">Fluence Kangoo Temps</string>
 
-    <!-- Harmonics -->
+    <!-- LeakCurrents -->
 
-    <string name="title_activity_harmonics">Harmonics leak currents</string>
-    <string name="button_Harmonics">Harmonics</string>
+    <string name="title_activity_leakCurrents">Leak currents</string>
+    <string name="button_LeakCurrents">Leak Currents</string>
     <string name="label_LeakCurrentDc">Leak current DC (mA)</string>
-    <string name="label_LeakCurrentLf">Leak current LF (mA)</string>
-    <string name="label_LeakCurrentHf">Leak current HF (mA)</string>
-    <string name="label_LeakCurrentEhf">Leak current EHF (mA)</string>
+    <string name="label_LeakCurrentLf">Leak current LF, 50 Hz (mA)</string>
+    <string name="label_LeakCurrentHf">Leak current HF, 10 Khz (mA)</string>
+    <string name="label_LeakCurrentEhf">Leak current EHF, 10 KHz harmonics (mA)</string>
 
 
     <!-- Heatmap battery modules -->
