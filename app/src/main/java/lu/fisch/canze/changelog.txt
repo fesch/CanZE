@@ -1,3 +1,6 @@
+2019-02-07 [Bob] Fixed some crashes indicated by the store
+2019-02-07 [Bob] Trying to reduce the entries in the DB (with CanSee data flow is much stronger!!)
+
 ---< Version 1.29 / 2019-01.27 >---
 2019-01-26 [Jeroen] Clima RPM replaced for Watt
 2019-01-23 [Bob] Dash device screen for consumption added
