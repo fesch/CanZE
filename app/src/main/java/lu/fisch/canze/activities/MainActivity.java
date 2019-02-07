@@ -529,7 +529,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 for(int i=0; i<fields.size(); i++)
                 {
                     Field field = fields.get(i);
-                    field.setCalculatedValue(CanzeDataSource.getInstance().getLast(field.getSID()));
+                    if(field!=null)
+                        field.setCalculatedValue(CanzeDataSource.getInstance().getLast(field.getSID()));
                     //debug("MainActivity: Setting "+field.getSID()+" = "+field.getValue());
                     //f.setValue(settings.getFloat(f.getUniqueID(), 0));
                 }

@@ -421,7 +421,9 @@ public class DtcActivity extends CanzeActivity {
                 createDump(ecu);
                 testerInit(ecu);
 
-                for (Frame frame : Frames.getInstance().getAllFrames()) {
+                // for (Frame frame : Frames.getInstance().getAllFrames()) {    <<< this is not thread-safe!
+                for(int i=0; i<Frames.getInstance().getAllFrames().size(); i++) {
+                    Frame frame = Frames.getInstance().get(i);
                     testerKeepalive();
                     // see if we need to stop right now
                     if (((StoppableThread) Thread.currentThread()).isStopped()) return;
