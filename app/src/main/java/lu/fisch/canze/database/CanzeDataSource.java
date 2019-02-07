@@ -87,9 +87,26 @@ public class CanzeDataSource implements FieldListener
             //MainActivity.debug("CanzeDataSource: inserting "+field.getValue()+" for "+field.getSID());
             ContentValues values = new ContentValues();
             values.put("sid", field.getSID());
-            values.put("moment", Calendar.getInstance().getTimeInMillis());
+            //values.put("moment", Calendar.getInstance().getTimeInMillis());
+            long iTime = Calendar.getInstance().getTimeInMillis();
+            // with the new dongle, fields may come in too fast, so let's
+            // make sure we do not get an overflow >> very slow app reaction
+            // maximum each second a new value!
+            iTime = (iTime / 1000) * 1000;
+            values.put("moment", iTime);
             values.put("value", field.getValue());
-            database.insert("data", null, values);
+
+            // if this is really a new point, insert it
+            if(getLastTime(field.getSID())!=iTime)
+                database.insert("data", null, values);
+            // but if not, insert the max ... so check if the inserted value is lower than the new one
+            else if(getLast(field.getSID())<field.getValue())
+            {
+                // delete the value from the DB
+                delete(field.getSID(),iTime);
+                // insert a new value into the DB
+                database.insert("data", null, values);
+            }
         }
     }
 
@@ -103,6 +120,11 @@ public class CanzeDataSource implements FieldListener
     {
         dbHelper.reinit(database);
         //database.rawQuery("DELETE FROM data",null);
+    }
+
+    public void delete(String sid, long moment)
+    {
+        database.rawQuery("DELETE FROM data WHERE sid='"+sid+"' AND moment='"+moment+"'", null);
     }
 
     public double getLast(String sid)
