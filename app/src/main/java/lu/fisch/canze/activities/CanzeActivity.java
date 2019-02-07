@@ -133,7 +133,8 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             if (isFinishing()) {
                 MainActivity.debug("CanzeActivity: onDestroy (finishing)");
                 // clear filters
-                MainActivity.device.clearFields();
+                if(MainActivity.device!=null)
+                    MainActivity.device.clearFields();
                 //MainActivity.registerFields();
             }
         }
