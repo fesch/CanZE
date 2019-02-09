@@ -32,6 +32,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
@@ -272,6 +273,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         debug("MainActivity: loadSettings");
         try {
             SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
+            versionChangeCheck(settings);
             bluetoothDeviceName = settings.getString("deviceName", null);
             bluetoothDeviceAddress = settings.getString("deviceAddress", null);
             gatewayUrl = settings.getString("gatewayUrl", null);
@@ -945,6 +947,39 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             return gatewayUrl;
         return bluetoothDeviceAddress;
     }
+
+    void versionChangeCheck (SharedPreferences settings) {
+        // get the current and the saved version of the app
+        String previousVersion = settings.getString("appVersion", "");
+        String currentVersion = "";
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            currentVersion = pInfo.versionName;
+        } catch (Exception e) {
+            // ignore this error, currentVersion = ""
+        }
+
+        if (currentVersion.equals (previousVersion)) return;
+
+        // this case statement contains optional code to move a previous instance of the app to the
+        // current state
+        switch (previousVersion) {
+            case "":
+            default:
+                // clear database
+                CanzeDataSource.getInstance().clear();
+            break;
+        }
+
+        // if we successfully got the current version of the app, we save it in the preferences
+        if (!currentVersion.equals ("")) {
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString("appVersion", currentVersion);
+            editor.apply();
+            finish();
+        }
+    }
+
 
     public static String getStringSingle (int resId) {
         if (res == null) return "";
