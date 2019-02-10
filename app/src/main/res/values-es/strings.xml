@@ -159,7 +159,7 @@
         <item>Demanda Ventilación</item>
         <item>Demanda de Frio</item>
         <item>Demanda de Calor</item>
-        <item>No disp.</item>
+        <item>Cond not req</item>
     </string-array>
     <string-array name="list_ClimateStatus">
         <item>No disp.</item>
@@ -172,6 +172,13 @@
         <item>Ralentí</item>
     </string-array>
     <string name="graph_Climatech">Externa (°C), Interna (°C), Ajuste (°C), Batería (°C)</string>
+    <string name="label_PtcRelay1">PTC Relay 1</string>
+    <string name="label_PtcRelay2">PTC Relay 2</string>
+    <string name="label_PtcRelay3">PTC Relay 3</string>
+    <string-array name="list_PtcRelay">
+        <item>On</item>
+        <item>Off</item>
+    </string-array>
 
     <!-- Consumption -->
 
@@ -194,6 +201,7 @@
     <string name="label_wheel_torque">Par Ruedas</string>
     <string name="label_DistToDest">Distancia al destino</string>
     <string name="label_DistAvailAtDest">Dist. available at dest.</string>
+    <string name="label_TripConsumption">Trip consumption</string>
     <string name="label_friction">Freno de fricción (evitar)</string>
     <string name="button_Double">Doble</string>
     <string name="prompt_Distance">DISTANCIA RESTANTE</string>
@@ -437,7 +445,7 @@
     <string name="label_LeakCurrentHf">Leak current HF (mA)</string>
     <string name="label_LeakCurrentLf">Leak current LF (mA)</string>
     <string name="button_Bcb">BCB</string>
-    <string name="button_Harmonics">Harmonics</string>
+    <string name="button_LeakCurrents">Harmonics</string>
     <string name="label_InterPhaseVoltage">Inter phase voltage 12/23/31 V</string>
     <string name="label_MainsActivePowerConsumed">Mains active power consumed W</string>
     <string name="label_MainsCurrentType">Mains current type</string>
@@ -445,7 +453,7 @@
     <string name="label_SupervisorState">Supervisor State</string>
     <string name="label_phaseCurrent">Phase current RMS 1/2/3 A</string>
     <string name="title_activity_bcb">BCB</string>
-    <string name="title_activity_harmonics">Harmonics leak currents</string>
+    <string name="title_activity_leakCurrents">Harmonics leak currents</string>
     <string name="title_activity_elm_dump">ELM Dump</string>
     <string-array name="list_MainsCurrentType">
         <item>Nok</item>

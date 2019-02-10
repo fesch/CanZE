@@ -538,72 +538,69 @@ public class Timeplot extends Drawable {
         //MainActivity.debug("Start : "+sdf.format(start));
 
         sdf = new SimpleDateFormat("HH:mm");
-        if(backward)
-        {
-            ArrayList<TimePoint> list = this.values.get(sids.get(0));
-            long newStart = (Calendar.getInstance().getTimeInMillis());
-            if(!list.isEmpty()) {
-                newStart = list.get(list.size() - 1).date;
-                for (int s = 0; s < sids.size(); s++) {
-                    list = this.values.get(sids.get(s));
-                    if(!list.isEmpty()) {
-                        long thisDate = list.get(list.size() - 1).date;
-                        if (thisDate > start) newStart = thisDate;
+        if(!this.values.isEmpty())
+            if(backward)
+            {
+                ArrayList<TimePoint> list = this.values.get(sids.get(0));
+                long newStart = (Calendar.getInstance().getTimeInMillis());
+                if (!list.isEmpty()) {
+                    newStart = list.get(list.size() - 1).date;
+                    for (int s = 0; s < sids.size(); s++) {
+                        list = this.values.get(sids.get(s));
+                        if (!list.isEmpty()) {
+                            long thisDate = list.get(list.size() - 1).date;
+                            if (thisDate > start) newStart = thisDate;
+                        }
                     }
                 }
+                //long newStart = start*1000;
+                //MainActivity.debug("Start 2: "+sdf.format(newStart));
+                for (long x = width - (start % interval) - spaceAlt; x >= width - barWidth - spaceAlt; x -= interval) {
+                    if (c % (5 * ts) == 0) {
+                        g.setColor(getForeground());
+                        g.drawLine(x, graphHeight, x, graphHeight + 10);
+                        String date = sdf.format((newStart - ((newStart % interval)) * timeSale - interval * c * timeSale * 1000));
+                        g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
+                    } else {
+                        g.setColor(getForeground());
+                        g.drawLine(x, graphHeight, x, graphHeight + 3);
+                    }
+                    c++;
+                }
             }
-            //long newStart = start*1000;
-            //MainActivity.debug("Start 2: "+sdf.format(newStart));
-            for(long x=width-(   start%interval)-spaceAlt; x>=width-barWidth-spaceAlt; x-=interval)
+            else
             {
-                if(c%(5*ts)==0) {
-                    g.setColor(getForeground());
-                    g.drawLine(x, graphHeight, x, graphHeight + 10);
-                    String date = sdf.format((newStart - ((newStart % interval))*timeSale - interval * c*timeSale*1000));
-                    g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
-                }
-                else
-                {
-                    g.setColor(getForeground());
-                    g.drawLine(x, graphHeight, x, graphHeight + 3);
-                }
-                c++;
-            }
-    }
-        else
-        {
-            ArrayList<TimePoint> list = this.values.get(sids.get(0));
+                ArrayList<TimePoint> list = this.values.get(sids.get(0));
 
-            long newStart = (Calendar.getInstance().getTimeInMillis());
-            if(!list.isEmpty()) {
-                newStart = list.get(list.size() - 1).date;
-                for (int s = 0; s < sids.size(); s++) {
-                    list = this.values.get(sids.get(s));
-                    if(!list.isEmpty()) {
-                        long thisDate = list.get(0).date;
-                        if (thisDate < start) newStart = thisDate;
+                long newStart = (Calendar.getInstance().getTimeInMillis());
+                if(!list.isEmpty()) {
+                    newStart = list.get(list.size() - 1).date;
+                    for (int s = 0; s < sids.size(); s++) {
+                        list = this.values.get(sids.get(s));
+                        if(!list.isEmpty()) {
+                            long thisDate = list.get(0).date;
+                            if (thisDate < start) newStart = thisDate;
+                        }
                     }
                 }
-            }
-            //MainActivity.debug("START: "+sdf.format(start));
-            //long newStart = start*1000;
-            for(long x=width-barWidth-spaceAlt; x<width-spaceAlt; x+=interval)
-            {
-                if(c%(5*ts)==0) {
-                    g.setColor(getForeground());
-                    g.drawLine(x, graphHeight, x, graphHeight + 10);
-                    String date = sdf.format( newStart + (interval * c*timeSale*1000));
-                    g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
-                }
-                else
+                //MainActivity.debug("START: "+sdf.format(start));
+                //long newStart = start*1000;
+                for(long x=width-barWidth-spaceAlt; x<width-spaceAlt; x+=interval)
                 {
-                    g.setColor(getForeground());
-                    g.drawLine(x, graphHeight, x, graphHeight + 3);
+                    if(c%(5*ts)==0) {
+                        g.setColor(getForeground());
+                        g.drawLine(x, graphHeight, x, graphHeight + 10);
+                        String date = sdf.format( newStart + (interval * c*timeSale*1000));
+                        g.drawString(date, x - g.stringWidth(date) - 4, height - 2);
+                    }
+                    else
+                    {
+                        g.setColor(getForeground());
+                        g.drawLine(x, graphHeight, x, graphHeight + 3);
+                    }
+                    c++;
                 }
-                c++;
             }
-        }
-
 
 
 
@@ -611,7 +608,10 @@ public class Timeplot extends Drawable {
         if(title!=null && !title.equals(""))
         {
             g.setColor(getTitleColor());
-            g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 14, Resources.getSystem().getDisplayMetrics()));
+            if(MainActivity.getInstance().isLandscape())
+                g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 14, Resources.getSystem().getDisplayMetrics()));
+            else
+                g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, Resources.getSystem().getDisplayMetrics()));
 
             // draw multi-line title
             title = title.replace(" / ",", "); // let's be lazy
@@ -671,7 +671,10 @@ public class Timeplot extends Drawable {
                 }
 
                 //g.setTextSize(40);
-                g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 22, Resources.getSystem().getDisplayMetrics()));
+                if(MainActivity.getInstance().isLandscape())
+                    g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 22, Resources.getSystem().getDisplayMetrics()));
+                else
+                    g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 18, Resources.getSystem().getDisplayMetrics()));
 
                 if(values.isEmpty())
                     g.setColor(getColor(s));

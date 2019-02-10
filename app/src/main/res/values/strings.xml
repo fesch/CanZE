@@ -250,7 +250,7 @@
     <string name="label_12V">12 volt voltage</string>
     <string name="label_12A">12 volt current</string>
     <string name="label_DcLoad">DCDC Load %</string>
-    <string name="label_HKM">Battery kilometers</string>
+    <string name="label_HKM">Battery odometer</string>
     <string name="label_ChaStatus">Charging Status</string>
     <string name="label_Plug">Plug Status</string>
     <string-array name="list_ChargingStatus">
@@ -326,7 +326,7 @@
         <item>Blow req</item>
         <item>Cool cond req</item>
         <item>Heat cond req</item>
-        <item>Unavail</item>
+        <item>Cond not req</item>
     </string-array>
     <string-array name="list_ClimateStatus">
         <item>Unavailable</item>
@@ -342,6 +342,13 @@
     <!-- <string name="label_IH_ClimCompRPMStatus">Compressor RPM / ECO mode</string> -->
     <string name="label_IH_ClimCompPWRStatus">Compressor power (W), ECO</string>
     <string name="graph_Climatech">External (°C), Internal (°C), Setpoint (°C), Battery (°C)</string>
+    <string name="label_PtcRelay1">PTC Relay 1</string>
+    <string name="label_PtcRelay2">PTC Relay 2</string>
+    <string name="label_PtcRelay3">PTC Relay 3</string>
+    <string-array name="list_PtcRelay">
+        <item>On</item>
+        <item>Off</item>
+    </string-array>
 
     <!-- Consumption -->
 
@@ -364,6 +371,7 @@
     <string name="label_wheel_torque">Wheel Torque</string>
     <string name="label_DistToDest">Distance to destination</string>
     <string name="label_DistAvailAtDest">Dist. available at dest.</string>
+    <string name="label_TripConsumption">Trip consumption</string>
     <string name="label_friction">Friction braking (avoid)</string>
     <string name="button_Double">Double</string>
     <string name="prompt_Distance">REMAINING DISTANCE</string>
@@ -426,14 +434,14 @@
 
     <string name="button_FluenceKangooTemps">Fluence Kangoo Temps</string>
 
-    <!-- Harmonics -->
+    <!-- LeakCurrents -->
 
-    <string name="title_activity_harmonics">Harmonics leak currents</string>
-    <string name="button_Harmonics">Harmonics</string>
+    <string name="title_activity_leakCurrents">Leak currents</string>
+    <string name="button_LeakCurrents">Leak Currents</string>
     <string name="label_LeakCurrentDc">Leak current DC (mA)</string>
-    <string name="label_LeakCurrentLf">Leak current LF (mA)</string>
-    <string name="label_LeakCurrentHf">Leak current HF (mA)</string>
-    <string name="label_LeakCurrentEhf">Leak current EHF (mA)</string>
+    <string name="label_LeakCurrentLf">Leak current LF, 50 Hz (mA)</string>
+    <string name="label_LeakCurrentHf">Leak current HF, 10 Khz (mA)</string>
+    <string name="label_LeakCurrentEhf">Leak current EHF, 10 KHz harmonics (mA)</string>
 
 
     <!-- Heatmap battery modules -->

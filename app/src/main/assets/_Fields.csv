@@ -22,6 +22,7 @@
 ,430,38,39,1,0,0,,,,e2,HV Battery Cooling State
 ,430,40,49,0.1,400,1,°C,,,e2,HV Battery Evaporator Temp
 ,432,36,37,1,0,0,,,,e2,HV Bat Conditionning Mode
+,4f8,4,5,-1,-2,0,,,,ff,Parking Break
 ,534,32,40,1,40,0,°C,,,e5,Temp out
 ,5d7,0,15,0.01,0,2,km/h,,,ff,Speed
 ,5da,0,7,1,40,0,ºC,,,e7,Water temperature
@@ -313,7 +314,6 @@
 ,7ec,24,31,1,1,0,,223319,623319,ff,Charger pump speed
 ,7ec,24,31,1,1,0,,22331A,62331A,ff,Heater water pump speed
 ,7ec,24,31,25,0,0,W,2233A7,6233a7,ff,AC compressor Power Consumption Estimation
-,7ec,24,47,0.001,1,0,kWh,2233dc,6233dc,ff,Consumed domestic energy
 ,7ec,240,263,1,0,0,km,2233d4,6233d4,ff
 ,7ec,216,239,1,0,0,km,2233d4,6233d4,ff
 ,7ec,192,215,1,0,0,km,2233d4,6233d4,ff
@@ -374,3 +374,12 @@
 ,7ec,56,71,1,0,0,min,2233d9,6233d9,ff
 ,7ec,40,55,1,0,0,min,2233d9,6233d9,ff
 ,7ec,24,39,1,0,0,min,2233d9,6233d9,ff
+#,7ec,24,30,0.01,1,0,kWh,2233db,6233db,ff,Consumed domestic energy
+#,7ec,24,47,0.001,1,0,kWh,2233dc,6233dc,ff,Consumed energy
+,7ec,24,47,0.001,0,0,kwh,2233dd,6233dd,ff,Trip energy consumed
+,7ec,24,55,0.0001,0,0,km,2233de,6233de,ff,Trip distance
+,7ec,24,39,1,32767,0,A,223484,623484,ff,Current measurement given by BCS Battery Current Sensor
+,7ec,24,39,.001,0,0,V,223485,623485,ff,Voltage measurement given by BCS Battery Current Sensor
+,7ec,31,31,1,0,0,,223498,623498,ff,Battery relay PTC n°1
+,7ec,31,31,1,0,0,,22349a,62349a,ff,Battery relay PTC n°2
+,7ec,31,31,1,0,0,,22349c,62349c,ff,Battery relay PTC n°3

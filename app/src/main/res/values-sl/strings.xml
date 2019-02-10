@@ -156,7 +156,7 @@
         <item>Blow req</item>
         <item>Cool cond req</item>
         <item>Heat cond req</item>
-        <item>Ni na voljo</item>
+        <item>Cond not req</item>
     </string-array>
     <string-array name="list_ClimateStatus">
         <item>Ni na voljo</item>
@@ -169,6 +169,13 @@
         <item>Idle</item>
     </string-array>
     <string name="graph_Climatech">Zunanja (°C), otranja (°C), Nastavljena (°C), Baterija (°C)</string>
+    <string name="label_PtcRelay1">PTC Relay 1</string>
+    <string name="label_PtcRelay2">PTC Relay 2</string>
+    <string name="label_PtcRelay3">PTC Relay 3</string>
+    <string-array name="list_PtcRelay">
+        <item>On</item>
+        <item>Off</item>
+    </string-array>
 
     <!-- Consumption -->
 
@@ -191,6 +198,7 @@
     <string name="label_wheel_torque">Kolesni navor</string>
     <string name="label_DistToDest">Razdalja do cilja</string>
     <string name="label_DistAvailAtDest">Doseg na cilju</string>
+    <string name="label_TripConsumption">Trip consumption</string>
     <string name="label_friction">Zaviranje (izgube)</string>
     <string name="button_Double">Dvojno</string>
     <string name="prompt_Distance">PREOSTALI DOSEG</string>
@@ -426,7 +434,7 @@
     <string name="label_CompletionStatus">Completion status</string>
     <string name="label_GroundResistanceOhm">Ground resistance Ohm</string>
     <string name="button_Bcb">BCB</string>
-    <string name="button_Harmonics">Harmonics</string>
+    <string name="button_LeakCurrents">Harmonics</string>
     <string name="label_InterPhaseVoltage">Inter phase voltage 12/23/31 V</string>
     <string name="label_LeakCurrentDc">Leak current DC (mA)</string>
     <string name="label_LeakCurrentEhf">Leak current DC (mA)</string>
@@ -438,7 +446,7 @@
     <string name="label_SupervisorState">Supervisor State</string>
     <string name="label_phaseCurrent">Phase current RMS 1/2/3 A</string>
     <string name="title_activity_bcb">BCB</string>
-    <string name="title_activity_harmonics">Harmonics leak currents</string>
+    <string name="title_activity_leakCurrents">Harmonics leak currents</string>
     <string name="title_activity_elm_dump">ELM Dump</string>
     <string-array name="list_MainsCurrentType">
         <item>Nok</item>
