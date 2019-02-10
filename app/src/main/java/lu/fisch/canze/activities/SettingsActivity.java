@@ -79,10 +79,10 @@ public class SettingsActivity extends AppCompatActivity {
         String remoteDevice = settings.getString("device", "ELM327");
 
         // device address
-        final EditText deviceAddress = (EditText) findViewById(R.id.editTextDeviceAddress);
+        final EditText deviceAddress = findViewById(R.id.editTextDeviceAddress);
 
         // remote Device
-        final Spinner deviceType = (Spinner) findViewById(R.id.deviceType);
+        final Spinner deviceType = findViewById(R.id.deviceType);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         arrayAdapter.add("ELM327");
         arrayAdapter.add("Bob Due");
@@ -110,10 +110,10 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(deviceAddress.getWindowToken(), 0);
+        if (imm != null) imm.hideSoftInputFromWindow(deviceAddress.getWindowToken(), 0);
 
         final String gatewayUrl = settings.getString("gatewayUrl", "");
-        final Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
+        final Spinner deviceList = findViewById(R.id.bluetoothDeviceList);
         deviceList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -148,23 +148,23 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("ZOE Q210");
         arrayAdapter.add("ZOE R240");
         arrayAdapter.add("ZOE Q90");
-        arrayAdapter.add("ZOE R90");
+        arrayAdapter.add("ZOE R90/110");
         arrayAdapter.add("Fluence");
         arrayAdapter.add("Kangoo");
         arrayAdapter.add("Twizy");
         arrayAdapter.add("X10");
 
-        int index = 0;
-        if(MainActivity.car==MainActivity.CAR_ZOE_Q210) index=0;
-        else if (MainActivity.car == MainActivity.CAR_ZOE_R240) index = 1;
+        int index;
+        if      (MainActivity.car == MainActivity.CAR_ZOE_R240) index = 1;
         else if (MainActivity.car == MainActivity.CAR_ZOE_Q90) index = 2;
         else if (MainActivity.car == MainActivity.CAR_ZOE_R90) index = 3;
-        else if(MainActivity.car==MainActivity.CAR_FLUENCE) index=4;
-        else if(MainActivity.car==MainActivity.CAR_KANGOO) index=5;
-        else if(MainActivity.car==MainActivity.CAR_X10) index=6;
+        else if (MainActivity.car == MainActivity.CAR_FLUENCE) index=4;
+        else if (MainActivity.car == MainActivity.CAR_KANGOO) index=5;
+        else if (MainActivity.car == MainActivity.CAR_X10) index=6;
+        else index = 0; // assume MainActivity.CAR_ZOE_Q210
 
         // display the list
-        Spinner carList = (Spinner) findViewById(R.id.car);
+        Spinner carList = findViewById(R.id.car);
         carList.setAdapter(arrayAdapter);
         // select the actual device
         carList.setSelection(index);
@@ -176,20 +176,19 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("Only device");
         arrayAdapter.add("All");
 
-        index = 0;
-        if(MainActivity.toastLevel==Fields.TOAST_NONE) index=0;
-        else if(MainActivity.toastLevel==Fields.TOAST_DEVICE) index=1;
-        else if(MainActivity.toastLevel==Fields.TOAST_ALL) index=2;
+        if      (MainActivity.toastLevel == Fields.TOAST_DEVICE) index=1;
+        else if (MainActivity.toastLevel == Fields.TOAST_ALL) index=2;
+        else index = 0; // assume Fields.TOAST_NONE)
 
         // display the list
-        Spinner toastList = (Spinner) findViewById(R.id.toastLevel);
+        Spinner toastList = findViewById(R.id.toastLevel);
         toastList.setAdapter(arrayAdapter);
         // select the actual device
         toastList.setSelection(index);
         toastList.setSelected(true);
 
         // options
-        final CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
+        final CheckBox safe = findViewById(R.id.safeDrivingMode);
         safe.setChecked(MainActivity.safeDrivingMode);
         safe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,10 +246,10 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        final CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
+        final CheckBox miles = findViewById(R.id.milesMode);
         miles.setChecked(MainActivity.milesMode);
 
-        final CheckBox btBackground = (CheckBox) findViewById(R.id.btBackgrounding);
+        final CheckBox btBackground = findViewById(R.id.btBackgrounding);
         btBackground.setChecked(MainActivity.bluetoothBackgroundMode);
         btBackground.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -307,7 +306,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        final CheckBox dataExport = (CheckBox) findViewById(R.id.dataExportMode);
+        final CheckBox dataExport = findViewById(R.id.dataExportMode);
         dataExport.setChecked(MainActivity.dataExportMode);
         dataExport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -343,7 +342,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        final CheckBox debugLog = (CheckBox) findViewById(R.id.debugLogMode);
+        final CheckBox debugLog = findViewById(R.id.debugLogMode);
         debugLog.setChecked(MainActivity.debugLogMode);
         debugLog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -379,7 +378,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        final CheckBox fieldLog = (CheckBox) findViewById(R.id.fieldLogMode);
+        final CheckBox fieldLog = findViewById(R.id.fieldLogMode);
         fieldLog.setChecked(MainActivity.fieldLogMode);
         fieldLog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -416,7 +415,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         // display build version
-        TextView tv = (TextView) findViewById(R.id.build);
+        TextView tv = findViewById(R.id.build);
         try{
         /*  ApplicationInfo ai = getPackageManager().getApplicationInfo(getPackageName(), 0);
             ZipFile zf = new ZipFile(ai.sourceDir);
@@ -435,7 +434,7 @@ public class SettingsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Button button = (Button) findViewById(R.id.buttonClearSettings);
+        Button button = findViewById(R.id.buttonClearSettings);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -461,7 +460,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        final Button logButton = (Button) findViewById(R.id.logButton);
+        final Button logButton = findViewById(R.id.logButton);
         logButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -471,7 +470,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
         logButton.setVisibility(View.INVISIBLE);
 
-        final Button btsCanSee = (Button) findViewById(R.id.btnCanSee);
+        final Button btsCanSee = findViewById(R.id.btnCanSee);
         btsCanSee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -506,17 +505,17 @@ public class SettingsActivity extends AppCompatActivity {
             // save settings
             SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
             SharedPreferences.Editor editor = settings.edit();
-            Spinner remoteDevice = (Spinner) findViewById(R.id.bluetoothDeviceList);
-            Spinner deviceType = (Spinner) findViewById(R.id.deviceType);
-            Spinner car = (Spinner) findViewById(R.id.car);
-            CheckBox safe = (CheckBox) findViewById(R.id.safeDrivingMode);
-            CheckBox miles = (CheckBox) findViewById(R.id.milesMode);
-            CheckBox dataExport = (CheckBox) findViewById(R.id.dataExportMode);
-            CheckBox debugLog = (CheckBox) findViewById(R.id.debugLogMode);
-            CheckBox fieldLog = (CheckBox) findViewById(R.id.fieldLogMode);
-            CheckBox btBackground = (CheckBox) findViewById(R.id.btBackgrounding);
-            Spinner toastLevel = (Spinner) findViewById(R.id.toastLevel);
-            EditText deviceAddress = (EditText) findViewById(R.id.editTextDeviceAddress);
+            Spinner remoteDevice = findViewById(R.id.bluetoothDeviceList);
+            Spinner deviceType = findViewById(R.id.deviceType);
+            Spinner car = findViewById(R.id.car);
+            CheckBox safe = findViewById(R.id.safeDrivingMode);
+            CheckBox miles = findViewById(R.id.milesMode);
+            CheckBox dataExport = findViewById(R.id.dataExportMode);
+            CheckBox debugLog = findViewById(R.id.debugLogMode);
+            CheckBox fieldLog = findViewById(R.id.fieldLogMode);
+            CheckBox btBackground = findViewById(R.id.btBackgrounding);
+            Spinner toastLevel = findViewById(R.id.toastLevel);
+            EditText deviceAddress = findViewById(R.id.editTextDeviceAddress);
             if(remoteDevice.getSelectedItem()!=null) {
                 MainActivity.debug("Settings.deviceAddress = " + remoteDevice.getSelectedItem().toString().split("\n")[1].trim());
                 MainActivity.debug("Settings.deviceName = " + remoteDevice.getSelectedItem().toString().split("\n")[0].trim());
@@ -638,7 +637,7 @@ public class SettingsActivity extends AppCompatActivity {
         //i++;
 
         // display the list
-        Spinner deviceList = (Spinner) findViewById(R.id.bluetoothDeviceList);
+        Spinner deviceList = findViewById(R.id.bluetoothDeviceList);
         deviceList.setAdapter(arrayAdapter);
 
         // select the actual device

@@ -12,4 +12,11 @@
         android:visible="true"
         />
 
+    <item
+        android:id="@+id/action_resetTripConsumption"
+        android:orderInCategory="101"
+        android:title="@string/label_TripConsumption"
+        android:visible="true"
+        />
+
 </menu>

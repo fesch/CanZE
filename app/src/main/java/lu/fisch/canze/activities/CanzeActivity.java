@@ -133,7 +133,8 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             if (isFinishing()) {
                 MainActivity.debug("CanzeActivity: onDestroy (finishing)");
                 // clear filters
-                MainActivity.device.clearFields();
+                if(MainActivity.device!=null)
+                    MainActivity.device.clearFields();
                 //MainActivity.registerFields();
             }
         }
@@ -283,8 +284,18 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                TextView tv = (TextView) findViewById(R.id.textDebug);
+                TextView tv = findViewById(R.id.textDebug);
                 if (tv != null) tv.setText(msg);
+            }
+        });
+    }
+
+    public void appendDebugMessage (final String msg) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                TextView tv = findViewById(R.id.textDebug);
+                if (tv != null) tv.setText(tv.getText() + " " + msg);
             }
         });
     }

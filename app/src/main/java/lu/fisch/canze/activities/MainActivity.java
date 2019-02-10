@@ -32,6 +32,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
@@ -272,6 +274,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         debug("MainActivity: loadSettings");
         try {
             SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
+            versionChangeCheck(settings);
             bluetoothDeviceName = settings.getString("deviceName", null);
             bluetoothDeviceAddress = settings.getString("deviceAddress", null);
             gatewayUrl = settings.getString("gatewayUrl", null);
@@ -305,6 +308,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                     car = CAR_ZOE_Q90;
                     break;
                 case "ZOE R90":
+                case "ZOE R90/110":
                     car = CAR_ZOE_R90;
                     break;
                 case "Fluence":
@@ -357,9 +361,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         catch(Exception e)
         {
             MainActivity.debug(e.getMessage());
-            StackTraceElement[] st = e.getStackTrace();
-            for(int i=0; i<st.length; i++)
-                MainActivity.debug(st[i].toString());
+            for (StackTraceElement traceElement:e.getStackTrace()) {
+                MainActivity.debug(traceElement.toString());
+            }
         }
     }
 
@@ -425,11 +429,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // navigation bar
         AppSectionsPagerAdapter appSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
         actionBar = getSupportActionBar();
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
+        if (actionBar != null) actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
         //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        viewPager = (ViewPager) findViewById(R.id.main);
+        viewPager = findViewById(R.id.main);
         viewPager.setAdapter(appSectionsPagerAdapter);
-        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        // viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 //actionBar.setSelectedNavigationItem(position);
@@ -438,25 +443,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         });
         updateActionBar();
 
-        /*
-        for (int i = 0; i < appSectionsPagerAdapter.getCount(); i++) {
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText(appSectionsPagerAdapter.getPageTitle(i))
-                            .setTabListener(MainActivity.this));
-        }
-        */
-
-
-        // load the initial "main" fragment
-        //loadFragement(new MainFragment());
-
         setTitle(TAG + " - not connected");
         setBluetoothState(BLUETOOTH_DISCONNECTED);
-
-        // tabs
-        //final ActionBar actionBar = getSupportActionBar();
-        // Specify that tabs should be displayed in the action bar.
 
         // open the database
         CanzeDataSource.getInstance(getBaseContext()).open();
@@ -544,7 +532,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 for(int i=0; i<fields.size(); i++)
                 {
                     Field field = fields.get(i);
-                    field.setCalculatedValue(CanzeDataSource.getInstance().getLast(field.getSID()));
+                    if(field!=null)
+                        field.setCalculatedValue(CanzeDataSource.getInstance().getLast(field.getSID()));
                     //debug("MainActivity: Setting "+field.getSID()+" = "+field.getValue());
                     //f.setValue(settings.getFloat(f.getUniqueID(), 0));
                 }
@@ -782,7 +771,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // set the correct initial state
         setBluetoothState(BLUETOOTH_DISCONNECTED);
         // get access to the image view
-        ImageView imageView = (ImageView) bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
+        ImageView imageView = bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
         // define an action
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -807,7 +796,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         if(bluetoothMenutItem!=null) {
             View view = bluetoothMenutItem.getActionView();
             if (view == null) return;
-            final ImageView imageView = (ImageView) view.findViewById(R.id.animated_menu_item_action);
+            final ImageView imageView = view.findViewById(R.id.animated_menu_item_action);
 
             // stop the animation if there is one running
             AnimationDrawable frameAnimation;
@@ -960,6 +949,39 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return bluetoothDeviceAddress;
     }
 
+    void versionChangeCheck (SharedPreferences settings) {
+        // get the current and the saved version of the app
+        String previousVersion = settings.getString("appVersion", "");
+        String currentVersion = "";
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            currentVersion = pInfo.versionName;
+        } catch (Exception e) {
+            // ignore this error, currentVersion = ""
+        }
+
+        if (currentVersion.equals (previousVersion)) return;
+
+        // this case statement contains optional code to move a previous instance of the app to the
+        // current state
+        switch (previousVersion) {
+            case "":
+            default:
+                // clear database
+                CanzeDataSource.getInstance().clear();
+            break;
+        }
+
+        // if we successfully got the current version of the app, we save it in the preferences
+        if (!currentVersion.equals ("")) {
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString("appVersion", currentVersion);
+            editor.apply();
+            finish();
+        }
+    }
+
+
     public static String getStringSingle (int resId) {
         if (res == null) return "";
         String result = res.getString(resId);
@@ -979,5 +1001,40 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         if (debugListener != null) debugListener.dropDebugMessage (msg);
     }
 
+    public void appendDebugMessage (String msg) {
+        if (debugListener != null) debugListener.appendDebugMessage (msg);
+    }
+
+    public int getScreenOrientation()
+    {
+        Display screenOrientation = getWindowManager().getDefaultDisplay();
+        int orientation = Configuration.ORIENTATION_UNDEFINED;
+        if(screenOrientation.getWidth()==screenOrientation.getHeight()){
+            orientation = Configuration.ORIENTATION_SQUARE;
+            //Do something
+
+        } else{
+            if(screenOrientation.getWidth() < screenOrientation.getHeight()){
+                orientation = Configuration.ORIENTATION_PORTRAIT;
+                //Do something
+
+            }else {
+                orientation = Configuration.ORIENTATION_LANDSCAPE;
+                //Do something
+
+            }
+        }
+        return orientation;
+    }
+
+    public boolean isLandscape()
+    {
+        return getScreenOrientation()==Configuration.ORIENTATION_LANDSCAPE;
+    }
+
+    public boolean isPortrait()
+    {
+        return getScreenOrientation()==Configuration.ORIENTATION_PORTRAIT;
+    }
 
 }

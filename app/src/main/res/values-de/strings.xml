@@ -155,7 +155,7 @@
         <item>Luft req</item>
         <item>Kühlen cond req</item>
         <item>Heizen cond req</item>
-        <item>Nicht verf.</item>
+        <item>Kein cond req</item>
     </string-array>
     <string-array name="list_ClimateStatus">
         <item>Nicht verfügbar</item>
@@ -166,6 +166,13 @@
         <item> </item>
         <item>Freimachen</item>
         <item>Inaktiv</item>
+    </string-array>
+    <string name="label_PtcRelay1">PTC Relay 1</string>
+    <string name="label_PtcRelay2">PTC Relay 2</string>
+    <string name="label_PtcRelay3">PTC Relay 3</string>
+    <string-array name="list_PtcRelay">
+        <item>Ein</item>
+        <item>Aus</item>
     </string-array>
 
     <!-- Consumption -->
@@ -189,6 +196,7 @@
     <string name="label_wheel_torque">Drehmoment (Räder)</string>
     <string name="label_DistToDest">Entfernung zum Ziel</string>
     <string name="label_DistAvailAtDest">Reichweite am Ziel</string>
+    <string name="label_TripConsumption">Trip consumption</string>
     <string name="label_friction">Reibungsbremse (vermeiden)</string>
     <string name="button_Double">Doppelt</string>
     <string name="prompt_Distance">VERBLEIBENDE REICHWEITE</string>
@@ -437,14 +445,14 @@ Diesen Modus zu entsperren ist nicht empfohlen.\n\n Bist du sicher, dass du den 
     <string name="label_LeakCurrentLf">Leak current LF (mA)</string>
     <string name="label_InterPhaseVoltage">Inter phase voltage 12/23/31 V</string>
     <string name="button_Bcb">BCB</string>
-    <string name="button_Harmonics">Harmonics</string>
+    <string name="button_LeakCurrents">Harmonics</string>
     <string name="label_MainsActivePowerConsumed">Mains active power consumed W</string>
     <string name="label_MainsCurrentType">Mains current type</string>
     <string name="label_PhaseVoltage">Phase voltage 1/2/3 V</string>
     <string name="label_SupervisorState">Supervisor State</string>
     <string name="label_phaseCurrent">Phase current RMS 1/2/3 A</string>
     <string name="title_activity_bcb">BCB</string>
-    <string name="title_activity_harmonics">Harmonics leak currents</string>
+    <string name="title_activity_leakCurrents">Harmonics leak currents</string>
     <string name="title_activity_elm_dump">ELM Dump</string>
     <string-array name="list_MainsCurrentType">
         <item>Nok</item>

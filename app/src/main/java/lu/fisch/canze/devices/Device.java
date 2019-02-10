@@ -49,9 +49,10 @@ public abstract class Device {
     protected static final int TOUGHNESS_SOFT              = 2;    // softest reset (i.e atd for ELM)
     protected static final int TOUGHNESS_NONE              = 100;  // just clear error status
 
-    private final double minIntervalMultiplicator       = 1.3;
-    private final double maxIntervalMultiplicator       = 2.5;
-    double intervalMultiplicator                        = minIntervalMultiplicator;
+    private final double minIntervalMultiplicator           = 1.3;
+    private final double maxIntervalMultiplicator           = 2.5;
+    double intervalMultiplicator                            = minIntervalMultiplicator;
+    private boolean deviceIsInitialized                     = false; // if true initConnection will only start a new pollerthread
 
     /* ----------------------------------------------------------------
      * Attributes
@@ -100,13 +101,13 @@ public abstract class Device {
      */
     public void initConnection()
     {
-        MainActivity.debug("Device: initConnection");
+        MainActivity.debug("Device.initConnection: start");
 
         if(BluetoothManager.getInstance().isConnected()) {
-            MainActivity.debug("Device: BT connected");
+            MainActivity.debug("Device.initConnection: BT is connected");
             // make sure we only have one poller task
             if (pollerThread == null) {
-                MainActivity.debug("Device: pollerThread == null");
+                MainActivity.debug("Device.initConnection: starting new poller");
                 // post a task to the UI thread
                 setPollerActive(true);
 
@@ -114,15 +115,17 @@ public abstract class Device {
                     @Override
                     public void run() {
                         // if the device has been initialised and we got an answer
-                        if(initDevice(TOUGHNESS_HARD)) {
+                        // TOUGHNESS_NONE does basically nothing
+                        if (initDevice (deviceIsInitialized ? TOUGHNESS_NONE : TOUGHNESS_HARD)) {
+                            deviceIsInitialized = true;
                             while (isPollerActive()) {
-                                MainActivity.debug("Device: inside poller thread");
+                                // MainActivity.debug("Device: inside poller thread");
                                 if (applicationFields.size()+activityFieldsScheduled.size()+activityFieldsAsFastAsPossible.size() == 0
                                         || !BluetoothManager.getInstance().isConnected()) {
-                                    MainActivity.debug("Device: sleeping");
+                                    // MainActivity.debug("Device.poller: no work");
                                     try {
                                         if(isPollerActive())
-                                            Thread.sleep(5000);
+                                            Thread.sleep(1000);
                                         else return;
                                     } catch (Exception e) {
                                         // ignore a sleep exception
@@ -132,23 +135,23 @@ public abstract class Device {
                                 else {
                                     if(isPollerActive())
                                     {
-                                        MainActivity.debug("Device: Doing next query ...");
+                                        MainActivity.debug("Device.poller: Doing next query");
                                         queryNextFilter();
                                     }
                                     else return;
                                 }
                             }
                             // dereference the poller thread (it i stopped now anyway!)
-                            MainActivity.debug("Device: Poller is done");
+                            MainActivity.debug("Device.poller stopped");
                             pollerThread = null;
                         }
                         else
                         {
-                            MainActivity.debug("Device: no answer from device");
-
+                            MainActivity.debug("Device.poller: initDevice failed");
+                            deviceIsInitialized = false;
                             // first check if we have not yet been killed!
                             if(isPollerActive()) {
-                                MainActivity.debug("Device: --- init failed ---");
+                                MainActivity.debug("Device.poller: restarting Bluetooth");
                                 // drop the BT connexion and try again
                                 (new Thread(new Runnable() {
                                     @Override
@@ -158,6 +161,7 @@ public abstract class Device {
                                         // reload the BT with filter registration
                                         MainActivity.getInstance().reloadBluetooth(false);
                                         //BluetoothManager.getInstance().connect();
+                                        pollerThread = null; // but we are still quitting the poller thread
                                     }
                                 })).start();
                             }
@@ -167,16 +171,16 @@ public abstract class Device {
                 pollerThread = new Thread(r);
                 // start the thread
                 pollerThread.start();
-            }
+            } // never mind, the BT is active, and the poller thread is running. Nothing to do
         }
         else
         {
-            MainActivity.debug("Device: BT not connected");
+            MainActivity.debug("Device.initConnection: BT is not connected");
             if(pollerThread!=null && pollerThread.isAlive())
             {
+                MainActivity.debug("Device.initConnection: stopping poller");
                 setPollerActive(false);
                 try {
-                    MainActivity.debug("Device: joining pollerThread");
                     pollerThread.join();
                 }
                 catch (Exception e)
@@ -185,6 +189,55 @@ public abstract class Device {
                 }
             }
         }
+    }
+
+    // stop the poller and request a frame (new!)
+    public Message injectRequest (Frame frame)
+    {
+        // stop the poller and wait for it to become inactive
+        stopAndJoin();
+
+        Message message = requestFrame(frame);
+
+        // restart the poller
+        initConnection();
+
+        // return the captured message
+        return message;
+    }
+
+    // stop the poller and request multiple frames (new!)
+    public Message injectRequests(Frame[] frames)
+    {
+        return injectRequests(frames, false, false);
+    }
+
+
+    // stop the poller and request multiple frames (new!)
+    // this variant will be very useful for ie LoadAllData
+    public Message injectRequests(Frame[] frames, boolean stopOnError, boolean callOnMessageComplete)
+    {
+        // stop the poller and wait for it to become inactive
+        stopAndJoin();
+
+        Message message = null;
+        for (Frame frame : frames) {
+            message = requestFrame(frame);
+            if (stopOnError && message.isError()) return null;
+            if (callOnMessageComplete) {
+                if (!message.isError()) {
+                    message.onMessageCompleteEvent();
+                } else {
+                    message.onMessageIncompleteEvent();
+                }
+            }
+        }
+
+        // restart the poller
+        initConnection();
+
+        // return the last captured message
+        return message;
     }
 
     // query the device for the next filter
@@ -197,7 +250,7 @@ public abstract class Device {
                 Field field = getNextField();
 
                 if(field == null) {
-                    MainActivity.debug("Device: got no next field --> sleeping");
+                    // MainActivity.debug("Device: got no next field --> sleeping");
                     // no next field ---> sleep
                     try {
                         Thread.sleep(200);
@@ -208,7 +261,7 @@ public abstract class Device {
                 else
                 {
                     // long start = Calendar.getInstance().getTimeInMillis();
-                    MainActivity.debug("Device: queryNextFilter: " + field.getSID());
+                    // MainActivity.debug("Device: queryNextFilter: " + field.getSID());
                     MainActivity.getInstance().dropDebugMessage(field.getSID());
 
                     // get the data
@@ -217,23 +270,25 @@ public abstract class Device {
                     // test if we got something
                     if(!message.isError()) {
                         //Fields.getInstance().onMessageCompleteEvent(message);
+                        MainActivity.getInstance().appendDebugMessage("ok");
                         message.onMessageCompleteEvent();
                     } else {
                         // one plain retry
+                        MainActivity.getInstance().appendDebugMessage("...");
                         message = requestFrame(field.getFrame());
                         if(!message.isError()) {
+                            MainActivity.getInstance().appendDebugMessage("ok");
                             message.onMessageCompleteEvent();
                         } else {
-                            // failed after single retry
-                            // mark underlying fields as uodated to avoid queue clogging
-                            // the will have to get backk to the end of the queue
+                            MainActivity.getInstance().appendDebugMessage("fail");
+                            // failed after single retry. Mark underlying fields as updated to avoid
+                            // queue clogging. The frame will have to get back to the end of the queue
                             message.onMessageIncompleteEvent();
                             // reset if something went wrong ...
                             // ... but only if we are not asked to stop!
                             if (BluetoothManager.getInstance().isConnected()) {
-                                MainActivity.debug("Device: something went wrong!");
-                                // we don't want to continue, so we need to stop the poller right now!
-                                // TODO but are we? I don't believe this comment is correct is it?
+                                MainActivity.debug("Device.queryNextFilter: Re-initializing");
+                                deviceIsInitialized = false; // force a true device init
                                 initDevice(TOUGHNESS_MEDIUM, 2); // toughness = 1, retries = 2
                             }
                         }
@@ -253,17 +308,6 @@ public abstract class Device {
 
         synchronized (fields) {
             if(applicationFields.size()>0) {
-                /*
-                // sort the applicationFields
-                Collections.sort(applicationFields, new Comparator<Field>() {
-                    @Override
-                    public int compare(Field lhs, Field rhs) {
-                        return (int) (lhs.getLastRequest()+lhs.getInterval() - (rhs.getLastRequest()+rhs.getInterval()));
-                    }
-                });
-                // get the first field (the one with the smallest lastRequest time
-                Field field = applicationFields.get(0); */
-
                 // get the first field (the one with the smallest lastRequest time
                 Field field = Collections.min(applicationFields, new Comparator<Field>() {
                     @Override
@@ -275,25 +319,14 @@ public abstract class Device {
                 // return it's index in the global registered field array
                 if(field.isDue(referenceTime)) {
                     //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
-                    MainActivity.debug("Device: getNextField > applicationFields");
+                    MainActivity.debug("Device.getNextField: applicationFields");
                     return field;
                 }
             }
+
             // take the next costum field
             if(activityFieldsScheduled.size()>0)
             {
-                /*
-                // sort the activityFields
-                Collections.sort(activityFieldsScheduled, new Comparator<Field>() {
-                    @Override
-                    public int compare(Field lhs, Field rhs) {
-                        return (int) (lhs.getLastRequest()+lhs.getInterval() - (rhs.getLastRequest()+rhs.getInterval()));
-                    }
-                });
-
-                // get the first field (the one with the smallest lastRequest time
-                Field field = activityFieldsScheduled.get(0); */
-
                 // get the first field (the one with the smallest lastRequest time
                 Field field = Collections.min(activityFieldsScheduled, new Comparator<Field>() {
                     @Override
@@ -305,19 +338,19 @@ public abstract class Device {
                 // return it's index in the global registered field array
                 if(field.isDue(referenceTime)) {
                     //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
-                    MainActivity.debug("Device: getNextField > activityFieldsScheduled");
+                    MainActivity.debug("Device.getNextField: activityFieldsScheduled");
                     return field;
                 }
             }
+
             if(activityFieldsAsFastAsPossible.size()>0)
             {
                 activityFieldIndex = (activityFieldIndex + 1) % activityFieldsAsFastAsPossible.size();
-                MainActivity.debug("Device: getNextField > activityFieldsAsFastAsPossible");
+                MainActivity.debug("Device.getNextField: activityFieldsAsFastAsPossible");
                 return activityFieldsAsFastAsPossible.get(activityFieldIndex);
             }
 
-            MainActivity.debug("Device: applicationFields & customActivityFields empty? "
-                    + applicationFields.size() + " / " + activityFieldsScheduled.size()+ " / " + activityFieldsAsFastAsPossible.size());
+            MainActivity.debug("Device.getNextField: empty:" + applicationFields.size() + " / " + activityFieldsScheduled.size()+ " / " + activityFieldsAsFastAsPossible.size());
 
             return null;
         }
@@ -381,7 +414,7 @@ public abstract class Device {
      */
     public void clearFields()
     {
-        MainActivity.debug("Device: clearFields");
+        MainActivity.debug("Device.clearFields: start");
         synchronized (fields) {
             activityFieldsScheduled.clear();
             activityFieldsAsFastAsPossible.clear();
@@ -649,14 +682,14 @@ is used throughout the code to mean "we don't care, as fast as possible"
         initConnection();
 
         if(reset) {
-            MainActivity.debug("Device: init with reset");
             // clean all filters (just to make sure)
             clearFields();
             // register all filters (if there are any)
             registerFilters();
+            MainActivity.debug("Device.init: done, reset");
         }
         else
-            MainActivity.debug("Device: init");
+            MainActivity.debug("Device.init: done, noreset");
     }
 
     /**
@@ -664,24 +697,22 @@ is used throughout the code to mean "we don't care, as fast as possible"
      */
     public void stopAndJoin()
     {
-        MainActivity.debug("Device: stopping poller");
+        MainActivity.debug("Device.stopAndJoin: start");
         setPollerActive(false);
-        MainActivity.debug("Device: waiting for poller to be stopped");
         try {
             if(pollerThread!=null && pollerThread.isAlive()) {
-                MainActivity.debug("Device: joining thread");
+                MainActivity.debug("Device.stopAndJoin: poller informed. Joining thread");
                 if(pollerThread!=null)
                     pollerThread.join();
                 pollerThread=null;
             }
-            else MainActivity.debug("Device: >>>>>>> pollerThread is NULL!!!");
-            MainActivity.debug("Device: pollerThread joined");
+            else MainActivity.debug("Device.stopAndJoin: pollerThread is null");
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
-        MainActivity.debug("Device: poller stopped");
+        MainActivity.debug("Device.stopAndJoin: poller stopped");
     }
 
     private boolean isPollerActive() {
@@ -708,20 +739,19 @@ is used throughout the code to mean "we don't care, as fast as possible"
             msg = requestFreeFrame(frame);
 
         if (msg.isError()) {
-            MainActivity.debug("Device: request for " + frame.getRID() + " returned error " + msg.getError());
-            // theory: when the answer is empty, the timeout is to low --> increase it!
-            // jm: but never beyond 2
+            MainActivity.debug("Device.requestframe: " + frame.getRID() + " returned error " + msg.getError());
+            // when the answer is empty, the timeout is to low --> increase it!
             if (intervalMultiplicator < maxIntervalMultiplicator) {
                 intervalMultiplicator += 0.1;
-                MainActivity.debug("Device: intervalMultiplicator+ = " + intervalMultiplicator);
+                MainActivity.debug("Device.requestframe: intervalMultiplicator+ = " + intervalMultiplicator);
             }
         } else {
-            MainActivity.debug("Device: request for " + frame.getRID() + " returned data " + msg.getData());
+            MainActivity.debug("Device.requestframe: request for " + frame.getRID() + " returned data " + msg.getData());
             // theory: when the answer is good, we might recover slowly --> decrease it!
             // jm: but never below 1 ----> 2015-12-14 changed 10 1.3
             if (intervalMultiplicator > minIntervalMultiplicator) {
                 intervalMultiplicator -= 0.01;
-                MainActivity.debug("Device: intervalMultiplicator- = " + intervalMultiplicator);
+                MainActivity.debug("Device.requestframe: intervalMultiplicator- = " + intervalMultiplicator);
             }
         }
 

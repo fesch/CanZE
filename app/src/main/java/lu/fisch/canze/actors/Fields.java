@@ -422,6 +422,7 @@ public class Fields {
     }
 
     public Field get(int index) {
+        if(index>=fields.size()) return null;
         return fields.get(index);
     }
 

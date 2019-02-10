@@ -30,5 +30,6 @@ package lu.fisch.canze.interfaces;
  * @author Jeroen Meijer
  */
 public interface DebugListener {
-    public void dropDebugMessage (String msg);
+    void dropDebugMessage (String msg);
+    void appendDebugMessage (String msg);
 }

@@ -1,3 +1,18 @@
+---< Version 1.30 / 2019-02.10 >---
+2019-02-03 [Jeroen] Added PTC relays in clima #521
+2019-02-03 [Jeroen] Rewording #523
+2019-02-03 [Jeroen] re-added parking brake status (regression on ELM testing) #526
+2019-02-03 [Jeroen] Fixed values for unavailable charging power
+2019-02-03 [Jeroen] Optimized initConnection in relation to new injects
+2019-02-03 [Jeroen] Added better ZE40 formula to prediction
+2019-02-03 [Jeroen] Added R110 alias
+2019-02-03 [Jeroen] Fixed wording in conditioning status #522
+2019-01-29 [Bob] New inject methods
+2019-01-29 [Jeroen] Added 12v pulsbox values
+2019-02-07 [Bob] Fixed some crashes indicated by the store
+2019-02-07 [Bob] Trying to reduce the entries in the DB (with CanSee data flow is much stronger!!)
+2019-02-10 [Bob] Differenciate font size in Timeplot for landscape/portrait mode
+
 ---< Version 1.29 / 2019-01.27 >---
 2019-01-26 [Jeroen] Clima RPM replaced for Watt
 2019-01-23 [Bob] Dash device screen for consumption added
