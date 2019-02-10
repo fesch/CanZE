@@ -62,16 +62,16 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
     // ISO-TP data
     public static final String SID_MaxCharge                            = "7bb.6101.336";
     public static final String SID_EVC_Odometer                         = "7ec.622006.24";
-    public static final String SID_EVC_TripMeter                        = "7ec.6233de.24";
-    public static final String SID_EVC_TripEnergy                       = "7ec.6233dd.24";
+    public static final String SID_EVC_TripBmeter                       = "7ec.6233de.24";
+    public static final String SID_EVC_TripBenergy                      = "7ec.6233dd.24";
 
-    private int    odo                              = 0;
-    private int    destOdo                          = 0; // have to init from save file
-    private int    tripDistance                     = -1;
-    private float  tripEnergy                       = -1;
-    private float  startDistance                    = -1;
-    private float  startEnergy                      = -1;
-    private int    savedTripStart                   = 0;
+    private float  odo                              = 0;
+    private float  destOdo                          = 0; // have to init from save file
+    private float  tripBdistance                    = -1;
+    private float  tripBenergy                      = -1;
+    private float  startBdistance                   = -1;
+    private float  startBenergy                     = -1;
+    private float  savedTripStart                   = 0;
     private double realSpeed                        = 0;
     private double driverBrakeWheel_Torque_Request  = 0;
     private double coasting_Torque                  = 0;
@@ -93,7 +93,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         tripConsumption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetTripConsumption();
+                setSavedTripStart();
             }
         });
 
@@ -119,13 +119,13 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         addField(SID_DriverBrakeWheel_Torque_Request, 0);
         addField(SID_ElecBrakeWheelsTorqueApplied, 0);
         addField(SID_Coasting_Torque, 0);
-        addField(SID_TotalPotentialResistiveWheelsTorque, 7200);
+        addField(SID_TotalPotentialResistiveWheelsTorque, 0);
         addField(SID_RealSpeed, 0);
         addField(SID_SoC, 7200);
         addField(SID_RangeEstimate, 7200);
         addField(SID_EVC_Odometer, 6000);
-        addField(SID_EVC_TripMeter, 60000);
-        addField(SID_EVC_TripEnergy, 60000);
+        addField(SID_EVC_TripBmeter, 6000);
+        addField(SID_EVC_TripBenergy, 6000);
     }
 
     void setDistanceToDestination () {
@@ -186,73 +186,61 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
     }
 
 
-    private void saveDestOdo (int d) {
-        SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("destOdo", d);
-        editor.apply();
-        destOdo = d;
-        Field field = MainActivity.fields.getBySID(SID_RangeEstimate);
-        int rangeInBat = (int) field.getValue();
-        if (rangeInBat > 0 && odo > 0 && destOdo > 0) { // we update only if there are no weird values
-            if (destOdo > odo) {
-                setDestToDest("" + (destOdo - odo), "" + (rangeInBat - destOdo + odo));
-            } else {
-                setDestToDest("0", "0");
-            }
-        } else {
-            setDestToDest("...", "...");
+    private void saveDestOdo (float d) {
+        if (!Float.isNaN(d)) {
+            SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putFloat("destOdo", d);
+            editor.apply();
+            destOdo = d;
+            setDestToDest();
         }
     }
 
     private void getDestOdo () {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
-        destOdo = settings.getInt("destOdo", 0);
-        // get last persistent odo to calc
-        Field field = MainActivity.fields.getBySID(SID_EVC_Odometer);
-        odo = (int)field.getValue();
-        field = MainActivity.fields.getBySID(SID_RangeEstimate);
-        int distInBat = (int) field.getValue();
-        if (destOdo > odo) {
-            setDestToDest("" + (destOdo - odo), "" + (distInBat - destOdo + odo));
-        } else {
-            setDestToDest("0", "0");
-        }
+        destOdo = settings.getFloat("destOdo", 0);
+        setDestToDest();
     }
 
-    private void setDestToDest(String distance1, String distance2) {
+    private void setDestToDest(int distance1, int distance2) {
         TextView tv;
         tv = findViewById(R.id.textDistToDest);
-        tv.setText(distance1);
+        tv.setText("" + distance1);
         tv = findViewById(R.id.textDistAVailAtDest);
-        tv.setText(distance2);
+        tv.setText("" + distance2);
     }
 
-    void resetTripConsumption () {
-        if (odo != 0 && tripDistance != -1 && tripEnergy != -1) {
-            setSavedTripStart(odo - tripDistance);
+    private void setDestToDest() {
+        TextView tv;
+        tv = findViewById(R.id.textDistToDest);
+        tv.setText("-");
+        tv = findViewById(R.id.textDistAVailAtDest);
+        tv.setText("-");
+    }
+
+    private void setSavedTripStart () {
+        if (!Float.isNaN(odo) && odo != 0 && !Float.isNaN(tripBdistance) && tripBdistance != -1 && !Float.isNaN(tripBenergy) && tripBenergy != -1) {
+            savedTripStart = odo - tripBdistance;
+            startBdistance = tripBdistance;
+            startBenergy = tripBenergy;
+            SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putFloat("savedTripStart", savedTripStart);
+            editor.putFloat("startBdistance", startBdistance);
+            editor.putFloat("startBenergy", startBenergy);
+            editor.apply();
             MainActivity.toast(-100, "Trip Consumption reset");
         } else {
             MainActivity.toast(-100, "Could not reset Trip Consumption yet");
         }
     }
 
-    private void setSavedTripStart (int tripStart) {
-        startDistance = tripDistance;
-        startEnergy = tripEnergy;
-        SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("savedTripStart", tripStart);
-        editor.putFloat("startDistance", startDistance);
-        editor.putFloat("startEnergy", startEnergy);
-        editor.apply();
-    }
-
     private void getSavedTripStart () {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
-        savedTripStart = settings.getInt("savedTripStart", 0);
-        startDistance = settings.getFloat("startDistance", 0);
-        startEnergy = settings.getFloat("startEnergy", 0);
+        savedTripStart = settings.getFloat("savedTripStart", 0);
+        startBdistance = settings.getFloat("startBdistance", 0);
+        startBenergy = settings.getFloat("startBenergy", 0);
     }
 
 
@@ -285,28 +273,34 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         pb.setProgress((int) (field.getValue() * MainActivity.reduction)); // --> translate from motor torque to wheel torque
                         break;
                     case SID_EVC_Odometer:
-                        odo = (int ) field.getValue();
+                        odo = (float)field.getValue();
+                        //MainActivity.toast(String.format(Locale.getDefault(), "O:%.1f", odo));
                         tv = null;
                         break;
-                    case SID_EVC_TripMeter:
-                        tripDistance = (int ) field.getValue();
+                    case SID_EVC_TripBmeter:
+                        tripBdistance = (float)field.getValue();
+                        //MainActivity.toast(String.format(Locale.getDefault(), "D:%.1f", tripBdistance));
                         tv = findViewById(R.id.textTripConsumption);
-                        if ((odo - tripDistance - 1) > savedTripStart) {
-                            tv.setText("---");
-                        } else if ((tripEnergy - startEnergy) == 0 || (tripDistance - startDistance) == 0){
-                            tv = findViewById(R.id.textTripConsumption);
+                        if ((odo - tripBdistance - 1) > savedTripStart) {
+                            tv.setText("reset");
+                        } else if ((tripBenergy - startBenergy) <= 0 || (tripBdistance - startBdistance) <= 0){
                             tv.setText("...");
                         } else {
-                            tv = findViewById(R.id.textTripConsumption);
-                            if (MainActivity.milesMode)
-                                tv.setText(String.format(Locale.getDefault(), "%.1f", (tripDistance - startDistance) / (tripEnergy - startEnergy)));
-                            else
-                                tv.setText(String.format(Locale.getDefault(), "%.1f", (tripEnergy - startEnergy) * 100.0 / (tripDistance - startDistance)));
+                            if (MainActivity.milesMode) {
+                                tv.setText(String.format(Locale.getDefault(), "%.1f", (tripBdistance - startBdistance) / (tripBenergy - startBenergy)));
+                            } else {
+                                tv.setText(String.format(Locale.getDefault(), "%.1f", (tripBenergy - startBenergy) * 100.0 / (tripBdistance - startBdistance)));
+                            }
                         }
+                        tv = findViewById(R.id.textTripDistance);
+                        tv.setText(String.format(Locale.getDefault(), "%.1f", (tripBdistance - startBdistance)));
+                        tv = findViewById(R.id.textTripEnergy);
+                        tv.setText(String.format(Locale.getDefault(), "%.1f", (tripBenergy - startBenergy)));
                         tv = null;
                         break;
-                    case SID_EVC_TripEnergy:
-                        tripEnergy = (int ) field.getValue();
+                    case SID_EVC_TripBenergy:
+                        tripBenergy = (float)field.getValue();
+                        //MainActivity.toast(String.format(Locale.getDefault(), "E:%.1f", tripBenergy));
                         tv = null;
                         break;
                     case SID_MaxCharge:
@@ -334,12 +328,12 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         int rangeInBat = (int) field.getValue();
                         if (rangeInBat > 0 && odo > 0 && destOdo > 0) { // we update only if there are no weird values
                             if (destOdo > odo) {
-                                setDestToDest("" + (destOdo - odo), "" + (rangeInBat - destOdo + odo));
+                                setDestToDest((int)(destOdo - odo), (int)(rangeInBat - destOdo + odo));
                             } else {
-                                setDestToDest("0", "0");
+                                setDestToDest(0, 0);
                             }
                         } else {
-                            setDestToDest("...", "...");
+                            setDestToDest();
                         }
                         tv = null;
                         break;
@@ -391,7 +385,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
             setDistanceToDestination();
             return true;
         } else if (id == R.id.action_resetTripConsumption) {
-            resetTripConsumption();
+            setSavedTripStart();
             return true;
         }
 

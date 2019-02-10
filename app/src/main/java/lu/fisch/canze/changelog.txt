@@ -1,3 +1,5 @@
+2019-02-10 [Jeroen] Trip consumption added #513
+2019-02-10 [Jeroen] Several changes to wording, thanks AlbinoZoe #455
 2019-02-03 [Jeroen] Added PTC relays in clima #521
 2019-02-03 [Jeroen] Rewording #523
 2019-02-03 [Jeroen] re-added parking brake status (regression on ELM testing) #526
