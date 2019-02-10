@@ -140,11 +140,11 @@
     <string name="label_ClimaLoopMode">Aircocircuitmode</string>
     <string name="label_HVBatConditioningMode">Koelen Tractiebatterij</string>
     <string name="label_Temperatures">Temperaturen</string>
-    <string name="label_HVEvaporationTemp">Temperatuur batterijverdamper °C</string>
-    <string name="label_ACPressure">Druk bar</string>
+    <string name="label_HVEvaporationTemp">Temperatuur batterijverdamper (°C)</string>
+    <string name="label_ACPressure">Druk (bar)</string>
     <string name="label_HVCoolingState">Status batterijkoeling</string>
-    <string name="label_ChargingPower">Oplaadvermogen kW </string>
-    <string name="label_EngineFanSpeed">Ventilatorsnelheid %</string>
+    <string name="label_ChargingPower">Oplaadvermogen (kW)</string>
+    <string name="label_EngineFanSpeed">Ventilatorsnelheid (%)</string>
     <string name="label_ClimateBatteryInteraction">Werking airconditioning</string>
     <string-array name="list_CoolingStatus">
         <item>Nee</item>
@@ -168,11 +168,11 @@
         <item>Ontwaseming</item>
         <item>Vrijloop</item>
     </string-array>
-    <string name="label_IH_ElectricalPowerDrived">Vermogen compressor</string>
+    <!-- <string name="label_IH_ElectricalPowerDrived">Vermogen compressor</string> -->
     <string name="graph_Climatech">Buiten (°C), Binnen (°C), Instelling (°C), Batterij (°C)</string>
-    <string name="label_PtcRelay1">PTC Relay 1</string>
-    <string name="label_PtcRelay2">PTC Relay 2</string>
-    <string name="label_PtcRelay3">PTC Relay 3</string>
+    <string name="label_PtcRelay1">PTC Relais 1</string>
+    <string name="label_PtcRelay2">PTC Relis 2</string>
+    <string name="label_PtcRelay3">PTC Relais 3</string>
     <string-array name="list_PtcRelay">
         <item>Aan</item>
         <item>Uit</item>
@@ -182,7 +182,7 @@
 
     <string name="title_activity_consumption">Verbruik</string>
     <string name="button_Consumption">Verbruik</string>
-    <string name="label_WheelTorque">Wieltorsie</string>
+    <string name="label_WheelTorque">Wieltorsie (Nm)</string>
     <string name="label_InstantConsumption">Verbruik</string>
     <string name="label_kWh100km">kWh/100km</string>
     <string name="graph_PowerEnergy">Vermogen (kw), Beschikbare energie (kWh)</string>
@@ -200,6 +200,8 @@
     <string name="label_DistToDest">Afstand tot bestemming</string>
     <string name="label_DistAvailAtDest">Bereik op bestemming</string>
     <string name="label_TripConsumption">Ritverbruik</string>
+    <string name="label_TripDistance">Ritafstand</string>
+    <string name="label_TripEnergy">Ritenergie (kWh)</string>
     <string name="label_friction">Frictierem (vermijden)</string>
     <string name="button_Double">Dubbel</string>
     <string name="prompt_Distance">AF TE LEGGEN AFSTAND</string>
@@ -271,12 +273,12 @@
     <string name="title_activity_fluence_kangoo_temp">Fluence Kangoo temperaturen</string>
     <string name="button_FluenceKangooTemps">Fluence Kangoo Temp.</string>
     <string name="header_KangooFluenceTemperatures">Temperaturen</string>
-    <string name="label_EvaporatorTemperature">Temperatuur verdamper</string>
-    <string name="label_WaterTemperatureHeating">Watertemperatuur verwarming</string>
-    <string name="label_DcDcConverterTemperature">Temperatuur DCDC omzetter</string>
-    <string name="label_InverterTemperature">Temperatuur inverter</string>
-    <string name="label_ExternalTemperature">Buitentemperatuur</string>
-    <string name="label_InternalTemperature">Binnentemperatuur</string>
+    <string name="label_EvaporatorTemperature">Temperatuur verdamper (°C)</string>
+    <string name="label_WaterTemperatureHeating">Watertemperatuur verwarming (°C)</string>
+    <string name="label_DcDcConverterTemperature">Temperatuur DCDC omzetter (°C)</string>
+    <string name="label_InverterTemperature">Temperatuur inverter (°C)</string>
+    <string name="label_ExternalTemperature">Buitentemperatuur (°C)</string>
+    <string name="label_InternalTemperature">Binnentemperatuur (°C)</string>
     <string name="header_KangooFluenceFansPumps">Ventilatoren en pompen (beschrijvingen toe te voegen)</string>
     <string name="label_MotorWaterPumpSpeed">Snelheid waterpompmotor</string>
     <string name="label_ChargerWaterPumpSpeed">Snelheid waterpomp lader</string>
@@ -302,21 +304,21 @@
 
     <string name="title_activity_prediction">Laadvoorspelling</string>
     <string name="label_StateAtThisMoment">Huidige status</string>
-    <string name="label_BatteryTemperature">Batterijtemperatuur</string>
-    <string name="label_ACPower">AC vermogen</string>
-    <string name="label_StateOfCharge">Beschikbare lading</string>
+    <string name="label_BatteryTemperature">Batterijtemperatuur (°C)</string>
+    <string name="label_ACPower">AC vermogen (kW)</string>
+    <string name="label_StateOfCharge">Beschikbare lading (%)</string>
     <string name="label_ChargingPrediction">Voorspelling opladen</string>
     <string name="label_Duration">Duur (uu:mm)</string>
-    <string name="label_Soc">SOC</string>
+    <string name="label_Soc">SOC (%)</string>
     <string name="label_Range">Bereik</string>
-    <string name="label_DcPower">DC vermogen</string>
+    <string name="label_DcPower">DC vermogen (kW)</string>
 
     <!-- Range -->
 
     <string name="title_activity_range">Bereik</string>
     <string name="button_Range">Bereik</string>
-    <string name="label_RangeRemaining">Remaining range by car:</string>
-    <string name="label_RangeRemainingCanZE">Remaining range by CanZE:</string>
+    <string name="label_RangeRemaining">Bereik (auto):</string>
+    <string name="label_RangeRemainingCanZE">Bereik (CanZE):</string>
     <string name="label_EstimatedDrivingStyleLoss">Estimated driving style energy loss:</string>
     <string name="graph_DistanceEnergy">Beschibare range (km), Beschikbare energie (kWh)</string>
 
@@ -368,18 +370,18 @@
     <string name="label_TyreFRState">Status rechtsvoor</string>
     <string name="label_TyreRLState">Status linksachter</string>
     <string name="label_TyreRRState">Status rechtsachter</string>
-    <string name="label_TyreFLPressure">Druk linksvoor mbar</string>
-    <string name="label_TyreFRPressure">Druk rechtsvoor mbar</string>
-    <string name="label_TyreRLPressure">Druk linksachter mbar</string>
-    <string name="label_TyreRRPressure">Druk rechtsachter mbar</string>
+    <string name="label_TyreFLPressure">Druk linksvoor (mbar)</string>
+    <string name="label_TyreFRPressure">Druk rechtsvoor (mbar)</string>
+    <string name="label_TyreRLPressure">Druk linksachter (mbar)</string>
+    <string name="label_TyreRRPressure">Druk rechtsachter (mbar)</string>
 
     <!-- Auxiliary battery -->
 
     <string name="title_activity_auxbatt">12 volt battery</string>
     <string name="button_auxbatt">12 volt batt</string>
     <string name="header_auxbatt">12 volt battery</string>
-    <string name="label_auxbat">Voltage, Vehicle state, Charging state</string>
-    <string name="label_auxbatvolt">Voltage</string>
+    <string name="label_auxbat">Spanning (V), Status, Laadstatus</string>
+    <string name="label_auxbatvolt">Spannign (V)</string>
     <string name="label_AuxStatus">Vervangings-advies</string>
     <string name="label_vehiclestate">Vehicle state</string>
     <string-array name="list_VehicleState">
@@ -424,27 +426,27 @@
     <string name="label_IH_ClimCompPWRStatus">Verbruik Klimaat (W), ECO</string>
     <string name="label_EndBatteryTemp">Temp</string>
     <string name="label_EndOfChargeStatus">End</string>
-    <string name="label_EndSoc">SOC</string>
-    <string name="label_HistDuration">Dura</string>
+    <string name="label_EndSoc">SOC (%)</string>
+    <string name="label_HistDuration">Duur</string>
     <string name="label_TypeOfCharge">Type</string>
     <string name="label_distance">Km</string>
     <string name="header_ChargerKeyParameters">Charger key parameters</string>
-    <string name="label_CompletionStatus">Completion status</string>
-    <string name="label_GroundResistanceOhm">Ground resistance Ohm</string>
-    <string name="label_LeakCurrentDc">Leak current DC (mA)</string>
-    <string name="label_LeakCurrentEhf">Leak current EHF (mA)</string>
-    <string name="label_LeakCurrentHf">Leak current HF (mA)</string>
-    <string name="label_LeakCurrentLf">Leak current LF (mA)</string>
+    <string name="label_CompletionStatus">Beëindiging</string>
+    <string name="label_GroundResistanceOhm">Aardweerstand (Ω)</string>
+    <string name="label_LeakCurrentDc">Lektroom DC (mA)</string>
+    <string name="label_LeakCurrentEhf">Lekstroom EHF (mA)</string>
+    <string name="label_LeakCurrentHf">Lekstroom HF (mA)</string>
+    <string name="label_LeakCurrentLf">Lekstroom LF (mA)</string>
     <string name="button_Bcb">BCB</string>
-    <string name="button_LeakCurrents">Harmonics</string>
-    <string name="label_InterPhaseVoltage">Inter phase voltage 12/23/31 V</string>
-    <string name="label_MainsActivePowerConsumed">Mains active power consumed W</string>
-    <string name="label_MainsCurrentType">Mains current type</string>
-    <string name="label_PhaseVoltage">Phase voltage 1/2/3 V</string>
-    <string name="label_SupervisorState">Supervisor State</string>
-    <string name="label_phaseCurrent">Phase current RMS 1/2/3 A</string>
+    <string name="button_LeakCurrents">Lekstromen</string>
+    <string name="label_InterPhaseVoltage">Fase-fase spanning 12/23/31 (V)</string>
+    <string name="label_MainsActivePowerConsumed">Energieverbruik net (W)</string>
+    <string name="label_MainsCurrentType">Type netspanning</string>
+    <string name="label_PhaseVoltage">Fase spanning 1/2/3 (V)</string>
+    <string name="label_SupervisorState">Supervisor Status</string>
+    <string name="label_phaseCurrent">RMS Fasestroom 1/2/3 (A)</string>
     <string name="title_activity_bcb">BCB</string>
-    <string name="title_activity_leakCurrents">Harmonics leak currents</string>
+    <string name="title_activity_leakCurrents">Lekstromen</string>
     <string name="title_activity_elm_dump">ELM Dump</string>
     <string-array name="list_MainsCurrentType">
         <item>Nok</item>

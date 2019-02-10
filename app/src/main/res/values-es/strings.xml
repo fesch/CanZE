@@ -202,6 +202,8 @@
     <string name="label_DistToDest">Distancia al destino</string>
     <string name="label_DistAvailAtDest">Dist. available at dest.</string>
     <string name="label_TripConsumption">Trip consumption</string>
+    <string name="label_TripDistance">Trip distance</string>
+    <string name="label_TripEnergy">Trip energy (kWh)</string>
     <string name="label_friction">Freno de fricción (evitar)</string>
     <string name="button_Double">Doble</string>
     <string name="prompt_Distance">DISTANCIA RESTANTE</string>
@@ -434,7 +436,7 @@
     <string name="label_HistDuration">Dura</string>
     <!-- <string name="label_IH_ClimCompRPMStatus">Compressor RPM, ECO mode</string> -->
     <string name="label_IH_ClimCompPWRStatus">Compressor power (W), ECO</string>
-    <string name="label_IH_ElectricalPowerDrived">Compressor power</string>
+    <!-- <string name="label_IH_ElectricalPowerDrived">Compressor power</string> -->
     <string name="label_TypeOfCharge">Type</string>
     <string name="label_distance">km</string>
     <string name="header_ChargerKeyParameters">Charger key parameters</string>
