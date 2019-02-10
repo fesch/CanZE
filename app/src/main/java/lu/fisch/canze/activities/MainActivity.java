@@ -33,6 +33,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
@@ -1004,5 +1005,36 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         if (debugListener != null) debugListener.appendDebugMessage (msg);
     }
 
+    public int getScreenOrientation()
+    {
+        Display screenOrientation = getWindowManager().getDefaultDisplay();
+        int orientation = Configuration.ORIENTATION_UNDEFINED;
+        if(screenOrientation.getWidth()==screenOrientation.getHeight()){
+            orientation = Configuration.ORIENTATION_SQUARE;
+            //Do something
+
+        } else{
+            if(screenOrientation.getWidth() < screenOrientation.getHeight()){
+                orientation = Configuration.ORIENTATION_PORTRAIT;
+                //Do something
+
+            }else {
+                orientation = Configuration.ORIENTATION_LANDSCAPE;
+                //Do something
+
+            }
+        }
+        return orientation;
+    }
+
+    public boolean isLandscape()
+    {
+        return getScreenOrientation()==Configuration.ORIENTATION_LANDSCAPE;
+    }
+
+    public boolean isPortrait()
+    {
+        return getScreenOrientation()==Configuration.ORIENTATION_PORTRAIT;
+    }
 
 }
