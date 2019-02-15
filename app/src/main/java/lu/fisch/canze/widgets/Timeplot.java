@@ -75,9 +75,35 @@ public class Timeplot extends Drawable {
 
     public void addValue(String fieldSID, double value)
     {
+        long iTime = Calendar.getInstance().getTimeInMillis();
+        // with the new dongle, fields may come in too fast, so let's
+        // make sure we do not get an overflow >> very slow app reaction
+        // maximum each second a new value!
+        iTime = (iTime / 1000) * 1000;
+
         //MainActivity.debug(values.size()+"");
         if(!values.containsKey(fieldSID)) values.put(fieldSID,new ArrayList<TimePoint>());
-        values.get(fieldSID).add(new TimePoint(Calendar.getInstance().getTimeInMillis(), value));
+
+        // don't add every point, but check if for the given second we allready have point
+        // remembering more than on point a second is kind of overkill
+        //values.get(fieldSID).add(new TimePoint(Calendar.getInstance().getTimeInMillis(), value));
+
+        // if empty, add
+        if(values.get(fieldSID).size()==0)
+            values.get(fieldSID).add(new TimePoint(iTime, value));
+        else {
+            TimePoint lastTP = values.get(fieldSID).get(values.get(fieldSID).size() - 1);
+            // if this is really a new point, add it
+            if (lastTP == null || lastTP.date != iTime)
+                values.get(fieldSID).add(new TimePoint(iTime, value));
+            // if not, replace the previous point
+            // ( database will store the max, but as the value of the last point is also being
+            //   displayed on the screen, we should prefer having the real last point here )
+            else {
+                values.get(fieldSID).set(values.get(fieldSID).size() - 1,new TimePoint(iTime, value));
+            }
+        }
+
 
         /*
         if(value<min) setMin((int) value - 1);
