@@ -71,6 +71,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
     private float  tripBenergy                      = -1;
     private float  startBdistance                   = -1;
     private float  startBenergy                     = -1;
+    private float  tripDistance                     = -1;
+    private float  tripEnergy                       = -1;
     private float  savedTripStart                   = 0;
     private double realSpeed                        = 0;
     private double driverBrakeWheel_Torque_Request  = 0;
@@ -279,27 +281,33 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         break;
                     case SID_EVC_TripBmeter:
                         tripBdistance = (float)field.getValue();
+                        tripDistance = tripBdistance - startBdistance;
                         //MainActivity.toast(String.format(Locale.getDefault(), "D:%.1f", tripBdistance));
                         tv = findViewById(R.id.textTripConsumption);
                         if ((odo - tripBdistance - 1) > savedTripStart) {
                             tv.setText("reset");
-                        } else if ((tripBenergy - startBenergy) <= 0 || (tripBdistance - startBdistance) <= 0){
+                            tv = findViewById(R.id.textTripDistance);
+                            tv.setText("");
+                            tv = findViewById(R.id.textTripEnergy);
+                            tv.setText("");
+                        } else if (tripEnergy <= 0 || tripDistance <= 0){
+                            tv.setText("...");
+                            tv = findViewById(R.id.textTripDistance);
+                            tv.setText("...");
+                            tv = findViewById(R.id.textTripEnergy);
                             tv.setText("...");
                         } else {
-                            if (MainActivity.milesMode) {
-                                tv.setText(String.format(Locale.getDefault(), "%.1f", (tripBdistance - startBdistance) / (tripBenergy - startBenergy)));
-                            } else {
-                                tv.setText(String.format(Locale.getDefault(), "%.1f", (tripBenergy - startBenergy) * 100.0 / (tripBdistance - startBdistance)));
-                            }
+                            tv.setText(String.format(Locale.getDefault(), "%.1f", MainActivity.milesMode ? (tripDistance / tripEnergy) : (tripEnergy * 100.0 / tripDistance)));
+                            tv = findViewById(R.id.textTripDistance);
+                            tv.setText(String.format(Locale.getDefault(), "%.1f", tripDistance));
+                            tv = findViewById(R.id.textTripEnergy);
+                            tv.setText(String.format(Locale.getDefault(), "%.1f", tripEnergy));
                         }
-                        tv = findViewById(R.id.textTripDistance);
-                        tv.setText(String.format(Locale.getDefault(), "%.1f", (tripBdistance - startBdistance)));
-                        tv = findViewById(R.id.textTripEnergy);
-                        tv.setText(String.format(Locale.getDefault(), "%.1f", (tripBenergy - startBenergy)));
                         tv = null;
                         break;
                     case SID_EVC_TripBenergy:
                         tripBenergy = (float)field.getValue();
+                        tripEnergy = tripBenergy - startBenergy;
                         //MainActivity.toast(String.format(Locale.getDefault(), "E:%.1f", tripBenergy));
                         tv = null;
                         break;
