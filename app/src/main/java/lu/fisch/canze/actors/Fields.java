@@ -291,10 +291,10 @@ public class Fields {
                     return Double.NaN;
                 }
                 double delta = realRangeReference - odo - gom;
-                if (delta > 12.0 || delta < -12.0) {
-                    realRangeReference = odo + gom;
-                    delta = 0.0;
-                }
+                //if (delta > 12.0 || delta < -12.0) {
+                //    realRangeReference = odo + gom;
+                //    delta = 0.0;
+                //}
                 return delta;
             }
         });
