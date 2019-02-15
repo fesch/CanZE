@@ -1,3 +1,5 @@
+2019-02-16 [Jeroen] Avoid negative trip numbers
+
 ---< Version 1.30 / 2019-02.10 >---
 2019-02-10 [Jeroen] Trip consumption added #513
 2019-02-10 [Jeroen] Several changes to wording, thanks AlbinoZoe #455
