@@ -1,4 +1,8 @@
----< Version 1.30 / 2019-02.10 >---
+---< Version 1.31 / 2019.??.?? >---
+2019-02-15 [Bob] Removed reset from virtual field delta
+2019-02-15 [Bob] Trying to reduce stores points in TimePlot (with CanSee data flow is much stronger!!)
+
+---< Version 1.30 / 2019.02.10 >---
 2019-02-10 [Jeroen] Trip consumption added #513
 2019-02-10 [Jeroen] Several changes to wording, thanks AlbinoZoe #455
 2019-02-03 [Jeroen] Added PTC relays in clima #521
@@ -15,7 +19,7 @@
 2019-02-07 [Bob] Trying to reduce the entries in the DB (with CanSee data flow is much stronger!!)
 2019-02-10 [Bob] Differenciate font size in Timeplot for landscape/portrait mode
 
----< Version 1.29 / 2019-01.27 >---
+---< Version 1.29 / 2019.01.27 >---
 2019-01-26 [Jeroen] Clima RPM replaced for Watt
 2019-01-23 [Bob] Dash device screen for consumption added
 2019-01-18 [Jeroen] Implemented multi frame outgoing ISO-TP messages, fixes in ELM code

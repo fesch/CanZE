@@ -262,7 +262,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             field.addListener(this);
             // register it in the queue
             MainActivity.device.addActivityField(field, intervalMs);
-            // remeber this field has been added (filter out doubles)
+            // remember this field has been added (filter out doubles)
             if(!subscribedFields.contains(field))
                 subscribedFields.add(field);
         } else {
