@@ -51,6 +51,7 @@ import lu.fisch.canze.activities.TyresActivity;
 
 public class MainFragment extends Fragment {
 
+    static boolean firstRun = true;
 
     public MainFragment() {
         // Required empty public constructor
@@ -166,41 +167,43 @@ public class MainFragment extends Fragment {
             }
         });
 
-        (new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String msg = "";
-                try {
-                    URL url = new URL("https://raw.githubusercontent.com/fesch/CanZE/Development/NEWS.txt");
-                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        if (firstRun) {
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String msg = "";
                     try {
-                        urlConnection.setConnectTimeout(10000);
-                        InputStream ips = urlConnection.getInputStream();
-                        BufferedInputStream in = new BufferedInputStream(ips);
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-                        StringBuilder stringBuilder = new StringBuilder(200);
-                        while ((msg = reader.readLine()) != null) {
-                            // MainActivity.debug("ELM327Http: httpGet append " + st);
-                            stringBuilder.append(msg);
+                        URL url = new URL("https://raw.githubusercontent.com/fesch/CanZE/Development/NEWS.txt");
+                        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                        try {
+                            urlConnection.setConnectTimeout(10000);
+                            InputStream ips = urlConnection.getInputStream();
+                            BufferedInputStream in = new BufferedInputStream(ips);
+                            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                            StringBuilder stringBuilder = new StringBuilder(200);
+                            while ((msg = reader.readLine()) != null) {
+                                // MainActivity.debug("ELM327Http: httpGet append " + st);
+                                stringBuilder.append(msg);
+                            }
+                            msg = stringBuilder.toString();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        } finally {
+                            urlConnection.disconnect();
                         }
-                        msg = stringBuilder.toString();
-                    } catch(Exception e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
-                    } finally {
-                        urlConnection.disconnect();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                if (!"".equals(msg)) {
-                    TextView tv = view.findViewById(R.id.textNews);
-                    tv.setText(msg);
-                    tv.setVisibility(View.VISIBLE);
-                }
+                    if (!"".equals(msg)) {
+                        TextView tv = view.findViewById(R.id.textNews);
+                        tv.setText(msg);
+                        tv.setVisibility(View.VISIBLE);
+                    }
 
-            }
-        })).start();
-
+                }
+            })).start();
+            firstRun = false;
+        }
 
         return view;
     }
