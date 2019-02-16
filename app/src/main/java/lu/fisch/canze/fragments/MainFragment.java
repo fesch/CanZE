@@ -28,6 +28,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.BatteryActivity;
@@ -53,7 +61,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        final View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         Button button;
 
@@ -157,6 +165,42 @@ public class MainFragment extends Fragment {
                 MainFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });
+
+        (new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String msg = "";
+                try {
+                    URL url = new URL("https://raw.githubusercontent.com/fesch/CanZE/Development/NEWS.txt");
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                    try {
+                        urlConnection.setConnectTimeout(10000);
+                        InputStream ips = urlConnection.getInputStream();
+                        BufferedInputStream in = new BufferedInputStream(ips);
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                        StringBuilder stringBuilder = new StringBuilder(200);
+                        while ((msg = reader.readLine()) != null) {
+                            // MainActivity.debug("ELM327Http: httpGet append " + st);
+                            stringBuilder.append(msg);
+                        }
+                        msg = stringBuilder.toString();
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        urlConnection.disconnect();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (!"".equals(msg)) {
+                    TextView tv = view.findViewById(R.id.textNews);
+                    tv.setText(msg);
+                    tv.setVisibility(View.VISIBLE);
+                }
+
+            }
+        })).start();
+
 
         return view;
     }

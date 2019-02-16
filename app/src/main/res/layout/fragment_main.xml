@@ -174,7 +174,21 @@
 
                 </TableRow>
 
+                <TextView
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ffd124"
+                    android:visibility="gone"
+                    android:id="@+id/textNews"
+                    android:layout_gravity="center_horizontal" />
+
             </TableLayout>
+
 
         </ScrollView>
 
@@ -197,6 +211,8 @@
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginBottom="0dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
