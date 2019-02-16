@@ -428,7 +428,7 @@
     <!-- Experimental (fragment) -->
 
     <string name="menu_Experimental">Experimental</string>
-    <string name="help_Experimental"> only</string>
+    <string name="help_Experimental">These buttons are for testing purposes only</string>
     <string name="label_EndBatteryTemp">Temp</string>
     <string name="label_EndOfChargeStatus">End</string>
     <string name="label_EndSoc">SOC</string>

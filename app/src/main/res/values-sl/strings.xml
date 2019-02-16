@@ -421,7 +421,7 @@
     <!-- Experimental (fragment) -->
 
     <string name="menu_Experimental">Eksperimentalni</string>
-    <string name="help_Experimental">spodnji gumbi so le za namene testiranja</string>
+    <string name="help_Experimental">Ti gumbi so le za namene testiranja</string>
     <string name="label_EndBatteryTemp">Temp</string>
     <string name="label_EndOfChargeStatus">End</string>
     <string name="label_EndSoc">SOC</string>
