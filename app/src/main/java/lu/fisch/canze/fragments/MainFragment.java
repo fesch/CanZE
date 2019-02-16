@@ -52,6 +52,7 @@ import lu.fisch.canze.activities.TyresActivity;
 public class MainFragment extends Fragment {
 
     static boolean firstRun = true;
+    static String msg = "";
 
     public MainFragment() {
         // Required empty public constructor
@@ -62,7 +63,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         Button button;
 
@@ -167,11 +168,17 @@ public class MainFragment extends Fragment {
             }
         });
 
+        getNews(view);
+
+        return view;
+    }
+
+    private void getNews (final View view) {
+
         if (firstRun) {
             (new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    String msg = "";
                     try {
                         URL url = new URL("https://raw.githubusercontent.com/fesch/CanZE/Development/NEWS.txt");
                         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
@@ -194,19 +201,29 @@ public class MainFragment extends Fragment {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    if (!"".equals(msg)) {
-                        TextView tv = view.findViewById(R.id.textNews);
-                        tv.setText(msg);
-                        tv.setVisibility(View.VISIBLE);
-                    }
-
+                    displayNews(view);
                 }
             })).start();
             firstRun = false;
+        } else {
+            displayNews(view);
+        }
+    }
+
+    private void displayNews (final View view) {
+        if (!"".equals(msg)) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    TextView tv = view.findViewById(R.id.textNews);
+                    tv.setText(msg);
+                    tv.setVisibility(View.VISIBLE);
+                }
+            });
         }
 
-        return view;
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
