@@ -35,7 +35,6 @@ import lu.fisch.canze.activities.BcbActivity;
 import lu.fisch.canze.activities.ChargingHistActivity;
 import lu.fisch.canze.activities.ElmDumpActivity;
 import lu.fisch.canze.activities.FluenceKangooTempsActivity;
-import lu.fisch.canze.activities.LeakCurrentsActivity;
 import lu.fisch.canze.activities.LeafSpyActivity;
 import lu.fisch.canze.activities.MainActivity;
 
@@ -54,60 +53,6 @@ public class ExperimentalFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_experimental, container, false);
 
-        Button button;
-
-        /*
-        button = (Button) view.findViewById(R.id.buttonChargingHistory);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), ChargingHistActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        }); */
-
-        /*
-        button = (Button) view.findViewById(R.id.buttonLeafSpy);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), LeafSpyActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        }); */
-
-        /*
-        button = (Button) view.findViewById(R.id.buttonElmDump);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), ElmDumpActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        }); */
-
-        /*
-        button = (Button) view.findViewById(R.id.buttonFluenceKangooTemps);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), FluenceKangooTempsActivity.class);
-                ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        }); */
-
         activateButton(view, R.id.buttonChargingHistory,        ChargingHistActivity.class);
         activateButton(view, R.id.buttonLeafSpy,                LeafSpyActivity.class);
 
@@ -115,7 +60,6 @@ public class ExperimentalFragment extends Fragment {
         activateButton(view, R.id.buttonFluenceKangooTemps,     FluenceKangooTempsActivity.class);
 
         activateButton(view, R.id.buttonBcb,                    BcbActivity.class);
-        activateButton(view, R.id.buttonLeakCurrents,           LeakCurrentsActivity.class);
 
         return view;
     }

@@ -646,7 +646,7 @@
     <!-- Experimental (fragment) -->
 
     <string name="menu_Experimental">Experimental</string>
-    <string name="help_Experimental">buttons below are for testing purposes only</string>
+    <string name="help_Experimental">These buttons are for testing purposes only</string>
     <string name="label_distance">Km</string>
     <string name="label_EndOfChargeStatus">End</string>
     <string name="label_TypeOfCharge">Type</string>

@@ -425,7 +425,7 @@
     <!-- Experimental (fragment) -->
 
     <string name="menu_Experimental">Expérimental</string>
-    <string name="help_Experimental">Les boutons ci-dessous sont à des fins de test uniquement</string>
+    <string name="help_Experimental">Cette boutons sont à des fins de test uniquement</string>
     <!-- <string name="label_IH_ClimCompRPMStatus">Compressor RPM, ECO</string> -->
     <string name="label_IH_ClimCompPWRStatus">Consommation Clima (W), ECO</string>
     <string name="label_EndBatteryTemp">Temp</string>

@@ -217,7 +217,6 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/help_Main"
-                android:id="@+id/textView"
                 android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
