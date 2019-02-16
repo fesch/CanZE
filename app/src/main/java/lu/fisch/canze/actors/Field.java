@@ -104,6 +104,7 @@ public class Field {
         field.strVal = strVal;
         field.lastRequest=lastRequest;
         field.interval=interval;
+        field.virtual = this.virtual;
         return field;
     }
 
