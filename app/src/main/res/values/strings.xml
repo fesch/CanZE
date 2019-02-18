@@ -52,10 +52,10 @@
     <string name="title_activity_battery">Battery</string>
     <string name="button_Battery">Battery</string>
     <string name="graph_SOH">State of health (%)</string>
-    <string name="graph_RealIndicatedSoc">Real vs. Indicated State of Charge (%)</string>
+    <string name="graph_RealIndicatedSoc">Real vs. Indicated State of charge (%)</string>
     <string name="help_QA"><![CDATA[More detailed information about these data can be found in the <a href=\'http://canze.fisch.lu/qa/\'>Q & A section</a> of the <a href=\'http://canze.fisch.lu/\'>CanZE homepage</a>.]]></string>
     <string name="graph_CellVoltages">Cell Voltages (V)</string>
-    <string name="graph_ModuleTemperatures">Battery Modules Temperatures (°C)</string>
+    <string name="graph_ModuleTemperatures">Battery modules temperatures (°C)</string>
 
     <!-- BCB -->
 
@@ -70,11 +70,11 @@
         <item>DC</item>
         <item>AC bi</item>
     </string-array>
-    <string name="label_phaseCurrent">Phase current RMS 1/2/3 A</string>
-    <string name="label_PhaseVoltage">Phase voltage 1/2/3 V</string>
-    <string name="label_InterPhaseVoltage">Inter phase voltage 12/23/31 V</string>
-    <string name="label_MainsActivePowerConsumed">Mains active power consumed W</string>
-    <string name="label_GroundResistanceOhm">Ground resistance Ohm</string>
+    <string name="label_phaseCurrent">Phase current RMS 1/2/3 (A)</string>
+    <string name="label_PhaseVoltage">Phase voltage 1/2/3 (V)</string>
+    <string name="label_InterPhaseVoltage">Inter phase voltage 12/23/31 (V)</string>
+    <string name="label_MainsActivePowerConsumed">Mains active power consumed (W)</string>
+    <string name="label_GroundResistanceOhm">Ground resistance (Ω)</string>
     <string name="label_CompletionStatus">Completion status</string>
     <string-array name="list_CompletionStatus">
         <item>Init</item>
@@ -192,7 +192,7 @@
         <item>-</item>
         <item>Means Leakage DC+LF+HF</item>
     </string-array>
-    <string name="label_SupervisorState">Supervisor State</string>
+    <string name="label_SupervisorState">Supervisor state</string>
     <string-array name="list_SupervisorState">
         <item>Init</item>
         <item>Wait</item>
@@ -231,25 +231,25 @@
     <string name="header_DrivingCh">Driving</string>
     <string name="header_CompTemp">Battery modules temperatures and balancing</string>
     <string name="label_max_charge">Max battery charge/regen kW</string>
-    <string name="label_max_pilot">Max AC charge pilot Amp</string>
+    <string name="label_max_pilot">Charge pilot Amp</string>
     <string name="label_Phases">Phases</string>
-    <string name="label_UserSOC">Usable state of charge %</string>
-    <string name="label_RealSOC">Real state of charge %</string>
-    <string name="label_Capacity">Capacity Ah</string>
-    <string name="label_HvTemp">Mean battery temperature</string>
-    <string name="label_SOH">State of health %</string>
-    <string name="label_TTF">Time to full min</string>
-    <string name="label_ETF">Energy to full kWh</string>
+    <string name="label_UserSOC">Usable state of charge (%)</string>
+    <string name="label_RealSOC">Real state of charge (%)</string>
+    <string name="label_Capacity">Capacity (Ah)</string>
+    <string name="label_HvTemp">Mean battery temperature (°C)</string>
+    <string name="label_SOH">State of health (%)</string>
+    <string name="label_TTF">Time to full (min)</string>
+    <string name="label_ETF">Energy to full (kWh)</string>
     <string name="label_DISTA">Available range</string>
-    <string name="label_EnergyConsumed">Energy consumed kWh</string>
-    <string name="label_Volt">Volts HV Battery</string>
-    <string name="label_Amps">Amps HV Battery</string>
-    <string name="label_DcPwr">DC Power kW</string>
-    <string name="label_AvChPwr">Available Charging Power kW</string>
-    <string name="label_AvEner">Available Energy kWh</string>
-    <string name="label_12V">12 volt voltage</string>
-    <string name="label_12A">12 volt current</string>
-    <string name="label_DcLoad">DCDC Load %</string>
+    <string name="label_EnergyConsumed">Energy consumed (kWh)</string>
+    <string name="label_Volt">HV Battery voltage (V)</string>
+    <string name="label_Amps">HV Battery current (A)</string>
+    <string name="label_DcPwr">DC Power (kW)</string>
+    <string name="label_AvChPwr">Available charging power (kW)</string>
+    <string name="label_AvEner">Available Energy (kWh)</string>
+    <string name="label_12V">12 volt voltage (V)</string>
+    <string name="label_12A">12 volt current (A)</string>
+    <string name="label_DcLoad">DC-DC Load (%)</string>
     <string name="label_HKM">Battery odometer</string>
     <string name="label_ChaStatus">Charging Status</string>
     <string name="label_Plug">Plug Status</string>
@@ -272,8 +272,8 @@
 
     <string name="title_activity_charging_graph">Charging graphs</string>
     <string name="button_ChargingGraphs">Charging graphs</string>
-    <string name="graph_PilotPower">Pilot amp (A), Charger power (kW)</string>
-    <string name="graph_MaxRealChPwr">Max battery charge (kW) / DC Charging power (kW)</string>
+    <string name="graph_PilotPower">Charge pilot amp (A), Charging power (kW)</string>
+    <string name="graph_MaxRealChPwr">Max battery charge (kW) / DC charging power (kW)</string>
     <string name="graph_EnergyTemperature">Available energy (kWh), temperature (°C)</string>
 
     <!-- Charging history -->
@@ -309,12 +309,12 @@
     <string name="button_Climate">Climate</string>
     <string name="label_ClimaLoopMode">Climate loop mode</string>
     <string name="label_HVBatConditioningMode">HV Bat conditioning mode</string>
-    <string name="label_Temperatures">Temperatures</string>
-    <string name="label_HVEvaporationTemp">HV Evaporation temp</string>
-    <string name="label_ACPressure">Pressure</string>
+    <string name="label_Temperatures">Temperatures (°C)</string>
+    <string name="label_HVEvaporationTemp">HV Evaporation temp (°C)</string>
+    <string name="label_ACPressure">Pressure (bar)</string>
     <string name="label_HVCoolingState">HV cooling state</string>
-    <string name="label_ChargingPower">Charging Power</string>
-    <string name="label_EngineFanSpeed">Engine fan speed</string>
+    <string name="label_ChargingPower">Charging power (kW)</string>
+    <string name="label_EngineFanSpeed">Engine fan speed (RPM)</string>
     <string name="label_ClimateBatteryInteraction">Climate-Battery interaction</string>
     <string-array name="list_CoolingStatus">
         <item>No</item>
@@ -357,9 +357,9 @@
     <string name="label_WheelTorque">Wheel torque</string>
     <string name="label_InstantConsumption">Instant Consumption</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Power (kw), Available energy (kWh)</string>
+    <string name="graph_PowerEnergy">Power (kW), Available energy (kWh)</string>
     <string name="graph_SpeedConsumption">Speed (km/h), Consumption (kWh/100km)</string>
-    <string name="graph_RangeSoc">Range (km), State of Charge (%)</string>
+    <string name="graph_RangeSoc">Available range (km), State of charge (%)</string>
 
     <!-- Driving -->
 
@@ -372,6 +372,8 @@
     <string name="label_DistToDest">Distance to destination</string>
     <string name="label_DistAvailAtDest">Dist. available at dest.</string>
     <string name="label_TripConsumption">Trip consumption</string>
+    <string name="label_TripDistance">Trip distance</string>
+    <string name="label_TripEnergy">Trip energy (kWh)</string>
     <string name="label_friction">Friction braking (avoid)</string>
     <string name="button_Double">Double</string>
     <string name="prompt_Distance">REMAINING DISTANCE</string>
@@ -494,21 +496,21 @@
     <string name="label_StateAtThisMoment">State at this moment</string>
     <string name="label_BatteryTemperature">BatteryTemperature</string>
     <string name="label_ACPower">AC power</string>
-    <string name="label_StateOfCharge">State of charge</string>
+    <string name="label_StateOfCharge">State of charge (%)</string>
     <string name="label_ChargingPrediction">Charging prediction</string>
     <string name="label_Duration">Duration (hh:mm)</string>
     <string name="label_Soc">SOC</string>
-    <string name="label_Range">Range</string>
-    <string name="label_DcPower">DC power</string>
+    <string name="label_Range">Avail. range</string>
+    <string name="label_DcPower">DC ch. power</string>
 
     <!-- Range -->
 
     <string name="title_activity_range">Range</string>
     <string name="button_Range">Range</string>
-    <string name="label_RangeRemaining">Remaining range by car:</string>
-    <string name="label_RangeRemainingCanZE">Remaining range by CanZE:</string>
+    <string name="label_RangeRemaining">Available range by car:</string>
+    <string name="label_RangeRemainingCanZE">Available range by CanZE:</string>
     <string name="label_EstimatedDrivingStyleLoss">Estimated driving style energy loss:</string>
-    <string name="graph_DistanceEnergy">Available distance (km), Available energy (kWh)</string>
+    <string name="graph_DistanceEnergy">Available range (km), Available energy (kWh)</string>
 
     <!-- Settings -->
 
@@ -644,14 +646,14 @@
     <!-- Experimental (fragment) -->
 
     <string name="menu_Experimental">Experimental</string>
-    <string name="help_Experimental">buttons below are for testing purposes only</string>
+    <string name="help_Experimental">These buttons are for testing purposes only</string>
     <string name="label_distance">Km</string>
     <string name="label_EndOfChargeStatus">End</string>
     <string name="label_TypeOfCharge">Type</string>
     <string name="label_EndSoc">SOC</string>
     <string name="label_EndBatteryTemp">Temp</string>
     <string name="label_HistDuration">Dura</string>
-    <string name="label_IH_ElectricalPowerDrived">Compressor power</string>
+    <!-- <string name="label_IH_ElectricalPowerDrived">Compressor power</string> -->
     <string name="title_activity_elm_dump">ELM Dump</string>
 
 </resources>

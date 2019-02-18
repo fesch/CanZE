@@ -171,7 +171,7 @@
         <item>Dégivrage</item>
         <item>Ralenti</item>
     </string-array>
-    <string name="label_IH_ElectricalPowerDrived">Puissance compresseur</string>
+    <!-- <string name="label_IH_ElectricalPowerDrived">Puissance compresseur</string> -->
     <string name="graph_Climatech">Extérieure (°C), Habitacle (°C), Consigne (°C), Batterie (°C)</string>
     <string name="label_PtcRelay1">PTC Relay 1</string>
     <string name="label_PtcRelay2">PTC Relay 2</string>
@@ -203,6 +203,8 @@
     <string name="label_DistToDest">Distance jusqu\'à destination</string>
     <string name="label_DistAvailAtDest">Autonomie restante</string>
     <string name="label_TripConsumption">Trip consumption</string>
+    <string name="label_TripDistance">Trip distance</string>
+    <string name="label_TripEnergy">Trip energy (kWh)</string>
     <string name="label_friction">Freinage par friction (à éviter)</string>
     <string name="button_Double">Double</string>
     <string name="prompt_Distance">DISTANCE RESTANTE</string>
@@ -423,7 +425,7 @@
     <!-- Experimental (fragment) -->
 
     <string name="menu_Experimental">Expérimental</string>
-    <string name="help_Experimental">Les boutons ci-dessous sont à des fins de test uniquement</string>
+    <string name="help_Experimental">Cette boutons sont à des fins de test uniquement</string>
     <!-- <string name="label_IH_ClimCompRPMStatus">Compressor RPM, ECO</string> -->
     <string name="label_IH_ClimCompPWRStatus">Consommation Clima (W), ECO</string>
     <string name="label_EndBatteryTemp">Temp</string>

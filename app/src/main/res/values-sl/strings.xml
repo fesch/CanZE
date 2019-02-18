@@ -199,6 +199,8 @@
     <string name="label_DistToDest">Razdalja do cilja</string>
     <string name="label_DistAvailAtDest">Doseg na cilju</string>
     <string name="label_TripConsumption">Trip consumption</string>
+    <string name="label_TripDistance">Trip distance</string>
+    <string name="label_TripEnergy">Trip energy (kWh)</string>
     <string name="label_friction">Zaviranje (izgube)</string>
     <string name="button_Double">Dvojno</string>
     <string name="prompt_Distance">PREOSTALI DOSEG</string>
@@ -419,7 +421,7 @@
     <!-- Experimental (fragment) -->
 
     <string name="menu_Experimental">Eksperimentalni</string>
-    <string name="help_Experimental">spodnji gumbi so le za namene testiranja</string>
+    <string name="help_Experimental">Ti gumbi so le za namene testiranja</string>
     <string name="label_EndBatteryTemp">Temp</string>
     <string name="label_EndOfChargeStatus">End</string>
     <string name="label_EndSoc">SOC</string>
@@ -427,7 +429,7 @@
     <string name="label_HistDuration">Dura</string>
     <!-- <string name="label_IH_ClimCompRPMStatus">Compressor RPM, ECO mode</string> -->
     <string name="label_IH_ClimCompPWRStatus">Compressor power (W), ECO mode</string>
-    <string name="label_IH_ElectricalPowerDrived">Compressor power</string>
+    <!-- <string name="label_IH_ElectricalPowerDrived">Compressor power</string> -->
     <string name="label_TypeOfCharge">Type</string>
     <string name="label_distance">Km</string>
     <string name="header_ChargerKeyParameters">Charger key parameters</string>

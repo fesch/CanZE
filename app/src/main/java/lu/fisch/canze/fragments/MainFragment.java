@@ -28,6 +28,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.BatteryActivity;
@@ -43,6 +51,8 @@ import lu.fisch.canze.activities.TyresActivity;
 
 public class MainFragment extends Fragment {
 
+    static boolean firstRun = true;
+    static String msg = "";
 
     public MainFragment() {
         // Required empty public constructor
@@ -55,111 +65,88 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        Button button;
+        activateButton(view, R.id.buttonBattery,            BatteryActivity.class);
+        activateButton(view, R.id.buttonChargingActivity,   ChargingActivity.class);
 
-        button = view.findViewById(R.id.buttonBattery);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        activateButton(view, R.id.buttonTyres,              TyresActivity.class);
+        activateButton(view, R.id.buttonDrivingActivity,    DrivingActivity.class);
 
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), BatteryActivity.class);
-                MainFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
+        activateButton(view, R.id.buttonConsumption,        ConsumptionActivity.class);
+        activateButton(view, R.id.buttonBraking,            BrakingActivity.class);
 
-        button = view.findViewById(R.id.buttonChargingActivity);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        activateButton(view, R.id.buttonHeatmapCellvoltage, HeatmapCellvoltageActivity.class);
+        activateButton(view, R.id.buttonHeatmapBatcomp,     HeatmapBatcompActivity.class);
 
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), ChargingActivity.class);
-                MainFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = view.findViewById(R.id.buttonDrivingActivity);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), DrivingActivity.class);
-                MainFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = view.findViewById(R.id.buttonConsumption);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), ConsumptionActivity.class);
-                MainFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = view.findViewById(R.id.buttonBraking);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), BrakingActivity.class);
-                MainFragment.this.startActivityForResult(intent,MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = view.findViewById(R.id.buttonHeatmapBatcomp);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), HeatmapBatcompActivity.class);
-                MainFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = view.findViewById(R.id.buttonHeatmapCellvoltage);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), HeatmapCellvoltageActivity.class);
-                MainFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
-
-        button = view.findViewById(R.id.buttonTyres);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
-                MainActivity.getInstance().leaveBluetoothOn=true;
-                Intent intent = new Intent(MainActivity.getInstance(), TyresActivity.class);
-                MainFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
+        getNews(view);
 
         return view;
     }
+
+    private void activateButton (View view, int buttonId, final Class<?> activityClass) {
+        Button button = (Button) view.findViewById(buttonId);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!MainActivity.isSafe()) return;
+                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                MainActivity.getInstance().leaveBluetoothOn = true;
+                Intent intent = new Intent(MainActivity.getInstance(), activityClass);
+                MainFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
+            }
+        });
+    }
+
+    private void getNews (final View view) {
+
+        if (firstRun) {
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        URL url = new URL("https://raw.githubusercontent.com/fesch/CanZE/Development/NEWS.txt");
+                        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                        try {
+                            urlConnection.setConnectTimeout(10000);
+                            InputStream ips = urlConnection.getInputStream();
+                            BufferedInputStream in = new BufferedInputStream(ips);
+                            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                            StringBuilder stringBuilder = new StringBuilder(200);
+                            while ((msg = reader.readLine()) != null) {
+                                // MainActivity.debug("ELM327Http: httpGet append " + st);
+                                stringBuilder.append(msg);
+                            }
+                            msg = stringBuilder.toString();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        } finally {
+                            urlConnection.disconnect();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    displayNews(view);
+                }
+            })).start();
+            firstRun = false;
+        } else {
+            displayNews(view);
+        }
+    }
+
+    private void displayNews (final View view) {
+        if (!"".equals(msg)) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    TextView tv = view.findViewById(R.id.textNews);
+                    tv.setText(msg);
+                    tv.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

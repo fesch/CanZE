@@ -1,3 +1,4 @@
+#Frame ID,interval ZOE, interval FLUKAN, Sending ECU
 023,4,4,AIBAG
 0C6,10,10,EPS
 12E,10,10,ESC
@@ -33,7 +34,7 @@
 534,100,100,BCM
 552,100,100,BCM
 563,100,100,EPS
-5D1,60000,60000,CLUSTER # this frame is AFAIK only sent at bootup
+#5D1,60000,60000,CLUSTER # this frame is AFAIK only sent at bootup
 5D7,100,100,ESC
 5DA,100,100,EVC
 5DE,100,100,BCM
