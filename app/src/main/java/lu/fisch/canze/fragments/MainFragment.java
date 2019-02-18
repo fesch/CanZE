@@ -105,6 +105,7 @@ public class MainFragment extends Fragment {
                     try {
                         URL url = new URL("https://raw.githubusercontent.com/fesch/CanZE/Development/NEWS.txt");
                         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                        if (urlConnection == null) return;
                         try {
                             urlConnection.setConnectTimeout(10000);
                             InputStream ips = urlConnection.getInputStream();
