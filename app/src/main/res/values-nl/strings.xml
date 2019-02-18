@@ -185,9 +185,9 @@
     <string name="label_WheelTorque">Wieltorsie (Nm)</string>
     <string name="label_InstantConsumption">Verbruik</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Vermogen (kw), Beschikbare energie (kWh)</string>
+    <string name="graph_PowerSoc">Vermogen (kw), Lading (%)</string>
     <string name="graph_SpeedConsumption">Snelheid (km/h), Verbruik (kWh/100km)</string>
-    <string name="graph_RangeSoc">Bereik (km), Lading (%)</string>
+    <string name="graph_RangeDelta">Bereik (km), Verschil met werkelijkheid (km)</string>
 
     <!-- Driving -->
 
