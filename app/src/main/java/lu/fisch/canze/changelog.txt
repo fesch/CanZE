@@ -1,4 +1,4 @@
----< Version 1.31 / 2019.??.?? >---
+---< Version 1.31 / 2019.02.18 >---
 2019-02-16 [Jeroen] Fixed error in BCB (uppercase hex :-( ) and inject Testerpresent-Awake
 2019-02-16 [Jeroen] Moved leak to tech, code and layout cleanup
 2019-02-16 [Jeroen] Implemented real time news
