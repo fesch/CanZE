@@ -81,90 +81,27 @@ public class ElmDumpActivity extends CanzeActivity {
         for (int f=0; f<Frames.getInstance().getAllFrames().size(); f++)
         {
             Frame frame = Frames.getInstance().get(f);
-            appendResult("Frame: "+frame.getRID());
+            // only select frames with at least one active field
+            if (frame.getAllFields().size() > 0) {
+                appendResult("Frame: " + frame.getRID());
 
-            Message message = MainActivity.device.requestFrame(frame);
-            if (message.isError())
-            {
-                appendResult(" >> "+message.getError() + "\n");
-            }
-            else
-            {
-                appendResult(" >> "+message.getData() + "\n");
+                Message message = MainActivity.device.requestFrame(frame);
+                if (message.isError()) {
+                    appendResult(" >> " + message.getError() + "\n");
+                } else {
+                    appendResult(" >> " + message.getData() + "\n");
 
-                message.onMessageCompleteEvent();
+                    message.onMessageCompleteEvent();
 
-                for(int i=0; i<message.getFrame().getAllFields().size(); i++)
-                {
-                    Field field = message.getFrame().getAllFields().get(i);
-                    appendResult("          Field: "+field.getSID()+" = "+field.getPrintValue()+"\n");
+                    for (int i = 0; i < frame.getAllFields().size(); i++) {
+                        Field field = frame.getAllFields().get(i);
+                        appendResult("          Field: " + field.getSID() + " = " + field.getPrintValue() + "\n");
+                    }
                 }
             }
         }
 
-        /*
-        Field field;
-        Message message;
-        String backRes;
-        clearResult();
-
-        appendResult(R.string.message_SendingInit);
-        if (!MainActivity.device.initDevice(1)) {
-            appendResult(MainActivity.getStringSingle(R.string.message_InitFailed));
-            appendResult(MainActivity.getStringSingle(R.string.message_Problem) + MainActivity.device.getLastInitProblem() + "\n");
-            return;
-        }
-        appendResult(R.string.message_ExpectedResult);
-
-        appendResult(R.string.message_PrepIsoTp);
-        field = Fields.getInstance().getBySID("763.6180.144");
-        if (field == null) {
-            appendResult(R.string.message_FieldNotExists);
-            return;
-        }
-        message = MainActivity.device.requestFrame(field.getFrame());
-        if (message.isError()) {
-            appendResult(message.getError() + "\n");
-            return;
-        }
-        backRes = message.getData();
-        if (backRes.equals("")) {
-            appendResult(R.string.message_ResultEmpty);
-            return;
-        }
-        if (!backRes.startsWith("6180")) {
-            appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes.replace('\r', '•') + "]\n");
-            return;
-        }
-        appendResult(R.string.message_ExpectedResult);
-
-        appendResult(R.string.message_PrepFree);
-        field = Fields.getInstance().getBySID("4f8.4");
-        if (field == null) {
-            appendResult(R.string.message_FieldNotExists);
-            return;
-        }
-        message = MainActivity.device.requestFrame(field.getFrame());
-        if (message.isError()) {
-            appendResult(R.string.message_MessageNull);
-            return;
-        }
-        backRes = message.getData();
-        if (backRes.equals("")) {
-            appendResult(R.string.message_ResultEmpty);
-            return;
-        }
-        if (backRes.length() != 10) {
-            appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes.replace('\r', '•') + "]\n");
-            return;
-        }
-        appendResult(R.string.message_ExpectedResult);
-
-        appendResult(R.string.message_DevicePassed);
-        */
     }
-
-
 
     // Ensure all UI updates are done on the UiThread
     private void clearResult() {

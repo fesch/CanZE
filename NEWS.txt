@@ -1,0 +1,1 @@
+Dutch language will be removed from the project in the next release.

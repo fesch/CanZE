@@ -1,184 +1,202 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:keepScreenOn="true"
+    android:id="@+id/table"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
-    android:paddingBottom="0dp"
-    tools:context="lu.fisch.canze.fragments.ExperimentalFragment"
-    android:stretchColumns="3"
-    android:id="@+id/table"
-    android:layout_column="1"
     android:layout_row="3"
+    android:layout_column="1"
+    android:keepScreenOn="true"
     android:orientation="vertical"
-    >
+    android:paddingLeft="0dp"
+    android:paddingTop="0dp"
+    android:paddingRight="0dp"
+    android:paddingBottom="0dp"
+    android:stretchColumns="3"
+    tools:context="lu.fisch.canze.fragments.ExperimentalFragment">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffd124">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/help_Experimental"
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal" />
-    </LinearLayout>
-
-
-    <ScrollView
-        android:id="@+id/scroller_main"
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:fillViewport="true"
-        android:fadeScrollbars="false">
+        android:layout_height="0dp"
+        android:layout_weight="0.8">
+
+        <ScrollView
+            android:id="@+id/scroller_main"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fadeScrollbars="false"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
 
 
-        <TableLayout
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/buttonChargingHistory"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="0"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:text="@string/button_charging_history" />
+
+                    <Button
+                        android:id="@+id/buttonLeafSpy"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="1"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:text="@string/button_LeafspyBob" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/buttonElmDump"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="0"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:text="ELM Dump" />
+
+                    <Button
+                        android:id="@+id/buttonFluenceKangooTemps"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="1"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:text="@string/button_FluenceKangooTemps" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/buttonBcb"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="0"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:text="@string/button_Bcb" />
+
+                    <Button
+                        android:id="@+id/buttonDummy1"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="1"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:text="" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/buttonTestBob"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:drawableStart="@mipmap/button_consumption"
+                        android:drawableLeft="@mipmap/button_consumption"
+                        android:text="Tests Bob" />
+
+                    <Button
+                        android:id="@+id/buttonDummy2"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="1"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:text="" />
+
+                </TableRow>
+
+            </TableLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="*">
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            android:background="#ffd124">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/textView"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="0dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/help_Experimental"
+                android:layout_gravity="center_horizontal" />
 
-                <Button
-                    style="?android:attr/button"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/button_charging_history"
-                    android:id="@+id/buttonChargingHistory"
-                    android:layout_column="0" />
+        </LinearLayout>
 
-                <Button
-                    style="?android:attr/button"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/button_LeafspyBob"
-                    android:id="@+id/buttonLeafSpy"
-                    android:layout_column="1" />
+    </RelativeLayout>
 
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    style="?android:attr/button"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="ELM Dump"
-                    android:id="@+id/buttonElmDump"
-                    android:layout_column="0" />
-
-                <Button
-                    style="?android:attr/button"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/button_FluenceKangooTemps"
-                    android:id="@+id/buttonFluenceKangooTemps"
-                    android:layout_column="1" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    style="?android:attr/button"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/button_Bcb"
-                    android:id="@+id/buttonBcb"
-                    android:layout_column="0" />
-
-                <Button
-                    style="?android:attr/button"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/button_LeakCurrents"
-                    android:id="@+id/buttonLeakCurrents"
-                    android:layout_column="1" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/buttonDummy1"
-                    style="?android:attr/button"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="fill_parent"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginTop="4dp"
-                    android:drawableLeft="@mipmap/button_consumption"
-                    android:drawableStart="@mipmap/button_consumption"
-                    android:text="Tests Bob" />
-
-                <Button
-                    android:id="@+id/buttonDummy2"
-                    style="?android:attr/button"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="fill_parent"
-                    android:layout_column="1"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginTop="4dp"
-                    android:text="" />
-
-            </TableRow>
-
-
-
-        </TableLayout>
-
-    </ScrollView>
 
 </LinearLayout>

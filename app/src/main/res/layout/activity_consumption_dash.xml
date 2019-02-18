@@ -219,11 +219,11 @@
                 android:layout_marginTop="8dp"
                 custom:min="-30"
                 custom:max="70"
-                custom:minAlt="-15"
-                custom:maxAlt="15"
+                custom:minAlt="-25"
+                custom:maxAlt="25"
                 custom:majorTicks="15"
                 custom:minorTicks="5"
-                custom:fieldSID="1fd.48,800.6107.24"
+                custom:fieldSID="1fd.48,800.6108.24"
                 custom:widget="timeplot"
                 custom:colorRanges="[
                     {'sid':'1fd.48','color':'#cc00ff','from':-100,'to':-1},
@@ -231,16 +231,16 @@
                     {'sid':'1fd.48','color':'#008a1d','from':1,'to':20},
                     {'sid':'1fd.48','color':'#ffaa17','from':20,'to':33},
                     {'sid':'1fd.48','color':'#FF0000','from':33,'to':100},
-                    {'sid':'800.6107.24','color':'#017720','from':-20,'to':0},
-                    {'sid':'800.6107.24','color':'#77011d','from':0,'to':20}
+                    {'sid':'800.6108.24','color':'#017720','from':-20,'to':0},
+                    {'sid':'800.6108.24','color':'#77011d','from':0,'to':20}
                 ]"
                 custom:text="Power (kWh), Delta with reality (km)"
                 custom:intervals="{
-                    '800.6107.24':2000
+                    '800.6108.24':2000
                 }"
                 custom:options="{
                     '1fd.48':'gradient',
-                    '800.6107.24':'alt'
+                    '800.6108.24':'alt'
                 }"
                 />
 
