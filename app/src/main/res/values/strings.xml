@@ -357,9 +357,9 @@
     <string name="label_WheelTorque">Wheel torque</string>
     <string name="label_InstantConsumption">Instant Consumption</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Power (kW), Available energy (kWh)</string>
+    <string name="graph_PowerSoc">Power (kW), SOC (%)</string>
     <string name="graph_SpeedConsumption">Speed (km/h), Consumption (kWh/100km)</string>
-    <string name="graph_RangeSoc">Available range (km), State of charge (%)</string>
+    <string name="graph_RangeDelta">Range (km), Delta with reality (km)</string>
 
     <!-- Driving -->
 

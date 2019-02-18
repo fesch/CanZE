@@ -182,9 +182,9 @@
     <string name="label_WheelTorque">Drehmoment (Räder)</string>
     <string name="label_InstantConsumption">aktueller Verbrauch (kW)</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Leistung (kW), Verfügbare Energie (kWh)</string>
+    <string name="graph_PowerSoc">Leistung (kW), Kapazität (%)</string>
     <string name="graph_SpeedConsumption">Geschwindigkeit (km/h), Verbrauch (kWh/100km)</string>
-    <string name="graph_RangeSoc">Reichweite (km), Kapazität (%)</string>
+    <string name="graph_RangeDelta">Reichweite (km), Differenz zur Realität (km)</string>
 
     <!-- Driving -->
 

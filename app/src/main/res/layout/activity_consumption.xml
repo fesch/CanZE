@@ -232,7 +232,7 @@
                     {'sid':'1fd.48','color':'#ffaa17','from':20,'to':33},
                     {'sid':'1fd.48','color':'#FF0000','from':33,'to':100}
                 ]"
-                custom:text="Power (kWh), SOC (%)"
+                custom:text="@string/graph_PowerSoc"
                 custom:intervals="{
                     '654.25':10000
                 }"
