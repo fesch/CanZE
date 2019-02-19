@@ -115,8 +115,8 @@
                     android:layout_marginRight="4dp"
                     android:layout_marginTop="4dp"
                     android:layout_weight="1"
-                    android:drawableLeft="@mipmap/button_charge"
-                    android:drawableStart="@mipmap/button_charge"
+                    android:drawableLeft="@mipmap/button_prediction"
+                    android:drawableStart="@mipmap/button_prediction"
                     android:text="@string/button_ChargingPrediction" />
 
                 <Button
@@ -168,8 +168,8 @@
                     android:layout_marginRight="4dp"
                     android:layout_marginTop="4dp"
                     android:layout_weight="1"
-                    android:drawableLeft="@mipmap/button_thermometer"
-                    android:drawableStart="@mipmap/button_thermometer"
+                    android:drawableLeft="@mipmap/button_climate"
+                    android:drawableStart="@mipmap/button_climate"
                     android:text="@string/button_Climate" />
 
             </TableRow>
