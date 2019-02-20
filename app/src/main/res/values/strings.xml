@@ -301,7 +301,10 @@
         <item>Unknw</item>
         <item>Sched</item>
     </string-array>
-
+    <string name="header_ChargeSummary">Charging summary</string>
+    <string name="label_TotKwh">Total battery usage (kWh)</string>
+    <string name="label_CountFull">Full charges (#)</string>
+    <string name="label_CountPartial">Partial charges (#)</string>
 
     <!-- Clima tech -->
 

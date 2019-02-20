@@ -42,6 +42,10 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
     public static final String SID_Preamble_TMP                     = "7ec.6233d8."; //  96 -  8
     public static final String SID_Preamble_DUR                     = "7ec.6233d9."; // 168 - 16
 
+    public static final String SID_Total_kWh                        = "7bb.6161.120";
+    public static final String SID_Counter_Full                     = "7bb.6166.48";
+    public static final String SID_Counter_Partial                  = "7bb.6166.64";
+
     final String charging_HistEnd [] = MainActivity.getStringList(R.array.list_ChargingHistEnd);
     final String charging_HistTyp [] = MainActivity.getStringList(R.array.list_ChargingHistTyp);
 
@@ -68,6 +72,9 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
             sid = SID_Preamble_DUR + (168 - i * 16);
             addField(sid, 6000);
         }
+        addField(SID_Total_kWh, 6000);
+        addField(SID_Counter_Full, 6000);
+        addField(SID_Counter_Partial, 6000);
     }
 
     // This event is fired as soon as any registered field is set through its setValue() method
@@ -114,6 +121,19 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
                     case SID_Preamble_DUR:
                         tv = findViewById(getResources().getIdentifier("textDUR" + ((184 - Integer.parseInt(startBit)) / 16), "id", getPackageName()));
                         break;
+                    default:
+                        switch (field.getSID()) {
+                            case SID_Total_kWh:
+                                tv = findViewById(R.id.textTotKwh);
+                                break;
+                            case SID_Counter_Full:
+                                tv = findViewById(R.id.textCountFull);
+                                break;
+                            case SID_Counter_Partial:
+                                tv = findViewById(R.id.textCountPartial);
+                                break;
+                        }
+
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
