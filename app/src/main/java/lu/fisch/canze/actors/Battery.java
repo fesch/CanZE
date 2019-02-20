@@ -32,28 +32,6 @@ package lu.fisch.canze.actors;
  */
 public class Battery {
 
-    /*
-     * Meta code on usage
-     *
-     * Battery battery;
-     * // initialize the values. No need to initialize dcPower
-     * battery = new Battery();
-     * battery.setTemperature (...);
-     * battery.setStateOfCharge (...);
-     * battery.setChargerPower (...);
-     * for (int t=1; t<=60; t++) {
-     *      draw (battery, t); // imaginary method that plots SOC, range, time
-     *      battery.iterateCharging (60);
-     * }
-     *
-     * Some rough parameters derived from this document: http://www.cse.anl.gov/us%2Dchina%2Dworkshop%2D2011/pdfs/batteries/LiFePO4%20battery%20performances%20testing%20for%20BMS.pdf
-     *
-     * Still to implement
-     * - state of health
-     * - discharge behavior
-     *
-     */
-
     private double temperature = 10.0;
     private double stateOfCharge = 11.0;                // watch it: in kWh!!!
     private double chargerPower = 11.0;                 // in kW
@@ -69,18 +47,17 @@ public class Battery {
     private double tempx;
     private double socy;
     private double tempxsocy;
+    private double soh = 100;
 
     private void predictMaxDcPower () {
 
         // if the state of charge (in kW) exceeds the capacity of the battery
         if (stateOfCharge >= capacity) {
-
             // stop charging
             maxDcPower = 0.0;
 
         // if there is capacity left to charge
         } else {
-
             // calculate the SOC in percantage
             double stateOfChargePercentage = stateOfCharge * 100.0 / capacity;
 
@@ -89,8 +66,6 @@ public class Battery {
 
             // now use a model to calculate the DC power, based on SOC and temperature
             maxDcPower = cons + (tempx * intTemperature) + (tempxsocy * stateOfChargePercentage * intTemperature) + (socy * stateOfChargePercentage);
-            //maxDcPower = 19.0 + (3.6 * intTemperature) - (0.026 * stateOfChargePercentage * intTemperature) - (0.34 * stateOfChargePercentage);
-            //maxDcPower = 27.1 + (0.76 * intTemperature) - (0.27 * stateOfChargePercentage);
 
             if (maxDcPower > dcPowerUpperLimit) {
                 maxDcPower = dcPowerUpperLimit;
@@ -141,14 +116,14 @@ public class Battery {
 
     private void adjustRawCapacity () {
         // adjust for capacity loss due to temperature differences (system wide)
-        if (temperature > 15.0) {
+        if (temperature > 15.0) { // above 15C: 100%
             capacity = rawCapacity;
-        } else if (temperature > 0) {
-            capacity = 0.9 * rawCapacity + temperature * 2.2 / 15.0;
-        } else {
-            capacity = 0.9 * rawCapacity + temperature * 4.4 / 15.0;
+        } else if (temperature > 0) { // above 0C: 10% gradual decline over the 15C
+            capacity = rawCapacity * (0.9 + temperature * 0.1 / 15.0);
+        } else { // under 0C: 20% gradual decline per 15C
+            capacity = rawCapacity * (0.9 + temperature * 0.2 / 15.0);
         }
-
+        capacity = capacity * soh / 100.0;
         // ensure the SOC is refreshed. This is only relevant for a very full battery
         setStateOfChargeKw(getStateOfChargeKw());
     }
@@ -255,7 +230,11 @@ public class Battery {
 
     public void setRawCapacity(double rawCapacity) {
         this.rawCapacity = rawCapacity;
+        adjustRawCapacity();
+    }
 
+    public void setStateOfHealth(double soh) {
+        this.soh = soh;
         adjustRawCapacity();
     }
 }

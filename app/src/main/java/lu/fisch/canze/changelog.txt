@@ -1,3 +1,12 @@
+---< Version 1.32 / 2019.xx.xx >---
+2019-02-20 [Jeroen] -Added soh to Battery and Prediction
+2019-02-20 [Jeroen] Fixed bugs in Battery class
+2019-02-19 [Jeroen] Deleted Dutch (put in news bar)
+2019-02-19 [Jeroen] Icon cleanup to a somewhat more consistent style
+2019-02-19 [Jeroen] Deleted Dutch
+2019-02-18 [Jeroen] Fixed clipping bug #530
+2019-02-18 [Jeroen] Minor bug fixes and wording
+
 ---< Version 1.31 / 2019.02.18 >---
 2019-02-16 [Jeroen] Fixed error in BCB (uppercase hex :-( ) and inject Testerpresent-Awake
 2019-02-16 [Jeroen] Moved leak to tech, code and layout cleanup
