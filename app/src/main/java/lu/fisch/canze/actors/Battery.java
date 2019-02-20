@@ -88,7 +88,7 @@ public class Battery {
             int intTemperature = (int )temperature;
 
             // now use a model to calculate the DC power, based on SOC and temperature
-            maxDcPower = cons + (tempx * intTemperature) + (socy * stateOfChargePercentage * intTemperature) + (tempxsocy * stateOfChargePercentage);
+            maxDcPower = cons + (tempx * intTemperature) + (tempxsocy * stateOfChargePercentage * intTemperature) + (socy * stateOfChargePercentage);
             //maxDcPower = 19.0 + (3.6 * intTemperature) - (0.026 * stateOfChargePercentage * intTemperature) - (0.34 * stateOfChargePercentage);
             //maxDcPower = 27.1 + (0.76 * intTemperature) - (0.27 * stateOfChargePercentage);
 
@@ -158,7 +158,8 @@ public class Battery {
         switch (batteryType) {
             case 22:
                 setRawCapacity(22);
-                setCoefficients (19.00,  3.600, -0.026, -0.34000);
+                //setCoefficients (19.00,  3.600, -0.026, -0.34000);
+                setCoefficients (19.00,  3.600, -0.340, -0.02600);
                 break;
             case 41:
                 setCoefficients (14.93,  1.101, -0.145, -0.00824);
