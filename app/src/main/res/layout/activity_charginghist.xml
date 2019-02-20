@@ -390,6 +390,65 @@
                 </TableRow>
 
 
+
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/HeaderDC"
+                android:text="@string/header_ChargeSummary"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000" />
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/LabelTotKwh"
+                        android:text="@string/label_TotKwh"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textTotKwh"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/LabelCountFull"
+                        android:text="@string/label_CountFull"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textCountFull"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/LabelCountPartial"
+                        android:text="@string/label_CountPartial"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textCountPartial"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+
+
             </TableLayout>
 
         </LinearLayout>
