@@ -154,14 +154,14 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("Twizy");
         arrayAdapter.add("X10");
 
-        int index;
+        int index = 0; // assume default MainActivity.CAR_ZOE_Q210
         if      (MainActivity.car == MainActivity.CAR_ZOE_R240) index = 1;
         else if (MainActivity.car == MainActivity.CAR_ZOE_Q90) index = 2;
         else if (MainActivity.car == MainActivity.CAR_ZOE_R90) index = 3;
         else if (MainActivity.car == MainActivity.CAR_FLUENCE) index=4;
         else if (MainActivity.car == MainActivity.CAR_KANGOO) index=5;
-        else if (MainActivity.car == MainActivity.CAR_X10) index=6;
-        else index = 0; // assume MainActivity.CAR_ZOE_Q210
+        else if (MainActivity.car == MainActivity.CAR_TWIZY) index=6;
+        else if (MainActivity.car == MainActivity.CAR_X10) index=7;
 
         // display the list
         Spinner carList = findViewById(R.id.car);
