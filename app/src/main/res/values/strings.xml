@@ -364,12 +364,12 @@
     <string name="title_activity_charging_history">Charging history</string>
     <string name="button_charging_history">Charging history</string>
     <string name="header_ChargingHistory">Last 10 sessions</string>
-    <string name="label_distance">Km</string>
+    <string name="label_distance">Odometer</string>
     <string name="label_EndOfChargeStatus">End</string>
     <string name="label_TypeOfCharge">Type</string>
     <string name="label_EndSoc">SOC</string>
     <string name="label_EndBatteryTemp">Temp</string>
-    <string name="label_HistDuration">Dura</string>
+    <string name="label_HistDuration">Duration</string>
     <string-array name="list_ChargingHistEnd">
         <item>Full</item>
         <item>Unpl c</item>
