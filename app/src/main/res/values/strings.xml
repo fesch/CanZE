@@ -1,9 +1,8 @@
 <resources>
-    <string name="app_name">CanZE</string>
 
-    <!-- <string name="title_activity_text">TextActivity</string> -->
-    <!-- <string name="title_activity_temperatures">Temperatures</string> -->
-    <!-- <string name="title_activity_battery_temp">BatteryTempActivity</string> -->
+    <!-- App -->
+
+    <string name="app_name">CanZE</string>
 
     <!-- Menus -->
 
@@ -46,6 +45,90 @@
     <string name="header_Debug">Debugging info</string>
     <string name="label_debug">Debug\u0020</string>
     <string name="default_debug">#Debug</string>
+
+    <!-- *************************** SELECTION SCREENS (MAIN AND FRAGMENTS) *************************** -->
+
+    <!-- Mainactivity -->
+
+    <string name="toast_InitWidgets">Initialising widgets</string>
+    <string name="toast_BluetoothLost">Bluetooth connection lost!</string>
+    <string name="prompt_Disclaimer" translatable="false">Formal Disclaimer</string>
+    <string name="prompt_Accept">Yes, I got it!</string>
+    <string name="prompt_Decline">No, I didn\'t understand a word…</string>
+    <string name="prompt_DisclaimerText" translatable="false"><![CDATA[<html>CanZE (“the software”) is provided as is. Use the software at your own
+                            risk. The authors make no warranties as to performance or fitness for a particular purpose,
+                            or any other warranties whether expressed or implied. No oral or written communication
+                            from or information provided by the authors shall create a warranty. Under no circumstances
+                            shall the authors be liable for direct, indirect, special, incidental, or consequential
+                            damages resulting from the use, misuse, or inability to use the software, even if the author
+                            has been advised of the possibility of such damages. These exclusions and limitations may not
+                            apply in all jurisdictions. You may have additional rights and some of these limitations may not
+                            apply to you. This software is only intended for scientific usage.
+                            <br>
+                            <br>
+                            <b>By using this software you are interfering with your car and doing that with hardware and
+                            software beyond your control, created by a loose team of interested amateurs in this field. Any
+                            car is a possibly lethal piece of machinery and you might hurt or kill yourself or others using
+                            it, or even paying attention to the displays instead of watching the road.</b></html></string>]]></string>
+    <string name="toast_Reconnecting">Reconnecting Bluetooth…</string>
+    <string name="toast_WaitingSettings">Stopping Bluetooth. Settings are being loaded. Please wait ....</string>
+    <string name="toast_NotWhileDriving">Not possible while driving…</string>
+
+    <!-- Main (fragment) -->
+
+    <string name="menu_Main">Main</string>
+    <string name="help_Main">Use swipe gestures to switch between Main, Technical and Experimental screens.</string>
+
+    <!-- Technical (fragment) -->
+
+    <string name="menu_Technical">Technical</string>
+
+    <!-- Experimental (fragment) -->
+
+    <string name="menu_Experimental">Experimental</string>
+    <string name="help_Experimental">These buttons are for testing purposes only</string>
+
+    <!-- *************************** ACTIVITIES *************************** -->
+
+    <!-- Auxiliary battery -->
+
+    <string name="title_activity_auxbatt">12 volt battery</string>
+    <string name="button_auxbatt">12 volt batt</string>
+    <string name="header_auxbatt">12 volt battery</string>
+    <string name="label_auxbat">Voltage, Vehicle state, Charging state</string>
+    <string name="label_auxbatvolt">Voltage</string>
+    <string name="label_AuxStatus">Replacement advice</string>
+    <string name="label_vehiclestate">Vehicle state</string>
+    <string-array name="list_VehicleState">
+        <item>Asleep, off (0:red)</item>
+        <item>Awake, off (1:green)</item>
+        <item>Ignition on (2:blue)</item>
+        <item>Starting (3:yellow)</item>
+        <item>Awake, on (4:cyan)</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="list_ChargingStatus2">
+        <item>No charge (0:red)</item>
+        <item>Waiting (planned, 1:green)</item>
+        <item>Ended (2:blue)</item>
+        <item>In progress (3:yellow)</item>
+        <item>Failure (4:cyan)</item>
+        <item>Waiting (5:purple)</item>
+        <item>Flap open (6:black)</item>
+        <item>Unavailable (7:grey)</item>
+    </string-array>
+    <string-array name="list_AuxStatus">
+        <item>None</item>
+        <item>1</item>
+        <item>2</item>
+        <item>Soon</item>
+        <item>4</item>
+        <item>Now</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
 
     <!-- Battery -->
 
@@ -281,6 +364,12 @@
     <string name="title_activity_charging_history">Charging history</string>
     <string name="button_charging_history">Charging history</string>
     <string name="header_ChargingHistory">Last 10 sessions</string>
+    <string name="label_distance">Km</string>
+    <string name="label_EndOfChargeStatus">End</string>
+    <string name="label_TypeOfCharge">Type</string>
+    <string name="label_EndSoc">SOC</string>
+    <string name="label_EndBatteryTemp">Temp</string>
+    <string name="label_HistDuration">Dura</string>
     <string-array name="list_ChargingHistEnd">
         <item>Full</item>
         <item>Unpl c</item>
@@ -341,8 +430,6 @@
         <item>Demisting</item>
         <item>Idle</item>
     </string-array>
-    <!-- <string name="label_IH_ElectricalPowerDrived">Power compressor</string> -->
-    <!-- <string name="label_IH_ClimCompRPMStatus">Compressor RPM / ECO mode</string> -->
     <string name="label_IH_ClimCompPWRStatus">Compressor power (W), ECO</string>
     <string name="graph_Climatech">External (°C), Internal (°C), Setpoint (°C), Battery (°C)</string>
     <string name="label_PtcRelay1">PTC Relay 1</string>
@@ -382,7 +469,6 @@
     <string name="prompt_Distance">REMAINING DISTANCE</string>
     <string name="prompt_SetDistance">Please enter the distance to your destination. The display will estimate the remaining driving distance available in your battery on arrival</string>
 
-
     <!-- DTC -->
 
     <string name="title_activity_dtc">Diagnostic Trouble Codes</string>
@@ -408,6 +494,10 @@
     <string name="message_MessageNull">Msg is null. Is the car switched on?\n</string>
     <string name="message_ClearSuccessful">Clear seems successful, please query DTCs\n</string>
 
+    <!-- Elm Dump -->
+
+    <string name="title_activity_elm_dump">ELM Dump</string>
+
     <!-- Elm testing -->
 
     <string name="title_activity_elm_test">Test ELM327 Dongle</string>
@@ -421,7 +511,6 @@
     <string name="message_PrepIsoTp">\nProcessing prepped ISO-TP command CLUSTER SW\n</string>
     <string name="message_PrepFree">\nProcessing prepped free frame PARK BRAKE\n</string>
     <string name="message_DevicePassed">\nYour device passed all the tests, it will probably work just fine\n</string>
-    <!-- <string name="message_DeviceFailed">\nYour device will probably not work\n</string> -->
 
     <!-- Firmware -->
 
@@ -438,16 +527,6 @@
     <!-- Fluence Kangoo Temps -->
 
     <string name="button_FluenceKangooTemps">Fluence Kangoo Temps</string>
-
-    <!-- LeakCurrents -->
-
-    <string name="title_activity_leakCurrents">Leak currents</string>
-    <string name="button_LeakCurrents">Leak Currents</string>
-    <string name="label_LeakCurrentDc">Leak current DC (mA)</string>
-    <string name="label_LeakCurrentLf">Leak current LF, 50 Hz (mA)</string>
-    <string name="label_LeakCurrentHf">Leak current HF, 10 Khz (mA)</string>
-    <string name="label_LeakCurrentEhf">Leak current EHF, 10 KHz harmonics (mA)</string>
-
 
     <!-- Heatmap battery modules -->
 
@@ -491,6 +570,15 @@
 
     <string name="title_activity_leaf_spy">Leaf Spy Clone</string>
     <string name="button_LeafspyBob">LeafSpy (Bob)</string>
+
+    <!-- LeakCurrents -->
+
+    <string name="title_activity_leakCurrents">Leak currents</string>
+    <string name="button_LeakCurrents">Leak Currents</string>
+    <string name="label_LeakCurrentDc">Leak current DC (mA)</string>
+    <string name="label_LeakCurrentLf">Leak current LF, 50 Hz (mA)</string>
+    <string name="label_LeakCurrentHf">Leak current HF, 10 Khz (mA)</string>
+    <string name="label_LeakCurrentEhf">Leak current EHF, 10 KHz harmonics (mA)</string>
 
     <!-- Prediction -->
 
@@ -568,95 +656,9 @@
     <string name="label_TyreRLPressure">Rear left pressure mbar</string>
     <string name="label_TyreRRPressure">Rear right pressure mbar</string>
 
-    <!-- Auxiliary battery -->
-
-    <string name="title_activity_auxbatt">12 volt battery</string>
-    <string name="button_auxbatt">12 volt batt</string>
-    <string name="header_auxbatt">12 volt battery</string>
-    <string name="label_auxbat">Voltage, Vehicle state, Charging state</string>
-    <string name="label_auxbatvolt">Voltage</string>
-    <string name="label_AuxStatus">Replacement advice</string>
-    <string name="label_vehiclestate">Vehicle state</string>
-    <string-array name="list_VehicleState">
-        <item>Asleep, off (0:red)</item>
-        <item>Awake, off (1:green)</item>
-        <item>Ignition on (2:blue)</item>
-        <item>Starting (3:yellow)</item>
-        <item>Awake, on (4:cyan)</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-    </string-array>
-    <string-array name="list_ChargingStatus2">
-        <item>No charge (0:red)</item>
-        <item>Waiting (planned, 1:green)</item>
-        <item>Ended (2:blue)</item>
-        <item>In progress (3:yellow)</item>
-        <item>Failure (4:cyan)</item>
-        <item>Waiting (5:purple)</item>
-        <item>Flap open (6:black)</item>
-        <item>Unavailable (7:grey)</item>
-    </string-array>
-    <string-array name="list_AuxStatus">
-        <item>None</item>
-        <item>1</item>
-        <item>2</item>
-        <item>Soon</item>
-        <item>4</item>
-        <item>Now</item>
-        <item>6</item>
-        <item>7</item>
-    </string-array>
     <!-- Widgets only -->
 
     <string name="title_activity_widget">WidgetActivity</string>
 
-    <!-- Mainactivity -->
-
-    <string name="toast_InitWidgets">Initialising widgets</string>
-    <string name="toast_BluetoothLost">Bluetooth connection lost!</string>
-    <string name="prompt_Disclaimer" translatable="false">Formal Disclaimer</string>
-    <string name="prompt_Accept">Yes, I got it!</string>
-    <string name="prompt_Decline">No, I didn\'t understand a word…</string>
-    <string name="prompt_DisclaimerText" translatable="false"><![CDATA[<html>CanZE (“the software”) is provided as is. Use the software at your own
-                            risk. The authors make no warranties as to performance or fitness for a particular purpose,
-                            or any other warranties whether expressed or implied. No oral or written communication
-                            from or information provided by the authors shall create a warranty. Under no circumstances
-                            shall the authors be liable for direct, indirect, special, incidental, or consequential
-                            damages resulting from the use, misuse, or inability to use the software, even if the author
-                            has been advised of the possibility of such damages. These exclusions and limitations may not
-                            apply in all jurisdictions. You may have additional rights and some of these limitations may not
-                            apply to you. This software is only intended for scientific usage.
-                            <br>
-                            <br>
-                            <b>By using this software you are interfering with your car and doing that with hardware and
-                            software beyond your control, created by a loose team of interested amateurs in this field. Any
-                            car is a possibly lethal piece of machinery and you might hurt or kill yourself or others using
-                            it, or even paying attention to the displays instead of watching the road.</b></html></string>]]></string>
-    <string name="toast_Reconnecting">Reconnecting Bluetooth…</string>
-    <string name="toast_WaitingSettings">Stopping Bluetooth. Settings are being loaded. Please wait ....</string>
-    <string name="toast_NotWhileDriving">Not possible while driving…</string>
-
-    <!-- Main (fragment) -->
-
-    <string name="menu_Main">Main</string>
-    <string name="help_Main">Use swipe gestures to switch between Main, Technical and Experimental screens.</string>
-
-    <!-- Technical (fragment) -->
-
-    <string name="menu_Technical">Technical</string>
-
-    <!-- Experimental (fragment) -->
-
-    <string name="menu_Experimental">Experimental</string>
-    <string name="help_Experimental">These buttons are for testing purposes only</string>
-    <string name="label_distance">Km</string>
-    <string name="label_EndOfChargeStatus">End</string>
-    <string name="label_TypeOfCharge">Type</string>
-    <string name="label_EndSoc">SOC</string>
-    <string name="label_EndBatteryTemp">Temp</string>
-    <string name="label_HistDuration">Dura</string>
-    <!-- <string name="label_IH_ElectricalPowerDrived">Compressor power</string> -->
-    <string name="title_activity_elm_dump">ELM Dump</string>
 
 </resources>
