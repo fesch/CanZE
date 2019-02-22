@@ -50,9 +50,10 @@ public class AssetLoadHelper {
             // do nothing, so return null
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            // This is bad practive, but I have seen one thrown by myContext.getAssets();
+            e.printStackTrace();
         }
         return null;
-
     }
-
 }

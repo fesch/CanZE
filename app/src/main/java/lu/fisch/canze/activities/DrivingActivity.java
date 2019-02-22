@@ -201,7 +201,13 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
 
     private void getDestOdo () {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
-        destOdo = settings.getFloat("destOdo", 0);
+        destOdo = 0;
+        try {
+            destOdo = settings.getFloat("destOdo", 0);
+        } catch (ClassCastException e) {
+            // This happens when an old integer value is in the pref file
+            destOdo = settings.getInt("destOdo", 0);
+        }
         setDestToDest();
     }
 
