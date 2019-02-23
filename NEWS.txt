@@ -1,1 +1,1 @@
-Dutch language will be removed from the project in the next release.
+New: charge counters and total battery usage in Charging history screen.
