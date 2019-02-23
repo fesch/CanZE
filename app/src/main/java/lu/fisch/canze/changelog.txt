@@ -1,3 +1,5 @@
+2019-02-23 [Jeroen] Fixed null pointer exceptions in displayNews. Minor layout fix for news
+
 ---< Version 1.32 / 2019.02.23 >---
 2019-02-20 [Jeroen] Added counters and total kWh to Charging history #531
 2019-02-20 [Jeroen] Added soh to Battery and Prediction
