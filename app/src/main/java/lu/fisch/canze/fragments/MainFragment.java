@@ -24,6 +24,7 @@ package lu.fisch.canze.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,7 +84,7 @@ public class MainFragment extends Fragment {
     }
 
     private void activateButton (View view, int buttonId, final Class<?> activityClass) {
-        Button button = (Button) view.findViewById(buttonId);
+        Button button = view.findViewById(buttonId);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,17 +136,17 @@ public class MainFragment extends Fragment {
     }
 
     private void displayNews (final View view) {
-        if (!"".equals(msg)) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    TextView tv = view.findViewById(R.id.textNews);
-                    tv.setText(msg);
-                    tv.setVisibility(View.VISIBLE);
-                }
-            });
-        }
-
+        if (msg == null || "".equals(msg)) return;
+        FragmentActivity fa = getActivity();
+        if (fa == null) return;
+        fa.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                TextView tv = view.findViewById(R.id.textNews);
+                tv.setText(msg);
+                tv.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
 
