@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.view.Menu;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 
 public class LeakCurrentsActivity extends CanzeActivity implements DebugListener {
@@ -40,7 +41,12 @@ public class LeakCurrentsActivity extends CanzeActivity implements DebugListener
 
     protected void initListeners () {
         MainActivity.getInstance().setDebugListener(this);
-        MainActivity.device.injectRequest(MainActivity.fields.getBySID(SID_TesterInit).getFrame());
+        if (MainActivity.device != null & MainActivity.fields != null) {
+            Field f = MainActivity.fields.getBySID(SID_TesterInit);
+            if (f != null && f.getFrame() != null) {
+                MainActivity.device.injectRequest(f.getFrame());
+            }
+        }
         addField(SID_TesterAwake, 1500);
     }
 

@@ -184,9 +184,9 @@
     <string name="label_WheelTorque">Kolesni navor</string>
     <string name="label_InstantConsumption">Trenutna poraba</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Moč (kw), Razpoložljiva energija (kWh)</string>
+    <string name="graph_PowerSoc">Moč (kw), Napolnjenost (%)</string>
     <string name="graph_SpeedConsumption">Hitrost (km/h), Poraba (kWh/100km)</string>
-    <string name="graph_RangeSoc">Doseg (km), Napolnjenost (%)</string>
+    <string name="graph_RangeDelta">Doseg (km), Delta z realnostjo (km)</string>
 
     <!-- Driving -->
 

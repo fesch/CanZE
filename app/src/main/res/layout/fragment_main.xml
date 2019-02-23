@@ -168,8 +168,8 @@
                         android:layout_marginBottom="4dp"
                         android:text="@string/button_HeatmapTemperature"
                         android:id="@+id/buttonHeatmapBatcomp"
-                        android:drawableLeft="@mipmap/button_thermometer"
-                        android:drawableStart="@mipmap/button_thermometer"
+                        android:drawableLeft="@mipmap/button_batterytemp"
+                        android:drawableStart="@mipmap/button_batterytemp"
                         android:layout_column="0" />
 
                 </TableRow>

@@ -12,16 +12,17 @@ import lu.fisch.canze.interfaces.FieldListener;
 
 public class PredictionActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_AvChargingPower = "427.40";
-    public static final String SID_UserSoC = "42e.0";          // user SOC, not raw
-    public static final String SID_AverageBatteryTemperature = "7bb.6104.600"; // (LBC)
-    public static final String SID_RangeEstimate = "654.42";
-    public static final String SID_ChargingStatusDisplay = "65b.41";
-
+    public static final String SID_AvChargingPower                  = "427.40";
+    public static final String SID_UserSoC                          = "42e.0";          // user SOC, not raw
+    public static final String SID_AverageBatteryTemperature        = "7bb.6104.600";   // (LBC)
+    public static final String SID_RangeEstimate                    = "654.42";
+    public static final String SID_ChargingStatusDisplay            = "65b.41";
+    public static final String SID_SOH                              = "7ec.623206.24";
 
     private Battery battery;
 
     private double car_soc = 5;
+    private double car_soh = 100;
     private double car_bat_temp = 10;
     private double car_charger_ac_power = 22;
     private int car_status = 0;
@@ -57,6 +58,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
         addField(SID_UserSoC, 10000);
         addField(SID_ChargingStatusDisplay, 10000);
         addField(SID_AverageBatteryTemperature, 10000);
+        addField(SID_SOH, 10000);
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -88,10 +90,15 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
                 break;
             case SID_ChargingStatusDisplay:
                 charging_status = (fieldVal == 3) ? 1 : 0;
-                    car_status |= 0x10;
+                car_status |= 0x10;
+                break;
+            case SID_SOH:
+                car_soh = fieldVal;
+                car_status |= 0x20;
+                break;
         }
         // display the debug values
-        if (car_status == 0x1f) {
+        if (car_status == 0x3f) {
             runPrediction();
             car_status = 0;
         }
@@ -99,17 +106,9 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
 
     private void runPrediction() {
 
-        // set the battery object to an initial state equal to the real battery (
-        battery.setTimeRunning(0);
-
-        // set the internal battery temperature
         updatePrediction("texttemp", "" + (int) car_bat_temp + "°C");
-        battery.setTemperature(car_bat_temp);
-
-        // set the internal state of charge
         updatePrediction("textsoc", (int) car_soc + "%");
-        battery.setStateOfChargePerc(car_soc);
-
+        // if there is no charging going on, erase all fields in the table
         if (charging_status == 0) {
             updatePrediction("textacpwr", "Not charging");
             for (int t = 10; t <= 100; t = t + 10) {
@@ -120,6 +119,18 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
             }
             return;
         }
+
+        // set the battery object to an initial state equal to the real battery (
+        battery.setTimeRunning(0);
+
+        // set the State of Health
+        battery.setStateOfHealth(car_soh);
+
+        // set the internal battery temperature
+        battery.setTemperature(car_bat_temp);
+
+        // set the internal state of charge
+        battery.setStateOfChargePerc(car_soc);
 
         // set the external maximum charger capacity
         updatePrediction("textacpwr", ((int) (car_charger_ac_power * 10)) / 10 + " kW");
@@ -167,7 +178,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
             @Override
             public void run() {
                 TextView tv;
-                tv = (TextView) findViewById(getResources().getIdentifier(id, "id", getPackageName()));
+                tv = findViewById(getResources().getIdentifier(id, "id", getPackageName()));
                 if (tv != null) {
                     tv.setText(msg);
                 }
