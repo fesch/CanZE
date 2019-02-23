@@ -54,23 +54,19 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         if(MainActivity.device!=null)
             if(!BluetoothManager.getInstance().isConnected()) {
                 // restart Bluetooth
                 MainActivity.debug("CanzeActivity: restarting BT");
-                BluetoothManager.getInstance().connect();
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        BluetoothManager.getInstance().connect();
+                    }
+                })).start();
+                //BluetoothManager.getInstance().connect();
             }
         MainActivity.debug("CanzeActivity: onCreate ("+this.getClass().getSimpleName()+")");
-        //if(!widgetView) {
-            // register all fields
-            // --> not needed as these frames are now application bound and will not be cleared anyway
-            // MainActivity.registerFields();
-            // initialise the widgets (if any present)
-            // --> not needed as onResume will call it!
-            //initWidgets();
-        //}
     }
 
     @Override
