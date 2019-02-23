@@ -187,9 +187,9 @@
     <string name="label_WheelTorque">Par en la rueda</string>
     <string name="label_InstantConsumption">Consumo instantáneo</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Potencia (kw), Energía disponible (kWh)</string>
+    <string name="graph_PowerSoc">Potencia (kw), Estado de carga (%)</string>
     <string name="graph_SpeedConsumption">Velocidad (km/h), Consumo (kWh/100km)</string>
-    <string name="graph_RangeSoc">Autonomía (km), Estado de Carga SoC (%)</string>
+    <string name="graph_RangeDelta">Autonomía (km), Delta con realidad (km)</string>
 
     <!-- Driving -->
 

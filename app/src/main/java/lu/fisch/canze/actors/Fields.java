@@ -337,12 +337,7 @@ public class Fields {
                 if (Double.isNaN(realRangeReference)) {
                     return Double.NaN;
                 }
-                double delta = realRangeReference - odo - gom;
-                //if (delta > 12.0 || delta < -12.0) {
-                //    realRangeReference = odo + gom;
-                //    delta = 0.0;
-                //}
-                return delta;
+                return realRangeReference - odo - gom;
             }
         });
     }
@@ -470,7 +465,7 @@ public class Fields {
     }
 
     public Field get(int index) {
-        if(index>=fields.size()) return null;
+        if(index < 0 || index>=fields.size()) return null;
         return fields.get(index);
     }
 

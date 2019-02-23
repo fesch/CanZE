@@ -188,9 +188,9 @@
     <string name="label_WheelTorque">Couple (à la roue)</string>
     <string name="label_InstantConsumption">Consommation instantanée</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerEnergy">Puissance (kW), Energie disponible (kWh)</string>
+    <string name="graph_PowerSoc">Puissance (kW), Etat de la charge (%)</string>
     <string name="graph_SpeedConsumption">Vitesse (km/h), Consommation (kWh/100km)</string>
-    <string name="graph_RangeSoc">Autonomie (km), Etat de la charge (%)</string>
+    <string name="graph_RangeDelta">Autonomie (km), Delta avec la réalité (km)</string>
 
     <!-- Driving -->
 
