@@ -67,7 +67,7 @@ public class BcbActivity extends CanzeActivity implements FieldListener, DebugLi
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        MainActivity.device.injectRequest(MainActivity.fields.getBySID(SID_TesterInit).getFrame());
+        if (MainActivity.device != null) MainActivity.device.injectRequest(SID_TesterInit);
         addField(SID_TesterAwake, 1500);
         addField(SID_MainsCurrentType);
         addField(SID_Phase1currentRMS);
