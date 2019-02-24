@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
 import lu.fisch.canze.R;
@@ -61,7 +62,11 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
                 (new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        BluetoothManager.getInstance().connect();
+                        try {
+                            BluetoothManager.getInstance().connect();
+                        } catch (InvalidParameterException e) {
+                            MainActivity.toast(-100, "Can't connect. Bluetooth not configured yet?");
+                        }
                     }
                 })).start();
                 //BluetoothManager.getInstance().connect();
