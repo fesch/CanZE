@@ -321,6 +321,7 @@
 ,7bb,528,543,0.001,0,3,V,2142,6142,ff,Cell 95 V
 ,7bb,544,559,0.001,0,3,V,2142,6142,ff,Cell 96 V
 ,7bb,96,119,1,0,0,km,2161,6161,ff,Battery mileage in km
+,7bb,16,47,1,0,0,,2162,6162,ff,21_62_03_Serial_Number (FIN)
 ,7bb,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7bb,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7bb,128,143,1,0,0,,2180,6180,ff,Soft
