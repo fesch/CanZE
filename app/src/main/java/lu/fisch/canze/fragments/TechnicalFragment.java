@@ -24,6 +24,7 @@ package lu.fisch.canze.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,7 @@ import android.widget.Button;
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.AuxBattTechActivity;
 import lu.fisch.canze.activities.ChargingGraphActivity;
+import lu.fisch.canze.activities.ChargingHistActivity;
 import lu.fisch.canze.activities.ChargingTechActivity;
 import lu.fisch.canze.activities.ClimaTechActivity;
 import lu.fisch.canze.activities.DtcActivity;
@@ -55,7 +57,7 @@ public class TechnicalFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_technical, container, false);
@@ -69,17 +71,19 @@ public class TechnicalFragment extends Fragment {
         activateButton(view, R.id.buttonChargingPrediction,     PredictionActivity.class);
         activateButton(view, R.id.buttonElmTest,                ElmTestActivity.class);
 
-        activateButton(view, R.id.buttonRange,                  RangeActivity.class);
+        activateButton(view, R.id.buttonChargingHistory,        ChargingHistActivity.class);
         activateButton(view, R.id.buttonClimaTech,              ClimaTechActivity.class);
 
-        activateButton(view, R.id.buttonAuxBatt,                AuxBattTechActivity.class);
         activateButton(view, R.id.buttonLeakCurrents,           LeakCurrentsActivity.class);
+        activateButton(view, R.id.buttonAuxBatt,                AuxBattTechActivity.class);
+
+        activateButton(view, R.id.buttonRange,                  RangeActivity.class);
 
         return view;
     }
 
     private void activateButton (View view, int buttonId, final Class<?> activityClass) {
-        Button button = (Button) view.findViewById(buttonId);
+        Button button = view.findViewById(buttonId);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
