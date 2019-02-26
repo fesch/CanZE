@@ -24,6 +24,7 @@ package lu.fisch.canze.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +33,6 @@ import android.widget.Button;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.BcbActivity;
-import lu.fisch.canze.activities.ChargingHistActivity;
 import lu.fisch.canze.activities.ElmDumpActivity;
 import lu.fisch.canze.activities.FluenceKangooTempsActivity;
 import lu.fisch.canze.activities.LeafSpyActivity;
@@ -48,24 +48,23 @@ public class ExperimentalFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_experimental, container, false);
 
-        activateButton(view, R.id.buttonChargingHistory,        ChargingHistActivity.class);
+        activateButton(view, R.id.buttonElmDump,                ElmDumpActivity.class);
         activateButton(view, R.id.buttonLeafSpy,                LeafSpyActivity.class);
 
-        activateButton(view, R.id.buttonElmDump,                ElmDumpActivity.class);
+        activateButton(view, R.id.buttonBcb,                    BcbActivity.class);
         activateButton(view, R.id.buttonFluenceKangooTemps,     FluenceKangooTempsActivity.class);
 
-        activateButton(view, R.id.buttonBcb,                    BcbActivity.class);
 
         return view;
     }
 
     private void activateButton (View view, int buttonId, final Class<?> activityClass) {
-        Button button = (Button) view.findViewById(buttonId);
+        Button button = view.findViewById(buttonId);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
