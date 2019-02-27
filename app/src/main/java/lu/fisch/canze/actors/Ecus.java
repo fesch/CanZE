@@ -74,6 +74,10 @@ public class Ecus {
         //Read text from asset
         AssetLoadHelper assetLoadHelper = new AssetLoadHelper(MainActivity.getInstance());
         BufferedReader bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(assetName);
+        if (bufferedReader == null) {
+            MainActivity.toast(-100, "Can't access asset " + assetName);
+            return;
+        }
         try {
             String line;
             while ((line = bufferedReader.readLine()) != null)

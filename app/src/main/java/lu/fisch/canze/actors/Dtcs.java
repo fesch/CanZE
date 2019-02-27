@@ -84,6 +84,10 @@ public class Dtcs {
         //Read text from asset
         AssetLoadHelper assetLoadHelper = new AssetLoadHelper(MainActivity.getInstance());
         BufferedReader bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(dtcsAssetName);
+        if (bufferedReader == null) {
+            MainActivity.toast(-100, "Can't access asset " + dtcsAssetName);
+            return;
+        }
         try {
             String line;
             while ((line = bufferedReader.readLine()) != null)
@@ -94,6 +98,10 @@ public class Dtcs {
             e.printStackTrace();
         }
         bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(testsAssetName);
+        if (bufferedReader == null) {
+            MainActivity.toast(-100, "Can't access asset " + testsAssetName);
+            return;
+        }
         try {
             String line;
             while ((line = bufferedReader.readLine()) != null)
@@ -103,7 +111,6 @@ public class Dtcs {
         catch (IOException e) {
             e.printStackTrace();
         }
-        return;
     }
 
     public void load ()
@@ -146,8 +153,8 @@ public class Dtcs {
     }
 
     public String getDescriptionById (String id) {
-        Dtc dtc = null;
-        Test test = null;
+        Dtc dtc;
+        Test test;
         String result = "";
 
         if (id.length() >= 4){
