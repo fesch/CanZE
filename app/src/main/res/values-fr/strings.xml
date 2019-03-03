@@ -11,85 +11,95 @@
     <string name="default_Cancel">Annuler</string>
     <string name="default_Unavailable">Indisponible</string>
     <string name="default_NotImplementedYet">Pas encore implémenté</string>
-    <string name="format_NoSid" formatted="false">Le champ %s n\'appartient pas à la classe Fields</string>
-    <string name="format_NoView" formatted="false">Il n\'y a pas de vue avec l\'id \'%s%s\'</string>
+    <string name="format_NoSid" formatted="false">Le champ %s n’appartient pas à la classe Fields</string>
+    <string name="format_NoView" formatted="false">Il n’y a pas de vue avec l’id \'%s%s\'</string>
     <string name="header_Debug">Debugging</string>
     <string name="label_debug">Debug\u0020</string>
     <string name="default_debug">#Debug</string>
     <string name="toast_InitWidgets">Initialisation des widgets</string>
-    <string name="toast_BluetoothLost">Perte de la connexion bluetooth!</string>
-    <string name="prompt_Accept">Oui, j\'ai compris!</string>
-    <string name="prompt_Decline">Non, je n\'y comprends rien…</string>
-    <string name="toast_Reconnecting">Reconnexion bluetooth…</string>
-    <string name="toast_WaitingSettings">Arrêt du bluetooth. Chargement des paramètres. Veuillez patienter…</string>
+    <string name="toast_BluetoothLost">Perte de la connexion Bluetooth !</string>
+    <string name="prompt_Accept">Oui, j’ai compris !</string>
+    <string name="prompt_Decline">Non, je n’y comprends rien…</string>
+    <string name="toast_Reconnecting">Reconnexion Bluetooth…</string>
+    <string name="toast_WaitingSettings">Arrêt du Bluetooth. Chargement des paramètres. Veuillez patienter…</string>
     <string name="toast_NotWhileDriving">Impossible durant la conduite…</string>
     <string name="menu_Main">Principal</string>
-    <string name="help_Main">Faites glisser votre doigt sur l\'écran pour basculer entre menu Principal, Technique et Expérimental</string>
+    <string name="help_Main">Faites glisser votre doigt sur l’écran pour basculer entre menu Principal, Technique et Expérimental</string>
     <string name="menu_Technical">Technique</string>
     <string name="menu_Experimental">Expérimental</string>
-    <string name="help_Experimental">Cette boutons sont à des fins de test uniquement</string>
-    <string name="title_activity_auxbatt">12 volt battery</string>
-    <string name="button_auxbatt">12 volt batt</string>
-    <string name="header_auxbatt">12 volt battery</string>
-    <string name="label_auxbat">Voltage, Vehicle state, Charging state</string>
-    <string name="label_auxbatvolt">Voltage</string>
-    <string name="label_AuxStatus">Replacement advice</string>
-    <string name="label_vehiclestate">Vehicle state</string>
+    <string name="help_Experimental">Ces boutons sont à des fins de test uniquement</string>
+    <string name="title_activity_auxbatt">Batterie 12 V</string>
+    <string name="button_auxbatt">Batterie 12 V</string>
+    <string name="header_auxbatt">Batterie 12 V</string>
+    <string name="label_auxbat">Tension, État du véhicule, État de la charge</string>
+    <string name="label_auxbatvolt">Tension</string>
+    <string name="label_AuxStatus">Conseil de remplacement</string>
+    <string name="label_vehiclestate">État du véhicule</string>
     <string-array name="list_VehicleState">
-        <item>Asleep, off (0:red)</item>
-        <item>Awake, off (1:green)</item>
-        <item>Ignition on (2:blue)</item>
-        <item>Starting (3:yellow)</item>
-        <item>Awake, on (4:cyan)</item>
+        <item>En sommeil, arrêt (0 : rouge)</item>
+        <item>En éveil, arrêt (1 : vert)</item>
+        <item>Moteur actif (2 : bleu)</item>
+        <item>Démarrage (3 : jaune)</item>
+        <item>En éveil, marche (4 : cyan)</item>
         <item>5</item>
         <item>6</item>
         <item>7</item>
     </string-array>
     <string-array name="list_ChargingStatus2">
-        <item>No charge (0:red)</item>
-        <item>Waiting (planned, 1:green)</item>
-        <item>Ended (2:blue)</item>
-        <item>In progress (3:yellow)</item>
-        <item>Failure (4:cyan)</item>
-        <item>Waiting (5:purple)</item>
-        <item>Flap open (6:black)</item>
-        <item>Unavailable (7:grey)</item>
+        <item>Pas en charge (0 : rouge)</item>
+        <item>En attente (planifié, 1 : vert)</item>
+        <item>Terminé (2 : bleu)</item>
+        <item>En cours (3 : jaune)</item>
+        <item>Défaut (4 : cyan)</item>
+        <item>En attente (5 : violet)</item>
+        <item>Trappe ouverte (6 : noir)</item>
+        <item>Indisponible (7 : gris)</item>
+    </string-array>
+    <string-array name="list_AuxStatus">
+        <item>Pas nécessaire</item>
+        <item>1</item>
+        <item>2</item>
+        <item>À prévoir bientôt</item>
+        <item>4</item>
+        <item>À faire</item>
+        <item>6</item>
+        <item>7</item>
     </string-array>
     <string name="title_activity_battery">Batterie</string>
     <string name="button_Battery">Batterie</string>
-    <string name="graph_SOH">Etat de santé (%)</string>
-    <string name="graph_RealIndicatedSoc">Etat de charge réel / indiqué (%)</string>
+    <string name="graph_SOH">État de santé (%)</string>
+    <string name="graph_RealIndicatedSoc">État de charge réel / indiqué (%)</string>
     <string name="help_QA"><![CDATA[Des informations détaillées sur ces données peuvent être obtenues dans <a href=\'http://canze.fisch.lu/qa/\'>la section Q & A</a> du site <a href=\'http://canze.fisch.lu/\'>CanZE </a>.]]></string>
     <string name="graph_CellVoltages">Tension des cellules (V)</string>
-    <string name="graph_ModuleTemperatures">Température des modules de la batterie</string>
+    <string name="graph_ModuleTemperatures">Température des modules (°C)</string>
     <string name="title_activity_bcb">BCB</string>
     <string name="button_Bcb">BCB</string>
-    <string name="header_ChargerKeyParameters">Charger key parameters</string>
-    <string name="label_MainsCurrentType">Mains current type</string>
+    <string name="header_ChargerKeyParameters">Paramètres clés du chargeur</string>
+    <string name="label_MainsCurrentType">Type de réseau</string>
     <string-array name="list_MainsCurrentType">
-        <item>Nok</item>
+        <item>Erreur</item>
         <item>AC mono</item>
         <item>AC tri</item>
         <item>DC</item>
         <item>AC bi</item>
     </string-array>
-    <string name="label_phaseCurrent">Phase current RMS 1/2/3 A</string>
-    <string name="label_PhaseVoltage">Phase voltage 1/2/3 V</string>
-    <string name="label_InterPhaseVoltage">Inter phase voltage 12/23/31 V</string>
-    <string name="label_MainsActivePowerConsumed">Mains active power consumed W</string>
-    <string name="label_GroundResistanceOhm">Ground resistance Ohm</string>
-    <string name="label_CompletionStatus">Completion status</string>
+    <string name="label_phaseCurrent">Courant phases 1/2/3 (A)</string>
+    <string name="label_PhaseVoltage">Tension phases 1/2/3 (V)</string>
+    <string name="label_InterPhaseVoltage">Tension entre phases 12/23/31 (V)</string>
+    <string name="label_MainsActivePowerConsumed">Puissance absorbée sur le réseau (W)</string>
+    <string name="label_GroundResistanceOhm">Résistance de terre (Ω)</string>
+    <string name="label_CompletionStatus">État d’avancement</string>
     <string-array name="list_CompletionStatus">
         <item>Init</item>
         <item>HF10</item>
         <item>-</item>
-        <item>Mains Ground Default</item>
+        <item>Défaut de masse réseau</item>
         <item>-</item>
-        <item>Earth Current default</item>
+        <item>Défaut courant de terre</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Ground Default</item>
+        <item>Défaut de masse</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -97,7 +107,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Means Leakage DC</item>
+        <item>Fuite réseau DC</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -112,7 +122,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Means Leakage LF</item>
+        <item>Fuite réseau BF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -129,7 +139,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Means Leakage DC+LF</item>
+        <item>Fuite réseau DC+BF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -145,7 +155,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Means Leakage HF</item>
+        <item>Fuite réseau HF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -161,7 +171,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Means Leakage DC+HF</item>
+        <item>Fuite réseau DC+HF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -177,7 +187,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Means Leakage LF+HF</item>
+        <item>Fuite réseau BF+HF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -193,25 +203,25 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Means Leakage DC+LF+HF</item>
+        <item>Fuite réseau DC+BF+HF</item>
     </string-array>
-    <string name="label_SupervisorState">Supervisor State</string>
+    <string name="label_SupervisorState">État du superviseur</string>
     <string-array name="list_SupervisorState">
         <item>Init</item>
-        <item>Wait</item>
-        <item>ClosingS2</item>
+        <item>Attente</item>
+        <item>FermetureS2</item>
         <item>InitType</item>
         <item>InitLkg</item>
         <item>InitChg</item>
         <item>Charge</item>
-        <item>ZeroAmpMode</item>
-        <item>EndOfChg</item>
-        <item>OpeningS2</item>
+        <item>ModeZéroAmp</item>
+        <item>FinDeCharge</item>
+        <item>OuvertureS2</item>
         <item>ReadyToSleep</item>
-        <item>EmergencyStop</item>
+        <item>ArrêtUrgence</item>
         <item>InitChargeDF</item>
         <item>OCPStop</item>
-        <item>WaitS2</item>
+        <item>AttenteS2</item>
     </string-array>
     <string name="title_activity_braking">Informations de freinage</string>
     <string name="button_Braking">Freinage</string>
@@ -225,30 +235,30 @@
     <string name="header_Charging">Détail de la charge</string>
     <string name="header_Battery">Batterie</string>
     <string name="header_DrivingCh">Conduite</string>
-    <string name="header_CompTemp">Température et équilibrage des modules de batterie</string>
-    <string name="label_max_charge">Puissance de charge/régénération maximale kW</string>
-    <string name="label_max_pilot">Courant pilote A</string>
+    <string name="header_CompTemp">Température et équilibrage des modules</string>
+    <string name="label_max_charge">Puissance de charge/régénération max. (kW)</string>
+    <string name="label_max_pilot">Courant pilote (A)</string>
     <string name="label_Phases">Phases</string>
-    <string name="label_UserSOC">Charge utilisable %</string>
-    <string name="label_RealSOC">Charge réelle %</string>
-    <string name="label_Capacity">Capacité Ah</string>
-    <string name="label_HvTemp">Température moyenne batterie de traction</string>
-    <string name="label_SOH">Etat de santé %</string>
-    <string name="label_TTF">Temps de charge jusqu\'à 100% min</string>
-    <string name="label_ETF">Energie jusqu\'à 100% kWh</string>
-    <string name="label_DISTA">Autonomie disponible</string>
-    <string name="label_EnergyConsumed">Consommation en kWh</string>
-    <string name="label_Volt">Tension batterie de traction</string>
-    <string name="label_Amps">Courant batterie de traction</string>
-    <string name="label_DcPwr">Puissance DC kW</string>
-    <string name="label_AvChPwr">Puissance de charge disponible kW</string>
-    <string name="label_AvEner">Energie disponible kWh</string>
-    <string name="label_12V">Tension batterie 12 volts</string>
-    <string name="label_12A">Courant batterie 12 volts</string>
-    <string name="label_DcLoad">Charge DCDC %</string>
-    <string name="label_HKM">Kilométrage de la batterie de traction </string>
-    <string name="label_ChaStatus">Etat de la charge</string>
-    <string name="label_Plug">Etat de la prise</string>
+    <string name="label_UserSOC">Charge utilisable (%)</string>
+    <string name="label_RealSOC">Charge réelle (%)</string>
+    <string name="label_Capacity">Capacité (Ah)</string>
+    <string name="label_HvTemp">Température moyenne batterie (°C)</string>
+    <string name="label_SOH">État de santé (%)</string>
+    <string name="label_TTF">Temps de charge jusqu’à 100 % (min)</string>
+    <string name="label_ETF">Énergie jusqu’à 100 % (kWh)</string>
+    <string name="label_DISTA">Autonomie disponible (km)</string>
+    <string name="label_EnergyConsumed">Consommation (kWh)</string>
+    <string name="label_Volt">Tension batterie de traction (V)</string>
+    <string name="label_Amps">Courant batterie de traction (A)</string>
+    <string name="label_DcPwr">Puissance DC (kW)</string>
+    <string name="label_AvChPwr">Puissance de charge disponible (kW)</string>
+    <string name="label_AvEner">Énergie disponible (kWh)</string>
+    <string name="label_12V">Tension batterie 12 volts (V)</string>
+    <string name="label_12A">Courant batterie 12 volts (A)</string>
+    <string name="label_DcLoad">Charge DCDC (%)</string>
+    <string name="label_HKM">Kilométrage de la batterie de traction</string>
+    <string name="label_ChaStatus">État de la charge</string>
+    <string name="label_Plug">État de la prise</string>
     <string-array name="list_ChargingStatus">
         <item>Pas en charge</item>
         <item>En attente (planifiée)</item>
@@ -260,29 +270,29 @@
         <item>Indisponible</item>
     </string-array>
     <string-array name="list_PlugStatus">
-        <item>Déconnecté</item>
-        <item>Connecté</item>
+        <item>Déconnectée</item>
+        <item>Connectée</item>
     </string-array>
     <string name="title_activity_charging_graph">Graphiques de charge</string>
     <string name="button_ChargingGraphs">Graphiques de charge</string>
     <string name="graph_PilotPower">Courant pilote (A), Puissance de charge (kW)</string>
     <string name="graph_MaxRealChPwr">Puissance max de charge batterie (kW) / Puissance de charge DC (kW)</string>
-    <string name="graph_EnergyTemperature">Energie disponible (kWh), Température (°C)</string>
-    <string name="title_activity_charging_history">Charging history</string>
-    <string name="button_charging_history">Charging history</string>
-    <string name="header_ChargingHistory">Last 10 sessions</string>
-    <string name="label_distance">Km</string>
+    <string name="graph_EnergyTemperature">Énergie disponible (kWh), Température (°C)</string>
+    <string name="title_activity_charging_history">Historique de charge</string>
+    <string name="button_charging_history">Historique de charge</string>
+    <string name="header_ChargingHistory">10 dernières sessions</string>
+    <string name="label_distance">km</string>
     <string name="label_EndOfChargeStatus">Fin</string>
     <string name="label_TypeOfCharge">Type</string>
     <string name="label_EndSoc">SOC</string>
-    <string name="label_EndBatteryTemp">Temp</string>
-    <string name="label_HistDuration">Dura</string>
+    <string name="label_EndBatteryTemp">T°</string>
+    <string name="label_HistDuration">Durée</string>
     <string-array name="list_ChargingHistEnd">
-        <item>Full</item>
-        <item>Unpl c</item>
-        <item>Cut ch</item>
-        <item>Fail</item>
-        <item>Sched</item>
+        <item>Chargé</item>
+        <item>Câble débranché</item>
+        <item>Réseau</item>
+        <item>Défaut</item>
+        <item>Plan.</item>
         <item>Flt1</item>
         <item>Flt22</item>
         <item>Flt3</item>
@@ -291,21 +301,25 @@
         <item>Flt6</item>
     </string-array>
     <string-array name="list_ChargingHistTyp">
-        <item>Slow</item>
-        <item>Quick</item>
-        <item>Drop</item>
-        <item>Unknw</item>
-        <item>Sched</item>
+        <item>Lente</item>
+        <item>Rap.</item>
+        <item>Échge</item>
+        <item>Inc.</item>
+        <item>Plan.</item>
     </string-array>
+    <string name="header_ChargeSummary">Bilan des charges</string>
+    <string name="label_TotKwh">Charge cumulée totale (kWh)</string>
+    <string name="label_CountFull">Nombre de charges complètes</string>
+    <string name="label_CountPartial">Nombre de charges partielles</string>
     <string name="title_activity_clima_tech">Climatisation</string>
     <string name="button_Climate">Climatisation</string>
     <string name="label_ClimaLoopMode">Mode boucle de climatisation</string>
     <string name="label_HVBatConditioningMode">Conditionnement batterie</string>
     <string name="label_Temperatures">Températures</string>
-    <string name="label_HVEvaporationTemp">Température évaporateur batterie °C</string>
+    <string name="label_HVEvaporationTemp">T° évaporateur batterie (°C)</string>
     <string name="label_ACPressure">Pression</string>
-    <string name="label_HVCoolingState">Etat du conditionnement batterie</string>
-    <string name="label_ChargingPower">Puissance de charge kW </string>
+    <string name="label_HVCoolingState">État du conditionnement batterie</string>
+    <string name="label_ChargingPower">Puissance de charge (kW)</string>
     <string name="label_EngineFanSpeed">Vitesse de rotation du ventilateur</string>
     <string name="label_ClimateBatteryInteraction">Interaction climatisation/batterie</string>
     <string-array name="list_CoolingStatus">
@@ -318,81 +332,81 @@
         <item>Demande de ventilation</item>
         <item>Refroidissement demandé</item>
         <item>Chauffage demandé</item>
-        <item>Cond not req</item>
+        <item>Conditionnement non requis</item>
     </string-array>
     <string-array name="list_ClimateStatus">
         <item>Indisponible</item>
         <item>A/C</item>
         <item>A/C dégivrage</item>
-        <item> </item>
+        <item />
         <item>Pompe à chaleur</item>
-        <item> </item>
+        <item />
         <item>Dégivrage</item>
         <item>Ralenti</item>
     </string-array>
-    <string name="label_IH_ClimCompPWRStatus">Consommation Clima (W), ECO</string>
+    <string name="label_IH_ClimCompPWRStatus">Consommation clim (W), ECO</string>
     <string name="graph_Climatech">Extérieure (°C), Habitacle (°C), Consigne (°C), Batterie (°C)</string>
-    <string name="label_PtcRelay1">PTC Relay 1</string>
-    <string name="label_PtcRelay2">PTC Relay 2</string>
-    <string name="label_PtcRelay3">PTC Relay 3</string>
+    <string name="label_PtcRelay1">Relais CTP 1</string>
+    <string name="label_PtcRelay2">Relais CTP 2</string>
+    <string name="label_PtcRelay3">Relais CTP 3</string>
     <string-array name="list_PtcRelay">
-        <item>On</item>
-        <item>Off</item>
+        <item>Marche</item>
+        <item>Arrêt</item>
     </string-array>
     <string name="title_activity_consumption">Consommation</string>
     <string name="button_Consumption">Consommation</string>
     <string name="label_WheelTorque">Couple (à la roue)</string>
     <string name="label_InstantConsumption">Consommation instantanée</string>
     <string name="label_kWh100km">kWh/100km</string>
-    <string name="graph_PowerSoc">Puissance (kW), Etat de la charge (%)</string>
+    <string name="graph_PowerSoc">Puissance (kW), État de charge (%)</string>
     <string name="graph_SpeedConsumption">Vitesse (km/h), Consommation (kWh/100km)</string>
-    <string name="graph_RangeDelta">Autonomie (km), Delta avec la réalité (km)</string>
+    <string name="graph_RangeDelta">Autonomie (km), Écart avec la réalité (km)</string>
     <string name="title_activity_driving">Informations de conduite</string>
     <string name="button_Driving">Conduite</string>
     <string name="header_Driving">Paramètres de conduite</string>
     <string name="label_pedal">Position pédale</string>
     <string name="label_motor_torque">Couple (moteur)</string>
     <string name="label_wheel_torque">Couple (à la roue)</string>
-    <string name="label_DistToDest">Distance jusqu\'à destination</string>
+    <string name="label_DistToDest">Distance jusqu’à destination</string>
     <string name="label_DistAvailAtDest">Autonomie restante</string>
-    <string name="label_TripConsumption">Trip consumption</string>
-    <string name="label_TripDistance">Trip distance</string>
-    <string name="label_TripEnergy">Trip energy (kWh)</string>
+    <string name="label_TripConsumption">Consommation trajet</string>
+    <string name="label_TripDistance">Distance trajet</string>
+    <string name="label_TripEnergy">Énergie trajet (kWh)</string>
     <string name="label_friction">Freinage par friction (à éviter)</string>
     <string name="button_Double">Double</string>
     <string name="prompt_Distance">DISTANCE RESTANTE</string>
-    <string name="prompt_SetDistance">Entrez la distance jusqu\'à votre destination. L\'application va estimer l\'autonomie disponible à l\'arrivée.</string>
-    <string name="title_activity_dtc">Diagnostic des codes d\'erreur</string>
+    <string name="prompt_SetDistance">Entrez la distance jusqu’à votre destination. L’application va estimer l’autonomie disponible à l’arrivée.</string>
+    <string name="title_activity_dtc">Diagnostic des codes d’erreur</string>
     <string name="button_DtcReadout">Lecture DTCs</string>
     <string name="button_QueryDTCs">Interrogation DTCs</string>
     <string name="button_ClearDTCs">Effacement DTCs</string>
     <string name="button_AllData">Toutes les données</string>
-    <string name="help_DTC">Pour permettre l\'effacement des DTC:\n\nInsérez la carte dans la fente\n\nPositionnez le sélecteur de vitesse sur D\n\nMaintenez enfoncé le bouton Start pendant environ 5 secondes jusqu\'à l\'apparition du message \'Retirez la carte\' \n\nPositionnez le levier de vitesse sur P</string>
-    <string name="message_PollerStopping">\n\nVeuillez patienter pendant l\'arrêt de la tâche principale…\n</string>
+    <string name="help_DTC">Pour permettre l’effacement des DTC:\n\nInsérez la carte dans la fente\n\nPositionnez le sélecteur de vitesse sur D\n\nMaintenez enfoncé le bouton Start pendant environ 5 secondes jusqu’à l’apparition du message “Retirez la carte” \n\nPositionnez le levier de vitesse sur P</string>
+    <string name="message_PollerStopping">\n\nVeuillez patienter pendant l’arrêt de la tâche principale…\n</string>
     <string name="message_NoConnection">\nPas de connexion. Fermez cet écran et assurez-vous que le dispositif soit appairé et connecté\n</string>
     <string name="message_NoEcuDefinition">\nImpossible de trouver les définitions de cet ECU. Codes DTC affichés uniquement\n</string>
     <string name="message_NoEcuDefinition2">\nImpossible de trouver les définitions de cet ECU\n</string>
-    <string name="message_SendingInit">\nEnvoi de la séquence d\'initialisation\n</string>
-    <string name="message_InitFailed">\nEchec de l\'initialisation\n</string>
+    <string name="message_SendingInit">\nEnvoi de la séquence d’initialisation\n</string>
+    <string name="message_InitFailed">\nÉchec de l’initialisation\n</string>
     <string name="message_StartTestSession">\nEnvoi de la séquence start tester session…\n</string>
-    <string name="message_NoTestSessionField">Le champ start session n\'existe pas\n</string>
+    <string name="message_NoTestSessionField">Le champ start session n’existe pas\n</string>
     <string name="message_UnexpectedResult">Requête envoyée, mais le résultat est inattendu:[</string>
     <string name="message_GetDtcs">\nEnvoi de la séquence start DTC…\n</string>
-    <string name="message_NoGetDtcsField">Le champ d\'interrogation des DTCs n\'existe pas\n</string>
+    <string name="message_NoGetDtcsField">Le champ d’interrogation des DTCs n’existe pas\n</string>
     <string name="message_NoActiveDtcs">\nAucun DTC actif\n</string>
     <string name="message_clear">"Effacer "</string>
-    <string name="message_NoClearDtcField">Le champ d\'effacement des DTCs n\'existe pas\n</string>
+    <string name="message_NoClearDtcField">Le champ d’effacement des DTCs n’existe pas\n</string>
     <string name="message_MessageNull">Le message est nul. La voiture est-elle en marche ?\n</string>
-    <string name="message_ClearSuccessful">L\'effacement semble avoir réussi, interrogez les DTCs\n</string>
-    <string name="title_activity_elm_dump">ELM Dump</string>
+    <string name="message_ClearSuccessful">L’effacement semble avoir réussi, interrogez les DTCs\n</string>
+    <string name="title_activity_elm_dump">Vidage ELM</string>
     <string name="title_activity_elm_test">Test du Dongle ELM327</string>
     <string name="button_ElmTesting">Test ELM</string>
     <string name="header_ElmTest">Résultats du test</string>
     <string name="message_ExpectedResult">Résultats attendus reçus\n==========\n</string>
-    <string name="message_FieldNotExists">Le champ demandé n\'existe pas. Il s\'agit d\'une erreur de la séquence de test, veuillez signaler\n</string>
+    <string name="message_FieldNotExists">Le champ demandé n’existe pas. Il s’agit d’une erreur de la séquence de test, veuillez signaler\n</string>
     <string name="message_Ready">\nPrêt</string>
     <string name="message_ResultEmpty">Le résultat est vide. Votre Dongle ne fonctionne pas\n</string>
-    <string name="message_Problem">Problème:</string>
+    <string name="message_Problem">Problème :</string>
     <string name="message_PrepIsoTp">\nTraitement de la commande ISO-TP CLUSTER SW\n</string>
     <string name="message_PrepFree">\nTraitement de la commande Free Frame PARK BRAKE\n</string>
     <string name="message_DevicePassed">\nVotre Dongle a passé tous les tests, il devrait fonctionner correctement.\n</string>
@@ -400,7 +414,7 @@
     <string name="button_Firmware">Firmware</string>
     <string name="header_Firmware">Versions Firmware</string>
     <string name="default_Firmware">Non disponible</string>
-    <string name="help_Ecus"><![CDATA[Cliquez sur un ECU pour afficher les détails. Plus d\'informations sur les calculateurs de la voiture <a href="http://canze.fisch.lu/computers/">ici</a>.]]></string>
+    <string name="help_Ecus"><![CDATA[Cliquez sur un ECU pour afficher les détails. Plus d’informations sur les calculateurs de la voiture <a href="http://canze.fisch.lu/computers/">ici</a>.]]></string>
     <string name="alert_Version">Version</string>
     <string name="alert_Soft">Logiciel</string>
     <string name="alert_Supplier">Founisseur</string>
@@ -412,31 +426,31 @@
     <string name="button_HeatmapVoltage">Tension des cellules</string>
     <string name="title_activity_fluence_kangoo_temp">Températures Fluence Kangoo</string>
     <string name="header_KangooFluenceTemperatures">Températures</string>
-    <string name="label_EvaporatorTemperature">Température de l\'évaporateur</string>
-    <string name="label_WaterTemperatureHeating">T° d\'eau utilisée pour le chauffage</string>
+    <string name="label_EvaporatorTemperature">T° de l’évaporateur</string>
+    <string name="label_WaterTemperatureHeating">T° d’eau utilisée pour le chauffage</string>
     <string name="label_DcDcConverterTemperature">T° du convertisseur DCDC</string>
-    <string name="label_InverterTemperature">T° de l\'onduleur</string>
+    <string name="label_InverterTemperature">T° de l’onduleur</string>
     <string name="label_ExternalTemperature">T° ambiante extérieure</string>
     <string name="label_InternalTemperature">T° ambiante intérieure</string>
     <string name="header_KangooFluenceFansPumps">Ventilateurs et pompes (description à ajouter)</string>
-    <string name="label_MotorWaterPumpSpeed">Vitesse de rotation de la pompe à eau du moteur</string>
-    <string name="label_ChargerWaterPumpSpeed">Vitesse de rotation de la pompe à eau du chargeur</string>
-    <string name="label_HeatingWaterPumpSpeed">Vitesse de rotation de la pompe à eau du chauffage</string>
-    <string name="label_BatteryCoolingFansSpeed">Vitesse du ventilateur de refroidissement de la batterie</string>
+    <string name="label_MotorWaterPumpSpeed">Vitesse pompe à eau moteur</string>
+    <string name="label_ChargerWaterPumpSpeed">Vitesse pompe à eau chargeur</string>
+    <string name="label_HeatingWaterPumpSpeed">Vitesse pompe à eau chauffage</string>
+    <string name="label_BatteryCoolingFansSpeed">Vitesse ventilateur batterie</string>
     <string name="title_activity_leaf_spy">Leaf Spy clone</string>
     <string name="button_LeafspyBob">LeafSpy (Bob)</string>
-    <string name="title_activity_leakCurrents">Harmonics leak currents</string>
-    <string name="button_LeakCurrents">Harmonics</string>
-    <string name="label_LeakCurrentDc">Leak current DC (mA)</string>
-    <string name="label_LeakCurrentLf">Leak current LF (mA)</string>
-    <string name="label_LeakCurrentHf">Leak current HF (mA)</string>
-    <string name="label_LeakCurrentEhf">Leak current EHF (mA)</string>
+    <string name="title_activity_leakCurrents">Courant de fuite harmoniques</string>
+    <string name="button_LeakCurrents">Harmoniques</string>
+    <string name="label_LeakCurrentDc">Courant de fuite DC (mA)</string>
+    <string name="label_LeakCurrentLf">Courant de fuite BF, 50 Hz (mA)</string>
+    <string name="label_LeakCurrentHf">Courant de fuite HF, 10 kHz (mA)</string>
+    <string name="label_LeakCurrentEhf">Courant de fuite THF, harmoniques 10 kHz (mA)</string>
     <string name="title_activity_prediction">Prévision de charge</string>
-    <string name="button_ChargingPrediction">Prévisions de charge</string>
-    <string name="label_StateAtThisMoment">Etat actuel</string>
+    <string name="button_ChargingPrediction">Prévision de charge</string>
+    <string name="label_StateAtThisMoment">État actuel</string>
     <string name="label_BatteryTemperature">Température de la batterie</string>
     <string name="label_ACPower">Puissance AC</string>
-    <string name="label_StateOfCharge">Etat de la charge</string>
+    <string name="label_StateOfCharge">État de charge</string>
     <string name="label_ChargingPrediction">Prévision de charge</string>
     <string name="label_Duration">Durée (hh:mm)</string>
     <string name="label_Soc">SOC</string>
@@ -444,13 +458,13 @@
     <string name="label_DcPower">Puissance DC</string>
     <string name="title_activity_range">Autonomie</string>
     <string name="button_Range">Autonomie</string>
-    <string name="label_RangeRemaining">Autonomie donnée par la voiture:</string>
-    <string name="label_RangeRemainingCanZE">Autonomie calculée par CanZE:</string>
-    <string name="label_EstimatedDrivingStyleLoss">Estimation de la perte d\'énergie due au style de conduite:</string>
-    <string name="graph_DistanceEnergy">Autonomie (km), Energie disponible (kWh)</string>
+    <string name="label_RangeRemaining">Autonomie donnée par la voiture :</string>
+    <string name="label_RangeRemainingCanZE">Autonomie calculée par CanZE :</string>
+    <string name="label_EstimatedDrivingStyleLoss">Estimation de la perte d’énergie due au style de conduite :</string>
+    <string name="graph_DistanceEnergy">Autonomie (km), Énergie disponible (kWh)</string>
     <string name="title_activity_settings">Paramètres</string>
-    <string name="build">Compilé:</string>
-    <string name="version">Version:</string>
+    <string name="build">Compilé :</string>
+    <string name="version">Version :</string>
     <string name="label_RemoteDevice">Périphérique distant</string>
     <string name="label_DeviceAddress">Adresse du périphérique</string>
     <string name="label_DeviceType">Type de périphérique</string>
@@ -458,42 +472,42 @@
     <string name="label_LogLevel">Niveau de log</string>
     <string name="label_Options">Options</string>
     <string name="label_SafeDrivingMode">Bloquer pendant la conduite</string>
-    <string name="label_BluetoothBackgroundMode">Mode bluetooth en arrière plan</string>
+    <string name="label_BluetoothBackgroundMode">Mode Bluetooth en arrière plan</string>
     <string name="label_Miles">Miles</string>
     <string name="label_SdCardLogging">Enregistrer les traces sur la carte SD</string>
     <string name="label_Debug">Debug</string>
     <string name="label_Fields">Champs</string>
-    <string name="help_Fields">Trace tous les champs interrogés par l\'écran actuel.</string>
+    <string name="help_Fields">Trace tous les champs interrogés par l’écran courant</string>
     <string name="label_LogToSdcard1">Enregistrer la trace sur sdcard1</string>
     <string name="label_Actions">Actions</string>
     <string name="label_ClearCachedData">Effacer les données en cache</string>
     <string name="prompt_YesIKnow">Oui</string>
     <string name="prompt_NoSecureWay">Non</string>
     <string name="prompt_Attention">Attention</string>
-    <string name="prompt_WarningDriving">Conduire sans attacher toute votre attention à la route est extrêmement risqué et peut mettre en danger votre vie et celle des personnes qui vous entourent. La désactivation de ce paramètre est fortement déconseillée !\n\n Etes-vous sûr de vouloir désactiver le verrouillage des fonctions pendant la conduite ?</string>
+    <string name="prompt_WarningDriving">Conduire sans attacher toute votre attention à la route est extrêmement risqué et peut mettre en danger votre vie et celle des personnes qui vous entourent. La désactivation de ce paramètre est fortement déconseillée !\n\n Êtes-vous sûr de vouloir désactiver le verrouillage des fonctions pendant la conduite ?</string>
     <string name="prompt_NoThanks">Non, merci</string>
-    <string name="prompt_BluetoothOn">Laisser le Bluetooth actif pendant que l\'application passe en arrière-plan peut interférer avec d\'autres applications utilisant la fonction Bluetooth. Cela peut également vider votre batterie si vous oubliez d\'arrêter CanZE ou de désactiver cette option.Si vous utilisez cette fonctionnalité, la connexion restera active, même si vous allumez et éteignez votre appareil Android!Voulez-vous vraiment continuer à activer le Bluetooth en arrière-plan ?</string>
-    <string name="prompt_NoSd">La carte SD externe n\'est pas disponible ou est protégée en écriture ou ne dispose pas d\'espace suffisant pour enregistrer les données.L\'exportation des données ne peut pas être activée!</string>
+    <string name="prompt_BluetoothOn">Laisser le Bluetooth actif pendant que l’application passe en arrière-plan peut interférer avec d’autres applications utilisant la fonction Bluetooth. Cela peut également vider votre batterie si vous oubliez d’arrêter CanZE ou de désactiver cette option. Si vous utilisez cette fonctionnalité, la connexion restera active même si vous allumez et éteignez votre appareil Android ! Voulez-vous vraiment continuer à activer le Bluetooth en arrière-plan ?</string>
+    <string name="prompt_NoSd">La carte SD externe n’est pas disponible ou est protégée en écriture ou ne dispose pas d’espace suffisant pour enregistrer les données. L’exportation des données ne peut pas être activée !</string>
     <string name="prompt_Sorry">Désolé…</string>
     <string name="toast_CacheCleared">Le cache a été vidé…</string>
-    <string name="toast_PleaseUseTop">S\'il vous plaît, utilisez l\'un des boutons du haut pour quitter les paramètres …</string>
-    <string name="toast_NoBluetooth">Cet appareil de possède pas d\'adaptateur bluetooth.\n\nDésolé…</string>
+    <string name="toast_PleaseUseTop">S’il vous plaît, utilisez l’un des boutons du haut pour quitter les paramètres…</string>
+    <string name="toast_NoBluetooth">Cet appareil de possède pas d’adaptateur Bluetooth.\n\nDésolé…</string>
     <string name="title_activity_tyres">Info pneumatiques</string>
     <string name="button_Tyres">Pneus</string>
     <string name="header_Tyres">Pneus</string>
-    <string name="help_PressuresMbar">Toutes les pressions sont exprimées en millibar</string>
-    <string name="label_TyreSpdPresMisadaption">Erreur d\'adaptation Vitesse-Pression</string>
+    <string name="help_PressuresMbar">Toutes les pressions sont exprimées en millibars</string>
+    <string name="label_TyreSpdPresMisadaption">Erreur d’adaptation Vitesse-Pression</string>
     <string name="label_TyreFL">Avant gauche</string>
     <string name="label_TyreFR">Avant droit</string>
     <string name="label_TyreRL">Arrière gauche</string>
     <string name="label_TyreRR">Arrière droit</string>
-    <string name="label_TyreFLState">Etat avant gauche</string>
-    <string name="label_TyreFRState">Etat avant droit</string>
-    <string name="label_TyreRLState">Etat arrière gauche</string>
-    <string name="label_TyreRRState">Etat arrière droit</string>
-    <string name="label_TyreFLPressure">Pression avant gauche mbar</string>
-    <string name="label_TyreFRPressure">Pression avant droit mbar</string>
-    <string name="label_TyreRLPressure">Pression arrière gauche mbar</string>
-    <string name="label_TyreRRPressure">Pression arrière droit mbar</string>
+    <string name="label_TyreFLState">État avant gauche</string>
+    <string name="label_TyreFRState">État avant droit</string>
+    <string name="label_TyreRLState">État arrière gauche</string>
+    <string name="label_TyreRRState">État arrière droit</string>
+    <string name="label_TyreFLPressure">Pression avant gauche (mbar)</string>
+    <string name="label_TyreFRPressure">Pression avant droit (mbar)</string>
+    <string name="label_TyreRLPressure">Pression arrière gauche (mbar)</string>
+    <string name="label_TyreRRPressure">Pression arrière droit (mbar)</string>
     <string name="title_activity_widget">Activité Widget</string>
 </resources>
