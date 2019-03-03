@@ -39,7 +39,7 @@ public class ElmTestActivity extends CanzeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_elm_test);
-        textView = (TextView) findViewById(R.id.textResult);
+        textView = findViewById(R.id.textResult);
 
         new Thread(new Runnable() {
             @Override
@@ -117,7 +117,8 @@ public class ElmTestActivity extends CanzeActivity {
             appendResult(R.string.message_ResultEmpty);
             return;
         }
-        if (backRes.length() != 10) {
+        //if (backRes.length() != 10) {
+        if (backRes.startsWith("-")) {
             appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes.replace('\r', '•') + "]\n");
             return;
         }
