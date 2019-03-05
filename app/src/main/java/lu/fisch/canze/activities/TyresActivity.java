@@ -185,50 +185,17 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         });
     }
 
-/*
-    // start a diagnostic session and send a keepalive. We are not really interested in the result,
-    // if things fail; the final write will probably fail too and that is enough for the user.
-    // However, logging to the debugger is good for troubleshooting
-    private void diagnosticSession () {
-        Frame frame;
-        Message message;
-
-        // send a start diagnostic session
-        frame = Frames.getInstance().getById(0x765, "50c0");
-        message = MainActivity.device.requestFrame(frame);
-        if (message.isError()) {
-            MainActivity.debug ("tyresactivity.diagnosticsession.errorsendingstartdiag:" + message.getData());
-        } else if (!message.getData().startsWith("50c0")) {
-            MainActivity.debug ("tyresactivity.diagnosticsession.errorreplystartdiag:" + message.getData());
-        }
-
-        // send a keepalive
-        frame = Frames.getInstance().getById(0x765, "7e01");
-        message = MainActivity.device.requestFrame(frame);
-        if (message.isError()) {
-            MainActivity.debug ("tyresactivity.diagnosticsession.errorsendingkeepalive:" + message.getData());
-        } else if (!message.getData().startsWith("7e")) { // keepalive only answers with 7e
-            MainActivity.debug ("tyresactivity.diagnosticsession.errorreplykeepalive:" + message.getData());
-        }
-    }
 
 
-    // Using these wrapper functions to easily facilitate early returns
-    private void stopReadStart() {
-        // stop the poller thread
-        MainActivity.device.stopAndJoin();
-
-        // read TPMS
-        buttonRead();
-
-        // start a new poller
-        MainActivity.device.initConnection();
-    }
-*/
-
-    private void displayId (int fieldId, int val) {
-        EditText et = findViewById(fieldId);
-        if (et != null) et.setText(String.format("%06x", val));
+    private void displayId (final int fieldId, final int val) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                EditText et = findViewById(fieldId);
+                if (et != null)
+                    et.setText(String.format("%06x", val));
+            }
+        });
     }
 
 
