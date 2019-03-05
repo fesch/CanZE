@@ -1,3 +1,4 @@
+---< Version 1.33 / 2019.03.05 >---
 2019-03-03 [Jeroen] #526 fix and spelling.
 2019-02-26 [Jeroen] Moved charging history to technical, added icon
 2019-02-25 [Jeroen] Added serial number to Battery screen
