@@ -1,3 +1,13 @@
+---< Version 1.33 / 2019.03.05 >---
+2019-03-03 [Jeroen] #526 fix and spelling.
+2019-02-26 [Jeroen] Moved charging history to technical, added icon
+2019-02-25 [Jeroen] Added serial number to Battery screen
+2019-02-24 [Jeroen] Avoid nullPointerExceptions and ClassCastExceptions
+2019-02-24 [Jeroen] Avoid crash in CanzeActivity when reconnecting
+2019-02-24 [Jeroen] Avoid ANR when reading/writing Tyre IDs
+2019-02-23 [Jeroen] Avoid ANR / black screen when Bluetooth needs to reconnect (in previous commit)
+2019-02-23 [Jeroen] Fixed null pointer exceptions in displayNews. Minor layout fix for news
+
 ---< Version 1.32 / 2019.02.23 >---
 2019-02-20 [Jeroen] Added counters and total kWh to Charging history #531
 2019-02-20 [Jeroen] Added soh to Battery and Prediction

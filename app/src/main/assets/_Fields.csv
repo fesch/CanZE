@@ -279,6 +279,7 @@
 ,7bb,544,559,0.001,0,3,V,2142,6142,ff,Cell 96 V
 ,7bb,96,119,1,0,0,km,2161,6161,ff,Battery mileage in km
 ,7bb,120,151,1,0,0,kWh,2161,6161,ff,kWh from beginning of Battery life
+,7bb,16,47,1,0,0,,2162,6162,ff,21_62_03_Serial_Number (FIN)
 ,7bb,48,63,1,0,0,,2166,6166,ff,Full Charge counter
 ,7bb,64,79,1,0,0,,2166,6166,ff,Partial Charge counter
 ,7bb,56,63,1,0,0,,2180,6180,ff,diagVersion

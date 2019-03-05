@@ -62,9 +62,9 @@
 # 654,42,51,1,0,0,km,,,ff,Available Distance
 654.42,7ec,
 # 656,48,55,1,40,0,°C,,,e2,External Temp
-656.48,763,
+656.48,763,110,117,1,40,0,°C,2143,6143,e2,External Temp
 # 658,33,39,1,0,0,%,,,ff,Battery Health
-658.33,7bc,
+658.33,7bc,72,79,0.5,0,0,%,2161,6161,ff,Battery Health
 # 65b,41,43,1,0,0,,,,ff,Charging Status Display
 65b.41,7bc,
 # 673,0,0,1,0,0,,,,ff,Speed pressure misadaptation
@@ -78,15 +78,18 @@
 # 673,11,13,1,0,0,,,,ff,Front left wheel state
 673.11,765,
 # 673,16,23,13.725,0,0,mbar,,,ff,Rear right wheel pressure
-673.16,765,
+673.16,765,    13.725,0,0,mbar,,,ff,Rear right wheel pressure
 # 673,24,31,13.725,0,0,mbar,,,ff,Rear left wheel pressure
-673.24,765,
+673.24,765,    13.725,0,0,mbar,,,ff,Rear left wheel pressure
 # 673,32,39,13.725,0,0,mbar,,,ff,Front right wheel pressure
-673.32,765,
+673.32,765,    13.725,0,0,mbar,,,ff,Front right wheel pressure
 # 673,40,47,13.725,0,0,mbar,,,ff,Front left wheel pressure
-67.40,765,2174,6174
-# 699,8,15,0.5,0,0,°C,,,e2,Temperature
+673.40,765,2174,6174 13.725,0,0,mbar,,,ff,Front left wheel pressure
+# 699,8,15,0.5,0,0,°C,,,e2,Heater setpoint
 699.8,764,
+#
+#
+#
 ,760,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,760,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,760,128,143,1,0,0,,2180,6180,ff,Soft
@@ -318,6 +321,7 @@
 ,7bb,528,543,0.001,0,3,V,2142,6142,ff,Cell 95 V
 ,7bb,544,559,0.001,0,3,V,2142,6142,ff,Cell 96 V
 ,7bb,96,119,1,0,0,km,2161,6161,ff,Battery mileage in km
+,7bb,16,47,1,0,0,,2162,6162,ff,21_62_03_Serial_Number (FIN)
 ,7bb,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7bb,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7bb,128,143,1,0,0,,2180,6180,ff,Soft

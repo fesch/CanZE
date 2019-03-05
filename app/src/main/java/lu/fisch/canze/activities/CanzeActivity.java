@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
 import lu.fisch.canze.R;
@@ -54,23 +55,23 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         if(MainActivity.device!=null)
             if(!BluetoothManager.getInstance().isConnected()) {
                 // restart Bluetooth
                 MainActivity.debug("CanzeActivity: restarting BT");
-                BluetoothManager.getInstance().connect();
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            BluetoothManager.getInstance().connect();
+                        } catch (InvalidParameterException e) {
+                            MainActivity.toast(-100, "Can't connect. Bluetooth not configured yet?");
+                        }
+                    }
+                })).start();
+                //BluetoothManager.getInstance().connect();
             }
         MainActivity.debug("CanzeActivity: onCreate ("+this.getClass().getSimpleName()+")");
-        //if(!widgetView) {
-            // register all fields
-            // --> not needed as these frames are now application bound and will not be cleared anyway
-            // MainActivity.registerFields();
-            // initialise the widgets (if any present)
-            // --> not needed as onResume will call it!
-            //initWidgets();
-        //}
     }
 
     @Override

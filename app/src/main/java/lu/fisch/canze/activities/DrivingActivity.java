@@ -246,9 +246,13 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
 
     private void getSavedTripStart () {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
-        savedTripStart = settings.getFloat("savedTripStart", 0);
-        startBdistance = settings.getFloat("startBdistance", 0);
-        startBenergy = settings.getFloat("startBenergy", 0);
+        try {
+            savedTripStart = settings.getFloat("savedTripStart", 0);
+            startBdistance = settings.getFloat("startBdistance", 0);
+            startBenergy = settings.getFloat("startBenergy", 0);
+        } catch (ClassCastException e) {
+            // do nothing, too unimportant to try getInt
+        }
     }
 
 
