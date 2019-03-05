@@ -1,1 +1,1 @@
-New: charge counters and total battery usage in Charging history screen.
+Next release we will discontinue Slovenian language. We are looking for German and Spanish maintainers.
