@@ -186,10 +186,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 //Device has disconnected
 
                 // only resume if this activity is also visible
-                if (visible)
-                {
+                if (visible) {
                     // stop reading
-                    if (device!=null)
+                    if (device != null)
                         device.stopAndJoin();
 
                     // inform user
@@ -205,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     };
 
     public static MainActivity getInstance() {
-        if (instance==null)
+        if (instance == null)
             instance = new MainActivity();
         return instance;
     }
@@ -379,8 +378,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     protected void updateActionBar() {
-        switch (viewPager.getCurrentItem())
-        {
+        switch (viewPager.getCurrentItem()) {
             case 0:
                 actionBar.setIcon(R.mipmap.ic_launcher);
                 break;
@@ -562,7 +560,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
 
         final SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
-        if(!settings.getBoolean("disclaimer",false)) {
+        if (!settings.getBoolean("disclaimer",false)) {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
@@ -581,7 +579,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             // int height = size.y;
             width = width / getResources().getDisplayMetrics().scaledDensity;
             height = height / getResources().getDisplayMetrics().scaledDensity;
-            if(width<=480 || height<=480) {
+            if(width <= 480 || height <= 480) {
                 yes = getStringSingle(R.string.default_Yes);
                 no = getStringSingle(R.string.default_No);
             }
@@ -707,7 +705,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         dataLogger.destroy(); // clean up
 
-        if(device!=null) {
+        if (device != null) {
             // stop the device nicely
             device.stopAndJoin();
             device.clearFields();

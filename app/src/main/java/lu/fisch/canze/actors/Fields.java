@@ -471,7 +471,13 @@ public class Fields {
 
     public Field get(int index) {
         if(index < 0 || index>=fields.size()) return null;
-        return fields.get(index);
+        // avoid a rare outofbounds crash when MainActivity.onCreate is reloading values from the
+        // SQL while another thread is loading the fields.
+        try {
+            return fields.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
     }
 
     public Object[] toArray() {
