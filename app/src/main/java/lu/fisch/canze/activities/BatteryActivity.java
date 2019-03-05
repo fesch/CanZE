@@ -27,23 +27,56 @@ import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import lu.fisch.canze.R;
+import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 
 public class BatteryActivity extends CanzeActivity implements DebugListener {
+
+    public static final String SID_BatterySerial                        = "7bb.6162.16"; //EVC
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battery);
 
-        TextView textView = (TextView) findViewById(R.id.link);
+        TextView textView = findViewById(R.id.link);
         textView.setText(Html.fromHtml(MainActivity.getStringSingle(R.string.help_QA)));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     protected void initListeners () {
         MainActivity.getInstance().setDebugListener(this);
+        addField(SID_BatterySerial, 6000);
+    }
+
+    /********************************/
+
+    @Override
+    public void onFieldUpdateEvent(final Field field) {
+        // the update has to be done in a separate thread
+        // otherwise the UI will not be repainted
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                TextView tv;
+
+                switch (field.getSID()) {
+                    // positive torque
+                    case SID_BatterySerial:
+                        tv = findViewById(R.id.textBatterySerial);
+                        if (tv != null) tv.setText(String.format(Locale.getDefault(), "Serial: %X", (long)field.getValue()).replace (" 26", "F"));
+                        //tv = null;
+                }
+                // set regular new content, all exceptions handled above
+/*              if (tv != null) {
+                    double val = field.getValue();
+                    tv.setText(Double.isNaN(val) ? "" : String.format(Locale.getDefault(), "%.1f", val));
+                } */
+            }
+        });
     }
 
     @Override

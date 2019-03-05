@@ -15,7 +15,7 @@
 
     <TableLayout
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         >
 
@@ -53,6 +53,23 @@
                 custom:text="@string/graph_RealIndicatedSoc"
                 />
 
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/textBatterySerial"
+                android:layout_weight="1"
+                android:layout_gravity="center" />
         </TableRow>
 
         <TableRow

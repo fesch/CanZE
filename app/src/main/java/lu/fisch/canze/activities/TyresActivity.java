@@ -72,7 +72,13 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonRead();
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        buttonRead();
+                    }
+                })).start();
+
             }
         });
 
@@ -80,7 +86,12 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonWrite();
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        buttonWrite();
+                    }
+                })).start();
             }
         });
     }

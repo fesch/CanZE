@@ -485,7 +485,7 @@
     <string name="message_InitFailed">\nInitialisation failed\n</string>
     <string name="message_StartTestSession">\nSending start tester session sequence</string>
     <string name="message_NoTestSessionField">Start session field does not exist\n</string>
-    <string name="message_UnexpectedResult">Query send, but unexpected result received:[</string>
+    <string name="message_UnexpectedResult">Query sent, but unexpected result received:[</string>
     <string name="message_GetDtcs">\nSending start DTCs sequence:[</string>
     <string name="message_NoGetDtcsField">Get DTCs field does not exist\n</string>
     <string name="message_NoActiveDtcs">\nNo active DTCs\n</string>

@@ -20,7 +20,7 @@
 */
 
 
-/**
+/*
  * Helper class to manage the Bluetooth connection
  */
 package lu.fisch.canze.bluetooth;
@@ -73,7 +73,7 @@ public class BluetoothManager {
     public static final int STATE_BLUETOOTH_NOT_ACTIVE      = 0;
 
 
-    private BluetoothAdapter bluetoothAdapter = null;
+    private BluetoothAdapter bluetoothAdapter;
     private BluetoothSocket bluetoothSocket = null;
 
     public boolean isDummyMode() {
@@ -136,30 +136,23 @@ public class BluetoothManager {
 
     /**
      * Creates a new Bluetooth socket from a given device
-     * @param device
-     * @return
-     * @throws IOException
      */
     private BluetoothSocket createBluetoothSocket(BluetoothDevice device, boolean secure) throws IOException {
-        if(Build.VERSION.SDK_INT >= 10){
-            try {
-                if(!secure) {
-                    // insecure connection
-                    final Method m = device.getClass().getMethod("createInsecureRfcommSocketToServiceRecord", new Class[]{UUID.class});
-                    return (BluetoothSocket) m.invoke(device, MY_UUID);
-                }
-                else {
-                    // secure connection
-                    final Method m = device.getClass().getMethod("createRfcommSocketToServiceRecord", new Class[]{UUID.class});
-                    return (BluetoothSocket) m.invoke(device, MY_UUID);
-                }
+        try {
+            if(!secure) {
+                // insecure connection
+                final Method m = device.getClass().getMethod("createInsecureRfcommSocketToServiceRecord", new Class[]{UUID.class});
+                return (BluetoothSocket) m.invoke(device, MY_UUID);
             }
-            catch (Exception e)
-            {
-                debug("Could not create RFComm Connection");
+            else {
+                // secure connection
+                final Method m = device.getClass().getMethod("createRfcommSocketToServiceRecord", new Class[]{UUID.class});
+                return (BluetoothSocket) m.invoke(device, MY_UUID);
             }
+        } catch (Exception e) {
+            debug("Could not create RFComm Connection");
         }
-        return  device.createRfcommSocketToServiceRecord(MY_UUID);
+        return device.createRfcommSocketToServiceRecord(MY_UUID);
     }
 
     public void connect()
@@ -180,7 +173,7 @@ public class BluetoothManager {
 
     private void privateConnect(final String bluetoothAddress, final boolean secure, final int retries)
     {
-        if (!(retryThread == null || (retryThread != null && !retryThread.isAlive()))) {
+        if (!(retryThread == null || !retryThread.isAlive())) {
             debug("BT: aborting connect (another one is in progress ...)");
             return;
         }
@@ -278,11 +271,12 @@ public class BluetoothManager {
                             try {
                                 Thread.sleep(2 * 1000);
                             } catch (Exception e) {
+                                // ignore
                             }
                             (new Thread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    BluetoothManager.this.getInstance().privateConnect(bluetoothAddress, secure, retries - 1);
+                                    BluetoothManager.getInstance().privateConnect(bluetoothAddress, secure, retries - 1);
                                 }
                             })).start();
                         }
@@ -339,7 +333,7 @@ public class BluetoothManager {
 
         if (dummyMode) return;
 
-        if(bluetoothSocket.isConnected()) {
+        if(bluetoothSocket != null && bluetoothSocket.isConnected()) {
             byte[] msgBuffer = message.getBytes();
             try {
                 outputStream.write(msgBuffer);
@@ -357,8 +351,9 @@ public class BluetoothManager {
                 })).start();
                 */
             }
+        } else {
+            MainActivity.debug("Write failed! Socket is closed ... M = "+message);
         }
-        else MainActivity.debug("Write failed! Socket is closed ... M = "+message);
     }
 
     public int read(byte[] buffer) throws IOException {

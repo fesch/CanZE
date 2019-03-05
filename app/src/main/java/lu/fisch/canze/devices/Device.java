@@ -28,6 +28,7 @@ import java.util.Comparator;
 
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.actors.VirtualField;
@@ -191,9 +192,16 @@ public abstract class Device {
         }
     }
 
+
+    public Message injectRequest (String sid) {
+        Field field = Fields.getInstance().getBySID (sid);
+        if (field == null) return null;
+        return injectRequest (field.getFrame());
+    }
+
     // stop the poller and request a frame (new!)
-    public Message injectRequest (Frame frame)
-    {
+    public Message injectRequest (Frame frame) {
+        if (frame == null) return null;
         // stop the poller and wait for it to become inactive
         stopAndJoin();
 
@@ -215,8 +223,7 @@ public abstract class Device {
 
     // stop the poller and request multiple frames (new!)
     // this variant will be very useful for ie LoadAllData
-    public Message injectRequests(Frame[] frames, boolean stopOnError, boolean callOnMessageComplete)
-    {
+    public Message injectRequests(Frame[] frames, boolean stopOnError, boolean callOnMessageComplete) {
         // stop the poller and wait for it to become inactive
         stopAndJoin();
 
