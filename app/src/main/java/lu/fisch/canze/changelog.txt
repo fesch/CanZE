@@ -1,3 +1,4 @@
+2019-03-07 [Jeroen] Avoid crash on outOfBounds in Plotter.setValue
 2019-03-05 [Jeroen] Avoid crash on displaying Tyrevalve IDs
 2019-03-05 [Jeroen] Avoid crash on outOfBounds in Fields.get. Formatting cleanup.
 2019-03-05 [Jeroen] Avoid crash on null getWindowManager. Formatting cleanup.
