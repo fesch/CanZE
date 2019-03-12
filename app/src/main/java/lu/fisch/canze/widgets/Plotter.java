@@ -73,7 +73,11 @@ public class Plotter extends Drawable {
 
     public void setValue(int index, double value)
     {
-        values.set(index, value);
+        try {
+            values.set(index, value);
+        } catch (IndexOutOfBoundsException e) {
+            // Bail out. Based on Play Console Crash Report
+        }
         //if(value<minValues.get(index)) minValues.set(index,value);
         //if(value>maxValues.get(index)) maxValues.set(index,value);
     }

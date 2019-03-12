@@ -54,6 +54,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -185,13 +186,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 //Device has disconnected
 
                 // only resume if this activity is also visible
-                if(visible)
-                {
+                if (visible) {
                     // stop reading
-                    if (device!=null)
-                    {
+                    if (device != null)
                         device.stopAndJoin();
-                    }
 
                     // inform user
                     setTitle(TAG + " - disconnected");
@@ -205,27 +203,24 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     };
 
-    public static MainActivity getInstance()
-    {
-        if(instance==null)
+    public static MainActivity getInstance() {
+        if (instance == null)
             instance = new MainActivity();
         return instance;
     }
 
-    public static void debug(String text)
-    {
+    public static void debug(String text) {
         Log.d(TAG, text);
-        if(debugLogMode) {
+        if (debugLogMode) {
             SimpleDateFormat sdf = new SimpleDateFormat(getStringSingle(R.string.format_YMDHMSs), Locale.getDefault());
             DebugLogger.getInstance().log(sdf.format(Calendar.getInstance().getTime()) + ": " + text);
         }
     }
 
     /* TODO we should move to simply always provide the level in the toast() call instead of all those if's in the code */
-    public static void toast(int level, final String message)
-    {
+    public static void toast(int level, final String message) {
         if (level > toastLevel) return;
-        if(instance!=null)
+        if (instance!=null)
             instance.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -234,9 +229,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             });
     }
 
-    public static void toast(final String message)
-    {
-        if(instance!=null)
+    public static void toast(final String message) {
+        if (instance!=null)
             instance.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -245,10 +239,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             });
     }
 
-    public static void toast(String format, Object... arguments)
-    {
+    public static void toast(String format, Object... arguments) {
         final String finalMessage = String.format(Locale.getDefault(), format, arguments);
-        if(instance!=null)
+        if (instance!=null)
             instance.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -257,9 +250,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             });
     }
 
-    public static void toast(final int resource)
-    {
-        if(instance!=null)
+    public static void toast(final int resource) {
+        if (instance!=null)
             instance.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -269,8 +261,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             });
     }
 
-    public void loadSettings()
-    {
+    public void loadSettings() {
         debug("MainActivity: loadSettings");
         try {
             SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
@@ -386,10 +377,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
-    protected void updateActionBar()
-    {
-        switch (viewPager.getCurrentItem())
-        {
+    protected void updateActionBar() {
+        switch (viewPager.getCurrentItem()) {
             case 0:
                 actionBar.setIcon(R.mipmap.ic_launcher);
                 break;
@@ -505,14 +494,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         });
         // detect hardware status
         int BT_STATE = BluetoothManager.getInstance().getHardwareState();
-        if(BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_AVAILABLE)
+        if (BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_AVAILABLE)
             toast ("Sorry, but your device doesn't seem to have Bluetooth support!");
-        else if (BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_ACTIVE)
-        {
+        else if (BT_STATE==BluetoothManager.STATE_BLUETOOTH_NOT_ACTIVE) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, 1);
         }
-
 
         // load settings
         // - includes the reader
@@ -521,7 +508,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         // load fields from static code
         debug("Loaded fields: " + fields.size());
-
 
         // load fields
         //final SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
@@ -549,11 +535,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         instance = this;
 
-        visible=true;
+        visible = true;
         super.onResume();
 
         // if returning from a single widget activity, we have to leave here!
-        if(returnFromWidget) {
+        if (returnFromWidget) {
             returnFromWidget=false;
             return;
         }
@@ -574,7 +560,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
 
         final SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
-        if(!settings.getBoolean("disclaimer",false)) {
+        if (!settings.getBoolean("disclaimer",false)) {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
@@ -593,10 +579,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             // int height = size.y;
             width = width / getResources().getDisplayMetrics().scaledDensity;
             height = height / getResources().getDisplayMetrics().scaledDensity;
-            if(width<=480 || height<=480)
-            {
-                yes=getStringSingle(R.string.default_Yes);
-                no =getStringSingle(R.string.default_No);
+            if(width <= 480 || height <= 480) {
+                yes = getStringSingle(R.string.default_Yes);
+                no = getStringSingle(R.string.default_No);
             }
 
             alertDialogBuilder
@@ -640,10 +625,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         reloadBluetooth(true);
     }
 
-    public void reloadBluetooth(boolean reloadSettings)
-    {
+    public void reloadBluetooth(boolean reloadSettings) {
         // re-load the settings if asked to
-        if(reloadSettings)
+        if (reloadSettings)
             loadSettings();
 
         // try to get a new BT thread
@@ -652,22 +636,20 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     @Override
     public void onPause() {
-        debug("MainActivity: onPause");
-        debug("MainActivity: onPause > leaveBluetoothOn = "+leaveBluetoothOn);
-        visible=false;
+        debug("MainActivity.onPause");
+        debug("MainActivity.onPause > leaveBluetoothOn = "+leaveBluetoothOn);
+        visible = false;
 
         // stop here if BT should stay on!
-        if(bluetoothBackgroundMode)
-        {
+        if (bluetoothBackgroundMode) {
             super.onPause();
             return;
         }
 
-        if(!leaveBluetoothOn)
-        {
-            if(device!=null)
+        if (!leaveBluetoothOn) {
+            if (device != null)
                 device.clearFields();
-            debug("MainActivity: stopping BT");
+            debug("MainActivity.onPause: stopping BT");
             stopBluetooth();
         }
 
@@ -678,11 +660,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         stopBluetooth(true);
     }
 
-    public void stopBluetooth(boolean reset)
-    {
-        if(device!=null) {
+    public void stopBluetooth(boolean reset) {
+        if (device != null) {
             // stop the device
-            debug("MainActivity: stopBluetooth > stopAndJoin");
+            debug("MainActivity.stopBluetooth > stopAndJoin");
             device.stopAndJoin();
             // remove reference
             if(reset) {
@@ -691,52 +672,32 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             }
         }
         // disconnect BT
-        debug("MainActivity: stopBluetooth > BT disconnect");
+        debug("MainActivity.stopBluetooth > BT disconnect");
         BluetoothManager.getInstance().disconnect();
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        MainActivity.debug("MainActivity: onActivityResult");
-        MainActivity.debug("MainActivity: onActivityResult > requestCode = " + requestCode);
-        MainActivity.debug("MainActivity: onActivityResult > resultCode = " + resultCode);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        MainActivity.debug("MainActivity.onActivityResult");
+        MainActivity.debug("MainActivity.onActivityResult > requestCode = " + requestCode);
+        MainActivity.debug("MainActivity.onActivityResult > resultCode = " + resultCode);
 
         // this must be set in any case
         leaveBluetoothOn=false;
 
-        if(requestCode==SETTINGS_ACTIVITY)
-        {
+        if (requestCode == SETTINGS_ACTIVITY) {
             // load settings
             loadSettings();
-        }
-        else if(requestCode==LEAVE_BLUETOOTH_ON)
-        {
-            MainActivity.debug("MainActivity: onActivityResult > "+LEAVE_BLUETOOTH_ON);
-            returnFromWidget=true;
+        } else if (requestCode == LEAVE_BLUETOOTH_ON) {
+            MainActivity.debug("MainActivity.onActivityResult > " + LEAVE_BLUETOOTH_ON);
+            returnFromWidget = true;
             // register fields this activity needs
             /*
             registerFields();
              */
-        }
-        else super.onActivityResult(requestCode, resultCode, data);
+        } else
+            super.onActivityResult(requestCode, resultCode, data);
     }
-
-        /*
-    public void saveFields()
-    {
-        // safe fields
-        SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        for(int i=0; i<fields.size(); i++)
-        {
-            Field f = fields.get(i);
-            editor.putFloat(f.getUniqueID(),(float) f.getRawValue());
-            //debug("Setting "+f.getUniqueID()+" = "+f.getRawValue());
-        }
-        editor.commit();
-    }
-        */
 
     @Override
     protected void onDestroy() {
@@ -744,7 +705,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         dataLogger.destroy(); // clean up
 
-        if(device!=null) {
+        if (device != null) {
             // stop the device nicely
             device.stopAndJoin();
             device.clearFields();
@@ -791,16 +752,15 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
 
-    private void setBluetoothState(int btState)
-    {
-        if(bluetoothMenutItem!=null) {
+    private void setBluetoothState(int btState) {
+        if (bluetoothMenutItem!=null) {
             View view = bluetoothMenutItem.getActionView();
             if (view == null) return;
             final ImageView imageView = view.findViewById(R.id.animated_menu_item_action);
 
             // stop the animation if there is one running
             AnimationDrawable frameAnimation;
-            if(imageView.getBackground() instanceof AnimationDrawable) {
+            if (imageView.getBackground() instanceof AnimationDrawable) {
                 frameAnimation = (AnimationDrawable) imageView.getBackground();
                 if (frameAnimation.isRunning())
                     frameAnimation.stop();
@@ -818,24 +778,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                         @SuppressLint("NewApi")
                         @Override
                         public void run() {
-                            /* JM commented this out as R.anim.animation_bluetooth gives type casting errors
-                            AnimationDrawable drawable = (AnimationDrawable) ContextCompat.getDrawable(getApplicationContext(), R.anim.animation_bluetooth);
-                            // Use setBackgroundDrawable() for API 14 and 15 and setBackground() for API 16+:
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                                imageView.setBackground(drawable);
-                            }
-                            else
-                            {
-                                //noinspection deprecation
-                                imageView.setBackgroundDrawable(drawable);
-                            }
-
-                            */
-
-                            // added this, reference  https://developer.android.com/reference/android/graphics/drawable/AnimationDrawable.html
-                            // had to move animated_bluetooth to drawable (as show in above document), and update animated_menu_item.xml accordingly
                             imageView.setBackgroundResource(R.drawable.animation_bluetooth);
-
                             AnimationDrawable frameAnimation = (AnimationDrawable) imageView.getBackground();
                             frameAnimation.start();
                         }
@@ -854,8 +797,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // start the settings activity
         if (id == R.id.action_settings) {
 
-            if(isSafe())
-            {
+            if (isSafe()) {
                 // run a toast
                 toast (R.string.toast_WaitingSettings);
 
@@ -884,47 +826,35 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 })).start();
                 return true;
             }
-        }
+
         // see AppSectionsPagerAdapter for the right sequence
-        else if (id == R.id.action_main) {
-            //loadFragement(new MainFragment());
+        } else if (id == R.id.action_main) {
             viewPager.setCurrentItem(0,true);
             updateActionBar();
 
-        }
-        else if (id == R.id.action_technical) {
-            //loadFragement(new TechnicalFragment());
+        } else if (id == R.id.action_technical) {
             viewPager.setCurrentItem(1,true);
             updateActionBar();
 
-        }
-        else if (id == R.id.action_experimental) {
-            //loadFragement(new ExperimentalFragment());
+        } else if (id == R.id.action_experimental) {
             viewPager.setCurrentItem(2,true);
             updateActionBar();
-
         }
-        //else if (id == R.id.action_bluetooth) {
-        //}
-
 
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onFieldUpdateEvent(Field field) {
-        if(field.getSID().equals("5d7.0"))
-        {
+        if (field.getSID().equals("5d7.0")) {
             //debug("Speed "+field.getValue());
             isDriving = (field.getValue()>10);
         }
     }
 
-    public static boolean isSafe()
-    {
+    public static boolean isSafe() {
         boolean safe = !isDriving || !safeDrivingMode;
-        if(!safe)
-        {
+        if(!safe) {
             Toast.makeText(MainActivity.instance, R.string.toast_NotWhileDriving,Toast.LENGTH_LONG).show();
         }
         return safe;
@@ -984,13 +914,20 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public static String getStringSingle (int resId) {
         if (res == null) return "";
-        String result = res.getString(resId);
-        return result == null ? "" : result;
+        try {
+            return res.getString(resId);
+        } catch (Resources.NotFoundException e) {
+            return "";
+        }
     }
 
     public static String [] getStringList (int resId) {
         if (res == null) return null;
-        return res.getStringArray(resId);
+        try {
+            return res.getStringArray(resId);
+        } catch (Resources.NotFoundException e) {
+            return null;
+        }
     }
 
     public void setDebugListener (DebugListener debugListener) {
@@ -1005,36 +942,25 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         if (debugListener != null) debugListener.appendDebugMessage (msg);
     }
 
-    public int getScreenOrientation()
-    {
-        Display screenOrientation = getWindowManager().getDefaultDisplay();
-        int orientation = Configuration.ORIENTATION_UNDEFINED;
-        if(screenOrientation.getWidth()==screenOrientation.getHeight()){
-            orientation = Configuration.ORIENTATION_SQUARE;
-            //Do something
-
-        } else{
-            if(screenOrientation.getWidth() < screenOrientation.getHeight()){
-                orientation = Configuration.ORIENTATION_PORTRAIT;
-                //Do something
-
-            }else {
-                orientation = Configuration.ORIENTATION_LANDSCAPE;
-                //Do something
-
-            }
+    public int getScreenOrientation() {
+        WindowManager wm = getWindowManager();
+        if (wm == null) return Configuration.ORIENTATION_PORTRAIT;
+        Display screenOrientation = wm.getDefaultDisplay();
+        if (screenOrientation == null) return Configuration.ORIENTATION_PORTRAIT;
+        if (screenOrientation.getWidth() == screenOrientation.getHeight()){
+            return Configuration.ORIENTATION_SQUARE;
+        } else if (screenOrientation.getWidth() > screenOrientation.getHeight()){
+            return Configuration.ORIENTATION_LANDSCAPE;
         }
-        return orientation;
+        return Configuration.ORIENTATION_PORTRAIT;
     }
 
-    public boolean isLandscape()
-    {
-        return getScreenOrientation()==Configuration.ORIENTATION_LANDSCAPE;
+    public boolean isLandscape() {
+        return getScreenOrientation() == Configuration.ORIENTATION_LANDSCAPE;
     }
 
-    public boolean isPortrait()
-    {
-        return getScreenOrientation()==Configuration.ORIENTATION_PORTRAIT;
+    public boolean isPortrait() {
+        return getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT;
     }
 
 }
