@@ -1,8 +1,8 @@
 # SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
 # 130,44,55,-3,4094,0,Nm,,,ff,DriverBrakeWheelTq_Req
-130.44,7bc,28,39,4096,0,Nm,224B7E,624B7E,ff,DriverBrakeWheelTq_Req
+130.44,7bc,28,39,1,4096,0,Nm,224B7E,624B7E,ff,DriverBrakeWheelTq_Req
 # 186,16,27,0.5,800,1,Nm,,,ff,MeanEffectiveTorque
-186.16,7bc,
+186.16,7bc,24,39,0.03125,32768,1,Nm,,,ff,MeanEffectiveTorque
 # 186,40,49,0.125,0,1,%,,,ff,Throttle
 186.40,7ec,24,49,0.125,0,,1,%,22202E,62202E, ff,Accelerator pedal position
 # 18a,27,38,0.5,800,1,Nm,,,ff,Coasting Torque
@@ -42,7 +42,7 @@
 # 430,38,39,1,0,0,,,,e2,HV Battery Cooling State
 430.38,764,
 # 430,40,49,0.1,400,1,°C,,,e2,HV Battery Evaporator Temp
-430.40,764,
+430.40,7ec,24,0.1,,2234A2,6234A2
 # 432,36,37,1,0,0,,,,e2,HV Bat Conditionning Mode
 432.36,7bc,
 # 534,32,40,1,40,0,°C,,,e5,Temp out
