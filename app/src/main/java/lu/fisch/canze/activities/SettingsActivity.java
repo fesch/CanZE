@@ -83,18 +83,18 @@ public class SettingsActivity extends AppCompatActivity {
 
         // remote Device
         final Spinner deviceType = findViewById(R.id.deviceType);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         arrayAdapter.add("ELM327");
         arrayAdapter.add("Bob Due");
         //arrayAdapter.add("ELM327Http");
         deviceType.setAdapter(arrayAdapter);
 
-        if("HTTP Gateway".equals(remoteDevice)) {
-            deviceAddress.setText(settings.getString("gatewayUrl",""));
+        if ("HTTP Gateway".equals(remoteDevice)) {
+            deviceAddress.setText(settings.getString("gatewayUrl", ""));
             deviceAddress.setEnabled(true);
             deviceType.setEnabled(false);
         } else {
-            deviceAddress.setText(settings.getString("deviceAddress",""));
+            deviceAddress.setText(settings.getString("deviceAddress", ""));
             deviceAddress.setEnabled(false);
             int index = 0;
             switch (remoteDevice) {
@@ -109,7 +109,7 @@ public class SettingsActivity extends AppCompatActivity {
             deviceType.setEnabled(true);
         }
 
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) imm.hideSoftInputFromWindow(deviceAddress.getWindowToken(), 0);
 
         final String gatewayUrl = settings.getString("gatewayUrl", "");
@@ -121,14 +121,13 @@ public class SettingsActivity extends AppCompatActivity {
                 String[] pieces = device.split("\n");
                 //if(deviceList.getSelectedItemPosition()>=4){
                 // if(device.substring(0,4).compareTo("HTTP") == 0){
-                if("HTTP Gateway".equals(pieces[0])) {
+                if ("HTTP Gateway".equals(pieces[0])) {
                     //deviceAddress.setText("");
-                    MainActivity.debug("Settings: gatewayUrl = "+gatewayUrl);
+                    MainActivity.debug("Settings: gatewayUrl = " + gatewayUrl);
                     deviceAddress.setText(gatewayUrl);
                     deviceAddress.setEnabled(true);
                     deviceType.setEnabled(false);
-                }
-                else {
+                } else {
                     //String device = (String) deviceList.getSelectedItem();
                     deviceAddress.setText(pieces[1]);
                     deviceAddress.setEnabled(false);
@@ -143,7 +142,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         // fill cars
-        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         //arrayAdapter.add("Zoé");
         arrayAdapter.add("ZOE Q210");
         arrayAdapter.add("ZOE R240");
@@ -155,13 +154,13 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("X10");
 
         int index = 0; // assume default MainActivity.CAR_ZOE_Q210
-        if      (MainActivity.car == MainActivity.CAR_ZOE_R240) index = 1;
+        if (MainActivity.car == MainActivity.CAR_ZOE_R240) index = 1;
         else if (MainActivity.car == MainActivity.CAR_ZOE_Q90) index = 2;
         else if (MainActivity.car == MainActivity.CAR_ZOE_R90) index = 3;
-        else if (MainActivity.car == MainActivity.CAR_FLUENCE) index=4;
-        else if (MainActivity.car == MainActivity.CAR_KANGOO) index=5;
-        else if (MainActivity.car == MainActivity.CAR_TWIZY) index=6;
-        else if (MainActivity.car == MainActivity.CAR_X10) index=7;
+        else if (MainActivity.car == MainActivity.CAR_FLUENCE) index = 4;
+        else if (MainActivity.car == MainActivity.CAR_KANGOO) index = 5;
+        else if (MainActivity.car == MainActivity.CAR_TWIZY) index = 6;
+        else if (MainActivity.car == MainActivity.CAR_X10) index = 7;
 
         // display the list
         Spinner carList = findViewById(R.id.car);
@@ -171,13 +170,13 @@ public class SettingsActivity extends AppCompatActivity {
         carList.setSelected(true);
 
         // fill Toastlevel
-        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         arrayAdapter.add("None");
         arrayAdapter.add("Only device");
         arrayAdapter.add("All");
 
-        if      (MainActivity.toastLevel == Fields.TOAST_DEVICE) index=1;
-        else if (MainActivity.toastLevel == Fields.TOAST_ALL) index=2;
+        if (MainActivity.toastLevel == Fields.TOAST_DEVICE) index = 1;
+        else if (MainActivity.toastLevel == Fields.TOAST_ALL) index = 2;
         else index = 0; // assume Fields.TOAST_NONE)
 
         // display the list
@@ -312,7 +311,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // add code here to check external SDcard is avail, writeable and has sufficient space
-                if ( !MainActivity.dataLogger.isExternalStorageWritable() ) {
+                if (!MainActivity.dataLogger.isExternalStorageWritable()) {
                     final Context context = SettingsActivity.this;
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
@@ -416,7 +415,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         // display build version
         TextView tv = findViewById(R.id.build);
-        try{
+        try {
         /*  ApplicationInfo ai = getPackageManager().getApplicationInfo(getPackageName(), 0);
             ZipFile zf = new ZipFile(ai.sourceDir);
             ZipEntry ze = zf.getEntry("classes.dex");
@@ -428,9 +427,9 @@ public class SettingsActivity extends AppCompatActivity {
             Date buildDate = new Date(BuildConfig.TIMESTAMP);
             SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHM), Locale.getDefault());
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            tv.setText(MainActivity.getStringSingle(R.string.version)+pInfo.versionName+"  //  " + MainActivity.getStringSingle(R.string.build)+sdf.format(buildDate));
+            tv.setText(MainActivity.getStringSingle(R.string.version) + pInfo.versionName + "  //  " + MainActivity.getStringSingle(R.string.build) + sdf.format(buildDate));
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -516,14 +515,14 @@ public class SettingsActivity extends AppCompatActivity {
             CheckBox btBackground = findViewById(R.id.btBackgrounding);
             Spinner toastLevel = findViewById(R.id.toastLevel);
             EditText deviceAddress = findViewById(R.id.editTextDeviceAddress);
-            if(remoteDevice.getSelectedItem()!=null) {
+            if (remoteDevice.getSelectedItem() != null) {
                 MainActivity.debug("Settings.deviceAddress = " + remoteDevice.getSelectedItem().toString().split("\n")[1].trim());
                 MainActivity.debug("Settings.deviceName = " + remoteDevice.getSelectedItem().toString().split("\n")[0].trim());
                 //editor.putString("deviceAddress", deviceList.getSelectedItem().toString().split("\n")[1].trim());
                 String deviceNameString = remoteDevice.getSelectedItem().toString().split("\n")[0].trim();
                 editor.putString("deviceName", deviceNameString);
                 editor.putString("deviceAddress", String.valueOf(deviceAddress.getText()));
-                if("HTTP Gateway".equals(deviceNameString)){
+                if ("HTTP Gateway".equals(deviceNameString)) {
                     editor.putString("gatewayUrl", String.valueOf(deviceAddress.getText()));
                     editor.putString("device", "ELM327Http");
                 } else {
@@ -543,8 +542,7 @@ public class SettingsActivity extends AppCompatActivity {
             // finish
             finish();
             return true;
-        }
-        else if (id == R.id.action_cancel) {
+        } else if (id == R.id.action_cancel) {
             // finish without saving the settings
             finish();
             return true;
@@ -557,12 +555,11 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==MainActivity.REQUEST_ENABLE_BT)
-        {
+        if (requestCode == MainActivity.REQUEST_ENABLE_BT) {
             fillDeviceList();
         }
 
-        MainActivity.debug("Code = "+requestCode);
+        MainActivity.debug("Code = " + requestCode);
     }
 
     private void tryTofillDeviceList() {
@@ -580,15 +577,14 @@ public class SettingsActivity extends AppCompatActivity {
         fillDeviceList(); // if no BT, still allow the http devices
     }
 
-    private void fillDeviceList()
-    {
+    private void fillDeviceList() {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
-        String deviceAddress=settings.getString("deviceAddress", null);
-        String deviceName=settings.getString("deviceName", null);
-        MainActivity.debug("SELECT: deviceAddress = "+deviceAddress);
-        MainActivity.debug("SELECT: deviceName = "+deviceName);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
-        int index=-1;
+        String deviceAddress = settings.getString("deviceAddress", null);
+        String deviceName = settings.getString("deviceName", "");
+        MainActivity.debug("SELECT: deviceAddress = " + deviceAddress);
+        MainActivity.debug("SELECT: deviceName = " + deviceName);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        int index = -1;
         int i = 0;
 
         // get the bluetooth adapter
@@ -611,7 +607,7 @@ public class SettingsActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                         // catch (NoSuchMethodException e) {
-                        e.printStackTrace();
+                        // e.printStackTrace();
                         //} catch (InvocationTargetException e) {
                         // e.printStackTrace();
                         //} catch (IllegalAccessException e) {
@@ -632,7 +628,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         arrayAdapter.add("HTTP Gateway\n-");
-        if("HTTP Gateway".equals(deviceName))
+        if ("HTTP Gateway".equals(deviceName))
             index = i;
         //i++;
 

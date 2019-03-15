@@ -1,3 +1,4 @@
+2019-03-15 [Jeroen] Avoid crash when BT device name is not in the pref file.
 2019-03-11 [Jeroen] Avoid crash when Bluetooth access is denied
 2019-03-07 [Jeroen] Avoid crash on outOfBounds in Plotter.setValue
 2019-03-05 [Jeroen] Avoid crash on displaying Tyrevalve IDs
