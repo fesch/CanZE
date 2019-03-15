@@ -22,7 +22,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/label_pedal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_pedal"
@@ -42,7 +41,6 @@
                 />
 
             <TextView
-                android:id="@+id/label_motor_torque"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_wheel_torque"

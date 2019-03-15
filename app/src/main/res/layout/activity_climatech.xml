@@ -181,14 +181,12 @@
             </TableRow> -->
 
             <TableRow
-                android:id="@+id/tableRow3"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:orientation="horizontal"
                 android:layout_weight="1">
 
                 <lu.fisch.canze.widgets.WidgetView
-                    android:id="@+id/speed"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="50dp"
@@ -234,7 +232,6 @@
 <!-- use widget as filler -->
 
         <lu.fisch.canze.widgets.WidgetView
-            android:id="@+id/tempgr"
             android:layout_width="fill_parent"
             android:layout_height="0dip"
             android:layout_weight="1"

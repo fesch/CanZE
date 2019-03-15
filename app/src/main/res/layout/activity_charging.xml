@@ -27,7 +27,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelAvChPwr"
                         android:text="@string/label_AvChPwr"
                         android:gravity="center"
                         android:layout_weight="5"
@@ -38,7 +37,6 @@
                         android:layout_width="20dp"
                         android:layout_weight="1" />
                     <TextView
-                        android:id="@+id/LabelMaxCharge"
                         android:text="@string/label_max_charge"
                         android:gravity="center"
                         android:layout_weight="5"
@@ -85,7 +83,6 @@
                         android:text="@string/default_DoubleSpace"
                         android:layout_weight="1" />
                     <TextView
-                        android:id="@+id/LabelDcPwr"
                         android:text="@string/label_DcPwr"
                         android:gravity="center"
                         android:layout_weight="1"
@@ -120,7 +117,6 @@
                         android:text="@string/default_DoubleSpace"
                         android:layout_weight="1" />
                     <TextView
-                        android:id="@+id/LabelKMA"
                         android:text="@string/label_DISTA"
                         android:gravity="center"
                         android:layout_weight="1"
@@ -184,7 +180,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelSOH"
                         android:text="@string/label_SOH"
                         android:layout_weight="2"
                         />
@@ -198,7 +193,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelHvTemp"
                         android:text="@string/label_HvTemp"
                         android:layout_weight="2"
                         />

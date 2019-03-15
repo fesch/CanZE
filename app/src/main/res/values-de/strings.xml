@@ -16,17 +16,13 @@
     <string name="default_No">Nein</string>
     <string name="default_Ok">OK</string>
     <string name="default_Cancel">Abbrechen</string>
-    <string name="default_Unavailable">Nicht verfügbar</string>
-    <string name="default_NotImplementedYet">Noch nicht implementiert</string>
 
     <!-- Formats -->
 
-    <string name="format_NoSid" formatted="false">Sid %s existiert in Klasse Fields nicht</string>
     <string name="format_NoView" formatted="false">Keine Ansicht möglich: id \'%s%s\'</string>
 
     <!-- Debug (generic) -->
 
-    <string name="header_Debug">Debugging Info</string>
     <string name="label_debug">Debug\u0020</string>
     <string name="default_debug">#Debug</string>
 
@@ -44,7 +40,6 @@
 
     <string name="title_activity_braking">Bremsinformationen</string>
     <string name="button_Braking">Bremsen</string>
-    <string name="header_braking">Bremssystem Status</string>
     <string name="label_driver_torque_request">Angefordertes Drehmoment</string>
     <string name="label_ElecBrakeWheelsTorqueApplied">Bremsenergierückgewinnung (Rekuperation)</string>
     <string name="label_diff_friction_torque">Bremsmoment durch Reibung (Verlust)</string>
@@ -63,7 +58,6 @@
     <string name="label_Phases">Phasen</string>
     <string name="label_UserSOC">Nutzbarer Ladestatus %</string>
     <string name="label_RealSOC">Echter Ladestatus %</string>
-    <string name="label_Capacity">Kapazität Ah</string>
     <string name="label_HvTemp">Durchschnittliche Batterie Temperatur (°C)</string>
     <string name="label_SOH">Batteriegesundheit (SOH) %</string>
     <string name="label_TTF">Zeit bis voll min</string>
@@ -142,7 +136,6 @@
     <string name="label_Temperatures">Temperaturen</string>
     <string name="label_HVEvaporationTemp">Verdampfertemp. Batterie (°C)</string>
     <string name="label_HVCoolingState">Kühlungsstatus Traktionsbatterie</string>
-    <string name="label_ChargingPower">Ladeleistung (kW)</string>
     <string name="label_EngineFanSpeed">Motor Lüfter Geschw.</string>
     <string name="label_ClimateBatteryInteraction">Klimatisierung-Batterie Interaktion</string>
     <string-array name="list_CoolingStatus">
@@ -184,22 +177,18 @@
     <string name="label_kWh100km">kWh/100km</string>
     <string name="graph_PowerSoc">Leistung (kW), Kapazität (%)</string>
     <string name="graph_SpeedConsumption">Geschwindigkeit (km/h), Verbrauch (kWh/100km)</string>
-    <string name="graph_RangeDelta">Reichweite (km), Differenz zur Realität (km)</string>
 
     <!-- Driving -->
 
     <string name="title_activity_driving">Fahrinformationen</string>
     <string name="button_Driving">Fahren</string>
-    <string name="header_Driving">Fahrt Parameter</string>
     <string name="label_pedal">Position des Pedals</string>
-    <string name="label_motor_torque">Drehmoment (Motor)</string>
     <string name="label_wheel_torque">Drehmoment (Räder)</string>
     <string name="label_DistToDest">Entfernung zum Ziel</string>
     <string name="label_DistAvailAtDest">Reichweite am Ziel</string>
     <string name="label_TripConsumption">Trip verbrauch</string>
     <string name="label_TripDistance">Trip entfernung</string>
     <string name="label_TripEnergy">Trip energie (kWh)</string>
-    <string name="label_friction">Reibungsbremse (vermeiden)</string>
     <string name="button_Double">Doppelt</string>
     <string name="prompt_Distance">VERBLEIBENDE REICHWEITE</string>
     <string name="prompt_SetDistance">Bitte die Entfernung zum Ziel eingeben. Die Restreichweite bei Ankunft wird dann ermittelt.</string>
@@ -216,7 +205,6 @@
     <string name="message_PollerStopping">\n\nBitte warten bis der poller thread gestoppt istâŠ\n</string>
     <string name="message_NoConnection">\nKeine Verbindung. Diese Anzeige schließen und Verbindung prüfen\n</string>
     <string name="message_NoEcuDefinition">\nKeine Definitionen gefunden für diese ECU. Nur DTC Codes Anzeige\n</string>
-    <string name="message_NoEcuDefinition2">\nKeine Definitionen gefunden für diese ECU\n</string>
     <string name="message_SendingInit">\nÜbertragungssequenz initialisieren\n</string>
     <string name="message_InitFailed">\nInitialisierung gescheitert\n</string>
     <string name="message_StartTestSession">\nSende Start Tester session Sequenz\n</string>
@@ -234,7 +222,6 @@
 
     <string name="title_activity_elm_test">Teste ELM327 Dongle</string>
     <string name="button_ElmTesting">ELM Test</string>
-    <string name="header_ElmTest">Testergebnissse</string>
     <string name="message_ExpectedResult">Erwartetes Ergebnis erhalten\n==========\n</string>
     <string name="message_FieldNotExists">Angefordertes Feld existiert nicht. Dies ist ein Fehler im Testablauf, bitte melden\n</string>
     <string name="message_Ready">\nBereit</string>
@@ -249,8 +236,6 @@
 
     <string name="title_activity_firmware">Firmware</string>
     <string name="button_Firmware">Firmware</string>
-    <string name="header_Firmware">Firmware Versionen</string>
-    <string name="default_Firmware">Nicht verfügbar</string>
     <string name="help_Ecus"><![CDATA[Klick auf ein ECU um Details anzuzeigen. Mehr erfahren <a href="http://canze.fisch.lu/computers/">hier</a>.]]></string>
 
     <!-- Fluence Kangoo Temps -->
@@ -349,27 +334,17 @@ Diesen Modus zu entsperren ist nicht empfohlen.\n\n Bist du sicher, dass du den 
 
     <string name="title_activity_tyres">Reifen Info</string>
     <string name="button_Tyres">Reifen</string>
-    <string name="header_Tyres">Reifen</string>
     <string name="help_PressuresMbar">Alle Drücke in mbar</string>
     <string name="label_TyreSpdPresMisadaption">Geschwindigkeits-Druck Fehlinterpretation</string>
     <string name="label_TyreFL">Vorne links</string>
     <string name="label_TyreFR">Vorne rechts</string>
     <string name="label_TyreRL">Hinten links</string>
     <string name="label_TyreRR">Hinten rechts</string>
-    <string name="label_TyreFLState">Vorne links Status</string>
-    <string name="label_TyreFRState">Vorne rechts Status</string>
-    <string name="label_TyreRLState">Hinten links Status</string>
-    <string name="label_TyreRRState">Hinten rechts Status</string>
-    <string name="label_TyreFLPressure">Druck vorne links mbar</string>
-    <string name="label_TyreFRPressure">Druck vorne rechts mbar</string>
-    <string name="label_TyreRLPressure">Druck hinten links mbar</string>
-    <string name="label_TyreRRPressure">Druck hinten rechts mbar</string>
 
     <!-- Auxiliary battery -->
 
     <string name="title_activity_auxbatt">12 volt battery</string>
     <string name="button_auxbatt">12 volt batt</string>
-    <string name="header_auxbatt">12 volt battery</string>
     <string name="label_auxbat">Voltage, Vehicle state, Charging state</string>
     <string name="label_auxbatvolt">Voltage (V)</string>
     <string name="label_AuxStatus">Replacement advice</string>
@@ -422,16 +397,11 @@ Diesen Modus zu entsperren ist nicht empfohlen.\n\n Bist du sicher, dass du den 
 
     <string name="menu_Experimental">Experimental</string>
     <string name="help_Experimental">Diese Buttons sind nur für Testzwecke</string>
-    <string name="alert_Soft">Soft</string>
-    <string name="alert_DiagVersion">DiagVersion</string>
-    <string name="alert_Supplier">Supplier</string>
-    <string name="alert_Version">Version</string>
     <string name="graph_Climatech">Außen (°C), Innen (°C), Voreinstellung (°C), Batterie (°C)</string>
     <string name="label_ACPressure">Druck</string>
     <string name="label_EndBatteryTemp">Temp</string>
     <string name="label_EndOfChargeStatus">Ende</string>
     <string name="label_EndSoc">SOC (%)</string>
-    <string name="label_EnergyConsumed">Energieverbrauch (kWh)</string>
     <string name="label_HistDuration">Dura</string>
     <!-- <string name="label_IH_ClimCompRPMStatus">Compressor UpM, ECO mode</string> -->
     <string name="label_IH_ClimCompPWRStatus">Kompressor verbrauch (W), ECO</string>
@@ -596,5 +566,9 @@ Diesen Modus zu entsperren ist nicht empfohlen.\n\n Bist du sicher, dass du den 
         <item>OCPStop</item>
         <item>WaitS2</item>
     </string-array>
+    <string name="header_ChargeSummary">Charging summary</string>
+    <string name="label_TotKwh">Total battery usage (kWh)</string>
+    <string name="label_CountFull">Full charges (#)</string>
+    <string name="label_CountPartial">Partial charges (#)</string>
 
 </resources>

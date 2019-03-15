@@ -15,7 +15,6 @@
     tools:context="lu.fisch.canze.fragments.TechnicalFragment">
 
     <ScrollView
-        android:id="@+id/scroller_main"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:fadeScrollbars="false"
@@ -231,7 +230,6 @@
                     android:text="@string/button_Range" />
 
                 <Button
-                    android:id="@+id/buttonDummy1"
                     style="?android:attr/button"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"

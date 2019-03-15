@@ -27,12 +27,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu7ec"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu7ec"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
                 </TableRow>
@@ -40,12 +38,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu7da"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu7da"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
 
@@ -54,12 +50,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu7bb"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu7bb"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
                 </TableRow>
@@ -67,12 +61,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu77e"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu77e"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
                 </TableRow>
@@ -80,12 +72,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu772"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu772"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
 
@@ -94,12 +84,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu76d"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu76d"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
                 </TableRow>
@@ -107,12 +95,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu763"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu763"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
 
@@ -121,12 +107,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu762"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu762"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
                 </TableRow>
@@ -134,12 +118,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu760"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu760"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
                 </TableRow>
@@ -147,12 +129,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu7bc"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu7bc"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
                 </TableRow>
@@ -160,12 +140,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu765"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu765"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
 
@@ -174,12 +152,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu764"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu764"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
 
@@ -188,12 +164,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu76e"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu76e"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
                 </TableRow>
@@ -201,12 +175,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu793"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu793"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
                 </TableRow>
@@ -214,12 +186,10 @@
                 <TableRow>
 
                     <TextView
-                        android:id="@+id/lEcu7b6"
                         android:layout_marginTop="4dp"
                         android:layout_weight="2" />
 
                     <TextView
-                        android:id="@+id/vEcu7b6"
                         android:layout_marginTop="4dp"
                         android:layout_weight="1" />
                 </TableRow>

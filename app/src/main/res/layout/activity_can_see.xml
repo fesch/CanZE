@@ -17,7 +17,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5">
 
         <RadioButton
-            android:id="@+id/rad_wifi_off"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -25,14 +24,12 @@
             android:text="Off" />
 
         <RadioButton
-            android:id="@+id/rad_wifi_client"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Client" />
 
         <RadioButton
-            android:id="@+id/rad_wifi_ap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -123,7 +120,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <CheckBox
-        android:id="@+id/chk_debug"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
