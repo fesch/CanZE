@@ -20,7 +20,6 @@
         >
 
         <TableRow
-            android:id="@+id/tableRow1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal"
@@ -28,7 +27,6 @@
 
             <!-- pilot amp / available power -->
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/graph_max_pilot"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -54,7 +52,6 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow2"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal"
@@ -62,7 +59,6 @@
 
             <!-- pilot amp / available power -->
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/graph_max_charge"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -85,7 +81,6 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow3"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal"
@@ -93,7 +88,6 @@
 
             <!-- available energy -->
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/graph_charge_power"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"

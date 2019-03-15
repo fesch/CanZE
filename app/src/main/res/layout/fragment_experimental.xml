@@ -20,7 +20,6 @@
         android:layout_weight="0.8">
 
         <ScrollView
-            android:id="@+id/scroller_main"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:fadeScrollbars="false"
@@ -102,7 +101,6 @@
                     android:layout_height="match_parent">
 
                     <Button
-                        android:id="@+id/buttonTestBob"
                         style="?android:attr/button"
                         android:layout_width="0dp"
                         android:layout_height="fill_parent"
@@ -115,7 +113,6 @@
                         android:text="Tests Bob" />
 
                     <Button
-                        android:id="@+id/buttonDummy1"
                         style="?android:attr/button"
                         android:layout_width="0dp"
                         android:layout_height="fill_parent"
@@ -150,7 +147,6 @@
             android:background="#ffd124">
 
             <TextView
-                android:id="@+id/textView"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginBottom="0dp"

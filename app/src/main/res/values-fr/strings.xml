@@ -9,11 +9,7 @@
     <string name="default_No">Non</string>
     <string name="default_Ok">OK</string>
     <string name="default_Cancel">Annuler</string>
-    <string name="default_Unavailable">Indisponible</string>
-    <string name="default_NotImplementedYet">Pas encore implémenté</string>
-    <string name="format_NoSid" formatted="false">Le champ %s n’appartient pas à la classe Fields</string>
     <string name="format_NoView" formatted="false">Il n’y a pas de vue avec l’id \'%s%s\'</string>
-    <string name="header_Debug">Debugging</string>
     <string name="label_debug">Debug\u0020</string>
     <string name="default_debug">#Debug</string>
     <string name="toast_InitWidgets">Initialisation des widgets</string>
@@ -30,7 +26,6 @@
     <string name="help_Experimental">Ces boutons sont à des fins de test uniquement</string>
     <string name="title_activity_auxbatt">Batterie 12 V</string>
     <string name="button_auxbatt">Batterie 12 V</string>
-    <string name="header_auxbatt">Batterie 12 V</string>
     <string name="label_auxbat">Tension, État du véhicule, État de la charge</string>
     <string name="label_auxbatvolt">Tension</string>
     <string name="label_AuxStatus">Conseil de remplacement</string>
@@ -225,7 +220,6 @@
     </string-array>
     <string name="title_activity_braking">Informations de freinage</string>
     <string name="button_Braking">Freinage</string>
-    <string name="header_braking">Statut du système de freinage</string>
     <string name="label_driver_torque_request">Couple demandé</string>
     <string name="label_ElecBrakeWheelsTorqueApplied">Couple électrique appliqué (régénération)</string>
     <string name="label_diff_friction_torque">Couple de friction appliqué (pertes)</string>
@@ -241,13 +235,11 @@
     <string name="label_Phases">Phases</string>
     <string name="label_UserSOC">Charge utilisable (%)</string>
     <string name="label_RealSOC">Charge réelle (%)</string>
-    <string name="label_Capacity">Capacité (Ah)</string>
     <string name="label_HvTemp">Température moyenne batterie (°C)</string>
     <string name="label_SOH">État de santé (%)</string>
     <string name="label_TTF">Temps de charge jusqu’à 100 % (min)</string>
     <string name="label_ETF">Énergie jusqu’à 100 % (kWh)</string>
     <string name="label_DISTA">Autonomie disponible (km)</string>
-    <string name="label_EnergyConsumed">Consommation (kWh)</string>
     <string name="label_Volt">Tension batterie de traction (V)</string>
     <string name="label_Amps">Courant batterie de traction (A)</string>
     <string name="label_DcPwr">Puissance DC (kW)</string>
@@ -319,7 +311,6 @@
     <string name="label_HVEvaporationTemp">T° évaporateur batterie (°C)</string>
     <string name="label_ACPressure">Pression</string>
     <string name="label_HVCoolingState">État du conditionnement batterie</string>
-    <string name="label_ChargingPower">Puissance de charge (kW)</string>
     <string name="label_EngineFanSpeed">Vitesse de rotation du ventilateur</string>
     <string name="label_ClimateBatteryInteraction">Interaction climatisation/batterie</string>
     <string-array name="list_CoolingStatus">
@@ -360,19 +351,15 @@
     <string name="label_kWh100km">kWh/100km</string>
     <string name="graph_PowerSoc">Puissance (kW), État de charge (%)</string>
     <string name="graph_SpeedConsumption">Vitesse (km/h), Consommation (kWh/100km)</string>
-    <string name="graph_RangeDelta">Autonomie (km), Écart avec la réalité (km)</string>
     <string name="title_activity_driving">Informations de conduite</string>
     <string name="button_Driving">Conduite</string>
-    <string name="header_Driving">Paramètres de conduite</string>
     <string name="label_pedal">Position pédale</string>
-    <string name="label_motor_torque">Couple (moteur)</string>
     <string name="label_wheel_torque">Couple (à la roue)</string>
     <string name="label_DistToDest">Distance jusqu’à destination</string>
     <string name="label_DistAvailAtDest">Autonomie restante</string>
     <string name="label_TripConsumption">Consommation trajet</string>
     <string name="label_TripDistance">Distance trajet</string>
     <string name="label_TripEnergy">Énergie trajet (kWh)</string>
-    <string name="label_friction">Freinage par friction (à éviter)</string>
     <string name="button_Double">Double</string>
     <string name="prompt_Distance">DISTANCE RESTANTE</string>
     <string name="prompt_SetDistance">Entrez la distance jusqu’à votre destination. L’application va estimer l’autonomie disponible à l’arrivée.</string>
@@ -385,7 +372,6 @@
     <string name="message_PollerStopping">\n\nVeuillez patienter pendant l’arrêt de la tâche principale…\n</string>
     <string name="message_NoConnection">\nPas de connexion. Fermez cet écran et assurez-vous que le dispositif soit appairé et connecté\n</string>
     <string name="message_NoEcuDefinition">\nImpossible de trouver les définitions de cet ECU. Codes DTC affichés uniquement\n</string>
-    <string name="message_NoEcuDefinition2">\nImpossible de trouver les définitions de cet ECU\n</string>
     <string name="message_SendingInit">\nEnvoi de la séquence d’initialisation\n</string>
     <string name="message_InitFailed">\nÉchec de l’initialisation\n</string>
     <string name="message_StartTestSession">\nEnvoi de la séquence start tester session…\n</string>
@@ -401,7 +387,6 @@
     <string name="title_activity_elm_dump">Vidage ELM</string>
     <string name="title_activity_elm_test">Test du Dongle ELM327</string>
     <string name="button_ElmTesting">Test ELM</string>
-    <string name="header_ElmTest">Résultats du test</string>
     <string name="message_ExpectedResult">Résultats attendus reçus\n==========\n</string>
     <string name="message_FieldNotExists">Le champ demandé n’existe pas. Il s’agit d’une erreur de la séquence de test, veuillez signaler\n</string>
     <string name="message_Ready">\nPrêt</string>
@@ -412,13 +397,7 @@
     <string name="message_DevicePassed">\nVotre Dongle a passé tous les tests, il devrait fonctionner correctement.\n</string>
     <string name="title_activity_firmware">Firmware</string>
     <string name="button_Firmware">Firmware</string>
-    <string name="header_Firmware">Versions Firmware</string>
-    <string name="default_Firmware">Non disponible</string>
     <string name="help_Ecus"><![CDATA[Cliquez sur un ECU pour afficher les détails. Plus d’informations sur les calculateurs de la voiture <a href="http://canze.fisch.lu/computers/">ici</a>.]]></string>
-    <string name="alert_Version">Version</string>
-    <string name="alert_Soft">Logiciel</string>
-    <string name="alert_Supplier">Founisseur</string>
-    <string name="alert_DiagVersion">VersionDiag</string>
     <string name="button_FluenceKangooTemps">T° Fluence Kangoo</string>
     <string name="title_activity_heatmap_bat">Température des modules</string>
     <string name="button_HeatmapTemperature">T° des modules</string>
@@ -494,20 +473,11 @@
     <string name="toast_NoBluetooth">Cet appareil de possède pas d’adaptateur Bluetooth.\n\nDésolé…</string>
     <string name="title_activity_tyres">Info pneumatiques</string>
     <string name="button_Tyres">Pneus</string>
-    <string name="header_Tyres">Pneus</string>
     <string name="help_PressuresMbar">Toutes les pressions sont exprimées en millibars</string>
     <string name="label_TyreSpdPresMisadaption">Erreur d’adaptation Vitesse-Pression</string>
     <string name="label_TyreFL">Avant gauche</string>
     <string name="label_TyreFR">Avant droit</string>
     <string name="label_TyreRL">Arrière gauche</string>
     <string name="label_TyreRR">Arrière droit</string>
-    <string name="label_TyreFLState">État avant gauche</string>
-    <string name="label_TyreFRState">État avant droit</string>
-    <string name="label_TyreRLState">État arrière gauche</string>
-    <string name="label_TyreRRState">État arrière droit</string>
-    <string name="label_TyreFLPressure">Pression avant gauche (mbar)</string>
-    <string name="label_TyreFRPressure">Pression avant droit (mbar)</string>
-    <string name="label_TyreRLPressure">Pression arrière gauche (mbar)</string>
-    <string name="label_TyreRRPressure">Pression arrière droit (mbar)</string>
     <string name="title_activity_widget">Activité Widget</string>
 </resources>

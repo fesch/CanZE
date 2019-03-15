@@ -83,7 +83,6 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/text_wheel_torque_label"
                     android:layout_width="0dp"
                     android:layout_height="25dp"
                     android:text="@string/label_WheelTorque"
@@ -120,7 +119,6 @@
         </LinearLayout>
 
         <TableRow
-            android:id="@+id/tableRow1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal"
@@ -129,7 +127,6 @@
 
 
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/w1"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -144,7 +141,6 @@
                 />
 
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/w2"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -159,7 +155,6 @@
                 />
 
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/w3"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -174,7 +169,6 @@
                 />
 
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/w4"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"

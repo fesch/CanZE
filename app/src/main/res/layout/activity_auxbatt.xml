@@ -41,7 +41,6 @@
 
         <TableRow>
             <TextView
-                android:id="@+id/LabelChaStatus"
                 android:layout_weight="2"
                 android:text="@string/label_ChaStatus" />
 
@@ -54,7 +53,6 @@
 
         <TableRow>
             <TextView
-                android:id="@+id/LabelVoltageLoad"
                 android:layout_weight="2"
                 android:text="Voltage under load" />
 
@@ -68,7 +66,6 @@
 
         <TableRow>
             <TextView
-                android:id="@+id/LabelCurrentLoad"
                 android:layout_weight="2"
                 android:text="Current under load" />
 
@@ -82,7 +79,6 @@
 
         <TableRow>
             <TextView
-                android:id="@+id/LabelAuxStatus"
                 android:layout_weight="2"
                 android:text="@string/label_AuxStatus" />
 
@@ -97,7 +93,6 @@
 
 
     <lu.fisch.canze.widgets.WidgetView
-        android:id="@+id/auxbatvoltage"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_marginBottom="0dp"

@@ -19,7 +19,6 @@
         android:layout_weight="0.8">
 
         <ScrollView
-            android:id="@+id/scroller_main"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:scrollbars="vertical"
