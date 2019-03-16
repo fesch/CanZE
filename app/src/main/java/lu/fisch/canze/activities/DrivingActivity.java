@@ -48,35 +48,35 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
-    public static final String SID_DcPower                              = "1fd.48"; //EVC
-    public static final String SID_Pedal                                = "186.40"; //EVC
-    public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
-    public static final String SID_Coasting_Torque                      = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
-    public static final String SID_RealSpeed                            = "5d7.0";  //ESC-ABS
-    public static final String SID_SoC                                  = "654.25"; //EVC
-    public static final String SID_RangeEstimate                        = "654.42"; //EVC
-    public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
-    public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; //UBP 10ms
-    public static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //UBP 10ms
+    public static final String SID_DcPower = "1fd.48"; //EVC
+    public static final String SID_Pedal = "186.40"; //EVC
+    public static final String SID_MeanEffectiveTorque = "186.16"; //EVC
+    public static final String SID_Coasting_Torque = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
+    public static final String SID_RealSpeed = "5d7.0";  //ESC-ABS
+    public static final String SID_SoC = "654.25"; //EVC
+    public static final String SID_RangeEstimate = "654.42"; //EVC
+    public static final String SID_DriverBrakeWheel_Torque_Request = "130.44"; //UBP braking wheel torque the driver wants
+    public static final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //UBP 10ms
+    public static final String SID_TotalPotentialResistiveWheelsTorque = "1f8.16"; //UBP 10ms
 
     // ISO-TP data
-    public static final String SID_MaxCharge                            = "7bb.6101.336";
-    public static final String SID_EVC_Odometer                         = "7ec.622006.24";
-    public static final String SID_EVC_TripBmeter                       = "7ec.6233de.24";
-    public static final String SID_EVC_TripBenergy                      = "7ec.6233dd.24";
+    public static final String SID_MaxCharge = "7bb.6101.336";
+    public static final String SID_EVC_Odometer = "7ec.622006.24";
+    public static final String SID_EVC_TripBmeter = "7ec.6233de.24";
+    public static final String SID_EVC_TripBenergy = "7ec.6233dd.24";
 
-    private float  odo                              = 0;
-    private float  destOdo                          = 0; // have to init from save file
-    private float  tripBdistance                    = -1;
-    private float  tripBenergy                      = -1;
-    private float  startBdistance                   = -1;
-    private float  startBenergy                     = -1;
-    private float  tripDistance                     = -1;
-    private float  tripEnergy                       = -1;
-    private float  savedTripStart                   = 0;
-    private double realSpeed                        = 0;
-    private double driverBrakeWheel_Torque_Request  = 0;
-    private double coasting_Torque                  = 0;
+    private float odo = 0;
+    private float destOdo = 0; // have to init from save file
+    private float tripBdistance = -1;
+    private float tripBenergy = -1;
+    private float startBdistance = -1;
+    private float startBenergy = -1;
+    private float tripDistance = -1;
+    private float tripEnergy = -1;
+    private float savedTripStart = 0;
+    private double realSpeed = 0;
+    private double driverBrakeWheel_Torque_Request = 0;
+    private double coasting_Torque = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,15 +130,14 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         addField(SID_EVC_TripBenergy, 6000);
     }
 
-    void setDistanceToDestination () {
+    void setDistanceToDestination() {
         // don't react if we do not have a live odo yet
         if (odo == 0) return;
         final Context context = DrivingActivity.this;
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater = getLayoutInflater();
         // we allow this SuppressLint as this is a pop up Dialog
-        @SuppressLint("InflateParams")
-        final View distToDestView = inflater.inflate(R.layout.alert_dist_to_dest, null);
+        @SuppressLint("InflateParams") final View distToDestView = inflater.inflate(R.layout.alert_dist_to_dest, null);
 
         // set dialog message
         alertDialogBuilder
@@ -150,10 +149,14 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                 .setPositiveButton(R.string.default_Ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        if (imm != null) imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
+                        if (imm != null) imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
                         EditText dialogDistToDest = distToDestView.findViewById(R.id.dialog_dist_to_dest);
                         if (dialogDistToDest != null) {
-                            saveDestOdo(odo + Integer.parseInt(dialogDistToDest.getText().toString()));
+                            try {
+                                saveDestOdo(odo + Integer.parseInt(dialogDistToDest.getText().toString()));
+                            } catch (NumberFormatException e) {
+                                /* do nothing if nonsense is entered */
+                            }
                         }
                         dialog.cancel();
                     }
@@ -161,10 +164,14 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                 .setNeutralButton(R.string.button_Double, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        if (imm != null) imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
+                        if (imm != null) imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
                         EditText dialogDistToDest = distToDestView.findViewById(R.id.dialog_dist_to_dest);
                         if (dialogDistToDest != null) {
-                            saveDestOdo(odo + 2 * Integer.parseInt(dialogDistToDest.getText().toString()));
+                            try {
+                                saveDestOdo(odo + 2 * Integer.parseInt(dialogDistToDest.getText().toString()));
+                            } catch (NumberFormatException e) {
+                                /* do nothing if nonsense is entered */
+                            }
                         }
                         dialog.cancel();
                     }
@@ -172,7 +179,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                 .setNegativeButton(R.string.default_Cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        if (imm != null) imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT,0);
+                        if (imm != null) imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
                         dialog.cancel();
                     }
                 });
@@ -181,14 +188,14 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         AlertDialog alertDialog = alertDialogBuilder.create();
 
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm != null) imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+        if (imm != null) imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
         // show it
         alertDialog.show();
     }
 
 
-    private void saveDestOdo (float d) {
+    private void saveDestOdo(float d) {
         if (!Float.isNaN(d)) {
             SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
             SharedPreferences.Editor editor = settings.edit();
@@ -199,7 +206,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         }
     }
 
-    private void getDestOdo () {
+    private void getDestOdo() {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
         destOdo = 0;
         try {
@@ -227,7 +234,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         tv.setText("-");
     }
 
-    private void setSavedTripStart () {
+    private void setSavedTripStart() {
         if (!Float.isNaN(odo) && odo != 0 && !Float.isNaN(tripBdistance) && tripBdistance != -1 && !Float.isNaN(tripBenergy) && tripBenergy != -1) {
             savedTripStart = odo - tripBdistance;
             startBdistance = tripBdistance;
@@ -244,7 +251,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         }
     }
 
-    private void getSavedTripStart () {
+    private void getSavedTripStart() {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
         try {
             savedTripStart = settings.getFloat("savedTripStart", 0);
@@ -285,12 +292,12 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         pb.setProgress((int) (field.getValue() * MainActivity.reduction)); // --> translate from motor torque to wheel torque
                         break;
                     case SID_EVC_Odometer:
-                        odo = (float)field.getValue();
+                        odo = (float) field.getValue();
                         //MainActivity.toast(String.format(Locale.getDefault(), "O:%.1f", odo));
                         tv = null;
                         break;
                     case SID_EVC_TripBmeter:
-                        tripBdistance = (float)field.getValue();
+                        tripBdistance = (float) field.getValue();
                         tripDistance = tripBdistance - startBdistance;
                         //MainActivity.toast(String.format(Locale.getDefault(), "D:%.1f", tripBdistance));
                         tv = findViewById(R.id.textTripConsumption);
@@ -300,7 +307,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                             tv.setText("");
                             tv = findViewById(R.id.textTripEnergy);
                             tv.setText("");
-                        } else if (tripEnergy <= 0 || tripDistance <= 0){
+                        } else if (tripEnergy <= 0 || tripDistance <= 0) {
                             tv.setText("...");
                             tv = findViewById(R.id.textTripDistance);
                             tv.setText("...");
@@ -316,7 +323,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         tv = null;
                         break;
                     case SID_EVC_TripBenergy:
-                        tripBenergy = (float)field.getValue();
+                        tripBenergy = (float) field.getValue();
                         tripEnergy = tripBenergy - startBenergy;
                         //MainActivity.toast(String.format(Locale.getDefault(), "E:%.1f", tripBenergy));
                         tv = null;
@@ -346,7 +353,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         int rangeInBat = (int) field.getValue();
                         if (rangeInBat > 0 && odo > 0 && destOdo > 0) { // we update only if there are no weird values
                             if (destOdo > odo) {
-                                setDestToDest((int)(destOdo - odo), (int)(rangeInBat - destOdo + odo));
+                                setDestToDest((int) (destOdo - odo), (int) (rangeInBat - destOdo + odo));
                             } else {
                                 setDestToDest(0, 0);
                             }
@@ -361,7 +368,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         break;
 
                     case SID_TotalPotentialResistiveWheelsTorque:
-                        int tprwt = - ((int) field.getValue());
+                        int tprwt = -((int) field.getValue());
                         pb = findViewById(R.id.MaxBreakTorque);
                         if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 10);
                         tv = null; // findViewById(R.id.textTPRWT);

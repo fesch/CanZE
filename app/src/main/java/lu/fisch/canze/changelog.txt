@@ -1,3 +1,4 @@
+2019-03-16 [Jeroen] Avoid crash in Driving when entering nonsensical data
 2019-03-15 [Jeroen] Removed all unused resources
 2019-03-15 [Jeroen] Removed sl language
 2019-03-15 [Jeroen] Avoid crash when BT device name is not in the pref file.
