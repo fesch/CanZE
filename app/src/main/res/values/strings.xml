@@ -134,11 +134,9 @@
     <string name="graph_CellVoltages">Cell Voltages (V)</string>
     <string name="graph_ModuleTemperatures">Battery modules temperatures (°C)</string>
 
-    <!-- BCB -->
+    <!-- BCB (now integrated in ChargingTech) -->
 
-    <string name="title_activity_bcb">BCB</string>
-    <string name="button_Bcb">BCB</string>
-    <string name="header_ChargerKeyParameters">Charger key parameters</string>
+    <string name="header_GridParameters">Grid parameters</string>
     <string name="label_MainsCurrentType">Mains current type</string>
     <string-array name="list_MainsCurrentType">
         <item>Nok</item>
