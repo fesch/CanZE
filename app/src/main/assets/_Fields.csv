@@ -26,11 +26,14 @@
 ,534,32,40,1,40,0,°C,,,e5,Temp out
 ,5d7,0,15,0.01,0,2,km/h,,,ff,Speed
 ,5da,0,7,1,40,0,ºC,,,e7,Water temperature
+,62d,0,9,0.1,0,0,kWh/100km,,,ff,Worst Average Consumption
+,62d,10,19,0.1,0,0,kWh/100km,,,ff,Best Average Consumption
 ,638,37,39,1,0,0,,,,ff,Battery 14v To Be Changed Display
 ,654,2,2,1,0,0,,,,ff,Charging Plug Connected
 ,654,25,31,1,0,0,,,,ff,State of Charge
 ,654,32,41,1,0,0,min,,,ff,Time to Full
 ,654,42,51,1,0,0,km,,,ff,Available Distance
+,654,52,61,0.1,0,1,kWh/100km,,,ff,Average Consumption
 ,656,48,55,1,40,0,°C,,,e2,External Temp
 ,658,33,39,1,0,0,%,,,ff,Battery Health
 ,65b,41,43,1,0,0,,,,ff,Charging Status Display
