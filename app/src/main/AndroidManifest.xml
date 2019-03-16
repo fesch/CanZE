@@ -94,9 +94,6 @@
             android:name=".activities.LeakCurrentsActivity"
             android:label="@string/title_activity_leakCurrents" />
         <activity
-            android:name=".activities.BcbActivity"
-            android:label="@string/title_activity_bcb" />
-        <activity
             android:name=".activities.ChargingHistActivity"
             android:label="@string/title_activity_charging_history" />
         <activity

@@ -67,9 +67,7 @@
     <string name="help_QA"><![CDATA[Des informations détaillées sur ces données peuvent être obtenues dans <a href=\'http://canze.fisch.lu/qa/\'>la section Q & A</a> du site <a href=\'http://canze.fisch.lu/\'>CanZE </a>.]]></string>
     <string name="graph_CellVoltages">Tension des cellules (V)</string>
     <string name="graph_ModuleTemperatures">Température des modules (°C)</string>
-    <string name="title_activity_bcb">BCB</string>
-    <string name="button_Bcb">BCB</string>
-    <string name="header_ChargerKeyParameters">Paramètres clés du chargeur</string>
+    <string name="header_GridParameters">Paramètres clés du chargeur</string>
     <string name="label_MainsCurrentType">Type de réseau</string>
     <string-array name="list_MainsCurrentType">
         <item>Erreur</item>
