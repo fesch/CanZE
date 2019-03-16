@@ -32,7 +32,7 @@ import android.content.pm.PackageInfo;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Html;
 import android.view.Display;
 import android.view.Menu;
