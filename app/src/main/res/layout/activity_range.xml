@@ -16,14 +16,14 @@
         android:text="@string/label_RangeRemaining"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <TextView
         android:text="@string/default_Dash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/carRange"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="60sp"
         android:textAlignment="center"
         />
@@ -32,14 +32,14 @@
         android:text="@string/label_RangeRemainingCanZE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <TextView
         android:text="@string/default_Dash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/canzeRange"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="60sp"
         android:textAlignment="center" />
 
@@ -57,14 +57,14 @@
             android:text="@string/label_EstimatedDrivingStyleLoss"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
         <TextView
             android:text="@string/default_Dash"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/lossView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:gravity="right"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:gravity="end"
             />
     </LinearLayout>
 
@@ -79,7 +79,7 @@
     <lu.fisch.canze.widgets.WidgetView
         android:layout_width="match_parent"
         android:layout_weight="1"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -96,5 +96,28 @@
         custom:options="{
                 }"
         />
+
+    <!-- debug line -->
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        >
+
+        <TextView
+            android:text="@string/label_debug"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+        <TextView
+            android:id="@+id/textDebug"
+            android:text="@string/default_debug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>
