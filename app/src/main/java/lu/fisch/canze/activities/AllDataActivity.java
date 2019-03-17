@@ -72,7 +72,8 @@ public class AllDataActivity extends CanzeActivity {
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
-            if (ecu.getFromId() != 0) arrayAdapter.add(ecu.getMnemonic()); // all reachable ECU's plus the Virtual Fields Computer and the Free Fields Computer
+            if (ecu.getFromId() > 0 && ecu.getFromId() != 0x800)
+                arrayAdapter.add(ecu.getMnemonic()); // all reachable ECU's plus the Free Fields Computer. We skip the Virtual Fields Computer for now as it requires real fields and thus frames.
         }
         // display the list
         final Spinner spinnerEcu = findViewById(R.id.ecuList);
@@ -111,6 +112,7 @@ public class AllDataActivity extends CanzeActivity {
     private void testerKeepalive() {
         ticker = Calendar.getInstance().getTimeInMillis();
     }
+
     private void testerKeepalive(Ecu ecu) {
         if (!ecu.getSessionRequired()) return;
         if (Calendar.getInstance().getTimeInMillis() < ticker) return;
@@ -154,8 +156,8 @@ public class AllDataActivity extends CanzeActivity {
 
         // here initialize this particular ECU diagnostics fields
         try {
-            Frames.getInstance().load (ecu);
-            Fields.getInstance().load (ecu.getMnemonic() + "_Fields.csv");
+            Frames.getInstance().load(ecu);
+            Fields.getInstance().load(ecu.getMnemonic() + "_Fields.csv");
         } catch (Exception e) {
             appendResult(R.string.message_NoEcuDefinition);
             // Reload the default frame & timings
@@ -192,7 +194,7 @@ public class AllDataActivity extends CanzeActivity {
                 testerInit(ecu);
 
                 // for (Frame frame : Frames.getInstance().getAllFrames()) {    <<< this is not thread-safe!
-                for(int i=0; i<Frames.getInstance().getAllFrames().size(); i++) {
+                for (int i = 0; i < Frames.getInstance().getAllFrames().size(); i++) {
                     Frame frame = Frames.getInstance().get(i);
                     testerKeepalive();
                     // see if we need to stop right now
@@ -210,11 +212,14 @@ public class AllDataActivity extends CanzeActivity {
 
                             for (Field field : frame.getAllFields()) {
                                 if (field.isString()) {
-                                    appendResult(field.getSID() + " " + field.getName() + ":" + field.getStringValue() + "\n");
+                                    appendResult(String.format(Locale.getDefault(), "%s %s:%s\n", field.getSID(), field.getName(),field.getStringValue()));
+                                    //appendResult(field.getSID() + " " + field.getName() + ":" + field.getStringValue() + "\n");
                                 } else if (field.isList()) {
-                                    appendResult(field.getSID() + " " + field.getName() + ":" + field.getListValue() + "\n");
+                                    appendResult(String.format(Locale.getDefault(), "%s %s:%s\n", field.getSID(), field.getName(), field.getListValue()));
+                                    //appendResult(field.getSID() + " " + field.getName() + ":" + field.getListValue() + "\n");
                                 } else {
-                                    appendResult(field.getSID() + " " + field.getName() + ":" + field.getValue() + field.getUnit() + "\n");
+                                    appendResult(String.format(Locale.getDefault(), "%s %s:%." + field.getDecimals() + "f%s\n", field.getSID(), field.getName(), field.getValue(), field.getUnit()));
+                                    //appendResult(field.getSID() + " " + field.getName() + ":" + field.getValue() + field.getUnit() + "\n");
                                 }
                             }
                         } else {
@@ -227,7 +232,7 @@ public class AllDataActivity extends CanzeActivity {
                     }
                 }
                 closeDump();
-                MainActivity.toast (-100, "Done. Logfile created:");
+                MainActivity.toast(-100, "Done. Logfile created:");
 
             }
         });
@@ -321,7 +326,7 @@ public class AllDataActivity extends CanzeActivity {
             //BufferedWriter for performance, true to set append to file flag
             bufferedDumpWriter = new BufferedWriter(new FileWriter(logFile, true));
             dumpInProgress = true;
-            MainActivity.toast (-100, "Wait, writing " + exportdataFileName);
+            MainActivity.toast(-100, "Wait, writing " + exportdataFileName);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -333,7 +338,7 @@ public class AllDataActivity extends CanzeActivity {
         try {
             if (dumpInProgress) {
                 bufferedDumpWriter.close();
-                MainActivity.toast (-100, "Done.");
+                MainActivity.toast(-100, "Done.");
             }
         } catch (IOException e) {
             e.printStackTrace();
