@@ -54,7 +54,7 @@ import lu.fisch.canze.bluetooth.BluetoothManager;
 import static lu.fisch.canze.activities.MainActivity.debug;
 
 
-public class DtcActivity extends CanzeActivity {
+public class AllDataActivity extends CanzeActivity {
 
     private TextView textView;
     BufferedWriter bufferedDumpWriter = null;
@@ -66,31 +66,23 @@ public class DtcActivity extends CanzeActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dtc);
+        setContentView(R.layout.activity_alldata);
 
         textView = findViewById(R.id.textResult);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
-            if (ecu.getFromId() != 0 && ecu.getFromId() < 0x800) arrayAdapter.add(ecu.getMnemonic()); // only list real, known, reachable ECUs
+            if (ecu.getFromId() != 0 || ecu.getRenaultId() == 9998) arrayAdapter.add(ecu.getMnemonic()); // all reachable ECU's plus the free fields
         }
         // display the list
         final Spinner spinnerEcu = findViewById(R.id.ecuList);
         spinnerEcu.setAdapter(arrayAdapter);
 
-        final Button btnQuery = findViewById(R.id.ecuQuery);
-        btnQuery.setOnClickListener(new OnClickListener() {
+        final Button btnDiag = findViewById(R.id.allData);
+        btnDiag.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                doQueryEcu(Ecus.getInstance().getByMnemonic(String.valueOf(spinnerEcu.getSelectedItem())));
-            }
-        });
-
-        final Button btnClear = findViewById(R.id.ecuClear);
-        btnClear.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doClearEcu(Ecus.getInstance().getByMnemonic(String.valueOf(spinnerEcu.getSelectedItem())));
+                dogetAllData(Ecus.getInstance().getByMnemonic(String.valueOf(spinnerEcu.getSelectedItem())));
             }
         });
 
@@ -154,227 +146,14 @@ public class DtcActivity extends CanzeActivity {
         return false;
     }
 
-    void doQueryEcu(final Ecu ecu) {
 
-        clearResult();
-        appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
-
-        // here initialize this particular ECU diagnostics fields
-        try {
-            //Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
-            //java.lang.reflect.Method methodLoad;
-
-            //methodLoad = diagEcu.getClass().getMethod("load");
-            //methodLoad.invoke(diagEcu);
-            Frames.getInstance().load (ecu);
-            Fields.getInstance().load (ecu.getMnemonic() + "_Fields.csv");
-            Dtcs.getInstance().load(ecu.getMnemonic() + "_Dtcs.csv", ecu.getMnemonic() + "_Tests.csv");
-        } catch (Exception e) {
-            appendResult(R.string.message_NoEcuDefinition);
-            // Reload the default frame & timings
-            Frames.getInstance().load();
-            Fields.getInstance().load();
-            // Don't care about DTC's and tests
-        }
-
-        // re-initialize the device
-        appendResult(R.string.message_SendingInit);
-
-        // try to stop previous thread
-        if (queryThread != null)
-            if (queryThread.isAlive()) {
-                queryThread.tryToStop();
-                try {
-                    queryThread.join();
-                } catch (Exception e) {
-                    MainActivity.debug(e.getMessage());
-                }
-            }
-
-        queryThread = new StoppableThread(new Runnable() {
-            @Override
-            public void run() {
-
-                Field field;
-                String filter;
-                Message message;
-                String backRes;
-
-                // get the from ID from the selected ECU
-                filter = Integer.toHexString(ecu.getFromId());
-
-
-                if (!MainActivity.device.initDevice(1)) {
-                    appendResult(R.string.message_InitFailed);
-                    return;
-                }
-
-                // still trying desperately to get to the BCB!!!1
-                if (!testerInit(ecu)) {
-                    appendResult(R.string.message_InitFailed);
-                    return;
-                }
-
-                boolean onePrinted = false;
-                for (String getDtc : ecu.getGetDtcs().split(";")) {
-                    testerKeepalive(ecu);
-                    // compile the field query and get the Field object
-                    appendResult(MainActivity.getStringSingle(R.string.message_GetDtcs) + getDtc + "]\n");
-                    field = Fields.getInstance().getBySID(filter + "." + getDtc + ".0"); // get DTC
-                    if (field != null) {
-                        // query the Field
-                        message = MainActivity.device.requestFrame(field.getFrame());
-                        if (!message.isError()) {
-                            // check the response
-                            backRes = message.getData();
-                            if (backRes.startsWith("59")) {
-
-                                // loop trough all DTC's
-                                // format of the message is
-                                // blocks of 4 bytes
-                                //   first 2 bytes is the DTC
-                                //     first nibble of DTC is th P0 etc encoding, but we are nit using that
-                                //   next byte is the test that triggered the DTC
-                                //   next byte contains the flags
-                                // All decoding is done in the Dtcs class
-                                for (int i = 6; i < backRes.length() - 7; i += 8) {
-                                    // see if we need to stop right now
-                                    if (((StoppableThread) Thread.currentThread()).isStopped())
-                                        return;
-
-                                    int flags = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
-                                    // exclude 50 / 10 as it means something like "I have this DTC code, but I have never tested it"
-                                    if (flags != 0x50 && flags != 0x10) {
-                                        onePrinted = true;
-                                        appendResult(
-                                                "\n*** DTC" + backRes.substring(i, i + 6) + " (" + Dtcs.getInstance().getDisplayCodeById(backRes.substring(i, i + 6)) + ") ***\n"
-                                                        + Dtcs.getInstance().getDescriptionById(backRes.substring(i, i + 6))
-                                                        + "\nFlags:" + Dtcs.getInstance().getFlagDescription(flags)
-                                        );
-                                    }
-                                }
-
-                            } else {
-                                appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes + "]\n");
-                            }
-
-                        } else {
-                            appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + message.getError() + "]\n");
-                        }
-
-                    } else {
-                        appendResult(R.string.message_NoGetDtcsField);
-                    }
-
-
-                }
-                if (!onePrinted) appendResult(R.string.message_NoActiveDtcs);
-            }
-
-        });
-        queryThread.start();
-    }
-
-    void doClearEcu(final Ecu ecu) {
-
-        clearResult();
-        appendResult(MainActivity.getStringSingle(R.string.message_clear) + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
-
-        // here initialize this particular ECU diagnostics fields
-        try {
-            //Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
-            //java.lang.reflect.Method methodLoad;
-
-            //methodLoad = diagEcu.getClass().getMethod("load");
-            //methodLoad.invoke(diagEcu);
-            Frames.getInstance().load (ecu);
-            Fields.getInstance().load (ecu.getMnemonic() + "_Fields.csv");
-        } catch (Exception e) {
-            appendResult(R.string.message_NoEcuDefinition);
-            // Reload the default frame & timings
-            Frames.getInstance().load();
-            Fields.getInstance().load();
-            // Don't care about DTC's and tests
-        }
-
-        // re-initialize the device
-        appendResult(R.string.message_SendingInit);
-
-        // try to stop previous thread
-        if (queryThread != null)
-            if (queryThread.isAlive()) {
-                queryThread.tryToStop();
-                try {
-                    queryThread.join();
-                } catch (Exception e) {
-                    MainActivity.debug(e.getMessage());
-                }
-            }
-
-        queryThread = new StoppableThread(new Runnable() {
-            @Override
-            public void run() {
-
-                Field field;
-                Frame frame;
-                String filter;
-
-                // get the from ID from the selected ECU
-                filter = Integer.toHexString(ecu.getFromId());
-
-
-                // compile the field query and get the Field object
-                field = Fields.getInstance().getBySID(filter + ".54.0"); // get DTC Clear
-                if (field == null) {
-                    appendResult(R.string.message_NoClearDtcField);
-                    return;
-                }
-                frame = field.getFrame();
-
-                // re-initialize the device
-                appendResult(R.string.message_SendingInit);
-                if (!MainActivity.device.initDevice(1)) {
-                    appendResult(R.string.message_InitFailed);
-                    return;
-                }
-
-                testerInit(ecu);
-                testerKeepalive();
-
-                // query the Field
-                Message message = MainActivity.device.requestFrame(frame);
-                if (message.isError()) {
-                    appendResult(R.string.message_MessageNull);
-                    return;
-                }
-
-                String backRes = message.getData();
-                // check the response
-                if (!backRes.startsWith("54")) {
-                    appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes + "]\n");
-                    return;
-                }
-
-                appendResult(R.string.message_ClearSuccessful);
-            }
-
-        });
-        queryThread.start();
-    }
-
-
-    void doDiagEcu(final Ecu ecu) {
+    void dogetAllData(final Ecu ecu) {
 
         clearResult();              // clear the screen
         appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
 
         // here initialize this particular ECU diagnostics fields
         try {
-            //Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
-            //java.lang.reflect.Method methodLoad;
-
-            //methodLoad = diagEcu.getClass().getMethod("load");
-            //methodLoad.invoke(diagEcu);
             Frames.getInstance().load (ecu);
             Fields.getInstance().load (ecu.getMnemonic() + "_Fields.csv");
             Dtcs.getInstance().load(ecu.getMnemonic() + "_Dtcs.csv", ecu.getMnemonic() + "_Tests.csv");

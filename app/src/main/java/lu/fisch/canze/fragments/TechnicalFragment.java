@@ -32,6 +32,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.activities.AllDataActivity;
 import lu.fisch.canze.activities.AuxBattTechActivity;
 import lu.fisch.canze.activities.ChargingGraphActivity;
 import lu.fisch.canze.activities.ChargingHistActivity;
@@ -78,6 +79,7 @@ public class TechnicalFragment extends Fragment {
         activateButton(view, R.id.buttonAuxBatt,                AuxBattTechActivity.class);
 
         activateButton(view, R.id.buttonRange,                  RangeActivity.class);
+        activateButton(view, R.id.buttonAllData,                AllDataActivity.class);
 
         return view;
     }
