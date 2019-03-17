@@ -93,7 +93,7 @@ public class RangeActivity extends CanzeActivity implements FieldListener, Debug
         TextView tv;
         tv = findViewById(R.id.canzeRange);
         if (tv != null)
-            tv.setText(String.format(Locale.getDefault(), "%.1f : %.1f : %.1f", rangeWorst, range * (1 - loss), rangeBest));
+            tv.setText(String.format(Locale.getDefault(), "%.1f - %.1f - %.1f", rangeWorst, range * (1 - loss), rangeBest));
 /*
         ((TextView) findViewById(R.id.canzeRange)).setText(
                 (Math.floor(rangeWorst*100))/100. +" > "+
