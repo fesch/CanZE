@@ -1,5 +1,5 @@
 #Frame ID,interval ZOE, interval FLUKAN, Sending ECU
-023,4,4,AIBAG
+#023,4,4,AIBAG # only sent at the moment of a crash
 0C6,10,10,EPS
 12E,10,10,ESC
 130,10,10,UBP

@@ -240,6 +240,8 @@
                     android:layout_marginRight="4dp"
                     android:layout_marginTop="4dp"
                     android:layout_weight="1"
+                    android:drawableLeft="@mipmap/button_alldata"
+                    android:drawableStart="@mipmap/button_alldata"
                     android:text="@string/button_AllData" />
 
             </TableRow>

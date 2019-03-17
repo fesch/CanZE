@@ -356,9 +356,17 @@ public class Fields {
         }
         if (allOk) {
             VirtualField virtualField = new VirtualField(virtualId, dependantFields, unit, virtualFieldAction);
+            // a virtualfield is always ISO-TP, so we need to create a subframe for it
+            Frame frame = Frames.getInstance().getById(0x800);
+            Frame subFrame = Frames.getInstance().getById(0x800, virtualField.getResponseId());
+            if (subFrame == null) {
+                subFrame = new Frame(frame.getId(),frame.getInterval(),frame.getSendingEcu(),virtualField.getResponseId(),frame);
+                Frames.getInstance().add (subFrame);
+            }
+            subFrame.addField(virtualField);
+            virtualField.setFrame(subFrame);
             // add it to the list of fields
             add(virtualField);
-
         }
     }
 
@@ -457,6 +465,9 @@ public class Fields {
             addVirtualFields();
         } else {
             fillFromAsset(assetName);
+            if (assetName.startsWith("VFC")) {
+                addVirtualFields();
+            }
         }
         MainActivity.getInstance().registerApplicationFields(); // this registers i.e. speed for save driving mode
     }
