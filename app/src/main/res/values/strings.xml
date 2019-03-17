@@ -482,10 +482,6 @@
     <string name="message_MessageNull">Msg is null. Is the car switched on?\n</string>
     <string name="message_ClearSuccessful">Clear seems successful, please query DTCs\n</string>
 
-    <!-- Elm Dump -->
-
-    <string name="title_activity_elm_dump">ELM Dump</string>
-
     <!-- Elm testing -->
 
     <string name="title_activity_elm_test">Test ELM327 Dongle</string>
