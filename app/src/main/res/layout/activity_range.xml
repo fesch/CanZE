@@ -4,10 +4,10 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
-    android:paddingBottom="0dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="lu.fisch.canze.activities.RangeActivity"
     android:orientation="vertical"
     >
@@ -16,15 +16,16 @@
         android:text="@string/label_RangeRemaining"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        android:textSize="24sp"
+        />
 
     <TextView
         android:text="@string/default_Dash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/carRange"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="60sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="40sp"
         android:textAlignment="center"
         />
 
@@ -32,40 +33,92 @@
         android:text="@string/label_RangeRemainingCanZE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        android:textSize="24sp"
+        />
 
     <TextView
         android:text="@string/default_Dash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/canzeRange"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="60sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="40sp"
         android:textAlignment="center" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <TextView
+        android:text="@string/label_EstimatedDrivingStyleLoss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        />
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="0dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:paddingTop="0dp"
         android:orientation="horizontal"
         >
-        <TextView
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginBottom="8dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/bar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2" >
+
+
+                <SeekBar
+                    style="@android:style/Widget.SeekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    android:progress="10"
+                    android:id="@+id/seekBar"
+                    />
+
+            </LinearLayout>
+
+                <TextView
+                    android:id="@+id/lossView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="%"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    />
+
+        </RelativeLayout>
+
+
+
+
+
+    </LinearLayout>
+        <!-- <TextView
             android:text="@string/label_EstimatedDrivingStyleLoss"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            android:textSize="24sp"
+            />
         <TextView
             android:text="@string/default_Dash"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/lossView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textSize="24sp"
             android:gravity="end"
             />
+
     </LinearLayout>
 
     <SeekBar
@@ -74,16 +127,12 @@
         android:layout_height="wrap_content"
         android:max="100"
         android:progress="10"
-        android:id="@+id/seekBar" />
+        android:id="@+id/seekBar" /> -->
 
     <lu.fisch.canze.widgets.WidgetView
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         custom:min="0"
         custom:max="180,64:320,128:320"
         custom:minAlt="0"
