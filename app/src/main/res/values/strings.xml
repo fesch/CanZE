@@ -85,6 +85,11 @@
 
     <!-- *************************** ACTIVITIES *************************** -->
 
+    <!-- All data -->
+
+    <string name="title_activity_alldata">All data</string>
+    <string name="button_alldata">All data</string>
+
     <!-- Auxiliary battery -->
 
     <string name="title_activity_auxbatt">12 volt battery</string>
@@ -453,12 +458,12 @@
     <string name="prompt_Distance">REMAINING DISTANCE</string>
     <string name="prompt_SetDistance">Please enter the distance to your destination. The display will estimate the remaining driving distance available in your battery on arrival</string>
 
-    <!-- DTC -->
+    <!-- DTC and All data -->
 
     <string name="title_activity_dtc">Diagnostic Trouble Codes</string>
     <string name="button_DtcReadout">DTC readout</string>
-    <string name="button_QueryDTCs">Query DTCs</string>
-    <string name="button_ClearDTCs">Clear DTCs</string>
+    <string name="button_QueryDTCs">Query</string>
+    <string name="button_ClearDTCs">Clear</string>
     <string name="button_AllData">All data</string>
     <string name="help_DTC">To enable clearing DTC\'s:\n\nEnter key card\n\nGear to D\n\nHold start button for approximately 5 seconds until the \'Remove card\' message appears\n\nGear to P</string>
     <string name="message_PollerStopping">\n\nPlease wait while the poller thread is stopped…\n</string>
@@ -476,10 +481,6 @@
     <string name="message_NoClearDtcField">Clear DTCs field does not exist\n</string>
     <string name="message_MessageNull">Msg is null. Is the car switched on?\n</string>
     <string name="message_ClearSuccessful">Clear seems successful, please query DTCs\n</string>
-
-    <!-- Elm Dump -->
-
-    <string name="title_activity_elm_dump">ELM Dump</string>
 
     <!-- Elm testing -->
 
