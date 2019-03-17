@@ -72,7 +72,7 @@ public class AllDataActivity extends CanzeActivity {
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
-            if (ecu.getFromId() != 0 || ecu.getRenaultId() == 9998) arrayAdapter.add(ecu.getMnemonic()); // all reachable ECU's plus the free fields
+            if (ecu.getFromId() != 0) arrayAdapter.add(ecu.getMnemonic()); // all reachable ECU's plus the Virtual Fields Computer and the Free Fields Computer
         }
         // display the list
         final Spinner spinnerEcu = findViewById(R.id.ecuList);
@@ -156,7 +156,6 @@ public class AllDataActivity extends CanzeActivity {
         try {
             Frames.getInstance().load (ecu);
             Fields.getInstance().load (ecu.getMnemonic() + "_Fields.csv");
-            Dtcs.getInstance().load(ecu.getMnemonic() + "_Dtcs.csv", ecu.getMnemonic() + "_Tests.csv");
         } catch (Exception e) {
             appendResult(R.string.message_NoEcuDefinition);
             // Reload the default frame & timings
@@ -199,7 +198,7 @@ public class AllDataActivity extends CanzeActivity {
                     // see if we need to stop right now
                     if (((StoppableThread) Thread.currentThread()).isStopped()) return;
 
-                    if (frame.getContainingFrame() != null) { // only use subframes
+                    if (frame.getContainingFrame() != null || ecu.getFromId() == 0x801) { // only use subframes and free frames
 
                         // query the Frame
                         Message message = MainActivity.device.requestFrame(frame);

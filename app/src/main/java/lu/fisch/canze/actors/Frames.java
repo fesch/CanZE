@@ -119,16 +119,20 @@ public class Frames {
 
     public void load (Ecu ecu)
     {
-        frames.clear();
-        Frame frame = new Frame(
+        if (ecu.getFromId() != 0x801) { // for all but the Free Frame ECU, just load it's diagnostic frame. Subframes will be created automatically for each field
+            frames.clear();
+            Frame frame = new Frame(
                     ecu.getFromId(),
                     0,
                     ecu,
                     null,
                     null
             );
-        // add the field to the list of available fields
-        add(frame);
+            // add the field to the list of available fields
+            add(frame);
+        } else { // for the FCC, load all Free Frames
+            this.load("FFC_Frames.csv");
+        }
     }
 
     public void add(Frame frame) {
