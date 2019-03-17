@@ -230,6 +230,7 @@
                     android:text="@string/button_Range" />
 
                 <Button
+                    android:id="@+id/buttonAllData"
                     style="?android:attr/button"
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
@@ -239,7 +240,9 @@
                     android:layout_marginRight="4dp"
                     android:layout_marginTop="4dp"
                     android:layout_weight="1"
-                    android:text="" />
+                    android:drawableLeft="@mipmap/button_alldata"
+                    android:drawableStart="@mipmap/button_alldata"
+                    android:text="@string/button_AllData" />
 
             </TableRow>
 

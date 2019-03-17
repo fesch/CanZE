@@ -55,9 +55,6 @@
             android:name=".activities.ElmTestActivity"
             android:label="@string/title_activity_elm_test" />
         <activity
-            android:name=".activities.ElmDumpActivity"
-            android:label="@string/title_activity_elm_dump" />
-        <activity
             android:name=".activities.FirmwareActivity"
             android:label="@string/title_activity_firmware" />
         <activity
@@ -103,6 +100,9 @@
         <activity
             android:name=".activities.ConsumptionActivity"
             android:label="@string/title_activity_consumption" />
+        <activity
+            android:name=".activities.AllDataActivity"
+            android:label="@string/title_activity_alldata" />
         <activity android:name=".activities.CanSeeActivity"></activity>
     </application>
 

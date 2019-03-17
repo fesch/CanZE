@@ -45,7 +45,7 @@ public class BobDue extends Device {
     private                 int     wrongCount          = 0;
 
     // define the timeout we may wait to get an answer
-    private static final    int     TIMEOUT_FREE        = 50;
+    private static final    int     TIMEOUT_FREE        = 250;
     private static final    int     TIMEOUT_ISO         = 1000;
     // define End Of Message for this type of reader
     private static final    char    EOM                 = '\n';
@@ -179,7 +179,7 @@ public class BobDue extends Device {
         String[] pieces = text.trim().split(",");
         if (pieces.length < 2) {
             MainActivity.debug("BobDue.rtm.nocomma [" + text + "]");
-            return new Message(frame, "-E-BobDue.rtm.nocomma", true);
+            return new Message(frame, "-E-BobDue.rtm.nocomma:" + text, true);
         }
 
         int id;
@@ -187,7 +187,7 @@ public class BobDue extends Device {
             id = Integer.parseInt(pieces[0].trim(), 16);
         } catch (NumberFormatException e) {
             MainActivity.debug("BobDue.rtm.Nan [" + text + "]");
-            return new Message(frame, "-E-BobDue.rtm.Nan", true);
+            return new Message(frame, "-E-BobDue.rtm.Nan:" + text, true);
         }
 
 /*        if (frame.getId() < 0x700) {
@@ -203,7 +203,7 @@ public class BobDue extends Device {
         } */
         if (id != frame.getId()) {
             MainActivity.debug("BobDue.rtm.diffid [" + text + "]");
-            return new Message(frame, "-E-BobDue.rtm.diffid", true);
+            return new Message(frame, "-E-BobDue.rtm.diffid:" + text, true);
         }
 
         // we could add answer length but that is not in the frame definition now
