@@ -26,12 +26,10 @@ import android.view.Menu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.util.Locale;
-
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 
-public class LeafSpyActivity extends CanzeActivity {
+public class DashActivity extends CanzeActivity {
 
     public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
     public static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //UBP 10ms
@@ -55,7 +53,7 @@ public class LeafSpyActivity extends CanzeActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_leaf_spy);
+        setContentView(R.layout.activity_dash);
     }
 
 

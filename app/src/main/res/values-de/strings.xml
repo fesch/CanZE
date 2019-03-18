@@ -270,8 +270,8 @@
 
     <!-- Leaf spy -->
 
-    <string name="title_activity_leaf_spy">Leaf Spy Clone</string>
-    <string name="button_LeafspyBob">LeafSpy (Bob)</string>
+    <string name="title_activity_dash">Leaf Spy Clone</string>
+    <string name="button_Dash">LeafSpy (Bob)</string>
 
     <!-- Prediction -->
 

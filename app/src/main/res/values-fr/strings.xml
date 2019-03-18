@@ -414,8 +414,8 @@
     <string name="label_ChargerWaterPumpSpeed">Vitesse pompe à eau chargeur</string>
     <string name="label_HeatingWaterPumpSpeed">Vitesse pompe à eau chauffage</string>
     <string name="label_BatteryCoolingFansSpeed">Vitesse ventilateur batterie</string>
-    <string name="title_activity_leaf_spy">Leaf Spy clone</string>
-    <string name="button_LeafspyBob">LeafSpy (Bob)</string>
+    <string name="title_activity_dash">Leaf Spy clone</string>
+    <string name="button_Dash">LeafSpy (Bob)</string>
     <string name="title_activity_leakCurrents">Courant de fuite harmoniques</string>
     <string name="button_LeakCurrents">Harmoniques</string>
     <string name="label_LeakCurrentDc">Courant de fuite DC (mA)</string>
