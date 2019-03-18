@@ -443,6 +443,11 @@
     <string name="graph_PowerSoc">Power (kW), SOC (%)</string>
     <string name="graph_SpeedConsumption">Speed (km/h), Consumption (kWh/100km)</string>
 
+    <!-- Dash -->
+
+    <string name="title_activity_dash">Dash</string>
+    <string name="button_Dash">Dash</string>
+
     <!-- Driving -->
 
     <string name="title_activity_driving">Driving info</string>
@@ -542,11 +547,6 @@
     <string name="label_ChargerWaterPumpSpeed">Charger water pump speed</string>
     <string name="label_HeatingWaterPumpSpeed">Heating water pump speed</string>
     <string name="label_BatteryCoolingFansSpeed">Battery cooling fans speed</string>
-
-    <!-- Leaf spy -->
-
-    <string name="title_activity_leaf_spy">Leaf Spy Clone</string>
-    <string name="button_LeafspyBob">LeafSpy (Bob)</string>
 
     <!-- LeakCurrents -->
 

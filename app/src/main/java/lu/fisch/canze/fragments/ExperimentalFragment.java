@@ -35,7 +35,7 @@ import android.widget.Button;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.FluenceKangooTempsActivity;
-import lu.fisch.canze.activities.LeafSpyActivity;
+import lu.fisch.canze.activities.DashActivity;
 import lu.fisch.canze.activities.MainActivity;
 
 /**
@@ -53,7 +53,7 @@ public class ExperimentalFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_experimental, container, false);
 
-        activateButton(view, R.id.buttonLeafSpy, LeafSpyActivity.class);
+        activateButton(view, R.id.buttonDash, DashActivity.class);
         activateButton(view, R.id.buttonFluenceKangooTemps, FluenceKangooTempsActivity.class);
 
         return view;

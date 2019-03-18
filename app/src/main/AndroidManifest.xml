@@ -49,8 +49,8 @@
             android:name=".activities.BrakingActivity"
             android:label="@string/title_activity_braking" />
         <activity
-            android:name=".activities.LeafSpyActivity"
-            android:label="@string/title_activity_leaf_spy" />
+            android:name=".activities.DashActivity"
+            android:label="@string/title_activity_dash" />
        <activity
             android:name=".activities.ElmTestActivity"
             android:label="@string/title_activity_elm_test" />
