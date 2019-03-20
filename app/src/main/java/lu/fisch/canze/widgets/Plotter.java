@@ -267,6 +267,8 @@ public class Plotter extends Drawable {
                     lastY = my;
                 } catch (IndexOutOfBoundsException e) {
                     /* simply ignore */
+                } catch (NullPointerException e) {
+                    /* simply ignore */
                 }
             }
         }
