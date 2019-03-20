@@ -299,7 +299,12 @@ public class Timeplot extends Drawable {
                     long maxTime = start * 1000; //values.get(values.size() - 1).date;
 
                     for (int i = values.size() - 1; i >= 0; i--) {
-                        TimePoint tp = values.get(i);
+                        TimePoint tp;
+                        try {
+                            tp = values.get(i);
+                        } catch (IndexOutOfBoundsException e) {
+                            tp = null;
+                        }
 
                         if (tp != null && !Double.isNaN(tp.value) && tp.date != 0) {
                             g.setColor(colorRanges.getColor(sid, tp.value, getColor(s)));
