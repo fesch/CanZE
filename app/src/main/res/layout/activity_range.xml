@@ -139,6 +139,11 @@
         custom:widget="timeplot"
         custom:text="@string/graph_DistanceEnergy"
         custom:options="{
+                    '427.49':'alt,dot'
+                }"
+        custom:intervals="{
+                    '654.42':10000,
+                    '427.49':10000
                 }"
         />
 

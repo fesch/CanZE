@@ -73,11 +73,11 @@ public class RangeActivity extends CanzeActivity implements FieldListener, Debug
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_AvailableDistance, 0);
-        addField(SID_AvailableEnvergy, 0);
-        addField(SID_AverageConsumption, 0);
-        addField(SID_WorstAverageConsumption, 0);
-        addField(SID_BestAverageConsumption, 0);
+        addField(SID_AvailableDistance, 2000);
+        addField(SID_AvailableEnvergy, 2000);
+        addField(SID_AverageConsumption, 2000);
+        addField(SID_WorstAverageConsumption, 8000);
+        addField(SID_BestAverageConsumption, 8000);
     }
 
     private void updateSeekBar(SeekBar seekBar) {
