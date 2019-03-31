@@ -1,3 +1,4 @@
+2019-03-31 [Jeroen] Implemented INTERVAL_ONCE for ECU initialization command
 2019-03-19 [Jeroen] Avoid NullPointerException crash in Plotter
 2019-03-19 [Jeroen] Avoid IndexOutOfBounds crash in Timeplot
 2019-03-16 [Jeroen] Added All Data
