@@ -642,15 +642,23 @@ public class ELM327 extends Device {
         // get type (first nibble of first line)
         switch (elmResponse.substring(0, 1)) {
             case "0": // SINGLE frame
-                len = Integer.parseInt(elmResponse.substring(1, 2), 16);
-                // remove 2 nibbles (type + length)
-                hexData = elmResponse.substring(2);
-                // and we're done
+                try {
+                    len = Integer.parseInt(elmResponse.substring(1, 2), 16);
+                    // remove 2 nibbles (type + length)
+                    hexData = elmResponse.substring(2);
+                    // and we're done
+                } catch (StringIndexOutOfBoundsException e) {
+                    return new Message(frame, "-E-unexpected ISO-TP length of SING frame:" + elmResponse, true);
+                }
                 break;
             case "1": // FIRST frame
-                len = Integer.parseInt(elmResponse.substring(1, 4), 16);
-                // remove 4 nibbles (type + length)
-                hexData = elmResponse.substring(4);
+                try {
+                    len = Integer.parseInt(elmResponse.substring(1, 4), 16);
+                    // remove 4 nibbles (type + length)
+                    hexData = elmResponse.substring(4);
+                } catch (StringIndexOutOfBoundsException e) {
+                    return new Message(frame, "-E-unexpected ISO-TP length of FIRST frame:" + elmResponse, true);
+                }
                 // calculate the # of frames to come. 6 byte are in and each of the 0x2 frames has a payload of 7 bytes
                 int framesToReceive = len / 7; // read this as ((len - 6 [remaining characters]) + 6 [offset to / 7, so 0->0, 1-7->7, etc]) / 7
                 // get all remaining 0x2 (NEXT) frames
