@@ -357,23 +357,6 @@ public abstract class Device {
         }
     }
 
-    /**
-     * Ass the CAN bus sends a lot of free frames, the device may want
-     * to apply a filter. This method should thus register or apply a
-     * given filter to the hardware.
-     *
-     * @param frameId the ID of the frame to filter for
-     */
-    public abstract void registerFilter(int frameId);
-
-    /**
-     * Method to unregister a filter.
-     *
-     * @param frameId the ID of the frame to no longer filter on
-     */
-    public abstract void unregisterFilter(int frameId);
-
-
     public void join() throws InterruptedException {
         if (pollerThread != null)
             pollerThread.join();
@@ -383,31 +366,6 @@ public abstract class Device {
     /* ----------------------------------------------------------------
      * Methods (that will be inherited by any "real" device)
      \ -------------------------------------------------------------- */
-
-    /**
-     * This method registers the IDs of all monitored fields.
-     */
-    public void registerFilters() {
-        // another thread my also access the list of monitored fields,
-        // so we need to "protect" it against simultaneous changes.
-        synchronized (fields) {
-            for (int i = 0; i < fields.size(); i++) {
-                registerFilter(fields.get(i).getId());
-            }
-        }
-    }
-
-    /**
-     * This method unregisters all filters from the remote device
-     * Lint suggests it can be private so probably never used externally
-     */
-    public void unregisterFilters() {
-        synchronized (fields) {
-            for (int i = 0; i < fields.size(); i++) {
-                unregisterFilter(fields.get(i).getId());
-            }
-        }
-    }
 
     /**
      * This method clears the list of monitored fields,
@@ -420,14 +378,6 @@ public abstract class Device {
             activityFieldsAsFastAsPossible.clear();
             fields.clear();
             fields.addAll(applicationFields);
-            //MainActivity.debug("cleared");
-            // launch the filter clearing asynchronously
-            (new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    unregisterFilters();
-                }
-            })).start();
         }
     }
 
@@ -499,13 +449,6 @@ public abstract class Device {
                     // it can be removed there
                     if (containsActivityFieldScheduled(field))
                         activityFieldsScheduled.remove(field);
-                    // launch the field registration asynchronously
-                    (new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            registerFilter(field.getId());
-                        }
-                    })).start();
                 }
                 if (!containsActivityFieldAsFastAsPossible(field)) {
                     activityFieldsAsFastAsPossible.add(field);
@@ -568,13 +511,6 @@ public abstract class Device {
                     activityFieldsScheduled.add(field);
                     // set the fields query interval
                     field.setInterval(interval);
-                    // launch the field registration asynchronously
-                    (new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            registerFilter(field.getId());
-                        }
-                    })).start();
                 }
                 if (!containsActivityFieldScheduled(field)) {
                     // only add it this field id is not yet on the list of the
@@ -613,13 +549,6 @@ public abstract class Device {
                     // un-register it ...
                     field.removeListener(CanzeDataSource.getInstance());
                 }
-                // launch the field registration asynchronously
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        unregisterFilter(field.getId());
-                    }
-                })).start();
             }
         }
     }
@@ -637,13 +566,6 @@ public abstract class Device {
                     // add it to the two lists
                     fields.add(field);
                     applicationFields.add(field);
-                    // launch the field registration asynchronously
-                    (new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            registerFilter(field.getId());
-                        }
-                    })).start();
                 }
             }
         }
@@ -669,13 +591,6 @@ public abstract class Device {
                     // un-register it ...
                     field.removeListener(CanzeDataSource.getInstance());
                 }
-                // launch the field registration asynchronously
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        unregisterFilter(field.getId());
-                    }
-                })).start();
             }
         }
 
@@ -699,8 +614,6 @@ public abstract class Device {
         if (reset) {
             // clean all filters (just to make sure)
             clearFields();
-            // register all filters (if there are any)
-            registerFilters();
             MainActivity.debug("Device.init: done, reset");
         } else
             MainActivity.debug("Device.init: done, noreset");

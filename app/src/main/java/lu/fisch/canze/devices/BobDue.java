@@ -57,30 +57,6 @@ public class BobDue extends Device {
         pollerThread.join();
     }
 
-    @Override
-    public void registerFilter(int frameId) {
-        // not needed for this device
-        /*
-        String filter = Integer.toHexString(frameId);
-        if(BluetoothManager.getInstance().isConnected())
-            BluetoothManager.getInstance().write("f" + filter + "\n");
-        else
-            MainActivity.debug("BobDue.registerFilter " + filter + " failed because connectedBluetoothThread is NULL");
-        */
-    }
-
-    @Override
-    public void unregisterFilter(int frameId) {
-        // not needed for this device
-        /*
-        String filter = Integer.toHexString(frameId);
-        if(BluetoothManager.getInstance().isConnected())
-            BluetoothManager.getInstance().write("r" + filter + "\n");
-        else
-            MainActivity.debug("BobDue.unregisterFilter " + filter + " failed because connectedBluetoothThread is NULL");
-        */
-    }
-
     // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis, int timeout) {
         // empty incoming buffer. This is neccesary to ensure things get not horribly out of sync
