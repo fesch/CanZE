@@ -57,26 +57,15 @@ public class ELM327 extends Device {
      * the index of the actual field to request
      */
     private int lastId = 0;
-
     private boolean lastCommandWasFreeFrame = false;
 
-    @Override
-    public void registerFilter(int frameId) {
-        // not needed for this device
-    }
 
-    @Override
-    public void unregisterFilter(int frameId) {
-        // not needed for this device
-    }
-
-
-    protected boolean initDevice (int toughness, int retries) {
+    protected boolean initDevice(int toughness, int retries) {
         if (initDevice(toughness)) return true;
         while (retries-- > 0) {
             MainActivity.debug("ELM327: flushWithTimeout");
             flushWithTimeout(500);
-            MainActivity.debug("ELM327: initDevice("+toughness+"), "+retries+" retries left");
+            MainActivity.debug("ELM327: initDevice(" + toughness + "), " + retries + " retries left");
             if (initDevice(toughness)) return true;
         }
         MainActivity.toast(MainActivity.TOAST_ELM, "Hard reset failed, restarting Bluetooth ...");
@@ -109,7 +98,7 @@ public class ELM327 extends Device {
 
     public boolean initDevice(int toughness) {
 
-        MainActivity.debug("ELM327: initDevice ("+toughness+")");
+        MainActivity.debug("ELM327: initDevice (" + toughness + ")");
 
         String response;
         int elmVersion = 0;
@@ -120,26 +109,25 @@ public class ELM327 extends Device {
         lastId = 0;
 
         // extremely soft, just clear the global error condition
-        if (toughness == TOUGHNESS_NONE){
+        if (toughness == TOUGHNESS_NONE) {
             deviceIsInitialized = true;
             return deviceIsInitialized;
         }
 
-        killCurrentOperation ();
+        killCurrentOperation();
 
         if (toughness == TOUGHNESS_HARD || toughness == TOUGHNESS_MEDIUM) {
             // the default 500mS should be enough to answer, however, the answer contains various <cr>'s, so we need to set untilEmpty to true
-            response = sendAndWaitForAnswer("atws", 0, true, -1 , true);
-        }
-        else { // TOUGHNESS_WEAK
-            response = sendAndWaitForAnswer("atd", 0, true, -1 , true);
+            response = sendAndWaitForAnswer("atws", 0, true, -1, true);
+        } else { // TOUGHNESS_WEAK
+            response = sendAndWaitForAnswer("atd", 0, true, -1, true);
             MainActivity.debug("ELM327: version = " + response);
         }
         MainActivity.debug("ELM327: version: [" + response + "]");
 
         response = response.trim();
         if (response.equals("")) {
-            lastInitProblem = "ELM is not responding (toughness = "+toughness+")";
+            lastInitProblem = "ELM is not responding (toughness = " + toughness + ")";
             MainActivity.toast(MainActivity.TOAST_ELM, lastInitProblem);
             return false;
         }
@@ -212,7 +200,7 @@ public class ELM327 extends Device {
         String[] commands = "ate0;ats0;ath0;atl0;atal;atcaf0;atfcsh77b;atfcsd300000;atfcsm1;atsp6".split(";");
 
         boolean first = true;
-        for (String command:commands) {
+        for (String command : commands) {
             if (!initCommandExpectOk(command, first)) {
                 lastInitProblem = command + " command problem";
                 return deviceIsInitialized;
@@ -220,7 +208,7 @@ public class ELM327 extends Device {
             first = false;
         }
 
-        if (toughness == TOUGHNESS_HARD ) {
+        if (toughness == TOUGHNESS_HARD) {
             switch (elmVersion) {
                 case 13:
                     MainActivity.toast(MainActivity.TOAST_ELM, "ELM ready, version 1.3, should work");
@@ -256,13 +244,13 @@ public class ELM327 extends Device {
         // sending a return might restart the last command. Bad plan.
         sendNoWait("x");
         // discard everything that still comes in
-        flushWithTimeoutCore (200, '\0');
+        flushWithTimeoutCore(200, '\0');
         // if a command was running, it is interrupted now and the ELM is waiting for a command. However, if there was no command running, the x
         // in the buffer will screw up the next command. There are two possibilities: Sending a Backspace and hope for the best, or sending x <CR>
         // and being sure the ELM will report an unknown command (prompt a ? mark), as it will be processing either x <CR> or xx <CR>. We choose the latter
         // discard the ? anser
         sendNoWait("x\r");
-        if (!flushWithTimeoutCore (500, '\0')) {
+        if (!flushWithTimeoutCore(500, '\0')) {
             MainActivity.debug("ELM327: KillCurrentOperation unable to flush after x");
         }
     }
@@ -273,7 +261,7 @@ public class ELM327 extends Device {
 
     private void flushWithTimeout(int timeout, char eom) {
         if (flushWithTimeoutCore(timeout, eom)) return;
-        killCurrentOperation ();
+        killCurrentOperation();
     }
 
     private boolean flushWithTimeoutCore(int timeout, char eom) {
@@ -301,7 +289,7 @@ public class ELM327 extends Device {
                         // absorb the characters
                         while (BluetoothManager.getInstance().available() > 0) {
                             int c = BluetoothManager.getInstance().read();
-                            if (c == (int)eom) return true;
+                            if (c == (int) eom) return true;
                             if (count-- == 0) return false;
 
                         }
@@ -319,15 +307,15 @@ public class ELM327 extends Device {
         return true;
     }
 
-    private boolean initCommandExpectOk (String command) {
+    private boolean initCommandExpectOk(String command) {
         return initCommandExpectOk(command, false, true);
     }
 
-    private boolean initCommandExpectOk (String command, boolean untilEmpty) {
+    private boolean initCommandExpectOk(String command, boolean untilEmpty) {
         return initCommandExpectOk(command, untilEmpty, true);
     }
 
-    private boolean initCommandExpectOk (String command, boolean untilEmpty, boolean addReturn) {
+    private boolean initCommandExpectOk(String command, boolean untilEmpty, boolean addReturn) {
         String response = "";
         for (int i = 2; i > 0; i--) {
             if (untilEmpty) {
@@ -349,34 +337,33 @@ public class ELM327 extends Device {
     }
 
     private void sendNoWait(String command) {
-        if(!BluetoothManager.getInstance().isConnected()) return;
-        if(command!=null) {
+        if (!BluetoothManager.getInstance().isConnected()) return;
+        if (command != null) {
             BluetoothManager.getInstance().write(command);
         }
     }
 
     private String sendAndWaitForAnswer(String command, int waitMillis) {
-        return sendAndWaitForAnswer(command,waitMillis,false,-1, true);
+        return sendAndWaitForAnswer(command, waitMillis, false, -1, true);
     }
 
     private String sendAndWaitForAnswer(String command, int waitMillis, int answerLinesCount) {
-        return sendAndWaitForAnswer(command,waitMillis,false,answerLinesCount, true);
+        return sendAndWaitForAnswer(command, waitMillis, false, answerLinesCount, true);
     }
 
     private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty) {
-        return sendAndWaitForAnswer(command,waitMillis,untilEmpty,-1, true);
+        return sendAndWaitForAnswer(command, waitMillis, untilEmpty, -1, true);
     }
 
-    private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount, boolean addReturn)
-    {
+    private String sendAndWaitForAnswer(String command, int waitMillis, boolean untilEmpty, int answerLinesCount, boolean addReturn) {
 
         int maxUntilEmptyCounter = 10;
         int maxLengthCounter = 500; // char = nibble, so 2000 bits
 
-        if(!BluetoothManager.getInstance().isConnected()) return "";
+        if (!BluetoothManager.getInstance().isConnected()) return "";
 
-        if(command!=null) {
-            flushWithTimeout (100, '>');
+        if (command != null) {
+            flushWithTimeout(100, '>');
             // send the command
             //connectedBluetoothThread.write(command + "\r\n");
             BluetoothManager.getInstance().write(command + (addReturn ? "\r" : ""));
@@ -397,12 +384,11 @@ public class ELM327 extends Device {
         // wait for answer
         long end = Calendar.getInstance().getTimeInMillis() + generalTimeout;
         boolean timedOut = false;
-        while(!stop && !timedOut)
-        {
+        while (!stop && !timedOut) {
             //MainActivity.debug("Delta = "+(Calendar.getInstance().getTimeInMillis()-start));
             try {
                 // read a byte
-                if(BluetoothManager.getInstance().isConnected() && BluetoothManager.getInstance().available()>0) {
+                if (BluetoothManager.getInstance().isConnected() && BluetoothManager.getInstance().available() > 0) {
                     //MainActivity.debug("Reading ...");
                     int data = BluetoothManager.getInstance().read();
                     //MainActivity.debug("... done");
@@ -412,28 +398,25 @@ public class ELM327 extends Device {
                         // end = end + 2;
                         // convert it to a character
                         char ch = (char) data;
-			if (ch == '\n') ch = '\r';
+                        if (ch == '\n') ch = '\r';
                         // add it to the readBuffer
-                        readBuffer.append (ch);
+                        readBuffer.append(ch);
                         // if we reach the end of a line
-                        if (ch == EOM1 || ch == EOM2 || ch == EOM3)
-                        {
+                        if (ch == EOM1 || ch == EOM2 || ch == EOM3) {
                             //MainActivity.debug("ALC: "+answerLinesCount+")\n"+readBuffer);
                             // decrease awaiting answer lines
                             answerLinesCount--;
                             // if we not asked to keep on and we got enough lines, stop
-                            if(!untilEmpty){
-                                if(answerLinesCount<=0) { // the number of lines is in
+                            if (!untilEmpty) {
+                                if (answerLinesCount <= 0) { // the number of lines is in
                                     //MainActivity.debug("ELM327: sendAndWaitForAnswer > stop on decimal char [" + data + "]");
                                     stop = true; // so quit
-                                }
-                                else // the number of lines is NOT in
+                                } else // the number of lines is NOT in
                                 {
                                     end = Calendar.getInstance().getTimeInMillis() + generalTimeout; // so restart the timeout
                                 }
-                            }
-                            else { // if (untilEmpty) {
-                                stop=(BluetoothManager.getInstance().available()==0);
+                            } else { // if (untilEmpty) {
+                                stop = (BluetoothManager.getInstance().available() == 0);
                                 // a problem here is that we assume the next character is already available, which might not be the case, so adding.....
                                 if (stop) {
                                     // wait a fraction
@@ -442,19 +425,19 @@ public class ELM327 extends Device {
                                     } catch (InterruptedException e) {
                                         // do nothing
                                     }
-                                    stop=(BluetoothManager.getInstance().available()==0);
+                                    stop = (BluetoothManager.getInstance().available() == 0);
                                 } else {
-                                    if (--maxUntilEmptyCounter <= 0) timedOut = true; // well, this is a timed"In", as in, too many lines
+                                    if (--maxUntilEmptyCounter <= 0)
+                                        timedOut = true; // well, this is a timed"In", as in, too many lines
                                 }
                             }
                         } else {
-                            if (--maxLengthCounter <= 0) timedOut = true; // well, this is a timed"In", as in, too many lines
+                            if (--maxLengthCounter <= 0)
+                                timedOut = true; // well, this is a timed"In", as in, too many lines
                         }
 
                     }
-                }
-                else
-                {
+                } else {
                     // let the system breath if there was no data
                     try {
                         Thread.sleep(10);
@@ -468,9 +451,7 @@ public class ELM327 extends Device {
                     // MainActivity.toast("Sum Ting Wong on command " + command);
                 }
 
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 // ignore: e.printStackTrace();
             }
         }
@@ -490,14 +471,12 @@ public class ELM327 extends Device {
         return readBuffer.toString();
     }
 
-    private int getToId(int fromId)
-    {
+    private int getToId(int fromId) {
         Ecu ecu = Ecus.getInstance().getByFromId(fromId);
         return ecu != null ? ecu.getToId() : 0;
     }
 
-    private String getToIdHex(int fromId)
-    {
+    private String getToIdHex(int fromId) {
         return Integer.toHexString(getToId(fromId));
     }
 
@@ -510,7 +489,9 @@ public class ELM327 extends Device {
     @Override
     public Message requestFreeFrame(Frame frame) {
 
-        if (!deviceIsInitialized) {return new Message(frame, "-E-Re-initialisation needed", true); }
+        if (!deviceIsInitialized) {
+            return new Message(frame, "-E-Re-initialisation needed", true);
+        }
 
         String hexData;
 
@@ -521,15 +502,16 @@ public class ELM327 extends Device {
         String emlFilter = frame.getHexId();
 
         MainActivity.debug("ELM327: requestFreeFrame: atcra" + emlFilter);
-        if (!initCommandExpectOk("atcra" + emlFilter)) return new Message(frame, "-E-Problem sending atcra command", true);
+        if (!initCommandExpectOk("atcra" + emlFilter))
+            return new Message(frame, "-E-Problem sending atcra command", true);
 
         //sendAndWaitForAnswer("atcra" + emlFilter, 400);
         // atma     (wait for one answer line)
         generalTimeout = (int) (frame.getInterval() * intervalMultiplicator + 50);
         if (generalTimeout < MINIMUM_TIMEOUT) generalTimeout = MINIMUM_TIMEOUT;
-        MainActivity.debug("ELM327: requestFreeFrame > TIMEOUT = "+ generalTimeout);
+        MainActivity.debug("ELM327: requestFreeFrame > TIMEOUT = " + generalTimeout);
 
-	// 10 ms plus repeat time timeout, do not wait until empty, do not count lines, add \r to command
+        // 10 ms plus repeat time timeout, do not wait until empty, do not count lines, add \r to command
         hexData = sendAndWaitForAnswer("atma", frame.getInterval() + 10);
 
         MainActivity.debug("ELM327: requestFreeFrame > hexData = [" + hexData + "]");
@@ -549,7 +531,7 @@ public class ELM327 extends Device {
         // if (!initCommandExpectOk("atar")) someThingWrong |= true;
 
         hexData = hexData.trim();
-        if(hexData.equals(""))
+        if (hexData.equals(""))
             return new Message(frame, "-E-data empty", true);
         else
             return new Message(frame, hexData, false);
@@ -558,7 +540,9 @@ public class ELM327 extends Device {
     @Override
     public Message requestIsoTpFrame(Frame frame) {
 
-        if (!deviceIsInitialized) {return new Message(frame, "-E-Re-initialisation needed", true); }
+        if (!deviceIsInitialized) {
+            return new Message(frame, "-E-Re-initialisation needed", true);
+        }
 
         String hexData;
         int len;
@@ -566,7 +550,7 @@ public class ELM327 extends Device {
         // PERFORMANCE ENHANCEMENT: only send ATAR if coming from a free frame
         if (lastCommandWasFreeFrame) {
             // atar     (clear filter set by free frame capture method)
-            if (!initCommandExpectOk("atar")){
+            if (!initCommandExpectOk("atar")) {
                 return new Message(frame, "-E-Problem sending atar command", true);
             }
             lastCommandWasFreeFrame = false;
@@ -582,11 +566,14 @@ public class ELM327 extends Device {
             String toIdHex = getToIdHex(frame.getId());
 
             // Set header
-            if (!initCommandExpectOk("atsh" + toIdHex)) return new Message(frame, "-E-Problem sending atsh command", true);
+            if (!initCommandExpectOk("atsh" + toIdHex))
+                return new Message(frame, "-E-Problem sending atsh command", true);
             // Set filter
-            if (!initCommandExpectOk("atcra" + Integer.toHexString(frame.getId()))) return new Message(frame, "-E-Problem sending atcra command", true);
+            if (!initCommandExpectOk("atcra" + Integer.toHexString(frame.getId())))
+                return new Message(frame, "-E-Problem sending atcra command", true);
             // Set flow control response ID
-            if (!initCommandExpectOk("atfcsh" + toIdHex)) return new Message(frame, "-E-Problem sending atfcsh command", true);
+            if (!initCommandExpectOk("atfcsh" + toIdHex))
+                return new Message(frame, "-E-Problem sending atfcsh command", true);
         }
 
         int outgoingLength = frame.getRequestId().length();
@@ -634,7 +621,8 @@ public class ELM327 extends Device {
                 if (startIndex > outgoingLength) startIndex = outgoingLength;
                 endIndex += 14;
                 if (endIndex > outgoingLength) endIndex = outgoingLength;
-                if (next == 15) next = 0; else next++;
+                if (next == 15) next = 0;
+                else next++;
             }
         }
 
@@ -681,7 +669,8 @@ public class ELM327 extends Device {
                         } else {
                             return new Message(frame, "-E-out of sequence ISO-TP frame", true);
                         }
-                        if (next == 15) next = 0; else next++;
+                        if (next == 15) next = 0;
+                        else next++;
                     }
                 }
                 break;
