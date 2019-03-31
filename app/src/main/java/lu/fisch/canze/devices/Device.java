@@ -266,8 +266,8 @@ public abstract class Device {
 
                     // test if we got something
                     if (!message.isError()) {
-                        //Fields.getInstance().onMessageCompleteEvent(message);
                         MainActivity.getInstance().appendDebugMessage("ok");
+                        // trigger the compete event of the message. It will update all fields linked to it's corresponding frame
                         message.onMessageCompleteEvent();
                         if (field.getInterval() == INTERVAL_ONCE) {
                             removeActivityField(field);
@@ -321,7 +321,7 @@ public abstract class Device {
                 // return it's index in the global registered field array
                 if (field.isDue(referenceTime)) {
                     //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
-                    MainActivity.debug("Device.getNextField: applicationFields");
+                    MainActivity.debug("Device.getNextField: applicationFields, " + field.getSID());
                     return field;
                 }
             }
@@ -339,15 +339,16 @@ public abstract class Device {
                 // return it's index in the global registered field array
                 if (field.isDue(referenceTime)) {
                     //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
-                    MainActivity.debug("Device.getNextField: activityFieldsScheduled");
+                    MainActivity.debug("Device.getNextField: activityFieldsScheduled, " + field.getSID());
                     return field;
                 }
             }
 
             if (activityFieldsAsFastAsPossible.size() > 0) {
                 activityFieldIndex = (activityFieldIndex + 1) % activityFieldsAsFastAsPossible.size();
-                MainActivity.debug("Device.getNextField: activityFieldsAsFastAsPossible");
-                return activityFieldsAsFastAsPossible.get(activityFieldIndex);
+                Field field = activityFieldsAsFastAsPossible.get(activityFieldIndex);
+                MainActivity.debug("Device.getNextField: activityFieldsAsFastAsPossible, " + field.getSID());
+                return field;
             }
 
             MainActivity.debug("Device.getNextField: empty:" + applicationFields.size() + " / " + activityFieldsScheduled.size() + " / " + activityFieldsAsFastAsPossible.size());
@@ -530,20 +531,26 @@ public abstract class Device {
      */
 
     public void addActivityField(final Field field, int interval) {
-        // JM changed behavior
-        // interval > 0 is interval
-        // interval == 0 is frame repeat interval (as given in the frame assets, especially relevant for freeframes)
-        // interval == -1 is ASAP (note: old behavior is ASAP for ANYTHING negative, but I am pretty sure only -1 was used)
-        // interval == -2 is add, but remove after one successful execution (in the poller thread). This is very useful for i.e. tester present messages
-        // Will change to constants later
+        /*
+        JM changed behavior
+        interval > 0 is interval
+        interval == INTERVAL_ASAP (0) is frame repeat interval (as given in the frame assets, especially relevant for freeframes)
+        interval == INTERVAL_ASAPFAST (-1) is ASAP (note: old behavior is ASAP for ANYTHING negative, but I am pretty sure only -1
+                was ever used). This should be used sparingly, if at all. The only reason I can think of is for a fast ISO-TP field
+                which has no known interval rate
+        interval == INTERVAL_ONCE) (-2) is add, but remove after one successful execution (in the poller thread). This is very
+                useful for i.e. tester present messages
+        */
 
-        if (interval == INTERVAL_ASAP) { // if INTERVAL_ASAP, get from the frame definition
+        if (interval > INTERVAL_ASAP) { // interval is a ms value. Continue
+            // Nothing
+        } else if (interval == INTERVAL_ASAP) { // if INTERVAL_ASAP, get from the frame definition
             interval = field.getFrame().getInterval();
         } else if (interval == INTERVAL_ASAPFAST) { // if INTERVAL_ASAP, add to the ASAP queue
             addActivityField(field);
             return;
-        } else if (interval == INTERVAL_ONCE) { // if INTERVAL_ONCE, continue (the INTERVAL_ONCE will be picked up by the poller)
-            // nothing
+        } else if (interval == INTERVAL_ONCE) { // if INTERVAL_ONCE. Continue
+            // Nothing. The INTERVAL_ONCE will be picked up by the poller
         } else { // abort
             return;
         }
@@ -577,7 +584,7 @@ public abstract class Device {
                     // the fields interval will be ignored as the one from the
                     // applicationFields has priority
                 } else {
-                    // the smallest intervall is the one to take
+                    // the smallest interval is the one to take
                     if (interval < field.getInterval())
                         field.setInterval(interval);
                 }
@@ -593,10 +600,12 @@ public abstract class Device {
         }
     }
 
-    public void removeActivityField (final Field field) {
+    public void removeActivityField(final Field field) {
         synchronized (fields) {
             // only remove from the custom fields
             if (activityFieldsScheduled.remove(field)) {
+                //field.setInterval(Integer.MAX_VALUE);
+                //return; /*
                 // remove it from the database if it is not on the other list
                 if (!containsApplicationField(field) && !containsActivityFieldAsFastAsPossible(field)) {
                     fields.remove(field);

@@ -31,8 +31,6 @@ import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
-// If you want to monitor changes, you must add a FieldListener to the fields.
-// For the simple activity, the easiest way is to implement it in the activity itself.
 public class ChargingTechActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     public static final String SID_MaxCharge = "7bb.6101.336";
@@ -102,7 +100,8 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        if (MainActivity.device != null) MainActivity.device.injectRequest(SID_TesterInit);
+        //if (MainActivity.device != null) MainActivity.device.injectRequest(SID_TesterInit);
+        addField(SID_TesterInit, lu.fisch.canze.devices.Device.INTERVAL_ONCE);
         addField(SID_MaxCharge, 5000);
         addField(SID_ACPilot, 5000);
         addField(SID_TimeToFull, 5000);
