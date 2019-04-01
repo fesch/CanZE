@@ -66,6 +66,7 @@ public class Fields {
     private static Fields instance = null;
     private double runningUsage = 0;
     private double realRangeReference = Double.NaN;
+    private double realRangeReference2 = Double.NaN;
     private static long start = Calendar.getInstance().getTimeInMillis();
 
     //private int car = CAR_ANY;
@@ -307,8 +308,8 @@ public class Fields {
 
         // get last value for realRange from internal database
         //MainActivity.debug("realRange 1: "+realRangeReference);
-        if(Double.isNaN(realRangeReference)) {
-            realRangeReference = CanzeDataSource.getInstance().getLast(SID_RangeEstimate);
+        if(Double.isNaN(realRangeReference2)) {
+            realRangeReference2 = CanzeDataSource.getInstance().getLast(SID_RangeEstimate);
             //MainActivity.debug("realRange >> getLast");
         }
         //MainActivity.debug("realRange 2: "+realRangeReference);
@@ -327,17 +328,17 @@ public class Fields {
                 if (    // timeout of 15 minutes
                         (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 15*60*1000)
                                 ||
-                                Double.isNaN(realRangeReference)
+                                Double.isNaN(realRangeReference2)
                 )
                 {
                     if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
-                        realRangeReference = odo + gom;
+                        realRangeReference2 = odo + gom;
                     }
                 }
-                if (Double.isNaN(realRangeReference)) {
+                if (Double.isNaN(realRangeReference2)) {
                     return Double.NaN;
                 }
-                return realRangeReference - odo - gom;
+                return realRangeReference2 - odo - gom;
             }
         });
     }
