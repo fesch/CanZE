@@ -238,6 +238,7 @@ public class Fields {
 
                     if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
                         realRangeReference = odo + gom;
+                        realRangeReference2 = odo + gom;
                     }
                 }
 
@@ -338,7 +339,8 @@ public class Fields {
                 if (Double.isNaN(realRangeReference2)) {
                     return Double.NaN;
                 }
-                return realRangeReference2 - odo - gom;
+                double delta = realRangeReference2 - odo - gom;
+                return delta;
             }
         });
     }
