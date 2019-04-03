@@ -24,6 +24,8 @@
     <string name="menu_Technical">Technique</string>
     <string name="menu_Experimental">Expérimental</string>
     <string name="help_Experimental">Ces boutons sont à des fins de test uniquement</string>
+    <string name="title_activity_alldata">Toutes les données</string>
+    <string name="button_alldata">Toutes les données</string>
     <string name="title_activity_auxbatt">Batterie 12 V</string>
     <string name="button_auxbatt">Batterie 12 V</string>
     <string name="label_auxbat">Tension, État du véhicule, État de la charge</string>
@@ -67,7 +69,7 @@
     <string name="help_QA"><![CDATA[Des informations détaillées sur ces données peuvent être obtenues dans <a href=\'http://canze.fisch.lu/qa/\'>la section Q & A</a> du site <a href=\'http://canze.fisch.lu/\'>CanZE </a>.]]></string>
     <string name="graph_CellVoltages">Tension des cellules (V)</string>
     <string name="graph_ModuleTemperatures">Température des modules (°C)</string>
-    <string name="header_GridParameters">Paramètres clés du chargeur</string>
+    <string name="header_GridParameters">Paramètres du réseau</string>
     <string name="label_MainsCurrentType">Type de réseau</string>
     <string-array name="list_MainsCurrentType">
         <item>Erreur</item>
@@ -349,6 +351,8 @@
     <string name="label_kWh100km">kWh/100km</string>
     <string name="graph_PowerSoc">Puissance (kW), État de charge (%)</string>
     <string name="graph_SpeedConsumption">Vitesse (km/h), Consommation (kWh/100km)</string>
+    <string name="title_activity_dash">Dash</string>
+    <string name="button_Dash">Dash</string>
     <string name="title_activity_driving">Informations de conduite</string>
     <string name="button_Driving">Conduite</string>
     <string name="label_pedal">Position pédale</string>
@@ -363,8 +367,8 @@
     <string name="prompt_SetDistance">Entrez la distance jusqu’à votre destination. L’application va estimer l’autonomie disponible à l’arrivée.</string>
     <string name="title_activity_dtc">Diagnostic des codes d’erreur</string>
     <string name="button_DtcReadout">Lecture DTCs</string>
-    <string name="button_QueryDTCs">Interrogation DTCs</string>
-    <string name="button_ClearDTCs">Effacement DTCs</string>
+    <string name="button_QueryDTCs">Interrogation</string>
+    <string name="button_ClearDTCs">Effacement</string>
     <string name="button_AllData">Toutes les données</string>
     <string name="help_DTC">Pour permettre l’effacement des DTC:\n\nInsérez la carte dans la fente\n\nPositionnez le sélecteur de vitesse sur D\n\nMaintenez enfoncé le bouton Start pendant environ 5 secondes jusqu’à l’apparition du message “Retirez la carte” \n\nPositionnez le levier de vitesse sur P</string>
     <string name="message_PollerStopping">\n\nVeuillez patienter pendant l’arrêt de la tâche principale…\n</string>
@@ -382,7 +386,6 @@
     <string name="message_NoClearDtcField">Le champ d’effacement des DTCs n’existe pas\n</string>
     <string name="message_MessageNull">Le message est nul. La voiture est-elle en marche ?\n</string>
     <string name="message_ClearSuccessful">L’effacement semble avoir réussi, interrogez les DTCs\n</string>
-    <string name="title_activity_elm_dump">Vidage ELM</string>
     <string name="title_activity_elm_test">Test du Dongle ELM327</string>
     <string name="button_ElmTesting">Test ELM</string>
     <string name="message_ExpectedResult">Résultats attendus reçus\n==========\n</string>
@@ -414,8 +417,6 @@
     <string name="label_ChargerWaterPumpSpeed">Vitesse pompe à eau chargeur</string>
     <string name="label_HeatingWaterPumpSpeed">Vitesse pompe à eau chauffage</string>
     <string name="label_BatteryCoolingFansSpeed">Vitesse ventilateur batterie</string>
-    <string name="title_activity_dash">Leaf Spy clone</string>
-    <string name="button_Dash">LeafSpy (Bob)</string>
     <string name="title_activity_leakCurrents">Courant de fuite harmoniques</string>
     <string name="button_LeakCurrents">Harmoniques</string>
     <string name="label_LeakCurrentDc">Courant de fuite DC (mA)</string>
