@@ -1,3 +1,4 @@
+2019-04-03 [Cedric] Updated fr language
 2019-03-31 [Jeroen] Avoid crashes on unexpected strings from ELM
 2019-03-31 [Jeroen] Avoid SQLException crash
 2019-03-31 [Jeroen] Removed logic to have the device do frame filtering
