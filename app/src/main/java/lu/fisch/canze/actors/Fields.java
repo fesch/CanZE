@@ -341,7 +341,7 @@ public class Fields {
                 }
                 double delta = realRangeReference2 - odo - gom;
                 if (delta > 500.0 || delta < -500.0) {
-                    realRangeReference = odo + gom;
+                    realRangeReference2 = odo + gom;
                     delta = 0.0;
                 }
                 return delta;
