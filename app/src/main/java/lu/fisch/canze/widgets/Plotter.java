@@ -250,21 +250,26 @@ public class Plotter extends Drawable {
             g.setColor(Color.RED);
             for(int i=0; i<values.size(); i++)
             {
-                //MainActivity.debug("Value "+i+": "+values.get(i));
-                //MainActivity.debug("Value "+i+": "+values.get(i)+" Max: "+getMax()+" Min: "+getMin()+" height: "+getHeight()+" h: "+h);
-                double mx = w/2+i*w;
-                double my = getHeight()-(values.get(i)-getMin())*h;
-                int rayon = 2;
-                g.fillOval(getX()+getWidth()-barWidth+(int)mx-rayon,getY()+(int)my-rayon,2*rayon+1,2*rayon+1);
-                if(i>0)
-                {
-                    g.drawLine(getX()+getWidth()-barWidth+(int)lastX,
-                            getY()+(int)lastY,
-                            getX()+getWidth()-barWidth+(int)mx,
-                            getY()+(int)my);
+                try {
+                    //MainActivity.debug("Value "+i+": "+values.get(i));
+                    //MainActivity.debug("Value "+i+": "+values.get(i)+" Max: "+getMax()+" Min: "+getMin()+" height: "+getHeight()+" h: "+h);
+                    double mx = w / 2 + i * w;
+                    double my = getHeight() - (values.get(i) - getMin()) * h;
+                    int rayon = 2;
+                    g.fillOval(getX() + getWidth() - barWidth + (int) mx - rayon, getY() + (int) my - rayon, 2 * rayon + 1, 2 * rayon + 1);
+                    if (i > 0) {
+                        g.drawLine(getX() + getWidth() - barWidth + (int) lastX,
+                                getY() + (int) lastY,
+                                getX() + getWidth() - barWidth + (int) mx,
+                                getY() + (int) my);
+                    }
+                    lastX = mx;
+                    lastY = my;
+                } catch (IndexOutOfBoundsException e) {
+                    /* simply ignore */
+                } catch (NullPointerException e) {
+                    /* simply ignore */
                 }
-                lastX=mx;
-                lastY=my;
             }
         }
 

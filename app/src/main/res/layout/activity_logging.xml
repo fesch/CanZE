@@ -12,7 +12,6 @@
     tools:context="lu.fisch.canze.activities.LoggingActivity">
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Field" />
@@ -26,7 +25,6 @@
 
 
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Interval" />
@@ -44,7 +42,6 @@
         android:text="Add"/>
 
     <TextView
-        android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

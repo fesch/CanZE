@@ -24,18 +24,18 @@ package lu.fisch.canze.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import lu.fisch.canze.R;
-import lu.fisch.canze.activities.BcbActivity;
-import lu.fisch.canze.activities.ElmDumpActivity;
 import lu.fisch.canze.activities.FluenceKangooTempsActivity;
-import lu.fisch.canze.activities.LeafSpyActivity;
+import lu.fisch.canze.activities.DashActivity;
 import lu.fisch.canze.activities.MainActivity;
 
 /**
@@ -51,25 +51,24 @@ public class ExperimentalFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_experimental, container, false);
+        View view = inflater.inflate(R.layout.fragment_experimental, container, false);
 
-        activateButton(view, R.id.buttonElmDump,                ElmDumpActivity.class);
-        activateButton(view, R.id.buttonLeafSpy,                LeafSpyActivity.class);
-
-        activateButton(view, R.id.buttonBcb,                    BcbActivity.class);
-        activateButton(view, R.id.buttonFluenceKangooTemps,     FluenceKangooTempsActivity.class);
-
+        activateButton(view, R.id.buttonDash, DashActivity.class);
+        activateButton(view, R.id.buttonFluenceKangooTemps, FluenceKangooTempsActivity.class);
 
         return view;
     }
 
-    private void activateButton (View view, int buttonId, final Class<?> activityClass) {
+    private void activateButton(View view, int buttonId, final Class<?> activityClass) {
         Button button = view.findViewById(buttonId);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                if (!MainActivity.isSafe()) return;
+                if (MainActivity.device == null) {
+                    MainActivity.toast("You first need to adjust the settings ...");
+                    return;
+                }
                 MainActivity.getInstance().leaveBluetoothOn = true;
                 Intent intent = new Intent(MainActivity.getInstance(), activityClass);
                 ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
@@ -79,6 +78,6 @@ public class ExperimentalFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        MainActivity.getInstance().onActivityResult(requestCode,resultCode,data);
+        MainActivity.getInstance().onActivityResult(requestCode, resultCode, data);
     }
 }

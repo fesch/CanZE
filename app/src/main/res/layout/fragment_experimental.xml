@@ -20,7 +20,6 @@
         android:layout_weight="0.8">
 
         <ScrollView
-            android:id="@+id/scroller_main"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:fadeScrollbars="false"
@@ -38,7 +37,7 @@
                     android:layout_height="match_parent">
 
                     <Button
-                        android:id="@+id/buttonElmDump"
+                        android:id="@+id/buttonDash"
                         style="?android:attr/button"
                         android:layout_width="0dp"
                         android:layout_height="fill_parent"
@@ -48,39 +47,10 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:text="ELM Dump" />
-
-                    <Button
-                        android:id="@+id/buttonLeafSpy"
-                        style="?android:attr/button"
-                        android:layout_width="0dp"
-                        android:layout_height="fill_parent"
-                        android:layout_column="1"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_weight="1"
-                        android:text="@string/button_LeafspyBob" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:id="@+id/buttonBcb"
-                        style="?android:attr/button"
-                        android:layout_width="0dp"
-                        android:layout_height="fill_parent"
-                        android:layout_column="0"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_weight="1"
-                        android:text="@string/button_Bcb" />
+                        android:drawableLeft="@mipmap/button_dash"
+                        android:drawableStart="@mipmap/button_dash"
+                        android:text="@string/button_Dash"
+                        />
 
                     <Button
                         android:id="@+id/buttonFluenceKangooTemps"
@@ -93,42 +63,10 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:text="@string/button_FluenceKangooTemps" />
+                        android:text="@string/button_FluenceKangooTemps"
+                        />
 
                 </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:id="@+id/buttonTestBob"
-                        style="?android:attr/button"
-                        android:layout_width="0dp"
-                        android:layout_height="fill_parent"
-                        android:layout_column="0"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_weight="1"
-                        android:text="Tests Bob" />
-
-                    <Button
-                        android:id="@+id/buttonDummy1"
-                        style="?android:attr/button"
-                        android:layout_width="0dp"
-                        android:layout_height="fill_parent"
-                        android:layout_column="1"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_weight="1"
-                        android:text="" />
-
-                </TableRow>
-
 
             </TableLayout>
 
@@ -150,7 +88,6 @@
             android:background="#ffd124">
 
             <TextView
-                android:id="@+id/textView"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginBottom="0dp"
@@ -165,6 +102,5 @@
         </LinearLayout>
 
     </RelativeLayout>
-
 
 </LinearLayout>

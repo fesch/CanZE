@@ -66,6 +66,7 @@ public class Fields {
     private static Fields instance = null;
     private double runningUsage = 0;
     private double realRangeReference = Double.NaN;
+    private double realRangeReference2 = Double.NaN;
     private static long start = Calendar.getInstance().getTimeInMillis();
 
     //private int car = CAR_ANY;
@@ -237,6 +238,7 @@ public class Fields {
 
                     if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
                         realRangeReference = odo + gom;
+                        realRangeReference2 = odo + gom;
                     }
                 }
 
@@ -307,8 +309,8 @@ public class Fields {
 
         // get last value for realRange from internal database
         //MainActivity.debug("realRange 1: "+realRangeReference);
-        if(Double.isNaN(realRangeReference)) {
-            realRangeReference = CanzeDataSource.getInstance().getLast(SID_RangeEstimate);
+        if(Double.isNaN(realRangeReference2)) {
+            realRangeReference2 = CanzeDataSource.getInstance().getLast(SID_RangeEstimate);
             //MainActivity.debug("realRange >> getLast");
         }
         //MainActivity.debug("realRange 2: "+realRangeReference);
@@ -327,17 +329,22 @@ public class Fields {
                 if (    // timeout of 15 minutes
                         (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 15*60*1000)
                                 ||
-                                Double.isNaN(realRangeReference)
+                                Double.isNaN(realRangeReference2)
                 )
                 {
                     if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
-                        realRangeReference = odo + gom;
+                        realRangeReference2 = odo + gom;
                     }
                 }
-                if (Double.isNaN(realRangeReference)) {
+                if (Double.isNaN(realRangeReference2)) {
                     return Double.NaN;
                 }
-                return realRangeReference - odo - gom;
+                double delta = realRangeReference2 - odo - gom;
+                if (delta > 500.0 || delta < -500.0) {
+                    realRangeReference = odo + gom;
+                    delta = 0.0;
+                }
+                return delta;
             }
         });
     }
@@ -356,9 +363,17 @@ public class Fields {
         }
         if (allOk) {
             VirtualField virtualField = new VirtualField(virtualId, dependantFields, unit, virtualFieldAction);
+            // a virtualfield is always ISO-TP, so we need to create a subframe for it
+            Frame frame = Frames.getInstance().getById(0x800);
+            Frame subFrame = Frames.getInstance().getById(0x800, virtualField.getResponseId());
+            if (subFrame == null) {
+                subFrame = new Frame(frame.getId(),frame.getInterval(),frame.getSendingEcu(),virtualField.getResponseId(),frame);
+                Frames.getInstance().add (subFrame);
+            }
+            subFrame.addField(virtualField);
+            virtualField.setFrame(subFrame);
             // add it to the list of fields
             add(virtualField);
-
         }
     }
 
@@ -457,6 +472,9 @@ public class Fields {
             addVirtualFields();
         } else {
             fillFromAsset(assetName);
+            if (assetName.startsWith("VFC")) {
+                addVirtualFields();
+            }
         }
         MainActivity.getInstance().registerApplicationFields(); // this registers i.e. speed for save driving mode
     }

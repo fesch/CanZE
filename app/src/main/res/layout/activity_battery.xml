@@ -98,7 +98,6 @@
             android:layout_weight="1">
 
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/voltages"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -113,7 +112,6 @@
                 />
 
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/temperatures"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"

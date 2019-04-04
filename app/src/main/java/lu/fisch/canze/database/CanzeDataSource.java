@@ -36,57 +36,49 @@ import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.classes.TimePoint;
 import lu.fisch.canze.interfaces.FieldListener;
 
-public class CanzeDataSource implements FieldListener
-{
-    //private static long LIMIT = 24*60*60*1000;  // 24 h
-    private static long LIMIT = 60*60*1000;  // 1 h
+public class CanzeDataSource implements FieldListener {
+
+    private static long LIMIT = 60 * 60 * 1000;  // 1 h
 
     /*
      * Singleton stuff
      */
     private static CanzeDataSource instance = null;
 
-    public static CanzeDataSource getInstance()
-    {
-        if(instance==null) throw new Error("Must call at least once with given context!");
+    public static CanzeDataSource getInstance() {
+        if (instance == null) throw new Error("Must call at least once with given context!");
         return instance;
     }
 
-    public static CanzeDataSource getInstance(Context context)
-    {
-        if(instance==null) instance = new CanzeDataSource(context);
+    public static CanzeDataSource getInstance(Context context) {
+        if (instance == null) instance = new CanzeDataSource(context);
         return instance;
     }
 
-    private CanzeDataSource(Context context)
-    {
-      dbHelper = new CanzeOpenHelper(context);
+    private CanzeDataSource(Context context) {
+        dbHelper = new CanzeOpenHelper(context);
     }
 
     // Database fields
     private SQLiteDatabase database;
     private CanzeOpenHelper dbHelper;
 
-    public void open() throws SQLException
-    {
-      database = dbHelper.getWritableDatabase();
+    public void open() throws SQLException {
+        database = dbHelper.getWritableDatabase();
     }
 
-    public void close()
-    {
-      dbHelper.close();
+    public void close() {
+        dbHelper.close();
     }
 
-    public void reinit()
-    {
-      dbHelper.reinit(database);
+    public void reinit() {
+        dbHelper.reinit(database);
     }
 
-    private HashMap<String,TimePoint> lasts = new HashMap<>();
+    private HashMap<String, TimePoint> lasts = new HashMap<>();
 
-    public void insert(Field field)
-    {
-        if(!Double.isNaN(field.getValue())) {
+    public void insert(Field field) {
+        if (!Double.isNaN(field.getValue())) {
             //MainActivity.debug("CanzeDataSource: inserting "+field.getValue()+" for "+field.getSID());
             ContentValues values = new ContentValues();
             values.put("sid", field.getSID());
@@ -102,130 +94,157 @@ public class CanzeDataSource implements FieldListener
             // if this is really a new point, insert it
             //if(getLastTime(field.getSID())!=iTime)
             TimePoint lastTP = lasts.get(field.getSID());
-            if(lastTP==null || lastTP.date!=iTime)
-                database.insert("data", null, values);
-            // but if not, insert the max ... so check if the inserted value is lower than the new one
-            //else if(getLast(field.getSID())<field.getValue())
-            else if(lastTP.value<field.getValue())
-            {
-                // delete the value from the DB
-                delete(field.getSID(),iTime);
-                // insert a new value into the DB
-                database.insert("data", null, values);
+            try {
+                if (lastTP == null || lastTP.date != iTime)
+                    database.insert("data", null, values);
+                    // but if not, insert the max ... so check if the inserted value is lower than the new one
+                    //else if(getLast(field.getSID())<field.getValue())
+                else if (lastTP.value < field.getValue()) {
+                    // delete the value from the DB
+                    delete(field.getSID(), iTime);
+                    // insert a new value into the DB
+                    database.insert("data", null, values);
+                }
+            } catch (Exception e) {
+                // do nothing
             }
-
-            lasts.put(field.getSID(),new TimePoint(iTime,field.getValue()));
+            lasts.put(field.getSID(), new TimePoint(iTime, field.getValue()));
         }
     }
 
-    public void cleanUp()
-    {
-        long limit = Calendar.getInstance().getTimeInMillis()-LIMIT;
-        database.rawQuery("DELETE FROM data WHERE moment<" + limit, null);
+    public void cleanUp() {
+        try {
+            long limit = Calendar.getInstance().getTimeInMillis() - LIMIT;
+
+            database.rawQuery("DELETE FROM data WHERE moment<" + limit, null);
+        } catch (Exception e) {
+            // do nothing
+        }
     }
 
-    public void clear()
-    {
-        dbHelper.reinit(database);
-        //database.rawQuery("DELETE FROM data",null);
+    public void clear() {
+        try {
+            dbHelper.reinit(database);
+            //database.rawQuery("DELETE FROM data",null);
+        } catch (Exception e) {
+            // do nothing
+        }
     }
 
-    public void delete(String sid, long moment)
-    {
-        database.rawQuery("DELETE FROM data WHERE sid='"+sid+"' AND moment='"+moment+"'", null);
+    public void delete(String sid, long moment) {
+        try {
+            database.rawQuery("DELETE FROM data WHERE sid='" + sid + "' AND moment='" + moment + "'", null);
+        } catch (Exception e) {
+            // do nothing
+        }
     }
 
-    public double getLast(String sid)
-    {
+    public double getLast(String sid) {
         double data = Double.NaN;
 
-        Cursor c = database.rawQuery("SELECT * FROM data WHERE sid='"+sid+"' ORDER BY moment DESC LIMIT 1", null);
-        //MainActivity.debug("CanzeDataSource: getting last for "+sid);
-        c.moveToFirst();
-        if (!c.isAfterLast()) {
-            data = c.getDouble(c.getColumnIndex("value"));
-            //MainActivity.debug("CanzeDataSource: got value "+data);
+        try {
+            Cursor c = database.rawQuery("SELECT * FROM data WHERE sid='" + sid + "' ORDER BY moment DESC LIMIT 1", null);
+            //MainActivity.debug("CanzeDataSource: getting last for "+sid);
+            c.moveToFirst();
+            if (!c.isAfterLast()) {
+                data = c.getDouble(c.getColumnIndex("value"));
+                //MainActivity.debug("CanzeDataSource: got value "+data);
+            }
+            // make sure to close the cursor
+            c.close();
+        } catch (Exception e) {
+            // do nothing
         }
-        // make sure to close the cursor
-        c.close();
 
         return data;
     }
 
-    public long getLastTime(String sid)
-    {
+    public long getLastTime(String sid) {
         long data = -1;
 
-        Cursor c = database.rawQuery("SELECT * FROM data WHERE sid='"+sid+"' ORDER BY moment DESC LIMIT 1", null);
-        //MainActivity.debug("CanzeDataSource: getting last for "+sid);
-        c.moveToFirst();
-        if (!c.isAfterLast()) {
-            data = c.getLong(c.getColumnIndex("moment"));
-            //MainActivity.debug("CanzeDataSource: got value "+data);
+        try {
+            Cursor c = database.rawQuery("SELECT * FROM data WHERE sid='" + sid + "' ORDER BY moment DESC LIMIT 1", null);
+            //MainActivity.debug("CanzeDataSource: getting last for "+sid);
+            c.moveToFirst();
+            if (!c.isAfterLast()) {
+                data = c.getLong(c.getColumnIndex("moment"));
+                //MainActivity.debug("CanzeDataSource: got value "+data);
+            }
+            // make sure to close the cursor
+            c.close();
+        } catch (Exception e) {
+            // do nothing
         }
-        // make sure to close the cursor
-        c.close();
 
         return data;
     }
 
-    public double getMax(String sid)
-    {
+    public double getMax(String sid) {
         double data = Double.NaN;
 
-        Cursor c = database.rawQuery("SELECT MAX(value) FROM data WHERE sid='"+sid+"' ORDER BY moment DESC LIMIT 1", null);
-        //MainActivity.debug("CanzeDataSource: getting last for "+sid);
-        c.moveToFirst();
-        if (!c.isAfterLast()) {
-            data = c.getDouble(0);
-            //MainActivity.debug("CanzeDataSource: got value "+data);
+        try {
+            Cursor c = database.rawQuery("SELECT MAX(value) FROM data WHERE sid='" + sid + "' ORDER BY moment DESC LIMIT 1", null);
+            //MainActivity.debug("CanzeDataSource: getting last for "+sid);
+            c.moveToFirst();
+            if (!c.isAfterLast()) {
+                data = c.getDouble(0);
+                //MainActivity.debug("CanzeDataSource: got value "+data);
+            }
+            // make sure to close the cursor
+            c.close();
+        } catch (Exception e) {
+            // do nothing
         }
-        // make sure to close the cursor
-        c.close();
 
         return data;
     }
 
-    public double getMin(String sid)
-    {
+    public double getMin(String sid) {
         double data = Double.NaN;
 
-        Cursor c = database.rawQuery("SELECT MIN(value) FROM data WHERE sid='"+sid+"' ORDER BY moment DESC LIMIT 1", null);
-        //MainActivity.debug("CanzeDataSource: getting last for "+sid);
-        c.moveToFirst();
-        if (!c.isAfterLast()) {
-            data = c.getDouble(0);
-            //MainActivity.debug("CanzeDataSource: got value "+data);
+        try {
+            Cursor c = database.rawQuery("SELECT MIN(value) FROM data WHERE sid='" + sid + "' ORDER BY moment DESC LIMIT 1", null);
+            //MainActivity.debug("CanzeDataSource: getting last for "+sid);
+            c.moveToFirst();
+            if (!c.isAfterLast()) {
+                data = c.getDouble(0);
+                //MainActivity.debug("CanzeDataSource: got value "+data);
+            }
+            // make sure to close the cursor
+            c.close();
+        } catch (Exception e) {
+            // do nothing
         }
-        // make sure to close the cursor
-        c.close();
+
 
         return data;
     }
 
-    public ArrayList<TimePoint> getData(String sid)
-    {
+    public ArrayList<TimePoint> getData(String sid) {
         ArrayList<TimePoint> data = new ArrayList<>();
 
-        Cursor c = database.rawQuery("SELECT * FROM data WHERE sid='"+sid+"' ORDER BY moment ASC", null);
-        c.moveToFirst();
-        while (!c.isAfterLast())
-        {
-            TimePoint b = new TimePoint(
-                    c.getLong(c.getColumnIndex("moment")),
-                    c.getDouble(c.getColumnIndex("value"))
-            );
-            data.add(b);
-            c.moveToNext();
+        try {
+            Cursor c = database.rawQuery("SELECT * FROM data WHERE sid='" + sid + "' ORDER BY moment ASC", null);
+            c.moveToFirst();
+            while (!c.isAfterLast()) {
+                TimePoint b = new TimePoint(
+                        c.getLong(c.getColumnIndex("moment")),
+                        c.getDouble(c.getColumnIndex("value"))
+                );
+                data.add(b);
+                c.moveToNext();
+            }
+            // make sure to close the cursor
+            c.close();
+        } catch (Exception e) {
+            // do nothing
         }
-        // make sure to close the cursor
-        c.close();
 
         return data;
     }
 
     /*
-     * Singleton stuff
+     * FieldListener implementation
      */
     @Override
     public void onFieldUpdateEvent(Field field) {

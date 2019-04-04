@@ -26,11 +26,14 @@
 ,534,32,40,1,40,0,°C,,,e5,Temp out
 ,5d7,0,15,0.01,0,2,km/h,,,ff,Speed
 ,5da,0,7,1,40,0,ºC,,,e7,Water temperature
+,62d,0,9,0.1,0,0,kWh/100km,,,ff,Worst Average Consumption
+,62d,10,19,0.1,0,0,kWh/100km,,,ff,Best Average Consumption
 ,638,37,39,1,0,0,,,,ff,Battery 14v To Be Changed Display
 ,654,2,2,1,0,0,,,,ff,Charging Plug Connected
 ,654,25,31,1,0,0,,,,ff,State of Charge
 ,654,32,41,1,0,0,min,,,ff,Time to Full
 ,654,42,51,1,0,0,km,,,ff,Available Distance
+,654,52,61,0.1,0,1,kWh/100km,,,ff,Average Consumption
 ,656,48,55,1,40,0,°C,,,e2,External Temp
 ,658,33,39,1,0,0,%,,,ff,Battery Health
 ,65b,41,43,1,0,0,,,,ff,Charging Status Display
@@ -164,7 +167,7 @@
 ,7bb,248,255,1,40,0,°C,2104,6104,e2,Cell 10 Temperature
 ,7bb,272,279,1,40,0,°C,2104,6104,e2,Cell 11 Temperature
 ,7bb,296,303,1,40,0,°C,2104,6104,e2,Cell 12 Temperature
-,7bb,600,607,1,40,0,degC,2104,6104,ff,21_04_#76_Average_Battery_Temperature
+,7bb,600,607,1,40,0,degC,2104,6104,ff,Average Battery Temperature
 ,7bb,16,23,1,0,0,,2107,6107,e2,Cell 1 Balancing switch
 ,7bb,24,31,1,0,0,,2107,6107,e2,Cell 2 Balancing switch
 ,7bb,32,39,1,0,0,,2107,6107,e2,Cell 3 Balancing switch
