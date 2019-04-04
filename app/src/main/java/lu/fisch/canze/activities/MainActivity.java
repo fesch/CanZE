@@ -40,7 +40,6 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 
-import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -140,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static Device device = null;
 
     private static MainActivity instance = null;
+    //private static Context context = null;
 
     public static boolean safeDrivingMode = true;
     public static boolean bluetoothBackgroundMode = false;
@@ -214,45 +214,53 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     /* TODO we should move to simply always provide the level in the toast() call instead of all those if's in the code */
     public static void toast(int level, final String message) {
         if (level > toastLevel) return;
-        if (instance != null)
+        if (instance != null && !instance.isFinishing()) { // && MainActivity.context != null) {
             instance.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    //Toast.makeText(MainActivity.context, message, Toast.LENGTH_SHORT).show();
                     Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
                 }
             });
+        }
     }
 
     public static void toast(final String message) {
-        if (instance != null)
+        if (instance != null && !instance.isFinishing()) { // && MainActivity.context != null) {
             instance.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    //Toast.makeText(MainActivity.context, message, Toast.LENGTH_SHORT).show();
                     Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
                 }
             });
+        }
     }
 
     public static void toast(String format, Object... arguments) {
-        final String finalMessage = String.format(Locale.getDefault(), format, arguments);
-        if (instance != null)
+        if (instance != null && !instance.isFinishing()) { // && MainActivity.context != null) {
+            final String finalMessage = String.format(Locale.getDefault(), format, arguments);
             instance.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    //Toast.makeText(MainActivity.context, finalMessage, Toast.LENGTH_SHORT).show();
                     Toast.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
                 }
             });
+        }
     }
 
     public static void toast(final int resource) {
-        if (instance != null)
+        if (instance != null && !instance.isFinishing()) { // && MainActivity.context != null) {
             instance.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     final String finalMessage = getStringSingle(resource);
+                    //Toast.makeText(MainActivity.context, finalMessage, Toast.LENGTH_SHORT).show();
                     Toast.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
                 }
             });
+        }
     }
 
     public void loadSettings() {
@@ -401,6 +409,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         debug("MainActivity: onCreate");
 
         instance = this;
+        //MainActivity.context = getApplicationContext();
 
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
