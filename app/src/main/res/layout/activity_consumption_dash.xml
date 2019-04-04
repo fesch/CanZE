@@ -82,7 +82,6 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/text_wheel_torque_label"
                 android:layout_width="0dp"
                 android:layout_height="25dp"
                 android:text="@string/label_WheelTorque"
@@ -117,7 +116,6 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/instantConsumption"
             android:layout_width="wrap_content"
             android:layout_height="0px"
             android:layout_gravity="start"
@@ -161,7 +159,6 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/text_instant_consumption_negative_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/label_InstantConsumption"
@@ -212,7 +209,6 @@
             android:layout_weight="1">
 
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/soh"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -247,14 +243,12 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow3"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal"
             android:layout_weight="1">
 
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/speed"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"

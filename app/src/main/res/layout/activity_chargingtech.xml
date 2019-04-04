@@ -22,7 +22,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/HeaderCharging"
                 android:text="@string/header_Charging"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -34,7 +33,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelChaStatus"
                         android:text="@string/label_ChaStatus"
                         android:layout_weight="2"
                         />
@@ -48,7 +46,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelPlug"
                         android:text="@string/label_Plug"
                         android:layout_weight="2"
                         />
@@ -62,7 +59,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelMaxPilot"
                         android:text="@string/label_max_pilot"
                         android:layout_weight="2"
                         />
@@ -76,7 +72,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelPhases"
                         android:text="@string/label_Phases"
                         android:layout_weight="2"
                         />
@@ -90,7 +85,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelAvChPwr"
                         android:text="@string/label_AvChPwr"
                         android:layout_weight="2"
                         />
@@ -104,7 +98,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelTTF"
                         android:text="@string/label_TTF"
                         android:layout_weight="2"
                         />
@@ -119,7 +112,6 @@
             </TableLayout>
 
             <TextView
-                android:id="@+id/HeaderDC"
                 android:text="@string/header_Battery"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
@@ -171,7 +163,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelMaxCharge"
                         android:text="@string/label_max_charge"
                         android:layout_weight="2"
                         />
@@ -185,7 +176,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelAvEner"
                         android:text="@string/label_AvEner"
                         android:layout_weight="2"
                         />
@@ -200,7 +190,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelETF"
                         android:text="@string/label_ETF"
                         android:layout_weight="2"
                         />
@@ -214,7 +203,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelDcPwr"
                         android:text="@string/label_DcPwr"
                         android:layout_weight="2"
                         />
@@ -228,7 +216,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelAmps"
                         android:text="@string/label_Amps"
                         android:layout_weight="2"
                         />
@@ -242,7 +229,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelVolt"
                         android:text="@string/label_Volt"
                         android:layout_weight="2"
                         />
@@ -256,7 +242,6 @@
 
                 <TableRow>
                     <TextView
-                        android:id="@+id/LabelSOH"
                         android:text="@string/label_SOH"
                         android:layout_weight="2"
                         />
@@ -336,7 +321,6 @@
             </TableLayout>
 
             <TextView
-                android:id="@+id/HeaderDrivingCh"
                 android:text="@string/header_DrivingCh"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
@@ -365,7 +349,6 @@
 
 
             <TextView
-                android:id="@+id/LabelCompTemp"
                 android:text="@string/header_CompTemp"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
@@ -620,6 +603,192 @@
                 </TableRow>
 
             </TableLayout>
+
+            <TextView
+                android:text="@string/header_GridParameters"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000" />
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_MainsCurrentType"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textMainsCurrentType"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_phaseCurrent"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textPhase1CurrentRMS"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:text="@string/default_Slash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textPhase2CurrentRMS"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:text="@string/default_Slash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textPhase3CurrentRMS"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_PhaseVoltage"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textPhaseVoltage1"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:text="@string/default_Slash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textPhaseVoltage2"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:text="@string/default_Slash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textPhaseVoltage3"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_InterPhaseVoltage"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textInterPhaseVoltage12"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:text="@string/default_Slash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textInterPhaseVoltage23"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:text="@string/default_Slash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:id="@+id/textInterPhaseVoltage31"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_MainsActivePowerConsumed"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textMainsActivePower"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_GroundResistanceOhm"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textGroundResistance"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_SupervisorState"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textSupervisorState"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/label_CompletionStatus"
+                        android:layout_weight="2"
+                        />
+                    <TextView
+                        android:id="@+id/textCompletionStatus"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        />
+                </TableRow>
+
+            </TableLayout>
+
+
+
 
         </LinearLayout>
 

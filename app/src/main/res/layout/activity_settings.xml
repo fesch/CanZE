@@ -9,11 +9,9 @@
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
     tools:context="lu.fisch.canze.activities.SettingsActivity"
-    android:id="@+id/activity_settings"
     android:windowSoftInputMode="stateHidden">
 
     <ScrollView
-        android:id="@+id/ScrlView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:paddingLeft="0px"
@@ -57,7 +55,6 @@
                 android:windowSoftInputMode="stateHidden"
                 >
                 <TableRow
-                    android:id="@+id/tableRow1"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:orientation="horizontal"

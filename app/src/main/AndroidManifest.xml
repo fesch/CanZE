@@ -49,14 +49,11 @@
             android:name=".activities.BrakingActivity"
             android:label="@string/title_activity_braking" />
         <activity
-            android:name=".activities.LeafSpyActivity"
-            android:label="@string/title_activity_leaf_spy" />
+            android:name=".activities.DashActivity"
+            android:label="@string/title_activity_dash" />
        <activity
             android:name=".activities.ElmTestActivity"
             android:label="@string/title_activity_elm_test" />
-        <activity
-            android:name=".activities.ElmDumpActivity"
-            android:label="@string/title_activity_elm_dump" />
         <activity
             android:name=".activities.FirmwareActivity"
             android:label="@string/title_activity_firmware" />
@@ -94,9 +91,6 @@
             android:name=".activities.LeakCurrentsActivity"
             android:label="@string/title_activity_leakCurrents" />
         <activity
-            android:name=".activities.BcbActivity"
-            android:label="@string/title_activity_bcb" />
-        <activity
             android:name=".activities.ChargingHistActivity"
             android:label="@string/title_activity_charging_history" />
         <activity
@@ -106,6 +100,9 @@
         <activity
             android:name=".activities.ConsumptionActivity"
             android:label="@string/title_activity_consumption" />
+        <activity
+            android:name=".activities.AllDataActivity"
+            android:label="@string/title_activity_alldata" />
         <activity android:name=".activities.CanSeeActivity"></activity>
     </application>
 

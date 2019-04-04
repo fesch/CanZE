@@ -24,14 +24,15 @@ package lu.fisch.canze.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.activities.AllDataActivity;
 import lu.fisch.canze.activities.AuxBattTechActivity;
 import lu.fisch.canze.activities.ChargingGraphActivity;
 import lu.fisch.canze.activities.ChargingHistActivity;
@@ -78,6 +79,7 @@ public class TechnicalFragment extends Fragment {
         activateButton(view, R.id.buttonAuxBatt,                AuxBattTechActivity.class);
 
         activateButton(view, R.id.buttonRange,                  RangeActivity.class);
+        activateButton(view, R.id.buttonAllData,                AllDataActivity.class);
 
         return view;
     }

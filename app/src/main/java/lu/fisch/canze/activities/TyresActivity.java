@@ -21,7 +21,6 @@
 
 package lu.fisch.canze.activities;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -35,25 +34,21 @@ import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Frames;
 import lu.fisch.canze.actors.Message;
-import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
-import static lu.fisch.canze.activities.MainActivity.toast;
 
-// If you want to monitor changes, you must add a FieldListener to the fields.
-// For the simple activity, the easiest way is to implement it in the actitviy itself.
 public class TyresActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_TyreSpdPresMisadaption   = "673.0";
-    public static final String SID_TyreFLState              = "673.11";
-    public static final String SID_TyreFLPressure           = "673.40";
-    public static final String SID_TyreFRState              = "673.8";
-    public static final String SID_TyreFRPressure           = "673.32";
-    public static final String SID_TyreRLState              = "673.5";
-    public static final String SID_TyreRLPressure           = "673.24";
-    public static final String SID_TyreRRState              = "673.2";
-    public static final String SID_TyreRRPressure           = "673.16";
+    public static final String SID_TyreSpdPresMisadaption = "673.0";
+    public static final String SID_TyreFLState = "673.11";
+    public static final String SID_TyreFLPressure = "673.40";
+    public static final String SID_TyreFRState = "673.8";
+    public static final String SID_TyreFRPressure = "673.32";
+    public static final String SID_TyreRLState = "673.5";
+    public static final String SID_TyreRLPressure = "673.24";
+    public static final String SID_TyreRRState = "673.2";
+    public static final String SID_TyreRRPressure = "673.16";
 
     public static final String val_TyreSpdPresMisadaption[] = {"OK", "Not OK"};
     public static final String val_TyreState[] = {"OK", "No info", "-", "-", "-", "Flat", "Under infl."};
@@ -186,8 +181,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
     }
 
 
-
-    private void displayId (final int fieldId, final int val) {
+    private void displayId(final int fieldId, final int val) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -200,17 +194,17 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
 
 
     private void buttonRead() {
-        int idFrontLeft  = 0;
+        int idFrontLeft = 0;
         int idFrontRight = 0;
-        int idRearLeft   = 0;
-        int idRearRight  = 0;
-        Frame [] frames = new Frame [3];
+        int idRearLeft = 0;
+        int idRearRight = 0;
+        Frame[] frames = new Frame[3];
 
-        frames [0] = Frames.getInstance().getById(0x765, "50c0");
-        frames [1] = Frames.getInstance().getById(0x765, "7e01");
-        frames [2] = Frames.getInstance().getById(0x765, "6171");
+        frames[0] = Frames.getInstance().getById(0x765, "50c0"); // tester present to BCM
+        frames[1] = Frames.getInstance().getById(0x765, "7e01"); // tester awake to BCM
+        frames[2] = Frames.getInstance().getById(0x765, "6171"); // get TPMS ids
 
-        Message message = MainActivity.device.injectRequests(frames);
+        Message message = MainActivity.device.injectRequests(frames); // return result message of last request (get TPMS ids)
         if (message.isError()) {
             MainActivity.toast(-100, "Could not read TPMS valves:" + message.getData());
             return;
@@ -224,13 +218,13 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         for (Field field : frames[2].getAllFields()) {
             switch (field.getFrom()) {
                 case 24:
-                    idFrontLeft  = (int)field.getValue();
+                    idFrontLeft = (int) field.getValue();
                 case 48:
-                    idFrontRight = (int)field.getValue();
+                    idFrontRight = (int) field.getValue();
                 case 72:
-                    idRearLeft   = (int)field.getValue();
+                    idRearLeft = (int) field.getValue();
                 case 96:
-                    idRearRight   = (int)field.getValue();
+                    idRearRight = (int) field.getValue();
             }
         }
 
@@ -246,20 +240,8 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         displayId(R.id.text_TyreRRId, idRearRight);
         MainActivity.toast(-100, "TPMS valves read");
     }
-/*
-    // Using these wrapper functions to easily facilitate early returns
-    private void stopWriteStart() {
-        // stop the poller thread
-        MainActivity.device.stopAndJoin();
 
-        // write TPMS
-        buttonWrite();
-
-        // start a new poller
-        MainActivity.device.initConnection();
-    }
-*/
-    private int simpleIntParse (int fieldId) {
+    private int simpleIntParse(int fieldId) {
         EditText et = findViewById(fieldId);
         if (et != null) {
             try {
@@ -283,11 +265,11 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
             return;
         }
 
-        Frame [] frames = new Frame [3];
+        Frame[] frames = new Frame[3];
 
-        frames [0] = Frames.getInstance().getById(0x765, "50c0");
-        frames [1] = Frames.getInstance().getById(0x765, "7e01");
-        frames [2] = new Frame (0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format ("7b5d%06X%06X%06X%06X", idFrontLeft, idFrontRight, idRearLeft, idRearRight),null);
+        frames[0] = Frames.getInstance().getById(0x765, "50c0"); // tester present to BCM
+        frames[1] = Frames.getInstance().getById(0x765, "7e01"); // tester awake to BCM
+        frames[2] = new Frame(0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format("7b5d%06X%06X%06X%06X", idFrontLeft, idFrontRight, idRearLeft, idRearRight), null); // set TMPS ids
 
         Message message = MainActivity.device.injectRequests(frames);
         if (message.isError()) {

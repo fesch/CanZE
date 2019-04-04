@@ -22,7 +22,7 @@
 package lu.fisch.canze.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -107,7 +107,13 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         if (iLeftMyOwn && !widgetClicked) {
             MainActivity.debug("CanzeActivity: onResume > reloadBluetooth");
             // restart Bluetooth
-            MainActivity.getInstance().reloadBluetooth(false);
+            // jm moved to a thread to avoid ANR
+            Thread t = new Thread(){
+                public void run(){
+                    MainActivity.getInstance().reloadBluetooth(false);
+                }
+            };
+            t.start();
             iLeftMyOwn = false;
         }
 

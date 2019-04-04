@@ -25,13 +25,12 @@ import android.os.Bundle;
 import android.view.Menu;
 
 import lu.fisch.canze.R;
-import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 
 public class LeakCurrentsActivity extends CanzeActivity implements DebugListener {
 
-    public static final String SID_TesterInit                   = "793.50c0.0";
-    public static final String SID_TesterAwake                  = "793.7e01.0";
+    public static final String SID_TesterInit = "793.50c0.0";
+    public static final String SID_TesterAwake = "793.7e01.0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +38,9 @@ public class LeakCurrentsActivity extends CanzeActivity implements DebugListener
         setContentView(R.layout.activity_leak_currents);
     }
 
-    protected void initListeners () {
+    protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        if (MainActivity.device != null & MainActivity.fields != null) {
-            Field f = MainActivity.fields.getBySID(SID_TesterInit);
-            if (f != null && f.getFrame() != null) {
-                MainActivity.device.injectRequest(f.getFrame());
-            }
-        }
+        addField(SID_TesterInit, lu.fisch.canze.devices.Device.INTERVAL_ONCE);
         addField(SID_TesterAwake, 1500);
     }
 

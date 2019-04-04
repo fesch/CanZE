@@ -39,21 +39,26 @@ import lu.fisch.canze.database.CanzeDataSource;
  * This class defines an abstract device. It has to manage the device related
  * decoding of the incoming data as well as the data flow to the device or
  * whatever is needed to "talk" to it.
- *
+ * <p>
  * Created by robertfisch on 07.09.2015.
  */
 
 public abstract class Device {
 
-    protected static final int TOUGHNESS_HARD              = 0;    // hardest reset possible (ie atz)
-    protected static final int TOUGHNESS_MEDIUM            = 1;    // medium reset (i.e. atws)
-    protected static final int TOUGHNESS_SOFT              = 2;    // softest reset (i.e atd for ELM)
-    protected static final int TOUGHNESS_NONE              = 100;  // just clear error status
+    public static final int INTERVAL_ASAP = 0; // follows frame rate
+    public static final int INTERVAL_ASAPFAST = -1; // truly as fast as possible
+    public static final int INTERVAL_ONCE = -2; // one shot
 
-    private final double minIntervalMultiplicator           = 1.3;
-    private final double maxIntervalMultiplicator           = 2.5;
-    double intervalMultiplicator                            = minIntervalMultiplicator;
-    private boolean deviceIsInitialized                     = false; // if true initConnection will only start a new pollerthread
+
+    protected static final int TOUGHNESS_HARD = 0;    // hardest reset possible (ie atz)
+    protected static final int TOUGHNESS_MEDIUM = 1;    // medium reset (i.e. atws)
+    protected static final int TOUGHNESS_SOFT = 2;    // softest reset (i.e atd for ELM)
+    protected static final int TOUGHNESS_NONE = 100;  // just clear error status
+
+    private final double minIntervalMultiplicator = 1.3;
+    private final double maxIntervalMultiplicator = 2.5;
+    double intervalMultiplicator = minIntervalMultiplicator;
+    private boolean deviceIsInitialized = false; // if true initConnection will only start a new pollerthread
 
     /* ----------------------------------------------------------------
      * Attributes
@@ -100,11 +105,10 @@ public abstract class Device {
     /**
      * A device may need some initialisation before data can be requested.
      */
-    public void initConnection()
-    {
+    public void initConnection() {
         MainActivity.debug("Device.initConnection: start");
 
-        if(BluetoothManager.getInstance().isConnected()) {
+        if (BluetoothManager.getInstance().isConnected()) {
             MainActivity.debug("Device.initConnection: BT is connected");
             // make sure we only have one poller task
             if (pollerThread == null) {
@@ -117,15 +121,15 @@ public abstract class Device {
                     public void run() {
                         // if the device has been initialised and we got an answer
                         // TOUGHNESS_NONE does basically nothing
-                        if (initDevice (deviceIsInitialized ? TOUGHNESS_NONE : TOUGHNESS_HARD)) {
+                        if (initDevice(deviceIsInitialized ? TOUGHNESS_NONE : TOUGHNESS_HARD)) {
                             deviceIsInitialized = true;
                             while (isPollerActive()) {
                                 // MainActivity.debug("Device: inside poller thread");
-                                if (applicationFields.size()+activityFieldsScheduled.size()+activityFieldsAsFastAsPossible.size() == 0
+                                if (applicationFields.size() + activityFieldsScheduled.size() + activityFieldsAsFastAsPossible.size() == 0
                                         || !BluetoothManager.getInstance().isConnected()) {
                                     // MainActivity.debug("Device.poller: no work");
                                     try {
-                                        if(isPollerActive())
+                                        if (isPollerActive())
                                             Thread.sleep(1000);
                                         else return;
                                     } catch (Exception e) {
@@ -134,24 +138,20 @@ public abstract class Device {
                                 }
                                 // query a field
                                 else {
-                                    if(isPollerActive())
-                                    {
+                                    if (isPollerActive()) {
                                         MainActivity.debug("Device.poller: Doing next query");
                                         queryNextFilter();
-                                    }
-                                    else return;
+                                    } else return;
                                 }
                             }
                             // dereference the poller thread (it i stopped now anyway!)
                             MainActivity.debug("Device.poller stopped");
                             pollerThread = null;
-                        }
-                        else
-                        {
+                        } else {
                             MainActivity.debug("Device.poller: initDevice failed");
                             deviceIsInitialized = false;
                             // first check if we have not yet been killed!
-                            if(isPollerActive()) {
+                            if (isPollerActive()) {
                                 MainActivity.debug("Device.poller: restarting Bluetooth");
                                 // drop the BT connexion and try again
                                 (new Thread(new Runnable() {
@@ -173,19 +173,14 @@ public abstract class Device {
                 // start the thread
                 pollerThread.start();
             } // never mind, the BT is active, and the poller thread is running. Nothing to do
-        }
-        else
-        {
+        } else {
             MainActivity.debug("Device.initConnection: BT is not connected");
-            if(pollerThread!=null && pollerThread.isAlive())
-            {
+            if (pollerThread != null && pollerThread.isAlive()) {
                 MainActivity.debug("Device.initConnection: stopping poller");
                 setPollerActive(false);
                 try {
                     pollerThread.join();
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -193,14 +188,14 @@ public abstract class Device {
     }
 
 
-    public Message injectRequest (String sid) {
-        Field field = Fields.getInstance().getBySID (sid);
+    public Message injectRequest(String sid) {
+        Field field = Fields.getInstance().getBySID(sid);
         if (field == null) return null;
-        return injectRequest (field.getFrame());
+        return injectRequest(field.getFrame());
     }
 
     // stop the poller and request a frame (new!)
-    public Message injectRequest (Frame frame) {
+    public Message injectRequest(Frame frame) {
         if (frame == null) return null;
         // stop the poller and wait for it to become inactive
         stopAndJoin();
@@ -215,8 +210,7 @@ public abstract class Device {
     }
 
     // stop the poller and request multiple frames (new!)
-    public Message injectRequests(Frame[] frames)
-    {
+    public Message injectRequests(Frame[] frames) {
         return injectRequests(frames, false, false);
     }
 
@@ -248,25 +242,21 @@ public abstract class Device {
     }
 
     // query the device for the next filter
-    private void queryNextFilter()
-    {
-        if (applicationFields.size()+activityFieldsScheduled.size()+activityFieldsAsFastAsPossible.size() > 0)
-        {
+    private void queryNextFilter() {
+        if (applicationFields.size() + activityFieldsScheduled.size() + activityFieldsAsFastAsPossible.size() > 0) {
             try {
 
                 Field field = getNextField();
 
-                if(field == null) {
+                if (field == null) {
                     // MainActivity.debug("Device: got no next field --> sleeping");
                     // no next field ---> sleep
                     try {
                         Thread.sleep(200);
-                    } catch(Exception e) {
+                    } catch (Exception e) {
                         // ignore a sleep exception
                     }
-                }
-                else
-                {
+                } else {
                     // long start = Calendar.getInstance().getTimeInMillis();
                     // MainActivity.debug("Device: queryNextFilter: " + field.getSID());
                     MainActivity.getInstance().dropDebugMessage(field.getSID());
@@ -275,17 +265,23 @@ public abstract class Device {
                     Message message = requestFrame(field.getFrame());
 
                     // test if we got something
-                    if(!message.isError()) {
-                        //Fields.getInstance().onMessageCompleteEvent(message);
+                    if (!message.isError()) {
                         MainActivity.getInstance().appendDebugMessage("ok");
+                        // trigger the compete event of the message. It will update all fields linked to it's corresponding frame
                         message.onMessageCompleteEvent();
+                        if (field.getInterval() == INTERVAL_ONCE) {
+                            removeActivityField(field);
+                        }
                     } else {
                         // one plain retry
                         MainActivity.getInstance().appendDebugMessage("...");
                         message = requestFrame(field.getFrame());
-                        if(!message.isError()) {
+                        if (!message.isError()) {
                             MainActivity.getInstance().appendDebugMessage("ok");
                             message.onMessageCompleteEvent();
+                            if (field.getInterval() == INTERVAL_ONCE) {
+                                removeActivityField(field);
+                            }
                         } else {
                             MainActivity.getInstance().appendDebugMessage("fail");
                             // failed after single retry. Mark underlying fields as updated to avoid
@@ -309,77 +305,60 @@ public abstract class Device {
         }
     }
 
-    private Field getNextField()
-    {
+    private Field getNextField() {
         long referenceTime = Calendar.getInstance().getTimeInMillis();
 
         synchronized (fields) {
-            if(applicationFields.size()>0) {
+            if (applicationFields.size() > 0) {
                 // get the first field (the one with the smallest lastRequest time
                 Field field = Collections.min(applicationFields, new Comparator<Field>() {
                     @Override
                     public int compare(Field lhs, Field rhs) {
-                        return (int) (lhs.getLastRequest()+lhs.getInterval() - (rhs.getLastRequest()+rhs.getInterval()));
+                        return (int) (lhs.getLastRequest() + lhs.getInterval() - (rhs.getLastRequest() + rhs.getInterval()));
                     }
                 });
 
                 // return it's index in the global registered field array
-                if(field.isDue(referenceTime)) {
+                if (field.isDue(referenceTime)) {
                     //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
-                    MainActivity.debug("Device.getNextField: applicationFields");
+                    MainActivity.debug("Device.getNextField: applicationFields, " + field.getSID());
                     return field;
                 }
             }
 
             // take the next costum field
-            if(activityFieldsScheduled.size()>0)
-            {
+            if (activityFieldsScheduled.size() > 0) {
                 // get the first field (the one with the smallest lastRequest time
                 Field field = Collections.min(activityFieldsScheduled, new Comparator<Field>() {
                     @Override
                     public int compare(Field lhs, Field rhs) {
-                        return (int) (lhs.getLastRequest()+lhs.getInterval() - (rhs.getLastRequest()+rhs.getInterval()));
+                        return (int) (lhs.getLastRequest() + lhs.getInterval() - (rhs.getLastRequest() + rhs.getInterval()));
                     }
                 });
 
                 // return it's index in the global registered field array
-                if(field.isDue(referenceTime)) {
+                if (field.isDue(referenceTime)) {
                     //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
-                    MainActivity.debug("Device.getNextField: activityFieldsScheduled");
+                    MainActivity.debug("Device.getNextField: activityFieldsScheduled, " + field.getSID());
                     return field;
                 }
             }
 
-            if(activityFieldsAsFastAsPossible.size()>0)
-            {
+            if (activityFieldsAsFastAsPossible.size() > 0) {
                 activityFieldIndex = (activityFieldIndex + 1) % activityFieldsAsFastAsPossible.size();
-                MainActivity.debug("Device.getNextField: activityFieldsAsFastAsPossible");
-                return activityFieldsAsFastAsPossible.get(activityFieldIndex);
+                Field field = activityFieldsAsFastAsPossible.get(activityFieldIndex);
+                MainActivity.debug("Device.getNextField: activityFieldsAsFastAsPossible, " + field.getSID());
+                return field;
             }
 
-            MainActivity.debug("Device.getNextField: empty:" + applicationFields.size() + " / " + activityFieldsScheduled.size()+ " / " + activityFieldsAsFastAsPossible.size());
+            MainActivity.debug("Device.getNextField: empty:" + applicationFields.size() + " / " + activityFieldsScheduled.size() + " / " + activityFieldsAsFastAsPossible.size());
 
             return null;
         }
     }
 
-    /**
-     * Ass the CAN bus sends a lot of free frames, the device may want
-     * to apply a filter. This method should thus register or apply a
-     * given filter to the hardware.
-     * @param frameId   the ID of the frame to filter for
-     */
-    public abstract void registerFilter(int frameId);
-
-    /**
-     * Method to unregister a filter.
-     * @param frameId   the ID of the frame to no longer filter on
-     */
-    public abstract void unregisterFilter(int frameId);
-
-
-    public void join() throws InterruptedException{
-        if(pollerThread!=null)
+    public void join() throws InterruptedException {
+        if (pollerThread != null)
             pollerThread.join();
     }
 
@@ -389,52 +368,16 @@ public abstract class Device {
      \ -------------------------------------------------------------- */
 
     /**
-     * This method registers the IDs of all monitored fields.
-     */
-    public void registerFilters()
-    {
-        // another thread my also access the list of monitored fields,
-        // so we need to "protect" it against simultaneous changes.
-        synchronized (fields) {
-            for (int i = 0; i < fields.size(); i++) {
-                registerFilter(fields.get(i).getId());
-            }
-        }
-    }
-
-    /**
-     * This method unregisters all filters from the remote device
-     * Lint suggests it can be private so probably never used externally
-     */
-    public void unregisterFilters()
-    {
-        synchronized (fields) {
-            for (int i = 0; i < fields.size(); i++) {
-                unregisterFilter(fields.get(i).getId());
-            }
-        }
-    }
-
-    /**
      * This method clears the list of monitored fields,
      * but only the custom ones ...
      */
-    public void clearFields()
-    {
+    public void clearFields() {
         MainActivity.debug("Device.clearFields: start");
         synchronized (fields) {
             activityFieldsScheduled.clear();
             activityFieldsAsFastAsPossible.clear();
             fields.clear();
             fields.addAll(applicationFields);
-            //MainActivity.debug("cleared");
-            // launch the filter clearing asynchronously
-            (new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    unregisterFilters();
-                }
-            })).start();
         }
     }
 
@@ -443,48 +386,41 @@ public abstract class Device {
      * any field with the same ID and the same responseID will be updated.
      * For this reason we don't need to query these fields multiple times
      * in one turn.
-     * @param _field    the field to be tested
+     *
+     * @param _field the field to be tested
      * @return boolean  true if field's frame is already monitored
      */
-    private boolean containsField(Field _field)
-    {
-        for(int i=0; i<fields.size(); i++)
-        {
+    private boolean containsField(Field _field) {
+        for (int i = 0; i < fields.size(); i++) {
             Field field = fields.get(i);
-            if(field.getId()==_field.getId() && field.getResponseId().equals(_field.getResponseId()))
+            if (field.getId() == _field.getId() && field.getResponseId().equals(_field.getResponseId()))
                 return true;
         }
         return false;
     }
 
-    private boolean containsApplicationField(Field _field)
-    {
-        for(int i=0; i< applicationFields.size(); i++)
-        {
+    private boolean containsApplicationField(Field _field) {
+        for (int i = 0; i < applicationFields.size(); i++) {
             Field field = applicationFields.get(i);
-            if(field.getId()==_field.getId() && field.getResponseId().equals(_field.getResponseId()))
+            if (field.getId() == _field.getId() && field.getResponseId().equals(_field.getResponseId()))
                 return true;
         }
         return false;
     }
 
-    private boolean containsActivityFieldScheduled(Field _field)
-    {
-        for(int i=0; i< activityFieldsScheduled.size(); i++)
-        {
+    private boolean containsActivityFieldScheduled(Field _field) {
+        for (int i = 0; i < activityFieldsScheduled.size(); i++) {
             Field field = activityFieldsScheduled.get(i);
-            if(field.getId()==_field.getId() && field.getResponseId().equals(_field.getResponseId()))
+            if (field.getId() == _field.getId() && field.getResponseId().equals(_field.getResponseId()))
                 return true;
         }
         return false;
     }
 
-    private boolean containsActivityFieldAsFastAsPossible(Field _field)
-    {
-        for(int i=0; i< activityFieldsAsFastAsPossible.size(); i++)
-        {
+    private boolean containsActivityFieldAsFastAsPossible(Field _field) {
+        for (int i = 0; i < activityFieldsAsFastAsPossible.size(); i++) {
             Field field = activityFieldsAsFastAsPossible.get(i);
-            if(field.getId()==_field.getId() && field.getResponseId().equals(_field.getResponseId()))
+            if (field.getId() == _field.getId() && field.getResponseId().equals(_field.getResponseId()))
                 return true;
         }
         return false;
@@ -493,6 +429,7 @@ public abstract class Device {
     /**
      * Method to add a field to the list of monitored field.
      * The field is also immediately registered onto the device.
+     *
      * @param field the field to be added
      */
     private void addActivityField(final Field field) {
@@ -500,7 +437,7 @@ public abstract class Device {
         // register it to be saved to the database
         field.addListener(CanzeDataSource.getInstance());
 
-        if(!field.isVirtual()) {
+        if (!field.isVirtual()) {
 
             synchronized (fields) {
 
@@ -512,13 +449,6 @@ public abstract class Device {
                     // it can be removed there
                     if (containsActivityFieldScheduled(field))
                         activityFieldsScheduled.remove(field);
-                    // launch the field registration asynchronously
-                    (new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            registerFilter(field.getId());
-                        }
-                    })).start();
                 }
                 if (!containsActivityFieldAsFastAsPossible(field)) {
                     activityFieldsAsFastAsPossible.add(field);
@@ -530,44 +460,49 @@ public abstract class Device {
             }
         }
         // register real fields on which a virtual field may depend
-        else
-        {
+        else {
             VirtualField virtualField = (VirtualField) field;
-            for (Field realField : virtualField.getFields())
-            {
+            for (Field realField : virtualField.getFields()) {
                 addActivityField(realField);
             }
         }
     }
-/*
-JM: I made addActivity without interval private, as to change the behavior with interval 0, which
-is used throughout the code to mean "we don't care, as fast as possible"
 
+    /*
+    JM: I made addActivity without interval private, as to change the behavior with interval 0, which
+    is used throughout the code to mean "we don't care, as fast as possible"
+     */
 
+    public void addActivityField(final Field field, int interval) {
+        /*
+        JM changed behavior
+        interval > 0 is interval
+        interval == INTERVAL_ASAP (0) is frame repeat interval (as given in the frame assets, especially relevant for freeframes)
+        interval == INTERVAL_ASAPFAST (-1) is ASAP (note: old behavior is ASAP for ANYTHING negative, but I am pretty sure only -1
+                was ever used). This should be used sparingly, if at all. The only reason I can think of is for a fast ISO-TP field
+                which has no known interval rate
+        interval == INTERVAL_ONCE) (-2) is add, but remove after one successful execution (in the poller thread). This is very
+                useful for i.e. tester present messages
+        */
 
- */
-    public void addActivityField(final Field field, int interval)
-    {
-        // if the interval is below 0, the field should be
-        // added to the list of "as fast as possible" fields.
-        // JM CHanged this from <=0 to <0. Rationale:
-        // With the super fast CanSee dongle we query free frames faster than they are updated by
-        // the car. This effecively slows CanZE down, getting and processing unchanged information
-        // interval = -1 still and adding ISOTP frames has the same meaning (ASAP). A free frame
-        // requested with interval = 0 will be requested at it's frame update rate.
-        if (interval < 0 )
-        {
+        if (interval > INTERVAL_ASAP) { // interval is a ms value. Continue
+            // Nothing
+        } else if (interval == INTERVAL_ASAP) { // if INTERVAL_ASAP, get from the frame definition
+            interval = field.getFrame().getInterval();
+        } else if (interval == INTERVAL_ASAPFAST) { // if INTERVAL_ASAP, add to the ASAP queue
             addActivityField(field);
             return;
-        } else if (interval == 0) {
-            interval = field.getFrame().getInterval();
+        } else if (interval == INTERVAL_ONCE) { // if INTERVAL_ONCE. Continue
+            // Nothing. The INTERVAL_ONCE will be picked up by the poller
+        } else { // abort
+            return;
         }
 
         // ass already present listeners are no being re-registered, do this always
         // register it to be saved to the database
         field.addListener(CanzeDataSource.getInstance());
 
-        if(!field.isVirtual()) {
+        if (!field.isVirtual()) {
             synchronized (fields) {
 
                 if (!containsField(field)) {
@@ -576,13 +511,6 @@ is used throughout the code to mean "we don't care, as fast as possible"
                     activityFieldsScheduled.add(field);
                     // set the fields query interval
                     field.setInterval(interval);
-                    // launch the field registration asynchronously
-                    (new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            registerFilter(field.getId());
-                        }
-                    })).start();
                 }
                 if (!containsActivityFieldScheduled(field)) {
                     // only add it this field id is not yet on the list of the
@@ -592,31 +520,45 @@ is used throughout the code to mean "we don't care, as fast as possible"
                     // the fields interval will be ignored as the one from the
                     // applicationFields has priority
                 } else {
-                    // the smallest intervall is the one to take
+                    // the smallest interval is the one to take
                     if (interval < field.getInterval())
                         field.setInterval(interval);
                 }
             }
         }
         // register real fields on which a virtual field may depend
-        else
-        {
+        else {
             VirtualField virtualField = (VirtualField) field;
-            for (Field realField : virtualField.getFields())
-            {
+            for (Field realField : virtualField.getFields()) {
                 // increase interval
                 addActivityField(realField, interval * virtualField.getFields().size());
             }
         }
     }
 
-    public void addApplicationField(final Field field, int interval)
-    {
-        // ass already present listeners are no being re-registered, do this always
+    public void removeActivityField(final Field field) {
+        synchronized (fields) {
+            // only remove from the custom fields
+            if (activityFieldsScheduled.remove(field)) {
+                //field.setInterval(Integer.MAX_VALUE);
+                //return; /*
+                // remove it from the database if it is not on the other list
+                if (!containsApplicationField(field) && !containsActivityFieldAsFastAsPossible(field)) {
+                    fields.remove(field);
+                    field.setInterval(Integer.MAX_VALUE);
+                    // un-register it ...
+                    field.removeListener(CanzeDataSource.getInstance());
+                }
+            }
+        }
+    }
+
+    public void addApplicationField(final Field field, int interval) {
+        // as already present listeners are not being re-registered, do this always
         // register it to be saved to the database
         field.addListener(CanzeDataSource.getInstance());
 
-        if(!field.isVirtual()) {
+        if (!field.isVirtual()) {
             synchronized (fields) {
                 if (!containsField(field)) {
                     // set the fields query interval
@@ -624,50 +566,31 @@ is used throughout the code to mean "we don't care, as fast as possible"
                     // add it to the two lists
                     fields.add(field);
                     applicationFields.add(field);
-                    // launch the field registration asynchronously
-                    (new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            registerFilter(field.getId());
-                        }
-                    })).start();
                 }
             }
         }
         // register real fields on which a virtual field may depend
-        else
-        {
+        else {
             VirtualField virtualField = (VirtualField) field;
-            for (Field realField : virtualField.getFields())
-            {
+            for (Field realField : virtualField.getFields()) {
                 // increase interval
-                addApplicationField(realField,interval*virtualField.getFields().size());
+                addApplicationField(realField, interval * virtualField.getFields().size());
             }
         }
 
     }
 
-    public void removeApplicationField(final Field field)
-    {
+    public void removeApplicationField(final Field field) {
         synchronized (fields) {
             // only remove from the custom fields
-            if(applicationFields.remove(field))
-            {
+            if (applicationFields.remove(field)) {
                 // remove it from the database if it is not on the other list
-                if(!containsActivityFieldScheduled(field)) {
+                if (!containsActivityFieldScheduled(field) && !containsActivityFieldAsFastAsPossible(field)) {
                     fields.remove(field);
                     field.setInterval(Integer.MAX_VALUE);
                     // un-register it ...
                     field.removeListener(CanzeDataSource.getInstance());
                 }
-
-                // launch the field registration asynchronously
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        unregisterFilter(field.getId());
-                    }
-                })).start();
             }
         }
 
@@ -688,35 +611,28 @@ is used throughout the code to mean "we don't care, as fast as possible"
         // init the connection
         initConnection();
 
-        if(reset) {
+        if (reset) {
             // clean all filters (just to make sure)
             clearFields();
-            // register all filters (if there are any)
-            registerFilters();
             MainActivity.debug("Device.init: done, reset");
-        }
-        else
+        } else
             MainActivity.debug("Device.init: done, noreset");
     }
 
     /**
      * Stop the poller thread and wait for it to be finished
      */
-    public void stopAndJoin()
-    {
+    public void stopAndJoin() {
         MainActivity.debug("Device.stopAndJoin: start");
         setPollerActive(false);
         try {
-            if(pollerThread!=null && pollerThread.isAlive()) {
+            if (pollerThread != null && pollerThread.isAlive()) {
                 MainActivity.debug("Device.stopAndJoin: poller informed. Joining thread");
-                if(pollerThread!=null)
+                if (pollerThread != null)
                     pollerThread.join();
-                pollerThread=null;
-            }
-            else MainActivity.debug("Device.stopAndJoin: pollerThread is null");
-        }
-        catch(Exception e)
-        {
+                pollerThread = null;
+            } else MainActivity.debug("Device.stopAndJoin: pollerThread is null");
+        } catch (Exception e) {
             e.printStackTrace();
         }
         MainActivity.debug("Device.stopAndJoin: poller stopped");
@@ -733,11 +649,11 @@ is used throughout the code to mean "we don't care, as fast as possible"
     /**
      * Request a field from the device depending on the
      * type of field.
-     * @param frame     the field to be requested
+     *
+     * @param frame the field to be requested
      * @return Message  containing the response or an error
      */
-    public Message requestFrame(Frame frame)
-    {
+    public Message requestFrame(Frame frame) {
         Message msg;
 
         if (frame.isIsoTp())
@@ -767,23 +683,25 @@ is used throughout the code to mean "we don't care, as fast as possible"
 
     /**
      * Request a free-frame type field from the device
-     * @param frame         The frame requested
+     *
+     * @param frame The frame requested
      * @return Message
      */
     public abstract Message requestFreeFrame(Frame frame);
 
     /**
      * Request an ISO-TP frame type from the device
-     * @param frame         The frame requested
+     *
+     * @param frame The frame requested
      * @return Message
      */
     public abstract Message requestIsoTpFrame(Frame frame);
 
     public abstract boolean initDevice(int toughness);
 
-    protected abstract boolean initDevice (int toughness, int retries);
+    protected abstract boolean initDevice(int toughness, int retries);
 
-    public String getLastInitProblem () {
+    public String getLastInitProblem() {
         return lastInitProblem;
     }
 }

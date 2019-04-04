@@ -1,3 +1,24 @@
+---< Version 1.35 / 2019.04.04 >---
+2019-04-04 [Bob] Update in Consumption, dash version
+2019-04-04 [Jeroen] Experiment to avoid ANR in CanzeActivity.onResume
+2019-04-04 [Jeroen] Experiment to avoid IllegalThreadStateException crash in BluetoothManager
+2019-04-04 [Jeroen] Experiment to avoid NullPointerException crash in Toast
+2019-04-03 [Cedric] Updated fr language
+2019-03-31 [Jeroen] Avoid crashes on unexpected strings from ELM
+2019-03-31 [Jeroen] Avoid SQLException crash
+2019-03-31 [Jeroen] Removed logic to have the device do frame filtering
+2019-03-31 [Jeroen] Implemented INTERVAL_ONCE for ECU initialization command
+2019-03-19 [Jeroen] Avoid NullPointerException crash in Plotter
+2019-03-19 [Jeroen] Avoid IndexOutOfBounds crash in Timeplot
+2019-03-16 [Jeroen] Added All Data
+2019-03-16 [Jeroen] Fixed Range Activity
+2019-03-16 [Jeroen] Removed Tests Bob
+2019-03-16 [Jeroen] Moved BCB to chargingtech
+2019-03-16 [Jeroen] Avoid crash in Driving when entering nonsensical data
+2019-03-15 [Jeroen] Removed all unused resources
+2019-03-15 [Jeroen] Removed sl language
+2019-03-15 [Jeroen] Avoid crash when BT device name is not in the pref file.
+
 ---< Version 1.34 / 2019.03.12 >---
 2019-03-11 [Jeroen] Avoid crash when Bluetooth access is denied
 2019-03-07 [Jeroen] Avoid crash on outOfBounds in Plotter.setValue

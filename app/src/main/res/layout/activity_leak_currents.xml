@@ -24,7 +24,6 @@
             android:layout_weight="1">
 
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/leak_dc"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -46,7 +45,6 @@
             android:layout_weight="1">
 
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/leak_lf"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -69,7 +67,6 @@
             android:layout_weight="1">
 
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/leak_hf"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -92,7 +89,6 @@
             android:layout_weight="1">
 
             <lu.fisch.canze.widgets.WidgetView
-                android:id="@+id/leak_ehf"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"

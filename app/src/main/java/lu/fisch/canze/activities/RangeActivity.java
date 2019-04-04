@@ -9,14 +9,16 @@ import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.interfaces.DebugListener;
+import lu.fisch.canze.interfaces.FieldListener;
 
-public class RangeActivity extends CanzeActivity {
+public class RangeActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_AvailableDistance                  = "654.42";
-    public static final String SID_AvailableEnvergy                   = "427.49";
-    public static final String SID_AverageConsumption                 = "654.52";
-    public static final String SID_WorstAverageConsumption            = "62d.0";
-    public static final String SID_BestAverageConsumption             = "62d.10";
+    public static final String SID_AvailableDistance = "654.42";
+    public static final String SID_AvailableEnvergy = "427.49";
+    public static final String SID_AverageConsumption = "654.52";
+    public static final String SID_WorstAverageConsumption = "62d.0";
+    public static final String SID_BestAverageConsumption = "62d.10";
 
     public double distance = 0;
     public double range = 0;
@@ -35,64 +37,67 @@ public class RangeActivity extends CanzeActivity {
         setContentView(R.layout.activity_range);
 
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
-        int lossSetting = settings.getInt("loss", 10);
-        MainActivity.debug("LOSS (load): "+loss);
+        loss = settings.getInt("loss", 10) / 100.0;
+        MainActivity.debug("LOSS (load): " + loss);
 
-        SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
-        seekBar.setProgress(lossSetting);
+        SeekBar seekBar = findViewById(R.id.seekBar);
+        seekBar.setProgress((int) (loss * 100) + 50);
         //((TextView) findViewById(R.id.lossView)).setText(seekBar.getProgress()+"%");
-        ((TextView) findViewById(R.id.lossView)).setText(String.format(Locale.getDefault(), "%d%%", seekBar.getProgress()));
-
+        //((TextView) findViewById(R.id.lossView)).setText(String.format(Locale.getDefault(), "%d%%", seekBar.getProgress()));
+        updateSeekBar(seekBar);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                loss = seekBar.getProgress()/100.;
-                //((TextView) findViewById(R.id.lossView)).setText(seekBar.getProgress()+"%");
-                ((TextView) findViewById(R.id.lossView)).setText(String.format(Locale.getDefault(), "%d%%", seekBar.getProgress()));
-                updateRange();
+                updateSeekBar(seekBar);
 
                 // save value
                 SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
                 SharedPreferences.Editor editor = settings.edit();
-                editor.putInt("loss",(int) (loss*100));
+                editor.putInt("loss", (int) (loss * 100));
                 editor.apply();
-                MainActivity.debug("LOSS (save): "+loss);
+                MainActivity.debug("LOSS (save): " + loss);
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                loss = seekBar.getProgress()/100.;
-                //((TextView) findViewById(R.id.lossView)).setText(seekBar.getProgress()+"%");
-                ((TextView) findViewById(R.id.lossView)).setText(String.format(Locale.getDefault(), "%d%%", seekBar.getProgress()));
-                updateRange();
+                updateSeekBar(seekBar);
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                loss = seekBar.getProgress()/100.;
-                //((TextView) findViewById(R.id.lossView)).setText(seekBar.getProgress()+"%");
-                ((TextView) findViewById(R.id.lossView)).setText(String.format(Locale.getDefault(), "%d%%", seekBar.getProgress()));
-                updateRange();
+                updateSeekBar(seekBar);
             }
         });
     }
 
-    protected void initListeners () {
-        addField(SID_AvailableDistance, 0);
-        addField(SID_AvailableEnvergy, 0);
-        addField(SID_AverageConsumption, 0);
-        addField(SID_WorstAverageConsumption, 0);
-        addField(SID_BestAverageConsumption, 0);
+    protected void initListeners() {
+        MainActivity.getInstance().setDebugListener(this);
+        addField(SID_AvailableDistance, 2000);
+        addField(SID_AvailableEnvergy, 2000);
+        addField(SID_AverageConsumption, 2000);
+        addField(SID_WorstAverageConsumption, 8000);
+        addField(SID_BestAverageConsumption, 8000);
     }
 
-    private void updateRange()
-    {
+    private void updateSeekBar(SeekBar seekBar) {
+        int progressPosition = seekBar.getProgress();
+        loss = (progressPosition - 50) / 100.;
+        ((TextView) findViewById(R.id.lossView)).setText(String.format(Locale.getDefault(), "%d%%", progressPosition - 50));
+        updateRange();
+    }
+
+    private void updateRange() {
+        TextView tv;
+        tv = findViewById(R.id.canzeRange);
+        if (tv != null)
+            tv.setText(String.format(Locale.getDefault(), "%.1f - %.1f - %.1f", rangeWorst, range * (1 - loss), rangeBest));
+/*
         ((TextView) findViewById(R.id.canzeRange)).setText(
                 (Math.floor(rangeWorst*100))/100. +" > "+
                 (Math.floor(range*100*(1-loss)))/100.+" > "+
                 (Math.floor(rangeBest*100))/100.
-        );
+        ); */
     }
 
 
@@ -104,34 +109,35 @@ public class RangeActivity extends CanzeActivity {
             public void run() {
                 String fieldId = field.getSID();
                 // ProgressBar pb;
-                // TextView tv;
+                TextView tv;
 
                 switch (fieldId) {
                     case SID_AvailableDistance:
                         distance = field.getValue();
-                        //((TextView) findViewById(R.id.carRange)).setText(((distance*100)/1)/100.+"");
-                        ((TextView) findViewById(R.id.carRange)).setText(String.format(Locale.getDefault(), "%.1f", ((distance*100)/1)/100.));
+                        tv = findViewById(R.id.carRange);
+                        if (tv != null)
+                            tv.setText(String.format(Locale.getDefault(), "%.1f", distance));
                         break;
                     case SID_AvailableEnvergy:
                         energy = field.getValue();
-                        range      = energy/consumption*100;
-                        rangeWorst = energy/consumptionWorst*100;
-                        rangeBest  = energy/consumptionBest*100;
+                        range = energy / consumption * 100;
+                        rangeWorst = energy / consumptionWorst * 100;
+                        rangeBest = energy / consumptionBest * 100;
                         updateRange();
                         break;
                     case SID_AverageConsumption:
                         consumption = field.getValue();
-                        range       = energy/consumption*100;
+                        range = energy / consumption * 100;
                         updateRange();
                         break;
                     case SID_WorstAverageConsumption:
                         consumptionWorst = field.getValue();
-                        rangeWorst       = energy/consumptionWorst*100;
+                        rangeWorst = energy / consumptionWorst * 100;
                         updateRange();
                         break;
                     case SID_BestAverageConsumption:
                         consumptionBest = field.getValue();
-                        rangeBest       = energy/consumptionBest*100;
+                        rangeBest = energy / consumptionBest * 100;
                         updateRange();
                         break;
                 }

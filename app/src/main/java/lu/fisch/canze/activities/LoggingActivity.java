@@ -1,16 +1,12 @@
 package lu.fisch.canze.activities;
 
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
