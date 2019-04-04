@@ -107,7 +107,13 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         if (iLeftMyOwn && !widgetClicked) {
             MainActivity.debug("CanzeActivity: onResume > reloadBluetooth");
             // restart Bluetooth
-            MainActivity.getInstance().reloadBluetooth(false);
+            // jm moved to a thread to avoid ANR
+            Thread t = new Thread(){
+                public void run(){
+                    MainActivity.getInstance().reloadBluetooth(false);
+                }
+            };
+            t.start();
             iLeftMyOwn = false;
         }
 
