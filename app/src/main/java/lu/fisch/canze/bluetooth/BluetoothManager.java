@@ -86,6 +86,7 @@ public class BluetoothManager {
     public static final int RETRIES_NONE = 0;
     public static final int RETRIES_INFINITE = -1;
     private Thread retryThread = null;
+    private final String retryLock = ""; // ugly! but retryThread itself can be null
 
     private String connectBluetoothAddress = null;
     private boolean connectSecure;
@@ -163,9 +164,11 @@ public class BluetoothManager {
     }
 
     private void privateConnect(final String bluetoothAddress, final boolean secure, final int retries) {
-        if (!(retryThread == null || !retryThread.isAlive())) {
-            debug("BT: aborting connect (another one is in progress ...)");
-            return;
+        synchronized (retryLock) {
+            if (!(retryThread == null || !retryThread.isAlive())) {
+                debug("BT: aborting connect (another one is in progress ...)");
+                return;
+            }
         }
 
         if (retry) {
@@ -248,31 +251,39 @@ public class BluetoothManager {
 
             debug(retries + " tries left");
             if (retries != RETRIES_NONE) {
-                if (retryThread == null || (retryThread != null && !retryThread.isAlive())) {
-                    if (retryThread != null) {
-                        retryThread.interrupt();
-                    }
-                    debug("Starting new try");
-                    retryThread = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(2 * 1000);
-                            } catch (Exception e) {
-                                // ignore
-                            }
-                            (new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    BluetoothManager.getInstance().privateConnect(bluetoothAddress, secure, retries - 1);
-                                }
-                            })).start();
+                // avoid thread state mismatches
+                synchronized (retryLock) {
+                    if (retryThread == null || (retryThread != null && !retryThread.isAlive())) {
+                        if (retryThread != null) {
+                            retryThread.interrupt();
                         }
-                    });
-                    retryThread.start();
-                } else {
-                    debug("Another try is still running --> abort this one");
-                    debug("Alive: " + retryThread.isAlive());
+                        debug("Starting new try");
+                        retryThread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(2 * 1000);
+                                } catch (Exception e) {
+                                    // ignore
+                                }
+                                (new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        BluetoothManager.getInstance().privateConnect(bluetoothAddress, secure, retries - 1);
+                                    }
+                                })).start();
+                            }
+                        });
+                        // if STILL something goes wrong, in spite of the synchronize, throw hands in the air and do nothing
+                        try {
+                            retryThread.start();
+                        } catch (Exception e) {
+                            // do nothing
+                        }
+                    } else {
+                        debug("Another try is still running --> abort this one");
+                        debug("Alive: " + retryThread.isAlive());
+                    }
                 }
             }
         }

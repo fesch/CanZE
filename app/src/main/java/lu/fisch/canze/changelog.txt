@@ -1,3 +1,4 @@
+2019-04-04 [Jeroen] Experiment to avoid IllegalThreadStateException crash in BluetoothManager
 2019-04-04 [Jeroen] Experiment to avoid NullPointerException crash in Toast
 2019-04-03 [Cedric] Updated fr language
 2019-03-31 [Jeroen] Avoid crashes on unexpected strings from ELM
