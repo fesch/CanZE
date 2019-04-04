@@ -1,3 +1,6 @@
+---< Version 1.36 / 2019.04.04 >---
+2019-04-04 [Bob] Wrong reference while fixing a bug ... grrr
+
 ---< Version 1.35 / 2019.04.04 >---
 2019-04-04 [Bob] Update in Consumption, dash version
 2019-04-04 [Jeroen] Experiment to avoid ANR in CanzeActivity.onResume
