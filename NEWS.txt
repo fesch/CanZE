@@ -1,1 +1,1 @@
-Next release we will discontinue Slovenian language. We are looking for German and Spanish maintainers.
+We are looking for German and Spanish maintainers, see canze.fisch.lu
