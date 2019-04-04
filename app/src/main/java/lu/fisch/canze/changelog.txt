@@ -1,3 +1,5 @@
+---< Version 1.35 / 2019.04.04 >---
+2019-04-04 [Bob] Update in Consumption, dash version
 2019-04-04 [Jeroen] Experiment to avoid ANR in CanzeActivity.onResume
 2019-04-04 [Jeroen] Experiment to avoid IllegalThreadStateException crash in BluetoothManager
 2019-04-04 [Jeroen] Experiment to avoid NullPointerException crash in Toast
