@@ -1,3 +1,5 @@
+2019-04-05 [Bob] Added possibility to install on external storage
+
 ---< Version 1.36 / 2019.04.04 >---
 2019-04-04 [Bob] Wrong reference while fixing a bug ... grrr
 
