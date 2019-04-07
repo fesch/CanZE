@@ -54,6 +54,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
+//import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -75,6 +76,7 @@ import lu.fisch.canze.interfaces.BluetoothEvent;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.ui.AppSectionsPagerAdapter;
+import me.drakeet.support.toast.ToastCompat;
 
 public class MainActivity extends AppCompatActivity implements FieldListener /*, android.support.v7.app.ActionBar.TabListener */ {
     public static final String TAG = "CanZE";
@@ -219,7 +221,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 @Override
                 public void run() {
                     //Toast.makeText(MainActivity.context, message, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
+                    ToastCompat.makeText(instance, message, Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -231,7 +234,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 @Override
                 public void run() {
                     //Toast.makeText(MainActivity.context, message, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
+                    ToastCompat.makeText(instance, message, Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -244,7 +248,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 @Override
                 public void run() {
                     //Toast.makeText(MainActivity.context, finalMessage, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
+                    ToastCompat.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
+
                 }
             });
         }
@@ -257,7 +263,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 public void run() {
                     final String finalMessage = getStringSingle(resource);
                     //Toast.makeText(MainActivity.context, finalMessage, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
+                    ToastCompat.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
                 }
             });
         }
