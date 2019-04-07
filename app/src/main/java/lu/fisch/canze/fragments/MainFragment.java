@@ -23,8 +23,11 @@ package lu.fisch.canze.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,35 +64,38 @@ public class MainFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        activateButton(view, R.id.buttonBattery,            BatteryActivity.class);
-        activateButton(view, R.id.buttonChargingActivity,   ChargingActivity.class);
+        activateButton(view, R.id.buttonBattery, BatteryActivity.class);
+        activateButton(view, R.id.buttonChargingActivity, ChargingActivity.class);
 
-        activateButton(view, R.id.buttonTyres,              TyresActivity.class);
-        activateButton(view, R.id.buttonDrivingActivity,    DrivingActivity.class);
+        activateButton(view, R.id.buttonTyres, TyresActivity.class);
+        activateButton(view, R.id.buttonDrivingActivity, DrivingActivity.class);
 
-        activateButton(view, R.id.buttonConsumption,        ConsumptionActivity.class);
-        activateButton(view, R.id.buttonBraking,            BrakingActivity.class);
+        activateButton(view, R.id.buttonConsumption, ConsumptionActivity.class);
+        activateButton(view, R.id.buttonBraking, BrakingActivity.class);
 
         activateButton(view, R.id.buttonHeatmapCellvoltage, HeatmapCellvoltageActivity.class);
-        activateButton(view, R.id.buttonHeatmapBatcomp,     HeatmapBatcompActivity.class);
+        activateButton(view, R.id.buttonHeatmapBatcomp, HeatmapBatcompActivity.class);
 
         getNews(view);
 
         return view;
     }
 
-    private void activateButton (View view, int buttonId, final Class<?> activityClass) {
+    private void activateButton(View view, int buttonId, final Class<?> activityClass) {
         Button button = view.findViewById(buttonId);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                if (!MainActivity.isSafe()) return;
+                if (MainActivity.device == null) {
+                    MainActivity.toast("You first need to adjust the settings ...");
+                    return;
+                }
                 MainActivity.getInstance().leaveBluetoothOn = true;
                 Intent intent = new Intent(MainActivity.getInstance(), activityClass);
                 MainFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
@@ -97,7 +103,7 @@ public class MainFragment extends Fragment {
         });
     }
 
-    private void getNews (final View view) {
+    private void getNews(final View view) {
 
         if (firstRun) {
             (new Thread(new Runnable() {
@@ -135,7 +141,7 @@ public class MainFragment extends Fragment {
         }
     }
 
-    private void displayNews (final View view) {
+    private void displayNews(final View view) {
         if (msg == null || "".equals(msg)) return;
         FragmentActivity fa = getActivity();
         if (fa == null) return;
@@ -152,6 +158,6 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        MainActivity.getInstance().onActivityResult(requestCode,resultCode,data);
+        MainActivity.getInstance().onActivityResult(requestCode, resultCode, data);
     }
 }

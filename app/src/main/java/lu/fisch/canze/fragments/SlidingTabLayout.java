@@ -37,23 +37,23 @@ package lu.fisch.canze.fragments;
  */
 
 
+import android.content.Context;
+import android.graphics.Typeface;
 
-        import android.content.Context;
-        import android.graphics.Typeface;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
-        import androidx.fragment.app.Fragment;
-        import androidx.viewpager.widget.PagerAdapter;
-        import androidx.viewpager.widget.ViewPager;
-        import android.util.AttributeSet;
-        import android.util.SparseArray;
-        import android.util.TypedValue;
-        import android.view.Gravity;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.HorizontalScrollView;
-        import android.widget.LinearLayout;
-        import android.widget.TextView;
+import android.util.AttributeSet;
+import android.util.SparseArray;
+import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to
@@ -125,7 +125,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     /**
      * Set the custom {@link TabColorizer} to be used.
-     *
+     * <p>
      * If you only require simple custmisation then you can use
      * {@link #setSelectedIndicatorColors(int...)} to achieve
      * similar effects.
@@ -161,7 +161,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
      * Set the custom layout to be inflated for the tab views.
      *
      * @param layoutResId Layout id to be inflated
-     * @param textViewId id of the {@link TextView} in the inflated view
+     * @param textViewId  id of the {@link TextView} in the inflated view
      */
     public void setCustomTabView(int layoutResId, int textViewId) {
         mTabViewLayoutId = layoutResId;
@@ -218,7 +218,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 // If there is a custom tab view layout id set, try and inflate it
                 tabView = LayoutInflater.from(getContext()).inflate(mTabViewLayoutId, mTabStrip,
                         false);
-                tabTitleView = (TextView) tabView.findViewById(mTabViewTextViewId);
+                tabTitleView = tabView.findViewById(mTabViewTextViewId);
             }
 
             if (tabView == null) {
