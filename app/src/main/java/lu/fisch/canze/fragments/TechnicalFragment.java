@@ -24,8 +24,10 @@ package lu.fisch.canze.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,36 +63,39 @@ public class TechnicalFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_technical, container, false);
+        View view = inflater.inflate(R.layout.fragment_technical, container, false);
 
-        activateButton(view, R.id.buttonChargingTech,           ChargingTechActivity.class);
-        activateButton(view, R.id.buttonDtc,                    DtcActivity.class);
+        activateButton(view, R.id.buttonChargingTech, ChargingTechActivity.class);
+        activateButton(view, R.id.buttonDtc, DtcActivity.class);
 
-        activateButton(view, R.id.buttonChargingGraphs,         ChargingGraphActivity.class);
-        activateButton(view, R.id.buttonFirmware,               FirmwareActivity.class);
+        activateButton(view, R.id.buttonChargingGraphs, ChargingGraphActivity.class);
+        activateButton(view, R.id.buttonFirmware, FirmwareActivity.class);
 
-        activateButton(view, R.id.buttonChargingPrediction,     PredictionActivity.class);
-        activateButton(view, R.id.buttonElmTest,                ElmTestActivity.class);
+        activateButton(view, R.id.buttonChargingPrediction, PredictionActivity.class);
+        activateButton(view, R.id.buttonElmTest, ElmTestActivity.class);
 
-        activateButton(view, R.id.buttonChargingHistory,        ChargingHistActivity.class);
-        activateButton(view, R.id.buttonClimaTech,              ClimaTechActivity.class);
+        activateButton(view, R.id.buttonChargingHistory, ChargingHistActivity.class);
+        activateButton(view, R.id.buttonClimaTech, ClimaTechActivity.class);
 
-        activateButton(view, R.id.buttonLeakCurrents,           LeakCurrentsActivity.class);
-        activateButton(view, R.id.buttonAuxBatt,                AuxBattTechActivity.class);
+        activateButton(view, R.id.buttonLeakCurrents, LeakCurrentsActivity.class);
+        activateButton(view, R.id.buttonAuxBatt, AuxBattTechActivity.class);
 
-        activateButton(view, R.id.buttonRange,                  RangeActivity.class);
-        activateButton(view, R.id.buttonAllData,                AllDataActivity.class);
+        activateButton(view, R.id.buttonRange, RangeActivity.class);
+        activateButton(view, R.id.buttonAllData, AllDataActivity.class);
 
         return view;
     }
 
-    private void activateButton (View view, int buttonId, final Class<?> activityClass) {
+    private void activateButton(View view, int buttonId, final Class<?> activityClass) {
         Button button = view.findViewById(buttonId);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!MainActivity.isSafe()) return;
-                if(MainActivity.device==null) {MainActivity.toast("You first need to adjust the settings ..."); return;}
+                if (!MainActivity.isSafe()) return;
+                if (MainActivity.device == null) {
+                    MainActivity.toast("You first need to adjust the settings ...");
+                    return;
+                }
                 MainActivity.getInstance().leaveBluetoothOn = true;
                 Intent intent = new Intent(MainActivity.getInstance(), activityClass);
                 TechnicalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
@@ -100,6 +105,6 @@ public class TechnicalFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        MainActivity.getInstance().onActivityResult(requestCode,resultCode,data);
+        MainActivity.getInstance().onActivityResult(requestCode, resultCode, data);
     }
 }
