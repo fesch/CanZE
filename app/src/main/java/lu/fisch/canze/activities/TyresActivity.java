@@ -21,6 +21,7 @@
 
 package lu.fisch.canze.activities;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -56,6 +57,13 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if (Build.VERSION.SDK_INT != 26 && Build.VERSION.SDK_INT != 27) {
+            getWindow().setFlags(
+                    WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                    WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tyres);
 
@@ -204,7 +212,8 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         frames[1] = Frames.getInstance().getById(0x765, "7e01"); // tester awake to BCM
         frames[2] = Frames.getInstance().getById(0x765, "6171"); // get TPMS ids
 
-        if (MainActivity.device == null) return; // this should not happen as the fragment checks the device property, but it does
+        if (MainActivity.device == null)
+            return; // this should not happen as the fragment checks the device property, but it does
         Message message = MainActivity.device.injectRequests(frames); // return result message of last request (get TPMS ids)
         if (message.isError()) {
             MainActivity.toast(-100, "Could not read TPMS valves:" + message.getData());
@@ -272,7 +281,8 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         frames[1] = Frames.getInstance().getById(0x765, "7e01"); // tester awake to BCM
         frames[2] = new Frame(0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format("7b5d%06X%06X%06X%06X", idFrontLeft, idFrontRight, idRearLeft, idRearRight), null); // set TMPS ids
 
-        if (MainActivity.device == null) return; // this should not happen as the fragment checks the device property, but it does
+        if (MainActivity.device == null)
+            return; // this should not happen as the fragment checks the device property, but it does
         Message message = MainActivity.device.injectRequests(frames);
         if (message.isError()) {
             MainActivity.toast(-100, "Could not write TPMS valves:" + message.getData());

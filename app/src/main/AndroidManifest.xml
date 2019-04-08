@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="lu.fisch.canze"
-    android:installLocation="auto"
-    >
+    android:installLocation="auto">
 
     <!-- <uses-sdk android:minSdkVersion="11" /> -->
 
@@ -18,11 +18,34 @@
         android:smallScreens="true"
         android:xlargeScreens="true" />
 
+
+    <!--
+
+    Note we try to avoid a very spurious error seen in Android 8.1 that can be avoided by not
+    using hardware acceleration in affected Android versions in activities that use EditText
+    See
+    https://stackoverflow.com/questions/50360227/tgkill-native-error-on-android-8-0-samsung-s8
+    https://stackoverflow.com/questions/48457748/native-crashes-on-abort-in-developer-console-with-oreo-8-1
+
+    Note that the following is added in the onCreate method of all the affected activities to
+    re-enable hardware accelleration if not Android 8.0 or 8.1
+
+    if (Build.VERSION.SDK_INT != 26 && Build.VERSION.SDK_INT != 27) {
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+    }
+
+    Affected activities: Settings, Driving and Tyres
+
+    -->
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name">
@@ -34,6 +57,7 @@
         </activity>
         <activity
             android:name=".activities.SettingsActivity"
+            android:hardwareAccelerated="false"
             android:label="@string/title_activity_settings" />
         <activity
             android:name=".activities.WidgetActivity"
@@ -46,6 +70,7 @@
             android:label="@string/title_activity_charging" />
         <activity
             android:name=".activities.DrivingActivity"
+            android:hardwareAccelerated="false"
             android:label="@string/title_activity_driving" />
         <activity
             android:name=".activities.BrakingActivity"
@@ -53,7 +78,7 @@
         <activity
             android:name=".activities.DashActivity"
             android:label="@string/title_activity_dash" />
-       <activity
+        <activity
             android:name=".activities.ElmTestActivity"
             android:label="@string/title_activity_elm_test" />
         <activity
@@ -76,6 +101,7 @@
             android:label="@string/title_activity_fluence_kangoo_temp" />
         <activity
             android:name=".activities.TyresActivity"
+            android:hardwareAccelerated="false"
             android:label="@string/title_activity_tyres" />
         <activity
             android:name=".activities.ChargingGraphActivity"

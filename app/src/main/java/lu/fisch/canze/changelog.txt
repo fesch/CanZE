@@ -1,3 +1,4 @@
+2019-03-08 [Jeroen] Experiment to avoid crash in Android 8.1 in EditText, see manifest for details
 2019-03-05 [Jeroen] Avoid crash device being null in Tyres buttonread/write
 2019-04-07 [Jeroen] Avoid $BadTokenException crash in Toast on Android 7.1 (SDK 25)
 2019-04-05 [Bob] Added possibility to install on external storage
