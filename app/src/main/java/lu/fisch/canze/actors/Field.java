@@ -26,6 +26,7 @@
  */
 package lu.fisch.canze.actors;
 
+import androidx.annotation.NonNull;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.interfaces.FieldListener;
 
@@ -33,7 +34,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
- *
  * @author robertfisch
  */
 public class Field {
@@ -71,83 +71,76 @@ public class Field {
      */
 
 
-
     public Field(String sid, Frame frame, short from, short to, double resolution, int decimals, int offset, String unit, String responseId, short options, String name, String list) {
         if (sid == null || sid.equals("")) {
-            if (responseId != null && !responseId.trim().isEmpty ())
+            if (responseId != null && !responseId.trim().isEmpty())
                 this.sid = (Integer.toHexString(frame.getId()) + "." + responseId.trim() + "." + from).toLowerCase();
             else
-                this.sid = (Integer.toHexString(frame.getId())+"."+from).toLowerCase();
+                this.sid = (Integer.toHexString(frame.getId()) + "." + from).toLowerCase();
         } else {
             this.sid = sid;
         }
-        this.frame=frame;
-        this.from=from;
-        this.to=to;
-        this.offset=offset;
+        this.frame = frame;
+        this.from = from;
+        this.to = to;
+        this.offset = offset;
         this.resolution = resolution;
         this.decimals = decimals;
         this.unit = unit;
-        this.responseId=responseId;
-        this.options=options;
-        this.name=name;
-        this.list=list;
+        this.responseId = responseId;
+        this.options = options;
+        this.name = name;
+        this.list = list;
 
-        this.lastRequest=Calendar.getInstance().getTimeInMillis();
+        this.lastRequest = Calendar.getInstance().getTimeInMillis();
     }
 
-    private Field fieldClone()
-    {
+    private Field fieldClone() {
         // cloning is only used in this class, method notifyFieldListeners
         Field field = new Field(sid, frame, from, to, resolution, decimals, offset, unit, responseId, options, name, list);
         field.value = value;
         field.strVal = strVal;
-        field.lastRequest=lastRequest;
-        field.interval=interval;
+        field.lastRequest = lastRequest;
+        field.interval = interval;
         field.virtual = this.virtual;
         return field;
     }
 
+    @NonNull
     @Override
-    public String toString()
-    {
-        return getSID()+" : "+getName()+" ["+getUnit()+"]";
+    public String toString() {
+        return getSID() + " : " + getName() + " [" + getUnit() + "]";
     }
 
-    boolean isIsoTp()
-    {
+    boolean isIsoTp() {
         return !responseId.trim().isEmpty();
     }
 
-    public String getSID()
-    {
+    public String getSID() {
         return sid;
     }
 
-    public String getPrintValue()
-    {
-        return getValue()+" "+getUnit();
+    public String getPrintValue() {
+        return getValue() + " " + getUnit();
     }
 
-    public String getStringValue () {
+    public String getStringValue() {
         return strVal;
     }
 
 
-    public String getListValue()
-    {
+    public String getListValue() {
         if (list == null) return ("");
-        if (list.equals ("")) return ("");
+        if (list.equals("")) return ("");
         if (Double.isNaN(value)) return ("");
         String[] lines = list.split(";");
         if (value < 0 || value >= lines.length) return ("");
-        return lines[(int)value];
+        return lines[(int) value];
     }
 
-    public double getValue()
-    {
+    public double getValue() {
         //double val =  ((value-offset)/(double) divider *multiplier)/(decimals==0?1:decimals);
-        double val =  (value-offset) * resolution;
+        double val = (value - offset) * resolution;
         // This is a tricky one. If we are in miles mode, in a virtual field the sources for that
         // field have already been corrected, so this should not be done twice. I.O.W. virtual
         // field values are, by definition already properly corrected.
@@ -162,62 +155,57 @@ public class Field {
         return val;
     }
 
-    public double getMax()
-    {
-        double val = (int) Math.pow(2, to-from+1);
-        return ((val-offset)* resolution);
+    public double getMax() {
+        double val = (int) Math.pow(2, to - from + 1);
+        return ((val - offset) * resolution);
 
     }
 
-    public double getMin()
-    {
+    public double getMin() {
         double val = 0;
-        return ((val-offset)* resolution);
+        return ((val - offset) * resolution);
     }
 
     /* --------------------------------
      * Listeners management
      \ ------------------------------ */
 
-    public void addListener(FieldListener fieldListener)
-    {
-        if(!fieldListeners.contains(fieldListener)) {
+    public void addListener(FieldListener fieldListener) {
+        if (!fieldListeners.contains(fieldListener)) {
             fieldListeners.add(fieldListener);
             // trigger immediate update to pass the reference to this field
             fieldListener.onFieldUpdateEvent(this);
         }
     }
 
-    public void removeListener(FieldListener fieldListener)
-    {
+    public void removeListener(FieldListener fieldListener) {
         fieldListeners.remove(fieldListener);
     }
 
     /**
      * Notify all listeners synchronously
      */
-    private void notifyFieldListeners()
-    {
+    private void notifyFieldListeners() {
         notifyFieldListeners(false);
     }
 
     /**
      * Notify all listeners
-     * @param async     true for asynchronous notifications (one thread per listener)
+     *
+     * @param async true for asynchronous notifications (one thread per listener)
      */
-    private void notifyFieldListeners(boolean async)
-    {
+    private void notifyFieldListeners(boolean async) {
         // this is the only part where cloning is used. Therefor we don't need to worry
         // about cloned frames in the complex frame / field interaction, esp in the Device Class
-        if(!async) {
-            for(int i=0; i<fieldListeners.size(); i++) {
+        if (!async) {
+            for (int i = 0; i < fieldListeners.size(); i++) {
                 fieldListeners.get(i).onFieldUpdateEvent(this.fieldClone());
             }
         } else {
-            // clone the frame to make sure modifications will
-            // TODO why double cloning?
+            // clone the frame to make sure modifications in other threads will not interfere
+            // note though that async updating is currently never used
             final Field clone = this.fieldClone();
-            for(int i=0; i<fieldListeners.size(); i++) {
+            for (int i = 0; i < fieldListeners.size(); i++) {
                 final int index = i;
                 (new Thread(new Runnable() {
 
@@ -235,28 +223,23 @@ public class Field {
     \ ------------------------------ */
 
 
-    void updateLastRequest()
-    {
+    void updateLastRequest() {
         lastRequest = Calendar.getInstance().getTimeInMillis();
     }
 
-    public long getLastRequest()
-    {
+    public long getLastRequest() {
         return lastRequest;
     }
 
-    public boolean isDue(long referenceTime)
-    {
-        return lastRequest+interval<referenceTime;
+    public boolean isDue(long referenceTime) {
+        return lastRequest + interval < referenceTime;
     }
 
-    public void setInterval(int interval)
-    {
-        this.interval=interval;
+    public void setInterval(int interval) {
+        this.interval = interval;
     }
 
-    public int getInterval()
-    {
+    public int getInterval() {
         return interval;
     }
 
@@ -312,12 +295,13 @@ public class Field {
                 value = value / 1.609344;
         }
         // inverted calculation
-        setValue (value / resolution + offset);
+        setValue(value / resolution + offset);
     }
 
     public int getId() {
         return frame.getId();
     }
+
     public String getHexId() {
         return frame.getHexId();
     }
@@ -335,8 +319,8 @@ public class Field {
     }
 
     public String getUnit() {
-        if(MainActivity.milesMode)
-            return (unit+"").replace("km", "mi");
+        if (MainActivity.milesMode)
+            return (unit + "").replace("km", "mi");
         else
             return unit;
     }
@@ -345,7 +329,7 @@ public class Field {
         this.unit = unit;
     }
 
-    public String getRequestId () {
+    public String getRequestId() {
         if (responseId.compareTo("") == 0) return ("");
         char[] tmpChars = responseId.toCharArray();
         tmpChars[0] -= 0x20;
@@ -364,12 +348,13 @@ public class Field {
         return (options & 0x0f);
     }
 
-    public boolean isCar(int car)
-    {
-        return (options & car)==car;
+    public boolean isCar(int car) {
+        return (options & car) == car;
     }
 
-    public void setCar(int car) { options = (short)((options & 0xfe0) + (car & 0x1f)); }
+    public void setCar(int car) {
+        options = (short) ((options & 0xfe0) + (car & 0x1f));
+    }
 
     public int getFrequency() {
         return frame.getInterval();
@@ -391,15 +376,15 @@ public class Field {
         return (this.options & MainActivity.FIELD_TYPE_MASK) == MainActivity.FIELD_TYPE_SIGNED;
     }
 
-    public boolean isString () {
+    public boolean isString() {
         return (this.options & MainActivity.FIELD_TYPE_MASK) == MainActivity.FIELD_TYPE_STRING;
     }
 
-    public boolean isList () {
+    public boolean isList() {
         return list != null && !list.equals("");
     }
 
-    public String getName () {
+    public String getName() {
         return name;
     }
 
