@@ -213,15 +213,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
-    /* TODO we should move to simply always provide the level in the toast() call instead of all those if's in the code */
     public static void toast(int level, final String message) {
         if (level > toastLevel) return;
-        if (instance != null && !instance.isFinishing()) { // && MainActivity.context != null) {
+        if (instance != null && !instance.isFinishing()) {
             instance.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    //Toast.makeText(MainActivity.context, message, Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
                     ToastCompat.makeText(instance, message, Toast.LENGTH_SHORT).show();
                 }
             });
@@ -229,45 +226,17 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     public static void toast(final String message) {
-        if (instance != null && !instance.isFinishing()) { // && MainActivity.context != null) {
-            instance.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    //Toast.makeText(MainActivity.context, message, Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
-                    ToastCompat.makeText(instance, message, Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+        toast (0, message);
     }
 
     public static void toast(String format, Object... arguments) {
-        if (instance != null && !instance.isFinishing()) { // && MainActivity.context != null) {
-            final String finalMessage = String.format(Locale.getDefault(), format, arguments);
-            instance.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    //Toast.makeText(MainActivity.context, finalMessage, Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
-                    ToastCompat.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
-
-                }
-            });
-        }
+        String finalMessage = String.format(Locale.getDefault(), format, arguments);
+        toast (0, finalMessage);
     }
 
     public static void toast(final int resource) {
-        if (instance != null && !instance.isFinishing()) { // && MainActivity.context != null) {
-            instance.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    final String finalMessage = getStringSingle(resource);
-                    //Toast.makeText(MainActivity.context, finalMessage, Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
-                    ToastCompat.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+        final String finalMessage = getStringSingle(resource);
+        toast (0, finalMessage);
     }
 
     public void loadSettings() {
