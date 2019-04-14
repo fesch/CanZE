@@ -628,7 +628,7 @@ public class SettingsActivity extends AppCompatActivity {
                     arrayAdapter.add(deviceAlias + "\n" + device.getAddress());
                     // get the index of the selected item
                     //if(device.getAddress().equals(deviceAddress))
-                    if (deviceAlias.equals(deviceName)) {
+                    if (deviceAlias != null && deviceAlias.equals(deviceName)) {
                         index = i; // plus one as HTTP is always first in list
                         //MainActivity.debug("SELECT: found = "+i+" ("+deviceAlias+")");
                     }
