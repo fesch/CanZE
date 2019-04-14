@@ -75,7 +75,7 @@ public class Ecus {
         AssetLoadHelper assetLoadHelper = new AssetLoadHelper(MainActivity.getInstance());
         BufferedReader bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(assetName);
         if (bufferedReader == null) {
-            MainActivity.toast(-100, "Can't access asset " + assetName);
+            MainActivity.toast(MainActivity.TOAST_NONE, "Can't access asset " + assetName);
             return;
         }
         try {

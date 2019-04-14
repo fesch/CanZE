@@ -27,7 +27,7 @@ import static lu.fisch.canze.activities.MainActivity.debug;
  * Created by Chris Mattheis on 03/11/15.
  * don't use yet - still work in progress
  */
-public class DataLogger  implements FieldListener {
+public class DataLogger implements FieldListener {
 
     /* ****************************
      * Singleton stuff
@@ -36,7 +36,7 @@ public class DataLogger  implements FieldListener {
     private static DataLogger dataLogger = null;
 
     public static DataLogger getInstance() {
-        if(dataLogger ==null) dataLogger =new DataLogger();
+        if (dataLogger == null) dataLogger = new DataLogger();
         return dataLogger;
     }
 
@@ -47,28 +47,28 @@ public class DataLogger  implements FieldListener {
     // -------- Data Definitions copied from Driving Activity -- start ---
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
     // free data
-    public static final String SID_Consumption                          = "1fd.48"; //EVC
-    public static final String SID_Pedal                                = "186.40"; //EVC
-    public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
-    public static final String SID_RealSpeed                            = "5d7.0";  //ESC-ABS
-    public static final String SID_SoC                                  = "654.25"; //EVC
-    public static final String SID_RangeEstimate                        = "654.42"; //EVC
-    public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
-    public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; //UBP 10ms
+    public static final String SID_Consumption = "1fd.48"; //EVC
+    public static final String SID_Pedal = "186.40"; //EVC
+    public static final String SID_MeanEffectiveTorque = "186.16"; //EVC
+    public static final String SID_RealSpeed = "5d7.0";  //ESC-ABS
+    public static final String SID_SoC = "654.25"; //EVC
+    public static final String SID_RangeEstimate = "654.42"; //EVC
+    public static final String SID_DriverBrakeWheel_Torque_Request = "130.44"; //UBP braking wheel torque the driver wants
+    public static final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //UBP 10ms
 
     // ISO-TP data
 //  public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
 //  public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC)
-    public static final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
+    public static final String SID_EVC_Odometer = "7ec.622006.24"; //  (EVC)
     //  public static final String SID_EVC_Pedal                            = "7ec.62202e.24"; //  (EVC)
-    public static final String SID_EVC_TractionBatteryVoltage           = "7ec.623203.24"; //  (EVC)
-    public static final String SID_EVC_TractionBatteryCurrent           = "7ec.623204.24"; //  (EVC)
-    public static final String SID_MaxCharge                            = "7bb.6101.336";
+    public static final String SID_EVC_TractionBatteryVoltage = "7ec.623203.24"; //  (EVC)
+    public static final String SID_EVC_TractionBatteryCurrent = "7ec.623204.24"; //  (EVC)
+    public static final String SID_MaxCharge = "7bb.6101.336";
 
-    private double dcVolt                           = 0; // holds the DC voltage, so we can calculate the power when the amps come in
-    private int    odo                              = 0;
-    private double realSpeed                        = 0;
-    private double dcPwr                            = 0;
+    private double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
+    private int odo = 0;
+    private double realSpeed = 0;
+    private double dcPwr = 0;
 
     private String var_SoC;
     private String var_Pedal;
@@ -101,13 +101,12 @@ public class DataLogger  implements FieldListener {
 
     // milliSeconds == 0 --> get current time
     // milliSeconds > 0 --> use the time given as parameter
-    private String getDateString(long milliSeconds, String dateFormat)
-    {
+    private String getDateString(long milliSeconds, String dateFormat) {
         // Create a DateFormatter object for displaying date in specified format.
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
         // Create a calendar object that will convert the date and time value in milliseconds to date.
         Calendar calendar = Calendar.getInstance();
-        if ( milliSeconds > 0 ) {
+        if (milliSeconds > 0) {
             calendar.setTimeInMillis(milliSeconds);
         }
         return formatter.format(calendar.getTime());
@@ -115,19 +114,18 @@ public class DataLogger  implements FieldListener {
 
     public boolean isExternalStorageWritable() {
         String SDstate = Environment.getExternalStorageState();
-        return ( Environment.MEDIA_MOUNTED.equals(SDstate));
+        return (Environment.MEDIA_MOUNTED.equals(SDstate));
     }
 
-    public boolean isCreated()
-    {
-        return (logFile!=null);
+    public boolean isCreated() {
+        return (logFile != null);
     }
 
-    public boolean activate ( boolean state ) {
+    public boolean activate(boolean state) {
         boolean result = state;
-        debug ( "DataLogger: activate > request = " + state );
+        debug("DataLogger: activate > request = " + state);
 
-        if ( activated != state) {
+        if (activated != state) {
             if (state) { // now need to activate, open file, start timer
                 result = start();
                 activated = result; // only true in case of no errors
@@ -138,7 +136,7 @@ public class DataLogger  implements FieldListener {
                 // debug("DataLogger: stop ");
             }
         }
-        debug ( "DataLogger: activate > return " + result );
+        debug("DataLogger: activate > return " + result);
         return result;
     }
 
@@ -147,11 +145,10 @@ public class DataLogger  implements FieldListener {
         boolean result = false;
 
         // ensure that there is a CanZE Folder in SDcard
-        if ( ! isExternalStorageWritable()) {
-            debug ( "DataLogger: SDcard not writeable");
+        if (!isExternalStorageWritable()) {
+            debug("DataLogger: SDcard not writeable");
             return false;
-        }
-        else {
+        } else {
             String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
             File dir = new File(file_path);
             if (!dir.exists()) {
@@ -166,7 +163,7 @@ public class DataLogger  implements FieldListener {
             if (!logFile.exists()) {
                 try {
                     logFile.createNewFile();
-                    debug("DataLogger: NewFile:" +  exportdataFileName );
+                    debug("DataLogger: NewFile:" + exportdataFileName);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -203,7 +200,7 @@ public class DataLogger  implements FieldListener {
             // Long tsLong = System.currentTimeMillis(); // Method 1
             Long tsLong = new Date().getTime(); // Method 2
 
-            String DateString = getDateString( 0 , MainActivity.getStringSingle(R.string.format_YMDHMS));
+            String DateString = getDateString(0, MainActivity.getStringSingle(R.string.format_YMDHMS));
             // String DateString = getDateString( 0 , "yyyy-MM-dd-HH-mm-ss");
             tsLong >>= 8;
             String timestamp = tsLong.toString();
@@ -221,11 +218,11 @@ public class DataLogger  implements FieldListener {
             //    e.printStackTrace();
             //}
 
-            if ( realSpeed + dcPwr > 0 ) { // only log while driving or charging
+            if (realSpeed + dcPwr > 0) { // only log while driving or charging
                 String dataWithNewLine = timestamp
                         + ";" + DateString
-                        + ";" + String.format ("%.3f", realSpeed )
-                        + ";" + String.format ("%.3f", dcPwr )
+                        + ";" + String.format("%.3f", realSpeed)
+                        + ";" + String.format("%.3f", dcPwr)
                         + ";" + var_SoC
                         + ";" + var_dcVolt
                         + ";" + var_dcPwr
@@ -243,19 +240,18 @@ public class DataLogger  implements FieldListener {
 
     /**
      * Appends a line of text to the log file
-     * @param text  the text line. A CR will be added automatically
+     *
+     * @param text the text line. A CR will be added automatically
      */
-    public void log(String text)
-    {
-        if(!isCreated()) createNewLog();
+    public void log(String text) {
+        if (!isCreated()) createNewLog();
         debug("DataLogger - log: " + text);
 
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
-            bufferedWriter.append(text+ System.getProperty("line.separator"));
+            bufferedWriter.append(text + System.getProperty("line.separator"));
             bufferedWriter.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -304,10 +300,8 @@ public class DataLogger  implements FieldListener {
             // MainActivity.device.addActivityField(field, intervalMs);
             MainActivity.device.addApplicationField(field, intervalMs);
             subscribedFields.add(field);
-        }
-        else
-        {
-            MainActivity.toast("sid " + sid + " does not exist in class Fields");
+        } else {
+            MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_NoSid), sid);
         }
     }
 
@@ -319,19 +313,19 @@ public class DataLogger  implements FieldListener {
 
         // Make sure to add ISO-TP listeners grouped by ID
 
-        addListener(SID_Consumption, intervall ); // 2000
-        addListener(SID_Pedal, intervall );       // 2000
-        addListener(SID_MeanEffectiveTorque, intervall ); // 2000
-        addListener(SID_DriverBrakeWheel_Torque_Request, intervall ); // 2000
+        addListener(SID_Consumption, intervall); // 2000
+        addListener(SID_Pedal, intervall);       // 2000
+        addListener(SID_MeanEffectiveTorque, intervall); // 2000
+        addListener(SID_DriverBrakeWheel_Torque_Request, intervall); // 2000
         addListener(SID_ElecBrakeWheelsTorqueApplied, intervall); // 2000
         addListener(SID_RealSpeed, intervall); // 2000
         addListener(SID_SoC, intervall); // 3600
         addListener(SID_RangeEstimate, intervall); // 3600
 
         //addListener(SID_EVC_SoC);
-        addListener(SID_EVC_Odometer, intervall );  // 6000
-        addListener(SID_EVC_TractionBatteryVoltage, intervall ); // 5000
-        addListener(SID_EVC_TractionBatteryCurrent, intervall ); // 2000
+        addListener(SID_EVC_Odometer, intervall);  // 6000
+        addListener(SID_EVC_TractionBatteryVoltage, intervall); // 5000
+        addListener(SID_EVC_TractionBatteryCurrent, intervall); // 2000
         //addListener(SID_PEB_Torque);
     }
 
@@ -359,7 +353,7 @@ public class DataLogger  implements FieldListener {
                 break;
             case SID_Pedal:
 //                  case SID_EVC_Pedal:
-                var_Pedal =  field.getPrintValue();
+                var_Pedal = field.getPrintValue();
                 // pb.setProgress((int) field.getValue());
                 break;
             case SID_MeanEffectiveTorque:
@@ -367,7 +361,7 @@ public class DataLogger  implements FieldListener {
                 // pb.setProgress((int) field.getValue());
                 break;
             case SID_EVC_Odometer:
-                odo = (int ) field.getValue();
+                odo = (int) field.getValue();
                 //odo = (int) Utils.kmOrMiles(field.getValue());
                 var_Odometer = "" + odo;
                 break;

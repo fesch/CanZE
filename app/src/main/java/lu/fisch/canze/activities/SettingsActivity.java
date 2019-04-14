@@ -186,8 +186,8 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("Only device");
         arrayAdapter.add("All");
 
-        if (MainActivity.toastLevel == Fields.TOAST_DEVICE) index = 1;
-        else if (MainActivity.toastLevel == Fields.TOAST_ALL) index = 2;
+        if (MainActivity.toastLevel == MainActivity.TOAST_ELM) index = 1;
+        else if (MainActivity.toastLevel == MainActivity.TOAST_ELMCAR) index = 2;
         else index = 0; // assume Fields.TOAST_NONE)
 
         // display the list
@@ -466,7 +466,7 @@ public class SettingsActivity extends AppCompatActivity {
                 CanzeDataSource.getInstance().clear();
 
                 MainActivity.fields.clearAllFields();
-                toast(MainActivity.getStringSingle(R.string.toast_CacheCleared));
+                MainActivity.toast(MainActivity.TOAST_NONE, R.string.toast_CacheCleared);
             }
         });
 
@@ -493,7 +493,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        toast(MainActivity.getStringSingle(R.string.toast_PleaseUseTop));
+        MainActivity.toast(MainActivity.TOAST_NONE, R.string.toast_PleaseUseTop);
     }
 
 
@@ -577,7 +577,7 @@ public class SettingsActivity extends AppCompatActivity {
         // get the bluetooth adapter
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null) {
-            MainActivity.toast(R.string.toast_NoBluetooth);
+            MainActivity.toast(MainActivity.TOAST_NONE, R.string.toast_NoBluetooth);
         } else {
             if (!bluetoothAdapter.isEnabled()) {
                 // launch the system activity

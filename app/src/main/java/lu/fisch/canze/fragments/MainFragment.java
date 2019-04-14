@@ -93,7 +93,7 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
                 if (!MainActivity.isSafe()) return;
                 if (MainActivity.device == null) {
-                    MainActivity.toast("You first need to adjust the settings ...");
+                    MainActivity.toast(MainActivity.TOAST_NONE, R.string.toast_AdjustSettings);
                     return;
                 }
                 MainActivity.getInstance().leaveBluetoothOn = true;

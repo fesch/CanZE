@@ -25,6 +25,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import lu.fisch.canze.R;
 import lu.fisch.canze.activities.MainActivity;
 
 /**
@@ -85,7 +86,7 @@ public class Dtcs {
         AssetLoadHelper assetLoadHelper = new AssetLoadHelper(MainActivity.getInstance());
         BufferedReader bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(dtcsAssetName);
         if (bufferedReader == null) {
-            MainActivity.toast(-100, "Can't access asset " + dtcsAssetName);
+            MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_NoAsset), dtcsAssetName);
             return;
         }
         try {
@@ -99,7 +100,7 @@ public class Dtcs {
         }
         bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(testsAssetName);
         if (bufferedReader == null) {
-            MainActivity.toast(-100, "Can't access asset " + testsAssetName);
+            MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_NoAsset), testsAssetName);
             return;
         }
         try {

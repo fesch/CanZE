@@ -120,10 +120,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static final short FIELD_TYPE_SIGNED = 0x100;
     public static final short FIELD_TYPE_STRING = 0x200;      // not implemented yet
 
-    public static final short TOAST_NONE = 0;
-    public static final short TOAST_ELM = 1;
-    public static final short TOAST_ELMCAR = 2;
-
     public static final double reduction = 9.32;     // update suggested by Loc Dao
 
     // private StringBuilder sb = new StringBuilder();
@@ -156,7 +152,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     private static boolean isDriving = false;
 
     public static boolean milesMode = false;
-    public static int toastLevel = 1;
+
+    public static final short TOAST_NONE = 0;
+    public static final short TOAST_ELM = 1;
+    public static final short TOAST_ELMCAR = 2;
+    public static int toastLevel = TOAST_NONE; // The lower toastlevel is set, the less messages come through
 
     private DebugListener debugListener = null;
 
@@ -213,7 +213,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
+    // ***** Toasts *******
+
     public static void toast(int level, final String message) {
+        // the lower the level is set, the higer the prio by convension. TOAST_NONE is the highest prio possible
         if (level > toastLevel) return;
         if (instance != null && !instance.isFinishing()) {
             instance.runOnUiThread(new Runnable() {
@@ -225,18 +228,26 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
-    public static void toast(final String message) {
-        toast (0, message);
+    private static void toast(final String message) {
+        toast (TOAST_NONE, message);
     }
 
-    public static void toast(String format, Object... arguments) {
+    public static void toast(int level, String format, Object... arguments) {
         String finalMessage = String.format(Locale.getDefault(), format, arguments);
-        toast (0, finalMessage);
+        toast (level, finalMessage);
     }
 
-    public static void toast(final int resource) {
+    private static void toast(String format, Object... arguments) {
+        toast (TOAST_NONE, format, arguments);
+    }
+
+    public static void toast(int level, final int resource) {
         final String finalMessage = getStringSingle(resource);
-        toast (0, finalMessage);
+        toast (level, finalMessage);
+    }
+
+    private static void toast(final int resource) {
+        toast (TOAST_NONE, resource);
     }
 
     public void loadSettings() {

@@ -71,7 +71,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
                         }
                     });
                 } else {
-                    MainActivity.toast(MainActivity.getStringSingle(R.string.format_NoView), "lEcu", Integer.toHexString (ecu.getFromId()).toLowerCase());
+                    MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_NoView), "lEcu", Integer.toHexString (ecu.getFromId()).toLowerCase());
                 }
             }
         }

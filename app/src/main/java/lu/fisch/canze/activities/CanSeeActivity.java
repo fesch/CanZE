@@ -42,7 +42,7 @@ public class CanSeeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        toast(MainActivity.getStringSingle(R.string.toast_PleaseUseTop));
+        toast(MainActivity.TOAST_NONE, R.string.toast_PleaseUseTop);
     }
 
 

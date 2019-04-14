@@ -1,4 +1,6 @@
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="TypographyFractions,TypographyEllipsis">
 
     <!-- App -->
 
@@ -19,6 +21,7 @@
     <string name="default_No">No</string>
     <string name="default_Ok">OK</string>
     <string name="default_Cancel">Cancel</string>
+    <string name="default_Reset">Reset</string>
 
     <!-- Formats -->
 
@@ -68,6 +71,7 @@
     <string name="toast_Reconnecting">Reconnecting Bluetooth…</string>
     <string name="toast_WaitingSettings">Stopping Bluetooth. Settings are being loaded. Please wait ....</string>
     <string name="toast_NotWhileDriving">Not possible while driving…</string>
+    <string name="toast_AdjustSettings">Please adjust the settings first</string>
 
     <!-- Main (fragment) -->
 
@@ -301,6 +305,10 @@
     <string name="default_ZeroNm" translatable="false">0 Nm</string>
     <string name="help_AllTorques">Al torques are given in combined wheel torques, not motor torques.</string>
 
+    <!-- CanZE -->
+
+    <string name="message_CantConnect">Can\'t connect. Bluetooth not configured yet?</string>
+
     <!-- Charging and ChargingTech -->
 
     <string name="title_activity_charging">Charging</string>
@@ -448,6 +456,10 @@
     <string name="title_activity_dash">Dash</string>
     <string name="button_Dash">Dash</string>
 
+    <!-- Datalogger -->
+
+    <string name="format_NoSid">sid %s does not exist in class Fields</string>
+
     <!-- Driving -->
 
     <string name="title_activity_driving">Driving info</string>
@@ -486,6 +498,8 @@
     <string name="message_NoClearDtcField">Clear DTCs field does not exist\n</string>
     <string name="message_MessageNull">Msg is null. Is the car switched on?\n</string>
     <string name="message_ClearSuccessful">Clear seems successful, please query DTCs\n</string>
+    <string name="message_DumpDone">Done. Logfile created</string>
+    <string name="format_DumpWriting">Wait, writing %s</string>
 
     <!-- Elm testing -->
 
@@ -500,6 +514,16 @@
     <string name="message_PrepFree">\nProcessing prepped free frame PARK BRAKE\n</string>
     <string name="message_DevicePassed">\nYour device passed all the tests, it will probably work just fine\n</string>
 
+    <!-- ELM327 -->
+
+    <string name="message_HardResetFailed">Hard reset failed, restarting Bluetooth ...</string>
+    <string name="message_ELM13Ready">ELM ready, version 1.3, should work</string>
+    <string name="message_ELM14Ready">ELM ready, version 1.4, should work</string>
+    <string name="message_ELM8015Ready">ELM ready, version innocar, should work</string>
+    <string name="message_ELMReady">ELM is now ready</string>
+    <string name="message_ELM20Ready">ELM ready, version 2.x, will probably not work, please report if it does</string>
+    <string name="message_ELMUnknown">ELM ready, unknown version, will probably not work, please report if it does</string>
+
     <!-- Firmware -->
 
     <string name="title_activity_firmware">Firmware</string>
@@ -509,6 +533,10 @@
     <!-- Fluence Kangoo Temps -->
 
     <string name="button_FluenceKangooTemps">Fluence Kangoo Temps</string>
+
+    <!-- Frames -->
+
+    <string name="format_NoAsset">Can\'t access asset %s</string>
 
     <!-- Heatmap battery modules -->
 
