@@ -37,7 +37,6 @@ import lu.fisch.canze.actors.Message;
 
 public class ELM327OverHttp extends Device {
 
-    private int timeoutLogLevel = MainActivity.toastLevel;
     private String urlLeader;
     private boolean deviceIsInitialized = false;
 
@@ -48,7 +47,7 @@ public class ELM327OverHttp extends Device {
             MainActivity.debug("ELM327Http: initDevice (" + toughness + "), " + retries + " retries left");
             if (initDevice(toughness)) return true;
         }
-        if (timeoutLogLevel >= 1) MainActivity.toast("Hard reset failed, restarting device ...");
+        MainActivity.toast(MainActivity.TOAST_ELM, "Hard reset failed, restarting device ...");
         MainActivity.debug(lastInitProblem);
         MainActivity.debug("ELM327Http: Hard reset failed, restarting device ...");
         return false;

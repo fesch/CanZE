@@ -56,10 +56,6 @@ public class Fields {
     private static final int FIELD_NAME         = 11; // can be displayed/saved. Now only used for Diag ISO-TP
     private static final int FIELD_LIST         = 12; // same
 
-    public static final int TOAST_NONE          = 0;
-    public static final int TOAST_DEVICE        = 1;
-    public static final int TOAST_ALL           = 2;
-
     private final ArrayList<Field> fields = new ArrayList<>();
     private final HashMap<String, Field> fieldsBySid = new HashMap<>();
 
@@ -443,7 +439,7 @@ public class Fields {
 
         BufferedReader bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(assetName);
         if (bufferedReader == null) {
-            MainActivity.toast(-100, "Can't access asset " + assetName);
+            MainActivity.toast(MainActivity.TOAST_NONE, "Can't access asset " + assetName);
             return;
         }
         try {

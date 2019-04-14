@@ -211,7 +211,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
             editor.putFloat("destOdo", d);
             editor.apply();
             destOdo = d;
-            setDestToDest();
+            displayDistToDest();
         }
     }
 
@@ -224,18 +224,18 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
             // This happens when an old integer value is in the pref file
             destOdo = settings.getInt("destOdo", 0);
         }
-        setDestToDest();
+        displayDistToDest();
     }
 
-    private void setDestToDest(int distance1, int distance2) {
+    private void displayDistToDest(int distance1, int distance2) {
         TextView tv;
         tv = findViewById(R.id.textDistToDest);
-        tv.setText("" + distance1);
+        tv.setText(String.valueOf(distance1));
         tv = findViewById(R.id.textDistAVailAtDest);
-        tv.setText("" + distance2);
+        tv.setText(String.valueOf(distance2));
     }
 
-    private void setDestToDest() {
+    private void displayDistToDest() {
         TextView tv;
         tv = findViewById(R.id.textDistToDest);
         tv.setText("-");
@@ -254,9 +254,9 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
             editor.putFloat("startBdistance", startBdistance);
             editor.putFloat("startBenergy", startBenergy);
             editor.apply();
-            MainActivity.toast(-100, "Trip Consumption reset");
-        } else {
-            MainActivity.toast(-100, "Could not reset Trip Consumption yet");
+            displayTripData();
+        //} else {
+        //    MainActivity.toast(MainActivity.TOAST_NONE, "Could not reset Trip Consumption yet");
         }
     }
 
@@ -269,6 +269,30 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         } catch (ClassCastException e) {
             // do nothing, too unimportant to try getInt
         }
+    }
+
+    private void displayTripData () {
+        TextView tv = findViewById(R.id.textTripConsumption);
+        if ((odo - tripBdistance - 1) > savedTripStart) {
+            tv.setText(MainActivity.getStringSingle(R.string.default_Reset));
+            tv = findViewById(R.id.textTripDistance);
+            tv.setText("");
+            tv = findViewById(R.id.textTripEnergy);
+            tv.setText("");
+        } else if (tripEnergy <= 0 || tripDistance <= 0) {
+            tv.setText("...");
+            tv = findViewById(R.id.textTripDistance);
+            tv.setText("...");
+            tv = findViewById(R.id.textTripEnergy);
+            tv.setText("...");
+        } else {
+            tv.setText(String.format(Locale.getDefault(), "%.1f", MainActivity.milesMode ? (tripDistance / tripEnergy) : (tripEnergy * 100.0 / tripDistance)));
+            tv = findViewById(R.id.textTripDistance);
+            tv.setText(String.format(Locale.getDefault(), "%.1f", tripDistance));
+            tv = findViewById(R.id.textTripEnergy);
+            tv.setText(String.format(Locale.getDefault(), "%.1f", tripEnergy));
+        }
+
     }
 
 
@@ -302,39 +326,18 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         break;
                     case SID_EVC_Odometer:
                         odo = (float) field.getValue();
-                        //MainActivity.toast(String.format(Locale.getDefault(), "O:%.1f", odo));
                         tv = null;
                         break;
                     case SID_EVC_TripBmeter:
                         tripBdistance = (float) field.getValue();
                         tripDistance = tripBdistance - startBdistance;
-                        //MainActivity.toast(String.format(Locale.getDefault(), "D:%.1f", tripBdistance));
-                        tv = findViewById(R.id.textTripConsumption);
-                        if ((odo - tripBdistance - 1) > savedTripStart) {
-                            tv.setText("reset");
-                            tv = findViewById(R.id.textTripDistance);
-                            tv.setText("");
-                            tv = findViewById(R.id.textTripEnergy);
-                            tv.setText("");
-                        } else if (tripEnergy <= 0 || tripDistance <= 0) {
-                            tv.setText("...");
-                            tv = findViewById(R.id.textTripDistance);
-                            tv.setText("...");
-                            tv = findViewById(R.id.textTripEnergy);
-                            tv.setText("...");
-                        } else {
-                            tv.setText(String.format(Locale.getDefault(), "%.1f", MainActivity.milesMode ? (tripDistance / tripEnergy) : (tripEnergy * 100.0 / tripDistance)));
-                            tv = findViewById(R.id.textTripDistance);
-                            tv.setText(String.format(Locale.getDefault(), "%.1f", tripDistance));
-                            tv = findViewById(R.id.textTripEnergy);
-                            tv.setText(String.format(Locale.getDefault(), "%.1f", tripEnergy));
-                        }
+                        displayTripData ();
                         tv = null;
                         break;
                     case SID_EVC_TripBenergy:
                         tripBenergy = (float) field.getValue();
                         tripEnergy = tripBenergy - startBenergy;
-                        //MainActivity.toast(String.format(Locale.getDefault(), "E:%.1f", tripBenergy));
+                        displayTripData ();
                         tv = null;
                         break;
                     case SID_MaxCharge:
@@ -362,12 +365,12 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         int rangeInBat = (int) field.getValue();
                         if (rangeInBat > 0 && odo > 0 && destOdo > 0) { // we update only if there are no weird values
                             if (destOdo > odo) {
-                                setDestToDest((int) (destOdo - odo), (int) (rangeInBat - destOdo + odo));
+                                displayDistToDest((int) (destOdo - odo), (int) (rangeInBat - destOdo + odo));
                             } else {
-                                setDestToDest(0, 0);
+                                displayDistToDest(0, 0);
                             }
                         } else {
-                            setDestToDest();
+                            displayDistToDest();
                         }
                         tv = null;
                         break;
