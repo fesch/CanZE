@@ -54,6 +54,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
+//import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -75,6 +76,7 @@ import lu.fisch.canze.interfaces.BluetoothEvent;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.ui.AppSectionsPagerAdapter;
+import me.drakeet.support.toast.ToastCompat;
 
 public class MainActivity extends AppCompatActivity implements FieldListener /*, android.support.v7.app.ActionBar.TabListener */ {
     public static final String TAG = "CanZE";
@@ -118,10 +120,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static final short FIELD_TYPE_SIGNED = 0x100;
     public static final short FIELD_TYPE_STRING = 0x200;      // not implemented yet
 
-    public static final short TOAST_NONE = 0;
-    public static final short TOAST_ELM = 1;
-    public static final short TOAST_ELMCAR = 2;
-
     public static final double reduction = 9.32;     // update suggested by Loc Dao
 
     // private StringBuilder sb = new StringBuilder();
@@ -154,7 +152,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     private static boolean isDriving = false;
 
     public static boolean milesMode = false;
-    public static int toastLevel = 1;
+
+    public static final short TOAST_NONE = 0;
+    public static final short TOAST_ELM = 1;
+    public static final short TOAST_ELMCAR = 2;
+    public static int toastLevel = TOAST_NONE; // The lower toastlevel is set, the less messages come through
 
     private DebugListener debugListener = null;
 
@@ -211,56 +213,41 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
-    /* TODO we should move to simply always provide the level in the toast() call instead of all those if's in the code */
+    // ***** Toasts *******
+
     public static void toast(int level, final String message) {
+        // the lower the level is set, the higer the prio by convension. TOAST_NONE is the highest prio possible
         if (level > toastLevel) return;
-        if (instance != null && !instance.isFinishing()) { // && MainActivity.context != null) {
+        if (instance != null && !instance.isFinishing()) {
             instance.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    //Toast.makeText(MainActivity.context, message, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
+                    ToastCompat.makeText(instance, message, Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
 
-    public static void toast(final String message) {
-        if (instance != null && !instance.isFinishing()) { // && MainActivity.context != null) {
-            instance.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    //Toast.makeText(MainActivity.context, message, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(instance, message, Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+    private static void toast(final String message) {
+        toast (TOAST_NONE, message);
     }
 
-    public static void toast(String format, Object... arguments) {
-        if (instance != null && !instance.isFinishing()) { // && MainActivity.context != null) {
-            final String finalMessage = String.format(Locale.getDefault(), format, arguments);
-            instance.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    //Toast.makeText(MainActivity.context, finalMessage, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+    public static void toast(int level, String format, Object... arguments) {
+        String finalMessage = String.format(Locale.getDefault(), format, arguments);
+        toast (level, finalMessage);
     }
 
-    public static void toast(final int resource) {
-        if (instance != null && !instance.isFinishing()) { // && MainActivity.context != null) {
-            instance.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    final String finalMessage = getStringSingle(resource);
-                    //Toast.makeText(MainActivity.context, finalMessage, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(instance, finalMessage, Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
+    private static void toast(String format, Object... arguments) {
+        toast (TOAST_NONE, format, arguments);
+    }
+
+    public static void toast(int level, final int resource) {
+        final String finalMessage = getStringSingle(resource);
+        toast (level, finalMessage);
+    }
+
+    private static void toast(final int resource) {
+        toast (TOAST_NONE, resource);
     }
 
     public void loadSettings() {

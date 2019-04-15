@@ -1,3 +1,11 @@
+---< Version 1.37 / 2019.04.15 >---
+2019-03-14 [Jeroen] Avoid NullPointerException crash in SettingsActivity.fillDeviceList
+2019-03-13 [Jeroen] Cleanup of toasts (logic, inheritance, use resources, avoid if not needed)
+2019-03-08 [Jeroen] Experiment to avoid crash in Android 8.1 in EditText, see manifest for details
+2019-03-05 [Jeroen] Avoid crash device being null in Tyres buttonread/write
+2019-04-07 [Jeroen] Avoid $BadTokenException crash in Toast on Android 7.1 (SDK 25)
+2019-04-05 [Bob] Added possibility to install on external storage
+
 ---< Version 1.36 / 2019.04.04 >---
 2019-04-04 [Bob] Wrong reference while fixing a bug ... grrr
 

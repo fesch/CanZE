@@ -25,6 +25,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import lu.fisch.canze.R;
 import lu.fisch.canze.activities.MainActivity;
 
 /**
@@ -87,7 +88,7 @@ public class Frames {
         AssetLoadHelper assetLoadHelper = new AssetLoadHelper(MainActivity.getInstance());
         BufferedReader bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(assetName);
         if (bufferedReader == null) {
-            MainActivity.toast(-100, "Can't access asset " + assetName);
+            MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_NoAsset),assetName);
             return;
         }
         try {

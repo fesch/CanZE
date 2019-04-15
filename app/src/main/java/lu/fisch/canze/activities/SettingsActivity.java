@@ -30,14 +30,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.text.Html;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -69,6 +73,13 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if (Build.VERSION.SDK_INT != 26 && Build.VERSION.SDK_INT != 27) {
+            getWindow().setFlags(
+                    WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                    WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
@@ -175,8 +186,8 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("Only device");
         arrayAdapter.add("All");
 
-        if (MainActivity.toastLevel == Fields.TOAST_DEVICE) index = 1;
-        else if (MainActivity.toastLevel == Fields.TOAST_ALL) index = 2;
+        if (MainActivity.toastLevel == MainActivity.TOAST_ELM) index = 1;
+        else if (MainActivity.toastLevel == MainActivity.TOAST_ELMCAR) index = 2;
         else index = 0; // assume Fields.TOAST_NONE)
 
         // display the list
@@ -455,7 +466,7 @@ public class SettingsActivity extends AppCompatActivity {
                 CanzeDataSource.getInstance().clear();
 
                 MainActivity.fields.clearAllFields();
-                toast(MainActivity.getStringSingle(R.string.toast_CacheCleared));
+                MainActivity.toast(MainActivity.TOAST_NONE, R.string.toast_CacheCleared);
             }
         });
 
@@ -482,7 +493,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        toast(MainActivity.getStringSingle(R.string.toast_PleaseUseTop));
+        MainActivity.toast(MainActivity.TOAST_NONE, R.string.toast_PleaseUseTop);
     }
 
 
@@ -566,7 +577,7 @@ public class SettingsActivity extends AppCompatActivity {
         // get the bluetooth adapter
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null) {
-            MainActivity.toast(R.string.toast_NoBluetooth);
+            MainActivity.toast(MainActivity.TOAST_NONE, R.string.toast_NoBluetooth);
         } else {
             if (!bluetoothAdapter.isEnabled()) {
                 // launch the system activity
@@ -617,7 +628,7 @@ public class SettingsActivity extends AppCompatActivity {
                     arrayAdapter.add(deviceAlias + "\n" + device.getAddress());
                     // get the index of the selected item
                     //if(device.getAddress().equals(deviceAddress))
-                    if (deviceAlias.equals(deviceName)) {
+                    if (deviceAlias != null && deviceAlias.equals(deviceName)) {
                         index = i; // plus one as HTTP is always first in list
                         //MainActivity.debug("SELECT: found = "+i+" ("+deviceAlias+")");
                     }
