@@ -17,8 +17,7 @@ public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
     private ArrayList<Fragment> fragments = new ArrayList<>();
 
-    public AppSectionsPagerAdapter(FragmentManager fm)
-    {
+    public AppSectionsPagerAdapter(FragmentManager fm) {
         super(fm);
 
         fragments.add(new MainFragment());          // 0

@@ -24,6 +24,7 @@ package lu.fisch.canze.devices;
 import java.io.IOException;
 import java.util.Calendar;
 
+import lu.fisch.canze.R;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Ecu;
 import lu.fisch.canze.actors.Ecus;
@@ -68,7 +69,7 @@ public class ELM327 extends Device {
             MainActivity.debug("ELM327: initDevice(" + toughness + "), " + retries + " retries left");
             if (initDevice(toughness)) return true;
         }
-        MainActivity.toast(MainActivity.TOAST_ELM, "Hard reset failed, restarting Bluetooth ...");
+        MainActivity.toast(MainActivity.TOAST_ELM, R.string.message_HardResetFailed);
         MainActivity.debug("ELM327: Hard reset failed, restarting Bluetooth ...");
 
         ///----- WE ARE HERE INSIDE THE POLLER THREAD, SO
@@ -211,25 +212,25 @@ public class ELM327 extends Device {
         if (toughness == TOUGHNESS_HARD) {
             switch (elmVersion) {
                 case 13:
-                    MainActivity.toast(MainActivity.TOAST_ELM, "ELM ready, version 1.3, should work");
+                    MainActivity.toast(MainActivity.TOAST_ELM, R.string.message_ELM13Ready);
                     break;
                 case 14:
-                    MainActivity.toast(MainActivity.TOAST_ELM, "ELM ready, version 1.4, should work");
+                    MainActivity.toast(MainActivity.TOAST_ELM, R.string.message_ELM13Ready);
                     break;
                 case 15:
-                    MainActivity.toast(MainActivity.TOAST_ELM, "ELM is now ready");
+                    MainActivity.toast(MainActivity.TOAST_ELM, R.string.message_ELMReady);
                     break;
                 case 20:
-                    lastInitProblem = "ELM ready, version 2.x, will probably not work, please report if it does";
+                    lastInitProblem = MainActivity.getStringSingle(R.string.message_ELM20Ready);
                     MainActivity.toast(MainActivity.TOAST_ELM, lastInitProblem);
                     break;
                 case 8015:
-                    MainActivity.toast(MainActivity.TOAST_ELM, "ELM ready, version innocar, should work");
+                    MainActivity.toast(MainActivity.TOAST_ELM, R.string.message_ELM8015Ready);
                     break;
 
                 // default should never be reached!!
                 default:
-                    lastInitProblem = "ELM ready, unknown version, will probably not work, please report if it does";
+                    lastInitProblem = MainActivity.getStringSingle(R.string.message_ELMUnknown);
                     MainActivity.toast(MainActivity.TOAST_ELM, lastInitProblem);
                     break;
             }

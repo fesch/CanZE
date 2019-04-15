@@ -65,7 +65,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
                         try {
                             BluetoothManager.getInstance().connect();
                         } catch (InvalidParameterException e) {
-                            MainActivity.toast(-100, "Can't connect. Bluetooth not configured yet?");
+                            MainActivity.toast(MainActivity.TOAST_NONE, R.string.message_CantConnect);
                         }
                     }
                 })).start();
@@ -162,7 +162,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     {
         final ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(android.R.id.content));
         if(!widgets.isEmpty())
-            MainActivity.toast(R.string.toast_InitWidgets);
+            // MainActivity.toast(R.string.toast_InitWidgets);
 
         new Thread(new Runnable() {
             @Override

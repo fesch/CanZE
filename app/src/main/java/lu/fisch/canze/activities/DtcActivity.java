@@ -449,7 +449,7 @@ public class DtcActivity extends CanzeActivity {
                     }
                 }
                 closeDump();
-                MainActivity.toast (-100, "Done. Logfile created:");
+                MainActivity.toast (MainActivity.TOAST_NONE, R.string.message_DumpDone);
 
             }
         });
@@ -543,7 +543,7 @@ public class DtcActivity extends CanzeActivity {
             //BufferedWriter for performance, true to set append to file flag
             bufferedDumpWriter = new BufferedWriter(new FileWriter(logFile, true));
             dumpInProgress = true;
-            MainActivity.toast (-100, "Wait, writing " + exportdataFileName);
+            MainActivity.toast (MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_DumpWriting), exportdataFileName);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -555,7 +555,7 @@ public class DtcActivity extends CanzeActivity {
         try {
             if (dumpInProgress) {
                 bufferedDumpWriter.close();
-                MainActivity.toast (-100, "Done.");
+                MainActivity.toast (MainActivity.TOAST_NONE, "Done."); // resources
             }
         } catch (IOException e) {
             e.printStackTrace();

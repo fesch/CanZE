@@ -21,6 +21,7 @@
 
 package lu.fisch.canze.activities;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -56,6 +57,13 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if (Build.VERSION.SDK_INT != 26 && Build.VERSION.SDK_INT != 27) {
+            getWindow().setFlags(
+                    WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                    WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tyres);
 
@@ -204,9 +212,11 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         frames[1] = Frames.getInstance().getById(0x765, "7e01"); // tester awake to BCM
         frames[2] = Frames.getInstance().getById(0x765, "6171"); // get TPMS ids
 
+        if (MainActivity.device == null)
+            return; // this should not happen as the fragment checks the device property, but it does
         Message message = MainActivity.device.injectRequests(frames); // return result message of last request (get TPMS ids)
         if (message.isError()) {
-            MainActivity.toast(-100, "Could not read TPMS valves:" + message.getData());
+            MainActivity.toast(MainActivity.TOAST_NONE, "Could not read TPMS valves:" + message.getData());
             return;
         }
 
@@ -229,7 +239,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         }
 
         if (idFrontLeft == 0 || idFrontRight == 0 || idRearLeft == 0 || idRearRight == 0) {
-            MainActivity.toast(-100, "No TPMS valves found");
+            MainActivity.toast(MainActivity.TOAST_NONE, "No TPMS valves found");
             return;
         }
 
@@ -238,7 +248,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         displayId(R.id.text_TyreFRId, idFrontRight);
         displayId(R.id.text_TyreRLId, idRearLeft);
         displayId(R.id.text_TyreRRId, idRearRight);
-        MainActivity.toast(-100, "TPMS valves read");
+        MainActivity.toast(MainActivity.TOAST_NONE, "TPMS valves read");
     }
 
     private int simpleIntParse(int fieldId) {
@@ -261,7 +271,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         int idRearRight = simpleIntParse(R.id.text_TyreRRId);
 
         if (idFrontLeft == 0 || idFrontRight == 0 || idRearLeft == 0 || idRearRight == 0) {
-            MainActivity.toast(-100, "Those are not all valid hex values other than 000000");
+            MainActivity.toast(MainActivity.TOAST_NONE, "Those are not all valid hex values other than 000000");
             return;
         }
 
@@ -271,16 +281,18 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         frames[1] = Frames.getInstance().getById(0x765, "7e01"); // tester awake to BCM
         frames[2] = new Frame(0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format("7b5d%06X%06X%06X%06X", idFrontLeft, idFrontRight, idRearLeft, idRearRight), null); // set TMPS ids
 
+        if (MainActivity.device == null)
+            return; // this should not happen as the fragment checks the device property, but it does
         Message message = MainActivity.device.injectRequests(frames);
         if (message.isError()) {
-            MainActivity.toast(-100, "Could not write TPMS valves:" + message.getData());
+            MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valves:" + message.getData());
             return;
         }
 
         if (!message.getData().startsWith("7b5d")) {
-            MainActivity.toast(-100, "Could not write TPMS valves:" + message.getData());
+            MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valves:" + message.getData());
             return;
         }
-        MainActivity.toast(-100, "TPMS valves written. Read again to verify");
+        MainActivity.toast(MainActivity.TOAST_NONE, "TPMS valves written. Read again to verify");
     }
 }
