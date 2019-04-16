@@ -552,13 +552,15 @@ public class Timeplot extends Drawable {
             if (backward) {
                 ArrayList<TimePoint> list = this.values.get(sids.get(0));
                 long newStart = (Calendar.getInstance().getTimeInMillis());
-                if (!list.isEmpty()) {
+                if (list != null && !list.isEmpty()) {
                     newStart = list.get(list.size() - 1).date;
                     for (int s = 0; s < sids.size(); s++) {
                         list = this.values.get(sids.get(s));
-                        if (!list.isEmpty()) {
-                            long thisDate = list.get(list.size() - 1).date;
-                            if (thisDate > start) newStart = thisDate;
+                        if (list != null && !list.isEmpty()) {
+                            TimePoint tp = list.get(list.size() - 1);
+                            if (tp != null) {
+                                if (tp.date > start) newStart = tp.date;
+                            }
                         }
                     }
                 }
@@ -580,13 +582,13 @@ public class Timeplot extends Drawable {
                 ArrayList<TimePoint> list = this.values.get(sids.get(0));
 
                 long newStart = (Calendar.getInstance().getTimeInMillis());
-                if (!list.isEmpty()) {
+                if (list != null && !list.isEmpty()) {
                     newStart = list.get(list.size() - 1).date;
                     for (int s = 0; s < sids.size(); s++) {
                         list = this.values.get(sids.get(s));
-                        if (!list.isEmpty()) {
-                            long thisDate = list.get(0).date;
-                            if (thisDate < start) newStart = thisDate;
+                        if (list != null && !list.isEmpty()) {
+                            TimePoint tp = list.get(0);
+                            if (tp.date < start) newStart = tp.date;
                         }
                     }
                 }
