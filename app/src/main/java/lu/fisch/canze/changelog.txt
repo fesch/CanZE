@@ -1,3 +1,5 @@
+2019-04-16 [Jeroen] Removed GSON source and replaced with gradle implementation
+
 ---< Version 1.37 / 2019.04.15 >---
 2019-03-14 [Jeroen] Avoid NullPointerException crash in SettingsActivity.fillDeviceList
 2019-03-13 [Jeroen] Cleanup of toasts (logic, inheritance, use resources, avoid if not needed)
