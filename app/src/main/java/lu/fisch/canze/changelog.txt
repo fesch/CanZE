@@ -1,3 +1,4 @@
+2019-04-16 [Jeroen] Avoid NullPointerException crash in Timeplot
 2019-04-16 [Jeroen] androidx.legacy:legacy-support-v4 1.0.0-beta01 -> 1.0.0
 2019-04-16 [Jeroen] Removed GSON source and replaced with gradle implementation
 
