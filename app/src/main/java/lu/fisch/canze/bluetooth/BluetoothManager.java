@@ -332,7 +332,13 @@ public class BluetoothManager {
         if (bluetoothSocket != null && bluetoothSocket.isConnected()) {
             byte[] msgBuffer = message.getBytes();
             try {
-                outputStream.write(msgBuffer);
+                // outputstream should never be nll here, but seen it in crash reports so
+                // the strategy is to simply avoid
+                if (outputStream != null) {
+                    outputStream.write(msgBuffer);
+                } else {
+                    Log.d(MainActivity.TAG, "BluetoothManager.write: outputSTream is null");
+                }
             } catch (IOException e) {
                 Log.d(MainActivity.TAG, "BT: Error sending > " + e.getMessage());
                 //Log.d(MainActivity.TAG, "BT: Error sending > restaring BT");
