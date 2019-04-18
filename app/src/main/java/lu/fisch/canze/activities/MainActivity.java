@@ -222,7 +222,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             instance.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    ToastCompat.makeText(instance, message, Toast.LENGTH_SHORT).show();
+                    Context c = instance.getApplicationContext();
+                    if (c != null) {
+                        ToastCompat.makeText(c, message, Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
