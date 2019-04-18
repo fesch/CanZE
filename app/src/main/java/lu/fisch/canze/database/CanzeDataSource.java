@@ -46,7 +46,8 @@ public class CanzeDataSource implements FieldListener {
     private static CanzeDataSource instance = null;
 
     public static CanzeDataSource getInstance() {
-        if (instance == null) throw new Error("Must call at least once with given context!");
+        // let it crash on the caller to see where it comes from
+        // if (instance == null) throw new Error("Must call at least once with given context!");
         return instance;
     }
 
@@ -115,8 +116,8 @@ public class CanzeDataSource implements FieldListener {
     public void cleanUp() {
         try {
             long limit = Calendar.getInstance().getTimeInMillis() - LIMIT;
-
-            database.rawQuery("DELETE FROM data WHERE moment<" + limit, null);
+            Cursor c = database.rawQuery("DELETE FROM data WHERE moment<" + limit, null);
+            c.close();
         } catch (Exception e) {
             // do nothing
         }
@@ -133,7 +134,8 @@ public class CanzeDataSource implements FieldListener {
 
     public void delete(String sid, long moment) {
         try {
-            database.rawQuery("DELETE FROM data WHERE sid='" + sid + "' AND moment='" + moment + "'", null);
+            Cursor c = database.rawQuery("DELETE FROM data WHERE sid='" + sid + "' AND moment='" + moment + "'", null);
+            c.close();
         } catch (Exception e) {
             // do nothing
         }
