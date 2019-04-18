@@ -1,3 +1,4 @@
+2019-04-17 [Jeroen] let it crash on the caller of CanzeDataSource.getInstance to see the call stack
 2019-04-17 [Jeroen] Avoid nullpointerException in BluetoothManager.write
 2019-04-17 [Jeroen] Gradle to 3.4.0
 2019-04-16 [Jeroen] Avoid NullPointerException crash in Timeplot
