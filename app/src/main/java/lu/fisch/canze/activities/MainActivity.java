@@ -433,10 +433,14 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         CanzeDataSource.getInstance().cleanUp();
 
         // setup cleaning (once every hour)
+        // Extra check for non null CanzeDatasource instance
         Runnable cleanUpRunnable = new Runnable() {
             @Override
             public void run() {
-                CanzeDataSource.getInstance().cleanUp();
+                CanzeDataSource dsInstance = CanzeDataSource.getInstance();
+                if (dsInstance != null) {
+                    dsInstance.cleanUp();
+                }
             }
         };
         Handler handler = new Handler();

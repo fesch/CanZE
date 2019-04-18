@@ -1,3 +1,4 @@
+2019-04-17 [Jeroen] Extra check for non null CanzeDatasource instance
 2019-04-17 [Jeroen] 2nd experiment to avoid NullPointerException crash in Toast
 2019-04-17 [Jeroen] let it crash on the caller of CanzeDataSource.getInstance to see the call stack
 2019-04-17 [Jeroen] Avoid nullpointerException in BluetoothManager.write
