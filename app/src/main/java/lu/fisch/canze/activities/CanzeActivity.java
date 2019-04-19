@@ -22,6 +22,8 @@
 package lu.fisch.canze.activities;
 
 import android.os.Bundle;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.MenuItem;
@@ -58,7 +60,9 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
         if(MainActivity.device!=null)
             if(!BluetoothManager.getInstance().isConnected()) {
@@ -317,7 +321,10 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             @Override
             public void run() {
                 TextView tv = findViewById(R.id.textDebug);
-                if (tv != null) tv.setText(tv.getText() + " " + msg);
+                if (tv != null) {
+                    String newMsg = tv.getText() + " " + msg;
+                    tv.setText(newMsg);
+                }
             }
         });
     }
