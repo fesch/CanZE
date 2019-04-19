@@ -791,17 +791,17 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
             if (isSafe()) {
                 // run a toast
-                toast(R.string.toast_WaitingSettings);
+                // toast(R.string.toast_WaitingSettings);
 
                 (new Thread(new Runnable() {
                     @Override
                     public void run() {
                         // give the toast a moment to appear
-                        try {
+                        /* try {
                             Thread.sleep(100);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
-                        }
+                        } */
 
                         if (device != null) {
                             // stop the BT device
