@@ -192,6 +192,16 @@
 
         </ScrollView>
 
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:id="@+id/progressBar_cyclic"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            />
+
     </RelativeLayout>
 
     <RelativeLayout

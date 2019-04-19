@@ -53,6 +53,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 //import android.widget.Toast;
 
@@ -538,6 +539,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             return;
         }
 
+        ProgressBar pb = findViewById(R.id.progressBar_cyclic);
+        if (pb != null) pb.setVisibility(View.GONE);
+
         if (!leaveBluetoothOn) {
             runOnUiThread(new Runnable() {
                 @Override
@@ -792,6 +796,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             if (isSafe()) {
                 // run a toast
                 // toast(R.string.toast_WaitingSettings);
+
+                // display the spinner
+                ProgressBar pb = findViewById(R.id.progressBar_cyclic);
+                if (pb != null) pb.setVisibility(View.VISIBLE);
 
                 (new Thread(new Runnable() {
                     @Override
