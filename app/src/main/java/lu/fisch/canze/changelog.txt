@@ -1,3 +1,4 @@
+2019-04-19 [Jeroen] Replaced toast when loading settings with Spinner
 2019-04-19 [Jeroen] Moved Settings button to three-dot menu
 2019-04-19 [Jeroen] Changed Settings and CanSee settings UI to conform to convention (but kept Cancel, now in three-dots)
 2019-04-19 [Jeroen] Added Android home ("back") button to CanzeActivities
