@@ -69,7 +69,7 @@
                             car is a possibly lethal piece of machinery and you might hurt or kill yourself or others using
                             it, or even paying attention to the displays instead of watching the road.</b></html></string>]]></string>
     <string name="toast_Reconnecting">Reconnecting Bluetooth…</string>
-    <string name="toast_WaitingSettings">Stopping Bluetooth. Settings are being loaded. Please wait ....</string>
+    <!-- <string name="toast_WaitingSettings">Stopping Bluetooth. Settings are being loaded. Please wait ....</string> -->
     <string name="toast_NotWhileDriving">Not possible while driving…</string>
     <string name="toast_AdjustSettings">Please adjust the settings first</string>
 
