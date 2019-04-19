@@ -638,7 +638,7 @@
     <string name="prompt_NoSd">External SD card not available, not writeable or has not sufficient space left to log data.<br /><br /><b>Data export cannot be enabled!</b></string>
     <string name="prompt_Sorry">I am sorry…</string>
     <string name="toast_CacheCleared">Cache has been cleared…</string>
-    <string name="toast_PleaseUseTop">Please use one of the top buttons to quit the settings …</string>
+    <!-- <string name="toast_PleaseUseTop">Please use one of the top buttons to quit the settings …</string> -->
     <string name="toast_NoBluetooth">This device does not have any bluetooth adapter.\n\nSorry…</string>
 
     <!-- Tyres -->

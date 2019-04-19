@@ -1,23 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context="lu.fisch.canze.activities.SettingsActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="lu.fisch.canze.activities.SettingsActivity">
 
     <item
         android:id="@+id/action_cancel"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        android:visible="true"
-        android:icon="@mipmap/action_deny"
-        app:showAsAction="always"
-        />
-
-    <item
-        android:id="@+id/action_ok"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        android:visible="true"
-        android:icon="@mipmap/action_accept"
-        app:showAsAction="ifRoom"
+        android:title="@string/default_Cancel"
+        app:showAsAction="never"
         />
 
 </menu>
