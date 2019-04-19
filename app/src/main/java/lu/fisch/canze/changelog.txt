@@ -1,3 +1,4 @@
+2019-04-19 [Jeroen] Moved Settings button to three-dot menu
 2019-04-19 [Jeroen] Changed Settings and CanSee settings UI to conform to convention (but kept Cancel, now in three-dots)
 2019-04-19 [Jeroen] Added Android home ("back") button to CanzeActivities
 2019-04-17 [Jeroen] Extra check for non null CanzeDatasource instance
