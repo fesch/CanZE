@@ -81,6 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_settings);
 
         tryTofillDeviceList();
@@ -493,7 +494,9 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        MainActivity.toast(MainActivity.TOAST_NONE, R.string.toast_PleaseUseTop);
+        // MainActivity.toast(MainActivity.TOAST_NONE, R.string.toast_PleaseUseTop);
+        saveSettings();
+        super.onBackPressed();
     }
 
 
@@ -511,50 +514,11 @@ public class SettingsActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_ok) {
-            // save settings
-            SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
-            SharedPreferences.Editor editor = settings.edit();
-            Spinner remoteDevice = findViewById(R.id.bluetoothDeviceList);
-            Spinner deviceType = findViewById(R.id.deviceType);
-            Spinner car = findViewById(R.id.car);
-            CheckBox safe = findViewById(R.id.safeDrivingMode);
-            CheckBox miles = findViewById(R.id.milesMode);
-            CheckBox dataExport = findViewById(R.id.dataExportMode);
-            CheckBox debugLog = findViewById(R.id.debugLogMode);
-            CheckBox fieldLog = findViewById(R.id.fieldLogMode);
-            CheckBox btBackground = findViewById(R.id.btBackgrounding);
-            Spinner toastLevel = findViewById(R.id.toastLevel);
-            EditText deviceAddress = findViewById(R.id.editTextDeviceAddress);
-            if (remoteDevice.getSelectedItem() != null) {
-                MainActivity.debug("Settings.deviceAddress = " + remoteDevice.getSelectedItem().toString().split("\n")[1].trim());
-                MainActivity.debug("Settings.deviceName = " + remoteDevice.getSelectedItem().toString().split("\n")[0].trim());
-                //editor.putString("deviceAddress", deviceList.getSelectedItem().toString().split("\n")[1].trim());
-                String deviceNameString = remoteDevice.getSelectedItem().toString().split("\n")[0].trim();
-                editor.putString("deviceName", deviceNameString);
-                editor.putString("deviceAddress", String.valueOf(deviceAddress.getText()));
-                if ("HTTP Gateway".equals(deviceNameString)) {
-                    editor.putString("gatewayUrl", String.valueOf(deviceAddress.getText()));
-                    editor.putString("device", "ELM327Http");
-                } else {
-                    editor.putString("device", deviceType.getSelectedItem().toString().trim());
-                }
-                editor.putString("car", car.getSelectedItem().toString().split("\n")[0].trim());
-                editor.putBoolean("optBTBackground", btBackground.isChecked());
-                editor.putBoolean("optSafe", safe.isChecked());
-                editor.putBoolean("optMiles", miles.isChecked());
-                editor.putBoolean("optDataExport", dataExport.isChecked());
-                editor.putBoolean("optDebugLog", debugLog.isChecked());
-                editor.putBoolean("optFieldLog", fieldLog.isChecked());
-                editor.putInt("optToast", toastLevel.getSelectedItemPosition());
-            }
-            // editor.commit();
-            editor.apply();
-            // finish
+        if (id==android.R.id.home) {
+            saveSettings();
             finish();
             return true;
         } else if (id == R.id.action_cancel) {
-            // finish without saving the settings
             finish();
             return true;
         }
@@ -650,5 +614,47 @@ public class SettingsActivity extends AppCompatActivity {
         // select the actual device
         deviceList.setSelection(index);
         deviceList.setSelected(true);
+    }
+
+    private void saveSettings () {
+        // save settings
+        SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        Spinner remoteDevice = findViewById(R.id.bluetoothDeviceList);
+        Spinner deviceType = findViewById(R.id.deviceType);
+        Spinner car = findViewById(R.id.car);
+        CheckBox safe = findViewById(R.id.safeDrivingMode);
+        CheckBox miles = findViewById(R.id.milesMode);
+        CheckBox dataExport = findViewById(R.id.dataExportMode);
+        CheckBox debugLog = findViewById(R.id.debugLogMode);
+        CheckBox fieldLog = findViewById(R.id.fieldLogMode);
+        CheckBox btBackground = findViewById(R.id.btBackgrounding);
+        Spinner toastLevel = findViewById(R.id.toastLevel);
+        EditText deviceAddress = findViewById(R.id.editTextDeviceAddress);
+        if (remoteDevice.getSelectedItem() != null) {
+            MainActivity.debug("Settings.deviceAddress = " + remoteDevice.getSelectedItem().toString().split("\n")[1].trim());
+            MainActivity.debug("Settings.deviceName = " + remoteDevice.getSelectedItem().toString().split("\n")[0].trim());
+            //editor.putString("deviceAddress", deviceList.getSelectedItem().toString().split("\n")[1].trim());
+            String deviceNameString = remoteDevice.getSelectedItem().toString().split("\n")[0].trim();
+            editor.putString("deviceName", deviceNameString);
+            editor.putString("deviceAddress", String.valueOf(deviceAddress.getText()));
+            if ("HTTP Gateway".equals(deviceNameString)) {
+                editor.putString("gatewayUrl", String.valueOf(deviceAddress.getText()));
+                editor.putString("device", "ELM327Http");
+            } else {
+                editor.putString("device", deviceType.getSelectedItem().toString().trim());
+            }
+            editor.putString("car", car.getSelectedItem().toString().split("\n")[0].trim());
+            editor.putBoolean("optBTBackground", btBackground.isChecked());
+            editor.putBoolean("optSafe", safe.isChecked());
+            editor.putBoolean("optMiles", miles.isChecked());
+            editor.putBoolean("optDataExport", dataExport.isChecked());
+            editor.putBoolean("optDebugLog", debugLog.isChecked());
+            editor.putBoolean("optFieldLog", fieldLog.isChecked());
+            editor.putInt("optToast", toastLevel.getSelectedItemPosition());
+        }
+        // editor.commit();
+        editor.apply();
+
     }
 }
