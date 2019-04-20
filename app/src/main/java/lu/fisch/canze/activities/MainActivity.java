@@ -539,13 +539,19 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             return;
         }
 
-        ProgressBar pb = null;
-        pb = findViewById(R.id.progressBar_cyclic0);
-        if (pb != null) pb.setVisibility(View.GONE);
-        pb = findViewById(R.id.progressBar_cyclic1);
-        if (pb != null) pb.setVisibility(View.GONE);
-        pb = findViewById(R.id.progressBar_cyclic2);
-        if (pb != null) pb.setVisibility(View.GONE);
+        // remove progress spinners
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ProgressBar pb;
+                pb = findViewById(R.id.progressBar_cyclic0);
+                if (pb != null) pb.setVisibility(View.GONE);
+                pb = findViewById(R.id.progressBar_cyclic1);
+                if (pb != null) pb.setVisibility(View.GONE);
+                pb = findViewById(R.id.progressBar_cyclic2);
+                if (pb != null) pb.setVisibility(View.GONE);
+            }
+        });
 
         if (!leaveBluetoothOn) {
             runOnUiThread(new Runnable() {
@@ -803,15 +809,20 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 // toast(R.string.toast_WaitingSettings);
 
                 // display the spinner
-                ProgressBar pb = null;
-                if (viewPager.getCurrentItem() == 0) {
-                    pb = findViewById(R.id.progressBar_cyclic0);
-                } else if(viewPager.getCurrentItem() == 1) {
-                    pb = findViewById(R.id.progressBar_cyclic1);
-                } else if(viewPager.getCurrentItem() == 2) {
-                    pb = findViewById(R.id.progressBar_cyclic2);
-                }
-                if (pb != null) pb.setVisibility(View.VISIBLE);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ProgressBar pb = null;
+                        if (viewPager.getCurrentItem() == 0) {
+                            pb = findViewById(R.id.progressBar_cyclic0);
+                        } else if (viewPager.getCurrentItem() == 1) {
+                            pb = findViewById(R.id.progressBar_cyclic1);
+                        } else if (viewPager.getCurrentItem() == 2) {
+                            pb = findViewById(R.id.progressBar_cyclic2);
+                        }
+                        if (pb != null) pb.setVisibility(View.VISIBLE);
+                    }
+                });
 
                 (new Thread(new Runnable() {
                     @Override
