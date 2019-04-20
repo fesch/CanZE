@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -90,8 +91,8 @@ public class AllDataActivity extends CanzeActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                appendResult(R.string.message_PollerStopping);
-
+                displayProgressSpinner (true, R.id.progressBar_cyclic);
+                //appendResult(R.string.message_PollerStopping);
                 if (MainActivity.device != null) {
                     // stop the poller thread
                     MainActivity.device.stopAndJoin();
@@ -99,9 +100,10 @@ public class AllDataActivity extends CanzeActivity {
 
                 if (!BluetoothManager.getInstance().isConnected()) {
                     appendResult(R.string.message_NoConnection);
-                    return;
+                //} else {
+                //    appendResult(MainActivity.getStringSingle(R.string.message_Ready));
                 }
-                appendResult(MainActivity.getStringSingle(R.string.message_Ready));
+                displayProgressSpinner (false, R.id.progressBar_cyclic);
             }
         }).start();
     }
@@ -151,7 +153,9 @@ public class AllDataActivity extends CanzeActivity {
 
     void dogetAllData(final Ecu ecu) {
 
-        clearResult();              // clear the screen
+        // clear the screen
+        clearResult();
+        displayProgressSpinner (true, R.id.progressBar_cyclic);
         appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
 
         // here initialize this particular ECU diagnostics fields
@@ -187,6 +191,7 @@ public class AllDataActivity extends CanzeActivity {
                 // re-initialize the device
                 if (!MainActivity.device.initDevice(1)) {
                     appendResult(R.string.message_InitFailed);
+                    displayProgressSpinner (false, R.id.progressBar_cyclic);
                     return;
                 }
 
@@ -233,6 +238,7 @@ public class AllDataActivity extends CanzeActivity {
                 }
                 closeDump();
                 MainActivity.toast(MainActivity.TOAST_NONE, R.string.message_DumpDone);
+                displayProgressSpinner (false, R.id.progressBar_cyclic);
 
             }
         });
@@ -346,7 +352,18 @@ public class AllDataActivity extends CanzeActivity {
     }
 
 
-    // UI elements
+    private void displayProgressSpinner (final boolean on, final int id) {
+        // remove progress spinners
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ProgressBar pb = findViewById(id);
+                if (pb != null) pb.setVisibility(on ? View.VISIBLE : View.GONE);
+            }
+        });
+    }
+
+
     @Override
     protected void onDestroy() {
 
