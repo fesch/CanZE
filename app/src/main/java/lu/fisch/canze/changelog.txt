@@ -1,3 +1,5 @@
+2019-04-21 [Jeroen] Removed now unused translation entries to avoid lint errors
+2019-04-21 [Jeroen] Enabled minification (R8), for the moment also in debug build variant, with limited name obfuscation
 2019-04-20 [Jeroen] Removed toasts and added Spinner to all data. Moved all spinner changes to the UI thread
 2019-04-19 [Jeroen] Replaced toast when loading settings with Spinner
 2019-04-19 [Jeroen] Moved Settings button to three-dot menu
