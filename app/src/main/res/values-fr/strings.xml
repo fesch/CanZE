@@ -17,7 +17,7 @@
     <string name="prompt_Accept">Oui, j’ai compris !</string>
     <string name="prompt_Decline">Non, je n’y comprends rien…</string>
     <string name="toast_Reconnecting">Reconnexion Bluetooth…</string>
-    <string name="toast_WaitingSettings">Arrêt du Bluetooth. Chargement des paramètres. Veuillez patienter…</string>
+    <!-- <string name="toast_WaitingSettings">Arrêt du Bluetooth. Chargement des paramètres. Veuillez patienter…</string> -->
     <string name="toast_NotWhileDriving">Impossible durant la conduite…</string>
     <string name="menu_Main">Principal</string>
     <string name="help_Main">Faites glisser votre doigt sur l’écran pour basculer entre menu Principal, Technique et Expérimental</string>
@@ -468,7 +468,7 @@
     <string name="prompt_NoSd">La carte SD externe n’est pas disponible ou est protégée en écriture ou ne dispose pas d’espace suffisant pour enregistrer les données. L’exportation des données ne peut pas être activée !</string>
     <string name="prompt_Sorry">Désolé…</string>
     <string name="toast_CacheCleared">Le cache a été vidé…</string>
-    <string name="toast_PleaseUseTop">S’il vous plaît, utilisez l’un des boutons du haut pour quitter les paramètres…</string>
+    <!-- <string name="toast_PleaseUseTop">S’il vous plaît, utilisez l’un des boutons du haut pour quitter les paramètres…</string> -->
     <string name="toast_NoBluetooth">Cet appareil de possède pas d’adaptateur Bluetooth.\n\nDésolé…</string>
     <string name="title_activity_tyres">Info pneumatiques</string>
     <string name="button_Tyres">Pneus</string>

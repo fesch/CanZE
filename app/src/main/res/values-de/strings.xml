@@ -327,7 +327,7 @@ Diesen Modus zu entsperren ist nicht empfohlen.\n\n Bist du sicher, dass du den 
     <string name="prompt_NoSd">Externe SD Karte ist nicht verfügbar, nicht beschreibbar oder hat zu wenig freien Speicher um Daten zu loggen.<br/><br/><b>Daten Export kann nicht eingeschaltet werden!</b></string>
     <string name="prompt_Sorry">Entschuldigung…</string>
     <string name="toast_CacheCleared">Zwischenspeicher gelöscht…</string>
-    <string name="toast_PleaseUseTop">Bitte einen der oberen Buttons verwenden um die Einstellungen zu verlassen âŠ</string>
+    <!-- <string name="toast_PleaseUseTop">Bitte einen der oberen Buttons verwenden um die Einstellungen zu verlassen âŠ</string> -->
     <string name="toast_NoBluetooth">Dieses Gerät verfügt nicht über einen Bluetooth Adapter.\n\nSorryâŠ</string>
 
     <!-- Tyres -->
@@ -381,7 +381,7 @@ Diesen Modus zu entsperren ist nicht empfohlen.\n\n Bist du sicher, dass du den 
     <string name="prompt_Accept">Ja, Ich habe verstanden!</string>
     <string name="prompt_Decline">Nein, Ich verstehe kein Wort...</string>
     <string name="toast_Reconnecting">Wiederverbinden mit Bluetooth…</string>
-    <string name="toast_WaitingSettings">Bluetooth wird gestoppt. Einstellungen werden geladen. Bitte warten ....</string>
+    <!-- <string name="toast_WaitingSettings">Bluetooth wird gestoppt. Einstellungen werden geladen. Bitte warten ....</string> -->
     <string name="toast_NotWhileDriving">Während der Fahrt nicht möglich …</string>
 
     <!-- Main (fragment) -->
