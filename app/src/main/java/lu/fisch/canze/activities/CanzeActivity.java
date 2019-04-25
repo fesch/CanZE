@@ -162,6 +162,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         int id = item.getItemId();
 
         if (id==android.R.id.home) {
+            back = true;
             finish();
         }
         return true;
