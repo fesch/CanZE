@@ -202,6 +202,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public static MainActivity getInstance() {
         if (instance == null)
+            /*  TODO I wonder if this is safe beavior. instance should never be null and if it is,
+                something is pretty wrong and it is probably not a good plan to create a new object,
+                unless I am missing something
+             */
             instance = new MainActivity();
         return instance;
     }
@@ -233,25 +237,25 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     private static void toast(final String message) {
-        toast (TOAST_NONE, message);
+        toast(TOAST_NONE, message);
     }
 
     public static void toast(int level, String format, Object... arguments) {
         String finalMessage = String.format(Locale.getDefault(), format, arguments);
-        toast (level, finalMessage);
+        toast(level, finalMessage);
     }
 
     private static void toast(String format, Object... arguments) {
-        toast (TOAST_NONE, format, arguments);
+        toast(TOAST_NONE, format, arguments);
     }
 
     public static void toast(int level, final int resource) {
         final String finalMessage = getStringSingle(resource);
-        toast (level, finalMessage);
+        toast(level, finalMessage);
     }
 
     private static void toast(final int resource) {
-        toast (TOAST_NONE, resource);
+        toast(TOAST_NONE, resource);
     }
 
     public void loadSettings() {
@@ -390,6 +394,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // always create an instance
+        instance = this;
 
         // needed to get strings from resources in non-Activity classes
         res = getResources();
@@ -399,7 +404,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         debug("MainActivity: onCreate");
 
-        instance = this;
         //MainActivity.context = getApplicationContext();
 
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
