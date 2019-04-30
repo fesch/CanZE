@@ -37,9 +37,35 @@
   
  <!-- Mainactivity -->
     
+    <string name="toast_InitWidgets">Voreinstellungen</string>
+    <string name="toast_BluetoothLost">Bluetooth Verbindung getrennt!</string>
     
+    <string name="prompt_Accept">Ja! Ich habe das verstanden</string>
+    <string name="prompt_Decline">Nein! Ich habe kein Wort verstanden</string>
+
+    <string name="toast_Reconnecting">Bluetooth-Verbindung wieder herstellen …</string>
+    <string name="toast_WaitingSettings">Bluetooth-Verbindung beendet. Einstellungen werden geladen. Einen Moment …</string>
+    <string name="toast_NotWhileDriving">Während der Fahrt nicht möglich …</string>
+    <string name="toast_AdjustSettings">Überprüfen sie die Einstellungen</string>
+
+    <!-- Main (fragment) -->
+
+    <string name="menu_Main">Hauptseite</string>
+    <string name="help_Main">Benutzen Sie die Gesten-Steuerung um zur Hauptseite, Technikseite oder Laborseite zu wechseln</string>
+
+    <!-- Technical (fragment) -->
+
+    <string name="menu_Technical">Technikseite</string>
     
-    
+     <!-- Experimental (fragment) -->
+        
+    <string name="menu_Experimental">Laborseite</string>
+    <string name="help_Experimental">Diese Seite ist einzig allein nur für Testzwecke</string>
+
+    <!-- *************************** ACTIVITIES *************************** -->
+
+    <!-- All data -->
+
     
     <!-- Battery -->
 
