@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+    <!-- App -->
+
     <string name="app_name">CanZE</string>
 
     <!-- <string name="title_activity_text">Text Aktivität</string> -->
@@ -11,26 +14,38 @@
     <string name="action_settings">Einstellungen</string>
 
     <!-- Generic -->
-
+    
     <string name="default_Yes">Ja</string>
     <string name="default_No">Nein</string>
     <string name="default_Ok">OK</string>
     <string name="default_Cancel">Abbrechen</string>
+    <string name="default_Reset">Zurücksetzen</string>
 
     <!-- Formats -->
 
     <string name="format_NoView" formatted="false">Keine Ansicht möglich: id \'%s%s\'</string>
 
+    <!-- Units -->
+
+    
     <!-- Debug (generic) -->
 
     <string name="label_debug">Debug\u0020</string>
     <string name="default_debug">#Debug</string>
-
+    
+ <!-- *************************** SELECTION SCREENS (MAIN AND FRAGMENTS) *************************** -->
+  
+ <!-- Mainactivity -->
+    
+    
+    
+    
+    
     <!-- Battery -->
 
-    <string name="title_activity_battery">Batterie</string>
-    <string name="button_Battery">Batterie</string>
-    <string name="graph_SOH">Batteriegesundheit (SOH) (%)</string>
+    <string name="title_activity_battery">Akkumulator</string>
+    <string name="button_Battery">Akku</string>
+    <string name="graph_SOH">Akku-Lebensdauer (SOH) (%)</string>
     <string name="graph_RealIndicatedSoc">Echte und angebliche Kapazität (SOC) (%)</string>
     <string name="help_QA"><![CDATA[Weitere Details zu diesen Daten können in der <a href=\'http://canze.fisch.lu/qa/\'>Q & A Sektion</a> der <a href=\'http://canze.fisch.lu/\'>CanZE homepage</a>.]]></string>
     <string name="graph_CellVoltages">Zellspannungen (V)</string>
