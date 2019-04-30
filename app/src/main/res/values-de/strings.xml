@@ -114,11 +114,11 @@
     </string-array>
     <string-array name="list_ChargingStatus2">
         <item>kein Laden (0:rot)</item>
-        <item>Laden erwartet (1:grün)</item>
-        <item>Laden beended (2:blau)</item>
-        <item>Laden aktiv (3:gelb)</item>
-        <item>Laden Fehler (4:zyan)</item>
-        <item>Laden bereit (5:lila)</item>
+        <item>warten geplant (1:grün)</item>
+        <item>beendet (2:blau)</item>
+        <item>aktiv (3:gelb)</item>
+        <item>Fehler (4:zyan)</item>
+        <item>warten (5:lila)</item>
         <item>Ladeklappe offen (6:schwarz)</item>
         <item>nicht verfügbar (7:grau)</item>
     </string-array>
@@ -143,6 +143,158 @@
     <string name="graph_CellVoltages">Zellenspannungen (V)</string>
     <string name="graph_ModuleTemperatures">Temperatur der Akku-Module (°C)</string>
 
+    <!-- BCB (now integrated in ChargingTech) -->
+
+    <string name="header_GridParameters">Ladestation Parameter</string>
+    <string name="label_MainsCurrentType">Ladestationtyp</string>
+    <string-array name="list_MainsCurrentType">
+        <item>Nok</item>
+        <item>AC mono</item>
+        <item>AC tri</item>
+        <item>DC</item>
+        <item>AC bi</item>
+    </string-array>
+    <string name="label_phaseCurrent">Phasenstrom RMS 1/2/3 (A)</string>
+    <string name="label_PhaseVoltage">Stern-Phasenspannung 1/2/3 (V)</string>
+    <string name="label_InterPhaseVoltage">Dreieck-Phasenspannung 12/23/31 (V)</string>
+    <string name="label_MainsActivePowerConsumed">Gesamtstromaufnahme (W)</string>
+    <string name="label_GroundResistanceOhm">Erdungswiderstand (Ω)</string>
+    <string name="label_CompletionStatus">Abschlußbericht</string>
+    <string-array name="list_CompletionStatus">
+        <item>Init</item>
+        <item>HF10</item>
+        <item>-</item>
+        <item>Vorgabe Gesamt-Erdungswiderstand</item>
+        <item>-</item>
+        <item>Vorgabe Erdstrom</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Vorgabe Erdungswiderstand</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>mittlerer Verlust DC</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>mittlerer Verlust LF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>mittlerer Verlust DC+LF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>mittlerer Verlust HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>mittlerer Verlust DC+HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>mittlerer Verlust LF+HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>mittlerer Verlust DC+LF+HF</item>
+    </string-array>
+    <string name="label_SupervisorState">Kontrollstatus</string>
+    <string-array name="list_SupervisorState">
+        <item>Init</item>
+        <item>Wait</item>
+        <item>ClosingS2</item>
+        <item>InitType</item>
+        <item>InitLkg</item>
+        <item>InitChg</item>
+        <item>Charge</item>
+        <item>ZeroAmpMode</item>
+        <item>EndOfChg</item>
+        <item>OpeningS2</item>
+        <item>ReadyToSleep</item>
+        <item>EmergencyStop</item>
+        <item>InitChargeDF</item>
+        <item>OCPStop</item>
+        <item>WaitS2</item>
+    </string-array> 
+    
     <!-- Braking -->
 
     <string name="title_activity_braking">Bremsinformationen</string>
@@ -150,46 +302,51 @@
     <string name="label_driver_torque_request">Angefordertes Drehmoment</string>
     <string name="label_ElecBrakeWheelsTorqueApplied">Bremsenergierückgewinnung (Rekuperation)</string>
     <string name="label_diff_friction_torque">Bremsmoment durch Reibung (Verlust)</string>
-    <string name="help_AllTorques">Alle Drehmomente werden als kombiniertes Reifendrehmoment, nicht Motordrehmoment, angegeben.</string>
-
+    
+    <string name="help_AllTorques">Alle Drehmomente werden als kombinierte Reifendrehmomente - nicht Motordrehmomente - angegeben</string>
+    
+    <!-- CanZE -->
+    
+    <string name="message_CantConnect">Bluetooth-Verbindung kann nicht hergestellt werden - Einstellungen kontollieren</string>
+    
     <!-- Charging and ChargingTech -->
 
     <string name="title_activity_charging">Laden</string>
     <string name="button_Charging">Laden</string>
     <string name="header_Charging">Ladeparameter</string>
-    <string name="header_Battery">Batteriewerte</string>
+    <string name="header_Battery">Akkudaten</string>
     <string name="header_DrivingCh">Fahren</string>
-    <string name="header_CompTemp">Batteriemodul-Temperaturen und Balancing</string>
-    <string name="label_max_charge">Max Batterie Ladung/Rückgewinnung kW</string>
-    <string name="label_max_pilot">Ladestrom Pilot Amp (A)</string>
+    <string name="header_CompTemp">Temperaturen und Balancing der Akkumodule</string>
+    <string name="label_max_charge">Max Akkul-Ladung/Rückgewinnung (kW)</string>
+    <string name="label_max_pilot">Ladestrom (A)</string>
     <string name="label_Phases">Phasen</string>
-    <string name="label_UserSOC">Nutzbarer Ladestatus %</string>
-    <string name="label_RealSOC">Echter Ladestatus %</string>
-    <string name="label_HvTemp">Durchschnittliche Batterie Temperatur (°C)</string>
-    <string name="label_SOH">Batteriegesundheit (SOH) %</string>
-    <string name="label_TTF">Zeit bis voll min</string>
+    <string name="label_UserSOC">Nutzbarer Ladezustand (%)</string>
+    <string name="label_RealSOC">Echter Ladezustand (%)</string>
+    <string name="label_HvTemp">mittlere Akkutemperatur (°C)</string>
+    <string name="label_SOH">Akku-Lebensdauer SOH (%)</string>
+    <string name="label_TTF">Zeit bis voll (min)</string>
     <string name="label_ETF">Energie bis voll geladen (kWh)</string>
     <string name="label_DISTA">Verfügbare Reichweite</string>
-    <string name="label_Volt">Spannung HV Batterie (V)</string>
-    <string name="label_Amps">Strom HV Batterie (A)</string>
-    <string name="label_DcPwr">Gleichstromleistung kW</string>
-    <string name="label_AvChPwr">Mögliche Ladeleistung kW</string>
-    <string name="label_AvEner">Verfügbare Energie kWh</string>
-    <string name="label_12V">12 Volt Batterie Spannung</string>
-    <string name="label_12A">12 Volt Batterie Strom</string>
-    <string name="label_DcLoad">DCDC Belastung %</string>
+    <string name="label_Volt">Spannung Akku (V)</string>
+    <string name="label_Amps">Strom Akku (A)</string>
+    <string name="label_DcPwr">Gleichstromleistung (kW)</string>
+    <string name="label_AvChPwr">Mögliche Ladeleistung (kW)</string>
+    <string name="label_AvEner">Verfügbare Energie (kWh)</string>
+    <string name="label_12V">12V Akku Spannung (v)</string>
+    <string name="label_12A">12V Akku Strom (A)</string>
+    <string name="label_DcLoad">DCDC Belastung (%)</string>
     <string name="label_HKM">gefahrene Batteriereichweite (km)</string>
     <string name="label_ChaStatus">Ladestatus</string>
     <string name="label_Plug">Anschlußstatus</string>
     <string-array name="list_ChargingStatus">
-        <item>Keine Ladung</item>
-        <item>Warten (geplant)</item>
-        <item>Beendet</item>
-        <item>lädt gerade</item>
+        <item>kein Laden</item>
+        <item>warten geplant</item>
+        <item>beendet</item>
+        <item>aktiv</item>
         <item>Fehler</item>
-        <item>Warte</item>
-        <item>Klappe offen</item>
-        <item>Nicht verfügbar</item>
+        <item>warten</item>
+        <item>Ladeklappe offen</item>
+        <item>nicht verfügbar</item>
     </string-array>
     <string-array name="list_PlugStatus">
         <item>Nicht verbunden</item>
@@ -206,11 +363,17 @@
 
     <!-- Charging history -->
 
-    <string name="title_activity_charging_history">Charging history</string>
-    <string name="button_charging_history">Charging history</string>
-    <string name="header_ChargingHistory">Last 10 sessions</string>
+    <string name="title_activity_charging_history">Laden Historie</string>
+    <string name="button_charging_history">Ladeverlauf</string>
+    <string name="header_ChargingHistory">Letzten 10 Aufladungen</string>
+    <string name="label_distance">km-Zähler</string>
+    <string name="label_EndOfChargeStatus">Ende</string>
+    <string name="label_TypeOfCharge">Typ</string>
+    <string name="label_EndSoc">SOC</string>
+    <string name="label_EndBatteryTemp">Temp</string>
+    <string name="label_HistDuration">Dauer</string>
     <string-array name="list_ChargingHistEnd">
-        <item>Full</item>
+        <item>Voll</item>
         <item>Unpl c</item>
         <item>Cut ch</item>
         <item>Fail</item>
@@ -229,12 +392,12 @@
         <item>Unknw</item>
         <item>Sched</item>
     </string-array>
+    <string name="header_ChargeSummary">Zusammenfassung Ladeverlauf</string>
+    <string name="label_TotKwh">Gesamt Akkuverbrauch (kWh)</string>
+    <string name="label_CountFull">Akku voll geladen (#)</string>
+    <string name="label_CountPartial">Akku teil geladen (#)</string>
 
-    <!-- Charging prediction -->
-
-    <string name="button_ChargingPrediction">Ladeprognose</string>
-
-    <!-- Clima tech -->
+     <!-- Clima tech -->
 
     <string name="title_activity_clima_tech">Klimaanlage</string>
     <string name="button_Climate">Klima</string>
