@@ -1,40 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+    <!-- App -->
     <string name="app_name">CanZE</string>
-
     <!-- <string name="title_activity_text">Text Aktivität</string> -->
     <!-- <string name="title_activity_temperatures">Temperaturen</string> -->
     <!-- <string name="title_activity_battery_temp">Batterietemperatur-Aktivitäten</string> -->
-
     <!-- Menus -->
 
     <string name="action_settings">Einstellungen</string>
 
+
     <!-- Generic -->
 
+    
+    
+    
+    
     <string name="default_Yes">Ja</string>
     <string name="default_No">Nein</string>
     <string name="default_Ok">OK</string>
     <string name="default_Cancel">Abbrechen</string>
-
+    <string name="default_Reset">Zurücksetzen</string>
+    
     <!-- Formats -->
 
     <string name="format_NoView" formatted="false">Keine Ansicht möglich: id \'%s%s\'</string>
 
+    
+
+    
+    <!-- Units -->
+    
+    
+    
+    
+    
+    
+    
+    
     <!-- Debug (generic) -->
 
     <string name="label_debug">Debug\u0020</string>
     <string name="default_debug">#Debug</string>
 
+    <!-- *************************** SELECTION SCREENS (MAIN AND FRAGMENTS) *************************** -->
+
+    <!-- Mainactivity -->
+
+    <string name="toast_InitWidgets">Initialisierungsbereich</string>
+    <string name="toast_BluetoothLost">Bluetooth-Verbindung getrennt!</string>
+    
+    <string name="prompt_Accept">Ja! Ich habe das verstanden</string>
+    <string name="prompt_Decline">Nein! Ich habe kein Wort verstanden</string>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <string name="toast_Reconnecting">baue Bluetooth-Verbindung wieder auf …</string>
+    <string name="toast_WaitingSettings">Bluetooth-Verbindung benndet. Einstellungen werden geladen. Einen Momment bitte …</string>
+    <string name="toast_NotWhileDriving">Während der Fahrt nicht möglich …</string>
+    <string name="toast_AdjustSettings">Bitte die Einstellungen bearbeiten</string>
+
+    <!-- Main (fragment) -->
+
+    <string name="menu_Main">Hauptseite</string>
+    <string name="help_Main">Bildschirm-Wischen zum Wechseln zwischen der Hauptseite, Technikseite und Laborseite</string>
+
+    <!-- Technical (fragment) -->
+
+    <string name="menu_Technical">Technikseite</string>
+
+    <!-- Experimental (fragment) -->
+
+    <string name="menu_Experimental">Laborseite</string>
+    <string name="help_Experimental">Diese Loborseite ist einzig allein für Testzwecke</string>
+
+    <!-- *************************** ACTIVITIES *************************** -->
+
+    <!-- All data -->
+
+    <string name="title_activity_alldata">Alle Daten</string>
+    <string name="button_alldata">Alle Daten</string>
+    
+    <!-- Auxiliary battery -->
+
+    <string name="title_activity_auxbatt">12V Zusatzakkumulator</string>
+    <string name="button_auxbatt">12V Akku</string>
+    <string name="label_auxbat">Spannung, Fahrzeugstatus, Ladezustand</string>
+    <string name="label_auxbatvolt">Spannunge</string>
+    <string name="label_AuxStatus">Austausch-Meldung</string>
+    <string name="label_vehiclestate">Fahrzeugstatuse</string>
+    <string-array name="list_VehicleState">
+        <item>Schlafmodus (0:rot)</item>
+        <item>Bereitschaft, Aus (1:grün)</item>
+        <item>Zündung (2:blau)</item>
+        <item>Anlassen (3:gelb)</item>
+        <item>Bereitschaft, An (4:zyan)</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="list_ChargingStatus2">
+        <item>kein Laden (0:rot)</item>
+        <item>Laden erwartet (1:grün)</item>
+        <item>Laden beended (2:blau)</item>
+        <item>Laden aktiv (3:gelb)</item>
+        <item>Laden Fehler (4:zyan)</item>
+        <item>Laden bereit (5:lila)</item>
+        <item>Ladeklappe offen (6:schwarz)</item>
+        <item>nicht verfügbar (7:grau)</item>
+    </string-array>
+    <string-array name="list_AuxStatus">
+        <item>kein</item>
+        <item>1</item>
+        <item>2</item>
+        <item>bald</item>
+        <item>4</item>
+        <item>jetzt</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    
     <!-- Battery -->
 
-    <string name="title_activity_battery">Batterie</string>
-    <string name="button_Battery">Batterie</string>
-    <string name="graph_SOH">Batteriegesundheit (SOH) (%)</string>
+    <string name="title_activity_battery">Akkumulator</string>
+    <string name="button_Battery">Akku</string>
+    <string name="graph_SOH">Akku-Lebensdauer (SOH) (%)</string>
     <string name="graph_RealIndicatedSoc">Echte und angebliche Kapazität (SOC) (%)</string>
     <string name="help_QA"><![CDATA[Weitere Details zu diesen Daten können in der <a href=\'http://canze.fisch.lu/qa/\'>Q & A Sektion</a> der <a href=\'http://canze.fisch.lu/\'>CanZE homepage</a>.]]></string>
-    <string name="graph_CellVoltages">Zellspannungen (V)</string>
-    <string name="graph_ModuleTemperatures">Temperatur der Batteriemodule (°C)</string>
+    <string name="graph_CellVoltages">Zellenspannungen (V)</string>
+    <string name="graph_ModuleTemperatures">Temperatur der Akku-Module (°C)</string>
 
     <!-- Braking -->
 
