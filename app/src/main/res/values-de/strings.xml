@@ -25,8 +25,19 @@
 
     <string name="format_NoView" formatted="false">Keine Ansicht möglich: id \'%s%s\'</string>
 
+
+    
+    
+    
+    
     <!-- Units -->
 
+    
+    
+    
+    
+    
+    
     
     <!-- Debug (generic) -->
 
@@ -62,11 +73,66 @@
     <string name="menu_Experimental">Laborseite</string>
     <string name="help_Experimental">Diese Seite ist einzig allein nur für Testzwecke</string>
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <!-- *************************** ACTIVITIES *************************** -->
 
     <!-- All data -->
-
     
+    <string name="title_activity_alldata">Alle Daten</string>
+    <string name="button_alldata">Alle Daten</string>
+
+    <!-- Auxiliary battery -->
+
+    <string name="title_activity_auxbatt">12V Zusatzakkumulator</string>
+    <string name="button_auxbatt">12V Akku</string>
+    <string name="label_auxbat">Spannung, Fahrzeugstatus, Ladestatus</string>
+    <string name="label_auxbatvolt">Spannung</string>
+    <string name="label_AuxStatus">12V-Akku-Austauschmeldung</string>
+    <string name="label_vehiclestate">Fahrzeugstatus</string>
+    <string-array name="list_VehicleState">
+        <item>Schlafmodus (0:rot)</item>
+        <item>Bereitschaft, Aus (1:grün)</item>
+        <item>Zündung (2:blau)</item>
+        <item>Startvorgang (3:gelb)</item>
+        <item>Bereitschaft, Ein (4:zyan)</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="list_ChargingStatus2">
+        <item>keine Ladestation (0:rot)</item>
+        <item>Laden geplant (1:grün)</item>
+        <item>Laden Ende (2:blau)</item>
+        <item>Laden aktiv (3:gelb)</item>
+        <item>Laden Fehler (4:zyan)</item>
+        <item>Laden Warten (5:lila)</item>
+        <item>Ladeklappe offen (6:schwarz)</item>
+        <item>nicht verfügbar (7:grau)</item>
+    </string-array>
+    <string-array name="list_AuxStatus">
+        <item>Keiner</item>
+        <item>1</item>
+        <item>2</item>
+        <item>Bald</item>
+        <item>4</item>
+        <item>Jetzt</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
     <!-- Battery -->
 
     <string name="title_activity_battery">Akkumulator</string>
@@ -74,8 +140,160 @@
     <string name="graph_SOH">Akku-Lebensdauer (SOH) (%)</string>
     <string name="graph_RealIndicatedSoc">Echte und angebliche Kapazität (SOC) (%)</string>
     <string name="help_QA"><![CDATA[Weitere Details zu diesen Daten können in der <a href=\'http://canze.fisch.lu/qa/\'>Q & A Sektion</a> der <a href=\'http://canze.fisch.lu/\'>CanZE homepage</a>.]]></string>
-    <string name="graph_CellVoltages">Zellspannungen (V)</string>
-    <string name="graph_ModuleTemperatures">Temperatur der Batteriemodule (°C)</string>
+    <string name="graph_CellVoltages">Zellenspannungen (V)</string>
+    <string name="graph_ModuleTemperatures">Temperatur der Akku-Module (°C)</string>
+    
+    <!-- BCB (now integrated in ChargingTech) -->
+
+    <string name="header_GridParameters">Ladestation-Parameter</string>
+    <string name="label_MainsCurrentType">Ladestation-Typ</string>
+    <string-array name="list_MainsCurrentType">
+        <item>Nok</item>
+        <item>AC mono</item>
+        <item>AC tri</item>
+        <item>DC</item>
+        <item>AC bi</item>
+    </string-array>
+    <string name="label_phaseCurrent">Phasenstrom 1/2/3 (A)</string>
+    <string name="label_PhaseVoltage">Stern-Phasenspannung 1/2/3 (V)</string>
+    <string name="label_InterPhaseVoltage">Dreieck-Phasenspannung 12/23/31 (V)</string>
+    <string name="label_MainsActivePowerConsumed">mittlere Gesamtleistungsaufnahme (W)</string>
+    <string name="label_GroundResistanceOhm">Erdungswiderstand (Ω)</string>
+    <string name="label_CompletionStatus">Gesamtstatus</string>
+    <string-array name="list_CompletionStatus">
+        <item>Init</item>
+        <item>HF10</item>
+        <item>-</item>
+        <item>Vorgabe mittlerer Erdungswiderstand</item>
+        <item>-</item>
+        <item>Vorgabe Erdungsstrom</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Vorgabe Erdungswiderstand</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>mittlerer Verluste DC</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>mittlere Verluste LF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>mittlere Verluste DC+LF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>mittlere Verluste HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>mittlere Verluste DC+HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>mittlere Verluste LF+HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>mittlere Verluste DC+LF+HF</item>
+    </string-array>
+    <string name="label_SupervisorState">Supervisor state</string>
+    <string-array name="list_SupervisorState">
+        <item>Init</item>
+        <item>Wait</item>
+        <item>ClosingS2</item>
+        <item>InitType</item>
+        <item>InitLkg</item>
+        <item>InitChg</item>
+        <item>Charge</item>
+        <item>ZeroAmpMode</item>
+        <item>EndOfChg</item>
+        <item>OpeningS2</item>
+        <item>ReadyToSleep</item>
+        <item>EmergencyStop</item>
+        <item>InitChargeDF</item>
+        <item>OCPStop</item>
+        <item>WaitS2</item>
+    </string-array>
 
     <!-- Braking -->
 
