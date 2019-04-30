@@ -185,7 +185,9 @@
                     android:background="#ffd124"
                     android:visibility="gone"
                     android:id="@+id/textNews"
-                    android:layout_gravity="center_horizontal" />
+                    android:layout_gravity="center_horizontal"
+                    android:autoLink="web"
+                    />
 
             </TableLayout>
 
