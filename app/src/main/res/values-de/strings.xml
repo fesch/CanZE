@@ -632,9 +632,7 @@
     <string name="prompt_YesIKnow">Ja</string>
     <string name="prompt_NoSecureWay">Nein</string>
     <string name="prompt_Attention">ACHTUNG</string>
-    <string name="prompt_WarningDriving">Während der Fahrt ist es extrem gefährlich, sich nicht auf den Verkehr zu konzentrieren.
-Man setzt dabei sein Leben und das von anderen aufs Spiel.
-Diesen Modus zu entsperren ist nicht empfohlen.\n\n Bist du sicher, dass du den Sicher Fahren Modus entsperren willst?</string>
+    <string name="prompt_WarningDriving">Während der Fahrt ist es extrem gefährlich, sich nicht auf den Verkehr zu konzentrieren. Man setzt dabei sein Leben und das von anderen aufs Spiel.Diesen Modus zu entsperren ist nicht empfohlen.\n\n Bist du sicher, dass du den Sicher Fahren Modus entsperren willst?</string>
     <string name="prompt_NoThanks">Nein Danke</string>
     <string name="prompt_BluetoothOn">Wenn die Bluetooth Verbindung im Hintergrund aktiv gelassen wird, könnte dies andere Apps beeinträchtigen, die Bluetooth nutzen. Es kann auch sein, dass die Batterie des Smartphones sich sehr schnell entlädt, wenn die Funktion oder CanZE nicht deaktiviert werden. <br /><br /><b>Wenn die Funktion aktiviert bleibt, wird die Verbindung auch dann aktiv gehalten, wenn das Smartphone neu gestartet wurde</b><br /><br />Sind Sie sicher, dass Sie den Bluetooth Hintergrund Modus aktivieren wollen?</string>
     <string name="prompt_NoSd">Externe SD Karte ist nicht verfügbar, nicht beschreibbar oder hat zu wenig freien Speicher um Daten zu loggen.<br/><br/><b>Daten Export kann nicht eingeschaltet werden!</b></string>
