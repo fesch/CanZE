@@ -101,11 +101,11 @@
     <string name="label_auxbat">Spannung, Fahrzeugstatus, Ladezustand</string>
     <string name="label_auxbatvolt">Spannunge</string>
     <string name="label_AuxStatus">Austausch-Meldung</string>
-    <string name="label_vehiclestate">Fahrzeugstatuse</string>
+    <string name="label_vehiclestate">Fahrzeugstatus</string>
     <string-array name="list_VehicleState">
         <item>Schlafmodus (0:rot)</item>
         <item>Bereitschaft, Aus (1:grün)</item>
-        <item>Zündung (2:blau)</item>
+        <item>Zündung, KeyCard im Lesegerät (2:blau)</item>
         <item>Anlassen (3:gelb)</item>
         <item>Bereitschaft, An (4:zyan)</item>
         <item>5</item>
