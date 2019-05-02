@@ -587,17 +587,17 @@
 
     <!-- Prediction -->
 
-    <string name="title_activity_prediction">Ladevorhersage</string>
-    <string name="button_ChargingPrediction">Ladevorhersage</string>
-    <string name="label_StateAtThisMoment">Aktueller Zustand</string>
+    <string name="title_activity_prediction">Aufladevorhersage</string>
+    <string name="button_ChargingPrediction">Aufadevorhersage</string>
+    <string name="label_StateAtThisMoment">Aktuelle Ladeparameter</string>
     <string name="label_BatteryTemperature">Akkumulatortemperatur (°C)</string>
-    <string name="label_ACPower">AC Leistung (kWh)</string>
+    <string name="label_ACPower">AC Ladestationsleistung (kW)</string>
     <string name="label_StateOfCharge">Ladezustand (%)</string>
     <string name="label_ChargingPrediction">Ladevorhersage</string>
     <string name="label_Duration">Dauer (hh:mm)</string>
     <string name="label_Soc">SOC (%)</string>
     <string name="label_Range">verfügbare Reichweite</string>
-    <string name="label_DcPower">DC Ladeleistung (kW)</string>
+    <string name="label_DcPower">DC Ladestationsleistung (kW)</string>
 
     <!-- Range -->
 
