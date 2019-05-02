@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
+    
     <!-- App -->
+    
     <string name="app_name">CanZE</string>
-    <!-- <string name="title_activity_text">Text Aktivität</string> -->
-    <!-- <string name="title_activity_temperatures">Temperaturen</string> -->
-    <!-- <string name="title_activity_battery_temp">Batterietemperatur-Aktivitäten</string> -->
+    
     <!-- Menus -->
 
     <string name="action_settings">Einstellungen</string>
