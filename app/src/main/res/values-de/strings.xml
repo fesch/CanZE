@@ -335,7 +335,7 @@
     <string name="label_12V">12V Akku Spannung (v)</string>
     <string name="label_12A">12V Akku Strom (A)</string>
     <string name="label_DcLoad">DCDC Belastung (%)</string>
-    <string name="label_HKM">gefahrene Batteriereichweite (km)</string>
+    <string name="label_HKM">gefahrene Akkureichweite (km)</string>
     <string name="label_ChaStatus">Ladestatus</string>
     <string name="label_Plug">Anschlußstatus</string>
     <string-array name="list_ChargingStatus">
