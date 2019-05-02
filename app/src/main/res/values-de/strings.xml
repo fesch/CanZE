@@ -358,7 +358,7 @@
     <string name="title_activity_charging_graph">Ladegrafiken</string>
     <string name="button_ChargingGraphs">Ladegrafiken</string>
     <string name="graph_PilotPower">Ladestrom Pilot Amp (A), Ladeleistung (kW)</string>
-    <string name="graph_MaxRealChPwr">Max Batterieleistung (kW) / Gleichstromladeleistung (kW)</string>
+    <string name="graph_MaxRealChPwr">Max Akkumulatorleistung (kW) / Gleichstromladeleistung (kW)</string>
     <string name="graph_EnergyTemperature">Verfügbare Energie (kWh), Temperatur (°C)</string>
 
     <!-- Charging history -->
