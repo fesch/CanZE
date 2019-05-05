@@ -137,11 +137,11 @@
 
     <string name="title_activity_battery">Hochspannungs-Akkumulator</string>
     <string name="button_Battery">HV Akku</string>
-    <string name="graph_SOH">Akku-Lebensdauer (SOH) (%)</string>
-    <string name="graph_RealIndicatedSoc">Echte und angebliche Kapazität (SOC) (%)</string>
+    <string name="graph_SOH">Lebensdauer/Gesundheit (SOH) (%)</string>
+    <string name="graph_RealIndicatedSoc">Echte, Angezeigte Kapazität (SOC) (%)</string>
     <string name="help_QA"><![CDATA[Weitere Details zu diesen Daten können in der <a href=\'http://canze.fisch.lu/qa/\'>Q & A Sektion</a> der <a href=\'http://canze.fisch.lu/\'>CanZE homepage</a>.]]></string>
-    <string name="graph_CellVoltages">Zellenspannungen (V)</string>
-    <string name="graph_ModuleTemperatures">Temperatur der Akku-Module (°C)</string>
+    <string name="graph_CellVoltages">Spannung der Akukumulatorzellen (V)</string>
+    <string name="graph_ModuleTemperatures">Temperatur der Akkumulatorzellen (°C)</string>
 
     <!-- BCB (now integrated in ChargingTech) -->
 
@@ -314,7 +314,7 @@
     <string name="title_activity_charging">Laden</string>
     <string name="button_Charging">Laden</string>
     <string name="header_Charging">Ladeparameter</string>
-    <string name="header_Battery">Akkudaten</string>
+    <string name="header_Battery">HV Akkudaten</string>
     <string name="header_DrivingCh">Fahren</string>
     <string name="header_CompTemp">Temperaturen und Balancing der Akkumodule</string>
     <string name="label_max_charge">Max Akkul-Ladung/Rückgewinnung (kW)</string>
