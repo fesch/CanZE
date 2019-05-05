@@ -311,13 +311,13 @@
     
     <!-- Charging and ChargingTech -->
 
-    <string name="title_activity_charging">Laden</string>
+    <string name="title_activity_charging">aktuelle Ladeparameter</string>
     <string name="button_Charging">Laden</string>
     <string name="header_Charging">Ladeparameter</string>
     <string name="header_Battery">HV Akkudaten</string>
     <string name="header_DrivingCh">Fahren</string>
     <string name="header_CompTemp">Temperaturen und Balancing der Akkumodule</string>
-    <string name="label_max_charge">Max Akkul-Ladung/Rückgewinnung (kW)</string>
+    <string name="label_max_charge">Max Akku-Ladung/Rückgewinnung (kW)</string>
     <string name="label_max_pilot">Ladestrom (A)</string>
     <string name="label_Phases">Phasen</string>
     <string name="label_UserSOC">Nutzbarer Ladezustand (%)</string>
@@ -355,7 +355,7 @@
 
     <!-- Charging graph -->
 
-    <string name="title_activity_charging_graph">Ladegrafiken</string>
+    <string name="title_activity_charging_graph">Lade-Grafik</string>
     <string name="button_ChargingGraphs">Ladegrafiken</string>
     <string name="graph_PilotPower">Ladestrom Pilot Amp (A), Ladeleistung (kW)</string>
     <string name="graph_MaxRealChPwr">Max Akkumulatorleistung (kW) / Gleichstromladeleistung (kW)</string>
@@ -363,7 +363,7 @@
 
     <!-- Charging history -->
 
-    <string name="title_activity_charging_history">Laden Historie</string>
+    <string name="title_activity_charging_history">Lade-Chronik</string>
     <string name="button_charging_history">Ladeverlauf</string>
     <string name="header_ChargingHistory">Letzten 10 Aufladungen</string>
     <string name="label_distance">km-Zähler</string>
