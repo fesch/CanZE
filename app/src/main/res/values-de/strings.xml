@@ -135,7 +135,7 @@
     
     <!-- Battery -->
 
-    <string name="title_activity_battery">Akkumulator</string>
+    <string name="title_activity_battery">Hochspannungs-Akkumulator</string>
     <string name="button_Battery">HV Akku</string>
     <string name="graph_SOH">Akku-Lebensdauer (SOH) (%)</string>
     <string name="graph_RealIndicatedSoc">Echte und angebliche Kapazität (SOC) (%)</string>
