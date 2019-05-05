@@ -104,10 +104,10 @@
     <string name="label_vehiclestate">Fahrzeugstatus</string>
     <string-array name="list_VehicleState">
         <item>Schlafmodus (0:rot)</item>
-        <item>Bereitschaft, Aus (1:grün)</item>
-        <item>Zündung, KeyCard im Lesegerät (2:blau)</item>
-        <item>Anlassen (3:gelb)</item>
-        <item>Bereitschaft, An (4:zyan)</item>
+        <item>Motor aus (1:grün)</item> <!-- nach Betriebsanleitung -->
+        <item>Zündung (2:blau)</item>
+        <item>Motor anlassen (3:gelb)</item> <!-- nach Betriebsanleitung -->
+        <item>Motor ein (4:zyan)</item> <!-- nach Betriebsanleitung -->
         <item>5</item>
         <item>6</item>
         <item>7</item>
@@ -496,7 +496,7 @@
     <string name="message_NoActiveDtcs">\nKeine aktiven DTCs\n</string>
     <string name="message_clear">"Löschen "</string>
     <string name="message_NoClearDtcField">Lösche DTCs Feld existiert nicht\n</string>
-    <string name="message_MessageNull">kein Datenempfang. Ist die ZOE eingeschalten?\n</string>
+    <string name="message_MessageNull">kein Datenempfang. Ist das Fahrzeug eingeschalten?\n</string>
     <string name="message_ClearSuccessful">Fehlerspeicher sind gelöscht, bitter erneut überprüfen\n</string>
     <string name="message_DumpDone">Fertig! Logfile angelegt</string>
     <string name="format_DumpWriting">Einen Moment bitte, Daten werden geschrieben %s</string>
@@ -540,13 +540,13 @@
 
     <!-- Heatmap battery modules -->
 
-    <string name="title_activity_heatmap_bat">Temperatur-Aufteilungskarte</string>
-    <string name="button_HeatmapTemperature">Temperaturaufteilung</string>
+    <string name="title_activity_heatmap_bat">Übersicht: Temperaturen der einzelnen Akkumulatorzellen</string>
+    <string name="button_HeatmapTemperature">Übersicht Zellen-Temperatur</string>
 
     <!-- Heatmap voltages -->
 
-    <string name="title_activity_heatmap_cellvoltage">Spannungen-Aufteilungskarte</string>
-    <string name="button_HeatmapVoltage">Spannungsaufteilung</string>
+    <string name="title_activity_heatmap_cellvoltage">Übersicht: Spannungen der einzelnen Akkumulatorzellen</string>
+    <string name="button_HeatmapVoltage">Übersicht Zellen-Spannung</string>
 
 
     
@@ -603,7 +603,7 @@
 
     <string name="title_activity_range">Reichweite</string>
     <string name="button_Range">Reichweite</string>
-    <string name="label_RangeRemaining">Restreichweite nach ZOE:</string>
+    <string name="label_RangeRemaining">Restreichweite nach OBD2</string>
     <string name="label_RangeRemainingCanZE">Restreichweite nach CanZE:</string>
     <string name="label_EstimatedDrivingStyleLoss">Voraussichtlicher Energieverlust durch Fahrweise:</string>
     <string name="graph_DistanceEnergy">Verfügbare Reichweite (km), Verfügbare Energie (kWh)</string>
