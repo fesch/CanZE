@@ -136,7 +136,7 @@
     <!-- Battery -->
 
     <string name="title_activity_battery">Akkumulator</string>
-    <string name="button_Battery">Akku</string>
+    <string name="button_Battery">HV Akku</string>
     <string name="graph_SOH">Akku-Lebensdauer (SOH) (%)</string>
     <string name="graph_RealIndicatedSoc">Echte und angebliche Kapazität (SOC) (%)</string>
     <string name="help_QA"><![CDATA[Weitere Details zu diesen Daten können in der <a href=\'http://canze.fisch.lu/qa/\'>Q & A Sektion</a> der <a href=\'http://canze.fisch.lu/\'>CanZE homepage</a>.]]></string>
@@ -432,7 +432,7 @@
         <item>Inaktiv</item>
     </string-array>
     <string name="label_IH_ClimCompPWRStatus">Kompressorlesitung (W), ECO</string>
-    <string name="graph_Climatech">Aussen (°C), Innen (°C), Vorgabe (°C), Akku (°C)</string>
+    <string name="graph_Climatech">Außen (°C), Innen (°C), Vorgabe (°C), Akku (°C)</string>
     <string name="label_PtcRelay1">PTC Relais 1</string>
     <string name="label_PtcRelay2">PTC Relais 2</string>
     <string name="label_PtcRelay3">PTC Relais 3</string>
