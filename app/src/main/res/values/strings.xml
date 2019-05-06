@@ -651,6 +651,13 @@
     <string name="label_TyreFR">Front right</string>
     <string name="label_TyreRL">Rear left</string>
     <string name="label_TyreRR">Rear right</string>
+    <string name="label_TyreIDFL">ID front left</string>
+    <string name="label_TyreIDFR">ID front right</string>
+    <string name="label_TyreIDRL">ID rear left</string>
+    <string name="label_TyreIDRR">ID rear right</string>
+    <string name="button_Tyres_write">write</string>
+    <string name="button_Tyres_read">read</string>
+
 
     <!-- Widgets only -->
 
