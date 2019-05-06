@@ -311,7 +311,7 @@
     
     <!-- Charging and ChargingTech -->
 
-    <string name="title_activity_charging">aktuelle Ladeparameter</string>
+    <string name="title_activity_charging">Ladeparameter</string>
     <string name="button_Charging">Laden</string>
     <string name="header_Charging">Ladeparameter</string>
     <string name="header_Battery">HV Akkudaten</string>
@@ -463,7 +463,7 @@
     <!-- Driving -->
 
     <string name="title_activity_driving">Fahrtinformationen</string>
-    <string name="button_Driving">aktuelle Fahrtinfos</string>
+    <string name="button_Driving">Fahrtinfos</string>
     <string name="label_pedal">Pedalposition</string>
     <string name="label_wheel_torque">Drehmoment der Räder</string>
     <string name="label_DistToDest">Entfernung bis zum Ziel</string>
@@ -616,7 +616,7 @@
     <string name="label_RemoteDevice">Verbindung</string>
     <string name="label_DeviceAddress">Adresse</string>
     <string name="label_DeviceType">Gerätetyp</string>
-    <string name="label_Car">Fahrzeug</string>
+    <string name="label_Car">Fahrzeug Typ</string>
     <string name="label_LogLevel">Log Level</string>
     <string name="label_Options">Optionen</string>
     <string name="label_SafeDrivingMode">Modus \"sicheres Fahren\"</string>
@@ -626,13 +626,13 @@
     <string name="label_Debug">Debug</string>
     <string name="label_Fields">Felder</string>
     <string name="help_Fields">Diese Felder werden gespeichert</string>
-    <string name="label_LogToSdcard1">Auf sdcard1 speichern</string>
+    <string name="label_LogToSdcard1">Auf SDCard speichern</string>
     <string name="label_Actions">Funktionen</string>
-    <string name="label_ClearCachedData">Zwischengespeicherte Daten gelöscht</string>
+    <string name="label_ClearCachedData">Zwischenspeicher löschen</string>
     <string name="prompt_YesIKnow">Ja</string>
     <string name="prompt_NoSecureWay">Nein</string>
     <string name="prompt_Attention">ACHTUNG</string>
-    <string name="prompt_WarningDriving">Während der Fahrt ist es extrem gefährlich, sich nicht auf den Verkehr zu konzentrieren. Man setzt dabei sein Leben und das von anderen aufs Spiel.Diesen Modus zu entsperren ist nicht empfohlen.\n\n Bist du sicher, dass du den Sicher Fahren Modus entsperren willst?</string>
+    <string name="prompt_WarningDriving">Während der Fahrt ist es extrem gefährlich, sich nicht auf den Verkehr zu konzentrieren. Das eigenes Leben und das der Anderen wird aufs Spiel gesetzt. Diesen Modus zu entsperren wird nicht empfohlen.\n\n Den Modus Sicher-Fahren trotzdem entsperren?</string>
     <string name="prompt_NoThanks">Nein Danke</string>
     <string name="prompt_BluetoothOn">Wenn die Bluetooth Verbindung im Hintergrund aktiv gelassen wird, könnte dies andere Apps beeinträchtigen, die Bluetooth nutzen. Es kann auch sein, dass die Batterie des Smartphones sich sehr schnell entlädt, wenn die Funktion oder CanZE nicht deaktiviert werden. <br /><br /><b>Wenn die Funktion aktiviert bleibt, wird die Verbindung auch dann aktiv gehalten, wenn das Smartphone neu gestartet wurde</b><br /><br />Sind Sie sicher, dass Sie den Bluetooth Hintergrund Modus aktivieren wollen?</string>
     <string name="prompt_NoSd">Externe SD Karte ist nicht verfügbar, nicht beschreibbar oder hat zu wenig freien Speicher um Daten zu loggen.<br/><br/><b>Daten Export kann nicht eingeschaltet werden!</b></string>
@@ -643,15 +643,21 @@
 
     <!-- Tyres -->
 
-    <string name="title_activity_tyres">Reifen Infos</string>
-    <string name="button_Tyres">Reifeninfos</string>
-    <string name="help_PressuresMbar">Alle Reifendrücke in mbar</string>
+    <string name="title_activity_tyres">Information zu den Rädern - RDKS </string>
+    <string name="button_Tyres">Räder-Infos</string>
+    <string name="help_PressuresMbar">Alle Angaben in mbar</string>
     <string name="label_TyreSpdPresMisadaption">Geschwindigkeits-Druck Fehlinterpretation</string>
     <string name="label_TyreFL">Vorne links</string>
     <string name="label_TyreFR">Vorne rechts</string>
     <string name="label_TyreRL">Hinten links</string>
     <string name="label_TyreRR">Hinten rechts</string>
- 
+    <string name="label_TyreIDFL">ID vorne links</string>
+    <string name="label_TyreIDFR">ID vorne rechts</string>
+    <string name="label_TyreIDRL">ID hinten links</string>
+    <string name="label_TyreIDRR">ID hinten rechts</string>
+    <string name="button_Tyres_write">ID lesen</string>
+    <string name="button_Tyres_read">ID schreiben</string>
+
     <!-- Widgets only -->
 
     <string name="title_activity_widget">Widget Aktivität</string>
