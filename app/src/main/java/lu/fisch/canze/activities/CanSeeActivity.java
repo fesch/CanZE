@@ -14,6 +14,7 @@ public class CanSeeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_can_see);
     }
 
@@ -24,10 +25,8 @@ public class CanSeeActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_ok) {
-            // do something ...
-
-            // finish
+        if (id==android.R.id.home) {
+            saveOptions ();
             finish();
             return true;
         }
@@ -42,9 +41,14 @@ public class CanSeeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        toast(MainActivity.TOAST_NONE, R.string.toast_PleaseUseTop);
+        //toast(MainActivity.TOAST_NONE, R.string.toast_PleaseUseTop);
+        saveOptions ();
+        super.onBackPressed();
     }
 
+    private void saveOptions () {
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

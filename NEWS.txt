@@ -1,1 +1,1 @@
-We are looking for German and Spanish maintainers, see canze.fisch.lu
+Kangoo ZE and Fluence ZE support will sunset July 1st. We are looking for a Spanish language maintainer. See http://canze.fisch.lu

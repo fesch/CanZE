@@ -1,4 +1,20 @@
----< Version 1.37 / 2019.04.15 >---
+2019-04-21 [Jeroen] Removed now unused translation entries to avoid lint errors
+2019-04-21 [Jeroen] Enabled minification (R8), for the moment also in debug build variant, with limited name obfuscation
+2019-04-20 [Jeroen] Removed toasts and added Spinner to all data. Moved all spinner changes to the UI thread
+2019-04-19 [Jeroen] Replaced toast when loading settings with Spinner
+2019-04-19 [Jeroen] Moved Settings button to three-dot menu
+2019-04-19 [Jeroen] Changed Settings and CanSee settings UI to conform to convention (but kept Cancel, now in three-dots)
+2019-04-19 [Jeroen] Added Android home ("back") button to CanzeActivities
+2019-04-17 [Jeroen] Extra check for non null CanzeDatasource instance
+2019-04-17 [Jeroen] 2nd experiment to avoid NullPointerException crash in Toast
+2019-04-17 [Jeroen] let it crash on the caller of CanzeDataSource.getInstance to see the call stack
+2019-04-17 [Jeroen] Avoid nullpointerException in BluetoothManager.write
+2019-04-17 [Jeroen] Gradle to 3.4.0
+2019-04-16 [Jeroen] Avoid NullPointerException crash in Timeplot
+2019-04-16 [Jeroen] androidx.legacy:legacy-support-v4 1.0.0-beta01 -> 1.0.0
+2019-04-16 [Jeroen] Removed GSON source and replaced with gradle implementation
+
+---< Version 1.37 / 2019.04.15 / 38 >---
 2019-03-14 [Jeroen] Avoid NullPointerException crash in SettingsActivity.fillDeviceList
 2019-03-13 [Jeroen] Cleanup of toasts (logic, inheritance, use resources, avoid if not needed)
 2019-03-08 [Jeroen] Experiment to avoid crash in Android 8.1 in EditText, see manifest for details
@@ -6,10 +22,10 @@
 2019-04-07 [Jeroen] Avoid $BadTokenException crash in Toast on Android 7.1 (SDK 25)
 2019-04-05 [Bob] Added possibility to install on external storage
 
----< Version 1.36 / 2019.04.04 >---
+---< Version 1.36 / 2019.04.04 / 37 >---
 2019-04-04 [Bob] Wrong reference while fixing a bug ... grrr
 
----< Version 1.35 / 2019.04.04 >---
+---< Version 1.35 / 2019.04.04 / 36 >---
 2019-04-04 [Bob] Update in Consumption, dash version
 2019-04-04 [Jeroen] Experiment to avoid ANR in CanzeActivity.onResume
 2019-04-04 [Jeroen] Experiment to avoid IllegalThreadStateException crash in BluetoothManager
