@@ -313,6 +313,7 @@
 
     <string name="title_activity_charging">Charging</string>
     <string name="button_Charging">Charging</string>
+    <string name="button_ChargingTech">Charching Techs</string>
     <string name="header_Charging">Charger parameters</string>
     <string name="header_Battery">Battery parameters</string>
     <string name="header_DrivingCh">Driving</string>

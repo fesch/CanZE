@@ -43,7 +43,7 @@
                     android:layout_weight="1"
                     android:drawableLeft="@mipmap/button_charge"
                     android:drawableStart="@mipmap/button_charge"
-                    android:text="@string/button_Charging" />
+                    android:text="@string/button_ChargingTech" />
 
                 <Button
                     android:id="@+id/buttonDtc"
