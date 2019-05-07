@@ -313,6 +313,7 @@
 
     <string name="title_activity_charging">Charging</string>
     <string name="button_Charging">Charging</string>
+    <string name="button_ChargingTech">Charching Techs</string>
     <string name="header_Charging">Charger parameters</string>
     <string name="header_Battery">Battery parameters</string>
     <string name="header_DrivingCh">Driving</string>
@@ -651,6 +652,13 @@
     <string name="label_TyreFR">Front right</string>
     <string name="label_TyreRL">Rear left</string>
     <string name="label_TyreRR">Rear right</string>
+    <string name="label_TyreIDFL">ID front left</string>
+    <string name="label_TyreIDFR">ID front right</string>
+    <string name="label_TyreIDRL">ID rear left</string>
+    <string name="label_TyreIDRR">ID rear right</string>
+    <string name="button_Tyres_write">write</string>
+    <string name="button_Tyres_read">read</string>
+
 
     <!-- Widgets only -->
 

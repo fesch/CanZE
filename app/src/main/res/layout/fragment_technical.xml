@@ -26,7 +26,44 @@
             android:fillViewport="true"
             android:scrollbars="vertical">
 
-            <TableLayout
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/buttonChargingTech"
+                    style="?android:attr/button"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_column="0"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@mipmap/button_charge"
+                    android:drawableStart="@mipmap/button_charge"
+                    android:text="@string/button_ChargingTech" />
+
+                <Button
+                    android:id="@+id/buttonDtc"
+                    style="?android:attr/button"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@mipmap/button_attention"
+                    android:drawableStart="@mipmap/button_attention"
+                    android:text="@string/button_DtcReadout" />
+
+
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="*">

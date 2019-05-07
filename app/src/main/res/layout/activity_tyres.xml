@@ -168,10 +168,10 @@
                         />
                 </TableRow>
 
-
                 <TableRow>
+
                     <TextView
-                        android:text="ID Front Left"
+                        android:text="@string/label_TyreIDFL"
                         android:layout_weight="2"
                         />
                     <EditText
@@ -187,7 +187,7 @@
 
                 <TableRow>
                     <TextView
-                        android:text="ID Front Right"
+                        android:text="@string/label_TyreIDFR"
                         android:layout_weight="2"
                         />
                     <EditText
@@ -203,7 +203,7 @@
 
                 <TableRow>
                     <TextView
-                        android:text="ID Rear Left"
+                        android:text="@string/label_TyreIDRL"
                         android:layout_weight="2"
                         />
                     <EditText
@@ -219,7 +219,7 @@
 
                 <TableRow>
                     <TextView
-                        android:text="ID Rear Right"
+                        android:text="@string/label_TyreIDRR"
                         android:layout_weight="2"
                         />
                     <EditText
@@ -234,11 +234,6 @@
                 </TableRow>
 
 
-
-
-
-
-
             </TableLayout>
 
             <TableLayout
@@ -249,7 +244,7 @@
 
             <Button
                 android:id="@+id/button_TyresRead"
-                android:text="Read"
+                android:text="@string/button_Tyres_write"
                 android:layout_weight="1"
                 />
                 <TextView
@@ -258,7 +253,7 @@
                     />
             <Button
                 android:id="@+id/button_TyresWrite"
-                android:text="Write"
+                android:text="@string/button_Tyres_read"
                 android:layout_weight="1"
                 />
             </TableRow>
