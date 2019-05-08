@@ -37,24 +37,23 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 /**
- *
  * @author robertfisch test
  */
 public class Fields {
 
-    private static final int FIELD_SID          = 0; // to be stated in HEX, no leading 0x
-    private static final int FIELD_ID           = 1; // to be stated in HEX, no leading 0x
-    private static final int FIELD_FROM         = 2; // decimal
-    private static final int FIELD_TO           = 3; // decimal
-    private static final int FIELD_RESOLUTION   = 4; // double
-    private static final int FIELD_OFFSET       = 5; // double
-    private static final int FIELD_DECIMALS     = 6; // decimal
-    private static final int FIELD_UNIT         = 7;
-    private static final int FIELD_REQUEST_ID   = 8; // to be stated in HEX, no leading 0x
-    private static final int FIELD_RESPONSE_ID  = 9; // to be stated in HEX, no leading 0x
-    private static final int FIELD_OPTIONS      = 10; // to be stated in HEX, no leading 0x
-    private static final int FIELD_NAME         = 11; // can be displayed/saved. Now only used for Diag ISO-TP
-    private static final int FIELD_LIST         = 12; // same
+    private static final int FIELD_SID = 0; // to be stated in HEX, no leading 0x
+    private static final int FIELD_ID = 1; // to be stated in HEX, no leading 0x
+    private static final int FIELD_FROM = 2; // decimal
+    private static final int FIELD_TO = 3; // decimal
+    private static final int FIELD_RESOLUTION = 4; // double
+    private static final int FIELD_OFFSET = 5; // double
+    private static final int FIELD_DECIMALS = 6; // decimal
+    private static final int FIELD_UNIT = 7;
+    private static final int FIELD_REQUEST_ID = 8; // to be stated in HEX, no leading 0x
+    private static final int FIELD_RESPONSE_ID = 9; // to be stated in HEX, no leading 0x
+    private static final int FIELD_OPTIONS = 10; // to be stated in HEX, no leading 0x
+    private static final int FIELD_NAME = 11; // can be displayed/saved. Now only used for Diag ISO-TP
+    private static final int FIELD_LIST = 12; // same
 
     private final ArrayList<Field> fields = new ArrayList<>();
     private final HashMap<String, Field> fieldsBySid = new HashMap<>();
@@ -73,14 +72,12 @@ public class Fields {
         //addVirtualFields();
     }
 
-    public static boolean initialised()
-    {
-        return (instance==null);
+    public static boolean initialised() {
+        return (instance == null);
     }
 
-    public static Fields getInstance()
-    {
-        if(instance==null) instance=new Fields();
+    public static Fields getInstance() {
+        if (instance == null) instance = new Fields();
         return instance;
     }
 
@@ -105,7 +102,7 @@ public class Fields {
         final String SID_EVC_TractionBatteryCurrent = "7ec.623204.24";  // unit = A
         final String SID_RealSpeed = "5d7.0";                           // unit = km/h
 
-        addVirtualFieldCommon ("6100", "kWh/100km", SID_EVC_TractionBatteryVoltage+";"+SID_EVC_TractionBatteryCurrent+";"+SID_RealSpeed, new VirtualFieldAction() {
+        addVirtualFieldCommon("6100", "kWh/100km", SID_EVC_TractionBatteryVoltage + ";" + SID_EVC_TractionBatteryCurrent + ";" + SID_RealSpeed, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
                 // get real speed
@@ -120,18 +117,20 @@ public class Fields {
                 // power in kW
                 double dcPwr = dcVolt * dcCur / 1000.0;
                 double usage = -(Math.round(1000.0 * dcPwr / realSpeed) / 10.0);
-                if (usage < -150) return -150; else if (usage > 150) return 150; else return usage;
+                if (usage < -150) return -150;
+                else if (usage > 150) return 150;
+                else return usage;
             }
         });
     }
 
     private void addVirtualFieldFrictionTorque() {
-        final String SID_DriverBrakeWheel_Torque_Request        = "130.44"; //UBP braking wheel torque the driver wants
-        final String SID_ElecBrakeWheelsTorqueApplied           = "1f8.28"; //10ms
+        final String SID_DriverBrakeWheel_Torque_Request = "130.44"; //UBP braking wheel torque the driver wants
+        final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //10ms
 
-        addVirtualFieldCommon ("6101", "Nm", SID_DriverBrakeWheel_Torque_Request+";"+SID_ElecBrakeWheelsTorqueApplied, new VirtualFieldAction() {
+        addVirtualFieldCommon("6101", "Nm", SID_DriverBrakeWheel_Torque_Request + ";" + SID_ElecBrakeWheelsTorqueApplied, new VirtualFieldAction() {
             @Override
-            public double updateValue(HashMap<String,Field> dependantFields) {
+            public double updateValue(HashMap<String, Field> dependantFields) {
 
                 return dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue();
             }
@@ -139,13 +138,13 @@ public class Fields {
     }
 
     private void addVirtualFieldFrictionPower() {
-        final String SID_DriverBrakeWheel_Torque_Request        = "130.44"; //UBP braking wheel torque the driver wants
-        final String SID_ElecBrakeWheelsTorqueApplied           = "1f8.28"; //10ms
-        final String SID_ElecEngineRPM                          = "1f8.40"; //10ms
+        final String SID_DriverBrakeWheel_Torque_Request = "130.44"; //UBP braking wheel torque the driver wants
+        final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //10ms
+        final String SID_ElecEngineRPM = "1f8.40"; //10ms
 
-        addVirtualFieldCommon ("6102", "kW", SID_DriverBrakeWheel_Torque_Request+";"+SID_ElecBrakeWheelsTorqueApplied+";"+SID_ElecEngineRPM, new VirtualFieldAction() {
+        addVirtualFieldCommon("6102", "kW", SID_DriverBrakeWheel_Torque_Request + ";" + SID_ElecBrakeWheelsTorqueApplied + ";" + SID_ElecEngineRPM, new VirtualFieldAction() {
             @Override
-            public double updateValue(HashMap<String,Field> dependantFields) {
+            public double updateValue(HashMap<String, Field> dependantFields) {
 
                 return (dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue()) * dependantFields.get(SID_ElecEngineRPM).getValue() / MainActivity.reduction;
             }
@@ -153,12 +152,12 @@ public class Fields {
     }
 
     private void addVirtualFieldDcPower() {
-        final String SID_TractionBatteryVoltage             = "7ec.623203.24";
-        final String SID_TractionBatteryCurrent             = "7ec.623204.24";
+        final String SID_TractionBatteryVoltage = "7ec.623203.24";
+        final String SID_TractionBatteryCurrent = "7ec.623204.24";
 
-        addVirtualFieldCommon ("6103", "kW", SID_TractionBatteryVoltage+";"+SID_TractionBatteryCurrent, new VirtualFieldAction() {
+        addVirtualFieldCommon("6103", "kW", SID_TractionBatteryVoltage + ";" + SID_TractionBatteryCurrent, new VirtualFieldAction() {
             @Override
-            public double updateValue(HashMap<String,Field> dependantFields) {
+            public double updateValue(HashMap<String, Field> dependantFields) {
 
                 return dependantFields.get(SID_TractionBatteryVoltage).getValue() * dependantFields.get(SID_TractionBatteryCurrent).getValue() / 1000;
             }
@@ -171,9 +170,9 @@ public class Fields {
         // It would be easier use SID_Consumption = "1fd.48" (dash kWh) instead of V*A
         // need to use real timer. Now the averaging is dependant on dongle speed
 
-        final String SID_VirtualUsage               = "800.6100.24";
+        final String SID_VirtualUsage = "800.6100.24";
 
-        addVirtualFieldCommon ("6104", "kWh/100km", SID_VirtualUsage, new VirtualFieldAction() {
+        addVirtualFieldCommon("6104", "kWh/100km", SID_VirtualUsage, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
                 double value = dependantFields.get(SID_VirtualUsage).getValue();
@@ -192,9 +191,9 @@ public class Fields {
     }
 
     private void addVirtualFieldHeaterSetpoint() {
-        final String SID_VirtualUsage               = "699.8";
+        final String SID_VirtualUsage = "699.8";
 
-        addVirtualFieldCommon ("6105", "°C", SID_VirtualUsage, new VirtualFieldAction() {
+        addVirtualFieldCommon("6105", "°C", SID_VirtualUsage, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
                 double value = dependantFields.get(SID_VirtualUsage).getValue();
@@ -211,13 +210,13 @@ public class Fields {
     }
 
     private void addVirtualFieldRealRange() {
-        final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
-        final String SID_RangeEstimate                        = "654.42"; //  (EVC)
+        final String SID_EVC_Odometer = "7ec.622006.24"; //  (EVC)
+        final String SID_RangeEstimate = "654.42"; //  (EVC)
 
-        if(Double.isNaN(realRangeReference))
+        if (Double.isNaN(realRangeReference))
             realRangeReference = CanzeDataSource.getInstance().getLast(SID_RangeEstimate);
 
-        addVirtualFieldCommon ("6106", "km", SID_EVC_Odometer + ";" + SID_RangeEstimate, new VirtualFieldAction() {
+        addVirtualFieldCommon("6106", "km", SID_EVC_Odometer + ";" + SID_RangeEstimate, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
                 double odo = dependantFields.get(SID_EVC_Odometer).getValue();
@@ -226,11 +225,10 @@ public class Fields {
                 // timestamp of last inserted dot in MILLISECONDS
                 long lastInsertedTime = CanzeDataSource.getInstance().getLastTime(SID_RangeEstimate);
                 if (    // timeout of 15 minutes
-                        (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 15*60*1000)
+                        (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 15 * 60 * 1000)
                                 ||
                                 Double.isNaN(realRangeReference)
-                )
-                {
+                ) {
 
                     if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
                         realRangeReference = odo + gom;
@@ -254,18 +252,18 @@ public class Fields {
 
 
     private void addVirtualFieldRealDelta() {
-        final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
-        final String SID_RangeEstimate                        = "654.42"; //  (EVC)
+        final String SID_EVC_Odometer = "7ec.622006.24"; //  (EVC)
+        final String SID_RangeEstimate = "654.42"; //  (EVC)
 
         // get last value for realRange from internal database
         //MainActivity.debug("realRange 1: "+realRangeReference);
-        if(Double.isNaN(realRangeReference)) {
+        if (Double.isNaN(realRangeReference)) {
             realRangeReference = CanzeDataSource.getInstance().getLast(SID_RangeEstimate);
             //MainActivity.debug("realRange >> getLast");
         }
         //MainActivity.debug("realRange 2: "+realRangeReference);
 
-        addVirtualFieldCommon ("6107", "km", SID_EVC_Odometer + ";" + SID_RangeEstimate, new VirtualFieldAction() {
+        addVirtualFieldCommon("6107", "km", SID_EVC_Odometer + ";" + SID_RangeEstimate, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
                 double odo = dependantFields.get(SID_EVC_Odometer).getValue();
@@ -277,11 +275,10 @@ public class Fields {
                 // timestamp of last inserted dot in MILLISECONDS
                 long lastInsertedTime = CanzeDataSource.getInstance().getLastTime(SID_RangeEstimate);
                 if (    // timeout of 15 minutes
-                        (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 15*60*1000)
+                        (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 15 * 60 * 1000)
                                 ||
                                 Double.isNaN(realRangeReference)
-                )
-                {
+                ) {
                     if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
                         realRangeReference = odo + gom;
                     }
@@ -300,18 +297,18 @@ public class Fields {
     }
 
     private void addVirtualFieldRealDeltaNoReset() {
-        final String SID_EVC_Odometer                         = "7ec.622006.24"; //  (EVC)
-        final String SID_RangeEstimate                        = "654.42"; //  (EVC)
+        final String SID_EVC_Odometer = "7ec.622006.24"; //  (EVC)
+        final String SID_RangeEstimate = "654.42"; //  (EVC)
 
         // get last value for realRange from internal database
         //MainActivity.debug("realRange 1: "+realRangeReference);
-        if(Double.isNaN(realRangeReference2)) {
+        if (Double.isNaN(realRangeReference2)) {
             realRangeReference2 = CanzeDataSource.getInstance().getLast(SID_RangeEstimate);
             //MainActivity.debug("realRange >> getLast");
         }
         //MainActivity.debug("realRange 2: "+realRangeReference);
 
-        addVirtualFieldCommon ("6108", "km", SID_EVC_Odometer + ";" + SID_RangeEstimate, new VirtualFieldAction() {
+        addVirtualFieldCommon("6108", "km", SID_EVC_Odometer + ";" + SID_RangeEstimate, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
                 double odo = dependantFields.get(SID_EVC_Odometer).getValue();
@@ -323,11 +320,10 @@ public class Fields {
                 // timestamp of last inserted dot in MILLISECONDS
                 long lastInsertedTime = CanzeDataSource.getInstance().getLastTime(SID_RangeEstimate);
                 if (    // timeout of 15 minutes
-                        (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 15*60*1000)
+                        (Calendar.getInstance().getTimeInMillis() - lastInsertedTime > 15 * 60 * 1000)
                                 ||
                                 Double.isNaN(realRangeReference2)
-                )
-                {
+                ) {
                     if (!Double.isNaN(gom) && !Double.isNaN(odo)) {
                         realRangeReference2 = odo + gom;
                     }
@@ -345,11 +341,11 @@ public class Fields {
         });
     }
 
-    private void addVirtualFieldCommon (String virtualId, String unit, String dependantIds, VirtualFieldAction virtualFieldAction) {
+    private void addVirtualFieldCommon(String virtualId, String unit, String dependantIds, VirtualFieldAction virtualFieldAction) {
         // create a list of field this new virtual field will depend on
         HashMap<String, Field> dependantFields = new HashMap<>();
         boolean allOk = true;
-        for (String idStr: dependantIds.split(";")){
+        for (String idStr : dependantIds.split(";")) {
             Field field = getBySID(idStr);
             if (field != null) {
                 dependantFields.put(idStr, field);
@@ -363,8 +359,8 @@ public class Fields {
             Frame frame = Frames.getInstance().getById(0x800);
             Frame subFrame = Frames.getInstance().getById(0x800, virtualField.getResponseId());
             if (subFrame == null) {
-                subFrame = new Frame(frame.getId(),frame.getInterval(),frame.getSendingEcu(),virtualField.getResponseId(),frame);
-                Frames.getInstance().add (subFrame);
+                subFrame = new Frame(frame.getId(), frame.getInterval(), frame.getSendingEcu(), virtualField.getResponseId(), frame);
+                Frames.getInstance().add(subFrame);
             }
             subFrame.addField(virtualField);
             virtualField.setFrame(subFrame);
@@ -373,8 +369,8 @@ public class Fields {
         }
     }
 
-    private void fillOneLine (String line) {
-        if (line.contains ("#")) line = line.substring(0, line.indexOf('#'));
+    private void fillOneLine(String line) {
+        if (line.contains("#")) line = line.substring(0, line.indexOf('#'));
         String[] tokens = line.split(",");
         if (tokens.length > FIELD_OPTIONS) {
             int frameId = Integer.parseInt(tokens[FIELD_ID].trim(), 16);
@@ -386,7 +382,7 @@ public class Fields {
                 // ensure this field matches the selected car
                 if ((options & MainActivity.car) != 0) {
                     //Create a new field object and fill his  data
-                    MainActivity.debug(tokens[FIELD_SID] + " " + tokens[FIELD_ID] + "." + tokens[FIELD_FROM] + "." + tokens[FIELD_RESPONSE_ID]);
+                    //MainActivity.debug(tokens[FIELD_SID] + " " + tokens[FIELD_ID] + "." + tokens[FIELD_FROM] + "." + tokens[FIELD_RESPONSE_ID]);
                     try {
                         Field field = new Field(
                                 tokens[FIELD_SID].trim(),
@@ -413,8 +409,8 @@ public class Fields {
                         if (field.isIsoTp()) {
                             Frame subFrame = Frames.getInstance().getById(frameId, field.getResponseId());
                             if (subFrame == null) {
-                                subFrame = new Frame(frame.getId(),frame.getInterval(),frame.getSendingEcu(),field.getResponseId(),frame);
-                                Frames.getInstance().add (subFrame);
+                                subFrame = new Frame(frame.getId(), frame.getInterval(), frame.getSendingEcu(), field.getResponseId(), frame);
+                                Frames.getInstance().add(subFrame);
                             }
                             subFrame.addField(field);
                             field.setFrame(subFrame);
@@ -433,7 +429,7 @@ public class Fields {
 
     }
 
-    private void fillFromAsset (String assetName) {
+    private void fillFromAsset(String assetName) {
         //Read text from asset
         AssetLoadHelper assetLoadHelper = new AssetLoadHelper(MainActivity.getInstance());
 
@@ -447,20 +443,17 @@ public class Fields {
             while ((line = bufferedReader.readLine()) != null)
                 fillOneLine(line);
             bufferedReader.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void load ()
-    {
-        load ("");
+    public void load() {
+        load("");
     }
 
 
-    public void load (String assetName)
-    {
+    public void load(String assetName) {
         fields.clear();
         fieldsBySid.clear();
         if (assetName.equals("")) {
@@ -484,7 +477,7 @@ public class Fields {
     }
 
     public Field get(int index) {
-        if(index < 0 || index>=fields.size()) return null;
+        if (index < 0 || index >= fields.size()) return null;
         // avoid a rare outofbounds crash when MainActivity.onCreate is reloading values from the
         // SQL while another thread is loading the fields.
         try {
@@ -501,18 +494,17 @@ public class Fields {
 
     public void add(Field field) {
         fields.add(field);
-        fieldsBySid.put(field.getSID(),field);
+        fieldsBySid.put(field.getSID(), field);
         //fieldsBySid.put(field.getCar()+"."+field.getSID(),field);
     }
 
-    public void clearAllFields()
-    {
-        for(int i=0; i< fields.size(); i++) {
+    public void clearAllFields() {
+        for (int i = 0; i < fields.size(); i++) {
             fields.get(i).setValue(0);
         }
     }
 
-    public ArrayList<Field> getAllFields () {
+    public ArrayList<Field> getAllFields() {
         return fields;
     }
 
