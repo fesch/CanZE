@@ -69,7 +69,7 @@
                             car is a possibly lethal piece of machinery and you might hurt or kill yourself or others using
                             it, or even paying attention to the displays instead of watching the road.</b></html></string>]]></string>
     <string name="toast_Reconnecting">Reconnecting Bluetooth…</string>
-    <string name="toast_WaitingSettings">Stopping Bluetooth. Settings are being loaded. Please wait ....</string>
+    <!-- <string name="toast_WaitingSettings">Stopping Bluetooth. Settings are being loaded. Please wait ....</string> -->
     <string name="toast_NotWhileDriving">Not possible while driving…</string>
     <string name="toast_AdjustSettings">Please adjust the settings first</string>
 
@@ -313,6 +313,7 @@
 
     <string name="title_activity_charging">Charging</string>
     <string name="button_Charging">Charging</string>
+    <string name="button_ChargingTech">Charching Techs</string>
     <string name="header_Charging">Charger parameters</string>
     <string name="header_Battery">Battery parameters</string>
     <string name="header_DrivingCh">Driving</string>
@@ -638,7 +639,7 @@
     <string name="prompt_NoSd">External SD card not available, not writeable or has not sufficient space left to log data.<br /><br /><b>Data export cannot be enabled!</b></string>
     <string name="prompt_Sorry">I am sorry…</string>
     <string name="toast_CacheCleared">Cache has been cleared…</string>
-    <string name="toast_PleaseUseTop">Please use one of the top buttons to quit the settings …</string>
+    <!-- <string name="toast_PleaseUseTop">Please use one of the top buttons to quit the settings …</string> -->
     <string name="toast_NoBluetooth">This device does not have any bluetooth adapter.\n\nSorry…</string>
 
     <!-- Tyres -->
@@ -651,6 +652,13 @@
     <string name="label_TyreFR">Front right</string>
     <string name="label_TyreRL">Rear left</string>
     <string name="label_TyreRR">Rear right</string>
+    <string name="label_TyreIDFL">ID front left</string>
+    <string name="label_TyreIDFR">ID front right</string>
+    <string name="label_TyreIDRL">ID rear left</string>
+    <string name="label_TyreIDRR">ID rear right</string>
+    <string name="button_Tyres_write">write</string>
+    <string name="button_Tyres_read">read</string>
+
 
     <!-- Widgets only -->
 

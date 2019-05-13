@@ -330,7 +330,7 @@
     <string name="prompt_NoSd">No hay tarjeta SD externa, o no se puede escribir en ella o no tiene suficiente espacio libre para registrar datos.<br/><br/><b>¡No se puede activar la exportación de datos!</b></string>
     <string name="prompt_Sorry">Lo sentimos…</string>
     <string name="toast_CacheCleared">Se ha limpiado la cache…</string>
-    <string name="toast_PleaseUseTop">Por favor utilice alguno de los botones de la parte superior para salir de los ajustes…</string>
+    <!-- <string name="toast_PleaseUseTop">Por favor utilice alguno de los botones de la parte superior para salir de los ajustes…</string> -->
     <string name="toast_NoBluetooth">Este dispositivo no tiene adaptador bluetooth.\n\nLo sentimos…</string>
 
     <!-- Tyres -->
@@ -384,7 +384,7 @@
     <string name="prompt_Accept">Sí, ¡Lo tengo!</string>
     <string name="prompt_Decline">No, no he entendido ni jota…</string>
     <string name="toast_Reconnecting">Reconectando el Bluetooth…</string>
-    <string name="toast_WaitingSettings">Deteniendo el Bluetooth. Cargando los ajustes. Por favor espere ....</string>
+    <!-- <string name="toast_WaitingSettings">Deteniendo el Bluetooth. Cargando los ajustes. Por favor espere ....</string> -->
     <string name="toast_NotWhileDriving">Imposible durante la conducción…</string>
 
     <!-- Main (fragment) -->

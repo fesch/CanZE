@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="TypographyFractions,TypographyEllipsis">
+
 
     <!-- Many thanks to Frédéric and Christophe for the translation work -->
 
@@ -9,6 +12,7 @@
     <string name="default_No">Non</string>
     <string name="default_Ok">OK</string>
     <string name="default_Cancel">Annuler</string>
+    <string name="default_Reset">Réinitialiser</string>
     <string name="format_NoView" formatted="false">Il n’y a pas de vue avec l’id \'%s%s\'</string>
     <string name="label_debug">Debug\u0020</string>
     <string name="default_debug">#Debug</string>
@@ -17,8 +21,9 @@
     <string name="prompt_Accept">Oui, j’ai compris !</string>
     <string name="prompt_Decline">Non, je n’y comprends rien…</string>
     <string name="toast_Reconnecting">Reconnexion Bluetooth…</string>
-    <string name="toast_WaitingSettings">Arrêt du Bluetooth. Chargement des paramètres. Veuillez patienter…</string>
+    <!-- <string name="toast_WaitingSettings">Arrêt du Bluetooth. Chargement des paramètres. Veuillez patienter…</string> -->
     <string name="toast_NotWhileDriving">Impossible durant la conduite…</string>
+    <string name="toast_AdjustSettings">Veuillez d’abord ajuster les paramètres</string>
     <string name="menu_Main">Principal</string>
     <string name="help_Main">Faites glisser votre doigt sur l’écran pour basculer entre menu Principal, Technique et Expérimental</string>
     <string name="menu_Technical">Technique</string>
@@ -224,8 +229,10 @@
     <string name="label_ElecBrakeWheelsTorqueApplied">Couple électrique appliqué (régénération)</string>
     <string name="label_diff_friction_torque">Couple de friction appliqué (pertes)</string>
     <string name="help_AllTorques">Tous les couples sont exprimés à la roue et non en couple moteur.</string>
+    <string name="message_CantConnect">Connection impossible. Bluetooth pas encore configuré ?</string>
     <string name="title_activity_charging">Charge</string>
     <string name="button_Charging">Charge</string>
+    <string name="button_ChargingTech">Données de charge</string>
     <string name="header_Charging">Détail de la charge</string>
     <string name="header_Battery">Batterie</string>
     <string name="header_DrivingCh">Conduite</string>
@@ -353,6 +360,7 @@
     <string name="graph_SpeedConsumption">Vitesse (km/h), Consommation (kWh/100km)</string>
     <string name="title_activity_dash">Dash</string>
     <string name="button_Dash">Dash</string>
+    <string name="format_NoSid">sid %s n’existe pas dans la classe Fields</string>
     <string name="title_activity_driving">Informations de conduite</string>
     <string name="button_Driving">Conduite</string>
     <string name="label_pedal">Position pédale</string>
@@ -386,6 +394,8 @@
     <string name="message_NoClearDtcField">Le champ d’effacement des DTCs n’existe pas\n</string>
     <string name="message_MessageNull">Le message est nul. La voiture est-elle en marche ?\n</string>
     <string name="message_ClearSuccessful">L’effacement semble avoir réussi, interrogez les DTCs\n</string>
+    <string name="message_DumpDone">Terminé. Fichier log créé</string>
+    <string name="format_DumpWriting">Patientez, écriture %s</string>
     <string name="title_activity_elm_test">Test du Dongle ELM327</string>
     <string name="button_ElmTesting">Test ELM</string>
     <string name="message_ExpectedResult">Résultats attendus reçus\n==========\n</string>
@@ -396,10 +406,18 @@
     <string name="message_PrepIsoTp">\nTraitement de la commande ISO-TP CLUSTER SW\n</string>
     <string name="message_PrepFree">\nTraitement de la commande Free Frame PARK BRAKE\n</string>
     <string name="message_DevicePassed">\nVotre Dongle a passé tous les tests, il devrait fonctionner correctement.\n</string>
+    <string name="message_HardResetFailed">Réinitialisation échouée, redémarrage Bluetooth...</string>
+    <string name="message_ELM13Ready">ELM prêt, version 1.3, devrait fonctionner</string>
+    <string name="message_ELM14Ready">ELM prêt, version 1.4, devrait fonctionner</string>
+    <string name="message_ELM8015Ready">ELM prêt, version innocar, devrait fonctionner</string>
+    <string name="message_ELMReady">ELM est maintenant prêt</string>
+    <string name="message_ELM20Ready">ELM prêt, version 2.x, ne fonctionnera probablement pas, veuillez nous informer si cela fonctionne</string>
+    <string name="message_ELMUnknown">ELM prêt, version inconnue, ne fonctionnera probablement pas, veuillez nous informer si cela fonctionne</string>
     <string name="title_activity_firmware">Firmware</string>
     <string name="button_Firmware">Firmware</string>
     <string name="help_Ecus"><![CDATA[Cliquez sur un ECU pour afficher les détails. Plus d’informations sur les calculateurs de la voiture <a href="http://canze.fisch.lu/computers/">ici</a>.]]></string>
     <string name="button_FluenceKangooTemps">T° Fluence Kangoo</string>
+    <string name="format_NoAsset">Impossible d’accéder à %s</string>
     <string name="title_activity_heatmap_bat">Température des modules</string>
     <string name="button_HeatmapTemperature">T° des modules</string>
     <string name="title_activity_heatmap_cellvoltage">Tension des cellules</string>
@@ -468,7 +486,7 @@
     <string name="prompt_NoSd">La carte SD externe n’est pas disponible ou est protégée en écriture ou ne dispose pas d’espace suffisant pour enregistrer les données. L’exportation des données ne peut pas être activée !</string>
     <string name="prompt_Sorry">Désolé…</string>
     <string name="toast_CacheCleared">Le cache a été vidé…</string>
-    <string name="toast_PleaseUseTop">S’il vous plaît, utilisez l’un des boutons du haut pour quitter les paramètres…</string>
+    <!-- <string name="toast_PleaseUseTop">S’il vous plaît, utilisez l’un des boutons du haut pour quitter les paramètres…</string> -->
     <string name="toast_NoBluetooth">Cet appareil de possède pas d’adaptateur Bluetooth.\n\nDésolé…</string>
     <string name="title_activity_tyres">Info pneumatiques</string>
     <string name="button_Tyres">Pneus</string>
@@ -478,5 +496,11 @@
     <string name="label_TyreFR">Avant droit</string>
     <string name="label_TyreRL">Arrière gauche</string>
     <string name="label_TyreRR">Arrière droit</string>
+    <string name="label_TyreIDFL">ID avant gauche</string>
+    <string name="label_TyreIDFR">ID avant droit</string>
+    <string name="label_TyreIDRL">ID arrière gauche</string>
+    <string name="label_TyreIDRR">ID arrière droit</string>
+    <string name="button_Tyres_write">write</string>
+    <string name="button_Tyres_read">read</string>
     <string name="title_activity_widget">Activité Widget</string>
 </resources>
