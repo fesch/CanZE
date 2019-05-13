@@ -7,12 +7,16 @@ android {
         applicationId "lu.fisch.canze"
         minSdkVersion 15
         targetSdkVersion 28
-        versionName '1.37'
-        versionCode 38
+        versionName '1.38'
+        versionCode 39
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -25,9 +29,10 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation 'me.drakeet.support:toastcompat:1.1.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
     //implementation 'com.google.android.material:material:1.0.0-beta01'
     //implementation 'com.android.support.constraint:constraint-layout:+'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

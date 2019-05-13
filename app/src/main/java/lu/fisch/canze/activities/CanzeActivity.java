@@ -22,7 +22,11 @@
 package lu.fisch.canze.activities;
 
 import android.os.Bundle;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -55,6 +59,11 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
+
         if(MainActivity.device!=null)
             if(!BluetoothManager.getInstance().isConnected()) {
                 // restart Bluetooth
@@ -146,6 +155,17 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             }
         }
         super.onDestroy();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id==android.R.id.home) {
+            back = true;
+            finish();
+        }
+        return true;
     }
 
     @Override
@@ -302,7 +322,10 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             @Override
             public void run() {
                 TextView tv = findViewById(R.id.textDebug);
-                if (tv != null) tv.setText(tv.getText() + " " + msg);
+                if (tv != null) {
+                    String newMsg = tv.getText() + " " + msg;
+                    tv.setText(newMsg);
+                }
             }
         });
     }

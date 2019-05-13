@@ -101,13 +101,13 @@
     <string name="label_auxbat">Spannung, Fahrzeugstatus, Ladezustand</string>
     <string name="label_auxbatvolt">Spannunge</string>
     <string name="label_AuxStatus">Austausch-Meldung</string>
-    <string name="label_vehiclestate">Fahrzeugstatuse</string>
+    <string name="label_vehiclestate">Fahrzeugstatus</string>
     <string-array name="list_VehicleState">
         <item>Schlafmodus (0:rot)</item>
-        <item>Bereitschaft, Aus (1:grün)</item>
-        <item>Zündung (2:blau)</item>
-        <item>Anlassen (3:gelb)</item>
-        <item>Bereitschaft, An (4:zyan)</item>
+        <item>Motor aus (1:grün)</item> <!-- nach Betriebsanleitung -->	        <!--Bereitschaft, Pikett-->
+        <item>Zündung (2:blau)</item>                                           <!--Einschaltbereit-->
+        <item>Motor anlassen (3:gelb)</item> <!-- nach Betriebsanleitung -->    <!--Einschalten-->
+        <item>Motor ein (4:zyan)</item> <!-- nach Betriebsanleitung -->	        <!--Eingeschaltet, Fahrbereit-->
         <item>5</item>
         <item>6</item>
         <item>7</item>
@@ -135,13 +135,13 @@
     
     <!-- Battery -->
 
-    <string name="title_activity_battery">Akkumulator</string>
-    <string name="button_Battery">Akku</string>
-    <string name="graph_SOH">Akku-Lebensdauer (SOH) (%)</string>
-    <string name="graph_RealIndicatedSoc">Echte und angebliche Kapazität (SOC) (%)</string>
+    <string name="title_activity_battery">Hochspannungs-Akkumulator</string>
+    <string name="button_Battery">HV Akku</string>
+    <string name="graph_SOH">Akku-Vitalität (SOH) (%)</string> <!--Lebendauer-->
+    <string name="graph_RealIndicatedSoc">Echte, Angezeigte Kapazität (SOC) (%)</string>
     <string name="help_QA"><![CDATA[Weitere Details zu diesen Daten können in der <a href=\'http://canze.fisch.lu/qa/\'>Q & A Sektion</a> der <a href=\'http://canze.fisch.lu/\'>CanZE homepage</a>.]]></string>
-    <string name="graph_CellVoltages">Zellenspannungen (V)</string>
-    <string name="graph_ModuleTemperatures">Temperatur der Akku-Module (°C)</string>
+    <string name="graph_CellVoltages">Spannung der Akukumulatorzellen (V)</string>
+    <string name="graph_ModuleTemperatures">Temperatur der Akkumulatorzellen (°C)</string>
 
     <!-- BCB (now integrated in ChargingTech) -->
 
@@ -298,7 +298,7 @@
     <!-- Braking -->
 
     <string name="title_activity_braking">Bremsinformationen</string>
-    <string name="button_Braking">Bremsen</string>
+    <string name="button_Braking">Brems-Infos</string>
     <string name="label_driver_torque_request">Angefordertes Drehmoment</string>
     <string name="label_ElecBrakeWheelsTorqueApplied">Bremsenergierückgewinnung (Rekuperation)</string>
     <string name="label_diff_friction_torque">Bremsmoment durch Reibung (Verlust)</string>
@@ -311,30 +311,31 @@
     
     <!-- Charging and ChargingTech -->
 
-    <string name="title_activity_charging">Laden</string>
-    <string name="button_Charging">Laden</string>
+    <string name="title_activity_charging">Ladeparameter</string>
+    <string name="button_Charging">Lade-Infos</string>
+    <string name="button_ChargingTech">Auflade-Daten</string>
     <string name="header_Charging">Ladeparameter</string>
-    <string name="header_Battery">Akkudaten</string>
+    <string name="header_Battery">HV Akkudaten</string>
     <string name="header_DrivingCh">Fahren</string>
-    <string name="header_CompTemp">Temperaturen und Balancing der Akkumodule</string>
-    <string name="label_max_charge">Max Akkul-Ladung/Rückgewinnung (kW)</string>
+    <string name="header_CompTemp">Temperaturen und Balancing der Akkumulatorzellen</string>
+    <string name="label_max_charge">max Akkumulator-Aufladung/Rekuperation (kW)</string>
     <string name="label_max_pilot">Ladestrom (A)</string>
     <string name="label_Phases">Phasen</string>
     <string name="label_UserSOC">Nutzbarer Ladezustand (%)</string>
-    <string name="label_RealSOC">Echter Ladezustand (%)</string>
+    <string name="label_RealSOC">Realer Ladezustand (%)</string>
     <string name="label_HvTemp">mittlere Akkutemperatur (°C)</string>
-    <string name="label_SOH">Akku-Lebensdauer SOH (%)</string>
+    <string name="label_SOH">Akku-Vitalität SOH (%)</string>  <!--Lebendauer-->
     <string name="label_TTF">Zeit bis voll (min)</string>
     <string name="label_ETF">Energie bis voll geladen (kWh)</string>
-    <string name="label_DISTA">Verfügbare Reichweite</string>
+    <string name="label_DISTA">Reichweite</string>
     <string name="label_Volt">Spannung Akku (V)</string>
     <string name="label_Amps">Strom Akku (A)</string>
-    <string name="label_DcPwr">Gleichstromleistung (kW)</string>
-    <string name="label_AvChPwr">Mögliche Ladeleistung (kW)</string>
+    <string name="label_DcPwr">DC Ladeleistung (kW)</string>
+    <string name="label_AvChPwr">verfügbare Ladestationleistung (kW)</string>
     <string name="label_AvEner">Verfügbare Energie (kWh)</string>
     <string name="label_12V">12V Akku Spannung (v)</string>
     <string name="label_12A">12V Akku Strom (A)</string>
-    <string name="label_DcLoad">DCDC Belastung (%)</string>
+    <string name="label_DcLoad">DC-DC Belastung (%)</string>
     <string name="label_HKM">gefahrene Akkureichweite (km)</string>
     <string name="label_ChaStatus">Ladestatus</string>
     <string name="label_Plug">Anschlußstatus</string>
@@ -355,15 +356,15 @@
 
     <!-- Charging graph -->
 
-    <string name="title_activity_charging_graph">Ladegrafiken</string>
+    <string name="title_activity_charging_graph">Lade-Grafik</string>
     <string name="button_ChargingGraphs">Ladegrafiken</string>
-    <string name="graph_PilotPower">Ladestrom Pilot Amp (A), Ladeleistung (kW)</string>
-    <string name="graph_MaxRealChPwr">Max Akkumulatorleistung (kW) / Gleichstromladeleistung (kW)</string>
+    <string name="graph_PilotPower">Ladestrom Amp (A), Ladeleistung (kW)</string>
+    <string name="graph_MaxRealChPwr">Max Akkumulatorleistung (kW) / DC Ladeleistung (kW)</string>
     <string name="graph_EnergyTemperature">Verfügbare Energie (kWh), Temperatur (°C)</string>
 
     <!-- Charging history -->
 
-    <string name="title_activity_charging_history">Laden Historie</string>
+    <string name="title_activity_charging_history">Lade-Chronik</string>
     <string name="button_charging_history">Ladeverlauf</string>
     <string name="header_ChargingHistory">Letzten 10 Aufladungen</string>
     <string name="label_distance">km-Zähler</string>
@@ -399,16 +400,16 @@
 
      <!-- Clima tech -->
 
-    <string name="title_activity_clima_tech">Klimatisierung Akku</string>
+    <string name="title_activity_clima_tech">Klimatisierung Akkumulator</string>
     <string name="button_Climate">Akku-Klimatisierung</string>
-    <string name="label_ClimaLoopMode">Klimatisierungsanlage Modus</string>
+    <string name="label_ClimaLoopMode">Umluftbetrieb</string>
     <string name="label_HVBatConditioningMode">Klimatisierungsmodus des Akkkus</string>
     <string name="label_Temperatures">Temperaturen</string>
     <string name="label_HVEvaporationTemp">Verdampfertemperatur des Akkus (°C)</string>
     <string name="label_ACPressure">Klimatisierungsanlage Betriebsdruck (bar)</string>
     <string name="label_HVCoolingState">Kühlungsstatus des Akkus</string>
     <string name="label_EngineFanSpeed">Ventilator-Geschwindigkeit der Antriebseinheit</string>
-    <string name="label_ClimateBatteryInteraction">Klimatisierungzustand des Akkus</string>
+    <string name="label_ClimateBatteryInteraction">Wechselwirkung Klimaanlage-Akku</string>
     <string-array name="list_CoolingStatus">
         <item>Nein</item>
         <item>Nur kühlen</item>
@@ -432,7 +433,7 @@
         <item>Inaktiv</item>
     </string-array>
     <string name="label_IH_ClimCompPWRStatus">Kompressorlesitung (W), ECO</string>
-    <string name="graph_Climatech">Aussen (°C), Innen (°C), Vorgabe (°C), Akku (°C)</string>
+    <string name="graph_Climatech">Außen (°C), Innen (°C), Vorgabe (°C), Akku (°C)</string>
     <string name="label_PtcRelay1">PTC Relais 1</string>
     <string name="label_PtcRelay2">PTC Relais 2</string>
     <string name="label_PtcRelay3">PTC Relais 3</string>
@@ -463,7 +464,7 @@
     <!-- Driving -->
 
     <string name="title_activity_driving">Fahrtinformationen</string>
-    <string name="button_Driving">aktuelle Fahrtinfos</string>
+    <string name="button_Driving">Fahrt-Infos</string>
     <string name="label_pedal">Pedalposition</string>
     <string name="label_wheel_torque">Drehmoment der Räder</string>
     <string name="label_DistToDest">Entfernung bis zum Ziel</string>
@@ -496,7 +497,7 @@
     <string name="message_NoActiveDtcs">\nKeine aktiven DTCs\n</string>
     <string name="message_clear">"Löschen "</string>
     <string name="message_NoClearDtcField">Lösche DTCs Feld existiert nicht\n</string>
-    <string name="message_MessageNull">kein Datenempfang. Ist die ZOE eingeschalten?\n</string>
+    <string name="message_MessageNull">kein Datenempfang. Ist das Fahrzeug eingeschalten?\n</string>
     <string name="message_ClearSuccessful">Fehlerspeicher sind gelöscht, bitter erneut überprüfen\n</string>
     <string name="message_DumpDone">Fertig! Logfile angelegt</string>
     <string name="format_DumpWriting">Einen Moment bitte, Daten werden geschrieben %s</string>
@@ -540,13 +541,13 @@
 
     <!-- Heatmap battery modules -->
 
-    <string name="title_activity_heatmap_bat">Temperatur-Aufteilungskarte</string>
-    <string name="button_HeatmapTemperature">Temperaturaufteilung</string>
+    <string name="title_activity_heatmap_bat">Übersicht: Temperaturen der einzelnen Akkumulatorzellen</string>
+    <string name="button_HeatmapTemperature">Übersicht Zellen-Temperatur</string>
 
     <!-- Heatmap voltages -->
 
-    <string name="title_activity_heatmap_cellvoltage">Spannungen-Aufteilungskarte</string>
-    <string name="button_HeatmapVoltage">Spannungsaufteilung</string>
+    <string name="title_activity_heatmap_cellvoltage">Übersicht: Spannungen der einzelnen Akkumulatorzellen</string>
+    <string name="button_HeatmapVoltage">Übersicht Zellen-Spannung</string>
 
 
     
@@ -587,11 +588,11 @@
 
     <!-- Prediction -->
 
-    <string name="title_activity_prediction">Ladevorhersage</string>
-    <string name="button_ChargingPrediction">Ladevorhersage</string>
-    <string name="label_StateAtThisMoment">Aktueller Zustand</string>
+    <string name="title_activity_prediction">Aufladevorhersage</string>
+    <string name="button_ChargingPrediction">Aufadevorhersage</string>
+    <string name="label_StateAtThisMoment">Aktuelle Ladeparameter</string>
     <string name="label_BatteryTemperature">Akkumulatortemperatur (°C)</string>
-    <string name="label_ACPower">AC Leistung (kWh)</string>
+    <string name="label_ACPower">AC Ladestationsleistung (kW)</string>
     <string name="label_StateOfCharge">Ladezustand (%)</string>
     <string name="label_ChargingPrediction">Ladevorhersage</string>
     <string name="label_Duration">Dauer (hh:mm)</string>
@@ -603,7 +604,7 @@
 
     <string name="title_activity_range">Reichweite</string>
     <string name="button_Range">Reichweite</string>
-    <string name="label_RangeRemaining">Restreichweite nach ZOE:</string>
+    <string name="label_RangeRemaining">Restreichweite nach OBD2</string>
     <string name="label_RangeRemainingCanZE">Restreichweite nach CanZE:</string>
     <string name="label_EstimatedDrivingStyleLoss">Voraussichtlicher Energieverlust durch Fahrweise:</string>
     <string name="graph_DistanceEnergy">Verfügbare Reichweite (km), Verfügbare Energie (kWh)</string>
@@ -613,26 +614,26 @@
     <string name="title_activity_settings">Einstellungen</string>
     <string name="build">Build:</string>
     <string name="version">Version:</string>
-    <string name="label_RemoteDevice">Verbindung</string>
-    <string name="label_DeviceAddress">Adresse</string>
+    <string name="label_RemoteDevice">Verbindung mit</string>
+    <string name="label_DeviceAddress">Geräteadresse</string>
     <string name="label_DeviceType">Gerätetyp</string>
-    <string name="label_Car">Fahrzeug</string>
+    <string name="label_Car">Fahrzeug Typ</string>
     <string name="label_LogLevel">Log Level</string>
     <string name="label_Options">Optionen</string>
-    <string name="label_SafeDrivingMode">Modus \"sicheres Fahren\"</string>
+    <string name="label_SafeDrivingMode">Modus Sicheres-Fahren</string>
     <string name="label_BluetoothBackgroundMode">Bluetooth Hintergrund Modus</string>
     <string name="label_Miles">Meilen</string>
     <string name="label_SdCardLogging">Speichere auf SD Karte</string>
     <string name="label_Debug">Debug</string>
     <string name="label_Fields">Felder</string>
     <string name="help_Fields">Diese Felder werden gespeichert</string>
-    <string name="label_LogToSdcard1">Auf sdcard1 speichern</string>
+    <string name="label_LogToSdcard1">Auf SDCard speichern</string>
     <string name="label_Actions">Funktionen</string>
-    <string name="label_ClearCachedData">Zwischengespeicherte Daten gelöscht</string>
+    <string name="label_ClearCachedData">Zwischenspeicher löschen</string>
     <string name="prompt_YesIKnow">Ja</string>
     <string name="prompt_NoSecureWay">Nein</string>
     <string name="prompt_Attention">ACHTUNG</string>
-    <string name="prompt_WarningDriving">Während der Fahrt ist es extrem gefährlich, sich nicht auf den Verkehr zu konzentrieren. Man setzt dabei sein Leben und das von anderen aufs Spiel.Diesen Modus zu entsperren ist nicht empfohlen.\n\n Bist du sicher, dass du den Sicher Fahren Modus entsperren willst?</string>
+    <string name="prompt_WarningDriving">Während der Fahrt ist es extrem gefährlich, sich nicht auf den Verkehr zu konzentrieren. Das eigenes Leben und das der Anderen wird aufs Spiel gesetzt. Diesen Modus zu entsperren wird nicht empfohlen.\n\n Den Modus Sicher-Fahren trotzdem entsperren?</string>
     <string name="prompt_NoThanks">Nein Danke</string>
     <string name="prompt_BluetoothOn">Wenn die Bluetooth Verbindung im Hintergrund aktiv gelassen wird, könnte dies andere Apps beeinträchtigen, die Bluetooth nutzen. Es kann auch sein, dass die Batterie des Smartphones sich sehr schnell entlädt, wenn die Funktion oder CanZE nicht deaktiviert werden. <br /><br /><b>Wenn die Funktion aktiviert bleibt, wird die Verbindung auch dann aktiv gehalten, wenn das Smartphone neu gestartet wurde</b><br /><br />Sind Sie sicher, dass Sie den Bluetooth Hintergrund Modus aktivieren wollen?</string>
     <string name="prompt_NoSd">Externe SD Karte ist nicht verfügbar, nicht beschreibbar oder hat zu wenig freien Speicher um Daten zu loggen.<br/><br/><b>Daten Export kann nicht eingeschaltet werden!</b></string>
@@ -643,15 +644,21 @@
 
     <!-- Tyres -->
 
-    <string name="title_activity_tyres">Reifen Infos</string>
-    <string name="button_Tyres">Reifeninfos</string>
-    <string name="help_PressuresMbar">Alle Reifendrücke in mbar</string>
+    <string name="title_activity_tyres">Information zu den Rädern - RDKS </string>
+    <string name="button_Tyres">Räder-Infos</string>
+    <string name="help_PressuresMbar">Alle Angaben in mbar</string>
     <string name="label_TyreSpdPresMisadaption">Geschwindigkeits-Druck Fehlinterpretation</string>
     <string name="label_TyreFL">Vorne links</string>
     <string name="label_TyreFR">Vorne rechts</string>
     <string name="label_TyreRL">Hinten links</string>
     <string name="label_TyreRR">Hinten rechts</string>
- 
+    <string name="label_TyreIDFL">ID vorne links</string>
+    <string name="label_TyreIDFR">ID vorne rechts</string>
+    <string name="label_TyreIDRL">ID hinten links</string>
+    <string name="label_TyreIDRR">ID hinten rechts</string>
+    <string name="button_Tyres_write">ID lesen</string>
+    <string name="button_Tyres_read">ID schreiben</string>
+
     <!-- Widgets only -->
 
     <string name="title_activity_widget">Widget Aktivität</string>
