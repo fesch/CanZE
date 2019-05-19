@@ -205,12 +205,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     };
 
     public static MainActivity getInstance() {
-        if (instance == null)
+        //if (instance == null)
             /*  TODO I wonder if this is safe beavior. instance should never be null and if it is,
                 something is pretty wrong and it is probably not a good plan to create a new object,
                 unless I am missing something
              */
-            instance = new MainActivity();
+        //    instance = new MainActivity(); */
         return instance;
     }
 
@@ -564,7 +564,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public void onResume() {
         debug("MainActivity: onResume");
 
-        instance = this;
+        // instance = this; // If I am not mistaken, instance should only ever be populated in onCreate
 
         visible = true;
         super.onResume();
