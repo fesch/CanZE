@@ -268,12 +268,7 @@ public class AllDataActivity extends CanzeActivity {
 
     private void appendResult(int strResource) {
         final String localStr = MainActivity.getStringSingle(strResource);
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                textView.append(localStr);
-            }
-        });
+        appendResult(localStr);
     }
 
     private void log(String text) {
@@ -293,12 +288,15 @@ public class AllDataActivity extends CanzeActivity {
     private void createDump(Ecu ecu) {
 
         dumpInProgress = false;
-        SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMS), Locale.getDefault());
 
+        if (!MainActivity.storageIsAvailable) {
+            debug("AllDataActivity.createDump: SDcard not available");
+            return;
+        }
 
         // ensure that there is a CanZE Folder in SDcard
         if (!isExternalStorageWritable()) {
-            debug("DiagDump: SDcard not writeable");
+            debug("AllDataActivity.createDump: SDcard not writeable");
             return;
         }
 
@@ -312,7 +310,7 @@ public class AllDataActivity extends CanzeActivity {
         }
         debug("DiagDump: file_path:" + file_path);
 
-        // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMS), Locale.getDefault());
         String exportdataFileName = file_path + ecu.getMnemonic() + "-" + sdf.format(Calendar.getInstance().getTime()) + ".txt";
 
         File logFile = new File(exportdataFileName);
@@ -325,6 +323,7 @@ public class AllDataActivity extends CanzeActivity {
                 debug("DiagDump: NewFile:" + exportdataFileName);
             } catch (IOException e) {
                 e.printStackTrace();
+                return;
             }
         }
 
