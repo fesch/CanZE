@@ -104,7 +104,6 @@
                 android:paddingRight="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/help_Experimental"
                 android:layout_gravity="center_horizontal" />
 
