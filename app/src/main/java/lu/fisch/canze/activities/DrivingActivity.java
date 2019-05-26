@@ -26,13 +26,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -82,12 +80,6 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        if (Build.VERSION.SDK_INT != 26 && Build.VERSION.SDK_INT != 27) {
-            getWindow().setFlags(
-                    WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
-                    WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driving);

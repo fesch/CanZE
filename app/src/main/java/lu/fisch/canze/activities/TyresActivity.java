@@ -21,7 +21,6 @@
 
 package lu.fisch.canze.activities;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -57,12 +56,6 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        if (Build.VERSION.SDK_INT != 26 && Build.VERSION.SDK_INT != 27) {
-            getWindow().setFlags(
-                    WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
-                    WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tyres);

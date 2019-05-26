@@ -21,6 +21,7 @@
 
 package lu.fisch.canze.activities;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -29,6 +30,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.security.InvalidParameterException;
@@ -58,6 +60,13 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if (Build.VERSION.SDK_INT != 26 && Build.VERSION.SDK_INT != 27) {
+            getWindow().setFlags(
+                    WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                    WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+        }
+
         super.onCreate(savedInstanceState);
 
         ActionBar actionBar = getSupportActionBar();
