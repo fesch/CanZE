@@ -1,3 +1,6 @@
+2019-05-30 [Jeroen] Gradle to 3.4.0
+2019-05-30 [Jeroen] Disabled minification and proguard (messes crash reports)
+
 ---< Version 1.38 / 2019.05.13 / 39 >---
 2019-04-21 [Jeroen] Removed now unused translation entries to avoid lint errors
 2019-04-21 [Jeroen] Enabled minification (R8), for the moment also in debug build variant, with limited name obfuscation
