@@ -650,6 +650,8 @@ public class ELM327 extends Device {
                     // and we're done
                 } catch (StringIndexOutOfBoundsException e) {
                     return new Message(frame, "-E-unexpected ISO-TP length of SING frame:" + elmResponse, true);
+                } catch (NumberFormatException e) {
+                    return new Message(frame, "-E-uninterpretable ISO-TP length of SING frame:" + elmResponse, true);
                 }
                 break;
             case "1": // FIRST frame
@@ -658,7 +660,9 @@ public class ELM327 extends Device {
                     // remove 4 nibbles (type + length)
                     hexData = elmResponse.substring(4);
                 } catch (StringIndexOutOfBoundsException e) {
-                    return new Message(frame, "-E-unexpected ISO-TP length of FIRST frame:" + elmResponse, true);
+                    return new Message(frame, "-E-unexpected ISO-TP length of FRST frame:" + elmResponse, true);
+                } catch (NumberFormatException e) {
+                    return new Message(frame, "-E-uninterpretable ISO-TP length of FRST frame:" + elmResponse, true);
                 }
                 // calculate the # of frames to come. 6 byte are in and each of the 0x2 frames has a payload of 7 bytes
                 int framesToReceive = len / 7; // read this as ((len - 6 [remaining characters]) + 6 [offset to / 7, so 0->0, 1-7->7, etc]) / 7

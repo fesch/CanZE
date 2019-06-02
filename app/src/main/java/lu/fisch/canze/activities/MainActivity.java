@@ -21,6 +21,7 @@
 
 package lu.fisch.canze.activities;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -33,6 +34,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Point;
@@ -40,6 +42,8 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -149,10 +153,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static DataLogger dataLogger = null; // rather use singleton in onCreate
 
     public static int car = CAR_NONE;
-
     private static boolean isDriving = false;
-
     public static boolean milesMode = false;
+
+    public static boolean storageIsAvailable = false;
 
     public static final short TOAST_NONE = 0;
     public static final short TOAST_ELM = 1;
@@ -212,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public static void debug(String text) {
         Log.d(TAG, text);
-        if (debugLogMode) {
+        if (storageIsAvailable && debugLogMode) {
             SimpleDateFormat sdf = new SimpleDateFormat(getStringSingle(R.string.format_YMDHMSs), Locale.getDefault());
             DebugLogger.getInstance().log(sdf.format(Calendar.getInstance().getTime()) + ": " + text);
         }
@@ -388,6 +392,30 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
+    static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1234;
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay!
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                break;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request.
+        }
+    }
+
+
+
+
     private ViewPager viewPager;
     private ActionBar actionBar;
 
@@ -398,6 +426,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         // needed to get strings from resources in non-Activity classes
         res = getResources();
+
+        if (ContextCompat.checkSelfPermission(instance, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(instance, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+        }
 
         // dataLogger = DataLogger.getInstance();
         dataLogger = new DataLogger();
@@ -532,7 +564,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public void onResume() {
         debug("MainActivity: onResume");
 
-        instance = this;
+        instance = this; // If I am not mistaken, instance should only ever be populated in onCreate
 
         visible = true;
         super.onResume();

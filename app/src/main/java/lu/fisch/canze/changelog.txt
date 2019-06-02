@@ -1,5 +1,17 @@
-2019-05-30 [Jeroen] Gradle to 3.4.0
-2019-05-30 [Jeroen] Disabled minification and proguard (messes crash reports)
+
+---< Version 1.40 / 2019.05.13 / 41 >---
+2019-05-19 [Jeroen] Undo Avoid creating a (Main)activity instance
+2019-05-19 [Jeroen] Gradle to 3.4.1
+2019-03-30 [Jeroen] Removed minified/proguard
+
+---< Version 1.39 / 2019.05.13 / 40 >---
+2019-03-26 [Jeroen] Unified yellow bar font settings
+2019-03-26 [Jeroen] News bar now acceppts html tags
+2019-03-26 [Jeroen] Expanded experiment to avoid on abort crash in Android 8.1 to widgets
+2019-05-20 [Jeroen] Catch parseint exception on a malformed frame
+2019-05-19 [Jeroen] Avoid creating a (Main)activity instance (ouch)
+2019-05-19 [Jeroen] Check if log files are writeable
+2019-05-19 [Jeroen] Gradle to 3.4.0
 
 ---< Version 1.38 / 2019.05.13 / 39 >---
 2019-04-21 [Jeroen] Removed now unused translation entries to avoid lint errors

@@ -48,6 +48,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".activities.MainActivity"
+            android:hardwareAccelerated="false"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,6 +62,7 @@
             android:label="@string/title_activity_settings" />
         <activity
             android:name=".activities.WidgetActivity"
+            android:hardwareAccelerated="false"
             android:label="@string/title_activity_widget" />
         <activity
             android:name=".activities.ChargingTechActivity"
@@ -77,6 +79,7 @@
             android:label="@string/title_activity_braking" />
         <activity
             android:name=".activities.DashActivity"
+            android:hardwareAccelerated="false"
             android:label="@string/title_activity_dash" />
         <activity
             android:name=".activities.ElmTestActivity"
@@ -86,6 +89,7 @@
             android:label="@string/title_activity_firmware" />
         <activity
             android:name=".activities.BatteryActivity"
+            android:hardwareAccelerated="false"
             android:label="@string/title_activity_battery" />
         <activity
             android:name=".activities.DtcActivity"
@@ -105,28 +109,34 @@
             android:label="@string/title_activity_tyres" />
         <activity
             android:name=".activities.ChargingGraphActivity"
+            android:hardwareAccelerated="false"
             android:label="@string/title_activity_charging_graph" />
         <activity
             android:name=".activities.ClimaTechActivity"
+            android:hardwareAccelerated="false"
             android:label="@string/title_activity_clima_tech" />
         <activity
             android:name=".activities.PredictionActivity"
             android:label="@string/title_activity_prediction" />
         <activity
             android:name=".activities.RangeActivity"
+            android:hardwareAccelerated="false"
             android:label="@string/title_activity_range" />
         <activity
             android:name=".activities.LeakCurrentsActivity"
+            android:hardwareAccelerated="false"
             android:label="@string/title_activity_leakCurrents" />
         <activity
             android:name=".activities.ChargingHistActivity"
             android:label="@string/title_activity_charging_history" />
         <activity
             android:name=".activities.AuxBattTechActivity"
+            android:hardwareAccelerated="false"
             android:label="@string/title_activity_auxbatt" />
         <activity android:name=".activities.LoggingActivity" />
         <activity
             android:name=".activities.ConsumptionActivity"
+            android:hardwareAccelerated="false"
             android:label="@string/title_activity_consumption" />
         <activity
             android:name=".activities.AllDataActivity"

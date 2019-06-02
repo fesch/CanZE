@@ -1,7 +1,9 @@
 package lu.fisch.canze.classes;
 
+import android.Manifest;
 import android.content.res.Resources;
 import android.os.Environment;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -9,6 +11,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
 import android.content.Context;
 
 import lu.fisch.canze.R;
@@ -28,7 +31,8 @@ public class DebugLogger {
 
     private static DebugLogger instance = new DebugLogger();
 
-    private DebugLogger() {}
+    private DebugLogger() {
+    }
 
     public static DebugLogger getInstance() {
         return instance;
@@ -38,18 +42,29 @@ public class DebugLogger {
      * Datalogger stuff
      * ****************************/
 
-    private File logFile = null;
-
-    private boolean isCreated()
-    {
-        return (logFile!=null);
+    private boolean isExternalStorageWritable() {
+        String SDstate = Environment.getExternalStorageState();
+        return (Environment.MEDIA_MOUNTED.equals(SDstate));
     }
 
-    private boolean createNewLog() {
-        boolean result = false;
+    private boolean firstLog = true;
+    private File logFile = null;
 
+    private boolean isCreated() {
+        return (logFile != null);
+    }
+
+    private void createNewLog() {
+
+        if (!MainActivity.storageIsAvailable) {
+            debug("AllDataActivity.createDump: SDcard not available");
+            return;
+        }
         //debug(this.getClass().getSimpleName()+": create new debug logfile");
-
+        if (!isExternalStorageWritable()) {
+            debug("DiagDump: SDcard not writeable");
+            return;
+        }
         // ensure that there is a CanZE Folder in SDcard
         String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
 
@@ -63,15 +78,16 @@ public class DebugLogger {
 
         SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMSs), Locale.getDefault());
         // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault());
-        String exportdataFileName = file_path + "debug-" + sdf.format(Calendar.getInstance().getTime()) + ".log";
+        String exportdataFileName = file_path + "debug" + sdf.format(Calendar.getInstance().getTime()) + ".log";
 
         logFile = new File(exportdataFileName);
         if (!logFile.exists()) {
             try {
                 logFile.createNewFile();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
+                logFile = null;
+                return;
             }
         }
 
@@ -85,33 +101,33 @@ public class DebugLogger {
             //    bufferedWriter.close();
             //}
             bufferedWriter.close();
-            result = true;
-        }
-        catch (IOException e) {
+            return;
+        } catch (IOException e) {
             e.printStackTrace();
+            logFile = null;
         }
-        return result;
     }
 
     /**
      * Appends a line of text to the log file
-     * @param text  the text line. A CR will be added automatically
+     *
+     * @param text the text line. A CR will be added automatically
      */
-    public void log(String text)
-    {
-        boolean goon = true;
-        if(logFile==null) goon=createNewLog();
+    public void log(String text) {
+        if (logFile == null && firstLog) createNewLog();
+        firstLog = false;
 
-        if(goon) {
+        if (logFile != null) {
             try {
                 BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
-                bufferedWriter.append(text + "\n");
+                bufferedWriter.append(text);
+                bufferedWriter.append("\n");
                 bufferedWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
+                logFile = null;
             }
         }
     }
 
 }
-

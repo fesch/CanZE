@@ -28,6 +28,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -149,8 +151,13 @@ public class MainFragment extends Fragment {
             @Override
             public void run() {
                 TextView tv = view.findViewById(R.id.textNews);
-                tv.setText(msg);
                 tv.setVisibility(View.VISIBLE);
+                if (msg.contains("<")) {
+                    tv.setText(Html.fromHtml(msg));
+                    tv.setMovementMethod(LinkMovementMethod.getInstance());
+                } else {
+                    tv.setText(msg);
+                }
             }
         });
     }
