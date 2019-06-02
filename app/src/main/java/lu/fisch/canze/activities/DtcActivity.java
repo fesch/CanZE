@@ -344,7 +344,7 @@ public class DtcActivity extends CanzeActivity {
                 // query the Field
                 Message message = MainActivity.device.requestFrame(frame);
                 if (message.isError()) {
-                    appendResult(R.string.message_MessageNull);
+                    appendResult(message.getError());
                     return;
                 }
 
@@ -362,100 +362,6 @@ public class DtcActivity extends CanzeActivity {
         queryThread.start();
     }
 
-
-    void doDiagEcu(final Ecu ecu) {
-
-        clearResult();              // clear the screen
-        appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
-
-        // here initialize this particular ECU diagnostics fields
-        try {
-            //Object diagEcu = Class.forName("lu.fisch.canze.actors.EcuDiag" + ecu.getMnemonic()).newInstance();
-            //java.lang.reflect.Method methodLoad;
-
-            //methodLoad = diagEcu.getClass().getMethod("load");
-            //methodLoad.invoke(diagEcu);
-            Frames.getInstance().load (ecu);
-            Fields.getInstance().load (ecu.getMnemonic() + "_Fields.csv");
-            Dtcs.getInstance().load(ecu.getMnemonic() + "_Dtcs.csv", ecu.getMnemonic() + "_Tests.csv");
-        } catch (Exception e) {
-            appendResult(R.string.message_NoEcuDefinition);
-            // Reload the default frame & timings
-            Frames.getInstance().load();
-            Fields.getInstance().load();
-            // Don't care about DTC's and tests
-        }
-
-        // re-initialize the device
-        appendResult(R.string.message_SendingInit);
-
-        // try to stop previous thread
-        if (queryThread != null)
-            if (queryThread.isAlive()) {
-                queryThread.tryToStop();
-                try {
-                    queryThread.join();
-                } catch (Exception e) {
-                    MainActivity.debug(e.getMessage());
-                }
-            }
-
-        queryThread = new StoppableThread(new Runnable() {
-            @Override
-            public void run() {
-
-                // re-initialize the device
-                if (!MainActivity.device.initDevice(1)) {
-                    appendResult(R.string.message_InitFailed);
-                    return;
-                }
-
-                createDump(ecu);
-                testerInit(ecu);
-
-                // for (Frame frame : Frames.getInstance().getAllFrames()) {    <<< this is not thread-safe!
-                for(int i=0; i<Frames.getInstance().getAllFrames().size(); i++) {
-                    Frame frame = Frames.getInstance().get(i);
-                    testerKeepalive();
-                    // see if we need to stop right now
-                    if (((StoppableThread) Thread.currentThread()).isStopped()) return;
-
-                    if (frame.getContainingFrame() != null) { // only use subframes
-
-                        // query the Frame
-                        Message message = MainActivity.device.requestFrame(frame);
-                        if (!message.isError()) {
-                            // process the frame by going through all the containing fields
-                            // setting their values and notifying all listeners (there should be none)
-                            // Fields.getInstance().onMessageCompleteEvent(message);
-                            message.onMessageCompleteEvent();
-
-                            for (Field field : frame.getAllFields()) {
-                                if (field.isString()) {
-                                    appendResult(field.getSID() + " " + field.getName() + ":" + field.getStringValue() + "\n");
-                                } else if (field.isList()) {
-                                    appendResult(field.getSID() + " " + field.getName() + ":" + field.getListValue() + "\n");
-                                } else {
-                                    appendResult(field.getSID() + " " + field.getName() + ":" + field.getValue() + field.getUnit() + "\n");
-                                }
-                            }
-                        } else {
-                            appendResult(frame.getHexId() + "." + frame.getResponseId() + ":" + message.getError() + "\n");
-                            if (!MainActivity.device.initDevice(1)) {
-                                appendResult(MainActivity.getStringSingle(R.string.message_InitFailed));
-                                return;
-                            }
-                        }
-                    }
-                }
-                closeDump();
-                MainActivity.toast (MainActivity.TOAST_NONE, R.string.message_DumpDone);
-
-            }
-        });
-        queryThread.start();
-    }
-
     // Ensure all UI updates are done on the UiThread
     private void clearResult() {
         runOnUiThread(new Runnable() {
@@ -466,25 +372,19 @@ public class DtcActivity extends CanzeActivity {
         });
     }
 
-    private void appendResult(String str) {
+    private void appendResult(final String str) {
         if (dumpInProgress) log(str);
-        final String localStr = str;
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                textView.append(localStr);
+                textView.append(str);
             }
         });
     }
 
     private void appendResult(int strResource) {
-        final String localStr = MainActivity.getStringSingle(strResource);
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                textView.append(localStr);
-            }
-        });
+        String localStr = MainActivity.getStringSingle(strResource);
+        appendResult(localStr);
     }
 
     private void log(String text) {

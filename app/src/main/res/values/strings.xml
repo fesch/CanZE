@@ -26,7 +26,7 @@
     <!-- Formats -->
 
     <string name="format_NoView" formatted="false">No view with id \'%s%s\'</string>
-    <string name="format_YMDHMSs" translatable="false">yyyy-MM-dd HH:mm:ss.SSS</string> <!-- for logging and debugging -->
+    <string name="format_YMDHMSs" translatable="false">yyyyMMddHHmmssSSS</string> <!-- for logging and debugging -->
     <string name="format_YMDHM" translatable="false">yyyy.MM.dd @ HH:mm</string>
     <string name="format_YMDHMS" translatable="false">yyyy-MM-dd-HH-mm-ss</string> <!-- for log file filename -->
 
