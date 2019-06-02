@@ -1,3 +1,4 @@
+---< Version 1.40 / 2019.05.13 / 41 >---
 2019-05-19 [Jeroen] Undo Avoid creating a (Main)activity instance
 2019-05-19 [Jeroen] Gradle to 3.4.1
 2019-03-30 [Jeroen] Removed minified/proguard
