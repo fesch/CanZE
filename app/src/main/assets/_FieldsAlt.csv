@@ -10,57 +10,49 @@
 # 1f8,16,27,1,4096,0,Nm,,,ff,TotalPotentialResistiveWheelsTorque
 1f8.16,7bc,
 # 1f8,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
-1f8.28,7bc,
+1f8.28,7bc,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
 # 1f8,40,50,10,0,0,Rpm,,,ff,ElecEngineRPM
 1f8.40,7bc,24,39,10,32768,0,0,223045,623045, ff,ElecEngineRPM
 # 1fd,0,7,0.390625,0,1,%,,,ff,12V Battery Current?
-1fd.0,7bc,24,31,1,0,1,A,223025,623025,ff,14V DCDC current measure (verkeerde id, dit req is van de EVC)
+1fd.0,7ec,24,31,1,0,1,A,223025,623025,ff,14V DCDC current measure
 # 1fd,48,55,1,80,0,kW,,,ff,Consumption
 1fd.48,7bc,
 # 35c,5,7,1,0,0,,,,ff,Vehicle state
-35c.5,765,
+35c.5,765,152,159,1,0,0,,210D,610D,ff,Vehicle state
 # 427,40,47,0.3,0,0,kW,,,e2,Available Charging Power (UCP)
-427.40,7bc,
+427.40,7ec,24,31,0.5,0,0,kW,22320b,62320b,e2,Available Charging Power
 # 427,49,57,0.1,0,1,kWh,,,e2,Available Energy
-427.49,7bc,
+427.49,7ec,24,39,0.005,0,0,kWh,22320c,62320c,e2,Available discharge Energy
 # 42a,30,39,0.1,400,1,°C,,,ff,Evaporator Temp Measure
-42a.30,764,
+42a.30,764,42,51,0.1,400,1,°C,2144,6144,ff,Evaporator Temp Measure
 # 42a,48,50,1,0,0,,,,e2,ClimLoopMode
-42a.48,764,
+42a.48,764,62,64,1,0,0,-,2144,2144,e2,ClimLoopMode
 # 42e,0,12,0.02,0,2,%,,,e3,State of Charge
-42e.0,7bc,
+42e.0,7ec,24,39,0.02,0,2,%,222002,622002,e3,State of Charge
 # 42e,20,24,5,0,0,%,,,e2,Engine Fan Speed
-42e.20,7bc,
+42e.20,7ec,24,31,5,0,0,%,223471,613471,e2,Engine Fan Speed
 # 42e,38,43,1,0,1,A,,,e3,Charging Pilot Current
 42e.38,7bc,
 # 42e,44,50,1,40,0,°C,,,e3,HV Battery Temp
-42e.44,7bc,
-# 42e,56,63,0.3,0,1,kW,,,ff,Charging Power
-42e.56,7bc,
-# 430,24,33,0.5,30,1,°C,,,e2,Comp Temperature Discharge
-430.24,764,
+42e.44,7ec,24,31,1,40,0,°C,222001,622001,e3,HV Battery Temp
 # 430,38,39,1,0,0,,,,e2,HV Battery Cooling State
-430.38,764,
+430.38,764,168,169,1,0,0,,2144,6144,e2,HV Battery Cooling State
 # 430,40,49,0.1,400,1,°C,,,e2,HV Battery Evaporator Temp
-430.40,7ec,24,0.1,,2234A2,6234A2
+430.40,764,150,159,0.1,400,1,°C,2121,6121,e2,HV Battery Evaporator Temp
 # 432,36,37,1,0,0,,,,e2,HV Bat Conditionning Mode
-432.36,7bc,
-# 534,32,40,1,40,0,°C,,,e5,Temp out
-534.32,765,
+432.36,764,133,134,1,0,0,,2144,6144,e2,HV Bat Conditionning Mode
 # 5d7,0,15,0.01,0,2,km/h,,,ff,Speed
-5d7.0,7ec,
-# 5da,0,7,1,40,0,ºC,,,e7,Water temperature
-5da.0,7bc,
+5d7.0,7ec,24,39,0.01,0,2,km/h,222003,622003,ff,Speed
 # 638,37,39,1,0,0,,,,ff,Battery 14v To Be Changed Display
-638.37,7ec,
+638.37,7ec,29,31,1,0,0,,223486,623486,ff,Battery 14v To Be Changed Display
 # 654,2,2,1,0,0,,,,ff,Charging Plug Connected
 654.2,7ec,31,31,1,0,0,,22339D,62339D,ff,Charging Plug Connected
 # 654,25,31,1,0,0,,,,ff,State of Charge
-654.25,7ec,
+654.25,7ec,24,39,0.02,0,2,222002,622002,State of Charge (SOC) HV Battery
 # 654,32,41,1,0,0,min,,,ff,Time to Full
 654.32,7ec,
 # 654,42,51,1,0,0,km,,,ff,Available Distance
-654.42,7ec,
+654.42,7ec,24,39,1,0,0,km,,,ff,Available Distance
 # 656,48,55,1,40,0,°C,,,e2,External Temp
 656.48,763,110,117,1,40,0,°C,2143,6143,e2,External Temp
 # 658,33,39,1,0,0,%,,,ff,Battery Health
