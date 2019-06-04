@@ -231,10 +231,19 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             instance.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Context c = instance.getApplicationContext();
-                    if (c != null) {
-                        ToastCompat.makeText(c, message, Toast.LENGTH_SHORT).show();
+                    try {
+                        Context c = instance.getApplicationContext();
+                        if (c != null) {
+                            ToastCompat.makeText(c, message, Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (NullPointerException e) {
+                        // do nothing. getApplicationContext sometimes trips on a null pointer
+                        // exception and when that happens, it's accepable to simplu give up
+                        // on a transient toast message. An alternative approach might be touse
+                        // https://www.dev2qa.com/android-get-application-context-from-anywhere-example/
+                        // but it seems that overwriting Application is frowed upon a bit.
                     }
+
                 }
             });
         }
