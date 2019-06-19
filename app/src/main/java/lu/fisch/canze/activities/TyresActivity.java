@@ -51,7 +51,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
     public static final String SID_TyreRRPressure = "673.16";
 
     public static final String val_TyreSpdPresMisadaption[] = {"OK", "Not OK"};
-    public static final String val_TyreState[] = {"OK", "No info", "-", "-", "-", "Flat", "Under infl."};
+    public static final String val_TyreState[] = {"OK", "No info", "Over infl.", "-", "-", "Flat", "Under infl."};
     public static final String val_Unavailable = "-";
 
     @Override
