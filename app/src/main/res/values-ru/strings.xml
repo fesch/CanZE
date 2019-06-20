@@ -72,7 +72,7 @@
     <string name="graph_ModuleTemperatures">Температура модулей батареи (°C)</string>
     <string name="graph_PilotPower">Пилотный сигнал тока (А), Мощность зарядки (кВт)</string>
     <string name="graph_PowerSoc">Мощность (кВт), SOC (%)</string>
-    <string name="graph_RealIndicatedSoc">Настоящее и отображаемое состояние заряда (%)</string>
+    <string name="graph_RealIndicatedSoc">Настоящий и отображаемый уровень заряда (%)</string>
     <string name="graph_SOH">Остаточная емкость (SOH) (%)</string>
     <string name="graph_SpeedConsumption">Скорость (км/ч), Расход (кВтч/100км)</string>
     <string name="header_Battery">Параметры батареи</string>
@@ -91,7 +91,7 @@
     <string name="label_MotorWaterPumpSpeed">Скорость водяного насоса</string>
     <string name="label_Options">Опции</string>
     <string name="label_Plug">Состояние подключения</string>
-    <string name="label_StateOfCharge">Состояние заряда (SOC) (%)</string>
+    <string name="label_StateOfCharge">Уровень заряда (SOC) (%)</string>
     <string name="label_TTF">Время полной зарядки (мин)</string>
     <string name="label_Temperatures">Температуры (°C)</string>
     <string name="label_TotKwh">Суммарное использование батаери (кВтч)</string>
@@ -163,7 +163,7 @@
     <string name="label_EndSoc">SOC</string>
     <string name="label_RangeRemaining">Пробег согласно авто:</string>
     <string name="label_RangeRemainingCanZE">Пробег согласно CanZE:</string>
-    <string name="label_RealSOC">Настоящее состояние заряда (%)</string>
+    <string name="label_RealSOC">Настоящий уровень заряда (%)</string>
     <string name="label_RemoteDevice">Удаленное устройство</string>
     <string name="label_SOH">Остаточная емкость (SOH) (%)</string>
     <string name="label_SafeDrivingMode">Блокировать во время езды</string>

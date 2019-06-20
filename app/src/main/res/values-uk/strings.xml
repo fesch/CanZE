@@ -71,7 +71,7 @@
     <string name="graph_ModuleTemperatures">Температура модулів батареї (°C)</string>
     <string name="graph_PilotPower">Пілотний сигнал струму (А), Потужність зарядки (кВт)</string>
     <string name="graph_PowerSoc">Потужність (кВт), SOC (%)</string>
-    <string name="graph_RealIndicatedSoc">Справжній та відображений стан заряду (%)</string>
+    <string name="graph_RealIndicatedSoc">Справжній та відображений рівень заряду (%)</string>
     <string name="graph_SOH">Залишкова ємність (SOH) (%)</string>
     <string name="graph_SpeedConsumption">Швидкість (км/г), Споживання (кВтг/100км)</string>
     <string name="header_Battery">Параметри батареї</string>
@@ -90,7 +90,7 @@
     <string name="label_MotorWaterPumpSpeed">Швидкість водяного насосу</string>
     <string name="label_Options">Опції</string>
     <string name="label_Plug">Стан підключення</string>
-    <string name="label_StateOfCharge">Стан заряду (SOC) (%)</string>
+    <string name="label_StateOfCharge">Рівень заряду (SOC) (%)</string>
     <string name="label_TTF">Час повної зарядки (хв)</string>
     <string name="label_Temperatures">Температури (°C)</string>
     <string name="label_TotKwh">Сумарне використання батареї (кВтг)</string>
@@ -162,7 +162,7 @@
     <string name="label_EndSoc">SOC</string>
     <string name="label_RangeRemaining">Пробіг згідно авто:</string>
     <string name="label_RangeRemainingCanZE">Пробіг згідно CanZE:</string>
-    <string name="label_RealSOC">Справжній стан заряду (%)</string>
+    <string name="label_RealSOC">Справжній рівень заряду (%)</string>
     <string name="label_RemoteDevice">Віддаленний пристрій</string>
     <string name="label_SOH">Залишкова ємність (SOH) (%)</string>
     <string name="label_SafeDrivingMode">Блокувати під час їзди</string>
