@@ -303,7 +303,7 @@
     <string name="label_ElecBrakeWheelsTorqueApplied">Applied Electrical Torque (regeneration)</string>
     <string name="label_diff_friction_torque">Applied Friction Torque (losses)</string>
     <string name="default_ZeroNm">0 Nm</string>
-    <string name="help_AllTorques">Al torques are given in combined wheel torques, not motor torques.</string>
+    <string name="help_AllTorques">All torques are given in combined wheel torques, not motor torques.</string>
 
     <!-- CanZE -->
 
@@ -591,7 +591,7 @@
     <string name="title_activity_prediction">Charging Prediction</string>
     <string name="button_ChargingPrediction">Charging Prediction</string>
     <string name="label_StateAtThisMoment">State at this moment</string>
-    <string name="label_BatteryTemperature">BatteryTemperature</string>
+    <string name="label_BatteryTemperature">Battery Temperature</string>
     <string name="label_ACPower">AC power</string>
     <string name="label_StateOfCharge">State of charge (%)</string>
     <string name="label_ChargingPrediction">Charging prediction</string>
