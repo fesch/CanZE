@@ -662,5 +662,11 @@
     <!-- Widgets only -->
 
     <string name="title_activity_widget">Widget Aktivität</string>
+    <string name="unit_SpeedMi">" mi/h"</string>
+    <string name="unit_ConsumptionKm">" kWh/100km"</string>
+    <string name="unit_ConsumptionMiAlt">" mi/kWh"</string>
+    <string name="unit_Nm">Nm</string>
+    <string name="unit_SpeedKm">" km/h"</string>
+    <string name="default_ZeroNm">0 Nm</string>
 
 </resources>
