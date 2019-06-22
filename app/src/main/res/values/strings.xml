@@ -20,6 +20,7 @@
     <string name="default_Yes">Yes</string>
     <string name="default_No">No</string>
     <string name="default_Ok">OK</string>
+    <string name="default_NotOk">Not OK</string>
     <string name="default_Cancel">Cancel</string>
     <string name="default_Reset">Reset</string>
 
@@ -646,7 +647,7 @@
 
     <string name="title_activity_tyres">Tires info</string>
     <string name="button_Tyres">Tires</string>
-    <string name="help_PressuresMbar">All pressures in mbar</string>
+    <string name="help_PressuresMbar">All pressures in mbar. Pressures are only received when driving.</string>
     <string name="label_TyreSpdPresMisadaption">Speed-pressure misadaption</string>
     <string name="label_TyreFL">Front left</string>
     <string name="label_TyreFR">Front right</string>
@@ -658,6 +659,16 @@
     <string name="label_TyreIDRR">ID rear right</string>
     <string name="button_Tyres_write">write</string>
     <string name="button_Tyres_read">read</string>
+    <string-array name="list_TyreStatus">
+        <item>OK</item>
+        <item>No info</item>
+        <item>Over infl.</item>
+        <item>-</item>
+        <item>Flat</item>
+        <item>Flat</item>
+        <item>Under infl.</item>
+        <item>-</item>
+    </string-array>
 
 
     <!-- Widgets only -->
