@@ -78,7 +78,7 @@ public class Field {
             else
                 this.sid = (Integer.toHexString(frame.getId()) + "." + from).toLowerCase();
         } else {
-            this.sid = sid;
+            this.sid = sid.toLowerCase();
         }
         this.frame = frame;
         this.from = from;
@@ -87,7 +87,7 @@ public class Field {
         this.resolution = resolution;
         this.decimals = decimals;
         this.unit = unit;
-        this.responseId = responseId;
+        this.responseId = responseId == null ? null : responseId.toLowerCase();
         this.options = options;
         this.name = name;
         this.list = list;
