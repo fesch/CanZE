@@ -44,7 +44,7 @@ public class Frame {
         this.id = id;
         this.interval = interval;
         this.sendingEcu = sendingEcu;
-        this.responseId = responseId;
+        this.responseId = responseId == null ? null : responseId.toLowerCase();
         this.containingFrame = containingFrame;
     }
 
