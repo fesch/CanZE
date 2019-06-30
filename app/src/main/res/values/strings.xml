@@ -534,7 +534,7 @@
 
     <!-- Fluence Kangoo Temps -->
 
-    <string name="button_FluenceKangooTemps">Fluence Kangoo Temps</string>
+    <!-- <string name="button_FluenceKangooTemps">Fluence Kangoo Temps</string> -->
 
     <!-- Frames -->
 
@@ -563,7 +563,7 @@
     <string name="_89" translatable="false">89</string>
 
     <!-- Kangoo fluence temperatures -->
-
+    <!--
     <string name="title_activity_fluence_kangoo_temp">Fluence Kangoo Temp</string>
     <string name="header_KangooFluenceTemperatures">Temperatures</string>
     <string name="label_EvaporatorTemperature">Evaporator temperature</string>
@@ -577,7 +577,7 @@
     <string name="label_ChargerWaterPumpSpeed">Charger water pump speed</string>
     <string name="label_HeatingWaterPumpSpeed">Heating water pump speed</string>
     <string name="label_BatteryCoolingFansSpeed">Battery cooling fans speed</string>
-
+    -->
     <!-- LeakCurrents -->
 
     <string name="title_activity_leakCurrents">Leak currents</string>

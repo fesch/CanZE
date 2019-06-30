@@ -111,11 +111,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public static final short CAR_NONE = 0x000;
     //public static final int CAR_ANY               = 0x0ff;
-    public static final short CAR_FLUENCE = 0x001;
+    //public static final short CAR_FLUENCE = 0x001;
     public static final short CAR_ZOE_Q210 = 0x002;
-    public static final short CAR_KANGOO = 0x004;
-    public static final short CAR_TWIZY = 0x008;     // you'll never know ;-)
-    public static final short CAR_X10 = 0x010;     // not used
+    //public static final short CAR_KANGOO = 0x004;
+    //public static final short CAR_TWIZY = 0x008;     // you'll never know ;-)
+    //public static final short CAR_X10 = 0x010;     // not used
     public static final short CAR_ZOE_R240 = 0x020;
     public static final short CAR_ZOE_Q90 = 0x040;
     public static final short CAR_ZOE_R90 = 0x080;
@@ -312,18 +312,18 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 case "ZOE R90/110":
                     car = CAR_ZOE_R90;
                     break;
-                case "Fluence":
-                    car = CAR_FLUENCE;
-                    break;
-                case "Kangoo":
-                    car = CAR_KANGOO;
-                    break;
-                case "Twizy":
-                    car = CAR_TWIZY;
-                    break;
-                case "X10":
-                    car = CAR_X10;
-                    break;
+                //case "Fluence":
+                //    car = CAR_FLUENCE;
+                //    break;
+                //case "Kangoo":
+                //    car = CAR_KANGOO;
+                //    break;
+                //case "Twizy":
+                //    car = CAR_TWIZY;
+                 //   break;
+                //case "X10":
+                //    car = CAR_X10;
+                //    break;
             }
 
             // as the settings may have changed, we need to reload different things
@@ -928,16 +928,17 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     public static boolean isZOE() {
-        return (car == CAR_X10 || car == CAR_ZOE_Q90 || car == CAR_ZOE_Q210 || car == CAR_ZOE_R90 || car == CAR_ZOE_R240);
+        return (car == CAR_ZOE_Q90 || car == CAR_ZOE_Q210 || car == CAR_ZOE_R90 || car == CAR_ZOE_R240);
+        //car == CAR_X10 ||
     }
 
-    public static boolean isFluKan() {
-        return (car == CAR_FLUENCE || car == CAR_KANGOO);
-    }
+    //public static boolean isFluKan() {
+    //    return (car == CAR_FLUENCE || car == CAR_KANGOO);
+    //}
 
-    public static boolean isTwizy() {
-        return (car == CAR_TWIZY);
-    }
+    //public static boolean isTwizy() {
+    //    return (car == CAR_TWIZY);
+    //}
 
 
     public static String getBluetoothDeviceAddress() {

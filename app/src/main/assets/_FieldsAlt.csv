@@ -2,27 +2,27 @@
 # 130,44,55,-3,4094,0,Nm,,,ff,DriverBrakeWheelTq_Req
 130.44,7bc,28,39,1,4096,0,Nm,224B7E,624B7E,ff,DriverBrakeWheelTq_Req
 # 186,16,27,0.5,800,1,Nm,,,ff,MeanEffectiveTorque
-186.16,7bc,24,39,0.03125,32768,1,Nm,,,ff,MeanEffectiveTorque
+186.16,7bc,24,39,0.03125,32768,1,Nm,,,ff,MeanEffectiveTorque (qqqq)
 # 186,40,49,0.125,0,1,%,,,ff,Throttle
-186.40,7ec,24,49,0.125,0,,1,%,22202E,62202E, ff,Accelerator pedal position
+186.40,7ec,24,49,0.125,0,,1,%,22202E,62202E,ff,Accelerator pedal position
 # 18a,27,38,0.5,800,1,Nm,,,ff,Coasting Torque - FrictionTorque
-18a.40,7bc,
+18a.40,7bc, (qqqq)
 # 1f8,16,27,1,4096,0,Nm,,,ff,TotalPotentialResistiveWheelsTorque
-1f8.16,7bc,
+1f8.16,7bc, (qqqq)
 # 1f8,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
-1f8.28,7bc,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
+1f8.28,7bc,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied (qqqq)
 # 1f8,40,50,10,0,0,Rpm,,,ff,ElecEngineRPM
-1f8.40,7bc,24,39,10,32768,0,0,223045,623045, ff,ElecEngineRPM
+1f8.40,7bc,24,39,10,32768,0,0,223045,623045,ff,ElecEngineRPM
 # 1fd,0,7,0.390625,0,1,%,,,ff,12V Battery Current?
 1fd.0,7ec,24,31,1,0,1,A,223025,623025,ff,14V DCDC current measure
 # 1fd,48,55,1,80,0,kW,,,ff,Consumption
-1fd.48,7bc,
+1fd.48,7bc, (qqqq)
 # 35c,5,7,1,0,0,,,,ff,Vehicle state
 35c.5,765,152,159,1,0,0,,210D,610D,ff,Vehicle state
 # 427,40,47,0.3,0,0,kW,,,e2,Available Charging Power (UCP)
-427.40,7ec,24,31,0.5,0,0,kW,22320b,62320b,e2,Available Charging Power
+427.40,7ec,24,31,0.5,0,0,kW,22320B,62320B,e2,Available Charging Power
 # 427,49,57,0.1,0,1,kWh,,,e2,Available Energy
-427.49,7ec,24,39,0.005,0,0,kWh,22320c,62320c,e2,Available discharge Energy
+427.49,7ec,24,39,0.005,0,0,kWh,22320C,62320C,e2,Available discharge Energy
 # 42a,30,39,0.1,400,1,°C,,,ff,Evaporator Temp Measure
 42a.30,764,42,51,0.1,400,1,°C,2144,6144,ff,Evaporator Temp Measure
 # 42a,48,50,1,0,0,,,,e2,ClimLoopMode
@@ -32,7 +32,7 @@
 # 42e,20,24,5,0,0,%,,,e2,Engine Fan Speed
 42e.20,7ec,24,31,5,0,0,%,223471,613471,e2,Engine Fan Speed
 # 42e,38,43,1,0,1,A,,,e3,Charging Pilot Current
-42e.38,7bc,
+42e.38,7bc, (qqqq)
 # 42e,44,50,1,40,0,°C,,,e3,HV Battery Temp
 42e.44,7ec,24,31,1,40,0,°C,222001,622001,e3,HV Battery Temp
 # 430,38,39,1,0,0,,,,e2,HV Battery Cooling State
@@ -50,7 +50,7 @@
 # 654,25,31,1,0,0,,,,ff,State of Charge
 654.25,7ec,24,39,0.02,0,2,222002,622002,State of Charge (SOC) HV Battery
 # 654,32,41,1,0,0,min,,,ff,Time to Full
-654.32,7ec,
+654.32,7ec, (qqqq)
 # 654,42,51,1,0,0,km,,,ff,Available Distance
 654.42,7ec,24,39,1,0,0,km,223458,623458,ff,Temporary estimated minimum kilometric cruising range sent to MMI
 # 656,48,55,1,40,0,°C,,,e2,External Temp
@@ -58,7 +58,7 @@
 # 658,33,39,1,0,0,%,,,ff,Battery Health
 658.33,7bc,72,79,0.5,0,0,%,2161,6161,ff,Battery Health
 # 65b,41,43,1,0,0,,,,ff,Charging Status Display
-65b.41,7bc,
+65b.41,7bc, (qqqq)
 # 673,0,0,1,0,0,,,,ff,Speed pressure misadaptation
 673.0,765,66,66,1,0,0,,2174,6174,ff,SpeedPressureMisadaptation
 # 673,2,4,1,0,0,,,,ff,Rear right wheel state
@@ -71,14 +71,14 @@
 673.11,765,96,98,1,0,0,,2174,6174,ff,FrontLeftWheelState
 # 673,16,23,13.725,0,0,mbar,,,ff,Rear right wheel pressure
 673.16,765,112,119,13.725,0,0,mbar,2174,6174,ff,RearRightWheelPressure
-# 673,24,31,13.725,0,0,mbar,,,ff,Rear left wheel pressure
+# 673,24,31,13.725,0,0,mbar,2174,6174,ff,Rear left wheel pressure
 673.24,765,120,127,13.725,0,0,mbar,2174,6174,ff,RearLeftWheelPressure
-# 673,32,39,13.725,0,0,mbar,,,ff,Front right wheel pressure
+# 673,32,39,13.725,0,0,mbar,2174,6174,ff,Front right wheel pressure
 673.32,765,128,135,13.725,0,0,mbar,2174,6174,ff,FrontRightWheelPressure
-# 673,40,47,13.725,0,0,mbar,,,ff,Front left wheel pressure
+# 673,40,47,13.725,0,0,mbar,2174,6174,ff,Front left wheel pressure
 673.40,765,136,143,13.725,0,0,mbar,2174,6174,ff,FrontLeftWheelPressure
 # 699,8,15,0.5,0,0,°C,,,e2,Heater setpoint
-699.8,764,
+699.8,764, (qqqq)
 #
 #
 #

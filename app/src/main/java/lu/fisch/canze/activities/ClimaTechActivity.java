@@ -62,7 +62,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        if (MainActivity.isZOE()) {
+        //if (MainActivity.isZOE()) {
             addField(SID_EngineFanSpeed, 0);
             addField(SID_DcPower, 0);
             // addListener(SID_ChargingPower);
@@ -75,7 +75,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
             addField(SID_PtcRelay1, 1000);
             addField(SID_PtcRelay2, 1000);
             addField(SID_PtcRelay3, 1000);
-        }
+        //}
     }
 
 
