@@ -51,7 +51,7 @@
                         android:drawableStart="@mipmap/button_dash"
                         android:text="@string/button_Dash"
                         />
-
+                    <!--
                     <Button
                         android:id="@+id/buttonFluenceKangooTemps"
                         style="?android:attr/button"
@@ -64,6 +64,19 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:text="@string/button_FluenceKangooTemps"
+                        />
+                    -->
+
+                    <Button
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="1"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
                         />
 
                 </TableRow>

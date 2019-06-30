@@ -40,19 +40,20 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
 
     private double mean = 0;
     private double lastVal [] = {0,15,15,15,15,15,15,15,15,15,15,15,15};
-    private int lastCell = 4;
+    private int lastCell = 12; //4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(MainActivity.isZOE() ? R.layout.activity_heatmap_batcomp : R.layout.activity_heatmap_batcomp2);
+        //setContentView(MainActivity.isZOE() ? R.layout.activity_heatmap_batcomp : R.layout.activity_heatmap_batcomp2);
+        setContentView(R.layout.activity_heatmap_batcomp);
     }
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        if(MainActivity.isZOE()) {
-            lastCell = 12;
-        }
+        //if(MainActivity.isZOE()) {
+        //    lastCell = 12;
+        //}
         for (int i = 1; i <= lastCell; i++) {
             String sid = SID_Preamble_CompartmentTemperatures + (8 + i * 24); // remember, first is pos 32, i starts s at 1
             addField(sid, 5000);
