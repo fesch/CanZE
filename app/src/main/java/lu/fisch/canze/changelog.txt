@@ -1,3 +1,4 @@
+---< Version 1.41 / 2019.06.30 / 42 >---
 2019-06-30 [Jeroen] Removed FLukan - Twizy references
 2019-06-22 [Jeroen] Fixed swapped Read Write buttons, added message about driving. Fixed error msg when message.isError.
 2019-06-20 [Oleksiy] Added Russian and Ukranian
