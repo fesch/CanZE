@@ -1,1 +1,1 @@
-Kangoo ZE and Fluence ZE support will sunset July 1st. Spanish localization will sunset August 1st. See http://canze.fisch.lu
+Spanish localization will sunset August 1st. See http://canze.fisch.lu

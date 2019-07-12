@@ -100,9 +100,9 @@
         <activity
             android:name=".activities.HeatmapCellvoltageActivity"
             android:label="@string/title_activity_heatmap_cellvoltage" />
-        <activity
+        <!-- <activity
             android:name=".activities.FluenceKangooTempsActivity"
-            android:label="@string/title_activity_fluence_kangoo_temp" />
+            android:label="@string/title_activity_fluence_kangoo_temp" /> -->
         <activity
             android:name=".activities.TyresActivity"
             android:hardwareAccelerated="false"

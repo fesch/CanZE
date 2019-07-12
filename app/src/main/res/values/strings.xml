@@ -20,6 +20,7 @@
     <string name="default_Yes">Yes</string>
     <string name="default_No">No</string>
     <string name="default_Ok">OK</string>
+    <string name="default_NotOk">Not OK</string>
     <string name="default_Cancel">Cancel</string>
     <string name="default_Reset">Reset</string>
 
@@ -32,11 +33,11 @@
 
     <!-- Units -->
 
-    <string name="unit_Nm" translatable="false">Nm</string>
-    <string name="unit_SpeedKm" translatable="false">\u0020km/h</string>
-    <string name="unit_SpeedMi" translatable="false">\u0020mi/h</string>
-    <string name="unit_ConsumptionKm" translatable="false">\u0020kWh/100km</string>
-    <string name="unit_ConsumptionMiAlt" translatable="false">\u0020mi/kWh</string>
+    <string name="unit_Nm">Nm</string>
+    <string name="unit_SpeedKm">\u0020km/h</string>
+    <string name="unit_SpeedMi">\u0020mi/h</string>
+    <string name="unit_ConsumptionKm">\u0020kWh/100km</string>
+    <string name="unit_ConsumptionMiAlt">\u0020mi/kWh</string>
     <string name="unit_Celsius" translatable="false">°C</string>
 
     <!-- Debug (generic) -->
@@ -302,8 +303,8 @@
     <string name="label_driver_torque_request">Requested Torque</string>
     <string name="label_ElecBrakeWheelsTorqueApplied">Applied Electrical Torque (regeneration)</string>
     <string name="label_diff_friction_torque">Applied Friction Torque (losses)</string>
-    <string name="default_ZeroNm" translatable="false">0 Nm</string>
-    <string name="help_AllTorques">Al torques are given in combined wheel torques, not motor torques.</string>
+    <string name="default_ZeroNm">0 Nm</string>
+    <string name="help_AllTorques">All torques are given in combined wheel torques, not motor torques.</string>
 
     <!-- CanZE -->
 
@@ -533,7 +534,7 @@
 
     <!-- Fluence Kangoo Temps -->
 
-    <string name="button_FluenceKangooTemps">Fluence Kangoo Temps</string>
+    <!-- <string name="button_FluenceKangooTemps">Fluence Kangoo Temps</string> -->
 
     <!-- Frames -->
 
@@ -562,7 +563,7 @@
     <string name="_89" translatable="false">89</string>
 
     <!-- Kangoo fluence temperatures -->
-
+    <!--
     <string name="title_activity_fluence_kangoo_temp">Fluence Kangoo Temp</string>
     <string name="header_KangooFluenceTemperatures">Temperatures</string>
     <string name="label_EvaporatorTemperature">Evaporator temperature</string>
@@ -576,7 +577,7 @@
     <string name="label_ChargerWaterPumpSpeed">Charger water pump speed</string>
     <string name="label_HeatingWaterPumpSpeed">Heating water pump speed</string>
     <string name="label_BatteryCoolingFansSpeed">Battery cooling fans speed</string>
-
+    -->
     <!-- LeakCurrents -->
 
     <string name="title_activity_leakCurrents">Leak currents</string>
@@ -591,7 +592,7 @@
     <string name="title_activity_prediction">Charging Prediction</string>
     <string name="button_ChargingPrediction">Charging Prediction</string>
     <string name="label_StateAtThisMoment">State at this moment</string>
-    <string name="label_BatteryTemperature">BatteryTemperature</string>
+    <string name="label_BatteryTemperature">Battery Temperature</string>
     <string name="label_ACPower">AC power</string>
     <string name="label_StateOfCharge">State of charge (%)</string>
     <string name="label_ChargingPrediction">Charging prediction</string>
@@ -646,7 +647,7 @@
 
     <string name="title_activity_tyres">Tires info</string>
     <string name="button_Tyres">Tires</string>
-    <string name="help_PressuresMbar">All pressures in mbar</string>
+    <string name="help_PressuresMbar">All pressures in mbar. Pressures are only received when driving.</string>
     <string name="label_TyreSpdPresMisadaption">Speed-pressure misadaption</string>
     <string name="label_TyreFL">Front left</string>
     <string name="label_TyreFR">Front right</string>
@@ -658,6 +659,16 @@
     <string name="label_TyreIDRR">ID rear right</string>
     <string name="button_Tyres_write">write</string>
     <string name="button_Tyres_read">read</string>
+    <string-array name="list_TyreStatus">
+        <item>OK</item>
+        <item>No info</item>
+        <item>Over infl.</item>
+        <item>-</item>
+        <item>Flat</item>
+        <item>Flat</item>
+        <item>Under infl.</item>
+        <item>-</item>
+    </string-array>
 
 
     <!-- Widgets only -->

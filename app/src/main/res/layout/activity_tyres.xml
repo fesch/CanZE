@@ -85,6 +85,7 @@
                 android:gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingBottom="5dp"
                 />
 
             <TableLayout
@@ -244,7 +245,7 @@
 
             <Button
                 android:id="@+id/button_TyresRead"
-                android:text="@string/button_Tyres_write"
+                android:text="@string/button_Tyres_read"
                 android:layout_weight="1"
                 />
                 <TextView
@@ -253,7 +254,7 @@
                     />
             <Button
                 android:id="@+id/button_TyresWrite"
-                android:text="@string/button_Tyres_read"
+                android:text="@string/button_Tyres_write"
                 android:layout_weight="1"
                 />
             </TableRow>
