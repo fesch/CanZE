@@ -108,11 +108,11 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addField(SID_PlugConnected, 5000);
         addField(SID_UserSoC, 5000);
         addField(SID_RealSoC, 5000);
-        if (MainActivity.isZOE()) {
-            addField(SID_AvailableChargingPower, 5000);
+        //if (MainActivity.isZOE()) {
+        addField(SID_AvailableChargingPower, 5000);
             //} else {
             //    addFields(SID_CapacityFluKan, 5000);
-        }
+        //}
         addField(SID_AvEnergy, 5000);
         addField(SID_SOH, 5000); // state of health gives continuous timeouts. This frame is send at a very low rate
         addField(SID_RangeEstimate, 5000);
@@ -126,11 +126,12 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addField(SID_TractionBatteryCurrent, 5000);
 
         // Battery compartment temperatures
-        int lastCell = MainActivity.isZOE() ? 12 : 4;
+        int lastCell = 12; //MainActivity.isZOE() ? 12 : 4;
         for (int i = 0; i < lastCell; i++) {
             String sid = SID_Preamble_CompartmentTemperatures + (32 + i * 24);
             addField(sid, 5000);
-            if (MainActivity.isZOE()) sid = SID_Preamble_BalancingBytes + (16 + i * 8);
+            //if (MainActivity.isZOE()) sid = SID_Preamble_BalancingBytes + (16 + i * 8);
+            sid = SID_Preamble_BalancingBytes + (16 + i * 8);
             addField(sid, 5000);
         }
 
@@ -173,16 +174,16 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                     case SID_ACPilot:
                         // save pilot amps
                         pilot = field.getValue();
-                        if (MainActivity.isFluKan()) { // for FluKan, approximate phases (always 1) and AvChPwr (amps * 0.225)
-                            double avChPwr = (double) Math.round(pilot * 2.25) / 10.0;
-                            tv = findViewById(R.id.textPhases);
-                            tv.setText("1");
-                            tv = findViewById(R.id.textAvChPwr);
-                            tv.setText(String.format(Locale.getDefault(), "%.1f", avChPwr));
-                        }
+                        //if (MainActivity.isFluKan()) { // for FluKan, approximate phases (always 1) and AvChPwr (amps * 0.225)
+                        //    double avChPwr = (double) Math.round(pilot * 2.25) / 10.0;
+                        //    tv = findViewById(R.id.textPhases);
+                        //    tv.setText("1");
+                        //    tv = findViewById(R.id.textAvChPwr);
+                        //    tv.setText(String.format(Locale.getDefault(), "%.1f", avChPwr));
+                        //}
                         // continue
                         tv = findViewById(R.id.text_max_pilot);
-                        if (chargingStatus != 3 && MainActivity.isZOE()) {
+                        if (chargingStatus != 3) {// && MainActivity.isZOE()) {
                             tv.setText("-");
                             tv = null;
                         }

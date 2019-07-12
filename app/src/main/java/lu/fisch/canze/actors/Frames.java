@@ -159,7 +159,7 @@ public class Frames {
         {
             Frame frame = frames.get(i);
             if (frame.getId() == id && frame.getResponseId() != null) {
-                if (frame.getResponseId().compareTo(responseId) == 0) return frame;
+                if (frame.getResponseId().compareTo(responseId.toLowerCase()) == 0) return frame;
             }
         }
         return null;

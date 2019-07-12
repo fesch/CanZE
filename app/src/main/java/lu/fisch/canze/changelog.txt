@@ -1,3 +1,9 @@
+---< Version 1.41 / 2019.06.30 / 42 >---
+2019-06-30 [Jeroen] Removed FLukan - Twizy references
+2019-06-22 [Jeroen] Fixed swapped Read Write buttons, added message about driving. Fixed error msg when message.isError.
+2019-06-20 [Oleksiy] Added Russian and Ukranian
+2019-06-19 [Jeroen] Added Overinflated message
+2019-06-4 [Jeroen] Another attempt to avoid crash in Toast
 
 ---< Version 1.40 / 2019.05.13 / 41 >---
 2019-05-19 [Jeroen] Undo Avoid creating a (Main)activity instance
