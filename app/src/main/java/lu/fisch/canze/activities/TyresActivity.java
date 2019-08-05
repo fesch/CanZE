@@ -132,7 +132,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                         if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TyreFLState);
                         if (intValue > 1) color = 0xffffc0c0;
-                        value = val_TyreState[intValue];
+                        value = val_TyreState != null ? val_TyreState[intValue] : "";
                         break;
                     case SID_TyreFLPressure:
                         tv = findViewById(R.id.text_TyreFLPressure);
@@ -142,7 +142,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                         if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TyreFRState);
                         if (intValue > 1) color = 0xffffc0c0;
-                        value = val_TyreState[intValue];
+                        value = val_TyreState != null ? val_TyreState[intValue] : "";
                         break;
                     case SID_TyreFRPressure:
                         tv = findViewById(R.id.text_TyreFRPressure);
@@ -152,7 +152,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                         if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TyreRLState);
                         if (intValue > 1) color = 0xffffc0c0;
-                        value = val_TyreState[intValue];
+                        value = val_TyreState != null ? val_TyreState[intValue] : "";
                         break;
                     case SID_TyreRLPressure:
                         tv = findViewById(R.id.text_TyreRLPressure);
@@ -162,7 +162,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                         if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TyreRRState);
                         if (intValue > 1) color = 0xffffc0c0;
-                        value = val_TyreState[intValue];
+                        value = val_TyreState != null ? val_TyreState[intValue] : "";
                         break;
                     case SID_TyreRRPressure:
                         tv = findViewById(R.id.text_TyreRRPressure);

@@ -1,3 +1,9 @@
+2019-08-04 [Jeroen] Removed ES as announced, removed message from NEWS
+2019-07-15 [Jeroen] Avoid NullPointerException in DTC
+2019-07-15 [Jeroen] Avoid NullPointerException in TyresActivity
+2019-07-12 [Jeroen] IDE and Gradle upgraded to 3.4.2
+2019-07-12 [Jeroen] Fixed a crash passing null to debug
+
 ---< Version 1.41 / 2019.06.30 / 42 >---
 2019-06-30 [Jeroen] Removed FLukan - Twizy references
 2019-06-22 [Jeroen] Fixed swapped Read Write buttons, added message about driving. Fixed error msg when message.isError.
