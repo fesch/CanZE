@@ -1,3 +1,4 @@
+---< Version 1.42 / 2019.08.06 / 43 >---
 2019-08-04 [Jeroen] Removed ES as announced, removed message from NEWS
 2019-07-15 [Jeroen] Avoid NullPointerException in DTC
 2019-07-15 [Jeroen] Avoid NullPointerException in TyresActivity
