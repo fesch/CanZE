@@ -157,6 +157,12 @@ public class DtcActivity extends CanzeActivity {
     void doQueryEcu(final Ecu ecu) {
 
         clearResult();
+
+        if (ecu == null) {
+            appendResult("No ECU selected\n");
+            return;
+        }
+
         appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
 
         // here initialize this particular ECU diagnostics fields
@@ -278,6 +284,12 @@ public class DtcActivity extends CanzeActivity {
     void doClearEcu(final Ecu ecu) {
 
         clearResult();
+
+        if (ecu == null) {
+            appendResult("No ECU selected\n");
+            return;
+        }
+
         appendResult(MainActivity.getStringSingle(R.string.message_clear) + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
 
         // here initialize this particular ECU diagnostics fields

@@ -215,6 +215,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     public static void debug(String text) {
+        if (text == null) text = "null";
         Log.d(TAG, text);
         if (storageIsAvailable && debugLogMode) {
             SimpleDateFormat sdf = new SimpleDateFormat(getStringSingle(R.string.format_YMDHMSs), Locale.getDefault());
