@@ -1,3 +1,4 @@
+2019-08-11 [Jeroen] Cleaned up translation files
 2019-08-11 [Jeroen] Fixed layout glitch github #554 thanks Gerd
 2019-08-11 [Jeroen] Fixed translation error github #554 thanks Gerd
 
