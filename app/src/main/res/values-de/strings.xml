@@ -69,7 +69,6 @@
     
     
     <string name="toast_Reconnecting">baue Bluetooth-Verbindung wieder auf …</string>
-    <string name="toast_WaitingSettings">Bluetooth-Verbindung benndet. Einstellungen werden geladen. Einen Momment bitte …</string>
     <string name="toast_NotWhileDriving">Während der Fahrt nicht möglich …</string>
     <string name="toast_AdjustSettings">Bitte die Einstellungen bearbeiten</string>
 
@@ -533,8 +532,6 @@
 
     <!-- Fluence Kangoo Temps -->
 
-    <string name="button_FluenceKangooTemps">Fluence Kangoo Temperaturen</string>
-    
     <!-- Frames -->
 
     <string name="format_NoAsset">Kein Zugriff auf %s</string>
@@ -562,20 +559,6 @@
     
     
     <!-- Kangoo fluence temperatures -->
-
-    <string name="title_activity_fluence_kangoo_temp">Fluence Kangoo Temperatur</string>
-    <string name="header_KangooFluenceTemperatures">Temperaturen</string>
-    <string name="label_EvaporatorTemperature">Temperatur Kompressor (°C)</string>
-    <string name="label_WaterTemperatureHeating">Wasser Temperaturen für Heizung (°C)</string>
-    <string name="label_DcDcConverterTemperature">DC-DC Konverter Temperatur (°C)</string>
-    <string name="label_InverterTemperature">Wechselrichtertemperatur (°C)</string>
-    <string name="label_ExternalTemperature">Außentemperatur (°C)</string>
-    <string name="label_InternalTemperature">Innenraumtemperatur (°C)</string>
-    <string name="header_KangooFluenceFansPumps">Ventilatoren und Pumpen (Beschreibung folgt)</string>
-    <string name="label_MotorWaterPumpSpeed">Geschwindigkeit Motorwasserpumpe</string>
-    <string name="label_ChargerWaterPumpSpeed">Laderwasserpumpe</string>
-    <string name="label_HeatingWaterPumpSpeed">Geschwindigkeit Heizungswasserpumpe</string>
-    <string name="label_BatteryCoolingFansSpeed">Akkumulator-Lüfter Geschw.</string>
 
     <!-- LeakCurrents -->
 
@@ -639,7 +622,6 @@
     <string name="prompt_NoSd">Externe SD Karte ist nicht verfügbar, nicht beschreibbar oder hat zu wenig freien Speicher um Daten zu loggen.<br/><br/><b>Daten Export kann nicht eingeschaltet werden!</b></string>
     <string name="prompt_Sorry">Entschuldigung …</string>
     <string name="toast_CacheCleared">Zwischenspeicher wurde gelöscht …</string>
-    <string name="toast_PleaseUseTop">Bitte einen der oberen Buttons verwenden um die Einstellungen zu verlassen …</string>
     <string name="toast_NoBluetooth">Dieses Gerät verfügt nicht über einen Bluetooth Adapter.\n\nSorry …</string>
 
     <!-- Tyres -->

@@ -416,25 +416,11 @@
     <string name="title_activity_firmware">Firmware</string>
     <string name="button_Firmware">Firmware</string>
     <string name="help_Ecus"><![CDATA[Cliquez sur un ECU pour afficher les détails. Plus d’informations sur les calculateurs de la voiture <a href="http://canze.fisch.lu/computers/">ici</a>.]]></string>
-    <string name="button_FluenceKangooTemps">T° Fluence Kangoo</string>
     <string name="format_NoAsset">Impossible d’accéder à %s</string>
     <string name="title_activity_heatmap_bat">Température des modules</string>
     <string name="button_HeatmapTemperature">T° des modules</string>
     <string name="title_activity_heatmap_cellvoltage">Tension des cellules</string>
     <string name="button_HeatmapVoltage">Tension des cellules</string>
-    <string name="title_activity_fluence_kangoo_temp">Températures Fluence Kangoo</string>
-    <string name="header_KangooFluenceTemperatures">Températures</string>
-    <string name="label_EvaporatorTemperature">T° de l’évaporateur</string>
-    <string name="label_WaterTemperatureHeating">T° d’eau utilisée pour le chauffage</string>
-    <string name="label_DcDcConverterTemperature">T° du convertisseur DCDC</string>
-    <string name="label_InverterTemperature">T° de l’onduleur</string>
-    <string name="label_ExternalTemperature">T° ambiante extérieure</string>
-    <string name="label_InternalTemperature">T° ambiante intérieure</string>
-    <string name="header_KangooFluenceFansPumps">Ventilateurs et pompes (description à ajouter)</string>
-    <string name="label_MotorWaterPumpSpeed">Vitesse pompe à eau moteur</string>
-    <string name="label_ChargerWaterPumpSpeed">Vitesse pompe à eau chargeur</string>
-    <string name="label_HeatingWaterPumpSpeed">Vitesse pompe à eau chauffage</string>
-    <string name="label_BatteryCoolingFansSpeed">Vitesse ventilateur batterie</string>
     <string name="title_activity_leakCurrents">Courant de fuite harmoniques</string>
     <string name="button_LeakCurrents">Harmoniques</string>
     <string name="label_LeakCurrentDc">Courant de fuite DC (mA)</string>
