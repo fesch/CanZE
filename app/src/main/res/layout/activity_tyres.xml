@@ -161,11 +161,13 @@
                     <TextView
                         android:text="@string/label_TyreSpdPresMisadaption"
                         android:layout_weight="2"
+                        android:layout_width="0dp"
                         />
                     <TextView
                         android:id="@+id/text_TyreSpdPresMisadaption"
                         android:gravity="end"
                         android:layout_weight="1"
+                        android:layout_width="0dp"
                         />
                 </TableRow>
 
@@ -174,12 +176,14 @@
                     <TextView
                         android:text="@string/label_TyreIDFL"
                         android:layout_weight="2"
+                        android:layout_width="0dp"
                         />
                     <EditText
                         android:id="@+id/text_TyreFLId"
                         android:text="000000"
                         android:gravity="end"
                         android:layout_weight="1"
+                        android:layout_width="0dp"
                         android:digits="0123456789ABCDEF"
                         android:maxLength="6"
                         android:inputType="textCapCharacters"
@@ -190,12 +194,14 @@
                     <TextView
                         android:text="@string/label_TyreIDFR"
                         android:layout_weight="2"
+                        android:layout_width="0dp"
                         />
                     <EditText
                         android:id="@+id/text_TyreFRId"
                         android:text="000000"
                         android:gravity="end"
                         android:layout_weight="1"
+                        android:layout_width="0dp"
                         android:digits="0123456789ABCDEF"
                         android:maxLength="6"
                         android:inputType="textCapCharacters"
@@ -206,12 +212,14 @@
                     <TextView
                         android:text="@string/label_TyreIDRL"
                         android:layout_weight="2"
+                        android:layout_width="0dp"
                         />
                     <EditText
                         android:id="@+id/text_TyreRLId"
                         android:text="000000"
                         android:gravity="end"
                         android:layout_weight="1"
+                        android:layout_width="0dp"
                         android:digits="0123456789ABCDEF"
                         android:maxLength="6"
                         android:inputType="textCapCharacters"
@@ -222,6 +230,7 @@
                     <TextView
                         android:text="@string/label_TyreIDRR"
                         android:layout_weight="2"
+                        android:layout_width="0dp"
                         />
                     <EditText
                         android:id="@+id/text_TyreRRId"
@@ -229,6 +238,7 @@
                         android:gravity="end"
                         android:layout_weight="1"
                         android:digits="0123456789ABCDEF"
+                        android:layout_width="0dp"
                         android:maxLength="6"
                         android:inputType="textCapCharacters"
                         />
