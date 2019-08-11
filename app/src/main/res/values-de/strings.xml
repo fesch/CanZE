@@ -656,8 +656,8 @@
     <string name="label_TyreIDFR">ID vorne rechts</string>
     <string name="label_TyreIDRL">ID hinten links</string>
     <string name="label_TyreIDRR">ID hinten rechts</string>
-    <string name="button_Tyres_write">ID lesen</string>
-    <string name="button_Tyres_read">ID schreiben</string>
+    <string name="button_Tyres_write">ID schreiben</string>
+    <string name="button_Tyres_read">ID lesen</string>
 
     <!-- Widgets only -->
 
