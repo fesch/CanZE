@@ -495,4 +495,5 @@
     <string name="unit_Nm">Nm</string>
     <string name="unit_SpeedKm">" km/h"</string>
     <string name="default_ZeroNm">0 Nm</string>
+    <string name="default_NotOk">Pas OK</string>
 </resources>
