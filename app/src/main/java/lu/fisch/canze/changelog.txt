@@ -1,3 +1,5 @@
+2019-08-16 [Jeroen] Experiment to avoid crash on ParcelFileDescriptor.java:175 on Android <= 5 (<23)
+2019-08-15 [Cedric] Ammended FR
 2019-08-15 [Jeroen] Added "Not OK" in DE/FR/RU/UK
 2019-08-15 [Jeroen] Avoided crash in Device
 2019-08-11 [Jeroen] Cleaned up translation files

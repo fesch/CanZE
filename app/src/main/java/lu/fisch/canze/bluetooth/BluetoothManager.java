@@ -28,11 +28,14 @@ package lu.fisch.canze.bluetooth;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.os.Build;
+import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.security.InvalidParameterException;
 import java.util.UUID;
@@ -183,7 +186,8 @@ public class BluetoothManager {
                 if (bluetoothSocket != null && bluetoothSocket.isConnected()) {
                     try {
                         debug("Closing previous socket");
-                        bluetoothSocket.close();
+                        // bluetoothSocket.close();
+                        closeSocketAndclearFileDescriptor();
                         bluetoothSocket = null;
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -241,12 +245,13 @@ public class BluetoothManager {
                 debug("Bluetooth not active");
 
             if (bluetoothSocket != null)
-                try {
+                // try {
                     debug("Closing socket again ...");
-                    bluetoothSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                    // bluetoothSocket.close();
+                    closeSocketAndclearFileDescriptor();
+                // } catch (IOException e) {
+                //     e.printStackTrace();
+                // }
 
             debug(retries + " tries left");
             if (retries != RETRIES_NONE) {
@@ -306,14 +311,15 @@ public class BluetoothManager {
             debug("Closing socket");
             // close the socket
             if (bluetoothSocket != null)
-                bluetoothSocket.close();
+                // bluetoothSocket.close();
+                closeSocketAndclearFileDescriptor();
 
             // execute attached event
             if (bluetoothEvent != null) bluetoothEvent.onAfterDisconnect();
 
             debug("Closed");
-        } catch (IOException e) {
-            e.printStackTrace();
+        // } catch (IOException e) {
+        //     e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -408,6 +414,28 @@ public class BluetoothManager {
 
     public void setDummyMode(boolean dummyMode) {
         this.dummyMode = dummyMode;
+    }
+
+
+    /*
+    * https://codeday.me/jp/qa/20190630/1142774.html (use google translate)
+    *
+    */
+    private synchronized void closeSocketAndclearFileDescriptor() {
+        if (bluetoothSocket == null) return;
+        try {
+            if (Build.VERSION.SDK_INT < 23) {
+                Field field = BluetoothSocket.class.getDeclaredField("mPfd");
+                field.setAccessible(true);
+                ParcelFileDescriptor mPfd = (ParcelFileDescriptor) field.get(bluetoothSocket);
+                if (null != mPfd) {
+                    mPfd.close();
+                }
+            }
+            bluetoothSocket.close();
+        } catch (Exception e) {
+            /* do nothing */
+        }
     }
 
 }
