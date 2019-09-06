@@ -38,7 +38,7 @@
     <string name="format_DumpWriting">Зачекайте, йде запис %s</string>
     <string name="format_NoAsset">Немає доступу до %s</string>
     <string name="format_NoSid">sid %s відсутній у класі Fields</string>
-    <string name="format_NoView">Немає екрану з id \'%s%s\'</string>
+    <string name="format_NoView">Немає екрану з id \'%$1s%$2s\'</string>
     <string name="graph_CellVoltages">Напруга на комірках (В)</string>
     <string name="graph_Climatech">Ззовні (°C), Всередині (°C), Замовлення (°C), Батарея (°C)</string>
     <string name="graph_DistanceEnergy">Наявний пробіг (км), наявна енергія (кВтг)</string>
@@ -245,7 +245,7 @@
     <string name="message_NoActiveDtcs">\nНемає активних помилок (DTC)</string>
     <string name="help_Fields">Журналює усі поля, що запитані поточним екраном.</string>
     <string name="help_Experimental">Ці кнопки призначені виключно для тестування</string>
-    <string name="help_Ecus"><![CDATA[Натисніть на ЕБУ для отримання детальної інформації. Більше інформації про комп'ютери в авто <a href="http://canze.fisch.lu/computers/">тут</a>.]]></string>
+    <string name="help_Ecus"><![CDATA[Натисніть на ЕБУ для отримання детальної інформації. Більше інформації про комп\'ютери в авто <a href="http://canze.fisch.lu/computers/">тут</a>.]]></string>
     <string name="help_DTC">Щоби увімкнути можливість очистки помилок  (DTC):\n\nВставте ключ-карту\n\nСелектор передач у  D\n\nЗатисніть кнопку START приблизно на 5 секунд, поки не з\'явиться повідомлення «Remove card»\n\nСелектор передач у P</string>
     <string name="help_QA"><![CDATA[Більш детальну інформацію про ці дані можна знайти у <a href=\'http://canze.fisch.lu/qa/\'>разділі Q & A</a> <a href=\'http://canze.fisch.lu/\'>домашньої сторінки CanZE</a>.]]></string>
     <string name="message_NoConnection">\nНемає зв\'язку. Зачініть цей екран і пересвідчіться, що ваш пристрій підключено та з ним утворено пару\n</string>
