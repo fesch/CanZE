@@ -1,3 +1,4 @@
+---< Version 1.43 / 2019.09.16 / 44 >---
 2019-09-07 [Jeroen] androidx.appcompat:appcompat to 1.1.0
 2019-09-07 [Jeroen] Removed a lint warning for 1/2/3 in strings
 2019-09-07 [Jeroen] Fixed an XML problem in UK language file
