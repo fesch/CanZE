@@ -18,7 +18,6 @@
     <string name="button_DtcReadout">Читання помилок (DTC)</string>
     <string name="button_ElmTesting">Тест ELM</string>
     <string name="button_Firmware">Прошивка</string>
-    <string name="button_FluenceKangooTemps">Температура Fluence Kangoo</string>
     <string name="button_HeatmapTemperature">Мапа температур</string>
     <string name="button_HeatmapVoltage">Мапа напруг</string>
     <string name="button_LeakCurrents">Струми витоку</string>
@@ -39,7 +38,7 @@
     <string name="format_DumpWriting">Зачекайте, йде запис %s</string>
     <string name="format_NoAsset">Немає доступу до %s</string>
     <string name="format_NoSid">sid %s відсутній у класі Fields</string>
-    <string name="format_NoView">Немає екрану з id \'%s%s\'</string>
+    <string name="format_NoView">Немає екрану з id \'%$1s%$2s\'</string>
     <string name="graph_CellVoltages">Напруга на комірках (В)</string>
     <string name="graph_Climatech">Ззовні (°C), Всередині (°C), Замовлення (°C), Батарея (°C)</string>
     <string name="graph_DistanceEnergy">Наявний пробіг (км), наявна енергія (кВтг)</string>
@@ -87,7 +86,6 @@
     <string name="label_LogToSdcard1">Журналювання на SD-карту 1</string>
     <string name="label_MainsCurrentType">Тип мережі</string>
     <string name="label_MainsActivePowerConsumed">Активна потужність, що споживається з мережі (Вт)</string>
-    <string name="label_MotorWaterPumpSpeed">Швидкість водяного насосу</string>
     <string name="label_Options">Опції</string>
     <string name="label_Plug">Стан підключення</string>
     <string name="label_StateOfCharge">Рівень заряду (SOC) (%)</string>
@@ -108,7 +106,6 @@
     <string name="label_TyreRR">Задня праворуч</string>
     <string name="label_UserSOC">Наявний рівень заряду (%)</string>
     <string name="label_Volt">Напруга ВВ батареї (В)</string>
-    <string name="label_WaterTemperatureHeating">Температура води для підігріву</string>
     <string name="label_WheelTorque">Момент на колесах</string>
     <string name="label_auxbat">Напруга, Стан авто, Стан зарядки</string>
     <string name="label_auxbatvolt">Напруга</string>
@@ -128,8 +125,6 @@
     <string name="menu_Technical">Технічне</string>
     <string name="label_IH_ClimCompPWRStatus">Потужність компресору (Вт), ECO</string>
     <string name="header_GridParameters">Параметри електромережі</string>
-    <string name="header_KangooFluenceFansPumps">Вентилятори та насоси (опис буде додано)</string>
-    <string name="header_KangooFluenceTemperatures">Температури</string>
     <string name="button_ChargingTech">Дані зарядки</string>
     <string name="header_ChargeSummary">Резюме зарядок</string>
     <string name="header_DrivingCh">Їзда</string>
@@ -142,11 +137,9 @@
     <string name="label_AuxStatus">Порада щодо заміни</string>
     <string name="label_AvChPwr">Наявна потужність зарядки (кВт)</string>
     <string name="label_AvEner">Наявна енергія (кВтг)</string>
-    <string name="label_BatteryCoolingFansSpeed">Швидківсть вентилятору охолодження батареї</string>
     <string name="label_BatteryTemperature">Температура батареї (°C)</string>
     <string name="label_BluetoothBackgroundMode">Фоновий режим Bluetooth</string>
     <string name="label_DISTA">Наявний пробіг</string>
-    <string name="label_DcDcConverterTemperature">Температура DC-DC перетворювача (°C)</string>
     <string name="label_DcLoad">Навантаження DC-DC (%)</string>
     <string name="label_DcPwr">Потужність DC-DC (кВт)</string>
     <string name="label_DcPower">Потужність DC-DC</string>
@@ -184,9 +177,7 @@
     <string name="title_activity_heatmap_bat">Мапа температур</string>
     <string name="title_activity_heatmap_cellvoltage">Мапа напруг</string>
     <string name="title_activity_firmware">Прошивка</string>
-    <string name="title_activity_fluence_kangoo_temp">Температуры Fluence Kangoo</string>
     <string name="title_activity_elm_test">Тест адаптору ELM327</string>
-    <string name="title_activity_elm_dump">Вичитка ELM327</string>
     <string name="title_activity_dtc">Коди помилок (DTC)</string>
     <string name="title_activity_driving">Інформація про їзду</string>
     <string name="title_activity_dash">Панель приладів</string>
@@ -201,22 +192,17 @@
     <string name="title_activity_alldata">Усі дані</string>
     <string name="prompt_YesIKnow">Так</string>
     <string name="label_Miles">Мілі</string>
-    <string name="label_InverterTemperature">Температура інвертору (°C)</string>
-    <string name="label_InternalTemperature">Температура внутрішнього середовища (°C)</string>
     <string name="label_InterPhaseVoltage">Міжфазна напруга 12/23/31 (В)</string>
     <string name="label_InstantConsumption">Миттєве споживання</string>
     <string name="label_EngineFanSpeed">Швидкість вентилятору двигуна (об/хв)</string>
     <string name="default_Yes">Так</string>
     <string name="label_HvTemp">Середня температура батреї (°C)</string>
-    <string name="label_HeatingWaterPumpSpeed">Швидкість водяного насосу отоплення</string>
     <string name="label_HVCoolingState">Стан охолдження батареї</string>
     <string name="label_HVEvaporationTemp">Температура випаровувача батареї (°C)</string>
     <string name="label_HistDuration">Тривалість</string>
     <string name="label_HKM">Одометр батареї</string>
     <string name="label_HVBatConditioningMode">Режим охолодження батареї</string>
     <string name="label_GroundResistanceOhm">Опір заземлення (Ом)</string>
-    <string name="label_ExternalTemperature">Температура оточуючого середовища (°C)</string>
-    <string name="label_EvaporatorTemperature">Температура випаровувача (°C)</string>
     <string name="label_EstimatedDrivingStyleLoss">Прогноз втрат від стилю керування:</string>
     <string name="label_ClearCachedData">Очистити кешовані дані</string>
     <string name="label_ClimaLoopMode">Цикл роботи кліматизації</string>
@@ -225,7 +211,6 @@
     <string name="label_CountPartial">Часткових зарядок (#)</string>
     <string name="label_CompletionStatus">Стан завершення</string>
     <string name="label_ChargingPrediction">Прогноз зарядки</string>
-    <string name="label_ChargerWaterPumpSpeed">Швидкість водяного насосу зарядки</string>
     <string name="label_ChaStatus">Стан зарядки</string>
     <string name="message_clear">Очистити</string>
     <string name="prompt_Accept">Так, зрозуміло!</string>
@@ -260,7 +245,7 @@
     <string name="message_NoActiveDtcs">\nНемає активних помилок (DTC)</string>
     <string name="help_Fields">Журналює усі поля, що запитані поточним екраном.</string>
     <string name="help_Experimental">Ці кнопки призначені виключно для тестування</string>
-    <string name="help_Ecus"><![CDATA[Натисніть на ЕБУ для отримання детальної інформації. Більше інформації про комп'ютери в авто <a href="http://canze.fisch.lu/computers/">тут</a>.]]></string>
+    <string name="help_Ecus"><![CDATA[Натисніть на ЕБУ для отримання детальної інформації. Більше інформації про комп\'ютери в авто <a href="http://canze.fisch.lu/computers/">тут</a>.]]></string>
     <string name="help_DTC">Щоби увімкнути можливість очистки помилок  (DTC):\n\nВставте ключ-карту\n\nСелектор передач у  D\n\nЗатисніть кнопку START приблизно на 5 секунд, поки не з\'явиться повідомлення «Remove card»\n\nСелектор передач у P</string>
     <string name="help_QA"><![CDATA[Більш детальну інформацію про ці дані можна знайти у <a href=\'http://canze.fisch.lu/qa/\'>разділі Q & A</a> <a href=\'http://canze.fisch.lu/\'>домашньої сторінки CanZE</a>.]]></string>
     <string name="message_NoConnection">\nНемає зв\'язку. Зачініть цей екран і пересвідчіться, що ваш пристрій підключено та з ним утворено пару\n</string>
@@ -272,4 +257,5 @@
     <string name="message_PollerStopping">\nБудь ласка, почекайте, поки зупиниться поток, що опитує…\n</string>
     <string name="message_PrepIsoTp">\nОпрацьовую підготовану команду ISO-TP CLUSTER SW\n</string>
     <string name="prompt_BluetoothOn">Робота Bluetooth у фоновому режимі може заважати іншим додаткам, що використовують Bluetooth. Також це може розрядити вашу батарею, якщо ви забудете вийти з CanZE або відключити цю опцію.<br /><br /><b>З цією опцією з\'єднання буде підтримуватись навіть якщо ви перезавантажите ваш Android-пристрій!</b><br /><br />Ви впевнені, що хочете увімкнути фоновий режим Bluetooth?</string>
+    <string name="default_NotOk">Не ОК</string>
 </resources>

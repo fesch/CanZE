@@ -1,3 +1,18 @@
+---< Version 1.43 / 2019.09.16 / 44 >---
+2019-09-07 [Jeroen] androidx.appcompat:appcompat to 1.1.0
+2019-09-07 [Jeroen] Removed a lint warning for 1/2/3 in strings
+2019-09-07 [Jeroen] Fixed an XML problem in UK language file
+2019-09-06 [Jeroen] Gradle to 3.5.0
+2019-09-06 [Jeroen] Avoid crash in AllDataActivity
+2019-08-16 [Jeroen] Experiment to avoid crash on ParcelFileDescriptor.java:175 on Android <= 5 (<23)
+2019-08-15 [Cedric] Ammended FR
+2019-08-15 [Jeroen] Added "Not OK" in DE/FR/RU/UK
+2019-08-15 [Jeroen] Avoided crash in Device
+2019-08-11 [Jeroen] Cleaned up translation files
+2019-08-11 [Jeroen] Fixed layout glitch github #554 thanks Gerd
+2019-08-11 [Jeroen] Fixed translation error github #554 thanks Gerd
+
+---< Version 1.42 / 2019.08.06 / 43 >---
 2019-08-04 [Jeroen] Removed ES as announced, removed message from NEWS
 2019-07-15 [Jeroen] Avoid NullPointerException in DTC
 2019-07-15 [Jeroen] Avoid NullPointerException in TyresActivity
