@@ -84,7 +84,13 @@ public class AllDataActivity extends CanzeActivity {
         btnDiag.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                dogetAllData(Ecus.getInstance().getByMnemonic(String.valueOf(spinnerEcu.getSelectedItem())));
+                String mne = String.valueOf(spinnerEcu.getSelectedItem());
+                Ecu ecu = Ecus.getInstance().getByMnemonic(mne);
+                if (ecu != null) {
+                   dogetAllData(ecu);
+                } else {
+                    appendResult("Can't find ECU:" + mne + "\n");
+                }
             }
         });
 

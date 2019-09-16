@@ -11,9 +11,16 @@
     <string name="default_Yes">Oui</string>
     <string name="default_No">Non</string>
     <string name="default_Ok">OK</string>
+    <string name="default_NotOk">Pas OK</string>
     <string name="default_Cancel">Annuler</string>
     <string name="default_Reset">Réinitialiser</string>
     <string name="format_NoView" formatted="false">Il n’y a pas de vue avec l’id \'%s%s\'</string>
+    <string name="unit_Nm">Nm</string>
+    <string name="unit_SpeedKm">\u0020km/h</string>
+    <string name="unit_SpeedMi">\u0020mi/h</string>
+    <string name="unit_ConsumptionKm">\u0020kWh/100km</string>
+    <string name="unit_ConsumptionMiAlt">\u0020mi/kWh</string>
+    <string name="unit_Celsius" translatable="false">°C</string>
     <string name="label_debug">Debug\u0020</string>
     <string name="default_debug">#Debug</string>
     <string name="toast_InitWidgets">Initialisation des widgets</string>
@@ -228,6 +235,7 @@
     <string name="label_driver_torque_request">Couple demandé</string>
     <string name="label_ElecBrakeWheelsTorqueApplied">Couple électrique appliqué (régénération)</string>
     <string name="label_diff_friction_torque">Couple de friction appliqué (pertes)</string>
+    <string name="default_ZeroNm">0 Nm</string>
     <string name="help_AllTorques">Tous les couples sont exprimés à la roue et non en couple moteur.</string>
     <string name="message_CantConnect">Connection impossible. Bluetooth pas encore configuré ?</string>
     <string name="title_activity_charging">Charge</string>
@@ -416,25 +424,11 @@
     <string name="title_activity_firmware">Firmware</string>
     <string name="button_Firmware">Firmware</string>
     <string name="help_Ecus"><![CDATA[Cliquez sur un ECU pour afficher les détails. Plus d’informations sur les calculateurs de la voiture <a href="http://canze.fisch.lu/computers/">ici</a>.]]></string>
-    <string name="button_FluenceKangooTemps">T° Fluence Kangoo</string>
     <string name="format_NoAsset">Impossible d’accéder à %s</string>
     <string name="title_activity_heatmap_bat">Température des modules</string>
     <string name="button_HeatmapTemperature">T° des modules</string>
     <string name="title_activity_heatmap_cellvoltage">Tension des cellules</string>
     <string name="button_HeatmapVoltage">Tension des cellules</string>
-    <string name="title_activity_fluence_kangoo_temp">Températures Fluence Kangoo</string>
-    <string name="header_KangooFluenceTemperatures">Températures</string>
-    <string name="label_EvaporatorTemperature">T° de l’évaporateur</string>
-    <string name="label_WaterTemperatureHeating">T° d’eau utilisée pour le chauffage</string>
-    <string name="label_DcDcConverterTemperature">T° du convertisseur DCDC</string>
-    <string name="label_InverterTemperature">T° de l’onduleur</string>
-    <string name="label_ExternalTemperature">T° ambiante extérieure</string>
-    <string name="label_InternalTemperature">T° ambiante intérieure</string>
-    <string name="header_KangooFluenceFansPumps">Ventilateurs et pompes (description à ajouter)</string>
-    <string name="label_MotorWaterPumpSpeed">Vitesse pompe à eau moteur</string>
-    <string name="label_ChargerWaterPumpSpeed">Vitesse pompe à eau chargeur</string>
-    <string name="label_HeatingWaterPumpSpeed">Vitesse pompe à eau chauffage</string>
-    <string name="label_BatteryCoolingFansSpeed">Vitesse ventilateur batterie</string>
     <string name="title_activity_leakCurrents">Courant de fuite harmoniques</string>
     <string name="button_LeakCurrents">Harmoniques</string>
     <string name="label_LeakCurrentDc">Courant de fuite DC (mA)</string>
@@ -490,7 +484,7 @@
     <string name="toast_NoBluetooth">Cet appareil de possède pas d’adaptateur Bluetooth.\n\nDésolé…</string>
     <string name="title_activity_tyres">Info pneumatiques</string>
     <string name="button_Tyres">Pneus</string>
-    <string name="help_PressuresMbar">Toutes les pressions sont exprimées en millibars</string>
+    <string name="help_PressuresMbar">Toutes les pressions sont exprimées en millibars. Elles sont reçues uniquement en roulant.</string>
     <string name="label_TyreSpdPresMisadaption">Erreur d’adaptation Vitesse-Pression</string>
     <string name="label_TyreFL">Avant gauche</string>
     <string name="label_TyreFR">Avant droit</string>
@@ -502,11 +496,15 @@
     <string name="label_TyreIDRR">ID arrière droit</string>
     <string name="button_Tyres_write">write</string>
     <string name="button_Tyres_read">read</string>
+    <string-array name="list_TyreStatus">
+        <item>OK</item>
+        <item>Pas d’infos</item>
+        <item>Surgonflé</item>
+        <item>-</item>
+        <item>À plat</item>
+        <item>À plat</item>
+        <item>Sous gonflé</item>
+        <item>-</item>
+    </string-array>
     <string name="title_activity_widget">Activité Widget</string>
-    <string name="unit_SpeedMi">" mi/h"</string>
-    <string name="unit_ConsumptionKm">" kWh/100km"</string>
-    <string name="unit_ConsumptionMiAlt">" mi/kWh"</string>
-    <string name="unit_Nm">Nm</string>
-    <string name="unit_SpeedKm">" km/h"</string>
-    <string name="default_ZeroNm">0 Nm</string>
 </resources>

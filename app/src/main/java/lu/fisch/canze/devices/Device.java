@@ -224,8 +224,8 @@ public abstract class Device {
         Message message = null;
         for (Frame frame : frames) {
             message = requestFrame(frame);
-            if (stopOnError && message.isError()) return null;
-            if (callOnMessageComplete) {
+            if (stopOnError && (message == null || message.isError())) return null;
+            if (message != null && callOnMessageComplete) {
                 if (!message.isError()) {
                     message.onMessageCompleteEvent();
                 } else {
@@ -655,6 +655,8 @@ public abstract class Device {
      */
     public Message requestFrame(Frame frame) {
         Message msg;
+
+        if (frame == null) return null;
 
         if (frame.isIsoTp())
             msg = requestIsoTpFrame(frame);

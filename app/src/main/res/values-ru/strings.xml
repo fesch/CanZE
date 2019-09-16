@@ -18,7 +18,6 @@
     <string name="button_DtcReadout">Чтение ошибок (DTC)</string>
     <string name="button_ElmTesting">Тест ELM</string>
     <string name="button_Firmware">Прошивка</string>
-    <string name="button_FluenceKangooTemps">Температура Fluence Kangoo</string>
     <string name="button_HeatmapTemperature">Карта температур</string>
     <string name="button_HeatmapVoltage">Карта напряжений</string>
     <string name="button_LeakCurrents">Токи утечки</string>
@@ -88,7 +87,6 @@
     <string name="label_LogToSdcard1">Журналирование на SD-карту 1</string>
     <string name="label_MainsCurrentType">Тип сети</string>
     <string name="label_MainsActivePowerConsumed">Активная мощность, потребляемая с сети (Вт)</string>
-    <string name="label_MotorWaterPumpSpeed">Скорость водяного насоса</string>
     <string name="label_Options">Опции</string>
     <string name="label_Plug">Состояние подключения</string>
     <string name="label_StateOfCharge">Уровень заряда (SOC) (%)</string>
@@ -109,7 +107,6 @@
     <string name="label_TyreRR">Задняя справа</string>
     <string name="label_UserSOC">Доступный уровень заряда (%)</string>
     <string name="label_Volt">Напряжение ВВ батареи (В)</string>
-    <string name="label_WaterTemperatureHeating">Температура воды для обогрева</string>
     <string name="label_WheelTorque">Момент на колёсах</string>
     <string name="label_auxbat">Напряжение, Состояние авто, Состояние зарядки</string>
     <string name="label_auxbatvolt">Напряжение</string>
@@ -129,8 +126,6 @@
     <string name="menu_Experimental">Экспериментальное</string>
     <string name="label_IH_ClimCompPWRStatus">Мощность компрессора (Вт), ECO</string>
     <string name="header_GridParameters">Параметры электросети</string>
-    <string name="header_KangooFluenceFansPumps">Вентилляторы и насосы (описание будет добавлено)</string>
-    <string name="header_KangooFluenceTemperatures">Температуры</string>
     <string name="button_ChargingTech">Данные зарядки</string>
     <string name="header_ChargeSummary">Резюме зарядок</string>
     <string name="header_DrivingCh">Езда</string>
@@ -143,11 +138,9 @@
     <string name="label_AuxStatus">Совет про замену</string>
     <string name="label_AvChPwr">Доступная мощность зарядки (кВт)</string>
     <string name="label_AvEner">Доступная энергия (кВтч)</string>
-    <string name="label_BatteryCoolingFansSpeed">Скорость вентиллятора охлаждения батареи</string>
     <string name="label_BatteryTemperature">Температура батареи (°C)</string>
     <string name="label_BluetoothBackgroundMode">Фоновий режим Bluetooth</string>
     <string name="label_DISTA">Доступный пробег</string>
-    <string name="label_DcDcConverterTemperature">Температура DC-DC преобразователя (°C)</string>
     <string name="label_DcLoad">Нагрузка DC-DC (%)</string>
     <string name="label_DcPower">Мощность DC-DC</string>
     <string name="label_DcPwr">Мощность DC-DC (кВт)</string>
@@ -185,9 +178,7 @@
     <string name="title_activity_heatmap_bat">Карта температур</string>
     <string name="title_activity_heatmap_cellvoltage">Карта напряжений</string>
     <string name="title_activity_firmware">Прошивка</string>
-    <string name="title_activity_fluence_kangoo_temp">Температуры Fluence Kangoo</string>
     <string name="title_activity_elm_test">Тест адаптора ELM327</string>
-    <string name="title_activity_elm_dump">Вычитка ELM327</string>
     <string name="title_activity_dtc">Коды ошибок (DTC)</string>
     <string name="title_activity_driving">Информация про езду</string>
     <string name="title_activity_dash">Панель приборов</string>
@@ -202,21 +193,16 @@
     <string name="title_activity_alldata">Все данные</string>
     <string name="prompt_YesIKnow">Да</string>
     <string name="label_Miles">Мили</string>
-    <string name="label_InverterTemperature">Температура инвертора (°C)</string>
-    <string name="label_InternalTemperature">Температура внутренней среды (°C)</string>
     <string name="label_InterPhaseVoltage">Межфазное напряжение 12/23/31 (В)</string>
     <string name="label_InstantConsumption">Мгновенный расход</string>
     <string name="label_EngineFanSpeed">Скорость вентиллятора двигателя (об/мин)</string>
     <string name="label_HvTemp">Средняя температура батареи (°C)</string>
-    <string name="label_HeatingWaterPumpSpeed">Скорость водяного насоса отопления</string>
     <string name="label_HVCoolingState">Состояние охлаждения батареи</string>
     <string name="label_HVEvaporationTemp">Температура испарителя батареи (°C)</string>
     <string name="label_HistDuration">Длительность</string>
     <string name="label_HKM">Одометр батареи</string>
     <string name="label_HVBatConditioningMode">Режим охлаждения батареи</string>
     <string name="label_GroundResistanceOhm">Сопротивление заземления (Ом)</string>
-    <string name="label_ExternalTemperature">Температура окружающей среды (°C)</string>
-    <string name="label_EvaporatorTemperature">Температура испарителя (°C)</string>
     <string name="label_EstimatedDrivingStyleLoss">Прогноз потерь от стиля вождения:</string>
     <string name="label_ClearCachedData">Очистить кешированные данные</string>
     <string name="label_ClimaLoopMode">Цикл работы климатизации</string>
@@ -225,7 +211,6 @@
     <string name="label_CountPartial">Частичных зарядок (#)</string>
     <string name="label_CompletionStatus">Состояние завершения</string>
     <string name="label_ChargingPrediction">Прогноз зарядки</string>
-    <string name="label_ChargerWaterPumpSpeed">Скорость водяного насоса зарядки</string>
     <string name="label_ChaStatus">Состояние зарядки</string>
     <string name="message_clear">Очистить</string>
     <string name="prompt_Accept">Да, понятно!</string>
@@ -272,4 +257,5 @@
     <string name="message_PollerStopping">"\nПожалуйста, подождите, пока остановится опрашивающий поток…\n "</string>
     <string name="message_PrepIsoTp">\nОбрабатываю подготовленную команду ISO-TP CLUSTER SW\n</string>
     <string name="prompt_BluetoothOn">Работа Bluetooth в фоновом режиме может мешать работе других приложений, использующих Bluetooth. Также, это может привести к разряду вашей батареи, если вы забудете выйти из CanZE или отключить эту опцию. <br /><br /><b>С этой опцией соединение будет поддерживаться, даже если вы перезагрузите ваше Android-устройство!</b><br /><br />Вы действительно хотите включить фоновый режим Bluetooth?</string>
+    <string name="default_NotOk">Не ОК</string>
 </resources>
