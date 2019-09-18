@@ -50,8 +50,8 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
     public static final String SID_TyreRRState = "673.2";
     public static final String SID_TyreRRPressure = "673.16";
 
-    public static final String val_TyreSpdPresMisadaption[] = {MainActivity.getStringSingle(R.string.default_Ok), MainActivity.getStringSingle(R.string.default_NotOk)};
-    public static final String val_TyreState[] = MainActivity.getStringList(R.array.list_TyreStatus);
+    public static final String[] val_TyreSpdPresMisadaption = {MainActivity.getStringSingle(R.string.default_Ok), MainActivity.getStringSingle(R.string.default_NotOk)};
+    public static final String[] val_TyreState = MainActivity.getStringList(R.array.list_TyreStatus);
     public static final String val_Unavailable = MainActivity.getStringSingle(R.string.default_Dash);
 
     @Override
@@ -208,8 +208,12 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         if (MainActivity.device == null)
             return; // this should not happen as the fragment checks the device property, but it does
         Message message = MainActivity.device.injectRequests(frames); // return result message of last request (get TPMS ids)
+        if (message == null) {
+            MainActivity.toast(MainActivity.TOAST_NONE, "Could not read TPMS valves");
+            return;
+        }
         if (message.isError()) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Could not read TPMS valves:" + message.getData());
+            MainActivity.toast(MainActivity.TOAST_NONE, "Could not read TPMS valves:" + message.getError());
             return;
         }
 
@@ -277,11 +281,14 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         if (MainActivity.device == null)
             return; // this should not happen as the fragment checks the device property, but it does
         Message message = MainActivity.device.injectRequests(frames);
-        if (message.isError()) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valves:" + message.getError());
+        if (message == null) {
+            MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valves");
             return;
         }
-
+        if (message.isError()) {
+            MainActivity.toast(MainActivity.TOAST_NONE, "Could not read write valves:" + message.getError());
+            return;
+        }
         if (!message.getData().startsWith("7b5d")) {
             MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valves:" + message.getData());
             return;
