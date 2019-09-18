@@ -37,10 +37,10 @@ public class BrakingActivity extends CanzeActivity implements FieldListener, Deb
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
-    public static final String SID_Coasting_Torque                      = "18a.27"; // 10ms Friction torque means EMULATED friction, what we'd call coasting
-    public static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; // 10ms
-    public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; // braking wheel torque the driver wants
-    public static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; // UBP 10ms
+    private static final String SID_Coasting_Torque                      = "18a.27"; // 10ms Friction torque means EMULATED friction, what we'd call coasting
+    private static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; // 10ms
+    private static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; // braking wheel torque the driver wants
+    private static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; // UBP 10ms
 
     private double driverBrakeWheel_Torque_Request = 0;
     private double coasting_Torque = 0;
@@ -77,27 +77,27 @@ public class BrakingActivity extends CanzeActivity implements FieldListener, Deb
                 switch (fieldId) {
                     case SID_DriverBrakeWheel_Torque_Request:
                         driverBrakeWheel_Torque_Request = field.getValue() + coasting_Torque;
-                        pb = (ProgressBar) findViewById(R.id.pb_driver_torque_request);
+                        pb = findViewById(R.id.pb_driver_torque_request);
                         pb.setProgress((int) driverBrakeWheel_Torque_Request);
-                        tv = (TextView) findViewById(R.id.text_driver_torque_request);
+                        tv = findViewById(R.id.text_driver_torque_request);
                         if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + MainActivity.getStringSingle(R.string.unit_Nm), driverBrakeWheel_Torque_Request));
                         break;
                     case SID_TotalPotentialResistiveWheelsTorque:
                         int tprwt = - ((int) field.getValue());
-                        pb = (ProgressBar) findViewById(R.id.MaxBreakTorque);
+                        pb = findViewById(R.id.MaxBreakTorque);
                         if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 20);
                         break;
                     case SID_ElecBrakeWheelsTorqueApplied:
                         double elecBrakeWheelsTorqueApplied = field.getValue() + coasting_Torque;
-                        pb = (ProgressBar) findViewById(R.id.pb_ElecBrakeWheelsTorqueApplied);
+                        pb = findViewById(R.id.pb_ElecBrakeWheelsTorqueApplied);
                         pb.setProgress((int) elecBrakeWheelsTorqueApplied);
-                        tv = (TextView) findViewById(R.id.text_ElecBrakeWheelsTorqueApplied);
+                        tv = findViewById(R.id.text_ElecBrakeWheelsTorqueApplied);
                         if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + MainActivity.getStringSingle(R.string.unit_Nm), elecBrakeWheelsTorqueApplied));
 
                         double diff_friction_torque = driverBrakeWheel_Torque_Request - elecBrakeWheelsTorqueApplied;
-                        pb = (ProgressBar) findViewById(R.id.pb_diff_friction_torque);
+                        pb = findViewById(R.id.pb_diff_friction_torque);
                         pb.setProgress((int) diff_friction_torque);
-                        tv = (TextView) findViewById(R.id.text_diff_friction_torque);
+                        tv = findViewById(R.id.text_diff_friction_torque);
                         if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + MainActivity.getStringSingle(R.string.unit_Nm), diff_friction_torque));
                         break;
                     case SID_Coasting_Torque:

@@ -35,24 +35,23 @@ import lu.fisch.canze.interfaces.FieldListener;
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
 public class ClimaTechActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_EngineFanSpeed                   = "42e.20";
-    public static final String SID_DcPower                          = "800.6103.24";
-    // public static final String SID_ChargingPower                    = "42e.56";
-    public static final String SID_HvCoolingState                   = "430.38";
-    public static final String SID_HvEvaporationTemp                = "430.40";
-    //public static final String SID_ClimaCompressorPower             = "7ec.6233A7.24";
-    public static final String SID_Pressure                         = "764.6143.134";
-    public static final String SID_BatteryConditioningMode          = "432.36";
-    public static final String SID_ClimaLoopMode                    = "42a.48";
-    public static final String SID_PtcRelay1                        = "7ec.623498.31";
-    public static final String SID_PtcRelay2                        = "7ec.62349a.31";
-    public static final String SID_PtcRelay3                        = "7ec.62349c.31";
+    private static final String SID_EngineFanSpeed                   = "42e.20";
+    private static final String SID_DcPower                          = "800.6103.24";
+    // private static final String SID_ChargingPower                    = "42e.56";
+    private static final String SID_HvCoolingState                   = "430.38";
+    private static final String SID_HvEvaporationTemp                = "430.40";
+    //private static final String SID_ClimaCompressorPower             = "7ec.6233A7.24";
+    private static final String SID_Pressure                         = "764.6143.134";
+    private static final String SID_BatteryConditioningMode          = "432.36";
+    private static final String SID_ClimaLoopMode                    = "42a.48";
+    private static final String SID_PtcRelay1                        = "7ec.623498.31";
+    private static final String SID_PtcRelay2                        = "7ec.62349a.31";
+    private static final String SID_PtcRelay3                        = "7ec.62349c.31";
 
-
-    final String cooling_Status [] = MainActivity.getStringList(R.array.list_CoolingStatus);
-    final String conditioning_Status [] = MainActivity.getStringList (R.array.list_ConditioningStatus);
-    final String climate_Status [] = MainActivity.getStringList(R.array.list_ClimateStatus);
-    final String ptc_Relay [] = MainActivity.getStringList(R.array.list_PtcRelay);
+    private final String[] cooling_Status = MainActivity.getStringList(R.array.list_CoolingStatus);
+    private final String[] conditioning_Status = MainActivity.getStringList (R.array.list_ConditioningStatus);
+    private final String[] climate_Status = MainActivity.getStringList(R.array.list_ClimateStatus);
+    private final String[] ptc_Relay = MainActivity.getStringList(R.array.list_PtcRelay);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -35,7 +35,7 @@ import lu.fisch.canze.interfaces.DebugListener;
 
 public class BatteryActivity extends CanzeActivity implements DebugListener {
 
-    public static final String SID_BatterySerial                        = "7bb.6162.16"; //EVC
+    private static final String SID_BatterySerial                        = "7bb.6162.16"; //EVC
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

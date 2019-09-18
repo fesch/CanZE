@@ -35,19 +35,19 @@ import lu.fisch.canze.interfaces.FieldListener;
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
 public class ChargingHistActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_Preamble_KM                      = "7ec.6233d4."; // 240 - 24
-    public static final String SID_Preamble_END                     = "7ec.6233d5."; //  96 -  8
-    public static final String SID_Preamble_TYP                     = "7ec.6233d6."; //  96 -  8
-    public static final String SID_Preamble_SOC                     = "7ec.6233d7."; // 168 - 16
-    public static final String SID_Preamble_TMP                     = "7ec.6233d8."; //  96 -  8
-    public static final String SID_Preamble_DUR                     = "7ec.6233d9."; // 168 - 16
+    private static final String SID_Preamble_KM                      = "7ec.6233d4."; // 240 - 24
+    private static final String SID_Preamble_END                     = "7ec.6233d5."; //  96 -  8
+    private static final String SID_Preamble_TYP                     = "7ec.6233d6."; //  96 -  8
+    private static final String SID_Preamble_SOC                     = "7ec.6233d7."; // 168 - 16
+    private static final String SID_Preamble_TMP                     = "7ec.6233d8."; //  96 -  8
+    private static final String SID_Preamble_DUR                     = "7ec.6233d9."; // 168 - 16
 
-    public static final String SID_Total_kWh                        = "7bb.6161.120";
-    public static final String SID_Counter_Full                     = "7bb.6166.48";
-    public static final String SID_Counter_Partial                  = "7bb.6166.64";
+    private static final String SID_Total_kWh                        = "7bb.6161.120";
+    private static final String SID_Counter_Full                     = "7bb.6166.48";
+    private static final String SID_Counter_Partial                  = "7bb.6166.64";
 
-    final String charging_HistEnd [] = MainActivity.getStringList(R.array.list_ChargingHistEnd);
-    final String charging_HistTyp [] = MainActivity.getStringList(R.array.list_ChargingHistTyp);
+    private final String[] charging_HistEnd = MainActivity.getStringList(R.array.list_ChargingHistEnd);
+    private final String[] charging_HistTyp = MainActivity.getStringList(R.array.list_ChargingHistTyp);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

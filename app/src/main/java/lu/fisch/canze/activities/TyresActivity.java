@@ -40,19 +40,19 @@ import lu.fisch.canze.interfaces.FieldListener;
 
 public class TyresActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_TyreSpdPresMisadaption = "673.0";
-    public static final String SID_TyreFLState = "673.11";
-    public static final String SID_TyreFLPressure = "673.40";
-    public static final String SID_TyreFRState = "673.8";
-    public static final String SID_TyreFRPressure = "673.32";
-    public static final String SID_TyreRLState = "673.5";
-    public static final String SID_TyreRLPressure = "673.24";
-    public static final String SID_TyreRRState = "673.2";
-    public static final String SID_TyreRRPressure = "673.16";
+    private static final String SID_TyreSpdPresMisadaption = "673.0";
+    private static final String SID_TyreFLState = "673.11";
+    private static final String SID_TyreFLPressure = "673.40";
+    private static final String SID_TyreFRState = "673.8";
+    private static final String SID_TyreFRPressure = "673.32";
+    private static final String SID_TyreRLState = "673.5";
+    private static final String SID_TyreRLPressure = "673.24";
+    private static final String SID_TyreRRState = "673.2";
+    private static final String SID_TyreRRPressure = "673.16";
 
-    public static final String[] val_TyreSpdPresMisadaption = {MainActivity.getStringSingle(R.string.default_Ok), MainActivity.getStringSingle(R.string.default_NotOk)};
-    public static final String[] val_TyreState = MainActivity.getStringList(R.array.list_TyreStatus);
-    public static final String val_Unavailable = MainActivity.getStringSingle(R.string.default_Dash);
+    private static final String[] val_TyreSpdPresMisadaption = {MainActivity.getStringSingle(R.string.default_Ok), MainActivity.getStringSingle(R.string.default_NotOk)};
+    private static final String[] val_TyreState = MainActivity.getStringList(R.array.list_TyreStatus);
+    private static final String val_Unavailable = MainActivity.getStringSingle(R.string.default_Dash);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -261,7 +261,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         }
     }
 
-    public void buttonWrite() {
+    private void buttonWrite() {
         int idFrontLeft = simpleIntParse(R.id.text_TyreFLId);
         int idFrontRight = simpleIntParse(R.id.text_TyreFRId);
         int idRearLeft = simpleIntParse(R.id.text_TyreRLId);

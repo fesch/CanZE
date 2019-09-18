@@ -35,23 +35,23 @@ import lu.fisch.canze.interfaces.FieldListener;
 // For the simple activity, the easiest way is to implement it in the activity itself.
 public class ChargingActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_MaxCharge                        = "7bb.6101.336";
-    public static final String SID_UserSoC                          = "42e.0";
-//  public static final String SID_RealSoC                          = "654.25";
-    public static final String SID_RealSoC                          = "7bb.6103.192";
-    public static final String SID_AvChargingPower                  = "427.40";
-    public static final String SID_ACPilot                          = "42e.38";
-    public static final String SID_HvTemp                           = "42e.44";
-    public static final String SID_HvTempFluKan                     = "7bb.6103.56";
+    private static final String SID_MaxCharge                        = "7bb.6101.336";
+    private static final String SID_UserSoC                          = "42e.0";
+//  private static final String SID_RealSoC                          = "654.25";
+    private static final String SID_RealSoC                          = "7bb.6103.192";
+    private static final String SID_AvChargingPower                  = "427.40";
+    private static final String SID_ACPilot                          = "42e.38";
+    private static final String SID_HvTemp                           = "42e.44";
+    private static final String SID_HvTempFluKan                     = "7bb.6103.56";
 
-//  public static final String SID_SOH                              = "658.33";
-    public static final String SID_RangeEstimate                    = "654.42";
-//  public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
-//  public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
-    public static final String SID_DcPower                          = "800.6103.24"; // Virtual field
-    public static final String SID_SOH                              = "7ec.623206.24";
+//  private static final String SID_SOH                              = "658.33";
+    private static final String SID_RangeEstimate                    = "654.42";
+//  private static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
+//  private static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
+    private static final String SID_DcPower                          = "800.6103.24"; // Virtual field
+    private static final String SID_SOH                              = "7ec.623206.24";
 
-    double avChPwr;
+    private double avChPwr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

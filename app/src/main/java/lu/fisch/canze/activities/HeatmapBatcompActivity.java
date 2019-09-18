@@ -36,11 +36,11 @@ import lu.fisch.canze.interfaces.FieldListener;
  */
 public class HeatmapBatcompActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
+    private static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
 
     private double mean = 0;
-    private double lastVal [] = {0,15,15,15,15,15,15,15,15,15,15,15,15};
-    private int lastCell = 12; //4;
+    private final double[] lastVal = {0,15,15,15,15,15,15,15,15,15,15,15,15};
+    private final int lastCell = 12; //4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
