@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public boolean leaveBluetoothOn = false;
     private boolean returnFromWidget = false;
 
-    public static Fields fields = Fields.getInstance();
+    public static final Fields fields = Fields.getInstance();
 
     public static Device device = null;
 
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     private static boolean isDriving = false;
     public static boolean milesMode = false;
 
-    public static boolean storageIsAvailable = false;
+    public static final boolean storageIsAvailable = false;
 
     public static final short TOAST_NONE = 0;
     public static final short TOAST_ELM = 1;
@@ -171,9 +171,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     // bluetooth stuff
     private MenuItem bluetoothMenutItem = null;
-    public final static int BLUETOOTH_DISCONNECTED = 21;
-    public final static int BLUETOOTH_SEARCH = 22;
-    public final static int BLUETOOTH_CONNECTED = 23;
+    private final static int BLUETOOTH_DISCONNECTED = 21;
+    private final static int BLUETOOTH_SEARCH = 22;
+    private final static int BLUETOOTH_CONNECTED = 23;
 
 
     //The BroadcastReceiver that listens for bluetooth broadcasts
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         toast(TOAST_NONE, resource);
     }
 
-    public void loadSettings() {
+    private void loadSettings() {
         debug("MainActivity: loadSettings");
         try {
             SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
@@ -386,7 +386,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
-    protected void updateActionBar() {
+    private void updateActionBar() {
         switch (viewPager.getCurrentItem()) {
             case 0:
                 actionBar.setIcon(R.mipmap.ic_launcher);
@@ -402,7 +402,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
-    static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1234;
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1234;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -676,7 +676,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
-    public void reloadBluetooth() {
+    private void reloadBluetooth() {
         reloadBluetooth(true);
     }
 
@@ -711,7 +711,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         super.onPause();
     }
 
-    public void stopBluetooth() {
+    private void stopBluetooth() {
         stopBluetooth(true);
     }
 
@@ -948,7 +948,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return bluetoothDeviceAddress;
     }
 
-    void versionChangeCheck(SharedPreferences settings) {
+    private void versionChangeCheck(SharedPreferences settings) {
         // get the current and the saved version of the app
         String previousVersion = settings.getString("appVersion", "");
         String currentVersion = "";
@@ -1011,7 +1011,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         if (debugListener != null) debugListener.appendDebugMessage(msg);
     }
 
-    public int getScreenOrientation() {
+    private int getScreenOrientation() {
         WindowManager wm = getWindowManager();
         if (wm == null) return Configuration.ORIENTATION_PORTRAIT;
         Display screenOrientation = wm.getDefaultDisplay();

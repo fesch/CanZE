@@ -48,22 +48,22 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
-    public static final String SID_DcPower = "1fd.48"; //EVC
-    public static final String SID_Pedal = "186.40"; //EVC
-    public static final String SID_MeanEffectiveTorque = "186.16"; //EVC
-    public static final String SID_Coasting_Torque = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
-    public static final String SID_RealSpeed = "5d7.0";  //ESC-ABS
-    public static final String SID_SoC = "654.25"; //EVC
-    public static final String SID_RangeEstimate = "654.42"; //EVC
-    public static final String SID_DriverBrakeWheel_Torque_Request = "130.44"; //UBP braking wheel torque the driver wants
-    public static final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //UBP 10ms
-    public static final String SID_TotalPotentialResistiveWheelsTorque = "1f8.16"; //UBP 10ms
+    private static final String SID_DcPower = "1fd.48"; //EVC
+    private static final String SID_Pedal = "186.40"; //EVC
+    private static final String SID_MeanEffectiveTorque = "186.16"; //EVC
+    private static final String SID_Coasting_Torque = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
+    private static final String SID_RealSpeed = "5d7.0";  //ESC-ABS
+    private static final String SID_SoC = "654.25"; //EVC
+    private static final String SID_RangeEstimate = "654.42"; //EVC
+    private static final String SID_DriverBrakeWheel_Torque_Request = "130.44"; //UBP braking wheel torque the driver wants
+    private static final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //UBP 10ms
+    private static final String SID_TotalPotentialResistiveWheelsTorque = "1f8.16"; //UBP 10ms
 
     // ISO-TP data
-    public static final String SID_MaxCharge = "7bb.6101.336";
-    public static final String SID_EVC_Odometer = "7ec.622006.24";
-    public static final String SID_EVC_TripBmeter = "7ec.6233de.24";
-    public static final String SID_EVC_TripBenergy = "7ec.6233dd.24";
+    private static final String SID_MaxCharge = "7bb.6101.336";
+    private static final String SID_EVC_Odometer = "7ec.622006.24";
+    private static final String SID_EVC_TripBmeter = "7ec.6233de.24";
+    private static final String SID_EVC_TripBenergy = "7ec.6233dd.24";
 
     private float odo = 0;
     private float destOdo = 0; // have to init from save file
@@ -131,7 +131,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         addField(SID_EVC_TripBenergy, 6000);
     }
 
-    void setDistanceToDestination() {
+    private void setDistanceToDestination() {
         // don't react if we do not have a live odo yet
         if (odo == 0) return;
         final Context context = DrivingActivity.this;
@@ -409,7 +409,6 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_setDistanceToDestination) {
             setDistanceToDestination();
             return true;

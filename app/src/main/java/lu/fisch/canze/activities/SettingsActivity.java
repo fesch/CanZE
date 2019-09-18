@@ -57,13 +57,7 @@ import java.util.Set;
 
 import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
-import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.database.CanzeDataSource;
-
-import static lu.fisch.canze.activities.MainActivity.toast;
-
-// import java.util.zip.ZipEntry;
-// import java.util.zip.ZipFile;
 
 public class SettingsActivity extends AppCompatActivity {
 

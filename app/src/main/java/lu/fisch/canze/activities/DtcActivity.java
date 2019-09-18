@@ -57,8 +57,8 @@ import static lu.fisch.canze.activities.MainActivity.debug;
 public class DtcActivity extends CanzeActivity {
 
     private TextView textView;
-    BufferedWriter bufferedDumpWriter = null;
-    boolean dumpInProgress = false;
+    private BufferedWriter bufferedDumpWriter = null;
+    private boolean dumpInProgress = false;
 
     private StoppableThread queryThread;
     private long ticker = 0;
@@ -154,7 +154,7 @@ public class DtcActivity extends CanzeActivity {
         return false;
     }
 
-    void doQueryEcu(final Ecu ecu) {
+    private void doQueryEcu(final Ecu ecu) {
 
         clearResult();
 
@@ -281,7 +281,7 @@ public class DtcActivity extends CanzeActivity {
         queryThread.start();
     }
 
-    void doClearEcu(final Ecu ecu) {
+    private void doClearEcu(final Ecu ecu) {
 
         clearResult();
 
@@ -408,7 +408,7 @@ public class DtcActivity extends CanzeActivity {
         }
     }
 
-    public boolean isExternalStorageWritable() {
+    private boolean isExternalStorageWritable() {
         String SDstate = Environment.getExternalStorageState();
         return (Environment.MEDIA_MOUNTED.equals(SDstate));
     }

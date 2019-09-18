@@ -36,13 +36,13 @@ import lu.fisch.canze.interfaces.FieldListener;
  */
 public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_Preamble_CellVoltages1 = "7bb.6141."; // (LBC)
-    public static final String SID_Preamble_CellVoltages2 = "7bb.6142."; // (LBC)
+    private static final String SID_Preamble_CellVoltages1 = "7bb.6141."; // (LBC)
+    private static final String SID_Preamble_CellVoltages2 = "7bb.6142."; // (LBC)
 
     private double mean = 0;
     private double cutoff;
-    private double lastVoltage[] = {0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4};
-    private int lastCell = 96;
+    private final double[] lastVoltage = {0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4};
+    private final int lastCell = 96;
 
 
     @Override
@@ -99,7 +99,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
                     @Override
                     public void run() {
                         for (int i = 1; i <= lastCell; i++) {
-                            TextView tv = (TextView) findViewById(getResources().getIdentifier("text_cell_" + i + "_voltage", "id", getPackageName()));
+                            TextView tv = findViewById(getResources().getIdentifier("text_cell_" + i + "_voltage", "id", getPackageName()));
                             if (tv != null) {
                                 // tv.setText(String.format("%.3f", lastVoltage[i]));
                                 tv.setText(String.format(Locale.getDefault(), "%.3f", lastVoltage[i]));

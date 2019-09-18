@@ -29,8 +29,8 @@ import lu.fisch.canze.interfaces.DebugListener;
 
 public class LeakCurrentsActivity extends CanzeActivity implements DebugListener {
 
-    public static final String SID_TesterInit = "793.50c0.0";
-    public static final String SID_TesterAwake = "793.7e01.0";
+    private static final String SID_TesterInit  = "793.50c0.0";
+    private static final String SID_TesterAwake = "793.7e01.0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

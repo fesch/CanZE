@@ -31,12 +31,11 @@ import lu.fisch.canze.actors.Field;
 
 public class DashActivity extends CanzeActivity {
 
-    public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
-    public static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //UBP 10ms
-    public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
-    public static final String SID_Coasting_Torque                      = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
-    public static final String SID_Instant_Consumption                  = "800.6100.24";
-
+    private static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
+    private static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //UBP 10ms
+    private static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
+    private static final String SID_Coasting_Torque                      = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
+    private static final String SID_Instant_Consumption                  = "800.6100.24";
 
     private int coasting_Torque                     = 0;
     private int driverBrakeWheel_Torque_Request     = 0;

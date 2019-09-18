@@ -59,7 +59,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
             // ensure we are only selecting true (as in physical boxes) and reachable (as in, i.e. skipping R-LINK) ECU's
             if (ecu.getFromId() > 0 && ecu.getFromId() < 0x800) {
                 TextView tv;
-                tv = (TextView) findViewById(getResources().getIdentifier("lEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase(), "id", getPackageName()));
+                tv = findViewById(getResources().getIdentifier("lEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase(), "id", getPackageName()));
                 if (tv != null) {
                     final Ecu thisEcu = ecu;
                     tv.setText(ecu.getMnemonic() + " (" + ecu.getName() + ")");
@@ -76,7 +76,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
             }
         }
 
-        TextView textView = (TextView) findViewById(R.id.link);
+        TextView textView = findViewById(R.id.link);
         textView.setText(Html.fromHtml(MainActivity.getStringSingle(R.string.help_Ecus)));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -91,7 +91,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
         }).start();
     }
 
-    void showSelected (View v) {
+    private void showSelected (View v) {
         View tv;
         int bgColor = 0xfff3f3f3;
         TypedValue a = new TypedValue();
@@ -115,7 +115,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
     }
 
 
-    void showDetails(final Ecu ecu) {
+    private void showDetails(final Ecu ecu) {
 
         // try to stop previous thread
         if(queryThread!=null) {
@@ -165,11 +165,11 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
         queryThread.start();
     }
 
-    void setSoftwareValue(final int id, final Field field, final String label) {
+    private void setSoftwareValue(final int id, final Field field, final String label) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                TextView tv = (TextView) findViewById(id);
+                TextView tv = findViewById(id);
                 if (tv != null) {
                     if (field == null) {
                         tv.setText("");
