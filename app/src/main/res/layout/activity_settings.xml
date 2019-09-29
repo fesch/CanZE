@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/build"
                 android:id="@+id/build"
-                android:background="#ffd900"
+                android:background="?attr/colorButtonNormal"
                 android:textStyle="bold"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                 android:layout_marginBottom="32dp"
