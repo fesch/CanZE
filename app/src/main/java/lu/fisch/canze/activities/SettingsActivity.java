@@ -426,7 +426,7 @@ public class SettingsActivity extends AppCompatActivity {
             Date buildDate = new Date(BuildConfig.TIMESTAMP);
             SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHM), Locale.getDefault());
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            tv.setText(MainActivity.getStringSingle(R.string.version) + pInfo.versionName + "  //  " + MainActivity.getStringSingle(R.string.build) + sdf.format(buildDate));
+            tv.setText(MainActivity.getStringSingle(R.string.version) + pInfo.versionName + "  " + MainActivity.getStringSingle(R.string.build) + sdf.format(buildDate));
 
         } catch (Exception e) {
             e.printStackTrace();
