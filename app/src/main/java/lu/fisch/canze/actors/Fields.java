@@ -106,13 +106,17 @@ public class Fields {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
                 // get real speed
-                double realSpeed = dependantFields.get(SID_RealSpeed).getValue();
+                Field privateField;
+                if ((privateField = dependantFields.get(SID_RealSpeed)) == null) return Double.NaN;
+                double realSpeed = privateField.getValue();
                 if (realSpeed < 0 || realSpeed > 150) return Double.NaN;
                 if (realSpeed < 5) return 0;
                 // get voltage
-                double dcVolt = dependantFields.get(SID_EVC_TractionBatteryVoltage).getValue();
+                if ((privateField = dependantFields.get(SID_EVC_TractionBatteryVoltage)) == null) return Double.NaN;
+                double dcVolt = privateField.getValue();
                 // get current
-                double dcCur = dependantFields.get(SID_EVC_TractionBatteryCurrent).getValue();
+                if ((privateField = dependantFields.get(SID_EVC_TractionBatteryCurrent)) == null) return Double.NaN;
+                double dcCur = privateField.getValue();
                 if (dcVolt < 300 || dcVolt > 450 || dcCur < -200 || dcCur > 100) return Double.NaN;
                 // power in kW
                 double dcPwr = dcVolt * dcCur / 1000.0;
@@ -131,8 +135,12 @@ public class Fields {
         addVirtualFieldCommon("6101", "Nm", SID_DriverBrakeWheel_Torque_Request + ";" + SID_ElecBrakeWheelsTorqueApplied, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
-
-                return dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue();
+                Field privateField;
+                if ((privateField = dependantFields.get(SID_DriverBrakeWheel_Torque_Request)) == null) return Double.NaN;
+                double torque = privateField.getValue();
+                if ((privateField = dependantFields.get(SID_ElecBrakeWheelsTorqueApplied)) == null) return Double.NaN;
+                torque -= privateField.getValue();
+                return torque;
             }
         });
     }
@@ -145,8 +153,14 @@ public class Fields {
         addVirtualFieldCommon("6102", "kW", SID_DriverBrakeWheel_Torque_Request + ";" + SID_ElecBrakeWheelsTorqueApplied + ";" + SID_ElecEngineRPM, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
-
-                return (dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue()) * dependantFields.get(SID_ElecEngineRPM).getValue() / MainActivity.reduction;
+                Field privateField;
+                if ((privateField = dependantFields.get(SID_DriverBrakeWheel_Torque_Request)) == null) return Double.NaN;
+                double torque = privateField.getValue();
+                if ((privateField = dependantFields.get(SID_ElecBrakeWheelsTorqueApplied)) == null) return Double.NaN;
+                torque -= privateField.getValue();
+                if ((privateField = dependantFields.get(SID_ElecEngineRPM)) == null) return Double.NaN;
+                return (torque * privateField.getValue() / MainActivity.reduction);
+                //return (dependantFields.get(SID_DriverBrakeWheel_Torque_Request).getValue() - dependantFields.get(SID_ElecBrakeWheelsTorqueApplied).getValue()) * dependantFields.get(SID_ElecEngineRPM).getValue() / MainActivity.reduction;
             }
         });
     }
@@ -158,24 +172,27 @@ public class Fields {
         addVirtualFieldCommon("6103", "kW", SID_TractionBatteryVoltage + ";" + SID_TractionBatteryCurrent, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
-
-                return dependantFields.get(SID_TractionBatteryVoltage).getValue() * dependantFields.get(SID_TractionBatteryCurrent).getValue() / 1000;
+                Field privateField;
+                if ((privateField = dependantFields.get(SID_TractionBatteryVoltage)) == null) return Double.NaN;
+                double voltage = privateField.getValue();
+                if ((privateField = dependantFields.get(SID_TractionBatteryCurrent)) == null) return Double.NaN;
+                return (voltage * privateField.getValue());
+                //return dependantFields.get(SID_TractionBatteryVoltage).getValue() * dependantFields.get(SID_TractionBatteryCurrent).getValue() / 1000;
             }
         });
-
     }
 
     private void addVirtualFieldUsageLpf() {
-
         // It would be easier use SID_Consumption = "1fd.48" (dash kWh) instead of V*A
         // need to use real timer. Now the averaging is dependant on dongle speed
-
         final String SID_VirtualUsage = "800.6100.24";
 
         addVirtualFieldCommon("6104", "kWh/100km", SID_VirtualUsage, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
-                double value = dependantFields.get(SID_VirtualUsage).getValue();
+                Field privateField;
+                if ((privateField = dependantFields.get(SID_VirtualUsage)) == null) return Double.NaN;
+                double value = privateField.getValue();
                 if (!Double.isNaN(value)) {
                     long now = Calendar.getInstance().getTimeInMillis();
                     long since = now - start;
@@ -191,12 +208,14 @@ public class Fields {
     }
 
     private void addVirtualFieldHeaterSetpoint() {
-        final String SID_VirtualUsage = "699.8";
+        final String SID_HeaterSetpoint = "699.8";
 
-        addVirtualFieldCommon("6105", "°C", SID_VirtualUsage, new VirtualFieldAction() {
+        addVirtualFieldCommon("6105", "°C", SID_HeaterSetpoint, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
-                double value = dependantFields.get(SID_VirtualUsage).getValue();
+                Field privateField;
+                if ((privateField = dependantFields.get(SID_HeaterSetpoint)) == null) return Double.NaN;
+                double value = privateField.getValue();
                 if (value == 0) {
                     return Double.NaN;
                 } else if (value == 4) {
@@ -219,8 +238,11 @@ public class Fields {
         addVirtualFieldCommon("6106", "km", SID_EVC_Odometer + ";" + SID_RangeEstimate, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
-                double odo = dependantFields.get(SID_EVC_Odometer).getValue();
-                double gom = dependantFields.get(SID_RangeEstimate).getValue();
+                Field privateField;
+                if ((privateField = dependantFields.get(SID_EVC_Odometer)) == null) return Double.NaN;
+                double odo = privateField.getValue();
+                if ((privateField = dependantFields.get(SID_RangeEstimate)) == null) return Double.NaN;
+                double gom = privateField.getValue();
 
                 // timestamp of last inserted dot in MILLISECONDS
                 long lastInsertedTime = CanzeDataSource.getInstance().getLastTime(SID_RangeEstimate);
@@ -266,8 +288,11 @@ public class Fields {
         addVirtualFieldCommon("6107", "km", SID_EVC_Odometer + ";" + SID_RangeEstimate, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
-                double odo = dependantFields.get(SID_EVC_Odometer).getValue();
-                double gom = dependantFields.get(SID_RangeEstimate).getValue();
+                Field privateField;
+                if ((privateField = dependantFields.get(SID_EVC_Odometer)) == null) return Double.NaN;
+                double odo = privateField.getValue();
+                if ((privateField = dependantFields.get(SID_RangeEstimate)) == null) return Double.NaN;
+                double gom = privateField.getValue();
 
                 //MainActivity.debug("realRange ODO: "+odo);
                 //MainActivity.debug("realRange GOM: "+gom);
@@ -311,8 +336,11 @@ public class Fields {
         addVirtualFieldCommon("6108", "km", SID_EVC_Odometer + ";" + SID_RangeEstimate, new VirtualFieldAction() {
             @Override
             public double updateValue(HashMap<String, Field> dependantFields) {
-                double odo = dependantFields.get(SID_EVC_Odometer).getValue();
-                double gom = dependantFields.get(SID_RangeEstimate).getValue();
+                Field privateField;
+                if ((privateField = dependantFields.get(SID_EVC_Odometer)) == null) return Double.NaN;
+                double odo = privateField.getValue();
+                if ((privateField = dependantFields.get(SID_RangeEstimate)) == null) return Double.NaN;
+                double gom = privateField.getValue();
 
                 //MainActivity.debug("realRange ODO: "+odo);
                 //MainActivity.debug("realRange GOM: "+gom);

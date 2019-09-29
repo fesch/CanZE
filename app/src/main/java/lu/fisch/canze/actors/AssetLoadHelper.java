@@ -43,8 +43,9 @@ public class AssetLoadHelper {
             }
 
             // BufferedReader handles encoding, default is UTF-8, which is what we use
-            BufferedReader bufferedReader = new BufferedReader (new InputStreamReader (inputStream));
-            return bufferedReader;
+            //BufferedReader bufferedReader = new BufferedReader (new InputStreamReader (inputStream));
+            //return bufferedReader;
+            return new BufferedReader (new InputStreamReader (inputStream));
 
         } catch (FileNotFoundException e) {
             // do nothing, so return null
