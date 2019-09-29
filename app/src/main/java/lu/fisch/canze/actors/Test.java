@@ -26,8 +26,8 @@ package lu.fisch.canze.actors;
  */
 public class Test {
 
-    private String id;
-    private String description;
+    private final String id;
+    private final String description;
 
     public Test(String id, String description) {
         this.id = id;

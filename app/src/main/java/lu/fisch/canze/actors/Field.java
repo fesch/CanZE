@@ -40,7 +40,7 @@ public class Field {
 
     final ArrayList<FieldListener> fieldListeners = new ArrayList<>();
 
-    private String sid;
+    private final String sid;
     private Frame frame;
     private short from;
     private short to;
@@ -50,15 +50,15 @@ public class Field {
     private String unit;
     private String responseId;
     private short options;           // see the options definitions in MainActivity
-    private String name;
-    private String list;
+    private final String name;
+    private final String list;
 
     private double value = Double.NaN;
     private String strVal = "";
     //private int skipsCount = 0;
 
     private long lastRequest;
-    protected int interval = Integer.MAX_VALUE;
+    private int interval = Integer.MAX_VALUE;
 
     boolean virtual = false;
 
