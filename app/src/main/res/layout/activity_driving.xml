@@ -25,7 +25,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_pedal"
-                android:textColor="#000"
                 />
             <ProgressBar
                 android:id="@+id/pedalBar"
@@ -45,7 +44,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/label_wheel_torque"
                 android:layout_marginTop="10dp"
-                android:textColor="#000"
                 />
 
             <LinearLayout

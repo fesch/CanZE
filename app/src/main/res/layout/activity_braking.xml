@@ -51,6 +51,7 @@
                     android:layout_alignBottom="@+id/pb_driver_torque_request"
                     android:layout_alignTop="@+id/pb_driver_torque_request"
                     android:gravity="center"
+                    android:textColor="?attr/colorPrimaryDark"
                     />
             </RelativeLayout>
 
@@ -96,6 +97,7 @@
                     android:layout_alignBottom="@+id/pb_ElecBrakeWheelsTorqueApplied"
                     android:layout_alignTop="@+id/pb_ElecBrakeWheelsTorqueApplied"
                     android:gravity="center"
+                    android:textColor="?attr/colorPrimaryDark"
                     />
             </RelativeLayout>
 
@@ -129,6 +131,7 @@
                     android:layout_alignBottom="@+id/pb_diff_friction_torque"
                     android:layout_alignTop="@+id/pb_diff_friction_torque"
                     android:gravity="center"
+                    android:textColor="?attr/colorPrimaryDark"
                     />
             </RelativeLayout>
 
