@@ -1,3 +1,5 @@
+2019-09-29 [Jeroen] Renamed "Bob Due" to "CanSee"
+2019-09-29 [Jeroen] Small layout issues
 2019-09-29 [Jeroen] Fixed regression on virtualfield dcPower
 2019-09-29 [Jeroen] Batches 1-2-3 for dark mode
 2019-09-29 [Jeroen] Lint (Code->Analyse) on all canze:actors, canze:adaptors and canze:classes

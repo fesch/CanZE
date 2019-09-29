@@ -83,7 +83,7 @@ public class SettingsActivity extends AppCompatActivity {
         final Spinner deviceType = findViewById(R.id.deviceType);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         arrayAdapter.add("ELM327");
-        arrayAdapter.add("Bob Due");
+        arrayAdapter.add("CanSee");
         //arrayAdapter.add("ELM327Http");
         deviceType.setAdapter(arrayAdapter);
 
@@ -99,6 +99,7 @@ public class SettingsActivity extends AppCompatActivity {
                 case "ELM327":
                     index = 0;
                     break;
+                case "CanSee":
                 case "Bob Due":
                     index = 1;
                     break;
