@@ -21,8 +21,12 @@
 
 package lu.fisch.canze.activities;
 
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.widget.TextView;
+
+import androidx.annotation.ColorInt;
 
 import java.util.Locale;
 
@@ -52,11 +56,21 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
     private static final String SID_SOH                              = "7ec.623206.24";
 
     private double avChPwr;
+    @ColorInt private int baseColor;
+    @ColorInt private int alarmColor;
+    private boolean dark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charging);
+
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = this.getTheme();
+        theme.resolveAttribute(R.attr.colorButtonNormal, typedValue, true);
+        baseColor = typedValue.data;
+        dark = ((baseColor & 0xff0000) <= 0xa00000);
+        alarmColor = dark ? baseColor + 0x200000 : baseColor - 0x00002020;
     }
 
     protected void initListeners() {
@@ -93,12 +107,8 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
 
                     case SID_MaxCharge:
                         double maxCharge = field.getValue();
-                        int color = 0xffc0c0c0; // standard grey
-                        if (maxCharge < (avChPwr * 0.8) && avChPwr < 45.0) {
-                            color = 0xffffc0c0;
-                        }
                         tv = findViewById(R.id.text_max_charge);
-                        tv.setBackgroundColor(color);
+                        tv.setBackgroundColor((maxCharge < (avChPwr * 0.8) && avChPwr < 45.0) ? alarmColor : baseColor);
                         break;
                     case SID_UserSoC:
                         tv = findViewById(R.id.textUserSOC);

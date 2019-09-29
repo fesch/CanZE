@@ -21,12 +21,16 @@
 
 package lu.fisch.canze.activities;
 
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.ColorInt;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Ecus;
@@ -53,12 +57,23 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
     private static final String[] val_TyreSpdPresMisadaption = {MainActivity.getStringSingle(R.string.default_Ok), MainActivity.getStringSingle(R.string.default_NotOk)};
     private static final String[] val_TyreState = MainActivity.getStringList(R.array.list_TyreStatus);
     private static final String val_Unavailable = MainActivity.getStringSingle(R.string.default_Dash);
+    @ColorInt
+    private int baseColor;
+    @ColorInt private int alarmColor;
+    private boolean dark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tyres);
+
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = this.getTheme();
+        theme.resolveAttribute(R.attr.colorButtonNormal, typedValue, true);
+        baseColor = typedValue.data;
+        dark = ((baseColor & 0xff0000) <= 0xa00000);
+        alarmColor = dark ? baseColor + 0x200000 : baseColor - 0x00002020;
 
         // do not display the keyboard immediately
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -118,7 +133,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                 TextView tv = null;
                 String value = "";
                 int intValue = (int) field.getValue();
-                int color = 0xffc0c0c0;
+                int color = baseColor;
 
                 // get the text field
                 switch (fieldId) {
@@ -131,7 +146,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                     case SID_TyreFLState:
                         if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TyreFLState);
-                        if (intValue > 1) color = 0xffffc0c0;
+                        if (intValue > 1) color = alarmColor;
                         value = val_TyreState != null ? val_TyreState[intValue] : "";
                         break;
                     case SID_TyreFLPressure:
@@ -141,7 +156,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                     case SID_TyreFRState:
                         if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TyreFRState);
-                        if (intValue > 1) color = 0xffffc0c0;
+                        if (intValue > 1) color = alarmColor;
                         value = val_TyreState != null ? val_TyreState[intValue] : "";
                         break;
                     case SID_TyreFRPressure:
@@ -151,7 +166,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                     case SID_TyreRLState:
                         if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TyreRLState);
-                        if (intValue > 1) color = 0xffffc0c0;
+                        if (intValue > 1) color = alarmColor;
                         value = val_TyreState != null ? val_TyreState[intValue] : "";
                         break;
                     case SID_TyreRLPressure:
@@ -161,7 +176,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                     case SID_TyreRRState:
                         if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TyreRRState);
-                        if (intValue > 1) color = 0xffffc0c0;
+                        if (intValue > 1) color = alarmColor;
                         value = val_TyreState != null ? val_TyreState[intValue] : "";
                         break;
                     case SID_TyreRRPressure:

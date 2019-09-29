@@ -30,7 +30,7 @@
                         android:text="@string/label_AvChPwr"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0"
+                        android:background="?attr/colorButtonNormal"
                         />
                     <TextView
                         android:text=""
@@ -40,29 +40,27 @@
                         android:text="@string/label_max_charge"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0" />
+                        android:background="?attr/colorButtonNormal" />
                 </TableRow>
 
                 <TableRow>
                     <TextView
                         android:id="@+id/textAvChPwr"
                         android:text="@string/default_Dash"
-                        android:textColor="#000"
                         android:textSize="48sp"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0" />
+                        android:background="?attr/colorButtonNormal" />
                     <TextView
                         android:text="@string/default_DoubleSpace"
                         android:layout_weight="1" />
                     <TextView
                         android:id="@+id/text_max_charge"
                         android:text="@string/default_Dash"
-                        android:textColor="#000"
                         android:textSize="48sp"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0" />
+                        android:background="?attr/colorButtonNormal" />
                 </TableRow>
             </TableLayout>
 
@@ -86,7 +84,7 @@
                         android:text="@string/label_DcPwr"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:background="#ffc0c0c0"
+                        android:background="?attr/colorButtonNormal"
                         />
                     <TextView
                         android:text="@string/default_DoubleSpace"
@@ -100,11 +98,10 @@
                     <TextView
                         android:id="@+id/textDcPwr"
                         android:text="@string/default_Dash"
-                        android:textColor="#000"
                         android:textSize="48sp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:background="#ffc0c0c0"
+                        android:background="?attr/colorButtonNormal"
                         />
                     <TextView
                         android:text="@string/default_DoubleSpace"
@@ -120,7 +117,7 @@
                         android:text="@string/label_DISTA"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:background="#ffc0c0c0"
+                        android:background="?attr/colorButtonNormal"
                         />
                     <TextView
                         android:text="@string/default_DoubleSpace"
@@ -134,11 +131,10 @@
                     <TextView
                         android:id="@+id/textKMA"
                         android:text="@string/default_Dash"
-                        android:textColor="#000"
                         android:textSize="48sp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:background="#ffc0c0c0"
+                        android:background="?attr/colorButtonNormal"
                         />
                     <TextView
                         android:text="@string/default_DoubleSpace"
@@ -219,7 +215,6 @@
 
         <TextView
             android:text="@string/label_debug"
-            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
