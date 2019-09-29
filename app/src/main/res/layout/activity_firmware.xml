@@ -243,7 +243,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1"
-                    android:background="#ffd124"
+                    android:background="?attr/colorButtonNormal"
                     android:orientation="vertical">
 
                     <TextView

@@ -25,7 +25,7 @@
                 android:text="@string/header_Charging"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000" />
+                android:textStyle="bold" />
 
             <TableLayout
                 android:layout_width="fill_parent"
@@ -116,7 +116,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000" />
+                android:textStyle="bold" />
 
             <TableLayout
                 android:layout_width="fill_parent"
@@ -325,7 +325,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000" />
+                android:textStyle="bold" />
 
             <TableLayout
                 android:layout_width="fill_parent"
@@ -353,7 +353,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000" />
+                android:textStyle="bold" />
 
 
             <TableLayout
@@ -609,7 +609,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000" />
+                android:textStyle="bold"/>
 
             <TableLayout
                 android:layout_width="fill_parent"
