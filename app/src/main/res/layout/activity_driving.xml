@@ -111,7 +111,6 @@
                         android:id="@+id/textRealSpeed"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="@string/default_Dash"
-                        android:textColor="#000"
                         android:textSize="96sp"
                         android:gravity="end"
                         android:layout_width="wrap_content"
@@ -137,7 +136,6 @@
                         android:id="@+id/textConsumption"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="@string/default_Dash"
-                        android:textColor="#000"
                         android:textSize="48sp"
                         android:gravity="end"
                         android:layout_width="wrap_content"
@@ -262,7 +260,6 @@
 
         <TextView
             android:text="@string/label_debug"
-            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
