@@ -1,3 +1,4 @@
+2019-09-29 [Jeroen] Reformated Settings for consistency
 2019-09-29 [Jeroen] Corrected icon error for 12 volt battery (+- from white to transparent)
 2019-09-29 [Jeroen] Renamed "Bob Due" to "CanSee"
 2019-09-29 [Jeroen] Small layout issues
