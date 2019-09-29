@@ -176,7 +176,7 @@ public class Fields {
                 if ((privateField = dependantFields.get(SID_TractionBatteryVoltage)) == null) return Double.NaN;
                 double voltage = privateField.getValue();
                 if ((privateField = dependantFields.get(SID_TractionBatteryCurrent)) == null) return Double.NaN;
-                return (voltage * privateField.getValue());
+                return (voltage * privateField.getValue() / 1000.0);
                 //return dependantFields.get(SID_TractionBatteryVoltage).getValue() * dependantFields.get(SID_TractionBatteryCurrent).getValue() / 1000;
             }
         });
