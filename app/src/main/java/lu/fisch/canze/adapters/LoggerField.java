@@ -7,8 +7,8 @@ import lu.fisch.canze.actors.Field;
  */
 
 public class LoggerField {
-    public Field field;
-    public int interval;
+    public final Field field;
+    public final int interval;
 
     public LoggerField(Field field, int interval) {
         this.field = field;
@@ -29,8 +29,6 @@ public class LoggerField {
 
     @Override
     public int hashCode() {
-        int result = field != null ? field.hashCode() : 0;
-        //result = 31 * result + interval;
-        return result;
+        return field != null ? field.hashCode() : 0;
     }
 }
