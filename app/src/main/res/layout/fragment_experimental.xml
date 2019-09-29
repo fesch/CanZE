@@ -107,7 +107,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:background="#ffd124">
+            android:background="?attr/colorButtonNormal">
 
             <TextView
                 android:layout_marginLeft="0dp"
