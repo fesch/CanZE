@@ -33,7 +33,7 @@ import lu.fisch.canze.bluetooth.BluetoothManager;
 /**
  * Created by robertfisch on 07.09.2015.
  */
-public class BobDue extends Device {
+public class CanSee extends Device {
 
     // *** needed by the "reader" part
     //private String buffer = "";
@@ -134,7 +134,7 @@ public class BobDue extends Device {
     }
 
     private Message responseToMessage(Frame frame, String command, int timeout) {
-        //MainActivity.debug("BobDue.rtm.send [" + command + "]");
+        //MainActivity.debug("CanSee.rtm.send [" + command + "]");
         String text = sendAndWaitForAnswer(command, 0, timeout);    // send and wait for an answer, no delay
         if (text.length() == 0) {
             //wrongCount++;
@@ -148,38 +148,38 @@ public class BobDue extends Device {
                     }
                 })).start();
             }
-            return new Message(frame, "-E-BobDue.rtm.empty", true);
+            return new Message(frame, "-E-CanSee.rtm.empty", true);
         }
 
         // split up the fields
         String[] pieces = text.trim().split(",");
         if (pieces.length < 2) {
-            MainActivity.debug("BobDue.rtm.nocomma [" + text + "]");
-            return new Message(frame, "-E-BobDue.rtm.nocomma:" + text, true);
+            MainActivity.debug("CanSee.rtm.nocomma [" + text + "]");
+            return new Message(frame, "-E-CanSee.rtm.nocomma:" + text, true);
         }
 
         int id;
         try {
             id = Integer.parseInt(pieces[0].trim(), 16);
         } catch (NumberFormatException e) {
-            MainActivity.debug("BobDue.rtm.Nan [" + text + "]");
-            return new Message(frame, "-E-BobDue.rtm.Nan:" + text, true);
+            MainActivity.debug("CanSee.rtm.Nan [" + text + "]");
+            return new Message(frame, "-E-CanSee.rtm.Nan:" + text, true);
         }
 
 /*        if (frame.getId() < 0x700) {
             if (id != frame.getId()) {
-                MainActivity.debug("BobDue.rtm.difffree [" + text + "]");
-                return new Message(frame, "-E-BobDue.rtm.difffree", true);
+                MainActivity.debug("CanSee.rtm.difffree [" + text + "]");
+                return new Message(frame, "-E-CanSee.rtm.difffree", true);
             }
         } else {
-            if (id < 0x700 || id > 0x7ff) { // crude but I don't know the exact behavior of BobDue here
-                MainActivity.debug("BobDue.rtm.diffiso [" + text + "]");
-                return new Message(frame, "BobDue.rtm.diffiso", true);
+            if (id < 0x700 || id > 0x7ff) { // crude but I don't know the exact behavior of CanSee here
+                MainActivity.debug("CanSee.rtm.diffiso [" + text + "]");
+                return new Message(frame, "CanSee.rtm.diffiso", true);
             }
         } */
         if (id != frame.getId()) {
-            MainActivity.debug("BobDue.rtm.diffid [" + text + "]");
-            return new Message(frame, "-E-BobDue.rtm.diffid:" + text, true);
+            MainActivity.debug("CanSee.rtm.diffid [" + text + "]");
+            return new Message(frame, "-E-CanSee.rtm.diffid:" + text, true);
         }
 
         // we could add answer length but that is not in the frame definition now

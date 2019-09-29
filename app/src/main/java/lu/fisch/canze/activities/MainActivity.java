@@ -73,7 +73,7 @@ import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.classes.DataLogger;
 import lu.fisch.canze.classes.DebugLogger;
 import lu.fisch.canze.database.CanzeDataSource;
-import lu.fisch.canze.devices.BobDue;
+import lu.fisch.canze.devices.CanSee;
 import lu.fisch.canze.devices.Device;
 import lu.fisch.canze.devices.ELM327;
 import lu.fisch.canze.devices.ELM327OverHttp;
@@ -332,7 +332,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             // create a new device
             switch (deviceType) {
                 case "Bob Due":
-                    device = new BobDue();
+                case "CanSee":
+                    device = new CanSee();
                     break;
                 case "ELM327":
                     device = new ELM327();
