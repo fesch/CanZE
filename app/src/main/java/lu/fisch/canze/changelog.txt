@@ -1,3 +1,4 @@
+2019-09-29 [Jeroen] Lint (Code->Analyse) on all canze:actors, canze:adaptors and canze:classes
 2019-09-18 [Jeroen] Lint (Code->Analyse) on all canze:activities.
 2019-09-18 [Jeroen] Tyres: avoid crash when message is null, fix error message, fix Lint warning
 

@@ -1,7 +1,5 @@
 package lu.fisch.canze.classes;
 
-import android.Manifest;
-import android.content.res.Resources;
 import android.os.Environment;
 
 import java.io.BufferedWriter;
@@ -11,8 +9,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-
-import android.content.Context;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.MainActivity;
@@ -29,7 +25,7 @@ public class DebugLogger {
      * Singleton stuff
      * ****************************/
 
-    private static DebugLogger instance = new DebugLogger();
+    private final static DebugLogger instance = new DebugLogger();
 
     private DebugLogger() {
     }
@@ -101,7 +97,6 @@ public class DebugLogger {
             //    bufferedWriter.close();
             //}
             bufferedWriter.close();
-            return;
         } catch (IOException e) {
             e.printStackTrace();
             logFile = null;

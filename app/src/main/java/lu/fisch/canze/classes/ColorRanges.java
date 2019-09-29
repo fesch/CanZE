@@ -28,7 +28,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import lu.fisch.awt.Color;
-import lu.fisch.canze.activities.MainActivity;
 
 /**
  * Created by robertfisch on 26.10.2015.
@@ -161,7 +160,7 @@ public class ColorRanges {
         final float[] result = new float[values.size()];
         //String debug = "Spacings: ";
         for (int i = 0; i < values.size(); i++) {
-            result[i] = (float) (values.get(i)-min)/(max-min);
+            result[i] = (values.get(i)-min)/(max-min);
             //debug+=", "+values.get(i);
         }
         //MainActivity.debug(debug);

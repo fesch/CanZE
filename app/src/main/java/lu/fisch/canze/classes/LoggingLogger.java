@@ -37,7 +37,7 @@ public class LoggingLogger implements FieldListener {
      * fields to register
      * ****************************/
 
-    private ArrayList<LoggerField> loggerFields = new ArrayList<>();
+    private final ArrayList<LoggerField> loggerFields = new ArrayList<>();
 
     public  ArrayList<LoggerField> getLoggingFields()
     {
@@ -46,9 +46,8 @@ public class LoggingLogger implements FieldListener {
 
     /**
      *
-     * @param field
+     * @param field     field to add to the logger
      * @param interval  in secondes!!
-     * @return
      */
     public void add(Field field, int interval) {
         LoggerField loggerField = new LoggerField(field,interval);
