@@ -4,10 +4,9 @@
         <shape>
             <gradient
                 android:angle="270"
-                android:centerColor="#ffaaadaa"
                 android:centerY="0.5"
-                android:endColor="#ffc4c6c4"
-                android:startColor="#ffededed"
+                android:centerColor="?attr/colorButtonNormal"
+                android:endColor="?attr/colorButtonNormal"
                 />
         </shape>
     </item>
@@ -16,9 +15,9 @@
             <shape>
                 <gradient
                     android:angle="0"
-                    android:startColor="#ff009900"
-                    android:centerColor="#ff0099FF"
-                    android:endColor="#ffE000E0"
+                    android:startColor="@color/Green"
+                    android:centerColor="@color/DodgerBlue"
+                    android:endColor="@color/DarkViolet"
                 />
             </shape>
         </clip>
