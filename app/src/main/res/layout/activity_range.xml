@@ -24,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/carRange"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="40sp"
         android:textAlignment="center"
         />
@@ -41,7 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/canzeRange"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="40sp"
         android:textAlignment="center" />
 
@@ -49,7 +47,7 @@
         android:text="@string/label_EstimatedDrivingStyleLoss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        android:textSize="18sp"
         />
 
 
@@ -92,7 +90,6 @@
                 android:text="%"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 />
