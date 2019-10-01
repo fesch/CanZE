@@ -1,0 +1,1 @@
+The next release will drop support for Android 4 and lower. These devices will no longer receive updates.
