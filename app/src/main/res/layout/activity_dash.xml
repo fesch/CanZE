@@ -16,7 +16,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border"
             android:orientation="vertical"
             >
 
@@ -138,6 +137,8 @@
                 custom:fieldSID="1fd.48"
                 custom:widget="tacho"
                 custom:text="Power (kWh)"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:foregroundColor="?android:attr/colorForeground"
                 />
 
             <lu.fisch.canze.widgets.WidgetView
@@ -152,6 +153,8 @@
                 custom:fieldSID="800.6107.24"
                 custom:widget="tacho"
                 custom:text="Delta (km)"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:foregroundColor="?android:attr/colorForeground"
                 />
 
             <lu.fisch.canze.widgets.WidgetView
@@ -166,6 +169,8 @@
                 custom:fieldSID="5d7.0"
                 custom:widget="tacho"
                 custom:text="Speed (km/h)"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:foregroundColor="?android:attr/colorForeground"
                 />
 
             <lu.fisch.canze.widgets.WidgetView
@@ -180,6 +185,8 @@
                 custom:fieldSID="800.6104.24"
                 custom:widget="tacho"
                 custom:text="Consumption (kWh/100km)"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:foregroundColor="?android:attr/colorForeground"
                 />
 
 
