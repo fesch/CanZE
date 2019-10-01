@@ -67,8 +67,15 @@ public class Tacho extends Drawable {
     public void draw(Graphics g)
     {
         // clean the surface
-            g.setColor(Color.WHITE);
-            g.fillRect(0,0,getWidth(),getHeight());
+        //g.setColor(Color.WHITE);
+        //g.fillRect(0,0,getWidth(),getHeight());
+        // background
+        g.setColor(getBackground());
+        g.fillRect(x, y, width, height);
+
+        // black border
+        g.setColor(getForeground());
+        g.drawRect(x, y, width, height);
 
         g.setTextSize(12);
 
@@ -83,10 +90,12 @@ public class Tacho extends Drawable {
         // determine center point
         Point center = new Point(x+(width/2),y+(int)(rayon+padding));
 
-        g.setColor(Color.BLACK);
+        //g.setColor(Color.BLACK);
+        g.setColor(getForeground());
         g.drawRect(x, y, width, height);
         // draw the frame
-            g.setColor(Color.GRAY_DARK);
+            //g.setColor(Color.GRAY_DARK);
+            g.setColor(getIntermediate());
             double ax,ay,bx=0,by=0;
             // draw right arm
             ax = center.x+rayon*Math.cos(mkRad(-90+alpha));
@@ -108,12 +117,14 @@ public class Tacho extends Drawable {
             // draw last chunk of arc
             g.drawLine((int)ax, (int)ay, (int)bx, (int)by);
         // draw the labels
-            g.setColor(Color.BLACK);
+            g.setColor(getForeground());
+            //g.setColor(Color.BLACK);
             double dist = 360-2*alpha;
             int actual = min;
         // draw the minor ticks
             if(minorTicks >0 || majorTicks>0) {
-                g.setColor(Color.GRAY_DARK);
+                //g.setColor(Color.GRAY_DARK);
+                g.setColor(getIntermediate());
                 int toTicks = minorTicks;
                 if (toTicks == 0) toTicks = majorTicks;
                 double accel = dist / ((max - min) / toTicks);
@@ -177,11 +188,13 @@ public class Tacho extends Drawable {
                     int th = g.stringHeight(text);
                     int tx = center.x-tw/2-3;
                     int ty = center.y+th;
-                    g.setColor(Color.WHITE);
+                        g.setColor(getBackground());
+                        //g.setColor(Color.WHITE);
                         g.fillRect(tx - 1, ty - th, tw + 7, th + 5);
                     //g.setColor(Color.BLACK);
                     //g.drawRect(tx - 1, ty - th, tw + 7, th +5);
-                    g.setColor(Color.GREEN_DARK);
+                    g.setColor(getForeground());
+                    //g.setColor(Color.GREEN_DARK);
                     g.drawString(text, tx, ty);
                 }
             }
