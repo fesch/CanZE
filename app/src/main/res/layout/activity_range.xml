@@ -145,6 +145,8 @@
                     '654.42':10000,
                     '427.49':10000
                 }"
+        custom:backgroundColor="?android:attr/colorBackground"
+        custom:foregroundColor="?android:attr/colorForeground"
         />
 
     <!-- debug line -->

@@ -48,6 +48,8 @@
                 custom:options="{
                                '427.40':'alt'
                                }"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:foregroundColor="?android:attr/colorForeground"
                 />
         </TableRow>
 
@@ -76,6 +78,8 @@
                                '7bb.6101.336':10000,
                                '800.6103.24':10000
                                }"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:foregroundColor="?android:attr/colorForeground"
                 />
 
         </TableRow>
@@ -114,6 +118,8 @@
                 custom:intervals="{
                                '427.49':10000
                                }"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:foregroundColor="?android:attr/colorForeground"
                 />
 
         </TableRow>
