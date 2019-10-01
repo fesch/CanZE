@@ -34,6 +34,8 @@
                 custom:fieldSID="793.625057.24"
                 custom:widget="timeplot"
                 custom:text="@string/label_LeakCurrentDc"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:foregroundColor="?android:attr/colorForeground"
                 />
 
         </TableRow>
@@ -56,6 +58,8 @@
                 custom:fieldSID="793.62505a.24"
                 custom:widget="timeplot"
                 custom:text="@string/label_LeakCurrentLf"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:foregroundColor="?android:attr/colorForeground"
                 />
 
         </TableRow>
@@ -78,6 +82,8 @@
                 custom:fieldSID="793.625059.24"
                 custom:widget="timeplot"
                 custom:text="@string/label_LeakCurrentHf"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:foregroundColor="?android:attr/colorForeground"
                 />
 
         </TableRow>
@@ -100,6 +106,8 @@
                 custom:fieldSID="793.625058.24"
                 custom:widget="timeplot"
                 custom:text="@string/label_LeakCurrentEhf"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:foregroundColor="?android:attr/colorForeground"
                 />
 
         </TableRow>

@@ -213,7 +213,8 @@
                                    '7ec.6233a7.24':'gradient',
                                    '764.6143.86':'colorline[3900],dot'
                                 }"
-
+                    custom:backgroundColor="?android:attr/colorBackground"
+                    custom:foregroundColor="?android:attr/colorForeground"
                     />
 
             </TableRow>
@@ -255,7 +256,8 @@
                                    '800.6105.24':2000,
                                    '42e.44':10000
                                    }"
-
+            custom:backgroundColor="?android:attr/colorBackground"
+            custom:foregroundColor="?android:attr/colorForeground"
             />
 
 
