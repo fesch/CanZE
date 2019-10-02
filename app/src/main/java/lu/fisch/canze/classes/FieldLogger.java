@@ -85,10 +85,12 @@ public class FieldLogger {
             //    bufferedWriter.newLine();
             //    bufferedWriter.close();
             //}
+            
+            // header
+            bufferedWriter.append("time,SID,value\n");
+            
             bufferedWriter.close();
             result = true;
-
-            log("time,SID,value");
         }
         catch (IOException e) {
             e.printStackTrace();
