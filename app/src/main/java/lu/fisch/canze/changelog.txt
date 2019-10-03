@@ -1,3 +1,4 @@
+2019-04-10 [Jeroen] Title fix in Battery, color changes to avoid dark blue
 2019-10-03 [Jeroen] Widgets adhere to titleColor
 2019-10-03 [Jeroen] Gradle to 3.5.1
 2019-10-03 [Jeroen] Changed some color literals to resource names in consumption

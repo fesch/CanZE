@@ -135,6 +135,8 @@
         custom:fieldSID="654.42,427.49"
         custom:widget="timeplot"
         custom:text="@string/graph_DistanceEnergy"
+        custom:colorRanges="[
+                {'sid':'427.49','color':'@color/second','from':-40,'to':100}]"
         custom:options="{
                     '427.49':'alt,dot'
                 }"
