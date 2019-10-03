@@ -1,4 +1,8 @@
-2019-09-29 [Jeroen] Reformated Settings for consistency
+2019-10-03 [Jeroen] Replaced soem color literals to resource names in consumption
+2019-10-03 [Jeroen] Added run time decoding of color resource names to allow names in widget json config strings
+2019-10-02 [Arnout] Changed header log logic
+2019-10-02 [Bob] Avoid null exception when clearing fields
+2019-09-29 [Jeroen] Reformatted Settings for consistency
 2019-09-29 [Jeroen] Corrected icon error for 12 volt battery (+- from white to transparent)
 2019-09-29 [Jeroen] Renamed "Bob Due" to "CanSee"
 2019-09-29 [Jeroen] Small layout issues

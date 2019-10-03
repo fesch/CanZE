@@ -20,4 +20,8 @@
     <color name="DodgerBlue">#1E90FF</color>
     <color name="DarkViolet">#9400D3</color>
 
+    <!-- delta bar graph -->
+    <color name="transGreen">#a030ff30</color>
+    <color name="transRed">#a0ff3030</color>
+
 </resources>
