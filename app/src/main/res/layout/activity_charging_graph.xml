@@ -40,6 +40,8 @@
                 custom:fieldSID="42e.38,427.40"
                 custom:widget="timeplot"
                 custom:text="@string/graph_PilotPower"
+                custom:colorRanges="[
+                {'sid':'427.40','color':'@color/second','from':-40,'to':100}]"
                 custom:timeScale="4"
                 custom:intervals="{
                                '42e.38':10000,
@@ -73,6 +75,8 @@
                 custom:fieldSID="7bb.6101.336,800.6103.24"
                 custom:widget="timeplot"
                 custom:text="@string/graph_MaxRealChPwr"
+                custom:colorRanges="[
+                {'sid':'800.6103.24','color':'@color/second','from':-40,'to':100}]"
                 custom:timeScale="4"
                 custom:intervals="{
                                '7bb.6101.336':10000,
@@ -109,7 +113,8 @@
                 custom:colorRanges="[
                 {'sid':'427.49','color':'#3ee9ff','from':0,'to':8},
                 {'sid':'427.49','color':'#008a1d','from':8,'to':17},
-                {'sid':'427.49','color':'#ffaa17','from':17,'to':25}]"
+                {'sid':'427.49','color':'#ffaa17','from':17,'to':25},
+                {'sid':'42e.44','color':'@color/second','from':-40,'to':100}]"
                 custom:options="{
                                 '427.49':'gradient',
                                 '42e.44':'alt'

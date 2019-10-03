@@ -248,8 +248,8 @@
             custom:widget="timeplot"
             custom:text="@string/graph_Climatech"
             custom:colorRanges="[
-                    {'sid':'42e.44','color':'#000000','from':-100,'to':100}
-                    ]"
+                    {'sid':'42e.44','color':'#808080','from':-100,'to':100},
+                    {'sid':'764.6121.26','color':'@color/second','from':-40,'to':100}]"
             custom:intervals="{
                                    '764.6143.110':10000,
                                    '764.6121.26':10000,

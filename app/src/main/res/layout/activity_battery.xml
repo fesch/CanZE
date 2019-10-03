@@ -38,6 +38,7 @@
                 custom:text="@string/graph_SOH"
                 custom:backgroundColor="?android:attr/colorBackground"
                 custom:foregroundColor="?android:attr/colorForeground"
+                custom:titleColor="?android:attr/colorForeground"
                 />
 
             <lu.fisch.canze.widgets.WidgetView
@@ -53,6 +54,8 @@
                 custom:fieldSID="7bb.6103.192,654.25"
                 custom:widget="timeplot"
                 custom:text="@string/graph_RealIndicatedSoc"
+                custom:colorRanges="[
+                    {'sid':'654.25','color':'@color/second','from':-40,'to':100}]"
                 custom:backgroundColor="?android:attr/colorBackground"
                 custom:foregroundColor="?android:attr/colorForeground"
                 />
@@ -115,6 +118,7 @@
                 custom:text="@string/graph_CellVoltages"
                 custom:backgroundColor="?android:attr/colorBackground"
                 custom:foregroundColor="?android:attr/colorForeground"
+                custom:titleColor="?android:attr/colorForeground"
                 />
 
             <lu.fisch.canze.widgets.WidgetView
@@ -133,6 +137,7 @@
                 custom:text="@string/graph_ModuleTemperatures"
                 custom:backgroundColor="?android:attr/colorBackground"
                 custom:foregroundColor="?android:attr/colorForeground"
+                custom:titleColor="?android:attr/colorForeground"
                 />
 
         </TableRow>
