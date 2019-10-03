@@ -22,7 +22,9 @@
 package lu.fisch.awt;
 
 
-public class Color 
+import lu.fisch.canze.activities.MainActivity;
+
+public class Color
 {
 	private int alpha = 0xff;
 	private int red   = 0;
@@ -43,7 +45,7 @@ public class Color
 	public static final Color RENAULT_RED    = new Color(250,36,4);
 	public static final Color RENAULT_BLUE   = new Color(11,198,209);
 	public static final Color RENAULT_GREEN  = new Color(133,196,26);
-	public static final Color RENAULT_YELLOW = new Color(251,207,00);
+	public static final Color RENAULT_YELLOW = new Color(251,207,0);
 
 	public Color()
 	{
@@ -70,21 +72,23 @@ public class Color
 	{
 		return android.graphics.Color.argb(alpha,red, green, blue);
 	}
-	
+
 	// original JDK code
-	public static Color decode(String nm) throws NumberFormatException 
-	{
-			Long longval = Long.decode(nm);
-			long i = longval.longValue();
-			if (i< 0x1000000) return new Color(
-					(int)((i >> 16) & 0xFF),
-					(int)((i >> 8) & 0xFF),
-					(int)(i & 0xFF));
-			return new Color(
-					(int)((i >> 24) & 0xFF),
-					(int)((i >> 16) & 0xFF),
-					(int)((i >> 8) & 0xFF),
-					(int)(i & 0xFF));
+	public static Color decode(String nm) throws NumberFormatException {
+		if (!nm.startsWith("#")) {
+			int id = MainActivity.getInstance().getResources().getIdentifier(nm, "color", MainActivity.getInstance().getPackageName());
+			nm = MainActivity.getStringSingle(id);
+		}
+		long i = Long.decode(nm);
+		if (i < 0x1000000) return new Color(
+				(int) ((i >> 16) & 0xFF),
+				(int) ((i >> 8) & 0xFF),
+				(int) (i & 0xFF));
+		return new Color(
+				(int) ((i >> 24) & 0xFF),
+				(int) ((i >> 16) & 0xFF),
+				(int) ((i >> 8) & 0xFF),
+				(int) (i & 0xFF));
 	}
 
 	public int getAlpha()
