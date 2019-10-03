@@ -285,7 +285,7 @@ public class Plotter extends Drawable {
         // draw the title
         if(title!=null && !title.equals(""))
         {
-            g.setColor(Color.BLUE);
+            g.setColor(getTitleColor());
             g.setTextSize(20);
             int th = g.stringHeight(title);
             int tx = getX()+width-barWidth+8;

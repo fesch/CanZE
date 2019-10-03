@@ -115,7 +115,7 @@ public class Label extends Drawable {
         // draw the title
         if(title!=null && !title.equals(""))
         {
-            g.setColor(Color.BLUE);
+            g.setColor(getTitleColor());
             g.setTextSize(20);
             int tx = getX()+8;
             int ty = getY()+g.stringHeight(title)+8;
