@@ -177,7 +177,7 @@ public class Bar extends Drawable {
         // draw the title
         if(title!=null && !title.equals(""))
         {
-            g.setColor(Color.BLUE);
+            g.setColor(getTitleColor());
             g.setTextSize(16);
             int tw = g.stringWidth(title);
             int th = g.stringHeight(title);
