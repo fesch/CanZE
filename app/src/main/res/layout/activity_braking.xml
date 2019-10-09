@@ -133,10 +133,11 @@
             </RelativeLayout>
 
             <TextView
+                android:background="?attr/colorButtonNormal"
                 android:text="@string/help_AllTorques"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="40dp"
                 />
 
         </LinearLayout>

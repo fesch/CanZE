@@ -55,29 +55,13 @@
                 custom:widget="timeplot"
                 custom:text="@string/graph_RealIndicatedSoc"
                 custom:colorRanges="[
-                    {'sid':'654.25','color':'@color/second','from':-40,'to':100}]"
+                    {'sid':'654.25','color':'?android:attr/colorForeground','from':-40,'to':100}]"
                 custom:backgroundColor="?android:attr/colorBackground"
                 custom:foregroundColor="?android:attr/colorForeground"
                 />
 
         </TableRow>
 
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:id="@+id/textBatterySerial"
-                android:layout_weight="1"
-                android:layout_gravity="center" />
-        </TableRow>
 
         <TableRow
             android:layout_width="fill_parent"
@@ -91,7 +75,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?attr/colorButtonNormal"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text=""
                 android:id="@+id/link"
                 android:layout_weight="1"
@@ -142,6 +125,22 @@
 
         </TableRow>
 
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/textBatterySerial"
+                android:layout_weight="1"
+                android:layout_gravity="center" />
+        </TableRow>
     </TableLayout>
     <!-- debug line -->
 

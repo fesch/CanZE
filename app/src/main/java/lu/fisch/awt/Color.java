@@ -22,6 +22,8 @@
 package lu.fisch.awt;
 
 
+import android.util.TypedValue;
+
 import lu.fisch.canze.activities.MainActivity;
 
 public class Color
@@ -75,20 +77,37 @@ public class Color
 
 	// original JDK code
 	public static Color decode(String nm) throws NumberFormatException {
-		if (!nm.startsWith("#")) {
-			int id = MainActivity.getInstance().getResources().getIdentifier(nm, "color", MainActivity.getInstance().getPackageName());
-			nm = MainActivity.getStringSingle(id);
+		try {
+			long i;
+			if (nm.startsWith("@")) {
+				int id = MainActivity.getInstance().getResources().getIdentifier(nm, "color", MainActivity.getInstance().getPackageName());
+				i = Long.decode(MainActivity.getStringSingle(id));
+			} else if (nm.startsWith("?")) {
+				TypedValue value = new TypedValue();
+				int id = android.R.attr.colorForeground;
+				// haven't found a method yet to figure ID of a named attr, ie ?android:attr/colorForeground
+				//int id = MainActivity.getInstance().getResources().getIdentifier(nm, "styleable", MainActivity.getInstance().getPackageName());
+
+				// second problem is value seems not to change after a theme change / activity restart. It does when going back to main and back again.
+				// maybe getInstance should not be taken from main but from the current activity. But that would be pretty hard to do, as ie Color
+				// is instantiated from WidgetView, which is also not an activity
+				MainActivity.getInstance().getTheme().resolveAttribute(id, value, true);
+				i = value.data;
+			} else {
+				i = Long.decode(nm);
+			}
+			if (i < 0x1000000) return new Color(
+					(int) ((i >> 16) & 0xFF),
+					(int) ((i >> 8) & 0xFF),
+					(int) (i & 0xFF));
+			return new Color(
+					(int) ((i >> 24) & 0xFF),
+					(int) ((i >> 16) & 0xFF),
+					(int) ((i >> 8) & 0xFF),
+					(int) (i & 0xFF));
+		} catch (NumberFormatException e) {
+			return new Color (0xff, 0x0, 0xff);
 		}
-		long i = Long.decode(nm);
-		if (i < 0x1000000) return new Color(
-				(int) ((i >> 16) & 0xFF),
-				(int) ((i >> 8) & 0xFF),
-				(int) (i & 0xFF));
-		return new Color(
-				(int) ((i >> 24) & 0xFF),
-				(int) ((i >> 16) & 0xFF),
-				(int) ((i >> 8) & 0xFF),
-				(int) (i & 0xFF));
 	}
 
 	public int getAlpha()
