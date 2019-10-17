@@ -305,8 +305,8 @@
                     '654.42':10000
                 }"
                 custom:colorRanges="[
-                    {'sid':'800.6107.24','color':'@color/Green','from':-12,'to':0},
-                    {'sid':'800.6107.24','color':'@color/DarkRed','from':0,'to':12},
+                    {'sid':'800.6107.24','color':'@color/transGreen','from':-12,'to':0},
+                    {'sid':'800.6107.24','color':'@color/transRed','from':0,'to':12},
                     {'sid':'654.42','color':'?android:attr/colorForeground','from':0,'to':1000}
                 ]"
                 custom:options="{

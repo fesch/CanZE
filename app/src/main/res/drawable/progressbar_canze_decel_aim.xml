@@ -5,8 +5,8 @@
             <shape>
                 <gradient
                     android:angle="0"
-                    android:startColor="@color/Navy"
-                    android:endColor="@color/Navy"
+                    android:startColor="@color/DodgerBlue"
+                    android:endColor="@color/DodgerBlue"
                     />
             </shape>
         </clip>
