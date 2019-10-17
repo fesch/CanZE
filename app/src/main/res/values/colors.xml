@@ -21,8 +21,8 @@
     <color name="DarkViolet">#9400D3</color>
 
     <!-- delta bar graph -->
-    <color name="transGreen">#a030ff30</color>
-    <color name="transRed">#a0ff3030</color>
+    <color name="transGreen">#ff30ff30</color>
+    <color name="transRed">#ffff3030</color>
 
     <color name="second">#e0a000</color>
 
