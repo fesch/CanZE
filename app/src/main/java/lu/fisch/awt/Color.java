@@ -22,7 +22,12 @@
 package lu.fisch.awt;
 
 
+import android.app.ActivityManager;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.util.TypedValue;
+
+import java.util.List;
 
 import lu.fisch.canze.activities.MainActivity;
 
@@ -76,7 +81,7 @@ public class Color
 	}
 
 	// original JDK code
-	public static Color decode(String nm) throws NumberFormatException {
+	public static Color decode(String nm, Resources.Theme theme) throws NumberFormatException {
 		try {
 			long i;
 			if (nm.startsWith("@")) {
@@ -91,7 +96,7 @@ public class Color
 				// second problem is value seems not to change after a theme change / activity restart. It does when going back to main and back again.
 				// maybe getInstance should not be taken from main but from the current activity. But that would be pretty hard to do, as ie Color
 				// is instantiated from WidgetView, which is also not an activity
-				MainActivity.getInstance().getTheme().resolveAttribute(id, value, true);
+				theme.resolveAttribute(id, value, true);
 				i = value.data;
 			} else {
 				i = Long.decode(nm);
@@ -108,6 +113,11 @@ public class Color
 		} catch (NumberFormatException e) {
 			return new Color (0xff, 0x0, 0xff);
 		}
+	}
+
+	// original JDK code
+	public static Color decode(String nm) throws NumberFormatException {
+		return decode(nm,MainActivity.getInstance().getTheme());
 	}
 
 	public int getAlpha()
