@@ -28,7 +28,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Environment;
@@ -425,8 +424,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             Date buildDate = new Date(BuildConfig.TIMESTAMP);
             SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHM), Locale.getDefault());
-            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            tv.setText(MainActivity.getStringSingle(R.string.version) + pInfo.versionName + "  " + MainActivity.getStringSingle(R.string.build) + sdf.format(buildDate));
+            tv.setText(MainActivity.getStringSingle(R.string.version) + BuildConfig.VERSION_NAME + " (" + BuildConfig.BUILD_TYPE + ") " + MainActivity.getStringSingle(R.string.build) + sdf.format(buildDate));
 
         } catch (Exception e) {
             e.printStackTrace();
