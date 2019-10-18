@@ -1,3 +1,5 @@
+2019-04-18 [Jeroen] Added Build variant to info in Settings screen
+2019-04-18 [Bob] Added theme as optional parameter to Color.decode
 2019-04-17 [Jeroen] Widget colors use foreground theme color (this is intermediate)
 2019-04-17 [Jeroen] Better colors in delta widget and decel (blue) bar
 2019-04-10 [Jeroen] Title fix in Battery, color changes to avoid dark blue
