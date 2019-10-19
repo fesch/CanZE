@@ -168,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     // private Fragment actualFragment;
 
     static private Resources res;
+    static private Resources.Theme localTheme;
 
     // bluetooth stuff
     private MenuItem bluetoothMenutItem = null;
@@ -1033,4 +1034,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT;
     }
 
+    public void setLocalTheme (Resources.Theme localTheme) {
+        this.localTheme = localTheme;
+    }
+
+    public Resources.Theme getLocalTheme () {
+        return this.localTheme;
+    }
+
 }
+

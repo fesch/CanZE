@@ -68,6 +68,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         }
 
         super.onCreate(savedInstanceState);
+        MainActivity.getInstance().setLocalTheme (this.getTheme());
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
@@ -121,6 +122,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     protected void onResume() {
         super.onResume();
         MainActivity.debug("CanzeActivity: onResume");
+        MainActivity.getInstance().setLocalTheme (this.getTheme());
         // if we paused ourselvers
         if (iLeftMyOwn && !widgetClicked) {
             MainActivity.debug("CanzeActivity: onResume > reloadBluetooth");

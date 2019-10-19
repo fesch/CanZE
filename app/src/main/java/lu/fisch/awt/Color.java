@@ -27,6 +27,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.util.TypedValue;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import lu.fisch.canze.activities.MainActivity;
@@ -81,22 +82,23 @@ public class Color
 	}
 
 	// original JDK code
-	public static Color decode(String nm, Resources.Theme theme) throws NumberFormatException {
+	public static Color decode(String nm) throws NumberFormatException {
 		try {
 			long i;
 			if (nm.startsWith("@")) {
 				int id = MainActivity.getInstance().getResources().getIdentifier(nm, "color", MainActivity.getInstance().getPackageName());
 				i = Long.decode(MainActivity.getStringSingle(id));
 			} else if (nm.startsWith("?")) {
-				TypedValue value = new TypedValue();
-				int id = android.R.attr.colorForeground;
+				//int id = android.R.attr.colorForeground;
+				int id = getResId(nm.substring(nm.lastIndexOf('/')+1));
 				// haven't found a method yet to figure ID of a named attr, ie ?android:attr/colorForeground
 				//int id = MainActivity.getInstance().getResources().getIdentifier(nm, "styleable", MainActivity.getInstance().getPackageName());
 
 				// second problem is value seems not to change after a theme change / activity restart. It does when going back to main and back again.
 				// maybe getInstance should not be taken from main but from the current activity. But that would be pretty hard to do, as ie Color
 				// is instantiated from WidgetView, which is also not an activity
-				theme.resolveAttribute(id, value, true);
+				TypedValue value = new TypedValue();
+				MainActivity.getInstance().getLocalTheme().resolveAttribute(id, value, true);
 				i = value.data;
 			} else {
 				i = Long.decode(nm);
@@ -113,11 +115,6 @@ public class Color
 		} catch (NumberFormatException e) {
 			return new Color (0xff, 0x0, 0xff);
 		}
-	}
-
-	// original JDK code
-	public static Color decode(String nm) throws NumberFormatException {
-		return decode(nm,MainActivity.getInstance().getTheme());
 	}
 
 	public int getAlpha()
@@ -138,6 +135,17 @@ public class Color
 	public int getBlue()
 	{
 		return blue;
+	}
+
+	private static int getResId(String resName)
+	{
+		try {
+			Field idField = android.R.attr.class.getDeclaredField(resName);
+			return idField.getInt(idField);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
 	}
 	
 }
