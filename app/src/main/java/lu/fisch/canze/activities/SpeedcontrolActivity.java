@@ -32,13 +32,15 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // reset starting time
-                timeStart = System.currentTimeMillis();
-                // take last distance as starting distance
-                distanceStart = distanceEnd;
+                if (distanceEnd != 0) { // avoid setting invalid start value (0)
+                    // reset starting time
+                    timeStart = System.currentTimeMillis();
+                    // take last distance as starting distance
+                    distanceStart = distanceEnd;
 
-                TextView tv = findViewById(R.id.speed);
-                if (tv != null) tv.setText("...");
+                    TextView tv = findViewById(R.id.speed);
+                    if (tv != null) tv.setText("...");
+                }
             }
         });
     }
@@ -62,20 +64,24 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                 switch (fieldId) {
                     // positive torque
                     case SID_Odometer:
+                        distanceEnd = field.getValue();
                         // if starting time has been set
                         if (timeStart != 0) {
-                            // calculate speed
-                            long timeEnd = System.currentTimeMillis();
-                            distanceEnd = field.getValue();
-                            double speed = (distanceEnd - distanceStart) / ((timeEnd - timeStart) / (1000 * 60 * 60));
-                            // show it
-                            TextView tv = findViewById(R.id.speed);
-                            if (tv != null) tv.setText(speed + "");
+                            // some distance has been traveled
+                            if (distanceStart != distanceEnd) {
+                                // calculate speed
+                                long timeEnd = System.currentTimeMillis();
+                                double speed = ((distanceEnd - distanceStart) * 3600000.0) / (timeEnd - timeStart);
+                                // show it
+                                TextView tv = findViewById(R.id.speed);
+                                if (tv != null)
+                                    tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
+                            }
                         } else {
-                            // update starting distance
+                            // set starting distance as long as starting time is not set
+                            // maybe change to also set start time here after a tap for precision
                             distanceStart = field.getValue();
                         }
-
                         break;
                 }
             }
