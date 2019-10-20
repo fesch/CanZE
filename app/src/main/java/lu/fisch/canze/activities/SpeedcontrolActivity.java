@@ -16,7 +16,7 @@ import java.util.Locale;
 
 public class SpeedcontrolActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    private static final String SID_Odometer = "5d7.16";
+    private static final String SID_Odometer = "7ec.6233de.24";
 
     private long timeStart = 0;
     private double distanceStart = 0;
