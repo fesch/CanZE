@@ -42,6 +42,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
@@ -290,6 +291,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             debugLogMode = settings.getBoolean("optDebugLog", false);
             fieldLogMode = settings.getBoolean("optFieldLog", false);
             toastLevel = settings.getInt("optToast", 1);
+
 
             if (bluetoothDeviceName != null && !bluetoothDeviceName.isEmpty() && bluetoothDeviceName.length() > 4)
                 BluetoothManager.getInstance().setDummyMode(bluetoothDeviceName.substring(0, 4).compareTo("HTTP") == 0);
@@ -575,6 +577,16 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     @Override
     public void onResume() {
         debug("MainActivity: onResume");
+
+        SharedPreferences set = getSharedPreferences(PREFERENCES_FILE, 0);
+        if (set.getBoolean("optDark", false)) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            //finish();
+            //startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
+        } else
+        {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
 
         instance = this; // If I am not mistaken, instance should only ever be populated in onCreate
 

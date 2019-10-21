@@ -39,13 +39,6 @@
         app:layout_constraintStart_toStartOf="parent"
         >
 
-        <TextView
-            android:id="@+id/textDebug"
-            android:text="@string/default_debug"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
     </LinearLayout>
 
     <TextView
@@ -58,5 +51,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/speed" />
+
+    <TextView
+        android:id="@+id/textDebug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="696dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
