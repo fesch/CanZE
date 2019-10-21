@@ -21,6 +21,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
     private long timeStart = 0;
     private double distanceStart = 0;
     private double distanceEnd = 0;
+    private double distanceLast = 0;
 
 
     @Override
@@ -28,8 +29,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_speedcontrol);
 
-        TextView tv = findViewById(R.id.speed);
-        tv.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener oc = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (distanceEnd != 0) { // avoid setting invalid start value (0)
@@ -40,9 +40,24 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
 
                     TextView tv = findViewById(R.id.speed);
                     if (tv != null) tv.setText("...");
+
+                    if (MainActivity.milesMode)
+                        ((TextView) findViewById(R.id.unit)).setText("mi/h");
+                    else
+                        ((TextView) findViewById(R.id.unit)).setText("km/h");
+
+
+
                 }
             }
-        });
+
+            ;
+        };
+
+        // allow to click on any
+        findViewById(R.id.speed).setOnClickListener(oc);
+        findViewById(R.id.title).setOnClickListener(oc);
+        findViewById(R.id.unit).setOnClickListener(oc);
     }
 
     @Override
@@ -68,7 +83,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                         // if starting time has been set
                         if (timeStart != 0) {
                             // some distance has been traveled
-                            if (distanceStart != distanceEnd) {
+                            if (distanceStart != distanceEnd && distanceLast!=distanceEnd) {
                                 // calculate speed
                                 long timeEnd = System.currentTimeMillis();
                                 double speed = ((distanceEnd - distanceStart) * 3600000.0) / (timeEnd - timeStart);
@@ -76,11 +91,22 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                 TextView tv = findViewById(R.id.speed);
                                 if (tv != null)
                                     tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
+
+                                distanceLast = distanceEnd;
+
+                                ((TextView) findViewById(R.id.textDebug)).setText("Distance: "+
+                                        (distanceEnd - distanceStart)+
+                                        (MainActivity.milesMode?"mi/h":"km/h")+
+                                        " - "+
+                                        "Time: "+timeToStr(timeEnd - timeStart)
+                                        );
+
                             }
                         } else {
                             // set starting distance as long as starting time is not set
                             // maybe change to also set start time here after a tap for precision
                             distanceStart = field.getValue();
+                            distanceLast = distanceStart;
                         }
                         break;
                 }
@@ -88,4 +114,21 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
         });
     }
 
+    public String timeToStr(long time)
+    {
+        String r = "";
+
+        long h = time/3600;
+        long m = (time%3600)/60;
+        long s = (time % 60);
+
+        if(h<10)r+="0";
+        r+=h;
+        if(m<10)r+="0";
+        r+=m;
+        if(s<10)r+="0";
+        r+=s;
+
+        return r;
+    }
 }
