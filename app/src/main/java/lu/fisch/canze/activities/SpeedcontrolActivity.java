@@ -1,12 +1,14 @@
 package lu.fisch.canze.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -32,23 +34,16 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
         View.OnClickListener oc = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (distanceEnd != 0) { // avoid setting invalid start value (0)
-                    // reset starting time
-                    timeStart = System.currentTimeMillis();
-                    // take last distance as starting distance
-                    distanceStart = distanceEnd;
+                // reset
+                timeStart = 0;
 
-                    TextView tv = findViewById(R.id.speed);
-                    if (tv != null) tv.setText("...");
+                TextView tv = findViewById(R.id.speed);
+                if (tv != null) tv.setText("...");
 
-                    if (MainActivity.milesMode)
-                        ((TextView) findViewById(R.id.unit)).setText("mi/h");
-                    else
-                        ((TextView) findViewById(R.id.unit)).setText("km/h");
-
-
-
-                }
+                if (MainActivity.milesMode)
+                    ((TextView) findViewById(R.id.unit)).setText("mi/h");
+                else
+                    ((TextView) findViewById(R.id.unit)).setText("km/h");
             }
 
             ;
@@ -83,16 +78,18 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                         // if starting time has been set
                         if (timeStart != 0) {
                             // some distance has been traveled
-                            if (distanceStart != distanceEnd && distanceLast!=distanceEnd) {
-                                // calculate speed
+                            if (distanceStart!=distanceEnd) {
                                 long timeEnd = System.currentTimeMillis();
-                                double speed = ((distanceEnd - distanceStart) * 3600000.0) / (timeEnd - timeStart);
-                                // show it
-                                TextView tv = findViewById(R.id.speed);
-                                if (tv != null)
-                                    tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
 
-                                distanceLast = distanceEnd;
+                                // only update if distance changed ...
+                                if(distanceLast!=distanceEnd) {
+                                    // calculate speed
+                                    double speed = ((distanceEnd - distanceStart) * 3600000.0) / (timeEnd - timeStart);
+                                    // show it
+                                    TextView tv = findViewById(R.id.speed);
+                                    if (tv != null)
+                                        tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
+                                }
 
                                 ((TextView) findViewById(R.id.textDebug)).setText("Distance: "+
                                         (distanceEnd - distanceStart)+
@@ -104,10 +101,11 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                             }
                         } else {
                             // set starting distance as long as starting time is not set
-                            // maybe change to also set start time here after a tap for precision
-                            distanceStart = field.getValue();
-                            distanceLast = distanceStart;
+                            distanceStart = distanceEnd;
+                            // set start time
+                            timeStart = System.currentTimeMillis();
                         }
+                        distanceLast = distanceEnd;
                         break;
                 }
             }
