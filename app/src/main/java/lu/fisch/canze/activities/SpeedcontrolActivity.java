@@ -1,17 +1,12 @@
 package lu.fisch.canze.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -19,11 +14,15 @@ import java.util.Locale;
 public class SpeedcontrolActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     private static final String SID_Odometer = "7ec.6233de.24";
+    private static final String SID_RealSpeed = "5d7.0";  //ESC-ABS
 
     private long timeStart = 0;
+    private long timeLast = 0;
     private double distanceStart = 0;
     private double distanceEnd = 0;
     private double distanceLast = 0;
+    private double distanceInterpolated = 0;
+    private double speed = 0;
 
 
     @Override
@@ -59,7 +58,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
         addField(SID_Odometer, 100);
-
+        addField(SID_RealSpeed, 100);
     }
 
     @Override
@@ -72,19 +71,33 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                 String fieldId = field.getSID();
 
                 switch (fieldId) {
-                    // positive torque
+                    case SID_RealSpeed:
+                        speed = field.getValue();
+                        break;
                     case SID_Odometer:
                         distanceEnd = field.getValue();
+                        long timeEnd = System.currentTimeMillis();
                         // if starting time has been set
                         if (timeStart != 0) {
                             // some distance has been traveled
                             if (distanceStart!=distanceEnd) {
-                                long timeEnd = System.currentTimeMillis();
-
                                 // only update if distance changed ...
                                 if(distanceLast!=distanceEnd) {
+                                    distanceInterpolated=distanceEnd;
                                     // calculate speed
                                     double speed = ((distanceEnd - distanceStart) * 3600000.0) / (timeEnd - timeStart);
+                                    // show it
+                                    TextView tv = findViewById(R.id.speed);
+                                    if (tv != null)
+                                        tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
+                                }
+                                else // interpolate distance using the speed
+                                {
+                                    double distanceDelta = speed*(timeEnd - timeLast)/3600000.0;
+                                    distanceInterpolated+=distanceDelta;
+
+                                    // calculate speed
+                                    double speed = ((distanceInterpolated - distanceStart) * 3600000.0) / (timeEnd - timeStart);
                                     // show it
                                     TextView tv = findViewById(R.id.speed);
                                     if (tv != null)
@@ -106,6 +119,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                             timeStart = System.currentTimeMillis();
                         }
                         distanceLast = distanceEnd;
+                        timeLast = timeEnd;
                         break;
                 }
             }
