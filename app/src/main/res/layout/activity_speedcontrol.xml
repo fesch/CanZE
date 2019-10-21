@@ -8,7 +8,7 @@
     tools:context=".activities.SpeedcontrolActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -22,13 +22,14 @@
         android:id="@+id/speed"
         android:layout_width="wrap_content"
         android:layout_height="178dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:text="@string/default_Dash"
         android:textAlignment="center"
         android:textSize="100sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -39,11 +40,6 @@
         >
 
         <TextView
-            android:text="@string/label_debug"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-        <TextView
             android:id="@+id/textDebug"
             android:text="@string/default_debug"
             android:layout_width="wrap_content"
@@ -51,5 +47,16 @@
             />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="click any label to start or reset"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/speed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
