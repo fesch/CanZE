@@ -36,6 +36,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
             public void onClick(View v) {
                 // reset
                 timeStart = 0;
+                distanceLast = 0;
                 go=true;
 
                 TextView tv = findViewById(R.id.speed);
@@ -81,6 +82,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                         long timeEnd = System.currentTimeMillis();
                         // if starting time has been set
                         if (go) {
+                            // speed measuring has been started normally
                             if (timeStart!=0)
                             {
                                 // some distance has been traveled
@@ -115,7 +117,9 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                     );
 
                                 }
-                            } else{
+                            }
+                            else if (distanceLast!=distanceEnd)
+                            {
                                 // set starting distance as long as starting time is not set
                                 distanceStart = distanceEnd;
                                 // set start time
