@@ -39,6 +39,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -580,7 +581,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         SharedPreferences set = getSharedPreferences(PREFERENCES_FILE, 0);
         if (set.getBoolean("optDark", false)) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            if (Build.VERSION.SDK_INT > 23)
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             //finish();
             //startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
         } else
