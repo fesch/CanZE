@@ -151,7 +151,7 @@
             />
 
         <TextView
-            android:id="@+id/textDetails"
+            android:id="@+id/textDebug"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/default_debug" />
