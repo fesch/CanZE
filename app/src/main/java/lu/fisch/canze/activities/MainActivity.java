@@ -585,7 +585,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             //startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
         } else
         {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         }
 
         instance = this; // If I am not mistaken, instance should only ever be populated in onCreate
