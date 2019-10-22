@@ -66,16 +66,19 @@
         android:id="@+id/textDetails2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/default_debug"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="712dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textDebug"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="@string/label_debug"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="712dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textDetails2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
