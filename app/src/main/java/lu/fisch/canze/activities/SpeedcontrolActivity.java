@@ -23,6 +23,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
     private double distanceLast = 0;
     private double distanceInterpolated = 0;
     private double speed = 0;
+    private boolean go = false;
 
 
     @Override
@@ -35,6 +36,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
             public void onClick(View v) {
                 // reset
                 timeStart = 0;
+                go=true;
 
                 TextView tv = findViewById(R.id.speed);
                 if (tv != null) tv.setText("...");
@@ -78,48 +80,50 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                         distanceEnd = field.getValue();
                         long timeEnd = System.currentTimeMillis();
                         // if starting time has been set
-                        if (timeStart != 0) {
-                            // some distance has been traveled
-                            if (distanceStart!=distanceEnd) {
-                                // only update if distance changed ...
-                                if(distanceLast!=distanceEnd) {
-                                    distanceInterpolated=distanceEnd;
-                                    // calculate speed
-                                    double speed = ((distanceEnd - distanceStart) * 3600000.0) / (timeEnd - timeStart);
-                                    // show it
-                                    TextView tv = findViewById(R.id.speed);
-                                    if (tv != null)
-                                        tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
+                        if (go) {
+                            if (timeStart!=0)
+                            {
+                                // some distance has been traveled
+                                if (distanceStart != distanceEnd) {
+                                    // only update if distance changed ...
+                                    if (distanceLast != distanceEnd) {
+                                        distanceInterpolated = distanceEnd;
+                                        // calculate speed
+                                        double speed = ((distanceEnd - distanceStart) * 3600000.0) / (timeEnd - timeStart);
+                                        // show it
+                                        TextView tv = findViewById(R.id.speed);
+                                        if (tv != null)
+                                            tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
+                                    } else // interpolate distance using the speed
+                                    {
+                                        double distanceDelta = speed * (timeEnd - timeLast) / 3600000.0;
+                                        distanceInterpolated += distanceDelta;
+
+                                        // calculate speed
+                                        double speed = ((distanceInterpolated - distanceStart) * 3600000.0) / (timeEnd - timeStart);
+                                        // show it
+                                        TextView tv = findViewById(R.id.speed);
+                                        if (tv != null)
+                                            tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
+                                    }
+
+                                    ((TextView) findViewById(R.id.textDebug)).setText("Distance: " +
+                                            String.format(Locale.getDefault(), "%.1f", (distanceEnd - distanceStart)) +
+                                            (MainActivity.milesMode ? "mi" : "km") +
+                                            " - " +
+                                            "Time: " + timeToStr(timeEnd - timeStart)
+                                    );
+
                                 }
-                                else // interpolate distance using the speed
-                                {
-                                    double distanceDelta = speed*(timeEnd - timeLast)/3600000.0;
-                                    distanceInterpolated+=distanceDelta;
-
-                                    // calculate speed
-                                    double speed = ((distanceInterpolated - distanceStart) * 3600000.0) / (timeEnd - timeStart);
-                                    // show it
-                                    TextView tv = findViewById(R.id.speed);
-                                    if (tv != null)
-                                        tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
-                                }
-
-                                ((TextView) findViewById(R.id.textDebug)).setText("Distance: "+
-                                        (distanceEnd - distanceStart)+
-                                        (MainActivity.milesMode?"mi/h":"km/h")+
-                                        " - "+
-                                        "Time: "+timeToStr(timeEnd - timeStart)
-                                        );
-
+                            } else{
+                                // set starting distance as long as starting time is not set
+                                distanceStart = distanceEnd;
+                                // set start time
+                                timeStart = System.currentTimeMillis();
                             }
-                        } else {
-                            // set starting distance as long as starting time is not set
-                            distanceStart = distanceEnd;
-                            // set start time
-                            timeStart = System.currentTimeMillis();
+                            distanceLast = distanceEnd;
+                            timeLast = timeEnd;
                         }
-                        distanceLast = distanceEnd;
-                        timeLast = timeEnd;
                         break;
                 }
             }
@@ -130,14 +134,18 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
     {
         String r = "";
 
+        time=time/1000;
+
         long h = time/3600;
         long m = (time%3600)/60;
         long s = (time % 60);
 
         if(h<10)r+="0";
         r+=h;
+        r+=":";
         if(m<10)r+="0";
         r+=m;
+        r+=":";
         if(s<10)r+="0";
         r+=s;
 
