@@ -83,50 +83,57 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                         // if starting time has been set
                         if (go) {
                             // speed measuring has been started normally
-                            if (timeStart!=0)
-                            {
-                                // some distance has been traveled
-                                if (distanceStart != distanceEnd) {
-                                    // only update if distance changed ...
-                                    if (distanceLast != distanceEnd) {
-                                        distanceInterpolated = distanceEnd;
-                                        // calculate speed
-                                        double speed = ((distanceEnd - distanceStart) * 3600000.0) / (timeEnd - timeStart);
-                                        // show it
-                                        TextView tv = findViewById(R.id.speed);
-                                        if (tv != null)
-                                            tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
-                                    } else // interpolate distance using the speed
-                                    {
-                                        double distanceDelta = speed * (timeEnd - timeLast) / 3600000.0;
-                                        distanceInterpolated += distanceDelta;
-
-                                        // calculate speed
-                                        double speed = ((distanceInterpolated - distanceStart) * 3600000.0) / (timeEnd - timeStart);
-                                        // show it
-                                        TextView tv = findViewById(R.id.speed);
-                                        if (tv != null)
-                                            tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
-                                    }
-
-                                    ((TextView) findViewById(R.id.textDetails)).setText("Distance: " +
-                                            String.format(Locale.getDefault(), "%.1f", (distanceEnd - distanceStart)) +
-                                            (MainActivity.milesMode ? "mi" : "km") +
-                                            " - " +
-                                            "Time: " + timeToStr(timeEnd - timeStart)
-                                    );
-
+                            if (timeStart != 0) {
+                                // only update if distance changed ...
+                                if (distanceLast != distanceEnd) {
+                                    distanceInterpolated = distanceEnd;
+                                    // calculate avg speed
+                                    double speed = ((distanceEnd - distanceStart) * 3600000.0) / (timeEnd - timeStart);
+                                    // show it
+                                    TextView tv = findViewById(R.id.speed);
+                                    if (tv != null)
+                                        tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
                                 }
-                            }
-                            else if (distanceLast!=distanceEnd)
-                            {
+                                else // interpolate distance using the speed
+                                {
+                                    // get difference in distance
+                                    double distanceDelta = speed * (timeEnd - timeLast) / 3600000.0;
+                                    // add it to the last interpolated distance
+                                    distanceInterpolated += distanceDelta;
+
+                                    // calculate avg speed
+                                    double speed = ((distanceInterpolated - distanceStart) * 3600000.0) / (timeEnd - timeStart);
+                                    // show it
+                                    TextView tv = findViewById(R.id.speed);
+                                    if (tv != null)
+                                        tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
+                                }
+
+                                ((TextView) findViewById(R.id.textDetails)).setText("Distance: " +
+                                        String.format(Locale.getDefault(), "%.1f", (distanceEnd - distanceStart)) +
+                                        (MainActivity.milesMode ? "mi" : "km") +
+                                        " - " +
+                                        "Time: " + timeToStr(timeEnd - timeStart)
+                                );
+
+                                distanceLast = distanceEnd;
+                                timeLast = timeEnd;
+                            } else if(distanceLast == 0) {
+                                // do nothing ...
+                                ((TextView) findViewById(R.id.textDetails)).setText("Got first value ...");
+                                distanceLast = distanceEnd;
+                            } else if (distanceLast != distanceEnd) {
                                 // set starting distance as long as starting time is not set
                                 distanceStart = distanceEnd;
+                                distanceLast = distanceEnd;
+                                distanceInterpolated = distanceEnd;
                                 // set start time
-                                timeStart = System.currentTimeMillis();
+                                timeStart = timeEnd;
+                                timeLast = timeEnd;
+                                ((TextView) findViewById(R.id.textDetails)).setText("Got second value ...");
+                            } else {
+                                ((TextView) findViewById(R.id.textDetails)).setText("Waiting for second value ...");
                             }
-                            distanceLast = distanceEnd;
-                            timeLast = timeEnd;
                         }
                         break;
                 }
