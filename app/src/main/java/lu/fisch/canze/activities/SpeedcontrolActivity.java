@@ -107,7 +107,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                             tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
                                     }
 
-                                    ((TextView) findViewById(R.id.textDebug)).setText("Distance: " +
+                                    ((TextView) findViewById(R.id.textDetails)).setText("Distance: " +
                                             String.format(Locale.getDefault(), "%.1f", (distanceEnd - distanceStart)) +
                                             (MainActivity.milesMode ? "mi" : "km") +
                                             " - " +
