@@ -101,12 +101,16 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                     // add it to the last interpolated distance
                                     distanceInterpolated += distanceDelta;
 
-                                    // calculate avg speed
-                                    double speed = ((distanceInterpolated - distanceStart) * 3600000.0) / (timeEnd - timeStart);
-                                    // show it
-                                    TextView tv = findViewById(R.id.speed);
-                                    if (tv != null)
-                                        tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
+                                    // at least 100m should have been driven in order to
+                                    // avoid "jumping" values
+                                    if(distanceEnd - distanceStart>0.1) {
+                                        // calculate avg speed
+                                        double speed = ((distanceInterpolated - distanceStart) * 3600000.0) / (timeEnd - timeStart);
+                                        // show it
+                                        TextView tv = findViewById(R.id.speed);
+                                        if (tv != null)
+                                            tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
+                                    }
                                 }
 
                                 ((TextView) findViewById(R.id.textDetails)).setText("Distance: " +
