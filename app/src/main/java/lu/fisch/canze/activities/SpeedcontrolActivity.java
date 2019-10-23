@@ -5,6 +5,7 @@ import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -117,7 +118,11 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                         String.format(Locale.getDefault(), "%.1f", (distanceEnd - distanceStart)) +
                                         (MainActivity.milesMode ? "mi" : "km") +
                                         " - " +
-                                        "Time: " + timeToStr(timeEnd - timeStart)
+                                        "Time: " + timeToStr(timeEnd - timeStart)+
+                                        " - " +
+                                        "Speed: "+ speed+(MainActivity.milesMode ? "mi" : "km")+"/h"+
+                                        " - " +
+                                        "SDK: "+ Build.VERSION.SDK_INT
                                 );
 
                                 distanceLast = distanceEnd;

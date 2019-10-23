@@ -581,7 +581,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         SharedPreferences set = getSharedPreferences(PREFERENCES_FILE, 0);
         if (set.getBoolean("optDark", false)) {
-            if (Build.VERSION.SDK_INT > 23)
+            //if (Build.VERSION.SDK_INT > 23)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             //finish();
             //startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
