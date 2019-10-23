@@ -85,6 +85,8 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                         if (go) {
                             // speed measuring has been started normally
                             if (timeStart != 0) {
+                                double speedCalc = 0;
+
                                 // only update if distance changed ...
                                 if (distanceLast != distanceEnd) {
                                     distanceInterpolated = distanceEnd;
@@ -106,11 +108,11 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                     // avoid "jumping" values
                                     if(distanceEnd - distanceStart>0.1) {
                                         // calculate avg speed
-                                        double speed = ((distanceInterpolated - distanceStart) * 3600000.0) / (timeEnd - timeStart);
+                                        speedCalc = ((distanceInterpolated - distanceStart) * 3600000.0) / (timeEnd - timeStart);
                                         // show it
                                         TextView tv = findViewById(R.id.speed);
                                         if (tv != null)
-                                            tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
+                                            tv.setText(String.format(Locale.getDefault(), "%.1f", speedCalc));
                                     }
                                 }
 
@@ -121,6 +123,8 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                         "Time: " + timeToStr(timeEnd - timeStart)+
                                         " - " +
                                         "Speed: "+ speed+(MainActivity.milesMode ? "mi" : "km")+"/h"+
+                                        " - " +
+                                        "SpeedCalc: "+ speedCalc+(MainActivity.milesMode ? "mi" : "km")+"/h"+
                                         " - " +
                                         "SDK: "+ Build.VERSION.SDK_INT
                                 );
