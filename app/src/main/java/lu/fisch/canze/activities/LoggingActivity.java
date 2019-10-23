@@ -31,7 +31,7 @@ public class LoggingActivity extends AppCompatActivity {
         final Spinner field = findViewById(R.id.field);
         arrayFieldAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         arrayFieldAdapter.add(Fields.getInstance().getBySID("5d7.0"));       // speed
-        arrayFieldAdapter.add(Fields.getInstance().getBySID("800.6103.24"));      // power
+        arrayFieldAdapter.add(Fields.getInstance().getBySID("800.6109.24"));      // power
         field.setAdapter(arrayFieldAdapter);
 
         ArrayAdapter<String> arrayStringAdapter;

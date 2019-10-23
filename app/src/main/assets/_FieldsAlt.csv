@@ -49,16 +49,16 @@
 # 654,2,2,1,0,0,,,,ff,Charging Plug Connected
 654.2,7ec,31,31,1,0,0,,22339D,62339D,ff,Charging Plug Connected
 # 654,25,31,1,0,0,,,,ff,State of Charge
-654.25,7ec,24,39,0.02,0,2,222002,622002,State of Charge (SOC) HV Battery
+# 654.25,7ec,24,39,0.02,0,2,222002,622002,State of Charge (SOC) HV Battery ==> 42e.0
 # 654,32,41,1,0,0,min,,,ff,Time to Full
-# through TCU, could be very experimental!
+# through TCU, could be very experimental! ==> qqqq doesn't seem to work
 654.32,7da,8,23,1,0,0,,23121DFD02,63121DFD02,ff,MMI_SCH_CANHS.SlowChargeRemainingTime
 # 654,42,51,1,0,0,km,,,ff,Available Distance
 654.42,7ec,24,39,1,0,0,km,223458,623458,ff,Temporary estimated minimum kilometric cruising range sent to MMI
 # 656,48,55,1,40,0,°C,,,e2,External Temp
 656.48,763,110,117,1,40,0,°C,2143,6143,e2,External Temp
 # 658,33,39,1,0,0,%,,,ff,Battery Health
-658.33,7bc,72,79,0.5,0,0,%,2161,6161,ff,Battery Health
+658.33,7bb,72,79,0.5,0,0,%,2161,6161,ff,Battery Health
 ,65b,41,43,1,0,0,,,,ff,Charging Status Display
 # 65b.41,7bc, (qqqq) => comes from the EVC (MMI_SCH_CANHS_R_04), but a corresponding field can not be found. Used in Charging tech, auxbat and prediction
 # 673,0,0,1,0,0,,,,ff,Speed pressure misadaptation

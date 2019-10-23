@@ -36,7 +36,7 @@ import lu.fisch.canze.interfaces.FieldListener;
 public class ClimaTechActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     private static final String SID_EngineFanSpeed                   = "42e.20";
-    private static final String SID_DcPower                          = "800.6103.24";
+    private static final String SID_DcPower                          = "800.6109.24";
     // private static final String SID_ChargingPower                    = "42e.56";
     private static final String SID_HvCoolingState                   = "430.38";
     private static final String SID_HvEvaporationTemp                = "430.40";
