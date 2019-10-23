@@ -215,14 +215,14 @@
                 custom:maxAlt="25"
                 custom:majorTicks="15"
                 custom:minorTicks="5"
-                custom:fieldSID="800.6103.24,800.6108.24"
+                custom:fieldSID="800.6109.24,800.6108.24"
                 custom:widget="timeplot"
                 custom:colorRanges="[
-                    {'sid':'800.6103.24','color':'#cc00ff','from':-100,'to':-1},
-                    {'sid':'800.6103.24','color':'#3ee9ff','from':-1,'to':1},
-                    {'sid':'800.6103.24','color':'#008a1d','from':1,'to':20},
-                    {'sid':'800.6103.24','color':'#ffaa17','from':20,'to':33},
-                    {'sid':'800.6103.24','color':'#FF0000','from':33,'to':100},
+                    {'sid':'800.6109.24','color':'#cc00ff','from':-100,'to':-1},
+                    {'sid':'800.6109.24','color':'#3ee9ff','from':-1,'to':1},
+                    {'sid':'800.6109.24','color':'#008a1d','from':1,'to':20},
+                    {'sid':'800.6109.24','color':'#ffaa17','from':20,'to':33},
+                    {'sid':'800.6108.24','color':'#FF0000','from':33,'to':100},
                     {'sid':'800.6108.24','color':'#017720','from':-20,'to':0},
                     {'sid':'800.6108.24','color':'#77011d','from':0,'to':20}
                 ]"
@@ -231,7 +231,7 @@
                     '800.6108.24':2000
                 }"
                 custom:options="{
-                    '800.6103.24':'gradient',
+                    '800.6109.24':'gradient',
                     '800.6108.24':'alt'
                 }"
                 custom:backgroundColor="?android:attr/colorBackground"
