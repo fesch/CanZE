@@ -48,7 +48,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
-    private static final String SID_DcPower = "1fd.48"; //EVC
+    private static final String SID_DcPower = "800.61.3.24"; // "1fd.48"; //EVC
     private static final String SID_Pedal = "186.40"; //EVC
     private static final String SID_MeanEffectiveTorque = "186.16"; //EVC
     private static final String SID_Coasting_Torque = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting

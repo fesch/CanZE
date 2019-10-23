@@ -132,7 +132,7 @@
                 custom:max="70"
                 custom:majorTicks="10"
                 custom:minorTicks="5"
-                custom:fieldSID="1fd.48"
+                custom:fieldSID="800.6103.24"
                 custom:widget="tacho"
                 custom:text="Power (kWh)"
                 custom:backgroundColor="?android:attr/colorBackground"

@@ -112,7 +112,7 @@ public class Frames {
     {
         frames.clear();
         if (assetName.equals("")) {
-            fillFromAsset("_Frames.csv");
+            fillFromAsset("_FramesAlt.csv");
         } else {
             fillFromAsset(assetName);
         }
