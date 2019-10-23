@@ -45,7 +45,7 @@ public class DataLogger implements FieldListener {
     // -------- Data Definitions copied from Driving Activity -- start ---
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
     // free data
-    private static final String SID_Consumption = "1fd.48"; //EVC
+    private static final String SID_Consumption = "800.6103.24"; //EVC
     private static final String SID_Pedal = "186.40"; //EVC
     private static final String SID_MeanEffectiveTorque = "186.16"; //EVC
     private static final String SID_RealSpeed = "5d7.0";  //ESC-ABS

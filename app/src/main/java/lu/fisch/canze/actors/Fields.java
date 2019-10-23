@@ -485,7 +485,7 @@ public class Fields {
         fields.clear();
         fieldsBySid.clear();
         if (assetName.equals("")) {
-            fillFromAsset("_Fields.csv");
+            fillFromAsset("_FieldsAlt.csv");
             addVirtualFields();
         } else {
             fillFromAsset(assetName);
