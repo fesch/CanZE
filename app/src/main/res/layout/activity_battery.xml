@@ -51,11 +51,11 @@
                 custom:max="120"
                 custom:majorTicks="10"
                 custom:minorTicks="5"
-                custom:fieldSID="7bb.6103.192,654.25"
+                custom:fieldSID="7bb.6103.192,42e.0"
                 custom:widget="timeplot"
                 custom:text="@string/graph_RealIndicatedSoc"
                 custom:colorRanges="[
-                    {'sid':'654.25','color':'?android:attr/colorForeground','from':-40,'to':100}]"
+                    {'sid':'42e.0','color':'?android:attr/colorForeground','from':-40,'to':100}]"
                 custom:backgroundColor="?android:attr/colorBackground"
                 custom:foregroundColor="?android:attr/colorForeground"
                 />
