@@ -429,7 +429,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             Date buildDate = new Date(BuildConfig.TIMESTAMP);
             SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHM), Locale.getDefault());
-            tv.setText(MainActivity.getStringSingle(R.string.version) + BuildConfig.VERSION_NAME + " (" + BuildConfig.BUILD_TYPE + ") " + MainActivity.getStringSingle(R.string.build) + sdf.format(buildDate));
+            tv.setText(MainActivity.getStringSingle(R.string.version) + BuildConfig.VERSION_NAME + " (" + BuildConfig.BUILD_TYPE + "-" + BuildConfig.BRANCH + ") " + MainActivity.getStringSingle(R.string.build) + sdf.format(buildDate));
 
         } catch (Exception e) {
             e.printStackTrace();
