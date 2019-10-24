@@ -1,6 +1,7 @@
 # SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
 # 130,44,55,-3,4094,0,Nm,,,ff,DriverBrakeWheelTq_Req
-130.44,7bc,28,39,1,4096,0,Nm,224B7E,624B7E,ff,DriverBrakeWheelTq_Req
+# Note that in the next line the resolution is negated from the original definition, to match 130.44
+130.44,7bc,28,39,-1,4096,0,Nm,224B7E,624B7E,ff,DriverBrakeWheelTq_Req
 ,186,16,27,0.5,800,1,Nm,,,ff,MeanEffectiveTorque
 # 186.16,7bc,24,39,0.03125,32768,1,Nm,,,ff,MeanEffectiveTorque (qqqq) ??? Already figured out
 # 186,40,49,0.125,0,1,%,,,ff,Throttle
@@ -153,6 +154,14 @@
 ,77e,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,77e,24,39,0.015625,0,2,ºC,223018,623018,ff,DCDC converter temperature
 ,77e,24,31,0.015625,0,2,°C,22302b,62302b,ff,inverter temperature
+#
+# these values are signed
+,77e,24,39,1,0,0,Nm,223024,623024,1ff,ElecTorqueRequest
+,77e,24,39,1,0,0,Nm,223025,623025,1ff,PEBTorque
+,77e,24,39,1,0,0,Nm,223026,623026,ff,ElecMachineMaxMotorTorque
+# Gen probably not battery state depenent
+,77e,24,39,1,0,0,Nm,223027,623027,ff,ElecMachineMaxGenTorque
+#
 ,793,0,0,1,0,0,,1081,5081,ff,start diag
 ,793,0,0,1,0,0,,10c0,50c0,ff,start diag
 ,793,0,0,1,0,0,,3e01,7e01,ff,Tester present

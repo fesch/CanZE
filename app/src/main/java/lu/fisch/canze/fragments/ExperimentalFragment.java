@@ -35,6 +35,7 @@ import android.widget.Button;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.DashActivity;
+import lu.fisch.canze.activities.FieldTestActivity;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.activities.SpeedcontrolActivity;
 
@@ -55,6 +56,7 @@ public class ExperimentalFragment extends Fragment {
 
         activateButton(view, R.id.buttonDash, DashActivity.class);
         activateButton(view, R.id.buttonSpeed, SpeedcontrolActivity.class);
+        activateButton(view, R.id.buttonFieldTest, FieldTestActivity.class);
         // activateButton(view, R.id.buttonFluenceKangooTemps, FluenceKangooTempsActivity.class);
 
         return view;
