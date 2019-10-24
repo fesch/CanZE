@@ -23,8 +23,8 @@
 ,77e,24,39,1,0,0,,223021,623021,ff,Current Ph W
 ,77e,24,39,1,0,0,A,223022,623022,ff,Current Excit Pos
 ,77e,24,39,1,0,0,A,223023,623023,ff,Current Excit Neg
-,77e,24,39,1,0,0,Nm,223024,623024,ff,ElecTorqueRequest
-,77e,24,39,1,0,0,Nm,223025,623025,ff,PEBTorque
+,77e,24,39,1,0,0,Nm,223024,623024,1ff,ElecTorqueRequest
+,77e,24,39,1,0,0,Nm,223025,623025,1ff,PEBTorque
 ,77e,24,39,1,0,0,Nm,223026,623026,ff,ElecMachineMaxMotorTorque
 ,77e,24,39,1,0,0,Nm,223027,623027,ff,ElecMachineMaxGenTorque
 ,77e,24,39,1,0,0,rpm,223028,623028,ff,ElecMachineSpeed
