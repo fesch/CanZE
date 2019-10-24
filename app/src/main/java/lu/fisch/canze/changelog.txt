@@ -1,3 +1,30 @@
+---< Version 1.44 / 2019.10.24 / 45+46 >---
+2019-04-24 [Jeroen] Added .idea/codeStyles/Project.xml to the repository
+2019-04-24 [Jeroen] Added branch name to info in Settings screen
+2019-04-18 [Bob-Jeroen] Fix for dynamic color selection in widgets
+2019-04-18 [Jeroen] Added Build variant to info in Settings screen
+2019-04-18 [Bob] Added theme as optional parameter to Color.decode
+2019-04-17 [Jeroen] Widget colors use foreground theme color (this is intermediate)
+2019-04-17 [Jeroen] Better colors in delta widget and decel (blue) bar
+2019-04-10 [Jeroen] Title fix in Battery, color changes to avoid dark blue
+2019-10-03 [Jeroen] Widgets adhere to titleColor
+2019-10-03 [Jeroen] Gradle to 3.5.1
+2019-10-03 [Jeroen] Changed some color literals to resource names in consumption
+2019-10-03 [Jeroen] Added run time decoding of color resource names to allow names in widget json config strings
+2019-10-02 [Arnout] Changed header log logic
+2019-10-02 [Bob] Avoid null exception when clearing fields
+2019-09-29 [Jeroen] Reformatted Settings for consistency
+2019-09-29 [Jeroen] Corrected icon error for 12 volt battery (+- from white to transparent)
+2019-09-29 [Jeroen] Renamed "Bob Due" to "CanSee"
+2019-09-29 [Jeroen] Small layout issues
+2019-09-29 [Jeroen] Fixed regression on virtualfield dcPower
+2019-09-29 [Jeroen] Batches 1-2-3 for dark mode
+2019-09-29 [Jeroen] Lint (Code->Analyse) on all canze:actors, canze:adaptors and canze:classes
+2019-09-18 [Jeroen] Lint (Code->Analyse) on all canze:activities.
+2019-09-18 [Jeroen] Tyres: avoid crash when message is null, fix error message, fix Lint warning
+2019-10-21 [Bob] Added "speed control" activity to display average speed
+2019-10-22 [Bob] Added "force dark mode" option
+
 ---< Version 1.43 / 2019.09.16 / 44 >---
 2019-09-07 [Jeroen] androidx.appcompat:appcompat to 1.1.0
 2019-09-07 [Jeroen] Removed a lint warning for 1/2/3 in strings

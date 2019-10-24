@@ -1,7 +1,5 @@
 package lu.fisch.canze.classes;
 
-import android.content.res.Resources;
-import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 
@@ -47,26 +45,25 @@ public class DataLogger implements FieldListener {
     // -------- Data Definitions copied from Driving Activity -- start ---
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
     // free data
-    public static final String SID_Consumption = "1fd.48"; //EVC
-    public static final String SID_Pedal = "186.40"; //EVC
-    public static final String SID_MeanEffectiveTorque = "186.16"; //EVC
-    public static final String SID_RealSpeed = "5d7.0";  //ESC-ABS
-    public static final String SID_SoC = "654.25"; //EVC
-    public static final String SID_RangeEstimate = "654.42"; //EVC
-    public static final String SID_DriverBrakeWheel_Torque_Request = "130.44"; //UBP braking wheel torque the driver wants
-    public static final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //UBP 10ms
+    private static final String SID_Consumption = "1fd.48"; //EVC
+    private static final String SID_Pedal = "186.40"; //EVC
+    private static final String SID_MeanEffectiveTorque = "186.16"; //EVC
+    private static final String SID_RealSpeed = "5d7.0";  //ESC-ABS
+    private static final String SID_SoC = "654.25"; //EVC
+    private static final String SID_RangeEstimate = "654.42"; //EVC
+    private static final String SID_DriverBrakeWheel_Torque_Request = "130.44"; //UBP braking wheel torque the driver wants
+    private static final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //UBP 10ms
 
     // ISO-TP data
-//  public static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
-//  public static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC)
-    public static final String SID_EVC_Odometer = "7ec.622006.24"; //  (EVC)
-    //  public static final String SID_EVC_Pedal                            = "7ec.62202e.24"; //  (EVC)
-    public static final String SID_EVC_TractionBatteryVoltage = "7ec.623203.24"; //  (EVC)
-    public static final String SID_EVC_TractionBatteryCurrent = "7ec.623204.24"; //  (EVC)
-    public static final String SID_MaxCharge = "7bb.6101.336";
+//  private static final String SID_EVC_SoC                              = "7ec.622002.24"; //  (EVC)
+//  private static final String SID_EVC_RealSpeed                        = "7ec.622003.24"; //  (EVC)
+    private static final String SID_EVC_Odometer = "7ec.622006.24"; //  (EVC)
+    //  private static final String SID_EVC_Pedal                            = "7ec.62202e.24"; //  (EVC)
+    private static final String SID_EVC_TractionBatteryVoltage = "7ec.623203.24"; //  (EVC)
+    private static final String SID_EVC_TractionBatteryCurrent = "7ec.623204.24"; //  (EVC)
+    private static final String SID_MaxCharge = "7bb.6101.336";
 
     private double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
-    private int odo = 0;
     private double realSpeed = 0;
     private double dcPwr = 0;
 
@@ -88,7 +85,7 @@ public class DataLogger implements FieldListener {
 
     private long z = 2;
 
-    SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMS), Locale.getDefault());
+    private final SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMS), Locale.getDefault());
     // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.getDefault());
 
     // Checks if external storage is available for read and write
@@ -103,7 +100,7 @@ public class DataLogger implements FieldListener {
     // milliSeconds > 0 --> use the time given as parameter
     private String getDateString(long milliSeconds, String dateFormat) {
         // Create a DateFormatter object for displaying date in specified format.
-        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat, Locale.getDefault());
         // Create a calendar object that will convert the date and time value in milliseconds to date.
         Calendar calendar = Calendar.getInstance();
         if (milliSeconds > 0) {
@@ -188,12 +185,12 @@ public class DataLogger implements FieldListener {
     }
 
     // private long intervall = 5000;
-    private int intervall = 5000;
+    private final int intervall = 5000;
 
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler();
 
 
-    private Runnable runnable = new Runnable() {
+    private final Runnable runnable = new Runnable() {
         @Override
         public void run() {
             // write data to file
@@ -221,8 +218,8 @@ public class DataLogger implements FieldListener {
             if (realSpeed + dcPwr > 0) { // only log while driving or charging
                 String dataWithNewLine = timestamp
                         + ";" + DateString
-                        + ";" + String.format("%.3f", realSpeed)
-                        + ";" + String.format("%.3f", dcPwr)
+                        + ";" + String.format(Locale.getDefault(), "%.3f", realSpeed)
+                        + ";" + String.format(Locale.getDefault(), "%.3f", dcPwr)
                         + ";" + var_SoC
                         + ";" + var_dcVolt
                         + ";" + var_dcPwr
@@ -361,9 +358,7 @@ public class DataLogger implements FieldListener {
                 // pb.setProgress((int) field.getValue());
                 break;
             case SID_EVC_Odometer:
-                odo = (int) field.getValue();
-                //odo = (int) Utils.kmOrMiles(field.getValue());
-                var_Odometer = "" + odo;
+                var_Odometer = "" + ((int) field.getValue());
                 break;
             case SID_RealSpeed:
 //                  case SID_EVC_RealSpeed:

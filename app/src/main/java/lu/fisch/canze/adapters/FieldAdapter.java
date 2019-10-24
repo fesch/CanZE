@@ -20,10 +20,10 @@ import lu.fisch.canze.classes.LoggingLogger;
  */
 
 public class FieldAdapter extends ArrayAdapter {
-    Context context;
-    int layoutResourceId;
+    private final Context context;
+    private final int layoutResourceId;
     // the list will hold a reference to the entire data structure
-    ArrayList<LoggerField> data = null;
+    private final ArrayList<LoggerField> data;
 
     public FieldAdapter(Context context, int layoutResourceId, ArrayList<LoggerField> data)
     {
@@ -37,7 +37,7 @@ public class FieldAdapter extends ArrayAdapter {
     public View getView(final int position, View convertView, ViewGroup parent)
     {
         View row = convertView;
-        FieldHolder holder = null;
+        FieldHolder holder;
 
         if(row == null)
         {
@@ -47,9 +47,9 @@ public class FieldAdapter extends ArrayAdapter {
 
             holder = new FieldHolder();
             // get the references to the persons list information
-            holder.field = (TextView)row.findViewById(R.id.sid);
-            holder.interval  = (TextView)row.findViewById(R.id.interval);
-            holder.deleteButton    = (Button) row.findViewById(R.id.deleteButton);
+            holder.field = row.findViewById(R.id.sid);
+            holder.interval  = row.findViewById(R.id.interval);
+            holder.deleteButton = row.findViewById(R.id.deleteButton);
 
             row.setTag(holder);
         }

@@ -116,7 +116,7 @@ public class Message {
                 if (field.isString()) {
                     StringBuilder tmpVal = new StringBuilder();
                     for (int i = 0; i < binString.length(); i += 8) {
-                        tmpVal.append (Character.toString((char) Integer.parseInt("0" + binString.substring(i, i+8), 2)));
+                        tmpVal.append ((char) Integer.parseInt("0" + binString.substring(i, i+8), 2));
                     }
                     String val = tmpVal.toString();
                     field.setValue(val);

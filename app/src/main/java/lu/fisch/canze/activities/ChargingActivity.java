@@ -21,8 +21,12 @@
 
 package lu.fisch.canze.activities;
 
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.widget.TextView;
+
+import androidx.annotation.ColorInt;
 
 import java.util.Locale;
 
@@ -35,28 +39,38 @@ import lu.fisch.canze.interfaces.FieldListener;
 // For the simple activity, the easiest way is to implement it in the activity itself.
 public class ChargingActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_MaxCharge                        = "7bb.6101.336";
-    public static final String SID_UserSoC                          = "42e.0";
-//  public static final String SID_RealSoC                          = "654.25";
-    public static final String SID_RealSoC                          = "7bb.6103.192";
-    public static final String SID_AvChargingPower                  = "427.40";
-    public static final String SID_ACPilot                          = "42e.38";
-    public static final String SID_HvTemp                           = "42e.44";
-    public static final String SID_HvTempFluKan                     = "7bb.6103.56";
+    private static final String SID_MaxCharge                        = "7bb.6101.336";
+    private static final String SID_UserSoC                          = "42e.0";
+//  private static final String SID_RealSoC                          = "654.25";
+    private static final String SID_RealSoC                          = "7bb.6103.192";
+    private static final String SID_AvChargingPower                  = "427.40";
+    private static final String SID_ACPilot                          = "42e.38";
+    private static final String SID_HvTemp                           = "42e.44";
+    private static final String SID_HvTempFluKan                     = "7bb.6103.56";
 
-//  public static final String SID_SOH                              = "658.33";
-    public static final String SID_RangeEstimate                    = "654.42";
-//  public static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
-//  public static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
-    public static final String SID_DcPower                          = "800.6103.24"; // Virtual field
-    public static final String SID_SOH                              = "7ec.623206.24";
+//  private static final String SID_SOH                              = "658.33";
+    private static final String SID_RangeEstimate                    = "654.42";
+//  private static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
+//  private static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
+    private static final String SID_DcPower                          = "800.6103.24"; // Virtual field
+    private static final String SID_SOH                              = "7ec.623206.24";
 
-    double avChPwr;
+    private double avChPwr;
+    @ColorInt private int baseColor;
+    @ColorInt private int alarmColor;
+    private boolean dark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charging);
+
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = this.getTheme();
+        theme.resolveAttribute(R.attr.colorButtonNormal, typedValue, true);
+        baseColor = typedValue.data;
+        dark = ((baseColor & 0xff0000) <= 0xa00000);
+        alarmColor = dark ? baseColor + 0x200000 : baseColor - 0x00002020;
     }
 
     protected void initListeners() {
@@ -93,12 +107,8 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
 
                     case SID_MaxCharge:
                         double maxCharge = field.getValue();
-                        int color = 0xffc0c0c0; // standard grey
-                        if (maxCharge < (avChPwr * 0.8) && avChPwr < 45.0) {
-                            color = 0xffffc0c0;
-                        }
                         tv = findViewById(R.id.text_max_charge);
-                        tv.setBackgroundColor(color);
+                        tv.setBackgroundColor((maxCharge < (avChPwr * 0.8) && avChPwr < 45.0) ? alarmColor : baseColor);
                         break;
                     case SID_UserSoC:
                         tv = findViewById(R.id.textUserSOC);

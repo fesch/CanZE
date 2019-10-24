@@ -14,22 +14,22 @@ import lu.fisch.canze.interfaces.FieldListener;
 
 public class RangeActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_AvailableDistance = "654.42";
-    public static final String SID_AvailableEnvergy = "427.49";
-    public static final String SID_AverageConsumption = "654.52";
-    public static final String SID_WorstAverageConsumption = "62d.0";
-    public static final String SID_BestAverageConsumption = "62d.10";
+    private static final String SID_AvailableDistance = "654.42";
+    private static final String SID_AvailableEnvergy = "427.49";
+    private static final String SID_AverageConsumption = "654.52";
+    private static final String SID_WorstAverageConsumption = "62d.0";
+    private static final String SID_BestAverageConsumption = "62d.10";
 
-    public double distance = 0;
-    public double range = 0;
-    public double rangeWorst = 0;
-    public double rangeBest = 0;
-    public double energy = 0;
-    public double consumption = 1;
-    public double consumptionWorst = 1;
-    public double consumptionBest = 1;
+    private double distance = 0;
+    private double range = 0;
+    private double rangeWorst = 0;
+    private double rangeBest = 0;
+    private double energy = 0;
+    private double consumption = 1;
+    private double consumptionWorst = 1;
+    private double consumptionBest = 1;
 
-    public double loss = 0.1;
+    private double loss = 0.1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

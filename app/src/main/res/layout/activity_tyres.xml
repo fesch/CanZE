@@ -30,7 +30,7 @@
                         android:text="@string/label_TyreFL"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0"
+                        android:background="?attr/colorButtonNormal"
                         />
                     <TextView
                         android:layout_width="20dp"
@@ -39,7 +39,7 @@
                         android:text="@string/label_TyreFR"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0" />
+                        android:background="?attr/colorButtonNormal" />
                 </TableRow>
 
                 <TableRow>
@@ -47,7 +47,7 @@
                         android:id="@+id/text_TyreFLState"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0"
+                        android:background="?attr/colorButtonNormal"
                         />
                     <TextView
                         android:layout_width="20dp"
@@ -56,26 +56,24 @@
                         android:id="@+id/text_TyreFRState"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0" />
+                        android:background="?attr/colorButtonNormal" />
                 </TableRow>
 
                 <TableRow>
                     <TextView
                         android:id="@+id/text_TyreFLPressure"
-                        android:textColor="#000"
                         android:textSize="48sp"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0" />
+                        android:background="?attr/colorButtonNormal" />
                     <TextView
                         android:layout_weight="1" />
                     <TextView
                         android:id="@+id/text_TyreFRPressure"
-                        android:textColor="#000"
                         android:textSize="48sp"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0" />
+                        android:background="?attr/colorButtonNormal" />
                 </TableRow>
             </TableLayout>
 
@@ -97,7 +95,7 @@
                         android:text="@string/label_TyreRL"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0"
+                        android:background="?attr/colorButtonNormal"
                         />
                     <TextView
                         android:layout_width="20dp"
@@ -106,7 +104,7 @@
                         android:text="@string/label_TyreRR"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0" />
+                        android:background="?attr/colorButtonNormal" />
                 </TableRow>
 
                 <TableRow>
@@ -114,7 +112,7 @@
                         android:id="@+id/text_TyreRLState"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0"
+                        android:background="?attr/colorButtonNormal"
                         />
                     <TextView
                         android:layout_width="20dp"
@@ -123,26 +121,24 @@
                         android:id="@+id/text_TyreRRState"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0" />
+                        android:background="?attr/colorButtonNormal" />
                 </TableRow>
 
                 <TableRow>
                     <TextView
                         android:id="@+id/text_TyreRLPressure"
-                        android:textColor="#000"
                         android:textSize="48sp"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0" />
+                        android:background="?attr/colorButtonNormal" />
                     <TextView
                         android:layout_weight="1" />
                     <TextView
                         android:id="@+id/text_TyreRRPressure"
-                        android:textColor="#000"
                         android:textSize="48sp"
                         android:gravity="center"
                         android:layout_weight="5"
-                        android:background="#ffc0c0c0" />
+                        android:background="?attr/colorButtonNormal" />
                 </TableRow>
             </TableLayout>
 
@@ -283,10 +279,8 @@
 
         <TextView
             android:text="@string/label_debug"
-            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             />
         <TextView
             android:id="@+id/textDebug"

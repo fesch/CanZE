@@ -25,12 +25,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Menu;
-import android.view.View;
-import android.view.ViewManager;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -39,16 +34,14 @@ import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
-import lu.fisch.canze.widgets.WidgetView;
 
 public class ConsumptionActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
-    public static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //UBP 10ms
-    public static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
-    public static final String SID_Coasting_Torque                      = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
-    public static final String SID_Instant_Consumption                  = "800.6100.24";
-
+    private static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
+    private static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //UBP 10ms
+    private static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
+    private static final String SID_Coasting_Torque                      = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
+    private static final String SID_Instant_Consumption                  = "800.6100.24";
 
     private int coasting_Torque                     = 0;
     private int driverBrakeWheel_Torque_Request     = 0;

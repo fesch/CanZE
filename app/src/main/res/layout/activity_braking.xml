@@ -26,7 +26,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="#000"
                 />
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -72,7 +71,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="#000"
                 />
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -106,7 +104,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="#000"
                 />
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -136,11 +133,11 @@
             </RelativeLayout>
 
             <TextView
+                android:background="?attr/colorButtonNormal"
                 android:text="@string/help_AllTorques"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textColor="#000"
+                android:layout_marginTop="40dp"
                 />
 
         </LinearLayout>
@@ -155,10 +152,8 @@
 
         <TextView
             android:text="@string/label_debug"
-            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             />
         <TextView
             android:id="@+id/textDebug"

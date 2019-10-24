@@ -21,8 +21,12 @@
 
 package lu.fisch.canze.activities;
 
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.widget.TextView;
+
+import androidx.annotation.ColorInt;
 
 import java.util.Locale;
 
@@ -36,17 +40,25 @@ import lu.fisch.canze.interfaces.FieldListener;
  */
 public class HeatmapBatcompActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
+    private static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
 
     private double mean = 0;
-    private double lastVal [] = {0,15,15,15,15,15,15,15,15,15,15,15,15};
-    private int lastCell = 12; //4;
+    private final double[] lastVal = {0,15,15,15,15,15,15,15,15,15,15,15,15};
+    private final int lastCell = 12; //4;
+    @ColorInt private int baseColor;
+    private boolean dark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(MainActivity.isZOE() ? R.layout.activity_heatmap_batcomp : R.layout.activity_heatmap_batcomp2);
         setContentView(R.layout.activity_heatmap_batcomp);
+
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = this.getTheme();
+        theme.resolveAttribute(R.attr.colorButtonNormal, typedValue, true);
+        baseColor = typedValue.data;
+        dark = ((baseColor & 0xff0000) <= 0xa00000);
     }
 
     protected void initListeners() {
@@ -90,17 +102,8 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
                             if (tv != null) {
                                 // tv.setText("" + lastVal[i]);
                                 tv.setText(String.format(Locale.getDefault(), "%.0f", lastVal[i]));
-                                int color = (int) (50 * (lastVal[i] - mean)); // color is temp minus mean
-                                if (color > 62) {
-                                    color = 0xffffc0c0;
-                                } else if (color > 0) {
-                                    color = 0xffc0c0c0 + (color * 0x010000); // one tick is one red
-                                } else if (color >= -62) {
-                                    color = 0xffc0c0c0 - color; // one degree below is a 16th blue added
-                                } else {
-                                    color = 0xffc0c0ff;
-                                }
-                                tv.setBackgroundColor(color);
+                                int delta = (int) (50 * (lastVal[i] - mean)); // color is temp minus mean
+                                tv.setBackgroundColor(makeColor (delta));
                             }
                         }
                     }
@@ -108,5 +111,26 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
             }
         }
 
+    }
+
+    private @ColorInt int makeColor (int delta) {
+        @ColorInt int color = baseColor;
+
+        if (delta > 62) delta = 62; else if (delta < -62) delta = -62;
+
+        if (dark) {
+            if (delta > 0) {
+                return baseColor + (delta * 0x010000); // one tick is one red
+            } else {
+                return baseColor - (delta * 0x000001); // one degree below is a 16th blue added
+            }
+
+        } else { // light
+            if (delta > 0) {
+                return baseColor - (delta * 0x000101); // one tick is one red
+            } else {
+                return baseColor + (delta * 0x010100); // one degree below is a 16th blue added
+            }
+        }
     }
 }

@@ -18,7 +18,7 @@
             android:text="@string/label_ClimateBatteryInteraction"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000" />
+            android:textStyle="bold" />
 
         <TableLayout
             android:layout_width="fill_parent"
@@ -213,7 +213,8 @@
                                    '7ec.6233a7.24':'gradient',
                                    '764.6143.86':'colorline[3900],dot'
                                 }"
-
+                    custom:backgroundColor="?android:attr/colorBackground"
+                    custom:foregroundColor="?android:attr/colorForeground"
                     />
 
             </TableRow>
@@ -227,7 +228,7 @@
             android:layout_marginTop="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000" />
+            android:textStyle="bold" />
 
 <!-- use widget as filler -->
 
@@ -247,15 +248,16 @@
             custom:widget="timeplot"
             custom:text="@string/graph_Climatech"
             custom:colorRanges="[
-                    {'sid':'42e.44','color':'#000000','from':-100,'to':100}
-                    ]"
+                    {'sid':'42e.44','color':'#808080','from':-100,'to':100},
+                    {'sid':'764.6121.26','color':'?android:attr/colorForeground','from':-40,'to':100}]"
             custom:intervals="{
                                    '764.6143.110':10000,
                                    '764.6121.26':10000,
                                    '800.6105.24':2000,
                                    '42e.44':10000
                                    }"
-
+            custom:backgroundColor="?android:attr/colorBackground"
+            custom:foregroundColor="?android:attr/colorForeground"
             />
 
 
@@ -276,10 +278,8 @@
 
         <TextView
             android:text="@string/label_debug"
-            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             />
         <TextView
             android:id="@+id/textDebug"

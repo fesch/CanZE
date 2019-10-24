@@ -29,15 +29,15 @@ import java.util.Calendar;
  */
 public class Frame {
 
-    private int id;
-    private String responseId;
-    private int interval; // in ms
-    private Ecu sendingEcu;
+    private final int id;
+    private final String responseId;
+    private final Ecu sendingEcu;
     private final ArrayList<Field> fields = new ArrayList<>();
     private final ArrayList<Field> queriedFields = new ArrayList<>();
-    private Frame containingFrame;
+    private final Frame containingFrame;
 
-    protected long lastRequest = 0;
+    private int interval; // in ms
+    private long lastRequest = 0;
 
 
     public Frame (int id, int interval, Ecu sendingEcu, String responseId, Frame containingFrame) {

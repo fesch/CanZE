@@ -39,9 +39,11 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
@@ -73,7 +75,7 @@ import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.classes.DataLogger;
 import lu.fisch.canze.classes.DebugLogger;
 import lu.fisch.canze.database.CanzeDataSource;
-import lu.fisch.canze.devices.BobDue;
+import lu.fisch.canze.devices.CanSee;
 import lu.fisch.canze.devices.Device;
 import lu.fisch.canze.devices.ELM327;
 import lu.fisch.canze.devices.ELM327OverHttp;
@@ -137,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public boolean leaveBluetoothOn = false;
     private boolean returnFromWidget = false;
 
-    public static Fields fields = Fields.getInstance();
+    public static final Fields fields = Fields.getInstance();
 
     public static Device device = null;
 
@@ -156,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     private static boolean isDriving = false;
     public static boolean milesMode = false;
 
-    public static boolean storageIsAvailable = false;
+    public static final boolean storageIsAvailable = false;
 
     public static final short TOAST_NONE = 0;
     public static final short TOAST_ELM = 1;
@@ -168,12 +170,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     // private Fragment actualFragment;
 
     static private Resources res;
+    static private Resources.Theme localTheme;
 
     // bluetooth stuff
     private MenuItem bluetoothMenutItem = null;
-    public final static int BLUETOOTH_DISCONNECTED = 21;
-    public final static int BLUETOOTH_SEARCH = 22;
-    public final static int BLUETOOTH_CONNECTED = 23;
+    private final static int BLUETOOTH_DISCONNECTED = 21;
+    private final static int BLUETOOTH_SEARCH = 22;
+    private final static int BLUETOOTH_CONNECTED = 23;
 
 
     //The BroadcastReceiver that listens for bluetooth broadcasts
@@ -272,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         toast(TOAST_NONE, resource);
     }
 
-    public void loadSettings() {
+    private void loadSettings() {
         debug("MainActivity: loadSettings");
         try {
             SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
@@ -289,6 +292,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             debugLogMode = settings.getBoolean("optDebugLog", false);
             fieldLogMode = settings.getBoolean("optFieldLog", false);
             toastLevel = settings.getInt("optToast", 1);
+
 
             if (bluetoothDeviceName != null && !bluetoothDeviceName.isEmpty() && bluetoothDeviceName.length() > 4)
                 BluetoothManager.getInstance().setDummyMode(bluetoothDeviceName.substring(0, 4).compareTo("HTTP") == 0);
@@ -332,7 +336,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             // create a new device
             switch (deviceType) {
                 case "Bob Due":
-                    device = new BobDue();
+                case "CanSee":
+                    device = new CanSee();
                     break;
                 case "ELM327":
                     device = new ELM327();
@@ -386,7 +391,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
-    protected void updateActionBar() {
+    private void updateActionBar() {
         switch (viewPager.getCurrentItem()) {
             case 0:
                 actionBar.setIcon(R.mipmap.ic_launcher);
@@ -402,7 +407,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
-    static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1234;
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1234;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -574,6 +579,28 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public void onResume() {
         debug("MainActivity: onResume");
 
+        SharedPreferences set = getSharedPreferences(PREFERENCES_FILE, 0);
+        if (set.getBoolean("optDark", false)) {
+            //if (Build.VERSION.SDK_INT > 23)
+            if(AppCompatDelegate.getDefaultNightMode()!=AppCompatDelegate.MODE_NIGHT_YES) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                if(Build.VERSION.SDK_INT < 28) {
+                    finish();
+                    startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
+                }
+            }
+        } else
+        {
+
+            if(AppCompatDelegate.getDefaultNightMode()!=AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                if(Build.VERSION.SDK_INT <28) {
+                    finish();
+                    startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
+                }
+            }
+        }
+
         instance = this; // If I am not mistaken, instance should only ever be populated in onCreate
 
         visible = true;
@@ -676,7 +703,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
-    public void reloadBluetooth() {
+    private void reloadBluetooth() {
         reloadBluetooth(true);
     }
 
@@ -711,7 +738,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         super.onPause();
     }
 
-    public void stopBluetooth() {
+    private void stopBluetooth() {
         stopBluetooth(true);
     }
 
@@ -948,7 +975,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return bluetoothDeviceAddress;
     }
 
-    void versionChangeCheck(SharedPreferences settings) {
+    private void versionChangeCheck(SharedPreferences settings) {
         // get the current and the saved version of the app
         String previousVersion = settings.getString("appVersion", "");
         String currentVersion = "";
@@ -1011,7 +1038,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         if (debugListener != null) debugListener.appendDebugMessage(msg);
     }
 
-    public int getScreenOrientation() {
+    private int getScreenOrientation() {
         WindowManager wm = getWindowManager();
         if (wm == null) return Configuration.ORIENTATION_PORTRAIT;
         Display screenOrientation = wm.getDefaultDisplay();
@@ -1032,4 +1059,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT;
     }
 
+    public void setLocalTheme (Resources.Theme localTheme) {
+        this.localTheme = localTheme;
+    }
+
+    public Resources.Theme getLocalTheme () {
+        return this.localTheme;
+    }
+
 }
+

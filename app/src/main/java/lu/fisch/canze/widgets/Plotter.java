@@ -91,8 +91,17 @@ public class Plotter extends Drawable {
     @Override
     public void draw(Graphics g) {
         // black border
-        g.setColor(Color.BLACK);
+        //g.setColor(Color.BLACK);
+        //g.drawRect(x, y, width, height);
+
+        // background
+        g.setColor(getBackground());
+        g.fillRect(x, y, width, height);
+
+        // black border
+        g.setColor(getForeground());
         g.drawRect(x, y, width, height);
+
 
         // calculate fill height
         int fillHeight = (int) ((value-min)/(double)(max-min)*(height-1));
@@ -276,7 +285,7 @@ public class Plotter extends Drawable {
         // draw the title
         if(title!=null && !title.equals(""))
         {
-            g.setColor(Color.BLUE);
+            g.setColor(getTitleColor());
             g.setTextSize(20);
             int th = g.stringHeight(title);
             int tx = getX()+width-barWidth+8;

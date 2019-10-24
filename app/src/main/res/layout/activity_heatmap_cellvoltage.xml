@@ -41,7 +41,7 @@
             <TextView
                 android:id="@+id/text_cell_2_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -50,7 +50,7 @@
             <TextView
                 android:id="@+id/text_cell_3_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -59,7 +59,7 @@
             <TextView
                 android:id="@+id/text_cell_4_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -68,7 +68,7 @@
             <TextView
                 android:id="@+id/text_cell_5_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -77,7 +77,7 @@
             <TextView
                 android:id="@+id/text_cell_6_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -86,7 +86,7 @@
             <TextView
                 android:id="@+id/text_cell_7_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -95,7 +95,7 @@
             <TextView
                 android:id="@+id/text_cell_8_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -116,7 +116,7 @@
             <TextView
                 android:id="@+id/text_cell_9_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -125,7 +125,7 @@
             <TextView
                 android:id="@+id/text_cell_10_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -134,7 +134,7 @@
             <TextView
                 android:id="@+id/text_cell_11_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -143,7 +143,7 @@
             <TextView
                 android:id="@+id/text_cell_12_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -152,7 +152,7 @@
             <TextView
                 android:id="@+id/text_cell_13_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -161,7 +161,7 @@
             <TextView
                 android:id="@+id/text_cell_14_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -170,7 +170,7 @@
             <TextView
                 android:id="@+id/text_cell_15_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -179,7 +179,7 @@
             <TextView
                 android:id="@+id/text_cell_16_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -201,7 +201,7 @@
             <TextView
                 android:id="@+id/text_cell_17_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -210,7 +210,7 @@
             <TextView
                 android:id="@+id/text_cell_18_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -219,7 +219,7 @@
             <TextView
                 android:id="@+id/text_cell_19_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -228,7 +228,7 @@
             <TextView
                 android:id="@+id/text_cell_20_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -237,7 +237,7 @@
             <TextView
                 android:id="@+id/text_cell_21_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -246,7 +246,7 @@
             <TextView
                 android:id="@+id/text_cell_22_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -255,7 +255,7 @@
             <TextView
                 android:id="@+id/text_cell_23_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -264,7 +264,7 @@
             <TextView
                 android:id="@+id/text_cell_24_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -286,7 +286,7 @@
             <TextView
                 android:id="@+id/text_cell_25_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -295,7 +295,7 @@
             <TextView
                 android:id="@+id/text_cell_26_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -304,7 +304,7 @@
             <TextView
                 android:id="@+id/text_cell_27_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -313,7 +313,7 @@
             <TextView
                 android:id="@+id/text_cell_28_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -322,7 +322,7 @@
             <TextView
                 android:id="@+id/text_cell_29_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -331,7 +331,7 @@
             <TextView
                 android:id="@+id/text_cell_30_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -340,7 +340,7 @@
             <TextView
                 android:id="@+id/text_cell_31_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -349,7 +349,7 @@
             <TextView
                 android:id="@+id/text_cell_32_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -371,7 +371,7 @@
             <TextView
                 android:id="@+id/text_cell_33_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -380,7 +380,7 @@
             <TextView
                 android:id="@+id/text_cell_34_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -389,7 +389,7 @@
             <TextView
                 android:id="@+id/text_cell_35_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -398,7 +398,7 @@
             <TextView
                 android:id="@+id/text_cell_36_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -407,7 +407,7 @@
             <TextView
                 android:id="@+id/text_cell_37_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -416,7 +416,7 @@
             <TextView
                 android:id="@+id/text_cell_38_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -425,7 +425,7 @@
             <TextView
                 android:id="@+id/text_cell_39_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -434,7 +434,7 @@
             <TextView
                 android:id="@+id/text_cell_40_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -455,7 +455,7 @@
             <TextView
                 android:id="@+id/text_cell_41_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -464,7 +464,7 @@
             <TextView
                 android:id="@+id/text_cell_42_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -473,7 +473,7 @@
             <TextView
                 android:id="@+id/text_cell_43_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -482,7 +482,7 @@
             <TextView
                 android:id="@+id/text_cell_44_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -491,7 +491,7 @@
             <TextView
                 android:id="@+id/text_cell_45_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -500,7 +500,7 @@
             <TextView
                 android:id="@+id/text_cell_46_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -509,7 +509,7 @@
             <TextView
                 android:id="@+id/text_cell_47_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -518,7 +518,7 @@
             <TextView
                 android:id="@+id/text_cell_48_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -539,7 +539,7 @@
             <TextView
                 android:id="@+id/text_cell_49_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -548,7 +548,7 @@
             <TextView
                 android:id="@+id/text_cell_50_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -557,7 +557,7 @@
             <TextView
                 android:id="@+id/text_cell_51_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -566,7 +566,7 @@
             <TextView
                 android:id="@+id/text_cell_52_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -575,7 +575,7 @@
             <TextView
                 android:id="@+id/text_cell_53_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -584,7 +584,7 @@
             <TextView
                 android:id="@+id/text_cell_54_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -593,7 +593,7 @@
             <TextView
                 android:id="@+id/text_cell_55_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -602,7 +602,7 @@
             <TextView
                 android:id="@+id/text_cell_56_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -624,7 +624,7 @@
             <TextView
                 android:id="@+id/text_cell_57_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -633,7 +633,7 @@
             <TextView
                 android:id="@+id/text_cell_58_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -642,7 +642,7 @@
             <TextView
                 android:id="@+id/text_cell_59_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -651,7 +651,7 @@
             <TextView
                 android:id="@+id/text_cell_60_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -660,7 +660,7 @@
             <TextView
                 android:id="@+id/text_cell_61_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -669,7 +669,7 @@
             <TextView
                 android:id="@+id/text_cell_62_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -678,7 +678,7 @@
             <TextView
                 android:id="@+id/text_cell_63_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -687,7 +687,7 @@
             <TextView
                 android:id="@+id/text_cell_64_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -709,7 +709,7 @@
             <TextView
                 android:id="@+id/text_cell_65_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -718,7 +718,7 @@
             <TextView
                 android:id="@+id/text_cell_66_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -727,7 +727,7 @@
             <TextView
                 android:id="@+id/text_cell_67_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -736,7 +736,7 @@
             <TextView
                 android:id="@+id/text_cell_68_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -745,7 +745,7 @@
             <TextView
                 android:id="@+id/text_cell_69_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -754,7 +754,7 @@
             <TextView
                 android:id="@+id/text_cell_70_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -763,7 +763,7 @@
             <TextView
                 android:id="@+id/text_cell_71_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -772,7 +772,7 @@
             <TextView
                 android:id="@+id/text_cell_72_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -794,7 +794,7 @@
             <TextView
                 android:id="@+id/text_cell_73_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -803,7 +803,7 @@
             <TextView
                 android:id="@+id/text_cell_74_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -812,7 +812,7 @@
             <TextView
                 android:id="@+id/text_cell_75_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -821,7 +821,7 @@
             <TextView
                 android:id="@+id/text_cell_76_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -830,7 +830,7 @@
             <TextView
                 android:id="@+id/text_cell_77_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -839,7 +839,7 @@
             <TextView
                 android:id="@+id/text_cell_78_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -848,7 +848,7 @@
             <TextView
                 android:id="@+id/text_cell_79_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -857,7 +857,7 @@
             <TextView
                 android:id="@+id/text_cell_80_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -878,7 +878,7 @@
             <TextView
                 android:id="@+id/text_cell_81_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -887,7 +887,7 @@
             <TextView
                 android:id="@+id/text_cell_82_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -896,7 +896,7 @@
             <TextView
                 android:id="@+id/text_cell_83_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -905,7 +905,7 @@
             <TextView
                 android:id="@+id/text_cell_84_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -914,7 +914,7 @@
             <TextView
                 android:id="@+id/text_cell_85_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -923,7 +923,7 @@
             <TextView
                 android:id="@+id/text_cell_86_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -932,7 +932,7 @@
             <TextView
                 android:id="@+id/text_cell_87_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -941,7 +941,7 @@
             <TextView
                 android:id="@+id/text_cell_88_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -962,7 +962,7 @@
             <TextView
                 android:id="@+id/text_cell_89_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -971,7 +971,7 @@
             <TextView
                 android:id="@+id/text_cell_90_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -980,7 +980,7 @@
             <TextView
                 android:id="@+id/text_cell_91_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -989,7 +989,7 @@
             <TextView
                 android:id="@+id/text_cell_92_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -998,7 +998,7 @@
             <TextView
                 android:id="@+id/text_cell_93_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -1007,7 +1007,7 @@
             <TextView
                 android:id="@+id/text_cell_94_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -1016,7 +1016,7 @@
             <TextView
                 android:id="@+id/text_cell_95_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -1025,7 +1025,7 @@
             <TextView
                 android:id="@+id/text_cell_96_voltage"
                 android:textSize="12sp"
-                android:background="#ffc0c0c0"
+                android:background="?attr/colorButtonNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="center"
@@ -1043,10 +1043,8 @@
 
         <TextView
             android:text="@string/label_debug"
-            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             />
         <TextView
             android:id="@+id/textDebug"

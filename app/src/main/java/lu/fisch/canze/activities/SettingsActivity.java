@@ -28,12 +28,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Environment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.text.Html;
 import android.view.Display;
@@ -57,13 +57,7 @@ import java.util.Set;
 
 import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
-import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.database.CanzeDataSource;
-
-import static lu.fisch.canze.activities.MainActivity.toast;
-
-// import java.util.zip.ZipEntry;
-// import java.util.zip.ZipFile;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -82,6 +76,10 @@ public class SettingsActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
         String remoteDevice = settings.getString("device", "ELM327");
 
+        // dark mode
+        CheckBox darkMode = findViewById(R.id.darkMode);
+        darkMode.setChecked(settings.getBoolean("optDark",false));
+
         // device address
         final EditText deviceAddress = findViewById(R.id.editTextDeviceAddress);
 
@@ -89,7 +87,7 @@ public class SettingsActivity extends AppCompatActivity {
         final Spinner deviceType = findViewById(R.id.deviceType);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         arrayAdapter.add("ELM327");
-        arrayAdapter.add("Bob Due");
+        arrayAdapter.add("CanSee");
         //arrayAdapter.add("ELM327Http");
         deviceType.setAdapter(arrayAdapter);
 
@@ -105,6 +103,7 @@ public class SettingsActivity extends AppCompatActivity {
                 case "ELM327":
                     index = 0;
                     break;
+                case "CanSee":
                 case "Bob Due":
                     index = 1;
                     break;
@@ -430,8 +429,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             Date buildDate = new Date(BuildConfig.TIMESTAMP);
             SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHM), Locale.getDefault());
-            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            tv.setText(MainActivity.getStringSingle(R.string.version) + pInfo.versionName + "  //  " + MainActivity.getStringSingle(R.string.build) + sdf.format(buildDate));
+            tv.setText(MainActivity.getStringSingle(R.string.version) + BuildConfig.VERSION_NAME + " (" + BuildConfig.BUILD_TYPE + "-" + BuildConfig.BRANCH + ") " + MainActivity.getStringSingle(R.string.build) + sdf.format(buildDate));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -621,6 +619,7 @@ public class SettingsActivity extends AppCompatActivity {
         CheckBox debugLog = findViewById(R.id.debugLogMode);
         CheckBox fieldLog = findViewById(R.id.fieldLogMode);
         CheckBox btBackground = findViewById(R.id.btBackgrounding);
+        CheckBox darkMode = findViewById(R.id.darkMode);
         Spinner toastLevel = findViewById(R.id.toastLevel);
         EditText deviceAddress = findViewById(R.id.editTextDeviceAddress);
         if (remoteDevice.getSelectedItem() != null) {
@@ -640,10 +639,21 @@ public class SettingsActivity extends AppCompatActivity {
             editor.putBoolean("optBTBackground", btBackground.isChecked());
             editor.putBoolean("optSafe", safe.isChecked());
             editor.putBoolean("optMiles", miles.isChecked());
+            editor.putBoolean("optDark", darkMode.isChecked());
             editor.putBoolean("optDataExport", dataExport.isChecked());
             editor.putBoolean("optDebugLog", debugLog.isChecked());
             editor.putBoolean("optFieldLog", fieldLog.isChecked());
             editor.putInt("optToast", toastLevel.getSelectedItemPosition());
+
+            /*if(darkMode.isChecked())
+            {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            }
+            else
+            {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }*/
+
         }
         // editor.commit();
         editor.apply();
