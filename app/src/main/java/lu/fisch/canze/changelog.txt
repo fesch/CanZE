@@ -1,4 +1,4 @@
----< Version 1.44 / 2019.10.24 / 45 >---
+---< Version 1.44 / 2019.10.24 / 45+46 >---
 2019-04-24 [Jeroen] Added .idea/codeStyles/Project.xml to the repository
 2019-04-24 [Jeroen] Added branch name to info in Settings screen
 2019-04-18 [Bob-Jeroen] Fix for dynamic color selection in widgets

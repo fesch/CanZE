@@ -5,10 +5,10 @@ android {
     //buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "lu.fisch.canze"
-        minSdkVersion 21
+        minSdkVersion 15
         targetSdkVersion 28
         versionName '1.44'
-        versionCode 45
+        versionCode 46
     }
     buildTypes {
         release {
