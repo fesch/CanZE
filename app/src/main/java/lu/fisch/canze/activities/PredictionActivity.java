@@ -12,12 +12,12 @@ import lu.fisch.canze.interfaces.FieldListener;
 
 public class PredictionActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_AvChargingPower                  = "427.40";
-    public static final String SID_UserSoC                          = "42e.0";          // user SOC, not raw
-    public static final String SID_AverageBatteryTemperature        = "7bb.6104.600";   // (LBC)
-    public static final String SID_RangeEstimate                    = "654.42";
-    public static final String SID_ChargingStatusDisplay            = "65b.41";
-    public static final String SID_SOH                              = "7ec.623206.24";
+    private static final String SID_AvChargingPower                  = "427.40";
+    private static final String SID_UserSoC                          = "42e.0";          // user SOC, not raw
+    private static final String SID_AverageBatteryTemperature        = "7bb.6104.600";   // (LBC)
+    private static final String SID_RangeEstimate                    = "654.42";
+    private static final String SID_ChargingStatusDisplay            = "65b.41";
+    private static final String SID_SOH                              = "7ec.623206.24";
 
     private Battery battery;
 
@@ -161,7 +161,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
         } else if (iter_at_99 > 50) {
             // if we were full after half the table size
             // do nothing
-            seconds_per_tick *= 1;
+            //seconds_per_tick *= 1;
         } else if (iter_at_99 > 25 && seconds_per_tick > 18) {
             // if we were full after a quarter of the table size
             // and over half an hour, half the tick step
@@ -173,7 +173,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
         }
     }
 
-    public void updatePrediction(final String id, final String msg) {
+    private void updatePrediction(final String id, final String msg) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

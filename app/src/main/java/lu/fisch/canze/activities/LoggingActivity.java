@@ -27,30 +27,30 @@ public class LoggingActivity extends AppCompatActivity {
         LoggingLogger.getInstance();
         updateList();
 
-        ArrayAdapter arrayAdapter;
+        ArrayAdapter<Field> arrayFieldAdapter;
+        final Spinner field = findViewById(R.id.field);
+        arrayFieldAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        arrayFieldAdapter.add(Fields.getInstance().getBySID("5d7.0"));       // speed
+        arrayFieldAdapter.add(Fields.getInstance().getBySID("1fd.48"));      // power
+        field.setAdapter(arrayFieldAdapter);
 
-        final Spinner field = (Spinner) findViewById(R.id.field);
-        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
-        arrayAdapter.add(Fields.getInstance().getBySID("5d7.0"));       // speed
-        arrayAdapter.add(Fields.getInstance().getBySID("1fd.48"));      // power
-        field.setAdapter(arrayAdapter);
-
-        final Spinner interval = (Spinner) findViewById(R.id.interval);
-        arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
+        ArrayAdapter<String> arrayStringAdapter;
+        final Spinner interval = findViewById(R.id.interval);
+        arrayStringAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1);
         for(int i = 5; i<30; i+=5)
-            arrayAdapter.add(i+" s");
+            arrayStringAdapter.add(i+" s");
         for(int i = 30; i<=120; i+=30)
-            arrayAdapter.add(i+" s");
-        interval.setAdapter(arrayAdapter);
+            arrayStringAdapter.add(i+" s");
+        interval.setAdapter(arrayStringAdapter);
 
-        Button addButton = (Button) findViewById(R.id.addButton);
+        Button addButton = findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LoggingLogger loggingLogger = LoggingLogger.getInstance();
 
                 String intervalString = interval.getSelectedItem().toString();
-                intervalString=intervalString.replace(" s","");
+                intervalString = intervalString.replace(" s","");
                 int interval = Integer.valueOf(intervalString);
 
                 // add to logger
@@ -63,7 +63,7 @@ public class LoggingActivity extends AppCompatActivity {
 
     private void updateList()
     {
-        ListView listView = (ListView) findViewById(R.id.selectedFieldsList);
+        ListView listView = findViewById(R.id.selectedFieldsList);
         FieldAdapter fieldAdapter = new FieldAdapter(MainActivity.getInstance() ,R.layout.logger_field, LoggingLogger.getInstance().getLoggingFields());
         listView.setAdapter(fieldAdapter);
 

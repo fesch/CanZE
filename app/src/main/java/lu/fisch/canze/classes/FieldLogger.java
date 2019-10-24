@@ -1,6 +1,5 @@
 package lu.fisch.canze.classes;
 
-import android.content.res.Resources;
 import android.os.Environment;
 
 import java.io.BufferedWriter;
@@ -14,8 +13,6 @@ import java.util.Locale;
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.MainActivity;
 
-import static lu.fisch.canze.activities.MainActivity.debug;
-
 /**
  * Created by Chris Mattheis on 03/11/15.
  * don't use yet - still work in progress
@@ -26,7 +23,7 @@ public class FieldLogger {
      * Singleton stuff
      * ****************************/
 
-    private static FieldLogger instance = new FieldLogger();
+    private final static FieldLogger instance = new FieldLogger();
 
     private FieldLogger() {}
 
@@ -41,7 +38,7 @@ public class FieldLogger {
     private File logFile = null;
 
 
-    private SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMS), Locale.getDefault());
+    private final SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMS), Locale.getDefault());
 
     private boolean isCreated()
     {
@@ -85,10 +82,12 @@ public class FieldLogger {
             //    bufferedWriter.newLine();
             //    bufferedWriter.close();
             //}
+            
+            // header
+            bufferedWriter.append("time,SID,value\n");
+            
             bufferedWriter.close();
             result = true;
-
-            log("time,SID,value");
         }
         catch (IOException e) {
             e.printStackTrace();

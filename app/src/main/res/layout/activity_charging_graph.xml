@@ -15,7 +15,7 @@
 
     <TableLayout
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         >
 
@@ -40,6 +40,8 @@
                 custom:fieldSID="42e.38,427.40"
                 custom:widget="timeplot"
                 custom:text="@string/graph_PilotPower"
+                custom:colorRanges="[
+                {'sid':'427.40','color':'?android:attr/colorForeground','from':-40,'to':100}]"
                 custom:timeScale="4"
                 custom:intervals="{
                                '42e.38':10000,
@@ -48,6 +50,8 @@
                 custom:options="{
                                '427.40':'alt'
                                }"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:foregroundColor="?android:attr/colorForeground"
                 />
         </TableRow>
 
@@ -71,11 +75,15 @@
                 custom:fieldSID="7bb.6101.336,800.6103.24"
                 custom:widget="timeplot"
                 custom:text="@string/graph_MaxRealChPwr"
+                custom:colorRanges="[
+                {'sid':'800.6103.24','color':'?android:attr/colorForeground','from':-40,'to':100}]"
                 custom:timeScale="4"
                 custom:intervals="{
                                '7bb.6101.336':10000,
                                '800.6103.24':10000
                                }"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:foregroundColor="?android:attr/colorForeground"
                 />
 
         </TableRow>
@@ -105,7 +113,8 @@
                 custom:colorRanges="[
                 {'sid':'427.49','color':'#3ee9ff','from':0,'to':8},
                 {'sid':'427.49','color':'#008a1d','from':8,'to':17},
-                {'sid':'427.49','color':'#ffaa17','from':17,'to':25}]"
+                {'sid':'427.49','color':'#ffaa17','from':17,'to':25},
+                {'sid':'42e.44','color':'?android:attr/colorForeground','from':-40,'to':100}]"
                 custom:options="{
                                 '427.49':'gradient',
                                 '42e.44':'alt'
@@ -114,6 +123,8 @@
                 custom:intervals="{
                                '427.49':10000
                                }"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:foregroundColor="?android:attr/colorForeground"
                 />
 
         </TableRow>
@@ -128,10 +139,8 @@
 
         <TextView
             android:text="@string/label_debug"
-            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             />
         <TextView
             android:id="@+id/textDebug"

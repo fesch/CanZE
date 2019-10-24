@@ -134,7 +134,8 @@
         custom:text="@string/label_auxbat"
         custom:timeScale="4"
         custom:widget="timeplot"
-
+        custom:backgroundColor="?android:attr/colorBackground"
+        custom:foregroundColor="?android:attr/colorForeground"
         />
     <!-- debug line -->
 
@@ -147,8 +148,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_debug"
-            android:textColor="#000"
-
             />
 
         <TextView

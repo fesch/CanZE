@@ -37,7 +37,7 @@ public class WidgetActivity extends CanzeActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_widget);
 
-        WidgetView wv = (WidgetView) findViewById(R.id.selectedWidget);
+        WidgetView wv = findViewById(R.id.selectedWidget);
         wv.setClickable(false);
         if(WidgetView.selectedDrawable!=null) {
             wv.setDrawable(WidgetView.selectedDrawable);
@@ -52,7 +52,7 @@ public class WidgetActivity extends CanzeActivity {
 
     @Override
     protected void onDestroy() {
-        WidgetView wv = (WidgetView) findViewById(R.id.selectedWidget);
+        WidgetView wv = findViewById(R.id.selectedWidget);
         wv.reset();
 
         super.onDestroy();

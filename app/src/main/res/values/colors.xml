@@ -3,4 +3,27 @@
     <color name="colorPrimary">#112273</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#3d82dc</color>
+
+    <!-- aim bar -->
+    <color name="Navy">#000080</color>
+
+    <!-- green bar -->
+    <color name="Lime">#ff00ff00</color>
+    <color name="Green">#ff009900</color>
+
+    <!-- red bar -->
+    <color name="Red">#ffff0000</color>
+    <color name="DarkRed">#8B0000</color>
+
+    <!-- accel bar -->
+    <!-- green taken from green bar-->
+    <color name="DodgerBlue">#1E90FF</color>
+    <color name="DarkViolet">#9400D3</color>
+
+    <!-- delta bar graph -->
+    <color name="transGreen">#ff30ff30</color>
+    <color name="transRed">#ffff3030</color>
+
+    <color name="second">#e0a000</color>
+
 </resources>

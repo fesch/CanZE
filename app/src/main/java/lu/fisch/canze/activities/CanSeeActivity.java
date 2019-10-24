@@ -7,8 +7,6 @@ import android.view.MenuItem;
 
 import lu.fisch.canze.R;
 
-import static lu.fisch.canze.activities.MainActivity.toast;
-
 public class CanSeeActivity extends AppCompatActivity {
 
     @Override

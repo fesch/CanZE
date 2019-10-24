@@ -41,7 +41,6 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
-import lu.fisch.canze.actors.Dtcs;
 import lu.fisch.canze.actors.Ecu;
 import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
@@ -58,8 +57,8 @@ import static lu.fisch.canze.activities.MainActivity.debug;
 public class AllDataActivity extends CanzeActivity {
 
     private TextView textView;
-    BufferedWriter bufferedDumpWriter = null;
-    boolean dumpInProgress = false;
+    private BufferedWriter bufferedDumpWriter = null;
+    private boolean dumpInProgress = false;
 
     private StoppableThread queryThread;
     private long ticker = 0;
@@ -157,7 +156,7 @@ public class AllDataActivity extends CanzeActivity {
     }
 
 
-    void dogetAllData(final Ecu ecu) {
+    private void dogetAllData(final Ecu ecu) {
 
         // clear the screen
         clearResult();
@@ -286,7 +285,7 @@ public class AllDataActivity extends CanzeActivity {
         }
     }
 
-    public boolean isExternalStorageWritable() {
+    private boolean isExternalStorageWritable() {
         String SDstate = Environment.getExternalStorageState();
         return (Environment.MEDIA_MOUNTED.equals(SDstate));
     }

@@ -7,8 +7,8 @@ android {
         applicationId "lu.fisch.canze"
         minSdkVersion 15
         targetSdkVersion 28
-        versionName '1.43'
-        versionCode 44
+        versionName '1.44'
+        versionCode 46
     }
     buildTypes {
         release {
@@ -25,6 +25,7 @@ android {
     }
     defaultConfig {
         buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
+        buildConfigField "String", "BRANCH", "\"" + getGitRevParseInfo() + "\""
     }
     lintOptions {
         checkReleaseBuilds false
@@ -33,6 +34,12 @@ android {
         abortOnError false
         disable 'TypographyFractions'
     }
+}
+
+def getGitRevParseInfo() {
+    def cmd = "git rev-parse --abbrev-ref HEAD"
+    def proc = cmd.execute()
+    proc.text.trim()
 }
 
 dependencies {

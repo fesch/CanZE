@@ -64,7 +64,7 @@ public class ElmTestActivity extends CanzeActivity {
 
     protected void initListeners () {}
 
-    void doTest () {
+    private void doTest () {
 
         Field field;
         Message message;

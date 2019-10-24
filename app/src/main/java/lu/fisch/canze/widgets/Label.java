@@ -67,8 +67,17 @@ public class Label extends Drawable {
     @Override
     public void draw(Graphics g) {
         // black border
-        g.setColor(Color.BLACK);
+        //g.setColor(Color.BLACK);
+        //g.drawRect(x, y, width, height);
+
+        // background
+        g.setColor(getBackground());
+        g.fillRect(x, y, width, height);
+
+        // black border
+        g.setColor(getForeground());
         g.drawRect(x, y, width, height);
+
 
         // draw the value
         if(showValue) {
@@ -97,7 +106,8 @@ public class Label extends Drawable {
 
                 int tx = getX()+getWidth()/2-tw/2;
                 int ty = getY()+getHeight()/2+th/2;
-                g.setColor(Color.GREEN_DARK);
+                //g.setColor(Color.GREEN_DARK);
+                g.setColor(getForeground());
                 g.drawString(text, tx, ty);
             }
         }
@@ -105,7 +115,7 @@ public class Label extends Drawable {
         // draw the title
         if(title!=null && !title.equals(""))
         {
-            g.setColor(Color.BLUE);
+            g.setColor(getTitleColor());
             g.setTextSize(20);
             int tx = getX()+8;
             int ty = getY()+g.stringHeight(title)+8;

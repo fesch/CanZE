@@ -1,10 +1,7 @@
 package lu.fisch.canze.actors;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.interfaces.VirtualFieldAction;
@@ -15,10 +12,10 @@ import lu.fisch.canze.interfaces.VirtualFieldAction;
 public class VirtualField extends Field implements FieldListener {
 
     // the list of fields this field depends on
-    private HashMap<String,Field> dependantFields = new HashMap<>();
+    private final HashMap<String,Field> dependantFields;
 
     // the method to be executed for the calculation of this field
-    protected VirtualFieldAction virtualFieldAction = null;
+    private final VirtualFieldAction virtualFieldAction;
 
 
     public VirtualField(String responseId, HashMap<String,Field> dependantFields, String unit, VirtualFieldAction virtualFieldAction)

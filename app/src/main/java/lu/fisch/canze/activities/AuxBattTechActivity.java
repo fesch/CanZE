@@ -35,17 +35,16 @@ import lu.fisch.canze.interfaces.FieldListener;
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
 public class AuxBattTechActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    final String charging_Status [] = MainActivity.getStringList(R.array.list_ChargingStatus2);
-    final String vehicle_Status [] = MainActivity.getStringList(R.array.list_VehicleState);
-    final String aux_Status [] = MainActivity.getStringList(R.array.list_AuxStatus);
+    private final String[] charging_Status = MainActivity.getStringList(R.array.list_ChargingStatus2);
+    private final String[] vehicle_Status = MainActivity.getStringList(R.array.list_VehicleState);
+    private final String[] aux_Status = MainActivity.getStringList(R.array.list_AuxStatus);
 
-    public static final String SID_AuxVoltage                       = "7ec.622005.24"; //"7bb.6101.224";
-    public static final String SID_AuxStatus                        = "638.37";
-    public static final String SID_VehicleState                     = "35c.5";
-    public static final String SID_ChargingStatusDisplay            = "65b.41";
-    public static final String SID_VoltageUnderLoad                 = "7ec.623485.24"; // Voltage measurement given by BCS Battery Current Sensor
-    public static final String SID_CurrentUnderLoad                 = "7ec.623484.24"; // Current measurement given by BCS Battery Current Sensor
- 
+    private  static final String SID_AuxVoltage                       = "7ec.622005.24"; //"7bb.6101.224";
+    private  static final String SID_AuxStatus                        = "638.37";
+    private  static final String SID_VehicleState                     = "35c.5";
+    private  static final String SID_ChargingStatusDisplay            = "65b.41";
+    private  static final String SID_VoltageUnderLoad                 = "7ec.623485.24"; // Voltage measurement given by BCS Battery Current Sensor
+    private  static final String SID_CurrentUnderLoad                 = "7ec.623484.24"; // Current measurement given by BCS Battery Current Sensor
 
 
     @Override

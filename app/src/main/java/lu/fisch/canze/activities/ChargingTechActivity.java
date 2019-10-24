@@ -33,63 +33,63 @@ import lu.fisch.canze.interfaces.FieldListener;
 
 public class ChargingTechActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_MaxCharge = "7bb.6101.336";
-    public static final String SID_UserSoC = "42e.0";          // user SOC, not raw
-    //  public static final String SID_RealSoC                          = "654.25";         // real SOC
-    public static final String SID_AvailableChargingPower = "427.40";
-    public static final String SID_ACPilot = "42e.38";
-    public static final String SID_AvEnergy = "427.49";
+    private static final String SID_MaxCharge = "7bb.6101.336";
+    private static final String SID_UserSoC = "42e.0";          // user SOC, not raw
+    //  private static final String SID_RealSoC                          = "654.25";         // real SOC
+    private static final String SID_AvailableChargingPower = "427.40";
+    private static final String SID_ACPilot = "42e.38";
+    private static final String SID_AvEnergy = "427.49";
 
-    public static final String SID_TimeToFull = "654.32";
-    public static final String SID_PlugConnected = "654.2";
-    public static final String SID_SOH = "7ec.623206.24";
-    public static final String SID_RangeEstimate = "654.42";
-    public static final String SID_ChargingStatusDisplay = "65b.41";
-    public static final String SID_TractionBatteryVoltage = "7ec.623203.24";
-    public static final String SID_TractionBatteryCurrent = "7ec.623204.24";
-    //public static final String SID_EnergyConsumed                   = "7ec.6233db.24";
-    // public static final String SID_CapacityFluKan                   = "7bb.6101.348";
-    // public static final String SID_CapacityZoe                      = "";
-    public static final String SID_RealSoC = "7bb.6103.192";
-    public static final String SID_12V = "7ec.622005.24";
-    public static final String SID_12A = "7ec.623028.24";
-    public static final String SID_DcLoad = "1fd.0";
-    public static final String SID_HvKilometers = "7bb.6161.96";
-    public static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
-    public static final String SID_Preamble_BalancingBytes = "7bb.6107.";
+    private static final String SID_TimeToFull = "654.32";
+    private static final String SID_PlugConnected = "654.2";
+    private static final String SID_SOH = "7ec.623206.24";
+    private static final String SID_RangeEstimate = "654.42";
+    private static final String SID_ChargingStatusDisplay = "65b.41";
+    private static final String SID_TractionBatteryVoltage = "7ec.623203.24";
+    private static final String SID_TractionBatteryCurrent = "7ec.623204.24";
+    //private static final String SID_EnergyConsumed                   = "7ec.6233db.24";
+    // private static final String SID_CapacityFluKan                   = "7bb.6101.348";
+    // private static final String SID_CapacityZoe                      = "";
+    private static final String SID_RealSoC = "7bb.6103.192";
+    private static final String SID_12V = "7ec.622005.24";
+    private static final String SID_12A = "7ec.623028.24";
+    private static final String SID_DcLoad = "1fd.0";
+    private static final String SID_HvKilometers = "7bb.6161.96";
+    private static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
+    private static final String SID_Preamble_BalancingBytes = "7bb.6107.";
 
-    public static final String DefaultFormatTemperature = "%3.0f";
-    public static final String DefaultFormatBalancing = "%02X";
+    private static final String DefaultFormatTemperature = "%3.0f";
+    private static final String DefaultFormatBalancing = "%02X";
 
-    public static final String SID_TesterInit = "793.50c0.0";
-    public static final String SID_TesterAwake = "793.7e01.0";
+    private static final String SID_TesterInit = "793.50c0.0";
+    private static final String SID_TesterAwake = "793.7e01.0";
 
-    public static final String SID_MainsCurrentType = "793.625017.29";
-    public static final String SID_Phase1currentRMS = "793.622001.24";
-    public static final String SID_Phase2CurrentRMS = "793.62503a.24"; // Raw <= this seems to be instant DC coupled value
-    public static final String SID_Phase3CurrentRMS = "793.62503b.24";
-    public static final String SID_PhaseVoltage1 = "793.62502c.24"; // Raw
-    public static final String SID_PhaseVoltage2 = "793.62502d.24";
-    public static final String SID_PhaseVoltage3 = "793.62502e.24";
-    public static final String SID_InterPhaseVoltage12 = "793.62503f.24"; // Measured
-    public static final String SID_InterPhaseVoltage23 = "793.625041.24";
-    public static final String SID_InterPhaseVoltage31 = "793.625042.24";
-    public static final String SID_MainsActivePower = "793.62504a.24";
-    public static final String SID_GroundResistance = "793.625062.24";
-    public static final String SID_SupervisorState = "793.625063.24";
-    public static final String SID_CompletionStatus = "793.625064.24";
+    private static final String SID_MainsCurrentType = "793.625017.29";
+    private static final String SID_Phase1currentRMS = "793.622001.24";
+    private static final String SID_Phase2CurrentRMS = "793.62503a.24"; // Raw <= this seems to be instant DC coupled value
+    private static final String SID_Phase3CurrentRMS = "793.62503b.24";
+    private static final String SID_PhaseVoltage1 = "793.62502c.24"; // Raw
+    private static final String SID_PhaseVoltage2 = "793.62502d.24";
+    private static final String SID_PhaseVoltage3 = "793.62502e.24";
+    private static final String SID_InterPhaseVoltage12 = "793.62503f.24"; // Measured
+    private static final String SID_InterPhaseVoltage23 = "793.625041.24";
+    private static final String SID_InterPhaseVoltage31 = "793.625042.24";
+    private static final String SID_MainsActivePower = "793.62504a.24";
+    private static final String SID_GroundResistance = "793.625062.24";
+    private static final String SID_SupervisorState = "793.625063.24";
+    private static final String SID_CompletionStatus = "793.625064.24";
     //public static final String cha_Status [] = {"No charge", "Waiting (planned)", "Ended", "In progress", "Failure", "Waiting", "Flap open", "Unavailable"};
-    final String charging_Status[] = MainActivity.getStringList(R.array.list_ChargingStatus);
+    private final String[] charging_Status = MainActivity.getStringList(R.array.list_ChargingStatus);
     //public static final String plu_Status [] = {"Not connected", "Connected"};
-    final String plug_Status[] = MainActivity.getStringList(R.array.list_PlugStatus);
-    final String mains_Current_Type[] = MainActivity.getStringList(R.array.list_MainsCurrentType);
-    final String supervisor_State[] = MainActivity.getStringList(R.array.list_SupervisorState);
-    final String completion_Status[] = MainActivity.getStringList(R.array.list_CompletionStatus);
+    private final String[] plug_Status = MainActivity.getStringList(R.array.list_PlugStatus);
+    private final String[] mains_Current_Type = MainActivity.getStringList(R.array.list_MainsCurrentType);
+    private final String[] supervisor_State = MainActivity.getStringList(R.array.list_SupervisorState);
+    private final String[] completion_Status = MainActivity.getStringList(R.array.list_CompletionStatus);
 
-    double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
-    double pilot = 0;
-    int chargingStatus = 7;
-    double usoc = 0;
+    private double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
+    private double pilot = 0;
+    private int chargingStatus = 7;
+    private double usoc = 0;
     //double rsoc          = 0;
 
     @Override

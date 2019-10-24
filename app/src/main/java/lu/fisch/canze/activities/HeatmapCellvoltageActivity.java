@@ -21,8 +21,12 @@
 
 package lu.fisch.canze.activities;
 
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.widget.TextView;
+
+import androidx.annotation.ColorInt;
 
 import java.util.Locale;
 
@@ -36,19 +40,27 @@ import lu.fisch.canze.interfaces.FieldListener;
  */
 public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    public static final String SID_Preamble_CellVoltages1 = "7bb.6141."; // (LBC)
-    public static final String SID_Preamble_CellVoltages2 = "7bb.6142."; // (LBC)
+    private static final String SID_Preamble_CellVoltages1 = "7bb.6141."; // (LBC)
+    private static final String SID_Preamble_CellVoltages2 = "7bb.6142."; // (LBC)
 
     private double mean = 0;
     private double cutoff;
-    private double lastVoltage[] = {0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4};
-    private int lastCell = 96;
-
+    private final double[] lastVoltage = {0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4};
+    private final int lastCell = 96;
+    @ColorInt
+    private int baseColor;
+    private boolean dark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heatmap_cellvoltage);
+
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = this.getTheme();
+        theme.resolveAttribute(R.attr.colorButtonNormal, typedValue, true);
+        baseColor = typedValue.data;
+        dark = ((baseColor & 0xff0000) <= 0xa00000);
     }
 
     protected void initListeners() {
@@ -99,27 +111,38 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
                     @Override
                     public void run() {
                         for (int i = 1; i <= lastCell; i++) {
-                            TextView tv = (TextView) findViewById(getResources().getIdentifier("text_cell_" + i + "_voltage", "id", getPackageName()));
+                            TextView tv = findViewById(getResources().getIdentifier("text_cell_" + i + "_voltage", "id", getPackageName()));
                             if (tv != null) {
                                 // tv.setText(String.format("%.3f", lastVoltage[i]));
                                 tv.setText(String.format(Locale.getDefault(), "%.3f", lastVoltage[i]));
-                                int color = (int) (5000 * (lastVoltage[i] - mean)); // color is temp minus mean. 1mV difference is 5 color ticks
-                                if (lastVoltage[i] <= cutoff) {
-                                    color = 0xffff4040;
-                                } else if (color > 62) {
-                                    color = 0xffffc0c0;
-                                } else if (color > 0) {
-                                    color = 0xffc0c0c0 + (color * 0x010000); // one tick is one red
-                                } else if (color >= -62) {
-                                    color = 0xffc0c0c0 - color; // one degree below is a 16th blue added
-                                } else {
-                                    color = 0xffc0c0ff;
-                                }
-                                tv.setBackgroundColor(color);
+                                int delta = (int) (5000 * (lastVoltage[i] - mean)); // color is temp minus mean. 1mV difference is 5 color ticks
+                                tv.setBackgroundColor(makeColor (delta));
                             }
                         }
                     }
                 });
+            }
+        }
+    }
+
+
+    private @ColorInt int makeColor (int delta) {
+        @ColorInt int color = baseColor;
+
+        if (delta > 62) delta = 62; else if (delta < -62) delta = -62;
+
+        if (dark) {
+            if (delta > 0) {
+                return baseColor + (delta * 0x010000); // one tick is one red
+            } else {
+                return baseColor - (delta * 0x000001); // one degree below is a 16th blue added
+            }
+
+        } else { // light
+            if (delta > 0) {
+                return baseColor - (delta * 0x000101); // one tick is one red
+            } else {
+                return baseColor + (delta * 0x010100); // one degree below is a 16th blue added
             }
         }
     }

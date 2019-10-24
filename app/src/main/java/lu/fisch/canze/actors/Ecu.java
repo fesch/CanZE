@@ -26,16 +26,17 @@ package lu.fisch.canze.actors;
  */
 public class Ecu {
 
-    private String name;
-    private int renaultId;
-    private String networks;    // single letter network names, semicolon separated, V, M, O, E
-    private int fromId;
-    private int toId;
-    private String mnemonic;
-    private String aliases;     // semicolon separated
+    private final String name;
+    private final int renaultId;
+    private final String networks;    // single letter network names, semicolon separated, V, M, O, E
+    private final int fromId;
+    private final int toId;
+    private final String mnemonic;
+    private final String aliases;     // semicolon separated
+    private final String getDtcs;   // semicolon separated
+    private final boolean sessionRequired;
+
     private Fields fields;
-    private String getDtcs;   // semicolon separated
-    private boolean sessionRequired;
 
     public Ecu(String name, int renaultId, String networks, int fromId, int toId, String mnemonic, String aliases, String getDtcs, boolean sessionRequired) {
         this.name = name;

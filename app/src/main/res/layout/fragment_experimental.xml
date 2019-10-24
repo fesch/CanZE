@@ -68,6 +68,7 @@
                     -->
 
                     <Button
+                        android:id="@+id/buttonSpeed"
                         style="?android:attr/button"
                         android:layout_width="0dp"
                         android:layout_height="fill_parent"
@@ -77,7 +78,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        />
+                        android:drawableStart="@mipmap/button_speedcam"
+                        android:text="avg speed" />
 
                 </TableRow>
 
@@ -107,7 +109,7 @@
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:background="#ffd124">
+            android:background="?attr/colorButtonNormal">
 
             <TextView
                 android:layout_marginLeft="0dp"

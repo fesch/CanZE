@@ -1,6 +1,4 @@
-<resources
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="TypographyFractions,TypographyEllipsis">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="TypographyFractions,TypographyEllipsis">
 
     <!-- App -->
 
@@ -139,7 +137,7 @@
     <string name="title_activity_battery">Battery</string>
     <string name="button_Battery">Battery</string>
     <string name="graph_SOH">State of health (%)</string>
-    <string name="graph_RealIndicatedSoc">Real vs. Indicated State of charge (%)</string>
+    <string name="graph_RealIndicatedSoc">SOC real / user (%)</string>
     <string name="help_QA"><![CDATA[More detailed information about these data can be found in the <a href=\'http://canze.fisch.lu/qa/\'>Q & A section</a> of the <a href=\'http://canze.fisch.lu/\'>CanZE homepage</a>.]]></string>
     <string name="graph_CellVoltages">Cell Voltages (V)</string>
     <string name="graph_ModuleTemperatures">Battery modules temperatures (°C)</string>

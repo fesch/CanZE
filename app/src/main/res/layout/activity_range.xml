@@ -24,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/carRange"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="40sp"
         android:textAlignment="center"
         />
@@ -41,7 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/canzeRange"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="40sp"
         android:textAlignment="center" />
 
@@ -49,7 +47,7 @@
         android:text="@string/label_EstimatedDrivingStyleLoss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        android:textSize="18sp"
         />
 
 
@@ -92,7 +90,6 @@
                 android:text="%"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 />
@@ -138,6 +135,8 @@
         custom:fieldSID="654.42,427.49"
         custom:widget="timeplot"
         custom:text="@string/graph_DistanceEnergy"
+        custom:colorRanges="[
+                {'sid':'427.49','color':'?android:attr/colorForeground','from':-40,'to':100}]"
         custom:options="{
                     '427.49':'alt,dot'
                 }"
@@ -145,6 +144,8 @@
                     '654.42':10000,
                     '427.49':10000
                 }"
+        custom:backgroundColor="?android:attr/colorBackground"
+        custom:foregroundColor="?android:attr/colorForeground"
         />
 
     <!-- debug line -->
@@ -156,10 +157,8 @@
 
         <TextView
             android:text="@string/label_debug"
-            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             />
         <TextView
             android:id="@+id/textDebug"

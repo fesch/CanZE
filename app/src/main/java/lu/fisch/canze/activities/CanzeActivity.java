@@ -68,6 +68,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         }
 
         super.onCreate(savedInstanceState);
+        MainActivity.getInstance().setLocalTheme (this.getTheme());
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
@@ -121,6 +122,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     protected void onResume() {
         super.onResume();
         MainActivity.debug("CanzeActivity: onResume");
+        MainActivity.getInstance().setLocalTheme (this.getTheme());
         // if we paused ourselvers
         if (iLeftMyOwn && !widgetClicked) {
             MainActivity.debug("CanzeActivity: onResume > reloadBluetooth");
@@ -187,7 +189,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
 
     /********************************************************/
 
-    protected void initWidgets()
+    private void initWidgets()
     {
         final ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(android.R.id.content));
         if(!widgets.isEmpty())
@@ -214,7 +216,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         }).start();
     }
 
-    protected void freeWidgetListeners()
+    private void freeWidgetListeners()
     {
         // free up the listener again
         ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
@@ -234,7 +236,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     }
 
 
-    protected ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)
+    private ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)
     {
         ArrayList<WidgetView> result = new ArrayList<>();
 
@@ -283,7 +285,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
 
     /******* activity field stuff ********************/
 
-    protected ArrayList<Field> subscribedFields = new ArrayList<>();
+    private final ArrayList<Field> subscribedFields = new ArrayList<>();
 
     protected void addField(String sid) {
         addField(sid, 0);
