@@ -505,7 +505,7 @@ public class Fields {
         fields.clear();
         fieldsBySid.clear();
         if (assetName.equals("")) {
-            fillFromAsset("_FieldsAlt.csv");
+            fillFromAsset(MainActivity.altFieldsMode ? "_FieldsAlt.csv" : "_Fields.csv");
             addVirtualFields();
         } else {
             fillFromAsset(assetName);

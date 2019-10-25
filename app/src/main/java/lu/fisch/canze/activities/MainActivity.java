@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static int car = CAR_NONE;
     private static boolean isDriving = false;
     public static boolean milesMode = false;
+    public static boolean altFieldsMode = false;
 
     public static final boolean storageIsAvailable = false;
 
@@ -170,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     // private Fragment actualFragment;
 
     static private Resources res;
-    static private Resources.Theme localTheme;
+    private Resources.Theme localTheme;
 
     // bluetooth stuff
     private MenuItem bluetoothMenutItem = null;
@@ -288,6 +289,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             safeDrivingMode = settings.getBoolean("optSafe", true);
             bluetoothBackgroundMode = settings.getBoolean("optBTBackground", false);
             milesMode = settings.getBoolean("optMiles", false);
+            altFieldsMode = settings.getBoolean("optAltFields", false);
             dataExportMode = settings.getBoolean("optDataExport", false);
             debugLogMode = settings.getBoolean("optDebugLog", false);
             fieldLogMode = settings.getBoolean("optFieldLog", false);

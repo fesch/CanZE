@@ -622,6 +622,8 @@
     <string name="label_SafeDrivingMode">Safe Driving Mode</string>
     <string name="label_BluetoothBackgroundMode">Bluetooth Background Mode</string>
     <string name="label_Miles">Miles</string>
+    <string name="label_Darkmode">Force Dark Mode</string>
+    <string name="label_AltFields">Use ISOTP fields</string>
     <string name="label_SdCardLogging">SD card logging</string>
     <string name="label_Debug">Debug</string>
     <string name="label_Fields">Fields</string>

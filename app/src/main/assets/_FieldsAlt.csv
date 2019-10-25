@@ -156,11 +156,11 @@
 ,77e,24,31,0.015625,0,2,°C,22302b,62302b,ff,inverter temperature
 #
 # these values are signed
-,77e,24,39,1,0,0,Nm,223024,623024,1ff,ElecTorqueRequest
-,77e,24,39,1,0,0,Nm,223025,623025,1ff,PEBTorque
-,77e,24,39,1,0,0,Nm,223026,623026,ff,ElecMachineMaxMotorTorque
+,77e,24,39,0.03125,0,0,Nm,223024,623024,1ff,ElecTorqueRequest
+,77e,24,39,0.03125,0,0,Nm,223025,623025,1ff,PEBTorque
+,77e,24,39,0.03125,0,0,Nm,223026,623026,ff,ElecMachineMaxMotorTorque
 # Gen probably not battery state depenent
-,77e,24,39,1,0,0,Nm,223027,623027,ff,ElecMachineMaxGenTorque
+,77e,24,39,0.03125,0,0,Nm,223027,623027,ff,ElecMachineMaxGenTorque
 #
 ,793,0,0,1,0,0,,1081,5081,ff,start diag
 ,793,0,0,1,0,0,,10c0,50c0,ff,start diag
