@@ -117,14 +117,14 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                 }
 
                                 ((TextView) findViewById(R.id.textDetails)).setText("Distance: " +
-                                        String.format(Locale.getDefault(), "%.1f", (distanceEnd - distanceStart)) +
+                                        String.format(Locale.getDefault(), "%.2f", (distanceEnd - distanceStart)) +
                                         (MainActivity.milesMode ? "mi" : "km") +
                                         " - " +
-                                        "Time: " + timeToStr(timeEnd - timeStart)+
+                                        "Time: " + timeToStr(timeStart)+ " > " + timeToStr(timeEnd)+ " = " + timeToStr(timeEnd - timeStart)+
                                         " - " +
-                                        "Speed: "+ speed+(MainActivity.milesMode ? "mi" : "km")+"/h"+
+                                        "Speed: "+ String.format(Locale.getDefault(), "%.2f", speed)+(MainActivity.milesMode ? "mi" : "km")+"/h"+
                                         " - " +
-                                        "SpeedCalc: "+ speedCalc+(MainActivity.milesMode ? "mi" : "km")+"/h"+
+                                        "SpeedCalc: "+ String.format(Locale.getDefault(), "%.2f", speedCalc)+(MainActivity.milesMode ? "mi" : "km")+"/h"+
                                         " - " +
                                         "SDK: "+ Build.VERSION.SDK_INT
                                 );
