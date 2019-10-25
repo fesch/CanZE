@@ -251,6 +251,9 @@ public class SettingsActivity extends AppCompatActivity {
         final CheckBox miles = findViewById(R.id.milesMode);
         miles.setChecked(MainActivity.milesMode);
 
+        final CheckBox altFields = findViewById(R.id.altFieldsMode);
+        altFields.setChecked(MainActivity.altFieldsMode);
+
         final CheckBox btBackground = findViewById(R.id.btBackgrounding);
         btBackground.setChecked(MainActivity.bluetoothBackgroundMode);
         btBackground.setOnClickListener(new View.OnClickListener() {
@@ -615,6 +618,7 @@ public class SettingsActivity extends AppCompatActivity {
         Spinner car = findViewById(R.id.car);
         CheckBox safe = findViewById(R.id.safeDrivingMode);
         CheckBox miles = findViewById(R.id.milesMode);
+        CheckBox altFields = findViewById(R.id.altFieldsMode);
         CheckBox dataExport = findViewById(R.id.dataExportMode);
         CheckBox debugLog = findViewById(R.id.debugLogMode);
         CheckBox fieldLog = findViewById(R.id.fieldLogMode);
@@ -639,6 +643,7 @@ public class SettingsActivity extends AppCompatActivity {
             editor.putBoolean("optBTBackground", btBackground.isChecked());
             editor.putBoolean("optSafe", safe.isChecked());
             editor.putBoolean("optMiles", miles.isChecked());
+            editor.putBoolean("optAltFields", altFields.isChecked());
             editor.putBoolean("optDark", darkMode.isChecked());
             editor.putBoolean("optDataExport", dataExport.isChecked());
             editor.putBoolean("optDebugLog", debugLog.isChecked());

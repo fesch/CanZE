@@ -112,7 +112,7 @@ public class Frames {
     {
         frames.clear();
         if (assetName.equals("")) {
-            fillFromAsset("_FramesAlt.csv");
+            fillFromAsset(MainActivity.altFieldsMode ? "_FramesAlt.csv" : "_Frames.csv");
         } else {
             fillFromAsset(assetName);
         }
