@@ -86,6 +86,9 @@ public class Fields {
         addVirtualFieldUsageLpf();
         addVirtualFieldFrictionTorque();
         addVirtualFieldFrictionPower();
+        addVirtualFieldElecBrakeTorque();
+        addVirtualFieldTotalPositiveTorque();
+        addVirtualFieldTotalNegativeTorque();
         addVirtualFieldDcPowerIn();
         addVirtualFieldDcPowerOut();
         addVirtualFieldHeaterSetpoint();
@@ -132,18 +135,135 @@ public class Fields {
     private void addVirtualFieldFrictionTorque() {
         final String SID_DriverBrakeWheel_Torque_Request = "130.44"; //UBP braking wheel torque the driver wants
         final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //10ms
+        final String SID_Coasting_Torque = "18a.27";
+        final String SID_HydraulicTorqueRequest = "7bc.624b7d.28"; // Total Hydraulic brake wheels torque request
 
-        addVirtualFieldCommon("6101", "Nm", SID_DriverBrakeWheel_Torque_Request + ";" + SID_ElecBrakeWheelsTorqueApplied, new VirtualFieldAction() {
-            @Override
-            public double updateValue(HashMap<String, Field> dependantFields) {
-                Field privateField;
-                if ((privateField = dependantFields.get(SID_DriverBrakeWheel_Torque_Request)) == null) return Double.NaN;
-                double torque = privateField.getValue();
-                if ((privateField = dependantFields.get(SID_ElecBrakeWheelsTorqueApplied)) == null) return Double.NaN;
-                torque -= privateField.getValue();
-                return torque;
-            }
-        });
+        if (MainActivity.altFieldsMode) {
+            addVirtualFieldCommon("6101", "Nm", SID_HydraulicTorqueRequest, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(SID_HydraulicTorqueRequest)) == null)
+                        return Double.NaN;
+                    return -privateField.getValue();
+                }
+            });
+
+        } else {
+            addVirtualFieldCommon("6101", "Nm", SID_DriverBrakeWheel_Torque_Request + ";" + SID_ElecBrakeWheelsTorqueApplied + ";" + SID_Coasting_Torque, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(SID_DriverBrakeWheel_Torque_Request)) == null)
+                        return Double.NaN;
+                    double requestedTorque = privateField.getValue();
+                    if ((privateField = dependantFields.get(SID_ElecBrakeWheelsTorqueApplied)) == null)
+                        return Double.NaN;
+                    double electricTorque = privateField.getValue();
+                    if ((privateField = dependantFields.get(SID_Coasting_Torque)) == null)
+                        return Double.NaN;
+                    double coastingTorque = privateField.getValue();
+
+                    return requestedTorque - electricTorque - coastingTorque;
+                }
+            });
+        }
+    }
+
+    private void addVirtualFieldElecBrakeTorque() {
+        final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //10ms
+        final String SID_Coasting_Torque = "18a.27";
+        final String SID_PEBTorque = "77e.623025.24";
+
+        if (MainActivity.altFieldsMode) {
+            addVirtualFieldCommon("610a", "Nm", SID_PEBTorque, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(SID_PEBTorque)) == null)
+                        return Double.NaN;
+                    double electricTorque = privateField.getValue() * MainActivity.reduction;
+                    return electricTorque <= 0 ? -electricTorque : 0;
+                }
+            });
+
+        } else {
+            addVirtualFieldCommon("610a", "Nm", SID_ElecBrakeWheelsTorqueApplied + ";" + SID_Coasting_Torque, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(SID_ElecBrakeWheelsTorqueApplied)) == null)
+                        return Double.NaN;
+                    double electricTorque = privateField.getValue();
+                    if ((privateField = dependantFields.get(SID_Coasting_Torque)) == null)
+                        return Double.NaN;
+                    return electricTorque - (privateField.getValue() * MainActivity.reduction);
+                }
+            });
+        }
+    }
+
+
+    private void addVirtualFieldTotalPositiveTorque() {
+        final String SID_MeanEffectiveTorque = "186.16";
+        final String SID_PEBTorque = "77e.623025.24";
+
+        if (MainActivity.altFieldsMode) {
+            addVirtualFieldCommon("610b", "Nm", SID_PEBTorque, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(SID_PEBTorque)) == null)
+                        return Double.NaN;
+                    double electricTorque = privateField.getValue() * MainActivity.reduction;
+                    return electricTorque >= 0 ? -electricTorque : 0;
+                }
+            });
+
+        } else {
+            addVirtualFieldCommon("610b", "Nm", SID_MeanEffectiveTorque, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(SID_MeanEffectiveTorque)) == null)
+                        return Double.NaN;
+                    return privateField.getValue() * MainActivity.reduction;
+                }
+            });
+        }
+    }
+
+    private void addVirtualFieldTotalNegativeTorque() {
+        final String SID_DriverBrakeWheel_Torque_Request = "130.44"; //UBP braking wheel torque the driver wants
+        final String SID_HydraulicTorqueRequest = "7bc.624b7d.28"; // Total Hydraulic brake wheels torque request
+        final String SID_PEBTorque = "77e.623025.24";
+
+        if (MainActivity.altFieldsMode) {
+            addVirtualFieldCommon("610c", "Nm", SID_PEBTorque + ";" + SID_HydraulicTorqueRequest, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(SID_HydraulicTorqueRequest)) == null)
+                        return Double.NaN;
+                    double hydraulicTorqueRequest = privateField.getValue();
+                    if ((privateField = dependantFields.get(SID_PEBTorque)) == null)
+                        return Double.NaN;
+                    double pebTorque = privateField.getValue();
+                    return pebTorque <= 0 ? -hydraulicTorqueRequest - pebTorque * MainActivity.reduction : -hydraulicTorqueRequest;
+                }
+            });
+
+        } else {
+            addVirtualFieldCommon("610c", "Nm", SID_DriverBrakeWheel_Torque_Request, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(SID_DriverBrakeWheel_Torque_Request)) == null)
+                        return Double.NaN;
+                    return privateField.getValue();
+                }
+            });
+        }
     }
 
     private void addVirtualFieldFrictionPower() {
@@ -388,6 +508,11 @@ public class Fields {
             }
         });
     }
+
+
+
+
+
 
     private void addVirtualFieldCommon(String virtualId, String unit, String dependantIds, VirtualFieldAction virtualFieldAction) {
         // create a list of field this new virtual field will depend on

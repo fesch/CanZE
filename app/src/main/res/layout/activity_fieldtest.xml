@@ -22,75 +22,71 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_test_ElecTorqueRequest"
+                android:id="@+id/tv_test_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 />
 
             <ProgressBar
-                android:id="@+id/pb_test_ElecTorqueRequest"
+                android:id="@+id/pb_test_1"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="25dp"
                 android:min="-2048"
                 android:max="2048"
-                android:progressDrawable="@drawable/progressbar_canze"
                 />
 
             <TextView
-                android:id="@+id/tv_test_Torque"
+                android:id="@+id/tv_test_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 />
 
             <ProgressBar
-                android:id="@+id/pb_test_Torque"
+                android:id="@+id/pb_test_2"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="25dp"
                 android:min="-2048"
                 android:max="2048"
-                android:progressDrawable="@drawable/progressbar_canze"
                 />
 
             <TextView
-                android:id="@+id/tv_test_ElecMachineMaxMotorTorque"
+                android:id="@+id/tv_test_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 />
 
             <ProgressBar
-                android:id="@+id/pb_test_ElecMachineMaxMotorTorque"
+                android:id="@+id/pb_test_3"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="25dp"
                 android:min="-2048"
                 android:max="2048"
-                android:progressDrawable="@drawable/progressbar_canze"
                 />
 
             <TextView
-                android:id="@+id/tv_test_ElecMachineMaxGenTorque"
+                android:id="@+id/tv_test_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 />
 
             <ProgressBar
-                android:id="@+id/pb_test_ElecMachineMaxGenTorque"
+                android:id="@+id/pb_test_4"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="25dp"
                 android:min="-2048"
                 android:max="2048"
-                android:progressDrawable="@drawable/progressbar_canze"
                 />
 
         </LinearLayout>
