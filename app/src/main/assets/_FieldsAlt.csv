@@ -3,13 +3,13 @@
 # Note that in the next line the resolution is negated from the original definition, to match 130.44
 130.44,7bc,28,39,-1,4096,0,Nm,224B7E,624B7E,ff,DriverBrakeWheelTq_Req
 ,186,16,27,0.5,800,1,Nm,,,ff,MeanEffectiveTorque
-# 186.16,7bc,24,39,0.03125,32768,1,Nm,,,ff,MeanEffectiveTorque (qqqq) ??? Already figured out
+# 186.16,7bc,24,39,0.03125,32768,1,Nm,,,ff, qqqq ==> this one can be replaced by the PEBTorque (positive and negative!!,needs coding)
 # 186,40,49,0.125,0,1,%,,,ff,Throttle
 186.40,7ec,24,49,0.125,0,1,%,22202E,62202E,ff,Accelerator pedal position
 ,18a,27,38,0.5,800,1,Nm,,,ff,Coasting Torque - FrictionTorque
-# 18a.27, (qqqq)
-,1f8,16,27,1,4096,0,Nm,,,ff,TotalPotentialResistiveWheelsTorque
-# 1f8.16,7bc, (qqqq)
+# 18a.27, (qqqq) ===>
+# ,1f8,16,27,1,4096,0,Nm,,,ff,TotalPotentialResistiveWheelsTorque
+1f8.16,7ec,24,39,.03125,32768,0,N.m,222247,622247,ff,Minimum effective torque that can be requested to the electrical motor (EM)
 # 1f8,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
 1f8.28,7bc,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
 # 1f8,40,50,10,0,0,Rpm,,,ff,ElecEngineRPM
@@ -81,6 +81,7 @@
 # 673,40,47,13.725,0,0,mbar,2174,6174,ff,Front left wheel pressure
 673.40,765,136,143,13.725,0,0,mbar,2174,6174,ff,FrontLeftWheelPressure
 ,699,8,15,0.5,0,0,°C,,,e2,Heater setpoint
+# misschien ,764,36,39,1,0,0,,2165,6165,ff,OLB_FP_RotaryTempDisplay,0:No display;1:Display indicator 1;2:Display indicator 2;3:Display indicator 3;4:Display indicator 4;5:Display indicator 5;6:Display indicator 6;7:Display indicator 7;8:Display indicator 8;9:Display indicator 9;10:Display indicator 10;11:Display indicator 11;12:Display indicator 12;13:Display indicator 13;14:Display indicator 14;15:Display indicator 15
 # 699.8,764, (qqqq)
 #
 #
@@ -155,12 +156,7 @@
 ,77e,24,39,0.015625,0,2,ºC,223018,623018,ff,DCDC converter temperature
 ,77e,24,31,0.015625,0,2,°C,22302b,62302b,ff,inverter temperature
 #
-# these values are signed
-,77e,24,39,0.03125,0,0,Nm,223024,623024,1ff,ElecTorqueRequest
 ,77e,24,39,0.03125,0,0,Nm,223025,623025,1ff,PEBTorque
-,77e,24,39,0.03125,0,0,Nm,223026,623026,ff,ElecMachineMaxMotorTorque
-# Gen probably not battery state depenent
-,77e,24,39,0.03125,0,0,Nm,223027,623027,ff,ElecMachineMaxGenTorque
 #
 ,793,0,0,1,0,0,,1081,5081,ff,start diag
 ,793,0,0,1,0,0,,10c0,50c0,ff,start diag
@@ -337,6 +333,7 @@
 ,7bc,144,159,1,0,0,,2180,6180,ff,Version
 ,7bc,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,7bc,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,7bc,28,39,1,4094,0,N·m,224B7D,624B7D,ff,Total Hydraulic brake wheels torque request
 ,7da,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7da,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7da,128,143,1,0,0,,2180,6180,ff,Soft
@@ -353,6 +350,11 @@
 ,7ec,24,39,2.083333333,0,2,%,222002,622002,e5,SOC
 ,7ec,24,39,0.01,0,2,V,222005,622005,ff,12V battery voltage
 ,7ec,24,47,1,0,0,km,222006,622006,ff,Odometer
+,7ec,24,39,.03125,12800,0,N.m,222241,622241,ff,MSR torque setting sent to torque arbitration
+,7ec,24,39,.03125,32768,0,N.m,222243,622243,1ff,Final effective torque request to the electric motor (EM)
+,7ec,24,39,.03125,32768,0,N.m,222245,622245,ff,Limited electrical motor (EM) effective torque setpoint
+,7ec,24,39,.03125,32768,0,N.m,222246,622246,ff,Electrical motor (EM) maximum effective torque available
+,7ec,24,39,.03125,32768,0,N.m,222247,622247,ff,Minimum effective torque that can be requested to the electrical motor (EM)
 ,7ec,24,31,0.5,0,1,A,223028,623028,ff,14V current?
 ,7ec,24,39,0.5,0,2,V,223203,623203,ff,HV Battery voltage
 ,7ec,24,39,0.25,32768,2,A,223204,623204,ff,HV Battery current

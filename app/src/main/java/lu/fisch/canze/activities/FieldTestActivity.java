@@ -47,10 +47,13 @@ public class FieldTestActivity extends CanzeActivity implements FieldListener, D
 
 
     // ISO-TP data
-    private static final String SID_PEB_ElecTorqueRequest = "77e.623024.24";
-    private static final String SID_PEB_Torque = "77e.623025.24";
-    private static final String SID_PEB_ElecMachineMaxMotorTorque = "77e.623026.24";
-    private static final String SID_PEB_ElecMachineMaxGenTorque = "77e.623027.24";
+    private static final String SID_1 = "77e.623025.24"; // PEBTorque ==>>> total torque, positive or negative, on the motor axle
+    private static final String SID_2 = "7ec.622247.24"; // Minimum effective torque that can be requested to the electrical motor (EM) ==> this is the blue bar, negative value
+    //private static final String SID_2 = "7ec.622243.24"; // Final effective torque request to the electric motor (EM) ==> Same but only braking, becomes -2048 when not braking/coasting
+    private static final String SID_3 = "7ec.622241.24"; // MSR torque setting sent to torque arbitration
+    //private static final String SID_3 = "7ec.622246.24"; // Electrical motor (EM) maximum effective torque available ==> not usable
+    //private static final String SID_4 = "7ec.622245.24"; // Limited electrical motor (EM) effective torque setpoint
+    private static final String SID_4 = "7bc.624b7d.28"; // Total Hydraulic brake wheels torque request
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +63,10 @@ public class FieldTestActivity extends CanzeActivity implements FieldListener, D
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_PEB_ElecTorqueRequest);
-        addField(SID_PEB_Torque);
-        addField(SID_PEB_ElecMachineMaxMotorTorque);
-        addField(SID_PEB_ElecMachineMaxGenTorque);
+        addField(SID_1);
+        addField(SID_2);
+        addField(SID_3);
+        addField(SID_4);
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -82,21 +85,24 @@ public class FieldTestActivity extends CanzeActivity implements FieldListener, D
 
                 // get the text field
                 switch (fieldId) {
-                    case SID_PEB_ElecTorqueRequest:
-                        tv = findViewById(R.id.tv_test_ElecTorqueRequest);
-                        pb = findViewById(R.id.pb_test_ElecTorqueRequest);
+                    case SID_1:
+                        tv = findViewById(R.id.tv_test_1);
+                        pb = findViewById(R.id.pb_test_1);
+                        val *= MainActivity.reduction;
                         break;
-                    case SID_PEB_Torque:
-                        tv = findViewById(R.id.tv_test_Torque);
-                        pb = findViewById(R.id.pb_test_Torque);
+                    case SID_2:
+                        tv = findViewById(R.id.tv_test_2);
+                        pb = findViewById(R.id.pb_test_2);
+                        val *= MainActivity.reduction;
                         break;
-                    case SID_PEB_ElecMachineMaxMotorTorque:
-                        tv = findViewById(R.id.tv_test_ElecMachineMaxMotorTorque);
-                        pb = findViewById(R.id.pb_test_ElecMachineMaxMotorTorque);
+                    case SID_3:
+                        tv = findViewById(R.id.tv_test_3);
+                        pb = findViewById(R.id.pb_test_3);
+                        val *= MainActivity.reduction;
                         break;
-                    case SID_PEB_ElecMachineMaxGenTorque:
-                        tv = findViewById(R.id.tv_test_ElecMachineMaxGenTorque);
-                        pb = findViewById(R.id.pb_test_ElecMachineMaxGenTorque);
+                    case SID_4:
+                        tv = findViewById(R.id.tv_test_4);
+                        pb = findViewById(R.id.pb_test_4);
                         break;
                 }
                 // set regular new content, all exceptions handled above
@@ -104,7 +110,7 @@ public class FieldTestActivity extends CanzeActivity implements FieldListener, D
                     tv.setText(field.getName() + ":" + String.format(Locale.getDefault(), "%.1f", val));
                 }
                 if (pb != null) {
-                    pb.setProgress((int)(val / MainActivity.reduction));
+                    pb.setProgress((int)(val));
                 }
 
 
