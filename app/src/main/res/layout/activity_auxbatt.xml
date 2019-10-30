@@ -111,27 +111,18 @@
                     {'sid':'35c.5','color':'#00ffff','from':4,'to':4},
                     {'sid':'35c.5','color':'#ff00ff','from':5,'to':5},
                     {'sid':'35c.5','color':'#000000','from':6,'to':6},
-                    {'sid':'35c.5','color':'#808080','from':7,'to':7},
-                    {'sid':'65b.41','color':'#ff0000','from':0,'to':0},
-                    {'sid':'65b.41','color':'#00ff00','from':1,'to':1},
-                    {'sid':'65b.41','color':'#0000ff','from':2,'to':2},
-                    {'sid':'65b.41','color':'#ffff00','from':3,'to':3},
-                    {'sid':'65b.41','color':'#00ffff','from':4,'to':4},
-                    {'sid':'65b.41','color':'#ff00ff','from':5,'to':5},
-                    {'sid':'65b.41','color':'#000000','from':6,'to':6},
-                    {'sid':'65b.41','color':'#808080','from':7,'to':7}
+                    {'sid':'35c.5','color':'#808080','from':7,'to':7}
                     ]"
-        custom:fieldSID="7ec.622005.24,35c.5,65b.41"
+        custom:fieldSID="7ec.622005.24,35c.5"
         custom:minorTicks="1"
         custom:majorTicks="1"
         custom:min="9"
         custom:max="15"
         custom:options="{
                      '7ec.622005.24':'gradient',
-                     '35c.5':'colorline[14.8],dot',
-                     '65b.41':'colorline[14.6],dot'
+                     '35c.5':'colorline[14.8],dot'
                      }"
-        custom:text="@string/label_auxbat"
+        custom:text="Voltage, Vehicle state"
         custom:timeScale="4"
         custom:widget="timeplot"
         custom:backgroundColor="?android:attr/colorBackground"

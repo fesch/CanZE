@@ -121,7 +121,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addField(SID_DcLoad, 5000);
         addField(SID_HvKilometers, 5000);
         //addField(SID_EnergyConsumed, 5000);
-        addField(SID_ChargingStatusDisplay, 5000);
+        //addField(SID_ChargingStatusDisplay, 5000);
         addField(SID_TractionBatteryVoltage, 5000);
         addField(SID_TractionBatteryCurrent, 5000);
 

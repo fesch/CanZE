@@ -9,7 +9,8 @@
 ,18a,27,38,0.5,800,1,Nm,,,ff,Coasting Torque - FrictionTorque
 # 18a.27, (qqqq) ===>
 # ,1f8,16,27,1,4096,0,Nm,,,ff,TotalPotentialResistiveWheelsTorque
-1f8.16,7ec,24,39,.03125,32768,0,N.m,222247,622247,ff,Minimum effective torque that can be requested to the electrical motor (EM)
+# 1f8.16 is in wheel NM, 22247 in 32's motor torque
+1f8.16,7ec,24,39,0.29125,32768,0,N.m,222247,622247,ff,Minimum effective torque that can be requested to the electrical motor (EM)
 # 1f8,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
 1f8.28,7bc,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
 # 1f8,40,50,10,0,0,Rpm,,,ff,ElecEngineRPM

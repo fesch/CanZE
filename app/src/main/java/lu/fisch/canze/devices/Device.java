@@ -658,10 +658,12 @@ public abstract class Device {
 
         if (frame == null) return null;
 
-        if (frame.isIsoTp())
+        if (frame.isIsoTp()) {
             msg = requestIsoTpFrame(frame);
-        else
+        } else {
+            if (MainActivity.altFieldsMode) MainActivity.debug("********* free frame in alt mode ********: " + frame.getRID());
             msg = requestFreeFrame(frame);
+        }
 
         if (msg.isError()) {
             MainActivity.debug("Device.requestframe: " + frame.getRID() + " returned error " + msg.getError());

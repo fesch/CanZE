@@ -35,18 +35,25 @@ public class DashActivity extends CanzeActivity {
     private static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //UBP 10ms
     private static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
     private static final String SID_Coasting_Torque                      = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
-    private static final String SID_Instant_Consumption                  = "800.6100.24";
+    //private static final String SID_Instant_Consumption                  = "800.6100.24";
+
+    private static final String SID_TotalPositiveTorque = "800.610b.24";
+    private static final String SID_TotalNegativeTorque = "800.610c.24";
+    private static final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //UBP 10ms
+
 
     private int coasting_Torque                     = 0;
     private int driverBrakeWheel_Torque_Request     = 0;
     private int tempTorque                          = 0;
 
     public void initListeners () {
-        addField(SID_MeanEffectiveTorque, 0);
-        addField(SID_DriverBrakeWheel_Torque_Request, 0);
-        addField(SID_Coasting_Torque, 0);
+        //addField(SID_MeanEffectiveTorque, 0);
+        //addField(SID_DriverBrakeWheel_Torque_Request, 0);
+        //addField(SID_Coasting_Torque, 0);
         addField(SID_TotalPotentialResistiveWheelsTorque, 7200);
-        addField(SID_Instant_Consumption, 0);
+        //addField(SID_Instant_Consumption, 0);
+        addField(SID_TotalPositiveTorque, 0);
+        addField(SID_TotalNegativeTorque, 0);
     }
 
     @Override
@@ -106,11 +113,20 @@ public class DashActivity extends CanzeActivity {
                         if (tv != null) tv.setText(-tempTorque + " " + field.getUnit());
                         break;
 
-                    // negative blue bar
-                    case SID_TotalPotentialResistiveWheelsTorque:
+                    case SID_TotalPotentialResistiveWheelsTorque: //blue bar
                         int tprwt = -((int) field.getValue());
-                        pb = findViewById(R.id.MaxBreakTorque);
+                        pb = findViewById(R.id.MaxBrakeTorque);
                         if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 10);
+                        tv = null; // findViewById(R.id.textTPRWT);
+                        break;
+                    case SID_TotalNegativeTorque:
+                        pb = findViewById(R.id.pb_driver_torque_request);
+                        if (pb != null) pb.setProgress((int) field.getValue());
+                        tv = null;
+                        break;
+                    case SID_TotalPositiveTorque:
+                        pb = findViewById(R.id.MeanEffectiveAccTorque);
+                        pb.setProgress((int)field.getValue()); // --> translate from motor torque to wheel torque
                         break;
                 }
             }
