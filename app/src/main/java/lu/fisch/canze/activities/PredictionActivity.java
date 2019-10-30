@@ -56,7 +56,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
         addField(SID_RangeEstimate, 10000);
         addField(SID_AvChargingPower, 10000);
         addField(SID_UserSoC, 10000);
-        addField(SID_ChargingStatusDisplay, 10000);
+        //addField(SID_ChargingStatusDisplay, 10000);
         addField(SID_AverageBatteryTemperature, 10000);
         addField(SID_SOH, 10000);
     }
@@ -98,7 +98,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
                 break;
         }
         // display the debug values
-        if (car_status == 0x3f) {
+        if (car_status == 0x2f) {
             runPrediction();
             car_status = 0;
         }

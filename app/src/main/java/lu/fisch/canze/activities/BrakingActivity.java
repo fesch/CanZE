@@ -61,7 +61,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener, Deb
         //addField(SID_DriverBrakeWheel_Torque_Request);
         //addField(SID_ElecBrakeWheelsTorqueApplied);
         //addField(SID_Coasting_Torque);
-        //addField(SID_TotalPotentialResistiveWheelsTorque);
+        addField(SID_TotalPotentialResistiveWheelsTorque);
         addField(SID_FrictionTorque);
         addField(SID_ElecBrakeTorque);
     }
@@ -125,7 +125,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener, Deb
                     case SID_ElecBrakeTorque:
                         elecBrakeTorque = field.getValue();
                         pb = findViewById(R.id.pb_ElecBrakeWheelsTorqueApplied);
-                        pb.setProgress((int) frictionTorque);
+                        pb.setProgress((int) elecBrakeTorque);
                         tv = findViewById(R.id.text_ElecBrakeWheelsTorqueApplied);
                         if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + MainActivity.getStringSingle(R.string.unit_Nm), elecBrakeTorque));
                         pb = findViewById(R.id.pb_driver_torque_request);

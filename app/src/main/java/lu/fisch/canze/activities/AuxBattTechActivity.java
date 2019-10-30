@@ -58,7 +58,7 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
         addField(SID_AuxVoltage);
         addField(SID_AuxStatus, 1000);
         addField(SID_VehicleState);
-        addField(SID_ChargingStatusDisplay, 1000);
+        //addField(SID_ChargingStatusDisplay, 1000);
         addField(SID_VoltageUnderLoad, 6000);
         addField(SID_CurrentUnderLoad, 6000);
     }
