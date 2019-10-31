@@ -50,7 +50,7 @@ public class FieldTestActivity extends CanzeActivity implements FieldListener, D
     private static final String SID_1 = "77e.623025.24"; // PEBTorque ==>>> total torque, positive or negative, on the motor axle
     private static final String SID_2 = "7ec.622247.24"; // Minimum effective torque that can be requested to the electrical motor (EM) ==> this is the blue bar, negative value
     //private static final String SID_2 = "7ec.622243.24"; // Final effective torque request to the electric motor (EM) ==> Same but only braking, becomes -2048 when not braking/coasting
-    private static final String SID_3 = "7ec.622241.24"; // MSR torque setting sent to torque arbitration
+    private static final String SID_3 = "7ec.62202e.24"; // Pedal
     //private static final String SID_3 = "7ec.622246.24"; // Electrical motor (EM) maximum effective torque available ==> not usable
     //private static final String SID_4 = "7ec.622245.24"; // Limited electrical motor (EM) effective torque setpoint
     private static final String SID_4 = "7bc.624b7d.28"; // Total Hydraulic brake wheels torque request
@@ -98,7 +98,6 @@ public class FieldTestActivity extends CanzeActivity implements FieldListener, D
                     case SID_3:
                         tv = findViewById(R.id.tv_test_3);
                         pb = findViewById(R.id.pb_test_3);
-                        val *= MainActivity.reduction;
                         break;
                     case SID_4:
                         tv = findViewById(R.id.tv_test_4);
