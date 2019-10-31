@@ -5,7 +5,7 @@
 ,186,16,27,0.5,800,1,Nm,,,ff,MeanEffectiveTorque
 # 186.16,7bc,24,39,0.03125,32768,1,Nm,,,ff, qqqq ==> this one can be replaced by the PEBTorque (positive and negative!!,needs coding)
 # 186,40,49,0.125,0,1,%,,,ff,Throttle
-186.40,7ec,24,49,0.125,0,1,%,22202E,62202E,ff,Accelerator pedal position
+186.40,7ec,24,39,0.125,0,1,%,22202E,62202E,ff,Accelerator pedal position
 ,18a,27,38,0.5,800,1,Nm,,,ff,Coasting Torque - FrictionTorque
 # 18a.27, (qqqq) ===>
 # ,1f8,16,27,1,4096,0,Nm,,,ff,TotalPotentialResistiveWheelsTorque
@@ -351,6 +351,7 @@
 ,7ec,24,39,2.083333333,0,2,%,222002,622002,e5,SOC
 ,7ec,24,39,0.01,0,2,V,222005,622005,ff,12V battery voltage
 ,7ec,24,47,1,0,0,km,222006,622006,ff,Odometer
+,7ec,24,39,.00125,0,0,-,22202E,62202E,ff,Accelerator pedal position
 ,7ec,24,39,.03125,12800,0,N.m,222241,622241,ff,MSR torque setting sent to torque arbitration
 ,7ec,24,39,.03125,32768,0,N.m,222243,622243,1ff,Final effective torque request to the electric motor (EM)
 ,7ec,24,39,.03125,32768,0,N.m,222245,622245,ff,Limited electrical motor (EM) effective torque setpoint

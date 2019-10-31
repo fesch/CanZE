@@ -50,7 +50,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
     // free data
     private static final String SID_DcPower = "800.6109.24"; // "1fd.48"; //EVC
     private static final String SID_Pedal = "186.40"; //EVC
-    private static final String SID_MeanEffectiveTorque = "186.16"; //EVC
+    //private static final String SID_MeanEffectiveTorque = "186.16"; //EVC
     private static final String SID_TotalPositiveTorque = "800.610b.24";
     //private static final String SID_Coasting_Torque = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
     private static final String SID_RealSpeed = "5d7.0";  //ESC-ABS
@@ -316,10 +316,10 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         pb = findViewById(R.id.pedalBar);
                         pb.setProgress((int) field.getValue());
                         break;
-                    case SID_MeanEffectiveTorque:
-                        pb = findViewById(R.id.MeanEffectiveAccTorque);
-                        pb.setProgress((int) (field.getValue() * MainActivity.reduction)); // --> translate from motor torque to wheel torque
-                        break;
+                    //case SID_MeanEffectiveTorque:
+                    //    pb = findViewById(R.id.MeanEffectiveAccTorque);
+                    //    pb.setProgress((int) (field.getValue() * MainActivity.reduction)); // --> translate from motor torque to wheel torque
+                    //    break;
                     case SID_TotalPositiveTorque:
                         pb = findViewById(R.id.MeanEffectiveAccTorque);
                         pb.setProgress((int)field.getValue()); // --> translate from motor torque to wheel torque
@@ -344,7 +344,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         tv = findViewById(R.id.text_max_charge);
                         break;
                     case SID_RealSpeed:
-                        realSpeed = (Math.round(field.getValue() * 10.0) / 10.0);
+                        realSpeed = field.getValue();
                         tv = findViewById(R.id.textRealSpeed);
                         break;
                     case SID_DcPower:

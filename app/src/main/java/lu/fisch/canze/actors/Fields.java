@@ -215,8 +215,8 @@ public class Fields {
                     Field privateField;
                     if ((privateField = dependantFields.get(SID_PEBTorque)) == null)
                         return Double.NaN;
-                    double electricTorque = privateField.getValue() * MainActivity.reduction;
-                    return electricTorque >= 0 ? -electricTorque : 0;
+                    double pebTorque = privateField.getValue();
+                    return pebTorque >= 0 ? pebTorque * MainActivity.reduction : 0;
                 }
             });
 
