@@ -55,6 +55,11 @@ public class FieldTestActivity extends CanzeActivity implements FieldListener, D
     //private static final String SID_4 = "7ec.622245.24"; // Limited electrical motor (EM) effective torque setpoint
     private static final String SID_4 = "7bc.624b7d.28"; // Total Hydraulic brake wheels torque request
 
+    private static final String SID_11 = "7ec.623451.24"; // Total Hydraulic brake wheels torque request
+    private static final String SID_12 = "7ec.623455.24";
+    private static final String SID_13 = "7ec.623457.24";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +72,9 @@ public class FieldTestActivity extends CanzeActivity implements FieldListener, D
         addField(SID_2);
         addField(SID_3);
         addField(SID_4);
+        addField(SID_11);
+        addField(SID_12);
+        addField(SID_13);
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -103,10 +111,22 @@ public class FieldTestActivity extends CanzeActivity implements FieldListener, D
                         tv = findViewById(R.id.tv_test_4);
                         pb = findViewById(R.id.pb_test_4);
                         break;
+                    case SID_11:
+                        tv = findViewById(R.id.tv_test_11);
+                        pb = null;
+                        break;
+                    case SID_12:
+                        tv = findViewById(R.id.tv_test_12);
+                        pb = null;
+                        break;
+                    case SID_13:
+                        tv = findViewById(R.id.tv_test_13);
+                        pb = null;
+                        break;
                 }
                 // set regular new content, all exceptions handled above
                 if (tv != null) {
-                    tv.setText(field.getName() + ":" + String.format(Locale.getDefault(), "%.1f", val));
+                    tv.setText(String.format(Locale.getDefault(), "%s:%." + field.getDecimals() + "f%s\n", field.getName(), field.getValue(), field.getUnit()));
                 }
                 if (pb != null) {
                     pb.setProgress((int)(val));

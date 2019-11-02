@@ -46,6 +46,14 @@
 432.36,764,133,134,1,0,0,,2144,6144,e2,HV Bat Conditionning Mode
 # 5d7,0,15,0.01,0,2,km/h,,,ff,Speed
 5d7.0,7ec,24,39,0.01,0,2,km/h,222003,622003,ff,Speed
+#
+#,62d,0,9,0.1,0,0,kWh/100km,,,ff,Worst Average Consumption
+62d.0,7ec,24,39,.001953125,0,3,kW,223457,623457,ff,Mean pessimistic electrical consumption (worst possible consumption)
+#,62d,10,19,0.1,0,0,kWh/100km,,,ff,Best Average Consumption
+62d.10,7ec,24,39,.001953125,0,3,kW,223455,623455,ff,Mean eco electrical consumption (if driver has economical driving behavior)
+#,654,52,61,0.1,0,1,kWh/100km,,,ff,Average Consumption
+654.52,7ec,24,47,0.00000762939453125,0,3,kWh/km,223478,623478,ff,Raw mean consumption per unit of distance
+#
 # 638,37,39,1,0,0,,,,ff,Battery 14v To Be Changed Display
 638.37,7ec,29,31,1,0,0,,223486,623486,ff,Battery 14v To Be Changed Display
 # 654,2,2,1,0,0,,,,ff,Charging Plug Connected
@@ -56,7 +64,7 @@
 # through TCU, could be very experimental! ==> qqqq doesn't seem to work
 654.32,7da,8,23,1,0,0,,23121DFD02,63121DFD02,ff,MMI_SCH_CANHS.SlowChargeRemainingTime
 # 654,42,51,1,0,0,km,,,ff,Available Distance
-654.42,7ec,24,39,1,0,0,km,223458,623458,ff,Temporary estimated minimum kilometric cruising range sent to MMI
+654.42,7ec,24,39,1,0,0,km,223451,623451,ff,Estimated kilometric cruising range sent to MMI
 # 656,48,55,1,40,0,°C,,,e2,External Temp
 656.48,763,110,117,1,40,0,°C,2143,6143,e2,External Temp
 # 658,33,39,1,0,0,%,,,ff,Battery Health
@@ -425,3 +433,6 @@
 ,7ec,56,71,1,0,0,min,2233d9,6233d9,ff,duration 8
 ,7ec,40,55,1,0,0,min,2233d9,6233d9,ff,duration 9
 ,7ec,24,39,1,0,0,min,2233d9,6233d9,ff,duration 10
+,7ec,24,39,1,0,0,km,223451,623451,ff,Estimated kilometric cruising range sent to MMI
+,7ec,24,39,.001953125,0,3,kW,223455,623455,ff,Mean eco electrical consumption (if driver has economical driving behavior)
+,7ec,24,39,.001953125,0,3,kW,223457,623457,ff,Mean pessimistic electrical consumption (worst possible consumption)
