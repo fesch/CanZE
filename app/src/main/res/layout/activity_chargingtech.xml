@@ -30,7 +30,7 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
-
+<!--
                 <TableRow>
                     <TextView
                         android:text="@string/label_ChaStatus"
@@ -43,7 +43,7 @@
                         android:layout_weight="1"
                         />
                 </TableRow>
-
+-->
                 <TableRow>
                     <TextView
                         android:text="@string/label_Plug"
@@ -95,7 +95,7 @@
                         android:layout_weight="1"
                         />
                 </TableRow>
-
+<!--
                 <TableRow>
                     <TextView
                         android:text="@string/label_TTF"
@@ -108,7 +108,7 @@
                         android:layout_weight="1"
                         />
                 </TableRow>
-
+-->
             </TableLayout>
 
             <TextView
