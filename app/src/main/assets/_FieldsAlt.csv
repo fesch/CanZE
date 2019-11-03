@@ -30,8 +30,6 @@
 42e.0,7ec,24,39,0.02,0,2,%,222002,622002,e3,State of Charge
 # 42e,20,24,5,0,0,%,,,e2,Engine Fan Speed
 42e.20,7ec,24,31,5,0,0,%,223471,613471,e2,Engine Fan Speed
-# 42e,38,43,1,0,1,A,,,e3,Charging Pilot Current
-42e.38,793,24,31,.1,0,0,A,223109,623109,ff,EVSECurrentLimit
 # 42e,44,50,1,40,0,°C,,,e3,HV Battery Temp
 42e.44,7ec,24,31,1,40,0,°C,222001,622001,e3,HV Battery Temp
 # 430,38,39,1,0,0,,,,e2,HV Battery Cooling State
@@ -150,7 +148,7 @@
 ,77e,24,31,0.015625,0,2,°C,22302b,62302b,ff,inverter temperature
 #
 ,77e,24,39,0.03125,0,0,Nm,223025,623025,1ff,PEBTorque
-#
+# BCB
 ,793,0,0,1,0,0,,1081,5081,ff,start diag
 ,793,0,0,1,0,0,,10c0,50c0,ff,start diag
 ,793,0,0,1,0,0,,3e01,7e01,ff,Tester present
@@ -165,6 +163,7 @@
 ,793,24,39,0.0625,32768,0,mA,225059,625059,ff,DataRead.Raw leakage current - High Frequency 1st part measurement
 ,793,24,39,0.0625,32768,0,mA,22505a,62505a,ff,DataRead.Raw leakage current - Low Frequency part measurement (50Hz)
 ,793,24,39,.0625,3200,0,A,222001,622001,ff,Mains phase 1 current RMS value
+,793,24,31,1,0,0,%,225026,625026,ff,J1772 control pilot raw duty cycle
 ,793,24,39,.0625,3200,0,A,22503A,62503A,ff,Mains phase 2 current RMS
 ,793,24,39,.0625,3200,0,A,22503B,62503B,ff,Mains phase 3 current RMS
 ,793,29,31,1,0,0,,225017,625017,ff,Mains current type,0:Nok;1:AC mono;2:AC tri;3:DC;4:AC bi
@@ -178,12 +177,14 @@
 ,793,24,39,1,0,0,Ohm,225062,625062,ff,Mains ground resistance
 ,793,24,31,1,0,0,,225063,625063,ff,Supervisor state,0:Init;1:Wait;2:ClosingS2;3:InitType;4:InitLkg;5:InitChg;6:Charge;7:ZeroAmpMode;8:EndOfChg;9:OpeningS2;10:ReadyToSleep;11:EmergencyStop;12:InitChargeDF;13:OCPStop;14:WaitS2
 ,793,24,31,1,0,0,,225064,625064,ff,Leakage current diagnostic stored completion status,0:init;1:HF10;3:Mains Ground Default;5:Earth Current default;9:Ground Default;17:Means Leakage DC;33:Means Leakage LF;49:Means Leakage DC+LF;65:Means Leakage HF;81:Means Leakage DC+HF;97:Means Leakage LF+HF;113:Means Leakage DC+LF+HF
+#
 ,7b6,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7b6,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7b6,128,143,1,0,0,,2180,6180,ff,Soft
 ,7b6,144,159,1,0,0,,2180,6180,ff,Version
 ,7b6,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,7b6,0,23,1,0,0,,19023b,59020f,ff,Query DTC
+# LBC
 ,7bb,336,351,0.01,0,2,kW,2101,6101,e2,Maximum battery input power
 ,7bb,56,71,10,0,0,°C,2103,6103,5,Mean battery compartment temp
 ,7bb,192,207,0.01,0,2,%,2103,6103,e2,Real State of Charge
@@ -320,6 +321,7 @@
 ,7bb,144,159,1,0,0,,2180,6180,ff,Version
 ,7bb,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,7bb,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+# UBP
 ,7bc,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7bc,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7bc,128,143,1,0,0,,2180,6180,ff,Soft
@@ -327,12 +329,14 @@
 ,7bc,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,7bc,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,7bc,28,39,1,4094,0,N·m,224B7D,624B7D,ff,Total Hydraulic brake wheels torque request
+#
 ,7da,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7da,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7da,128,143,1,0,0,,2180,6180,ff,Soft
 ,7da,144,159,1,0,0,,2180,6180,ff,Version
 ,7da,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,7da,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+# EVC
 ,7ec,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7ec,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7ec,128,143,1,0,0,,2180,6180,ff,Soft

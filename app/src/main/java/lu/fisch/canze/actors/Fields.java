@@ -95,6 +95,7 @@ public class Fields {
         addVirtualFieldRealRange();
         addVirtualFieldRealDelta();
         addVirtualFieldRealDeltaNoReset();
+        addVirtualFieldPilotAmp();
     }
 
 
@@ -509,6 +510,35 @@ public class Fields {
         });
     }
 
+
+    private void addVirtualFieldPilotAmp() {
+        final String SID_ACPilot = "42e.38";
+        final String SID_ACPilotDutyCycle = "793.625026.24";
+
+        if (MainActivity.altFieldsMode) {
+            addVirtualFieldCommon("610d", "A", SID_ACPilotDutyCycle, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(SID_ACPilotDutyCycle)) == null)
+                        return Double.NaN;
+                    double dutyCycle = privateField.getValue();
+                    return dutyCycle < 80.0 ? dutyCycle * 0.6 : 48.0 + (dutyCycle - 80.0) * 2;
+                }
+            });
+
+        } else {
+            addVirtualFieldCommon("610d", "A", SID_ACPilot, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(SID_ACPilot)) == null)
+                        return Double.NaN;
+                    return privateField.getValue();
+                }
+            });
+        }
+    }
 
 
 

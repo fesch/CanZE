@@ -37,14 +37,14 @@
                 custom:maxAlt="40"
                 custom:majorTicks="16"
                 custom:minorTicks="4"
-                custom:fieldSID="42e.38,427.40"
+                custom:fieldSID="800.610d.24,427.40"
                 custom:widget="timeplot"
                 custom:text="@string/graph_PilotPower"
                 custom:colorRanges="[
                 {'sid':'427.40','color':'?android:attr/colorForeground','from':-40,'to':100}]"
                 custom:timeScale="4"
                 custom:intervals="{
-                               '42e.38':10000,
+                               '800.610d.24':10000,
                                '427.40':10000
                                }"
                 custom:options="{
