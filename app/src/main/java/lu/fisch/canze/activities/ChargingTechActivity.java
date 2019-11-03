@@ -36,7 +36,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     private static final String SID_MaxCharge = "7bb.6101.336";
     private static final String SID_UserSoC = "42e.0";          // user SOC, not raw
     private static final String SID_AvailableChargingPower = "427.40";
-    private static final String SID_ACPilot = "42e.38";
+    private static final String SID_ACPilot = "800.610d.24";
     private static final String SID_AvEnergy = "427.49";
 
     private static final String SID_PlugConnected = "654.2";
@@ -79,7 +79,6 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
 
     private double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     private double pilot = 0;
-    private int chargingStatus = 7;
     private double usoc = 0;
 
     @Override
@@ -156,10 +155,6 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         // save pilot amps
                         pilot = field.getValue();
                         tv = findViewById(R.id.text_max_pilot);
-                        if (chargingStatus != 3) {// && MainActivity.isZOE()) {
-                            tv.setText("-");
-                            tv = null;
-                        }
                         break;
 
                     case SID_UserSoC:
