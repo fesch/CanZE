@@ -40,11 +40,11 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     private static final String SID_ACPilot = "42e.38";
     private static final String SID_AvEnergy = "427.49";
 
-    private static final String SID_TimeToFull = "654.32";
+    //private static final String SID_TimeToFull = "654.32";
     private static final String SID_PlugConnected = "654.2";
     private static final String SID_SOH = "7ec.623206.24";
     private static final String SID_RangeEstimate = "654.42";
-    private static final String SID_ChargingStatusDisplay = "65b.41";
+    //private static final String SID_ChargingStatusDisplay = "65b.41";
     private static final String SID_TractionBatteryVoltage = "7ec.623203.24";
     private static final String SID_TractionBatteryCurrent = "7ec.623204.24";
     //private static final String SID_EnergyConsumed                   = "7ec.6233db.24";
@@ -79,7 +79,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     private static final String SID_SupervisorState = "793.625063.24";
     private static final String SID_CompletionStatus = "793.625064.24";
     //public static final String cha_Status [] = {"No charge", "Waiting (planned)", "Ended", "In progress", "Failure", "Waiting", "Flap open", "Unavailable"};
-    private final String[] charging_Status = MainActivity.getStringList(R.array.list_ChargingStatus);
+    //private final String[] charging_Status = MainActivity.getStringList(R.array.list_ChargingStatus);
     //public static final String plu_Status [] = {"Not connected", "Connected"};
     private final String[] plug_Status = MainActivity.getStringList(R.array.list_PlugStatus);
     private final String[] mains_Current_Type = MainActivity.getStringList(R.array.list_MainsCurrentType);
@@ -104,7 +104,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addField(SID_TesterInit, lu.fisch.canze.devices.Device.INTERVAL_ONCE);
         addField(SID_MaxCharge, 5000);
         addField(SID_ACPilot, 5000);
-        addField(SID_TimeToFull, 5000);
+        //addField(SID_TimeToFull, 5000);
         addField(SID_PlugConnected, 5000);
         addField(SID_UserSoC, 5000);
         addField(SID_RealSoC, 5000);
@@ -188,15 +188,15 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                             tv = null;
                         }
                         break;
-                    case SID_TimeToFull: // time to full
-                        tv = findViewById(R.id.textTTF);
-                        if (field.getValue() >= 1023) {
-                            tv.setText("--:--");
-                        } else {
-                            tv.setText(String.format(Locale.getDefault(), "%.0f", field.getValue()));
-                        }
-                        tv = null;
-                        break;
+                    //case SID_TimeToFull: // time to full
+                    //    tv = findViewById(R.id.textTTF);
+                    //    if (field.getValue() >= 1023) {
+                    //        tv.setText("--:--");
+                    //    } else {
+                    //        tv.setText(String.format(Locale.getDefault(), "%.0f", field.getValue()));
+                    //    }
+                    //    tv = null;
+                    //    break;
                     case SID_UserSoC:
                         usoc = field.getValue() / 100.0;
                         tv = findViewById(R.id.textUserSOC);
@@ -280,13 +280,13 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                     //    tv.setText("" + field.getValue());
                     //    tv = null;
                     //    break;
-                    case SID_ChargingStatusDisplay:
-                        chargingStatus = (int) field.getValue();
-                        tv = findViewById(R.id.textChaStatus);
-                        if (tv != null && charging_Status != null && chargingStatus >= 0 && chargingStatus < charging_Status.length)
-                            tv.setText(charging_Status[chargingStatus]);
-                        tv = null;
-                        break;
+                    //case SID_ChargingStatusDisplay:
+                    //    chargingStatus = (int) field.getValue();
+                    //    tv = findViewById(R.id.textChaStatus);
+                    //    if (tv != null && charging_Status != null && chargingStatus >= 0 && chargingStatus < charging_Status.length)
+                    //        tv.setText(charging_Status[chargingStatus]);
+                    //    tv = null;
+                    //    break;
                     case SID_PlugConnected:
                         value = (int) field.getValue();
                         tv = findViewById(R.id.textPlug);

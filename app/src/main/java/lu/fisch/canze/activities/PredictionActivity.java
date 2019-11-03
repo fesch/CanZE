@@ -16,7 +16,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
     private static final String SID_UserSoC                          = "42e.0";          // user SOC, not raw
     private static final String SID_AverageBatteryTemperature        = "7bb.6104.600";   // (LBC)
     private static final String SID_RangeEstimate                    = "654.42";
-    private static final String SID_ChargingStatusDisplay            = "65b.41";
+    //private static final String SID_ChargingStatusDisplay            = "65b.41";
     private static final String SID_SOH                              = "7ec.623206.24";
 
     private Battery battery;
@@ -88,10 +88,10 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
                 car_range_est = fieldVal;
                 car_status |= 0x08;
                 break;
-            case SID_ChargingStatusDisplay:
-                charging_status = (fieldVal == 3) ? 1 : 0;
-                car_status |= 0x10;
-                break;
+            //case SID_ChargingStatusDisplay:
+            //    charging_status = (fieldVal == 3) ? 1 : 0;
+            //    car_status |= 0x10;
+            //    break;
             case SID_SOH:
                 car_soh = fieldVal;
                 car_status |= 0x20;

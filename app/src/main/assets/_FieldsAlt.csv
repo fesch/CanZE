@@ -13,8 +13,8 @@
 1f8.16,7ec,24,39,0.29125,32768,0,N.m,222247,622247,ff,Minimum effective torque that can be requested to the electrical motor (EM)
 # 1f8,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
 1f8.28,7bc,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
-# 1f8,40,50,10,0,0,Rpm,,,ff,ElecEngineRPM
-1f8.40,7bc,24,39,10,32768,0,0,223045,623045,ff,ElecEngineRPM
+#  # 1f8,40,50,10,0,0,Rpm,,,ff,ElecEngineRPM
+#  1f8.40,7bc,24,39,10,32768,0,0,223045,623045,ff,ElecEngineRPM
 # 1fd,0,7,0.390625,0,1,%,,,ff,12V Battery Current?
 1fd.0,7ec,24,31,1,0,1,A,223025,623025,ff,14V DCDC current measure
 # 1fd,48,55,1,80,0,kW,,,ff,Consumption
@@ -69,8 +69,6 @@
 656.48,763,110,117,1,40,0,°C,2143,6143,e2,External Temp
 # 658,33,39,1,0,0,%,,,ff,Battery Health
 658.33,7bb,72,79,0.5,0,0,%,2161,6161,ff,Battery Health
-,65b,41,43,1,0,0,,,,ff,Charging Status Display
-# 65b.41,7bc, (qqqq) => comes from the EVC (MMI_SCH_CANHS_R_04), but a corresponding field can not be found. Used in Charging tech, auxbat and prediction
 # 673,0,0,1,0,0,,,,ff,Speed pressure misadaptation
 673.0,765,66,66,1,0,0,,2174,6174,ff,SpeedPressureMisadaptation
 # 673,2,4,1,0,0,,,,ff,Rear right wheel state
@@ -89,11 +87,6 @@
 673.32,765,128,135,13.725,0,0,mbar,2174,6174,ff,FrontRightWheelPressure
 # 673,40,47,13.725,0,0,mbar,2174,6174,ff,Front left wheel pressure
 673.40,765,136,143,13.725,0,0,mbar,2174,6174,ff,FrontLeftWheelPressure
-,699,8,15,0.5,0,0,°C,,,e2,Heater setpoint
-# misschien ,764,36,39,1,0,0,,2165,6165,ff,OLB_FP_RotaryTempDisplay,0:No display;1:Display indicator 1;2:Display indicator 2;3:Display indicator 3;4:Display indicator 4;5:Display indicator 5;6:Display indicator 6;7:Display indicator 7;8:Display indicator 8;9:Display indicator 9;10:Display indicator 10;11:Display indicator 11;12:Display indicator 12;13:Display indicator 13;14:Display indicator 14;15:Display indicator 15
-# 699.8,764, (qqqq)
-#
-#
 #
 ,760,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,760,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
