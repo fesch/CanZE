@@ -301,7 +301,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
             return;
         }
         if (message.isError()) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Could not read write valves:" + message.getError());
+            MainActivity.toast(MainActivity.TOAST_NONE, "Could not write valves:" + message.getError());
             return;
         }
         if (!message.getData().startsWith("7b5d")) {
