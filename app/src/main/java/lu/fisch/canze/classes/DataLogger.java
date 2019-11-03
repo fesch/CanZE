@@ -47,7 +47,7 @@ public class DataLogger implements FieldListener {
     // free data
     private static final String SID_Consumption = "800.6109.24"; //EVC
     private static final String SID_Pedal = "186.40"; //EVC
-    private static final String SID_MeanEffectiveTorque = "186.16"; //EVC
+    private static final String SID_MeanEffectiveTorque = "800.610b.24";
     private static final String SID_RealSpeed = "5d7.0";  //ESC-ABS
     private static final String SID_SoC = "42e.0"; //EVC
     private static final String SID_RangeEstimate = "654.42"; //EVC

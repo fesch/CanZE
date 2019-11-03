@@ -50,15 +50,11 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
     // free data
     private static final String SID_DcPower = "800.6109.24"; // "1fd.48"; //EVC
     private static final String SID_Pedal = "186.40"; //EVC
-    //private static final String SID_MeanEffectiveTorque = "186.16"; //EVC
     private static final String SID_TotalPositiveTorque = "800.610b.24";
-    //private static final String SID_Coasting_Torque = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
     private static final String SID_RealSpeed = "5d7.0";  //ESC-ABS
     private static final String SID_SoC = "42e.0"; //EVC
     private static final String SID_RangeEstimate = "654.42"; //EVC
-    //private static final String SID_DriverBrakeWheel_Torque_Request = "130.44"; //UBP braking wheel torque the driver wants
     private static final String SID_TotalNegativeTorque = "800.610c.24";
-    private static final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //UBP 10ms
     private static final String SID_TotalPotentialResistiveWheelsTorque = "1f8.16"; //UBP 10ms
 
     // ISO-TP data
@@ -77,8 +73,6 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
     private float tripEnergy = -1;
     private float savedTripStart = 0;
     private double realSpeed = 0;
-    private double driverBrakeWheel_Torque_Request = 0;
-    private double coasting_Torque = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +114,6 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         MainActivity.getInstance().setDebugListener(this);
         addField(SID_DcPower, 0);
         addField(SID_Pedal, 0);
-        //addField(SID_MeanEffectiveTorque, 0);
         //addField(SID_DriverBrakeWheel_Torque_Request, 0);
         //addField(SID_ElecBrakeWheelsTorqueApplied, 0);
         //addField(SID_Coasting_Torque, 0);
@@ -308,18 +301,12 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                 // get the text field
                 switch (fieldId) {
                     case SID_SoC:
-//                  case SID_EVC_SoC:
                         tv = findViewById(R.id.textSOC);
                         break;
                     case SID_Pedal:
-//                  case SID_EVC_Pedal:
                         pb = findViewById(R.id.pedalBar);
                         pb.setProgress((int) field.getValue());
                         break;
-                    //case SID_MeanEffectiveTorque:
-                    //    pb = findViewById(R.id.MeanEffectiveAccTorque);
-                    //    pb.setProgress((int) (field.getValue() * MainActivity.reduction)); // --> translate from motor torque to wheel torque
-                    //    break;
                     case SID_TotalPositiveTorque:
                         pb = findViewById(R.id.MeanEffectiveAccTorque);
                         pb.setProgress((int)field.getValue()); // --> translate from motor torque to wheel torque

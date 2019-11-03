@@ -31,25 +31,12 @@ import lu.fisch.canze.actors.Field;
 
 public class DashActivity extends CanzeActivity {
 
-    private static final String SID_MeanEffectiveTorque                  = "186.16"; //EVC
     private static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //UBP 10ms
-    private static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
-    private static final String SID_Coasting_Torque                      = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
-    //private static final String SID_Instant_Consumption                  = "800.6100.24";
-
     private static final String SID_TotalPositiveTorque = "800.610b.24";
     private static final String SID_TotalNegativeTorque = "800.610c.24";
-    private static final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //UBP 10ms
 
-
-    private int coasting_Torque                     = 0;
-    private int driverBrakeWheel_Torque_Request     = 0;
-    private int tempTorque                          = 0;
 
     public void initListeners () {
-        //addField(SID_MeanEffectiveTorque, 0);
-        //addField(SID_DriverBrakeWheel_Torque_Request, 0);
-        //addField(SID_Coasting_Torque, 0);
         addField(SID_TotalPotentialResistiveWheelsTorque, 7200);
         //addField(SID_Instant_Consumption, 0);
         addField(SID_TotalPositiveTorque, 0);
@@ -83,35 +70,6 @@ public class DashActivity extends CanzeActivity {
                 double consumption;
 
                 switch (fieldId) {
-                    // positive torque
-                    case SID_MeanEffectiveTorque:
-                        tempTorque = (int)(field.getValue() * MainActivity.reduction); // --> translate from motor torque to wheel torque
-                        pb = findViewById(R.id.MeanEffectiveAccTorque);
-                        pb.setProgress(tempTorque);
-                        if (tempTorque <= 1) break;
-                        tv = findViewById(R.id.text_wheel_torque);
-                        if (tv != null) tv.setText(tempTorque + " " + field.getUnit());
-                        break;
-
-                    // negative torque
-                    case SID_DriverBrakeWheel_Torque_Request:
-                        driverBrakeWheel_Torque_Request = (int)field.getValue();
-                        tempTorque = driverBrakeWheel_Torque_Request + coasting_Torque;
-                        pb = findViewById(R.id.pb_driver_torque_request);
-                        if (pb != null) pb.setProgress(tempTorque);
-                        if (tempTorque <= 1) break;
-                        tv = findViewById(R.id.text_wheel_torque);
-                        if (tv != null) tv.setText(-tempTorque + " " + field.getUnit());
-                        break;
-                    case SID_Coasting_Torque:
-                        coasting_Torque = (int)(field.getValue() * MainActivity.reduction); // torque is given in motor torque, not in wheel torque
-                        tempTorque = driverBrakeWheel_Torque_Request + coasting_Torque;
-                        pb = findViewById(R.id.pb_driver_torque_request);
-                        if (pb != null) pb.setProgress(tempTorque);
-                        if (tempTorque <= 1) break;
-                        tv = findViewById(R.id.text_wheel_torque);
-                        if (tv != null) tv.setText(-tempTorque + " " + field.getUnit());
-                        break;
 
                     case SID_TotalPotentialResistiveWheelsTorque: //blue bar
                         int tprwt = -((int) field.getValue());
@@ -119,11 +77,13 @@ public class DashActivity extends CanzeActivity {
                         if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 10);
                         tv = null; // findViewById(R.id.textTPRWT);
                         break;
+
                     case SID_TotalNegativeTorque:
                         pb = findViewById(R.id.pb_driver_torque_request);
                         if (pb != null) pb.setProgress((int) field.getValue());
                         tv = null;
                         break;
+
                     case SID_TotalPositiveTorque:
                         pb = findViewById(R.id.MeanEffectiveAccTorque);
                         pb.setProgress((int)field.getValue()); // --> translate from motor torque to wheel torque

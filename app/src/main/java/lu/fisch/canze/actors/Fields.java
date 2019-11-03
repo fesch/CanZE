@@ -85,13 +85,13 @@ public class Fields {
         addVirtualFieldUsage();
         addVirtualFieldUsageLpf();
         addVirtualFieldFrictionTorque();
-        addVirtualFieldFrictionPower();
+        //addVirtualFieldFrictionPower();
         addVirtualFieldElecBrakeTorque();
         addVirtualFieldTotalPositiveTorque();
         addVirtualFieldTotalNegativeTorque();
         addVirtualFieldDcPowerIn();
         addVirtualFieldDcPowerOut();
-        addVirtualFieldHeaterSetpoint();
+        //addVirtualFieldHeaterSetpoint();
         addVirtualFieldRealRange();
         addVirtualFieldRealDelta();
         addVirtualFieldRealDeltaNoReset();
@@ -265,7 +265,7 @@ public class Fields {
             });
         }
     }
-
+/*
     private void addVirtualFieldFrictionPower() {
         final String SID_DriverBrakeWheel_Torque_Request = "130.44"; //UBP braking wheel torque the driver wants
         final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //10ms
@@ -285,7 +285,7 @@ public class Fields {
             }
         });
     }
-
+*/
     private void addVirtualFieldDcPowerIn() {
         // positive = charging, negative = discharging. Unusable for consumption graphs
         final String SID_TractionBatteryVoltage = "7ec.623203.24";
@@ -346,7 +346,7 @@ public class Fields {
             }
         });
     }
-
+/*
     private void addVirtualFieldHeaterSetpoint() {
         final String SID_HeaterSetpoint = "699.8";
 
@@ -367,7 +367,7 @@ public class Fields {
             }
         });
     }
-
+*/
     private void addVirtualFieldRealRange() {
         final String SID_EVC_Odometer = "7ec.622006.24"; //  (EVC)
         final String SID_RangeEstimate = "654.42"; //  (EVC)

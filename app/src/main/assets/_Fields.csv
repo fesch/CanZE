@@ -30,13 +30,11 @@
 ,62d,10,19,0.1,0,0,kWh/100km,,,ff,Best Average Consumption
 ,638,37,39,1,0,0,,,,ff,Battery 14v To Be Changed Display
 ,654,2,2,1,0,0,,,,ff,Charging Plug Connected
-,654,25,31,1,0,0,,,,ff,State of Charge
 ,654,32,41,1,0,0,min,,,ff,Time to Full
 ,654,42,51,1,0,0,km,,,ff,Available Distance
 ,654,52,61,0.1,0,1,kWh/100km,,,ff,Average Consumption
 ,656,48,55,1,40,0,°C,,,e2,External Temp
 ,658,33,39,1,0,0,%,,,ff,Battery Health
-,65b,41,43,1,0,0,,,,ff,Charging Status Display
 ,673,0,0,1,0,0,,,,ff,Speed pressure misadaptation
 ,673,2,4,1,0,0,,,,ff,Rear right wheel state
 ,673,5,7,1,0,0,,,,ff,Rear left wheel state
@@ -46,7 +44,7 @@
 ,673,24,31,13.725,0,0,mbar,,,ff,Rear left wheel pressure
 ,673,32,39,13.725,0,0,mbar,,,ff,Front right wheel pressure
 ,673,40,47,13.725,0,0,mbar,,,ff,Front left wheel pressure
-,699,8,15,0.5,0,0,°C,,,e2,Temperature
+#
 ,760,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,760,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,760,128,143,1,0,0,,2180,6180,ff,Soft

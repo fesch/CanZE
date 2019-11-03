@@ -35,21 +35,15 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
 
     private static final String SID_MaxCharge = "7bb.6101.336";
     private static final String SID_UserSoC = "42e.0";          // user SOC, not raw
-    //  private static final String SID_RealSoC                          = "654.25";         // real SOC
     private static final String SID_AvailableChargingPower = "427.40";
     private static final String SID_ACPilot = "42e.38";
     private static final String SID_AvEnergy = "427.49";
 
-    private static final String SID_TimeToFull = "654.32";
     private static final String SID_PlugConnected = "654.2";
     private static final String SID_SOH = "7ec.623206.24";
     private static final String SID_RangeEstimate = "654.42";
-    private static final String SID_ChargingStatusDisplay = "65b.41";
     private static final String SID_TractionBatteryVoltage = "7ec.623203.24";
     private static final String SID_TractionBatteryCurrent = "7ec.623204.24";
-    //private static final String SID_EnergyConsumed                   = "7ec.6233db.24";
-    // private static final String SID_CapacityFluKan                   = "7bb.6101.348";
-    // private static final String SID_CapacityZoe                      = "";
     private static final String SID_RealSoC = "7bb.6103.192";
     private static final String SID_12V = "7ec.622005.24";
     private static final String SID_12A = "7ec.623028.24";
@@ -78,9 +72,6 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     private static final String SID_GroundResistance = "793.625062.24";
     private static final String SID_SupervisorState = "793.625063.24";
     private static final String SID_CompletionStatus = "793.625064.24";
-    //public static final String cha_Status [] = {"No charge", "Waiting (planned)", "Ended", "In progress", "Failure", "Waiting", "Flap open", "Unavailable"};
-    private final String[] charging_Status = MainActivity.getStringList(R.array.list_ChargingStatus);
-    //public static final String plu_Status [] = {"Not connected", "Connected"};
     private final String[] plug_Status = MainActivity.getStringList(R.array.list_PlugStatus);
     private final String[] mains_Current_Type = MainActivity.getStringList(R.array.list_MainsCurrentType);
     private final String[] supervisor_State = MainActivity.getStringList(R.array.list_SupervisorState);
@@ -90,7 +81,6 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     private double pilot = 0;
     private int chargingStatus = 7;
     private double usoc = 0;
-    //double rsoc          = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,19 +90,13 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        //if (MainActivity.device != null) MainActivity.device.injectRequest(SID_TesterInit);
         addField(SID_TesterInit, lu.fisch.canze.devices.Device.INTERVAL_ONCE);
         addField(SID_MaxCharge, 5000);
         addField(SID_ACPilot, 5000);
-        addField(SID_TimeToFull, 5000);
         addField(SID_PlugConnected, 5000);
         addField(SID_UserSoC, 5000);
         addField(SID_RealSoC, 5000);
-        //if (MainActivity.isZOE()) {
         addField(SID_AvailableChargingPower, 5000);
-            //} else {
-            //    addFields(SID_CapacityFluKan, 5000);
-        //}
         addField(SID_AvEnergy, 5000);
         addField(SID_SOH, 5000); // state of health gives continuous timeouts. This frame is send at a very low rate
         addField(SID_RangeEstimate, 5000);
@@ -120,17 +104,14 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addField(SID_12A, 5000);
         addField(SID_DcLoad, 5000);
         addField(SID_HvKilometers, 5000);
-        //addField(SID_EnergyConsumed, 5000);
-        //addField(SID_ChargingStatusDisplay, 5000);
         addField(SID_TractionBatteryVoltage, 5000);
         addField(SID_TractionBatteryCurrent, 5000);
 
         // Battery compartment temperatures
-        int lastCell = 12; //MainActivity.isZOE() ? 12 : 4;
+        int lastCell = 12;
         for (int i = 0; i < lastCell; i++) {
             String sid = SID_Preamble_CompartmentTemperatures + (32 + i * 24);
             addField(sid, 5000);
-            //if (MainActivity.isZOE()) sid = SID_Preamble_BalancingBytes + (16 + i * 8);
             sid = SID_Preamble_BalancingBytes + (16 + i * 8);
             addField(sid, 5000);
         }
@@ -174,42 +155,28 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                     case SID_ACPilot:
                         // save pilot amps
                         pilot = field.getValue();
-                        //if (MainActivity.isFluKan()) { // for FluKan, approximate phases (always 1) and AvChPwr (amps * 0.225)
-                        //    double avChPwr = (double) Math.round(pilot * 2.25) / 10.0;
-                        //    tv = findViewById(R.id.textPhases);
-                        //    tv.setText("1");
-                        //    tv = findViewById(R.id.textAvChPwr);
-                        //    tv.setText(String.format(Locale.getDefault(), "%.1f", avChPwr));
-                        //}
-                        // continue
                         tv = findViewById(R.id.text_max_pilot);
                         if (chargingStatus != 3) {// && MainActivity.isZOE()) {
                             tv.setText("-");
                             tv = null;
                         }
                         break;
-                    case SID_TimeToFull: // time to full
-                        tv = findViewById(R.id.textTTF);
-                        if (field.getValue() >= 1023) {
-                            tv.setText("--:--");
-                        } else {
-                            tv.setText(String.format(Locale.getDefault(), "%.0f", field.getValue()));
-                        }
-                        tv = null;
-                        break;
+
                     case SID_UserSoC:
                         usoc = field.getValue() / 100.0;
                         tv = findViewById(R.id.textUserSOC);
                         break;
+
                     case SID_RealSoC:
-                        //rsoc = field.getValue() / 100.0;
                         tv = findViewById(R.id.textRealSOC);
                         break;
+
                     case SID_SOH:
                         tv = findViewById(R.id.textSOH);
                         tv.setText(String.format(Locale.getDefault(), "%.0f", field.getValue()));
                         tv = null;
                         break;
+
                     case SID_RangeEstimate:
                         tv = findViewById(R.id.textKMA);
                         if (field.getValue() >= 1023) {
@@ -219,12 +186,14 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         }
                         tv = null;
                         break;
+
                     case SID_TractionBatteryVoltage: // DC volts
                         // save DC voltage for DC power purposes
                         dcVolt = field.getValue();
                         // continue
                         tv = findViewById(R.id.textVolt);
                         break;
+
                     case SID_TractionBatteryCurrent: // DC amps
                         // calculate DC power
                         double dcPwr = (double) Math.round(dcVolt * field.getValue() / 100.0) / 10.0;
@@ -233,7 +202,8 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         // continue
                         tv = findViewById(R.id.textAmps);
                         break;
-                    case SID_AvailableChargingPower: // won't be called for FluKan
+
+                    case SID_AvailableChargingPower:
                         double avChPwr = field.getValue();
                         tv = findViewById(R.id.textPhases);
                         if (pilot == 0 || avChPwr > 45.0) {
@@ -249,6 +219,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                             tv = null;
                         }
                         break;
+
                     case SID_AvEnergy:
                         if (usoc > 0) {
                             tv = findViewById(R.id.textETF);
@@ -257,6 +228,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         }
                         tv = findViewById(R.id.textAvEner);
                         break;
+
                     case SID_12V:
                         tv = findViewById(R.id.text12V);
                         break;
@@ -266,27 +238,13 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                     case SID_DcLoad:
                         tv = findViewById(R.id.textDcLoad);
                         break;
+
                     case SID_HvKilometers:
                         tv = findViewById(R.id.textHKM);
                         tv.setText(String.format(Locale.getDefault(), "%.0f", field.getValue()));
                         tv = null;
                         break;
-                    //case SID_EnergyConsumed: // see http://canze.fisch.lu/qa/#comment-1074. Seems another field is needed for R240
-                    //    tv = findViewById(R.id.textENC);
-                    //    break;
-                    //case SID_CapacityFluKan:
-                    //case SID_CapacityZoe:
-                    //    tv = findViewById(R.id.textCapacity);
-                    //    tv.setText("" + field.getValue());
-                    //    tv = null;
-                    //    break;
-                    case SID_ChargingStatusDisplay:
-                        chargingStatus = (int) field.getValue();
-                        tv = findViewById(R.id.textChaStatus);
-                        if (tv != null && charging_Status != null && chargingStatus >= 0 && chargingStatus < charging_Status.length)
-                            tv.setText(charging_Status[chargingStatus]);
-                        tv = null;
-                        break;
+
                     case SID_PlugConnected:
                         value = (int) field.getValue();
                         tv = findViewById(R.id.textPlug);
@@ -294,6 +252,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                             tv.setText(plug_Status[value]);
                         tv = null;
                         break;
+
                     case SID_Preamble_CompartmentTemperatures + "32":
                         tv = findViewById(R.id.text_comp_1_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatTemperature, field.getValue()));

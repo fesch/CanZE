@@ -37,15 +37,9 @@ public class BrakingActivity extends CanzeActivity implements FieldListener, Deb
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
-    private static final String SID_Coasting_Torque                      = "18a.27"; // 10ms Friction torque means EMULATED friction, what we'd call coasting
-    private static final String SID_ElecBrakeWheelsTorqueApplied         = "1f8.28"; // 10ms
-    private static final String SID_DriverBrakeWheel_Torque_Request      = "130.44"; // braking wheel torque the driver wants
     private static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; // UBP 10ms
     private static final String SID_FrictionTorque                       = "800.6101.24";
     private static final String SID_ElecBrakeTorque                      = "800.610a.24";
-
-    private double driverBrakeWheel_Torque_Request = 0;
-    private double coasting_Torque = 0;
 
     private double frictionTorque = 0;
     private double elecBrakeTorque = 0;
@@ -58,9 +52,6 @@ public class BrakingActivity extends CanzeActivity implements FieldListener, Deb
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        //addField(SID_DriverBrakeWheel_Torque_Request);
-        //addField(SID_ElecBrakeWheelsTorqueApplied);
-        //addField(SID_Coasting_Torque);
         addField(SID_TotalPotentialResistiveWheelsTorque);
         addField(SID_FrictionTorque);
         addField(SID_ElecBrakeTorque);
@@ -77,38 +68,15 @@ public class BrakingActivity extends CanzeActivity implements FieldListener, Deb
             public void run() {
                 String fieldId = field.getSID();
                 TextView tv;
-                //String value = "";
                 ProgressBar pb;
 
                 // get the text field
                 switch (fieldId) {
-                    case SID_DriverBrakeWheel_Torque_Request: // brake pedal
-                        driverBrakeWheel_Torque_Request = field.getValue() + coasting_Torque; // brake pedal plus natural coasting decel
-                        pb = findViewById(R.id.pb_driver_torque_request);
-                        pb.setProgress((int) driverBrakeWheel_Torque_Request);
-                        tv = findViewById(R.id.text_driver_torque_request);
-                        if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + MainActivity.getStringSingle(R.string.unit_Nm), driverBrakeWheel_Torque_Request));
-                        break;
+
                     case SID_TotalPotentialResistiveWheelsTorque: //bluebar
                         int tprwt = - ((int) field.getValue());
                         pb = findViewById(R.id.MaxBreakTorque);
                         if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 20);
-                        break;
-                    case SID_ElecBrakeWheelsTorqueApplied:
-                        double elecBrakeWheelsTorqueApplied = field.getValue() + coasting_Torque;
-                        pb = findViewById(R.id.pb_ElecBrakeWheelsTorqueApplied);
-                        pb.setProgress((int) elecBrakeWheelsTorqueApplied);
-                        tv = findViewById(R.id.text_ElecBrakeWheelsTorqueApplied);
-                        if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + MainActivity.getStringSingle(R.string.unit_Nm), elecBrakeWheelsTorqueApplied));
-
-                        double diff_friction_torque = driverBrakeWheel_Torque_Request - elecBrakeWheelsTorqueApplied;
-                        pb = findViewById(R.id.pb_diff_friction_torque);
-                        pb.setProgress((int) diff_friction_torque);
-                        tv = findViewById(R.id.text_diff_friction_torque);
-                        if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + MainActivity.getStringSingle(R.string.unit_Nm), diff_friction_torque));
-                        break;
-                    case SID_Coasting_Torque:
-                        coasting_Torque = field.getValue() * MainActivity.reduction; // This torque is given in motor torque, not in wheel torque.
                         break;
 
                     case SID_FrictionTorque:
@@ -122,6 +90,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener, Deb
                         tv = findViewById(R.id.text_driver_torque_request);
                         if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + MainActivity.getStringSingle(R.string.unit_Nm), frictionTorque + elecBrakeTorque));
                         break;
+
                     case SID_ElecBrakeTorque:
                         elecBrakeTorque = field.getValue();
                         pb = findViewById(R.id.pb_ElecBrakeWheelsTorqueApplied);
