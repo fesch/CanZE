@@ -1,3 +1,11 @@
+2019-11-04 [Jeroen] Gradle to 3.5.2
+2019-11-04 [Jeroen] Removed fields that cannot be fetched by ISOTP only
+2019-11-04 [Jeroen] Added ELM conversation logging
+2019-11-04 [Jeroen] Fixed problem that forbid writing log files
+2019-11-04 [Cedric] Update FR
+2019-11-02 [Jeroen] Alternative ISOTP mode to avoid free frames
+2019-10-25 [Jeroen] News updated re dark mode released
+
 ---< Version 1.45 / 2019.10.25 / 47 >---
 2019-10-25 [Jeroen+Bob] Switch to API level 21
 
