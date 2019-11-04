@@ -661,7 +661,7 @@ public abstract class Device {
         if (frame.isIsoTp()) {
             msg = requestIsoTpFrame(frame);
         } else {
-            if (MainActivity.altFieldsMode) MainActivity.debug("********* free frame in alt mode ********: " + frame.getRID());
+            if (MainActivity.altFieldsMode) MainActivity.toast(MainActivity.TOAST_NONE, "Free frame in ISOTP mode:" + frame.getRID()); // MainActivity.debug("********* free frame in alt mode ********: " + frame.getRID());
             msg = requestFreeFrame(frame);
         }
 
