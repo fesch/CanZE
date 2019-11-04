@@ -163,13 +163,13 @@
         <item>Init</item>
         <item>HF10</item>
         <item>-</item>
-        <item>Mains Ground Default</item>
+        <item>Mains Grnd. Def.</item>
         <item>-</item>
-        <item>Earth Current default</item>
+        <item>Earth Cur. def.</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Ground Default</item>
+        <item>Ground Def.</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -177,7 +177,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Means Leakage DC</item>
+        <item>Leakage DC</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -192,7 +192,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Means Leakage LF</item>
+        <item>Leakage LF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -209,7 +209,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Means Leakage DC+LF</item>
+        <item>Leakage DC+LF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -225,7 +225,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Means Leakage HF</item>
+        <item>Leakage HF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -241,7 +241,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Means Leakage DC+HF</item>
+        <item>Leakage DC+HF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -257,7 +257,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Means Leakage LF+HF</item>
+        <item>Leakage LF+HF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -273,7 +273,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Means Leakage DC+LF+HF</item>
+        <item>Leakage DC+LF+HF</item>
     </string-array>
     <string name="label_SupervisorState">Supervisor state</string>
     <string-array name="list_SupervisorState">
