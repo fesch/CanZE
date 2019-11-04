@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static boolean milesMode = false;
     public static boolean altFieldsMode = false;
 
-    public static final boolean storageIsAvailable = false;
+    public static final boolean storageIsAvailable = true;
 
     public static final short TOAST_NONE = 0;
     public static final short TOAST_ELM = 1;
