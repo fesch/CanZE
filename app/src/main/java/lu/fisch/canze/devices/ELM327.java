@@ -370,7 +370,7 @@ public class ELM327 extends Device {
             BluetoothManager.getInstance().write(command + (addReturn ? "\r" : ""));
         }
 
-        //MainActivity.debug("Send > "+command);
+        MainActivity.debug("Send > "+command);
         // wait if needed (JM: tbh, I think waiting here is never needed. Any waiting should be handled in the wait for an answer timeout. But that's me.
 /*        if(waitMillis>0) {
             try {
@@ -468,7 +468,7 @@ public class ELM327 extends Device {
         }
 
         //MainActivity.debug("ALC: "+answerLinesCount+" && Stop: "+stop+" && Delta: "+(Calendar.getInstance().getTimeInMillis()-start));
-        //MainActivity.debug("Recv < "+readBuffer);
+        MainActivity.debug("Recv < "+readBuffer);
         return readBuffer.toString();
     }
 
