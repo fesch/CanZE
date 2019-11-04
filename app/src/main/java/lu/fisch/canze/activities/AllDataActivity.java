@@ -293,12 +293,12 @@ public class AllDataActivity extends CanzeActivity {
     private void createDump(Ecu ecu) {
 
         dumpInProgress = false;
-/*
+
         if (!MainActivity.storageIsAvailable) {
             debug("AllDataActivity.createDump: SDcard not available");
             return;
         }
-*/
+
         // ensure that there is a CanZE Folder in SDcard
         if (!isExternalStorageWritable()) {
             debug("AllDataActivity.createDump: SDcard not writeable");
