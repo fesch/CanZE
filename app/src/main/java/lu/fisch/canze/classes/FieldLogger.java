@@ -38,7 +38,7 @@ public class FieldLogger {
     private File logFile = null;
 
 
-    private final SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMS), Locale.getDefault());
+    private SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMS), Locale.US);
 
     private boolean isCreated()
     {
@@ -76,17 +76,13 @@ public class FieldLogger {
         try {
             //BufferedWriter for performance, true to set append to file flag
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
-            // set global static BufferedWriter dataexportStream later
-            //if (true) {
-            //    bufferedWriter.append("this is just a test if stream is writeable");
-            //    bufferedWriter.newLine();
-            //    bufferedWriter.close();
-            //}
-            
+
             // header
-            bufferedWriter.append("time,SID,value\n");
-            
+            bufferedWriter.append("Datetime,SID,Name,Value,Unit\n");
             bufferedWriter.close();
+
+            sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMSs), Locale.US);
+
             result = true;
         }
         catch (IOException e) {
