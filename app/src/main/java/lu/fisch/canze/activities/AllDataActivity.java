@@ -221,16 +221,7 @@ public class AllDataActivity extends CanzeActivity {
                             message.onMessageCompleteEvent();
 
                             for (Field field : frame.getAllFields()) {
-                                if (field.isString()) {
-                                    appendResult(String.format(Locale.getDefault(), "%s %s:%s\n", field.getSID(), field.getName(),field.getStringValue()));
-                                    //appendResult(field.getSID() + " " + field.getName() + ":" + field.getStringValue() + "\n");
-                                } else if (field.isList()) {
-                                    appendResult(String.format(Locale.getDefault(), "%s %s:%s\n", field.getSID(), field.getName(), field.getListValue()));
-                                    //appendResult(field.getSID() + " " + field.getName() + ":" + field.getListValue() + "\n");
-                                } else {
-                                    appendResult(String.format(Locale.getDefault(), "%s %s:%." + field.getDecimals() + "f%s\n", field.getSID(), field.getName(), field.getValue(), field.getUnit()));
-                                    //appendResult(field.getSID() + " " + field.getName() + ":" + field.getValue() + field.getUnit() + "\n");
-                                }
+                                appendResult(field.getDebugValue());
                             }
                         } else {
                             appendResult(frame.getHexId() + "." + frame.getResponseId() + ":" + message.getError() + "\n");

@@ -84,7 +84,7 @@ public class FieldLogger {
             //}
             
             // header
-            bufferedWriter.append("time,SID,value\n");
+            bufferedWriter.append("Datetime,SID,Name,Value,Unit\n");
             
             bufferedWriter.close();
             result = true;

@@ -32,6 +32,7 @@ import lu.fisch.canze.interfaces.FieldListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * @author robertfisch
@@ -153,6 +154,18 @@ public class Field {
             return val;
         }
         return val;
+    }
+
+    public String getDebugValue() {
+        if (isString()) {
+            return String.format(Locale.getDefault(), "%s,%s,%s,", getSID(), getName(), getStringValue());
+        } else if (isList()) {
+            return String.format(Locale.getDefault(), "%s,%s,%s,", getSID(), getName(), getListValue());
+        } else if (Double.isNaN(value)) {
+            return String.format(Locale.getDefault(), "%s,%s,Nan,%s", getSID(), getName(), getUnit());
+        }
+        return String.format(Locale.getDefault(), "%s,%s,%." + getDecimals() + "f,%s", getSID(), getName(), getValue(), getUnit());
+            //appendResult(field.getSID() + " " + field.getName() + ":" + field.getValue() + field.getUnit() + "\n");
     }
 
     public double getMax() {
