@@ -102,7 +102,7 @@
                         />
 
                     <Button
-                        android:id="@+id/buttonDummy"
+                        android:id="@+id/buttonResearch"
                         style="?android:attr/button"
                         android:layout_width="0dp"
                         android:layout_height="fill_parent"
@@ -112,7 +112,10 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:text="" />
+                        android:drawableLeft="@mipmap/button_microscope"
+                        android:drawableStart="@mipmap/button_microscope"
+                        android:text="Research"
+                        />
 
                 </TableRow>
 

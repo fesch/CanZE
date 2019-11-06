@@ -31,6 +31,7 @@ import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.interfaces.VirtualFieldAction;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -632,6 +633,22 @@ public class Fields {
 
     }
 
+    private void fillFromFile(String filename) {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
+            if (bufferedReader == null) {
+                MainActivity.toast(MainActivity.TOAST_NONE, "Can't access file " + filename);
+                return;
+            }
+            String line;
+            while ((line = bufferedReader.readLine()) != null)
+                fillOneLine(line);
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void fillFromAsset(String assetName) {
         //Read text from asset
         AssetLoadHelper assetLoadHelper = new AssetLoadHelper(MainActivity.getInstance());
@@ -662,6 +679,8 @@ public class Fields {
         if (assetName.equals("")) {
             fillFromAsset(MainActivity.altFieldsMode ? "_FieldsAlt.csv" : "_Fields.csv");
             addVirtualFields();
+        } else if (assetName.startsWith("/")) {
+            fillFromFile(assetName);
         } else {
             fillFromAsset(assetName);
             if (assetName.startsWith("VFC")) {
