@@ -124,6 +124,9 @@
         <activity
             android:name=".activities.FieldTestActivity"
             android:label="Field test" />
+        <activity
+            android:name=".activities.ResearchActivity"
+            android:label="Research" />
     </application>
 
 </manifest>
