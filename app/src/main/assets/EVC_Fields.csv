@@ -211,7 +211,7 @@
 ,7ec,25,31,1,0,0,%,223029,623029,ff,DCDC temperature indicator
 ,7ec,30,31,1,0,0,,22302A,62302A,ff,General DCDC state,0:Standby;1:wake up but not activated;2:wake up and activated
 ,7ec,24,39,.5,32768,1,A,223042,623042,ff,HV INV current measure
-,7ec,24,39,.03125,1048576,2,N.m,223043,623043,ff,Torque request
+,7ec,24,39,.03125,32768,2,N.m,223043,623043,ff,Torque request
 ,7ec,24,39,1,32768,0,N.m,223044,623044,ff,Estimated torque of the electrical engine (from PEB)
 ,7ec,24,39,10,32768,0,rpm,223045,623045,ff,Electrical Motor speed
 ,7ec,24,39,.02,0,2,%,223047,623047,ff,INV temperature indicator
@@ -235,7 +235,7 @@
 ,7ec,29,31,1,0,0,,223201,623201,ff,LBC mode request,0:Not Request;1:Slow Charge;2:Fast Charge;3:Normal Charge;4:Quick Drop;5:Not used;7:Unavailable value
 ,7ec,29,31,1,0,0,,223202,623202,ff,LBC fonctionning state,0:Not used;1:Slow Charge;2:Fast Charge;3:Init;4:Transitory;5:Normal;6:BHV_QuickDrop_mode;7:Unavailable value
 ,7ec,24,39,.5,0,1,V,223203,623203,ff,HV LBC voltage measure
-,7ec,24,39,.25,131072,1,A,223204,623204,ff,HV LBC current measure
+,7ec,24,39,.25,32768,1,A,223204,623204,ff,HV LBC current measure
 ,7ec,24,31,1,0,0,%,223206,623206,ff,State Of Health (SOH) HV battery
 ,7ec,30,31,1,0,0,,223208,623208,ff,Caution flag state,0:C_HVBatteryNoDefault;1:C_HVBatteryLevel1Default;2:C_HVBatteryLevel2Default;3:C_HVBatteryDriving30sDefault
 ,7ec,30,31,1,0,0,,223209,623209,ff,Failure flag state,0:Not used;1:No Default;2:Failure : Level2 Failure;3:Unavailable Value
@@ -448,7 +448,7 @@
 ,7ec,30,30,1,0,0,,2233AD,6233AD,ff,Computation of PTC defaults.1,0:No default;1:Default present
 ,7ec,31,31,1,0,0,,2233AD,6233AD,ff,Computation of PTC defaults.0,0:No default;1:Default present
 ,7ec,24,39,1,0,0,rpm,2233AE,6233AE,ff,AC compressor RPM Command
-,7ec,24,39,.1,27300,1,°C,2233AF,6233AF,ff,temperature used to prevent the evaporator from freezing within the heating venting and air conditionner system (HVAC)
+,7ec,24,39,.1,2730,1,°C,2233AF,6233AF,ff,temperature used to prevent the evaporator from freezing within the heating venting and air conditionner system (HVAC)
 ,7ec,24,39,.1,2730,1,°C,2233B0,6233B0,ff,evaporator temperature setpoint for compressor control
 ,7ec,24,31,1,40,0,°C,2233B1,6233B1,ff,CAN signal for external temperature of the vehicle.
 ,7ec,24,31,1,40,0,°C,2233B3,6233B3,ff,water temperature setpoint for PTC control
@@ -766,17 +766,17 @@
 ,7ec,24,39,100,0,0,W,223445,623445,ff,CAN signal for the estimation of the BCB input power (power consumed from the Mains network)
 ,7ec,31,31,1,0,0,,223446,623446,ff,eco mode request,0:Mode eco not requested;1:Mode eco requested
 ,7ec,31,31,1,0,0,,223447,623447,ff,memorized eco mode request,0:Mode eco not requested;1:Mode eco requested
-,7ec,24,39,.03125,1048576,2,N·m,223448,623448,ff,Electrical motor (EM) maximum effective torque available, after eco mode limitation
-,7ec,24,55,.01,-214748364800,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.9
-,7ec,56,87,.01,-214748364800,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.8
-,7ec,88,119,.01,-214748364800,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.7
-,7ec,120,151,.01,-214748364800,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.6
-,7ec,152,183,.01,-214748364800,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.5
-,7ec,184,215,.01,-214748364800,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.4
-,7ec,216,247,.01,-214748364800,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.3
-,7ec,248,279,.01,-214748364800,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.2
-,7ec,280,311,.01,-214748364800,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.1
-,7ec,312,343,.01,-214748364800,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.0
+,7ec,24,39,.03125,32768,2,N·m,223448,623448,ff,Electrical motor (EM) maximum effective torque available, after eco mode limitation
+,7ec,24,55,.01,-2147483648,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.9
+,7ec,56,87,.01,-2147483648,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.8
+,7ec,88,119,.01,-2147483648,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.7
+,7ec,120,151,.01,-2147483648,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.6
+,7ec,152,183,.01,-2147483648,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.5
+,7ec,184,215,.01,-2147483648,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.4
+,7ec,216,247,.01,-2147483648,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.3
+,7ec,248,279,.01,-2147483648,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.2
+,7ec,280,311,.01,-2147483648,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.1
+,7ec,312,343,.01,-2147483648,2,km,223449,623449,1ff,Total vehicle distance associated with each last ten Quick Drop.0
 ,7ec,24,31,1,0,0,,22344A,62344A,ff,This paramater is needed in read mode to know the counter of the functional diagnostic which aim at detecting a too often low performance of battery cooling system in study
 ,7ec,31,31,1,0,0,,22344B,62344B,ff,Allow to control the BattVE Relay which gives energy to several ECU linked to thermal comfort,0:Opened;1:Closed
 ,7ec,31,31,1,0,0,,22344C,62344C,ff,Plug Unlock/ Trap Open Push Button request,0:No request;1:Request activated
@@ -789,11 +789,11 @@
 ,7ec,31,31,1,0,0,,223453,623453,ff,EEPROM memorized value of the eco mode switch request,0:Mode ECO not requested;1:Mode ECO requested
 ,7ec,24,47,.001,0,3,kW,223454,623454,ff,Contributions of anticipation lack and excessive vehicle speed to electrical overconsumption since cluster reset.1
 ,7ec,48,71,.001,0,3,kW,223454,623454,ff,Contributions of anticipation lack and excessive vehicle speed to electrical overconsumption since cluster reset.0
-,7ec,24,39,.00001953125,-51200,3,kW,223455,623455,ff,Mean eco electrical consumption (if driver has economical driving behavior)
+,7ec,24,39,.00001953125,-1,3,kW,223455,623455,ff,Mean eco electrical consumption (if driver has economical driving behavior)
 ,7ec,24,39,1,0,0,km,223456,623456,ff,Temporary estimated kilometric cruising range sent to MMI (economical driving)
-,7ec,24,39,.00001953125,-51200,3,kW,223457,623457,ff,Mean pessimistic electrical consumption (worst possible consumption)
+,7ec,24,39,.00001953125,-1,3,kW,223457,623457,ff,Mean pessimistic electrical consumption (worst possible consumption)
 ,7ec,24,39,1,0,0,km,223458,623458,ff,Temporary estimated minimum kilometric cruising range sent to MMI
-,7ec,24,39,.00001953125,-51200,3,kW,223459,623459,ff,Mean consumption per unit of distance, used for calculation of kilometric range
+,7ec,24,39,.00001953125,-1,3,kW,223459,623459,ff,Mean consumption per unit of distance, used for calculation of kilometric range
 ,7ec,24,31,1,0,0,,22345A,62345A,ff,Indicator relative to anticipation for economical scoring
 ,7ec,24,31,1,0,0,,22345B,62345B,ff,Indicator of economical monitoring
 ,7ec,24,31,1,0,0,,22345C,62345C,ff,Indicator relative to vehicle speed for economical scoring
@@ -963,7 +963,7 @@
 ,7ec,29,31,1,0,0,,2234A8,6234A8,ff,Battery Heating System Type,0:without;1:Air PTC by evc Power n°1(2relays);2:Air PTC by evc Power n°2(3relays);3:Air PTC via Mux;4:Water Coolant Heaters(CTP) evc (1 relay)
 ,7ec,31,31,1,0,0,,2234A9,6234A9,ff,Configuration of the TCU (Enable or disable),0:sans TCU;1:avec TCU
 ,7ec,31,31,1,0,0,,2234AA,6234AA,ff,Differential Protection in EVC,0:NO Differential Protection in EVC;1:Differential Protection in EVC Active
-,7ec,24,39,.1,327680,1,A,2234AD,6234AD,ff,Set-point for the charge current for the JB2 (34AD)
+,7ec,24,39,.1,32768,1,A,2234AD,6234AD,ff,Set-point for the charge current for the JB2 (34AD)
 ,7ec,24,31,1,0,0,,2234AE,6234AE,ff,PEB frame monitoring status flags (34AE).all
 ,7ec,27,27,1,0,0,,2234AE,6234AE,ff,PEB frame monitoring status flags (34AE).B4,0:Frame presence;1:No frame
 ,7ec,29,29,1,0,0,,2234AE,6234AE,ff,PEB frame monitoring status flags (34AE).B2,0:No CRC default;1:CRC default
@@ -1002,7 +1002,7 @@
 ,7ec,31,31,1,0,0,,2234CE,6234CE,ff,Manage Failure Authorization of the HV PTC (34CE),0:HV PTC not authorized;1:HV PTC authorized
 ,7ec,24,31,25,0,0,,2234CF,6234CF,ff,Power consumed by the 400V components for Thermal Comfort (34CF)
 ,7ec,24,47,.001,0,3,KWh,2234D1,6234D1,ff,This variable allows to memorize the reseted energy consumed 2 (34D1)
-,7ec,24,55,.0001,21474836480000,3,,2234D2,6234D2,1ff,This variable allows to memorize the reseted distance 2 (34D2)
+,7ec,24,55,.0001,2147483648,3,,2234D2,6234D2,1ff,This variable allows to memorize the reseted distance 2 (34D2)
 ,7ec,29,31,1,0,0,,2234D3,6234D3,ff,HV Battery Conditionning Activation Autorisation ($34D3),0:0: No Authorisation;1:1: PTC Authorisation only;2:2: AC Authorisation only;3:3: PTC and AC Autorisation
 ,7ec,29,31,1,0,0,,2234D4,6234D4,ff,Signal of requesting the MMI DoNotTow ($34D4),0:0: Unavailable;1:1: No ET Alert Do Not Tow Requested;2:2: ET Alert Do Not Tow Requested;3:3: Not Used
 ,7ec,29,31,1,0,0,,2234D5,6234D5,ff,Chiller activation request ($34D5),0:0: Not used;1:1: No Chiller Activation Requested;2:2: Chiller activation requested;3:3: Unavailable
@@ -1025,7 +1025,7 @@
 ,7ec,168,183,.1,0,1,kW,2234E4,6234E4,ff,Charge power available (34E4).0
 ,7ec,24,31,1,0,0,,2234E5,6234E5,ff,Low level battery warning sent to the MMI (34E5),0:Not LED;1:LED
 ,7ec,24,31,1,0,0,,2234E6,6234E6,ff,Empty level battery warning sent to the MMI (34E6),0:Not LED;1:LED
-,7ec,24,39,.5,120,1,,2234E7,6234E7,ff,Coding Signal from CAN data CompTemperatureDischarge (34E7)
+,7ec,24,39,.5,60,1,,2234E7,6234E7,ff,Coding Signal from CAN data CompTemperatureDischarge (34E7)
 ,7ec,24,31,1,0,0,,2234E8,6234E8,ff,Coding Signal from CAN data DeIcingRequest (34E8),0:Not used;1:De Icing requested;2:De Icing not requested;3:Unavailable
 ,7ec,24,31,1,0,0,,2234E9,6234E9,ff,Ratio of PTC power used (34E9)
 ,7ec,24,31,.2,0,1,,2234EA,6234EA,ff,Estimation of the current consumed by the PTC (34EA)
@@ -1037,7 +1037,7 @@
 ,7ec,24,31,1,0,0,,2234F0,6234F0,ff,Command of battery heater relay (34F0),0:Request for opening the battery heater relay;1:Request for closing the battery heater relay
 ,7ec,24,31,1,0,0,,2234F1,6234F1,ff,Request to METS asking for authorisation of battery heating (34F1),0:Not Autorized;1:Autorized
 ,7ec,24,31,.1,0,1,kW,2234F2,6234F2,ff,Maximal power authorised for thermal comfort (34F2)
-,7ec,24,39,.1,27300,1,°C,2234F3,6234F3,ff,High Voltage minimal Battery Temperature checked by CAN and invalid value limp home strategiesand filtred with a different resolution (34F3)
+,7ec,24,39,.1,2730,1,°C,2234F3,6234F3,ff,High Voltage minimal Battery Temperature checked by CAN and invalid value limp home strategiesand filtred with a different resolution (34F3)
 ,7ec,24,31,1,40,0,°C,2234F4,6234F4,ff,Threshold for HVBattery conditioning received from BMS (34F4)
 ,7ec,24,31,1,40,0,°C,2234F5,6234F5,ff,Threshold for HVBattery conditioning received from BMS (01) (34F5)
 ,7ec,24,31,1,40,0,°C,2234F6,6234F6,ff,Threshold for HVBattery conditioning received from BMS (02) (34F6)
@@ -1047,7 +1047,7 @@
 ,7ec,24,31,1,0,0,,2234FA,6234FA,ff,Power authorized for CTP battery activation (34FA)
 ,7ec,24,31,1,0,0,,2234FB,6234FB,ff,Number of authorized stages for CTP battery taking power allocated into account (34FB)
 ,7ec,24,31,1,40,0,°C,2234FC,6234FC,ff,Water temperature used for Chiller (34FC)
-,7ec,24,39,.1,27300,1,°C,2234FD,6234FD,ff,High Voltage minimal Battery Temperature checked by CAN and invalid value limp home strategiesand filtred with a different resolution (01) (34FD)
+,7ec,24,39,.1,2730,1,°C,2234FD,6234FD,ff,High Voltage minimal Battery Temperature checked by CAN and invalid value limp home strategiesand filtred with a different resolution (01) (34FD)
 ,7ec,24,31,1,0,0,,2234FE,6234FE,ff,Authorisation req checking for compressor in charge mode (34FE),0:Not Autorized;1:Autorized
 ,7ec,24,31,1,0,0,,2234FF,6234FF,ff,Second water gate when battery is cooled with water (34FF),0:Opened;1:Closed
 ,7ec,24,31,1,0,0,,223502,623502,ff,FANConfig flag memorised into EVC EEPROM at powelatch (3502),0:GMV by state;1:GMV PWM
@@ -1071,7 +1071,7 @@
 ,7ec,24,31,1,0,0,-,223517,623517,ff,PTC Number Thermal BCM request ($3517)
 ,7ec,24,39,1,0,0,°C,223518,623518,ff,Water Temperature SetPoint HP61 ($3518)
 ,7ec,24,31,1,0,0,%,223519,623519,ff,BlowerSpeed PH61 status ($3519)
-,7ec,24,39,.1,27300,1,°C,22351A,62351A,ff,Temperature Evaporation SetPoint HP61 request ($351A)
+,7ec,24,39,.1,2730,1,°C,22351A,62351A,ff,Temperature Evaporation SetPoint HP61 request ($351A)
 ,7ec,24,31,1,40,0,°C,22351B,62351B,ff,Temperature Hot Source HP61 ($351B)
 ,7ec,24,31,1,0,0,-,22351C,62351C,ff,Hot Mode HP61 ($351C)
 ,7ec,24,31,1,0,0,-,22351D,62351D,ff,flag configuration X61 with Heat pump ($351D)
