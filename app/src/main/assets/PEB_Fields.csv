@@ -31,49 +31,49 @@
 ,77e,31,31,1,0,0,,223006,623006,ff,Interlock EM,0:Interlock Open;1:Interlock Closed
 ,77e,31,31,1,0,0,,223007,623007,ff,InterlockBatt,0:Interlock Open;1:Interlock Closed
 ,77e,28,51,1,0,0,km,223008,623008,ff,DistanceTotalizer
-,77e,24,39,.0009765625,0,0,V,223009,623009,1ff,BatteryVoltage
-,77e,24,39,.0009765625,0,0,V,22300A,62300A,1ff,Batt_voltage_mes
+,77e,24,39,.0009765625,0,3,V,223009,623009,1ff,BatteryVoltage
+,77e,24,39,.0009765625,0,3,V,22300A,62300A,1ff,Batt_voltage_mes
 ,77e,31,31,1,0,0,,22300B,62300B,ff,APCStatus,0:Ignition is OFF;1:Ignition is ON
 ,77e,31,31,1,0,0,,22300C,62300C,ff,Volt_APCPEB_veh_status,0:Ignition is OFF;1:Ignition is ON
-,77e,24,39,.0009765625,0,0,V,22300D,62300D,1ff,Onboard Power Supply
-,77e,24,39,.03125,0,0,V,22300E,62300E,1ff,DCHighVoltage
+,77e,24,39,.0009765625,0,3,V,22300D,62300D,1ff,Onboard Power Supply
+,77e,24,39,.03125,0,2,V,22300E,62300E,1ff,DCHighVoltage
 ,77e,30,31,1,0,0,,22300F,62300F,ff,DCDCState,0:Starting mode  or Power off;1:Standby(ready to power = preload);2:Power On ;3:Unavailable value
 ,77e,31,31,1,0,0,,223010,623010,ff,DCDCActivation,0:DCDC Off;1:DCDC On
-,77e,24,39,.0009765625,0,0,V,223011,623011,1ff,DCDCVoltageRegulation
-,77e,24,39,.0009765625,0,0,V,223012,623012,1ff,DCDCLowVoltage
-,77e,24,39,.015625,0,0,A,223013,623013,1ff,DCDCCurrentOutput
-,77e,24,39,.001953125,0,0,A,223015,623015,1ff,DCDCCurrentInput
-,77e,24,39,.015625,0,0,,223016,623016,1ff,DCDC_PEB_Driver_board_mes
-,77e,24,39,.015625,0,0,°C,223017,623017,1ff,DCDC Trafo Temp
-,77e,24,39,.015625,0,0,,223018,623018,1ff,DCDCTempOrder
+,77e,24,39,.0009765625,0,3,V,223011,623011,1ff,DCDCVoltageRegulation
+,77e,24,39,.0009765625,0,3,V,223012,623012,1ff,DCDCLowVoltage
+,77e,24,39,.015625,0,2,A,223013,623013,1ff,DCDCCurrentOutput
+,77e,24,39,.001953125,0,3,A,223015,623015,1ff,DCDCCurrentInput
+,77e,24,39,.015625,0,2,,223016,623016,1ff,DCDC_PEB_Driver_board_mes
+,77e,24,39,.015625,0,2,°C,223017,623017,1ff,DCDC Trafo Temp
+,77e,24,39,.015625,0,2,,223018,623018,1ff,DCDCTempOrder
 ,77e,24,31,1,0,0,%,223019,623019,ff,DCDCTemp
 ,77e,29,31,1,0,0,,22301A,62301A,ff,DCDCDefault,0:No failure;1:Downgraded mode;2:SW temporary Shutdown;3:SW definitive Shutdown
 ,77e,31,31,1,0,0,,22301B,62301B,ff,PEBDCDCServLampRequest,0:No security barrier lost;1:Security barrier lost
 ,77e,31,31,1,0,0,,22301C,62301C,ff,InverterActivation,0:Inverter Off;1:Inverter On
-,77e,24,39,.0625,0,0,A,22301D,62301D,1ff,PowerTrainCurrent
-,77e,24,39,.0625,0,0,,22301E,62301E,1ff,Current Ph U
-,77e,24,39,.0625,0,0,,22301F,62301F,1ff,Current Ph V
-,77e,24,39,.0625,0,0,,223021,623021,1ff,Current Ph W
-,77e,24,39,.00390625,0,0,A,223022,623022,1ff,Current Excit Pos
-,77e,24,39,.00390625,0,0,A,223023,623023,1ff,Current Excit Neg
-,77e,24,39,.03125,0,0,Nm,223024,623024,1ff,ElecTorqueRequest
-,77e,24,39,.03125,0,0,Nm,223025,623025,1ff,PEBTorque
-,77e,24,39,.03125,0,0,Nm,223026,623026,1ff,ElecMachineMaxMotorTorque
-,77e,24,39,.03125,0,0,Nm,223027,623027,1ff,ElecMachineMaxGenTorque
-,77e,24,39,.5,0,0,rpm,223028,623028,1ff,ElecMachineSpeed
+,77e,24,39,.0625,0,2,A,22301D,62301D,1ff,PowerTrainCurrent
+,77e,24,39,.0625,0,2,,22301E,62301E,1ff,Current Ph U
+,77e,24,39,.0625,0,2,,22301F,62301F,1ff,Current Ph V
+,77e,24,39,.0625,0,2,,223021,623021,1ff,Current Ph W
+,77e,24,39,.00390625,0,3,A,223022,623022,1ff,Current Excit Pos
+,77e,24,39,.00390625,0,3,A,223023,623023,1ff,Current Excit Neg
+,77e,24,39,.03125,0,2,Nm,223024,623024,1ff,ElecTorqueRequest
+,77e,24,39,.03125,0,2,Nm,223025,623025,1ff,PEBTorque
+,77e,24,39,.03125,0,2,Nm,223026,623026,1ff,ElecMachineMaxMotorTorque
+,77e,24,39,.03125,0,2,Nm,223027,623027,1ff,ElecMachineMaxGenTorque
+,77e,24,39,.5,0,1,rpm,223028,623028,1ff,ElecMachineSpeed
 ,77e,24,31,1,0,0,%,223029,623029,ff,InverterTemp
 ,77e,24,31,1,0,0,%,22302A,62302A,ff,ElecMachineTemp
-,77e,24,39,.015625,0,0,°C,22302B,62302B,1ff,InverterTempOrder
-,77e,24,39,.015625,0,0,°C,22302C,62302C,1ff,Stator temperature
+,77e,24,39,.015625,0,2,°C,22302B,62302B,1ff,InverterTempOrder
+,77e,24,39,.015625,0,2,°C,22302C,62302C,1ff,Stator temperature
 ,77e,31,31,1,0,0,,22302D,62302D,ff,B_PebDischarge_sch_req,0:Discharge not requested;1:Discharge requested
 ,77e,24,31,1,0,0,,22302E,62302E,ff,PEBActiveDischarge,0:Active Discharge Not In Progress;1:Active Discharge In Progress;255:Unavailable Value
 ,77e,31,31,1,0,0,,22302F,62302F,ff,ElecMAchineWorkingMode,0:Motor mode;1:Generator mode
 ,77e,30,31,1,0,0,,223030,623030,ff,ElecMachineDefault,0:No default;1:Downgraded mode;2:Temporary fault;3:Permanent fault
 ,77e,31,31,1,0,0,,223031,623031,ff,PEBMotorServLampRequest,0:No security barrier lost;1:Security barrier lost
 ,77e,31,31,1,0,0,,223032,623032,ff,PEBMotorStopLampRequest,0:No security barrier lost;1:Security barrier lost
-,77e,24,39,.0009765625,0,0,V,223034,623034,1ff,Rotor PositionSensor Supply
-,77e,24,39,.015625,0,0,°C,223035,623035,1ff,Rotor temperature
-,77e,24,39,.015625,0,0,°C,223036,623036,1ff,Excitation temperature
+,77e,24,39,.0009765625,0,3,V,223034,623034,1ff,Rotor PositionSensor Supply
+,77e,24,39,.015625,0,2,°C,223035,623035,1ff,Rotor temperature
+,77e,24,39,.015625,0,2,°C,223036,623036,1ff,Excitation temperature
 ,77e,24,47,1,0,0,,223037,623037,ff,R20 Rotor resistor value
 ,77e,24,31,1,0,0,,223038,623038,ff,Charge request from EVC to PEB,0:No charge requested;1:Charge Requested
 ,77e,31,31,1,0,0,,223039,623039,ff,Effective Charge feedback to EVC,0:Not in charge;1:In charge

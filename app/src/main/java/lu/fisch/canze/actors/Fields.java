@@ -584,7 +584,7 @@ public class Fields {
             } else {
                 short options = Short.parseShort(tokens[FIELD_OPTIONS].trim(), 16);
                 // ensure this field matches the selected car
-                if ((options & MainActivity.car) != 0) {
+                if ((options & MainActivity.car) != 0 & !tokens[FIELD_RESPONSE_ID].trim().startsWith("7")) {
                     //Create a new field object and fill his  data
                     //MainActivity.debug(tokens[FIELD_SID] + " " + tokens[FIELD_ID] + "." + tokens[FIELD_FROM] + "." + tokens[FIELD_RESPONSE_ID]);
                     try {
