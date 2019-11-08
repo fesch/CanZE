@@ -5,10 +5,10 @@
     android:layout_height="fill_parent"
     android:keepScreenOn="true"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="lu.fisch.canze.activities.AuxBattTechActivity">
 
     <TableLayout
@@ -16,90 +16,94 @@
         android:layout_height="wrap_content">
 
         <TableRow>
+
             <TextView
-                android:layout_weight="2"
+                android:layout_weight="0.7"
+                android:width="0dp"
                 android:text="@string/label_auxbatvolt" />
 
             <TextView
                 android:id="@+id/text_12V"
-                android:layout_weight="1"
+                android:layout_weight="0.3"
+                android:width="0dp"
                 android:gravity="end"
                 android:text="@string/default_Dash" />
         </TableRow>
 
         <TableRow>
+
             <TextView
-                android:layout_weight="2"
+                android:layout_weight="0.7"
+                android:width="0dp"
                 android:text="@string/label_vehiclestate" />
 
             <TextView
                 android:id="@+id/text_vehicle_state"
-                android:layout_weight="1"
+                android:layout_weight="0.3"
+                android:width="0dp"
                 android:gravity="end"
                 android:text="@string/default_Dash" />
         </TableRow>
-<!--
         <TableRow>
-            <TextView
-                android:layout_weight="2"
-                android:text="@string/label_ChaStatus" />
 
             <TextView
-                android:id="@+id/textChaStatus"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="@string/default_Dash" />
-        </TableRow>
--->
-        <TableRow>
-            <TextView
-                android:layout_weight="2"
+                android:layout_weight="0.7"
+                android:width="0dp"
                 android:text="Voltage under load" />
 
             <TextView
                 android:id="@+id/textVoltageLoad"
-                android:layout_weight="1"
+                android:layout_weight="0.3"
+                android:width="0dp"
                 android:gravity="end"
                 android:text="@string/default_Dash" />
         </TableRow>
 
 
         <TableRow>
+
             <TextView
-                android:layout_weight="2"
+                android:layout_weight="0.7"
+                android:width="0dp"
                 android:text="Current under load" />
 
             <TextView
                 android:id="@+id/textCurrentLoad"
-                android:layout_weight="1"
+                android:layout_weight="0.3"
+                android:width="0dp"
                 android:gravity="end"
                 android:text="@string/default_Dash" />
         </TableRow>
 
 
         <TableRow>
+
             <TextView
-                android:layout_weight="2"
+                android:layout_weight="0.7"
+                android:width="0dp"
                 android:text="@string/label_AuxStatus" />
 
             <TextView
                 android:id="@+id/textAuxStatus"
-                android:layout_weight="1"
+                android:layout_weight="0.3"
+                android:width="0dp"
                 android:gravity="end"
                 android:text="@string/default_Dash" />
         </TableRow>
 
     </TableLayout>
 
-
     <lu.fisch.canze.widgets.WidgetView
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_marginBottom="0dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:layout_weight="1"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="0dp"
+        android:layout_weight="0.3"
+        android:width="0dp"
+
+        custom:backgroundColor="?android:attr/colorBackground"
         custom:colorRanges="[
                     {'sid':'7ec.622005.24','color':'#5050ff','from':9,'to':12},
                     {'sid':'7ec.622005.24','color':'#50ff50','from':12,'to':14},
@@ -114,20 +118,18 @@
                     {'sid':'35c.5','color':'#808080','from':7,'to':7}
                     ]"
         custom:fieldSID="7ec.622005.24,35c.5"
-        custom:minorTicks="1"
+        custom:foregroundColor="?android:attr/colorForeground"
         custom:majorTicks="1"
-        custom:min="9"
         custom:max="15"
+        custom:min="9"
+        custom:minorTicks="1"
         custom:options="{
                      '7ec.622005.24':'gradient',
                      '35c.5':'colorline[14.8],dot'
                      }"
         custom:text="Voltage, Vehicle state"
         custom:timeScale="4"
-        custom:widget="timeplot"
-        custom:backgroundColor="?android:attr/colorBackground"
-        custom:foregroundColor="?android:attr/colorForeground"
-        />
+        custom:widget="timeplot" />
     <!-- debug line -->
 
     <LinearLayout
@@ -138,8 +140,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_debug"
-            />
+            android:text="@string/label_debug" />
 
         <TextView
             android:id="@+id/textDebug"

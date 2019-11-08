@@ -597,7 +597,7 @@
     <string name="label_Duration">Duration (hh:mm)</string>
     <string name="label_Soc">SOC</string>
     <string name="label_Range">Avail. range</string>
-    <string name="label_DcPower">DC ch. power</string>
+    <string name="label_DcPower">DC ch. pwr.</string>
 
     <!-- Range -->
 
