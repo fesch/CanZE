@@ -276,11 +276,6 @@ public class AllDataActivity extends CanzeActivity {
         }
     }
 
-    private boolean isExternalStorageWritable() {
-        String SDstate = Environment.getExternalStorageState();
-        return (Environment.MEDIA_MOUNTED.equals(SDstate));
-    }
-
     private void createDump(Ecu ecu) {
 
         dumpInProgress = false;
@@ -291,7 +286,7 @@ public class AllDataActivity extends CanzeActivity {
         }
 
         // ensure that there is a CanZE Folder in SDcard
-        if (!isExternalStorageWritable()) {
+        if (!MainActivity.getInstance().isExternalStorageWritable()) {
             debug("AllDataActivity.createDump: SDcard not writeable");
             return;
         }

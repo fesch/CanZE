@@ -109,11 +109,6 @@ public class DataLogger implements FieldListener {
         return formatter.format(calendar.getTime());
     }
 
-    public boolean isExternalStorageWritable() {
-        String SDstate = Environment.getExternalStorageState();
-        return (Environment.MEDIA_MOUNTED.equals(SDstate));
-    }
-
     public boolean isCreated() {
         return (logFile != null);
     }
@@ -142,7 +137,7 @@ public class DataLogger implements FieldListener {
         boolean result = false;
 
         // ensure that there is a CanZE Folder in SDcard
-        if (!isExternalStorageWritable()) {
+        if (!MainActivity.getInstance().isExternalStorageWritable()) {
             debug("DataLogger: SDcard not writeable");
             return false;
         } else {

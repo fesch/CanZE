@@ -46,6 +46,7 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
     ArrayList<Field> fields;
     private final HashMap<String, TextView> viewsBySid = new HashMap<>();
     private final boolean savedFieldLogMode = MainActivity.fieldLogMode;
+    private int firstEmptyRow = 0;
 
 
     @Override
@@ -70,7 +71,7 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
             finish();
             return;
         }
-        if (!isExternalStorageWritable()) {
+        if (!MainActivity.getInstance().isExternalStorageWritable()) {
             toast(TOAST_NONE,"Research.onCreate: SDcard not writeable");
             finish();
             return;
@@ -105,13 +106,15 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
 
         // add to the screen and build index viewsBySid
         fields = Fields.getInstance().getAllFields();
-        for (int i = 0; i < fields.size(); i++) {
-            Field f = fields.get(i);
-            if(f!=null) {
-                if (i <= 19) {
-                    fillView ("textResL" + ("0"+i).substring(i<10?0:1), f.getName() + "(" + f.getUnit() + ")");
-                    fillView ("textResV" + ("0"+i).substring(i<10?0:1), "-");
-                    viewsBySid.put (f.getSID(), (TextView)findViewById(getResources().getIdentifier("textResV" + ("0"+i).substring(i<10?0:1), "id", getPackageName())));
+        TextView tv;
+        for (firstEmptyRow = 0; firstEmptyRow < fields.size(); firstEmptyRow++) {
+            Field field = fields.get(firstEmptyRow);
+            if(field!=null) {
+                if (firstEmptyRow <= 19) {
+                    fillView ("textResL" + ("0"+firstEmptyRow).substring(firstEmptyRow<10?0:1), field.getName() + "(" + field.getUnit() + ")");
+                    tv = findViewById(getResources().getIdentifier("textResV" + ("0"+firstEmptyRow).substring(firstEmptyRow<10?0:1), "id", getPackageName()));
+                    fillView (tv, "-");
+                    viewsBySid.put (field.getSID(), tv);
                 }
             }
         }
@@ -150,14 +153,17 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
     public void onFieldUpdateEvent(final Field field) {
         double val = field.getValue();
         TextView tv = viewsBySid.get (field.getSID());
+
+        // this is added to add stray fields to the screen
+        if (tv == null && firstEmptyRow <= 19) {
+            fillView ("textResL" + ("0"+firstEmptyRow).substring(firstEmptyRow<10?0:1), field.getName() + "(" + field.getUnit() + ")");
+            tv = findViewById(getResources().getIdentifier("textResV" + ("0"+firstEmptyRow).substring(firstEmptyRow<10?0:1), "id", getPackageName()));
+            fillView (tv, "-");
+            viewsBySid.put (field.getSID(), tv);
+            firstEmptyRow++;
+        }
         fillView(tv, Double.isNaN(val) ? "Nan" : String.format(Locale.getDefault(), "%.1f", val));
     }
-
-    private boolean isExternalStorageWritable() {
-        String SDstate = Environment.getExternalStorageState();
-        return (Environment.MEDIA_MOUNTED.equals(SDstate));
-    }
-
 
     @Override
     protected void onDestroy() {

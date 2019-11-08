@@ -317,7 +317,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // add code here to check external SDcard is avail, writeable and has sufficient space
-                if (!MainActivity.dataLogger.isExternalStorageWritable()) {
+                if (!MainActivity.getInstance().isExternalStorageWritable()) {
                     final Context context = SettingsActivity.this;
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
