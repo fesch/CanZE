@@ -1,20 +1,20 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:keepScreenOn="true"
     android:layout_height="fill_parent"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="lu.fisch.canze.activities.ChargingTechActivity">
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="0.3"
+        android:width="0dp">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -22,100 +22,97 @@
             android:orientation="vertical">
 
             <TextView
-                android:text="@string/header_Charging"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/header_Charging"
                 android:textStyle="bold" />
 
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
-<!--
+
                 <TableRow>
+
                     <TextView
-                        android:text="@string/label_ChaStatus"
-                        android:layout_weight="2"
-                        />
-                    <TextView
-                        android:id="@+id/textChaStatus"
-                        android:text="@string/default_Dash"
-                        android:gravity="end"
-                        android:layout_weight="1"
-                        />
-                </TableRow>
--->
-                <TableRow>
-                    <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_Plug"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/textPlug"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_max_pilot"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/text_max_pilot"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_Phases"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/textPhases"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_AvChPwr"
-                        android:layout_weight="2"
                         />
+
                     <TextView
                         android:id="@+id/textAvChPwr"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
-<!--
-                <TableRow>
-                    <TextView
-                        android:text="@string/label_TTF"
-                        android:layout_weight="2"
-                        />
-                    <TextView
-                        android:id="@+id/textTTF"
-                        android:text="@string/default_Dash"
-                        android:gravity="end"
-                        android:layout_weight="1"
-                        />
-                </TableRow>
--->
+
             </TableLayout>
 
             <TextView
-                android:text="@string/header_Battery"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/header_Battery"
                 android:textStyle="bold" />
 
             <TableLayout
@@ -123,223 +120,308 @@
                 android:layout_height="wrap_content">
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_UserSOC"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/textUserSOC"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_RealSOC"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/textRealSOC"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <!-- <TableRow>
                     <TextView
                         android:text="@string/label_Capacity"
-                        android:layout_weight="2"
+                                                android:layout_weight="0.7"
+                        android:width="0dp"
+
                         />
                     <TextView
                         android:id="@+id/textCapacity"
                         android:text="@string/default_Capacity"
                         android:gravity="end"
-                        android:layout_weight="1"
+                                                android:layout_weight="0.3"
+                        android:width="0dp"
+
                         />
                 </TableRow> -->
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_max_charge"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/text_max_charge"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_AvEner"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/textAvEner"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_ETF"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/textETF"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_DcPwr"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/textDcPwr"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_Amps"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/textAmps"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_Volt"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/textVolt"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_SOH"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/textSOH"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_12V"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/text12V"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_12A"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/text12A"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_DcLoad"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/textDcLoad"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_HKM"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/textHKM"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
             </TableLayout>
 
             <TextView
-                android:text="@string/header_DrivingCh"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/header_DrivingCh"
                 android:textStyle="bold" />
 
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:text="@string/label_DISTA"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/textKMA"
-                    android:text="@string/default_Dash"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        android:text="@string/label_DISTA" />
+
+                    <TextView
+                        android:id="@+id/textKMA"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:gravity="end"
+                        android:text="@string/default_Dash" />
+                </TableRow>
 
             </TableLayout>
 
-
-
             <TextView
-                android:text="@string/header_CompTemp"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/header_CompTemp"
                 android:textStyle="bold" />
-
 
             <TableLayout
                 android:layout_width="fill_parent"
@@ -351,434 +433,433 @@
 
                     <TextView
                         android:id="@+id/text_comp_1_temp"
-                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_comp_2_temp"
-                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_comp_3_temp"
-                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_comp_4_temp"
-                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_comp_5_temp"
-                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_comp_6_temp"
-                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
+
                     <TextView
                         android:id="@+id/text_comp_7_temp"
-                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_comp_8_temp"
-                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_comp_9_temp"
-                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_comp_10_temp"
-                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_comp_11_temp"
-                        android:text="@string/default_Dash"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_comp_12_temp"
-                        android:text="@string/default_Dash"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
-                        android:text="@string/unit_Celsius"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/unit_Celsius" />
 
                 </TableRow>
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
 
+                <TableRow>
 
                     <TextView
                         android:id="@+id/text_bala_1_temp"
-                        android:text="@string/default_Dash"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_bala_2_temp"
-                        android:text="@string/default_Dash"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_bala_3_temp"
-                        android:text="@string/default_Dash"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_bala_4_temp"
-                        android:text="@string/default_Dash"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_bala_5_temp"
-                        android:text="@string/default_Dash"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_bala_6_temp"
-                        android:text="@string/default_Dash"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_bala_7_temp"
-                        android:text="@string/default_Dash"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_bala_8_temp"
-                        android:text="@string/default_Dash"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_bala_9_temp"
-                        android:text="@string/default_Dash"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_bala_10_temp"
-                        android:text="@string/default_Dash"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_bala_11_temp"
-                        android:text="@string/default_Dash"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
                         android:id="@+id/text_bala_12_temp"
-                        android:text="@string/default_Dash"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:text="@string/default_Dash" />
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:padding="3dip"
-                        />
+                        android:layout_weight="0.3"
+                        android:width="0dp" />
 
                 </TableRow>
 
             </TableLayout>
 
             <TextView
-                android:text="@string/header_GridParameters"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"/>
+                android:layout_marginTop="10dp"
+                android:text="@string/header_GridParameters"
+                android:textStyle="bold" />
 
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
                 <TableRow>
+
                     <TextView
-                        android:text="@string/label_MainsCurrentType"
-                        android:layout_weight="6"
-                        />
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        android:text="@string/label_MainsCurrentType" />
+
                     <TextView
                         android:id="@+id/textMainsCurrentType"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="3"
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_phaseCurrent"
-                        android:layout_weight="2"
                         />
+
                     <TextView
                         android:id="@+id/textPhase1CurrentRMS"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
-                        android:layout_weight="2"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         />
+
                     <TextView
                         android:id="@+id/textPhase2CurrentRMS"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
                         />
+
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
-                        android:layout_weight="2"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         />
+
                     <TextView
                         android:id="@+id/textPhase3CurrentRMS"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_PhaseVoltage"
-                        android:layout_weight="2"
+
                         />
+
                     <TextView
                         android:id="@+id/textPhaseVoltage1"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
-                        android:layout_weight="2"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         />
+
                     <TextView
                         android:id="@+id/textPhaseVoltage2"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
-                        android:layout_weight="2"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         />
+
                     <TextView
                         android:id="@+id/textPhaseVoltage3"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_InterPhaseVoltage"
-                        android:layout_weight="2"
                         />
+
                     <TextView
                         android:id="@+id/textInterPhaseVoltage12"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
-                        android:layout_weight="2"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         />
+
                     <TextView
                         android:id="@+id/textInterPhaseVoltage23"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
-                        android:layout_weight="2"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         />
+
                     <TextView
                         android:id="@+id/textInterPhaseVoltage31"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_MainsActivePowerConsumed"
-                        android:layout_weight="2"
                         />
+
                     <TextView
                         android:id="@+id/textMainsActivePower"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_GroundResistanceOhm"
-                        android:layout_weight="2"
                         />
+
                     <TextView
                         android:id="@+id/textGroundResistance"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
+
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_SupervisorState"
-                        android:layout_weight="2"
                         />
+
                     <TextView
                         android:id="@+id/textSupervisorState"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
                         />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
                         android:text="@string/label_CompletionStatus"
-                        android:layout_weight="2"
                         />
+
                     <TextView
                         android:id="@+id/textCompletionStatus"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="1"
+                        android:text="@string/default_Dash"
                         />
                 </TableRow>
 
             </TableLayout>
-
-
 
 
         </LinearLayout>
@@ -788,21 +869,20 @@
     <!-- debug line -->
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
-            android:text="@string/label_debug"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:text="@string/label_debug" />
+
         <TextView
             android:id="@+id/textDebug"
-            android:text="@string/default_debug"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:text="@string/default_debug" />
 
     </LinearLayout>
 

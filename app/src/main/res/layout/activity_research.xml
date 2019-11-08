@@ -13,7 +13,8 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="0.3"
+        android:width="0dp">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -28,12 +29,13 @@
 
                     <TextView
                         android:id="@+id/textResL00"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV00"
-                        android:text="x"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end" />
                 </TableRow>
 
@@ -41,11 +43,13 @@
 
                     <TextView
                         android:id="@+id/textResL01"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV01"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end" />
                 </TableRow>
 
@@ -53,11 +57,13 @@
 
                     <TextView
                         android:id="@+id/textResL02"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV02"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
                         android:gravity="end" />
                 </TableRow>
 
@@ -65,11 +71,14 @@
 
                     <TextView
                         android:id="@+id/textResL03"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV03"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -77,11 +86,14 @@
 
                     <TextView
                         android:id="@+id/textResL04"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV04"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -89,11 +101,14 @@
 
                     <TextView
                         android:id="@+id/textResL05"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV05"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -101,11 +116,14 @@
 
                     <TextView
                         android:id="@+id/textResL06"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV06"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -113,11 +131,14 @@
 
                     <TextView
                         android:id="@+id/textResL07"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV07"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -125,11 +146,14 @@
 
                     <TextView
                         android:id="@+id/textResL08"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV08"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -137,11 +161,14 @@
 
                     <TextView
                         android:id="@+id/textResL09"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV09"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -149,11 +176,14 @@
 
                     <TextView
                         android:id="@+id/textResL10"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV10"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -161,11 +191,14 @@
 
                     <TextView
                         android:id="@+id/textResL11"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV11"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -173,11 +206,14 @@
 
                     <TextView
                         android:id="@+id/textResL12"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV12"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -185,11 +221,14 @@
 
                     <TextView
                         android:id="@+id/textResL13"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV13"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -197,11 +236,14 @@
 
                     <TextView
                         android:id="@+id/textResL14"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV14"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -209,11 +251,14 @@
 
                     <TextView
                         android:id="@+id/textResL15"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV15"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -221,11 +266,14 @@
 
                     <TextView
                         android:id="@+id/textResL16"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV16"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -233,11 +281,14 @@
 
                     <TextView
                         android:id="@+id/textResL17"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV17"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -245,11 +296,14 @@
 
                     <TextView
                         android:id="@+id/textResL18"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV18"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
 
@@ -257,14 +311,17 @@
 
                     <TextView
                         android:id="@+id/textResL19"
-                        android:layout_weight="2" />
+                        android:layout_weight="0.7"
+                        android:width="0dp" />
 
                     <TextView
                         android:id="@+id/textResV19"
-                        android:layout_weight="1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+
                         android:gravity="end" />
                 </TableRow>
-
+                -->
             </TableLayout>
 
         </LinearLayout>
