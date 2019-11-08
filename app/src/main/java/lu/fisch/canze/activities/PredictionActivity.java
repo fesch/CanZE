@@ -159,7 +159,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
                 updatePrediction("textTIM" + t, "" + formatTime(battery.getTimeRunning()));
                 updatePrediction("textSOC" + t, "" + ((int) soc));
                 if (car_soc > 0.0) updatePrediction("textRAN" + t, "" + ((int) (car_range_est * soc / car_soc)));
-                updatePrediction("textPWR" + t, "" + ((int) battery.getDcPower()));
+                updatePrediction("textPWR" + t, String.format(Locale.getDefault(), "%.1f", battery.getDcPower()));
             }
         }
 
