@@ -38,11 +38,6 @@ public class DebugLogger {
      * Datalogger stuff
      * ****************************/
 
-    private boolean isExternalStorageWritable() {
-        String SDstate = Environment.getExternalStorageState();
-        return (Environment.MEDIA_MOUNTED.equals(SDstate));
-    }
-
     private SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMS), Locale.US);
     private boolean firstLog = true;
     private File logFile = null;
@@ -57,7 +52,7 @@ public class DebugLogger {
             debug("AllDataActivity.createDump: SDcard not available");
             return false;
         }
-        if (!isExternalStorageWritable()) {
+        if (!MainActivity.getInstance().isExternalStorageWritable()) {
             debug("DiagDump: SDcard not writeable");
             return false;
         }

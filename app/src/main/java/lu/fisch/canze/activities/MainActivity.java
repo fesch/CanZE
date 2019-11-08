@@ -41,6 +41,7 @@ import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -128,6 +129,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static final short FIELD_TYPE_STRING = 0x200;      // not implemented yet
 
     public static final double reduction = 9.32;     // update suggested by Loc Dao
+
+    static int screenOrientation = 0;
 
     // private StringBuilder sb = new StringBuilder();
     // private String buffer = "";
@@ -1045,20 +1048,30 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         if (wm == null) return Configuration.ORIENTATION_PORTRAIT;
         Display screenOrientation = wm.getDefaultDisplay();
         if (screenOrientation == null) return Configuration.ORIENTATION_PORTRAIT;
+
+        Point point = new Point();
+        screenOrientation.getSize(point);
+        if (point.x > point.y) {
+            return Configuration.ORIENTATION_LANDSCAPE;
+        }
+/*
         if (screenOrientation.getWidth() == screenOrientation.getHeight()) {
             return Configuration.ORIENTATION_SQUARE;
         } else if (screenOrientation.getWidth() > screenOrientation.getHeight()) {
             return Configuration.ORIENTATION_LANDSCAPE;
         }
+*/
         return Configuration.ORIENTATION_PORTRAIT;
     }
 
     public boolean isLandscape() {
-        return getScreenOrientation() == Configuration.ORIENTATION_LANDSCAPE;
+        if (screenOrientation == 0) screenOrientation = getScreenOrientation();
+        return screenOrientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 
     public boolean isPortrait() {
-        return getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT;
+        if (screenOrientation == 0) screenOrientation = getScreenOrientation();
+        return screenOrientation == Configuration.ORIENTATION_PORTRAIT;
     }
 
     public void setLocalTheme (Resources.Theme localTheme) {
@@ -1069,5 +1082,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return this.localTheme;
     }
 
+    public boolean isExternalStorageWritable() {
+        String SDstate = Environment.getExternalStorageState();
+        return (Environment.MEDIA_MOUNTED.equals(SDstate));
+    }
 }
 
