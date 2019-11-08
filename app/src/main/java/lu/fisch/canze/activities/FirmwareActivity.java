@@ -129,12 +129,21 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
             }
         }
 
+        setSoftwareValue(R.id.textDiagVersion, null, null);
+        setSoftwareValue(R.id.textSupplier, null, null);
+        setSoftwareValue(R.id.textSoft, null, null);
+        setSoftwareValue(R.id.textVersion, null, null);
+
         queryThread = new StoppableThread(new Runnable() {
             @Override
             public void run() {
 
                 // query the Frame
                 Frame frame = Frames.getInstance().getById(ecu.getFromId(), "6180");
+                if (frame == null) {
+                    MainActivity.getInstance().dropDebugMessage("Frame for this ECU not found");
+                    return;
+                }
                 MainActivity.getInstance().dropDebugMessage(frame.getHexId() + "." + frame.getResponseId());
                 Message message = MainActivity.device.requestFrame(frame); //  field.getFrame());
                 if (message.isError()) {
