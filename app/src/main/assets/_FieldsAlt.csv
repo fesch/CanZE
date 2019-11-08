@@ -354,7 +354,7 @@
 ,7ec,24,39,.03125,32768,0,N.m,222247,622247,ff,Minimum effective torque that can be requested to the electrical motor (EM)
 ,7ec,24,31,.390625,0,1,%,223028,623028,ff,DCDC Load
 ,7ec,24,39,.5,0,1,V,223203,623203,ff,HV LBC voltage measure
-,7ec,24,39,.25,131072,1,A,223204,623204,ff,HV LBC current measure
+,7ec,24,39,.25,32768,1,A,223204,623204,ff,HV LBC current measure
 ,7ec,24,31,1,0,0,%,223206,623206,ff,State Of Health (SOH) HV battery
 ,7ec,24,31,1,1,0,,223318,623318,ff,Motor Water pump speed
 ,7ec,24,31,1,1,0,,223319,623319,ff,Charger pump speed

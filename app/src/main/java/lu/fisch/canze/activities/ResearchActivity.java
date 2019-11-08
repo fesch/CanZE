@@ -45,6 +45,7 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
 
     ArrayList<Field> fields;
     private final HashMap<String, TextView> viewsBySid = new HashMap<>();
+    private final boolean savedFieldLogMode = MainActivity.fieldLogMode;
 
 
     @Override
@@ -92,6 +93,9 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
             finish();
             return;
         }
+
+        // force field logging mode on
+        MainActivity.fieldLogMode = true;
 
         // start the poller
         if (MainActivity.device != null) {
@@ -167,6 +171,9 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
 
         // Reload the frame & timings
         Fields.getInstance().load();
+
+        // restore field logging mode
+        MainActivity.fieldLogMode = savedFieldLogMode;
 
         // restart the poller
         if (MainActivity.device != null) {

@@ -191,7 +191,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
 
                     case SID_TractionBatteryCurrent: // DC amps
                         // calculate DC power
-                        double dcPwr = (double) Math.round(dcVolt * field.getValue() / 100.0) / 10.0;
+                        double dcPwr = dcVolt * field.getValue() / 1000.0;
                         tv = findViewById(R.id.textDcPwr);
                         tv.setText(String.format(Locale.getDefault(), "%.1f", dcPwr));
                         // continue
@@ -219,7 +219,6 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         if (usoc > 0) {
                             tv = findViewById(R.id.textETF);
                             tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue() * (1 - usoc) / usoc));
-                            //tv.setText("" + (Math.round((field.getValue() * (1-soc) / soc) * 10.0) / 10.0));
                         }
                         tv = findViewById(R.id.textAvEner);
                         break;
