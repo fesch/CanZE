@@ -77,6 +77,12 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
             case SID_AvChargingPower:
                 car_charger_ac_power = fieldVal;
                 car_status |= 0x01;
+                if (car_charger_ac_power > 1){
+                    car_status |= 0x10;
+                    charging_status = 1;
+                } else {
+                    charging_status = 0;
+                }
                 break;
             case SID_UserSoC:
                 car_soc = fieldVal;
@@ -100,12 +106,13 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
                 break;
         }
         // display the debug values
-        if (car_status == 0x2f) {
+        if (car_status == 0x3f) {
+            //dropDebugMessage2 (String.format(Locale.getDefault(), "go %02X", car_status));
             runPrediction();
             car_status = 0;
-        } else {
-            dropDebugMessage2 (String.format(Locale.getDefault(), "%02X", car_status));
-        }
+        } //else {
+            //dropDebugMessage2 (String.format(Locale.getDefault(), ".. %02X", car_status));
+        //}
     }
 
     private void runPrediction() {
@@ -201,13 +208,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
         return ("00" + t).substring(t > 9 ? 2 : 1);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_empty, menu);
-        return true;
-    }
-
+/*
     public void dropDebugMessage (final String msg) {}
 
     public void dropDebugMessage2 (final String msg) {
@@ -219,5 +220,5 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
             }
         });
     }
-
+*/
 }
