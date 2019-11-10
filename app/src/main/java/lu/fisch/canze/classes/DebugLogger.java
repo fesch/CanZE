@@ -38,11 +38,7 @@ public class DebugLogger {
      * Datalogger stuff
      * ****************************/
 
-    private boolean isExternalStorageWritable() {
-        String SDstate = Environment.getExternalStorageState();
-        return (Environment.MEDIA_MOUNTED.equals(SDstate));
-    }
-
+    private SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMS), Locale.US);
     private boolean firstLog = true;
     private File logFile = null;
 
@@ -50,31 +46,24 @@ public class DebugLogger {
         return (logFile != null);
     }
 
-    private void createNewLog() {
+    private boolean createNewLog() {
 
         if (!MainActivity.storageIsAvailable) {
             debug("AllDataActivity.createDump: SDcard not available");
-            return;
+            return false;
         }
-        //debug(this.getClass().getSimpleName()+": create new debug logfile");
-        if (!isExternalStorageWritable()) {
+        if (!MainActivity.getInstance().isExternalStorageWritable()) {
             debug("DiagDump: SDcard not writeable");
-            return;
+            return false;
         }
-        // ensure that there is a CanZE Folder in SDcard
         String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
-
-        //debug(this.getClass().getSimpleName()+": file_path:" + file_path);
 
         File dir = new File(file_path);
         if (!dir.exists()) {
             dir.mkdirs();
-            //debug(this.getClass().getSimpleName()+": SDcard dir CanZE created");
         }
 
-        SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMSs), Locale.getDefault());
-        // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault());
-        String exportdataFileName = file_path + "debug" + sdf.format(Calendar.getInstance().getTime()) + ".log";
+        String exportdataFileName = file_path + "debug-" + sdf.format(Calendar.getInstance().getTime()) + ".log";
 
         logFile = new File(exportdataFileName);
         if (!logFile.exists()) {
@@ -83,24 +72,26 @@ public class DebugLogger {
             } catch (IOException e) {
                 e.printStackTrace();
                 logFile = null;
-                return;
+                return false;
             }
         }
 
         try {
             //BufferedWriter for performance, true to set append to file flag
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
-            // set global static BufferedWriter dataexportStream later
-            //if (true) {
-            //    bufferedWriter.append("this is just a test if stream is writeable");
-            //    bufferedWriter.newLine();
-            //    bufferedWriter.close();
-            //}
+
+            // header
+            bufferedWriter.append("Datetime,Message");
             bufferedWriter.close();
+
+            sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMSs), Locale.US);
+
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
-            logFile = null;
         }
+        logFile = null;
+        return false;
     }
 
     /**
@@ -115,8 +106,7 @@ public class DebugLogger {
         if (logFile != null) {
             try {
                 BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
-                bufferedWriter.append(text);
-                bufferedWriter.append("\n");
+                bufferedWriter.append(sdf.format(Calendar.getInstance().getTime()) + "," + text + "\n");
                 bufferedWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();

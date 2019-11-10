@@ -1,35 +1,65 @@
-,793,0,23,1,0,0,,1902ff,5902ff,ff,Query DTC BCB
-,793,0,23,1,0,0,,1902af,5902af,ff,Query DTC JB2
-,793,0,0,1,0,0,,3e01,7e01,ff,Tester present
-,793,0,0,1,0,0,,1081,5081,ff,start diag
-,793,0,0,1,0,0,,10c0,50c0,ff,start diag
-,793,24,31,.08,0,0,V,223101,623101,ff,Batt_voltage_mes
+,793,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
+,793,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode
+,793,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
+,793,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
+,793,128,143,1,0,0,,2180,6180,ff,SoftwareNumber
+,793,144,159,1,0,0,,2180,6180,ff,EditionNumber
+,793,160,175,1,0,0,,2180,6180,ff,CalibrationNumber
+,793,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;2:29609
+,793,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:N/A;1:29609
+,793,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A;1:8200x
+,793,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+,793,16,151,1,0,0,,2181,6181,2ff,Vin In Ascii
+,793,152,167,1,0,0,,2181,6181,ff,Vin CRC
+,793,16,23,1,0,0,,2184,6184,2ff,Siemens serial number Byte 15 to be coded in ASCII
+,793,24,31,1,0,0,,2184,6184,2ff,Siemens serial number Byte 14 to be coded in ASCII
+,793,32,39,1,0,0,,2184,6184,2ff,Siemens serial number Byte 13 to be coded in ASCII
+,793,40,47,1,0,0,,2184,6184,2ff,Siemens serial number Byte 12 to be coded in ASCII
+,793,48,55,1,0,0,,2184,6184,2ff,Siemens serial number Byte 11 to be coded in ASCII
+,793,56,63,1,0,0,,2184,6184,2ff,Siemens serial number Byte 10 to be coded in ASCII
+,793,64,71,1,0,0,,2184,6184,2ff,Siemens serial number Byte 9 to be coded in ASCII
+,793,72,79,1,0,0,,2184,6184,2ff,Siemens serial number Byte 8 to be coded in ASCII
+,793,80,87,1,0,0,,2184,6184,2ff,Siemens serial number Byte 7 to be coded in ASCII
+,793,88,95,1,0,0,,2184,6184,2ff,Siemens serial number Byte 6 to be coded in ASCII
+,793,96,103,1,0,0,,2184,6184,2ff,Siemens serial number Byte 5 to be coded in ASCII
+,793,104,111,1,0,0,,2184,6184,2ff,Siemens serial number Byte 4 to be coded in ASCII
+,793,112,119,1,0,0,,2184,6184,2ff,Siemens serial number Byte 3 to be coded in ASCII
+,793,120,127,1,0,0,,2184,6184,2ff,Siemens serial number Byte 2 to be coded in ASCII
+,793,128,135,1,0,0,,2184,6184,2ff,Siemens serial number Byte 1 to be coded in ASCII
+,793,136,143,1,0,0,,2184,6184,2ff,Siemens serial number Byte 0 to be coded in ASCII
+,793,148,155,1,0,0,,2184,6184,2ff,PaddingDatas
+,793,24,31,.08,0,2,V,223101,623101,ff,Batt_voltage_mes
 ,793,31,39,1,0,0,V,223102,623102,ff,BCBHighVoltage
 ,793,24,31,1,0,0,%,223103,623103,ff,BCBTemp
 ,793,24,31,1,40,0,°C,223104,623104,ff,BCBWaterTemp
+,793,24,31,.1,0,1,A,223105,623105,ff,BCBSlowChargeInputCurrent
 ,793,27,31,1,0,0,,223106,623106,ff,DomesticNetworkType,0:Unvailable Value;1:FRANCE;2:JP 1;3:JP 2;4:JP 3;5:JP 4;6:USA
-,793,31,31,1,0,0,,223107,623107,ff,DID3107.ILOCK_CLIMA,0:Open;1:Close
-,793,30,30,1,0,0,,223107,623107,ff,DID3107.ILOCK_PTC,0:Open;1:Close
-,793,29,29,1,0,0,,223107,623107,ff,DID3107.ILOCK_MAINS_LEFT,0:Open;1:Close
-,793,28,28,1,0,0,,223107,623107,ff,DID3107.ILOCK_MAINS_RIGHT,0:Open;1:Close
-,793,27,27,1,0,0,,223107,623107,ff,DID3107.ILOCK_PEB,0:Open;1:Close
-,793,26,26,1,0,0,,223107,623107,ff,DID3107.ILOCK_BAT,0:Open;1:Close
-,793,25,25,1,0,0,,223107,623107,ff,DID3107.ED_Cover_SW,0:Open;1:Close
 ,793,24,24,1,0,0,,223107,623107,ff,DID3107.Interlock_sec_connector_sts,0:Close;1:Open
-,793,29,31,1,0,0,,223108,623108,ff,DID3108.BCBLoadState,0:Unvailable Value;1:SlowCharge and Diag State;2:Quick Charge and Diag State;3:Nissan Quick Charge and Diag State;4:Diagnosis State;5:No State;6:Not used
-,793,39,39,1,0,0,,223108,623108,ff,DID3108.BCBPerformance,0:Normal Performance;1:derating mode active
-,793,38,38,1,0,0,,223108,623108,ff,DID3108.Ctrl_Relay_DCDC_P,0:Relay is Open;1:Relay is Closed
-,793,37,37,1,0,0,,223108,623108,ff,DID3108.Wake_Up_System,0:Wake_Up is not requested;1:Wake Up is being requested
+,793,25,25,1,0,0,,223107,623107,ff,DID3107.ED_Cover_SW,0:Open;1:Close
+,793,26,26,1,0,0,,223107,623107,ff,DID3107.ILOCK_BAT,0:Open;1:Close
+,793,27,27,1,0,0,,223107,623107,ff,DID3107.ILOCK_PEB,0:Open;1:Close
+,793,28,28,1,0,0,,223107,623107,ff,DID3107.ILOCK_MAINS_RIGHT,0:Open;1:Close
+,793,29,29,1,0,0,,223107,623107,ff,DID3107.ILOCK_MAINS_LEFT,0:Open;1:Close
+,793,30,30,1,0,0,,223107,623107,ff,DID3107.ILOCK_PTC,0:Open;1:Close
+,793,31,31,1,0,0,,223107,623107,ff,DID3107.ILOCK_CLIMA,0:Open;1:Close
 ,793,25,27,1,0,0,,223108,623108,ff,DID3108.BCBFaultClass,0:No default;1:Class A;2:Class B;3:Class C;4:Class D;5:Class E;6:Not used
+,793,29,31,1,0,0,,223108,623108,ff,DID3108.BCBLoadState,0:Unvailable Value;1:SlowCharge and Diag State;2:Quick Charge and Diag State;3:Nissan Quick Charge and Diag State;4:Diagnosis State;5:No State;6:Not used
+,793,34,34,1,0,0,,223108,623108,ff,DID3108.SwitchingBoxRelay2State,0:Relay Open;1:Relay Closed
 ,793,35,35,1,0,0,,223108,623108,ff,DID3108.SwitchingBoxRelay1State,0:Relay Open;1:Relay Closed
 ,793,36,36,1,0,0,,223108,623108,ff,DID3108.BCBPowerPlantState,0:Power Plant Off;1:Power Plant On
-,793,34,34,1,0,0,,223108,623108,ff,DID3108.SwitchingBoxRelay2State,0:Relay Open;1:Relay Closed
+,793,37,37,1,0,0,,223108,623108,ff,DID3108.Wake_Up_System,0:Wake_Up is not requested;1:Wake Up is being requested
+,793,38,38,1,0,0,,223108,623108,ff,DID3108.Ctrl_Relay_DCDC_P,0:Relay is Open;1:Relay is Closed
+,793,39,39,1,0,0,,223108,623108,ff,DID3108.BCBPerformance,0:Normal Performance;1:derating mode active
+,793,24,31,.1,0,1,A,223109,623109,ff,EVSECurrentLimit
+,793,24,24,1,0,0,,22310A,62310A,ff,DID310A.Earth plug connection,0:Ground Connection failure;1:Ground is correct
+,793,25,27,1,0,0,,22310A,62310A,ff,DID310A.ChargingPlugConnectionState 2,0:DL_OPEN_LOAD;1:DL_NOT_CONNECTED;2:DL_CONNECTED_NOT_LOCKED;3:DL_CONNECTED_AND_LOCKED;4:DL_SCTOGND_UNDERVOLTAGE
 ,793,28,28,1,0,0,,22310A,62310A,ff,DID310A.DomesticNetworkState,0:Domestic Network is not present;1:Domestic Network is present
 ,793,29,31,1,0,0,,22310A,62310A,ff,DID310A.ChargingPlugConnectionState 1,0:DL_OPEN_LOAD;1:DL_NOT_CONNECTED;2:DL_CONNECTED_NOT_LOCKED;3:DL_CONNECTED_AND_LOCKED;4:DL_SCTOGND_UNDERVOLTAGE
-,793,25,27,1,0,0,,22310A,62310A,ff,DID310A.ChargingPlugConnectionState 2,0:DL_OPEN_LOAD;1:DL_NOT_CONNECTED;2:DL_CONNECTED_NOT_LOCKED;3:DL_CONNECTED_AND_LOCKED;4:DL_SCTOGND_UNDERVOLTAGE
-,793,24,24,1,0,0,,22310A,62310A,ff,DID310A.Earth plug connection,0:Ground Connection failure;1:Ground is correct
 ,793,24,31,1,-40,0,,22310B,62310B,ff,Mains Voltage
-,793,25,31,.1,0,0,,22310D,62310D,ff,SlowChargingMaxPower
+,793,29,29,1,0,0,,22310C,62310C,ff,DID310C.CTRL_ToCharge_J1772,0:Open;1:Closed
+,793,30,30,1,0,0,,22310C,62310C,ff,DID310C.Current_Ilimit,0:Not Pushed;1:Pushed
+,793,31,31,1,0,0,,22310C,62310C,ff,DID310C.O_LED_Ilimit,0:Off ;1:ON
+,793,25,31,.1,0,1,,22310D,62310D,ff,SlowChargingMaxPower
 ,793,24,31,1,0,0,,22310E,62310E,ff,ChargerCurrent
 ,793,25,31,1,-32,0,,22310F,62310F,ff,ChargerMaxCurrent
 ,793,31,39,1,0,0,,223110,623110,ff,ChargerVoltage
@@ -38,123 +68,76 @@
 ,793,26,31,1,0,0,,223113,623113,ff,ChargerMaxPower
 ,793,26,31,1,0,0,,223114,623114,ff,ChargerMinCurrent
 ,793,24,31,1,-240,0,,223115,623115,ff,ChargerMinVoltage
-,793,31,31,1,0,0,,223119,623119,ff,DID3119.QuickChargeStopRequest,0:Quick Charge Stop Not Requested;1:Quick Charge Stop  Requested
-,793,30,30,1,0,0,,223119,623119,ff,DID3119.QuickChargeEmergencyStop,0:Quick Charge Emergency Stop Not Requested;1:Quick Charge Emergency Stop Requested
-,793,29,29,1,0,0,,223119,623119,ff,DID3119.KLineState,0:K Line Not present;1:K Line present
+,793,24,31,1,0,0,,223118,623118,ff,FastChargerReference
 ,793,28,28,1,0,0,,223119,623119,ff,DID3119.QuickChargeSessionStopRequest,0:Quick Charge Session Stop Not Requested;1:Quick Charge Session Stop Requested
-,793,30,31,1,0,0,,223120,623120,ff,DID3120.QuickChargeLimitsACK,0:unavailable value;1:Charger has received Security Limits;2:Charger has not received Security Limits;3:reserved
-,793,28,29,1,0,0,,223120,623120,ff,DID3120.QuickChargeStopACK,0:unavailable value;1:Charger has received Stop Request;2:Charger has not received Stop Request;3:reserved
-,793,26,27,1,0,0,,223120,623120,ff,DID3120.QuickChargeStartACK,0:unavailable value;1:Charger has received Start Request;2:Charger has not received Start Request;3:reserved
+,793,29,29,1,0,0,,223119,623119,ff,DID3119.KLineState,0:K Line Not present;1:K Line present
+,793,30,30,1,0,0,,223119,623119,ff,DID3119.QuickChargeEmergencyStop,0:Quick Charge Emergency Stop Not Requested;1:Quick Charge Emergency Stop Requested
+,793,31,31,1,0,0,,223119,623119,ff,DID3119.QuickChargeStopRequest,0:Quick Charge Stop Not Requested;1:Quick Charge Stop  Requested
 ,793,24,25,1,0,0,,223120,623120,ff,DID3120.QuickChargeTempStopACK,0:unavailable value;1:Charger has received Temp Stop Request;2:Charger has not received Temp Stop Request;3:reserved
+,793,26,27,1,0,0,,223120,623120,ff,DID3120.QuickChargeStartACK,0:unavailable value;1:Charger has received Start Request;2:Charger has not received Start Request;3:reserved
+,793,28,29,1,0,0,,223120,623120,ff,DID3120.QuickChargeStopACK,0:unavailable value;1:Charger has received Stop Request;2:Charger has not received Stop Request;3:reserved
+,793,30,31,1,0,0,,223120,623120,ff,DID3120.QuickChargeLimitsACK,0:unavailable value;1:Charger has received Security Limits;2:Charger has not received Security Limits;3:reserved
 ,793,30,31,1,0,0,,22312D,62312D,ff,InterlockBatt,0:Unvailable Value;1:Open;2:Closed;3:Not used
 ,793,28,39,10,2000,0,rpm,22312E,62312E,ff,ElecMachineSpeed
+,793,24,39,1,0,0,,22312F,62312F,ff,Quick drop counter
 ,793,24,47,1,0,0,,223130,623130,ff,DistanceTotalizer
 ,793,29,31,1,0,0,,223132,623132,ff,BCBState,0:Unavailable Value;1:Slow Charge, Zero Amp, Diag;2:Quick Charge, Diag state;3:Nissan Quick Charge, Diag state;4:Diagnosis state;5:No state;6:not used;7:Not Used
-,793,24,31,.1,0,0,,223133,623133,ff,SlowChargingCurrent
+,793,24,31,.1,0,1,,223133,623133,ff,SlowChargingCurrent
 ,793,24,31,1,0,0,,223134,623134,ff,QuickChargeCurrent
 ,793,24,31,1,0,0,,223135,623135,ff,QuickChargeCurrentLimit
 ,793,24,31,1,-240,0,,223136,623136,ff,QuickChargeVoltageLimit
-,793,31,31,1,0,0,,223137,623137,ff,DID3137.QuickChargeStartRequest,0:Quick Charge start Not Requested;1:Quick Charge start Requested
-,793,30,30,1,0,0,,223137,623137,ff,DID3137.QuickChargeSessionStopRequest,0:Quick Charge Session Stop Not Requested;1:Quick Charge Session Stop Requested
 ,793,29,29,1,0,0,,223137,623137,ff,DID3137.QuickChargeTempStopRequest,0:QCharge Temporary Stop Not Requested;1:QCharge Temporary Stop Requested
-,793,31,31,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Derating_Mode_Active
-,793,30,30,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.PFC_On_Off_Status
-,793,29,29,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Input_Overcurrent_Alarm
-,793,28,28,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Input_PFC_Undervoltage_Alarm
-,793,27,27,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Input_Overvoltage_Alarm
-,793,26,26,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Output_PFC_Overvoltage_Alarm
-,793,25,25,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Cooling_Overtermperature_Alarm
+,793,30,30,1,0,0,,223137,623137,ff,DID3137.QuickChargeSessionStopRequest,0:Quick Charge Session Stop Not Requested;1:Quick Charge Session Stop Requested
+,793,31,31,1,0,0,,223137,623137,ff,DID3137.QuickChargeStartRequest,0:Quick Charge start Not Requested;1:Quick Charge start Requested
+,793,24,39,1,0,0,Hz,223138,623138,ff,EPWM_Pilot_Frequency
+,793,24,31,.392156862745098,0,1,%,223139,623139,ff,EPWM_Pilot
+,793,24,31,.5,0,1,A,22313A,62313A,ff,DCDC_Output_Current
+,793,24,63,1,0,0,,22F180,62F180,ff,bootSoftwareIdentification
+,793,24,103,1,0,0,,22F18E,62F18E,2ff,VehicleManufacturerKitAssemblyPartNumber
+,793,24,31,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmIndex
+,793,32,39,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode0
+,793,40,47,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode1
+,793,48,55,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode2
+,793,56,63,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode3
+,793,64,71,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode4
+,793,72,79,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode5
+,793,80,87,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode6
+,793,88,95,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode7
+,793,96,103,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode8
+,793,104,111,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode9
 ,793,24,24,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.DCDC_On_Off_Status
-,793,39,39,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Output_Overcurrent_Alarm
-,793,38,38,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Input_DCDC_Undervoltage_Alarm
-,793,37,37,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Output_DCDC_Overvoltage_Alarm
-,793,36,36,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Primary_Hardware_Alarm
-,793,35,35,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Secondary_Hardware_Alarm
-,793,34,34,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Output_Short_Circuit_Alarm
-,793,33,33,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.SCI_Error
+,793,25,25,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Cooling_Overtermperature_Alarm
+,793,26,26,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Output_PFC_Overvoltage_Alarm
+,793,27,27,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Input_Overvoltage_Alarm
+,793,28,28,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Input_PFC_Undervoltage_Alarm
+,793,29,29,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Input_Overcurrent_Alarm
+,793,30,30,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.PFC_On_Off_Status
+,793,31,31,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Derating_Mode_Active
 ,793,32,32,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Interlock_sec_connector_sts
+,793,33,33,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.SCI_Error
+,793,34,34,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Output_Short_Circuit_Alarm
+,793,35,35,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Secondary_Hardware_Alarm
+,793,36,36,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Primary_Hardware_Alarm
+,793,37,37,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Output_DCDC_Overvoltage_Alarm
+,793,38,38,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Input_DCDC_Undervoltage_Alarm
+,793,39,39,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Output_Overcurrent_Alarm
 ,793,40,47,1,40,0,-40,22FFF0,62FFF0,ff,DIDFFF0.Final_Ambient_temperature
+,793,48,53,.5,0,1,A,22FFF0,62FFF0,ff,DIDFFF0.DCDC_Output_Current
 ,793,54,55,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Mains_Frequency
-,793,48,53,.5,0,0,A,22FFF0,62FFF0,ff,DIDFFF0.DCDC_Output_Current
 ,793,56,63,1,-40,0,V,22FFF0,62FFF0,ff,DIDFFF0.Mains_Voltage
 ,793,64,72,1,0,0,V,22FFF0,62FFF0,ff,DIDFFF0.DCDC_output_voltage
 ,793,73,81,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.HV_Bus_meas_voltage
-,793,85,85,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Status_FCHG_N_Relay
 ,793,84,84,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Status_FCHG_P_Relay
-,793,88,95,.5,0,0,A,22FFF0,62FFF0,ff,DIDFFF0.Input_current
-,793,31,31,1,0,0,0,22FFF1,62FFF1,ff,DIDFFF1.Charger_On_Off
-,793,27,30,1,-10,0,A,22FFF1,62FFF1,ff,DIDFFF1.Input_Current_Limit
-,793,26,26,1,0,0,0,22FFF1,62FFF1,ff,DIDFFF1.FCHG_Vdrop_Relay_P
-,793,25,25,1,0,0,0,22FFF1,62FFF1,ff,DIDFFF1.FCHG_Vdrop_Relay_N
+,793,85,85,1,0,0,0,22FFF0,62FFF0,ff,DIDFFF0.Status_FCHG_N_Relay
+,793,88,95,.5,0,1,A,22FFF0,62FFF0,ff,DIDFFF0.Input_current
 ,793,24,24,1,0,0,0,22FFF1,62FFF1,ff,DIDFFF1.PFC_Alarm_Reset
-,793,35,39,.5,0,0,A,22FFF1,62FFF1,ff,DIDFFF1.Set_Output_Max_Current
+,793,25,25,1,0,0,0,22FFF1,62FFF1,ff,DIDFFF1.FCHG_Vdrop_Relay_N
+,793,26,26,1,0,0,0,22FFF1,62FFF1,ff,DIDFFF1.FCHG_Vdrop_Relay_P
+,793,27,30,1,-10,0,A,22FFF1,62FFF1,ff,DIDFFF1.Input_Current_Limit
+,793,31,31,1,0,0,0,22FFF1,62FFF1,ff,DIDFFF1.Charger_On_Off
+,793,35,39,.5,0,1,A,22FFF1,62FFF1,ff,DIDFFF1.Set_Output_Max_Current
 ,793,40,47,1,40,0,°C,22FFF1,62FFF1,ff,DIDFFF1.Ambient_Temp
 ,793,48,55,1,40,0,°C,22FFF1,62FFF1,ff,DIDFFF1.Cooling_Temp
-,793,24,63,1,0,0,,22F180,62F180,ff,bootSoftwareIdentification
-,793,24,31,.1,0,0,A,223105,623105,ff,BCBSlowChargeInputCurrent
-,793,24,31,.1,0,0,A,223109,623109,ff,EVSECurrentLimit
-,793,30,30,1,0,0,,22310C,62310C,ff,DID310C.Current_Ilimit,0:Not Pushed;1:Pushed
-,793,31,31,1,0,0,,22310C,62310C,ff,DID310C.O_LED_Ilimit,0:Off ;1:ON
-,793,29,29,1,0,0,,22310C,62310C,ff,DID310C.CTRL_ToCharge_J1772,0:Open;1:Closed
-,793,24,31,1,0,0,,223118,623118,ff,FastChargerReference
-,793,24,39,1,0,0,,22312F,62312F,ff,Quick drop counter
-,793,24,31,100,0,0,%,223139,623139,ff,EPWM_Pilot
-,793,24,31,.5,0,0,A,22313A,62313A,ff,DCDC_Output_Current
-,793,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A;1:8200x
-,793,160,175,1,0,0,,2180,6180,ff,CalibrationNumber
-,793,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode
-,793,144,159,1,0,0,,2180,6180,ff,EditionNumber
-,793,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:N/A;1:29609
-,793,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
-,793,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
-,793,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;2:29609
-,793,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
-,793,128,143,1,0,0,,2180,6180,ff,SoftwareNumber
-,793,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
-,793,152,167,1,0,0,,2181,6181,ff,Vin CRC
-,793,16,151,1,0,0,,2181,6181,2ff,Vin In Ascii
-,793,148,155,1,0,0,,2184,6184,2ff,PaddingDatas
-,793,136,143,1,0,0,,2184,6184,2ff,Siemens serial number Byte 0 to be coded in ASCII
-,793,128,135,1,0,0,,2184,6184,2ff,Siemens serial number Byte 1 to be coded in ASCII
-,793,56,63,1,0,0,,2184,6184,2ff,Siemens serial number Byte 10 to be coded in ASCII
-,793,48,55,1,0,0,,2184,6184,2ff,Siemens serial number Byte 11 to be coded in ASCII
-,793,40,47,1,0,0,,2184,6184,2ff,Siemens serial number Byte 12 to be coded in ASCII
-,793,32,39,1,0,0,,2184,6184,2ff,Siemens serial number Byte 13 to be coded in ASCII
-,793,24,31,1,0,0,,2184,6184,2ff,Siemens serial number Byte 14 to be coded in ASCII
-,793,16,23,1,0,0,,2184,6184,2ff,Siemens serial number Byte 15 to be coded in ASCII
-,793,120,127,1,0,0,,2184,6184,2ff,Siemens serial number Byte 2 to be coded in ASCII
-,793,112,119,1,0,0,,2184,6184,2ff,Siemens serial number Byte 3 to be coded in ASCII
-,793,104,111,1,0,0,,2184,6184,2ff,Siemens serial number Byte 4 to be coded in ASCII
-,793,96,103,1,0,0,,2184,6184,2ff,Siemens serial number Byte 5 to be coded in ASCII
-,793,88,95,1,0,0,,2184,6184,2ff,Siemens serial number Byte 6 to be coded in ASCII
-,793,80,87,1,0,0,,2184,6184,2ff,Siemens serial number Byte 7 to be coded in ASCII
-,793,72,79,1,0,0,,2184,6184,2ff,Siemens serial number Byte 8 to be coded in ASCII
-,793,64,71,1,0,0,,2184,6184,2ff,Siemens serial number Byte 9 to be coded in ASCII
-,793,24,39,1,0,0,Hz,223138,623138,ff,EPWM_Pilot_Frequency
-,793,24,103,1,0,0,,22F18E,62F18E,2ff,VehicleManufacturerKitAssemblyPartNumber
-,793,31,31,1,0,0,,22FFF5,62FFF5,ff,DIDFFF5.Download_enable
-,793,30,30,1,0,0,,22FFF5,62FFF5,ff,DIDFFF5.Coupler_unlocked
-,793,29,29,1,0,0,,22FFF5,62FFF5,ff,DIDFFF5.DCDC_Alarm
-,793,32,39,1,0,0,Hz,22FFF5,62FFF5,ff,DIDFFF5.MainsFrequency
-,793,40,47,1,0,0,A,22FFF5,62FFF5,ff,DIDFFF5.Input_Current_offset
-,793,48,55,1,0,0,A,22FFF5,62FFF5,ff,DIDFFF5.Set_Output_Max_Current
-,793,56,65,.0049,0,0,V,22FFF5,62FFF5,ff,DIDFFF5.NTC4_PCB
-,793,72,81,.0049,0,0,V,22FFF5,62FFF5,ff,DIDFFF5.NTC_PFC
-,793,88,97,.5,0,0,V,22FFF5,62FFF5,ff,DIDFFF5.Set_Output_Voltage
-,793,104,113,.5,0,0,V,22FFF5,62FFF5,ff,DIDFFF5.DC_Bus_Voltage
-,793,120,127,1,0,0,V,22FFF5,62FFF5,ff,DIDFFF5.5V_Supply_Pri
-,793,128,135,1,0,0,V,22FFF5,62FFF5,ff,DIDFFF5.12V_Supply_Pri
-,793,30,39,.5,0,0,V,22FFF4,62FFF4,ff,DIDFFF4.HV Battery_monitoring
-,793,25,25,1,0,0,,22FFF4,62FFF4,ff,DIDFFF4.Output_DCDC_Overvoltage_Alarm
-,793,24,24,1,0,0,,22FFF4,62FFF4,ff,DIDFFF4.Output_Overcurrent_Alarm
-,793,27,27,1,0,0,,22FFF4,62FFF4,ff,DIDFFF4.Overlock_Status
-,793,26,26,1,0,0,,22FFF4,62FFF4,ff,DIDFFF4.Secondary_Hardware_Alarm
-,793,40,47,.1,0,0,dV,22FFF4,62FFF4,ff,DIDFFF4.12V_Supply
-,793,48,55,.1,0,0,dV,22FFF4,62FFF4,ff,DIDFFF4.5V_Supply
-,793,81,90,.0049,0,0,Vdc,22FFF4,62FFF4,ff,DIDFFF4.Feedback_current_consign
-,793,97,106,.0049,0,0,Vdc,22FFF4,62FFF4,ff,DIDFFF4.Feedback_voltage_consign
-,793,56,63,1,0,0,dAdc,22FFF4,62FFF4,ff,DIDFFF4.Output_Current_DCDC
-,793,65,74,.5,0,0,Vdc,22FFF4,62FFF4,ff,DIDFFF4.Output_Voltage_DCDC
 ,793,40,55,1,0,0,,22FFF2,62FFF2,ff,DIDFFF2.14VBatteryVoltage
 ,793,56,71,1,0,0,,22FFF2,62FFF2,ff,DIDFFF2.14VBatteryVoltageSwitched
 ,793,72,87,1,0,0,,22FFF2,62FFF2,ff,DIDFFF2.PowerPlantCurrentConsumption
@@ -168,30 +151,42 @@
 ,793,200,215,1,0,0,,22FFF2,62FFF2,ff,DIDFFF2.Ea_NCH_DET_LOGIC
 ,793,216,231,1,0,0,,22FFF2,62FFF2,ff,DIDFFF2.Ea_RSA_NCH_DET_LOGIC
 ,793,232,247,1,0,0,,22FFF2,62FFF2,ff,DIDFFF2.EDIAG_LED_Ilimit
-,793,31,31,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_14V_Switched
-,793,30,30,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_CAN1_STB
-,793,29,29,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_5V_SW_Enable
-,793,28,28,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_EN_PWSupply
-,793,27,27,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.Download_CTRL
-,793,26,26,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_RELAY_SWBOX_L1
-,793,25,25,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_RELAY_SWBOX_L2
 ,793,24,24,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_RELAY_DCDC_P
-,793,39,39,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.EN_INH_KLine
-,793,37,37,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_WAKEUP_SYS
-,793,35,35,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.DIAG_OT_Relay_SWBox_L1
-,793,34,34,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.DIAG_OT_Relay_SWBox_L2
+,793,25,25,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_RELAY_SWBOX_L2
+,793,26,26,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_RELAY_SWBOX_L1
+,793,27,27,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.Download_CTRL
+,793,28,28,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_EN_PWSupply
+,793,29,29,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_5V_SW_Enable
+,793,30,30,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_CAN1_STB
+,793,31,31,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_14V_Switched
 ,793,33,33,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.DIAG_OT_Relay_DCDC_P
-,793,24,31,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmIndex
-,793,32,39,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode0
-,793,40,47,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode1
-,793,48,55,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode2
-,793,56,63,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode3
-,793,64,71,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode4
-,793,72,79,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode5
-,793,80,87,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode6
-,793,88,95,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode7
-,793,96,103,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode8
-,793,104,111,1,0,0,,22FF01,62FF01,ff,DIDFF01.AlarmCode9
+,793,34,34,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.DIAG_OT_Relay_SWBox_L2
+,793,35,35,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.DIAG_OT_Relay_SWBox_L1
+,793,37,37,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.CTRL_WAKEUP_SYS
+,793,39,39,1,0,0,,22FFF3,62FFF3,ff,DIDFFF3.EN_INH_KLine
+,793,24,24,1,0,0,,22FFF4,62FFF4,ff,DIDFFF4.Output_Overcurrent_Alarm
+,793,25,25,1,0,0,,22FFF4,62FFF4,ff,DIDFFF4.Output_DCDC_Overvoltage_Alarm
+,793,26,26,1,0,0,,22FFF4,62FFF4,ff,DIDFFF4.Secondary_Hardware_Alarm
+,793,27,27,1,0,0,,22FFF4,62FFF4,ff,DIDFFF4.Overlock_Status
+,793,30,39,.5,0,1,V,22FFF4,62FFF4,ff,DIDFFF4.HV Battery_monitoring
+,793,40,47,.1,0,1,dV,22FFF4,62FFF4,ff,DIDFFF4.12V_Supply
+,793,48,55,.1,0,1,dV,22FFF4,62FFF4,ff,DIDFFF4.5V_Supply
+,793,56,63,1,0,0,dAdc,22FFF4,62FFF4,ff,DIDFFF4.Output_Current_DCDC
+,793,65,74,.5,0,1,Vdc,22FFF4,62FFF4,ff,DIDFFF4.Output_Voltage_DCDC
+,793,81,90,.0049,0,3,Vdc,22FFF4,62FFF4,ff,DIDFFF4.Feedback_current_consign
+,793,97,106,.0049,0,3,Vdc,22FFF4,62FFF4,ff,DIDFFF4.Feedback_voltage_consign
+,793,29,29,1,0,0,,22FFF5,62FFF5,ff,DIDFFF5.DCDC_Alarm
+,793,30,30,1,0,0,,22FFF5,62FFF5,ff,DIDFFF5.Coupler_unlocked
+,793,31,31,1,0,0,,22FFF5,62FFF5,ff,DIDFFF5.Download_enable
+,793,32,39,1,0,0,Hz,22FFF5,62FFF5,ff,DIDFFF5.MainsFrequency
+,793,40,47,.1,0,1,A,22FFF5,62FFF5,ff,DIDFFF5.Input_Current_offset
+,793,48,55,.1,0,1,A,22FFF5,62FFF5,ff,DIDFFF5.Set_Output_Max_Current
+,793,56,65,.0049,0,3,V,22FFF5,62FFF5,ff,DIDFFF5.NTC4_PCB
+,793,72,81,.0049,0,3,V,22FFF5,62FFF5,ff,DIDFFF5.NTC_PFC
+,793,88,97,.5,0,1,V,22FFF5,62FFF5,ff,DIDFFF5.Set_Output_Voltage
+,793,104,113,.5,0,1,V,22FFF5,62FFF5,ff,DIDFFF5.DC_Bus_Voltage
+,793,120,127,.1,0,1,V,22FFF5,62FFF5,ff,DIDFFF5.5V_Supply_Pri
+,793,128,135,.1,0,1,V,22FFF5,62FFF5,ff,DIDFFF5.12V_Supply_Pri
 ,793,24,24,1,0,0,,22FFF8,62FFF8,ff,DIDFFF8.Sup_SFY_Tx_Disp
 ,793,25,25,1,0,0,,22FFF8,62FFF8,ff,DIDFFF8.Sup_SFY_Tx_RecMn
 ,793,26,26,1,0,0,,22FFF8,62FFF8,ff,DIDFFF8.Sup_SFY_Tx_PSupp
@@ -201,130 +196,9 @@
 ,793,34,34,1,0,0,,22FFF8,62FFF8,ff,DIDFFF8.PPP_SFY_Rx_PSupp
 ,793,35,35,1,0,0,,22FFF8,62FFF8,ff,DIDFFF8.PPP_SFY_Rx_PSecMn
 ,793,36,36,1,0,0,,22FFF8,62FFF8,ff,DIDFFF8.SFY_Rx_RAM_Ch
-,793,29,31,1,0,0,,222003,622003,ff,Junction box 2 state,0:Init;1:Charge;4:Wait;5:Power Off/Sleep
-,793,24,31,1,40,0,°C,222005,622005,ff,Cooling temperature from BI
-,793,24,47,1,0,0,,225001,625001,ff,Plugging counter
-,793,24,47,1,0,0,,225002,625002,ff,Wake Up counter
-,793,31,31,1,0,0,,225003,625003,ff,Raw A/C plug interlock value,0:open;1:closed
-,793,31,31,1,0,0,,225005,625005,ff,CAN activity for JB2,0:No activity;1:Activity
-,793,31,31,1,0,0,,225008,625008,ff,Raw JB2 hood plug interlock value,0:open;1:closed
-,793,31,31,1,0,0,,225009,625009,ff,Raw HV Battery plug interlock value,0:open;1:closed
-,793,31,31,1,0,0,,22500B,62500B,ff,Raw mains interlock value,0:open;1:closed
-,793,31,31,1,0,0,,22500C,62500C,ff,Mains tri phases permutation,0:v1/v2/v3 off;1:v1/v2/v3 on
-,793,31,31,1,0,0,,22500D,62500D,ff,Mains voltage presence,0:Absent;1:Present
-,793,31,31,1,0,0,,22500E,62500E,ff,Wake-Up request from Mains or plug presence,0:No wake-up request;1:Wake-up request
-,793,31,31,1,0,0,,22500F,62500F,ff,Raw PEB plug interlock value,0:open;1:closed
-,793,31,31,1,0,0,,225010,625010,ff,Raw PEB neutral interlock value,0:open;1:closed
-,793,31,31,1,0,0,,225011,625011,ff,Raw PTC plug interlock value,0:open;1:closed
-,793,30,31,1,0,0,,225015,625015,ff,Wake-Up / Sleep request from EVC,0:Wake-up;1:Sleep;2:UV
-,793,29,31,1,0,0,,225016,625016,ff,Junction box 2 state request from EVC,0:init;1:Charge;4:Wait;5:Power Off/Sleep
-,793,29,31,1,0,0,,225017,625017,ff,Mains current type,0:Nok;1:AC mono;2:AC tri;3:DC;4:AC bi
-,793,30,31,1,0,0,,225018,625018,ff,Mains plug unlocking CAN request,0:Unavailable;1:Unlock request;2:No unlock request
-,793,30,31,1,0,0,,225019,625019,ff,Memorized value of the wake up activation,0:Wake-up activated;1:Wake-up deactivated
-,793,31,31,1,0,0,,22501A,62501A,ff,BCM wake-up by wire,0:No wake-up;1:Wake-up
-,793,31,31,1,0,0,,22501C,62501C,ff,S2 relay control,0:Open;1:Close
-,793,30,31,1,0,0,,22501D,62501D,ff,Charge state request,0:No charge;1:Charge;2:Emergency stop
-,793,29,31,1,0,0,,22501E,62501E,ff,Global system state,0:Init;1:Actif;2:Sleep
-,793,30,31,1,0,0,,22501F,62501F,ff,System Temperature State,0:Ok;1:Derating;2:Nok
-,793,30,31,1,0,0,,225021,625021,ff,Cooling Temperature State,0:Ok;1:Derating;2:Nok
-,793,30,31,1,0,0,,225022,625022,ff,Auto wake-up enabling,0:No change;1:Activation;2:Deactivation
-,793,24,39,.0625,880,0,°C,225023,625023,ff,Raw CPU temperature value from BI
-,793,24,39,.0625,3200,0,A,225024,625024,ff,Measured neutral current filtred
-,793,24,39,.0625,3200,0,A,225025,625025,ff,Neutral current value from BI
-,793,24,31,1,0,0,%,225026,625026,ff,J1772 control pilot raw duty cycle
-,793,24,31,.25,60,0,V,225027,625027,ff,J1772 control pilot raw voltage
-,793,24,31,1,40,0,°C,225028,625028,ff,Mains input filter temperature from SPI
-,793,24,39,.0625,3200,0,A,225029,625029,ff,Raw AC mains phase 1 measured current
-,793,24,39,.0625,3200,0,A,22502A,62502A,ff,Raw AC mains phase 2 measured current
-,793,24,39,.0625,3200,0,A,22502B,62502B,ff,Raw AC mains phase 3 measured current
-,793,24,39,.5,32000,0,V,22502C,62502C,ff,Raw AC mains phase 1 measured voltage
-,793,24,39,.5,32000,0,V,22502D,62502D,ff,Raw AC mains phase 2 measured voltage
-,793,24,39,.5,32000,0,V,22502E,62502E,ff,Raw AC mains phase 3 measured voltage
-,#793,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,1:HMLGT
-,#793,160,175,1,0,0,,2180,6180,ff,CalibrationNumber
-,#793,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode
-,#793,144,159,1,0,0,,2180,6180,ff,EditionNumber
-,#793,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,1:296H5
-,#793,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
-,#793,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
-,#793,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,1:296H5;2:296H0
-,#793,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
-,#793,128,143,1,0,0,,2180,6180,ff,SoftwareNumber
-,#793,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
-,#793,152,167,1,0,0,,2181,6181,ff,Vin CRC
-,#793,16,151,1,0,0,,2181,6181,2ff,Vin In Ascii
-,#793,16,39,1,0,0,,2184,6184,ff,ITG Supplier Number
-,#793,40,47,1,0,0,,2184,6184,2ff,Traceability Factory Code
-,#793,48,143,1,0,0,,2184,6184,2ff,Traceability Serial Number
+# JB2
 ,793,16,103,1,0,0,,21B7,61B7,ff,Configuration of Electrical Vehicle Networks
 ,793,16,103,1,0,0,,21B8,61B8,ff,List of Electrical Vehicle ECUs with After-sales diagnostic
-,793,160,175,1,0,0,,21F0,61F0,ff,CalibrationNumber
-,793,56,63,1,0,0,,21F0,61F0,ff,DiagnosticIdentificationCode
-,793,128,143,1,0,0,,21F0,61F0,ff,SoftwareNumber
-,793,64,87,1,0,0,,21F0,61F0,ff,SupplierNumber
-,793,144,159,1,0,0,,21F0,61F0,ff,EditionNumber
-,793,176,183,1,0,0,,21F0,61F0,ff,PartNumber.BasicPartList,1:296H5;2:296H0
-,793,184,191,1,0,0,,21F0,61F0,ff,HardwareNumber.BasicPartList,1:296H5
-,793,192,199,1,0,0,,21F0,61F0,ff,ApprovalNumber.BasicPartList,1:HMLGT
-,793,16,55,1,0,0,,21F0,61F0,2ff,PartNumber.LowerPart
-,793,88,127,1,0,0,,21F0,61F0,2ff,HardwareNumber.LowerPart
-,793,200,207,1,0,0,,21F0,61F0,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
-,793,16,55,1,0,0,,21F1,61F1,2ff,ApprovalNumber.LowerPart
-,793,56,95,1,0,0,,21F1,61F1,2ff,ProgrammingSiteReference
-,793,96,135,1,0,0,,21F1,61F1,2ff,ProgrammingToolReference
-,793,136,143,1,0,0,,21F1,61F1,ff,NumberOfReprogrammings
-,793,144,167,1,0,0,,21F1,61F1,ff,DateOfReprogramming
-,793,184,191,1,0,0,,21F1,61F1,ff,SaveMarking
-,793,192,207,1,0,0,,21F1,61F1,ff,CrcOfLogSave
-,793,168,183,1,0,0,,21F1,61F1,ff,TimeOfReprogramming
-,793,24,39,.0625,3200,0,A,222001,622001,ff,Mains phase 1 current RMS value
-,793,24,39,.0625,0,0,V,222002,622002,ff,CPU voltage supply from BI
-,793,25,31,1,0,0,%,225007,625007,ff,MMI Green LED PWM request
-,793,31,31,1,0,0,,225012,625012,ff,Mains phase 1-2 voltage presence,0:Absent;1:Present
-,793,31,31,1,0,0,,225013,625013,ff,Mains phase 2-3 voltage presence,0:Absent;1:Present
-,793,31,31,1,0,0,,225014,625014,ff,Mains phase 3-1 voltage presence,0:Absent;1:Present
-,793,25,31,1,0,0,%,22502F,62502F,ff,MMI Red LED PWM request
-,793,31,31,1,0,0,,225030,625030,ff,Raw fuse interlock value,0:open;1:closed
-,793,31,31,1,0,0,,225031,625031,ff,Raw Relay box plug interlock closed,0:open;1:closed
-,793,24,39,1,0,0,V,225032,625032,ff,Driver module power supply voltage from BI
-,793,24,39,.0625,32768,0,mA,225035,625035,ff,Mains ground current 1st measurement
-,793,24,39,.0625,32768,0,mA,225036,625036,ff,Mains ground current 2nd measurement
-,793,31,31,1,0,0,,225038,625038,ff,Mains Plug Locking Switch raw information,0:Unlocked;1:Locked
-,793,30,31,1,0,0,,225039,625039,ff,Mains plug locking control,0:No motion;1:Close;2:Open
-,793,24,39,.0625,3200,0,A,22503A,62503A,ff,Mains phase 2 current RMS value
-,793,24,39,.0625,3200,0,A,22503B,62503B,ff,Mains phase 3 current RMS value
-,793,24,39,.0625,3200,0,A,22503C,62503C,ff,Mains current phase 1 mean value
-,793,24,39,.0625,3200,0,A,22503D,62503D,ff,Mains current phase 2 mean value
-,793,24,39,.0625,3200,0,A,22503E,62503E,ff,Mains current phase 3 mean value
-,793,24,39,.5,0,0,V,22503F,62503F,ff,Mains phase 1-2 voltage RMS value
-,793,24,39,.5,0,0,V,225041,625041,ff,Mains phase 2-3 voltage RMS value
-,793,24,39,.5,0,0,V,225042,625042,ff,Mains phase 3-1 voltage RMS value
-,793,24,39,.5,32000,0,V,225043,625043,ff,AC mains phase 1-2 measured voltage
-,793,24,39,.5,32000,0,V,225044,625044,ff,AC mains phase 2-3 measured voltage
-,793,24,39,.5,32000,0,V,225045,625045,ff,AC mains phase 3-1 measured voltage
-,793,24,39,.5,32000,0,V,225046,625046,ff,Mains phase 1-2 mean voltage
-,793,24,39,.5,32000,0,V,225047,625047,ff,Mains phase 2-3 mean voltage
-,793,24,39,.5,32000,0,V,225048,625048,ff,Mains phase 3-1 mean voltage
-,793,24,39,.0078125,-1280,0,Hz,225049,625049,ff,Mains phase frequency
-,793,24,39,1,20000,0,W,22504A,62504A,ff,Mains active power consumed
-,793,24,39,.0625,9600,0,A,22504B,62504B,ff,Mains current sum
-,793,24,39,.5,32000,0,V,22504C,62504C,ff,Mains voltage sum
-,793,24,39,.0625,3200,0,A,22504D,62504D,ff,HV Network measured current
-,793,24,39,1,1023,0,V,22504E,62504E,ff,HV voltage
-,793,24,31,1,0,0,,22504F,62504F,ff,Mains leakage current strategy state,0:OFF/Init;1:OK;2:NOK
-,793,24,24,1,0,0,,225050,625050,ff,External controls denial status flags.0,0:Reserved for future use_0
-,793,24,31,1,0,0,%,222004,622004,ff,System Relative Temperature in %
-,793,24,39,.0002441406,0,0,V,225033,625033,ff,Raw Detection Logic line value
-,793,24,31,1,40,0,°C,225051,625051,ff,CPU temperature value
-,793,24,31,1,40,0,°C,225052,625052,ff,IGBT Buck arm 1 temperature
-,793,24,31,1,40,0,°C,225053,625053,ff,Raw IGBT Buck arm 1 temperature
-,793,24,31,1,40,0,°C,225054,625054,ff,Mains input filter hot spot temperature
-,793,24,31,1,40,0,°C,225055,625055,ff,Mains input filter hot spot temperature from SPI
-,793,24,31,1,40,0,°C,225056,625056,ff,Mains input filter temperature
-,793,24,39,.0625,32768,0,mA,225057,625057,ff,Raw leakage current - DC part measurement
-,793,24,39,.0625,32768,0,mA,225058,625058,ff,Raw leakage current - High Frequency 10kHz part measurement
-,793,24,39,.0625,32768,0,mA,225059,625059,ff,Raw leakage current - High Frequency 1st part measurement
-,793,24,39,.0625,32768,0,mA,22505A,62505A,ff,Raw leakage current - Low Frequency part measurement (50Hz)
 ,793,16,23,1,0,0,,21EF,61EF,2ff,Hardware Part Number 1
 ,793,24,31,1,0,0,,21EF,61EF,2ff,Hardware Part Number 2
 ,793,32,39,1,0,0,,21EF,61EF,2ff,Hardware Part Number 3
@@ -345,21 +219,127 @@
 ,793,152,159,1,0,0,,21EF,61EF,2ff,Software Part Number 8
 ,793,160,167,1,0,0,,21EF,61EF,2ff,Software Part Number 9
 ,793,168,175,1,0,0,,21EF,61EF,2ff,Software Part Number 10
+,793,16,55,1,0,0,,21F0,61F0,2ff,PartNumber.LowerPart
+,793,56,63,1,0,0,,21F0,61F0,ff,DiagnosticIdentificationCode
+,793,64,87,1,0,0,,21F0,61F0,ff,SupplierNumber
+,793,88,127,1,0,0,,21F0,61F0,2ff,HardwareNumber.LowerPart
+,793,128,143,1,0,0,,21F0,61F0,ff,SoftwareNumber
+,793,144,159,1,0,0,,21F0,61F0,ff,EditionNumber
+,793,160,175,1,0,0,,21F0,61F0,ff,CalibrationNumber
+,793,176,183,1,0,0,,21F0,61F0,ff,PartNumber.BasicPartList,1:296H5;2:296H0
+,793,184,191,1,0,0,,21F0,61F0,ff,HardwareNumber.BasicPartList,1:296H5
+,793,192,199,1,0,0,,21F0,61F0,ff,ApprovalNumber.BasicPartList,1:HMLGT
+,793,200,207,1,0,0,,21F0,61F0,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+,793,16,55,1,0,0,,21F1,61F1,2ff,ApprovalNumber.LowerPart
+,793,56,95,1,0,0,,21F1,61F1,2ff,ProgrammingSiteReference
+,793,96,135,1,0,0,,21F1,61F1,2ff,ProgrammingToolReference
+,793,136,143,1,0,0,,21F1,61F1,ff,NumberOfReprogrammings
+,793,144,167,1,0,0,,21F1,61F1,ff,DateOfReprogramming
+,793,168,183,1,0,0,,21F1,61F1,ff,TimeOfReprogramming
+,793,184,191,1,0,0,,21F1,61F1,ff,SaveMarking
+,793,192,207,1,0,0,,21F1,61F1,ff,CrcOfLogSave
+,793,24,39,.0625,3200,2,A,222001,622001,ff,Mains phase 1 current RMS value
+,793,24,39,.0625,0,2,V,222002,622002,ff,CPU voltage supply from BI
+,793,29,31,1,0,0,,222003,622003,ff,Junction box 2 state,0:Init;1:Charge;4:Wait;5:Power Off/Sleep
+,793,24,31,1,0,0,%,222004,622004,ff,System Relative Temperature in %
+,793,24,31,1,40,0,°C,222005,622005,ff,Cooling temperature from BI
+,793,24,47,1,0,0,,225001,625001,ff,Plugging counter
+,793,24,47,1,0,0,,225002,625002,ff,Wake Up counter
+,793,31,31,1,0,0,,225003,625003,ff,Raw A/C plug interlock value,0:open;1:closed
+,793,31,31,1,0,0,,225005,625005,ff,CAN activity for JB2,0:No activity;1:Activity
+,793,25,31,1,0,0,%,225007,625007,ff,MMI Green LED PWM request
+,793,31,31,1,0,0,,225008,625008,ff,Raw JB2 hood plug interlock value,0:open;1:closed
+,793,31,31,1,0,0,,225009,625009,ff,Raw HV Battery plug interlock value,0:open;1:closed
+,793,31,31,1,0,0,,22500B,62500B,ff,Raw mains interlock value,0:open;1:closed
+,793,31,31,1,0,0,,22500C,62500C,ff,Mains tri phases permutation,0:v1/v2/v3 off;1:v1/v2/v3 on
+,793,31,31,1,0,0,,22500D,62500D,ff,Mains voltage presence,0:Absent;1:Present
+,793,31,31,1,0,0,,22500E,62500E,ff,Wake-Up request from Mains or plug presence,0:No wake-up request;1:Wake-up request
+,793,31,31,1,0,0,,22500F,62500F,ff,Raw PEB plug interlock value,0:open;1:closed
+,793,31,31,1,0,0,,225010,625010,ff,Raw PEB neutral interlock value,0:open;1:closed
+,793,31,31,1,0,0,,225011,625011,ff,Raw PTC plug interlock value,0:open;1:closed
+,793,31,31,1,0,0,,225012,625012,ff,Mains phase 1-2 voltage presence,0:Absent;1:Present
+,793,31,31,1,0,0,,225013,625013,ff,Mains phase 2-3 voltage presence,0:Absent;1:Present
+,793,31,31,1,0,0,,225014,625014,ff,Mains phase 3-1 voltage presence,0:Absent;1:Present
+,793,30,31,1,0,0,,225015,625015,ff,Wake-Up / Sleep request from EVC,0:Wake-up;1:Sleep;2:UV
+,793,29,31,1,0,0,,225016,625016,ff,Junction box 2 state request from EVC,0:init;1:Charge;4:Wait;5:Power Off/Sleep
+,793,29,31,1,0,0,,225017,625017,ff,Mains current type,0:Nok;1:AC mono;2:AC tri;3:DC;4:AC bi
+,793,30,31,1,0,0,,225018,625018,ff,Mains plug unlocking CAN request,0:Unavailable;1:Unlock request;2:No unlock request
+,793,30,31,1,0,0,,225019,625019,ff,Memorized value of the wake up activation,0:Wake-up activated;1:Wake-up deactivated
+,793,31,31,1,0,0,,22501A,62501A,ff,BCM wake-up by wire,0:No wake-up;1:Wake-up
+,793,31,31,1,0,0,,22501C,62501C,ff,S2 relay control,0:Open;1:Close
+,793,30,31,1,0,0,,22501D,62501D,ff,Charge state request,0:No charge;1:Charge;2:Emergency stop
+,793,29,31,1,0,0,,22501E,62501E,ff,Global system state,0:Init;1:Actif;2:Sleep
+,793,30,31,1,0,0,,22501F,62501F,ff,System Temperature State,0:Ok;1:Derating;2:Nok
+,793,30,31,1,0,0,,225021,625021,ff,Cooling Temperature State,0:Ok;1:Derating;2:Nok
+,793,30,31,1,0,0,,225022,625022,ff,Auto wake-up enabling,0:No change;1:Activation;2:Deactivation
+,793,24,39,.0625,880,2,°C,225023,625023,ff,Raw CPU temperature value from BI
+,793,24,39,.0625,3200,2,A,225024,625024,ff,Measured neutral current filtred
+,793,24,39,.0625,3200,2,A,225025,625025,ff,Neutral current value from BI
+,793,24,31,.5,0,1,%,225026,625026,ff,J1772 control pilot raw duty cycle
+,793,24,31,.25,60,1,V,225027,625027,ff,J1772 control pilot raw voltage
+,793,24,31,1,40,0,°C,225028,625028,ff,Mains input filter temperature from SPI
+,793,24,39,.0625,3200,2,A,225029,625029,ff,Raw AC mains phase 1 measured current
+,793,24,39,.0625,3200,2,A,22502A,62502A,ff,Raw AC mains phase 2 measured current
+,793,24,39,.0625,3200,2,A,22502B,62502B,ff,Raw AC mains phase 3 measured current
+,793,24,39,.5,32000,1,V,22502C,62502C,ff,Raw AC mains phase 1 measured voltage
+,793,24,39,.5,32000,1,V,22502D,62502D,ff,Raw AC mains phase 2 measured voltage
+,793,24,39,.5,32000,1,V,22502E,62502E,ff,Raw AC mains phase 3 measured voltage
+,793,25,31,1,0,0,%,22502F,62502F,ff,MMI Red LED PWM request
+,793,31,31,1,0,0,,225030,625030,ff,Raw fuse interlock value,0:open;1:closed
+,793,31,31,1,0,0,,225031,625031,ff,Raw Relay box plug interlock closed,0:open;1:closed
+,793,24,39,.015625,0,2,V,225032,625032,ff,Driver module power supply voltage from BI
+,793,24,39,.0002441406,0,3,V,225033,625033,ff,Raw Detection Logic line value
+,793,24,39,.0625,32768,2,mA,225035,625035,ff,Mains ground current 1st measurement
+,793,24,39,.0625,32768,2,mA,225036,625036,ff,Mains ground current 2nd measurement
+,793,31,31,1,0,0,,225038,625038,ff,Mains Plug Locking Switch raw information,0:Unlocked;1:Locked
+,793,30,31,1,0,0,,225039,625039,ff,Mains plug locking control,0:No motion;1:Close;2:Open
+,793,24,39,.0625,3200,2,A,22503A,62503A,ff,Mains phase 2 current RMS value
+,793,24,39,.0625,3200,2,A,22503B,62503B,ff,Mains phase 3 current RMS value
+,793,24,39,.0625,3200,2,A,22503C,62503C,ff,Mains current phase 1 mean value
+,793,24,39,.0625,3200,2,A,22503D,62503D,ff,Mains current phase 2 mean value
+,793,24,39,.0625,3200,2,A,22503E,62503E,ff,Mains current phase 3 mean value
+,793,24,39,.5,0,1,V,22503F,62503F,ff,Mains phase 1-2 voltage RMS value
+,793,24,39,.5,0,1,V,225041,625041,ff,Mains phase 2-3 voltage RMS value
+,793,24,39,.5,0,1,V,225042,625042,ff,Mains phase 3-1 voltage RMS value
+,793,24,39,.5,32000,1,V,225043,625043,ff,AC mains phase 1-2 measured voltage
+,793,24,39,.5,32000,1,V,225044,625044,ff,AC mains phase 2-3 measured voltage
+,793,24,39,.5,32000,1,V,225045,625045,ff,AC mains phase 3-1 measured voltage
+,793,24,39,.5,32000,1,V,225046,625046,ff,Mains phase 1-2 mean voltage
+,793,24,39,.5,32000,1,V,225047,625047,ff,Mains phase 2-3 mean voltage
+,793,24,39,.5,32000,1,V,225048,625048,ff,Mains phase 3-1 mean voltage
+,793,24,39,.0078125,-1280,3,Hz,225049,625049,ff,Mains phase frequency
+,793,24,39,1,20000,0,W,22504A,62504A,ff,Mains active power consumed
+,793,24,39,.0625,9600,2,A,22504B,62504B,ff,Mains current sum
+,793,24,39,.5,32000,1,V,22504C,62504C,ff,Mains voltage sum
+,793,24,39,.0625,3200,2,A,22504D,62504D,ff,HV Network measured current
+,793,24,39,1,1023,0,V,22504E,62504E,ff,HV voltage
+,793,24,31,1,0,0,,22504F,62504F,ff,Mains leakage current strategy state,0:OFF/Init;1:OK;2:NOK
+,793,24,24,1,0,0,,225050,625050,ff,External controls denial status flags.0,0:Reserved for future use_0
+,793,24,31,1,40,0,°C,225051,625051,ff,CPU temperature value
+,793,24,31,1,40,0,°C,225052,625052,ff,IGBT Buck arm 1 temperature
+,793,24,31,1,40,0,°C,225053,625053,ff,Raw IGBT Buck arm 1 temperature
+,793,24,31,1,40,0,°C,225054,625054,ff,Mains input filter hot spot temperature
+,793,24,31,1,40,0,°C,225055,625055,ff,Mains input filter hot spot temperature from SPI
+,793,24,31,1,40,0,°C,225056,625056,ff,Mains input filter temperature
+,793,24,39,.0625,32768,2,mA,225057,625057,ff,Raw leakage current - DC part measurement
+,793,24,39,.0625,32768,2,mA,225058,625058,ff,Raw leakage current - High Frequency 10kHz part measurement
+,793,24,39,.0625,32768,2,mA,225059,625059,ff,Raw leakage current - High Frequency 1st part measurement
+,793,24,39,.0625,32768,2,mA,22505A,62505A,ff,Raw leakage current - Low Frequency part measurement (50Hz)
 ,793,31,31,1,0,0,,22505B,62505B,ff,Virgin neutral current acquisition tuning detection
 ,793,31,31,1,0,0,,22505C,62505C,ff,Inform on spi communication error
 ,793,31,31,1,0,0,,22505D,62505D,ff,Global checksum result on SPI frames
 ,793,24,39,1,0,0,,22505E,62505E,ff,FPGA ident
-,793,24,39,1,0,0,ms,225061,625061,ff,Low part of CPU clock since power up
 ,793,24,39,1,0,0,ms,22505F,62505F,ff,High part of CPU clock since power up
+,793,24,39,1,0,0,ms,225061,625061,ff,Low part of CPU clock since power up
 ,793,24,39,1,0,0,Ohm,225062,625062,ff,Mains ground resistance
 ,793,24,31,1,0,0,,225063,625063,ff,Supervisor state,0:Init;1:Wait;2:ClosingS2;3:InitType;4:InitLkg;5:InitChg;6:Charge;7:ZeroAmpMode;8:EndOfChg;9:OpeningS2;10:ReadyToSleep;11:EmergencyStop;12:InitChargeDF;13:OCPStop;14:WaitS2
 ,793,24,31,1,0,0,,225064,625064,ff,Leakage current diagnostic stored completion status,0:init;1:HF10;3:Mains Ground Default;5:Earth Current default;9:Ground Default;17:Means Leakage DC;33:Means Leakage LF;49:Means Leakage DC+LF;65:Means Leakage HF;81:Means Leakage DC+HF;97:Means Leakage LF+HF;113:Means Leakage DC+LF+HF
-,793,24,39,1,32768,0,mA,225065,625065,ff,Leakage DC current saved indicator after failure
-,793,24,39,1,32768,0,mA,225066,625066,ff,Leakage HF 10kHz current saved indicator after failure
-,793,24,39,1,32768,0,mA,225067,625067,ff,Leakage HF current saved indicator after failure
-,793,24,39,1,32768,0,mA,225068,625068,ff,Leakage LF current saved indicator after failure
+,793,24,39,.0625,32768,2,mA,225065,625065,ff,Leakage DC current saved indicator after failure
+,793,24,39,.0625,32768,2,mA,225066,625066,ff,Leakage HF 10kHz current saved indicator after failure
+,793,24,39,.0625,32768,2,mA,225067,625067,ff,Leakage HF current saved indicator after failure
+,793,24,39,.0625,32768,2,mA,225068,625068,ff,Leakage LF current saved indicator after failure
 ,793,24,31,1,0,0,,225069,625069,ff,LED absence configuration,0:LED present;1:LED absent
-,793,24,39,1,0,0,,22506C,62506C,ff,15V from Driver flyback
 ,793,24,31,1,0,0,,22506A,62506A,ff,Old MMI configuration,0:New MMI;1:Old MMI
 ,793,24,31,1,0,0,,22506B,62506B,ff,Vehicle configuration type,0:X10 configuration;1:X07 configuration
+,793,24,39,.015625,0,2,,22506C,62506C,ff,15V from Driver flyback
 ,793,24,39,1,0,0,,22506D,62506D,ff,Saved number of quickdrop values

@@ -48,15 +48,13 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
 
     // free data
-    private static final String SID_DcPower = "1fd.48"; //EVC
+    private static final String SID_DcPower = "800.6109.24"; // "1fd.48"; //EVC
     private static final String SID_Pedal = "186.40"; //EVC
-    private static final String SID_MeanEffectiveTorque = "186.16"; //EVC
-    private static final String SID_Coasting_Torque = "18a.27"; //10ms Friction torque means EMULATED friction, what we'd call coasting
+    private static final String SID_TotalPositiveTorque = "800.610b.24";
     private static final String SID_RealSpeed = "5d7.0";  //ESC-ABS
-    private static final String SID_SoC = "654.25"; //EVC
+    private static final String SID_SoC = "42e.0"; //EVC
     private static final String SID_RangeEstimate = "654.42"; //EVC
-    private static final String SID_DriverBrakeWheel_Torque_Request = "130.44"; //UBP braking wheel torque the driver wants
-    private static final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //UBP 10ms
+    private static final String SID_TotalNegativeTorque = "800.610c.24";
     private static final String SID_TotalPotentialResistiveWheelsTorque = "1f8.16"; //UBP 10ms
 
     // ISO-TP data
@@ -75,8 +73,6 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
     private float tripEnergy = -1;
     private float savedTripStart = 0;
     private double realSpeed = 0;
-    private double driverBrakeWheel_Torque_Request = 0;
-    private double coasting_Torque = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,10 +114,11 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         MainActivity.getInstance().setDebugListener(this);
         addField(SID_DcPower, 0);
         addField(SID_Pedal, 0);
-        addField(SID_MeanEffectiveTorque, 0);
-        addField(SID_DriverBrakeWheel_Torque_Request, 0);
-        addField(SID_ElecBrakeWheelsTorqueApplied, 0);
-        addField(SID_Coasting_Torque, 0);
+        //addField(SID_DriverBrakeWheel_Torque_Request, 0);
+        //addField(SID_ElecBrakeWheelsTorqueApplied, 0);
+        //addField(SID_Coasting_Torque, 0);
+        addField(SID_TotalPositiveTorque, 0);
+        addField(SID_TotalNegativeTorque, 0);
         addField(SID_TotalPotentialResistiveWheelsTorque, 0);
         addField(SID_RealSpeed, 0);
         addField(SID_SoC, 7200);
@@ -304,17 +301,15 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                 // get the text field
                 switch (fieldId) {
                     case SID_SoC:
-//                  case SID_EVC_SoC:
                         tv = findViewById(R.id.textSOC);
                         break;
                     case SID_Pedal:
-//                  case SID_EVC_Pedal:
                         pb = findViewById(R.id.pedalBar);
                         pb.setProgress((int) field.getValue());
                         break;
-                    case SID_MeanEffectiveTorque:
+                    case SID_TotalPositiveTorque:
                         pb = findViewById(R.id.MeanEffectiveAccTorque);
-                        pb.setProgress((int) (field.getValue() * MainActivity.reduction)); // --> translate from motor torque to wheel torque
+                        pb.setProgress((int)field.getValue()); // --> translate from motor torque to wheel torque
                         break;
                     case SID_EVC_Odometer:
                         odo = (float) field.getValue();
@@ -336,7 +331,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         tv = findViewById(R.id.text_max_charge);
                         break;
                     case SID_RealSpeed:
-                        realSpeed = (Math.round(field.getValue() * 10.0) / 10.0);
+                        realSpeed = field.getValue();
                         tv = findViewById(R.id.textRealSpeed);
                         break;
                     case SID_DcPower:
@@ -367,23 +362,29 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         tv = null;
                         break;
 
-                    case SID_Coasting_Torque:
-                        coasting_Torque = field.getValue() * MainActivity.reduction; // this torque is given in motor torque, not in wheel torque
-                        break;
-
-                    case SID_TotalPotentialResistiveWheelsTorque:
+                    case SID_TotalPotentialResistiveWheelsTorque: //blue bar
                         int tprwt = -((int) field.getValue());
-                        pb = findViewById(R.id.MaxBreakTorque);
+                        pb = findViewById(R.id.MaxBrakeTorque);
                         if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 10);
                         tv = null; // findViewById(R.id.textTPRWT);
                         break;
 
-                    case SID_DriverBrakeWheel_Torque_Request:
-                        driverBrakeWheel_Torque_Request = field.getValue() + coasting_Torque;
+                    case SID_TotalNegativeTorque:
                         pb = findViewById(R.id.pb_driver_torque_request);
-                        if (pb != null) pb.setProgress((int) driverBrakeWheel_Torque_Request);
+                        if (pb != null) pb.setProgress((int) field.getValue());
                         tv = null;
                         break;
+
+                    //case SID_DriverBrakeWheel_Torque_Request:
+                    //    driverBrakeWheel_Torque_Request = field.getValue() + coasting_Torque;
+                    //    pb = findViewById(R.id.pb_driver_torque_request);
+                    //    if (pb != null) pb.setProgress((int) driverBrakeWheel_Torque_Request);
+                    //    tv = null;
+                    //    break;
+
+                    //case SID_Coasting_Torque:
+                    //    coasting_Torque = field.getValue() * MainActivity.reduction; // this torque is given in motor torque, not in wheel torque
+                    //    break;
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {

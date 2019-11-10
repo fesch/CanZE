@@ -75,8 +75,9 @@ public class Frame {
 
     public boolean isIsoTp()
     {
-        if (this.responseId == null) return false;
-        return !responseId.trim().isEmpty();
+        //if (this.responseId == null) return false;
+        //return !responseId.trim().isEmpty();
+        return (id >= 0x700 && id <= 0x800); // the VFC is considered ISOTP too
     }
 
     public int getId() {

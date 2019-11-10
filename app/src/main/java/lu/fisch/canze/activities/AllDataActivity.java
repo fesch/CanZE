@@ -221,16 +221,7 @@ public class AllDataActivity extends CanzeActivity {
                             message.onMessageCompleteEvent();
 
                             for (Field field : frame.getAllFields()) {
-                                if (field.isString()) {
-                                    appendResult(String.format(Locale.getDefault(), "%s %s:%s\n", field.getSID(), field.getName(),field.getStringValue()));
-                                    //appendResult(field.getSID() + " " + field.getName() + ":" + field.getStringValue() + "\n");
-                                } else if (field.isList()) {
-                                    appendResult(String.format(Locale.getDefault(), "%s %s:%s\n", field.getSID(), field.getName(), field.getListValue()));
-                                    //appendResult(field.getSID() + " " + field.getName() + ":" + field.getListValue() + "\n");
-                                } else {
-                                    appendResult(String.format(Locale.getDefault(), "%s %s:%." + field.getDecimals() + "f%s\n", field.getSID(), field.getName(), field.getValue(), field.getUnit()));
-                                    //appendResult(field.getSID() + " " + field.getName() + ":" + field.getValue() + field.getUnit() + "\n");
-                                }
+                                appendResult(field.getDebugValue());
                             }
                         } else {
                             appendResult(frame.getHexId() + "." + frame.getResponseId() + ":" + message.getError() + "\n");
@@ -285,11 +276,6 @@ public class AllDataActivity extends CanzeActivity {
         }
     }
 
-    private boolean isExternalStorageWritable() {
-        String SDstate = Environment.getExternalStorageState();
-        return (Environment.MEDIA_MOUNTED.equals(SDstate));
-    }
-
     private void createDump(Ecu ecu) {
 
         dumpInProgress = false;
@@ -300,7 +286,7 @@ public class AllDataActivity extends CanzeActivity {
         }
 
         // ensure that there is a CanZE Folder in SDcard
-        if (!isExternalStorageWritable()) {
+        if (!MainActivity.getInstance().isExternalStorageWritable()) {
             debug("AllDataActivity.createDump: SDcard not writeable");
             return;
         }

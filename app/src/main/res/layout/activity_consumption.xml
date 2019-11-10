@@ -215,23 +215,23 @@
                 custom:maxAlt="100"
                 custom:majorTicks="15"
                 custom:minorTicks="5"
-                custom:fieldSID="1fd.48,654.25"
+                custom:fieldSID="800.6109.24,42e.0"
                 custom:widget="timeplot"
                 custom:colorRanges="[
-                    {'sid':'1fd.48','color':'#cc00ff','from':-100,'to':-1},
-                    {'sid':'1fd.48','color':'#3ee9ff','from':-1,'to':1},
-                    {'sid':'1fd.48','color':'#008a1d','from':1,'to':20},
-                    {'sid':'1fd.48','color':'#ffaa17','from':20,'to':33},
-                    {'sid':'1fd.48','color':'#FF0000','from':33,'to':100},
-                    {'sid':'654.25','color':'?android:attr/colorForeground','from':0, 'to':100}
+                    {'sid':'800.6109.24','color':'#cc00ff','from':-100,'to':-1},
+                    {'sid':'800.6109.24','color':'#3ee9ff','from':-1,'to':1},
+                    {'sid':'800.6109.24','color':'#008a1d','from':1,'to':20},
+                    {'sid':'800.6109.24','color':'#ffaa17','from':20,'to':33},
+                    {'sid':'800.6109.24','color':'#FF0000','from':33,'to':100},
+                    {'sid':'42e.0','color':'?android:attr/colorForeground','from':0, 'to':100}
                 ]"
                 custom:text="@string/graph_PowerSoc"
                 custom:intervals="{
-                    '654.25':10000
+                    '42e.0':10000
                 }"
                 custom:options="{
-                    '1fd.48':'gradient',
-                    '654.25':'alt,dot'
+                    '800.6109.24':'gradient',
+                    '42e.0':'alt,dot'
                 }"
                 custom:backgroundColor="?android:attr/colorBackground"
                 custom:foregroundColor="?android:attr/colorForeground"

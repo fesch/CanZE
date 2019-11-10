@@ -87,6 +87,7 @@ public class Message {
         // simply update the fields last request date to send them to the end of the queue
         for (Field field : frame.getAllFields()) {
             field.updateLastRequest();
+            field.setValue(Double.NaN);
         }
     }
 
@@ -120,9 +121,6 @@ public class Message {
                     }
                     String val = tmpVal.toString();
                     field.setValue(val);
-                    // do field logging
-                    if (MainActivity.fieldLogMode)
-                        FieldLogger.getInstance().log(field.getSID() + "," + val);
 
                 } else if (binString.length() <= 4 || binString.contains("0")) {
                     // experiment with unavailable: any field >= 5 bits whose value contains only 1's
@@ -140,16 +138,14 @@ public class Message {
                     // update the value of the field. This triggers updating all of all listeners of that field
                     field.setValue(val);
 
-                    // do field logging
-                    if(MainActivity.fieldLogMode)
-                        FieldLogger.getInstance().log(field.getSID()+","+val);
-
                 } else {
                     field.setValue(Double.NaN);
-                    // do field logging
-                    if(MainActivity.fieldLogMode)
-                        FieldLogger.getInstance().log(field.getSID()+",NaN");
                 }
+
+                // do field logging
+                if(MainActivity.fieldLogMode)
+                    FieldLogger.getInstance().log(field.getDebugValue());
+
                 // update the fields last request date
                 field.updateLastRequest();
 

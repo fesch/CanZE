@@ -63,12 +63,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textDetails2"
+        android:id="@+id/textDebugLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/default_debug"
+        android:text="@string/label_debug"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -77,8 +77,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="@string/label_debug"
+        android:text="@string/default_debug"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textDetails2" />
+        app:layout_constraintStart_toEndOf="@+id/textDebugLabel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
