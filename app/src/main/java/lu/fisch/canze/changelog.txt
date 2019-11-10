@@ -1,3 +1,5 @@
+2019-11-09 [Jeroen] Fixed issue #578 Fan speed label
+
 ---< Version 1.46 / 2019.11.10 / 48 >---
 2019-11-08 [Jeroen] Several Code and layout cleanups
 2019-11-08 [Jeroen] Fix crash in Firmware activity

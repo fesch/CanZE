@@ -194,7 +194,7 @@
     <string name="label_Miles">Мілі</string>
     <string name="label_InterPhaseVoltage">Міжфазна напруга 12/23/31 (В)</string>
     <string name="label_InstantConsumption">Миттєве споживання</string>
-    <string name="label_EngineFanSpeed">Швидкість вентилятору двигуна (об/хв)</string>
+    <string name="label_EngineFanSpeed">Швидкість вентилятору двигуна (%)</string>
     <string name="default_Yes">Так</string>
     <string name="label_HvTemp">Середня температура батреї (°C)</string>
     <string name="label_HVCoolingState">Стан охолдження батареї</string>

@@ -195,7 +195,7 @@
     <string name="label_Miles">Мили</string>
     <string name="label_InterPhaseVoltage">Межфазное напряжение 12/23/31 (В)</string>
     <string name="label_InstantConsumption">Мгновенный расход</string>
-    <string name="label_EngineFanSpeed">Скорость вентиллятора двигателя (об/мин)</string>
+    <string name="label_EngineFanSpeed">Скорость вентиллятора двигателя (%)</string>
     <string name="label_HvTemp">Средняя температура батареи (°C)</string>
     <string name="label_HVCoolingState">Состояние охлаждения батареи</string>
     <string name="label_HVEvaporationTemp">Температура испарителя батареи (°C)</string>

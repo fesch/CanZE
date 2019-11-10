@@ -326,7 +326,7 @@
     <string name="label_HVEvaporationTemp">T° évaporateur batterie (°C)</string>
     <string name="label_ACPressure">Pression</string>
     <string name="label_HVCoolingState">État du conditionnement batterie</string>
-    <string name="label_EngineFanSpeed">Vitesse de rotation du ventilateur</string>
+    <string name="label_EngineFanSpeed">Vitesse de rotation du ventilateur (%)</string>
     <string name="label_ClimateBatteryInteraction">Interaction climatisation/batterie</string>
     <string-array name="list_CoolingStatus">
         <item>Aucun</item>
