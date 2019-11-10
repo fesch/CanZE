@@ -407,7 +407,7 @@
     <string name="label_HVEvaporationTemp">Verdampfertemperatur des Akkus (°C)</string>
     <string name="label_ACPressure">Klimatisierungsanlage Betriebsdruck (bar)</string>
     <string name="label_HVCoolingState">Kühlungsstatus des Akkus</string>
-    <string name="label_EngineFanSpeed">Ventilator-Geschwindigkeit der Antriebseinheit</string>
+    <string name="label_EngineFanSpeed">Ventilator-Geschwindigkeit der Antriebseinheit (%)</string>
     <string name="label_ClimateBatteryInteraction">Wechselwirkung Klimaanlage-Akku</string>
     <string-array name="list_CoolingStatus">
         <item>Nein</item>

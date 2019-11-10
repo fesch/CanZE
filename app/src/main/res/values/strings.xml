@@ -407,7 +407,7 @@
     <string name="label_HVEvaporationTemp">HV Evaporation temp (°C)</string>
     <string name="label_ACPressure">Pressure (bar)</string>
     <string name="label_HVCoolingState">HV cooling state</string>
-    <string name="label_EngineFanSpeed">Engine fan speed (RPM)</string>
+    <string name="label_EngineFanSpeed">Engine fan speed (%)</string>
     <string name="label_ClimateBatteryInteraction">Climate-Battery interaction</string>
     <string-array name="list_CoolingStatus">
         <item>No</item>
