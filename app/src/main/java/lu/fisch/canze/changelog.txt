@@ -1,3 +1,4 @@
+2019-11-09 [Jeroen] Removed location permission from manifest (not used), manifest cleanup
 2019-11-09 [Jeroen] Added option in Experimental fragment to only show when not on master
 2019-11-09 [Jeroen] Fixed issue #578 Fan speed label
 
@@ -8,7 +9,7 @@
 2019-11-06 [Jeroen] Added Research activity
 2019-11-05 [Jeroen] Improved field logging
 2019-11-04 [Jeroen] Fixed consistency of ISOTP error msgs
-2019-11-04 [Jeroen] Shorteded pre-command timeout to see if it improves long tx ISOTP sync errors.
+2019-11-04 [Jeroen] Shortened pre-command timeout to see if it improves long tx ISOTP sync errors.
 2019-11-04 [Jeroen] Gradle to 3.5.2
 2019-11-04 [Jeroen] Removed fields that cannot be fetched by ISOTP only
 2019-11-04 [Jeroen] Added ELM conversation logging
