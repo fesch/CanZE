@@ -20,6 +20,7 @@
             <Spinner
                 android:id="@+id/ecuList"
                 android:layout_weight="1"
+                android:width="0dp"
                 />
 
             <Button
@@ -27,6 +28,7 @@
                 android:id="@+id/ecuQuery"
                 android:text="@string/button_QueryDTCs"
                 android:layout_weight="1"
+                android:width="0dp"
                 />
 
             <Button
@@ -34,6 +36,7 @@
                 android:id="@+id/ecuClear"
                 android:text="@string/button_ClearDTCs"
                 android:layout_weight="1"
+                android:width="0dp"
                 />
 
         </TableRow>

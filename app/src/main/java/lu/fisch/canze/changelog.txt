@@ -1,12 +1,33 @@
+---< Version 1.46 / 2019.11.10 / 48 >---
+2019-11-08 [Jeroen] Several Code and layout cleanups
+2019-11-08 [Jeroen] Fix crash in Firmware activity
+2019-11-07 [Jeroen] Updated all field CSV's
+2019-11-06 [Jeroen] Added Research activity
+2019-11-05 [Jeroen] Improved field logging
+2019-11-04 [Jeroen] Fixed consistency of ISOTP error msgs
+2019-11-04 [Jeroen] Shorteded pre-command timeout to see if it improves long tx ISOTP sync errors.
+2019-11-04 [Jeroen] Gradle to 3.5.2
+2019-11-04 [Jeroen] Removed fields that cannot be fetched by ISOTP only
+2019-11-04 [Jeroen] Added ELM conversation logging
+2019-11-04 [Jeroen] Fixed problem that forbid writing log files
+2019-11-04 [Cedric] Update FR
+2019-11-02 [Jeroen] Alternative ISOTP mode to avoid free frames
+2019-10-25 [Jeroen] News updated re dark mode released
+
+---< Version 1.45 / 2019.10.25 / 47 >---
+2019-10-25 [Jeroen+Bob] Switch to API level 21
+
 ---< Version 1.44 / 2019.10.24 / 45+46 >---
-2019-04-24 [Jeroen] Added .idea/codeStyles/Project.xml to the repository
-2019-04-24 [Jeroen] Added branch name to info in Settings screen
-2019-04-18 [Bob-Jeroen] Fix for dynamic color selection in widgets
-2019-04-18 [Jeroen] Added Build variant to info in Settings screen
-2019-04-18 [Bob] Added theme as optional parameter to Color.decode
-2019-04-17 [Jeroen] Widget colors use foreground theme color (this is intermediate)
-2019-04-17 [Jeroen] Better colors in delta widget and decel (blue) bar
-2019-04-10 [Jeroen] Title fix in Battery, color changes to avoid dark blue
+2019-10-24 [Jeroen] Added .idea/codeStyles/Project.xml to the repository
+2019-10-24 [Jeroen] Added branch name to info in Settings screen
+2019-10-21 [Bob] Added "speed control" activity to display average speed
+2019-10-22 [Bob] Added "force dark mode" option
+2019-10-18 [Bob-Jeroen] Fix for dynamic color selection in widgets
+2019-10-18 [Jeroen] Added Build variant to info in Settings screen
+2019-10-18 [Bob] Added theme as optional parameter to Color.decode
+2019-10-17 [Jeroen] Widget colors use foreground theme color (this is intermediate)
+2019-10-17 [Jeroen] Better colors in delta widget and decel (blue) bar
+2019-10-10 [Jeroen] Title fix in Battery, color changes to avoid dark blue
 2019-10-03 [Jeroen] Widgets adhere to titleColor
 2019-10-03 [Jeroen] Gradle to 3.5.1
 2019-10-03 [Jeroen] Changed some color literals to resource names in consumption
@@ -22,8 +43,6 @@
 2019-09-29 [Jeroen] Lint (Code->Analyse) on all canze:actors, canze:adaptors and canze:classes
 2019-09-18 [Jeroen] Lint (Code->Analyse) on all canze:activities.
 2019-09-18 [Jeroen] Tyres: avoid crash when message is null, fix error message, fix Lint warning
-2019-10-21 [Bob] Added "speed control" activity to display average speed
-2019-10-22 [Bob] Added "force dark mode" option
 
 ---< Version 1.43 / 2019.09.16 / 44 >---
 2019-09-07 [Jeroen] androidx.appcompat:appcompat to 1.1.0

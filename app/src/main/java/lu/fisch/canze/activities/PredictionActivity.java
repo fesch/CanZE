@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Battery;
 import lu.fisch.canze.actors.Field;
@@ -16,7 +18,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
     private static final String SID_UserSoC                          = "42e.0";          // user SOC, not raw
     private static final String SID_AverageBatteryTemperature        = "7bb.6104.600";   // (LBC)
     private static final String SID_RangeEstimate                    = "654.42";
-    private static final String SID_ChargingStatusDisplay            = "65b.41";
+    //private static final String SID_ChargingStatusDisplay            = "65b.41";
     private static final String SID_SOH                              = "7ec.623206.24";
 
     private Battery battery;
@@ -53,12 +55,12 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_RangeEstimate, 10000);
-        addField(SID_AvChargingPower, 10000);
-        addField(SID_UserSoC, 10000);
-        addField(SID_ChargingStatusDisplay, 10000);
-        addField(SID_AverageBatteryTemperature, 10000);
-        addField(SID_SOH, 10000);
+        addField(SID_RangeEstimate, 10000);                 //0x08
+        addField(SID_AvChargingPower, 10000);               //0x01
+        addField(SID_UserSoC, 10000);                       //0x02
+        //addField(SID_ChargingStatusDisplay, 10000);
+        addField(SID_AverageBatteryTemperature, 10000);     //0x04
+        addField(SID_SOH, 10000);                           //0x20
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -75,6 +77,12 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
             case SID_AvChargingPower:
                 car_charger_ac_power = fieldVal;
                 car_status |= 0x01;
+                if (car_charger_ac_power > 1){
+                    car_status |= 0x10;
+                    charging_status = 1;
+                } else {
+                    charging_status = 0;
+                }
                 break;
             case SID_UserSoC:
                 car_soc = fieldVal;
@@ -88,10 +96,10 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
                 car_range_est = fieldVal;
                 car_status |= 0x08;
                 break;
-            case SID_ChargingStatusDisplay:
-                charging_status = (fieldVal == 3) ? 1 : 0;
-                car_status |= 0x10;
-                break;
+            //case SID_ChargingStatusDisplay:
+            //    charging_status = (fieldVal == 3) ? 1 : 0;
+            //    car_status |= 0x10;
+            //    break;
             case SID_SOH:
                 car_soh = fieldVal;
                 car_status |= 0x20;
@@ -99,9 +107,12 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
         }
         // display the debug values
         if (car_status == 0x3f) {
+            //dropDebugMessage2 (String.format(Locale.getDefault(), "go %02X", car_status));
             runPrediction();
             car_status = 0;
-        }
+        } //else {
+            //dropDebugMessage2 (String.format(Locale.getDefault(), ".. %02X", car_status));
+        //}
     }
 
     private void runPrediction() {
@@ -148,7 +159,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
                 updatePrediction("textTIM" + t, "" + formatTime(battery.getTimeRunning()));
                 updatePrediction("textSOC" + t, "" + ((int) soc));
                 if (car_soc > 0.0) updatePrediction("textRAN" + t, "" + ((int) (car_range_est * soc / car_soc)));
-                updatePrediction("textPWR" + t, "" + ((int) battery.getDcPower()));
+                updatePrediction("textPWR" + t, String.format(Locale.getDefault(), "%.1f", battery.getDcPower()));
             }
         }
 
@@ -197,11 +208,17 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
         return ("00" + t).substring(t > 9 ? 2 : 1);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_empty, menu);
-        return true;
-    }
+/*
+    public void dropDebugMessage (final String msg) {}
 
+    public void dropDebugMessage2 (final String msg) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                TextView tv = findViewById(R.id.textDebug);
+                if (tv != null) tv.setText(msg);
+            }
+        });
+    }
+*/
 }

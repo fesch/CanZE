@@ -291,9 +291,21 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         addField(sid, 0);
     }
 
+    protected void addField(Field field) {
+        addField(field, 0);
+    }
+
     protected void addField(String sid, int intervalMs)
     {
         Field field = MainActivity.fields.getBySID(sid);
+        if (field != null) {
+            addField (field, intervalMs);
+        } else {
+            MainActivity.debug(this.getClass().getSimpleName() + " (CanzeActivity): SID " + sid + " does not exist in class Fields");
+        }
+    }
+
+    protected void addField(Field field, int intervalMs) {
         if (field != null)
         {
             // add a listener to the field
@@ -303,10 +315,9 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             // remember this field has been added (filter out doubles)
             if(!subscribedFields.contains(field))
                 subscribedFields.add(field);
-        } else {
-            MainActivity.debug(this.getClass().getSimpleName()+" (CanzeActivity): SID " + sid + " does not exist in class Fields");
         }
     }
+
 
     private void removeFieldListeners()
     {

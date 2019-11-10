@@ -1,207 +1,197 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:keepScreenOn="true"
     android:layout_height="fill_parent"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="lu.fisch.canze.activities.ChargingTechActivity">
 
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_ClimateBatteryInteraction"
+        android:textStyle="bold" />
 
-        <TextView
-            android:text="@string/label_ClimateBatteryInteraction"
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_EngineFanSpeed" />
+
+            <TextView
+                android:id="@+id/text_EFS"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_DcPwr" />
+
+            <TextView
+                android:id="@+id/text_DCP"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_HVCoolingState" />
+
+            <TextView
+                android:id="@+id/text_HCS"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_HVEvaporationTemp" />
+
+            <TextView
+                android:id="@+id/text_HET"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_ACPressure" />
+
+            <TextView
+                android:id="@+id/text_PRE"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_HVBatConditioningMode" />
+
+            <TextView
+                android:id="@+id/text_HCM"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_ClimaLoopMode" />
+
+            <TextView
+                android:id="@+id/text_CLM"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_PtcRelay1" />
+
+            <TextView
+                android:id="@+id/text_PTC1"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+        </TableRow>
+
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_PtcRelay2" />
+
+            <TextView
+                android:id="@+id/text_PTC2"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+        </TableRow>
+
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_PtcRelay3" />
+
+            <TextView
+                android:id="@+id/text_PTC3"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+        </TableRow>
+
+        <TableRow
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold" />
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-        <TableLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_EngineFanSpeed"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_EFS"
-                    android:text="@string/default_Dash"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:text="@string/label_DcPwr"
-                    android:layout_weight="2" />
-
-                <TextView
-                    android:id="@+id/text_DCP"
-                    android:text="@string/default_Dash"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </TableRow>
-
-            <!-- <TableRow>
-                <TextView
-                    android:text="@string/label_ChargingPower"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_CPO"
-                    android:text="@string/default_Dash"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow> -->
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_HVCoolingState"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_HCS"
-                    android:text="@string/default_Dash"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_HVEvaporationTemp"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_HET"
-                    android:text="@string/default_Dash"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_ACPressure"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:id="@+id/text_PRE"
-                    android:text="@string/default_Dash"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_HVBatConditioningMode"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:text="@string/default_Dash"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    android:id="@+id/text_HCM" />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_ClimaLoopMode"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:text="@string/default_Dash"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    android:id="@+id/text_CLM" />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_PtcRelay1"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:text="@string/default_Dash"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    android:id="@+id/text_PTC1" />
-            </TableRow>
-
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_PtcRelay2"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:text="@string/default_Dash"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    android:id="@+id/text_PTC2" />
-            </TableRow>
-
-
-            <TableRow>
-                <TextView
-                    android:text="@string/label_PtcRelay3"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:text="@string/default_Dash"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    android:id="@+id/text_PTC3" />
-            </TableRow>
-
-            <!-- <TableRow>
-                <TextView
-                    android:text="@string/label_IH_ElectricalPowerDrived"
-                    android:layout_weight="2"
-                    />
-                <TextView
-                    android:text="@string/default_Dash"
-                    android:gravity="end"
-                    android:layout_weight="1"
-                    android:id="@+id/text_CPW" />
-            </TableRow> -->
-
-            <TableRow
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal"
-                android:layout_weight="1">
-
-                <lu.fisch.canze.widgets.WidgetView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="0dp"
-                    custom:min="0"
-                    custom:max="2500"
-                    custom:majorTicks="1000"
-                    custom:minorTicks="500"
-                    custom:fieldSID="7ec.6233a7.24,764.6143.86"
-                    custom:widget="timeplot"
-                    custom:text="@string/label_IH_ClimCompPWRStatus"
-                    custom:colorRanges="[
+            <lu.fisch.canze.widgets.WidgetView
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="0dp"
+                android:layout_weight="1"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:colorRanges="[
                     {'sid':'7ec.6233a7.24','color':'#008a1d','from':0,'to':750},
                     {'sid':'7ec.6233a7.24','color':'#ffaa17','from':750,'to':1500},
                     {'sid':'7ec.6233a7.24','color':'#ff0000','from':1500,'to':2250},
@@ -209,84 +199,76 @@
                     {'sid':'764.6143.86','color':'#008a1d','from':1,'to':1},
                     {'sid':'764.6143.86','color':'#ffffff','from':2,'to':2}
                     ]"
-                    custom:options="{
+                custom:fieldSID="7ec.6233a7.24,764.6143.86"
+                custom:foregroundColor="?android:attr/colorForeground"
+                custom:majorTicks="1000"
+                custom:max="2500"
+                custom:min="0"
+                custom:minorTicks="500"
+                custom:options="{
                                    '7ec.6233a7.24':'gradient',
                                    '764.6143.86':'colorline[3900],dot'
                                 }"
-                    custom:backgroundColor="?android:attr/colorBackground"
-                    custom:foregroundColor="?android:attr/colorForeground"
-                    />
+                custom:text="@string/label_IH_ClimCompPWRStatus"
+                custom:widget="timeplot" />
 
-            </TableRow>
+        </TableRow>
 
-        </TableLayout>
-
+    </TableLayout>
 
 
-        <TextView
-            android:text="@string/label_Temperatures"
-            android:layout_marginTop="6dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/label_Temperatures"
+        android:textStyle="bold" />
 
-<!-- use widget as filler -->
+    <!-- use widget as filler -->
 
-        <lu.fisch.canze.widgets.WidgetView
-            android:layout_width="fill_parent"
-            android:layout_height="0dip"
-            android:layout_weight="1"
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-            custom:min="-10"
-            custom:max="40"
-            custom:majorTicks="10"
-            custom:minorTicks="2"
-            custom:fieldSID="764.6143.110,764.6121.26,800.6105.24,42e.44"
-            custom:widget="timeplot"
-            custom:text="@string/graph_Climatech"
-            custom:colorRanges="[
+    <lu.fisch.canze.widgets.WidgetView
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        custom:backgroundColor="?android:attr/colorBackground"
+        custom:colorRanges="[
                     {'sid':'42e.44','color':'#808080','from':-100,'to':100},
                     {'sid':'764.6121.26','color':'?android:attr/colorForeground','from':-40,'to':100}]"
-            custom:intervals="{
+        custom:fieldSID="764.6143.110,764.6121.26,42e.44"
+        custom:foregroundColor="?android:attr/colorForeground"
+        custom:intervals="{
                                    '764.6143.110':10000,
                                    '764.6121.26':10000,
-                                   '800.6105.24':2000,
                                    '42e.44':10000
                                    }"
-            custom:backgroundColor="?android:attr/colorBackground"
-            custom:foregroundColor="?android:attr/colorForeground"
-            />
-
-
-
-
-        <!-- filler
-        <TextView android:layout_height="0dip"
-            android:layout_width="fill_parent"
-            android:layout_weight="1" />  -->
-
+        custom:majorTicks="10"
+        custom:max="40"
+        custom:min="-10"
+        custom:minorTicks="2"
+        custom:text="External (°C), Internal (°C), Battery (°C)"
+        custom:widget="timeplot" />
 
     <!-- debug line -->
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
-            android:text="@string/label_debug"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:text="@string/label_debug" />
+
         <TextView
             android:id="@+id/textDebug"
-            android:text="@string/default_debug"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:text="@string/default_debug" />
 
     </LinearLayout>
 

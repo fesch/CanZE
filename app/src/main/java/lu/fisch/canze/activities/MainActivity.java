@@ -41,6 +41,7 @@ import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -129,6 +130,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public static final double reduction = 9.32;     // update suggested by Loc Dao
 
+    static int screenOrientation = 0;
+
     // private StringBuilder sb = new StringBuilder();
     // private String buffer = "";
 
@@ -157,8 +160,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static int car = CAR_NONE;
     private static boolean isDriving = false;
     public static boolean milesMode = false;
+    public static boolean altFieldsMode = false;
 
-    public static final boolean storageIsAvailable = false;
+    public static final boolean storageIsAvailable = true;
 
     public static final short TOAST_NONE = 0;
     public static final short TOAST_ELM = 1;
@@ -170,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     // private Fragment actualFragment;
 
     static private Resources res;
-    static private Resources.Theme localTheme;
+    private Resources.Theme localTheme;
 
     // bluetooth stuff
     private MenuItem bluetoothMenutItem = null;
@@ -288,6 +292,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             safeDrivingMode = settings.getBoolean("optSafe", true);
             bluetoothBackgroundMode = settings.getBoolean("optBTBackground", false);
             milesMode = settings.getBoolean("optMiles", false);
+            altFieldsMode = settings.getBoolean("optAltFields", false);
             dataExportMode = settings.getBoolean("optDataExport", false);
             debugLogMode = settings.getBoolean("optDebugLog", false);
             fieldLogMode = settings.getBoolean("optFieldLog", false);
@@ -1043,20 +1048,30 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         if (wm == null) return Configuration.ORIENTATION_PORTRAIT;
         Display screenOrientation = wm.getDefaultDisplay();
         if (screenOrientation == null) return Configuration.ORIENTATION_PORTRAIT;
+
+        Point point = new Point();
+        screenOrientation.getSize(point);
+        if (point.x > point.y) {
+            return Configuration.ORIENTATION_LANDSCAPE;
+        }
+/*
         if (screenOrientation.getWidth() == screenOrientation.getHeight()) {
             return Configuration.ORIENTATION_SQUARE;
         } else if (screenOrientation.getWidth() > screenOrientation.getHeight()) {
             return Configuration.ORIENTATION_LANDSCAPE;
         }
+*/
         return Configuration.ORIENTATION_PORTRAIT;
     }
 
     public boolean isLandscape() {
-        return getScreenOrientation() == Configuration.ORIENTATION_LANDSCAPE;
+        if (screenOrientation == 0) screenOrientation = getScreenOrientation();
+        return screenOrientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 
     public boolean isPortrait() {
-        return getScreenOrientation() == Configuration.ORIENTATION_PORTRAIT;
+        if (screenOrientation == 0) screenOrientation = getScreenOrientation();
+        return screenOrientation == Configuration.ORIENTATION_PORTRAIT;
     }
 
     public void setLocalTheme (Resources.Theme localTheme) {
@@ -1067,5 +1082,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return this.localTheme;
     }
 
+    public boolean isExternalStorageWritable() {
+        String SDstate = Environment.getExternalStorageState();
+        return (Environment.MEDIA_MOUNTED.equals(SDstate));
+    }
 }
 

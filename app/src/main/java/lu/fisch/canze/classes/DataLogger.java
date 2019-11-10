@@ -45,11 +45,11 @@ public class DataLogger implements FieldListener {
     // -------- Data Definitions copied from Driving Activity -- start ---
     // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
     // free data
-    private static final String SID_Consumption = "1fd.48"; //EVC
+    private static final String SID_Consumption = "800.6109.24"; //EVC
     private static final String SID_Pedal = "186.40"; //EVC
-    private static final String SID_MeanEffectiveTorque = "186.16"; //EVC
+    private static final String SID_MeanEffectiveTorque = "800.610b.24";
     private static final String SID_RealSpeed = "5d7.0";  //ESC-ABS
-    private static final String SID_SoC = "654.25"; //EVC
+    private static final String SID_SoC = "42e.0"; //EVC
     private static final String SID_RangeEstimate = "654.42"; //EVC
     private static final String SID_DriverBrakeWheel_Torque_Request = "130.44"; //UBP braking wheel torque the driver wants
     private static final String SID_ElecBrakeWheelsTorqueApplied = "1f8.28"; //UBP 10ms
@@ -109,11 +109,6 @@ public class DataLogger implements FieldListener {
         return formatter.format(calendar.getTime());
     }
 
-    public boolean isExternalStorageWritable() {
-        String SDstate = Environment.getExternalStorageState();
-        return (Environment.MEDIA_MOUNTED.equals(SDstate));
-    }
-
     public boolean isCreated() {
         return (logFile != null);
     }
@@ -142,7 +137,7 @@ public class DataLogger implements FieldListener {
         boolean result = false;
 
         // ensure that there is a CanZE Folder in SDcard
-        if (!isExternalStorageWritable()) {
+        if (!MainActivity.getInstance().isExternalStorageWritable()) {
             debug("DataLogger: SDcard not writeable");
             return false;
         } else {

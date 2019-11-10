@@ -100,13 +100,13 @@
         <item>Init</item>
         <item>HF10</item>
         <item>-</item>
-        <item>Défaut de masse réseau</item>
+        <item>Déf. masse réseau</item>
         <item>-</item>
-        <item>Défaut courant de terre</item>
+        <item>Déf. cour. terre</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Défaut de masse</item>
+        <item>Déf. de masse</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -114,7 +114,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Fuite réseau DC</item>
+        <item>Fuite rés. DC</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -129,7 +129,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Fuite réseau BF</item>
+        <item>Fuite rés. BF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -146,7 +146,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Fuite réseau DC+BF</item>
+        <item>Fuite rés. DC+BF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -162,7 +162,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Fuite réseau HF</item>
+        <item>Fuite rés. HF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -178,7 +178,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Fuite réseau DC+HF</item>
+        <item>Fuite rés. DC+HF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -194,7 +194,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Fuite réseau BF+HF</item>
+        <item>Fuite rés. BF+HF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -210,7 +210,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Fuite réseau DC+BF+HF</item>
+        <item>Fuite rés. DC+BF+HF</item>
     </string-array>
     <string name="label_SupervisorState">État du superviseur</string>
     <string-array name="list_SupervisorState">
@@ -464,6 +464,8 @@
     <string name="label_SafeDrivingMode">Bloquer pendant la conduite</string>
     <string name="label_BluetoothBackgroundMode">Mode Bluetooth en arrière plan</string>
     <string name="label_Miles">Miles</string>
+    <string name="label_Darkmode">Forcer Mode Sombre</string>
+    <string name="label_AltFields">Utiliser champs ISOTP</string>
     <string name="label_SdCardLogging">Enregistrer les traces sur la carte SD</string>
     <string name="label_Debug">Debug</string>
     <string name="label_Fields">Champs</string>

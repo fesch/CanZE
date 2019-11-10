@@ -364,13 +364,13 @@ public class ELM327 extends Device {
         if (!BluetoothManager.getInstance().isConnected()) return "";
 
         if (command != null) {
-            flushWithTimeout(100, '>');
+            flushWithTimeout(10, '>');
             // send the command
             //connectedBluetoothThread.write(command + "\r\n");
             BluetoothManager.getInstance().write(command + (addReturn ? "\r" : ""));
         }
 
-        //MainActivity.debug("Send > "+command);
+        MainActivity.debug("Send > "+command);
         // wait if needed (JM: tbh, I think waiting here is never needed. Any waiting should be handled in the wait for an answer timeout. But that's me.
 /*        if(waitMillis>0) {
             try {
@@ -468,7 +468,7 @@ public class ELM327 extends Device {
         }
 
         //MainActivity.debug("ALC: "+answerLinesCount+" && Stop: "+stop+" && Delta: "+(Calendar.getInstance().getTimeInMillis()-start));
-        //MainActivity.debug("Recv < "+readBuffer);
+        MainActivity.debug("Recv < "+readBuffer);
         return readBuffer.toString();
     }
 
@@ -616,7 +616,7 @@ public class ELM327 extends Device {
                     elmFlowResponse = sendAndWaitForAnswer(elmCommand, 0, false).replace("\r", "");
                     elmResponse = elmFlowResponse;
                 } else {
-                    return new Message(frame, "-E-ISOTP tx flow Error", true);
+                    return new Message(frame, "-E-ISOTP tx flow Error:" + elmFlowResponse, true);
                 }
                 startIndex = endIndex;
                 if (startIndex > outgoingLength) startIndex = outgoingLength;
@@ -649,9 +649,9 @@ public class ELM327 extends Device {
                     hexData = elmResponse.substring(2);
                     // and we're done
                 } catch (StringIndexOutOfBoundsException e) {
-                    return new Message(frame, "-E-unexpected ISO-TP length of SING frame:" + elmResponse, true);
+                    return new Message(frame, "-E-ISOTP rx unexpected length of SING frame:" + elmResponse, true);
                 } catch (NumberFormatException e) {
-                    return new Message(frame, "-E-uninterpretable ISO-TP length of SING frame:" + elmResponse, true);
+                    return new Message(frame, "-E-ISOTP rx uninterpretable length of SING frame:" + elmResponse, true);
                 }
                 break;
             case "1": // FIRST frame
@@ -660,9 +660,9 @@ public class ELM327 extends Device {
                     // remove 4 nibbles (type + length)
                     hexData = elmResponse.substring(4);
                 } catch (StringIndexOutOfBoundsException e) {
-                    return new Message(frame, "-E-unexpected ISO-TP length of FRST frame:" + elmResponse, true);
+                    return new Message(frame, "-E-ISOTP rx unexpected length of FRST frame:" + elmResponse, true);
                 } catch (NumberFormatException e) {
-                    return new Message(frame, "-E-uninterpretable ISO-TP length of FRST frame:" + elmResponse, true);
+                    return new Message(frame, "-E-ISOTP rx uninterpretable length of FRST frame:" + elmResponse, true);
                 }
                 // calculate the # of frames to come. 6 byte are in and each of the 0x2 frames has a payload of 7 bytes
                 int framesToReceive = len / 7; // read this as ((len - 6 [remaining characters]) + 6 [offset to / 7, so 0->0, 1-7->7, etc]) / 7
@@ -680,7 +680,7 @@ public class ELM327 extends Device {
                             // cut off the first byte (type + sequence) and add to the result
                             hexData += hexDataLine.substring(2);
                         } else {
-                            return new Message(frame, "-E-out of sequence ISO-TP frame", true);
+                            return new Message(frame, "-E-ISOTP rx out of sequence:" + hexDataLine, true);
                         }
                         if (next == 15) next = 0;
                         else next++;
@@ -689,7 +689,7 @@ public class ELM327 extends Device {
                 break;
             default:  // a NEXT, FLOWCONTROL should not be received. Neither should any other string (such as NO DATA)
                 flushWithTimeout(400, '>');
-                return new Message(frame, "-E-unexpected ISO-TP 1st nibble of 1st frame:" + elmResponse, true);
+                return new Message(frame, "-E-ISOTP rx unexpected 1st nibble of 1st frame:" + elmResponse, true);
         }
 
 
@@ -706,7 +706,7 @@ public class ELM327 extends Device {
         hexData = (hexData.length() <= len) ? hexData.trim().toLowerCase() : hexData.substring(0, len).trim().toLowerCase();
 
         if (hexData.equals(""))
-            return new Message(frame, "-E-data empty", true);
+            return new Message(frame, "-E-ISOTP rx data empty", true);
         else
             return new Message(frame, hexData, false);
     }

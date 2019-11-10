@@ -121,6 +121,12 @@
             android:name=".activities.AllDataActivity"
             android:label="@string/title_activity_alldata" />
         <activity android:name=".activities.CanSeeActivity" />
+        <activity
+            android:name=".activities.FieldTestActivity"
+            android:label="Field test" />
+        <activity
+            android:name=".activities.ResearchActivity"
+            android:label="Research" />
     </application>
 
 </manifest>

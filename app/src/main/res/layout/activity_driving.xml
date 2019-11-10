@@ -1,13 +1,12 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:keepScreenOn="true"
     android:layout_height="fill_parent"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="lu.fisch.canze.activities.DrivingActivity">
 
@@ -24,41 +23,37 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_pedal"
-                />
+                android:text="@string/label_pedal" />
+
             <ProgressBar
                 android:id="@+id/pedalBar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_gravity="center_horizontal"
-                android:minHeight="25dp"
                 android:max="125"
+                android:minHeight="25dp"
+                android:orientation="vertical"
                 android:progress="10"
-                android:progressDrawable="@drawable/progressbar_canze"
-                />
+                android:progressDrawable="@drawable/progressbar_canze" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_wheel_torque"
                 android:layout_marginTop="10dp"
-                />
+                android:text="@string/label_wheel_torque" />
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="3"
-                >
+                android:weightSum="3">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    >
+                    android:orientation="vertical">
 
                     <ProgressBar
                         android:id="@+id/pb_driver_torque_request"
@@ -66,22 +61,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:minHeight="25dp"
                         android:max="1536"
-                        android:progressDrawable="@drawable/progressbar_canze_decel"
-                        />
+                        android:minHeight="25dp"
+                        android:progressDrawable="@drawable/progressbar_canze_decel" />
 
                     <ProgressBar
-                        android:id="@+id/MaxBreakTorque"
+                        android:id="@+id/MaxBrakeTorque"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="9dp"
-                        android:paddingTop="2dp"
                         android:layout_gravity="center_horizontal"
                         android:max="1536"
+                        android:paddingTop="2dp"
                         android:progress="10"
-                        android:progressDrawable="@drawable/progressbar_canze_decel_aim"
-                        />
+                        android:progressDrawable="@drawable/progressbar_canze_decel_aim" />
 
                 </LinearLayout>
 
@@ -91,62 +84,60 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:minHeight="25dp"
-                    android:max="2048"
-                    android:progress="0"
                     android:layout_weight="2"
-                    android:progressDrawable="@drawable/progressbar_canze_accel"
-                    />
+                    android:max="2048"
+                    android:minHeight="25dp"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/progressbar_canze_accel" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-                    <TextView
-                        android:id="@+id/textRealSpeed"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="@string/default_Dash"
-                        android:textSize="96sp"
-                        android:gravity="end"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
-                    <TextView
-                        android:id="@+id/textSpeedUnit"
-                        android:text="@string/unit_SpeedKm"
-                        android:textSize="24sp"
-                        android:gravity="start"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textRealSpeed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@string/default_Dash"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="96sp" />
+
+                <TextView
+                    android:id="@+id/textSpeedUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="@string/unit_SpeedKm"
+                    android:textSize="24sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textConsumption"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="@string/default_Dash"
-                        android:textSize="48sp"
-                        android:gravity="end"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
-                    <TextView
-                        android:id="@+id/textConsumptionUnit"
-                        android:text="@string/unit_ConsumptionKm"
-                        android:textSize="12sp"
-                        android:gravity="start"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
+                <TextView
+                    android:id="@+id/textConsumption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@string/default_Dash"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="48sp" />
+
+                <TextView
+                    android:id="@+id/textConsumptionUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="@string/unit_ConsumptionKm"
+                    android:textSize="12sp" />
             </LinearLayout>
 
 
@@ -155,93 +146,105 @@
                 android:layout_height="wrap_content">
 
                 <TableRow>
+
                     <TextView
                         android:id="@+id/LabelDistToDest"
+                        android:layout_weight="0.8"
+                        android:width="0dp"
                         android:text="@string/label_DistToDest"
-                        android:textSize="24sp"
-                        android:layout_weight="2"
-                        />
+                        android:textSize="24sp" />
+
                     <TextView
                         android:id="@+id/textDistToDest"
-                        android:text="@string/default_Zero"
-                        android:textSize="24sp"
+                        android:layout_weight="0.2"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="2"
-                        />
+                        android:text="@string/default_Zero"
+                        android:textSize="24sp" />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
+                        android:layout_weight="0.8"
+                        android:width="0dp"
                         android:text="@string/label_DistAvailAtDest"
-                        android:textSize="24sp"
-                        android:layout_weight="2"
-                        />
+                        android:textSize="24sp" />
+
                     <TextView
                         android:id="@+id/textDistAVailAtDest"
-                        android:text="@string/default_Zero"
-                        android:textSize="24sp"
+                        android:layout_weight="0.2"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="2"
-                        />
+                        android:text="@string/default_Zero"
+                        android:textSize="24sp" />
                 </TableRow>
 
 
                 <TableRow>
+
                     <TextView
                         android:id="@+id/LabelTripConsumption"
+                        android:layout_weight="0.8"
+                        android:width="0dp"
                         android:text="@string/label_TripConsumption"
-                        android:textSize="24sp"
-                        android:layout_weight="2"
-                        />
+                        android:textSize="24sp" />
+
                     <TextView
                         android:id="@+id/textTripConsumption"
-                        android:text="@string/default_Zero"
-                        android:textSize="24sp"
+                        android:layout_weight="0.2"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="2"
-                        />
+                        android:text="@string/default_Zero"
+                        android:textSize="24sp" />
                 </TableRow>
 
 
                 <TableRow>
+
                     <TextView
-                        android:text="@string/label_TripDistance"
-                        android:layout_weight="2"
-                        />
+                        android:layout_weight="0.8"
+                        android:width="0dp"
+                        android:text="@string/label_TripDistance" />
+
                     <TextView
                         android:id="@+id/textTripDistance"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.2"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="2"
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
 
                 <TableRow>
+
                     <TextView
-                        android:text="@string/label_TripEnergy"
-                        android:layout_weight="2"
-                        />
+                        android:layout_weight="0.8"
+                        android:width="0dp"
+                        android:text="@string/label_TripEnergy" />
+
                     <TextView
                         android:id="@+id/textTripEnergy"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.2"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="2"
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
 
                 <TableRow>
+
                     <TextView
-                        android:text="@string/label_UserSOC"
-                        android:layout_weight="2"
-                        />
+                        android:layout_weight="0.8"
+                        android:width="0dp"
+                        android:text="@string/label_UserSOC" />
+
                     <TextView
                         android:id="@+id/textSOC"
-                        android:text="@string/default_Dash"
+                        android:layout_weight="0.2"
+                        android:width="0dp"
                         android:gravity="end"
-                        android:layout_weight="2"
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
             </TableLayout>
@@ -252,21 +255,20 @@
     <!-- debug line -->
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
-            android:text="@string/label_debug"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:text="@string/label_debug" />
+
         <TextView
             android:id="@+id/textDebug"
-            android:text="@string/default_debug"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:text="@string/default_debug" />
 
     </LinearLayout>
 

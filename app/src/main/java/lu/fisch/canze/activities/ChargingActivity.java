@@ -41,17 +41,11 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
 
     private static final String SID_MaxCharge                        = "7bb.6101.336";
     private static final String SID_UserSoC                          = "42e.0";
-//  private static final String SID_RealSoC                          = "654.25";
     private static final String SID_RealSoC                          = "7bb.6103.192";
     private static final String SID_AvChargingPower                  = "427.40";
-    private static final String SID_ACPilot                          = "42e.38";
     private static final String SID_HvTemp                           = "42e.44";
-    private static final String SID_HvTempFluKan                     = "7bb.6103.56";
 
-//  private static final String SID_SOH                              = "658.33";
     private static final String SID_RangeEstimate                    = "654.42";
-//  private static final String SID_TractionBatteryVoltage           = "7ec.623203.24";
-//  private static final String SID_TractionBatteryCurrent           = "7ec.623204.24";
     private static final String SID_DcPower                          = "800.6103.24"; // Virtual field
     private static final String SID_SOH                              = "7ec.623206.24";
 
@@ -81,13 +75,8 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
         addField(SID_SOH, 5000); // state of health gives continuous timeouts. This frame is send at a very low rate
         addField(SID_RangeEstimate, 5000);
         addField(SID_DcPower, 5000);
-        if (MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240 || MainActivity.car == MainActivity.CAR_ZOE_Q90 || MainActivity.car == MainActivity.CAR_ZOE_R90) {
-            addField(SID_AvChargingPower, 5000);
-            addField(SID_HvTemp, 5000);
-        } else { //FLuKan
-            addField(SID_HvTempFluKan, 5000);
-            addField(SID_ACPilot, 5000);
-        }
+        addField(SID_AvChargingPower, 5000);
+        addField(SID_HvTemp, 5000);
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -141,10 +130,6 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
                             tv.setText("---");
                             tv = null;
                         }
-                        break;
-                    case SID_ACPilot:
-                        avChPwr = field.getValue() * 0.225;
-                        tv = findViewById(R.id.textAvChPwr);
                         break;
                 }
                 // set regular new content, all exceptions handled above
