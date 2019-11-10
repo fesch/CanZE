@@ -1,3 +1,4 @@
+2019-11-09 [Jeroen] Added option in Experimental fragment to only show when not on master
 2019-11-09 [Jeroen] Fixed issue #578 Fan speed label
 
 ---< Version 1.46 / 2019.11.10 / 48 >---
