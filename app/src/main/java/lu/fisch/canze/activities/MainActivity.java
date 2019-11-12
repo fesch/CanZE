@@ -402,10 +402,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 actionBar.setIcon(R.mipmap.ic_launcher);
                 break;
             case 1:
-                actionBar.setIcon(R.mipmap.fragement_technical);
+                actionBar.setIcon(R.drawable.fragment_technical);
                 break;
             case 2:
-                actionBar.setIcon(R.mipmap.fragement_experimental);
+                actionBar.setIcon(R.drawable.fragment_experimental);
                 break;
             default:
                 break;
@@ -853,10 +853,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
             switch (btState) {
                 case BLUETOOTH_DISCONNECTED:
-                    imageView.setBackgroundResource(R.mipmap.bluetooth_none);
+                    imageView.setBackgroundResource(R.drawable.bluetooth_none);
                     break;
                 case BLUETOOTH_CONNECTED:
-                    imageView.setBackgroundResource(R.mipmap.bluetooth_3);
+                    imageView.setBackgroundResource(R.drawable.bluetooth_3);
                     break;
                 case BLUETOOTH_SEARCH:
                     runOnUiThread(new Runnable() {
