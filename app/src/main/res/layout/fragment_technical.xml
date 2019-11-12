@@ -46,8 +46,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@mipmap/button_charge"
-                        android:drawableLeft="@mipmap/button_charge"
+                        android:drawableStart="@drawable/button_charge"
+                        android:drawableLeft="@drawable/button_charge"
                         android:text="@string/button_Charging" />
 
                     <Button
@@ -61,8 +61,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@mipmap/button_attention"
-                        android:drawableLeft="@mipmap/button_attention"
+                        android:drawableStart="@drawable/button_attention"
+                        android:drawableLeft="@drawable/button_attention"
                         android:text="@string/button_DtcReadout" />
 
 
@@ -83,8 +83,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@mipmap/button_charging_graphs"
-                        android:drawableLeft="@mipmap/button_charging_graphs"
+                        android:drawableStart="@drawable/button_charging_graphs"
+                        android:drawableLeft="@drawable/button_charging_graphs"
                         android:text="@string/button_ChargingGraphs" />
 
                     <Button
@@ -98,8 +98,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@mipmap/button_firmware"
-                        android:drawableLeft="@mipmap/button_firmware"
+                        android:drawableStart="@drawable/button_firmware"
+                        android:drawableLeft="@drawable/button_firmware"
                         android:text="@string/button_Firmware" />
 
                 </TableRow>
@@ -119,8 +119,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@mipmap/button_prediction"
-                        android:drawableLeft="@mipmap/button_prediction"
+                        android:drawableStart="@drawable/button_prediction"
+                        android:drawableLeft="@drawable/button_prediction"
                         android:text="@string/button_ChargingPrediction" />
 
                     <Button
@@ -134,8 +134,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@mipmap/button_elm327"
-                        android:drawableLeft="@mipmap/button_elm327"
+                        android:drawableStart="@drawable/button_elm327"
+                        android:drawableLeft="@drawable/button_elm327"
                         android:text="@string/button_ElmTesting" />
 
 
@@ -156,8 +156,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@mipmap/button_charginghist"
-                        android:drawableLeft="@mipmap/button_charginghist"
+                        android:drawableStart="@drawable/button_charginghist"
+                        android:drawableLeft="@drawable/button_charginghist"
                         android:text="@string/button_charging_history" />
 
                     <Button
@@ -171,8 +171,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@mipmap/button_climate"
-                        android:drawableLeft="@mipmap/button_climate"
+                        android:drawableStart="@drawable/button_climate"
+                        android:drawableLeft="@drawable/button_climate"
                         android:text="@string/button_Climate" />
 
                 </TableRow>
@@ -193,8 +193,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@mipmap/button_leak"
-                        android:drawableLeft="@mipmap/button_leak"
+                        android:drawableStart="@drawable/button_leak"
+                        android:drawableLeft="@drawable/button_leak"
                         android:text="@string/button_LeakCurrents" />
 
                     <Button
@@ -208,8 +208,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@mipmap/button_auxbat"
-                        android:drawableLeft="@mipmap/button_auxbat"
+                        android:drawableStart="@drawable/button_auxbat"
+                        android:drawableLeft="@drawable/button_auxbat"
                         android:text="@string/button_auxbatt" />
 
                 </TableRow>
@@ -230,8 +230,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@mipmap/button_range"
-                        android:drawableLeft="@mipmap/button_range"
+                        android:drawableStart="@drawable/button_range"
+                        android:drawableLeft="@drawable/button_range"
                         android:text="@string/button_Range" />
 
                     <Button
@@ -245,8 +245,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@mipmap/button_alldata"
-                        android:drawableLeft="@mipmap/button_alldata"
+                        android:drawableStart="@drawable/button_alldata"
+                        android:drawableLeft="@drawable/button_alldata"
                         android:text="@string/button_AllData" />
 
                 </TableRow>
