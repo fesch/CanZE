@@ -1,3 +1,4 @@
+2019-11-15 [Jeroen] In isotpOnly mode use insecure and relax andwers
 2019-11-12 [Jeroen] Removed all _web icons in main folder except launcher
 2019-11-12 [Jeroen] Moved all artwork except aunch icon to drawable
 2019-11-11 [Jeroen] Added BCM and USM, csv files
