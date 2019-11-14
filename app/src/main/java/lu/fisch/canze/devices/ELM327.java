@@ -325,6 +325,7 @@ public class ELM327 extends Device {
                 response = sendAndWaitForAnswer(command, 0, false, -1, addReturn); // // just one line
             }
             if (response.toUpperCase().contains("OK")) return true; // we're done if we got an OK
+            if (MainActivity.altFieldsMode) untilEmpty = true; // crappy dongles answer with things like CR > LF [space]
         }
 
         // we've tried and tried and failed here

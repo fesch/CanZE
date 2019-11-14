@@ -718,7 +718,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             loadSettings();
 
         // try to get a new BT thread
-        BluetoothManager.getInstance().connect(bluetoothDeviceAddress, true, BluetoothManager.RETRIES_INFINITE);
+        BluetoothManager.getInstance().connect(bluetoothDeviceAddress, !MainActivity.altFieldsMode, BluetoothManager.RETRIES_INFINITE);
     }
 
     @Override
