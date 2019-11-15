@@ -32,6 +32,8 @@
     <!-- Units -->
 
     <string name="unit_Nm">Nm</string>
+    <string name="unit_Km" translatable="false">\u0020km</string>
+    <string name="unit_Mi" translatable="false">\u0020mi</string>
     <string name="unit_SpeedKm">\u0020km/h</string>
     <string name="unit_SpeedMi">\u0020mi/h</string>
     <string name="unit_ConsumptionKm">\u0020kWh/100km</string>
@@ -458,7 +460,7 @@
 
     <!-- Datalogger -->
 
-    <string name="format_NoSid">sid %s does not exist in class Fields</string>
+    <string name="format_NoSid">%s: sid %s does not exist</string>
 
     <!-- Driving -->
 
@@ -635,6 +637,9 @@
     <!-- Speed control -->
 
     <string name="title_activity_speedcontrol">Average speed</string>
+    <string name="message_gotfirst">Got first value ...</string>
+    <string name="message_gotsecond">Got second value ...</string>
+    <string name="message_waitsecond">Waiting for second value ...</string>
 
     <!-- Tyres -->
 

@@ -76,25 +76,28 @@
 673.32,765,128,135,13.725,0,0,mbar,2174,6174,ff,FrontRightWheelPressure
 # 673,40,47,13.725,0,0,mbar,2174,6174,ff,Front left wheel pressure
 673.40,765,136,143,13.725,0,0,mbar,2174,6174,ff,FrontLeftWheelPressure
-#
+# ESC
 ,760,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,760,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,760,128,143,1,0,0,,2180,6180,ff,Soft
 ,760,144,159,1,0,0,,2180,6180,ff,Version
 ,760,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,760,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+# EPS
 ,762,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,762,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,762,128,143,1,0,0,,2180,6180,ff,Soft
 ,762,144,159,1,0,0,,2180,6180,ff,Version
 ,762,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,762,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+# CLUSTER
 ,763,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,763,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,763,128,143,1,0,0,,2180,6180,ff,Soft
 ,763,144,159,1,0,0,,2180,6180,ff,Version
 ,763,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,763,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+# CLIM
 ,764,26,35,0.1,400,0,°C,2121,6121,e2,IH_InCarTemp
 ,764,8,15,0.4,100,0,°C,2121,6121,5,IH_InCarTemp
 ,764,36,43,1,0,0,%,2121,6121,e2,IH_RHumidity
@@ -110,6 +113,7 @@
 ,764,144,159,1,0,0,,2180,6180,ff,Version
 ,764,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,764,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+# BCM
 ,765,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,765,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,765,128,143,1,0,0,,2180,6180,ff,Soft
@@ -120,24 +124,29 @@
 ,765,48,71,1,0,0,,2171,6171,ff,TPMS
 ,765,72,95,1,0,0,,2171,6171,ff,TPMS
 ,765,96,119,1,0,0,,2171,6171,ff,TPMS
+# USM
 ,76d,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,76d,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,76d,128,143,1,0,0,,2180,6180,ff,Soft
 ,76d,144,159,1,0,0,,2180,6180,ff,Version
 ,76d,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,76d,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,76d,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+# UPA
 ,76e,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,76e,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,76e,128,143,1,0,0,,2180,6180,ff,Soft
 ,76e,144,159,1,0,0,,2180,6180,ff,Version
 ,76e,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,76e,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+# AIBAG
 ,772,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,772,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,772,128,143,1,0,0,,2180,6180,ff,Soft
 ,772,144,159,1,0,0,,2180,6180,ff,Version
 ,772,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,772,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+# PEB
 ,77e,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,77e,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,77e,128,143,1,0,0,,2180,6180,ff,Soft
@@ -146,7 +155,6 @@
 ,77e,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,77e,24,39,0.015625,0,2,ºC,223018,623018,ff,DCDC converter temperature
 ,77e,24,31,0.015625,0,2,°C,22302b,62302b,ff,inverter temperature
-#
 ,77e,24,39,0.03125,0,0,Nm,223025,623025,1ff,PEBTorque
 # BCB
 ,793,0,0,1,0,0,,1081,5081,ff,start diag
@@ -177,7 +185,7 @@
 ,793,24,39,1,0,0,Ohm,225062,625062,ff,Mains ground resistance
 ,793,24,31,1,0,0,,225063,625063,ff,Supervisor state,0:Init;1:Wait;2:ClosingS2;3:InitType;4:InitLkg;5:InitChg;6:Charge;7:ZeroAmpMode;8:EndOfChg;9:OpeningS2;10:ReadyToSleep;11:EmergencyStop;12:InitChargeDF;13:OCPStop;14:WaitS2
 ,793,24,31,1,0,0,,225064,625064,ff,Leakage current diagnostic stored completion status,0:init;1:HF10;3:Mains Ground Default;5:Earth Current default;9:Ground Default;17:Means Leakage DC;33:Means Leakage LF;49:Means Leakage DC+LF;65:Means Leakage HF;81:Means Leakage DC+HF;97:Means Leakage LF+HF;113:Means Leakage DC+LF+HF
-#
+# LBC2
 ,7b6,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7b6,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7b6,128,143,1,0,0,,2180,6180,ff,Soft
@@ -314,7 +322,10 @@
 ,7bb,528,543,0.001,0,3,V,2142,6142,ff,Cell 95 V
 ,7bb,544,559,0.001,0,3,V,2142,6142,ff,Cell 96 V
 ,7bb,96,119,1,0,0,km,2161,6161,ff,Battery mileage in km
+,7bb,120,151,1,0,0,kWh,2161,6161,ff,kWh from beginning of Battery life
 ,7bb,16,47,1,0,0,,2162,6162,ff,21_62_03_Serial_Number (FIN)
+,7bb,48,63,1,0,0,,2166,6166,ff,Full Charge counter
+,7bb,64,79,1,0,0,,2166,6166,ff,Partial Charge counter
 ,7bb,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7bb,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7bb,128,143,1,0,0,,2180,6180,ff,Soft
@@ -329,7 +340,7 @@
 ,7bc,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,7bc,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,7bc,28,39,1,4094,0,N·m,224B7D,624B7D,ff,Total Hydraulic brake wheels torque request
-#
+# TCU
 ,7da,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7da,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7da,128,143,1,0,0,,2180,6180,ff,Soft
@@ -347,7 +358,6 @@
 ,7ec,24,39,.01,0,2,V,222005,622005,ff,Battery voltage 14v
 ,7ec,24,47,1,0,0,km,222006,622006,ff,Total vehicle distance
 ,7ec,24,39,.00125,0,0,-,22202E,62202E,ff,Accelerator pedal position
-,7ec,24,39,.03125,12800,0,N.m,222241,622241,ff,MSR torque setting sent to torque arbitration
 ,7ec,24,39,.03125,32768,0,N.m,222243,622243,1ff,Final effective torque request to the electric motor (EM)
 ,7ec,24,39,.03125,32768,0,N.m,222245,622245,ff,Limited electrical motor (EM) effective torque setpoint
 ,7ec,24,39,.03125,32768,0,N.m,222246,622246,ff,Electrical motor (EM) maximum effective torque available
@@ -420,6 +430,11 @@
 ,7ec,56,71,1,0,0,min,2233d9,6233d9,ff,duration 8
 ,7ec,40,55,1,0,0,min,2233d9,6233d9,ff,duration 9
 ,7ec,24,39,1,0,0,min,2233d9,6233d9,ff,duration 10
+,7ec,24,55,0.0001,0,0,km,2233de,6233de,ff,Trip distance
 ,7ec,24,39,1,0,0,km,223451,623451,ff,Estimated kilometric cruising range sent to MMI
 ,7ec,24,39,.001953125,0,3,kW,223455,623455,ff,Mean eco electrical consumption (if driver has economical driving behavior)
 ,7ec,24,39,.001953125,0,3,kW,223457,623457,ff,Mean pessimistic electrical consumption (worst possible consumption)
+,7ec,24,47,0.001,0,0,kwh,2233dd,6233dd,ff,Trip energy consumed
+,7ec,24,55,0.0001,0,0,km,2233de,6233de,ff,Trip distance
+,7ec,24,39,1,32767,0,A,223484,623484,ff,Current measurement given by BCS Battery Current Sensor
+,7ec,24,39,.001,0,0,V,223485,623485,ff,Voltage measurement given by BCS Battery Current Sensor

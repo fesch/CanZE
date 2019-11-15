@@ -38,7 +38,7 @@
     <string name="default_debug">#Debug</string>
     <string name="format_DumpWriting">Подождите, идет запись %s</string>
     <string name="format_NoAsset">Нет доступа к %s</string>
-    <string name="format_NoSid">sid %s отсутствует в классе Fields</string>
+    <string name="format_NoSid">%s: sid %s отсутствует в классе Fields</string>
     <string name="format_NoView">Нет экрана с id \'%s%s\'</string>
     <string name="graph_CellVoltages">Напряжение на ячейках (В)</string>
     <string name="graph_Climatech">Снаружи (°C), Внутри (°C), Заказ (°C), Батарея (°C)</string>
@@ -258,4 +258,11 @@
     <string name="message_PrepIsoTp">\nОбрабатываю подготовленную команду ISO-TP CLUSTER SW\n</string>
     <string name="prompt_BluetoothOn">Работа Bluetooth в фоновом режиме может мешать работе других приложений, использующих Bluetooth. Также, это может привести к разряду вашей батареи, если вы забудете выйти из CanZE или отключить эту опцию. <br /><br /><b>С этой опцией соединение будет поддерживаться, даже если вы перезагрузите ваше Android-устройство!</b><br /><br />Вы действительно хотите включить фоновый режим Bluetooth?</string>
     <string name="default_NotOk">Не ОК</string>
+    <string name="label_AltFields">Use ISOTP fields</string>
+    <string name="label_Darkmode">Force Dark Mode</string>
+    <string name="message_gotfirst">Got first value ...</string>
+    <string name="message_gotsecond">Got second value ...</string>
+    <string name="message_waitsecond">Waiting for second value ...</string>
+    <string name="title_activity_research">Research</string>
+    <string name="title_activity_speedcontrol">Average speed</string>
 </resources>
