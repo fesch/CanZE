@@ -87,7 +87,7 @@ public class Message {
         // simply update the fields last request date to send them to the end of the queue
         for (Field field : frame.getAllFields()) {
             field.updateLastRequest();
-            field.setValue(Double.NaN);
+            //field.setValue(Double.NaN);
         }
     }
 
