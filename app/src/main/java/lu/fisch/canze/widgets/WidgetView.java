@@ -39,6 +39,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import java.lang.reflect.Constructor;
+import java.util.Locale;
 
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
@@ -216,12 +217,14 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     drawable.setTimeScale(attributes.getInt(R.styleable.WidgetView_timeScale,1));
 
                     fieldSID = attributes.getString(R.styleable.WidgetView_fieldSID);
-                    if(fieldSID!=null) {
+                    if(fieldSID!=null && !fieldSID.equals("")) {
                         String[] sids = fieldSID.split(",");
                         for (int s = 0; s < sids.length; s++) {
                             Field field = MainActivity.fields.getBySID(sids[s]);
                             if (field == null) {
-                                MainActivity.debug("WidgetView: init: Field with SID <" + sids[s] + "> (index <" + s + "> in <" + R.styleable.WidgetView_text + "> not found!");
+                                //MainActivity.debug("WidgetView: init: Field with SID <" + sids[s] + "> (index <" + s + "> in <" + R.styleable.WidgetView_text + "> not found!");
+                                MainActivity.toast(MainActivity.TOAST_NONE,  String.format(Locale.getDefault(),MainActivity.getStringSingle(R.string.format_NoSid), "Widget", sids[s]));
+
                             } else {
                                 // add field to list of registered sids for this widget
                                 drawable.addField(field.getSID());
