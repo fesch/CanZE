@@ -25,6 +25,10 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
     private double distanceInterpolated = 0;
     private double speed = 0;
     private boolean go = false;
+    private final String km = MainActivity.getStringSingle(R.string.unit_Km);
+    private final String mi = MainActivity.getStringSingle(R.string.unit_Mi);
+    private final String kmh = MainActivity.getStringSingle(R.string.unit_SpeedKm);
+    private final String mih = MainActivity.getStringSingle(R.string.unit_SpeedMi);
 
 
     @Override
@@ -43,13 +47,10 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                 TextView tv = findViewById(R.id.speed);
                 if (tv != null) tv.setText("...");
 
-                if (MainActivity.milesMode)
-                    ((TextView) findViewById(R.id.unit)).setText("mi/h");
-                else
-                    ((TextView) findViewById(R.id.unit)).setText("km/h");
+                tv = findViewById(R.id.unit);
+                tv.setText(MainActivity.milesMode ? mih : kmh);
             }
 
-            ;
         };
 
         // allow to click on any
@@ -83,6 +84,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                         long timeEnd = System.currentTimeMillis();
                         // if starting time has been set
                         if (go) {
+                            TextView tv;
                             // speed measuring has been started normally
                             if (timeStart != 0) {
                                 double speedCalc = 0;
@@ -93,7 +95,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                     // calculate avg speed
                                     double speed = ((distanceEnd - distanceStart) * 3600000.0) / (timeEnd - timeStart);
                                     // show it
-                                    TextView tv = findViewById(R.id.speed);
+                                    tv = findViewById(R.id.speed);
                                     if (tv != null)
                                         tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
                                 }
@@ -110,30 +112,30 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                         // calculate avg speed
                                         speedCalc = ((distanceInterpolated - distanceStart) * 3600000.0) / (timeEnd - timeStart);
                                         // show it
-                                        TextView tv = findViewById(R.id.speed);
+                                        tv = findViewById(R.id.speed);
                                         if (tv != null)
                                             tv.setText(String.format(Locale.getDefault(), "%.1f", speedCalc));
                                     }
                                 }
 
-                                ((TextView) findViewById(R.id.textDetails)).setText("Distance: " +
-                                        String.format(Locale.getDefault(), "%.2f", (distanceEnd - distanceStart)) +
-                                        (MainActivity.milesMode ? "mi" : "km") +
-                                        " - " +
-                                        "Time: " + timeToStr(timeStart)+ " > " + timeToStr(timeEnd)+ " = " + timeToStr(timeEnd - timeStart)+
-                                        " - " +
-                                        "Speed: "+ String.format(Locale.getDefault(), "%.2f", speed)+(MainActivity.milesMode ? "mi" : "km")+"/h"+
-                                        " - " +
-                                        "SpeedCalc: "+ String.format(Locale.getDefault(), "%.2f", speedCalc)+(MainActivity.milesMode ? "mi" : "km")+"/h"+
-                                        " - " +
-                                        "SDK: "+ Build.VERSION.SDK_INT
+                                tv = findViewById(R.id.textDetails);
+                                tv.setText(
+                                        String.format(Locale.getDefault(),
+                                                "Distance:%.2f%s - Time:%s > %s = %s - Speed:%.2f%s - SpeedCalc:%.2f%s - SDK:%s",
+                                                distanceEnd - distanceStart,MainActivity.milesMode ? mi : km,
+                                                timeToStr(timeStart), timeToStr(timeEnd), timeToStr(timeEnd - timeStart),
+                                                speed, MainActivity.milesMode ? mih : kmh,
+                                                speedCalc, MainActivity.milesMode ? mih : kmh,
+                                                Build.VERSION.SDK_INT
+                                        )
                                 );
 
                                 distanceLast = distanceEnd;
                                 timeLast = timeEnd;
                             } else if(distanceLast == 0) {
                                 // do nothing ...
-                                ((TextView) findViewById(R.id.textDetails)).setText("Got first value ...");
+                                tv = findViewById(R.id.textDetails);
+                                tv.setText(R.string.message_gotfirst);
                                 distanceLast = distanceEnd;
                             } else if (distanceLast != distanceEnd) {
                                 // set starting distance as long as starting time is not set
@@ -143,9 +145,11 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                 // set start time
                                 timeStart = timeEnd;
                                 timeLast = timeEnd;
-                                ((TextView) findViewById(R.id.textDetails)).setText("Got second value ...");
+                                tv = findViewById(R.id.textDetails);
+                                tv.setText(R.string.message_gotsecond);
                             } else {
-                                ((TextView) findViewById(R.id.textDetails)).setText("Waiting for second value ...");
+                                tv = findViewById(R.id.textDetails);
+                                tv.setText(R.string.message_waitsecond);
                             }
                         }
                         break;
