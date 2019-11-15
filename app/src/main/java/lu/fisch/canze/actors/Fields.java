@@ -639,16 +639,17 @@ public class Fields {
     private void fillFromFile(String filename) {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
-            if (bufferedReader == null) {
-                MainActivity.toast(MainActivity.TOAST_NONE, "Can't access file " + filename);
-                return;
-            }
+            // removed checking for non null bufferedReader, as file not found will thow an Exception
+            //if (bufferedReader == null) {
+            //    MainActivity.toast(MainActivity.TOAST_NONE, "Can't access file " + filename);
+            //    return;
+            //}
             String line;
             while ((line = bufferedReader.readLine()) != null)
                 fillOneLine(line);
             bufferedReader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e ) {
+            MainActivity.toast(MainActivity.TOAST_NONE, "Can't access file " + filename);
         }
     }
 
@@ -679,6 +680,12 @@ public class Fields {
     public void load(String assetName) {
         fields.clear();
         fieldsBySid.clear();
+
+        // if settings were not done, no fields would be loaded from file, and then the system will
+        // complain because it can't get register the virtual fields because it cannot find the
+        // required dependantfields.
+        if (MainActivity.device == null) return;
+
         if (assetName.equals("")) {
             fillFromAsset(MainActivity.altFieldsMode ? "_FieldsAlt.csv" : "_Fields.csv");
             addVirtualFields();
@@ -686,9 +693,9 @@ public class Fields {
             fillFromFile(assetName);
         } else {
             fillFromAsset(assetName);
-            if (assetName.startsWith("VFC")) {
-                addVirtualFields();
-            }
+            //if (assetName.startsWith("VFC")) {
+            //    addVirtualFields();
+            //}
         }
         MainActivity.getInstance().registerApplicationFields(); // this registers i.e. speed for save driving mode
     }
