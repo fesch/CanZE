@@ -512,6 +512,7 @@
     <string name="message_Problem">Problem:</string>
     <string name="message_PrepIsoTp">\nProcessing prepped ISO-TP command CLUSTER SW\n</string>
     <string name="message_PrepFree">\nProcessing prepped free frame PARK BRAKE\n</string>
+    <string name="message_NoFreeTesting">\nNot testing free frames, as you selected Use ISOTP fields\n</string>
     <string name="message_DevicePassed">\nYour device passed all the tests, it will probably work just fine\n</string>
 
     <!-- ELM327 -->
