@@ -212,21 +212,25 @@ public class Field {
         // about cloned frames in the complex frame / field interaction, esp in the Device Class
         if (!async) {
             for (int i = 0; i < fieldListeners.size(); i++) {
-                fieldListeners.get(i).onFieldUpdateEvent(this.fieldClone());
+                FieldListener fieldListener = fieldListeners.get(i);
+                if (fieldListener != null) fieldListener.onFieldUpdateEvent(this.fieldClone());
             }
         } else {
             // clone the frame to make sure modifications in other threads will not interfere
             // note though that async updating is currently never used
             final Field clone = this.fieldClone();
             for (int i = 0; i < fieldListeners.size(); i++) {
-                final int index = i;
-                (new Thread(new Runnable() {
+                final FieldListener fieldListener = fieldListeners.get(i);
+                final Field fieldClone = this.fieldClone();
+                if (fieldListener != null) {
+                    (new Thread(new Runnable() {
 
-                    @Override
-                    public void run() {
-                        fieldListeners.get(index).onFieldUpdateEvent(clone.fieldClone());
-                    }
-                })).start();
+                        @Override
+                        public void run() {
+                            fieldListener.onFieldUpdateEvent(fieldClone);
+                        }
+                    })).start();
+                }
             }
         }
     }
