@@ -21,6 +21,7 @@
 
 package lu.fisch.awt;
 
+import android.content.res.Resources;
 import android.util.TypedValue;
 import java.lang.reflect.Field;
 import lu.fisch.canze.activities.MainActivity;
@@ -83,8 +84,13 @@ public class Color {
                 // get the value associated with that id. This is dynamic and based on the theme.
                 // use the theme of the topmost (latest) activity as it is the only one restarted
                 TypedValue value = new TypedValue();
-                MainActivity.getInstance().getLocalTheme().resolveAttribute(id, value, true);
-                i = value.data;
+                Resources.Theme theme = MainActivity.getInstance().getLocalTheme();
+                if (theme != null) {
+                    theme.resolveAttribute(id, value, true);
+                    i = value.data;
+                } else {
+                    return new Color(0xff, 0x0, 0xff);
+                }
             } else {
                 i = Long.decode(nm);
             }

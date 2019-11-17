@@ -1079,6 +1079,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     public Resources.Theme getLocalTheme () {
+        if (this.localTheme == null) return this.getTheme(); // we can't do better than this. So still default to something in the Color.decode
         return this.localTheme;
     }
 
