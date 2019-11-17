@@ -171,7 +171,7 @@
 ,793,24,39,0.0625,32768,0,mA,225059,625059,ff,DataRead.Raw leakage current - High Frequency 1st part measurement
 ,793,24,39,0.0625,32768,0,mA,22505a,62505a,ff,DataRead.Raw leakage current - Low Frequency part measurement (50Hz)
 ,793,24,39,.0625,3200,0,A,222001,622001,ff,Mains phase 1 current RMS value
-,793,24,31,1,0,0,%,225026,625026,ff,J1772 control pilot raw duty cycle
+,793,24,31,.5,0,1,%,225026,625026,ff,J1772 control pilot raw duty cycle
 ,793,24,39,.0625,3200,0,A,22503A,62503A,ff,Mains phase 2 current RMS
 ,793,24,39,.0625,3200,0,A,22503B,62503B,ff,Mains phase 3 current RMS
 ,793,29,31,1,0,0,,225017,625017,ff,Mains current type,0:Nok;1:AC mono;2:AC tri;3:DC;4:AC bi
