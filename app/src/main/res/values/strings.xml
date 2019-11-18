@@ -637,9 +637,9 @@
     <!-- Speed control -->
 
     <string name="title_activity_speedcontrol">Average speed</string>
-    <string name="message_gotfirst">Got first value ...</string>
-    <string name="message_gotsecond">Got second value ...</string>
-    <string name="message_waitsecond">Waiting for second value ...</string>
+    <string name="message_gotfirst">Got first value…</string>
+    <string name="message_gotsecond">Got second value…</string>
+    <string name="message_waitsecond">Waiting for second value…</string>
 
     <!-- Tyres -->
 

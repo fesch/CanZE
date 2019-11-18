@@ -503,14 +503,15 @@
     </string-array>
     <string name="title_activity_widget">Activité Widget</string>
     <string name="default_ZeroNm">0 Nm</string>
-    <string name="message_gotfirst">Got first value ...</string>
-    <string name="message_gotsecond">Got second value ...</string>
-    <string name="message_waitsecond">Waiting for second value ...</string>
+    <string name="message_gotfirst">Got first value…</string>
+    <string name="message_gotsecond">Got second value…</string>
+    <string name="message_waitsecond">Waiting for second value…</string>
     <string name="title_activity_research">Research</string>
     <string name="title_activity_speedcontrol">Average speed</string>
-    <string name="unit_ConsumptionKm">\\u0020kWh/100km</string>
-    <string name="unit_ConsumptionMiAlt">\\u0020mi/kWh</string>
+    <string name="unit_ConsumptionKm">\u0020kWh/100km</string>
+    <string name="unit_ConsumptionMiAlt">\u0020mi/kWh</string>
     <string name="unit_Nm">Nm</string>
-    <string name="unit_SpeedKm">\\u0020km/h</string>
-    <string name="unit_SpeedMi">\\u0020mi/h</string>
+    <string name="unit_SpeedKm">\u0020km/h</string>
+    <string name="unit_SpeedMi">\u0020mi/h</string>
+    <string name="message_NoFreeTesting">\nNot testing free frames, as you selected Use ISOTP fields\n</string>
 </resources>

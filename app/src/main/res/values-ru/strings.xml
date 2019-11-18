@@ -258,11 +258,12 @@
     <string name="message_PrepIsoTp">\nОбрабатываю подготовленную команду ISO-TP CLUSTER SW\n</string>
     <string name="prompt_BluetoothOn">Работа Bluetooth в фоновом режиме может мешать работе других приложений, использующих Bluetooth. Также, это может привести к разряду вашей батареи, если вы забудете выйти из CanZE или отключить эту опцию. <br /><br /><b>С этой опцией соединение будет поддерживаться, даже если вы перезагрузите ваше Android-устройство!</b><br /><br />Вы действительно хотите включить фоновый режим Bluetooth?</string>
     <string name="default_NotOk">Не ОК</string>
-    <string name="label_AltFields">Use ISOTP fields</string>
-    <string name="label_Darkmode">Force Dark Mode</string>
-    <string name="message_gotfirst">Got first value ...</string>
-    <string name="message_gotsecond">Got second value ...</string>
-    <string name="message_waitsecond">Waiting for second value ...</string>
+    <string name="label_AltFields">Использовать поля ISOTP</string>
+    <string name="label_Darkmode">Принудительный Тёмный Режим</string>
+    <string name="message_gotfirst">Got first value…</string>
+    <string name="message_gotsecond">Got second value…</string>
+    <string name="message_waitsecond">Waiting for second value…</string>
     <string name="title_activity_research">Research</string>
     <string name="title_activity_speedcontrol">Average speed</string>
+    <string name="message_NoFreeTesting">\nNot testing free frames, as you selected Use ISOTP fields\n</string>
 </resources>
