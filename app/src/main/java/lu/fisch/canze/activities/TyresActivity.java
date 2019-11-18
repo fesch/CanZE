@@ -287,11 +287,16 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
             return;
         }
 
-        Frame[] frames = new Frame[3];
+        //Frame[] frames = new Frame[3];
+        Frame[] frames = new Frame[6];
 
         frames[0] = Frames.getInstance().getById(0x765, "50c0"); // tester present to BCM
         frames[1] = Frames.getInstance().getById(0x765, "7e01"); // tester awake to BCM
-        frames[2] = new Frame(0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format("7b5d%06X%06X%06X%06X", idFrontLeft, idFrontRight, idRearLeft, idRearRight), null); // set TMPS ids
+        //frames[2] = new Frame(0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format("7b5d%06X%06X%06X%06X", idFrontLeft, idFrontRight, idRearLeft, idRearRight), null); // set TMPS ids
+        frames[2] = new Frame(0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format("7b5e01%06X", idFrontLeft ), null);
+        frames[3] = new Frame(0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format("7b5e02%06X", idFrontRight), null);
+        frames[4] = new Frame(0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format("7b5e03%06X", idRearRight ), null);
+        frames[5] = new Frame(0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format("7b5e04%06X", idRearLeft  ), null);
 
         if (MainActivity.device == null)
             return; // this should not happen as the fragment checks the device property, but it does
