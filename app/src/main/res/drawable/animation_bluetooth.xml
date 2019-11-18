@@ -4,22 +4,22 @@
     android:oneshot="false">
     
     <item
-        android:drawable="@mipmap/bluetooth_0"
+        android:drawable="@drawable/bluetooth_0"
         android:duration="200" />
     <item
-        android:drawable="@mipmap/bluetooth_1"
+        android:drawable="@drawable/bluetooth_1"
         android:duration="200" />
     <item
-        android:drawable="@mipmap/bluetooth_2"
+        android:drawable="@drawable/bluetooth_2"
         android:duration="200" />
     <item
-        android:drawable="@mipmap/bluetooth_3"
+        android:drawable="@drawable/bluetooth_3"
         android:duration="200" />
     <item
-        android:drawable="@mipmap/bluetooth_2"
+        android:drawable="@drawable/bluetooth_2"
         android:duration="200" />
     <item
-        android:drawable="@mipmap/bluetooth_1"
+        android:drawable="@drawable/bluetooth_1"
         android:duration="200" />
 
 </animation-list>

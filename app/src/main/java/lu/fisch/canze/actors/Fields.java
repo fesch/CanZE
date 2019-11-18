@@ -26,6 +26,7 @@
  */
 package lu.fisch.canze.actors;
 
+import lu.fisch.canze.R;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.interfaces.VirtualFieldAction;
@@ -36,6 +37,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * @author robertfisch test
@@ -545,15 +547,16 @@ public class Fields {
 
 
 
-    private void addVirtualFieldCommon(String virtualId, String unit, String dependantIds, VirtualFieldAction virtualFieldAction) {
+    private void addVirtualFieldCommon(String virtualId, String unit, String dependantSids, VirtualFieldAction virtualFieldAction) {
         // create a list of field this new virtual field will depend on
         HashMap<String, Field> dependantFields = new HashMap<>();
         boolean allOk = true;
-        for (String idStr : dependantIds.split(";")) {
-            Field field = getBySID(idStr);
+        for (String sid : dependantSids.split(";")) {
+            Field field = getBySID(sid);
             if (field != null) {
-                dependantFields.put(idStr, field);
+                dependantFields.put(sid, field);
             } else {
+                MainActivity.toast(MainActivity.TOAST_NONE,  String.format(Locale.getDefault(),MainActivity.getStringSingle(R.string.format_NoSid), "Fields", sid));
                 allOk = false;
             }
         }
@@ -584,7 +587,7 @@ public class Fields {
             } else {
                 short options = Short.parseShort(tokens[FIELD_OPTIONS].trim(), 16);
                 // ensure this field matches the selected car
-                if ((options & MainActivity.car) != 0 & !tokens[FIELD_RESPONSE_ID].trim().startsWith("7")) {
+                if ((options & MainActivity.car) != 0 && (!tokens[FIELD_RESPONSE_ID].trim().startsWith("7") || tokens[FIELD_RESPONSE_ID].trim().toLowerCase().equals("7e01"))) {
                     //Create a new field object and fill his  data
                     //MainActivity.debug(tokens[FIELD_SID] + " " + tokens[FIELD_ID] + "." + tokens[FIELD_FROM] + "." + tokens[FIELD_RESPONSE_ID]);
                     try {
@@ -636,16 +639,17 @@ public class Fields {
     private void fillFromFile(String filename) {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
-            if (bufferedReader == null) {
-                MainActivity.toast(MainActivity.TOAST_NONE, "Can't access file " + filename);
-                return;
-            }
+            // removed checking for non null bufferedReader, as file not found will thow an Exception
+            //if (bufferedReader == null) {
+            //    MainActivity.toast(MainActivity.TOAST_NONE, "Can't access file " + filename);
+            //    return;
+            //}
             String line;
             while ((line = bufferedReader.readLine()) != null)
                 fillOneLine(line);
             bufferedReader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e ) {
+            MainActivity.toast(MainActivity.TOAST_NONE, "Can't access file " + filename);
         }
     }
 
@@ -676,6 +680,12 @@ public class Fields {
     public void load(String assetName) {
         fields.clear();
         fieldsBySid.clear();
+
+        // if settings were not done, no fields would be loaded from file, and then the system will
+        // complain because it can't get register the virtual fields because it cannot find the
+        // required dependantfields.
+        if (MainActivity.device == null) return;
+
         if (assetName.equals("")) {
             fillFromAsset(MainActivity.altFieldsMode ? "_FieldsAlt.csv" : "_Fields.csv");
             addVirtualFields();
@@ -683,9 +693,9 @@ public class Fields {
             fillFromFile(assetName);
         } else {
             fillFromAsset(assetName);
-            if (assetName.startsWith("VFC")) {
-                addVirtualFields();
-            }
+            //if (assetName.startsWith("VFC")) {
+            //    addVirtualFields();
+            //}
         }
         MainActivity.getInstance().registerApplicationFields(); // this registers i.e. speed for save driving mode
     }

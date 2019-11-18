@@ -100,6 +100,13 @@ public class ElmTestActivity extends CanzeActivity {
             return;
         }
         appendResult(R.string.message_ExpectedResult);
+        appendResult("");
+
+        if (MainActivity.altFieldsMode) {
+            appendResult(R.string.message_NoFreeTesting);
+            appendResult(R.string.message_DevicePassed);
+            return;
+        }
 
         appendResult(R.string.message_PrepFree);
         field = Fields.getInstance().getBySID("4f8.4");

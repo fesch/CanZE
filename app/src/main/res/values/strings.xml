@@ -32,6 +32,8 @@
     <!-- Units -->
 
     <string name="unit_Nm">Nm</string>
+    <string name="unit_Km" translatable="false">\u0020km</string>
+    <string name="unit_Mi" translatable="false">\u0020mi</string>
     <string name="unit_SpeedKm">\u0020km/h</string>
     <string name="unit_SpeedMi">\u0020mi/h</string>
     <string name="unit_ConsumptionKm">\u0020kWh/100km</string>
@@ -407,7 +409,7 @@
     <string name="label_HVEvaporationTemp">HV Evaporation temp (°C)</string>
     <string name="label_ACPressure">Pressure (bar)</string>
     <string name="label_HVCoolingState">HV cooling state</string>
-    <string name="label_EngineFanSpeed">Engine fan speed (RPM)</string>
+    <string name="label_EngineFanSpeed">Engine fan speed (%)</string>
     <string name="label_ClimateBatteryInteraction">Climate-Battery interaction</string>
     <string-array name="list_CoolingStatus">
         <item>No</item>
@@ -458,7 +460,7 @@
 
     <!-- Datalogger -->
 
-    <string name="format_NoSid">sid %s does not exist in class Fields</string>
+    <string name="format_NoSid">%s: sid %s does not exist</string>
 
     <!-- Driving -->
 
@@ -512,6 +514,7 @@
     <string name="message_Problem">Problem:</string>
     <string name="message_PrepIsoTp">\nProcessing prepped ISO-TP command CLUSTER SW\n</string>
     <string name="message_PrepFree">\nProcessing prepped free frame PARK BRAKE\n</string>
+    <string name="message_NoFreeTesting">\nNot testing free frames, as you selected Use ISOTP fields\n</string>
     <string name="message_DevicePassed">\nYour device passed all the tests, it will probably work just fine\n</string>
 
     <!-- ELM327 -->
@@ -524,15 +527,15 @@
     <string name="message_ELM20Ready">ELM ready, version 2.x, will probably not work, please report if it does</string>
     <string name="message_ELMUnknown">ELM ready, unknown version, will probably not work, please report if it does</string>
 
+    <!-- Field test -->
+
+    <string name="title_activity_fieldtest" translatable="false">Field test</string>
+
     <!-- Firmware -->
 
     <string name="title_activity_firmware">Firmware</string>
     <string name="button_Firmware">Firmware</string>
     <string name="help_Ecus"><![CDATA[Click on an ECU to get details. Learn more about the car\'s computers <a href="http://canze.fisch.lu/computers/">here</a>.]]></string>
-
-    <!-- Fluence Kangoo Temps -->
-
-    <!-- <string name="button_FluenceKangooTemps">Fluence Kangoo Temps</string> -->
 
     <!-- Frames -->
 
@@ -560,22 +563,6 @@
     <string name="_81" translatable="false">81</string>
     <string name="_89" translatable="false">89</string>
 
-    <!-- Kangoo fluence temperatures -->
-    <!--
-    <string name="title_activity_fluence_kangoo_temp">Fluence Kangoo Temp</string>
-    <string name="header_KangooFluenceTemperatures">Temperatures</string>
-    <string name="label_EvaporatorTemperature">Evaporator temperature</string>
-    <string name="label_WaterTemperatureHeating">Water temperature used for heating</string>
-    <string name="label_DcDcConverterTemperature">DC-DC converter temperature</string>
-    <string name="label_InverterTemperature">Inverter temperature</string>
-    <string name="label_ExternalTemperature">External ambient temperature</string>
-    <string name="label_InternalTemperature">Internal ambient temperature</string>
-    <string name="header_KangooFluenceFansPumps">Fans and pumps (descriptions to be added)</string>
-    <string name="label_MotorWaterPumpSpeed">Motor water pump speed</string>
-    <string name="label_ChargerWaterPumpSpeed">Charger water pump speed</string>
-    <string name="label_HeatingWaterPumpSpeed">Heating water pump speed</string>
-    <string name="label_BatteryCoolingFansSpeed">Battery cooling fans speed</string>
-    -->
     <!-- LeakCurrents -->
 
     <string name="title_activity_leakCurrents">Leak currents</string>
@@ -607,6 +594,10 @@
     <string name="label_RangeRemainingCanZE">Available range by CanZE:</string>
     <string name="label_EstimatedDrivingStyleLoss">Estimated driving style energy loss:</string>
     <string name="graph_DistanceEnergy">Available range (km), Available energy (kWh)</string>
+
+    <!-- Research -->
+
+    <string name="title_activity_research">Research</string>
 
     <!-- Settings -->
 
@@ -642,6 +633,13 @@
     <string name="toast_CacheCleared">Cache has been cleared…</string>
     <!-- <string name="toast_PleaseUseTop">Please use one of the top buttons to quit the settings …</string> -->
     <string name="toast_NoBluetooth">This device does not have any bluetooth adapter.\n\nSorry…</string>
+
+    <!-- Speed control -->
+
+    <string name="title_activity_speedcontrol">Average speed</string>
+    <string name="message_gotfirst">Got first value…</string>
+    <string name="message_gotsecond">Got second value…</string>
+    <string name="message_waitsecond">Waiting for second value…</string>
 
     <!-- Tyres -->
 

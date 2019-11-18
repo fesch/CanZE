@@ -293,7 +293,7 @@ public class DataLogger implements FieldListener {
             MainActivity.device.addApplicationField(field, intervalMs);
             subscribedFields.add(field);
         } else {
-            MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_NoSid), sid);
+            MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_NoSid), "Datalogger", sid);
         }
     }
 
