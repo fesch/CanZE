@@ -15,12 +15,6 @@
     <string name="default_Cancel">Annuler</string>
     <string name="default_Reset">Réinitialiser</string>
     <string name="format_NoView" formatted="false">Il n’y a pas de vue avec l’id \'%s%s\'</string>
-    <string name="unit_Nm">Nm</string>
-    <string name="unit_SpeedKm">\u0020km/h</string>
-    <string name="unit_SpeedMi">\u0020mi/h</string>
-    <string name="unit_ConsumptionKm">\u0020kWh/100km</string>
-    <string name="unit_ConsumptionMiAlt">\u0020mi/kWh</string>
-    <string name="unit_Celsius" translatable="false">°C</string>
     <string name="label_debug">Debug\u0020</string>
     <string name="default_debug">#Debug</string>
     <string name="toast_InitWidgets">Initialisation des widgets</string>
@@ -235,7 +229,6 @@
     <string name="label_driver_torque_request">Couple demandé</string>
     <string name="label_ElecBrakeWheelsTorqueApplied">Couple électrique appliqué (régénération)</string>
     <string name="label_diff_friction_torque">Couple de friction appliqué (pertes)</string>
-    <string name="default_ZeroNm">0 Nm</string>
     <string name="help_AllTorques">Tous les couples sont exprimés à la roue et non en couple moteur.</string>
     <string name="message_CantConnect">Connection impossible. Bluetooth pas encore configuré ?</string>
     <string name="title_activity_charging">Charge</string>
@@ -326,7 +319,7 @@
     <string name="label_HVEvaporationTemp">T° évaporateur batterie (°C)</string>
     <string name="label_ACPressure">Pression</string>
     <string name="label_HVCoolingState">État du conditionnement batterie</string>
-    <string name="label_EngineFanSpeed">Vitesse de rotation du ventilateur</string>
+    <string name="label_EngineFanSpeed">Vitesse de rotation du ventilateur (%)</string>
     <string name="label_ClimateBatteryInteraction">Interaction climatisation/batterie</string>
     <string-array name="list_CoolingStatus">
         <item>Aucun</item>
@@ -368,7 +361,7 @@
     <string name="graph_SpeedConsumption">Vitesse (km/h), Consommation (kWh/100km)</string>
     <string name="title_activity_dash">Dash</string>
     <string name="button_Dash">Dash</string>
-    <string name="format_NoSid">sid %s n’existe pas dans la classe Fields</string>
+    <string name="format_NoSid">%s: sid %s n’existe pas dans la classe Fields</string>
     <string name="title_activity_driving">Informations de conduite</string>
     <string name="button_Driving">Conduite</string>
     <string name="label_pedal">Position pédale</string>
@@ -509,4 +502,16 @@
         <item>-</item>
     </string-array>
     <string name="title_activity_widget">Activité Widget</string>
+    <string name="default_ZeroNm">0 Nm</string>
+    <string name="message_gotfirst">Got first value…</string>
+    <string name="message_gotsecond">Got second value…</string>
+    <string name="message_waitsecond">Waiting for second value…</string>
+    <string name="title_activity_research">Research</string>
+    <string name="title_activity_speedcontrol">Average speed</string>
+    <string name="unit_ConsumptionKm">\u0020kWh/100km</string>
+    <string name="unit_ConsumptionMiAlt">\u0020mi/kWh</string>
+    <string name="unit_Nm">Nm</string>
+    <string name="unit_SpeedKm">\u0020km/h</string>
+    <string name="unit_SpeedMi">\u0020mi/h</string>
+    <string name="message_NoFreeTesting">\nNot testing free frames, as you selected Use ISOTP fields\n</string>
 </resources>

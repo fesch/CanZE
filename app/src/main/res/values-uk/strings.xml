@@ -37,7 +37,7 @@
     <string name="default_debug">#Debug</string>
     <string name="format_DumpWriting">Зачекайте, йде запис %s</string>
     <string name="format_NoAsset">Немає доступу до %s</string>
-    <string name="format_NoSid">sid %s відсутній у класі Fields</string>
+    <string name="format_NoSid">%s: sid %s відсутній у класі Fields</string>
     <string name="format_NoView">Немає екрану з id \'%$1s%$2s\'</string>
     <string name="graph_CellVoltages">Напруга на комірках (В)</string>
     <string name="graph_Climatech">Ззовні (°C), Всередині (°C), Замовлення (°C), Батарея (°C)</string>
@@ -194,7 +194,7 @@
     <string name="label_Miles">Мілі</string>
     <string name="label_InterPhaseVoltage">Міжфазна напруга 12/23/31 (В)</string>
     <string name="label_InstantConsumption">Миттєве споживання</string>
-    <string name="label_EngineFanSpeed">Швидкість вентилятору двигуна (об/хв)</string>
+    <string name="label_EngineFanSpeed">Швидкість вентилятору двигуна (%)</string>
     <string name="default_Yes">Так</string>
     <string name="label_HvTemp">Середня температура батреї (°C)</string>
     <string name="label_HVCoolingState">Стан охолдження батареї</string>
@@ -258,4 +258,12 @@
     <string name="message_PrepIsoTp">\nОпрацьовую підготовану команду ISO-TP CLUSTER SW\n</string>
     <string name="prompt_BluetoothOn">Робота Bluetooth у фоновому режимі може заважати іншим додаткам, що використовують Bluetooth. Також це може розрядити вашу батарею, якщо ви забудете вийти з CanZE або відключити цю опцію.<br /><br /><b>З цією опцією з\'єднання буде підтримуватись навіть якщо ви перезавантажите ваш Android-пристрій!</b><br /><br />Ви впевнені, що хочете увімкнути фоновий режим Bluetooth?</string>
     <string name="default_NotOk">Не ОК</string>
+    <string name="label_AltFields">Використовувати поля ISOTP</string>
+    <string name="label_Darkmode">Примусовий Темний Режим</string>
+    <string name="message_gotfirst">Got first value…</string>
+    <string name="message_gotsecond">Got second value…</string>
+    <string name="message_waitsecond">Waiting for second value…</string>
+    <string name="title_activity_research">Research</string>
+    <string name="title_activity_speedcontrol">Average speed</string>
+    <string name="message_NoFreeTesting">\nNot testing free frames, as you selected Use ISOTP fields\n</string>
 </resources>

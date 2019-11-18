@@ -1,3 +1,19 @@
+---< Version 1.47 / 2019.11.10 / 49 >---
+2019-11-18 [Jeroen] TPMS write alternative approach, thanks Fred
+2019-11-18 [Jeroen] Added UK/RU tranlation, thanks @landswellsong, lint
+2019-11-17 [Jeroen] Fixed pilot current in ISOTP mode ( mgerZOE issue #584 )
+2019-11-17 [Jeroen] Avoid crash when clearing fields
+2019-11-17 [Jeroen] Avoid crash in Color decoding a themed color
+2019-11-15 [Jeroen] Fix massive errors when app is unconfigured
+2019-11-15 [Jeroen] Don't do free frame testing in ELM testing when in ISOTP mode
+2019-11-15 [Jeroen] In isotpOnly mode use insecure and relax andwers
+2019-11-12 [Jeroen] Removed all _web icons in main folder except launcher
+2019-11-12 [Jeroen] Moved all artwork except aunch icon to drawable
+2019-11-11 [Jeroen] Added BCM and USM, csv files
+2019-11-09 [Jeroen] Removed location permission from manifest (not used), manifest cleanup
+2019-11-09 [Jeroen] Added option in Experimental fragment to only show when not on master
+2019-11-09 [Jeroen] Fixed issue #578 Fan speed label
+
 ---< Version 1.46 / 2019.11.10 / 48 >---
 2019-11-08 [Jeroen] Several Code and layout cleanups
 2019-11-08 [Jeroen] Fix crash in Firmware activity
@@ -5,7 +21,7 @@
 2019-11-06 [Jeroen] Added Research activity
 2019-11-05 [Jeroen] Improved field logging
 2019-11-04 [Jeroen] Fixed consistency of ISOTP error msgs
-2019-11-04 [Jeroen] Shorteded pre-command timeout to see if it improves long tx ISOTP sync errors.
+2019-11-04 [Jeroen] Shortened pre-command timeout to see if it improves long tx ISOTP sync errors.
 2019-11-04 [Jeroen] Gradle to 3.5.2
 2019-11-04 [Jeroen] Removed fields that cannot be fetched by ISOTP only
 2019-11-04 [Jeroen] Added ELM conversation logging

@@ -125,6 +125,7 @@
 ,77e,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,77e,24,39,0.015625,0,2,ºC,223018,623018,ff,DCDC converter temperature
 ,77e,24,31,0.015625,0,2,°C,22302b,62302b,ff,inverter temperature
+,77e,24,39,0.03125,0,0,Nm,223025,623025,1ff,PEBTorque
 # BCB
 ,793,0,0,1,0,0,,1081,5081,ff,start diag
 ,793,0,0,1,0,0,,10c0,50c0,ff,start diag
@@ -307,6 +308,7 @@
 ,7bc,144,159,1,0,0,,2180,6180,ff,Version
 ,7bc,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,7bc,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,7bc,28,39,1,4094,0,N·m,224B7D,624b7d,ff,Total Hydraulic brake wheels torque request
 # TCU
 ,7da,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7da,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
@@ -324,6 +326,8 @@
 ,7ec,24,39,.02,0,2,%,222002,622002,ff,State Of Charge (SOC) HV battery
 ,7ec,24,39,.01,0,2,V,222005,622005,ff,Battery voltage 14v
 ,7ec,24,47,1,0,0,km,222006,622006,ff,Total vehicle distance
+,7ec,24,39,.00125,0,0,-,22202E,62202E,ff,Accelerator pedal position
+,7ec,24,39,.03125,32768,0,N.m,222247,622247,ff,Minimum effective torque that can be requested to the electrical motor (EM)
 ,7ec,24,31,.390625,0,1,%,223028,623028,ff,DCDC Load
 ,7ec,24,39,.5,0,1,V,223203,623203,ff,HV LBC voltage measure
 ,7ec,24,39,.25,32768,1,A,223204,623204,ff,HV LBC current measure
@@ -394,10 +398,13 @@
 ,7ec,24,39,1,0,0,min,2233d9,6233d9,ff
 #,7ec,24,30,0.01,1,0,kWh,2233db,6233db,ff,Consumed domestic energy
 #,7ec,24,47,0.001,1,0,kWh,2233dc,6233dc,ff,Consumed energy
+,7ec,24,39,1,0,0,km,223451,623451,ff,Estimated kilometric cruising range sent to MMI
+,7ec,24,39,.001953125,0,3,kW,223455,623455,ff,Mean eco electrical consumption (if driver has economical driving behavior)
+,7ec,24,39,.001953125,0,3,kW,223457,623457,ff,Mean pessimistic electrical consumption (worst possible consumption)
 ,7ec,24,47,0.001,0,0,kwh,2233dd,6233dd,ff,Trip energy consumed
 ,7ec,24,55,0.0001,0,0,km,2233de,6233de,ff,Trip distance
 ,7ec,24,39,1,32767,0,A,223484,623484,ff,Current measurement given by BCS Battery Current Sensor
 ,7ec,24,39,.001,0,0,V,223485,623485,ff,Voltage measurement given by BCS Battery Current Sensor
-,7ec,31,31,1,0,0,,223498,623498,ff,Battery relay PTC n°1
-,7ec,31,31,1,0,0,,22349a,62349a,ff,Battery relay PTC n°2
-,7ec,31,31,1,0,0,,22349c,62349c,ff,Battery relay PTC n°3
+#,7ec,31,31,1,0,0,,223498,623498,ff,Battery relay PTC n°1
+#,7ec,31,31,1,0,0,,22349a,62349a,ff,Battery relay PTC n°2
+#,7ec,31,31,1,0,0,,22349c,62349c,ff,Battery relay PTC n°3

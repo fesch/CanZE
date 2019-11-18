@@ -44,9 +44,9 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
     private static final String SID_Pressure                         = "764.6143.134";
     private static final String SID_BatteryConditioningMode          = "432.36";
     private static final String SID_ClimaLoopMode                    = "42a.48";
-    private static final String SID_PtcRelay1                        = "7ec.623498.31";
-    private static final String SID_PtcRelay2                        = "7ec.62349a.31";
-    private static final String SID_PtcRelay3                        = "7ec.62349c.31";
+    //private static final String SID_PtcRelay1                        = "7ec.623498.31";
+    //private static final String SID_PtcRelay2                        = "7ec.62349a.31";
+    //private static final String SID_PtcRelay3                        = "7ec.62349c.31";
 
     private final String[] cooling_Status = MainActivity.getStringList(R.array.list_CoolingStatus);
     private final String[] conditioning_Status = MainActivity.getStringList (R.array.list_ConditioningStatus);
@@ -71,9 +71,9 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
             addField(SID_Pressure, 1000);
             addField(SID_BatteryConditioningMode, 0);
             addField(SID_ClimaLoopMode, 0);
-            addField(SID_PtcRelay1, 1000);
-            addField(SID_PtcRelay2, 1000);
-            addField(SID_PtcRelay3, 1000);
+            //addField(SID_PtcRelay1, 1000);
+            //addField(SID_PtcRelay2, 1000);
+            //addField(SID_PtcRelay3, 1000);
         //}
     }
 
@@ -133,27 +133,27 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
                     //case SID_ClimaCompressorPower:
                         // tv = findViewById(R.id.text_CPW);
                         // break;
-                    case SID_PtcRelay1:
-                        value = (int) field.getValue();
-                        tv = findViewById(R.id.text_PTC1);
-                        if (tv != null && ptc_Relay != null && value >= 0 && value < ptc_Relay.length)
-                            tv.setText(ptc_Relay[value]);
-                        tv = null;
-                        break;
-                    case SID_PtcRelay2:
-                        value = (int) field.getValue();
-                        tv = findViewById(R.id.text_PTC2);
-                        if (tv != null && ptc_Relay != null && value >= 0 && value < ptc_Relay.length)
-                            tv.setText(ptc_Relay[value]);
-                        tv = null;
-                        break;
-                    case SID_PtcRelay3:
-                        value = (int) field.getValue();
-                        tv = findViewById(R.id.text_PTC3);
-                        if (tv != null && ptc_Relay != null && value >= 0 && value < ptc_Relay.length)
-                            tv.setText(ptc_Relay[value]);
-                        tv = null;
-                        break;
+                    //case SID_PtcRelay1:
+                    //    value = (int) field.getValue();
+                    //    tv = findViewById(R.id.text_PTC1);
+                    //    if (tv != null && ptc_Relay != null && value >= 0 && value < ptc_Relay.length)
+                    //        tv.setText(ptc_Relay[value]);
+                    //    tv = null;
+                    //    break;
+                    //case SID_PtcRelay2:
+                    //    value = (int) field.getValue();
+                    //    tv = findViewById(R.id.text_PTC2);
+                    //    if (tv != null && ptc_Relay != null && value >= 0 && value < ptc_Relay.length)
+                    //        tv.setText(ptc_Relay[value]);
+                    //    tv = null;
+                    //    break;
+                    //case SID_PtcRelay3:
+                    //    value = (int) field.getValue();
+                    //    tv = findViewById(R.id.text_PTC3);
+                    //    if (tv != null && ptc_Relay != null && value >= 0 && value < ptc_Relay.length)
+                    //        tv.setText(ptc_Relay[value]);
+                    //    tv = null;
+                    //    break;
 
                 }
                 // set regular new content, all exeptions handled above

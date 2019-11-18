@@ -33,6 +33,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.DashActivity;
 import lu.fisch.canze.activities.FieldTestActivity;
@@ -57,7 +58,7 @@ public class ExperimentalFragment extends Fragment {
 
         activateButton(view, R.id.buttonDash, DashActivity.class);
         activateButton(view, R.id.buttonSpeed, SpeedcontrolActivity.class);
-        activateButton(view, R.id.buttonFieldTest, FieldTestActivity.class);
+        activateButton(view, R.id.buttonFieldTest, FieldTestActivity.class, false);
         activateButton(view, R.id.buttonResearch, ResearchActivity.class);
 
         return view;
@@ -78,6 +79,17 @@ public class ExperimentalFragment extends Fragment {
                 ExperimentalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });
+    }
+
+    private void activateButton(View view, int buttonId, final Class<?> activityClass, boolean onlyDebug) {
+        if (!onlyDebug){// || BuildConfig.BRANCH != "master") {
+            activateButton(view, buttonId, activityClass);
+        } else {
+            // if on master and onlydebug is true, remove text and image
+            Button button = view.findViewById(buttonId);
+            button.setText("");
+            button.setCompoundDrawables(null, null,null, null);
+        }
     }
 
     @Override

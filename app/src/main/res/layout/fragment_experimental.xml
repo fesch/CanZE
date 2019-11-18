@@ -47,8 +47,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableLeft="@mipmap/button_dash"
-                        android:drawableStart="@mipmap/button_dash"
+                        android:drawableLeft="@drawable/button_dash"
+                        android:drawableStart="@drawable/button_dash"
                         android:text="@string/button_Dash"
                         />
                     <!--
@@ -78,7 +78,7 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@mipmap/button_speedcam"
+                        android:drawableStart="@drawable/button_speedcam"
                         android:text="avg speed" />
 
                 </TableRow>
@@ -112,8 +112,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableLeft="@mipmap/button_microscope"
-                        android:drawableStart="@mipmap/button_microscope"
+                        android:drawableLeft="@drawable/button_microscope"
+                        android:drawableStart="@drawable/button_microscope"
                         android:text="Research"
                         />
 

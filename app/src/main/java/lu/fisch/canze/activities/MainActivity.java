@@ -402,10 +402,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 actionBar.setIcon(R.mipmap.ic_launcher);
                 break;
             case 1:
-                actionBar.setIcon(R.mipmap.fragement_technical);
+                actionBar.setIcon(R.drawable.fragment_technical);
                 break;
             case 2:
-                actionBar.setIcon(R.mipmap.fragement_experimental);
+                actionBar.setIcon(R.drawable.fragment_experimental);
                 break;
             default:
                 break;
@@ -718,7 +718,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             loadSettings();
 
         // try to get a new BT thread
-        BluetoothManager.getInstance().connect(bluetoothDeviceAddress, true, BluetoothManager.RETRIES_INFINITE);
+        BluetoothManager.getInstance().connect(bluetoothDeviceAddress, !MainActivity.altFieldsMode, BluetoothManager.RETRIES_INFINITE);
     }
 
     @Override
@@ -853,10 +853,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
             switch (btState) {
                 case BLUETOOTH_DISCONNECTED:
-                    imageView.setBackgroundResource(R.mipmap.bluetooth_none);
+                    imageView.setBackgroundResource(R.drawable.bluetooth_none);
                     break;
                 case BLUETOOTH_CONNECTED:
-                    imageView.setBackgroundResource(R.mipmap.bluetooth_3);
+                    imageView.setBackgroundResource(R.drawable.bluetooth_3);
                     break;
                 case BLUETOOTH_SEARCH:
                     runOnUiThread(new Runnable() {
@@ -1079,6 +1079,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     public Resources.Theme getLocalTheme () {
+        if (this.localTheme == null) return this.getTheme(); // we can't do better than this. So still default to something in the Color.decode
         return this.localTheme;
     }
 
