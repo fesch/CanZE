@@ -52,7 +52,7 @@ import lu.fisch.canze.activities.DrivingActivity;
 import lu.fisch.canze.activities.HeatmapBatcompActivity;
 import lu.fisch.canze.activities.HeatmapCellvoltageActivity;
 import lu.fisch.canze.activities.MainActivity;
-import lu.fisch.canze.activities.TyresActivity;
+import lu.fisch.canze.activities.TiresActivity;
 
 
 public class MainFragment extends Fragment {
@@ -74,7 +74,7 @@ public class MainFragment extends Fragment {
         activateButton(view, R.id.buttonBattery, BatteryActivity.class);
         activateButton(view, R.id.buttonChargingActivity, ChargingActivity.class);
 
-        activateButton(view, R.id.buttonTyres, TyresActivity.class);
+        activateButton(view, R.id.buttonTires, TiresActivity.class);
         activateButton(view, R.id.buttonDrivingActivity, DrivingActivity.class);
 
         activateButton(view, R.id.buttonConsumption, ConsumptionActivity.class);
