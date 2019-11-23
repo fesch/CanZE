@@ -183,6 +183,7 @@
                         android:digits="0123456789ABCDEF"
                         android:maxLength="6"
                         android:inputType="textCapCharacters"
+                        android:enabled="false"
                         />
                 </TableRow>
 
@@ -201,6 +202,7 @@
                         android:digits="0123456789ABCDEF"
                         android:maxLength="6"
                         android:inputType="textCapCharacters"
+                        android:enabled="false"
                         />
                 </TableRow>
 
@@ -219,6 +221,7 @@
                         android:digits="0123456789ABCDEF"
                         android:maxLength="6"
                         android:inputType="textCapCharacters"
+                        android:enabled="false"
                         />
                 </TableRow>
 
@@ -237,6 +240,7 @@
                         android:layout_width="0dp"
                         android:maxLength="6"
                         android:inputType="textCapCharacters"
+                        android:enabled="false"
                         />
                 </TableRow>
 
@@ -262,6 +266,7 @@
                 android:id="@+id/button_TyresWrite"
                 android:text="@string/button_Tyres_write"
                 android:layout_weight="1"
+                android:enabled="false"
                 />
             </TableRow>
             </TableLayout>
