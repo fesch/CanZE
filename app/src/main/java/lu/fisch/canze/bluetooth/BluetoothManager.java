@@ -377,7 +377,7 @@ public class BluetoothManager {
 
         if (dummyMode || bluetoothSocket == null) return -1;
 
-        if (bluetoothSocket.isConnected())
+        if (bluetoothSocket.isConnected() && inputStream != null)
             return inputStream.read();
         else
             return -1;
@@ -387,7 +387,7 @@ public class BluetoothManager {
 
         if (dummyMode || bluetoothSocket == null) return 0;
 
-        if (bluetoothSocket.isConnected())
+        if (bluetoothSocket.isConnected() && inputStream != null)
             return inputStream.available();
         else
             return 0;
