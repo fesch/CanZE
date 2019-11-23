@@ -2,6 +2,7 @@
 #
 # FFC is not displayed in the DTC activity so doe not require Tests and Dtcs
 # Other than the ISO-TP based fields, FCC needs to have it's frames defined
+# Source: X10 CAN_V v4.0 officiel 01072011 65610-2011-173.xls
 #
 ,023,0,15,1,0,0,,,,ff,AIRBAGCrash
 ,0c6,0,15,1,32768,1,°,,,ff,Steering Position
