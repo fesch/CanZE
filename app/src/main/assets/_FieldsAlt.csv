@@ -25,11 +25,13 @@
 # 42a,30,39,0.1,400,1,°C,,,ff,Evaporator Temp Measure
 42a.30,764,42,51,0.1,400,1,°C,2144,6144,ff,Evaporator Temp Measure
 # 42a,48,50,1,0,0,,,,e2,ClimLoopMode
-42a.48,764,62,64,1,0,0,-,2144,2144,e2,ClimLoopMode
+# 42a.48,764,62,64,1,0,0,-,2144,2144,e2,ClimLoopMode
+42a.48,764,21,23,1,0,0,,2167,6167,ff,ILB_HPM_ClimLoopMode,0:Unavailable;1:AC mode;2:AC de-icing mode;3:Not used (100);4:Heat Pump mode;5:Not used (101);6:Demisting mode;7:Idle mode
 # 42e,0,12,0.02,0,2,%,,,e3,State of Charge
 42e.0,7ec,24,39,0.02,0,2,%,222002,622002,e3,State of Charge
 # 42e,20,24,5,0,0,%,,,e2,Engine Fan Speed
-42e.20,7ec,24,31,5,0,0,%,223471,613471,e2,Engine Fan Speed
+# 42e.20,7ec,24,31,5,0,0,%,223471,613471,e2,Engine Fan Speed
+42e.20,7ec,24,31,1,0,0,%,22345E,62345E,ff,FAN global request from ETS in PWM including AC, Cooling needs and Relay protection check
 # 42e,44,50,1,40,0,°C,,,e3,HV Battery Temp
 42e.44,7ec,24,31,1,40,0,°C,222001,622001,e3,HV Battery Temp
 # 430,38,39,1,0,0,,,,e2,HV Battery Cooling State
@@ -103,9 +105,11 @@
 ,764,36,43,1,0,0,%,2121,6121,e2,IH_RHumidity
 ,764,16,23,1,0,0,%,2121,6121,5,IH_RHumidity
 ,764,86,87,1,0,0,,2143,6143,ff,IH_EcoModeRequest,0:Unavailable Value;1:Eco mode requested;2:Eco mode not requested;3:Not used
+,764,88,92,100,0,0,W,2143,6143,ff,IH_ElectricalPowerDrived
 ,764,110,117,1,40,0,%,2143,6143,ff,IH_ExternalTemp
 ,764,134,142,.1,0,0,bar,2143,6143,ff,IH_ACHighPressureSensor
 ,764,107,116,10,0,0,rpm,2144,6144,ff,IH_ClimCompRPMStatus
+,764,21,23,1,0,0,,2167,6167,ff,ILB_HPM_ClimLoopMode,0:Unavailable;1:AC mode;2:AC de-icing mode;3:Not used (100);4:Heat Pump mode;5:Not used (101);6:Demisting mode;7:Idle mode
 ,764,40,41,1,0,0,,2167,6167,ff,IH_ExternalTemp
 ,764,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,764,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
@@ -120,6 +124,7 @@
 ,765,144,159,1,0,0,,2180,6180,ff,Version
 ,765,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,765,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,765,16,16,1,0,0,,2171,6171,ff,PRESENCE_SSPP,0:without;1:with
 ,765,24,47,1,0,0,,2171,6171,ff,TPMS
 ,765,48,71,1,0,0,,2171,6171,ff,TPMS
 ,765,72,95,1,0,0,,2171,6171,ff,TPMS
