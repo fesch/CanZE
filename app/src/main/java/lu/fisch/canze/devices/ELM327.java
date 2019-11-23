@@ -709,6 +709,6 @@ public class ELM327 extends Device {
         if (hexData.equals(""))
             return new Message(frame, "-E-ISOTP rx data empty", true);
         else
-            return new Message(frame, hexData, false);
+            return new Message(frame, hexData.toLowerCase(), false);
     }
 }
