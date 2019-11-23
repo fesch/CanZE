@@ -81,7 +81,10 @@ public class ELM327OverHttp extends Device {
         String msg = getMessage("Free.php?f=" + frame.getHexId() + "." + frame.getInterval());
         // MainActivity.debug("ELM327Http: request Free frame result " + msg);
 
-        return new Message(frame, msg, msg.substring(0, 1).compareTo("-") == 0);
+        if (msg.startsWith("-")) {
+            return new Message(frame, msg.toLowerCase(), true);
+        }
+        return new Message(frame, msg.toLowerCase(), false);
     }
 
     @Override
@@ -95,7 +98,10 @@ public class ELM327OverHttp extends Device {
         String msg = getMessage("IsoTp.php?f=" + frame.getSendingEcu().getHexFromId() + "." + frame.getSendingEcu().getHexToId() + "." + frame.getRequestId());
         // MainActivity.debug("ELM327Http: request IsoTp frame result " + msg);
 
-        return new Message(frame, msg, msg.substring(0, 1).compareTo("-") == 0);
+        if (msg.startsWith("-")) {
+            return new Message(frame, msg.toLowerCase(), true);
+        }
+        return new Message(frame, msg.toLowerCase(), false);
     }
 
     private String getMessage(String command) {

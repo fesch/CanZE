@@ -185,7 +185,7 @@ public class CanSee extends Device {
         // we could add answer length but that is not in the frame definition now
         //  everything is fine so
         wrongCount = 0;
-        return new Message(frame, pieces[1].trim(), false);
+        return new Message(frame, pieces[1].trim().toLowerCase(), false);
     }
 
     @Override
