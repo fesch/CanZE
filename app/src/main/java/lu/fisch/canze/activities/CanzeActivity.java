@@ -174,6 +174,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present. Empty contains only the bluetooth icon
         getMenuInflater().inflate(R.menu.menu_empty, menu);
+        MainActivity.getInstance().setBluetoothMenuItem (menu);
         return true;
     }
 

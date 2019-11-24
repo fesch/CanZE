@@ -44,10 +44,4 @@ public class LeakCurrentsActivity extends CanzeActivity implements DebugListener
         addField(SID_TesterAwake, 1500);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_empty, menu);
-        return true;
-    }
 }
