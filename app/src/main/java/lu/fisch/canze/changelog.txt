@@ -1,3 +1,4 @@
+---< Version 1.48 / 2019.11.18 / 50 >---
 2019-11-24 [Jeroen] Code cleanup in fragment handling
 2019-11-24 [Jeroen] Updated .gitignore to exclude some .idea and backup stuff
 2019-11-23 [Jeroen] Full refactor of Tyre to Tire
