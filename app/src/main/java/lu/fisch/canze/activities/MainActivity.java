@@ -813,7 +813,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // get a reference to the bluetooth action button
         bluetoothMenutItem = menu.findItem(R.id.action_bluetooth);
         // and put the right view on it
-        bluetoothMenutItem.setActionView(R.layout.animated_menu_item);
+        // bluetoothMenutItem.setActionView(R.layout.animated_menu_item);
         // set the correct initial state
         setBluetoothState(BLUETOOTH_DISCONNECTED);
         // get access to the image view

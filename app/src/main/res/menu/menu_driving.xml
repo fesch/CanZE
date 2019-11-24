@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ElmTestActivity"
     >
@@ -10,6 +11,7 @@
         android:orderInCategory="100"
         android:title="@string/label_DistToDest"
         android:visible="true"
+        app:showAsAction="never"
         />
 
     <item
@@ -17,6 +19,17 @@
         android:orderInCategory="101"
         android:title="@string/label_TripConsumption"
         android:visible="true"
+        app:showAsAction="never"
         />
+
+    <item
+        android:id="@+id/action_bluetooth"
+        android:orderInCategory="100"
+        android:title="@string/menu_Bluetooth"
+        android:visible="true"
+        app:actionLayout="@layout/animated_menu_item"
+        app:showAsAction="always"
+        />
+
 
 </menu>

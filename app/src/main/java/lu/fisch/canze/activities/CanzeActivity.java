@@ -27,6 +27,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -167,6 +168,13 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             }
         }
         super.onDestroy();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present. Empty contains only the bluetooth icon
+        getMenuInflater().inflate(R.menu.menu_empty, menu);
+        return true;
     }
 
     @Override
