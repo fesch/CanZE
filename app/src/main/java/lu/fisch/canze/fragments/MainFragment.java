@@ -57,8 +57,8 @@ import lu.fisch.canze.activities.TiresActivity;
 
 public class MainFragment extends Fragment {
 
-    static boolean firstRun = true;
-    static String msg = "";
+    private static boolean firstRun = true;
+    private static String msg = "";
 
     public MainFragment() {
         // Required empty public constructor
