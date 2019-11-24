@@ -192,22 +192,22 @@
                 android:layout_weight="1"
                 custom:backgroundColor="?android:attr/colorBackground"
                 custom:colorRanges="[
-                    {'sid':'7ec.6233a7.24','color':'#008a1d','from':0,'to':750},
-                    {'sid':'7ec.6233a7.24','color':'#ffaa17','from':750,'to':1500},
-                    {'sid':'7ec.6233a7.24','color':'#ff0000','from':1500,'to':2250},
-                    {'sid':'7ec.6233a7.24','color':'#cc00ff','from':2250,'to':3000},
+                    {'sid':'764.6143.88','color':'#008a1d','from':0,'to':750},
+                    {'sid':'764.6143.88','color':'#ffaa17','from':750,'to':1500},
+                    {'sid':'764.6143.88','color':'#ff0000','from':1500,'to':2250},
+                    {'sid':'764.6143.88','color':'#cc00ff','from':2250,'to':3000},
                     {'sid':'764.6143.86','color':'#008a1d','from':1,'to':1},
                     {'sid':'764.6143.86','color':'#ffffff','from':2,'to':2}
                     ]"
-                custom:fieldSID="7ec.6233a7.24,764.6143.86"
+                custom:fieldSID="764.6143.88,764.6143.86"
                 custom:foregroundColor="?android:attr/colorForeground"
                 custom:majorTicks="1000"
-                custom:max="2500"
+                custom:max="3000"
                 custom:min="0"
                 custom:minorTicks="500"
                 custom:options="{
-                                   '7ec.6233a7.24':'gradient',
-                                   '764.6143.86':'colorline[3900],dot'
+                                   '764.6143.88':'gradient',
+                                   '764.6143.86':'colorline[2800],dot'
                                 }"
                 custom:text="@string/label_IH_ClimCompPWRStatus"
                 custom:widget="timeplot" />

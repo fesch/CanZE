@@ -1,4 +1,15 @@
----< Version 1.47 / 2019.11.10 / 49 >---
+---< Version 1.48 / 2019.11.18 / 50 >---
+2019-11-24 [Jeroen] Code cleanup in fragment handling
+2019-11-24 [Jeroen] Updated .gitignore to exclude some .idea and backup stuff
+2019-11-23 [Jeroen] Full refactor of Tyre to Tire
+2019-11-23 [Jeroen] Several fixes Tyres, changelog
+2019-11-23 [Jeroen] Several Climate activity fixes, TMPS presence in (Alt)Fields
+2019-11-23 [Jeroen] Added documentation headers to _Fields csv files
+2019-11-23 [Jeroen] Ignore null frames when injecting an array of frames
+2019-11-23 [Jeroen] Allow all subcommands for tester present command to ECU
+2019-11-23 [Jeroen] Cleaned up case of Messages to always lower (unless error)
+
+---< Version 1.47 / 2019.11.18 / 49 >---
 2019-11-18 [Jeroen] TPMS write alternative approach, thanks Fred
 2019-11-18 [Jeroen] Added UK/RU tranlation, thanks @landswellsong, lint
 2019-11-17 [Jeroen] Fixed pilot current in ISOTP mode ( mgerZOE issue #584 )

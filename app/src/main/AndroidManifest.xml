@@ -82,9 +82,9 @@
             android:label="@string/title_activity_fluence_kangoo_temp" />
         -->
         <activity
-            android:name=".activities.TyresActivity"
+            android:name=".activities.TiresActivity"
             android:hardwareAccelerated="false"
-            android:label="@string/title_activity_tyres" />
+            android:label="@string/title_activity_tires" />
         <activity
             android:name=".activities.ChargingGraphActivity"
             android:hardwareAccelerated="false"

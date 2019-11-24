@@ -624,22 +624,22 @@
     <string name="toast_CacheCleared">Zwischenspeicher wurde gelöscht …</string>
     <string name="toast_NoBluetooth">Dieses Gerät verfügt nicht über einen Bluetooth Adapter.\n\nSorry …</string>
 
-    <!-- Tyres -->
+    <!-- Tires -->
 
-    <string name="title_activity_tyres">Information zu den Rädern - RDKS </string>
-    <string name="button_Tyres">Räder-Infos</string>
+    <string name="title_activity_tires">Information zu den Rädern - RDKS </string>
+    <string name="button_Tires">Räder-Infos</string>
     <string name="help_PressuresMbar">Alle Angaben in mbar</string>
-    <string name="label_TyreSpdPresMisadaption">Geschwindigkeits-Druck Fehlinterpretation</string>
-    <string name="label_TyreFL">Vorne links</string>
-    <string name="label_TyreFR">Vorne rechts</string>
-    <string name="label_TyreRL">Hinten links</string>
-    <string name="label_TyreRR">Hinten rechts</string>
-    <string name="label_TyreIDFL">ID vorne links</string>
-    <string name="label_TyreIDFR">ID vorne rechts</string>
-    <string name="label_TyreIDRL">ID hinten links</string>
-    <string name="label_TyreIDRR">ID hinten rechts</string>
-    <string name="button_Tyres_write">ID schreiben</string>
-    <string name="button_Tyres_read">ID lesen</string>
+    <string name="label_TireSpdPresMisadaption">Geschwindigkeits-Druck Fehlinterpretation</string>
+    <string name="label_TireFL">Vorne links</string>
+    <string name="label_TireFR">Vorne rechts</string>
+    <string name="label_TireRL">Hinten links</string>
+    <string name="label_TireRR">Hinten rechts</string>
+    <string name="label_TireIDFL">ID vorne links</string>
+    <string name="label_TireIDFR">ID vorne rechts</string>
+    <string name="label_TireIDRL">ID hinten links</string>
+    <string name="label_TireIDRR">ID hinten rechts</string>
+    <string name="button_Tires_write">ID schreiben</string>
+    <string name="button_Tires_read">ID lesen</string>
 
     <!-- Widgets only -->
 

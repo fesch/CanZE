@@ -223,13 +223,15 @@ public abstract class Device {
 
         Message message = null;
         for (Frame frame : frames) {
-            message = requestFrame(frame);
-            if (stopOnError && (message == null || message.isError())) return null;
-            if (message != null && callOnMessageComplete) {
-                if (!message.isError()) {
-                    message.onMessageCompleteEvent();
-                } else {
-                    message.onMessageIncompleteEvent();
+            if (frame != null) {
+                message = requestFrame(frame);
+                if (stopOnError && (message == null || message.isError())) break;
+                if (message != null && callOnMessageComplete) {
+                    if (!message.isError()) {
+                        message.onMessageCompleteEvent();
+                    } else {
+                        message.onMessageIncompleteEvent();
+                    }
                 }
             }
         }

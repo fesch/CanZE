@@ -477,21 +477,21 @@
     <string name="toast_CacheCleared">Le cache a été vidé…</string>
     <!-- <string name="toast_PleaseUseTop">S’il vous plaît, utilisez l’un des boutons du haut pour quitter les paramètres…</string> -->
     <string name="toast_NoBluetooth">Cet appareil de possède pas d’adaptateur Bluetooth.\n\nDésolé…</string>
-    <string name="title_activity_tyres">Info pneumatiques</string>
-    <string name="button_Tyres">Pneus</string>
+    <string name="title_activity_tires">Info pneumatiques</string>
+    <string name="button_Tires">Pneus</string>
     <string name="help_PressuresMbar">Toutes les pressions sont exprimées en millibars. Elles sont reçues uniquement en roulant.</string>
-    <string name="label_TyreSpdPresMisadaption">Erreur d’adaptation Vitesse-Pression</string>
-    <string name="label_TyreFL">Avant gauche</string>
-    <string name="label_TyreFR">Avant droit</string>
-    <string name="label_TyreRL">Arrière gauche</string>
-    <string name="label_TyreRR">Arrière droit</string>
-    <string name="label_TyreIDFL">ID avant gauche</string>
-    <string name="label_TyreIDFR">ID avant droit</string>
-    <string name="label_TyreIDRL">ID arrière gauche</string>
-    <string name="label_TyreIDRR">ID arrière droit</string>
-    <string name="button_Tyres_write">write</string>
-    <string name="button_Tyres_read">read</string>
-    <string-array name="list_TyreStatus">
+    <string name="label_TireSpdPresMisadaption">Erreur d’adaptation Vitesse-Pression</string>
+    <string name="label_TireFL">Avant gauche</string>
+    <string name="label_TireFR">Avant droit</string>
+    <string name="label_TireRL">Arrière gauche</string>
+    <string name="label_TireRR">Arrière droit</string>
+    <string name="label_TireIDFL">ID avant gauche</string>
+    <string name="label_TireIDFR">ID avant droit</string>
+    <string name="label_TireIDRL">ID arrière gauche</string>
+    <string name="label_TireIDRR">ID arrière droit</string>
+    <string name="button_Tires_write">write</string>
+    <string name="button_Tires_read">read</string>
+    <string-array name="list_TireStatus">
         <item>OK</item>
         <item>Pas d’infos</item>
         <item>Surgonflé</item>

@@ -78,8 +78,8 @@
                         android:layout_marginLeft="4dp"
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
-                        android:text="@string/button_Tyres"
-                        android:id="@+id/buttonTyres"
+                        android:text="@string/button_Tires"
+                        android:id="@+id/buttonTires"
                         android:drawableLeft="@drawable/button_tire"
                         android:drawableStart="@drawable/button_tire"
                         android:layout_column="0" />

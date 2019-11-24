@@ -24,22 +24,21 @@ package lu.fisch.canze.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.DashActivity;
 import lu.fisch.canze.activities.FieldTestActivity;
 import lu.fisch.canze.activities.MainActivity;
-import lu.fisch.canze.activities.SpeedcontrolActivity;
 import lu.fisch.canze.activities.ResearchActivity;
+import lu.fisch.canze.activities.SpeedcontrolActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +57,7 @@ public class ExperimentalFragment extends Fragment {
 
         activateButton(view, R.id.buttonDash, DashActivity.class);
         activateButton(view, R.id.buttonSpeed, SpeedcontrolActivity.class);
-        activateButton(view, R.id.buttonFieldTest, FieldTestActivity.class, false);
+        activateButton(view, R.id.buttonFieldTest, FieldTestActivity.class, true);
         activateButton(view, R.id.buttonResearch, ResearchActivity.class);
 
         return view;
@@ -82,13 +81,13 @@ public class ExperimentalFragment extends Fragment {
     }
 
     private void activateButton(View view, int buttonId, final Class<?> activityClass, boolean onlyDebug) {
-        if (!onlyDebug){// || BuildConfig.BRANCH != "master") {
-            activateButton(view, buttonId, activityClass);
-        } else {
-            // if on master and onlydebug is true, remove text and image
+        if (BuildConfig.BRANCH.equals("master") & onlyDebug) {
+            // if on master and onlyDebug is true, remove text and image
             Button button = view.findViewById(buttonId);
             button.setText("");
             button.setCompoundDrawables(null, null,null, null);
+        } else {
+            activateButton(view, buttonId, activityClass);
         }
     }
 

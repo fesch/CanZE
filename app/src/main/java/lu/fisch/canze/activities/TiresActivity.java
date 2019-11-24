@@ -33,6 +33,7 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.actors.Ecu;
 import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Frame;
@@ -42,31 +43,35 @@ import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 
-public class TyresActivity extends CanzeActivity implements FieldListener, DebugListener {
+public class TiresActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    private static final String SID_TyreSpdPresMisadaption = "673.0";
-    private static final String SID_TyreFLState = "673.11";
-    private static final String SID_TyreFLPressure = "673.40";
-    private static final String SID_TyreFRState = "673.8";
-    private static final String SID_TyreFRPressure = "673.32";
-    private static final String SID_TyreRLState = "673.5";
-    private static final String SID_TyreRLPressure = "673.24";
-    private static final String SID_TyreRRState = "673.2";
-    private static final String SID_TyreRRPressure = "673.16";
+    private static final String SID_TireSpdPresMisadaption = "673.0";
+    private static final String SID_TireFLState = "673.11";
+    private static final String SID_TireFLPressure = "673.40";
+    private static final String SID_TireFRState = "673.8";
+    private static final String SID_TireFRPressure = "673.32";
+    private static final String SID_TireRLState = "673.5";
+    private static final String SID_TireRLPressure = "673.24";
+    private static final String SID_TireRRState = "673.2";
+    private static final String SID_TireRRPressure = "673.16";
+    private static final String SID_TpmsState = "765.6171.16";
 
-    private static final String[] val_TyreSpdPresMisadaption = {MainActivity.getStringSingle(R.string.default_Ok), MainActivity.getStringSingle(R.string.default_NotOk)};
-    private static final String[] val_TyreState = MainActivity.getStringList(R.array.list_TyreStatus);
+    private static final String[] val_TireSpdPresMisadaption = {MainActivity.getStringSingle(R.string.default_Ok), MainActivity.getStringSingle(R.string.default_NotOk)};
+    private static final String[] val_TireState = MainActivity.getStringList(R.array.list_TireStatus);
     private static final String val_Unavailable = MainActivity.getStringSingle(R.string.default_Dash);
     @ColorInt
     private int baseColor;
     @ColorInt private int alarmColor;
     private boolean dark;
+    static int previousState = -1;
+    private final Ecu ecu = Ecus.getInstance().getByMnemonic("BCM");
+    private final int ecuFromId = ecu.getFromId();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tyres);
+        setContentView(R.layout.activity_tires);
 
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = this.getTheme();
@@ -79,7 +84,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         // set the two button handlers
-        Button button = findViewById(R.id.button_TyresRead);
+        Button button = findViewById(R.id.button_TiresRead);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +98,7 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
             }
         });
 
-        button = findViewById(R.id.button_TyresWrite);
+        button = findViewById(R.id.button_TiresWrite);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,18 +112,24 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         });
     }
 
+    protected void onResume () {
+        super.onResume();
+        tpmsState(-1);
+    }
+
     // set the fields the poller should query
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_TyreSpdPresMisadaption, 6000);
-        addField(SID_TyreFLState, 6000);
-        addField(SID_TyreFLPressure, 6000);
-        addField(SID_TyreFRState, 6000);
-        addField(SID_TyreFRPressure, 6000);
-        addField(SID_TyreRLState, 6000);
-        addField(SID_TyreRLPressure, 6000);
-        addField(SID_TyreRRState, 6000);
-        addField(SID_TyreRRPressure, 6000);
+        addField(SID_TireSpdPresMisadaption, 6000);
+        addField(SID_TireFLState, 6000);
+        addField(SID_TireFLPressure, 6000);
+        addField(SID_TireFRState, 6000);
+        addField(SID_TireFRPressure, 6000);
+        addField(SID_TireRLState, 6000);
+        addField(SID_TireRLPressure, 6000);
+        addField(SID_TireRRState, 6000);
+        addField(SID_TireRRPressure, 6000);
+        addField(SID_TpmsState, 6000);
     }
 
     // fired event when any of the registered fields are getting updated by the device
@@ -138,51 +149,54 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
                 // get the text field
                 switch (fieldId) {
 
-                    case SID_TyreSpdPresMisadaption:
-                        tv = findViewById(R.id.text_TyreSpdPresMisadaption);
+                    case SID_TireSpdPresMisadaption:
+                        tv = findViewById(R.id.text_TireSpdPresMisadaption);
                         color = 0; // don't set color
-                        value = val_TyreSpdPresMisadaption[intValue];
+                        value = val_TireSpdPresMisadaption[intValue];
                         break;
-                    case SID_TyreFLState:
+                    case SID_TireFLState:
                         if (intValue < 0 || intValue > 6) return;
-                        tv = findViewById(R.id.text_TyreFLState);
+                        tv = findViewById(R.id.text_TireFLState);
                         if (intValue > 1) color = alarmColor;
-                        value = val_TyreState != null ? val_TyreState[intValue] : "";
+                        value = val_TireState != null ? val_TireState[intValue] : "";
                         break;
-                    case SID_TyreFLPressure:
-                        tv = findViewById(R.id.text_TyreFLPressure);
+                    case SID_TireFLPressure:
+                        tv = findViewById(R.id.text_TireFLPressure);
                         value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
-                    case SID_TyreFRState:
+                    case SID_TireFRState:
                         if (intValue < 0 || intValue > 6) return;
-                        tv = findViewById(R.id.text_TyreFRState);
+                        tv = findViewById(R.id.text_TireFRState);
                         if (intValue > 1) color = alarmColor;
-                        value = val_TyreState != null ? val_TyreState[intValue] : "";
+                        value = val_TireState != null ? val_TireState[intValue] : "";
                         break;
-                    case SID_TyreFRPressure:
-                        tv = findViewById(R.id.text_TyreFRPressure);
+                    case SID_TireFRPressure:
+                        tv = findViewById(R.id.text_TireFRPressure);
                         value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
-                    case SID_TyreRLState:
+                    case SID_TireRLState:
                         if (intValue < 0 || intValue > 6) return;
-                        tv = findViewById(R.id.text_TyreRLState);
+                        tv = findViewById(R.id.text_TireRLState);
                         if (intValue > 1) color = alarmColor;
-                        value = val_TyreState != null ? val_TyreState[intValue] : "";
+                        value = val_TireState != null ? val_TireState[intValue] : "";
                         break;
-                    case SID_TyreRLPressure:
-                        tv = findViewById(R.id.text_TyreRLPressure);
+                    case SID_TireRLPressure:
+                        tv = findViewById(R.id.text_TireRLPressure);
                         value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
-                    case SID_TyreRRState:
+                    case SID_TireRRState:
                         if (intValue < 0 || intValue > 6) return;
-                        tv = findViewById(R.id.text_TyreRRState);
+                        tv = findViewById(R.id.text_TireRRState);
                         if (intValue > 1) color = alarmColor;
-                        value = val_TyreState != null ? val_TyreState[intValue] : "";
+                        value = val_TireState != null ? val_TireState[intValue] : "";
                         break;
-                    case SID_TyreRRPressure:
-                        tv = findViewById(R.id.text_TyreRRPressure);
+                    case SID_TireRRPressure:
+                        tv = findViewById(R.id.text_TireRRPressure);
                         value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
+                    case SID_TpmsState:
+                        tpmsState (intValue);
+                        tv = null;
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
@@ -196,6 +210,25 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         });
     }
 
+    private void tpmsState (int state) {
+        if (state == previousState) return;
+        previousState = state;
+        boolean isEnabled = (state == 1);
+        Button button = findViewById(R.id.button_TiresRead);
+        button.setEnabled(isEnabled);
+        button = findViewById(R.id.button_TiresWrite);
+        button.setEnabled(isEnabled);
+        EditText edittext;
+        edittext = findViewById(R.id.text_TireFLId);
+        edittext.setEnabled(isEnabled);
+        edittext = findViewById(R.id.text_TireFRId);
+        edittext.setEnabled(isEnabled);
+        edittext = findViewById(R.id.text_TireRLId);
+        edittext.setEnabled(isEnabled);
+        edittext = findViewById(R.id.text_TireRRId);
+        edittext.setEnabled(isEnabled);
+        if (!isEnabled) MainActivity.toast(MainActivity.TOAST_NONE, "Your car has no TPMS system");
+    }
 
     private void displayId(final int fieldId, final int val) {
         runOnUiThread(new Runnable() {
@@ -214,11 +247,14 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
         int idFrontRight = 0;
         int idRearLeft = 0;
         int idRearRight = 0;
-        Frame[] frames = new Frame[3];
 
-        frames[0] = Frames.getInstance().getById(0x765, "50c0"); // tester present to BCM
-        frames[1] = Frames.getInstance().getById(0x765, "7e01"); // tester awake to BCM
-        frames[2] = Frames.getInstance().getById(0x765, "6171"); // get TPMS ids
+        Frame[] frames = new Frame[3];
+        //frames[0] = Frames.getInstance().getById(ecuFromId, "50c0"); // tester present to BCM
+        //frames[0] = new Frame(ecuFromId, 0, ecu, "50c0", null);
+        //frames[1] = Frames.getInstance().getById(ecuFromId, "7e01"); // tester awake to BCM
+        //frames[1] = new Frame(ecuFromId, 0, ecu, "7e01", null);
+        //frames[2] = new Frame(ecuFromId, 0, ecu, String.format("7b5d%06X%06X%06X%06X", idFrontLeft, idFrontRight, idRearLeft, idRearRight), null); // set TMPS ids
+        frames[2] = Frames.getInstance().getById(ecuFromId, "6171"); // get TPMS ids
 
         if (MainActivity.device == null)
             return; // this should not happen as the fragment checks the device property, but it does
@@ -241,25 +277,24 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
             switch (field.getFrom()) {
                 case 24:
                     idFrontLeft = (int) field.getValue();
+                    break;
                 case 48:
                     idFrontRight = (int) field.getValue();
+                    break;
                 case 72:
                     idRearLeft = (int) field.getValue();
+                    break;
                 case 96:
                     idRearRight = (int) field.getValue();
+                    break;
             }
         }
 
-        if (idFrontLeft == 0 || idFrontRight == 0 || idRearLeft == 0 || idRearRight == 0) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "No TPMS valves found");
-            return;
-        }
-
         // display the fetched values
-        displayId(R.id.text_TyreFLId, idFrontLeft);
-        displayId(R.id.text_TyreFRId, idFrontRight);
-        displayId(R.id.text_TyreRLId, idRearLeft);
-        displayId(R.id.text_TyreRRId, idRearRight);
+        displayId(R.id.text_TireFLId, idFrontLeft);
+        displayId(R.id.text_TireFRId, idFrontRight);
+        displayId(R.id.text_TireRLId, idRearLeft);
+        displayId(R.id.text_TireRRId, idRearRight);
         MainActivity.toast(MainActivity.TOAST_NONE, "TPMS valves read");
     }
 
@@ -269,47 +304,54 @@ public class TyresActivity extends CanzeActivity implements FieldListener, Debug
             try {
                 return Integer.parseInt(et.getText().toString(), 16);
             } catch (Exception e) {
-                return 0;
+                return -1;
             }
         } else {
-            return 0;
+            return -1;
         }
     }
 
     private void buttonWrite() {
-        int idFrontLeft = simpleIntParse(R.id.text_TyreFLId);
-        int idFrontRight = simpleIntParse(R.id.text_TyreFRId);
-        int idRearLeft = simpleIntParse(R.id.text_TyreRLId);
-        int idRearRight = simpleIntParse(R.id.text_TyreRRId);
+        int idFrontLeft = simpleIntParse(R.id.text_TireFLId);
+        int idFrontRight = simpleIntParse(R.id.text_TireFRId);
+        int idRearLeft = simpleIntParse(R.id.text_TireRLId);
+        int idRearRight = simpleIntParse(R.id.text_TireRRId);
 
-        if (idFrontLeft == 0 || idFrontRight == 0 || idRearLeft == 0 || idRearRight == 0) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Those are not all valid hex values other than 000000");
+        if (idFrontLeft == -1 || idFrontRight == -1 || idRearLeft == -1 || idRearRight == -1) {
+            MainActivity.toast(MainActivity.TOAST_NONE, "Those are not all valid hex values");
+            return;
+        }
+        if (idFrontLeft == 0 && idFrontRight == 0 && idRearLeft == 0 && idRearRight == 0) {
+            MainActivity.toast(MainActivity.TOAST_NONE, "All values are 0");
             return;
         }
 
         //Frame[] frames = new Frame[3];
         Frame[] frames = new Frame[6];
 
-        frames[0] = Frames.getInstance().getById(0x765, "50c0"); // tester present to BCM
-        frames[1] = Frames.getInstance().getById(0x765, "7e01"); // tester awake to BCM
-        //frames[2] = new Frame(0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format("7b5d%06X%06X%06X%06X", idFrontLeft, idFrontRight, idRearLeft, idRearRight), null); // set TMPS ids
-        frames[2] = new Frame(0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format("7b5e01%06X", idFrontLeft ), null);
-        frames[3] = new Frame(0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format("7b5e02%06X", idFrontRight), null);
-        frames[4] = new Frame(0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format("7b5e03%06X", idRearRight ), null);
-        frames[5] = new Frame(0x765, 0, Ecus.getInstance().getByMnemonic("BCM"), String.format("7b5e04%06X", idRearLeft  ), null);
+        //frames[0] = Frames.getInstance().getById(ecuFromId, "50c0"); // tester present to BCM
+        //frames[0] = new Frame(ecuFromId, 0, ecu, "50c0", null);
+        //frames[1] = Frames.getInstance().getById(ecuFromId, "7e01"); // tester awake to BCM
+        //frames[1] = new Frame(ecuFromId, 0, ecu, "7e01", null);
+        //frames[2] = new Frame(ecuFromId, 0, ecu, String.format("7b5d%06X%06X%06X%06X", idFrontLeft, idFrontRight, idRearLeft, idRearRight), null); // set TMPS ids
+        if (idFrontLeft  != 0) frames[2] = new Frame(ecuFromId, 0, ecu, String.format("7b5e01%06x", idFrontLeft ), null);
+        if (idFrontRight != 0) frames[3] = new Frame(ecuFromId, 0, ecu, String.format("7b5e02%06x", idFrontRight), null);
+        if (idRearRight  != 0) frames[4] = new Frame(ecuFromId, 0, ecu, String.format("7b5e03%06x", idRearRight ), null);
+        if (idRearLeft   != 0) frames[5] = new Frame(ecuFromId, 0, ecu, String.format("7b5e04%06x", idRearLeft  ), null);
 
         if (MainActivity.device == null)
             return; // this should not happen as the fragment checks the device property, but it does
-        Message message = MainActivity.device.injectRequests(frames);
+        Message message = MainActivity.device.injectRequests(frames, true, false);
         if (message == null) {
             MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valves");
             return;
         }
         if (message.isError()) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Could not write valves:" + message.getError());
+            MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valves:" + message.getError());
             return;
         }
-        if (!message.getData().startsWith("7b5d")) {
+        //if (!message.getData().startsWith("7b5d")) {
+        if (!message.getData().startsWith("7b5e")) {
             MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valves:" + message.getData());
             return;
         }
