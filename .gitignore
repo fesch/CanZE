@@ -6,6 +6,9 @@
 /.idea/modules.xml
 /.idea/usage.statistics.xml
 /.idea/tasks.xml
+/.idea/assetWizardSettings.xml
+/.idea/caches/
+/projectFilesBackup/
 .DS_Store
 /build
 /captures
