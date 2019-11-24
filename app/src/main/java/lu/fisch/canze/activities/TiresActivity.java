@@ -248,17 +248,11 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         int idRearLeft = 0;
         int idRearRight = 0;
 
-        Frame[] frames = new Frame[3];
-        //frames[0] = Frames.getInstance().getById(ecuFromId, "50c0"); // tester present to BCM
-        //frames[0] = new Frame(ecuFromId, 0, ecu, "50c0", null);
-        //frames[1] = Frames.getInstance().getById(ecuFromId, "7e01"); // tester awake to BCM
-        //frames[1] = new Frame(ecuFromId, 0, ecu, "7e01", null);
-        //frames[2] = new Frame(ecuFromId, 0, ecu, String.format("7b5d%06X%06X%06X%06X", idFrontLeft, idFrontRight, idRearLeft, idRearRight), null); // set TMPS ids
-        frames[2] = Frames.getInstance().getById(ecuFromId, "6171"); // get TPMS ids
+        Frame frame = Frames.getInstance().getById(ecuFromId, "6171"); // get TPMS ids
 
         if (MainActivity.device == null)
             return; // this should not happen as the fragment checks the device property, but it does
-        Message message = MainActivity.device.injectRequests(frames); // return result message of last request (get TPMS ids)
+        Message message = MainActivity.device.injectRequest(frame); // return result message of last request (get TPMS ids)
         if (message == null) {
             MainActivity.toast(MainActivity.TOAST_NONE, "Could not read TPMS valves");
             return;
@@ -273,7 +267,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         message.onMessageCompleteEvent();
 
         // now process all fields in the frame. Select only the ones we are interested in
-        for (Field field : frames[2].getAllFields()) {
+        for (Field field : frame.getAllFields()) {
             switch (field.getFrom()) {
                 case 24:
                     idFrontLeft = (int) field.getValue();
@@ -312,49 +306,44 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     }
 
     private void buttonWrite() {
-        int idFrontLeft = simpleIntParse(R.id.text_TireFLId);
-        int idFrontRight = simpleIntParse(R.id.text_TireFRId);
-        int idRearLeft = simpleIntParse(R.id.text_TireRLId);
-        int idRearRight = simpleIntParse(R.id.text_TireRRId);
+        int[] ids = new int[4];
+        ids[0] = simpleIntParse(R.id.text_TireFLId);
+        ids[1] = simpleIntParse(R.id.text_TireFRId);
+        ids[2] = simpleIntParse(R.id.text_TireRRId);
+        ids[3] = simpleIntParse(R.id.text_TireRLId);
 
-        if (idFrontLeft == -1 || idFrontRight == -1 || idRearLeft == -1 || idRearRight == -1) {
+        if (ids[0] == -1 || ids[1] == -1 || ids[2] == -1 || ids[3] == -1) {
             MainActivity.toast(MainActivity.TOAST_NONE, "Those are not all valid hex values");
             return;
         }
-        if (idFrontLeft == 0 && idFrontRight == 0 && idRearLeft == 0 && idRearRight == 0) {
+        if (ids[0] == 0 && ids[1] == 0 && ids[2] == 0 && ids[3] == 0) {
             MainActivity.toast(MainActivity.TOAST_NONE, "All values are 0");
             return;
         }
 
-        //Frame[] frames = new Frame[3];
-        Frame[] frames = new Frame[6];
+        for (int i = 0; i < ids.length; i++) {
+            if (ids[i]!= 0) {
+                Frame frame = new Frame(ecuFromId, 0, ecu, String.format("7b5e%02x%06x", i, ids[i]), null);
+                if (MainActivity.device == null)
+                    return; // this should not happen as the fragment checks the device property, but it does
+                Message message = MainActivity.device.injectRequest(frame);
+                if (message == null) {
+                    MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valve " + i);
+                } else if (message.isError()) {
+                    MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valve " + i + ":" + message.getError());
+                } else if (!message.getData().startsWith("7b5e")) {
+                    MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valve " + i + ":" + message.getData());
+                } else {
+                    MainActivity.toast(MainActivity.TOAST_NONE, "Wrote TPMS valve " + i);
+                }
+                try {
+                    Thread.sleep(250);
+                } catch (Exception e) {
+                    // ignore a sleep exception
+                }
+            }
+        }
 
-        //frames[0] = Frames.getInstance().getById(ecuFromId, "50c0"); // tester present to BCM
-        //frames[0] = new Frame(ecuFromId, 0, ecu, "50c0", null);
-        //frames[1] = Frames.getInstance().getById(ecuFromId, "7e01"); // tester awake to BCM
-        //frames[1] = new Frame(ecuFromId, 0, ecu, "7e01", null);
-        //frames[2] = new Frame(ecuFromId, 0, ecu, String.format("7b5d%06X%06X%06X%06X", idFrontLeft, idFrontRight, idRearLeft, idRearRight), null); // set TMPS ids
-        if (idFrontLeft  != 0) frames[2] = new Frame(ecuFromId, 0, ecu, String.format("7b5e01%06x", idFrontLeft ), null);
-        if (idFrontRight != 0) frames[3] = new Frame(ecuFromId, 0, ecu, String.format("7b5e02%06x", idFrontRight), null);
-        if (idRearRight  != 0) frames[4] = new Frame(ecuFromId, 0, ecu, String.format("7b5e03%06x", idRearRight ), null);
-        if (idRearLeft   != 0) frames[5] = new Frame(ecuFromId, 0, ecu, String.format("7b5e04%06x", idRearLeft  ), null);
-
-        if (MainActivity.device == null)
-            return; // this should not happen as the fragment checks the device property, but it does
-        Message message = MainActivity.device.injectRequests(frames, true, false);
-        if (message == null) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valves");
-            return;
-        }
-        if (message.isError()) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valves:" + message.getError());
-            return;
-        }
-        //if (!message.getData().startsWith("7b5d")) {
-        if (!message.getData().startsWith("7b5e")) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valves:" + message.getData());
-            return;
-        }
         MainActivity.toast(MainActivity.TOAST_NONE, "TPMS valves written. Read again to verify");
     }
 }
