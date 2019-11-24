@@ -23,12 +23,9 @@
 /*
  * This class represents a stack listener.
  */
+
 package lu.fisch.canze.interfaces;
 
-/**
- *
- * @author Jeroen Meijer
- */
 public interface DebugListener {
     void dropDebugMessage (String msg);
     void appendDebugMessage (String msg);
