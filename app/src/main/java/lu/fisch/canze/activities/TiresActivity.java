@@ -269,17 +269,17 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         // now process all fields in the frame. Select only the ones we are interested in
         for (Field field : frame.getAllFields()) {
             switch (field.getFrom()) {
-                case 24:
+                case 24: // CodeIdentite(1)_(0) --> Ident code, left front wheel (Wheel 1, set 0)
                     idFrontLeft = (int) field.getValue();
                     break;
-                case 48:
+                case 48: // CodeIdentite(2)_(0) --> Ident code, right front wheel (Wheel 2, set 0)
                     idFrontRight = (int) field.getValue();
                     break;
-                case 72:
-                    idRearLeft = (int) field.getValue();
-                    break;
-                case 96:
+                case 72: // CodeIdentite(3)_(0) --> Ident code, right rear wheel (Wheel 3, set 0)
                     idRearRight = (int) field.getValue();
+                    break;
+                case 96: // CodeIdentite(4)_(0) --> IIdent code, left rear wheel (Wheel 4, set 0)
+                    idRearLeft = (int) field.getValue();
                     break;
             }
         }
@@ -307,10 +307,10 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
 
     private void buttonWrite() {
         int[] ids = new int[4];
-        ids[0] = simpleIntParse(R.id.text_TireFLId);
-        ids[1] = simpleIntParse(R.id.text_TireFRId);
-        ids[2] = simpleIntParse(R.id.text_TireRRId);
-        ids[3] = simpleIntParse(R.id.text_TireRLId);
+        ids[0] = simpleIntParse(R.id.text_TireFLId); // front left / AVG
+        ids[1] = simpleIntParse(R.id.text_TireFRId); // front right / AVD
+        ids[2] = simpleIntParse(R.id.text_TireRRId); // back right / ARD
+        ids[3] = simpleIntParse(R.id.text_TireRLId); // back left / ARG
 
         if (ids[0] == -1 || ids[1] == -1 || ids[2] == -1 || ids[3] == -1) {
             MainActivity.toast(MainActivity.TOAST_NONE, "Those are not all valid hex values");
@@ -323,7 +323,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
 
         for (int i = 0; i < ids.length; i++) {
             if (ids[i]!= 0) {
-                Frame frame = new Frame(ecuFromId, 0, ecu, String.format("7b5e%02x%06x", i, ids[i]), null);
+                Frame frame = new Frame(ecuFromId, 0, ecu, String.format("7b5e%02x%06x", i + 1, ids[i]), null);
                 if (MainActivity.device == null)
                     return; // this should not happen as the fragment checks the device property, but it does
                 Message message = MainActivity.device.injectRequest(frame);
