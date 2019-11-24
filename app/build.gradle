@@ -1,14 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file("$project.rootDir/keystores/CanZeKeyStore.jks")
+            storePassword 'canze4us!'
+            keyAlias = 'canze-upload'
+            keyPassword 'canze4us!'
+        }
+    }
     compileSdkVersion 28
     //buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "lu.fisch.canze"
         minSdkVersion 21
         targetSdkVersion 28
-        versionName '1.48'
-        versionCode 50
+        versionName '1.49beta1'
+        versionCode 51
     }
     buildTypes {
         release {
@@ -26,6 +34,7 @@ android {
     defaultConfig {
         buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "String", "BRANCH", "\"" + getGitRevParseInfo() + "\""
+        signingConfig signingConfigs.release
     }
     lintOptions {
         checkReleaseBuilds false

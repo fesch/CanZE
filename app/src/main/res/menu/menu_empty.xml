@@ -1,5 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context="lu.fisch.canze.activities.TachoActivity">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/action_bluetooth"
+        android:orderInCategory="100"
+        android:title="@string/menu_Bluetooth"
+        android:visible="true"
+        app:actionLayout="@layout/animated_menu_item"
+        app:showAsAction="always"
+        />
 
 </menu>

@@ -811,9 +811,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         // get a reference to the bluetooth action button
-        bluetoothMenutItem = menu.findItem(R.id.action_bluetooth);
+        setBluetoothMenuItem (menu); //bluetoothMenutItem = menu.findItem(R.id.action_bluetooth);
         // and put the right view on it
-        bluetoothMenutItem.setActionView(R.layout.animated_menu_item);
+        // bluetoothMenutItem.setActionView(R.layout.animated_menu_item);
         // set the correct initial state
         setBluetoothState(BLUETOOTH_DISCONNECTED);
         // get access to the image view
@@ -836,6 +836,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return true;
     }
 
+    public void setBluetoothMenuItem (Menu menu) {
+        bluetoothMenutItem = menu.findItem(R.id.action_bluetooth);
+    }
 
     private void setBluetoothState(int btState) {
         if (bluetoothMenutItem != null) {

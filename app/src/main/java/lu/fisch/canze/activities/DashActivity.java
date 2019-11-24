@@ -49,14 +49,6 @@ public class DashActivity extends CanzeActivity {
         setContentView(R.layout.activity_dash);
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_empty, menu);
-        return true;
-    }
-
     @Override
     public void onFieldUpdateEvent(final Field field) {
         // the update has to be done in a separate thread
