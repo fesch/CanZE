@@ -25,3 +25,13 @@
 # Gson specific classes
 -keep class sun.misc.Unsafe { *; }
 #-keep class com.google.gson.stream.** { *; }
+
+##------------------Begin: added rules to see if we can nip ClassNotFound in the butt ----------
+## A bit of a shot in the dark taken from https://stackoverflow.com/questions/15686593/java-lang-classnotfoundexception-in-dalvik-system-basedexclassloader-findclass
+-keep class com.google.gson.stream.** { *; }
+-keep class android.support.** { *; } 
+-keep interface android.support.** { *; }
+# Keep line numbers to alleviate debugging stack traces 
+-renamesourcefileattribute SourceFile 
+-keepattributes SourceFile,LineNumberTable
+
