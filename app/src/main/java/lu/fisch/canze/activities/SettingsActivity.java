@@ -83,7 +83,7 @@ public class SettingsActivity extends AppCompatActivity {
         // device address
         final EditText deviceAddress = findViewById(R.id.editTextDeviceAddress);
 
-        // remote Device
+        // device type
         final Spinner deviceType = findViewById(R.id.deviceType);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         arrayAdapter.add("ELM327");
@@ -134,7 +134,16 @@ public class SettingsActivity extends AppCompatActivity {
                     //String device = (String) deviceList.getSelectedItem();
                     deviceAddress.setText(pieces[1]);
                     deviceAddress.setEnabled(false);
-                    deviceType.setEnabled(true);
+                    final CheckBox altFields = findViewById(R.id.altFieldsMode);
+                    if ("CANSee".equals(pieces[0])) {
+                        deviceType.setSelection(1); // set CANsee
+                        deviceType.setEnabled(false);
+                        altFields.setChecked(false);
+                    } else {
+                        deviceType.setSelection(0); // must be something ELM-ish
+                        deviceType.setEnabled(false);
+                        altFields.setChecked(true);
+                    }
                 }
             }
 
@@ -605,7 +614,7 @@ public class SettingsActivity extends AppCompatActivity {
         deviceList.setAdapter(arrayAdapter);
 
         // select the actual device
-        deviceList.setSelection(index);
+        deviceList.setSelection(index, false);
         deviceList.setSelected(true);
     }
 
