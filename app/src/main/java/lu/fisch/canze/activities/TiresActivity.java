@@ -65,7 +65,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     private boolean dark;
     static int previousState = -1;
     private final Ecu ecu = Ecus.getInstance().getByMnemonic("BCM");
-    private final int ecuFromId = ecu.getFromId();
+    private final int ecuFromId = (ecu == null) ? 0 : ecu.getFromId();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -212,7 +212,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     }
 
     private void tpmsState (int state) {
-        if (state == previousState) return;
+        if (state == previousState || ecu == null || ecuFromId == 0) return;
         previousState = state;
         boolean isEnabled = (state == 1);
         Button button = findViewById(R.id.button_TiresRead);
@@ -249,8 +249,12 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         int idRearLeft = 0;
         int idRearRight = 0;
 
+        if (ecu == null || ecuFromId == 0) return;
         Frame frame = Frames.getInstance().getById(ecuFromId, "6171"); // get TPMS ids
-
+        if (frame == null) {
+            MainActivity.debug("frame does not exist:" + ecu.getHexFromId() + ".6171");
+            return;
+        }
         if (MainActivity.device == null)
             return; // this should not happen as the fragment checks the device property, but it does
         Message message = MainActivity.device.injectRequest(frame); // return result message of last request (get TPMS ids)
@@ -313,6 +317,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         ids[2] = simpleIntParse(R.id.text_TireRRId); // back right / ARD
         ids[3] = simpleIntParse(R.id.text_TireRLId); // back left / ARG
 
+        if (ecu == null || ecuFromId == 0) return;
         if (ids[0] == -1 || ids[1] == -1 || ids[2] == -1 || ids[3] == -1) {
             MainActivity.toast(MainActivity.TOAST_NONE, "Those are not all valid hex values");
             return;
