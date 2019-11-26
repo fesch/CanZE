@@ -257,11 +257,12 @@
                 android:id="@+id/button_TiresRead"
                 android:text="@string/button_Tires_read"
                 android:layout_weight="1"
+                android:enabled="false"
                 />
-                <TextView
-                    android:layout_width="20dp"
-                    android:layout_weight="1"
-                    />
+            <TextView
+                android:layout_width="20dp"
+                android:layout_weight="1"
+                />
             <Button
                 android:id="@+id/button_TiresWrite"
                 android:text="@string/button_Tires_write"

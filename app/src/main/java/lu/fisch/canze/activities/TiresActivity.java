@@ -110,11 +110,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
                 })).start();
             }
         });
-        tpmsState(-1);
-    }
-
-    protected void onResume () {
-        super.onResume();
+        tpmsState(0);
     }
 
     // set the fields the poller should query
