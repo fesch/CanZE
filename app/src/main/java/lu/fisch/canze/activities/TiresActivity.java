@@ -45,6 +45,7 @@ import lu.fisch.canze.interfaces.FieldListener;
 
 public class TiresActivity extends CanzeActivity implements FieldListener, DebugListener {
 
+    private static final String SID_TpmsState = "765.6171.16";
     private static final String SID_TireSpdPresMisadaption = "673.0";
     private static final String SID_TireFLState = "673.11";
     private static final String SID_TireFLPressure = "673.40";
@@ -54,7 +55,6 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     private static final String SID_TireRLPressure = "673.24";
     private static final String SID_TireRRState = "673.2";
     private static final String SID_TireRRPressure = "673.16";
-    private static final String SID_TpmsState = "765.6171.16";
 
     private static final String[] val_TireSpdPresMisadaption = {MainActivity.getStringSingle(R.string.default_Ok), MainActivity.getStringSingle(R.string.default_NotOk)};
     private static final String[] val_TireState = MainActivity.getStringList(R.array.list_TireStatus);
@@ -110,16 +110,17 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
                 })).start();
             }
         });
+        tpmsState(-1);
     }
 
     protected void onResume () {
         super.onResume();
-        tpmsState(-1);
     }
 
     // set the fields the poller should query
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
+        addField(SID_TpmsState, 1000);
         addField(SID_TireSpdPresMisadaption, 6000);
         addField(SID_TireFLState, 6000);
         addField(SID_TireFLPressure, 6000);
@@ -129,7 +130,6 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         addField(SID_TireRLPressure, 6000);
         addField(SID_TireRRState, 6000);
         addField(SID_TireRRPressure, 6000);
-        addField(SID_TpmsState, 6000);
     }
 
     // fired event when any of the registered fields are getting updated by the device
@@ -140,6 +140,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                if (Double.isNaN(field.getValue())) return;
                 String fieldId = field.getSID();
                 TextView tv = null;
                 String value = "";
@@ -148,7 +149,10 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
 
                 // get the text field
                 switch (fieldId) {
-
+                    case SID_TpmsState:
+                        tpmsState (intValue);
+                        tv = null;
+                        break;
                     case SID_TireSpdPresMisadaption:
                         tv = findViewById(R.id.text_TireSpdPresMisadaption);
                         color = 0; // don't set color
@@ -194,9 +198,6 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
                         tv = findViewById(R.id.text_TireRRPressure);
                         value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
-                    case SID_TpmsState:
-                        tpmsState (intValue);
-                        tv = null;
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
