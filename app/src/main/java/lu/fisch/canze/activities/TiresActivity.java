@@ -63,7 +63,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     private int baseColor;
     @ColorInt private int alarmColor;
     private boolean dark;
-    static int previousState = -1;
+    static int previousState = -2; // uninitialized
     private final Ecu ecu = Ecus.getInstance().getByMnemonic("BCM");
     private final int ecuFromId = (ecu == null) ? 0 : ecu.getFromId();
 
@@ -110,7 +110,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
                 })).start();
             }
         });
-        tpmsState(0);
+        tpmsState(-1); // initialize to "no TPMS, but don't Toast that". This ensures disabled fields, also after a rotate
     }
 
     // set the fields the poller should query
@@ -224,7 +224,8 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         edittext.setEnabled(isEnabled);
         edittext = findViewById(R.id.text_TireRRId);
         edittext.setEnabled(isEnabled);
-        if (!isEnabled) MainActivity.toast(MainActivity.TOAST_NONE, "Your car has no TPMS system");
+        // do not use !enabled as a rotate will reinitialize the activity, setting state to -1
+        if (state == 0) MainActivity.toast(MainActivity.TOAST_NONE, "Your car has no TPMS system");
     }
 
     private void displayId(final int fieldId, final int val) {
