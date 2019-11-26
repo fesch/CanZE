@@ -181,6 +181,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     private final static int BLUETOOTH_DISCONNECTED = 21;
     private final static int BLUETOOTH_SEARCH = 22;
     private final static int BLUETOOTH_CONNECTED = 23;
+    protected Menu mOptionsMenu; // needed to find BT symbol
+    private int mBtState = BLUETOOTH_SEARCH;
 
 
     //The BroadcastReceiver that listens for bluetooth broadcasts
@@ -194,19 +196,22 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 //Device has disconnected
 
                 // only resume if this activity is also visible
-                if (visible) {
+                // jm: changed to always stop the poller and show state change
+                // but only onResume if we are visible
+                //if (visible) {
                     // stop reading
                     if (device != null)
                         device.stopAndJoin();
 
                     // inform user
-                    setTitle(TAG + " - disconnected");
+                    // setTitle(TAG + " - disconnected");
                     setBluetoothState(BLUETOOTH_DISCONNECTED);
                     toast(R.string.toast_BluetoothLost);
 
                     // try to reconnect
-                    onResume();
-                }
+                    // jm actually I don't think next line is needed at all. In another activty (so invisible), everything reconnects just fine, and the poller restarts
+                    if (visible) onResume();
+                //}
             }
         }
     };
@@ -481,7 +486,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         });
         updateActionBar();
 
-        setTitle(TAG + " - not connected");
+        // setTitle(TAG + " - not connected");
         setBluetoothState(BLUETOOTH_DISCONNECTED);
 
         // open the database
@@ -524,7 +529,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        setTitle(TAG + " - connected to <" + bluetoothDeviceName + "@" + bluetoothDeviceAddress + ">");
+                        // setTitle(TAG + " - connected to <" + bluetoothDeviceName + "@" + bluetoothDeviceAddress + ">");
                         setBluetoothState(BLUETOOTH_CONNECTED);
                     }
                 });
@@ -539,7 +544,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        setTitle(TAG + " - disconnected");
+                        // setTitle(TAG + " - disconnected");
+                        setBluetoothState(BLUETOOTH_DISCONNECTED);
                     }
                 });
             }
@@ -583,6 +589,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     @Override
     public void onResume() {
         debug("MainActivity: onResume");
+        setBluetoothMenuItem (mOptionsMenu);
 
         SharedPreferences set = getSharedPreferences(PREFERENCES_FILE, 0);
         if (set.getBoolean("optDark", false)) {
@@ -594,8 +601,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                     startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
                 }
             }
-        } else
-        {
+        } else {
 
             if(AppCompatDelegate.getDefaultNightMode()!=AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
@@ -807,9 +813,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
+        mOptionsMenu = menu;
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
         // get a reference to the bluetooth action button
         setBluetoothMenuItem (menu); //bluetoothMenutItem = menu.findItem(R.id.action_bluetooth);
         // and put the right view on it
@@ -837,10 +843,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     public void setBluetoothMenuItem (Menu menu) {
+        if (menu == null) return;
         bluetoothMenutItem = menu.findItem(R.id.action_bluetooth);
+        setBluetoothState(mBtState);
     }
 
     private void setBluetoothState(int btState) {
+        mBtState = btState; // save state. The icon must be redrawn in the last state if activity switches
         if (bluetoothMenutItem != null) {
             View view = bluetoothMenutItem.getActionView();
             if (view == null) return;

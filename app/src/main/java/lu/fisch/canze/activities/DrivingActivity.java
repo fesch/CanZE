@@ -399,6 +399,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present. This menu
         // is another way to set the distance
+        mOptionsMenu = menu;
         getMenuInflater().inflate(R.menu.menu_driving, menu);
         MainActivity.getInstance().setBluetoothMenuItem (menu);
         return true;

@@ -60,6 +60,8 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
 
     protected boolean widgetClicked = false;
 
+    protected Menu mOptionsMenu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -99,7 +101,6 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     protected void onPause() {
         super.onPause();
         MainActivity.debug("CanzeActivity: onPause");
-
         // stop here if BT should stay on!
         if(MainActivity.bluetoothBackgroundMode)
         {
@@ -123,6 +124,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     @Override
     protected void onResume() {
         super.onResume();
+        MainActivity.getInstance().setBluetoothMenuItem (mOptionsMenu);
         MainActivity.debug("CanzeActivity: onResume");
         MainActivity.getInstance().setLocalTheme (this.getTheme());
         // if we paused ourselvers
@@ -173,8 +175,9 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present. Empty contains only the bluetooth icon
+        mOptionsMenu = menu;
         getMenuInflater().inflate(R.menu.menu_empty, menu);
-        MainActivity.getInstance().setBluetoothMenuItem (menu);
+        MainActivity.getInstance().setBluetoothMenuItem (mOptionsMenu);
         return true;
     }
 
