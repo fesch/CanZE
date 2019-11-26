@@ -1,5 +1,6 @@
 package lu.fisch.canze.activities;
 
+import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
@@ -118,17 +119,20 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                     }
                                 }
 
-                                tv = findViewById(R.id.textDetails);
-                                tv.setText(
-                                        String.format(Locale.getDefault(),
-                                                "Distance:%.2f%s - Time:%s > %s = %s - Speed:%.2f%s - SpeedCalc:%.2f%s - SDK:%s",
-                                                distanceEnd - distanceStart,MainActivity.milesMode ? mi : km,
-                                                timeToStr(timeStart), timeToStr(timeEnd), timeToStr(timeEnd - timeStart),
-                                                speed, MainActivity.milesMode ? mih : kmh,
-                                                speedCalc, MainActivity.milesMode ? mih : kmh,
-                                                Build.VERSION.SDK_INT
-                                        )
-                                );
+                                // clear the clutter
+                                if (!BuildConfig.BRANCH.equals("master")) {
+                                    tv = findViewById(R.id.textDetails);
+                                    tv.setText(
+                                            String.format(Locale.getDefault(),
+                                                    "Distance:%.2f%s - Time:%s > %s = %s - Speed:%.2f%s - SpeedCalc:%.2f%s - SDK:%s",
+                                                    distanceEnd - distanceStart, MainActivity.milesMode ? mi : km,
+                                                    timeToStr(timeStart), timeToStr(timeEnd), timeToStr(timeEnd - timeStart),
+                                                    speed, MainActivity.milesMode ? mih : kmh,
+                                                    speedCalc, MainActivity.milesMode ? mih : kmh,
+                                                    Build.VERSION.SDK_INT
+                                            )
+                                    );
+                                }
 
                                 distanceLast = distanceEnd;
                                 timeLast = timeEnd;

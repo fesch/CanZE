@@ -659,5 +659,7 @@
     <string name="unit_SpeedKm">\u0020km/h</string>
     <string name="unit_SpeedMi">\u0020mi/h</string>
     <string name="message_NoFreeTesting">\nNot testing free frames, as you selected Use ISOTP fields\n</string>
+    <string name="label_TapToStart">Tap any label to start or reset</string>
+    <string name="label_averageSpeed">Average speed</string>
 
 </resources>
