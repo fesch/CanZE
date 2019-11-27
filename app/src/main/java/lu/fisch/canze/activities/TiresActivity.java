@@ -208,7 +208,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     }
 
     private void tpmsState (int state) {
-        if (state == previousState || ecu == null || ecuFromId == 0) return;
+        if (state == previousState || ecu == null || ecuFromId == 0 || MainActivity.device == null) return;
         previousState = state;
         boolean isEnabled = (state == 1);
         Button button = findViewById(R.id.button_TiresRead);
@@ -240,12 +240,10 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     }
 
 
-    private void buttonRead() {
-        int idFrontLeft = 0;
-        int idFrontRight = 0;
-        int idRearLeft = 0;
-        int idRearRight = 0;
-
+    private void readTpms (int[] idsRead) {
+        for (int i = 0; i < idsRead.length; i++) {
+            idsRead[i] = 0;
+        }
         if (ecu == null || ecuFromId == 0) return;
         Frame frame = Frames.getInstance().getById(ecuFromId, "6171"); // get TPMS ids
         if (frame == null) {
@@ -272,25 +270,31 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         for (Field field : frame.getAllFields()) {
             switch (field.getFrom()) {
                 case 24: // CodeIdentite(1)_(0) --> Ident code, left front wheel (Wheel 1, set 0)
-                    idFrontLeft = (int) field.getValue();
+                    idsRead[0] = (int) field.getValue();
                     break;
                 case 48: // CodeIdentite(2)_(0) --> Ident code, right front wheel (Wheel 2, set 0)
-                    idFrontRight = (int) field.getValue();
+                    idsRead[1] = (int) field.getValue();
                     break;
                 case 72: // CodeIdentite(3)_(0) --> Ident code, right rear wheel (Wheel 3, set 0)
-                    idRearRight = (int) field.getValue();
+                    idsRead[2] = (int) field.getValue();
                     break;
                 case 96: // CodeIdentite(4)_(0) --> IIdent code, left rear wheel (Wheel 4, set 0)
-                    idRearLeft = (int) field.getValue();
+                    idsRead[3] = (int) field.getValue();
                     break;
             }
         }
+    }
+
+
+    private void buttonRead() {
+        int[] idsRead = new int[4];
+        readTpms(idsRead);
 
         // display the fetched values
-        displayId(R.id.text_TireFLId, idFrontLeft);
-        displayId(R.id.text_TireFRId, idFrontRight);
-        displayId(R.id.text_TireRLId, idRearLeft);
-        displayId(R.id.text_TireRRId, idRearRight);
+        displayId(R.id.text_TireFLId, idsRead[0]);
+        displayId(R.id.text_TireFRId, idsRead[1]);
+        displayId(R.id.text_TireRRId, idsRead[2]);
+        displayId(R.id.text_TireRLId, idsRead[3]);
         MainActivity.toast(MainActivity.TOAST_NONE, "TPMS valves read");
     }
 
@@ -307,46 +311,71 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         }
     }
 
+    private boolean compareTpms (int[] idsRead, int[] idsWrite) {
+        for (int i = 0; i < idsRead.length; i++) {
+            if (idsRead[i] == 0) return false;
+            if (idsWrite[i] == 0) return false;
+            if (idsRead[i] != idsWrite[i]) return false;
+        }
+        return true;
+    }
+
     private void buttonWrite() {
-        int[] ids = new int[4];
-        ids[0] = simpleIntParse(R.id.text_TireFLId); // front left / AVG
-        ids[1] = simpleIntParse(R.id.text_TireFRId); // front right / AVD
-        ids[2] = simpleIntParse(R.id.text_TireRRId); // back right / ARD
-        ids[3] = simpleIntParse(R.id.text_TireRLId); // back left / ARG
+        int[] idsWrite = new int[4];
+        int[] idsRead  = new int[4];
+
+        idsWrite[0] = simpleIntParse(R.id.text_TireFLId); // front left / AVG
+        idsWrite[1] = simpleIntParse(R.id.text_TireFRId); // front right / AVD
+        idsWrite[2] = simpleIntParse(R.id.text_TireRRId); // back right / ARD
+        idsWrite[3] = simpleIntParse(R.id.text_TireRLId); // back left / ARG
 
         if (ecu == null || ecuFromId == 0) return;
-        if (ids[0] == -1 || ids[1] == -1 || ids[2] == -1 || ids[3] == -1) {
+        if (idsWrite[0] == -1 || idsWrite[1] == -1 || idsWrite[2] == -1 || idsWrite[3] == -1) {
             MainActivity.toast(MainActivity.TOAST_NONE, "Those are not all valid hex values");
             return;
         }
-        if (ids[0] == 0 && ids[1] == 0 && ids[2] == 0 && ids[3] == 0) {
+        if (idsWrite[0] == 0 && idsWrite[1] == 0 && idsWrite[2] == 0 && idsWrite[3] == 0) {
             MainActivity.toast(MainActivity.TOAST_NONE, "All values are 0");
             return;
         }
 
-        for (int i = 0; i < ids.length; i++) {
-            if (ids[i]!= 0) {
-                Frame frame = new Frame(ecuFromId, 0, ecu, String.format("7b5e%02x%06x", i + 1, ids[i]), null);
-                if (MainActivity.device == null)
-                    return; // this should not happen as the fragment checks the device property, but it does
-                Message message = MainActivity.device.injectRequest(frame);
-                if (message == null) {
-                    MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valve " + i);
-                } else if (message.isError()) {
-                    MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valve " + i + ":" + message.getError());
-                } else if (!message.getData().startsWith("7b5e")) {
-                    MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valve " + i + ":" + message.getData());
-                } else {
-                    MainActivity.toast(MainActivity.TOAST_NONE, "Wrote TPMS valve " + i);
-                }
-                try {
-                    Thread.sleep(250);
-                } catch (Exception e) {
-                    // ignore a sleep exception
+        for (int retries = 0; retries < 3; retries++) {
+            // write the values
+            for (int i = 0; i < idsWrite.length; i++) {
+                if (idsWrite[i] != 0) {
+                    Frame frame = new Frame(ecuFromId, 0, ecu, String.format("7b5e%02x%06x", i + 1, idsWrite[i]), null);
+                    if (MainActivity.device == null)
+                        return; // this should not happen as the fragment checks the device property, but it does
+                    Message message = MainActivity.device.injectRequest(frame);
+                    if (message == null) {
+                        MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valve " + i);
+                    } else if (message.isError()) {
+                        MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valve " + i + ":" + message.getError());
+                    } else if (!message.getData().startsWith("7b5e")) {
+                        MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valve " + i + ":" + message.getData());
+                    } else {
+                        MainActivity.toast(MainActivity.TOAST_NONE, "Wrote TPMS valve " + i);
+                    }
+                    try {
+                        Thread.sleep(250);
+                    } catch (Exception e) {
+                        // ignore a sleep exception
+                    }
                 }
             }
-        }
 
-        MainActivity.toast(MainActivity.TOAST_NONE, "TPMS valves written. Read again to verify");
+            // now read the values
+            readTpms(idsRead);
+            if (compareTpms(idsRead, idsWrite)) {
+                MainActivity.toast(MainActivity.TOAST_NONE, "TPMS valves written. Read again to verify");
+                return;
+            }
+            try {
+                Thread.sleep(250);
+            } catch (Exception e) {
+                // ignore a sleep exception
+            }
+        }
+        MainActivity.toast(MainActivity.TOAST_NONE, "Failed to write all TPMS valves");
     }
 }
