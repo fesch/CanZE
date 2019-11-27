@@ -254,11 +254,11 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
             return; // this should not happen as the fragment checks the device property, but it does
         Message message = MainActivity.device.injectRequest(frame); // return result message of last request (get TPMS ids)
         if (message == null) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Could not read TPMS valves");
+            MainActivity.toast(MainActivity.TOAST_NONE, "Could not read TPMS sensors");
             return;
         }
         if (message.isError()) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Could not read TPMS valves:" + message.getError());
+            MainActivity.toast(MainActivity.TOAST_NONE, "Could not read TPMS sensors:" + message.getError());
             return;
         }
 
@@ -295,7 +295,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         displayId(R.id.text_TireFRId, idsRead[1]);
         displayId(R.id.text_TireRRId, idsRead[2]);
         displayId(R.id.text_TireRLId, idsRead[3]);
-        MainActivity.toast(MainActivity.TOAST_NONE, "TPMS valves read");
+        MainActivity.toast(MainActivity.TOAST_NONE, "TPMS sensors read");
     }
 
     private int simpleIntParse(int fieldId) {
@@ -367,7 +367,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
             // now read the values
             readTpms(idsRead);
             if (compareTpms(idsRead, idsWrite)) {
-                MainActivity.toast(MainActivity.TOAST_NONE, "TPMS valves written. Read again to verify");
+                MainActivity.toast(MainActivity.TOAST_NONE, "TPMS sensors written. Read again to verify");
                 return;
             }
             try {
@@ -376,6 +376,6 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
                 // ignore a sleep exception
             }
         }
-        MainActivity.toast(MainActivity.TOAST_NONE, "Failed to write all TPMS valves");
+        MainActivity.toast(MainActivity.TOAST_NONE, "Failed to write all TPMS sensors");
     }
 }
