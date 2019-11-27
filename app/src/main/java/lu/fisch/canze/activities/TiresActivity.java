@@ -45,6 +45,7 @@ import lu.fisch.canze.interfaces.FieldListener;
 
 public class TiresActivity extends CanzeActivity implements FieldListener, DebugListener {
 
+    private static final String SID_TpmsState = "765.6171.16";
     private static final String SID_TireSpdPresMisadaption = "673.0";
     private static final String SID_TireFLState = "673.11";
     private static final String SID_TireFLPressure = "673.40";
@@ -54,7 +55,6 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     private static final String SID_TireRLPressure = "673.24";
     private static final String SID_TireRRState = "673.2";
     private static final String SID_TireRRPressure = "673.16";
-    private static final String SID_TpmsState = "765.6171.16";
 
     private static final String[] val_TireSpdPresMisadaption = {MainActivity.getStringSingle(R.string.default_Ok), MainActivity.getStringSingle(R.string.default_NotOk)};
     private static final String[] val_TireState = MainActivity.getStringList(R.array.list_TireStatus);
@@ -63,9 +63,9 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     private int baseColor;
     @ColorInt private int alarmColor;
     private boolean dark;
-    static int previousState = -1;
+    static int previousState = -2; // uninitialized
     private final Ecu ecu = Ecus.getInstance().getByMnemonic("BCM");
-    private final int ecuFromId = ecu.getFromId();
+    private final int ecuFromId = (ecu == null) ? 0 : ecu.getFromId();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,16 +110,13 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
                 })).start();
             }
         });
-    }
-
-    protected void onResume () {
-        super.onResume();
-        tpmsState(-1);
+        tpmsState(-1); // initialize to "no TPMS, but don't Toast that". This ensures disabled fields, also after a rotate
     }
 
     // set the fields the poller should query
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
+        addField(SID_TpmsState, 1000);
         addField(SID_TireSpdPresMisadaption, 6000);
         addField(SID_TireFLState, 6000);
         addField(SID_TireFLPressure, 6000);
@@ -129,7 +126,6 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         addField(SID_TireRLPressure, 6000);
         addField(SID_TireRRState, 6000);
         addField(SID_TireRRPressure, 6000);
-        addField(SID_TpmsState, 6000);
     }
 
     // fired event when any of the registered fields are getting updated by the device
@@ -140,6 +136,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                if (Double.isNaN(field.getValue())) return;
                 String fieldId = field.getSID();
                 TextView tv = null;
                 String value = "";
@@ -148,7 +145,10 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
 
                 // get the text field
                 switch (fieldId) {
-
+                    case SID_TpmsState:
+                        tpmsState (intValue);
+                        tv = null;
+                        break;
                     case SID_TireSpdPresMisadaption:
                         tv = findViewById(R.id.text_TireSpdPresMisadaption);
                         color = 0; // don't set color
@@ -194,9 +194,6 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
                         tv = findViewById(R.id.text_TireRRPressure);
                         value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
-                    case SID_TpmsState:
-                        tpmsState (intValue);
-                        tv = null;
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
@@ -211,7 +208,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     }
 
     private void tpmsState (int state) {
-        if (state == previousState) return;
+        if (state == previousState || ecu == null || ecuFromId == 0 || MainActivity.device == null) return;
         previousState = state;
         boolean isEnabled = (state == 1);
         Button button = findViewById(R.id.button_TiresRead);
@@ -227,7 +224,8 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         edittext.setEnabled(isEnabled);
         edittext = findViewById(R.id.text_TireRRId);
         edittext.setEnabled(isEnabled);
-        if (!isEnabled) MainActivity.toast(MainActivity.TOAST_NONE, "Your car has no TPMS system");
+        // do not use !enabled as a rotate will reinitialize the activity, setting state to -1
+        if (state == 0) MainActivity.toast(MainActivity.TOAST_NONE, "Your car has no TPMS system");
     }
 
     private void displayId(final int fieldId, final int val) {
@@ -242,29 +240,25 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     }
 
 
-    private void buttonRead() {
-        int idFrontLeft = 0;
-        int idFrontRight = 0;
-        int idRearLeft = 0;
-        int idRearRight = 0;
-
-        Frame[] frames = new Frame[3];
-        //frames[0] = Frames.getInstance().getById(ecuFromId, "50c0"); // tester present to BCM
-        //frames[0] = new Frame(ecuFromId, 0, ecu, "50c0", null);
-        //frames[1] = Frames.getInstance().getById(ecuFromId, "7e01"); // tester awake to BCM
-        //frames[1] = new Frame(ecuFromId, 0, ecu, "7e01", null);
-        //frames[2] = new Frame(ecuFromId, 0, ecu, String.format("7b5d%06X%06X%06X%06X", idFrontLeft, idFrontRight, idRearLeft, idRearRight), null); // set TMPS ids
-        frames[2] = Frames.getInstance().getById(ecuFromId, "6171"); // get TPMS ids
-
+    private void readTpms (int[] idsRead) {
+        for (int i = 0; i < idsRead.length; i++) {
+            idsRead[i] = 0;
+        }
+        if (ecu == null || ecuFromId == 0) return;
+        Frame frame = Frames.getInstance().getById(ecuFromId, "6171"); // get TPMS ids
+        if (frame == null) {
+            MainActivity.debug("frame does not exist:" + ecu.getHexFromId() + ".6171");
+            return;
+        }
         if (MainActivity.device == null)
             return; // this should not happen as the fragment checks the device property, but it does
-        Message message = MainActivity.device.injectRequests(frames); // return result message of last request (get TPMS ids)
+        Message message = MainActivity.device.injectRequest(frame); // return result message of last request (get TPMS ids)
         if (message == null) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Could not read TPMS valves");
+            MainActivity.toast(MainActivity.TOAST_NONE, "Could not read TPMS sensors");
             return;
         }
         if (message.isError()) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Could not read TPMS valves:" + message.getError());
+            MainActivity.toast(MainActivity.TOAST_NONE, "Could not read TPMS sensors:" + message.getError());
             return;
         }
 
@@ -273,29 +267,35 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         message.onMessageCompleteEvent();
 
         // now process all fields in the frame. Select only the ones we are interested in
-        for (Field field : frames[2].getAllFields()) {
+        for (Field field : frame.getAllFields()) {
             switch (field.getFrom()) {
-                case 24:
-                    idFrontLeft = (int) field.getValue();
+                case 24: // CodeIdentite(1)_(0) --> Ident code, left front wheel (Wheel 1, set 0)
+                    idsRead[0] = (int) field.getValue();
                     break;
-                case 48:
-                    idFrontRight = (int) field.getValue();
+                case 48: // CodeIdentite(2)_(0) --> Ident code, right front wheel (Wheel 2, set 0)
+                    idsRead[1] = (int) field.getValue();
                     break;
-                case 72:
-                    idRearLeft = (int) field.getValue();
+                case 72: // CodeIdentite(3)_(0) --> Ident code, right rear wheel (Wheel 3, set 0)
+                    idsRead[2] = (int) field.getValue();
                     break;
-                case 96:
-                    idRearRight = (int) field.getValue();
+                case 96: // CodeIdentite(4)_(0) --> IIdent code, left rear wheel (Wheel 4, set 0)
+                    idsRead[3] = (int) field.getValue();
                     break;
             }
         }
+    }
+
+
+    private void buttonRead() {
+        int[] idsRead = new int[4];
+        readTpms(idsRead);
 
         // display the fetched values
-        displayId(R.id.text_TireFLId, idFrontLeft);
-        displayId(R.id.text_TireFRId, idFrontRight);
-        displayId(R.id.text_TireRLId, idRearLeft);
-        displayId(R.id.text_TireRRId, idRearRight);
-        MainActivity.toast(MainActivity.TOAST_NONE, "TPMS valves read");
+        displayId(R.id.text_TireFLId, idsRead[0]);
+        displayId(R.id.text_TireFRId, idsRead[1]);
+        displayId(R.id.text_TireRRId, idsRead[2]);
+        displayId(R.id.text_TireRLId, idsRead[3]);
+        MainActivity.toast(MainActivity.TOAST_NONE, "TPMS sensors read");
     }
 
     private int simpleIntParse(int fieldId) {
@@ -311,50 +311,71 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         }
     }
 
-    private void buttonWrite() {
-        int idFrontLeft = simpleIntParse(R.id.text_TireFLId);
-        int idFrontRight = simpleIntParse(R.id.text_TireFRId);
-        int idRearLeft = simpleIntParse(R.id.text_TireRLId);
-        int idRearRight = simpleIntParse(R.id.text_TireRRId);
+    private boolean compareTpms (int[] idsRead, int[] idsWrite) {
+        for (int i = 0; i < idsRead.length; i++) {
+            if (idsRead[i] == 0) return false;
+            if (idsWrite[i] == 0) return false;
+            if (idsRead[i] != idsWrite[i]) return false;
+        }
+        return true;
+    }
 
-        if (idFrontLeft == -1 || idFrontRight == -1 || idRearLeft == -1 || idRearRight == -1) {
+    private void buttonWrite() {
+        int[] idsWrite = new int[4];
+        int[] idsRead  = new int[4];
+
+        idsWrite[0] = simpleIntParse(R.id.text_TireFLId); // front left / AVG
+        idsWrite[1] = simpleIntParse(R.id.text_TireFRId); // front right / AVD
+        idsWrite[2] = simpleIntParse(R.id.text_TireRRId); // back right / ARD
+        idsWrite[3] = simpleIntParse(R.id.text_TireRLId); // back left / ARG
+
+        if (ecu == null || ecuFromId == 0) return;
+        if (idsWrite[0] == -1 || idsWrite[1] == -1 || idsWrite[2] == -1 || idsWrite[3] == -1) {
             MainActivity.toast(MainActivity.TOAST_NONE, "Those are not all valid hex values");
             return;
         }
-        if (idFrontLeft == 0 && idFrontRight == 0 && idRearLeft == 0 && idRearRight == 0) {
+        if (idsWrite[0] == 0 && idsWrite[1] == 0 && idsWrite[2] == 0 && idsWrite[3] == 0) {
             MainActivity.toast(MainActivity.TOAST_NONE, "All values are 0");
             return;
         }
 
-        //Frame[] frames = new Frame[3];
-        Frame[] frames = new Frame[6];
+        for (int retries = 0; retries < 3; retries++) {
+            // write the values
+            for (int i = 0; i < idsWrite.length; i++) {
+                if (idsWrite[i] != 0) {
+                    Frame frame = new Frame(ecuFromId, 0, ecu, String.format("7b5e%02x%06x", i + 1, idsWrite[i]), null);
+                    if (MainActivity.device == null)
+                        return; // this should not happen as the fragment checks the device property, but it does
+                    Message message = MainActivity.device.injectRequest(frame);
+                    if (message == null) {
+                        MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valve " + i);
+                    } else if (message.isError()) {
+                        MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valve " + i + ":" + message.getError());
+                    } else if (!message.getData().startsWith("7b5e")) {
+                        MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valve " + i + ":" + message.getData());
+                    } else {
+                        MainActivity.toast(MainActivity.TOAST_NONE, "Wrote TPMS valve " + i);
+                    }
+                    try {
+                        Thread.sleep(250);
+                    } catch (Exception e) {
+                        // ignore a sleep exception
+                    }
+                }
+            }
 
-        //frames[0] = Frames.getInstance().getById(ecuFromId, "50c0"); // tester present to BCM
-        //frames[0] = new Frame(ecuFromId, 0, ecu, "50c0", null);
-        //frames[1] = Frames.getInstance().getById(ecuFromId, "7e01"); // tester awake to BCM
-        //frames[1] = new Frame(ecuFromId, 0, ecu, "7e01", null);
-        //frames[2] = new Frame(ecuFromId, 0, ecu, String.format("7b5d%06X%06X%06X%06X", idFrontLeft, idFrontRight, idRearLeft, idRearRight), null); // set TMPS ids
-        if (idFrontLeft  != 0) frames[2] = new Frame(ecuFromId, 0, ecu, String.format("7b5e01%06x", idFrontLeft ), null);
-        if (idFrontRight != 0) frames[3] = new Frame(ecuFromId, 0, ecu, String.format("7b5e02%06x", idFrontRight), null);
-        if (idRearRight  != 0) frames[4] = new Frame(ecuFromId, 0, ecu, String.format("7b5e03%06x", idRearRight ), null);
-        if (idRearLeft   != 0) frames[5] = new Frame(ecuFromId, 0, ecu, String.format("7b5e04%06x", idRearLeft  ), null);
-
-        if (MainActivity.device == null)
-            return; // this should not happen as the fragment checks the device property, but it does
-        Message message = MainActivity.device.injectRequests(frames, true, false);
-        if (message == null) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valves");
-            return;
+            // now read the values
+            readTpms(idsRead);
+            if (compareTpms(idsRead, idsWrite)) {
+                MainActivity.toast(MainActivity.TOAST_NONE, "TPMS sensors written. Read again to verify");
+                return;
+            }
+            try {
+                Thread.sleep(250);
+            } catch (Exception e) {
+                // ignore a sleep exception
+            }
         }
-        if (message.isError()) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valves:" + message.getError());
-            return;
-        }
-        //if (!message.getData().startsWith("7b5d")) {
-        if (!message.getData().startsWith("7b5e")) {
-            MainActivity.toast(MainActivity.TOAST_NONE, "Could not write TPMS valves:" + message.getData());
-            return;
-        }
-        MainActivity.toast(MainActivity.TOAST_NONE, "TPMS valves written. Read again to verify");
+        MainActivity.toast(MainActivity.TOAST_NONE, "Failed to write all TPMS sensors");
     }
 }
