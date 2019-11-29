@@ -199,18 +199,19 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 // jm: changed to always stop the poller and show state change
                 // but only onResume if we are visible
                 //if (visible) {
-                    // stop reading
-                    if (device != null)
-                        device.stopAndJoin();
+                // stop reading
+                if (device != null)
+                    device.stopAndJoin();
 
-                    // inform user
-                    // setTitle(TAG + " - disconnected");
-                    setBluetoothState(BLUETOOTH_DISCONNECTED);
-                    toast(R.string.toast_BluetoothLost);
+                // inform user
+                // setTitle(TAG + " - disconnected");
+                setBluetoothState(BLUETOOTH_DISCONNECTED);
+                toast(R.string.toast_BluetoothLost);
 
-                    // try to reconnect
-                    // jm actually I don't think next line is needed at all. In another activty (so invisible), everything reconnects just fine, and the poller restarts
-                    if (visible) onResume();
+                // try to reconnect
+                // jm actually I don't think next line is needed at all. In another activty (so invisible), everything reconnects just fine, and the poller restarts
+                // if this happens (white icon), no restart
+                if (visible) onResume();
                 //}
             }
         }
@@ -724,7 +725,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             loadSettings();
 
         // try to get a new BT thread
-        BluetoothManager.getInstance().connect(bluetoothDeviceAddress, !MainActivity.altFieldsMode, BluetoothManager.RETRIES_INFINITE);
+        BluetoothManager.getInstance().connect(
+                bluetoothDeviceAddress,
+                !(MainActivity.altFieldsMode && device instanceof ELM327), // go insecure if ELM and in altFieldsmode
+                BluetoothManager.RETRIES_INFINITE);
     }
 
     @Override
@@ -816,14 +820,18 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         mOptionsMenu = menu;
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        mBtState = BLUETOOTH_DISCONNECTED;
         // get a reference to the bluetooth action button
         setBluetoothMenuItem (menu); //bluetoothMenutItem = menu.findItem(R.id.action_bluetooth);
         // and put the right view on it
         // bluetoothMenutItem.setActionView(R.layout.animated_menu_item);
-        // set the correct initial state
-        setBluetoothState(BLUETOOTH_DISCONNECTED);
-        // get access to the image view
-        ImageView imageView = bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
+
+        // set the correct initial state moved upm as setluetoothMenuItem sets it
+        // setBluetoothState(BLUETOOTH_DISCONNECTED);
+
+
+        // get access to the image view ==> moved to setBluetoothMenuItem
+/*        ImageView imageView = bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
         // define an action
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -838,7 +846,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 })).start();
             }
         });
-
+*/
         return true;
     }
 
@@ -846,44 +854,60 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         if (menu == null) return;
         bluetoothMenutItem = menu.findItem(R.id.action_bluetooth);
         setBluetoothState(mBtState);
+        // get access to the image view
+        ImageView imageView = bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
+        // define an action
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        toast(getStringSingle(R.string.toast_Reconnecting));
+                        stopBluetooth();
+                        reloadBluetooth(false); // no need to reload settings
+                    }
+                })).start();
+            }
+        });
     }
 
-    private void setBluetoothState(int btState) {
+    private void setBluetoothState (final int btState) {
         mBtState = btState; // save state. The icon must be redrawn in the last state if activity switches
         if (bluetoothMenutItem != null) {
             View view = bluetoothMenutItem.getActionView();
             if (view == null) return;
             final ImageView imageView = view.findViewById(R.id.animated_menu_item_action);
 
-            // stop the animation if there is one running
-            AnimationDrawable frameAnimation;
-            if (imageView.getBackground() instanceof AnimationDrawable) {
-                frameAnimation = (AnimationDrawable) imageView.getBackground();
-                if (frameAnimation.isRunning())
-                    frameAnimation.stop();
-            }
+            runOnUiThread(new Runnable() {
+                @SuppressLint("NewApi")
+                @Override
+                public void run() {
+                    // stop the animation if there is one running
+                    AnimationDrawable frameAnimation = null;
+                    if (imageView.getBackground() instanceof AnimationDrawable) {
+                        frameAnimation = (AnimationDrawable) imageView.getBackground();
+                        if (frameAnimation.isRunning())
+                            frameAnimation.stop();
+                    }
 
-            switch (btState) {
-                case BLUETOOTH_DISCONNECTED:
-                    imageView.setBackgroundResource(R.drawable.bluetooth_none);
-                    break;
-                case BLUETOOTH_CONNECTED:
-                    imageView.setBackgroundResource(R.drawable.bluetooth_3);
-                    break;
-                case BLUETOOTH_SEARCH:
-                    runOnUiThread(new Runnable() {
-                        @SuppressLint("NewApi")
-                        @Override
-                        public void run() {
-                            imageView.setBackgroundResource(R.drawable.animation_bluetooth);
-                            AnimationDrawable frameAnimation = (AnimationDrawable) imageView.getBackground();
-                            frameAnimation.start();
-                        }
-                    });
-                    break;
-                default:
-                    break;
-            }
+                    switch (btState) {
+                        case BLUETOOTH_DISCONNECTED:
+                            imageView.setBackgroundResource(R.drawable.bluetooth_none); // white icon
+                            break;
+                        case BLUETOOTH_CONNECTED:
+                            imageView.setBackgroundResource(R.drawable.bluetooth_3); // blue icon
+                            break;
+                        case BLUETOOTH_SEARCH:
+                                    imageView.setBackgroundResource(R.drawable.animation_bluetooth); // animated blue icon
+                                    // AnimationDrawable frameAnimation = (AnimationDrawable) imageView.getBackground();
+                                    if (frameAnimation != null) frameAnimation.start();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            });
         }
     }
 
