@@ -1,3 +1,4 @@
+2019-11-27 [Jeroen] Catch spurious error in Timeplot
 2019-11-27 [Jeroen] Code fixes and moved "tap bluetooth to reconnect" to work in all activities
 2019-11-26 [Jeroen] Nudge ISOTP on for ELM dongles, off for CanSee
 2019-11-25 [Jeroen] Updated progaurd rules to fix or find a ClassNotFound crash

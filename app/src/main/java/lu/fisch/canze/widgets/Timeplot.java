@@ -274,19 +274,19 @@ public class Timeplot extends Drawable {
         // draw the graph
         for (int s = 0; s < sids.size(); s++) {
             String sid = sids.get(s);
-            ArrayList<TimePoint> values = this.values.get(sid);
+            ArrayList<TimePoint> tmpValues = this.values.get(sid);
 
             // setup an empty list if no list has been found
-            if (values == null) {
-                values = new ArrayList<>();
-                this.values.put(sid, values);
+            if (tmpValues == null) {
+                tmpValues = new ArrayList<>();
+                this.values.put(sid, tmpValues);
             }
 
             g.setColor(getForeground());
             g.drawRect(x + width - barWidth - spaceAlt, y, barWidth, graphHeight);
-            if (values.size() > 0) {
+            if (tmpValues.size() > 0) {
 
-                double w = (double) barWidth / values.size();
+                double w = (double) barWidth / tmpValues.size();
                 double h = (double) graphHeight / (getMax() - getMin());
                 double hAlt = (double) graphHeight / (realMaxAlt - getMinAlt());
 
@@ -298,10 +298,10 @@ public class Timeplot extends Drawable {
 
                     long maxTime = start * 1000; //values.get(values.size() - 1).date;
 
-                    for (int i = values.size() - 1; i >= 0; i--) {
+                    for (int i = tmpValues.size() - 1; i >= 0; i--) {
                         TimePoint tp;
                         try {
-                            tp = values.get(i);
+                            tp = tmpValues.get(i);
                         } catch (IndexOutOfBoundsException e) {
                             tp = null;
                         }
@@ -312,7 +312,7 @@ public class Timeplot extends Drawable {
                             double mx = barWidth - ((maxTime - tp.date) / timeSale / 1000);
 
                             if (mx < 0) {
-                                values.remove(i);
+                                tmpValues.remove(i);
                             } else {
                                 // determine Y
                                 double my;
@@ -368,7 +368,7 @@ public class Timeplot extends Drawable {
                                             2 * rayon + 1);
                                 }
 
-                                if (i < values.size() - 1 && (mx != 0 || my != 0)) {
+                                if (i < tmpValues.size() - 1 && (mx != 0 || my != 0)) {
                                     if (getOptions().getOption(sid) != null &&
                                             getOptions().getOption(sid).contains("full")) {
                                         if ((lastY != Double.NaN) && (lastX != Double.NaN) && !testErrorPoint(lastX, lastY, "last full") && !testErrorPoint(mx, my, "m full")) {
@@ -386,7 +386,7 @@ public class Timeplot extends Drawable {
                                     } else if (getOptions().getOption(sid) != null &&
                                             getOptions().getOption(sid).contains("gradient")) {
 
-                                        if (i < values.size() && values.get(i + 1) != null) {
+                                        if (i < tmpValues.size() && tmpValues.get(i + 1) != null) {
                                             if ((lastY != Double.NaN) && (lastX != Double.NaN) && !testErrorPoint(lastX, lastY, "last grad") && !testErrorPoint(mx, my, "m grad")) {
                                                 Polygon p = new Polygon();
                                                 p.addPoint(getX() + getWidth() - barWidth + (int) lastX - spaceAlt,
@@ -426,8 +426,8 @@ public class Timeplot extends Drawable {
                 {
                     long minTime = start * 1000; //values.get(0).date;
 
-                    for (int i = 0; i < values.size(); i++) {
-                        TimePoint tp = values.get(i);
+                    for (int i = 0; i < tmpValues.size(); i++) {
+                        TimePoint tp = tmpValues.get(i);
 
                         if (tp != null && !Double.isNaN(tp.value) && tp.date != 0) {
                             g.setColor(colorRanges.getColor(sid, tp.value, getColor(s)));
@@ -623,15 +623,16 @@ public class Timeplot extends Drawable {
             int tx = getX() + width - barWidth + 8 - spaceAlt;
             for (int s = 0; s < sids.size(); s++) {
                 String sid = sids.get(s);
-                ArrayList<TimePoint> values = this.values.get(sid);
+                ArrayList<TimePoint> tmpValues = this.values.get(sid);
+                if (tmpValues == null) continue;
 
                 int th = g.stringHeight(title);
                 int ty = getY() + th + 4;
 
-                if (values.isEmpty())
+                if (tmpValues.isEmpty())
                     g.setColor(getColor(s));
                 else
-                    g.setColor(colorRanges.getColor(sid, values.get(values.size() - 1).value, getColor(s)));
+                    g.setColor(colorRanges.getColor(sid, tmpValues.get(tmpValues.size() - 1).value, getColor(s)));
 
                 if (s < parts.length) {
                     g.drawString(parts[s].trim(), tx, ty);
@@ -659,7 +660,9 @@ public class Timeplot extends Drawable {
         if (showValue) {
             for (int s = 0; s < sids.size(); s++) {
                 String sid = sids.get(s);
-                ArrayList<TimePoint> values = this.values.get(sid);
+                ArrayList<TimePoint> tmpValues = this.values.get(sid);
+                if (tmpValues == null) continue;
+
                 Field field = Fields.getInstance().getBySID(sid);
 
                 String text;
@@ -667,8 +670,8 @@ public class Timeplot extends Drawable {
                 if (field != null) {
                     text = String.format("%." + String.valueOf(field.getDecimals()) + "f", field.getValue());
                 } else {
-                    if (values.size() == 0) text = "N/A";
-                    else text = String.valueOf(values.get(values.size() - 1).value);
+                    if (tmpValues.size() == 0) text = "N/A";
+                    else text = String.valueOf(tmpValues.get(tmpValues.size() - 1).value);
                 }
 
                 //g.setTextSize(40);
@@ -677,10 +680,11 @@ public class Timeplot extends Drawable {
                 else
                     g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 18, Resources.getSystem().getDisplayMetrics()));
 
-                if (values.isEmpty())
+                if (tmpValues.isEmpty()) {
                     g.setColor(getColor(s));
-                else
-                    g.setColor(colorRanges.getColor(sid, values.get(values.size() - 1).value, getColor(s)));
+                } else {
+                    g.setColor(colorRanges.getColor(sid, tmpValues.get(tmpValues.size() - 1).value, getColor(s)));
+                }
 
                 int tw = g.stringWidth(text);
                 int th = g.stringHeight(text);
