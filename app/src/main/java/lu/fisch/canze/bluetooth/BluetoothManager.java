@@ -52,15 +52,15 @@ public class BluetoothManager {
      * Sigleton stuff
      \ ------------------------------ */
 
-    private static BluetoothManager bluetoothManager = null;
+    private static BluetoothManager instance = null;
 
     private InputStream inputStream = null;
     private OutputStream outputStream = null;
 
     public static BluetoothManager getInstance() {
-        if (bluetoothManager == null)
-            bluetoothManager = new BluetoothManager();
-        return bluetoothManager;
+        if (instance == null)
+            instance = new BluetoothManager();
+        return instance;
     }
 
     /* --------------------------------
@@ -134,15 +134,8 @@ public class BluetoothManager {
      */
     private BluetoothSocket createBluetoothSocket(BluetoothDevice device, boolean secure) throws IOException {
         try {
-            if (!secure) {
-                // insecure connection
-                final Method m = device.getClass().getMethod("createInsecureRfcommSocketToServiceRecord", new Class[]{UUID.class});
-                return (BluetoothSocket) m.invoke(device, MY_UUID);
-            } else {
-                // secure connection
-                final Method m = device.getClass().getMethod("createRfcommSocketToServiceRecord", new Class[]{UUID.class});
-                return (BluetoothSocket) m.invoke(device, MY_UUID);
-            }
+            final Method m = device.getClass().getMethod(secure ? "createRfcommSocketToServiceRecor" : "createInsecureRfcommSocketToServiceRecord", new Class[]{UUID.class});
+            return (BluetoothSocket) m.invoke(device, MY_UUID);
         } catch (Exception e) {
             debug("Could not create RFComm Connection");
         }
@@ -257,7 +250,7 @@ public class BluetoothManager {
             if (retries != RETRIES_NONE) {
                 // avoid thread state mismatches
                 synchronized (retryLock) {
-                    if (retryThread == null || (retryThread != null && !retryThread.isAlive())) {
+                    if (retryThread == null || !retryThread.isAlive()) {
                         if (retryThread != null) {
                             retryThread.interrupt();
                         }
@@ -419,6 +412,8 @@ public class BluetoothManager {
 
     /*
     * https://codeday.me/jp/qa/20190630/1142774.html (use google translate)
+    * https://stackoverflow.com/questions/21166222/connecting-to-bluetooth-device-fails-in-deep-sleep
+    * lint balks ar getDeclaredField. Ignore that
     *
     */
     private synchronized void closeSocketAndclearFileDescriptor() {

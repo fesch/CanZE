@@ -44,6 +44,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -184,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     protected Menu mOptionsMenu; // needed to find BT symbol
     private int mBtState = BLUETOOTH_SEARCH;
 
+    private boolean storageGranted = false;
 
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -199,19 +201,23 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 // jm: changed to always stop the poller and show state change
                 // but only onResume if we are visible
                 //if (visible) {
-                // stop reading
+                // stop the poller
                 if (device != null)
                     device.stopAndJoin();
 
                 // inform user
                 // setTitle(TAG + " - disconnected");
-                setBluetoothState(BLUETOOTH_DISCONNECTED);
+                showBluetoothState(BLUETOOTH_DISCONNECTED);
                 toast(R.string.toast_BluetoothLost);
 
                 // try to reconnect
-                // jm actually I don't think next line is needed at all. In another activty (so invisible), everything reconnects just fine, and the poller restarts
-                // if this happens (white icon), no restart
-                if (visible) onResume();
+                (new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        reloadBluetooth(false);
+                    }
+                })).start();
+                //if (visible) onResume();
                 //}
             }
         }
@@ -252,8 +258,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                         }
                     } catch (NullPointerException e) {
                         // do nothing. getApplicationContext sometimes trips on a null pointer
-                        // exception and when that happens, it's accepable to simplu give up
-                        // on a transient toast message. An alternative approach might be touse
+                        // exception and when that happens, it's accepable to simply give up
+                        // on a transient toast message. An alternative approach might be to use
                         // https://www.dev2qa.com/android-get-application-context-from-anywhere-example/
                         // but it seems that overwriting Application is frowed upon a bit.
                     }
@@ -309,6 +315,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 BluetoothManager.getInstance().setDummyMode(bluetoothDeviceName.substring(0, 4).compareTo("HTTP") == 0);
 
             String carStr = settings.getString("car", "None");
+            if (carStr == null) carStr = "None"; // overdone, but keep lint happy
             switch (carStr) {
                 case "None":
                     car = CAR_NONE;
@@ -345,6 +352,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             // as the settings may have changed, we need to reload different things
 
             // create a new device
+            if (deviceType == null) deviceType = ""; // overdone, but keep lint happy
             switch (deviceType) {
                 case "Bob Due":
                 case "CanSee":
@@ -421,26 +429,25 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1234;
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
-                // If request is cancelled, the result arrays are empty.
+            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay!
+                    MainActivity.debug("MainActivity.onRequestPermissionsResult:storage granted");
+                    storageGranted = true;
                 } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
+                    storageGranted = false;
+                    MainActivity.debug("MainActivity.onRequestPermissionsResult:storage not granted");
                 }
                 break;
-            }
 
             // other 'case' lines to check for other
             // permissions this app might request.
+
+            default:
+                break;
         }
     }
-
-
-
 
     private ViewPager viewPager;
     private ActionBar actionBar;
@@ -454,7 +461,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         res = getResources();
 
         if (ContextCompat.checkSelfPermission(instance, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(instance, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+            ActivityCompat.requestPermissions(instance, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+        } else {
+            storageGranted = true;
         }
 
         // dataLogger = DataLogger.getInstance();
@@ -488,7 +497,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         updateActionBar();
 
         // setTitle(TAG + " - not connected");
-        setBluetoothState(BLUETOOTH_DISCONNECTED);
+        showBluetoothState(BLUETOOTH_DISCONNECTED);
 
         // open the database
         CanzeDataSource.getInstance(getBaseContext()).open();
@@ -518,22 +527,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         BluetoothManager.getInstance().setBluetoothEvent(new BluetoothEvent() {
             @Override
             public void onBeforeConnect() {
-                setBluetoothState(BLUETOOTH_SEARCH);
+                showBluetoothState(BLUETOOTH_SEARCH);
             }
 
             @Override
             public void onAfterConnect(BluetoothSocket bluetoothSocket) {
                 device.init(visible);
-
-                // set title
-                debug("MainActivity: onAfterConnect > set title");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // setTitle(TAG + " - connected to <" + bluetoothDeviceName + "@" + bluetoothDeviceAddress + ">");
-                        setBluetoothState(BLUETOOTH_CONNECTED);
-                    }
-                });
+                showBluetoothState(BLUETOOTH_CONNECTED);
             }
 
             @Override
@@ -542,13 +542,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
             @Override
             public void onAfterDisconnect() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // setTitle(TAG + " - disconnected");
-                        setBluetoothState(BLUETOOTH_DISCONNECTED);
-                    }
-                });
+                showBluetoothState(BLUETOOTH_DISCONNECTED);
             }
         });
         // detect hardware status
@@ -592,6 +586,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         debug("MainActivity: onResume");
         setBluetoothMenuItem (mOptionsMenu);
 
+        // dark mode handling
         SharedPreferences set = getSharedPreferences(PREFERENCES_FILE, 0);
         if (set.getBoolean("optDark", false)) {
             //if (Build.VERSION.SDK_INT > 23)
@@ -602,8 +597,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                     startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
                 }
             }
-        } else {
 
+        } else {
             if(AppCompatDelegate.getDefaultNightMode()!=AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                 if(Build.VERSION.SDK_INT <28) {
@@ -639,12 +634,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         });
 
         if (!leaveBluetoothOn) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    setBluetoothState(BLUETOOTH_DISCONNECTED);
-                }
-            });
+            showBluetoothState(BLUETOOTH_DISCONNECTED);
             (new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -720,9 +710,15 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     public void reloadBluetooth(boolean reloadSettings) {
-        // re-load the settings if asked to
-        if (reloadSettings)
+        if (reloadSettings) {
+            // re-load the settings. It will do a device.initConnection (start poller if there is a connection)
             loadSettings();
+        } else {
+            // else only (re)initialize the connection
+            if (device != null) {
+                device.initConnection();
+            }
+        }
 
         // try to get a new BT thread
         BluetoothManager.getInstance().connect(
@@ -827,7 +823,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // bluetoothMenutItem.setActionView(R.layout.animated_menu_item);
 
         // set the correct initial state moved upm as setluetoothMenuItem sets it
-        // setBluetoothState(BLUETOOTH_DISCONNECTED);
+        // showBluetoothState(BLUETOOTH_DISCONNECTED);
 
 
         // get access to the image view ==> moved to setBluetoothMenuItem
@@ -853,7 +849,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public void setBluetoothMenuItem (Menu menu) {
         if (menu == null) return;
         bluetoothMenutItem = menu.findItem(R.id.action_bluetooth);
-        setBluetoothState(mBtState);
+        showBluetoothState(mBtState);
         // get access to the image view
         ImageView imageView = bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
         // define an action
@@ -864,7 +860,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                     @Override
                     public void run() {
                         toast(getStringSingle(R.string.toast_Reconnecting));
-                        stopBluetooth();
+                        stopBluetooth(false); // do NOT clear the activity queue
                         reloadBluetooth(false); // no need to reload settings
                     }
                 })).start();
@@ -872,7 +868,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         });
     }
 
-    private void setBluetoothState (final int btState) {
+    private void showBluetoothState(final int btState) {
         mBtState = btState; // save state. The icon must be redrawn in the last state if activity switches
         if (bluetoothMenutItem != null) {
             View view = bluetoothMenutItem.getActionView();
@@ -893,13 +889,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
                     switch (btState) {
                         case BLUETOOTH_DISCONNECTED:
-                            imageView.setBackgroundResource(R.drawable.bluetooth_none); // white icon
+                            imageView.setBackgroundResource(R.drawable.bluetooth_none); // 21, white icon
                             break;
                         case BLUETOOTH_CONNECTED:
-                            imageView.setBackgroundResource(R.drawable.bluetooth_3); // blue icon
+                            imageView.setBackgroundResource(R.drawable.bluetooth_3); // 23, blue icon
                             break;
                         case BLUETOOTH_SEARCH:
-                                    imageView.setBackgroundResource(R.drawable.animation_bluetooth); // animated blue icon
+                                    imageView.setBackgroundResource(R.drawable.animation_bluetooth); // 22, animated blue icon
                                     // AnimationDrawable frameAnimation = (AnimationDrawable) imageView.getBackground();
                                     if (frameAnimation != null) frameAnimation.start();
                             break;
@@ -1031,6 +1027,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         // this case statement contains optional code to move a previous instance of the app to the
         // current state
+        if (previousVersion == null) previousVersion = ""; // keep lint happy
         switch (previousVersion) {
             case "":
             default:
@@ -1120,6 +1117,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     public boolean isExternalStorageWritable() {
+        if (!storageGranted) return false;
         String SDstate = Environment.getExternalStorageState();
         return (Environment.MEDIA_MOUNTED.equals(SDstate));
     }
