@@ -9,6 +9,7 @@
 /.idea/caches/
 /projectFilesBackup/
 gradle.xml
+/app/google-services.json
 
 # newer standard best practice entries
 
