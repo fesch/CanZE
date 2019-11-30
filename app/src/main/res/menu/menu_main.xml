@@ -43,4 +43,12 @@
         app:showAsAction="never"
         />
 
+    <item
+        android:id="@+id/action_crash"
+        android:orderInCategory="210"
+        android:title="Force crash"
+        android:visible="true"
+        app:showAsAction="never"
+        />
+
 </menu>

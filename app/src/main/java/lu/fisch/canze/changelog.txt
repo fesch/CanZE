@@ -1,3 +1,5 @@
+2019-11-27 [Jeroen] Added google's crashlytics
+
 ---< Version 1.49 / 2019.11.30 / 56 >---
 2019-11-27 [Jeroen] Catch spurious error in Timeplot
 2019-11-27 [Jeroen] Code fixes and moved "tap bluetooth to reconnect" to work in all activities

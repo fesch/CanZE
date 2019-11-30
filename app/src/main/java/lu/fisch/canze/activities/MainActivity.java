@@ -65,10 +65,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 //import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
@@ -817,6 +820,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         mBtState = BLUETOOTH_DISCONNECTED;
+        if (BuildConfig.BRANCH.equals("Development")) setForceCrash(menu);
+
         // get a reference to the bluetooth action button
         setBluetoothMenuItem (menu); //bluetoothMenutItem = menu.findItem(R.id.action_bluetooth);
         // and put the right view on it
@@ -845,6 +850,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 */
         return true;
     }
+
+    private void setForceCrash (Menu menu) {
+        if (menu == null) return;
+        MenuItem crasher = menu.findItem(R.id.action_crash);
+        crasher.setVisible(true);
+    }
+
 
     public void setBluetoothMenuItem (Menu menu) {
         if (menu == null) return;
@@ -971,6 +983,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         } else if (id == R.id.action_experimental) {
             viewPager.setCurrentItem(2, true);
             updateActionBar();
+
+        } else if (id == R.id.action_crash) {
+            Crashlytics.getInstance().crash();
         }
 
         return super.onOptionsItemSelected(item);
