@@ -115,7 +115,7 @@ public class ELM327OverHttp extends Device {
                 return "-E-result from httpGet empty";
             }
 
-            JsonElement jelement = new JsonParser().parse(jsonLine);
+            JsonElement jelement = JsonParser.parseString(jsonLine);
             result = jelement.getAsJsonObject().get("R").getAsString();
 
             //MainActivity.debug("ELM327Http: getMessageResult:[" + result + "]");
