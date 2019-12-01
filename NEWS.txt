@@ -1,1 +1,1 @@
-Please do not try to write Tyre IDs now.
+Tires screen fixed. Try "Use ISOTP fields" in Settings screen for better performance.
