@@ -36,6 +36,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -43,6 +46,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.BatteryActivity;
 import lu.fisch.canze.activities.BrakingActivity;
@@ -59,6 +63,7 @@ public class MainFragment extends Fragment {
 
     private static boolean firstRun = true;
     private static String msg = "";
+    private static boolean isHtml = false;
 
     public MainFragment() {
         // Required empty public constructor
@@ -125,7 +130,19 @@ public class MainFragment extends Fragment {
                                 // MainActivity.debug("ELM327Http: httpGet append " + st);
                                 stringBuilder.append(msg);
                             }
-                            msg = stringBuilder.toString();
+
+                            JsonElement jelement = JsonParser.parseString(stringBuilder.toString());
+                            msg = "";
+                            int version = jelement.getAsJsonObject().get("version").getAsInt();
+                            msg = jelement.getAsJsonObject().get("news").getAsString();
+                            isHtml = msg.contains("<");
+                            if (version > BuildConfig.VERSION_CODE) {
+                                if (isHtml) {
+                                    msg = "<p>Please upgrade CanZE</p>" + msg;
+                                } else {
+                                    msg = "Please upgrade CanZE\n\n" + msg;
+                                }
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         } finally {
@@ -152,7 +169,7 @@ public class MainFragment extends Fragment {
             public void run() {
                 TextView tv = view.findViewById(R.id.textNews);
                 tv.setVisibility(View.VISIBLE);
-                if (msg.contains("<")) {
+                if (isHtml) {
                     tv.setText(Html.fromHtml(msg));
                     tv.setMovementMethod(LinkMovementMethod.getInstance());
                 } else {
