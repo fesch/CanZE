@@ -1,4 +1,5 @@
-2019-12-01 [Jeroen] Changed news to json for and give user update nudge
+2019-12-01 [Jeroen] Avoid restart of activity through re-orientation
+2019-12-01 [Jeroen] Changed news to json and give user update nudge
 2019-12-01 [Jeroen] Changed Gson to 2.8.6
 2019-11-27 [Jeroen] Added google's crashlytics
 

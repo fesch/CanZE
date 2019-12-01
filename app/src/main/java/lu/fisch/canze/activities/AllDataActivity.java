@@ -21,6 +21,8 @@
 
 package lu.fisch.canze.activities;
 
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Menu;
@@ -86,7 +88,7 @@ public class AllDataActivity extends CanzeActivity {
                 String mne = String.valueOf(spinnerEcu.getSelectedItem());
                 Ecu ecu = Ecus.getInstance().getByMnemonic(mne);
                 if (ecu != null) {
-                   dogetAllData(ecu);
+                    dogetAllData(ecu);
                 } else {
                     appendResult("Can't find ECU:" + mne + "\n");
                 }
@@ -96,7 +98,7 @@ public class AllDataActivity extends CanzeActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                displayProgressSpinner (true, R.id.progressBar_cyclic);
+                displayProgressSpinner(true, R.id.progressBar_cyclic);
                 //appendResult(R.string.message_PollerStopping);
                 if (MainActivity.device != null) {
                     // stop the poller thread
@@ -105,10 +107,10 @@ public class AllDataActivity extends CanzeActivity {
 
                 if (!BluetoothManager.getInstance().isConnected()) {
                     appendResult(R.string.message_NoConnection);
-                //} else {
-                //    appendResult(MainActivity.getStringSingle(R.string.message_Ready));
+                    //} else {
+                    //    appendResult(MainActivity.getStringSingle(R.string.message_Ready));
                 }
-                displayProgressSpinner (false, R.id.progressBar_cyclic);
+                displayProgressSpinner(false, R.id.progressBar_cyclic);
             }
         }).start();
     }
@@ -158,28 +160,8 @@ public class AllDataActivity extends CanzeActivity {
 
     private void dogetAllData(final Ecu ecu) {
 
-        // clear the screen
-        clearResult();
-        displayProgressSpinner (true, R.id.progressBar_cyclic);
-        appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
-
-        // here initialize this particular ECU diagnostics fields
-        try {
-            Frames.getInstance().load(ecu);
-            Fields.getInstance().load(ecu.getMnemonic() + "_Fields.csv");
-        } catch (Exception e) {
-            appendResult(R.string.message_NoEcuDefinition);
-            // Reload the default frame & timings
-            Frames.getInstance().load();
-            Fields.getInstance().load();
-            // Don't care about DTC's and tests
-        }
-
-        // re-initialize the device
-        appendResult(R.string.message_SendingInit);
-
         // try to stop previous thread
-        if (queryThread != null)
+        if (queryThread != null) {
             if (queryThread.isAlive()) {
                 queryThread.tryToStop();
                 try {
@@ -188,15 +170,39 @@ public class AllDataActivity extends CanzeActivity {
                     MainActivity.debug(e.getMessage());
                 }
             }
+        }
 
         queryThread = new StoppableThread(new Runnable() {
             @Override
             public void run() {
 
+                // Stop responding to rotation
+                freezeOrientation();
+                // clear the screen
+                clearResult();
+                displayProgressSpinner(true, R.id.progressBar_cyclic);
+                appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
+
+                // here initialize this particular ECU diagnostics fields
+                try {
+                    Frames.getInstance().load(ecu);
+                    Fields.getInstance().load(ecu.getMnemonic() + "_Fields.csv");
+                } catch (Exception e) {
+                    appendResult(R.string.message_NoEcuDefinition);
+                    // Reload the default frame & timings
+                    Frames.getInstance().load();
+                    Fields.getInstance().load();
+                    // Don't care about DTC's and tests
+                    return;
+                }
+
+                // re-initialize the device
+                appendResult(R.string.message_SendingInit);
+
                 // re-initialize the device
                 if (!MainActivity.device.initDevice(1)) {
                     appendResult(R.string.message_InitFailed);
-                    displayProgressSpinner (false, R.id.progressBar_cyclic);
+                    displayProgressSpinner(false, R.id.progressBar_cyclic);
                     return;
                 }
 
@@ -205,10 +211,11 @@ public class AllDataActivity extends CanzeActivity {
 
                 // for (Frame frame : Frames.getInstance().getAllFrames()) {    <<< this is not thread-safe!
                 for (int i = 0; i < Frames.getInstance().getAllFrames().size(); i++) {
-                    Frame frame = Frames.getInstance().get(i);
-                    testerKeepalive();
                     // see if we need to stop right now
                     if (((StoppableThread) Thread.currentThread()).isStopped()) return;
+
+                    Frame frame = Frames.getInstance().get(i);
+                    testerKeepalive();
 
                     if (frame.getContainingFrame() != null || ecu.getFromId() == 0x801) { // only use subframes and free frames
 
@@ -223,6 +230,7 @@ public class AllDataActivity extends CanzeActivity {
                             for (Field field : frame.getAllFields()) {
                                 appendResult(field.getDebugValue());
                             }
+
                         } else {
                             appendResult(frame.getHexId() + "." + frame.getResponseId() + ":" + message.getError() + "\n");
                             if (!MainActivity.device.initDevice(1)) {
@@ -234,7 +242,9 @@ public class AllDataActivity extends CanzeActivity {
                 }
                 closeDump();
                 MainActivity.toast(MainActivity.TOAST_NONE, R.string.message_DumpDone);
-                displayProgressSpinner (false, R.id.progressBar_cyclic);
+                displayProgressSpinner(false, R.id.progressBar_cyclic);
+                // allow rotation again
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
             }
         });
@@ -322,7 +332,7 @@ public class AllDataActivity extends CanzeActivity {
             //BufferedWriter for performance, true to set append to file flag
             bufferedDumpWriter = new BufferedWriter(new FileWriter(logFile, true));
             dumpInProgress = true;
-            MainActivity.toast (MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_DumpWriting), exportdataFileName);
+            MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_DumpWriting), exportdataFileName);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -342,7 +352,7 @@ public class AllDataActivity extends CanzeActivity {
     }
 
 
-    private void displayProgressSpinner (final boolean on, final int id) {
+    private void displayProgressSpinner(final boolean on, final int id) {
         // remove progress spinners
         runOnUiThread(new Runnable() {
             @Override
@@ -353,6 +363,26 @@ public class AllDataActivity extends CanzeActivity {
         });
     }
 
+    private void freezeOrientation () {
+        int rotation = getWindowManager().getDefaultDisplay().getRotation();
+        switch (getResources().getConfiguration().orientation) {
+            case Configuration.ORIENTATION_PORTRAIT:
+                if (rotation == android.view.Surface.ROTATION_90 || rotation == android.view.Surface.ROTATION_180) {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
+                } else {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                }
+                break;
+
+            case Configuration.ORIENTATION_LANDSCAPE:
+                if (rotation == android.view.Surface.ROTATION_0 || rotation == android.view.Surface.ROTATION_90) {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                } else {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+                }
+                break;
+        }
+    }
 
     @Override
     protected void onDestroy() {
