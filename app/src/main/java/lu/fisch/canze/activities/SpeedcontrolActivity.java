@@ -30,7 +30,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
     private final String mi = MainActivity.getStringSingle(R.string.unit_Mi);
     private final String kmh = MainActivity.getStringSingle(R.string.unit_SpeedKm);
     private final String mih = MainActivity.getStringSingle(R.string.unit_SpeedMi);
-
+    private final String speedformat = "%.0f"; // feel free to change back. Experiment to make less jumpy
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +98,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                     // show it
                                     tv = findViewById(R.id.speed);
                                     if (tv != null)
-                                        tv.setText(String.format(Locale.getDefault(), "%.1f", speed));
+                                        tv.setText(String.format(Locale.getDefault(), speedformat, speed));
                                 }
                                 else // interpolate distance using the speed
                                 {
@@ -115,7 +115,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                         // show it
                                         tv = findViewById(R.id.speed);
                                         if (tv != null)
-                                            tv.setText(String.format(Locale.getDefault(), "%.1f", speedCalc));
+                                            tv.setText(String.format(Locale.getDefault(), speedformat, speedCalc));
                                     }
                                 }
 
@@ -132,6 +132,10 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                                                     Build.VERSION.SDK_INT
                                             )
                                     );
+                                } else {
+                                    // added to remove "waiting for second value" when on master branch
+                                    tv = findViewById(R.id.textDetails);
+                                    tv.setText("");
                                 }
 
                                 distanceLast = distanceEnd;
