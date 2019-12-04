@@ -47,7 +47,7 @@
         android:id="@+id/action_crash"
         android:orderInCategory="210"
         android:title="Force crash"
-        android:visible="true"
+        android:visible="false"
         app:showAsAction="never"
         />
 
