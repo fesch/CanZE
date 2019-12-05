@@ -591,23 +591,18 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         // dark mode handling
         SharedPreferences set = getSharedPreferences(PREFERENCES_FILE, 0);
-        if (set.getBoolean("optDark", false)) {
-            //if (Build.VERSION.SDK_INT > 23)
-            if(AppCompatDelegate.getDefaultNightMode()!=AppCompatDelegate.MODE_NIGHT_YES) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                if(Build.VERSION.SDK_INT < 28) {
-                    finish();
-                    startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
-                }
-            }
+        int darkModeSetting;
+        try { // handle old boolean preference
+            darkModeSetting = set.getInt("optDark", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        } catch (ClassCastException e) {
+            darkModeSetting = set.getBoolean("optDark", false) ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+        }
 
-        } else {
-            if(AppCompatDelegate.getDefaultNightMode()!=AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                if(Build.VERSION.SDK_INT <28) {
-                    finish();
-                    startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
-                }
+        if(AppCompatDelegate.getDefaultNightMode() != darkModeSetting) { // 2
+            AppCompatDelegate.setDefaultNightMode (darkModeSetting);
+            if(Build.VERSION.SDK_INT < 28) {
+                finish();
+                startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
             }
         }
 

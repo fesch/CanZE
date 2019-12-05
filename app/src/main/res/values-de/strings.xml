@@ -647,7 +647,7 @@
     <string name="default_NotOk">Nicht OK</string>
     <string name="default_ZeroNm">0 Nm</string>
     <string name="label_AltFields">Use ISOTP fields</string>
-    <string name="label_Darkmode">Force Dark Mode</string>
+    <string name="label_Darkmode">Modus dunkel</string>
     <string name="message_gotfirst">Got first value…</string>
     <string name="message_gotsecond">Got second value…</string>
     <string name="message_waitsecond">Waiting for second value…</string>

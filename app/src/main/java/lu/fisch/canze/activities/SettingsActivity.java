@@ -82,15 +82,28 @@ public class SettingsActivity extends AppCompatActivity {
         String remoteDevice = settings.getString("device", "ELM327");
 
         // dark mode
-        CheckBox darkMode = findViewById(R.id.darkMode);
-        darkMode.setChecked(settings.getBoolean("optDark",false));
+        //CheckBox darkMode = findViewById(R.id.darkMode);
+        //darkMode.setChecked(settings.getBoolean("optDark",false));
+        final Spinner darkMode = findViewById(R.id.darkMode);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        arrayAdapter.add("System");
+        arrayAdapter.add("Dark");
+        arrayAdapter.add("Light");
+        darkMode.setAdapter(arrayAdapter);
+        int darkModeSetting;
+        try { // handle old boolean preference
+            darkModeSetting = settings.getInt("optDark", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        } catch (ClassCastException e) {
+            darkModeSetting = settings.getBoolean("optDark", false) ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+        }
+        darkMode.setSelection(darkModeSetting == AppCompatDelegate.MODE_NIGHT_YES ? 1 : (darkModeSetting == AppCompatDelegate.MODE_NIGHT_NO ? 2 : 0));
 
         // device address
         final EditText deviceAddress = findViewById(R.id.editTextDeviceAddress);
 
         // device type
         final Spinner deviceType = findViewById(R.id.deviceType);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         arrayAdapter.add("ELM327");
         arrayAdapter.add("CanSee");
         //arrayAdapter.add("ELM327Http");
@@ -646,7 +659,7 @@ public class SettingsActivity extends AppCompatActivity {
         CheckBox debugLog = findViewById(R.id.debugLogMode);
         CheckBox fieldLog = findViewById(R.id.fieldLogMode);
         CheckBox btBackground = findViewById(R.id.btBackgrounding);
-        CheckBox darkMode = findViewById(R.id.darkMode);
+        Spinner darkMode = findViewById(R.id.darkMode);
         Spinner toastLevel = findViewById(R.id.toastLevel);
         EditText deviceAddress = findViewById(R.id.editTextDeviceAddress);
         if (remoteDevice.getSelectedItem() != null) {
@@ -667,7 +680,7 @@ public class SettingsActivity extends AppCompatActivity {
             editor.putBoolean("optSafe", safe.isChecked());
             editor.putBoolean("optMiles", miles.isChecked());
             editor.putBoolean("optAltFields", altFields.isChecked());
-            editor.putBoolean("optDark", darkMode.isChecked());
+            editor.putInt("optDark", darkMode.getSelectedItem().toString().equals("Dark") ? AppCompatDelegate.MODE_NIGHT_YES : (darkMode.getSelectedItem().toString().equals("Light") ? AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM));
             editor.putBoolean("optDataExport", dataExport.isChecked());
             editor.putBoolean("optDebugLog", debugLog.isChecked());
             editor.putBoolean("optFieldLog", fieldLog.isChecked());

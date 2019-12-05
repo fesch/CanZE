@@ -457,7 +457,7 @@
     <string name="label_SafeDrivingMode">Bloquer pendant la conduite</string>
     <string name="label_BluetoothBackgroundMode">Mode Bluetooth en arrière plan</string>
     <string name="label_Miles">Miles</string>
-    <string name="label_Darkmode">Forcer Mode Sombre</string>
+    <string name="label_Darkmode">Mode Sombre</string>
     <string name="label_AltFields">Utiliser champs ISOTP</string>
     <string name="label_SdCardLogging">Enregistrer les traces sur la carte SD</string>
     <string name="label_Debug">Debug</string>
