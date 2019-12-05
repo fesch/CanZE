@@ -32,6 +32,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Environment;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -67,7 +68,11 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayHomeAsUpEnabled(true);
+
         setContentView(R.layout.activity_settings);
 
         tryTofillDeviceList();
@@ -99,6 +104,7 @@ public class SettingsActivity extends AppCompatActivity {
             deviceAddress.setText(settings.getString("deviceAddress", ""));
             deviceAddress.setEnabled(false);
             int index = 0;
+            if (remoteDevice == null) remoteDevice = "";
             switch (remoteDevice) {
                 case "ELM327":
                     index = 0;
@@ -441,7 +447,8 @@ public class SettingsActivity extends AppCompatActivity {
 
             Date buildDate = new Date(BuildConfig.TIMESTAMP);
             SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHM), Locale.getDefault());
-            tv.setText(MainActivity.getStringSingle(R.string.version) + BuildConfig.VERSION_NAME + " (" + BuildConfig.BUILD_TYPE + "-" + BuildConfig.BRANCH + ") " + MainActivity.getStringSingle(R.string.build) + sdf.format(buildDate));
+            String version = MainActivity.getStringSingle(R.string.version) + BuildConfig.VERSION_NAME + " (" + BuildConfig.BUILD_TYPE + "-" + BuildConfig.BRANCH + ") " + MainActivity.getStringSingle(R.string.build) + sdf.format(buildDate);
+            tv.setText(version);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -466,7 +473,8 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.apply();
 
                 // clear database
-                CanzeDataSource.getInstance().clear();
+                CanzeDataSource cds = CanzeDataSource.getInstance();
+                if (cds != null) CanzeDataSource.getInstance().clear();
 
                 MainActivity.fields.clearAllFields();
                 MainActivity.toast(MainActivity.TOAST_NONE, R.string.toast_CacheCleared);
@@ -574,15 +582,21 @@ public class SettingsActivity extends AppCompatActivity {
                 // loop through paired devices
                 for (BluetoothDevice device : pairedDevices) {
                     // add the name and address to an array adapter to show in a ListView
-
+                    // see https://stackoverflow.com/questions/20658142/getting-the-renamed-name-of-an-android-bluetoothdevice
                     String deviceAlias = device.getName();
                     try {
+                        // getAliasName is preferred as it returns the user naming. This simplifies
+                        // identification if having several dongles, so you can name them "KONNWEI", "blue"
+                        // etcetera in Android's Bluetooth settings.
+                        // this will lint warning as getAliasName has @hide set.
                         Method method = device.getClass().getMethod("getAliasName");
-                        if (method != null) {
-                            deviceAlias = (String) method.invoke(device);
-                        }
+                        // getMethod is supposed never to return null, but raise an exception instead
+                        //if (method != null) {
+                        deviceAlias = (String) method.invoke(device);
+                        //}
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        // do nothing. Trapping here is no problem, as we already have the name
+                        // e.printStackTrace();
                         // catch (NoSuchMethodException e) {
                         // e.printStackTrace();
                         //} catch (InvocationTargetException e) {
