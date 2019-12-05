@@ -1,6 +1,7 @@
 package lu.fisch.canze.classes;
 
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,6 +14,7 @@ import java.util.Locale;
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.MainActivity;
 
+import static lu.fisch.canze.activities.MainActivity.TAG;
 import static lu.fisch.canze.activities.MainActivity.debug;
 
 /**
@@ -49,18 +51,22 @@ public class DebugLogger {
     private boolean createNewLog() {
 
         if (!MainActivity.storageIsAvailable) {
-            debug("AllDataActivity.createDump: SDcard not available");
+            Log.d(TAG, "AllDataActivity.createDump: SDcard not available");
             return false;
         }
         if (!MainActivity.getInstance().isExternalStorageWritable()) {
-            debug("DiagDump: SDcard not writeable");
+            Log.d(TAG, "DiagDump: SDcard not writeable");
             return false;
         }
         String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
 
         File dir = new File(file_path);
         if (!dir.exists()) {
-            dir.mkdirs();
+            if (!dir.mkdirs()) {
+                Log.d(TAG, "DiagDump: can't create directory:" + file_path);
+                logFile = null;
+                return false;
+            }
         }
 
         String exportdataFileName = file_path + "debug-" + sdf.format(Calendar.getInstance().getTime()) + ".log";
@@ -68,7 +74,11 @@ public class DebugLogger {
         logFile = new File(exportdataFileName);
         if (!logFile.exists()) {
             try {
-                logFile.createNewFile();
+                if (!logFile.createNewFile()) {
+                    Log.d(TAG, "DiagDump: can't create file:" + exportdataFileName);
+                    logFile = null;
+                    return false;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
                 logFile = null;
