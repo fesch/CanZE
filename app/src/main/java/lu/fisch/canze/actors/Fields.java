@@ -100,7 +100,7 @@ public class Fields {
         @Override
         public void onLocationChanged(Location loc) {
             if (gpsField != null)
-                gpsField.setValue(String.format(Locale.US, "%.6f,%6f", loc.getLatitude(), loc.getLongitude()));
+                gpsField.setValue(String.format(Locale.US, "%.6f/%6f/%6f", loc.getLatitude(), loc.getLongitude(), loc.getAltitude()));
                 if(MainActivity.fieldLogMode)
                     FieldLogger.getInstance().log(gpsField.getDebugValue());
         }
