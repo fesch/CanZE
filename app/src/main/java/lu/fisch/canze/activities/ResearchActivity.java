@@ -111,7 +111,7 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
             Field field = fields.get(firstEmptyRow);
             if(field!=null) {
                 if (firstEmptyRow <= 19) {
-                    fillView ("textResL" + ("0"+firstEmptyRow).substring(firstEmptyRow<10?0:1), field.getName() + "(" + field.getUnit() + ")");
+                    fillView ("textResL" + ("0"+firstEmptyRow).substring(firstEmptyRow<10?0:1), field.getName() + " (" + field.getUnit() + ")");
                     tv = findViewById(getResources().getIdentifier("textResV" + ("0"+firstEmptyRow).substring(firstEmptyRow<10?0:1), "id", getPackageName()));
                     fillView (tv, "-");
                     viewsBySid.put (field.getSID(), tv);
@@ -151,7 +151,6 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
     // getting updated by the corresponding reader class.
     @Override
     public void onFieldUpdateEvent(final Field field) {
-        double val = field.getValue();
         TextView tv = viewsBySid.get (field.getSID());
 
         // this is added to add stray fields to the screen
@@ -162,7 +161,13 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
             viewsBySid.put (field.getSID(), tv);
             firstEmptyRow++;
         }
-        fillView(tv, Double.isNaN(val) ? "Nan" : String.format(Locale.getDefault(), "%.1f", val));
+
+        if (field.isString()) {
+            fillView(tv, field.getStringValue());
+        } else {
+            double val =  field.getValue();
+            fillView(tv, Double.isNaN(val) ? "Nan" : String.format(Locale.getDefault(), "%.1f", val));
+        }
     }
 
     @Override
