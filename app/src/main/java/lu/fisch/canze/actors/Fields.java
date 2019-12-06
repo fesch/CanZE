@@ -26,8 +26,15 @@
  */
 package lu.fisch.canze.actors;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.classes.FieldLogger;
 import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.interfaces.VirtualFieldAction;
 
@@ -67,6 +74,8 @@ public class Fields {
     private double realRangeReference2 = Double.NaN;
     private static long start = Calendar.getInstance().getTimeInMillis();
 
+    private static Field gpsField;
+
     //private int car = CAR_ANY;
 
     private Fields() {
@@ -84,6 +93,30 @@ public class Fields {
         return instance;
     }
 
+    /*---------- Listener class to get coordinates ------------- */
+    // https://stackoverflow.com/questions/1513485/how-do-i-get-the-current-gps-location-programmatically-in-android
+    private class MyLocationListener implements LocationListener {
+
+        @Override
+        public void onLocationChanged(Location loc) {
+            if (gpsField != null)
+                gpsField.setValue(String.format(Locale.US, "%.6f,%6f", loc.getLatitude(), loc.getLongitude()));
+                if(MainActivity.fieldLogMode)
+                    FieldLogger.getInstance().log(gpsField.getDebugValue());
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {}
+
+        @Override
+        public void onProviderEnabled(String provider) {}
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {}
+    }
+
+
+
     private void addVirtualFields() {
         addVirtualFieldUsage();
         addVirtualFieldUsageLpf();
@@ -99,6 +132,24 @@ public class Fields {
         addVirtualFieldRealDelta();
         addVirtualFieldRealDeltaNoReset();
         addVirtualFieldPilotAmp();
+    }
+
+    private void addVirtualField(String id) {
+        switch (id) {
+            case "6100": addVirtualFieldUsage();                break;
+            case "6104": addVirtualFieldUsageLpf();             break;
+            case "6101": addVirtualFieldFrictionTorque();       break;
+            case "610a": addVirtualFieldElecBrakeTorque();      break;
+            case "610b": addVirtualFieldTotalPositiveTorque();  break;
+            case "610c": addVirtualFieldTotalNegativeTorque();  break;
+            case "6103": addVirtualFieldDcPowerIn();            break;
+            case "6109": addVirtualFieldDcPowerOut();           break;
+            case "6106": addVirtualFieldRealRange();            break;
+            case "6107": addVirtualFieldRealDelta();            break;
+            case "6108": addVirtualFieldRealDeltaNoReset();     break;
+            case "610d": addVirtualFieldPilotAmp();             break;
+            case "610e": addVirtualFieldGps();                  break;
+        }
     }
 
 
@@ -544,6 +595,22 @@ public class Fields {
     }
 
 
+    private void addVirtualFieldGps() {
+        LocationManager locationManager = (LocationManager) MainActivity.getInstance().getBaseContext().getSystemService(Context.LOCATION_SERVICE);
+        LocationListener locationListener = new MyLocationListener();
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ) {
+            try {
+                if (gpsField == null) {
+                    Frame frame = Frames.getInstance().getById(0x800);
+                    gpsField = new Field ("",frame, (short)24, (short)0, 1, 0, 0, "coord", "610e",(short)0x2ff, "GPS", "");
+                }
+                add(gpsField);
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+            } catch (SecurityException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 
 
@@ -585,51 +652,55 @@ public class Fields {
             if (frame == null) {
                 MainActivity.debug("frame does not exist:" + tokens[FIELD_ID].trim());
             } else {
-                short options = Short.parseShort(tokens[FIELD_OPTIONS].trim(), 16);
-                // ensure this field matches the selected car
-                if ((options & MainActivity.car) != 0 && (!tokens[FIELD_RESPONSE_ID].trim().startsWith("7") || tokens[FIELD_RESPONSE_ID].trim().toLowerCase().startsWith("7e"))) {
-                    //Create a new field object and fill his  data
-                    //MainActivity.debug(tokens[FIELD_SID] + " " + tokens[FIELD_ID] + "." + tokens[FIELD_FROM] + "." + tokens[FIELD_RESPONSE_ID]);
-                    try {
-                        Field field = new Field(
-                                tokens[FIELD_SID].trim(),
-                                frame,
-                                Short.parseShort(tokens[FIELD_FROM].trim()),
-                                Short.parseShort(tokens[FIELD_TO].trim()),
-                                Double.parseDouble(tokens[FIELD_RESOLUTION].trim()),
-                                Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
-                                Integer.parseInt(tokens[FIELD_OFFSET].trim()),
-                                tokens[FIELD_UNIT].trim(),
-                                tokens[FIELD_RESPONSE_ID].trim(),
-                                options,
-                                (tokens.length > FIELD_NAME) ? tokens[FIELD_NAME] : "",
-                                (tokens.length > FIELD_LIST) ? tokens[FIELD_LIST] : ""
-                        );
+                if (frameId < 0x800) {
+                    short options = Short.parseShort(tokens[FIELD_OPTIONS].trim(), 16);
+                    // ensure this field matches the selected car
+                    if ((options & MainActivity.car) != 0 && (!tokens[FIELD_RESPONSE_ID].trim().startsWith("7") || tokens[FIELD_RESPONSE_ID].trim().toLowerCase().startsWith("7e"))) {
+                        //Create a new field object and fill his  data
+                        //MainActivity.debug(tokens[FIELD_SID] + " " + tokens[FIELD_ID] + "." + tokens[FIELD_FROM] + "." + tokens[FIELD_RESPONSE_ID]);
+                        try {
+                            Field field = new Field(
+                                    tokens[FIELD_SID].trim(),
+                                    frame,
+                                    Short.parseShort(tokens[FIELD_FROM].trim()),
+                                    Short.parseShort(tokens[FIELD_TO].trim()),
+                                    Double.parseDouble(tokens[FIELD_RESOLUTION].trim()),
+                                    Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
+                                    Integer.parseInt(tokens[FIELD_OFFSET].trim()),
+                                    tokens[FIELD_UNIT].trim(),
+                                    tokens[FIELD_RESPONSE_ID].trim(),
+                                    options,
+                                    (tokens.length > FIELD_NAME) ? tokens[FIELD_NAME] : "",
+                                    (tokens.length > FIELD_LIST) ? tokens[FIELD_LIST] : ""
+                            );
 
-                        // we are maintaining a list of all fields in a frame so we can very
-                        // quickly update all fields when a message (=frame data) comes in
-                        // note that for free frames a frame is identified by it's ID and itś definition
-                        // is entirely given
-                        // for an ISOTP frame (diagnostics) frame, the frame is just a skeleton and
-                        // the definition is entirely dependant on the responseID. Therefor, when an
-                        // ISOTP field is defined, new frames are created dynamically
-                        if (field.isIsoTp()) {
-                            Frame subFrame = Frames.getInstance().getById(frameId, field.getResponseId());
-                            if (subFrame == null) {
-                                subFrame = new Frame(frame.getId(), frame.getInterval(), frame.getSendingEcu(), field.getResponseId(), frame);
-                                Frames.getInstance().add(subFrame);
+                            // we are maintaining a list of all fields in a frame so we can very
+                            // quickly update all fields when a message (=frame data) comes in
+                            // note that for free frames a frame is identified by it's ID and itś definition
+                            // is entirely given
+                            // for an ISOTP frame (diagnostics) frame, the frame is just a skeleton and
+                            // the definition is entirely dependant on the responseID. Therefor, when an
+                            // ISOTP field is defined, new frames are created dynamically
+                            if (field.isIsoTp()) {
+                                Frame subFrame = Frames.getInstance().getById(frameId, field.getResponseId());
+                                if (subFrame == null) {
+                                    subFrame = new Frame(frame.getId(), frame.getInterval(), frame.getSendingEcu(), field.getResponseId(), frame);
+                                    Frames.getInstance().add(subFrame);
+                                }
+                                subFrame.addField(field);
+                                field.setFrame(subFrame);
+                            } else {
+                                frame.addField(field);
                             }
-                            subFrame.addField(field);
-                            field.setFrame(subFrame);
-                        } else {
-                            frame.addField(field);
-                        }
 
-                        // add the field to the list of available fields
-                        add(field);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                            // add the field to the list of available fields
+                            add(field);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
+                } else {
+                    addVirtualField(tokens[FIELD_RESPONSE_ID].trim());
                 }
             }
         }
