@@ -1,5 +1,5 @@
-2019-12-06 [Jeroen] Bug fix in research, handle String fields
-2019-12-06 [Jeroen] Add GPS virtual field ,800,24,24,0,0,0,,210e,610e,2ff,GPS. Allow Virtualfiels in CSVs
+2019-12-06 [Jeroen] Bug fix in research to handle String fields
+2019-12-06 [Jeroen] Add GPS virtual field ",800,24,24,0,0,0,,210e,610e,aff,GPS". Allow Virtualfields in CSVs
 2019-12-05 [Jeroen] Added a light mode
 2019-12-05 [Jeroen] Avoid NullPointerException when databaseinstance is empty, lint
 2019-12-05 [Jeroen] Avoid stack overflow crash

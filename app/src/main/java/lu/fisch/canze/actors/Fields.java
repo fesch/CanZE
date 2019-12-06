@@ -100,7 +100,7 @@ public class Fields {
         @Override
         public void onLocationChanged(Location loc) {
             if (gpsField != null)
-                gpsField.setValue(String.format(Locale.US, "%.6f/%6f/%6f", loc.getLatitude(), loc.getLongitude(), loc.getAltitude()));
+                gpsField.setValue(String.format(Locale.US, "%.6f/%.6f/%.1f", loc.getLatitude(), loc.getLongitude(), loc.getAltitude()));
                 if(MainActivity.fieldLogMode)
                     FieldLogger.getInstance().log(gpsField.getDebugValue());
         }
@@ -602,7 +602,7 @@ public class Fields {
             try {
                 if (gpsField == null) {
                     Frame frame = Frames.getInstance().getById(0x800);
-                    gpsField = new Field ("",frame, (short)24, (short)0, 1, 0, 0, "coord", "610e",(short)0x2ff, "GPS", "");
+                    gpsField = new Field ("",frame, (short)24, (short)0, 1, 0, 0, "coord", "610e",(short)0xaff, "GPS", "");
                 }
                 add(gpsField);
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);

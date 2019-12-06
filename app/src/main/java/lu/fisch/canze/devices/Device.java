@@ -487,7 +487,9 @@ public abstract class Device {
                 useful for i.e. tester present messages
         */
 
-        if (interval > INTERVAL_ASAP) { // interval is a ms value. Continue
+        if (field.isNeverSchedule()) {
+            return;
+        } else if (interval > INTERVAL_ASAP) { // interval is a ms value. Continue
             // Nothing
         } else if (interval == INTERVAL_ASAP) { // if INTERVAL_ASAP, get from the frame definition
             interval = field.getFrame().getInterval();

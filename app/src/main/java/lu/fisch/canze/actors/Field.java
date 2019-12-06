@@ -397,6 +397,10 @@ public class Field {
         return (this.options & MainActivity.FIELD_TYPE_MASK) == MainActivity.FIELD_TYPE_STRING;
     }
 
+    public boolean isNeverSchedule() {
+        return ((this.options & MainActivity.FIELD_DONTSCHEDULE) == MainActivity.FIELD_DONTSCHEDULE);
+    }
+
     public boolean isList() {
         return list != null && !list.equals("");
     }

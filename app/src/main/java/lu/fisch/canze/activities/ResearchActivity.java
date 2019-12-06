@@ -125,7 +125,6 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
         for (int i = 0; i < fields.size(); i++) {
             Field f = fields.get(i);
             if(f!=null) {
-                debug("adding");
                 addField(f);
             }
         }
