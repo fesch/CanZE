@@ -458,7 +458,7 @@
 
     <!-- Datalogger -->
 
-    <string name="format_NoSid">%s:  sid %s does not exist in class Fields</string>
+    <string name="format_NoSid" formatted="false">%s:  sid %s does not exist in class Fields</string>
         
     <!-- Driving -->
 
@@ -499,7 +499,7 @@
     <string name="message_MessageNull">kein Datenempfang. Ist das Fahrzeug eingeschalten?\n</string>
     <string name="message_ClearSuccessful">Fehlerspeicher sind gelöscht, bitter erneut überprüfen\n</string>
     <string name="message_DumpDone">Fertig! Logfile angelegt</string>
-    <string name="format_DumpWriting">Einen Moment bitte, Daten werden geschrieben %s</string>
+    <string name="format_DumpWriting" formatted="false">Einen Moment bitte, Daten werden geschrieben %s</string>
 
     <!-- Elm testing -->
 
@@ -534,7 +534,7 @@
 
     <!-- Frames -->
 
-    <string name="format_NoAsset">Kein Zugriff auf %s</string>
+    <string name="format_NoAsset" formatted="false">Kein Zugriff auf %s</string>
 
     <!-- Heatmap battery modules -->
 

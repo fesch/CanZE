@@ -36,10 +36,10 @@
     <string name="default_Yes">Да</string>
     <string name="default_ZeroNm">0 Нм</string>
     <string name="default_debug">#Debug</string>
-    <string name="format_DumpWriting">Подождите, идет запись %s</string>
-    <string name="format_NoAsset">Нет доступа к %s</string>
-    <string name="format_NoSid">%s: sid %s отсутствует в классе Fields</string>
-    <string name="format_NoView">Нет экрана с id \'%s%s\'</string>
+    <string name="format_DumpWriting" formatted="false">Подождите, идет запись %s</string>
+    <string name="format_NoAsset" formatted="false">Нет доступа к %s</string>
+    <string name="format_NoSid" formatted="false">%s: sid %s отсутствует в классе Fields</string>
+    <string name="format_NoView" formatted="false">Нет экрана с id \'%s%s\'</string>
     <string name="graph_CellVoltages">Напряжение на ячейках (В)</string>
     <string name="graph_Climatech">Снаружи (°C), Внутри (°C), Заказ (°C), Батарея (°C)</string>
     <string name="graph_DistanceEnergy">Доступный пробег (км), Доступная энергия (кВтч)</string>

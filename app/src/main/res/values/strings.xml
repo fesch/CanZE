@@ -460,7 +460,7 @@
 
     <!-- Datalogger -->
 
-    <string name="format_NoSid">%s: sid %s does not exist</string>
+    <string name="format_NoSid" formatted="false">%s: sid %s does not exist</string>
 
     <!-- Driving -->
 
@@ -501,7 +501,7 @@
     <string name="message_MessageNull">Msg is null. Is the car switched on?\n</string>
     <string name="message_ClearSuccessful">Clear seems successful, please query DTCs\n</string>
     <string name="message_DumpDone">Done. Logfile created</string>
-    <string name="format_DumpWriting">Wait, writing %s</string>
+    <string name="format_DumpWriting" formatted="false">Wait, writing %s</string>
 
     <!-- Elm testing -->
 
@@ -539,7 +539,7 @@
 
     <!-- Frames -->
 
-    <string name="format_NoAsset">Can\'t access asset %s</string>
+    <string name="format_NoAsset" formatted="false">Can\'t access asset %s</string>
 
     <!-- Heatmap battery modules -->
 

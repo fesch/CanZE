@@ -361,7 +361,7 @@
     <string name="graph_SpeedConsumption">Vitesse (km/h), Consommation (kWh/100km)</string>
     <string name="title_activity_dash">Dash</string>
     <string name="button_Dash">Dash</string>
-    <string name="format_NoSid">%s: sid %s n’existe pas dans la classe Fields</string>
+    <string name="format_NoSid" formatted="false">%s: sid %s n’existe pas dans la classe Fields</string>
     <string name="title_activity_driving">Informations de conduite</string>
     <string name="button_Driving">Conduite</string>
     <string name="label_pedal">Position pédale</string>
@@ -396,7 +396,7 @@
     <string name="message_MessageNull">Le message est nul. La voiture est-elle en marche ?\n</string>
     <string name="message_ClearSuccessful">L’effacement semble avoir réussi, interrogez les DTCs\n</string>
     <string name="message_DumpDone">Terminé. Fichier log créé</string>
-    <string name="format_DumpWriting">Patientez, écriture %s</string>
+    <string name="format_DumpWriting" formatted="false">Patientez, écriture %s</string>
     <string name="title_activity_elm_test">Test du Dongle ELM327</string>
     <string name="button_ElmTesting">Test ELM</string>
     <string name="message_ExpectedResult">Résultats attendus reçus\n==========\n</string>
@@ -417,7 +417,7 @@
     <string name="title_activity_firmware">Firmware</string>
     <string name="button_Firmware">Firmware</string>
     <string name="help_Ecus"><![CDATA[Cliquez sur un ECU pour afficher les détails. Plus d’informations sur les calculateurs de la voiture <a href="http://canze.fisch.lu/computers/">ici</a>.]]></string>
-    <string name="format_NoAsset">Impossible d’accéder à %s</string>
+    <string name="format_NoAsset" formatted="false">Impossible d’accéder à %s</string>
     <string name="title_activity_heatmap_bat">Température des modules</string>
     <string name="button_HeatmapTemperature">T° des modules</string>
     <string name="title_activity_heatmap_cellvoltage">Tension des cellules</string>
