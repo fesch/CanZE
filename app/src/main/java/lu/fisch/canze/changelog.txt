@@ -1,3 +1,4 @@
+2019-12-07 [Jeroen] Fix computation of virtual field 610a used in braking screen (non-ISOTP only)
 2019-12-07 [Jeroen] Match Self propelled fields behavior to Device queue
 2019-12-06 [Jeroen] Bug fix in research to handle String fields
 2019-12-06 [Jeroen] Add GPS virtual field ",800,24,24,0,0,0,,210e,610e,aff,GPS". Allow Virtualfields in CSVs

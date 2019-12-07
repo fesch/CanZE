@@ -241,7 +241,7 @@ public class Fields {
                     double electricTorque = privateField.getValue();
                     if ((privateField = dependantFields.get(SID_Coasting_Torque)) == null)
                         return Double.NaN;
-                    return electricTorque - (privateField.getValue() * MainActivity.reduction);
+                    return electricTorque + (privateField.getValue() * MainActivity.reduction);
                 }
             });
         }
