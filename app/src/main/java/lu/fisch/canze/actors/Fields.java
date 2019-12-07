@@ -76,7 +76,6 @@ public class Fields {
 
     private LocationManager locationManager;
     private LocationListener locationListener;
-    private static Field gpsField;
 
     //private int car = CAR_ANY;
 
@@ -591,6 +590,7 @@ public class Fields {
 
         @Override
         public void onLocationChanged(Location loc) {
+            Field gpsField = getBySID("800.610e.24");
             if (gpsField != null) {
                 gpsField.setValue(String.format(Locale.US, "%.6f/%.6f/%.1f", loc.getLatitude(), loc.getLongitude(), loc.getAltitude()));
                 if (MainActivity.fieldLogMode)
@@ -608,24 +608,32 @@ public class Fields {
         public void onStatusChanged(String provider, int status, Bundle extras) {}
     }
     private void addVirtualFieldGps() {
-        locationManager = (LocationManager) MainActivity.getInstance().getBaseContext().getSystemService(Context.LOCATION_SERVICE);
-        locationListener = new MyLocationListener();
-        Frame frame = Frames.getInstance().getById(0x800);
-        gpsField = new Field ("",frame, (short)24, (short)31, 1, 0, 0, "coord", "610e",(short)0xaff, "GPS", "");
-        add(gpsField);
+        if (locationManager == null) {
+            locationManager = (LocationManager) MainActivity.getInstance().getBaseContext().getSystemService(Context.LOCATION_SERVICE);
+            locationListener = new MyLocationListener();
+        }
+        Field gpsField = getBySID("800.610e.24");
+        if (gpsField == null) {
+            Frame frame = Frames.getInstance().getById(0x800);
+            gpsField = new Field("", frame, (short) 24, (short) 31, 1, 0, 0, "coord", "610e", (short) 0xaff, "GPS", "");
+            add(gpsField);
+        }
     }
     private void virtualFieldPropelGps (boolean startStop) {
         if (locationManager == null) return;
+        // yes I know, this is the brute force approach...
         try {
-            if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ) {
-                if (startStop) {
+            if (startStop) {
+                if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ) {
                     locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
                 } else {
-                    locationManager.removeUpdates (locationListener);
+                    MainActivity.toast(MainActivity.TOAST_NONE, "Can't start location. Please switch on location services");
                 }
+            } else {
+                locationManager.removeUpdates (locationListener);
             }
         } catch (SecurityException e) {
-            e.printStackTrace();
+            MainActivity.toast(MainActivity.TOAST_NONE, "Can't start location. Please give CanZE location permission");
         }
     }
 
