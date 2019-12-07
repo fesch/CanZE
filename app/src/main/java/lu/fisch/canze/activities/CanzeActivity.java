@@ -40,6 +40,7 @@ import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.widgets.WidgetView;
@@ -107,15 +108,17 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             return;
         }
 
-        // if we are not coming back from somewhere, stop Bluetooth
+        // if we have not pressed the back or home buton
         if(!back && !widgetClicked) {
             MainActivity.debug("CanzeActivity: onPause > stopBluetooth");
+            // stop the background process, do NOT clear the queue, disconnect
             MainActivity.getInstance().stopBluetooth(false);
         }
         if(!widgetClicked) {
             // remember we paused ourselves
             iLeftMyOwn=true;
         }
+        selfPropelFields(false);
         removeFieldListeners();
         if(MainActivity.getInstance()!=null)
             MainActivity.getInstance().setDebugListener(null);
@@ -127,6 +130,14 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         MainActivity.getInstance().setBluetoothMenuItem (mOptionsMenu);
         MainActivity.debug("CanzeActivity: onResume");
         MainActivity.getInstance().setLocalTheme (this.getTheme());
+
+        // when initlisteners is called, the activity adds the fields to the device queue
+        // moved up because sef propelled fields need to already be added to subscribedFields
+        // note that onResume (re)adds the fields, while onPause does not clear them out
+        // this is done by onDestroy->removeFieldListeners
+        initListeners();
+        selfPropelFields (true);
+
         // if we paused ourselvers
         if (iLeftMyOwn && !widgetClicked) {
             MainActivity.debug("CanzeActivity: onResume > reloadBluetooth");
@@ -150,7 +161,6 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             initWidgets();
         }
         widgetClicked=false;
-        initListeners();
     }
 
     @Override
@@ -170,6 +180,14 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             }
         }
         super.onDestroy();
+    }
+
+    void selfPropelFields(boolean startStop) {
+        for (Field field : subscribedFields) {
+            if (field.isSelfPropelled()) {
+                Fields.getInstance().selfPropel (field.getResponseId(), startStop);
+            }
+        }
     }
 
     @Override
@@ -324,7 +342,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         {
             // add a listener to the field
             field.addListener(this);
-            // register it in the queue
+            // register it in the queue // enable it to self propel
             MainActivity.device.addActivityField(field, intervalMs);
             // remember this field has been added (filter out doubles)
             if(!subscribedFields.contains(field))

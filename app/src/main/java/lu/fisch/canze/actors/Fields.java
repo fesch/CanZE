@@ -74,6 +74,8 @@ public class Fields {
     private double realRangeReference2 = Double.NaN;
     private static long start = Calendar.getInstance().getTimeInMillis();
 
+    private LocationManager locationManager;
+    private LocationListener locationListener;
     private static Field gpsField;
 
     //private int car = CAR_ANY;
@@ -92,29 +94,6 @@ public class Fields {
         if (instance == null) instance = new Fields();
         return instance;
     }
-
-    /*---------- Listener class to get coordinates ------------- */
-    // https://stackoverflow.com/questions/1513485/how-do-i-get-the-current-gps-location-programmatically-in-android
-    private class MyLocationListener implements LocationListener {
-
-        @Override
-        public void onLocationChanged(Location loc) {
-            if (gpsField != null)
-                gpsField.setValue(String.format(Locale.US, "%.6f/%.6f/%.1f", loc.getLatitude(), loc.getLongitude(), loc.getAltitude()));
-                if(MainActivity.fieldLogMode)
-                    FieldLogger.getInstance().log(gpsField.getDebugValue());
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {}
-
-        @Override
-        public void onProviderEnabled(String provider) {}
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {}
-    }
-
 
 
     private void addVirtualFields() {
@@ -151,6 +130,17 @@ public class Fields {
             case "610e": addVirtualFieldGps();                  break;
         }
     }
+
+    public void selfPropel(String id, boolean startStop) {
+        switch (id) {
+            case "610e": virtualFieldPropelGps (startStop);     break;
+        }
+    }
+
+
+
+
+
 
 
     private void addVirtualFieldUsage() {
@@ -595,24 +585,49 @@ public class Fields {
     }
 
 
-    private void addVirtualFieldGps() {
-        LocationManager locationManager = (LocationManager) MainActivity.getInstance().getBaseContext().getSystemService(Context.LOCATION_SERVICE);
-        LocationListener locationListener = new MyLocationListener();
-        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ) {
-            try {
-                if (gpsField == null) {
-                    Frame frame = Frames.getInstance().getById(0x800);
-                    gpsField = new Field ("",frame, (short)24, (short)0, 1, 0, 0, "coord", "610e",(short)0xaff, "GPS", "");
-                }
-                add(gpsField);
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
-            } catch (SecurityException e) {
-                e.printStackTrace();
+    private class MyLocationListener implements LocationListener {
+        /*---------- Listener class to get coordinates ------------- */
+        // https://stackoverflow.com/questions/1513485/how-do-i-get-the-current-gps-location-programmatically-in-android
+
+        @Override
+        public void onLocationChanged(Location loc) {
+            if (gpsField != null) {
+                gpsField.setValue(String.format(Locale.US, "%.6f/%.6f/%.1f", loc.getLatitude(), loc.getLongitude(), loc.getAltitude()));
+                if (MainActivity.fieldLogMode)
+                    FieldLogger.getInstance().log(gpsField.getDebugValue());
             }
         }
+
+        @Override
+        public void onProviderDisabled(String provider) {}
+
+        @Override
+        public void onProviderEnabled(String provider) {}
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {}
     }
-
-
+    private void addVirtualFieldGps() {
+        locationManager = (LocationManager) MainActivity.getInstance().getBaseContext().getSystemService(Context.LOCATION_SERVICE);
+        locationListener = new MyLocationListener();
+        Frame frame = Frames.getInstance().getById(0x800);
+        gpsField = new Field ("",frame, (short)24, (short)31, 1, 0, 0, "coord", "610e",(short)0xaff, "GPS", "");
+        add(gpsField);
+    }
+    private void virtualFieldPropelGps (boolean startStop) {
+        if (locationManager == null) return;
+        try {
+            if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ) {
+                if (startStop) {
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+                } else {
+                    locationManager.removeUpdates (locationListener);
+                }
+            }
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void addVirtualFieldCommon(String virtualId, String unit, String dependantSids, VirtualFieldAction virtualFieldAction) {
         // create a list of field this new virtual field will depend on

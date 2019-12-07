@@ -487,7 +487,7 @@ public abstract class Device {
                 useful for i.e. tester present messages
         */
 
-        if (field.isNeverSchedule()) {
+        if (field.isSelfPropelled()) { //if self propelled, do not add to queue
             return;
         } else if (interval > INTERVAL_ASAP) { // interval is a ms value. Continue
             // Nothing
