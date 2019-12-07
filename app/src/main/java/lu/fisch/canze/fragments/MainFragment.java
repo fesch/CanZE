@@ -117,7 +117,7 @@ public class MainFragment extends Fragment {
                 @Override
                 public void run() {
                     try {
-                        URL url = new URL("https://raw.githubusercontent.com/fesch/CanZE/Development/NEWS.txt");
+                        URL url = new URL("https://raw.githubusercontent.com/fesch/CanZE/Development/NEWS.json");
                         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                         if (urlConnection == null) return;
                         try {
