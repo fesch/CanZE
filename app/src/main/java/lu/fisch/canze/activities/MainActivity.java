@@ -366,6 +366,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                     device = new ELM327();
                     break;
                 case "ELM327Http":
+                case "Http":
                     device = new ELM327OverHttp();
                     break;
                 default:
