@@ -519,6 +519,7 @@ public class SettingsActivity extends AppCompatActivity {
     public void onBackPressed() {
         // MainActivity.toast(MainActivity.TOAST_NONE, R.string.toast_PleaseUseTop);
         saveSettings();
+        MainActivity.getInstance().handleDarkMode();
         super.onBackPressed();
     }
 

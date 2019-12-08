@@ -470,6 +470,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             storageGranted = true;
         }
 
+        handleDarkMode();
+
         // dataLogger = DataLogger.getInstance();
         dataLogger = new DataLogger();
 
@@ -584,12 +586,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         })).start();
     }
 
-
-    @Override
-    public void onResume() {
-        debug("MainActivity: onResume");
-        setBluetoothMenuItem (mOptionsMenu);
-
+    void handleDarkMode()
+    {
         // dark mode handling
         SharedPreferences set = getSharedPreferences(PREFERENCES_FILE, 0);
         int darkModeSetting;
@@ -606,6 +604,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 startActivity(new Intent(MainActivity.this, MainActivity.this.getClass()));
             }
         }
+    }
+
+
+    @Override
+    public void onResume() {
+        debug("MainActivity: onResume");
+        setBluetoothMenuItem (mOptionsMenu);
 
         instance = this; // If I am not mistaken, instance should only ever be populated in onCreate
 
