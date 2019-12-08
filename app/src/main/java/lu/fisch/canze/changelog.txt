@@ -3,6 +3,7 @@
 2019-12-07 [Jeroen] Match Self propelled fields behavior to Device queue
 2019-12-06 [Jeroen] Bug fix in research to handle String fields
 2019-12-06 [Jeroen] Add GPS virtual field ",800,24,24,0,0,0,,210e,610e,aff,GPS". Allow Virtualfields in CSVs
+2019-12-06 [Jeroen] Gradle to 3.5.3
 2019-12-05 [Jeroen] Added a light mode
 2019-12-05 [Jeroen] Avoid NullPointerException when databaseinstance is empty, lint
 2019-12-05 [Jeroen] Avoid stack overflow crash
@@ -10,13 +11,13 @@
 2019-12-01 [Jeroen] Avoid restart of activity through re-orientation
 2019-12-01 [Jeroen] Changed news to json and give user update nudge
 2019-12-01 [Jeroen] Changed Gson to 2.8.6
-2019-11-27 [Jeroen] Added google's crashlytics
+2019-11-27 [Jeroen] Added google's crashlytics, force crash option in debug mode
 
 ---< Version 1.49 / 2019.11.30 / 56 >---
 2019-11-27 [Jeroen] Catch spurious error in Timeplot
 2019-11-27 [Jeroen] Code fixes and moved "tap bluetooth to reconnect" to work in all activities
 2019-11-26 [Jeroen] Nudge ISOTP on for ELM dongles, off for CanSee
-2019-11-25 [Jeroen] Updated progaurd rules to fix or find a ClassNotFound crash
+2019-11-25 [Jeroen] Updated proguard rules to fix or find a ClassNotFound crash
 2019-11-24 [Jeroen] Many fixes in tires, inclusing refactor "tyre" out and position fixes
 2019-11-24 [Jeroen] Set up quick release compile using gradlew
 2019-11-24 [Jeroen] BT state in all activities and out of title
