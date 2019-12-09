@@ -33,6 +33,7 @@ import java.util.Locale;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.actors.Frames;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
@@ -86,6 +87,7 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
         }
 
         // load the data
+        Frames.getInstance().load();
         try {
             Fields.getInstance().load(importFieldsFileName);
         } catch (Exception e) {
@@ -165,7 +167,7 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
             fillView(tv, field.getStringValue());
         } else {
             double val =  field.getValue();
-            fillView(tv, Double.isNaN(val) ? "Nan" : String.format(Locale.getDefault(), "%.1f", val));
+            fillView(tv, Double.isNaN(val) ? "Nan" : String.format(Locale.getDefault(), "%." + field.getDecimals() + "f", val));
         }
     }
 
@@ -179,7 +181,8 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
             MainActivity.device.stopAndJoin();
         }
 
-        // Reload the frame & timings
+        // Reload
+        Frames.getInstance().load();
         Fields.getInstance().load();
 
         // restore field logging mode
