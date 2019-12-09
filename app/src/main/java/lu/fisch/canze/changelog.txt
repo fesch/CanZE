@@ -1,4 +1,5 @@
-2019-12-08 [Jeroen] Bug fix in Research, screen number format and reloading frames (freeing old fields)
+2019-12-08 [Jeroen] Corrections in decimal positions in _Fields and _FieldsAlt
+2019-12-09 [Jeroen] Bug fix in Research, screen number format and reloading frames (freeing old fields)
 2019-12-08 [Jeroen] Recoding of selecting BT device and it's UI
 2019-12-08 [Bob] Dark mode startup fix
 2019-12-07 [Jeroen] Fix computation of virtual field 610a used in braking screen (non-ISOTP only)

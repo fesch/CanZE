@@ -12,7 +12,7 @@
 #  # 1f8,40,50,10,0,0,Rpm,,,ff,ElecEngineRPM
 #  1f8.40,7bc,24,39,10,32768,0,0,223045,623045,ff,ElecEngineRPM
 # 1fd,0,7,0.390625,0,1,%,,,ff,12V Battery Current?
-1fd.0,7ec,24,31,1,0,1,A,223025,623025,ff,14V DCDC current measure
+1fd.0,7ec,24,31,1,0,0,A,223025,623025,ff,14V DCDC current measure
 # 1fd,48,55,1,80,0,kW,,,ff,Consumption
 # Possible to use a virtual computer field here? No, so this really needs to be changed in the code
 # 1fd.48,800,24,55,1,0,0,kW,,,ff,Consumption
@@ -21,7 +21,7 @@
 # 427,40,47,0.3,0,0,kW,,,e2,Available Charging Power (UCP)
 427.40,7ec,24,39,.1,0,1,kW,223470,623470,ff,Available JB2 power for a battery charge
 # 427,49,57,0.1,0,1,kWh,,,e2,Available Energy
-427.49,7ec,24,39,0.005,0,0,kWh,22320C,62320C,e2,Available discharge Energy
+427.49,7ec,24,39,0.005,0,1,kWh,22320C,62320C,e2,Available discharge Energy
 # 42a,30,39,0.1,400,1,°C,,,ff,Evaporator Temp Measure
 42a.30,764,42,51,0.1,400,1,°C,2144,6144,ff,Evaporator Temp Measure
 # 42a,48,50,1,0,0,,,,e2,ClimLoopMode
@@ -100,14 +100,14 @@
 ,763,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,763,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # CLIM
-,764,26,35,0.1,400,0,°C,2121,6121,e2,IH_InCarTemp
-,764,8,15,0.4,100,0,°C,2121,6121,5,IH_InCarTemp
+,764,26,35,0.1,400,1,°C,2121,6121,e2,IH_InCarTemp
+,764,8,15,0.4,100,1,°C,2121,6121,5,IH_InCarTemp
 ,764,36,43,1,0,0,%,2121,6121,e2,IH_RHumidity
 ,764,16,23,1,0,0,%,2121,6121,5,IH_RHumidity
 ,764,86,87,1,0,0,,2143,6143,ff,IH_EcoModeRequest,0:Unavailable Value;1:Eco mode requested;2:Eco mode not requested;3:Not used
 ,764,88,92,100,0,0,W,2143,6143,ff,IH_ElectricalPowerDrived
-,764,110,117,1,40,0,%,2143,6143,ff,IH_ExternalTemp
-,764,134,142,.1,0,0,bar,2143,6143,ff,IH_ACHighPressureSensor
+,764,110,117,1,40,0,°C,2143,6143,ff,IH_ExternalTemp
+,764,134,142,.1,0,1,bar,2143,6143,ff,IH_ACHighPressureSensor
 ,764,107,116,10,0,0,rpm,2144,6144,ff,IH_ClimCompRPMStatus
 ,764,21,23,1,0,0,,2167,6167,ff,ILB_HPM_ClimLoopMode,0:Unavailable;1:AC mode;2:AC de-icing mode;3:Not used (100);4:Heat Pump mode;5:Not used (101);6:Demisting mode;7:Idle mode
 ,764,40,41,1,0,0,,2167,6167,ff,IH_ExternalTemp
@@ -171,21 +171,21 @@
 ,793,144,159,1,0,0,,2180,6180,ff,Version
 ,793,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,793,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-,793,24,39,0.0625,32768,0,mA,225057,625057,ff,DataRead.Raw leakage current - DC part measurement
-,793,24,39,0.0625,32768,0,mA,225058,625058,ff,DataRead.Raw leakage current - High Frequency 10kHz part measurement
-,793,24,39,0.0625,32768,0,mA,225059,625059,ff,DataRead.Raw leakage current - High Frequency 1st part measurement
-,793,24,39,0.0625,32768,0,mA,22505a,62505a,ff,DataRead.Raw leakage current - Low Frequency part measurement (50Hz)
-,793,24,39,.0625,3200,0,A,222001,622001,ff,Mains phase 1 current RMS value
+,793,24,39,0.0625,32768,2,mA,225057,625057,ff,DataRead.Raw leakage current - DC part measurement
+,793,24,39,0.0625,32768,2,mA,225058,625058,ff,DataRead.Raw leakage current - High Frequency 10kHz part measurement
+,793,24,39,0.0625,32768,2,mA,225059,625059,ff,DataRead.Raw leakage current - High Frequency 1st part measurement
+,793,24,39,0.0625,32768,2,mA,22505a,62505a,ff,DataRead.Raw leakage current - Low Frequency part measurement (50Hz)
+,793,24,39,.0625,3200,2,A,222001,622001,ff,Mains phase 1 current RMS value
 ,793,24,31,.5,0,1,%,225026,625026,ff,J1772 control pilot raw duty cycle
-,793,24,39,.0625,3200,0,A,22503A,62503A,ff,Mains phase 2 current RMS
-,793,24,39,.0625,3200,0,A,22503B,62503B,ff,Mains phase 3 current RMS
+,793,24,39,.0625,3200,2,A,22503A,62503A,ff,Mains phase 2 current RMS
+,793,24,39,.0625,3200,2,A,22503B,62503B,ff,Mains phase 3 current RMS
 ,793,29,31,1,0,0,,225017,625017,ff,Mains current type,0:Nok;1:AC mono;2:AC tri;3:DC;4:AC bi
-,793,24,39,.5,32000,0,V,22502C,62502C,ff,Raw AC mains phase 1 measured voltage
-,793,24,39,.5,32000,0,V,22502D,62502D,ff,Raw AC mains phase 2 measured voltage
-,793,24,39,.5,32000,0,V,22502E,62502E,ff,Raw AC mains phase 3 measured voltage
-,793,24,39,.5,0,0,V,22503f,62503f,ff,Mains phase 1-2 voltage RMS value
-,793,24,39,.5,0,0,V,225041,625041,ff,Mains phase 2-3 voltage RMS value
-,793,24,39,.5,0,0,V,225042,625042,ff,Mains phase 3-1 voltage RMS value
+,793,24,39,.5,32000,1,V,22502C,62502C,ff,Raw AC mains phase 1 measured voltage
+,793,24,39,.5,32000,1,V,22502D,62502D,ff,Raw AC mains phase 2 measured voltage
+,793,24,39,.5,32000,1,V,22502E,62502E,ff,Raw AC mains phase 3 measured voltage
+,793,24,39,.5,0,1,V,22503f,62503f,ff,Mains phase 1-2 voltage RMS value
+,793,24,39,.5,0,1,V,225041,625041,ff,Mains phase 2-3 voltage RMS value
+,793,24,39,.5,0,1,V,225042,625042,ff,Mains phase 3-1 voltage RMS value
 ,793,24,39,1,20000,0,W,22504A,62504A,ff,Mains active power consumed
 ,793,24,39,1,0,0,Ohm,225062,625062,ff,Mains ground resistance
 ,793,24,31,1,0,0,,225063,625063,ff,Supervisor state,0:Init;1:Wait;2:ClosingS2;3:InitType;4:InitLkg;5:InitChg;6:Charge;7:ZeroAmpMode;8:EndOfChg;9:OpeningS2;10:ReadyToSleep;11:EmergencyStop;12:InitChargeDF;13:OCPStop;14:WaitS2
@@ -363,10 +363,10 @@
 ,7ec,24,39,.01,0,2,V,222005,622005,ff,Battery voltage 14v
 ,7ec,24,47,1,0,0,km,222006,622006,ff,Total vehicle distance
 ,7ec,24,39,.00125,0,0,-,22202E,62202E,ff,Accelerator pedal position
-,7ec,24,39,.03125,32768,0,N.m,222243,622243,1ff,Final effective torque request to the electric motor (EM)
-,7ec,24,39,.03125,32768,0,N.m,222245,622245,ff,Limited electrical motor (EM) effective torque setpoint
-,7ec,24,39,.03125,32768,0,N.m,222246,622246,ff,Electrical motor (EM) maximum effective torque available
-,7ec,24,39,.03125,32768,0,N.m,222247,622247,ff,Minimum effective torque that can be requested to the electrical motor (EM)
+,7ec,24,39,.03125,32768,2,N.m,222243,622243,1ff,Final effective torque request to the electric motor (EM)
+,7ec,24,39,.03125,32768,2,N.m,222245,622245,ff,Limited electrical motor (EM) effective torque setpoint
+,7ec,24,39,.03125,32768,2,N.m,222246,622246,ff,Electrical motor (EM) maximum effective torque available
+,7ec,24,39,.03125,32768,2,N.m,222247,622247,ff,Minimum effective torque that can be requested to the electrical motor (EM)
 ,7ec,24,31,.390625,0,1,%,223028,623028,ff,DCDC Load
 ,7ec,24,39,.5,0,1,V,223203,623203,ff,HV LBC voltage measure
 ,7ec,24,39,.25,32768,1,A,223204,623204,ff,HV LBC current measure
@@ -374,7 +374,7 @@
 ,7ec,24,31,1,1,0,,223318,623318,ff,Motor Water pump speed
 ,7ec,24,31,1,1,0,,223319,623319,ff,Charger pump speed
 ,7ec,24,31,1,1,0,,22331A,62331A,ff,Heater water pump speed
-,7ec,24,47,0.001,1,0,kWh,2233dc,6233dc,ff,Consumed domestic energy
+#,7ec,24,47,0.001,1,0,kWh,2233dc,6233dc,ff,Consumed domestic energy
 ,7ec,240,263,1,0,0,km,2233d4,6233d4,ff,odometer history 1
 ,7ec,216,239,1,0,0,km,2233d4,6233d4,ff,odometer history 2
 ,7ec,192,215,1,0,0,km,2233d4,6233d4,ff,odometer history 3
@@ -405,16 +405,16 @@
 ,7ec,40,47,1,0,0,,2233d6,6233d6,ff,type 8,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
 ,7ec,32,39,1,0,0,,2233d6,6233d6,ff,type 9,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
 ,7ec,24,31,1,0,0,,2233d6,6233d6,ff,type 10,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
-,7ec,168,183,.2,0,0,%,2233d7,6233d7,ff,soc 1
-,7ec,152,167,.2,0,0,%,2233d7,6233d7,ff,soc 2
-,7ec,136,151,.2,0,0,%,2233d7,6233d7,ff,soc 3
-,7ec,120,135,.2,0,0,%,2233d7,6233d7,ff,soc 4
-,7ec,104,119,.2,0,0,%,2233d7,6233d7,ff,soc 5
-,7ec,88,103,.2,0,0,%,2233d7,6233d7,ff,soc 6
-,7ec,72,87,.2,0,0,%,2233d7,6233d7,ff,soc 7
-,7ec,56,71,.2,0,0,%,2233d7,6233d7,ff,soc 8
-,7ec,40,55,.2,0,0,%,2233d7,6233d7,ff,soc 9
-,7ec,24,39,.2,0,0,%,2233d7,6233d7,ff,soc 20
+,7ec,168,183,.2,0,1,%,2233d7,6233d7,ff,soc 1
+,7ec,152,167,.2,0,1,%,2233d7,6233d7,ff,soc 2
+,7ec,136,151,.2,0,1,%,2233d7,6233d7,ff,soc 3
+,7ec,120,135,.2,0,1,%,2233d7,6233d7,ff,soc 4
+,7ec,104,119,.2,0,1,%,2233d7,6233d7,ff,soc 5
+,7ec,88,103,.2,0,1,%,2233d7,6233d7,ff,soc 6
+,7ec,72,87,.2,0,1,%,2233d7,6233d7,ff,soc 7
+,7ec,56,71,.2,0,1,%,2233d7,6233d7,ff,soc 8
+,7ec,40,55,.2,0,1,%,2233d7,6233d7,ff,soc 9
+,7ec,24,39,.2,0,1,%,2233d7,6233d7,ff,soc 20
 ,7ec,96,103,1,40,0,°C,2233d8,6233d8,ff,temp 1
 ,7ec,88,95,1,40,0,°C,2233d8,6233d8,ff,temp 2
 ,7ec,80,87,1,40,0,°C,2233d8,6233d8,ff,temp 3
@@ -435,7 +435,7 @@
 ,7ec,56,71,1,0,0,min,2233d9,6233d9,ff,duration 8
 ,7ec,40,55,1,0,0,min,2233d9,6233d9,ff,duration 9
 ,7ec,24,39,1,0,0,min,2233d9,6233d9,ff,duration 10
-,7ec,24,55,0.0001,0,0,km,2233de,6233de,ff,Trip distance
+,7ec,24,55,0.0001,0,2,km,2233de,6233de,ff,Trip distance
 ,7ec,24,39,1,0,0,km,223451,623451,ff,Estimated kilometric cruising range sent to MMI
 ,7ec,24,39,.001953125,0,3,kW,223455,623455,ff,Mean eco electrical consumption (if driver has economical driving behavior)
 ,7ec,24,39,.001953125,0,3,kW,223457,623457,ff,Mean pessimistic electrical consumption (worst possible consumption)
