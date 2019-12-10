@@ -251,25 +251,63 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
-            <TableRow>
+                <TableRow>
 
-            <Button
-                android:id="@+id/button_TiresRead"
-                android:text="@string/button_Tires_read"
-                android:layout_weight="1"
-                android:enabled="false"
-                />
-            <TextView
-                android:layout_width="20dp"
-                android:layout_weight="1"
-                />
-            <Button
-                android:id="@+id/button_TiresWrite"
-                android:text="@string/button_Tires_write"
-                android:layout_weight="1"
-                android:enabled="false"
-                />
-            </TableRow>
+                    <Button
+                        android:id="@+id/button_TiresRead"
+                        android:text="@string/button_Tires_read"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        />
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_weight="1"
+                        />
+                    <Button
+                        android:id="@+id/button_TiresWrite"
+                        android:text="@string/button_Tires_write"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        />
+                </TableRow>
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/button_TiresSaveA"
+                        android:text="SAVE TO A"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        />
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_weight="1"
+                        />
+                    <Button
+                        android:id="@+id/button_TiresLoadA"
+                        android:text="LOAD FROM A"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        />
+                </TableRow>
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/button_TiresSaveB"
+                        android:text="SAVE TO B"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        />
+                    <TextView
+                        android:layout_width="20dp"
+                        android:layout_weight="1"
+                        />
+                    <Button
+                        android:id="@+id/button_TiresLoadB"
+                        android:text="LOAD FROM B"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        />
+                </TableRow>
             </TableLayout>
 
         </LinearLayout>

@@ -1,3 +1,4 @@
+2019-12-10 [Jeroen] New option save and load two fire sets to storage
 2019-12-08 [Jeroen] Corrections in decimal positions in _Fields and _FieldsAlt
 2019-12-09 [Jeroen] Bug fix in Research, screen number format and reloading frames (freeing old fields)
 2019-12-08 [Jeroen] Recoding of selecting BT device and it's UI

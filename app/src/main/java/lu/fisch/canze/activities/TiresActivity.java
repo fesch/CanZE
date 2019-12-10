@@ -23,6 +23,7 @@ package lu.fisch.canze.activities;
 
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
@@ -31,6 +32,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Calendar;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Ecu;
@@ -41,6 +50,8 @@ import lu.fisch.canze.actors.Frames;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
+
+import static lu.fisch.canze.activities.MainActivity.debug;
 
 
 public class TiresActivity extends CanzeActivity implements FieldListener, DebugListener {
@@ -110,6 +121,39 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
                 })).start();
             }
         });
+
+        button = findViewById(R.id.button_TiresLoadA);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                load ("A");
+            }
+        });
+
+        button = findViewById(R.id.button_TiresSaveA);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save("A");
+            }
+        });
+
+        button = findViewById(R.id.button_TiresLoadB);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                load ("B");
+            }
+        });
+
+        button = findViewById(R.id.button_TiresSaveB);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save("B");
+            }
+        });
+
         tpmsState(-1); // initialize to "no TPMS, but don't Toast that". This ensures disabled fields, also after a rotate
     }
 
@@ -211,10 +255,6 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         if (state == previousState || ecu == null || ecuFromId == 0 || MainActivity.device == null) return;
         previousState = state;
         boolean isEnabled = (state == 1);
-        Button button = findViewById(R.id.button_TiresRead);
-        button.setEnabled(isEnabled);
-        button = findViewById(R.id.button_TiresWrite);
-        button.setEnabled(isEnabled);
         EditText edittext;
         edittext = findViewById(R.id.text_TireFLId);
         edittext.setEnabled(isEnabled);
@@ -224,21 +264,87 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         edittext.setEnabled(isEnabled);
         edittext = findViewById(R.id.text_TireRRId);
         edittext.setEnabled(isEnabled);
+        Button button;
+        button = findViewById(R.id.button_TiresRead);
+        button.setEnabled(isEnabled);
+        button = findViewById(R.id.button_TiresWrite);
+        button.setEnabled(isEnabled);
+        button = findViewById(R.id.button_TiresSaveA);
+        button.setEnabled(isEnabled);
+        button = findViewById(R.id.button_TiresLoadA);
+        button.setEnabled(isEnabled);
+        button = findViewById(R.id.button_TiresSaveB);
+        button.setEnabled(isEnabled);
+        button = findViewById(R.id.button_TiresLoadB);
+        button.setEnabled(isEnabled);
         // do not use !enabled as a rotate will reinitialize the activity, setting state to -1
         if (state == 0) MainActivity.toast(MainActivity.TOAST_NONE, "Your car has no TPMS system");
     }
 
+    private boolean ensureFolderThere () {
+        if (!MainActivity.storageIsAvailable) {
+            debug("AllDataActivity.createDump: SDcard not available");
+            return false;
+        }
+        if (!MainActivity.getInstance().isExternalStorageWritable()) {
+            debug("DiagDump: SDcard not writeable");
+            return false;
+        }
+        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
+
+        File dir = new File(file_path);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        return true;
+    }
+
+    private void load (String set) {
+        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
+        String filename = file_path + "_Tires" + set + ".csv";
+        ensureFolderThere();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
+            String line = bufferedReader.readLine();
+            bufferedReader.close();
+            String[] idsRead = line.split(",");
+            displayId(R.id.text_TireFLId, idsRead[0]);
+            displayId(R.id.text_TireFRId, idsRead[1]);
+            displayId(R.id.text_TireRRId, idsRead[2]);
+            displayId(R.id.text_TireRLId, idsRead[3]);
+        } catch (IOException e ) {
+            MainActivity.toast(MainActivity.TOAST_NONE, "Can't access file " + filename);
+        }
+    }
+
+    private void save (String set) {
+        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
+        String filename = file_path + "_Tires" + set + ".csv";
+        ensureFolderThere();
+        try {
+            String line = simpleStringParse(R.id.text_TireFLId) + "," +simpleStringParse(R.id.text_TireFRId) + "," +simpleStringParse(R.id.text_TireRRId) + "," +simpleStringParse(R.id.text_TireRLId) + "\n";
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename, false));
+            bufferedWriter.append(line);
+            bufferedWriter.close();
+        } catch (IOException e ) {
+            MainActivity.toast(MainActivity.TOAST_NONE, "Can't access file " + filename);
+        }
+    }
+
     private void displayId(final int fieldId, final int val) {
+        displayId (fieldId, String.format("%06X", val));
+    }
+
+    private void displayId(final int fieldId, final String val) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 EditText et = findViewById(fieldId);
                 if (et != null)
-                    et.setText(String.format("%06X", val));
+                    et.setText(val);
             }
         });
     }
-
 
     private void readTpms (int[] idsRead) {
         for (int i = 0; i < idsRead.length; i++) {
@@ -299,17 +405,23 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     }
 
     private int simpleIntParse(int fieldId) {
-        EditText et = findViewById(fieldId);
-        if (et != null) {
-            try {
-                return Integer.parseInt(et.getText().toString(), 16);
-            } catch (Exception e) {
-                return -1;
-            }
-        } else {
+        try {
+            return Integer.parseInt(simpleStringParse(fieldId), 16);
+        } catch (Exception e) {
             return -1;
         }
     }
+
+    private String simpleStringParse(int fieldId) {
+        EditText et = findViewById(fieldId);
+        if (et != null) {
+            return et.getText().toString();
+        } else {
+            return "-1";
+        }
+    }
+
+
 
     private boolean compareTpms (int[] idsRead, int[] idsWrite) {
         for (int i = 0; i < idsRead.length; i++) {
