@@ -105,7 +105,7 @@ public class Fields {
         addVirtualFieldTotalNegativeTorque();
         addVirtualFieldDcPowerIn();
         addVirtualFieldDcPowerOut();
-        //addVirtualFieldHeaterSetpoint();
+        addVirtualFieldHeaterSetpoint();
         addVirtualFieldRealRange();
         addVirtualFieldRealDelta();
         addVirtualFieldRealDeltaNoReset();
@@ -122,6 +122,7 @@ public class Fields {
             case "610c": addVirtualFieldTotalNegativeTorque();  break;
             case "6103": addVirtualFieldDcPowerIn();            break;
             case "6109": addVirtualFieldDcPowerOut();           break;
+            case "6105": addVirtualFieldHeaterSetpoint();       break;
             case "6106": addVirtualFieldRealRange();            break;
             case "6107": addVirtualFieldRealDelta();            break;
             case "6108": addVirtualFieldRealDeltaNoReset();     break;
@@ -390,28 +391,50 @@ public class Fields {
             }
         });
     }
-/*
+
     private void addVirtualFieldHeaterSetpoint() {
         final String SID_HeaterSetpoint = "699.8";
+        final String SID_OH_ClimTempDisplay = "764.6145.29";
 
-        addVirtualFieldCommon("6105", "°C", SID_HeaterSetpoint, new VirtualFieldAction() {
-            @Override
-            public double updateValue(HashMap<String, Field> dependantFields) {
-                Field privateField;
-                if ((privateField = dependantFields.get(SID_HeaterSetpoint)) == null) return Double.NaN;
-                double value = privateField.getValue();
-                if (value == 0) {
-                    return Double.NaN;
-                } else if (value == 4) {
-                    return -10.0;
-                } else if (value == 5) {
-                    return 40.0;
+        if (MainActivity.altFieldsMode) {
+            addVirtualFieldCommon("6105", "°C", SID_OH_ClimTempDisplay, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(SID_OH_ClimTempDisplay)) == null) return Double.NaN;
+                    double value = privateField.getValue() / 2;
+                    if (value == 0) {
+                        return Double.NaN;
+                    } else if (value == 4) {
+                        return -10.0;
+                    } else if (value == 5) {
+                        return 40.0;
+                    }
+                    return value;
                 }
-                return value;
-            }
-        });
+            });
+
+        } else {
+            addVirtualFieldCommon("6105", "°C", SID_HeaterSetpoint, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(SID_HeaterSetpoint)) == null) return Double.NaN;
+                    double value = privateField.getValue();
+                    if (value == 0) {
+                        return Double.NaN;
+                    } else if (value == 4) {
+                        return -10.0;
+                    } else if (value == 5) {
+                        return 40.0;
+                    }
+                    return value;
+                }
+            });
+
+        }
     }
-*/
+
     private void addVirtualFieldRealRange() {
         final String SID_EVC_Odometer = "7ec.622006.24"; //  (EVC)
         final String SID_RangeEstimate = "654.42"; //  (EVC)

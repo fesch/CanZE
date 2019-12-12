@@ -238,18 +238,19 @@
         custom:colorRanges="[
                     {'sid':'42e.44','color':'#808080','from':-100,'to':100},
                     {'sid':'764.6121.26','color':'?android:attr/colorForeground','from':-40,'to':100}]"
-        custom:fieldSID="764.6143.110,764.6121.26,42e.44"
+        custom:fieldSID="764.6143.110,764.6121.26,800.6105.24,42e.44"
         custom:foregroundColor="?android:attr/colorForeground"
         custom:intervals="{
                                    '764.6143.110':10000,
                                    '764.6121.26':10000,
+                                   '800.6105.24':2000,
                                    '42e.44':10000
                                    }"
         custom:majorTicks="10"
         custom:max="40"
         custom:min="-10"
         custom:minorTicks="2"
-        custom:text="External (°C), Internal (°C), Battery (°C)"
+        custom:text="@string/graph_Climatech"
         custom:widget="timeplot" />
 
     <!-- debug line -->

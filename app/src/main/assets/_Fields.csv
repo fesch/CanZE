@@ -44,6 +44,7 @@
 ,673,24,31,13.725,0,0,mbar,,,ff,Rear left wheel pressure
 ,673,32,39,13.725,0,0,mbar,,,ff,Front right wheel pressure
 ,673,40,47,13.725,0,0,mbar,,,ff,Front left wheel pressure
+,699,8,15,0.5,0,0,°C,,,e2,Temperature
 # ESC
 ,760,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,760,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)

@@ -109,6 +109,7 @@
 ,764,110,117,1,40,0,°C,2143,6143,ff,IH_ExternalTemp
 ,764,134,142,.1,0,1,bar,2143,6143,ff,IH_ACHighPressureSensor
 ,764,107,116,10,0,0,rpm,2144,6144,ff,IH_ClimCompRPMStatus
+,764,29,36,1,0,0,,2145,6145,ff,OH_ClimTempDisplay
 ,764,21,23,1,0,0,,2167,6167,ff,ILB_HPM_ClimLoopMode,0:Unavailable;1:AC mode;2:AC de-icing mode;3:Not used (100);4:Heat Pump mode;5:Not used (101);6:Demisting mode;7:Idle mode
 ,764,40,41,1,0,0,,2167,6167,ff,IH_ExternalTemp
 ,764,56,63,1,0,0,,2180,6180,ff,diagVersion
