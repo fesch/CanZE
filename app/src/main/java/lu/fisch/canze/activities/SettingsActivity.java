@@ -552,6 +552,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         if (id==android.R.id.home) {
             saveSettings();
+            MainActivity.getInstance().handleDarkMode();
             finish();
             return true;
         } else if (id == R.id.action_cancel) {
