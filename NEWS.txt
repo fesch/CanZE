@@ -1,1 +1,1 @@
-Tires screen fixed. Try "Use ISOTP fields" in Settings screen for better performance.
+Please update CanZE.
