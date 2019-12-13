@@ -83,6 +83,8 @@
                                 android:id="@+id/bluetoothDeviceList"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
+                                android:popupBackground="?attr/colorButtonNormal"
+                                android:popupElevation="0dp"
                                 android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
                             <TextView
@@ -104,6 +106,8 @@
                                 android:id="@+id/deviceType"
                                 android:layout_width="fill_parent"
                                 android:layout_height="25dp"
+                                android:popupBackground="?attr/colorButtonNormal"
+                                android:popupElevation="0dp"
                                 android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
                             <TextView
@@ -114,6 +118,8 @@
                                 android:id="@+id/car"
                                 android:layout_width="fill_parent"
                                 android:layout_height="25dp"
+                                android:popupBackground="?attr/colorButtonNormal"
+                                android:popupElevation="0dp"
                                 android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
                             <TextView
@@ -124,6 +130,8 @@
                                 android:id="@+id/toastLevel"
                                 android:layout_width="fill_parent"
                                 android:layout_height="25dp"
+                                android:popupBackground="?attr/colorButtonNormal"
+                                android:popupElevation="0dp"
                                 android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
                             <Button
@@ -186,6 +194,8 @@
                                 android:id="@+id/darkMode"
                                 android:layout_width="fill_parent"
                                 android:layout_height="25dp"
+                                android:popupBackground="?attr/colorButtonNormal"
+                                android:popupElevation="0dp"
                                 android:layout_marginBottom="@dimen/activity_vertical_margin" />
                             <CheckBox
                                 android:id="@+id/altFieldsMode"

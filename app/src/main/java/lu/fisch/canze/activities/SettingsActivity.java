@@ -215,7 +215,7 @@ public class SettingsActivity extends AppCompatActivity {
         // fill Toastlevel
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         arrayAdapter.add("None");
-        arrayAdapter.add("Only device");
+        arrayAdapter.add("Device");
         arrayAdapter.add("All");
 
         if (MainActivity.toastLevel == MainActivity.TOAST_ELM) index = 1;

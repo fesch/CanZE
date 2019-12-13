@@ -1,3 +1,5 @@
+2019-12-13 [Jeroen] Improved settings dropdown styling
+
 ---< Version 1.50 / 2019.12.13 / 63 >---
 2019-12-12 [Jeroen] Climate control temperature setpoint is back
 2019-12-10 [Jeroen] New option save and load two tire sets to storage
