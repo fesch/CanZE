@@ -1,3 +1,4 @@
+---< Version 1.50 / 2019.12.13 / 63 >---
 2019-12-12 [Jeroen] Climate control temperature setpoint is back
 2019-12-10 [Jeroen] New option save and load two tire sets to storage
 2019-12-08 [Jeroen] Corrections in decimal positions in _Fields and _FieldsAlt
