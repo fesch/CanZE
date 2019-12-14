@@ -1,3 +1,4 @@
+2019-12-13 [Jeroen] Clarification and code layout. No factual code change
 2019-12-13 [Jeroen] Fixed Darkmode not changing when exiting using Home button
 2019-12-13 [Jeroen] Improved settings dropdown styling
 

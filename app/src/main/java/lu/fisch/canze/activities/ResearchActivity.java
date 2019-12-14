@@ -55,25 +55,19 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_research);
 
-        // stop the poller
-        //new Thread(new Runnable() {
-        //    @Override
-        //    public void run() {
-                if (MainActivity.device != null) {
-                    // stop the poller thread
-                    MainActivity.device.stopAndJoin();
-                }
-        //    }
-        //}).start();
+        // stop the poller thread
+        if (MainActivity.device != null) {
+            MainActivity.device.stopAndJoin();
+        }
 
-        // read the _research.csv file
+        // get to the _research.csv file
         if (!MainActivity.storageIsAvailable) {
             toast(TOAST_NONE, "Research.onCreate: SDcard not available");
             finish();
             return;
         }
         if (!MainActivity.getInstance().isExternalStorageWritable()) {
-            toast(TOAST_NONE,"Research.onCreate: SDcard not writeable");
+            toast(TOAST_NONE, "Research.onCreate: SDcard not writeable");
             finish();
             return;
         }
@@ -81,23 +75,26 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
         String importFieldsFileName = file_path + "_Research.csv";
         File fieldsFile = new File(importFieldsFileName);
         if (!fieldsFile.exists()) {
-            toast(TOAST_NONE,"Research.onCreate: " + importFieldsFileName + " does not exist");
+            toast(TOAST_NONE, "Research.onCreate: " + importFieldsFileName + " does not exist");
             finish();
             return;
         }
 
         // load the data
+        // reloading the frames is essential as it removes earlier linked fields so those fields
+        // are no longer updated, leading to all sort of extra log entries
         Frames.getInstance().load();
+        // load the frame definition
         try {
             Fields.getInstance().load(importFieldsFileName);
         } catch (Exception e) {
-            toast(TOAST_NONE,"Research.onCreate: could not load " + importFieldsFileName);
+            toast(TOAST_NONE, "Research.onCreate: could not load " + importFieldsFileName);
             Fields.getInstance().load();
             finish();
             return;
         }
 
-        // force field logging mode on
+        // force field logging mode on (previous mode was already saved)
         MainActivity.fieldLogMode = true;
 
         // start the poller
@@ -111,12 +108,13 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
         TextView tv;
         for (firstEmptyRow = 0; firstEmptyRow < fields.size(); firstEmptyRow++) {
             Field field = fields.get(firstEmptyRow);
-            if(field!=null) {
+            if (field != null) {
+                // we only display the first 20, but note if there are more, they are logged
                 if (firstEmptyRow <= 19) {
-                    fillView ("textResL" + ("0"+firstEmptyRow).substring(firstEmptyRow<10?0:1), field.getName() + " (" + field.getUnit() + ")");
-                    tv = findViewById(getResources().getIdentifier("textResV" + ("0"+firstEmptyRow).substring(firstEmptyRow<10?0:1), "id", getPackageName()));
-                    fillView (tv, "-");
-                    viewsBySid.put (field.getSID(), tv);
+                    fillView("textResL" + ("0" + firstEmptyRow).substring(firstEmptyRow < 10 ? 0 : 1), field.getName() + " (" + field.getUnit() + ")");
+                    tv = findViewById(getResources().getIdentifier("textResV" + ("0" + firstEmptyRow).substring(firstEmptyRow < 10 ? 0 : 1), "id", getPackageName()));
+                    fillView(tv, "-");
+                    viewsBySid.put(field.getSID(), tv);
                 }
             }
         }
@@ -124,20 +122,22 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
+        // simply make this activity a listener to all fields
         for (int i = 0; i < fields.size(); i++) {
             Field f = fields.get(i);
-            if(f!=null) {
+            if (f != null) {
                 addField(f);
             }
         }
     }
 
-
+    // helper function to put a msg in a textview, identified by it's id string
     private void fillView(final String id, final String msg) {
         TextView tv = findViewById(getResources().getIdentifier(id, "id", getPackageName()));
         fillView(tv, msg);
     }
 
+    // helper function to put a msg in a textview
     private void fillView(final TextView tv, final String msg) {
         if (tv == null) return;
         runOnUiThread(new Runnable() {
@@ -148,40 +148,40 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
         });
     }
 
-    // This is the event fired as soon as this the registered fields are
-    // getting updated by the corresponding reader class.
+    // this event is fired for every field that has been registered when it has been updated
     @Override
     public void onFieldUpdateEvent(final Field field) {
-        TextView tv = viewsBySid.get (field.getSID());
+        // get the corresponding textview
+        TextView tv = viewsBySid.get(field.getSID());
 
-        // this is added to add stray fields to the screen
+        // this code is added to add stray fields to the screen. This happened earlier when the
+        // frames were not cleared, but should not happen anymore
         if (tv == null && firstEmptyRow <= 19) {
-            fillView ("textResL" + ("0"+firstEmptyRow).substring(firstEmptyRow<10?0:1), field.getName() + "(" + field.getUnit() + ")");
-            tv = findViewById(getResources().getIdentifier("textResV" + ("0"+firstEmptyRow).substring(firstEmptyRow<10?0:1), "id", getPackageName()));
-            fillView (tv, "-");
-            viewsBySid.put (field.getSID(), tv);
+            fillView("textResL" + ("0" + firstEmptyRow).substring(firstEmptyRow < 10 ? 0 : 1), field.getName() + "(" + field.getUnit() + ")");
+            tv = findViewById(getResources().getIdentifier("textResV" + ("0" + firstEmptyRow).substring(firstEmptyRow < 10 ? 0 : 1), "id", getPackageName()));
+            viewsBySid.put(field.getSID(), tv);
             firstEmptyRow++;
         }
 
+        // display the value. We ignore the list setting and will display those as numeric (index) values
         if (field.isString()) {
             fillView(tv, field.getStringValue());
         } else {
-            double val =  field.getValue();
+            double val = field.getValue();
             fillView(tv, Double.isNaN(val) ? "Nan" : String.format(Locale.getDefault(), "%." + field.getDecimals() + "f", val));
         }
     }
 
     @Override
     protected void onDestroy() {
-        debug ("Research.onDestroy");
+        debug("Research.onDestroy");
 
         // stop the poller
         if (MainActivity.device != null) {
-            // stop the poller thread
             MainActivity.device.stopAndJoin();
         }
 
-        // Reload
+        // Reload default data
         Frames.getInstance().load();
         Fields.getInstance().load();
 

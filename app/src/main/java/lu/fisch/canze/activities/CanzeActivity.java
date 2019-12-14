@@ -45,6 +45,8 @@ import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.interfaces.FieldListener;
 import lu.fisch.canze.widgets.WidgetView;
 
+import static lu.fisch.canze.devices.Device.INTERVAL_ASAP;
+
 /**
  * Created by robertfisch on 30.09.2015.
  */
@@ -65,7 +67,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        // enable hardware acceleration, except for dubious Android versions
         if (Build.VERSION.SDK_INT != 26 && Build.VERSION.SDK_INT != 27) {
             getWindow().setFlags(
                     WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
@@ -73,14 +75,18 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         }
 
         super.onCreate(savedInstanceState);
-        MainActivity.getInstance().setLocalTheme (this.getTheme());
 
+        // save the local theme do it can be used decoding colors for the graphs
+        MainActivity.getInstance().setLocalTheme(this.getTheme());
+
+        // display the home button (it will automatically act as a menu tap (onOption)
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
             actionBar.setDisplayHomeAsUpEnabled(true);
 
-        if(MainActivity.device!=null)
-            if(!BluetoothManager.getInstance().isConnected()) {
+        // reconnect bluetooth if needed
+        if (MainActivity.device != null) {
+            if (!BluetoothManager.getInstance().isConnected()) {
                 // restart Bluetooth
                 MainActivity.debug("CanzeActivity: restarting BT");
                 (new Thread(new Runnable() {
@@ -95,7 +101,8 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
                 })).start();
                 //BluetoothManager.getInstance().connect();
             }
-        MainActivity.debug("CanzeActivity: onCreate ("+this.getClass().getSimpleName()+")");
+        }
+        MainActivity.debug("CanzeActivity: onCreate (" + this.getClass().getSimpleName() + ")");
     }
 
     @Override
@@ -103,48 +110,53 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         super.onPause();
         MainActivity.debug("CanzeActivity: onPause");
         // stop here if BT should stay on!
-        if(MainActivity.bluetoothBackgroundMode)
-        {
+        if (MainActivity.bluetoothBackgroundMode) {
             return;
         }
 
         // if we have not pressed the back or home buton
-        if(!back && !widgetClicked) {
+        if (!back && !widgetClicked) {
             MainActivity.debug("CanzeActivity: onPause > stopBluetooth");
             // stop the background process, do NOT clear the queue, disconnect
             MainActivity.getInstance().stopBluetooth(false);
         }
-        if(!widgetClicked) {
+        if (!widgetClicked) {
             // remember we paused ourselves
-            iLeftMyOwn=true;
+            iLeftMyOwn = true;
         }
+        // stop the self propelled fields (i.e. GPS)
         selfPropelFields(false);
+        // remove this activity from being a listener to field updates it subscribed itself to
         removeFieldListeners();
-        if(MainActivity.getInstance()!=null)
+        // remove this activity from being a listener to debug events
+        if (MainActivity.getInstance() != null)
             MainActivity.getInstance().setDebugListener(null);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        MainActivity.getInstance().setBluetoothMenuItem (mOptionsMenu);
+        // set the menu globally
+        MainActivity.getInstance().setBluetoothMenuItem(mOptionsMenu);
         MainActivity.debug("CanzeActivity: onResume");
-        MainActivity.getInstance().setLocalTheme (this.getTheme());
+        // save the local theme do it can be used decoding colors for the graphs
+        MainActivity.getInstance().setLocalTheme(this.getTheme());
 
         // when initlisteners is called, the activity adds the fields to the device queue
         // moved up because sef propelled fields need to already be added to subscribedFields
         // note that onResume (re)adds the fields, while onPause does not clear them out
         // this is done by onDestroy->removeFieldListeners
         initListeners();
-        selfPropelFields (true);
+        // start the self propelled fields (i.e. GPS)
+        selfPropelFields(true);
 
         // if we paused ourselvers
         if (iLeftMyOwn && !widgetClicked) {
             MainActivity.debug("CanzeActivity: onResume > reloadBluetooth");
             // restart Bluetooth
             // jm moved to a thread to avoid ANR
-            Thread t = new Thread(){
-                public void run(){
+            Thread t = new Thread() {
+                public void run() {
                     MainActivity.getInstance().reloadBluetooth(false);
                 }
             };
@@ -152,29 +164,29 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             iLeftMyOwn = false;
         }
 
-        if(BluetoothManager.getInstance().isDummyMode())
+        if (BluetoothManager.getInstance().isDummyMode())
             MainActivity.device.initConnection();
 
-        if(!widgetClicked) {
+        if (!widgetClicked) {
             MainActivity.debug("CanzeActivity: onResume > initWidgets");
             // initialise the widgets (if any present)
             initWidgets();
         }
-        widgetClicked=false;
+        widgetClicked = false;
     }
 
     @Override
     protected void onDestroy() {
         MainActivity.debug("CanzeActivity: onDestroy");
-        if(!widgetView) {
+        if (!widgetView) {
             // free the widget listerners
             freeWidgetListeners();
-            // free field listeners
+            // remove this activity from being a listener to field updates it subscribed itself to
             removeFieldListeners();
             if (isFinishing()) {
                 MainActivity.debug("CanzeActivity: onDestroy (finishing)");
                 // clear filters
-                if(MainActivity.device!=null)
+                if (MainActivity.device != null)
                     MainActivity.device.clearFields();
                 //MainActivity.registerFields();
             }
@@ -185,25 +197,29 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     void selfPropelFields(boolean startStop) {
         for (Field field : subscribedFields) {
             if (field.isSelfPropelled()) {
-                Fields.getInstance().selfPropel (field.getResponseId(), startStop);
+                Fields.getInstance().selfPropel(field.getResponseId(), startStop);
             }
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present. Empty contains only the bluetooth icon
+        // save the menu. it is being set globally here and in resume to allow Bluetooth to change
+        // it's appearance
         mOptionsMenu = menu;
+        // inflate the menu; this adds items to the action bar if it is present. Empty contains
+        // only the bluetooth icon.
         getMenuInflater().inflate(R.menu.menu_empty, menu);
-        MainActivity.getInstance().setBluetoothMenuItem (mOptionsMenu);
+        // set the menu globally
+        MainActivity.getInstance().setBluetoothMenuItem(mOptionsMenu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (!MainActivity.isSafe()) return true;
         int id = item.getItemId();
-
-        if (id==android.R.id.home) {
+        if (id == android.R.id.home) {
             back = true;
             finish();
         }
@@ -212,49 +228,43 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
 
     @Override
     public void onBackPressed() {
-        if(MainActivity.isSafe()) {
-            super.onBackPressed();
-            back = true;
-        }
+        if (!MainActivity.isSafe()) return;
+        super.onBackPressed();
+        back = true;
     }
 
     /********************************************************/
 
-    private void initWidgets()
-    {
+    private void initWidgets() {
         final ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(android.R.id.content));
-        if(!widgets.isEmpty())
+        if (!widgets.isEmpty())
             // MainActivity.toast(R.string.toast_InitWidgets);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // connect the widgets to the respective fields
-                // and add the filters to the reader
-                for (int i = 0; i < widgets.size(); i++) {
-                    final WidgetView wv = widgets.get(i);
-
-                    // connect widgets to fields
-                    if (wv == null) {
-                        throw new ExceptionInInitializerError("CanzeActivity: initWidgets: Widget <" + i + "> is NULL!");
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    // connect the widgets to the respective fields
+                    // and add the filters to the reader
+                    for (int i = 0; i < widgets.size(); i++) {
+                        final WidgetView wv = widgets.get(i);
+                        // connect widgets to fields
+                        if (wv == null) {
+                            throw new ExceptionInInitializerError("CanzeActivity: initWidgets: Widget <" + i + "> is NULL!");
+                        }
+                        wv.setCanzeActivity(CanzeActivity.this);
+                        MainActivity.debug("CanzeActivity: initWidgets: Widget: " + wv.getDrawable().getTitle() + " (" + wv.getFieldSID() + ")");
                     }
-
-                    wv.setCanzeActivity(CanzeActivity.this);
-
-                    MainActivity.debug("CanzeActivity: initWidgets: Widget: " + wv.getDrawable().getTitle() + " ("+wv.getFieldSID()+")");
                 }
-            }
-        }).start();
+            }).start();
     }
 
-    private void freeWidgetListeners()
-    {
+    private void freeWidgetListeners() {
         // free up the listener again
         ArrayList<WidgetView> widgets = getWidgetViewArrayList((ViewGroup) findViewById(R.id.table));
-        for(int i=0; i<widgets.size(); i++) {
+        for (int i = 0; i < widgets.size(); i++) {
             WidgetView wv = widgets.get(i);
             String sid = wv.getFieldSID();
-            if(sid!=null) {
+            if (sid != null) {
                 String[] sids = sid.split(",");
                 for (String sid1 : sids) {
                     Field field = MainActivity.fields.getBySID(sid1);
@@ -267,101 +277,64 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     }
 
 
-    private ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup)
-    {
+    private ArrayList<WidgetView> getWidgetViewArrayList(ViewGroup viewGroup) {
         ArrayList<WidgetView> result = new ArrayList<>();
-
-        if(viewGroup!=null)
-        for (int i = 0; i < viewGroup.getChildCount(); i++) {
-            View v = viewGroup.getChildAt(i);
-            if (v instanceof ViewGroup) {
-                result.addAll(getWidgetViewArrayList((ViewGroup) v));
-            }
-            else if (v instanceof WidgetView)
-            {
-                result.add((WidgetView)v);
+        if (viewGroup != null) {
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View v = viewGroup.getChildAt(i);
+                if (v instanceof ViewGroup) {
+                    result.addAll(getWidgetViewArrayList((ViewGroup) v));
+                } else if (v instanceof WidgetView) {
+                    result.add((WidgetView) v);
+                }
             }
         }
-
         return result;
     }
-
-    /*
-    public static String compress(String string) throws IOException {
-        ByteArrayOutputStream os = new ByteArrayOutputStream(string.length());
-        GZIPOutputStream gos = new GZIPOutputStream(os);
-        gos.write(string.getBytes());
-        gos.close();
-        byte[] compressed = os.toByteArray();
-        os.close();
-        return Base64.encodeToString(compressed, Base64.NO_WRAP);
-    }
-
-    public static String decompress(String zipText) throws IOException {
-        byte[] compressed = Base64.decode(zipText,Base64.NO_WRAP);
-        final int BUFFER_SIZE = 32;
-        ByteArrayInputStream is = new ByteArrayInputStream(compressed);
-        GZIPInputStream gis = new GZIPInputStream(is, BUFFER_SIZE);
-        StringBuilder string = new StringBuilder();
-        byte[] data = new byte[BUFFER_SIZE];
-        int bytesRead;
-        while ((bytesRead = gis.read(data)) != -1) {
-            string.append(new String(data, 0, bytesRead));
-        }
-        gis.close();
-        is.close();
-        return string.toString();
-    }
-    */
 
     /******* activity field stuff ********************/
 
     private final ArrayList<Field> subscribedFields = new ArrayList<>();
 
     protected void addField(String sid) {
-        addField(sid, 0);
+        addField(sid, INTERVAL_ASAP); // follows frame rate
     }
 
     protected void addField(Field field) {
-        addField(field, 0);
+        addField(field, INTERVAL_ASAP); // follows frame rate
     }
 
-    protected void addField(String sid, int intervalMs)
-    {
+    protected void addField(String sid, int intervalMs) {
         Field field = MainActivity.fields.getBySID(sid);
         if (field != null) {
-            addField (field, intervalMs);
+            addField(field, intervalMs);
         } else {
             //MainActivity.debug(this.getClass().getSimpleName() + " (CanzeActivity): SID " + sid + " does not exist in class Fields");
-            MainActivity.toast(MainActivity.TOAST_NONE,  String.format(Locale.getDefault(),MainActivity.getStringSingle(R.string.format_NoSid), this.getClass().getSimpleName(), sid));
+            MainActivity.toast(MainActivity.TOAST_NONE, String.format(Locale.getDefault(), MainActivity.getStringSingle(R.string.format_NoSid), this.getClass().getSimpleName(), sid));
         }
     }
 
     protected void addField(Field field, int intervalMs) {
-        if (field != null)
-        {
+        if (field != null) {
             // add a listener to the field
             field.addListener(this);
             // register it in the queue // enable it to self propel
             MainActivity.device.addActivityField(field, intervalMs);
             // remember this field has been added (filter out doubles)
-            if(!subscribedFields.contains(field))
+            if (!subscribedFields.contains(field))
                 subscribedFields.add(field);
         }
     }
 
-
-    private void removeFieldListeners()
-    {
+    private void removeFieldListeners() {
         // free up the listeners again
-        for (Field field : subscribedFields)
-        {
+        for (Field field : subscribedFields) {
             field.removeListener(this);
         }
         subscribedFields.clear();
     }
 
-    public void dropDebugMessage (final String msg) {
+    public void dropDebugMessage(final String msg) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -371,7 +344,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         });
     }
 
-    public void appendDebugMessage (final String msg) {
+    public void appendDebugMessage(final String msg) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -391,4 +364,3 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
 
     protected abstract void initListeners();
 }
-
