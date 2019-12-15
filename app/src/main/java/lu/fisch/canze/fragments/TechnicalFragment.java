@@ -39,14 +39,16 @@ import lu.fisch.canze.activities.AuxBattTechActivity;
 import lu.fisch.canze.activities.ChargingGraphActivity;
 import lu.fisch.canze.activities.ChargingHistActivity;
 import lu.fisch.canze.activities.ChargingTechActivity;
-import lu.fisch.canze.activities.ClimaTechActivity;
 import lu.fisch.canze.activities.DtcActivity;
 import lu.fisch.canze.activities.ElmTestActivity;
 import lu.fisch.canze.activities.FirmwareActivity;
+import lu.fisch.canze.activities.HeatmapBatcompActivity;
+import lu.fisch.canze.activities.HeatmapCellvoltageActivity;
 import lu.fisch.canze.activities.LeakCurrentsActivity;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.activities.PredictionActivity;
 import lu.fisch.canze.activities.RangeActivity;
+import lu.fisch.canze.activities.TiresActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -75,10 +77,13 @@ public class TechnicalFragment extends Fragment {
         activateButton(view, R.id.buttonElmTest, ElmTestActivity.class);
 
         activateButton(view, R.id.buttonChargingHistory, ChargingHistActivity.class);
-        activateButton(view, R.id.buttonClimaTech, ClimaTechActivity.class);
+        activateButton(view, R.id.buttonAuxBatt, AuxBattTechActivity.class);
 
         activateButton(view, R.id.buttonLeakCurrents, LeakCurrentsActivity.class);
-        activateButton(view, R.id.buttonAuxBatt, AuxBattTechActivity.class);
+        activateButton(view, R.id.buttonTires, TiresActivity.class);
+
+        activateButton(view, R.id.buttonHeatmapCellvoltage, HeatmapCellvoltageActivity.class);
+        activateButton(view, R.id.buttonHeatmapBatcomp, HeatmapBatcompActivity.class);
 
         activateButton(view, R.id.buttonRange, RangeActivity.class);
         activateButton(view, R.id.buttonAllData, AllDataActivity.class);

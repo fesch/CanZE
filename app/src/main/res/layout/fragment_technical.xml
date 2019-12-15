@@ -161,7 +161,7 @@
                         android:text="@string/button_charging_history" />
 
                     <Button
-                        android:id="@+id/buttonClimaTech"
+                        android:id="@+id/buttonAuxBatt"
                         style="?android:attr/button"
                         android:layout_width="0dp"
                         android:layout_height="fill_parent"
@@ -171,9 +171,9 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@drawable/button_climate"
-                        android:drawableLeft="@drawable/button_climate"
-                        android:text="@string/button_Climate" />
+                        android:drawableStart="@drawable/button_auxbat"
+                        android:drawableLeft="@drawable/button_auxbat"
+                        android:text="@string/button_auxbatt" />
 
                 </TableRow>
 
@@ -198,7 +198,7 @@
                         android:text="@string/button_LeakCurrents" />
 
                     <Button
-                        android:id="@+id/buttonAuxBatt"
+                        android:id="@+id/buttonTires"
                         style="?android:attr/button"
                         android:layout_width="0dp"
                         android:layout_height="fill_parent"
@@ -208,12 +208,48 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@drawable/button_auxbat"
-                        android:drawableLeft="@drawable/button_auxbat"
-                        android:text="@string/button_auxbatt" />
+                        android:drawableStart="@drawable/button_tire"
+                        android:drawableLeft="@drawable/button_tire"
+                        android:text="@string/button_Tires" />
 
                 </TableRow>
 
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/buttonHeatmapCellvoltage"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="0"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/button_lightning"
+                        android:drawableLeft="@drawable/button_lightning"
+                        android:text="@string/button_HeatmapVoltage" />
+
+
+                    <Button
+                        android:id="@+id/buttonHeatmapBatcomp"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="0"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/button_batterytemp"
+                        android:drawableLeft="@drawable/button_batterytemp"
+                        android:text="@string/button_HeatmapTemperature" />
+
+                </TableRow>
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -250,7 +286,6 @@
                         android:text="@string/button_AllData" />
 
                 </TableRow>
-
 
             </TableLayout>
 

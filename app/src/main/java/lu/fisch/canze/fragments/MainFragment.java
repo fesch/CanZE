@@ -51,12 +51,11 @@ import lu.fisch.canze.R;
 import lu.fisch.canze.activities.BatteryActivity;
 import lu.fisch.canze.activities.BrakingActivity;
 import lu.fisch.canze.activities.ChargingActivity;
+import lu.fisch.canze.activities.ClimaTechActivity;
 import lu.fisch.canze.activities.ConsumptionActivity;
 import lu.fisch.canze.activities.DrivingActivity;
-import lu.fisch.canze.activities.HeatmapBatcompActivity;
-import lu.fisch.canze.activities.HeatmapCellvoltageActivity;
 import lu.fisch.canze.activities.MainActivity;
-import lu.fisch.canze.activities.TiresActivity;
+import lu.fisch.canze.activities.SpeedcontrolActivity;
 
 
 public class MainFragment extends Fragment {
@@ -76,17 +75,16 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        activateButton(view, R.id.buttonBattery, BatteryActivity.class);
+        activateButton(view, R.id.buttonConsumption, ConsumptionActivity.class);
         activateButton(view, R.id.buttonChargingActivity, ChargingActivity.class);
 
-        activateButton(view, R.id.buttonTires, TiresActivity.class);
+        activateButton(view, R.id.buttonBattery, BatteryActivity.class);
         activateButton(view, R.id.buttonDrivingActivity, DrivingActivity.class);
 
-        activateButton(view, R.id.buttonConsumption, ConsumptionActivity.class);
+        activateButton(view, R.id.buttonClimaTech, ClimaTechActivity.class);
         activateButton(view, R.id.buttonBraking, BrakingActivity.class);
 
-        activateButton(view, R.id.buttonHeatmapCellvoltage, HeatmapCellvoltageActivity.class);
-        activateButton(view, R.id.buttonHeatmapBatcomp, HeatmapBatcompActivity.class);
+        activateButton(view, R.id.buttonSpeed, SpeedcontrolActivity.class);
 
         getNews(view);
 
@@ -131,10 +129,10 @@ public class MainFragment extends Fragment {
                                 stringBuilder.append(msg);
                             }
 
-                            JsonElement jelement = JsonParser.parseString(stringBuilder.toString());
+                            JsonElement jsonElement = JsonParser.parseString(stringBuilder.toString());
                             msg = "";
-                            int version = jelement.getAsJsonObject().get("version").getAsInt();
-                            msg = jelement.getAsJsonObject().get("news").getAsString();
+                            int version = jsonElement.getAsJsonObject().get("version").getAsInt();
+                            msg = jsonElement.getAsJsonObject().get("news").getAsString();
                             isHtml = msg.contains("<");
                             if (version > BuildConfig.VERSION_CODE) {
                                 if (isHtml) {

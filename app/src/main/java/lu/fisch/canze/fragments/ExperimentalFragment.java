@@ -38,7 +38,6 @@ import lu.fisch.canze.activities.DashActivity;
 import lu.fisch.canze.activities.FieldTestActivity;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.activities.ResearchActivity;
-import lu.fisch.canze.activities.SpeedcontrolActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,9 +55,9 @@ public class ExperimentalFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_experimental, container, false);
 
         activateButton(view, R.id.buttonDash, DashActivity.class);
-        activateButton(view, R.id.buttonSpeed, SpeedcontrolActivity.class);
-        activateButton(view, R.id.buttonFieldTest, FieldTestActivity.class, true);
         activateButton(view, R.id.buttonResearch, ResearchActivity.class);
+
+        activateButton(view, R.id.buttonFieldTest, FieldTestActivity.class, true);
 
         return view;
     }

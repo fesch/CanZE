@@ -11,13 +11,6 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="lu.fisch.canze.activities.ChargingTechActivity">
 
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_ClimateBatteryInteraction"
-        android:textStyle="bold" />
-
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
@@ -128,54 +121,54 @@
                 android:gravity="end"
                 android:text="@string/default_Dash" />
         </TableRow>
-<!--
-        <TableRow>
+        <!--
+                <TableRow>
 
-            <TextView
-                android:layout_weight="0.7"
-                android:width="0dp"
-                android:text="@string/label_PtcRelay1" />
+                    <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        android:text="@string/label_PtcRelay1" />
 
-            <TextView
-                android:id="@+id/text_PTC1"
-                android:layout_weight="0.3"
-                android:width="0dp"
-                android:gravity="end"
-                android:text="@string/default_Dash" />
-        </TableRow>
-
-
-        <TableRow>
-
-            <TextView
-                android:layout_weight="0.7"
-                android:width="0dp"
-                android:text="@string/label_PtcRelay2" />
-
-            <TextView
-                android:id="@+id/text_PTC2"
-                android:layout_weight="0.3"
-                android:width="0dp"
-                android:gravity="end"
-                android:text="@string/default_Dash" />
-        </TableRow>
+                    <TextView
+                        android:id="@+id/text_PTC1"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:gravity="end"
+                        android:text="@string/default_Dash" />
+                </TableRow>
 
 
-        <TableRow>
+                <TableRow>
 
-            <TextView
-                android:layout_weight="0.7"
-                android:width="0dp"
-                android:text="@string/label_PtcRelay3" />
+                    <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        android:text="@string/label_PtcRelay2" />
 
-            <TextView
-                android:id="@+id/text_PTC3"
-                android:layout_weight="0.3"
-                android:width="0dp"
-                android:gravity="end"
-                android:text="@string/default_Dash" />
-        </TableRow>
--->
+                    <TextView
+                        android:id="@+id/text_PTC2"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:gravity="end"
+                        android:text="@string/default_Dash" />
+                </TableRow>
+
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        android:text="@string/label_PtcRelay3" />
+
+                    <TextView
+                        android:id="@+id/text_PTC3"
+                        android:layout_weight="0.3"
+                        android:width="0dp"
+                        android:gravity="end"
+                        android:text="@string/default_Dash" />
+                </TableRow>
+        -->
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"

@@ -47,28 +47,12 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableLeft="@drawable/button_dash"
                         android:drawableStart="@drawable/button_dash"
-                        android:text="@string/button_Dash"
-                        />
-                    <!--
-                    <Button
-                        android:id="@+id/buttonFluenceKangooTemps"
-                        style="?android:attr/button"
-                        android:layout_width="0dp"
-                        android:layout_height="fill_parent"
-                        android:layout_column="1"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_weight="1"
-                        android:text="@string/button_FluenceKangooTemps"
-                        />
-                    -->
+                        android:drawableLeft="@drawable/button_dash"
+                        android:text="@string/button_Dash" />
 
                     <Button
-                        android:id="@+id/buttonSpeed"
+                        android:id="@+id/buttonResearch"
                         style="?android:attr/button"
                         android:layout_width="0dp"
                         android:layout_height="fill_parent"
@@ -78,8 +62,9 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:drawableStart="@drawable/button_speedcam"
-                        android:text="avg speed" />
+                        android:drawableStart="@drawable/button_microscope"
+                        android:drawableLeft="@drawable/button_microscope"
+                        android:text="@string/button_Research" />
 
                 </TableRow>
 
@@ -98,11 +83,11 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:text="Field test"
-                        />
+                        android:drawableStart="@drawable/button_test"
+                        android:drawableLeft="@drawable/button_test"
+                        android:text="Field test" />
 
                     <Button
-                        android:id="@+id/buttonResearch"
                         style="?android:attr/button"
                         android:layout_width="0dp"
                         android:layout_height="fill_parent"
@@ -111,11 +96,7 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
-                        android:layout_weight="1"
-                        android:drawableLeft="@drawable/button_microscope"
-                        android:drawableStart="@drawable/button_microscope"
-                        android:text="Research"
-                        />
+                        android:visibility="invisible" />
 
                 </TableRow>
 
@@ -139,24 +120,24 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
-            android:background="?attr/colorButtonNormal">
+            android:background="?attr/colorButtonNormal"
+            android:orientation="vertical">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginBottom="0dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/help_Experimental"
-                android:layout_gravity="center_horizontal" />
+                android:text="@string/help_Experimental" />
 
         </LinearLayout>
 
