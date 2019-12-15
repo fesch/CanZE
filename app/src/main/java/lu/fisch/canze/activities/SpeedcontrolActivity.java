@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class SpeedcontrolActivity extends CanzeActivity implements FieldListener, DebugListener {
@@ -31,6 +33,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
     private final String kmh = MainActivity.getStringSingle(R.string.unit_SpeedKm);
     private final String mih = MainActivity.getStringSingle(R.string.unit_SpeedMi);
     private final String speedformat = "%.0f"; // feel free to change back. Experiment to make less jumpy
+    private final SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHM), Locale.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,13 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                 go=true;
 
                 TextView tv = findViewById(R.id.speed);
-                if (tv != null) tv.setText("...");
+                CharSequence speedNow = tv.getText();
+                tv.setText("...");
+                if (!speedNow.equals("-") && !speedNow.equals("...")) {
+                    tv = findViewById(R.id.textLog);
+                    speedNow = sdf.format(Calendar.getInstance().getTime()) + ": " + speedNow + (MainActivity.milesMode ? mih : kmh) + "\n" + tv.getText();
+                    tv.setText(speedNow);
+                }
 
                 tv = findViewById(R.id.unit);
                 tv.setText(MainActivity.milesMode ? mih : kmh);
