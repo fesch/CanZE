@@ -1,3 +1,5 @@
+2019-12-21 [Jeroen] Fix a coloring problem in consumption_dash
+2019-12-21 [Bob] Avoid a crash in BluetoothManager
 2019-12-14 [Jeroen] Button reordering and formatting
 2019-12-14 [Jeroen] Added 5 line log to speedcontrol
 2019-12-13 [Jeroen] Clarification and code layout. No factual code change
