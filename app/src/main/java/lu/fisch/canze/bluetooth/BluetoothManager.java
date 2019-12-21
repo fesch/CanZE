@@ -211,6 +211,33 @@ public class BluetoothManager {
                     bluetoothSocket.connect();
 
                     debug("Connect the streams");
+
+                    //--- new code start
+
+                    // init with null
+                    inputStream = null;
+                    outputStream = null;
+
+                    // connect input
+                    if(bluetoothSocket!=null)
+                        inputStream = bluetoothSocket.getInputStream();
+
+                    // connect output
+                    if(bluetoothSocket!=null)
+                        outputStream = bluetoothSocket.getOutputStream();
+
+                    // execute attached event
+                    if (bluetoothEvent != null)
+                        bluetoothEvent.onAfterConnect(bluetoothSocket);
+
+                    // stop here and return if everything went well
+                    if(inputStream!=null && outputStream!=null) {
+                        debug("Connected");
+                        return;
+                    }
+
+                    /*
+                    //--- old code
                     // connect the streams
                     try {
                         inputStream = bluetoothSocket.getInputStream();
@@ -226,6 +253,7 @@ public class BluetoothManager {
 
                     debug("Connected");
                     return;
+                    */
                 } catch (IOException e) {
                     //e.printStackTrace();
                 }
