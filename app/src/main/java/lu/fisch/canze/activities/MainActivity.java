@@ -1063,7 +1063,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             SharedPreferences.Editor editor = settings.edit();
             editor.putString("appVersion", currentVersion);
             editor.apply();
-            finish();
+            // finish(); // unclear why I put this here. I see no need to finish the app after a conversion, and finishing in a thread is a pretty bad idea anyway.
         }
     }
 
