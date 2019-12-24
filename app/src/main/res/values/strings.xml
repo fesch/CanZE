@@ -639,7 +639,7 @@
 
     <string name="title_activity_speedcontrol">Average speed</string>
     <string name="label_averageSpeed">Average speed</string>
-    <string name="label_TapToStart">Tap any label to start or reset</string>
+    <string name="label_TapToStart">Tap anywhere to start or reset</string>
     <string name="message_gotfirst">Got first value…</string>
     <string name="message_gotsecond">Got second value…</string>
     <string name="message_waitsecond">Waiting for second value…</string>

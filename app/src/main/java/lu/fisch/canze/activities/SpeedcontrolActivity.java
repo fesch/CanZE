@@ -64,9 +64,10 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
         };
 
         // allow to click on any
-        findViewById(R.id.speed).setOnClickListener(oc);
-        findViewById(R.id.title).setOnClickListener(oc);
-        findViewById(R.id.unit).setOnClickListener(oc);
+        //findViewById(R.id.speed).setOnClickListener(oc);
+        //findViewById(R.id.title).setOnClickListener(oc);
+        //findViewById(R.id.unit).setOnClickListener(oc);
+        findViewById(R.id.screen).setOnClickListener(oc);
     }
 
     @Override

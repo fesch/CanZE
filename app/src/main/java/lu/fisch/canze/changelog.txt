@@ -1,3 +1,4 @@
+2019-12-22 [Jeroen] Changed speedcontrol to respond to tap anywhere
 2019-12-22 [Jeroen] Trying to avoid a NPE in handleDarkMode (getSharedPreferences)
 2019-12-21 [Jeroen] Fix what seems a crash at first run (but actually a finish() at a version change
 2019-12-21 [Jeroen] Fix a coloring problem in consumption_dash
