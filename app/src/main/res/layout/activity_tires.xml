@@ -1,13 +1,12 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:keepScreenOn="true"
     android:layout_height="fill_parent"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="lu.fisch.canze.activities.TiresActivity">
 
@@ -26,127 +25,138 @@
                 android:layout_height="wrap_content">
 
                 <TableRow>
+
                     <TextView
-                        android:text="@string/label_TireFL"
-                        android:gravity="center"
                         android:layout_weight="5"
                         android:background="?attr/colorButtonNormal"
-                        />
+                        android:gravity="center"
+                        android:text="@string/label_TireFL" />
+
                     <TextView
                         android:layout_width="20dp"
                         android:layout_weight="1" />
+
                     <TextView
-                        android:text="@string/label_TireFR"
-                        android:gravity="center"
                         android:layout_weight="5"
-                        android:background="?attr/colorButtonNormal" />
+                        android:background="?attr/colorButtonNormal"
+                        android:gravity="center"
+                        android:text="@string/label_TireFR" />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
                         android:id="@+id/text_TireFLState"
-                        android:gravity="center"
                         android:layout_weight="5"
                         android:background="?attr/colorButtonNormal"
-                        />
+                        android:gravity="center" />
+
                     <TextView
                         android:layout_width="20dp"
                         android:layout_weight="1" />
+
                     <TextView
                         android:id="@+id/text_TireFRState"
-                        android:gravity="center"
                         android:layout_weight="5"
-                        android:background="?attr/colorButtonNormal" />
+                        android:background="?attr/colorButtonNormal"
+                        android:gravity="center" />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
                         android:id="@+id/text_TireFLPressure"
-                        android:textSize="48sp"
-                        android:gravity="center"
                         android:layout_weight="5"
-                        android:background="?attr/colorButtonNormal" />
-                    <TextView
-                        android:layout_weight="1" />
+                        android:background="?attr/colorButtonNormal"
+                        android:gravity="center"
+                        android:textSize="48sp" />
+
+                    <TextView android:layout_weight="1" />
+
                     <TextView
                         android:id="@+id/text_TireFRPressure"
-                        android:textSize="48sp"
-                        android:gravity="center"
                         android:layout_weight="5"
-                        android:background="?attr/colorButtonNormal" />
+                        android:background="?attr/colorButtonNormal"
+                        android:gravity="center"
+                        android:textSize="48sp" />
                 </TableRow>
             </TableLayout>
 
             <TextView
                 android:layout_width="fill_parent"
-                android:text="@string/help_PressuresMbar"
-                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:paddingBottom="5dp"
-                />
+                android:text="@string/help_PressuresMbar" />
 
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content">
 
                 <TableRow>
+
                     <TextView
-                        android:text="@string/label_TireRL"
-                        android:gravity="center"
                         android:layout_weight="5"
                         android:background="?attr/colorButtonNormal"
-                        />
+                        android:gravity="center"
+                        android:text="@string/label_TireRL" />
+
                     <TextView
                         android:layout_width="20dp"
                         android:layout_weight="1" />
+
                     <TextView
-                        android:text="@string/label_TireRR"
-                        android:gravity="center"
                         android:layout_weight="5"
-                        android:background="?attr/colorButtonNormal" />
+                        android:background="?attr/colorButtonNormal"
+                        android:gravity="center"
+                        android:text="@string/label_TireRR" />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
                         android:id="@+id/text_TireRLState"
-                        android:gravity="center"
                         android:layout_weight="5"
                         android:background="?attr/colorButtonNormal"
-                        />
+                        android:gravity="center" />
+
                     <TextView
                         android:layout_width="20dp"
                         android:layout_weight="1" />
+
                     <TextView
                         android:id="@+id/text_TireRRState"
-                        android:gravity="center"
                         android:layout_weight="5"
-                        android:background="?attr/colorButtonNormal" />
+                        android:background="?attr/colorButtonNormal"
+                        android:gravity="center" />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
                         android:id="@+id/text_TireRLPressure"
-                        android:textSize="48sp"
-                        android:gravity="center"
                         android:layout_weight="5"
-                        android:background="?attr/colorButtonNormal" />
-                    <TextView
-                        android:layout_weight="1" />
+                        android:background="?attr/colorButtonNormal"
+                        android:gravity="center"
+                        android:textSize="48sp" />
+
+                    <TextView android:layout_weight="1" />
+
                     <TextView
                         android:id="@+id/text_TireRRPressure"
-                        android:textSize="48sp"
-                        android:gravity="center"
                         android:layout_weight="5"
-                        android:background="?attr/colorButtonNormal" />
+                        android:background="?attr/colorButtonNormal"
+                        android:gravity="center"
+                        android:textSize="48sp" />
                 </TableRow>
             </TableLayout>
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/default_DoubleSpace"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="@string/default_DoubleSpace" />
 
 
             <TableLayout
@@ -154,94 +164,93 @@
                 android:layout_height="wrap_content">
 
                 <TableRow>
+
                     <TextView
-                        android:text="@string/label_TireSpdPresMisadaption"
-                        android:layout_weight="2"
                         android:layout_width="0dp"
-                        />
+                        android:layout_weight="2"
+                        android:text="@string/label_TireSpdPresMisadaption" />
+
                     <TextView
                         android:id="@+id/text_TireSpdPresMisadaption"
-                        android:gravity="end"
-                        android:layout_weight="1"
                         android:layout_width="0dp"
-                        />
+                        android:layout_weight="1"
+                        android:gravity="end" />
                 </TableRow>
 
                 <TableRow>
 
                     <TextView
-                        android:text="@string/label_TireIDFL"
-                        android:layout_weight="2"
                         android:layout_width="0dp"
-                        />
+                        android:layout_weight="2"
+                        android:text="@string/label_TireIDFL" />
+
                     <EditText
                         android:id="@+id/text_TireFLId"
-                        android:text="000000"
-                        android:gravity="end"
-                        android:layout_weight="1"
                         android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:digits="0123456789ABCDEF"
-                        android:maxLength="6"
-                        android:inputType="textCapCharacters"
                         android:enabled="false"
-                        />
+                        android:gravity="end"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="6"
+                        android:text="000000" />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
-                        android:text="@string/label_TireIDFR"
-                        android:layout_weight="2"
                         android:layout_width="0dp"
-                        />
+                        android:layout_weight="2"
+                        android:text="@string/label_TireIDFR" />
+
                     <EditText
                         android:id="@+id/text_TireFRId"
-                        android:text="000000"
-                        android:gravity="end"
-                        android:layout_weight="1"
                         android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:digits="0123456789ABCDEF"
-                        android:maxLength="6"
-                        android:inputType="textCapCharacters"
                         android:enabled="false"
-                        />
+                        android:gravity="end"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="6"
+                        android:text="000000" />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
-                        android:text="@string/label_TireIDRL"
-                        android:layout_weight="2"
                         android:layout_width="0dp"
-                        />
+                        android:layout_weight="2"
+                        android:text="@string/label_TireIDRL" />
+
                     <EditText
                         android:id="@+id/text_TireRLId"
-                        android:text="000000"
-                        android:gravity="end"
-                        android:layout_weight="1"
                         android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:digits="0123456789ABCDEF"
-                        android:maxLength="6"
-                        android:inputType="textCapCharacters"
                         android:enabled="false"
-                        />
+                        android:gravity="end"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="6"
+                        android:text="000000" />
                 </TableRow>
 
                 <TableRow>
+
                     <TextView
-                        android:text="@string/label_TireIDRR"
-                        android:layout_weight="2"
                         android:layout_width="0dp"
-                        />
+                        android:layout_weight="2"
+                        android:text="@string/label_TireIDRR" />
+
                     <EditText
                         android:id="@+id/text_TireRRId"
-                        android:text="000000"
-                        android:gravity="end"
+                        android:layout_width="0dp"
                         android:layout_weight="1"
                         android:digits="0123456789ABCDEF"
-                        android:layout_width="0dp"
-                        android:maxLength="6"
-                        android:inputType="textCapCharacters"
                         android:enabled="false"
-                        />
+                        android:gravity="end"
+                        android:inputType="textCapCharacters"
+                        android:maxLength="6"
+                        android:text="000000" />
                 </TableRow>
 
 
@@ -255,59 +264,68 @@
 
                     <Button
                         android:id="@+id/button_TiresRead"
-                        android:text="@string/button_Tires_read"
                         android:layout_weight="1"
                         android:enabled="false"
-                        />
+                        android:text="@string/button_Tires_read" />
+
                     <TextView
                         android:layout_width="20dp"
-                        android:layout_weight="1"
-                        />
+                        android:layout_weight="1" />
+
                     <Button
                         android:id="@+id/button_TiresWrite"
-                        android:text="@string/button_Tires_write"
                         android:layout_weight="1"
                         android:enabled="false"
-                        />
+                        android:text="@string/button_Tires_write" />
                 </TableRow>
+
                 <TableRow>
 
                     <Button
                         android:id="@+id/button_TiresSaveA"
-                        android:text="SAVE TO A"
                         android:layout_weight="1"
                         android:enabled="false"
-                        />
+                        android:text="SAVE TO A" />
+
                     <TextView
                         android:layout_width="20dp"
-                        android:layout_weight="1"
-                        />
+                        android:layout_weight="1" />
+
                     <Button
                         android:id="@+id/button_TiresLoadA"
-                        android:text="LOAD FROM A"
                         android:layout_weight="1"
                         android:enabled="false"
-                        />
+                        android:text="LOAD FROM A" />
                 </TableRow>
+
                 <TableRow>
 
                     <Button
                         android:id="@+id/button_TiresSaveB"
-                        android:text="SAVE TO B"
                         android:layout_weight="1"
                         android:enabled="false"
-                        />
+                        android:text="SAVE TO B" />
+
                     <TextView
                         android:layout_width="20dp"
-                        android:layout_weight="1"
-                        />
+                        android:layout_weight="1" />
+
                     <Button
                         android:id="@+id/button_TiresLoadB"
-                        android:text="LOAD FROM B"
                         android:layout_weight="1"
                         android:enabled="false"
-                        />
+                        android:text="LOAD FROM B" />
                 </TableRow>
+
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/button_TiresSwap"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:text="SWAP FRONT REAR" />
+                </TableRow>
+
             </TableLayout>
 
         </LinearLayout>
@@ -317,21 +335,20 @@
     <!-- debug line -->
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
-            android:text="@string/label_debug"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:text="@string/label_debug" />
+
         <TextView
             android:id="@+id/textDebug"
-            android:text="@string/default_debug"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:text="@string/default_debug" />
 
     </LinearLayout>
 

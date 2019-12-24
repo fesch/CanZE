@@ -154,6 +154,14 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
             }
         });
 
+        button = findViewById(R.id.button_TiresSwap);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonSwap();
+            }
+        });
+
         tpmsState(-1); // initialize to "no TPMS, but don't Toast that". This ensures disabled fields, also after a rotate
     }
 
@@ -276,6 +284,8 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         button = findViewById(R.id.button_TiresSaveB);
         button.setEnabled(isEnabled);
         button = findViewById(R.id.button_TiresLoadB);
+        button.setEnabled(isEnabled);
+        button = findViewById(R.id.button_TiresSwap);
         button.setEnabled(isEnabled);
         // do not use !enabled as a rotate will reinitialize the activity, setting state to -1
         if (state == 0) MainActivity.toast(MainActivity.TOAST_NONE, "Your car has no TPMS system");
@@ -489,5 +499,19 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
             }
         }
         MainActivity.toast(MainActivity.TOAST_NONE, "Failed to write all TPMS sensors");
+    }
+
+    private void buttonSwap() {
+        int[] ids = new int[4];
+
+        ids[0] = simpleIntParse(R.id.text_TireFLId); // front left / AVG
+        ids[1] = simpleIntParse(R.id.text_TireFRId); // front right / AVD
+        ids[2] = simpleIntParse(R.id.text_TireRRId); // back right / ARD
+        ids[3] = simpleIntParse(R.id.text_TireRLId); // back left / ARG
+
+        displayId(R.id.text_TireFLId, ids[3]);
+        displayId(R.id.text_TireFRId, ids[2]);
+        displayId(R.id.text_TireRRId, ids[1]);
+        displayId(R.id.text_TireRLId, ids[0]);
     }
 }
