@@ -399,6 +399,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
                     break;
             }
         }
+        bit31on(idsRead);
     }
 
 
@@ -450,6 +451,8 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         idsWrite[1] = simpleIntParse(R.id.text_TireFRId); // front right / AVD
         idsWrite[2] = simpleIntParse(R.id.text_TireRRId); // back right / ARD
         idsWrite[3] = simpleIntParse(R.id.text_TireRLId); // back left / ARG
+
+        bit31on(idsWrite);
 
         if (ecu == null || ecuFromId == 0) return;
         if (idsWrite[0] == -1 || idsWrite[1] == -1 || idsWrite[2] == -1 || idsWrite[3] == -1) {
@@ -509,9 +512,17 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         ids[2] = simpleIntParse(R.id.text_TireRRId); // back right / ARD
         ids[3] = simpleIntParse(R.id.text_TireRLId); // back left / ARG
 
+        bit31on (ids);
+
         displayId(R.id.text_TireFLId, ids[3]);
         displayId(R.id.text_TireFRId, ids[2]);
         displayId(R.id.text_TireRRId, ids[1]);
         displayId(R.id.text_TireRLId, ids[0]);
+    }
+
+    private void bit31on (int[] ids) {
+        for (int i = 0; i < ids.length; i++) {
+            ids[i] = 0x800000 | (ids[i] & 0x7fffff);
+        }
     }
 }
