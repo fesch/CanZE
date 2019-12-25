@@ -266,7 +266,7 @@
     <string name="title_activity_research">Research</string>
     <string name="title_activity_speedcontrol">Average speed</string>
     <string name="message_NoFreeTesting">\nNot testing free frames, as you selected Use ISOTP fields\n</string>
-    <string name="label_TapToStart">Tap any label to start or reset</string>
+    <string name="label_TapToStart">Tap anywhere to start or reset</string>
     <string name="label_averageSpeed">Average speed</string>
     <string name="button_Research">Research</string>
 </resources>
