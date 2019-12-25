@@ -39,7 +39,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Calendar;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Ecu;
@@ -399,7 +398,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
                     break;
             }
         }
-        bit31on(idsRead);
+        bit23on(idsRead);
     }
 
 
@@ -452,7 +451,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         idsWrite[2] = simpleIntParse(R.id.text_TireRRId); // back right / ARD
         idsWrite[3] = simpleIntParse(R.id.text_TireRLId); // back left / ARG
 
-        bit31on(idsWrite);
+        bit23on(idsWrite);
 
         if (ecu == null || ecuFromId == 0) return;
         if (idsWrite[0] == -1 || idsWrite[1] == -1 || idsWrite[2] == -1 || idsWrite[3] == -1) {
@@ -512,7 +511,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         ids[2] = simpleIntParse(R.id.text_TireRRId); // back right / ARD
         ids[3] = simpleIntParse(R.id.text_TireRLId); // back left / ARG
 
-        bit31on (ids);
+        bit23on(ids);
 
         displayId(R.id.text_TireFLId, ids[3]);
         displayId(R.id.text_TireFRId, ids[2]);
@@ -520,7 +519,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         displayId(R.id.text_TireRLId, ids[0]);
     }
 
-    private void bit31on (int[] ids) {
+    private void bit23on(int[] ids) {
         for (int i = 0; i < ids.length; i++) {
             ids[i] = 0x800000 | (ids[i] & 0x7fffff);
         }
