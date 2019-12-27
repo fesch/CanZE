@@ -25,6 +25,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.crashlytics.android.Crashlytics;
+
 public class CanzeOpenHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "lu.fisch.canze.db";
@@ -42,6 +44,7 @@ public class CanzeOpenHelper extends SQLiteOpenHelper {
             db.execSQL("CREATE INDEX indexSid ON data (sid)");
             //db.execSQL("CREATE TABLE data (id_data INTEGER PRIMARY KEY AUTOINCREMENT, sid TEXT NOT NULL, moment INTEGER NOT NULL, value REAL NOT NULL)");
         } catch (Exception e) {
+            Crashlytics.logException(e);
             // do nothing
         }
     }
@@ -55,6 +58,7 @@ public class CanzeOpenHelper extends SQLiteOpenHelper {
         try {
             db.execSQL("DROP TABLE IF EXISTS data");
         } catch (Exception e) {
+            Crashlytics.logException(e);
             // do nothing
         }
     }

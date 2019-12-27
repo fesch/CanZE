@@ -21,6 +21,8 @@
 
 package lu.fisch.canze.actors;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -98,7 +100,7 @@ public class Frames {
             bufferedReader.close();
         }
         catch (IOException e) {
-            e.printStackTrace();
+            Crashlytics.logException(e);
         }
     }
 

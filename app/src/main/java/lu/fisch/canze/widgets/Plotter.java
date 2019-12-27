@@ -21,6 +21,7 @@
 
 package lu.fisch.canze.widgets;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -32,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
@@ -76,6 +78,7 @@ public class Plotter extends Drawable {
         try {
             values.set(index, value);
         } catch (IndexOutOfBoundsException e) {
+            Crashlytics.logException(e);
             // Bail out. Based on Play Console Crash Report
         }
         //if(value<minValues.get(index)) minValues.set(index,value);
@@ -115,7 +118,7 @@ public class Plotter extends Drawable {
         barWidth-=spaceAlt;
 
         // what is the graph height
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         int graphHeight = height-g.stringHeight(sdf.format(Calendar.getInstance().getTime()))-5;
 
         // draw the ticks
@@ -274,9 +277,7 @@ public class Plotter extends Drawable {
                     }
                     lastX = mx;
                     lastY = my;
-                } catch (IndexOutOfBoundsException e) {
-                    /* simply ignore */
-                } catch (NullPointerException e) {
+                } catch (IndexOutOfBoundsException | NullPointerException e) {
                     /* simply ignore */
                 }
             }

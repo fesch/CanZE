@@ -142,12 +142,12 @@ public class MainFragment extends Fragment {
                                 }
                             }
                         } catch (Exception e) {
-                            e.printStackTrace();
+                            // ignore offline situation
                         } finally {
                             urlConnection.disconnect();
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        // ignore offline situation
                     }
                     displayNews(view);
                 }

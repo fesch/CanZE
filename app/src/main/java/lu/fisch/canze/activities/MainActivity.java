@@ -239,7 +239,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public static void debug(String text) {
         if (text == null) text = "null";
-        Log.d(TAG, text);
+        if (!BuildConfig.BRANCH.equals("master")) {
+            Log.d(TAG, text);
+        }
         if (storageIsAvailable && debugLogMode) {
             SimpleDateFormat sdf = new SimpleDateFormat(getStringSingle(R.string.format_YMDHMSs), Locale.getDefault());
             DebugLogger.getInstance().log(sdf.format(Calendar.getInstance().getTime()) + ": " + text);
@@ -265,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                         // exception and when that happens, it's accepable to simply give up
                         // on a transient toast message. An alternative approach might be to use
                         // https://www.dev2qa.com/android-get-application-context-from-anywhere-example/
-                        // but it seems that overwriting Application is frowed upon a bit.
+                        // but it seems that overwriting Application is frowned upon a bit.
                     }
 
                 }
@@ -389,10 +391,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             // after loading PREFERENCES we may have new values for "dataExportMode"
             dataExportMode = dataLogger.activate(dataExportMode);
         } catch (Exception e) {
-            MainActivity.debug(e.getMessage());
-            for (StackTraceElement traceElement : e.getStackTrace()) {
-                MainActivity.debug(traceElement.toString());
-            }
+            Crashlytics.logException(e);
         }
     }
 
@@ -958,13 +957,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 (new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        // give the toast a moment to appear
-                        /* try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } */
-
                         if (device != null) {
                             // stop the BT device
                             device.stopAndJoin();

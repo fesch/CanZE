@@ -10,6 +10,8 @@ import java.io.InputStreamReader;
 import android.content.Context;
 import android.content.res.AssetManager;
 
+import com.crashlytics.android.Crashlytics;
+
 public class AssetLoadHelper {
 
     // calling getAssets() from outside an Activity, source:
@@ -49,12 +51,10 @@ public class AssetLoadHelper {
 
         } catch (FileNotFoundException e) {
             // do nothing, so return null
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NullPointerException e) {
-            // This is bad practive, but I have seen one thrown by myContext.getAssets();
-            e.printStackTrace();
-        }
+        } catch (IOException | NullPointerException e) {
+            Crashlytics.logException(e);
+        } // Catching null is bad practive, but I have seen one thrown by myContext.getAssets();
+
         return null;
     }
 }

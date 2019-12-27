@@ -367,7 +367,6 @@ public class ELM327 extends Device {
         if (command != null) {
             flushWithTimeout(10, '>');
             // send the command
-            //connectedBluetoothThread.write(command + "\r\n");
             BluetoothManager.getInstance().write(command + (addReturn ? "\r" : ""));
         }
 
@@ -444,7 +443,7 @@ public class ELM327 extends Device {
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        // do nothing
                     }
                 }
 

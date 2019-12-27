@@ -38,6 +38,8 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.lang.reflect.Constructor;
 import java.util.Locale;
 
@@ -124,7 +126,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
         String carValue = values[0];
 
         for(int i=1; i<values.length; i++)
-            if(values[i].startsWith(String.valueOf(MainActivity.car)+":"))
+            if(values[i].startsWith(MainActivity.car +":"))
                 carValue=values[i].split(":")[1];
 
         return carValue;
@@ -250,7 +252,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
             }
             catch(Exception e)
             {
-                e.printStackTrace();
+                Crashlytics.logException(e);
             }
         }
 
@@ -366,6 +368,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
         }
         catch(Exception e)
         {
+            Crashlytics.logException(e);
             // ignore
         }
         finally

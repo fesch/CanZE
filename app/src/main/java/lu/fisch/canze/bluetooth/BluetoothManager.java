@@ -363,21 +363,10 @@ public class BluetoothManager {
                 if (outputStream != null) {
                     outputStream.write(msgBuffer);
                 } else {
-                    Log.d(MainActivity.TAG, "BluetoothManager.write: outputSTream is null");
+                    MainActivity.debug("BluetoothManager.write: outputStream is null");
                 }
             } catch (IOException e) {
-                Log.d(MainActivity.TAG, "BT: Error sending > " + e.getMessage());
-                //Log.d(MainActivity.TAG, "BT: Error sending > restaring BT");
-
-                /*
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        disconnect();
-                        connect(connectBluetoothAddress, true, BluetoothManager.RETRIES_INFINITE);
-                    }
-                })).start();
-                */
+                MainActivity.debug("BT: Error sending > " + e.getMessage());
             }
         } else {
             MainActivity.debug("Write failed! Socket is closed ... M = " + message);

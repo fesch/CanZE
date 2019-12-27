@@ -31,6 +31,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -193,6 +195,7 @@ public class DtcActivity extends CanzeActivity {
                 try {
                     queryThread.join();
                 } catch (Exception e) {
+                    Crashlytics.logException(e);
                     MainActivity.debug(e.getMessage());
                 }
             }

@@ -50,6 +50,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -476,7 +478,7 @@ public class SettingsActivity extends AppCompatActivity {
             tv.setText(version);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Crashlytics.logException(e);
         }
 
         Button button = findViewById(R.id.buttonClearSettings);
@@ -623,13 +625,6 @@ public class SettingsActivity extends AppCompatActivity {
                         //}
                     } catch (Exception e) {
                         // do nothing. Trapping here is no problem, as we already have the name
-                        // e.printStackTrace();
-                        // catch (NoSuchMethodException e) {
-                        // e.printStackTrace();
-                        //} catch (InvocationTargetException e) {
-                        // e.printStackTrace();
-                        //} catch (IllegalAccessException e) {
-                        // e.printStackTrace();
                     }
 
                     arrayAdapter.add(deviceAlias + "\n" + device.getAddress());
