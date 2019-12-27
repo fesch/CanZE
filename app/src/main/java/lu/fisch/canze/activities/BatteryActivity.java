@@ -49,7 +49,7 @@ public class BatteryActivity extends CanzeActivity implements DebugListener {
 
     protected void initListeners () {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_BatterySerial, 6000);
+        addField(SID_BatterySerial, 60000);
     }
 
     /********************************/
