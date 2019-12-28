@@ -72,7 +72,6 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     @ColorInt
     private int baseColor;
     @ColorInt private int alarmColor;
-    private boolean dark;
     static int previousState = -2; // uninitialized
     private final Ecu ecu = Ecus.getInstance().getByMnemonic("BCM");
     private final int ecuFromId = (ecu == null) ? 0 : ecu.getFromId();
@@ -87,7 +86,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         Resources.Theme theme = this.getTheme();
         theme.resolveAttribute(R.attr.colorButtonNormal, typedValue, true);
         baseColor = typedValue.data;
-        dark = ((baseColor & 0xff0000) <= 0xa00000);
+        boolean dark = ((baseColor & 0xff0000) <= 0xa00000);
         alarmColor = dark ? baseColor + 0x200000 : baseColor - 0x00002020;
 
         // do not display the keyboard immediately
@@ -287,7 +286,16 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
         button = findViewById(R.id.button_TiresSwap);
         button.setEnabled(isEnabled);
         // do not use !enabled as a rotate will reinitialize the activity, setting state to -1
-        if (state == 0) MainActivity.toast(MainActivity.TOAST_NONE, "Your car has no TPMS system");
+        if (state == 0) {
+            MainActivity.toast(MainActivity.TOAST_NONE, "Your car has no TPMS system");
+        } else if (state == 1) {
+            (new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    buttonRead();
+                }
+            })).start();
+        }
     }
 
     private boolean ensureFolderThere () {
