@@ -1,3 +1,5 @@
+---< Version 1.51 / 2019.12.28 / 63 >---
+2019-12-27 [Jeroen] TargetSdk to 29 (Android Q)
 2019-12-27 [Jeroen] Some code cleanup, added Crashlytics on some non-fatal exceptions, inhibited log.D for master
 2019-12-27 [Jeroen] Slowed down Battery activity
 2019-12-25 [Jeroen] Force bit 31 on in TPMS ID (www.goingelectric.de/forum/viewtopic.php?p=1150046)
