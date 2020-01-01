@@ -82,11 +82,13 @@ public class Timeplot extends Drawable {
         //MainActivity.debug(values.size()+"");
         if (!values.containsKey(fieldSID)) values.put(fieldSID, new ArrayList<TimePoint>());
 
-        // don't add every point, but check if for the given second we allready have point
-        // remembering more than on point a second is kind of overkill
-        //values.get(fieldSID).add(new TimePoint(Calendar.getInstance().getTimeInMillis(), value));
+        // don't add every point, but check if for the given second we already have this point
+        // remembering more than one point per second is kind of overkill
+        // values.get(fieldSID).add(new TimePoint(Calendar.getInstance().getTimeInMillis(), value));
 
         // if empty, add
+
+        /* TODO  given crashlitics, I think we should sync this block JM */
         if (values.get(fieldSID).size() == 0)
             values.get(fieldSID).add(new TimePoint(iTime, value));
         else {
@@ -658,6 +660,15 @@ public class Timeplot extends Drawable {
 
         // draw the value
         if (showValue) {
+            //g.setTextSize(40);
+            if (MainActivity.getInstance().isLandscape())
+                g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 22, Resources.getSystem().getDisplayMetrics()));
+            else
+                g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 18, Resources.getSystem().getDisplayMetrics()));
+
+            int tx = getX() + width - 8 - spaceAlt;
+            int ty = getY();
+            int dy = g.stringHeight("Ip") + 4; // full height and undersling
             for (int s = 0; s < sids.size(); s++) {
                 String sid = sids.get(s);
                 ArrayList<TimePoint> tmpValues = this.values.get(sid);
@@ -674,12 +685,6 @@ public class Timeplot extends Drawable {
                     else text = String.valueOf(tmpValues.get(tmpValues.size() - 1).value);
                 }
 
-                //g.setTextSize(40);
-                if (MainActivity.getInstance().isLandscape())
-                    g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 22, Resources.getSystem().getDisplayMetrics()));
-                else
-                    g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 18, Resources.getSystem().getDisplayMetrics()));
-
                 if (tmpValues.isEmpty()) {
                     g.setColor(getColor(s));
                 } else {
@@ -687,10 +692,8 @@ public class Timeplot extends Drawable {
                 }
 
                 int tw = g.stringWidth(text);
-                int th = g.stringHeight(text);
-                int tx = getX() + width - tw - 8 - spaceAlt;
-                int ty = getY() + (s + 1) * (th + 4);
-                g.drawString(text, tx, ty);
+                ty += dy;
+                g.drawString(text, tx - tw, ty);
             }
         }
 
