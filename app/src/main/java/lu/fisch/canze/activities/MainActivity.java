@@ -591,6 +591,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // dark mode handling
         // due to a few NullPointerExceptions on getSharedPreferences, now explicitely using the application context jm20191223
         Context c = instance.getApplicationContext();
+        if (c == null) return;
         SharedPreferences set = c.getSharedPreferences(PREFERENCES_FILE, 0);
         int darkModeSetting;
         try { // handle old boolean preference
