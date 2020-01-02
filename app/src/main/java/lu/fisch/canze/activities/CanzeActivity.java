@@ -68,11 +68,11 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // enable hardware acceleration, except for dubious Android versions
-        if (Build.VERSION.SDK_INT != 26 && Build.VERSION.SDK_INT != 27) {
+        /*if (Build.VERSION.SDK_INT != 26 && Build.VERSION.SDK_INT != 27) {
             getWindow().setFlags(
                     WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
                     WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-        }
+        }*/
 
         super.onCreate(savedInstanceState);
 

@@ -1,3 +1,4 @@
+2020-01-02 [Jeroen] Removed experiment to avoid on abort crash in Android 8.1. Gave up.
 2020-01-01 [Jeroen] Avoid ugly layout in Timeplot when values go below baseline (i.e. comma)
 2020-01-01 [Jeroen] Regression: Trying to avoid a NPE in handleDarkMode (getSharedPreferences)
 2019-12-27 [Jeroen] Moved TPMS IDs to logical tire position block, auto-read IDs
