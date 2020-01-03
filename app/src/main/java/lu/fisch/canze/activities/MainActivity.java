@@ -168,7 +168,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static boolean altFieldsMode = false;
 
     public static final boolean storageIsAvailable = true;
-
     public static final short TOAST_NONE = 0;
     public static final short TOAST_ELM = 1;
     public static final short TOAST_ELMCAR = 2;
@@ -190,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     private int mBtState = BLUETOOTH_SEARCH;
 
     private boolean storageGranted = false;
+    private int startAnotherFragmentIndex = -2;
 
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -709,6 +709,36 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             alertDialog.show();
             //alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextSize(TypedValue.COMPLEX_UNIT_SP, 25.0f);
             //alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextSize(TypedValue.COMPLEX_UNIT_SP, 25.0f);
+        }
+
+        // do we need to start another default activity (but leave main in the stack)?
+        // first, we select the proper fragment. Note that this is a precursor to running another
+        // activity. -1 means no change, 0 means you might actually also select an activity even
+        // if it is on the 0th fragment.
+        if (startAnotherFragmentIndex == -2) {
+            startAnotherFragmentIndex = settings.getInt("startMenu", -1);
+        }
+        String startAnotherActivityName = settings.getString("startActivity", "");
+        if (startAnotherFragmentIndex >= 0) {
+            // switch to the proper fragment
+            viewPager.setCurrentItem(startAnotherFragmentIndex);
+            // ensure it won't happen again i.e. after Settings or dark mode change
+            // note that putting this code in onCreate is not the best idea as i.e. the fields have
+            // not been read in yet
+            startAnotherFragmentIndex = -1;
+            // if also another activity is to be started
+            if (!startAnotherActivityName.equals("")) {
+                try {
+                    // get it's class and start it
+                    final Class startAnotherActivityClass = Class.forName("lu.fisch.canze.activities." + startAnotherActivityName + "Activity");
+                    Intent intent = new Intent(this, startAnotherActivityClass);
+                    leaveBluetoothOn = true;
+                    this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
+                    // do NOT finish this activity so the main stack is intact
+                } catch (Exception e) {
+                    // do nothing if starting another activity fails, so stay on MainActivity
+                }
+            }
         }
     }
 
