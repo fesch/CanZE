@@ -1,3 +1,4 @@
+2020-01-03 [Jeroen] Remove crash(lytics) test code
 2020-01-03 [Jeroen] Experiment startup activity
 2020-01-03 [Jeroen] Added non-waiting splash screen https://www.bignerdranch.com/blog/splash-screens-the-right-way
 2020-01-02 [Jeroen] Removed experiment to avoid on abort crash in Android 8.1. Gave up.

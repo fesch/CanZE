@@ -859,7 +859,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // Note that beta builds supposed to always be build through the
         // release variant. The safes way to do this is through the command line
         // using ./gradlew bundleRelease
-        if (BuildConfig.BUILD_TYPE.equals("debug")) setForceCrash(menu);
+        // if (BuildConfig.BUILD_TYPE.equals("debug")) setForceCrash(menu);
 
         // get a reference to the bluetooth action button
         setBluetoothMenuItem (menu); //bluetoothMenutItem = menu.findItem(R.id.action_bluetooth);
@@ -890,11 +890,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return true;
     }
 
-    private void setForceCrash (Menu menu) {
+    /*private void setForceCrash (Menu menu) {
         if (menu == null) return;
         MenuItem crasher = menu.findItem(R.id.action_crash);
         crasher.setVisible(true);
-    }
+    }*/
 
 
     public void setBluetoothMenuItem (Menu menu) {
@@ -1016,8 +1016,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             viewPager.setCurrentItem(2, true);
             updateActionBar();
 
-        } else if (id == R.id.action_crash) {
-            Crashlytics.getInstance().crash();
+        //} else if (id == R.id.action_crash) {
+        //    Crashlytics.getInstance().crash();
         }
 
         return super.onOptionsItemSelected(item);
