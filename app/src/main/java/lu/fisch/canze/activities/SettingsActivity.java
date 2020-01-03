@@ -231,27 +231,17 @@ public class SettingsActivity extends AppCompatActivity {
         toastList.setSelection(index);
         toastList.setSelected(true);
 
-        // fill startup Menu
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-        arrayAdapter.add("None");
-        arrayAdapter.add("Main");
-        arrayAdapter.add("Technical");
-        arrayAdapter.add("Experimental");
-        index = settings.getInt("startMenu", -1) + 1;
-        Spinner menuListSpinner = findViewById(R.id.startMenu);
-        menuListSpinner.setAdapter(arrayAdapter);
-        menuListSpinner.setSelection(index);
-        menuListSpinner.setSelected(true);
-
         // fill startup Activity
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        arrayAdapter.add("-Main");
         arrayAdapter.add("Consumption");
         arrayAdapter.add("Battery");
         arrayAdapter.add("ClimaTech");
         arrayAdapter.add("Charging");
         arrayAdapter.add("Driving");
-        arrayAdapter.add("SpeedControl");
+        arrayAdapter.add("Speedcontrol");
         //
+        arrayAdapter.add("-Technical-");
         arrayAdapter.add("ChargingTech");
         arrayAdapter.add("ChargingGraph");
         arrayAdapter.add("Prediction");
@@ -267,11 +257,12 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("HeatmapBatcomp");
         arrayAdapter.add("AllData");
         //
+        arrayAdapter.add("-Experimental-");
         arrayAdapter.add("Dash");
         arrayAdapter.add("FieldTest");
         arrayAdapter.add("Research");
         String activityName = settings.getString("startActivity", "");
-        Spinner activityListSpinner = findViewById(R.id.startActivity);
+        final Spinner activityListSpinner = findViewById(R.id.startActivity);
         activityListSpinner.setAdapter(arrayAdapter);
         activityListSpinner.setSelection(arrayAdapter.getPosition(activityName));
         activityListSpinner.setSelected(true);
@@ -715,7 +706,6 @@ public class SettingsActivity extends AppCompatActivity {
         CheckBox btBackground = findViewById(R.id.btBackgrounding);
         Spinner darkMode = findViewById(R.id.darkMode);
         Spinner toastLevel = findViewById(R.id.toastLevel);
-        Spinner startMenuSpinner = findViewById(R.id.startMenu);
         Spinner startActivitySpinner = findViewById(R.id.startActivity);
         EditText deviceAddress = findViewById(R.id.editTextDeviceAddress);
         if (remoteDevice.getSelectedItem() != null) {
@@ -740,8 +730,16 @@ public class SettingsActivity extends AppCompatActivity {
             editor.putBoolean("optDebugLog", debugLog.isChecked());
             editor.putBoolean("optFieldLog", fieldLog.isChecked());
             editor.putInt("optToast", toastLevel.getSelectedItemPosition());
-            editor.putInt("startMenu", startMenuSpinner.getSelectedItemPosition() - 1);
             editor.putString("startActivity", startActivitySpinner.getSelectedItem().toString());
+            final int position = startActivitySpinner.getSelectedItemPosition();
+            if (position >= 0 && position <= 6)
+                editor.putInt("startMenu", 0);
+            else if (position <= 21)
+                editor.putInt("startMenu", 1);
+            else if (position >= 0 && position <= 25)
+                editor.putInt("startMenu", 2);
+            else
+                editor.putInt("startMenu", -1);
 
             /*if(darkMode.isChecked())
             {

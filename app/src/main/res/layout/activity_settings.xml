@@ -151,18 +151,6 @@
                             <TextView
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Startup menu" />
-                            <Spinner
-                                android:id="@+id/startMenu"
-                                android:layout_width="fill_parent"
-                                android:layout_height="25dp"
-                                android:popupBackground="?attr/colorButtonNormal"
-                                android:popupElevation="0dp"
-                                android:layout_marginBottom="@dimen/activity_vertical_margin" />
-
-                            <TextView
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
                                 android:text="Startup activity" />
                             <Spinner
                                 android:id="@+id/startActivity"

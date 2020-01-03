@@ -727,7 +727,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             // not been read in yet
             startAnotherFragmentIndex = -1;
             // if also another activity is to be started
-            if (!startAnotherActivityName.equals("")) {
+            if (!startAnotherActivityName.equals("") && !startAnotherActivityName.startsWith("-")) {
                 try {
                     // get it's class and start it
                     final Class startAnotherActivityClass = Class.forName("lu.fisch.canze.activities." + startAnotherActivityName + "Activity");
