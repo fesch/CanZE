@@ -718,6 +718,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         if (startAnotherFragmentIndex == -2) {
             startAnotherFragmentIndex = settings.getInt("startMenu", -1);
         }
+        //debug("LOADING: "+startAnotherFragmentIndex);
         String startAnotherActivityName = settings.getString("startActivity", "");
         if (startAnotherFragmentIndex >= 0) {
             // switch to the proper fragment
@@ -1019,6 +1020,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         //} else if (id == R.id.action_crash) {
         //    Crashlytics.getInstance().crash();
         }
+        else if (id == R.id.action_custom) {
+            viewPager.setCurrentItem(3, true);
+            updateActionBar();
+        }
+
 
         return super.onOptionsItemSelected(item);
     }

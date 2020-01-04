@@ -233,15 +233,15 @@ public class SettingsActivity extends AppCompatActivity {
 
         // fill startup Activity
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-        arrayAdapter.add("-Main");
+        arrayAdapter.add("-Main");              // 0
         arrayAdapter.add("Consumption");
         arrayAdapter.add("Battery");
         arrayAdapter.add("ClimaTech");
         arrayAdapter.add("Charging");
         arrayAdapter.add("Driving");
-        arrayAdapter.add("Speedcontrol");
+        arrayAdapter.add("Speedcontrol");       // 6
         //
-        arrayAdapter.add("-Technical-");
+        arrayAdapter.add("-Technical-");        // 7
         arrayAdapter.add("ChargingTech");
         arrayAdapter.add("ChargingGraph");
         arrayAdapter.add("Prediction");
@@ -255,12 +255,14 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("AuxbattTech");
         arrayAdapter.add("Tires");
         arrayAdapter.add("HeatmapBatcomp");
-        arrayAdapter.add("AllData");
+        arrayAdapter.add("AllData");            // 21
         //
-        arrayAdapter.add("-Experimental-");
+        arrayAdapter.add("-Experimental-");     // 22
         arrayAdapter.add("Dash");
         arrayAdapter.add("FieldTest");
-        arrayAdapter.add("Research");
+        arrayAdapter.add("Research");           // 25
+        //
+        arrayAdapter.add("-Custom-");           // 26
         String activityName = settings.getString("startActivity", "");
         final Spinner activityListSpinner = findViewById(R.id.startActivity);
         activityListSpinner.setAdapter(arrayAdapter);
@@ -740,12 +742,14 @@ public class SettingsActivity extends AppCompatActivity {
             editor.putInt("optToast", toastLevel.getSelectedItemPosition());
             editor.putString("startActivity", startActivitySpinner.getSelectedItem().toString());
             final int position = startActivitySpinner.getSelectedItemPosition();
-            if (position >= 0 && position <= 6)
+            if (position <= 6)
                 editor.putInt("startMenu", 0);
             else if (position <= 21)
                 editor.putInt("startMenu", 1);
-            else if (position >= 0 && position <= 25)
+            else if (position <= 25)
                 editor.putInt("startMenu", 2);
+            else if (position <= 26)
+                editor.putInt("startMenu", 3);
             else
                 editor.putInt("startMenu", -1);
 
