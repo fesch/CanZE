@@ -28,6 +28,14 @@
         />
 
     <item
+        android:id="@+id/action_custom"
+        android:orderInCategory="102"
+        android:title="@string/menu_Custom"
+        android:visible="true"
+        app:showAsAction="never"
+        />
+
+    <item
         android:id="@+id/action_bluetooth"
         android:orderInCategory="100"
         android:title="@string/menu_Bluetooth"
