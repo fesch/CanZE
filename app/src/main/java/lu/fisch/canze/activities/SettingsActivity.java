@@ -548,7 +548,8 @@ public class SettingsActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // launch configure activity
+                Intent i = new Intent(SettingsActivity.this,SettingsCostumActivity.class);
+                startActivity(i);
             }
         });
 
@@ -580,7 +581,6 @@ public class SettingsActivity extends AppCompatActivity {
         MainActivity.getInstance().handleDarkMode();
         super.onBackPressed();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

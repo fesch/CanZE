@@ -28,11 +28,26 @@ public class CostumFragment extends Fragment {
 
     public static final int BUTTONCOUNT = 14;
 
+    private View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_costum, container, false);
+        this.view=view;
+        loadButtons();
+        return view;
+    }
 
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        loadButtons();
+    }
+
+    public void loadButtons()
+    {
         ActivityRegistry registry = ActivityRegistry.getInstance();
 
         for(int i=0; i<BUTTONCOUNT; i++)
@@ -48,21 +63,12 @@ public class CostumFragment extends Fragment {
                 Drawable icon=this.getResources(). getDrawable(drawableId);
                 button.setCompoundDrawablesWithIntrinsicBounds(icon,null,null,null);
                 activateButton(view,buttonId,a.getClassOf());
+                button.setVisibility(View.VISIBLE);
             }
             // hide button
             else button.setVisibility(View.INVISIBLE);
         }
 
-
-        // do stuff
-        /*
-        Button btnTag = new Button(this);
-        btnTag.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-        btnTag.setText("Button");
-        btnTag.setId(some_random_id);
-         */
-
-        return view;
     }
 
     private void activateButton(View view, int buttonId, final Class<?> activityClass) {

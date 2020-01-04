@@ -5,7 +5,7 @@
     android:installLocation="auto">
     <!-- <uses-sdk android:minSdkVersion="11" /> -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -23,18 +23,19 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".activities.SettingsCostumActivity"></activity>
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activities.MainActivity"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings" />
@@ -110,7 +111,8 @@
         <activity
             android:name=".activities.AllDataActivity"
             android:label="@string/title_activity_alldata" />
-        <activity android:name=".activities.SpeedcontrolActivity"
+        <activity
+            android:name=".activities.SpeedcontrolActivity"
             android:label="@string/title_activity_speedcontrol" />
         <activity
             android:name=".activities.FieldTestActivity"

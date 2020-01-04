@@ -39,7 +39,7 @@ public class ActivityRegistry {
     private ArrayList<Activity> activities = new ArrayList<>();
     private ArrayList<Activity> selected = new ArrayList<>();
 
-    private static ActivityRegistry registry = new ActivityRegistry();
+    private static ActivityRegistry registry = null;
 
     public void loadSelection()
     {
@@ -60,8 +60,6 @@ public class ActivityRegistry {
 
     private ActivityRegistry()
     {
-        loadSelection();
-
         // main
         activities.add(new Activity("CONSUMPTION","@drawable/button_consumption",ConsumptionActivity.class));
         activities.add(new Activity("CHARGING","@drawable/button_charge",ChargingActivity.class));
@@ -97,10 +95,13 @@ public class ActivityRegistry {
                 return o1.getTitle().compareTo(o2.getTitle());
             }
         });
+
+        loadSelection();
     }
 
     public static ActivityRegistry getInstance()
     {
+        if(registry==null) registry = new ActivityRegistry();
         return registry;
     }
 
@@ -123,5 +124,61 @@ public class ActivityRegistry {
     {
         return selected.size();
     }
+
+    public ArrayList<String> getActivities()
+    {
+        ArrayList<String> result = new ArrayList<>();
+        for (int i = 0; i < activities.size(); i++) {
+            result.add(activities.get(i).getTitle());
+        }
+        return result;
+    }
+
+    public ArrayList<String> getSelected()
+    {
+        ArrayList<String> result = new ArrayList<>();
+        for (int i = 0; i < selected.size(); i++) {
+            result.add(selected.get(i).getTitle());
+        }
+        return result;
+    }
+
+    public void addToSelected(int index)
+    {
+        selected.add(activities.get(index));
+    }
+
+    public void removeFromSelected(int index)
+    {
+        selected.remove(index);
+    }
+
+    public int getPos(Activity a)
+    {
+        return activities.indexOf(a);
+    }
+
+    public boolean moveSelectedUp(int index)
+    {
+        if(index>0) {
+            Activity a = selected.get(index);
+            selected.remove(index);
+            selected.add(index - 1, a);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean moveSelectedDown(int index)
+    {
+        if(index<selected.size()-1) {
+            Activity a = selected.get(index);
+            selected.remove(index);
+            selected.add(index + 1, a);
+            return true;
+        }
+        return false;
+    }
+
 
 }
