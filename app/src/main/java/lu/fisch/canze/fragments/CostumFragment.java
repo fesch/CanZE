@@ -2,6 +2,7 @@ package lu.fisch.canze.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ public class CostumFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private static final int BUTTONCOUNT = 14;
+    public static final int BUTTONCOUNT = 14;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,9 +39,9 @@ public class CostumFragment extends Fragment {
         {
             int buttonId = getResources().getIdentifier("buttonC" + i, "id",MainActivity.getInstance().getApplicationContext().getPackageName());
             Button button = view.findViewById(buttonId);
-            if(i<registry.size())
+            if(i<registry.selectedSize())
             {
-                Activity a = registry.get(i);
+                Activity a = registry.selectedGet(i);
                 button.setText(a.getTitle());
 
                 int drawableId = getResources().getIdentifier(a.getDrawable(), "id",MainActivity.getInstance().getApplicationContext().getPackageName());

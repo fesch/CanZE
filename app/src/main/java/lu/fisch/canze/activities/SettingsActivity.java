@@ -544,6 +544,14 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        button = findViewById(R.id.buttonCostumFragement);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // launch configure activity
+            }
+        });
+
         final Button logButton = findViewById(R.id.logButton);
         logButton.setOnClickListener(new View.OnClickListener() {
             @Override
