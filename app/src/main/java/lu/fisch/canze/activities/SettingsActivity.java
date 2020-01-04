@@ -544,6 +544,15 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        button = findViewById(R.id.buttonCostumFragement);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SettingsActivity.this,SettingsCostumActivity.class);
+                startActivity(i);
+            }
+        });
+
         final Button logButton = findViewById(R.id.logButton);
         logButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -572,7 +581,6 @@ public class SettingsActivity extends AppCompatActivity {
         MainActivity.getInstance().handleDarkMode();
         super.onBackPressed();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

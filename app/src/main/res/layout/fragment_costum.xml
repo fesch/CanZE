@@ -49,6 +49,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
                         android:drawableLeft="@drawable/button_test"
+                        android:visibility="invisible"
                         android:text="" />
 
                     <Button
@@ -64,6 +65,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
                         android:drawableLeft="@drawable/button_test"
+                        android:visibility="invisible"
                         android:text="" />
 
 
@@ -86,6 +88,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
                         android:drawableLeft="@drawable/button_test"
+                        android:visibility="invisible"
                         android:text="" />
 
                     <Button
@@ -101,6 +104,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
                         android:drawableLeft="@drawable/button_test"
+                        android:visibility="invisible"
                         android:text="" />
 
                 </TableRow>
@@ -122,6 +126,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
                         android:drawableLeft="@drawable/button_test"
+                        android:visibility="invisible"
                         android:text="" />
 
                     <Button
@@ -137,6 +142,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
                         android:drawableLeft="@drawable/button_test"
+                        android:visibility="invisible"
                         android:text="" />
 
 
@@ -159,6 +165,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
                         android:drawableLeft="@drawable/button_test"
+                        android:visibility="invisible"
                         android:text="" />
 
                     <Button
@@ -174,6 +181,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
                         android:drawableLeft="@drawable/button_test"
+                        android:visibility="invisible"
                         android:text="" />
 
                 </TableRow>
@@ -196,6 +204,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
                         android:drawableLeft="@drawable/button_test"
+                        android:visibility="invisible"
                         android:text="" />
 
                     <Button
@@ -211,6 +220,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
                         android:drawableLeft="@drawable/button_test"
+                        android:visibility="invisible"
                         android:text="" />
 
                 </TableRow>
@@ -232,6 +242,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
                         android:drawableLeft="@drawable/button_test"
+                        android:visibility="invisible"
                         android:text="" />
 
 
@@ -248,6 +259,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
                         android:drawableLeft="@drawable/button_test"
+                        android:visibility="invisible"
                         android:text="" />
 
                 </TableRow>
@@ -269,6 +281,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
                         android:drawableLeft="@drawable/button_test"
+                        android:visibility="invisible"
                         android:text="" />
 
                     <Button
@@ -284,6 +297,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
                         android:drawableLeft="@drawable/button_test"
+                        android:visibility="invisible"
                         android:text="" />
 
                 </TableRow>
