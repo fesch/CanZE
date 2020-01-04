@@ -26,6 +26,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
+
+import lu.fisch.canze.fragments.CostumFragment;
 import lu.fisch.canze.fragments.ExperimentalFragment;
 import lu.fisch.canze.fragments.MainFragment;
 import lu.fisch.canze.fragments.TechnicalFragment;
@@ -40,6 +42,7 @@ public class AppSectionsPagerAdapter extends FragmentPagerAdapter {
         fragments.add(new MainFragment());          // 0
         fragments.add(new TechnicalFragment());     // 1
         fragments.add(new ExperimentalFragment());  // 2
+        fragments.add(new CostumFragment());  // 2
     }
 
     @NonNull
