@@ -96,7 +96,7 @@
     <!-- Auxiliary battery -->
 
     <string name="title_activity_auxbatt">12V Zusatzakkumulator</string>
-    <string name="button_auxbatt">12V Akku</string>
+    <string name="button_AuxBatt">12V Akku</string>
     <string name="label_auxbat">Spannung, Fahrzeugstatus, Ladezustand</string>
     <string name="label_auxbatvolt">Spannunge</string>
     <string name="label_AuxStatus">Austausch-Meldung</string>
@@ -364,7 +364,7 @@
     <!-- Charging history -->
 
     <string name="title_activity_charging_history">Lade-Chronik</string>
-    <string name="button_charging_history">Ladeverlauf</string>
+    <string name="button_chargingHistory">Ladeverlauf</string>
     <string name="header_ChargingHistory">Letzten 10 Aufladungen</string>
     <string name="label_distance">km-Zähler</string>
     <string name="label_EndOfChargeStatus">Ende</string>
@@ -662,5 +662,8 @@
     <string name="label_TapToStart">Tap anywhere to start or reset</string>
     <string name="label_averageSpeed">Average speed</string>
     <string name="button_Research">Research</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_Custom">Custom</string>
+    <string name="button_speedcontrol">Avg speed</string>
 
 </resources>

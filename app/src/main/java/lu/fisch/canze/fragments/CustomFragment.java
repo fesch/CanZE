@@ -56,8 +56,8 @@ public class CustomFragment extends Fragment {
                 Activity a = registry.selectedGet(i);
                 button.setText(a.getTitle());
 
-                int drawableId = getResources().getIdentifier(a.getDrawable(), "id",MainActivity.getInstance().getApplicationContext().getPackageName());
-                Drawable icon=this.getResources(). getDrawable(drawableId);
+                //int drawableId = getResources().getIdentifier(a.getDrawable(), "id",MainActivity.getInstance().getApplicationContext().getPackageName());
+                Drawable icon=this.getResources().getDrawable(a.getDrawable()); //drawableId);
                 button.setCompoundDrawablesWithIntrinsicBounds(icon,null,null,null);
                 activateButton(view,buttonId,a.getClassOf());
                 button.setVisibility(View.VISIBLE);

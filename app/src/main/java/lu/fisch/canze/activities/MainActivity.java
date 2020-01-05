@@ -77,6 +77,8 @@ import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Frames;
 import lu.fisch.canze.bluetooth.BluetoothManager;
+import lu.fisch.canze.classes.Activity;
+import lu.fisch.canze.classes.ActivityRegistry;
 import lu.fisch.canze.classes.DataLogger;
 import lu.fisch.canze.classes.DebugLogger;
 import lu.fisch.canze.database.CanzeDataSource;
@@ -719,7 +721,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             startAnotherFragmentIndex = settings.getInt("startMenu", -1);
         }
         //debug("LOADING: "+startAnotherFragmentIndex);
-        String startAnotherActivityName = settings.getString("startActivity", "");
+        int startAnotherActivityIndex = -1;
+        try { // try as in a test version this was a string
+            startAnotherActivityIndex = settings.getInt("startActivity", -1);
+        } catch (Exception e) {
+            // do nothing
+        }
         if (startAnotherFragmentIndex >= 0) {
             // switch to the proper fragment
             viewPager.setCurrentItem(startAnotherFragmentIndex);
@@ -728,11 +735,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             // not been read in yet
             startAnotherFragmentIndex = -1;
             // if also another activity is to be started
-            if (!startAnotherActivityName.equals("") && !startAnotherActivityName.startsWith("-")) {
+            Activity a = ActivityRegistry.getInstance().getById(startAnotherActivityIndex);
+            if (a != null) {
                 try {
                     // get it's class and start it
-                    final Class startAnotherActivityClass = Class.forName("lu.fisch.canze.activities." + startAnotherActivityName + "Activity");
-                    Intent intent = new Intent(this, startAnotherActivityClass);
+                    Intent intent = new Intent(this, a.getClassOf());
                     leaveBluetoothOn = true;
                     this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
                     // do NOT finish this activity so the main stack is intact

@@ -33,7 +33,7 @@
     <string name="title_activity_alldata">Toutes les données</string>
     <string name="button_alldata">Toutes les données</string>
     <string name="title_activity_auxbatt">Batterie 12 V</string>
-    <string name="button_auxbatt">Batterie 12 V</string>
+    <string name="button_AuxBatt">Batterie 12 V</string>
     <string name="label_auxbat">Tension, État du véhicule, État de la charge</string>
     <string name="label_auxbatvolt">Tension</string>
     <string name="label_AuxStatus">Conseil de remplacement</string>
@@ -279,7 +279,7 @@
     <string name="graph_MaxRealChPwr">Puissance max de charge batterie (kW) / Puissance de charge DC (kW)</string>
     <string name="graph_EnergyTemperature">Énergie disponible (kWh), Température (°C)</string>
     <string name="title_activity_charging_history">Historique de charge</string>
-    <string name="button_charging_history">Historique de charge</string>
+    <string name="button_chargingHistory">Historique de charge</string>
     <string name="header_ChargingHistory">10 dernières sessions</string>
     <string name="label_distance">km</string>
     <string name="label_EndOfChargeStatus">Fin</string>
@@ -517,4 +517,7 @@
     <string name="label_TapToStart">Tap anywhere to start or reset</string>
     <string name="label_averageSpeed">Average speed</string>
     <string name="button_Research">Research</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_Custom">Custom</string>
+    <string name="button_speedcontrol">Avg speed</string>
 </resources>

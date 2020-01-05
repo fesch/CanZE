@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import lu.fisch.canze.R;
 import lu.fisch.canze.activities.AllDataActivity;
 import lu.fisch.canze.activities.AuxBattTechActivity;
 import lu.fisch.canze.activities.BatteryActivity;
@@ -59,8 +60,8 @@ public class ActivityRegistry {
 
     private ActivityRegistry()
     {
-        // main
-        activities.add(new Activity("CONSUMPTION","@drawable/button_consumption",ConsumptionActivity.class));
+        /*// main
+        activities.add(new Activity("CONSUMPTION", @drawable/button_consumption",ConsumptionActivity.class));
         activities.add(new Activity("CHARGING","@drawable/button_charge",ChargingActivity.class));
         activities.add(new Activity("BATTERY","@drawable/button_battery",BatteryActivity.class));
         activities.add(new Activity("DRIVING","@drawable/button_drive",DrivingActivity.class));
@@ -85,7 +86,35 @@ public class ActivityRegistry {
         // experimental
         activities.add(new Activity("DASH","@drawable/button_dash", DashActivity.class));
         activities.add(new Activity("RESEARCH","@drawable/button_microscope", ResearchActivity.class));
-        activities.add(new Activity("FIELD TEST","@drawable/button_test", FieldTestActivity.class));
+        activities.add(new Activity("FIELD TEST","@drawable/button_test", FieldTestActivity.class));*/
+
+        // main
+        activities.add(new Activity(0, R.string.button_Consumption, R.drawable.button_consumption, ConsumptionActivity.class));
+        activities.add(new Activity(1, R.string.button_Charging, R.drawable.button_charge, ChargingActivity.class));
+        activities.add(new Activity(2, R.string.button_Battery, R.drawable.button_battery, BatteryActivity.class));
+        activities.add(new Activity(3, R.string.button_Driving, R.drawable.button_drive, DrivingActivity.class));
+        activities.add(new Activity(4, R.string.button_Climate, R.drawable.button_climate, ClimaTechActivity.class));
+        activities.add(new Activity(5, R.string.button_Braking, R.drawable.button_brake, BrakingActivity.class));
+        activities.add(new Activity(6, R.string.button_speedcontrol, R.drawable.button_speedcam, SpeedcontrolActivity.class));
+        // technical
+        activities.add(new Activity(7, R.string.button_ChargingTech, R.drawable.button_charge, ChargingTechActivity.class));
+        activities.add(new Activity(8, R.string.button_DtcReadout, R.drawable.button_attention, DtcActivity.class));
+        activities.add(new Activity(9, R.string.button_ChargingGraphs, R.drawable.button_charging_graphs, ChargingGraphActivity.class));
+        activities.add(new Activity(10, R.string.button_Firmware, R.drawable.button_firmware, FirmwareActivity.class));
+        activities.add(new Activity(11, R.string.button_ChargingPrediction, R.drawable.button_prediction, PredictionActivity.class));
+        activities.add(new Activity(12, R.string.button_ElmTesting, R.drawable.button_elm327, ElmTestActivity.class));
+        activities.add(new Activity(13, R.string.button_chargingHistory, R.drawable.button_charginghist, ChargingHistActivity.class));
+        activities.add(new Activity(14, R.string.button_AuxBatt, R.drawable.button_auxbat, AuxBattTechActivity.class));
+        activities.add(new Activity(15, R.string.button_LeakCurrents, R.drawable.button_leak, LeakCurrentsActivity.class));
+        activities.add(new Activity(16, R.string.button_Tires, R.drawable.button_tire, TiresActivity.class));
+        activities.add(new Activity(17, R.string.button_HeatmapVoltage, R.drawable.button_lightning, HeatmapCellvoltageActivity.class));
+        activities.add(new Activity(18, R.string.button_HeatmapTemperature, R.drawable.button_batterytemp, HeatmapBatcompActivity.class));
+        activities.add(new Activity(19, R.string.button_Range, R.drawable.button_range, RangeActivity.class));
+        activities.add(new Activity(20, R.string.button_AllData, R.drawable.button_alldata, AllDataActivity.class));
+        // experimental
+        activities.add(new Activity(21, R.string.button_Dash, R.drawable.button_dash, DashActivity.class));
+        activities.add(new Activity(22, R.string.button_Research, R.drawable.button_microscope, ResearchActivity.class));
+        activities.add(new Activity(23, R.string.button_FieldTest, R.drawable.button_test, FieldTestActivity.class));
 
         // sort by title
         Collections.sort(activities, new Comparator<Activity>() {
@@ -107,6 +136,22 @@ public class ActivityRegistry {
     public Activity get(int index)
     {
         return activities.get(index);
+    }
+
+    public Activity getById (int id) {
+        for (int i = 0; i < activities.size(); i++) {
+            Activity a = activities.get (i);
+            if (a.getId() == id) return a;
+        }
+        return null;
+    }
+
+    public Activity getByTitle (String title) {
+        for (int i = 0; i < activities.size(); i++) {
+            Activity a = activities.get (i);
+            if (a.getTitle().equals(title)) return a;
+        }
+        return null;
     }
 
     public int size()

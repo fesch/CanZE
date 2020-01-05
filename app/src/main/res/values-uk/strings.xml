@@ -27,8 +27,8 @@
     <string name="button_Tires_read">зчитати</string>
     <string name="button_Tires_write">записати</string>
     <string name="button_alldata">Всі дані</string>
-    <string name="button_auxbatt">12В батарея</string>
-    <string name="button_charging_history">Історія зарядок</string>
+    <string name="button_AuxBatt">12В батарея</string>
+    <string name="button_chargingHistory">Історія зарядок</string>
     <string name="default_Cancel">Скасувати</string>
     <string name="default_No">Ні</string>
     <string name="default_Ok">ОК</string>
@@ -269,4 +269,7 @@
     <string name="label_TapToStart">Tap anywhere to start or reset</string>
     <string name="label_averageSpeed">Average speed</string>
     <string name="button_Research">Research</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_Custom">Custom</string>
+    <string name="button_speedcontrol">Avg speed</string>
 </resources>

@@ -60,6 +60,8 @@ import java.util.Set;
 
 import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Activity;
+import lu.fisch.canze.classes.ActivityRegistry;
 import lu.fisch.canze.database.CanzeDataSource;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -232,38 +234,29 @@ public class SettingsActivity extends AppCompatActivity {
         toastList.setSelected(true);
 
         // fill startup Activity
+
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-        arrayAdapter.add("-Main");              // 0
-        arrayAdapter.add("Consumption");
-        arrayAdapter.add("Battery");
-        arrayAdapter.add("ClimaTech");
-        arrayAdapter.add("Charging");
-        arrayAdapter.add("Driving");
-        arrayAdapter.add("Speedcontrol");       // 6
-        //
-        arrayAdapter.add("-Technical-");        // 7
-        arrayAdapter.add("ChargingTech");
-        arrayAdapter.add("ChargingGraph");
-        arrayAdapter.add("Prediction");
-        arrayAdapter.add("ChargingHist");
-        arrayAdapter.add("LeakCurrents");
-        arrayAdapter.add("Heatmapcellvoltage");
-        arrayAdapter.add("Range");
-        arrayAdapter.add("Dtc");
-        arrayAdapter.add("Firmware");
-        arrayAdapter.add("ElmTest");
-        arrayAdapter.add("AuxbattTech");
-        arrayAdapter.add("Tires");
-        arrayAdapter.add("HeatmapBatcomp");
-        arrayAdapter.add("AllData");            // 21
-        //
-        arrayAdapter.add("-Experimental-");     // 22
-        arrayAdapter.add("Dash");
-        arrayAdapter.add("FieldTest");
-        arrayAdapter.add("Research");           // 25
-        //
-        arrayAdapter.add("-Custom-");           // 26
-        String activityName = settings.getString("startActivity", "");
+        arrayAdapter.add("-- Main --");              // 0
+        for (int i = 0; i <= 6; i++) arrayAdapter.add(ActivityRegistry.getInstance().getById(i).getTitle());
+        arrayAdapter.add("-- Technical --");        // 7
+        for (int i = 7; i <= 20; i++) arrayAdapter.add(ActivityRegistry.getInstance().getById(i).getTitle());
+        arrayAdapter.add("-- Experimental --");     // 22
+        for (int i = 20; i <= 22; i++) arrayAdapter.add(ActivityRegistry.getInstance().getById(i).getTitle());
+        arrayAdapter.add("-- Custom --");           // 26
+        Activity a = null;
+        try {
+            a = ActivityRegistry.getInstance().getById(settings.getInt("startActivity", -1));
+        } catch (Exception e) {
+            // do nothing
+        }
+        String activityName = (a != null) ? a.getTitle() : "";
+        if (activityName.equals("")) {
+            switch (settings.getInt("startMenu", -1)) {
+                case 0: activityName = "-- Main --"; break;
+                case 1: activityName = "-- Technical --"; break;
+                case 2: activityName = "-- Experimental --"; break;
+            }
+        }
         final Spinner activityListSpinner = findViewById(R.id.startActivity);
         activityListSpinner.setAdapter(arrayAdapter);
         activityListSpinner.setSelection(arrayAdapter.getPosition(activityName));
@@ -722,7 +715,7 @@ public class SettingsActivity extends AppCompatActivity {
             MainActivity.debug("Settings.deviceAddress = " + remoteDevice.getSelectedItem().toString().split("\n")[1].trim());
             MainActivity.debug("Settings.deviceName = " + remoteDevice.getSelectedItem().toString().split("\n")[0].trim());
             //editor.putString("deviceAddress", deviceList.getSelectedItem().toString().split("\n")[1].trim());
-            String deviceNameString = remoteDevice.getSelectedItem().toString().split("\n")[0].trim();
+            final String deviceNameString = remoteDevice.getSelectedItem().toString().split("\n")[0].trim();
             editor.putString("deviceName", deviceNameString);
             if ("http gateway".equals(deviceNameString.toLowerCase())) {
                 editor.putString("gatewayUrl", String.valueOf(deviceAddress.getText()));
@@ -740,7 +733,8 @@ public class SettingsActivity extends AppCompatActivity {
             editor.putBoolean("optDebugLog", debugLog.isChecked());
             editor.putBoolean("optFieldLog", fieldLog.isChecked());
             editor.putInt("optToast", toastLevel.getSelectedItemPosition());
-            editor.putString("startActivity", startActivitySpinner.getSelectedItem().toString());
+            final Activity a = ActivityRegistry.getInstance().getByTitle(startActivitySpinner.getSelectedItem().toString());
+            editor.putInt("startActivity", (a != null ? a.getId() : -1));
             final int position = startActivitySpinner.getSelectedItemPosition();
             if (position <= 6)
                 editor.putInt("startMenu", 0);

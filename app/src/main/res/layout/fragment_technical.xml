@@ -158,7 +158,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_charginghist"
                         android:drawableLeft="@drawable/button_charginghist"
-                        android:text="@string/button_charging_history" />
+                        android:text="@string/button_chargingHistory" />
 
                     <Button
                         android:id="@+id/buttonAuxBatt"
@@ -173,7 +173,7 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_auxbat"
                         android:drawableLeft="@drawable/button_auxbat"
-                        android:text="@string/button_auxbatt" />
+                        android:text="@string/button_AuxBatt" />
 
                 </TableRow>
 
