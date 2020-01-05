@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".activities.SettingsCustomActivity">
 
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -20,8 +19,8 @@
         android:layout_width="match_parent"
         android:id="@+id/lstAll"
         android:choiceMode="singleChoice"
-        android:listSelector="#4d90fe"
-        android:layout_height="280dp"></ListView>
+        android:listSelector="?attr/colorButtonNormal"
+        android:layout_height="280dp" />
 
     <TableLayout
         android:layout_width="match_parent"
@@ -84,5 +83,5 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:choiceMode="singleChoice"
-        android:listSelector="#4d90fe" />
+        android:listSelector="?attr/colorButtonNormal" />
 </LinearLayout>

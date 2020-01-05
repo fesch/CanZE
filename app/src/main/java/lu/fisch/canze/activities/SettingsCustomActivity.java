@@ -39,7 +39,7 @@ public class SettingsCustomActivity extends AppCompatActivity {
         all = (ListView) findViewById(R.id.lstAll);
         all.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_spinner_item,
+                R.layout.spinner_item,
                 registry.getActivities());
         all.setAdapter(adapter);
         all.setClickable(true);
@@ -119,7 +119,7 @@ public class SettingsCustomActivity extends AppCompatActivity {
     {
         selected = (ListView) findViewById(R.id.lstSelected);
         ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_spinner_item,
+                R.layout.spinner_item,
                 registry.getSelected());
         selected.setAdapter(adapter);
     }
