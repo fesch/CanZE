@@ -546,11 +546,11 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        button = findViewById(R.id.buttonCostumFragement);
+        button = findViewById(R.id.buttonCustomFragment);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(SettingsActivity.this,SettingsCostumActivity.class);
+                Intent i = new Intent(SettingsActivity.this, SettingsCustomActivity.class);
                 startActivity(i);
             }
         });

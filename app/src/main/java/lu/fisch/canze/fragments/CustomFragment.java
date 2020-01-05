@@ -1,10 +1,7 @@
 package lu.fisch.canze.fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -20,9 +17,9 @@ import lu.fisch.canze.classes.Activity;
 import lu.fisch.canze.classes.ActivityRegistry;
 
 
-public class CostumFragment extends Fragment {
+public class CustomFragment extends Fragment {
 
-    public CostumFragment() {
+    public CustomFragment() {
         // Required empty public constructor
     }
 
@@ -33,7 +30,7 @@ public class CostumFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_costum, container, false);
+        View view = inflater.inflate(R.layout.fragment_custom, container, false);
         this.view=view;
         loadButtons();
         return view;
@@ -83,7 +80,7 @@ public class CostumFragment extends Fragment {
                 }
                 MainActivity.getInstance().leaveBluetoothOn = true;
                 Intent intent = new Intent(MainActivity.getInstance(), activityClass);
-                CostumFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
+                CustomFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
             }
         });
     }

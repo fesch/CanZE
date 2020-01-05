@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import lu.fisch.canze.R;
 import lu.fisch.canze.activities.AllDataActivity;
 import lu.fisch.canze.activities.AuxBattTechActivity;
 import lu.fisch.canze.activities.BatteryActivity;
@@ -32,7 +31,7 @@ import lu.fisch.canze.activities.RangeActivity;
 import lu.fisch.canze.activities.ResearchActivity;
 import lu.fisch.canze.activities.SpeedcontrolActivity;
 import lu.fisch.canze.activities.TiresActivity;
-import lu.fisch.canze.fragments.CostumFragment;
+import lu.fisch.canze.fragments.CustomFragment;
 
 public class ActivityRegistry {
 
@@ -46,7 +45,7 @@ public class ActivityRegistry {
         selected.clear();
         SharedPreferences settings = MainActivity.getInstance().getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
         SharedPreferences.Editor editor = settings.edit();
-        for(int i = 0; i< CostumFragment.BUTTONCOUNT; i++)
+        for(int i = 0; i< CustomFragment.BUTTONCOUNT; i++)
         {
             int act = settings.getInt("buttonC"+i,-1);
             if(act!=-1)
@@ -66,7 +65,7 @@ public class ActivityRegistry {
         activities.add(new Activity("BATTERY","@drawable/button_battery",BatteryActivity.class));
         activities.add(new Activity("DRIVING","@drawable/button_drive",DrivingActivity.class));
         activities.add(new Activity("CLIMATE","@drawable/button_climate",ClimaTechActivity.class));
-        activities.add(new Activity("BREAKING","@drawable/button_brake",BrakingActivity.class));
+        activities.add(new Activity("BRAKING","@drawable/button_brake",BrakingActivity.class));
         activities.add(new Activity("AVG SPEED","@drawable/button_speedcam",SpeedcontrolActivity.class));
         // technical
         activities.add(new Activity("CHARGING TECH","@drawable/button_charge", ChargingTechActivity.class));

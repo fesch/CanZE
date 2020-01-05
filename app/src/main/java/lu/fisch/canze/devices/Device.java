@@ -328,7 +328,7 @@ public abstract class Device {
                 }
             }
 
-            // take the next costum field
+            // take the next custom field
             if (activityFieldsScheduled.size() > 0) {
                 // get the first field (the one with the smallest lastRequest time
                 Field field = Collections.min(activityFieldsScheduled, new Comparator<Field>() {

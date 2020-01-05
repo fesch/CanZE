@@ -3,7 +3,6 @@ package lu.fisch.canze.activities;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,14 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.classes.ActivityRegistry;
-import lu.fisch.canze.fragments.CostumFragment;
+import lu.fisch.canze.fragments.CustomFragment;
 
-public class SettingsCostumActivity extends AppCompatActivity {
+public class SettingsCustomActivity extends AppCompatActivity {
 
     private ListView all;
     private ListView selected;
@@ -34,9 +32,9 @@ public class SettingsCostumActivity extends AppCompatActivity {
         if (actionBar != null)
             actionBar.setDisplayHomeAsUpEnabled(true);
 
-        setContentView(R.layout.activity_settings_costum);
+        setContentView(R.layout.activity_settings_custom);
 
-        this.setTitle("Costum fragment settings");
+        this.setTitle("Custom fragment settings");
 
         all = (ListView) findViewById(R.id.lstAll);
         all.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -130,7 +128,7 @@ public class SettingsCostumActivity extends AppCompatActivity {
     {
         SharedPreferences settings = MainActivity.getInstance().getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
         SharedPreferences.Editor editor = settings.edit();
-        for(int i = 0; i< CostumFragment.BUTTONCOUNT; i++)
+        for(int i = 0; i< CustomFragment.BUTTONCOUNT; i++)
         {
             if(i<registry.selectedSize())
                 editor.putInt("buttonC"+i,registry.getPos(registry.selectedGet(i)));
