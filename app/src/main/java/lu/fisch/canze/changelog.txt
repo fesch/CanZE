@@ -1,3 +1,4 @@
+2020-01-04 [Bob] Added custom fragment wich configuration editor in settings
 2020-01-03 [Jeroen] Remove crash(lytics) test code
 2020-01-03 [Jeroen] Experiment startup activity
 2020-01-03 [Jeroen] Added non-waiting splash screen https://www.bignerdranch.com/blog/splash-screens-the-right-way
