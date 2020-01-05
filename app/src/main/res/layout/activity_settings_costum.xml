@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.SettingsCostumActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="All activities"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:id="@+id/lstAll"
+        android:choiceMode="singleChoice"
+        android:listSelector="#4d90fe"
+        android:layout_height="280dp"></ListView>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <Button
+                android:id="@+id/btnAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/button"
+                android:text="Add"
+                tools:layout_editor_absoluteX="15dp"
+                tools:layout_editor_absoluteY="6dp" />
+
+            <Button
+                android:id="@+id/btnRemove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/button"
+                android:text="Remove"
+                tools:layout_editor_absoluteX="133dp"
+                tools:layout_editor_absoluteY="8dp" />
+
+            <Button
+                android:id="@+id/btnUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/button"
+                android:text="Up"
+                tools:layout_editor_absoluteX="230dp"
+                tools:layout_editor_absoluteY="3dp" />
+
+            <Button
+                android:id="@+id/btnDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/button"
+                android:text="Down"
+                tools:layout_editor_absoluteX="322dp"
+                tools:layout_editor_absoluteY="8dp" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selected activities"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/lstSelected"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:choiceMode="singleChoice"
+        android:listSelector="#4d90fe" />
+</LinearLayout>
