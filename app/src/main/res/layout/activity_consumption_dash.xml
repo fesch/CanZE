@@ -223,7 +223,7 @@
                     {'sid':'800.6109.24','color':'#008a1d','from':1,'to':20},
                     {'sid':'800.6109.24','color':'#ffaa17','from':20,'to':33},
                     {'sid':'800.6109.24','color':'#FF0000','from':33,'to':100},
-                    {'sid':'800.6108.24','color':'#000000','from':-30,'to':0},
+                    {'sid':'800.6108.24','color':'#ffff00','from':-30,'to':0},
                     {'sid':'800.6108.24','color':'#ff0000','from':0,'to':70}
                 ]"
                 custom:text="Power (kWh), Delta with reality (km)"
