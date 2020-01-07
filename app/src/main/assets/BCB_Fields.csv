@@ -277,7 +277,7 @@
 ,793,24,39,.0625,880,2,°C,225023,625023,ff,Raw CPU temperature value from BI
 ,793,24,39,.0625,3200,2,A,225024,625024,ff,Measured neutral current filtred
 ,793,24,39,.0625,3200,2,A,225025,625025,ff,Neutral current value from BI
-,793,24,31,.5,0,1,%,225026,625026,ff,J1772 control pilot raw duty cycle
+,793,24,31,1,0,1,%,225026,625026,ff,J1772 control pilot raw duty cycle
 ,793,24,31,.25,60,1,V,225027,625027,ff,J1772 control pilot raw voltage
 ,793,24,31,1,40,0,°C,225028,625028,ff,Mains input filter temperature from SPI
 ,793,24,39,.0625,3200,2,A,225029,625029,ff,Raw AC mains phase 1 measured current
