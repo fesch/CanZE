@@ -26,16 +26,22 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.crashlytics.android.Crashlytics;
+
+import io.fabric.sdk.android.Fabric;
+import lu.fisch.canze.BuildConfig;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Crashlytics
+        if (BuildConfig.BRANCH.equals("master")) Fabric.with(this, new Crashlytics());
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 }
-
-

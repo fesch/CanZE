@@ -636,6 +636,10 @@
     <!-- <string name="toast_PleaseUseTop">Please use one of the top buttons to quit the settings …</string> -->
     <string name="toast_NoBluetooth">This device does not have any bluetooth adapter.\n\nSorry…</string>
 
+    <!-- SettingsCustom -->
+
+    <string name="title_activity_settingscustom">Custom button settings</string>
+
     <!-- Speed control -->
 
     <string name="title_activity_speedcontrol">Average speed</string>

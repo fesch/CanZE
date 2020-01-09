@@ -23,7 +23,9 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".activities.SettingsCustomActivity"></activity>
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="false" />
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -39,6 +41,9 @@
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".activities.SettingsCustomActivity"
+            android:label="@string/title_activity_settingscustom"/>
         <activity
             android:name=".activities.WidgetActivity"
             android:label="@string/title_activity_widget" />
