@@ -20,7 +20,8 @@
         android:id="@+id/lstAll"
         android:choiceMode="singleChoice"
         android:listSelector="?attr/colorButtonNormal"
-        android:layout_height="280dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <TableLayout
         android:layout_width="match_parent"
@@ -81,7 +82,8 @@
     <ListView
         android:id="@+id/lstSelected"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:choiceMode="singleChoice"
         android:listSelector="?attr/colorButtonNormal" />
 </LinearLayout>
