@@ -68,7 +68,11 @@ public class FieldLogger {
         logFile = new File(exportdataFileName);
         if (!logFile.exists()) {
             try {
-                logFile.createNewFile();
+                if (!logFile.createNewFile()) {
+                    debug("FieldLogger.CreateNewLog: can't create file:" + exportdataFileName);
+                    logFile = null;
+                    return false;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
                 logFile = null;
@@ -78,6 +82,7 @@ public class FieldLogger {
 
         try {
             //BufferedWriter for performance, true to set append to file flag
+            FileWriter fileWriter = new FileWriter(logFile, true);
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
 
             // header

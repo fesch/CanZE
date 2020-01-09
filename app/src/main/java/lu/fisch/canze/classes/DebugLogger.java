@@ -88,7 +88,8 @@ public class DebugLogger {
 
         try {
             //BufferedWriter for performance, true to set append to file flag
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
+            FileWriter fileWriter = new FileWriter(logFile, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             // header
             bufferedWriter.append("Datetime,Message");

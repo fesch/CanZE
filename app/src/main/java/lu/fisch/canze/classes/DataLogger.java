@@ -154,8 +154,11 @@ public class DataLogger implements FieldListener {
             logFile = new File(exportdataFileName);
             if (!logFile.exists()) {
                 try {
-                    logFile.createNewFile();
-                    debug("DataLogger: NewFile:" + exportdataFileName);
+                    if (!logFile.createNewFile()) {
+                        debug("Datalogger:createNewLog: can't create file:" + exportdataFileName);
+                        logFile = null;
+                        return false;
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -163,7 +166,8 @@ public class DataLogger implements FieldListener {
 
             try {
                 //BufferedWriter for performance, true to set append to file flag
-                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
+                FileWriter fileWriter = new FileWriter(logFile, true);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
                 // set global static BufferedWriter dataexportStream later
                 //if (true) {
                 //    bufferedWriter.append("this is just a test if stream is writeable");
@@ -190,12 +194,12 @@ public class DataLogger implements FieldListener {
         public void run() {
             // write data to file
             // Long tsLong = System.currentTimeMillis(); // Method 1
-            Long tsLong = new Date().getTime(); // Method 2
+            long tsLong = new Date().getTime(); // Method 2
 
             String DateString = getDateString(0, MainActivity.getStringSingle(R.string.format_YMDHMS));
             // String DateString = getDateString( 0 , "yyyy-MM-dd-HH-mm-ss");
             tsLong >>= 8;
-            String timestamp = tsLong.toString();
+            String timestamp = Long.toString(tsLong);
 
             // String dataWithNewLine= sdf.format(Calendar.getInstance()) + data + System.getProperty("line.separator");
 
