@@ -591,7 +591,7 @@ public class Fields {
                     if ((privateField = dependantFields.get(SID_ACPilotDutyCycle)) == null)
                         return Double.NaN;
                     double dutyCycle = privateField.getValue();
-                    return dutyCycle < 80.0 ? dutyCycle * 0.6 : 48.0 + (dutyCycle - 80.0) * 2;
+                    return dutyCycle < 80.0 ? dutyCycle * 0.6 : (dutyCycle - 64.0) * 2.5;
                 }
             });
 
