@@ -331,6 +331,8 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
             displayId(R.id.text_TireRLId, idsRead[3]);
         } catch (IOException e ) {
             MainActivity.toast(MainActivity.TOAST_NONE, "Can't access file " + filename);
+        } catch (ArrayIndexOutOfBoundsException e ) {
+            MainActivity.toast(MainActivity.TOAST_NONE, "Wrong format in file " + filename);
         }
     }
 
