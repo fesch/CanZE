@@ -47,7 +47,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_charge"
-                        android:drawableLeft="@drawable/button_charge"
                         android:text="@string/button_Charging" />
 
                     <Button
@@ -62,7 +61,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_attention"
-                        android:drawableLeft="@drawable/button_attention"
                         android:text="@string/button_DtcReadout" />
 
 
@@ -84,7 +82,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_charging_graphs"
-                        android:drawableLeft="@drawable/button_charging_graphs"
                         android:text="@string/button_ChargingGraphs" />
 
                     <Button
@@ -99,7 +96,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_firmware"
-                        android:drawableLeft="@drawable/button_firmware"
                         android:text="@string/button_Firmware" />
 
                 </TableRow>
@@ -120,7 +116,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_prediction"
-                        android:drawableLeft="@drawable/button_prediction"
                         android:text="@string/button_ChargingPrediction" />
 
                     <Button
@@ -135,7 +130,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_elm327"
-                        android:drawableLeft="@drawable/button_elm327"
                         android:text="@string/button_ElmTesting" />
 
 
@@ -157,7 +151,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_charginghist"
-                        android:drawableLeft="@drawable/button_charginghist"
                         android:text="@string/button_chargingHistory" />
 
                     <Button
@@ -172,7 +165,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_auxbat"
-                        android:drawableLeft="@drawable/button_auxbat"
                         android:text="@string/button_AuxBatt" />
 
                 </TableRow>
@@ -194,7 +186,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_leak"
-                        android:drawableLeft="@drawable/button_leak"
                         android:text="@string/button_LeakCurrents" />
 
                     <Button
@@ -209,7 +200,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_tire"
-                        android:drawableLeft="@drawable/button_tire"
                         android:text="@string/button_Tires" />
 
                 </TableRow>
@@ -230,7 +220,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_lightning"
-                        android:drawableLeft="@drawable/button_lightning"
                         android:text="@string/button_HeatmapVoltage" />
 
 
@@ -246,7 +235,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_batterytemp"
-                        android:drawableLeft="@drawable/button_batterytemp"
                         android:text="@string/button_HeatmapTemperature" />
 
                 </TableRow>
@@ -267,7 +255,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_range"
-                        android:drawableLeft="@drawable/button_range"
                         android:text="@string/button_Range" />
 
                     <Button
@@ -282,7 +269,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_alldata"
-                        android:drawableLeft="@drawable/button_alldata"
                         android:text="@string/button_AllData" />
 
                 </TableRow>

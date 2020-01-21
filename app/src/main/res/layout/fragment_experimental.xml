@@ -48,7 +48,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_dash"
-                        android:drawableLeft="@drawable/button_dash"
                         android:text="@string/button_Dash" />
 
                     <Button
@@ -63,7 +62,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_microscope"
-                        android:drawableLeft="@drawable/button_microscope"
                         android:text="@string/button_Research" />
 
                 </TableRow>
@@ -84,7 +82,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
-                        android:drawableLeft="@drawable/button_test"
                         android:text="Field test" />
 
                     <Button

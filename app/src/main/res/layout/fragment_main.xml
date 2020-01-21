@@ -45,7 +45,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_consumption"
-                        android:drawableLeft="@drawable/button_consumption"
                         android:text="@string/button_Consumption" />
 
                     <Button
@@ -60,7 +59,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_charge"
-                        android:drawableLeft="@drawable/button_charge"
                         android:text="@string/button_Charging" />
 
                 </TableRow>
@@ -81,7 +79,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_battery"
-                        android:drawableLeft="@drawable/button_battery"
                         android:text="@string/button_Battery" />
 
                     <Button
@@ -96,7 +93,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_drive"
-                        android:drawableLeft="@drawable/button_drive"
                         android:text="@string/button_Driving" />
 
                 </TableRow>
@@ -117,7 +113,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_climate"
-                        android:drawableLeft="@drawable/button_climate"
                         android:text="@string/button_Climate" />
 
                     <Button
@@ -132,7 +127,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_brake"
-                        android:drawableLeft="@drawable/button_brake"
                         android:text="@string/button_Braking" />
 
                 </TableRow>
@@ -165,7 +159,6 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_speedcam"
-                        android:drawableLeft="@drawable/button_speedcam"
                         android:text="avg speed" />
 
                 </TableRow>
