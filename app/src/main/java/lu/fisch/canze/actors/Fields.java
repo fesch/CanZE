@@ -700,7 +700,7 @@ public class Fields {
             if (frame == null) {
                 MainActivity.debug("frame does not exist:" + tokens[FIELD_ID].trim());
             } else {
-                if (frameId < 0x800) {
+                if (frameId != 0x800) {
                     short options = Short.parseShort(tokens[FIELD_OPTIONS].trim(), 16);
                     // ensure this field matches the selected car
                     if ((options & MainActivity.car) != 0 && (!tokens[FIELD_RESPONSE_ID].trim().startsWith("7") || tokens[FIELD_RESPONSE_ID].trim().toLowerCase().startsWith("7e"))) {
