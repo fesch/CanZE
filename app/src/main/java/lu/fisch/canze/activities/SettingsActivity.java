@@ -141,7 +141,7 @@ public class SettingsActivity extends AppCompatActivity {
             deviceAddressEditText.setEnabled(true);
             deviceTypeSpinner.setSelection(2); // must be something ELM-ish
             deviceTypeSpinner.setEnabled(false);
-        } else if ("cansee".equals(deviceNameString)) {
+        } else if (deviceNameString.startsWith("cansee")) {
             deviceAddressEditText.setText(deviceAddressString);
             deviceAddressEditText.setEnabled(false);
             deviceTypeSpinner.setSelection(1); // set CANsee
