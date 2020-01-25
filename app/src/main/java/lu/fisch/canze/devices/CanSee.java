@@ -24,6 +24,7 @@ package lu.fisch.canze.devices;
 import java.io.IOException;
 import java.util.Calendar;
 
+import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Frame;
@@ -190,12 +191,16 @@ public class CanSee extends Device {
 
     @Override
     public boolean initDevice(int toughness) {
-        lastInitProblem = "";
-        return true;
+        return initDevice(toughness, 1);
     }
 
     @Override
     protected boolean initDevice(int toughness, int retries) {
+        if (BuildConfig.BRANCH.equals("master")) {
+            sendAndWaitForAnswer("n110,0", 0, TIMEOUT_FREE); // disable all serial when on master branch
+            sendAndWaitForAnswer("n114,0", 0, TIMEOUT_FREE); // disable all debugging when on master branch
+        }
+        lastInitProblem = "";
         return true;
     }
 }
