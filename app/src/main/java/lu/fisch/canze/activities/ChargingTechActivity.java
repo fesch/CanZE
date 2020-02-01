@@ -200,14 +200,6 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
 
                     case SID_AvailableChargingPower:
                         double avChPwr = field.getValue();
-                        tv = findViewById(R.id.textPhases);
-                        if (pilot == 0 || avChPwr > 45.0) {
-                            tv.setText("-");
-                        } else if (avChPwr > (pilot * 0.250)) {
-                            tv.setText("3");
-                        } else {
-                            tv.setText("1");
-                        }
                         tv = findViewById(R.id.textAvChPwr);
                         if (avChPwr > 45.0) {
                             tv.setText("-");
