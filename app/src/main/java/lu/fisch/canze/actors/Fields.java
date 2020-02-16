@@ -681,7 +681,7 @@ public class Fields {
             Frame frame = Frames.getInstance().getById(0x800);
             Frame subFrame = Frames.getInstance().getById(0x800, virtualField.getResponseId());
             if (subFrame == null) {
-                subFrame = new Frame(frame.getId(), frame.getInterval(), frame.getSendingEcu(), virtualField.getResponseId(), frame);
+                subFrame = new Frame(frame.getFromId(), frame.getInterval(), frame.getSendingEcu(), virtualField.getResponseId(), frame);
                 Frames.getInstance().add(subFrame);
             }
             subFrame.addField(virtualField);
@@ -700,7 +700,7 @@ public class Fields {
             if (frame == null) {
                 MainActivity.debug("frame does not exist:" + tokens[FIELD_ID].trim());
             } else {
-                if (frameId != 0x800) {
+                if (frameId < 0x800 || frameId > 0x8ff) {
                     short options = Short.parseShort(tokens[FIELD_OPTIONS].trim(), 16);
                     // ensure this field matches the selected car
                     if ((options & MainActivity.car) != 0 && (!tokens[FIELD_RESPONSE_ID].trim().startsWith("7") || tokens[FIELD_RESPONSE_ID].trim().toLowerCase().startsWith("7e"))) {
@@ -732,7 +732,7 @@ public class Fields {
                             if (field.isIsoTp()) {
                                 Frame subFrame = Frames.getInstance().getById(frameId, field.getResponseId());
                                 if (subFrame == null) {
-                                    subFrame = new Frame(frame.getId(), frame.getInterval(), frame.getSendingEcu(), field.getResponseId(), frame);
+                                    subFrame = new Frame(frame.getFromId(), frame.getInterval(), frame.getSendingEcu(), field.getResponseId(), frame);
                                     Frames.getInstance().add(subFrame);
                                 }
                                 subFrame.addField(field);
@@ -806,7 +806,7 @@ public class Fields {
         if (MainActivity.device == null) return;
 
         if (assetName.equals("")) {
-            fillFromAsset(MainActivity.altFieldsMode ? "_FieldsAlt.csv" : "_Fields.csv");
+            fillFromAsset(getDefaultAssetName());
             addVirtualFields();
         } else if (assetName.startsWith("/")) {
             fillFromFile(assetName);
@@ -859,6 +859,19 @@ public class Fields {
 
     public ArrayList<Field> getAllFields() {
         return fields;
+    }
+
+    private String getDefaultAssetName() {
+        // note - we might ditch non-alt mode. I doubt if it's worth the effort for CanSee dongle only
+        if (MainActivity.isZOE()) {
+            if (MainActivity.altFieldsMode) {
+                return "_FieldsAlt.csv";
+            } else {
+                return "_Fields.csv";
+            }
+        } else if (MainActivity.isZOEZE50())
+            return "_FieldsZE50.csv";
+        return "_Fields.csv";
     }
 
 }

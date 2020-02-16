@@ -114,7 +114,7 @@ public class Frames {
     {
         frames.clear();
         if (assetName.equals("")) {
-            fillFromAsset(MainActivity.altFieldsMode ? "_FramesAlt.csv" : "_Frames.csv");
+            fillFromAsset(getDefaultAssetName());
         } else {
             fillFromAsset(assetName);
         }
@@ -151,7 +151,7 @@ public class Frames {
         for(int i=0; i<frames.size(); i++)
         {
             Frame frame = frames.get(i);
-            if (frame.getId() == id && frame.getResponseId() == null) return frame;
+            if (frame.getFromId() == id && frame.getResponseId() == null) return frame;
         }
         return null;
     }
@@ -160,7 +160,7 @@ public class Frames {
         for(int i=0; i<frames.size(); i++)
         {
             Frame frame = frames.get(i);
-            if (frame.getId() == id && frame.getResponseId() != null) {
+            if (frame.getFromId() == id && frame.getResponseId() != null) {
                 if (frame.getResponseId().compareTo(responseId.toLowerCase()) == 0) return frame;
             }
         }
@@ -170,4 +170,19 @@ public class Frames {
     public ArrayList<Frame> getAllFrames () {
         return frames;
     }
+
+    private String getDefaultAssetName() {
+        // note - we might ditch non-alt mode. I doubt if it's worth the effort for CanSee dongle only
+        if (MainActivity.isZOE()) {
+            if (MainActivity.altFieldsMode) {
+                return "_FramesAlt.csv";
+            } else {
+                return "_Frames.csv";
+            }
+        } else if (MainActivity.isZOEZE50())
+            return "_FramesZE50.csv";
+        return "_Fields.csv";
+    }
+
+
 }

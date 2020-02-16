@@ -472,15 +472,6 @@ public class ELM327 extends Device {
         return readBuffer.toString();
     }
 
-    private int getToId(int fromId) {
-        Ecu ecu = Ecus.getInstance().getByFromId(fromId);
-        return ecu != null ? ecu.getToId() : 0;
-    }
-
-    private String getToIdHex(int fromId) {
-        return Integer.toHexString(getToId(fromId));
-    }
-
     @Override
     public void clearFields() {
         super.clearFields();
@@ -499,8 +490,9 @@ public class ELM327 extends Device {
         // ensure the ATCRA filter is reset in the next NON free frame request
         lastCommandWasFreeFrame = true;
 
-        // EML needs the filter to be 3 symbols and contains the from CAN id of the ECU. getHexId resturns 3 chars
-        String emlFilter = frame.getHexId();
+        // EML needs the filter to be 3 hex symbols and contains the from CAN id of the ECU.
+        // getFromIdHex returns 3 chars for 11 bit id, and 8 bits for a 29 bit id
+        String emlFilter = frame.getFromIdHex();
 
         MainActivity.debug("ELM327: requestFreeFrame: atcra" + emlFilter);
         if (!initCommandExpectOk("atcra" + emlFilter))
@@ -560,20 +552,34 @@ public class ELM327 extends Device {
         // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
         // disable for now
         lastId = 0;
-        if (lastId != frame.getId()) {
-            lastId = frame.getId();
+        if (lastId != frame.getFromId()) {
+            if (frame.isExtended()) {
+                if (lastId < 0x1000) {
+                    // switch to 29 bit
+                    if (!initCommandExpectOk("atsp7"))
+                        return new Message(frame, "-E-Problem sending atsp7 command", true);
+                    // set prio using AT CP
+                    if (!initCommandExpectOk("atcp" + frame.getToIdHexMSB()))
+                        return new Message(frame, "-E-Problem sending atcp command", true);
+                }
+            } else {
+                if (lastId >= 0x1000) {
+                    // switch to 11 bit
+                    if (!initCommandExpectOk("atsp6"))
+                        return new Message(frame, "-E-Problem sending atsp6 command", true);
+                }
+            }
 
-            // request contains the to CAN id of the ECU. Note that we store the FromId in a frame
-            String toIdHex = getToIdHex(frame.getId());
+            lastId = frame.getFromId();
 
             // Set header
-            if (!initCommandExpectOk("atsh" + toIdHex))
+            if (!initCommandExpectOk("atsh" + frame.getToIdHexLSB()))
                 return new Message(frame, "-E-Problem sending atsh command", true);
             // Set filter
-            if (!initCommandExpectOk("atcra" + Integer.toHexString(frame.getId())))
+            if (!initCommandExpectOk("atcra" + frame.getFromIdHex()))
                 return new Message(frame, "-E-Problem sending atcra command", true);
             // Set flow control response ID
-            if (!initCommandExpectOk("atfcsh" + toIdHex))
+            if (!initCommandExpectOk("atfcsh" + frame.getToIdHex()))
                 return new Message(frame, "-E-Problem sending atfcsh command", true);
         }
 

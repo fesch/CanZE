@@ -78,7 +78,7 @@ public class ELM327OverHttp extends Device {
             return new Message(frame, "-E-Re-initialisation needed", true);
         }
 
-        String msg = getMessage("Free.php?f=" + frame.getHexId() + "." + frame.getInterval());
+        String msg = getMessage("Free.php?f=" + frame.getFromIdHex() + "." + frame.getInterval());
         // MainActivity.debug("ELM327Http: request Free frame result " + msg);
 
         if (msg.startsWith("-")) {

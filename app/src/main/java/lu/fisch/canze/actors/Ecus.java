@@ -101,7 +101,7 @@ public class Ecus {
     {
         ecus.clear();
         if (assetName.equals("")) {
-            fillFromAsset("_Ecus.csv");
+            fillFromAsset(getDefaultAssetName());
         } else {
             fillFromAsset(assetName);
         }
@@ -142,6 +142,12 @@ public class Ecus {
 
     public ArrayList<Ecu> getAllEcus () {
         return ecus;
+    }
+
+    private String getDefaultAssetName() {
+        if (MainActivity.isZOE()) return "_Ecus.csv";
+        else if (MainActivity.isZOEZE50()) return "_EcusZE50.csv";
+        return "_Ecus.csv";
     }
 
 }

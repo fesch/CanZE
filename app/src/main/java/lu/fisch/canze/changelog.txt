@@ -1,3 +1,14 @@
+2020-02-16 [Jeroen] Extended addressing and ZE50 test code (aplha!)
+2020-02-02 [Jeroen] Removed phases count in advanced charging. Already show in Mains Current Type
+2020-01-25 [Jeroen] Switch off CANsee chatter on USB when on master branch
+2020-01-24 [Jeroen] CANsee device is selected when name starts (aot equals) CANsee
+2020-01-21 [Jeroen] Upgraded crashlytics to 17.2.2
+2020-01-21 [Jeroen] Extended addressing and ZE50 test code (aplha!)
+2020-01-20 [Jeroen] Several exceptions fixed
+2020-01-09 [Jeroen] Do not start Crashlytics in development branches
+2020-01-07 [Jeroen] Fix pilot amp formula for ISOTP mode (thanls Oleksiy Protas)
+2020-01-05 [Jeroen] New startup setting
+2020-01-05 [Bob] Color update in Dash
 2020-01-04 [Bob] Added custom fragment wich configuration editor in settings
 2020-01-03 [Jeroen] Remove crash(lytics) test code
 2020-01-03 [Jeroen] Experiment startup activity

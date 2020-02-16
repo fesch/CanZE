@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static final short CAR_ZOE_Q210 = 0x002;
     //public static final short CAR_KANGOO = 0x004;
     //public static final short CAR_TWIZY = 0x008;     // you'll never know ;-)
-    //public static final short CAR_X10 = 0x010;     // not used
+    public static final short CAR_X10PH2 = 0x010;     // ZE50
     public static final short CAR_ZOE_R240 = 0x020;
     public static final short CAR_ZOE_Q90 = 0x040;
     public static final short CAR_ZOE_R90 = 0x080;
@@ -352,9 +352,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 //case "Twizy":
                 //    car = CAR_TWIZY;
                  //   break;
-                //case "X10":
-                //    car = CAR_X10;
-                //    break;
+                case "ZOE ZE50":
+                    car = CAR_X10PH2;
+                    break;
             }
 
             // as the settings may have changed, we need to reload different things
@@ -398,16 +398,15 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
     public void registerApplicationFields() {
+        Field field = fields.getBySID("5d7.0");
         if (safeDrivingMode) {
             // speed
-            Field field = fields.getBySID("5d7.0");
             if (field != null) {
                 field.addListener(MainActivity.getInstance()); // callback is onFieldUpdateEvent
                 if (device != null)
-                    device.addApplicationField(field, 10000); // query every second
+                    device.addApplicationField(field, 10000); // query every 10 seconds
             }
         } else {
-            Field field = fields.getBySID("5d7.0");
             if (field != null) {
                 field.removeListener(MainActivity.getInstance());
                 if (device != null)
@@ -1054,7 +1053,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public static boolean isZOE() {
         return (car == CAR_ZOE_Q90 || car == CAR_ZOE_Q210 || car == CAR_ZOE_R90 || car == CAR_ZOE_R240);
-        //car == CAR_X10 ||
+    }
+
+
+    public static boolean isZOEZE50() {
+        return (car == CAR_X10PH2);
     }
 
     //public static boolean isFluKan() {

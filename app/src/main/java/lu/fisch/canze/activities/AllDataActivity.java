@@ -25,7 +25,6 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Environment;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -232,7 +231,7 @@ public class AllDataActivity extends CanzeActivity {
                             }
 
                         } else {
-                            appendResult(frame.getHexId() + "." + frame.getResponseId() + ":" + message.getError() + "\n");
+                            appendResult(frame.getFromIdHex() + "." + frame.getResponseId() + ":" + message.getError() + "\n");
                             if (!MainActivity.device.initDevice(1)) {
                                 appendResult(MainActivity.getStringSingle(R.string.message_InitFailed));
                                 return;

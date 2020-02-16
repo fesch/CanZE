@@ -144,7 +144,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
                     MainActivity.getInstance().dropDebugMessage("Frame for this ECU not found");
                     return;
                 }
-                MainActivity.getInstance().dropDebugMessage(frame.getHexId() + "." + frame.getResponseId());
+                MainActivity.getInstance().dropDebugMessage(frame.getFromIdHex() + "." + frame.getResponseId());
                 Message message = MainActivity.device.requestFrame(frame); //  field.getFrame());
                 if (message.isError()) {
                     MainActivity.getInstance().dropDebugMessage(message.getError());

@@ -29,7 +29,7 @@ import java.util.Calendar;
  */
 public class Frame {
 
-    private final int id;
+    private final int fromId;
     private final String responseId;
     private final Ecu sendingEcu;
     private final ArrayList<Field> fields = new ArrayList<>();
@@ -40,8 +40,8 @@ public class Frame {
     private long lastRequest = 0;
 
 
-    public Frame (int id, int interval, Ecu sendingEcu, String responseId, Frame containingFrame) {
-        this.id = id;
+    public Frame (int fromId, int interval, Ecu sendingEcu, String responseId, Frame containingFrame) {
+        this.fromId = fromId;
         this.interval = interval;
         this.sendingEcu = sendingEcu;
         this.responseId = responseId == null ? null : responseId.toLowerCase();
@@ -77,24 +77,60 @@ public class Frame {
     {
         //if (this.responseId == null) return false;
         //return !responseId.trim().isEmpty();
-        return (id >= 0x700 && id <= 0x800); // the VFC is considered ISOTP too
+        return (fromId >= 0x700 && fromId != 0x801); // All 29 bits and the VFC is considered ISOTP too
     }
 
-    public int getId() {
-        return id;
+    public int getFromId() {
+        return fromId;
     }
 
-    public String getRID()
-    {
-        if(responseId!=null && !responseId.trim().isEmpty())
-            return (getHexId()+"."+responseId.trim()).toLowerCase();
-        else
-            return (getHexId()).toLowerCase();
+    public String getFromIdHex() {
+        return String.format(isExtended() ? "%08x" : "%03x", fromId);
+    }
+
+    public String getFromIdHexLSB() {
+        return String.format(isExtended() ? "%06x" : "%03x", fromId & 0xffffff);
+    }
+    public String getFromIdHexMSB() {
+        return String.format("%02x", (fromId & 0x1f000000) >> 24);
+    }
+
+    public String getRID() { // RID is the from ID, plus the response ID (for ISOTP)
+        if(responseId != null && !responseId.trim().isEmpty()) {
+            return (getFromIdHex() + "." + responseId.trim()).toLowerCase();
+        } else {
+            return (getFromIdHex()).toLowerCase();
+        }
     }
 
 
-    public String getHexId() {
-        return String.format("%03x", id);
+    private int getToId() {
+        Ecu ecu = Ecus.getInstance().getByFromId(fromId);
+        return ecu != null ? ecu.getToId() : 0;
+    }
+
+    public String getToIdHex() {
+        return String.format(isExtended() ? "%08x" : "%03x", getToId ());
+    }
+
+    public String getToIdHexLSB() {
+        return String.format(isExtended() ? "%06x" : "%03x", getToId() & 0xffffff);
+    }
+
+    public String getToIdHexMSB() {
+        return String.format("%02x", (getToId() & 0x1f000000) >> 24);
+    }
+
+
+    public boolean isExtended () {
+        // 0-6ff = free frame
+        // 700-7ff = 11 bits ISOTP
+        // 800 = VFC
+        // 801 = FFC
+        // 802-FFF = reserved
+        // 1000-1FFFFFFF = 29 bits ISOTP
+        // We are ignoring the possibility for sub 1000 29 bits for now
+        return (fromId >= 0x1000);
     }
 
     public Ecu getSendingEcu() {

@@ -26,7 +26,6 @@ import java.util.Calendar;
 
 import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.activities.MainActivity;
-import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.bluetooth.BluetoothManager;
@@ -123,14 +122,14 @@ public class CanSee extends Device {
     @Override
     public Message requestFreeFrame(Frame frame) {
         // build the command string to send to the remote device
-        String command = "g" + frame.getHexId();
+        String command = "g" + frame.getFromIdHex();
         return responseToMessage(frame, command, TIMEOUT_FREE);
     }
 
     @Override
     public Message requestIsoTpFrame(Frame frame) {
         // build the command string to send to the remote device
-        String command = "i" + frame.getHexId() + "," + frame.getRequestId() + "," + frame.getResponseId();
+        String command = "i" + frame.getFromIdHex() + "," + frame.getRequestId() + "," + frame.getResponseId();
         return responseToMessage(frame, command, TIMEOUT_ISO);
     }
 
@@ -167,8 +166,8 @@ public class CanSee extends Device {
             return new Message(frame, "-E-CanSee.rtm.Nan:" + text, true);
         }
 
-/*        if (frame.getId() < 0x700) {
-            if (id != frame.getId()) {
+/*        if (frame.getFromId() < 0x700) {
+            if (id != frame.getFromId()) {
                 MainActivity.debug("CanSee.rtm.difffree [" + text + "]");
                 return new Message(frame, "-E-CanSee.rtm.difffree", true);
             }
@@ -178,7 +177,7 @@ public class CanSee extends Device {
                 return new Message(frame, "CanSee.rtm.diffiso", true);
             }
         } */
-        if (id != frame.getId()) {
+        if (id != frame.getFromId()) {
             MainActivity.debug("CanSee.rtm.diffid [" + text + "]");
             return new Message(frame, "-E-CanSee.rtm.diffid:" + text, true);
         }

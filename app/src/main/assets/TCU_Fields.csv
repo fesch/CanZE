@@ -205,7 +205,7 @@
 ,7da,792,1047,1,0,0,,22FD30,62FD30,2ff,External SIM GPRS Parameters.DNS1
 ,7da,1048,1303,1,0,0,,22FD30,62FD30,2ff,External SIM GPRS Parameters.DNS2
 ,7da,24,223,1,0,0,,22FD70,62FD70,2ff,Communication network name.name
-,7da,224,423,1,0,0,,22FD70,62FD70,2ff,Communication network name.id
+,7da,224,423,1,0,0,,22FD70,62FD70,2ff,Communication network name.fromId
 ,7da,24,31,1,0,0,,22FD71,62FD71,ff,Registered to communication network,0:non registered;1:registered;2:Not Registered - searching;3:Denied register;4:Unknown;5:Registered (Roaming mode)
 ,7da,28,39,.010498046875,-1989855.85116279,2,V,22FE01,62FE01,ff,C_V.Status.12V_BAT_SENSE
 ,7da,44,55,1,0,0,V,22FE01,62FE01,ff,C_V.Status.SENSE_7.1V

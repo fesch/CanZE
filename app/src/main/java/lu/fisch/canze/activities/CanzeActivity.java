@@ -309,7 +309,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         if (field != null) {
             addField(field, intervalMs);
         } else {
-            //MainActivity.debug(this.getClass().getSimpleName() + " (CanzeActivity): SID " + sid + " does not exist in class Fields");
+            MainActivity.debug(this.getClass().getSimpleName() + " (CanzeActivity): SID " + sid + " does not exist in class Fields");
             MainActivity.toast(MainActivity.TOAST_NONE, String.format(Locale.getDefault(), MainActivity.getStringSingle(R.string.format_NoSid), this.getClass().getSimpleName(), sid));
         }
     }

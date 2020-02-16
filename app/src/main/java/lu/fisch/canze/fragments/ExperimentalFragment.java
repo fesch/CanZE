@@ -38,6 +38,7 @@ import lu.fisch.canze.activities.DashActivity;
 import lu.fisch.canze.activities.FieldTestActivity;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.activities.ResearchActivity;
+import lu.fisch.canze.activities.ZE50TestActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,6 +59,7 @@ public class ExperimentalFragment extends Fragment {
         activateButton(view, R.id.buttonResearch, ResearchActivity.class);
 
         activateButton(view, R.id.buttonFieldTest, FieldTestActivity.class, true);
+        activateButton(view, R.id.buttonZE50Test, ZE50TestActivity.class, true);
 
         return view;
     }

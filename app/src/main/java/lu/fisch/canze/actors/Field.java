@@ -75,9 +75,9 @@ public class Field {
     public Field(String sid, Frame frame, short from, short to, double resolution, int decimals, int offset, String unit, String responseId, short options, String name, String list) {
         if (sid == null || sid.equals("")) {
             if (responseId != null && !responseId.trim().isEmpty())
-                this.sid = (Integer.toHexString(frame.getId()) + "." + responseId.trim() + "." + from).toLowerCase();
+                this.sid = (Integer.toHexString(frame.getFromId()) + "." + responseId.trim() + "." + from).toLowerCase();
             else
-                this.sid = (Integer.toHexString(frame.getId()) + "." + from).toLowerCase();
+                this.sid = (Integer.toHexString(frame.getFromId()) + "." + from).toLowerCase();
         } else {
             this.sid = sid.toLowerCase();
         }
@@ -316,11 +316,11 @@ public class Field {
     }
 
     public int getId() {
-        return frame.getId();
+        return frame.getFromId();
     }
 
     public String getHexId() {
-        return frame.getHexId();
+        return frame.getFromIdHex();
     }
 
 //    public void setId(int id) {

@@ -74,7 +74,9 @@ public class DtcActivity extends CanzeActivity {
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
-            if (ecu.getFromId() != 0 && ecu.getFromId() < 0x800) arrayAdapter.add(ecu.getMnemonic()); // only list real, known, reachable ECUs
+            if (ecu.getFromId() != 0 && (ecu.getFromId() < 0x800 || ecu.getFromId() >= 0x900)) {
+                arrayAdapter.add(ecu.getMnemonic()); // only list real, known, reachable ECUs
+            }
         }
         // display the list
         final Spinner spinnerEcu = findViewById(R.id.ecuList);

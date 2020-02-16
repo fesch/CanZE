@@ -132,7 +132,7 @@ public class Message {
                     } else {
                         val = Integer.parseInt("0" + binString, 2);
                     }
-                    //MainActivity.debug("Value of " + field.getHexId() + "." + field.getResponseId() + "." + field.getFrom()+" = "+val);
+                    //MainActivity.debug("Value of " + field.getFromIdHex() + "." + field.getResponseId() + "." + field.getFrom()+" = "+val);
                     //MainActivity.debug("Fields: onMessageCompleteEvent > "+field.getSID()+" = "+val);
 
                     // update the value of the field. This triggers updating all of all listeners of that field
