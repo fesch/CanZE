@@ -68,6 +68,7 @@ public class Ecus {
             );
             // add the field to the list of available fields
             add(ecu);
+            MainActivity.debug("ecu:" + tokens[5].trim());
         }
     }
 

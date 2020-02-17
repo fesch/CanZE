@@ -63,7 +63,7 @@ public class Frames {
             //Create a new field object and fill his  data
             Ecu ecu = Ecus.getInstance().getByMnemonic(tokens[FRAME_ECU].trim());
             if (ecu == null) {
-                MainActivity.debug("Ecu does not exist:" + tokens[FRAME_ECU].trim());
+                MainActivity.debug("Ecu does not exist:'" + tokens[FRAME_ECU].trim() + "'");
             } else {
                 int frameId = Integer.parseInt(tokens[FRAME_ID].trim(), 16);
                 int interval = MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240 ? Integer.parseInt(tokens[FRAME_INTERVAL_ZOE].trim(), 10) : Integer.parseInt(tokens[FRAME_INTTERVAL_FLUKAN].trim(), 10);

@@ -59,7 +59,7 @@ public class ExperimentalFragment extends Fragment {
         activateButton(view, R.id.buttonResearch, ResearchActivity.class);
 
         activateButton(view, R.id.buttonFieldTest, FieldTestActivity.class, true);
-        activateButton(view, R.id.buttonZE50Test, ZE50TestActivity.class, true);
+        activateButton(view, R.id.buttonZE50Test, ZE50TestActivity.class, false);
 
         return view;
     }
