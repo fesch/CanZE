@@ -16,8 +16,8 @@ android {
         applicationId "lu.fisch.canze"
         minSdkVersion 21
         targetSdkVersion 29
-        versionName '1.52beta2'
-        versionCode 68
+        versionName '1.52beta5'
+        versionCode 71
     }
     buildTypes {
         release {

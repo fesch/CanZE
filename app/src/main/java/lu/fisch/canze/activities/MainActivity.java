@@ -413,6 +413,22 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                     device.removeApplicationField(field);
             }
         }
+
+        if (isZOEZE50()) { //activate the gateway
+            field = fields.getBySID("18daf1d2.5003.0");
+            if (field != null) {
+                field.addListener(MainActivity.getInstance()); // callback is onFieldUpdateEvent
+                if (device != null)
+                    device.addApplicationField(field, 2000); // keep awake every 2 seconds
+            }
+
+        } else {
+            if (field != null) {
+                field.removeListener(MainActivity.getInstance());
+                if (device != null)
+                    device.removeApplicationField(field);
+            }
+        }
     }
 
     private void updateActionBar() {
@@ -590,9 +606,17 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     void handleDarkMode()
     {
         // dark mode handling
+
+        // this is a silly extra check against surious NPEs
+        if (instance == null) return;
+
+        // this is another check against NPE
+        if (instance.getBaseContext() == null) return;
+
         // due to a few NullPointerExceptions on getSharedPreferences, now explicitely using the application context jm20191223
         Context c = instance.getApplicationContext();
         if (c == null) return;
+
         SharedPreferences set = c.getSharedPreferences(PREFERENCES_FILE, 0);
         int darkModeSetting;
         try { // handle old boolean preference
