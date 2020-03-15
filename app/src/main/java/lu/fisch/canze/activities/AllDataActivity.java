@@ -21,6 +21,7 @@
 
 package lu.fisch.canze.activities;
 
+import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -94,6 +95,7 @@ public class AllDataActivity extends CanzeActivity {
             }
         });
 
+        setDoRestartQueueOnResume(false);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -124,7 +126,11 @@ public class AllDataActivity extends CanzeActivity {
     private void testerKeepalive(Ecu ecu) {
         if (!ecu.getSessionRequired()) return;
         if (Calendar.getInstance().getTimeInMillis() < ticker) return;
-        MainActivity.device.requestFrame(Frames.getInstance().getById(ecu.getFromId(), "7e01"));
+        //MainActivity.device.requestFrame(Frames.getInstance().getById(ecu.getFromId(), "7e01"));
+        if (MainActivity.isZOEZE50()) {
+            MainActivity.device.requestFrame(Frames.getInstance().getById(0x18daf1d2, "5003"));
+        }
+        MainActivity.device.requestFrame(Frames.getInstance().getById(ecu.getFromId(), ecu.getStartDiag()));
         ticker = ticker + 1500;
     }
 
@@ -134,15 +140,15 @@ public class AllDataActivity extends CanzeActivity {
         // we are a testerInit
         appendResult(MainActivity.getStringSingle(R.string.message_StartTestSession) + " (testerInit)\n");
         //field = Fields.getInstance().getBySID(filter + ".7e01.0");
-        Field field = Fields.getInstance().getBySID(filter + ".50c0.0");
+        Field field = Fields.getInstance().getBySID(filter + "." + ecu.getStartDiag() + ".0");
         if (field != null) {
             // query the Field
             Message message = MainActivity.device.requestFrame(field.getFrame());
             if (!message.isError()) {
                 String backRes = message.getData();
                 // check the response
-                if (backRes.toLowerCase().startsWith("50c0")) {
-                    testerKeepalive();
+                if (backRes.toLowerCase().startsWith(ecu.getStartDiag())) {
+                    testerKeepalive(); // start the keepalive timer
                     return true;
                 } else {
                     appendResult("Start Diag Session, unexpected result [" + backRes + "]\n");
@@ -214,7 +220,7 @@ public class AllDataActivity extends CanzeActivity {
                     if (((StoppableThread) Thread.currentThread()).isStopped()) return;
 
                     Frame frame = Frames.getInstance().get(i);
-                    testerKeepalive();
+                    testerKeepalive(ecu); // may need to set a keepalive/session
 
                     if (frame.getContainingFrame() != null || ecu.getFromId() == 0x801) { // only use subframes and free frames
 
@@ -362,6 +368,8 @@ public class AllDataActivity extends CanzeActivity {
         });
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
+    // this is done to avoid restarting the long running activity
     private void freezeOrientation () {
         int rotation = getWindowManager().getDefaultDisplay().getRotation();
         switch (getResources().getConfiguration().orientation) {

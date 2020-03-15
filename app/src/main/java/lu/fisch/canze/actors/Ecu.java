@@ -34,11 +34,12 @@ public class Ecu {
     private final String mnemonic;
     private final String aliases;     // semicolon separated
     private final String getDtcs;   // semicolon separated
+    private final String startDiag;
     private final boolean sessionRequired;
 
     private Fields fields;
 
-    public Ecu(String name, int renaultId, String networks, int fromId, int toId, String mnemonic, String aliases, String getDtcs, boolean sessionRequired) {
+    public Ecu(String name, int renaultId, String networks, int fromId, int toId, String mnemonic, String aliases, String getDtcs, String startDiag, boolean sessionRequired) {
         this.name = name;
         this.renaultId = renaultId;
         this.networks = networks;
@@ -47,6 +48,7 @@ public class Ecu {
         this.mnemonic = mnemonic;
         this.aliases = aliases;
         this.getDtcs = getDtcs;
+        this.startDiag = startDiag;
         this.sessionRequired = sessionRequired;
     }
 
@@ -96,6 +98,10 @@ public class Ecu {
 
     public String getGetDtcs() {
         return getDtcs;
+    }
+
+    public String getStartDiag() {
+        return startDiag;
     }
 
     public boolean getSessionRequired() {

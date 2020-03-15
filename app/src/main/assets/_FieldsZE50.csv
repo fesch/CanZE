@@ -1,14 +1,14 @@
 # SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
 # 130,44,55,-3,4094,0,Nm,,,ff,DriverBrakeWheelTq_Req
 # Note that in the next line the resolution is negated from the original definition, to match 130.44
-130.44,7bc,28,39,-1,4096,0,Nm,224B7E,624B7E,ff,DriverBrakeWheelTq_Req
+130.44,810,28,39,-1,4096,0,Nm,224B7E,624B7E,ff,DriverBrakeWheelTq_Req
 # 186,40,49,0.125,0,1,%,,,ff,Throttle
 186.40,18daf1da,24,39,0.125,0,1,%,22202E,62202E,ff,Accelerator pedal position
 # ,1f8,16,27,1,4096,0,Nm,,,ff,TotalPotentialResistiveWheelsTorque
 # free frame 1f8.16 is in wheel NM, isotp 22247 in 32's motor torque
 1f8.16,18daf1da,24,39,0.29125,32768,0,N.m,222247,622247,ff,Minimum effective torque that can be requested to the electrical motor (EM)
 # 1f8,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
-1f8.28,7bc,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
+1f8.28,810,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
 #  # 1f8,40,50,10,0,0,Rpm,,,ff,ElecEngineRPM
 #  1f8.40,7bc,24,39,10,32768,0,0,223045,623045,ff,ElecEngineRPM
 # 1fd,0,7,0.390625,0,1,%,,,ff,12V Battery Current?
@@ -21,25 +21,25 @@
 # 427,40,47,0.3,0,0,kW,,,e2,Available Charging Power (UCP)
 427.40,18daf1da,24,39,.1,0,1,kW,223470,623470,ff,Available JB2 power for a battery charge
 # 427,49,57,0.1,0,1,kWh,,,e2,Available Energy
-427.49,18daf1da,24,39,0.005,0,1,kWh,22320C,62320C,e2,Available discharge Energy
+427.49,18daf1da,24,39,0.005,0,1,kWh,22320C,62320C,ff,Available discharge Energy
 # 42a,30,39,0.1,400,1,°C,,,ff,Evaporator Temp Measure
 42a.30,764,42,51,0.1,400,1,°C,2144,6144,ff,Evaporator Temp Measure
 # 42a,48,50,1,0,0,,,,e2,ClimLoopMode
 # 42a.48,764,62,64,1,0,0,-,2144,2144,e2,ClimLoopMode
 42a.48,764,21,23,1,0,0,,2167,6167,ff,ILB_HPM_ClimLoopMode,0:Unavailable;1:AC mode;2:AC de-icing mode;3:Not used (100);4:Heat Pump mode;5:Not used (101);6:Demisting mode;7:Idle mode
 # 42e,0,12,0.02,0,2,%,,,e3,State of Charge
-42e.0,18daf1da,24,39,0.02,0,2,%,222002,622002,e3,State of Charge
+42e.0,18daf1da,24,39,0.02,0,2,%,222002,622002,ff,State of Charge
 # 42e,20,24,5,0,0,%,,,e2,Engine Fan Speed
 # 42e.20,18daf1da,24,31,5,0,0,%,223471,613471,e2,Engine Fan Speed
 42e.20,18daf1da,24,31,1,0,0,%,22345E,62345E,ff,FAN global request from ETS in PWM including AC, Cooling needs and Relay protection check
 # 42e,44,50,1,40,0,°C,,,e3,HV Battery Temp
-42e.44,18daf1da,24,31,1,40,0,°C,222001,622001,e3,HV Battery Temp
+42e.44,18daf1da,24,31,1,40,0,°C,222001,622001,ff,HV Battery Temp
 # 430,38,39,1,0,0,,,,e2,HV Battery Cooling State
-430.38,764,168,169,1,0,0,,2144,6144,e2,HV Battery Cooling State
+430.38,764,168,169,1,0,0,,2144,6144,ff,HV Battery Cooling State
 # 430,40,49,0.1,400,1,°C,,,e2,HV Battery Evaporator Temp
-430.40,764,150,159,0.1,400,1,°C,2121,6121,e2,HV Battery Evaporator Temp
+430.40,764,150,159,0.1,400,1,°C,2121,6121,ff,HV Battery Evaporator Temp
 # 432,36,37,1,0,0,,,,e2,HV Bat Conditionning Mode
-432.36,764,133,134,1,0,0,,2144,6144,e2,HV Bat Conditionning Mode
+432.36,764,133,134,1,0,0,,2144,6144,ff,HV Bat Conditionning Mode
 # Note that 5d7.0 is best always present as it is used for safe driving mode
 # 5d7,0,15,0.01,0,2,km/h,,,ff,Speed
 5d7.0,18daf1da,24,39,0.01,0,2,km/h,222003,622003,ff,Speed
@@ -58,9 +58,9 @@
 # 654,42,51,1,0,0,km,,,ff,Available Distance
 654.42,18daf1da,24,39,1,0,0,km,223451,623451,ff,Estimated kilometric cruising range sent to MMI
 # 656,48,55,1,40,0,°C,,,e2,External Temp
-656.48,763,110,117,1,40,0,°C,2143,6143,e2,External Temp
+656.48,763,110,117,1,40,0,°C,2143,6143,ff,External Temp
 # 658,33,39,1,0,0,%,,,ff,Battery Health
-658.33,7bb,72,79,0.5,0,0,%,2161,6161,ff,Battery Health
+658.33,18daf1db,72,79,0.5,0,0,%,2161,6161,ff,Battery Health
 # 673,0,0,1,0,0,,,,ff,Speed pressure misadaptation
 673.0,765,66,66,1,0,0,,2174,6174,ff,SpeedPressureMisadaptation
 # 673,2,4,1,0,0,,,,ff,Rear right wheel state
@@ -79,32 +79,30 @@
 673.32,765,128,135,13.725,0,0,mbar,2174,6174,ff,FrontRightWheelPressure
 # 673,40,47,13.725,0,0,mbar,2174,6174,ff,Front left wheel pressure
 673.40,765,136,143,13.725,0,0,mbar,2174,6174,ff,FrontLeftWheelPressure
-# ESC
-,760,56,63,1,0,0,,2180,6180,ff,diagVersion
-,760,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-,760,128,143,1,0,0,,2180,6180,ff,Soft
-,760,144,159,1,0,0,,2180,6180,ff,Version
-,760,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,760,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-# EPS
+# ESC #
+760.6180.56,18daf12d,56,63,1,0,0,,2180,6180,ff,diagVersion
+760.6180.64,18daf12d,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+760.6180.128,18daf12d,128,143,1,0,0,,2180,6180,ff,Soft
+760.6180.144,18daf12d,144,159,1,0,0,,2180,6180,ff,Version
+760.54.0.,18daf12d,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+760.5902ff.0.,18daf12d,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+# EPS #
 ,762,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,762,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,762,128,143,1,0,0,,2180,6180,ff,Soft
 ,762,144,159,1,0,0,,2180,6180,ff,Version
 ,762,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,762,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-# CLUSTER
+# CLUSTER #
 ,763,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,763,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,763,128,143,1,0,0,,2180,6180,ff,Soft
 ,763,144,159,1,0,0,,2180,6180,ff,Version
 ,763,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,763,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-# CLIM
-,764,26,35,0.1,400,1,°C,2121,6121,e2,IH_InCarTemp
-,764,8,15,0.4,100,1,°C,2121,6121,5,IH_InCarTemp
-,764,36,43,1,0,0,%,2121,6121,e2,IH_RHumidity
-,764,16,23,1,0,0,%,2121,6121,5,IH_RHumidity
+# CLIM #
+,764,26,35,0.1,400,1,°C,2121,6121,ff,IH_InCarTemp
+,764,36,43,1,0,0,%,2121,6121,ff,IH_RHumidity
 ,764,86,87,1,0,0,,2143,6143,ff,IH_EcoModeRequest,0:Unavailable Value;1:Eco mode requested;2:Eco mode not requested;3:Not used
 ,764,88,92,100,0,0,W,2143,6143,ff,IH_ElectricalPowerDrived
 ,764,110,117,1,40,0,°C,2143,6143,ff,IH_ExternalTemp
@@ -119,7 +117,7 @@
 ,764,144,159,1,0,0,,2180,6180,ff,Version
 ,764,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,764,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-# BCM
+# BCM #
 ,765,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,765,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,765,128,143,1,0,0,,2180,6180,ff,Soft
@@ -131,7 +129,7 @@
 ,765,48,71,1,0,0,,2171,6171,ff,TPMS
 ,765,72,95,1,0,0,,2171,6171,ff,TPMS
 ,765,96,119,1,0,0,,2171,6171,ff,TPMS
-# USM
+# USM #
 ,76d,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,76d,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,76d,128,143,1,0,0,,2180,6180,ff,Soft
@@ -139,222 +137,216 @@
 ,76d,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,76d,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,76d,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-# UPA
+# Parking Sonar #
 ,76e,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,76e,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,76e,128,143,1,0,0,,2180,6180,ff,Soft
 ,76e,144,159,1,0,0,,2180,6180,ff,Version
 ,76e,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,76e,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-# AIBAG
+# AIBAG-SRS #
 ,772,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,772,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,772,128,143,1,0,0,,2180,6180,ff,Soft
 ,772,144,159,1,0,0,,2180,6180,ff,Version
 ,772,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,772,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-# PEB
-,77e,56,63,1,0,0,,2180,6180,ff,diagVersion
-,77e,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-,77e,128,143,1,0,0,,2180,6180,ff,Soft
-,77e,144,159,1,0,0,,2180,6180,ff,Version
-,77e,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,77e,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-,77e,24,39,0.015625,0,2,ºC,223018,623018,ff,DCDC converter temperature
-,77e,24,31,0.015625,0,2,°C,22302b,62302b,ff,inverter temperature
-,77e,24,39,0.03125,0,0,Nm,223025,623025,1ff,PEBTorque
+# INV_ME
+,18daf1df,56,63,1,0,0,,2180,6180,ff,diagVersion
+,18daf1df,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,18daf1df,128,143,1,0,0,,2180,6180,ff,Soft
+,18daf1df,144,159,1,0,0,,2180,6180,ff,Version
+,18daf1df,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,18daf1df,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+77e.623025.24,18daf1df,24,39,0.015625,15256,2,Nm,222002,622002,ff,Emotor torque estimation based on measured values
 # BCB
-,793,0,0,1,0,0,,1081,5081,ff,start diag
-,793,0,0,1,0,0,,10c0,50c0,ff,start diag
-,793,0,0,1,0,0,,3e01,7e01,ff,Tester present
-,793,56,63,1,0,0,,2180,6180,ff,diagVersion
-,793,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-,793,128,143,1,0,0,,2180,6180,ff,Soft
-,793,144,159,1,0,0,,2180,6180,ff,Version
-,793,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,793,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-,793,24,39,0.0625,32768,2,mA,225057,625057,ff,DataRead.Raw leakage current - DC part measurement
-,793,24,39,0.0625,32768,2,mA,225058,625058,ff,DataRead.Raw leakage current - High Frequency 10kHz part measurement
-,793,24,39,0.0625,32768,2,mA,225059,625059,ff,DataRead.Raw leakage current - High Frequency 1st part measurement
-,793,24,39,0.0625,32768,2,mA,22505a,62505a,ff,DataRead.Raw leakage current - Low Frequency part measurement (50Hz)
-,793,24,39,.0625,3200,2,A,222001,622001,ff,Mains phase 1 current RMS value
-,793,24,31,1,0,1,%,225026,625026,ff,J1772 control pilot raw duty cycle
-,793,24,39,.0625,3200,2,A,22503A,62503A,ff,Mains phase 2 current RMS
-,793,24,39,.0625,3200,2,A,22503B,62503B,ff,Mains phase 3 current RMS
-,793,29,31,1,0,0,,225017,625017,ff,Mains current type,0:Nok;1:AC mono;2:AC tri;3:DC;4:AC bi
-,793,24,39,.5,32000,1,V,22502C,62502C,ff,Raw AC mains phase 1 measured voltage
-,793,24,39,.5,32000,1,V,22502D,62502D,ff,Raw AC mains phase 2 measured voltage
-,793,24,39,.5,32000,1,V,22502E,62502E,ff,Raw AC mains phase 3 measured voltage
-,793,24,39,.5,0,1,V,22503f,62503f,ff,Mains phase 1-2 voltage RMS value
-,793,24,39,.5,0,1,V,225041,625041,ff,Mains phase 2-3 voltage RMS value
-,793,24,39,.5,0,1,V,225042,625042,ff,Mains phase 3-1 voltage RMS value
-,793,24,39,1,20000,0,W,22504A,62504A,ff,Mains active power consumed
-,793,24,39,1,0,0,Ohm,225062,625062,ff,Mains ground resistance
-,793,24,31,1,0,0,,225063,625063,ff,Supervisor state,0:Init;1:Wait;2:ClosingS2;3:InitType;4:InitLkg;5:InitChg;6:Charge;7:ZeroAmpMode;8:EndOfChg;9:OpeningS2;10:ReadyToSleep;11:EmergencyStop;12:InitChargeDF;13:OCPStop;14:WaitS2
-,793,24,31,1,0,0,,225064,625064,ff,Leakage current diagnostic stored completion status,0:init;1:HF10;3:Mains Ground Default;5:Earth Current default;9:Ground Default;17:Means Leakage DC;33:Means Leakage LF;49:Means Leakage DC+LF;65:Means Leakage HF;81:Means Leakage DC+HF;97:Means Leakage LF+HF;113:Means Leakage DC+LF+HF
-# LBC2
-,7b6,56,63,1,0,0,,2180,6180,ff,diagVersion
-,7b6,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-,7b6,128,143,1,0,0,,2180,6180,ff,Soft
-,7b6,144,159,1,0,0,,2180,6180,ff,Version
-,7b6,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,7b6,0,23,1,0,0,,19023b,59020f,ff,Query DTC
-# LBC
-,7bb,336,351,0.01,0,2,kW,2101,6101,e2,Maximum battery input power
-,7bb,56,71,10,0,0,°C,2103,6103,5,Mean battery compartment temp
-,7bb,192,207,0.01,0,2,%,2103,6103,e2,Real State of Charge
-,7bb,32,39,1,40,0,°C,2104,6104,e2,Cell 1 Temperature
-,7bb,56,63,1,40,0,°C,2104,6104,e2,Cell 2 Temperature
-,7bb,80,87,1,40,0,°C,2104,6104,e2,Cell 3 Temperature
-,7bb,104,111,1,40,0,°C,2104,6104,e2,Cell 4 Temperature
-,7bb,128,135,1,40,0,°C,2104,6104,e2,Cell 5 Temperature
-,7bb,152,159,1,40,0,°C,2104,6104,e2,Cell 6 Temperature
-,7bb,176,183,1,40,0,°C,2104,6104,e2,Cell 7 Temperature
-,7bb,200,207,1,40,0,°C,2104,6104,e2,Cell 8 Temperature
-,7bb,224,231,1,40,0,°C,2104,6104,e2,Cell 9 Temperature
-,7bb,248,255,1,40,0,°C,2104,6104,e2,Cell 10 Temperature
-,7bb,272,279,1,40,0,°C,2104,6104,e2,Cell 11 Temperature
-,7bb,296,303,1,40,0,°C,2104,6104,e2,Cell 12 Temperature
-,7bb,600,607,1,40,0,degC,2104,6104,ff,21_04_#76_Average_Battery_Temperature
-,7bb,16,23,1,0,0,,2107,6107,e2,Cell 1 Balancing switch
-,7bb,24,31,1,0,0,,2107,6107,e2,Cell 2 Balancing switch
-,7bb,32,39,1,0,0,,2107,6107,e2,Cell 3 Balancing switch
-,7bb,40,47,1,0,0,,2107,6107,e2,Cell 4 Balancing switch
-,7bb,48,55,1,0,0,,2107,6107,e2,Cell 5 Balancing switch
-,7bb,56,63,1,0,0,,2107,6107,e2,Cell 6 Balancing switch
-,7bb,64,71,1,0,0,,2107,6107,e2,Cell 7 Balancing switch
-,7bb,72,79,1,0,0,,2107,6107,e2,Cell 8 Balancing switch
-,7bb,80,87,1,0,0,,2107,6107,e2,Cell 9 Balancing switch
-,7bb,88,95,1,0,0,,2107,6107,e2,Cell 10 Balancing switch
-,7bb,96,102,1,0,0,,2107,6107,e2,Cell 11 Balancing switch
-,7bb,104,111,1,0,0,,2107,6107,e2,Cell 12 Balancing switch
-,7bb,32,39,1,0,0,°C,2104,6104,105,Cell 1 Balancing switch
-,7bb,56,63,1,0,0,°C,2104,6104,105,Cell 2 Balancing switch
-,7bb,80,87,1,0,0,°C,2104,6104,105,Cell 3 Balancing switch
-,7bb,104,111,1,0,0,°C,2104,6104,105,Cell 4 Balancing switch
-,7bb,16,31,0.001,0,3,V,2141,6141,ff,Cell 01 V
-,7bb,32,47,0.001,0,3,V,2141,6141,ff,Cell 02 V
-,7bb,48,63,0.001,0,3,V,2141,6141,ff,Cell 03 V
-,7bb,64,79,0.001,0,3,V,2141,6141,ff,Cell 04 V
-,7bb,80,95,0.001,0,3,V,2141,6141,ff,Cell 05 V
-,7bb,96,111,0.001,0,3,V,2141,6141,ff,Cell 06 V
-,7bb,112,127,0.001,0,3,V,2141,6141,ff,Cell 07 V
-,7bb,128,143,0.001,0,3,V,2141,6141,ff,Cell 08 V
-,7bb,144,159,0.001,0,3,V,2141,6141,ff,Cell 09 V
-,7bb,160,175,0.001,0,3,V,2141,6141,ff,Cell 10 V
-,7bb,176,191,0.001,0,3,V,2141,6141,ff,Cell 11 V
-,7bb,192,207,0.001,0,3,V,2141,6141,ff,Cell 12 V
-,7bb,208,223,0.001,0,3,V,2141,6141,ff,Cell 13 V
-,7bb,224,239,0.001,0,3,V,2141,6141,ff,Cell 14 V
-,7bb,240,255,0.001,0,3,V,2141,6141,ff,Cell 15 V
-,7bb,256,271,0.001,0,3,V,2141,6141,ff,Cell 16 V
-,7bb,272,287,0.001,0,3,V,2141,6141,ff,Cell 17 V
-,7bb,288,303,0.001,0,3,V,2141,6141,ff,Cell 18 V
-,7bb,304,319,0.001,0,3,V,2141,6141,ff,Cell 19 V
-,7bb,320,335,0.001,0,3,V,2141,6141,ff,Cell 20 V
-,7bb,336,351,0.001,0,3,V,2141,6141,ff,Cell 21 V
-,7bb,352,367,0.001,0,3,V,2141,6141,ff,Cell 22 V
-,7bb,368,383,0.001,0,3,V,2141,6141,ff,Cell 23 V
-,7bb,384,399,0.001,0,3,V,2141,6141,ff,Cell 24 V
-,7bb,400,415,0.001,0,3,V,2141,6141,ff,Cell 25 V
-,7bb,416,431,0.001,0,3,V,2141,6141,ff,Cell 26 V
-,7bb,432,447,0.001,0,3,V,2141,6141,ff,Cell 27 V
-,7bb,448,463,0.001,0,3,V,2141,6141,ff,Cell 28 V
-,7bb,464,479,0.001,0,3,V,2141,6141,ff,Cell 29 V
-,7bb,480,495,0.001,0,3,V,2141,6141,ff,Cell 30 V
-,7bb,496,511,0.001,0,3,V,2141,6141,ff,Cell 31 V
-,7bb,512,527,0.001,0,3,V,2141,6141,ff,Cell 32 V
-,7bb,528,543,0.001,0,3,V,2141,6141,ff,Cell 33 V
-,7bb,544,559,0.001,0,3,V,2141,6141,ff,Cell 34 V
-,7bb,560,575,0.001,0,3,V,2141,6141,ff,Cell 35 V
-,7bb,576,591,0.001,0,3,V,2141,6141,ff,Cell 36 V
-,7bb,592,607,0.001,0,3,V,2141,6141,ff,Cell 37 V
-,7bb,608,623,0.001,0,3,V,2141,6141,ff,Cell 38 V
-,7bb,624,639,0.001,0,3,V,2141,6141,ff,Cell 39 V
-,7bb,640,655,0.001,0,3,V,2141,6141,ff,Cell 40 V
-,7bb,656,671,0.001,0,3,V,2141,6141,ff,Cell 41 V
-,7bb,672,687,0.001,0,3,V,2141,6141,ff,Cell 42 V
-,7bb,688,703,0.001,0,3,V,2141,6141,ff,Cell 43 V
-,7bb,704,719,0.001,0,3,V,2141,6141,ff,Cell 44 V
-,7bb,720,735,0.001,0,3,V,2141,6141,ff,Cell 45 V
-,7bb,736,751,0.001,0,3,V,2141,6141,ff,Cell 46 V
-,7bb,752,767,0.001,0,3,V,2141,6141,ff,Cell 47 V
-,7bb,768,783,0.001,0,3,V,2141,6141,ff,Cell 48 V
-,7bb,784,799,0.001,0,3,V,2141,6141,ff,Cell 49 V
-,7bb,800,815,0.001,0,3,V,2141,6141,ff,Cell 50 V
-,7bb,816,831,0.001,0,3,V,2141,6141,ff,Cell 51 V
-,7bb,832,847,0.001,0,3,V,2141,6141,ff,Cell 52 V
-,7bb,848,863,0.001,0,3,V,2141,6141,ff,Cell 53 V
-,7bb,864,879,0.001,0,3,V,2141,6141,ff,Cell 54 V
-,7bb,880,895,0.001,0,3,V,2141,6141,ff,Cell 55 V
-,7bb,896,911,0.001,0,3,V,2141,6141,ff,Cell 56 V
-,7bb,912,927,0.001,0,3,V,2141,6141,ff,Cell 57 V
-,7bb,928,943,0.001,0,3,V,2141,6141,ff,Cell 58 V
-,7bb,944,959,0.001,0,3,V,2141,6141,ff,Cell 59 V
-,7bb,960,975,0.001,0,3,V,2141,6141,ff,Cell 60 V
-,7bb,976,991,0.001,0,3,V,2141,6141,ff,Cell 61 V
-,7bb,992,1007,0.001,0,3,V,2141,6141,ff,Cell 62 V
-,7bb,16,31,0.001,0,3,V,2142,6142,ff,Cell 63 V
-,7bb,32,47,0.001,0,3,V,2142,6142,ff,Cell 64 Vl
-,7bb,48,63,0.001,0,3,V,2142,6142,ff,Cell 65 V
-,7bb,64,79,0.001,0,3,V,2142,6142,ff,Cell 66 V
-,7bb,80,95,0.001,0,3,V,2142,6142,ff,Cell 67 V
-,7bb,96,111,0.001,0,3,V,2142,6142,ff,Cell 68 V
-,7bb,112,127,0.001,0,3,V,2142,6142,ff,Cell 69 V
-,7bb,128,143,0.001,0,3,V,2142,6142,ff,Cell 70 V
-,7bb,144,159,0.001,0,3,V,2142,6142,ff,Cell 71 V
-,7bb,160,175,0.001,0,3,V,2142,6142,ff,Cell 72 V
-,7bb,176,191,0.001,0,3,V,2142,6142,ff,Cell 73 V
-,7bb,192,207,0.001,0,3,V,2142,6142,ff,Cell 74 V
-,7bb,208,223,0.001,0,3,V,2142,6142,ff,Cell 75 V
-,7bb,224,239,0.001,0,3,V,2142,6142,ff,Cell 76 V
-,7bb,240,255,0.001,0,3,V,2142,6142,ff,Cell 77 V
-,7bb,256,271,0.001,0,3,V,2142,6142,ff,Cell 78 V
-,7bb,272,287,0.001,0,3,V,2142,6142,ff,Cell 79 V
-,7bb,288,303,0.001,0,3,V,2142,6142,ff,Cell 80 V
-,7bb,304,319,0.001,0,3,V,2142,6142,ff,Cell 81 V
-,7bb,320,335,0.001,0,3,V,2142,6142,ff,Cell 82 V
-,7bb,336,351,0.001,0,3,V,2142,6142,ff,Cell 83 V
-,7bb,352,367,0.001,0,3,V,2142,6142,ff,Cell 84 V
-,7bb,368,383,0.001,0,3,V,2142,6142,ff,Cell 85 V
-,7bb,384,399,0.001,0,3,V,2142,6142,ff,Cell 86 V
-,7bb,400,415,0.001,0,3,V,2142,6142,ff,Cell 87 V
-,7bb,416,431,0.001,0,3,V,2142,6142,ff,Cell 88 V
-,7bb,432,447,0.001,0,3,V,2142,6142,ff,Cell 89 V
-,7bb,448,463,0.001,0,3,V,2142,6142,ff,Cell 90 V
-,7bb,464,479,0.001,0,3,V,2142,6142,ff,Cell 91 V
-,7bb,480,495,0.001,0,3,V,2142,6142,ff,Cell 92 V
-,7bb,496,511,0.001,0,3,V,2142,6142,ff,Cell 93 V
-,7bb,512,527,0.001,0,3,V,2142,6142,ff,Cell 94 V
-,7bb,528,543,0.001,0,3,V,2142,6142,ff,Cell 95 V
-,7bb,544,559,0.001,0,3,V,2142,6142,ff,Cell 96 V
-,7bb,96,119,1,0,0,km,2161,6161,ff,Battery mileage in km
-,7bb,120,151,1,0,0,kWh,2161,6161,ff,kWh from beginning of Battery life
-,7bb,16,47,1,0,0,,2162,6162,ff,21_62_03_Serial_Number (FIN)
-,7bb,48,63,1,0,0,,2166,6166,ff,Full Charge counter
-,7bb,64,79,1,0,0,,2166,6166,ff,Partial Charge counter
-,7bb,56,63,1,0,0,,2180,6180,ff,diagVersion
-,7bb,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-,7bb,128,143,1,0,0,,2180,6180,ff,Soft
-,7bb,144,159,1,0,0,,2180,6180,ff,Version
-,7bb,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,7bb,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-# UBP
-,7bc,56,63,1,0,0,,2180,6180,ff,diagVersion
-,7bc,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-,7bc,128,143,1,0,0,,2180,6180,ff,Soft
-,7bc,144,159,1,0,0,,2180,6180,ff,Version
-,7bc,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,7bc,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-,7bc,28,39,1,4094,0,N·m,224B7D,624B7D,ff,Total Hydraulic brake wheels torque request
-# TCU
+793.5081.0,18daf1de,0,0,1,0,0,,1081,5081,ff,start diag
+793.50c0.0,18daf1de,0,0,1,0,0,,10c0,50c0,ff,start diag
+793.7e01.0,18daf1de,0,0,1,0,0,,3e01,7e01,ff,Tester present
+793.6180.56,18daf1de,56,63,1,0,0,,2180,6180,ff,diagVersion
+793.6180.64,18daf1de,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+793.6180.128,18daf1de,128,143,1,0,0,,2180,6180,ff,Soft
+793.6180.144,18daf1de,144,159,1,0,0,,2180,6180,ff,Version
+793.54.0,18daf1de,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+793.5902ff.0,18daf1de,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+793.625057.24,18daf1de,24,39,0.0625,32768,2,mA,225057,625057,ff,DataRead.Raw leakage current - DC part measurement
+793.625058.24,18daf1de,24,39,0.0625,32768,2,mA,225058,625058,ff,DataRead.Raw leakage current - High Frequency 10kHz part measurement
+793.625059.24,18daf1de,24,39,0.0625,32768,2,mA,225059,625059,ff,DataRead.Raw leakage current - High Frequency 1st part measurement
+793.62505a.24,18daf1de,24,39,0.0625,32768,2,mA,22505a,62505a,ff,DataRead.Raw leakage current - Low Frequency part measurement (50Hz)
+793.622001.24,18daf1de,24,39,.0625,3200,2,A,222001,622001,ff,Mains phase 1 current RMS value
+793.625026.24,18daf1de,24,31,1,0,1,%,225026,625026,ff,J1772 control pilot raw duty cycle
+793.62503a.24,18daf1de,24,39,.0625,3200,2,A,22503a,62503a,ff,Mains phase 2 current RMS
+793.62503b.24,18daf1de,24,39,.0625,3200,2,A,22503b,62503b,ff,Mains phase 3 current RMS
+793.625017.29,18daf1de,29,31,1,0,0,,225017,625017,ff,Mains current type,0:Nok;1:AC mono;2:AC tri;3:DC;4:AC bi
+793.62502c.24,18daf1de,24,39,.5,32000,1,V,22502c,62502c,ff,Raw AC mains phase 1 measured voltage
+793.62502d.24,18daf1de,24,39,.5,32000,1,V,22502d,62502d,ff,Raw AC mains phase 2 measured voltage
+793.62502e.24,18daf1de,24,39,.5,32000,1,V,22502e,62502e,ff,Raw AC mains phase 3 measured voltage
+793.62503f.24,18daf1de,24,39,.5,0,1,V,22503f,62503f,ff,Mains phase 1-2 voltage RMS value
+793.625041.24,18daf1de,24,39,.5,0,1,V,225041,625041,ff,Mains phase 2-3 voltage RMS value
+793.625042.24,18daf1de,24,39,.5,0,1,V,225042,625042,ff,Mains phase 3-1 voltage RMS value
+793.62504a.24,18daf1de,24,39,1,20000,0,W,22504a,62504a,ff,Mains active power consumed
+793.625062.24,18daf1de,24,39,1,0,0,Ohm,225062,625062,ff,Mains ground resistance
+793.625063.24,18daf1de,24,31,1,0,0,,225063,625063,ff,Supervisor state,0:Init;1:Wait;2:ClosingS2;3:InitType;4:InitLkg;5:InitChg;6:Charge;7:ZeroAmpMode;8:EndOfChg;9:OpeningS2;10:ReadyToSleep;11:EmergencyStop;12:InitChargeDF;13:OCPStop;14:WaitS2
+793.625064.24,18daf1de,24,31,1,0,0,,225064,625064,ff,Leakage current diagnostic stored completion status,0:init;1:HF10;3:Mains Ground Default;5:Earth Current default;9:Ground Default;17:Means Leakage DC;33:Means Leakage LF;49:Means Leakage DC+LF;65:Means Leakage HF;81:Means Leakage DC+HF;97:Means Leakage LF+HF;113:Means Leakage DC+LF+HF
+# LBC2 #
+7b6.6180.56,18daf1dc,56,63,1,0,0,,2180,6180,ff,diagVersion
+7b6.6180.64,18daf1dc,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+7b6.6180.128,18daf1dc,128,143,1,0,0,,2180,6180,ff,Soft
+7b6.6180.144,18daf1dc,144,159,1,0,0,,2180,6180,ff,Version
+7b6.54.0,18daf1dc,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+7b6.59020f.0,18daf1dc,0,23,1,0,0,,19023b,59020f,ff,Query DTC
+# LBC #
+7bb.6101.336,18daf1db,24,39,0.01,0,2,kW,229018,629018,ff,Maximum battery input power
+7bb.6103.192,18daf1db,24,39,0.01,0,2,%,229002,629002,ff,Real State of Charge
+7bb.6104.32,18daf1db,24,39,0.0625,640,2,°C,229131,629131,ff,Cell 1 Temperature
+7bb.6104.56,18daf1db,24,39,0.0625,640,2,°C,229132,629132,ff,Cell 2 Temperature
+7bb.6104.80,18daf1db,24,39,0.0625,640,2,°C,229133,629133,ff,Cell 3 Temperature
+7bb.6104.104,18daf1db,24,39,0.0625,640,2,°C,229134,629134,ff,Cell 4 Temperature
+7bb.6104.128,18daf1db,24,39,0.0625,640,2,°C,229135,629135,ff,Cell 5 Temperature
+7bb.6104.152,18daf1db,24,39,0.0625,640,2,°C,229136,629136,ff,Cell 6 Temperature
+7bb.6104.176,18daf1db,24,39,0.0625,640,2,°C,229137,629137,ff,Cell 7 Temperature
+7bb.6104.200,18daf1db,24,39,0.0625,640,2,°C,229138,629138,ff,Cell 8 Temperature
+7bb.6104.224,18daf1db,24,39,0.0625,640,2,°C,229139,629139,ff,Cell 9 Temperature
+7bb.6104.248,18daf1db,24,39,0.0625,640,2,°C,22913a,62913a,ff,Cell 10 Temperature
+7bb.6104.272,18daf1db,24,39,0.0625,640,2,°C,22913b,62913b,ff,Cell 11 Temperature
+7bb.6104.296,18daf1db,24,39,0.0625,640,2,°C,22913c,62913c,ff,Cell 12 Temperature
+7bb.6104.600,18daf1db,24,39,0.0625,640,2,°C,229012,629012,ff,Mean battery compartment temp
+7bb.6107.16,18daf1db,16,23,1,0,0,,2107,6107,ff,Cell 1 Balancing switch
+7bb.6107.24,18daf1db,24,31,1,0,0,,2107,6107,ff,Cell 2 Balancing switch
+7bb.6107.32,18daf1db,32,39,1,0,0,,2107,6107,ff,Cell 3 Balancing switch
+7bb.6107.40,18daf1db,40,47,1,0,0,,2107,6107,ff,Cell 4 Balancing switch
+7bb.6107.48,18daf1db,48,55,1,0,0,,2107,6107,ff,Cell 5 Balancing switch
+7bb.6107.56,18daf1db,56,63,1,0,0,,2107,6107,ff,Cell 6 Balancing switch
+7bb.6107.64,18daf1db,64,71,1,0,0,,2107,6107,ff,Cell 7 Balancing switch
+7bb.6107.72,18daf1db,72,79,1,0,0,,2107,6107,ff,Cell 8 Balancing switch
+7bb.6107.80,18daf1db,80,87,1,0,0,,2107,6107,ff,Cell 9 Balancing switch
+7bb.6107.88,18daf1db,88,95,1,0,0,,2107,6107,ff,Cell 10 Balancing switch
+7bb.6107.96,18daf1db,96,102,1,0,0,,2107,6107,ff,Cell 11 Balancing switch
+7bb.6107.104,18daf1db,104,111,1,0,0,,2107,6107,ff,Cell 12 Balancing switch
+7bb.6141.16,18daf1db,24,39,0.000976563,0,3,V,229021,629021,ff,Cell 01 V
+7bb.6141.32,18daf1db,24,39,0.000976563,0,3,V,229022,629022,ff,Cell 02 V
+7bb.6141.48,18daf1db,24,39,0.000976563,0,3,V,229023,629023,ff,Cell 03 V
+7bb.6141.64,18daf1db,24,39,0.000976563,0,3,V,229024,629024,ff,Cell 04 V
+7bb.6141.80,18daf1db,24,39,0.000976563,0,3,V,229025,629025,ff,Cell 05 V
+7bb.6141.96,18daf1db,24,39,0.000976563,0,3,V,229026,629026,ff,Cell 06 V
+7bb.6141.112,18daf1db,24,39,0.000976563,0,3,V,229027,629027,ff,Cell 07 V
+7bb.6141.128,18daf1db,24,39,0.000976563,0,3,V,229028,629028,ff,Cell 08 V
+7bb.6141.144,18daf1db,24,39,0.000976563,0,3,V,229029,629029,ff,Cell 09 V
+7bb.6141.160,18daf1db,24,39,0.000976563,0,3,V,22902a,62902a,ff,Cell 10 V
+7bb.6141.176,18daf1db,24,39,0.000976563,0,3,V,22902b,62902b,ff,Cell 11 V
+7bb.6141.192,18daf1db,24,39,0.000976563,0,3,V,22902c,62902c,ff,Cell 12 V
+7bb.6141.208,18daf1db,24,39,0.000976563,0,3,V,22902d,62902d,ff,Cell 13 V
+7bb.6141.224,18daf1db,24,39,0.000976563,0,3,V,22902e,62902e,ff,Cell 14 V
+7bb.6141.240,18daf1db,24,39,0.000976563,0,3,V,22902f,62902f,ff,Cell 15 V
+7bb.6141.256,18daf1db,24,39,0.000976563,0,3,V,229030,629030,ff,Cell 16 V
+7bb.6141.272,18daf1db,24,39,0.000976563,0,3,V,229031,629031,ff,Cell 17 V
+7bb.6141.288,18daf1db,24,39,0.000976563,0,3,V,229032,629032,ff,Cell 18 V
+7bb.6141.304,18daf1db,24,39,0.000976563,0,3,V,229033,629033,ff,Cell 19 V
+7bb.6141.320,18daf1db,24,39,0.000976563,0,3,V,229034,629034,ff,Cell 20 V
+7bb.6141.336,18daf1db,24,39,0.000976563,0,3,V,229035,629035,ff,Cell 21 V
+7bb.6141.352,18daf1db,24,39,0.000976563,0,3,V,229036,629036,ff,Cell 22 V
+7bb.6141.368,18daf1db,24,39,0.000976563,0,3,V,229037,629037,ff,Cell 23 V
+7bb.6141.384,18daf1db,24,39,0.000976563,0,3,V,229038,629038,ff,Cell 24 V
+7bb.6141.400,18daf1db,24,39,0.000976563,0,3,V,229039,629039,ff,Cell 25 V
+7bb.6141.416,18daf1db,24,39,0.000976563,0,3,V,22903a,62903a,ff,Cell 26 V
+7bb.6141.432,18daf1db,24,39,0.000976563,0,3,V,22903b,62903b,ff,Cell 27 V
+7bb.6141.448,18daf1db,24,39,0.000976563,0,3,V,22903c,62903c,ff,Cell 28 V
+7bb.6141.464,18daf1db,24,39,0.000976563,0,3,V,22903d,62903d,ff,Cell 29 V
+7bb.6141.480,18daf1db,24,39,0.000976563,0,3,V,22903e,62903e,ff,Cell 30 V
+7bb.6141.496,18daf1db,24,39,0.000976563,0,3,V,22903f,62903f,ff,Cell 31 V
+7bb.6141.512,18daf1db,24,39,0.000976563,0,3,V,229041,629041,ff,Cell 32 V
+7bb.6141.528,18daf1db,24,39,0.000976563,0,3,V,229042,629042,ff,Cell 33 V
+7bb.6141.544,18daf1db,24,39,0.000976563,0,3,V,229043,629043,ff,Cell 34 V
+7bb.6141.560,18daf1db,24,39,0.000976563,0,3,V,229044,629044,ff,Cell 35 V
+7bb.6141.576,18daf1db,24,39,0.000976563,0,3,V,229045,629045,ff,Cell 36 V
+7bb.6141.592,18daf1db,24,39,0.000976563,0,3,V,229046,629046,ff,Cell 37 V
+7bb.6141.608,18daf1db,24,39,0.000976563,0,3,V,229047,629047,ff,Cell 38 V
+7bb.6141.624,18daf1db,24,39,0.000976563,0,3,V,229048,629048,ff,Cell 39 V
+7bb.6141.640,18daf1db,24,39,0.000976563,0,3,V,229049,629049,ff,Cell 40 V
+7bb.6141.656,18daf1db,24,39,0.000976563,0,3,V,22904a,62904a,ff,Cell 41 V
+7bb.6141.672,18daf1db,24,39,0.000976563,0,3,V,22904b,62904b,ff,Cell 42 V
+7bb.6141.688,18daf1db,24,39,0.000976563,0,3,V,22904c,62904c,ff,Cell 43 V
+7bb.6141.704,18daf1db,24,39,0.000976563,0,3,V,22904d,62904d,ff,Cell 44 V
+7bb.6141.720,18daf1db,24,39,0.000976563,0,3,V,22904e,62904e,ff,Cell 45 V
+7bb.6141.736,18daf1db,24,39,0.000976563,0,3,V,22904f,62904f,ff,Cell 46 V
+7bb.6141.752,18daf1db,24,39,0.000976563,0,3,V,229050,629050,ff,Cell 47 V
+7bb.6141.768,18daf1db,24,39,0.000976563,0,3,V,229051,629051,ff,Cell 48 V
+7bb.6141.784,18daf1db,24,39,0.000976563,0,3,V,229052,629052,ff,Cell 49 V
+7bb.6141.800,18daf1db,24,39,0.000976563,0,3,V,229053,629053,ff,Cell 50 V
+7bb.6141.816,18daf1db,24,39,0.000976563,0,3,V,229054,629054,ff,Cell 51 V
+7bb.6141.832,18daf1db,24,39,0.000976563,0,3,V,229055,629055,ff,Cell 52 V
+7bb.6141.848,18daf1db,24,39,0.000976563,0,3,V,229056,629056,ff,Cell 53 V
+7bb.6141.864,18daf1db,24,39,0.000976563,0,3,V,229057,629057,ff,Cell 54 V
+7bb.6141.880,18daf1db,24,39,0.000976563,0,3,V,229058,629058,ff,Cell 55 V
+7bb.6141.896,18daf1db,24,39,0.000976563,0,3,V,229059,629059,ff,Cell 56 V
+7bb.6141.912,18daf1db,24,39,0.000976563,0,3,V,22905a,62905a,ff,Cell 57 V
+7bb.6141.928,18daf1db,24,39,0.000976563,0,3,V,22905b,62905b,ff,Cell 58 V
+7bb.6141.944,18daf1db,24,39,0.000976563,0,3,V,22905c,62905c,ff,Cell 59 V
+7bb.6141.960,18daf1db,24,39,0.000976563,0,3,V,22905d,62905d,ff,Cell 60 V
+7bb.6141.976,18daf1db,24,39,0.000976563,0,3,V,22905e,62905e,ff,Cell 61 V
+7bb.6141.992,18daf1db,24,39,0.000976563,0,3,V,22905f,62905f,ff,Cell 62 V
+7bb.6142.16,18daf1db,24,39,0.000976563,0,3,V,229061,629061,ff,Cell 63 V
+7bb.6142.32,18daf1db,24,39,0.000976563,0,3,V,229062,629062,ff,Cell 64 V
+7bb.6142.48,18daf1db,24,39,0.000976563,0,3,V,229063,629063,ff,Cell 65 V
+7bb.6142.64,18daf1db,24,39,0.000976563,0,3,V,229064,629064,ff,Cell 66 V
+7bb.6142.80,18daf1db,24,39,0.000976563,0,3,V,229065,629065,ff,Cell 67 V
+7bb.6142.96,18daf1db,24,39,0.000976563,0,3,V,229066,629066,ff,Cell 68 V
+7bb.6142.112,18daf1db,24,39,0.000976563,0,3,V,229067,629067,ff,Cell 69 V
+7bb.6142.128,18daf1db,24,39,0.000976563,0,3,V,229068,629068,ff,Cell 70 V
+7bb.6142.144,18daf1db,24,39,0.000976563,0,3,V,229069,629069,ff,Cell 71 V
+7bb.6142.160,18daf1db,24,39,0.000976563,0,3,V,22906a,62906a,ff,Cell 72 V
+7bb.6142.176,18daf1db,24,39,0.000976563,0,3,V,22906b,62906b,ff,Cell 73 V
+7bb.6142.192,18daf1db,24,39,0.000976563,0,3,V,22906c,62906c,ff,Cell 74 V
+7bb.6142.208,18daf1db,24,39,0.000976563,0,3,V,22906d,62906d,ff,Cell 75 V
+7bb.6142.224,18daf1db,24,39,0.000976563,0,3,V,22906e,62906e,ff,Cell 76 V
+7bb.6142.240,18daf1db,24,39,0.000976563,0,3,V,22906f,62906f,ff,Cell 77 V
+7bb.6142.256,18daf1db,24,39,0.000976563,0,3,V,229070,629070,ff,Cell 78 V
+7bb.6142.272,18daf1db,24,39,0.000976563,0,3,V,229071,629071,ff,Cell 79 V
+7bb.6142.288,18daf1db,24,39,0.000976563,0,3,V,229072,629072,ff,Cell 80 V
+7bb.6142.304,18daf1db,24,39,0.000976563,0,3,V,229073,629073,ff,Cell 81 V
+7bb.6142.320,18daf1db,24,39,0.000976563,0,3,V,229074,629074,ff,Cell 82 V
+7bb.6142.336,18daf1db,24,39,0.000976563,0,3,V,229075,629075,ff,Cell 83 V
+7bb.6142.352,18daf1db,24,39,0.000976563,0,3,V,229076,629076,ff,Cell 84 V
+7bb.6142.368,18daf1db,24,39,0.000976563,0,3,V,229077,629077,ff,Cell 85 V
+7bb.6142.384,18daf1db,24,39,0.000976563,0,3,V,229078,629078,ff,Cell 86 V
+7bb.6142.400,18daf1db,24,39,0.000976563,0,3,V,229079,629079,ff,Cell 87 V
+7bb.6142.416,18daf1db,24,39,0.000976563,0,3,V,22907a,62907a,ff,Cell 88 V
+7bb.6142.432,18daf1db,24,39,0.000976563,0,3,V,22907b,62907b,ff,Cell 89 V
+7bb.6142.448,18daf1db,24,39,0.000976563,0,3,V,22907c,62907c,ff,Cell 90 V
+7bb.6142.464,18daf1db,24,39,0.000976563,0,3,V,22907d,62907d,ff,Cell 91 V
+7bb.6142.480,18daf1db,24,39,0.000976563,0,3,V,22907e,62907e,ff,Cell 92 V
+7bb.6142.496,18daf1db,24,39,0.000976563,0,3,V,22907f,62907f,ff,Cell 93 V
+7bb.6142.512,18daf1db,24,39,0.000976563,0,3,V,229081,629081,ff,Cell 94 V
+7bb.6142.528,18daf1db,24,39,0.000976563,0,3,V,229082,629082,ff,Cell 95 V
+7bb.6142.544,18daf1db,24,39,0.000976563,0,3,V,229083,629083,ff,Cell 96 V
+7bb.6161.96,18daf1db,96,119,1,0,0,km,2161,6161,ff,Battery mileage in km
+7bb.6161.120,18daf1db,120,151,1,0,0,kWh,2161,6161,ff,kWh from beginning of Battery life
+7bb.6162.16,18daf1db,16,47,1,0,0,,2162,6162,ff,21_62_03_Serial_Number (FIN)
+7bb.6166.48,18daf1db,48,63,1,0,0,,2166,6166,ff,Full Charge counter
+7bb.6166.64,18daf1db,64,79,1,0,0,,2166,6166,ff,Partial Charge counter
+7bb.6180.56,18daf1db,56,63,1,0,0,,2180,6180,ff,diagVersion
+7bb.6180.64,18daf1db,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+7bb.6180.128,18daf1db,128,143,1,0,0,,2180,6180,ff,Soft
+7bb.6180.144,18daf1db,144,159,1,0,0,,2180,6180,ff,Version
+7bb.54.0,18daf1db,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+7bb.5902ff.0,18daf1db,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+7bb.5003.0,18daf1db,0,23,1,0,0,,1003,5003,ff,StartDiagnosticSession.Extended
+# UBP xxxxxxx
+#,7bc,56,63,1,0,0,,2180,6180,ff,diagVersion
+#,7bc,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+#,7bc,128,143,1,0,0,,2180,6180,ff,Soft
+#,7bc,144,159,1,0,0,,2180,6180,ff,Version
+#,7bc,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+#,7bc,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+#,7bc,28,39,1,4094,0,N·m,224B7D,624B7D,ff,Total Hydraulic brake wheels torque request
+# TCU - DCM Renault #
 ,7da,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7da,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7da,128,143,1,0,0,,2180,6180,ff,Soft
 ,7da,144,159,1,0,0,,2180,6180,ff,Version
 ,7da,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,7da,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-# S-GW3
+# S-GW3 #
 ,18daf1d2,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,18daf1d2,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,18daf1d2,128,143,1,0,0,,2180,6180,ff,Soft
@@ -362,97 +354,97 @@
 ,18daf1d2,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,18daf1d2,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,18daf1d2,0,23,1,0,0,,1003,5003,ff,StartDiagnosticSession.Extended
-
-
-# EVC
-,18daf1da,56,63,1,0,0,,2180,6180,ff,diagVersion
-,18daf1da,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-,18daf1da,128,143,1,0,0,,2180,6180,ff,Soft
-,18daf1da,144,159,1,0,0,,2180,6180,ff,Version
-,18daf1da,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,18daf1da,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-,18daf1da,0,23,1,0,0,,1003,5003,ff,StartDiagnosticSession.Extended
-,18daf1da,24,39,.02,0,2,%,222002,622002,ff,State Of Charge (SOC) HV battery
-,18daf1da,24,39,.01,0,2,V,222005,622005,ff,Battery voltage 14v
+# EVC #
+7ec.6180.56,18daf1da,56,63,1,0,0,,2180,6180,ff,diagVersion
+7ec.6180.64,18daf1da,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+7ec.6180.128,18daf1da,128,143,1,0,0,,2180,6180,ff,Soft
+7ec.6180.144,18daf1da,144,159,1,0,0,,2180,6180,ff,Version
+7ec.54.0,18daf1da,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+7ec.5902ff.0,18daf1da,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+7ec.5003.0,18daf1da,0,23,1,0,0,,10c0,50c0,ff,StartDiagnosticSession.Extended
+7ec.5001.0,18daf1da,0,23,1,0,0,,1001,5001,ff,StartDiagnosticSession
+7ec.5003.0,18daf1da,0,23,1,0,0,,1003,5003,ff,StartDiagnosticSession
+7ec.622002.24,18daf1da,24,39,.02,0,2,%,222002,622002,ff,State Of Charge (SOC) HV battery
+7ec.622005.24,18daf1da,24,39,.01,0,2,V,222005,622005,ff,Battery voltage 14v
 7ec.622006.24,18daf1da,24,47,1,0,0,km,222006,622006,ff,Total vehicle distance
 7ec.62202e.24,18daf1da,24,39,.00125,0,0,-,22202E,62202E,ff,Accelerator pedal position
-,18daf1da,24,39,.03125,32768,2,N.m,222243,622243,1ff,Final effective torque request to the electric motor (EM)
-,18daf1da,24,39,.03125,32768,2,N.m,222245,622245,ff,Limited electrical motor (EM) effective torque setpoint
-,18daf1da,24,39,.03125,32768,2,N.m,222246,622246,ff,Electrical motor (EM) maximum effective torque available
-,18daf1da,24,39,.03125,32768,2,N.m,222247,622247,ff,Minimum effective torque that can be requested to the electrical motor (EM)
-,18daf1da,24,31,.390625,0,1,%,223028,623028,ff,DCDC Load
+7ec.622243.24,18daf1da,24,39,.03125,32768,2,N.m,222243,622243,1ff,Final effective torque request to the electric motor (EM)
+7ec.622245.24,18daf1da,24,39,.03125,32768,2,N.m,222245,622245,ff,Limited electrical motor (EM) effective torque setpoint
+7ec.622246.24,18daf1da,24,39,.03125,32768,2,N.m,222246,622246,ff,Electrical motor (EM) maximum effective torque available
+7ec.622247.24,18daf1da,24,39,.03125,32768,2,N.m,222247,622247,ff,Minimum effective torque that can be requested to the electrical motor (EM)
+7ec.623028.24,18daf1da,24,31,.390625,0,1,%,223028,623028,ff,DCDC Load
 7ec.623203.24,18daf1da,24,39,.5,0,1,V,223203,623203,ff,HV LBC voltage measure
 7ec.623204.24,18daf1da,24,39,.25,32768,1,A,223204,623204,ff,HV LBC current measure
-,18daf1da,24,31,1,0,0,%,223206,623206,ff,State Of Health (SOH) HV battery
-,18daf1da,24,31,1,1,0,,223318,623318,ff,Motor Water pump speed
-,18daf1da,24,31,1,1,0,,223319,623319,ff,Charger pump speed
-,18daf1da,24,31,1,1,0,,22331A,62331A,ff,Heater water pump speed
+7ec.623206.24,18daf1da,24,31,1,0,0,%,223206,623206,ff,State Of Health (SOH) HV battery
+7ec.623318.24,18daf1da,24,31,1,1,0,,223318,623318,ff,Motor Water pump speed
+7ec.623319.24,18daf1da,24,31,1,1,0,,223319,623319,ff,Charger pump speed
+7ec.62331a.24,18daf1da,24,31,1,1,0,,22331a,62331a,ff,Heater water pump speed
 #,18daf1da,24,47,0.001,1,0,kWh,2233dc,6233dc,ff,Consumed domestic energy
-,18daf1da,240,263,1,0,0,km,2233d4,6233d4,ff,odometer history 1
-,18daf1da,216,239,1,0,0,km,2233d4,6233d4,ff,odometer history 2
-,18daf1da,192,215,1,0,0,km,2233d4,6233d4,ff,odometer history 3
-,18daf1da,168,191,1,0,0,km,2233d4,6233d4,ff,odometer history 4
-,18daf1da,144,167,1,0,0,km,2233d4,6233d4,ff,odometer history 5
-,18daf1da,120,143,1,0,0,km,2233d4,6233d4,ff,odometer history 6
-,18daf1da,96,119,1,0,0,km,2233d4,6233d4,ff,odometer history 7
-,18daf1da,72,95,1,0,0,km,2233d4,6233d4,ff,odometer history 8
-,18daf1da,48,71,1,0,0,km,2233d4,6233d4,ff,odometer history 9
-,18daf1da,24,47,1,0,0,km,2233d4,6233d4,ff,odometer history 10
-,18daf1da,96,103,1,0,0,,2233d5,6233d5,ff,end 1,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
-,18daf1da,88,95,1,0,0,,2233d5,6233d5,ff,end 2,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
-,18daf1da,80,87,1,0,0,,2233d5,6233d5,ff,end 3,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
-,18daf1da,72,79,1,0,0,,2233d5,6233d5,ff,end 4,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
-,18daf1da,64,71,1,0,0,,2233d5,6233d5,ff,end 5,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
-,18daf1da,56,63,1,0,0,,2233d5,6233d5,ff,end 6,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
-,18daf1da,48,55,1,0,0,,2233d5,6233d5,ff,end 7,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
-,18daf1da,40,47,1,0,0,,2233d5,6233d5,ff,end 8,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
-,18daf1da,32,39,1,0,0,,2233d5,6233d5,ff,end 9,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
-,18daf1da,24,31,1,0,0,,2233d5,6233d5,ff,end 10,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
-,18daf1da,96,103,1,0,0,,2233d6,6233d6,ff,type 1,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
-,18daf1da,88,95,1,0,0,,2233d6,6233d6,ff,type 2,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
-,18daf1da,80,87,1,0,0,,2233d6,6233d6,ff,type 3,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
-,18daf1da,72,79,1,0,0,,2233d6,6233d6,ff,type 4,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
-,18daf1da,64,71,1,0,0,,2233d6,6233d6,ff,type 5,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
-,18daf1da,56,63,1,0,0,,2233d6,6233d6,ff,type 6,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
-,18daf1da,48,55,1,0,0,,2233d6,6233d6,ff,type 7,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
-,18daf1da,40,47,1,0,0,,2233d6,6233d6,ff,type 8,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
-,18daf1da,32,39,1,0,0,,2233d6,6233d6,ff,type 9,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
-,18daf1da,24,31,1,0,0,,2233d6,6233d6,ff,type 10,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
-,18daf1da,168,183,.2,0,1,%,2233d7,6233d7,ff,soc 1
-,18daf1da,152,167,.2,0,1,%,2233d7,6233d7,ff,soc 2
-,18daf1da,136,151,.2,0,1,%,2233d7,6233d7,ff,soc 3
-,18daf1da,120,135,.2,0,1,%,2233d7,6233d7,ff,soc 4
-,18daf1da,104,119,.2,0,1,%,2233d7,6233d7,ff,soc 5
-,18daf1da,88,103,.2,0,1,%,2233d7,6233d7,ff,soc 6
-,18daf1da,72,87,.2,0,1,%,2233d7,6233d7,ff,soc 7
-,18daf1da,56,71,.2,0,1,%,2233d7,6233d7,ff,soc 8
-,18daf1da,40,55,.2,0,1,%,2233d7,6233d7,ff,soc 9
-,18daf1da,24,39,.2,0,1,%,2233d7,6233d7,ff,soc 20
-,18daf1da,96,103,1,40,0,°C,2233d8,6233d8,ff,temp 1
-,18daf1da,88,95,1,40,0,°C,2233d8,6233d8,ff,temp 2
-,18daf1da,80,87,1,40,0,°C,2233d8,6233d8,ff,temp 3
-,18daf1da,72,79,1,40,0,°C,2233d8,6233d8,ff,temp 4
-,18daf1da,64,71,1,40,0,°C,2233d8,6233d8,ff,temp 5
-,18daf1da,56,63,1,40,0,°C,2233d8,6233d8,ff,temp 6
-,18daf1da,48,55,1,40,0,°C,2233d8,6233d8,ff,temp 7
-,18daf1da,40,47,1,40,0,°C,2233d8,6233d8,ff,temp 8
-,18daf1da,32,39,1,40,0,°C,2233d8,6233d8,ff,temp 9
-,18daf1da,24,31,1,40,0,°C,2233d8,6233d8,ff,temp 10
-,18daf1da,168,183,1,0,0,min,2233d9,6233d9,ff,duration 1
-,18daf1da,152,167,1,0,0,min,2233d9,6233d9,ff,duration 2
-,18daf1da,136,151,1,0,0,min,2233d9,6233d9,ff,duration 3
-,18daf1da,120,135,1,0,0,min,2233d9,6233d9,ff,duration 4
-,18daf1da,104,119,1,0,0,min,2233d9,6233d9,ff,duration 5
-,18daf1da,88,103,1,0,0,min,2233d9,6233d9,ff,duration 6
-,18daf1da,72,87,1,0,0,min,2233d9,6233d9,ff,duration 7
-,18daf1da,56,71,1,0,0,min,2233d9,6233d9,ff,duration 8
-,18daf1da,40,55,1,0,0,min,2233d9,6233d9,ff,duration 9
-,18daf1da,24,39,1,0,0,min,2233d9,6233d9,ff,duration 10
-,18daf1da,24,55,0.0001,0,2,km,2233de,6233de,ff,Trip distance
-,18daf1da,24,39,1,0,0,km,223451,623451,ff,Estimated kilometric cruising range sent to MMI
-,18daf1da,24,39,.001953125,0,3,kW,223455,623455,ff,Mean eco electrical consumption (if driver has economical driving behavior)
-,18daf1da,24,39,.001953125,0,3,kW,223457,623457,ff,Mean pessimistic electrical consumption (worst possible consumption)
-,18daf1da,24,47,0.001,0,0,kwh,2233dd,6233dd,ff,Trip energy consumed
-,18daf1da,24,55,0.0001,0,0,km,2233de,6233de,ff,Trip distance
-,18daf1da,24,39,1,32767,0,A,223484,623484,ff,Current measurement given by BCS Battery Current Sensor
-,18daf1da,24,39,.001,0,0,V,223485,623485,ff,Voltage measurement given by BCS Battery Current Sensor
+7ec.6233d4.240,18daf1da,240,263,1,0,0,km,2233d4,6233d4,ff,odometer history 1
+7ec.6233d4.216,18daf1da,216,239,1,0,0,km,2233d4,6233d4,ff,odometer history 2
+7ec.6233d4.192,18daf1da,192,215,1,0,0,km,2233d4,6233d4,ff,odometer history 3
+7ec.6233d4.168,18daf1da,168,191,1,0,0,km,2233d4,6233d4,ff,odometer history 4
+7ec.6233d4.144,18daf1da,144,167,1,0,0,km,2233d4,6233d4,ff,odometer history 5
+7ec.6233d4.120,18daf1da,120,143,1,0,0,km,2233d4,6233d4,ff,odometer history 6
+7ec.6233d4.96,18daf1da,96,119,1,0,0,km,2233d4,6233d4,ff,odometer history 7
+7ec.6233d4.72,18daf1da,72,95,1,0,0,km,2233d4,6233d4,ff,odometer history 8
+7ec.6233d4.48,18daf1da,48,71,1,0,0,km,2233d4,6233d4,ff,odometer history 9
+7ec.6233d4.24,18daf1da,24,47,1,0,0,km,2233d4,6233d4,ff,odometer history 10
+7ec.6233d5.96,18daf1da,96,103,1,0,0,,2233d5,6233d5,ff,end 1,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
+7ec.6233d5.88,18daf1da,88,95,1,0,0,,2233d5,6233d5,ff,end 2,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
+7ec.6233d5.80,18daf1da,80,87,1,0,0,,2233d5,6233d5,ff,end 3,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
+7ec.6233d5.72,18daf1da,72,79,1,0,0,,2233d5,6233d5,ff,end 4,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
+7ec.6233d5.64,18daf1da,64,71,1,0,0,,2233d5,6233d5,ff,end 5,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
+7ec.6233d5.56,18daf1da,56,63,1,0,0,,2233d5,6233d5,ff,end 6,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
+7ec.6233d5.48,18daf1da,48,55,1,0,0,,2233d5,6233d5,ff,end 7,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
+7ec.6233d5.40,18daf1da,40,47,1,0,0,,2233d5,6233d5,ff,end 8,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
+7ec.6233d5.32,18daf1da,32,39,1,0,0,,2233d5,6233d5,ff,end 9,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
+7ec.6233d5.24,18daf1da,24,31,1,0,0,,2233d5,6233d5,ff,end 10,0:Full;1:Unpl;2:Cut ch;3:Fail;4:Sched;5:Flt1;6:Flt2;7:Flt3;8:Flt4;9:Flt5;10:Flt6
+7ec.6233d6.96,18daf1da,96,103,1,0,0,,2233d6,6233d6,ff,type 1,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
+7ec.6233d6.88,18daf1da,88,95,1,0,0,,2233d6,6233d6,ff,type 2,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
+7ec.6233d6.80,18daf1da,80,87,1,0,0,,2233d6,6233d6,ff,type 3,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
+7ec.6233d6.72,18daf1da,72,79,1,0,0,,2233d6,6233d6,ff,type 4,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
+7ec.6233d6.64,18daf1da,64,71,1,0,0,,2233d6,6233d6,ff,type 5,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
+7ec.6233d6.56,18daf1da,56,63,1,0,0,,2233d6,6233d6,ff,type 6,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
+7ec.6233d6.48,18daf1da,48,55,1,0,0,,2233d6,6233d6,ff,type 7,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
+7ec.6233d6.40,18daf1da,40,47,1,0,0,,2233d6,6233d6,ff,type 8,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
+7ec.6233d6.32,18daf1da,32,39,1,0,0,,2233d6,6233d6,ff,type 9,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
+7ec.6233d6.24,18daf1da,24,31,1,0,0,,2233d6,6233d6,ff,type 10,0:Slow;1:Quick;2:Drop;3:Unknw;4:Sched
+7ec.6233d7.168,18daf1da,168,183,.2,0,1,%,2233d7,6233d7,ff,soc 1
+7ec.6233d7.152,18daf1da,152,167,.2,0,1,%,2233d7,6233d7,ff,soc 2
+7ec.6233d7.136,18daf1da,136,151,.2,0,1,%,2233d7,6233d7,ff,soc 3
+7ec.6233d7.120,18daf1da,120,135,.2,0,1,%,2233d7,6233d7,ff,soc 4
+7ec.6233d7.104,18daf1da,104,119,.2,0,1,%,2233d7,6233d7,ff,soc 5
+7ec.6233d7.88,18daf1da,88,103,.2,0,1,%,2233d7,6233d7,ff,soc 6
+7ec.6233d7.72,18daf1da,72,87,.2,0,1,%,2233d7,6233d7,ff,soc 7
+7ec.6233d7.56,18daf1da,56,71,.2,0,1,%,2233d7,6233d7,ff,soc 8
+7ec.6233d7.40,18daf1da,40,55,.2,0,1,%,2233d7,6233d7,ff,soc 9
+7ec.6233d7.24,18daf1da,24,39,.2,0,1,%,2233d7,6233d7,ff,soc 10
+7ec.6233d8.96,18daf1da,96,103,1,40,0,°C,2233d8,6233d8,ff,temp 1
+7ec.6233d8.88,18daf1da,88,95,1,40,0,°C,2233d8,6233d8,ff,temp 2
+7ec.6233d8.80,18daf1da,80,87,1,40,0,°C,2233d8,6233d8,ff,temp 3
+7ec.6233d8.72,18daf1da,72,79,1,40,0,°C,2233d8,6233d8,ff,temp 4
+7ec.6233d8.64,18daf1da,64,71,1,40,0,°C,2233d8,6233d8,ff,temp 5
+7ec.6233d8.56,18daf1da,56,63,1,40,0,°C,2233d8,6233d8,ff,temp 6
+7ec.6233d8.48,18daf1da,48,55,1,40,0,°C,2233d8,6233d8,ff,temp 7
+7ec.6233d8.40,18daf1da,40,47,1,40,0,°C,2233d8,6233d8,ff,temp 8
+7ec.6233d8.32,18daf1da,32,39,1,40,0,°C,2233d8,6233d8,ff,temp 9
+7ec.6233d8.24,18daf1da,24,31,1,40,0,°C,2233d8,6233d8,ff,temp 10
+7ec.6233d9.168,18daf1da,168,183,1,0,0,min,2233d9,6233d9,ff,duration 1
+7ec.6233d9.152,18daf1da,152,167,1,0,0,min,2233d9,6233d9,ff,duration 2
+7ec.6233d9.136,18daf1da,136,151,1,0,0,min,2233d9,6233d9,ff,duration 3
+7ec.6233d9.120,18daf1da,120,135,1,0,0,min,2233d9,6233d9,ff,duration 4
+7ec.6233d9.104,18daf1da,104,119,1,0,0,min,2233d9,6233d9,ff,duration 5
+7ec.6233d9.88,18daf1da,88,103,1,0,0,min,2233d9,6233d9,ff,duration 6
+7ec.6233d9.72,18daf1da,72,87,1,0,0,min,2233d9,6233d9,ff,duration 7
+7ec.6233d9.56,18daf1da,56,71,1,0,0,min,2233d9,6233d9,ff,duration 8
+7ec.6233d9.40,18daf1da,40,55,1,0,0,min,2233d9,6233d9,ff,duration 9
+7ec.6233d9.24,18daf1da,24,39,1,0,0,min,2233d9,6233d9,ff,duration 10
+7ec.6233de.24,18daf1da,24,55,0.0001,0,2,km,2233de,6233de,ff,Trip distance
+7ec.623451.24,18daf1da,24,39,1,0,0,km,223451,623451,ff,Estimated kilometric cruising range sent to MMI
+7ec.623455.24,18daf1da,24,39,.001953125,0,3,kW,223455,623455,ff,Mean eco electrical consumption (if driver has economical driving behavior)
+7ec.623457.24,18daf1da,24,39,.001953125,0,3,kW,223457,623457,ff,Mean pessimistic electrical consumption (worst possible consumption)
+7ec.6233dd.24,18daf1da,24,47,0.001,0,0,kwh,2233dd,6233dd,ff,Trip energy consumed
+7ec.6233de.24,18daf1da,24,55,0.0001,0,0,km,2233de,6233de,ff,Trip distance
+7ec.623484.24,18daf1da,24,39,1,32767,0,A,223484,623484,ff,Current measurement given by BCS Battery Current Sensor
+7ec.6234.84.24,18daf1da,24,39,.001,0,0,V,223485,623485,ff,Voltage measurement given by BCS Battery Current Sensor

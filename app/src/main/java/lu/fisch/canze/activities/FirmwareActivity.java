@@ -55,23 +55,25 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firmware);
 
+        int index = 0;
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
             // ensure we are only selecting true (as in physical boxes) and reachable (as in, i.e. skipping R-LINK) ECU's
-            if (ecu.getFromId() > 0 && ecu.getFromId() < 0x800) {
+            if (ecu.getFromId() > 0 && (ecu.getFromId() < 0x800 || ecu.getFromId() >= 0x900)) {
                 TextView tv;
-                tv = findViewById(getResources().getIdentifier("lEcu" + Integer.toHexString (ecu.getFromId()).toLowerCase(), "id", getPackageName()));
+                tv = findViewById(getResources().getIdentifier("lEcu" + index, "id", getPackageName()));
                 if (tv != null) {
                     final Ecu thisEcu = ecu;
                     tv.setText(ecu.getMnemonic() + " (" + ecu.getName() + ")");
                     tv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            showSelected (v);
-                            showDetails(thisEcu);
+                            showSelected (v); // clear out previous values an the selection bar, and set the new bar
+                            showDetails(thisEcu); // get the new values and populate
                         }
                     });
+                    index++;
                 } else {
-                    MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_NoView), "lEcu", Integer.toHexString (ecu.getFromId()).toLowerCase());
+                    MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_NoView), "lEcu", Integer.toString (index));
                 }
             }
         }
@@ -80,11 +82,13 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
         textView.setText(Html.fromHtml(MainActivity.getStringSingle(R.string.help_Ecus)));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
 
+        setDoRestartQueueOnResume(false);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 if (MainActivity.device != null) {
                     // stop the poller thread
+                    // note tht for the ZE50, the gateway is now not triggered
                     MainActivity.device.stopAndJoin();
                 }
             }
@@ -99,6 +103,12 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
         if (a.type >= TypedValue.TYPE_FIRST_COLOR_INT && a.type <= TypedValue.TYPE_LAST_COLOR_INT) {
             bgColor = a.data;
         }
+
+        // deselect bg color ecu list
+        for (int index = 0; (tv = findViewById(getResources().getIdentifier("lEcu" + index, "id", getPackageName())))!= null ; index++) {
+            tv.setBackgroundColor(bgColor);
+        }
+/*
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
             if (ecu.getFromId() > 0 && ecu.getFromId() < 0x800) {
                 tv = findViewById(getResources().getIdentifier("lEcu" + Integer.toHexString(ecu.getFromId()).toLowerCase(), "id", getPackageName()));
@@ -107,7 +117,11 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
                 }
             }
         }
+ */
+        // set bg selected ecu
         v.setBackgroundColor(0xff808080); // selected color
+
+        // clear out old values
         setSoftwareValue(R.id.textDiagVersion, null, "");
         setSoftwareValue(R.id.textSupplier, null, "");
         setSoftwareValue(R.id.textSoft, null, "");
@@ -138,20 +152,18 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
             @Override
             public void run() {
 
-                // query the Frame
-                Frame frame = Frames.getInstance().getById(ecu.getFromId(), "6180");
-                if (frame == null) {
-                    MainActivity.getInstance().dropDebugMessage("Frame for this ECU not found");
-                    return;
-                }
-                MainActivity.getInstance().dropDebugMessage(frame.getFromIdHex() + "." + frame.getResponseId());
-                Message message = MainActivity.device.requestFrame(frame); //  field.getFrame());
-                if (message.isError()) {
-                    MainActivity.getInstance().dropDebugMessage(message.getError());
-                    return;
+                Frame frame;
+
+                if (MainActivity.isZOEZE50()) {
+                    frame = queryFrame(0x18daf1d2, "5003"); // open the gateway, as the poller is stopped
+                    if (frame != null) {
+                        frame = queryFrame(ecu.getFromId(), ecu.getStartDiag()); // open the ecu, as the poller is stopped (now evc only)
+                    }
                 }
 
-                message.onMessageCompleteEvent(); // set the value of all fields in the frame of this message
+                // query the Frame
+                frame = queryFrame(ecu.getFromId(), "6180");
+                if (frame == null) return;
                 for (Field field : frame.getAllFields()) {
                     switch (field.getFrom()) {
                         case 56:
@@ -173,6 +185,23 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
         });
         queryThread.start();
     }
+
+    private Frame queryFrame (int fromId, String responseId) {
+        Frame frame = Frames.getInstance().getById(fromId, responseId);
+        if (frame == null) {
+            MainActivity.getInstance().dropDebugMessage("Frame for this ECU not found");
+            return null;
+        }
+        MainActivity.getInstance().dropDebugMessage(frame.getFromIdHex() + "." + frame.getResponseId());
+        Message message = MainActivity.device.requestFrame(frame); //  field.getFrame());
+        if (message.isError()) {
+            MainActivity.getInstance().dropDebugMessage(message.getError());
+            return null;
+        }
+        message.onMessageCompleteEvent(); // set the value of all fields in the frame of this message
+        return frame;
+    };
+
 
     private void setSoftwareValue(final int id, final Field field, final String label) {
         runOnUiThread(new Runnable() {

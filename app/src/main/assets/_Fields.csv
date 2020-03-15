@@ -9,19 +9,19 @@
 ,1fd,0,7,0.390625,0,1,%,,,ff,12V Battery Current?
 ,1fd,48,55,1,80,0,kW,,,ff,Consumption
 ,35c,5,7,1,0,0,,,,ff,Vehicle state
-,427,40,47,0.3,0,1,kW,,,e2,Available Charging Power
-,427,49,57,0.1,0,1,kWh,,,e2,Available Energy
+,427,40,47,0.3,0,1,kW,,,ff,Available Charging Power
+,427,49,57,0.1,0,1,kWh,,,ff,Available Energy
 ,42a,30,39,0.1,400,1,°C,,,ff,Evaporator Temp Measure
-,42a,48,50,1,0,0,,,,e2,ClimLoopMode
+,42a,48,50,1,0,0,,,,ff,ClimLoopMode
 ,42e,0,12,0.02,0,2,%,,,e3,State of Charge
-,42e,20,24,5,0,0,%,,,e2,Engine Fan Speed
+,42e,20,24,5,0,0,%,,,ff,Engine Fan Speed
 ,42e,38,43,1,0,1,A,,,e3,Charging Pilot Current
 ,42e,44,50,1,40,0,°C,,,e3,HV Battery Temp
 ,42e,56,63,0.3,0,1,kW,,,ff,Charging Power
-,430,24,33,0.5,30,1,°C,,,e2,Comp Temperature Discharge
-,430,38,39,1,0,0,,,,e2,HV Battery Cooling State
-,430,40,49,0.1,400,1,°C,,,e2,HV Battery Evaporator Temp
-,432,36,37,1,0,0,,,,e2,HV Bat Conditionning Mode
+,430,24,33,0.5,30,1,°C,,,ff,Comp Temperature Discharge
+,430,38,39,1,0,0,,,,ff,HV Battery Cooling State
+,430,40,49,0.1,400,1,°C,,,ff,HV Battery Evaporator Temp
+,432,36,37,1,0,0,,,,ff,HV Bat Conditionning Mode
 ,4f8,4,5,-1,-2,0,,,,ff,Parking Brake
 ,534,32,40,1,40,0,°C,,,e5,Temp out
 ,5d7,0,15,0.01,0,2,km/h,,,ff,Speed
@@ -33,7 +33,7 @@
 ,654,32,41,1,0,0,min,,,ff,Time to Full
 ,654,42,51,1,0,0,km,,,ff,Available Distance
 ,654,52,61,0.1,0,1,kWh/100km,,,ff,Average Consumption
-,656,48,55,1,40,0,°C,,,e2,External Temp
+,656,48,55,1,40,0,°C,,,ff,External Temp
 ,658,33,39,1,0,0,%,,,ff,Battery Health
 ,673,0,0,1,0,0,,,,ff,Speed pressure misadaptation
 ,673,2,4,1,0,0,,,,ff,Rear right wheel state
@@ -44,7 +44,7 @@
 ,673,24,31,13.725,0,0,mbar,,,ff,Rear left wheel pressure
 ,673,32,39,13.725,0,0,mbar,,,ff,Front right wheel pressure
 ,673,40,47,13.725,0,0,mbar,,,ff,Front left wheel pressure
-,699,8,15,0.5,0,0,°C,,,e2,Temperature
+,699,8,15,0.5,0,0,°C,,,ff,Temperature
 # ESC
 ,760,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,760,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
@@ -67,10 +67,8 @@
 ,763,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,763,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # CLIM
-,764,26,35,0.1,400,1,°C,2121,6121,e2,IH_InCarTemp
-,764,8,15,0.4,100,1,°C,2121,6121,5,IH_InCarTemp
-,764,36,43,1,0,0,%,2121,6121,e2,IH_RHumidity
-,764,16,23,1,0,0,%,2121,6121,5,IH_RHumidity
+,764,26,35,0.1,400,1,°C,2121,6121,ff,IH_InCarTemp
+,764,36,43,1,0,0,%,2121,6121,ff,IH_RHumidity
 ,764,86,87,1,0,0,,2143,6143,ff,IH_EcoModeRequest,0:Unavailable Value;1:Eco mode requested;2:Eco mode not requested;3:Not used
 ,764,88,92,100,0,0,W,2143,6143,ff,IH_ElectricalPowerDrived
 ,764,110,117,1,40,0,°C,2143,6143,ff,IH_ExternalTemp
@@ -165,38 +163,33 @@
 ,7b6,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,7b6,0,23,1,0,0,,19023b,59020f,ff,Query DTC
 # LBC
-,7bb,336,351,0.01,0,2,kW,2101,6101,e2,Maximum battery input power
-,7bb,56,71,10,0,0,°C,2103,6103,5,Mean battery compartment temp
-,7bb,192,207,0.01,0,2,%,2103,6103,e2,Real State of Charge
-,7bb,32,39,1,40,0,°C,2104,6104,e2,Cell 1 Temperature
-,7bb,56,63,1,40,0,°C,2104,6104,e2,Cell 2 Temperature
-,7bb,80,87,1,40,0,°C,2104,6104,e2,Cell 3 Temperature
-,7bb,104,111,1,40,0,°C,2104,6104,e2,Cell 4 Temperature
-,7bb,128,135,1,40,0,°C,2104,6104,e2,Cell 5 Temperature
-,7bb,152,159,1,40,0,°C,2104,6104,e2,Cell 6 Temperature
-,7bb,176,183,1,40,0,°C,2104,6104,e2,Cell 7 Temperature
-,7bb,200,207,1,40,0,°C,2104,6104,e2,Cell 8 Temperature
-,7bb,224,231,1,40,0,°C,2104,6104,e2,Cell 9 Temperature
-,7bb,248,255,1,40,0,°C,2104,6104,e2,Cell 10 Temperature
-,7bb,272,279,1,40,0,°C,2104,6104,e2,Cell 11 Temperature
-,7bb,296,303,1,40,0,°C,2104,6104,e2,Cell 12 Temperature
+,7bb,336,351,0.01,0,2,kW,2101,6101,ff,Maximum battery input power
+,7bb,192,207,0.01,0,2,%,2103,6103,ff,Real State of Charge
+,7bb,32,39,1,40,0,°C,2104,6104,ff,Cell 1 Temperature
+,7bb,56,63,1,40,0,°C,2104,6104,ff,Cell 2 Temperature
+,7bb,80,87,1,40,0,°C,2104,6104,ff,Cell 3 Temperature
+,7bb,104,111,1,40,0,°C,2104,6104,ff,Cell 4 Temperature
+,7bb,128,135,1,40,0,°C,2104,6104,ff,Cell 5 Temperature
+,7bb,152,159,1,40,0,°C,2104,6104,ff,Cell 6 Temperature
+,7bb,176,183,1,40,0,°C,2104,6104,ff,Cell 7 Temperature
+,7bb,200,207,1,40,0,°C,2104,6104,ff,Cell 8 Temperature
+,7bb,224,231,1,40,0,°C,2104,6104,ff,Cell 9 Temperature
+,7bb,248,255,1,40,0,°C,2104,6104,ff,Cell 10 Temperature
+,7bb,272,279,1,40,0,°C,2104,6104,ff,Cell 11 Temperature
+,7bb,296,303,1,40,0,°C,2104,6104,ff,Cell 12 Temperature
 ,7bb,600,607,1,40,0,degC,2104,6104,ff,21_04_#76_Average_Battery_Temperature
-,7bb,16,23,1,0,0,,2107,6107,e2,Cell 1 Balancing switch
-,7bb,24,31,1,0,0,,2107,6107,e2,Cell 2 Balancing switch
-,7bb,32,39,1,0,0,,2107,6107,e2,Cell 3 Balancing switch
-,7bb,40,47,1,0,0,,2107,6107,e2,Cell 4 Balancing switch
-,7bb,48,55,1,0,0,,2107,6107,e2,Cell 5 Balancing switch
-,7bb,56,63,1,0,0,,2107,6107,e2,Cell 6 Balancing switch
-,7bb,64,71,1,0,0,,2107,6107,e2,Cell 7 Balancing switch
-,7bb,72,79,1,0,0,,2107,6107,e2,Cell 8 Balancing switch
-,7bb,80,87,1,0,0,,2107,6107,e2,Cell 9 Balancing switch
-,7bb,88,95,1,0,0,,2107,6107,e2,Cell 10 Balancing switch
-,7bb,96,102,1,0,0,,2107,6107,e2,Cell 11 Balancing switch
-,7bb,104,111,1,0,0,,2107,6107,e2,Cell 12 Balancing switch
-,7bb,32,39,1,0,0,°C,2104,6104,105,Cell 1 Balancing switch
-,7bb,56,63,1,0,0,°C,2104,6104,105,Cell 2 Balancing switch
-,7bb,80,87,1,0,0,°C,2104,6104,105,Cell 3 Balancing switch
-,7bb,104,111,1,0,0,°C,2104,6104,105,Cell 4 Balancing switch
+,7bb,16,23,1,0,0,,2107,6107,ff,Cell 1 Balancing switch
+,7bb,24,31,1,0,0,,2107,6107,ff,Cell 2 Balancing switch
+,7bb,32,39,1,0,0,,2107,6107,ff,Cell 3 Balancing switch
+,7bb,40,47,1,0,0,,2107,6107,ff,Cell 4 Balancing switch
+,7bb,48,55,1,0,0,,2107,6107,ff,Cell 5 Balancing switch
+,7bb,56,63,1,0,0,,2107,6107,ff,Cell 6 Balancing switch
+,7bb,64,71,1,0,0,,2107,6107,ff,Cell 7 Balancing switch
+,7bb,72,79,1,0,0,,2107,6107,ff,Cell 8 Balancing switch
+,7bb,80,87,1,0,0,,2107,6107,ff,Cell 9 Balancing switch
+,7bb,88,95,1,0,0,,2107,6107,ff,Cell 10 Balancing switch
+,7bb,96,102,1,0,0,,2107,6107,ff,Cell 11 Balancing switch
+,7bb,104,111,1,0,0,,2107,6107,ff,Cell 12 Balancing switch
 ,7bb,16,31,0.001,0,3,V,2141,6141,ff,Cell 01 V
 ,7bb,32,47,0.001,0,3,V,2141,6141,ff,Cell 02 V
 ,7bb,48,63,0.001,0,3,V,2141,6141,ff,Cell 03 V

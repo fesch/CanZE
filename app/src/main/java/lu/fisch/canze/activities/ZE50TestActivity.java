@@ -38,7 +38,8 @@ public class ZE50TestActivity extends CanzeActivity implements FieldListener, De
     // ISO-TP data
     private static final String SID_Pedal = "186.40"; // Pedal
     private static final String SID_GW3 = "18daf1d2.5003.0"; // Gateway open
-    private static final String SID_EVC = "18daf1da.5003.0"; // EVC open
+    private static final String SID_EVC = "7ec.5003.0"; // EVC open Note we use 7ec as the EVC has custom SID codes for older model compatilbility
+    private static final String SID_TorqueRequest = "7ec.622243.24";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +49,11 @@ public class ZE50TestActivity extends CanzeActivity implements FieldListener, De
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_GW3, 2000);
+        //addField(SID_GW3, 2000);
+
         addField(SID_EVC, 2000);
         addField(SID_Pedal);
+        addField(SID_TorqueRequest);
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -71,6 +74,11 @@ public class ZE50TestActivity extends CanzeActivity implements FieldListener, De
                 switch (fieldId) {
                     case SID_Pedal:
                         tv = findViewById(R.id.tv_test_11);
+                        pb = null;
+                        break;
+
+                    case SID_TorqueRequest:
+                        tv = findViewById(R.id.tv_test_12);
                         pb = null;
                         break;
                 }

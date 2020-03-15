@@ -73,6 +73,8 @@ import java.util.Locale;
 
 import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
+import lu.fisch.canze.actors.Ecu;
+import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Frames;
@@ -393,7 +395,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             // after loading PREFERENCES we may have new values for "dataExportMode"
             dataExportMode = dataLogger.activate(dataExportMode);
         } catch (Exception e) {
-            Crashlytics.logException(e);
+            if (BuildConfig.BRANCH.equals("master")) {
+                Crashlytics.logException(e);
+            } else {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -414,8 +420,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             }
         }
 
-        if (isZOEZE50()) { //activate the gateway
-            field = fields.getBySID("18daf1d2.5003.0");
+        // (de)activate the secure gateway
+        field = fields.getBySID("18daf1d2.5003.0");
+        if (isZOEZE50()) {
             if (field != null) {
                 field.addListener(MainActivity.getInstance()); // callback is onFieldUpdateEvent
                 if (device != null)

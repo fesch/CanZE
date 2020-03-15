@@ -62,6 +62,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     }
 
     protected boolean widgetClicked = false;
+    protected boolean doReStartQueueOnResume = true;
 
     protected Menu mOptionsMenu;
 
@@ -105,10 +106,18 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         MainActivity.debug("CanzeActivity: onCreate (" + this.getClass().getSimpleName() + ")");
     }
 
+    void setDoRestartQueueOnResume (boolean start) {
+        doReStartQueueOnResume = start;
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
         MainActivity.debug("CanzeActivity: onPause");
+
+        // stop here if we are in an activity with a halted poller
+        if (!doReStartQueueOnResume) return;
+
         // stop here if BT should stay on!
         if (MainActivity.bluetoothBackgroundMode) {
             return;

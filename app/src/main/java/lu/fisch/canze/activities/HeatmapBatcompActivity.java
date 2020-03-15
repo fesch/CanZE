@@ -63,6 +63,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
+        if (MainActivity.isZOEZE50()) addField("7bb.5003.0", 2000); // open LBC
         //if(MainActivity.isZOE()) {
         //    lastCell = 12;
         //}
