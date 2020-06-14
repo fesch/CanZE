@@ -65,7 +65,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 //import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -396,7 +396,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             dataExportMode = dataLogger.activate(dataExportMode);
         } catch (Exception e) {
             if (BuildConfig.BRANCH.equals("master")) {
-                Crashlytics.logException(e);
+                logExceptionToCrashlytics(e);
             } else {
                 e.printStackTrace();
             }
@@ -1214,6 +1214,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         if (!storageGranted) return false;
         String SDstate = Environment.getExternalStorageState();
         return (Environment.MEDIA_MOUNTED.equals(SDstate));
+    }
+
+    public static void logExceptionToCrashlytics (Exception e) {
+        FirebaseCrashlytics.getInstance().recordException(e);
     }
 }
 

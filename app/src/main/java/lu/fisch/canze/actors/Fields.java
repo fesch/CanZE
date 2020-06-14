@@ -32,8 +32,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
-import com.crashlytics.android.Crashlytics;
-
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.classes.FieldLogger;
@@ -787,7 +785,7 @@ public class Fields {
                 fillOneLine(line);
             bufferedReader.close();
         } catch (IOException e) {
-            Crashlytics.logException(e);
+            MainActivity.logExceptionToCrashlytics(e);
         }
     }
 

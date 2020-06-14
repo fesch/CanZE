@@ -23,12 +23,10 @@ package lu.fisch.canze.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.crashlytics.android.Crashlytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
-import io.fabric.sdk.android.Fabric;
 import lu.fisch.canze.BuildConfig;
 
 public class SplashActivity extends AppCompatActivity {
@@ -38,7 +36,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // Crashlytics
-        if (BuildConfig.BRANCH.equals("master")) Fabric.with(this, new Crashlytics());
+        if (BuildConfig.BRANCH.equals("master")) FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

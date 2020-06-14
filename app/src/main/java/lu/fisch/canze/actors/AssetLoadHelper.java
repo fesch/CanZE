@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 import android.content.Context;
 import android.content.res.AssetManager;
 
-import com.crashlytics.android.Crashlytics;
+import lu.fisch.canze.activities.MainActivity;
 
 public class AssetLoadHelper {
 
@@ -52,7 +52,7 @@ public class AssetLoadHelper {
         } catch (FileNotFoundException e) {
             // do nothing, so return null
         } catch (IOException | NullPointerException e) {
-            Crashlytics.logException(e);
+            MainActivity.logExceptionToCrashlytics(e);
         } // Catching null is bad practive, but I have seen one thrown by myContext.getAssets();
 
         return null;

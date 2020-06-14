@@ -38,8 +38,6 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.crashlytics.android.Crashlytics;
-
 import java.lang.reflect.Constructor;
 import java.util.Locale;
 
@@ -252,7 +250,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
             }
             catch(Exception e)
             {
-                Crashlytics.logException(e);
+                MainActivity.logExceptionToCrashlytics(e);
             }
         }
 
@@ -368,7 +366,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
         }
         catch(Exception e)
         {
-            Crashlytics.logException(e);
+            MainActivity.logExceptionToCrashlytics(e);
             // ignore
         }
         finally

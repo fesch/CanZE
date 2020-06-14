@@ -50,8 +50,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.crashlytics.android.Crashlytics;
-
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -506,7 +504,7 @@ public class SettingsActivity extends AppCompatActivity {
             tv.setText(version);
 
         } catch (Exception e) {
-            Crashlytics.logException(e);
+            MainActivity.logExceptionToCrashlytics(e);
         }
 
         Button button = findViewById(R.id.buttonClearSettings);

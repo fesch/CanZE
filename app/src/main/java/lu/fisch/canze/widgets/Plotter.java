@@ -21,7 +21,6 @@
 
 package lu.fisch.canze.widgets;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -78,7 +77,7 @@ public class Plotter extends Drawable {
         try {
             values.set(index, value);
         } catch (IndexOutOfBoundsException e) {
-            Crashlytics.logException(e);
+            MainActivity.logExceptionToCrashlytics(e);
             // Bail out. Based on Play Console Crash Report
         }
         //if(value<minValues.get(index)) minValues.set(index,value);
