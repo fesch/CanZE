@@ -58,12 +58,14 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-//import android.widget.Toast;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
@@ -73,8 +75,6 @@ import java.util.Locale;
 
 import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
-import lu.fisch.canze.actors.Ecu;
-import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Frames;
@@ -897,7 +897,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // Note that beta builds supposed to always be build through the
         // release variant. The safes way to do this is through the command line
         // using ./gradlew bundleRelease
-        // if (BuildConfig.BUILD_TYPE.equals("debug")) setForceCrash(menu);
+        //if (BuildConfig.BUILD_TYPE.equals("debug")) setForceCrash(menu);
+        setForceCrash(menu);
 
         // get a reference to the bluetooth action button
         setBluetoothMenuItem (menu); //bluetoothMenutItem = menu.findItem(R.id.action_bluetooth);
@@ -928,11 +929,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return true;
     }
 
-    /*private void setForceCrash (Menu menu) {
+    private void setForceCrash (Menu menu) {
         if (menu == null) return;
         MenuItem crasher = menu.findItem(R.id.action_crash);
         crasher.setVisible(true);
-    }*/
+    }
 
 
     public void setBluetoothMenuItem (Menu menu) {
@@ -1054,10 +1055,22 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             viewPager.setCurrentItem(2, true);
             updateActionBar();
 
-        //} else if (id == R.id.action_crash) {
-        //    Crashlytics.getInstance().crash();
-        }
-        else if (id == R.id.action_custom) {
+        } else if (id == R.id.action_crash) {
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Force Crash",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            throw new RuntimeException("Test crash");
+                        }
+                    });
+            alertDialog.show();
+
+            Button btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE); // get the button
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams(); // get its layout
+            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT; // adjust it
+            btnPositive.setLayoutParams(layoutParams); // apply it
+
+        } else if (id == R.id.action_custom) {
             viewPager.setCurrentItem(3, true);
             updateActionBar();
         }
