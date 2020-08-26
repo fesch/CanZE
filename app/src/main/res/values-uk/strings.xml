@@ -123,7 +123,7 @@
     <string name="menu_Experimental">Експериментальне</string>
     <string name="menu_Main">Головне</string>
     <string name="menu_Technical">Технічне</string>
-    <string name="label_IH_ClimCompPWRStatus">Потужність компресору (Вт), ECO</string>
+    <string name="label_IH_ClimCompPWRStatus">RPM компресору, ECO</string>
     <string name="header_GridParameters">Параметри електромережі</string>
     <string name="button_ChargingTech">Дані зарядки</string>
     <string name="header_ChargeSummary">Резюме зарядок</string>

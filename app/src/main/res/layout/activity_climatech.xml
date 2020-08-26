@@ -121,54 +121,7 @@
                 android:gravity="end"
                 android:text="@string/default_Dash" />
         </TableRow>
-        <!--
-                <TableRow>
 
-                    <TextView
-                        android:layout_weight="0.7"
-                        android:width="0dp"
-                        android:text="@string/label_PtcRelay1" />
-
-                    <TextView
-                        android:id="@+id/text_PTC1"
-                        android:layout_weight="0.3"
-                        android:width="0dp"
-                        android:gravity="end"
-                        android:text="@string/default_Dash" />
-                </TableRow>
-
-
-                <TableRow>
-
-                    <TextView
-                        android:layout_weight="0.7"
-                        android:width="0dp"
-                        android:text="@string/label_PtcRelay2" />
-
-                    <TextView
-                        android:id="@+id/text_PTC2"
-                        android:layout_weight="0.3"
-                        android:width="0dp"
-                        android:gravity="end"
-                        android:text="@string/default_Dash" />
-                </TableRow>
-
-
-                <TableRow>
-
-                    <TextView
-                        android:layout_weight="0.7"
-                        android:width="0dp"
-                        android:text="@string/label_PtcRelay3" />
-
-                    <TextView
-                        android:id="@+id/text_PTC3"
-                        android:layout_weight="0.3"
-                        android:width="0dp"
-                        android:gravity="end"
-                        android:text="@string/default_Dash" />
-                </TableRow>
-        -->
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -184,22 +137,24 @@
                 android:layout_marginBottom="0dp"
                 android:layout_weight="1"
                 custom:backgroundColor="?android:attr/colorBackground"
+                custom:fieldSID="764.6144.107,764.6143.86"
+                custom:intervals="{
+                                   }"
                 custom:colorRanges="[
-                    {'sid':'764.6143.88','color':'#008a1d','from':0,'to':750},
-                    {'sid':'764.6143.88','color':'#ffaa17','from':750,'to':1500},
-                    {'sid':'764.6143.88','color':'#ff0000','from':1500,'to':2250},
-                    {'sid':'764.6143.88','color':'#cc00ff','from':2250,'to':3000},
+                    {'sid':'764.6144.107','color':'#008a1d','from':0,'to':750},
+                    {'sid':'764.6144.107','color':'#ffaa17','from':750,'to':1500},
+                    {'sid':'764.6144.107','color':'#FF0000','from':1500,'to':2250},
+                    {'sid':'764.6144.107','color':'#cc00ff','from':2250,'to':3000},
                     {'sid':'764.6143.86','color':'#008a1d','from':1,'to':1},
                     {'sid':'764.6143.86','color':'#ffffff','from':2,'to':2}
                     ]"
-                custom:fieldSID="764.6143.88,764.6143.86"
                 custom:foregroundColor="?android:attr/colorForeground"
                 custom:majorTicks="1000"
                 custom:max="3000"
                 custom:min="0"
                 custom:minorTicks="500"
                 custom:options="{
-                                   '764.6143.88':'gradient',
+                                   '764.6144.107':'gradient',
                                    '764.6143.86':'colorline[2800],dot'
                                 }"
                 custom:text="@string/label_IH_ClimCompPWRStatus"

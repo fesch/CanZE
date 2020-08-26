@@ -431,7 +431,7 @@
         <item>Antischeibenbeschlag</item>
         <item>Inaktiv</item>
     </string-array>
-    <string name="label_IH_ClimCompPWRStatus">Kompressorlesitung (W), ECO</string>
+    <string name="label_IH_ClimCompPWRStatus">Kompressor UpM, ECO</string>
     <string name="graph_Climatech">Außen (°C), Innen (°C), Vorgabe (°C), Akku (°C)</string>
     <string name="label_PtcRelay1">PTC Relais 1</string>
     <string name="label_PtcRelay2">PTC Relais 2</string>

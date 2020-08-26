@@ -343,7 +343,7 @@
         <item>Dégivrage</item>
         <item>Ralenti</item>
     </string-array>
-    <string name="label_IH_ClimCompPWRStatus">Consommation clim (W), ECO</string>
+    <string name="label_IH_ClimCompPWRStatus">Compresseur RPM, ECO</string>
     <string name="graph_Climatech">Extérieure (°C), Habitacle (°C), Consigne (°C), Batterie (°C)</string>
     <string name="label_PtcRelay1">Relais CTP 1</string>
     <string name="label_PtcRelay2">Relais CTP 2</string>

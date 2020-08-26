@@ -124,7 +124,7 @@
     <string name="menu_Technical">Техническое</string>
     <string name="menu_Main">Основное</string>
     <string name="menu_Experimental">Экспериментальное</string>
-    <string name="label_IH_ClimCompPWRStatus">Мощность компрессора (Вт), ECO</string>
+    <string name="label_IH_ClimCompPWRStatus">Обороты компрессора, ECO</string>
     <string name="header_GridParameters">Параметры электросети</string>
     <string name="button_ChargingTech">Данные зарядки</string>
     <string name="header_ChargeSummary">Резюме зарядок</string>

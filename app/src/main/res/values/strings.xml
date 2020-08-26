@@ -433,7 +433,7 @@
         <item>Demisting</item>
         <item>Idle</item>
     </string-array>
-    <string name="label_IH_ClimCompPWRStatus">Compressor power (W), ECO</string>
+    <string name="label_IH_ClimCompPWRStatus">Compressor RPM, ECO</string>
     <string name="graph_Climatech">External (°C), Internal (°C), Setpoint (°C), Battery (°C)</string>
     <string name="label_PtcRelay1">PTC Relay 1</string>
     <string name="label_PtcRelay2">PTC Relay 2</string>
