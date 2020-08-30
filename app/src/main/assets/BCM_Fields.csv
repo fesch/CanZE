@@ -1,4 +1,6 @@
 # SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
+,765,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,765,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # Source: BCM95_SW25_V1.1_20150429T131442.xml
 ,765,16,23,1,0,0,,2101,6101,ff,LIN1 Master Malfunction -,207:Défaut présent confirmé;15:Pas de problème;79:Défaut confirmé mémorisé;255:Pas d'esclave monté (lié à la configuration)
 ,765,24,31,1,0,0,,2101,6101,ff,LIN1 Slave1 Malfunction (Rain & light sensor) -,207:Défaut présent confirmé;15:Pas de problème;79:Défaut confirmé mémorisé;255:Pas d'esclave monté (lié à la configuration)

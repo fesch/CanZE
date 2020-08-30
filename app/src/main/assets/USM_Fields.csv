@@ -1,4 +1,6 @@
 # SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
+,76d,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,76d,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # Source: USM_2010_SW6_20130104T145201.xml
 ,76d,16,16,1,0,0,,2101,6101,ff,LI_NEUTRAL,0:Not reached;1:Reached
 ,76d,17,17,1,0,0,,2101,6101,ff,LI_LIGHT_REVERSE_SW,0:Reverse gear not reached;1:Reverse gear reached

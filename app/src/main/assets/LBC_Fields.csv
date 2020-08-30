@@ -1,4 +1,6 @@
 # SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
+,7bb,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,7bb,0,23,1,0,0,,19023b,59020f,ff,Query DTC
 # Source: X10_L38_X61_EV_BMS_slave_v1.4_LG_20150608T132848.xml
 ,7bb,16,31,1,5000,0,A,2101,6101,ff,21_01_#03 Electric_Current_of_Battery
 ,7bb,32,47,1,5000,0,A,2101,6101,ff,21_01_#05_Current sensor offset value

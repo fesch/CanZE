@@ -1,4 +1,6 @@
 # SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
+,77e,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,77e,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # Source: PEB_5AGen2_v4.7_20130422T131805.xml
 ,77e,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
 ,77e,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode

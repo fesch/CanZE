@@ -1,3 +1,7 @@
+# SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
+,700,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,700,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+#
 ,700,24,55,1,0,0,,220001,620001,ff,DataRead.FFD_DTC LOCAL CODE
 ,700,24,39,.025,0,2,V,220100,620100,ff,Ignition Voltage.Ignition Voltage
 ,700,24,26,1,0,0,,220101,620101,ff,Control Module Malf and Gade.Gade,0:DiagMuxDTC is DISABLED(00h);1:DiagMuxDTC is DISABLED(01h);2:DiagMuxDTC is DISABLED(02h);3:DiagMuxDTC is ENABLED;4:Not Used(04h);5:Not Used(05h);6:Not Used(06h);7:Unavailable
