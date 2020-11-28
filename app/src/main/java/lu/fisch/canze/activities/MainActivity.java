@@ -893,12 +893,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         getMenuInflater().inflate(R.menu.menu_main, menu);
         mBtState = BLUETOOTH_DISCONNECTED;
 
-        // Only enable the force crash option when we're in the debug branch
+        // Only enable the force crash option when we're in the debug variant
         // Note that beta builds supposed to always be build through the
         // release variant. The safes way to do this is through the command line
         // using ./gradlew bundleRelease
         //if (BuildConfig.BUILD_TYPE.equals("debug")) setForceCrash(menu);
-        setForceCrash(menu);
+        if (BuildConfig.DEBUG) setForceCrash(menu);
 
         // get a reference to the bluetooth action button
         setBluetoothMenuItem (menu); //bluetoothMenutItem = menu.findItem(R.id.action_bluetooth);
