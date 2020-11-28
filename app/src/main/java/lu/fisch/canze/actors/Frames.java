@@ -174,13 +174,10 @@ public class Frames {
         if (MainActivity.isZOE()) {
             if (MainActivity.altFieldsMode) {
                 return "_FramesAlt.csv";
-            } else {
-                return "_Frames.csv";
             }
-        } else if (MainActivity.isZOEZE50())
-            return "_FramesZE50.csv";
-        return "_Fields.csv";
+            return "_Frames.csv";
+        }
+        return "_Fields"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv";
     }
-
 
 }

@@ -145,9 +145,7 @@ public class Ecus {
     }
 
     private String getDefaultAssetName() {
-        if (MainActivity.isZOE()) return "_Ecus.csv";
-        else if (MainActivity.isZOEZE50()) return "_EcusZE50.csv";
-        return "_Ecus.csv";
+        return "_Ecus"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv";
     }
 
 }
