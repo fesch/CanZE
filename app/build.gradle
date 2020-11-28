@@ -18,7 +18,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionName '1.53beta2'
-        versionCode 74
+        versionCode 75
     }
     buildTypes {
         release {
