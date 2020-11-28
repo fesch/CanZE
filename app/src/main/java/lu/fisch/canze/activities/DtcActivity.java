@@ -121,10 +121,16 @@ public class DtcActivity extends CanzeActivity {
     private void testerKeepalive() {
         ticker = Calendar.getInstance().getTimeInMillis();
     }
+
     private void testerKeepalive(Ecu ecu) {
-        if (!ecu.getSessionRequired()) return;
-        if (Calendar.getInstance().getTimeInMillis() < ticker) return;
-        MainActivity.device.requestFrame(Frames.getInstance().getById(ecu.getFromId(), "7e01"));
+        if (!ecu.getSessionRequired() && !MainActivity.isZOEZE50()) return; // quit ticker if no gateway and no session
+        if (Calendar.getInstance().getTimeInMillis() < ticker) return; // then, quit if no timeout
+        if (MainActivity.isZOEZE50()) {
+            // open the gateway
+            MainActivity.device.requestFrame(Frames.getInstance().getById(0x18daf1d2, "5003"));
+        }
+        //MainActivity.device.requestFrame(Frames.getInstance().getById(ecu.getFromId(), "7e01"));
+        MainActivity.device.requestFrame(Frames.getInstance().getById(ecu.getFromId(), ecu.getStartDiag()));
         ticker = ticker + 1500;
     }
 
