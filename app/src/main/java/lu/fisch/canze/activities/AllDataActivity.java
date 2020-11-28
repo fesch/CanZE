@@ -124,12 +124,13 @@ public class AllDataActivity extends CanzeActivity {
     }
 
     private void testerKeepalive(Ecu ecu) {
+        if (MainActivity.isZOEZE50()) {
+            // open the gateway
+            MainActivity.device.requestFrame(Frames.getInstance().getById(0x18daf1d2, "5003"));
+        }
         if (!ecu.getSessionRequired()) return;
         if (Calendar.getInstance().getTimeInMillis() < ticker) return;
         //MainActivity.device.requestFrame(Frames.getInstance().getById(ecu.getFromId(), "7e01"));
-        if (MainActivity.isZOEZE50()) {
-            MainActivity.device.requestFrame(Frames.getInstance().getById(0x18daf1d2, "5003"));
-        }
         MainActivity.device.requestFrame(Frames.getInstance().getById(ecu.getFromId(), ecu.getStartDiag()));
         ticker = ticker + 1500;
     }
@@ -191,7 +192,7 @@ public class AllDataActivity extends CanzeActivity {
                 // here initialize this particular ECU diagnostics fields
                 try {
                     Frames.getInstance().load(ecu);
-                    Fields.getInstance().load(ecu.getMnemonic() + "_Fields.csv");
+                    Fields.getInstance().load(ecu.getMnemonic() + "_Fields."  + (MainActivity.isZOEZE50() ? "ZE50" : "") + "csv");
                 } catch (Exception e) {
                     appendResult(R.string.message_NoEcuDefinition);
                     // Reload the default frame & timings
