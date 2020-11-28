@@ -192,7 +192,7 @@ public class AllDataActivity extends CanzeActivity {
                 // here initialize this particular ECU diagnostics fields
                 try {
                     Frames.getInstance().load(ecu);
-                    Fields.getInstance().load(ecu.getMnemonic() + "_Fields."  + (MainActivity.isZOEZE50() ? "ZE50" : "") + "csv");
+                    Fields.getInstance().load(ecu.getMnemonic() + "_Fields"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv");
                 } catch (Exception e) {
                     appendResult(R.string.message_NoEcuDefinition);
                     // Reload the default frame & timings

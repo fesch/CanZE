@@ -182,7 +182,7 @@ public class DtcActivity extends CanzeActivity {
             //methodLoad.invoke(diagEcu);
             Frames.getInstance().load (ecu);
             Fields.getInstance().load(ecu.getMnemonic() + "_Fields"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv");
-            Dtcs.getInstance().load(ecu.getMnemonic() + "_Dtcs"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv", ecu.getMnemonic() + "_Tests\"  + (MainActivity.isZOEZE50() ? \"ZE50\" : \"\") + \".csv");
+            Dtcs.getInstance().load(ecu.getMnemonic() + "_Dtcs"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv", ecu.getMnemonic() + "_Tests"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv");
         } catch (Exception e) {
             appendResult(R.string.message_NoEcuDefinition);
             // Reload the default frame & timings
