@@ -1,0 +1,168 @@
+0022,Mastervac brake assistance system
+0023,Brake assistance Vacuum Pump
+0026,Mastervac control unit
+0027,Mastervac sensor power supply
+0060,Door switch
+0070,Shift Lock electrical control circuit
+0071,Gear lever
+0080,Charge spot
+0105,Passenger compartment Thermistor
+0106,Heat water temperature sensor
+0121,Heater request relay electrical command circuit
+0130,Pulser relay power control circuit
+0140,Feedback Heater Water pump of passenger compartement
+0141,Heater Water pump of passenger compartement
+0152,Computer of Air Conditioning
+0156,Evaporator sensor for AC
+0160,Heater Led control circuit
+0170,Pulser power supply relay
+0171,Cooling Fan Motor
+0225,Accelerator Pedal Position Sensor - Track 1
+0226,Accelerator Pedal Position Sensor
+0301,Underhood switch module (USM)
+0303,EVC
+0304,Power electronic bloc
+0305,Lithium Battery Controler
+0306,Battery Charger Bloc
+0307,Power electronic bloc data
+0404,14v static converter in Default (from CAN)
+0405,14v static converter
+0406,EM inverter in Default (from CAN)
+0411,Battery Charger Bloc in Default (from CAN)
+0414,High voltage network
+0420,LBC in Default (from CAN)
+0431,Charge Interlock
+0432,Power train interlocks
+0433,Comfort or Passenger compartment Thermistor Interlock
+0434,Comfort or Air conditionned Interlock
+0440,Electric Insulation
+0441,Insulation Sensor
+0460,Engine Coolant Temperature Sensor
+0461,Cooling valve 1 control circuit
+0462,Feedback driving mode water pump
+0463,Driving mode water pump
+0464,Feedback load mode water pump
+0465,Load mode water pump
+0468,Peltier fan request electrical command circuit
+0469,Peltier external fan
+0470,HV voltage sensor
+0480,Battery high voltage power relay A
+0491,Battery high voltage lock loop 1
+0495,Temperature sensors from CAN
+0503,Mastervac Voltage supply
+0504,Brake Pedal
+0530,A/C Refrigerant Pressure Sensor
+0560,Battery Voltage 14 V
+0564,Cruise Control/Speed Limiter - Paddle Control Button
+0571,Closed Brake Sensor
+0574,Cruise Control/Speed Limiter - Displayed Speed
+0575,Cruise Control/Speed Limiter - Switch Button
+0606,Engine Control Module - Processor
+0610,ECM torque calculation
+0641,Voltage supply range 1
+0651,Voltage supply range 2
+0657,Powerlatch relay
+0703,Open Brake Pedal Switch
+0833,Begining of Clutch Pedal Move Switch
+1525,Cruise Control/Speed Limiter Deactivation
+2120,Accelerator Pedal Position Sensor - Track 2
+060B,Engine Control Module - A/D Converter
+160C,Internal Engine Control Module Error
+046A,Peltier internal fan
+046B,Feedback of Peltier external fan
+046C,Feedback of Peltier internal fan
+046D,Peltier request relay electrical command circuit
+C415,Invalid Data Received From Anti-Lock Brake System Control Module
+0525,Cruise Control Servo Control Circuit Range/Performance
+0601,Electric Motor Prestation
+0435,Interlock Sensor
+0490,Battery high voltage lock
+0020,Vacuum Sensor pressure
+046E,Peltier Temperature
+047E,Peltier Cells
+0081,Charge plug trigger
+0492,Battery high voltage lock loop 2
+0302,Air conditionned system
+0161,Self preconditioning relay
+C418,Invalid data received from uncoupled brake pedal control module
+030A,Inverter (for charge function)
+0308,Lithium battery (reductant dignosis)
+0471,HV Battery
+0502,Battery temperature sensors
+0120,Heater electrical command circuit
+0500,No ETS Sleeping that leads to a flat lead 12V battery
+0011,Reverse Light relay command
+0063,Door plug command
+0072,Gear lever sensor - track 1
+0073,Gear lever sensor - track 2
+0090,Eco mode switch
+0180,Battery Conditioning system (AC, CTP)
+0481,Battery high voltage power relay P2
+0482,Battery high voltage power relay P1
+0483,Battery high voltage power relay A or P1
+0485,Battery high voltage power relay A or P2
+0486,Battery high voltage power relay P1 or P2
+0510,State of function (SOF) of 14V battery
+0511,14V Battery current sensor
+0512,Pulse Box
+C198,Communication With Telematic Control Module
+C140,Communication With Body Control Module
+C155,Communication With Instrument Panel Cluster (IPC) Control Module
+0062,Door plug status
+C146,Communication With Gateway 'A' (BIC)
+0181,Battery CTP/THP relay 1
+0182,Battery CTP/THP relay 2
+0183,Battery CTP/THP relay 3
+0184,Battery HVAC relay electrovalve 1
+0185,Battery HVAC relay electrovalve 2
+0186,Battery HVAC fan out (command)
+0187,Battery HVAC temperature sensor
+C103,Communication With Gear Shift Control Module (Shifter)
+C129,Communication With Brake System Control Module
+0010,Stop Light relay command
+04A0,SOC error during charge
+0188,Battery blower rotation speed feedback line
+0415,Power electronic bloc (safety level 2 detection)
+0442,Insulation motor
+0407,DCDC C class default
+C19A,Communication with CSHV Unit (Dedicated for Crash when APC is off for daimler application)
+C199,Communication with Energy Management Module
+1654,Communication with Aribag Control module
+042F,JB interlocks
+C19B,Communication with LBC8 Unit
+0443,Insulation Clim
+0513,14V Battery heat relay
+060C,Engine Control Module - Electronic Stability Program Control Function (Level 2)
+C121,Communication With ABS/ESP Control Module (safety)
+C122,Communication With ABS/ESP Control Module
+C164,Communication With Climate Control ECU Module
+C123,Front Collision Warning
+043F,Interlock supervision
+0467,PAC box
+04A1,Power Line Gateway
+0472,Cooling valve 2 control circuit
+0473,AC - Heat pump circuit temperature sensor 1 (managed by PAC system)
+0474,AC - Heat pump circuit temperature sensor 2 (managed by PAC system)
+0475,AC - Heat pump circuit Valve 1 (managed by PAC system)
+0476,AC - Heat pump circuit Valve 2 (managed by PAC system)
+04B1,limitation puissance de charge en fonction de la température plug
+0074,Incoherence detection positio Park sur le levier entre info du CMF et info levier reçue sur le CAN
+060A,Engine Control Module - Reset
+0021,Vaccum Sensor pressure 2
+0024,Vacuum pump electric
+0101,Termistor Heater 1
+0102,Termistor Heater 2
+0103,Termistor Heater 3
+0104,Termistor Heater 4
+0150,High Voltage Supply of the Air Conditioning - Side Compressor
+0151,Low Voltage Supply of the Air Conditioning - Side Computer
+0153,Inverter of the Air Conditioning
+0154,Electric motor of air conditioning
+0412,Battery Charger Bloc - High Voltage Side (from CAN)
+0413,Main Voltage Supply of the Battery Charger Bloc (from CAN)
+0430,Comfort Interlock
+0450,Powerlatch Main relay operating
+1655,Airbag Data further to a crash
+C19C,Safety mode 1 received from BMS
+04B2,Capteur de température du Plug de charge (côté véhicule)
+04B3,Current consumption on 14V network

@@ -4,7 +4,7 @@ ABS-VDC,0,,18daf12d,18da2df1,ABS-VDC,ESC;ABS,5902ff,50c0,0
 Airbag,0,,772,752,AIRBAG-SRS,AIBAG;AIRBAG,5902ff,50c0,0
 Audio Amplifier Unit,0,,7a2,782,AAU,,5902ff,50c0,0
 Automatic Parking Brake,0,,775,755,APB,,5902ff,50c0,0
-Battery Charger Block,0,,18daf1de,18dadef1,BCB-OBC,BCB,5902ff,50c0,0
+Battery Charger Block,0,,18daf1de,18dadef1,BCB-OBC,BCB,5902ff,50c0,1
 Body Control Module,0,,765,745,UCH,BCM;UCH,5902ff,50c0,0
 Climate Control,0,,764,744,HVAC,CLIM;CLIMA;CLIMBOX,5902ff,50c0,0
 Data Communication Module,0,,7da,7ca,DCM Renault,TCU,5902ff,50c0,0

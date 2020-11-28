@@ -1,0 +1,110 @@
+1B00,Low voltage supply input
+1B01,Cell input lines
+1B02,Battery pack voltage
+1B03,Current sensor input
+1B04,Few module thermistors in failure
+1B05,Many module thermistors in failure
+1B06,All module thermistors in failure
+1B07,Cooling thermistor input
+1B08,FAN speed input
+1B09,FAN control output
+1B0A,Main relay control output
+1B0B,Precharge relay control output
+1B0C,Battery pack temperature
+1B0D,Internal memory RAM/ROM
+1B0E,External NV memory (EEPROM, FLASH)
+1B0F,Analog to Digital Converter
+1B10,Master CPU/Slave Communication
+1B12,Main ASSP
+1B14,Relay 3 control output
+1B15,Temp 2 thermistor input
+1B16,MCPU/PCB temperature sensor
+1B17,Air/Ambient thermistor input
+1B18,Interlock1
+1B19,Interlock2
+1B1A,Interlock3
+1B1B,Interlock4
+1B1C,Busbar
+1B1D,Current sensor 5V supply
+1B1E,Current sensor 12V supply
+1B1F,CAN current sensor (MCPU)
+1B20,Relay 4 control output
+1B21,Flash memory failure (FOTA)
+1B30,Module thermistor 1
+1B31,Module thermistor 2
+1B32,Module thermistor 3
+1B33,Module thermistor 4
+1B34,Module thermistor 5
+1B35,Module thermistor 6
+1B36,Module thermistor 7
+1B37,Module thermistor 8
+1B38,Module thermistor 9
+1B39,Module thermistor 10
+1B3A,Module thermistor 11
+1B3B,Module thermistor 12
+1B3C,Module thermistor 13
+1B3D,Module thermistor 14
+1B3E,Module thermistor 15
+1B3F,Module thermistor 16
+1B40,Module thermistor 17
+1B41,Module thermistor 18
+1B42,Module thermistor 19
+1B43,Module thermistor 20
+1B44,Module thermistor 21
+1B45,Module thermistor 22
+1B46,Module thermistor 23
+1B47,Module thermistor 24
+1B48,Module thermistor 25
+1B49,Module thermistor 26
+1B4A,Module thermistor 27
+1B4B,Module thermistor 28
+1B4C,Module thermistor 29
+1B4D,Module thermistor 30
+1B4E,Module thermistor 31
+1B4F,Module thermistor 32
+1B60,Cell sensing lines - Module 1
+1B61,Cell sensing lines - Module 2
+1B62,Cell sensing lines - Module 3
+1B63,Cell sensing lines - Module 4
+1B64,Cell sensing lines - Module 5
+1B65,Cell sensing lines - Module 6
+1B66,Cell sensing lines - Module 7
+1B67,Cell sensing lines - Module 8
+1B68,Cell sensing lines - Module 9
+1B69,Cell sensing lines - Module 10
+1B6A,Cell sensing lines - Module 11
+1B6B,Cell sensing lines - Module 12
+1B6C,Cell sensing lines - Module 13
+1B6D,Cell sensing lines - Module 14
+1B6E,Cell sensing lines - Module 15
+1B6F,Cell sensing lines - Module 16
+1B70,Cell sensing lines - Module 17
+1B71,Cell sensing lines - Module 18
+1B72,Cell sensing lines - Module 19
+1B73,Cell sensing lines - Module 20
+1B74,Cell sensing lines - Module 21
+1B80,State of Charge Estimation
+1B81,State of Health Estimation
+1B82,Available Power
+1B83,Cell SOHP
+1BA0,Low voltage supply input (SCPU)
+1BA1,Cell input lines (SCPU)
+1BA2,Insulation Resistance measurement circuit
+1BA3,SCPU/PCB temperature sensor
+1BA4,Current sensor input1
+1BAD,Internal memory RAM/ROM (SCPU)
+1BAE,External NV memory (EEPROM, FLASH)1
+1BAF,CAN current sensor (SCPU)
+1BB1,Safety CPU/Slave Communication
+1BB2,ASIC (redundancy)
+1BB3,Hot Spot (SPARE) sensor
+1BB4,Pack module temperature sensor (SCPU)
+1BB5,CAN current sensor (SCPU)1
+1BB6,Flash memory failure (FOTA) (SCPU)
+E140,CAN from HECM
+E142,CAN from Inverter
+E143,CAN from EVC/HEVC
+E144,CAN from BMS1
+EA0D,CAN controller (MCPU)
+FD00,FOTA : SW bloc
+FD01,FOTA : Calibration bloc
