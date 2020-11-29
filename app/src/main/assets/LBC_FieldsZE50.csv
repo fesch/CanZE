@@ -3,7 +3,7 @@
 ,18DAF1DB,0,23,1,0,0,,19023b,59020f,ff,Query DTC
 # Source:
 ,18DAF1DB,24,55,1,0,0,,229000,629000,ff,DIDs supported in range [$9001 - $9020]
-,18DAF1DB,24,39,.01,-300,2,%,229001,629001,ff,Battery SOC(Zxx_bsoc_avg)
+,18DAF1DB,24,39,.01,300,2,%,229001,629001,ff,Battery SOC(Zxx_bsoc_avg)
 ,18DAF1DB,24,39,.01,0,2,%,229002,629002,ff,Battery USOC(Wxx_usoc_avg)
 ,18DAF1DB,24,39,.01,0,2,%,229003,629003,ff,Battery SOH(Zxx_sohe_avg)
 ,18DAF1DB,24,39,.1,0,1,V,229005,629005,ff,Pack Voltage (CAN value)(Wxx_pack_v_out)
@@ -12,14 +12,14 @@
 ,18DAF1DB,24,31,1,0,0,,229008,629008,ff,Number of Maximum Cell Voltage(Wxx_cell_v_max_nr)
 ,18DAF1DB,24,39,.000976563,0,3,V,229009,629009,ff,Minimum Cell Voltage(Wxx_cell_v_min)
 ,18DAF1DB,24,31,1,0,0,,22900A,62900A,ff,Number of Minimum Cell Voltage(Wxx_cell_v_min_nr)
-,18DAF1DB,24,39,.03125,-32640,2,A,22900C,62900C,ff,Current Sensor Offset value(Wxx_bat_i_ofs)
-,18DAF1DB,24,55,.025,-48000,2,A,22900D,62900D,1ff,Instant Current of Battery (CAN value)(Wxx_bat_i_10ms_out)
+,18DAF1DB,24,39,.03125,32640,2,A,22900C,62900C,ff,Current Sensor Offset value(Wxx_bat_i_ofs)
+,18DAF1DB,24,55,.025,48000,2,A,22900D,62900D,1ff,Instant Current of Battery (CAN value)(Wxx_bat_i_10ms_out)
 ,18DAF1DB,24,39,.01,0,2,kW,22900E,62900E,ff,Maximum Generated Power (After Restriction)(Wxx_rgn_pw_lngtrm)
 ,18DAF1DB,24,39,.01,0,2,kW,22900F,62900F,ff,Maximum Available Power (After Restriction)(Wxx_dchg_pw_lngtrm)
 ,18DAF1DB,24,39,.000976563,0,3,V,229011,629011,ff,Low Voltage Supply(Wxx_raw_14v_mes)
-,18DAF1DB,24,39,.0625,-640,2,°C,229012,629012,ff,Average Temperature(Wxx_temp_avg)
-,18DAF1DB,24,39,.0625,-640,2,°C,229013,629013,ff,Minimum Temperature(Wxx_temp_min)
-,18DAF1DB,24,39,.0625,-640,2,°C,229014,629014,ff,Maximum Temperature(Wxx_temp_max)
+,18DAF1DB,24,39,.0625,640,2,°C,229012,629012,ff,Average Temperature(Wxx_temp_avg)
+,18DAF1DB,24,39,.0625,640,2,°C,229013,629013,ff,Minimum Temperature(Wxx_temp_min)
+,18DAF1DB,24,39,.0625,640,2,°C,229014,629014,ff,Maximum Temperature(Wxx_temp_max)
 ,18DAF1DB,24,39,.01,0,2,kW,229018,629018,ff,Maximum Charge Power (after restriction)(Wxx_chg_pw)
 ,18DAF1DB,31,31,1,0,0,,229019,629019,ff,End Of Charge flag(Wbx_chg_end),0:Charging OK;1:Charging Stop
 ,18DAF1DB,30,31,1,0,0,,22901A,62901A,ff,HVBatt Interlock flag(Wsx_HVcn_ilck_out),0:Not used;1:Opened;2:Closed;3:Unavailable
@@ -639,24 +639,24 @@
 ,18DAF1DB,68,69,1,0,0,,22912F,62912F,ff,Temperature sensors in failure.02,0:no failure;1:failure OC/SCW;2:SCG failure
 ,18DAF1DB,70,71,1,0,0,,22912F,62912F,ff,Temperature sensors in failure.03,0:no failure;1:failure OC/SCW;2:SCG failure
 ,18DAF1DB,24,39,1,0,0,V,229130,629130,ff,HV CAN current sensor supply voltage(Wxx_bat_i_can_sply_dg)
-,18DAF1DB,24,39,.0625,-640,2,°C,229131,629131,ff,Temperature sensor n°1 value.(Wtx_temp[0])
-,18DAF1DB,24,39,.0625,-640,2,°C,229132,629132,ff,Temperature sensor n°2 value.(Wtx_temp[1])
-,18DAF1DB,24,39,.0625,-640,2,°C,229133,629133,ff,Temperature sensor n°3 value.(Wtx_temp[2])
-,18DAF1DB,24,39,.0625,-640,2,°C,229134,629134,ff,Temperature sensor n°4 value.(Wtx_temp[3])
-,18DAF1DB,24,39,.0625,-640,2,°C,229135,629135,ff,Temperature sensor n°5 value.(Wtx_temp[4])
-,18DAF1DB,24,39,.0625,-640,2,°C,229136,629136,ff,Temperature sensor n°6 value.(Wtx_temp[5])
-,18DAF1DB,24,39,.0625,-640,2,°C,229137,629137,ff,Temperature sensor n°7 value.(Wtx_temp[6])
-,18DAF1DB,24,39,.0625,-640,2,°C,229138,629138,ff,Temperature sensor n°8 value.(Wtx_temp[7])
-,18DAF1DB,24,39,.0625,-640,2,°C,229139,629139,ff,Temperature sensor n°9 value(Wtx_temp[8])
-,18DAF1DB,24,39,.0625,-640,2,°C,22913A,62913A,ff,Temperature sensor n°10 value[Wtx_temp[9]]
-,18DAF1DB,24,39,.0625,-640,2,°C,22913B,62913B,ff,Temperature sensor n°11 value[Wtx_temp[10]]
-,18DAF1DB,24,39,.0625,-640,2,°C,22913C,62913C,ff,Temperature sensor n°12 value[Wtx_temp[11]]
-,18DAF1DB,24,39,.0625,-640,2,°C,22913D,62913D,ff,Temperature sensor n°13 value[Wtx_temp[12]]
-,18DAF1DB,24,39,.0625,-640,2,°C,22913E,62913E,ff,Temperature sensor n°14 value[Wtx_temp[13]]
-,18DAF1DB,24,39,.0625,-640,2,°C,22913F,62913F,ff,Temperature sensor n°15 value[Wtx_temp[14]]
+,18DAF1DB,24,39,.0625,640,2,°C,229131,629131,ff,Temperature sensor n°1 value.(Wtx_temp[0])
+,18DAF1DB,24,39,.0625,640,2,°C,229132,629132,ff,Temperature sensor n°2 value.(Wtx_temp[1])
+,18DAF1DB,24,39,.0625,640,2,°C,229133,629133,ff,Temperature sensor n°3 value.(Wtx_temp[2])
+,18DAF1DB,24,39,.0625,640,2,°C,229134,629134,ff,Temperature sensor n°4 value.(Wtx_temp[3])
+,18DAF1DB,24,39,.0625,640,2,°C,229135,629135,ff,Temperature sensor n°5 value.(Wtx_temp[4])
+,18DAF1DB,24,39,.0625,640,2,°C,229136,629136,ff,Temperature sensor n°6 value.(Wtx_temp[5])
+,18DAF1DB,24,39,.0625,640,2,°C,229137,629137,ff,Temperature sensor n°7 value.(Wtx_temp[6])
+,18DAF1DB,24,39,.0625,640,2,°C,229138,629138,ff,Temperature sensor n°8 value.(Wtx_temp[7])
+,18DAF1DB,24,39,.0625,640,2,°C,229139,629139,ff,Temperature sensor n°9 value(Wtx_temp[8])
+,18DAF1DB,24,39,.0625,640,2,°C,22913A,62913A,ff,Temperature sensor n°10 value[Wtx_temp[9]]
+,18DAF1DB,24,39,.0625,640,2,°C,22913B,62913B,ff,Temperature sensor n°11 value[Wtx_temp[10]]
+,18DAF1DB,24,39,.0625,640,2,°C,22913C,62913C,ff,Temperature sensor n°12 value[Wtx_temp[11]]
+,18DAF1DB,24,39,.0625,640,2,°C,22913D,62913D,ff,Temperature sensor n°13 value[Wtx_temp[12]]
+,18DAF1DB,24,39,.0625,640,2,°C,22913E,62913E,ff,Temperature sensor n°14 value[Wtx_temp[13]]
+,18DAF1DB,24,39,.0625,640,2,°C,22913F,62913F,ff,Temperature sensor n°15 value[Wtx_temp[14]]
 ,18DAF1DB,24,55,1,0,0,,229140,629140,ff,DIDs supported in range [$9141 - $9160]
-,18DAF1DB,24,39,.0625,-640,2,°C,229141,629141,ff,Temperature sensor n°16 value[Wtx_temp[15]]
-,18DAF1DB,24,39,.0625,-640,2,°C,229142,629142,ff,Temperature sensor n°17 value[Wtx_temp[16]]
+,18DAF1DB,24,39,.0625,640,2,°C,229141,629141,ff,Temperature sensor n°16 value[Wtx_temp[15]]
+,18DAF1DB,24,39,.0625,640,2,°C,229142,629142,ff,Temperature sensor n°17 value[Wtx_temp[16]]
 ,18DAF1DB,24,55,1,0,0,,229160,629160,ff,DIDs supported in range [$9161 - $9180]
 ,18DAF1DB,28,39,.001953125,0,3,V,229173,629173,ff,Cooling temperature(raw voltage) T1_MEA(Wxx_raw_temp_1_v)
 ,18DAF1DB,28,39,.001953125,0,3,V,229174,629174,ff,Skin temperature(raw voltage) T2_MEA(Wxx_raw_temp_2_v)
@@ -678,9 +678,9 @@
 ,18DAF1DB,24,31,.0625,0,2,V,229184,629184,ff,Temperature sensor n°15 raw AD voltage(Wtx_raw_temp_v[14])
 ,18DAF1DB,24,31,.0625,0,2,V,229185,629185,ff,Temperature sensor n°16 raw AD voltage(Wtx_raw_temp_v[15])
 ,18DAF1DB,24,55,1,0,0,,2291A0,6291A0,ff,DIDs supported in range [$91A1 - $91C0]
-,18DAF1DB,24,39,.0625,-640,2,°C,2291B7,6291B7,ff,Board temperature (Main CPU)(Wxx_raw_cpu_temp)
-,18DAF1DB,24,39,.01,-300,2,%,2291B9,6291B9,ff,Battery SOC min(Zxx_bsoc_min)
-,18DAF1DB,24,39,.01,-300,2,%,2291BA,6291BA,ff,Battery SOC max(Zxx_bsoc_max)
+,18DAF1DB,24,39,.0625,640,2,°C,2291B7,6291B7,ff,Board temperature (Main CPU)(Wxx_raw_cpu_temp)
+,18DAF1DB,24,39,.01,300,2,%,2291B9,6291B9,ff,Battery SOC min(Zxx_bsoc_min)
+,18DAF1DB,24,39,.01,300,2,%,2291BA,6291BA,ff,Battery SOC max(Zxx_bsoc_max)
 ,18DAF1DB,24,39,.1,0,1,%,2291BC,6291BC,ff,Battery SOH (Available Power calculation)(Zxx_sohap)
 ,18DAF1DB,24,39,.1,0,1,%,2291BD,6291BD,ff,Battery SOH (Generated Power calculation)(Zxx_sohgp)
 ,18DAF1DB,28,39,.001953125,0,3,V,2291BE,6291BE,ff,ADC 5V reference / P5VPREF_DIAG (MAIN CPU)(Wxx_raw_5v_ref_diag)
@@ -713,8 +713,8 @@
 ,18DAF1DB,45,45,1,0,0,,2291CC,6291CC,ff,Busbars number in failure(Wtx_bbar_fail_nr).03,0:No failure;1:Busbar no.3 failure
 ,18DAF1DB,46,46,1,0,0,,2291CC,6291CC,ff,Busbars number in failure(Wtx_bbar_fail_nr).02,0:No failure;1:Busbar no.2 failure
 ,18DAF1DB,47,47,1,0,0,,2291CC,6291CC,ff,Busbars number in failure(Wtx_bbar_fail_nr).01,0:No failure;1:Busbar no.1 failure
-,18DAF1DB,24,39,.0625,-640,2,°C,2291CD,6291CD,ff,Cooling temperature(Wxx_temp_1)
-,18DAF1DB,24,55,.03125,2147483648,2,km,2291CF,6291CF,1ff,Battery mileage(Zxx_dist_pack_mem)
+,18DAF1DB,24,39,.0625,640,2,°C,2291CD,6291CD,ff,Cooling temperature(Wxx_temp_1)
+,18DAF1DB,24,55,.03125,-2147483648,2,km,2291CF,6291CF,1ff,Battery mileage(Zxx_dist_pack_mem)
 ,18DAF1DB,31,31,1,0,0,,2291D0,6291D0,ff,Charge relay diag feedback (RELAY1_DIAG)(Wbx_chg_rly_ctl_dg)
 ,18DAF1DB,24,39,1,0,0,min,2291D1,6291D1,ff,Charge Deplating Driving history (T°Max/BSOC)(Ztx_drv_cd_mtrx).25
 ,18DAF1DB,40,55,1,0,0,min,2291D1,6291D1,ff,Charge Deplating Driving history (T°Max/BSOC)(Ztx_drv_cd_mtrx).24
@@ -831,7 +831,7 @@
 ,18DAF1DB,31,31,1,0,0,,229219,629219,ff,Relay 4 diag feedback (RELAY4_DG)(Wbx_rly_4_ctl_dg)
 ,18DAF1DB,31,31,1,0,0,,22921A,62921A,ff,RELAY4_CMD - Bypass request(Wbx_rly_4_ctl_byp_req),0:Bypass OFF;1:Bypass ON
 ,18DAF1DB,31,31,1,0,0,,22921B,62921B,ff,RELAY4_CMD - Bypass value(Wbx_rly_4_ctl_byp_val),0:Relay Opened;1:Relay Closed
-,18DAF1DB,24,39,.0625,-640,2,°C,22921C,62921C,ff,Skin temperature (T2_MEA)(Wxx_temp_2)
+,18DAF1DB,24,39,.0625,640,2,°C,22921C,62921C,ff,Skin temperature (T2_MEA)(Wxx_temp_2)
 ,18DAF1DB,31,31,1,0,0,,22921D,62921D,ff,CAN current sensor failure indicator(Wbx_raw_bat_i_CAN_fail),0:No failure;1:Failure occurs
 ,18DAF1DB,24,31,1,0,0,,22921E,62921E,ff,CAN current sensor failure information(Wsx_raw_bat_i_CAN_errinf),65:Error on dataflash CRC;66:Fluxgate running at high frequency;67:Fluxgate not oscillating;68:CAB in fail safe mode;70:Signal not available more than 100ms;71:Supply voltage out of range
 ,18DAF1DB,24,55,1,0,0,,229220,629220,ff,DIDs supported in range [$9221 - $9240]
@@ -857,10 +857,10 @@
 ,18DAF1DB,24,39,.01,0,2,%,22924B,62924B,ff,SOHEmodel_K-1(Zxx_sohe_mdl_km1)
 ,18DAF1DB,24,39,.01,0,2,,22924C,62924C,ff,SOHEAlgo(k)(Zxx_sohe_alg)
 ,18DAF1DB,24,31,.5,0,1,,22924E,62924E,ff,SOHEAlpha(k)(Wxx_sohe_alpha)
-,18DAF1DB,24,55,.0009765625,2147483648,3,Ah,22924F,62924F,1ff,Total cumulated capacity balanced(Zxx_bal_chg_tot)
-,18DAF1DB,24,55,.0009765625,2147483648,3,h,229250,629250,1ff,Total balancing time(Zxx_bal_time_tot)
-,18DAF1DB,24,55,.0009765625,2147483648,3,Ah,229251,629251,1ff,Total cumulated capacity balanced in sleep mode(Zxx_bal_chg_tot_slp)
-,18DAF1DB,24,55,.0009765625,2147483648,3,h,229252,629252,1ff,Total balancing time in sleep mode(Zxx_bal_time_tot_slp)
+,18DAF1DB,24,55,.0009765625,-2147483648,3,Ah,22924F,62924F,1ff,Total cumulated capacity balanced(Zxx_bal_chg_tot)
+,18DAF1DB,24,55,.0009765625,-2147483648,3,h,229250,629250,1ff,Total balancing time(Zxx_bal_time_tot)
+,18DAF1DB,24,55,.0009765625,-2147483648,3,Ah,229251,629251,1ff,Total cumulated capacity balanced in sleep mode(Zxx_bal_chg_tot_slp)
+,18DAF1DB,24,55,.0009765625,-2147483648,3,h,229252,629252,1ff,Total balancing time in sleep mode(Zxx_bal_time_tot_slp)
 ,18DAF1DB,24,39,.000976563,0,3,V,229254,629254,ff,20ms cell minimal voltage (Wxx_cell_v_min_20ms)
 ,18DAF1DB,24,39,.000976563,0,3,V,229255,629255,ff,20ms cell minimal voltage (Wxx_cell_v_max_20ms)
 ,18DAF1DB,24,24,1,0,0,,229256,629256,ff,Index of cell in failure(Wtx_cell_fail_nr).256
@@ -1119,25 +1119,25 @@
 ,18DAF1DB,277,277,1,0,0,,229256,629256,ff,Index of cell in failure(Wtx_cell_fail_nr).03
 ,18DAF1DB,278,278,1,0,0,,229256,629256,ff,Index of cell in failure(Wtx_cell_fail_nr).02
 ,18DAF1DB,279,279,1,0,0,,229256,629256,ff,Index of cell in failure(Wtx_cell_fail_nr).01
-,18DAF1DB,24,39,.03125,-32640,2,A,229257,629257,ff,10ms current value (offset correction), internal value (Wxx_bat_i_10ms)
-,18DAF1DB,24,39,.03125,-32640,2,A,229258,629258,ff,10ms raw current value from Sensor(Wxx_raw_bat_i_10ms)
+,18DAF1DB,24,39,.03125,32640,2,A,229257,629257,ff,10ms current value (offset correction), internal value (Wxx_bat_i_10ms)
+,18DAF1DB,24,39,.03125,32640,2,A,229258,629258,ff,10ms raw current value from Sensor(Wxx_raw_bat_i_10ms)
 ,18DAF1DB,24,31,1,0,0,,229259,629259,ff,BMS mode(Wsx_bms_mode_stt_out)
 ,18DAF1DB,24,31,4,0,0,Hz,22925A,62925A,ff,HVBatteryBlowerFeedback(Wxx_hvbat_blwr_fdbk_out)
 ,18DAF1DB,24,39,1,0,0,,22925B,62925B,ff,MCPU reset status,0:RAM check error;1:ROM check error;2:Stack check error (overflow and underflow);3:Trap error;4:Software Reset;5:Watchdog Reset 0;6:Watchdog Reset 1;7:External Reset;14:Flash security violation Reset;15:Irregular Reset
 ,18DAF1DB,30,31,1,0,0,,22925C,62925C,ff,Relay status, internal value
-,18DAF1DB,24,39,.03125,-32640,2,A,22925D,62925D,ff,Current value, average at 100ms
+,18DAF1DB,24,39,.03125,32640,2,A,22925D,62925D,ff,Current value, average at 100ms
 ,18DAF1DB,24,47,1,0,0,,22925E,62925E,ff,Vehicle ID(Zxx_id_vhc)
-,18DAF1DB,24,55,.01,2147483648,2,km,22925F,62925F,1ff,Distance Totalizer (vehicle)
+,18DAF1DB,24,55,.01,-2147483648,2,km,22925F,62925F,1ff,Distance Totalizer (vehicle)
 ,18DAF1DB,24,55,1,0,0,,229260,629260,ff,DIDs supported in range [$9261 - $9280]
 ,18DAF1DB,24,47,1,0,0,min,229261,629261,ff,Absolute Time of Vehicle saved
-,18DAF1DB,24,55,.0009765625,2147483648,3,,229262,629262,1ff,Total balancing quantity, Wake Up mode (Zxx_bal_chg_tot_wk)
-,18DAF1DB,24,55,.0009765625,2147483648,3,h,229263,629263,1ff,Total balancing time, Wake Up mode (Zxx_bal_time_tot_wk)
+,18DAF1DB,24,55,.0009765625,-2147483648,3,,229262,629262,1ff,Total balancing quantity, Wake Up mode (Zxx_bal_chg_tot_wk)
+,18DAF1DB,24,55,.0009765625,-2147483648,3,h,229263,629263,1ff,Total balancing time, Wake Up mode (Zxx_bal_time_tot_wk)
 ,18DAF1DB,24,47,1,0,0,,229264,629264,ff,Total boost time from HEVC to BMS saved at powerlatch
 ,18DAF1DB,24,55,.001,0,3,,229265,629265,1ff,Sum of KWh in CD mode at transisition start
 ,18DAF1DB,26,31,1,0,0,,229266,629266,ff,SOHE average buffer table current index
 ,18DAF1DB,24,39,.01,0,2,%,229267,629267,ff,SOHE RSA model
-,18DAF1DB,24,39,.01,9900,2,%,229268,629268,ff,Estimated SOHR for charge direction
-,18DAF1DB,24,39,.01,9900,2,%,229269,629269,ff,Estimated SOHR for discharge direction
+,18DAF1DB,24,39,.01,-9900,2,%,229268,629268,ff,Estimated SOHR for charge direction
+,18DAF1DB,24,39,.01,-9900,2,%,229269,629269,ff,Estimated SOHR for discharge direction
 ,18DAF1DB,24,39,.01,0,2,%,22926A,62926A,ff,SOHE average buffer table.19
 ,18DAF1DB,40,55,.01,0,2,%,22926A,62926A,ff,SOHE average buffer table.18
 ,18DAF1DB,56,71,.01,0,2,%,22926A,62926A,ff,SOHE average buffer table.17
@@ -1623,70 +1623,70 @@
 ,18DAF1DB,720,743,1,0,0,min,229276,629276,ff,End of mission Absolute Pack Time.02
 ,18DAF1DB,744,767,1,0,0,min,229276,629276,ff,End of mission Absolute Pack Time.01
 ,18DAF1DB,768,791,1,0,0,min,229276,629276,ff,End of mission Absolute Pack Time.00
-,18DAF1DB,24,55,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.31
-,18DAF1DB,56,87,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.30
-,18DAF1DB,88,119,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.29
-,18DAF1DB,120,151,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.28
-,18DAF1DB,152,183,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.27
-,18DAF1DB,184,215,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.26
-,18DAF1DB,216,247,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.25
-,18DAF1DB,248,279,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.24
-,18DAF1DB,280,311,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.23
-,18DAF1DB,312,343,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.22
-,18DAF1DB,344,375,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.21
-,18DAF1DB,376,407,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.20
-,18DAF1DB,408,439,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.19
-,18DAF1DB,440,471,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.18
-,18DAF1DB,472,503,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.17
-,18DAF1DB,504,535,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.16
-,18DAF1DB,536,567,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.15
-,18DAF1DB,568,599,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.14
-,18DAF1DB,600,631,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.13
-,18DAF1DB,632,663,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.12
-,18DAF1DB,664,695,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.11
-,18DAF1DB,696,727,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.10
-,18DAF1DB,728,759,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.09
-,18DAF1DB,760,791,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.08
-,18DAF1DB,792,823,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.07
-,18DAF1DB,824,855,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.06
-,18DAF1DB,856,887,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.05
-,18DAF1DB,888,919,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.04
-,18DAF1DB,920,951,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.03
-,18DAF1DB,952,983,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.02
-,18DAF1DB,984,1015,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.01
-,18DAF1DB,1016,1047,.03125,2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.00
-,18DAF1DB,24,55,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.31
-,18DAF1DB,56,87,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.30
-,18DAF1DB,88,119,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.29
-,18DAF1DB,120,151,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.28
-,18DAF1DB,152,183,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.27
-,18DAF1DB,184,215,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.26
-,18DAF1DB,216,247,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.25
-,18DAF1DB,248,279,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.24
-,18DAF1DB,280,311,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.23
-,18DAF1DB,312,343,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.22
-,18DAF1DB,344,375,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.21
-,18DAF1DB,376,407,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.20
-,18DAF1DB,408,439,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.19
-,18DAF1DB,440,471,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.18
-,18DAF1DB,472,503,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.17
-,18DAF1DB,504,535,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.16
-,18DAF1DB,536,567,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.15
-,18DAF1DB,568,599,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.14
-,18DAF1DB,600,631,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.13
-,18DAF1DB,632,663,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.12
-,18DAF1DB,664,695,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.11
-,18DAF1DB,696,727,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.10
-,18DAF1DB,728,759,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.09
-,18DAF1DB,760,791,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.08
-,18DAF1DB,792,823,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.07
-,18DAF1DB,824,855,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.06
-,18DAF1DB,856,887,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.05
-,18DAF1DB,888,919,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.04
-,18DAF1DB,920,951,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.03
-,18DAF1DB,952,983,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.02
-,18DAF1DB,984,1015,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.01
-,18DAF1DB,1016,1047,.03125,2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.00
+,18DAF1DB,24,55,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.31
+,18DAF1DB,56,87,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.30
+,18DAF1DB,88,119,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.29
+,18DAF1DB,120,151,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.28
+,18DAF1DB,152,183,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.27
+,18DAF1DB,184,215,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.26
+,18DAF1DB,216,247,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.25
+,18DAF1DB,248,279,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.24
+,18DAF1DB,280,311,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.23
+,18DAF1DB,312,343,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.22
+,18DAF1DB,344,375,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.21
+,18DAF1DB,376,407,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.20
+,18DAF1DB,408,439,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.19
+,18DAF1DB,440,471,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.18
+,18DAF1DB,472,503,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.17
+,18DAF1DB,504,535,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.16
+,18DAF1DB,536,567,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.15
+,18DAF1DB,568,599,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.14
+,18DAF1DB,600,631,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.13
+,18DAF1DB,632,663,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.12
+,18DAF1DB,664,695,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.11
+,18DAF1DB,696,727,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.10
+,18DAF1DB,728,759,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.09
+,18DAF1DB,760,791,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.08
+,18DAF1DB,792,823,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.07
+,18DAF1DB,824,855,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.06
+,18DAF1DB,856,887,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.05
+,18DAF1DB,888,919,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.04
+,18DAF1DB,920,951,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.03
+,18DAF1DB,952,983,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.02
+,18DAF1DB,984,1015,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.01
+,18DAF1DB,1016,1047,.03125,-2147483648,2,km,229277,629277,1ff,Initial mission Distance Pack.00
+,18DAF1DB,24,55,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.31
+,18DAF1DB,56,87,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.30
+,18DAF1DB,88,119,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.29
+,18DAF1DB,120,151,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.28
+,18DAF1DB,152,183,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.27
+,18DAF1DB,184,215,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.26
+,18DAF1DB,216,247,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.25
+,18DAF1DB,248,279,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.24
+,18DAF1DB,280,311,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.23
+,18DAF1DB,312,343,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.22
+,18DAF1DB,344,375,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.21
+,18DAF1DB,376,407,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.20
+,18DAF1DB,408,439,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.19
+,18DAF1DB,440,471,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.18
+,18DAF1DB,472,503,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.17
+,18DAF1DB,504,535,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.16
+,18DAF1DB,536,567,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.15
+,18DAF1DB,568,599,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.14
+,18DAF1DB,600,631,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.13
+,18DAF1DB,632,663,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.12
+,18DAF1DB,664,695,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.11
+,18DAF1DB,696,727,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.10
+,18DAF1DB,728,759,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.09
+,18DAF1DB,760,791,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.08
+,18DAF1DB,792,823,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.07
+,18DAF1DB,824,855,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.06
+,18DAF1DB,856,887,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.05
+,18DAF1DB,888,919,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.04
+,18DAF1DB,920,951,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.03
+,18DAF1DB,952,983,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.02
+,18DAF1DB,984,1015,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.01
+,18DAF1DB,1016,1047,.03125,-2147483648,2,km,229278,629278,1ff,End of mission Distance Pack.00
 ,18DAF1DB,24,31,1,0,0,,229279,629279,ff,Value of mission indice(Zxx_mission_indice)
 ,18DAF1DB,24,24,1,0,0,,22927A,62927A,ff,cell SOHP failure table(Wtx_df_sohp_cell_fail_nr).bit255
 ,18DAF1DB,25,25,1,0,0,,22927A,62927A,ff,cell SOHP failure table(Wtx_df_sohp_cell_fail_nr).bit254
