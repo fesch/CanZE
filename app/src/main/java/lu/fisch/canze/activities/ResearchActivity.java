@@ -71,8 +71,7 @@ public class ResearchActivity extends CanzeActivity implements FieldListener, De
             finish();
             return;
         }
-        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
-        String importFieldsFileName = file_path + "_Research.csv";
+        String importFieldsFileName = MainActivity.getInstance().getExternalFolder() + "_Research.csv";
         File fieldsFile = new File(importFieldsFileName);
         if (!fieldsFile.exists()) {
             toast(TOAST_NONE, "Research.onCreate: " + importFieldsFileName + " does not exist");

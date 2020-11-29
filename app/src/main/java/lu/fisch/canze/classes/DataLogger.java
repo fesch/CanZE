@@ -140,45 +140,44 @@ public class DataLogger implements FieldListener {
         if (!MainActivity.getInstance().isExternalStorageWritable()) {
             debug("DataLogger: SDcard not writeable");
             return false;
-        } else {
-            String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
-            File dir = new File(file_path);
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-            debug("DataLogger: file_path:" + file_path);
+        }
+        String file_path = MainActivity.getInstance().getExternalFolder();
+        File dir = new File(file_path);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        debug("DataLogger: file_path:" + file_path);
 
-            // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-            String exportdataFileName = file_path + "data-" + sdf.format(Calendar.getInstance().getTime()) + ".log";
+        // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        String exportdataFileName = file_path + "data-" + sdf.format(Calendar.getInstance().getTime()) + ".log";
 
-            logFile = new File(exportdataFileName);
-            if (!logFile.exists()) {
-                try {
-                    if (!logFile.createNewFile()) {
-                        debug("Datalogger:createNewLog: can't create file:" + exportdataFileName);
-                        logFile = null;
-                        return false;
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
+        logFile = new File(exportdataFileName);
+        if (!logFile.exists()) {
             try {
-                //BufferedWriter for performance, true to set append to file flag
-                FileWriter fileWriter = new FileWriter(logFile, true);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-                // set global static BufferedWriter dataexportStream later
-                //if (true) {
-                //    bufferedWriter.append("this is just a test if stream is writeable");
-                //    bufferedWriter.newLine();
-                //    bufferedWriter.close();
-                //}
-                bufferedWriter.close();
-                result = true;
+                if (!logFile.createNewFile()) {
+                    debug("Datalogger:createNewLog: can't create file:" + exportdataFileName);
+                    logFile = null;
+                    return false;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+        try {
+            //BufferedWriter for performance, true to set append to file flag
+            FileWriter fileWriter = new FileWriter(logFile, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            // set global static BufferedWriter dataexportStream later
+            //if (true) {
+            //    bufferedWriter.append("this is just a test if stream is writeable");
+            //    bufferedWriter.newLine();
+            //    bufferedWriter.close();
+            //}
+            bufferedWriter.close();
+            result = true;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return result;
     }

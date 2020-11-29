@@ -307,7 +307,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
             debug("DiagDump: SDcard not writeable");
             return false;
         }
-        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
+        String file_path = MainActivity.getInstance().getExternalFolder();
 
         File dir = new File(file_path);
         if (!dir.exists()) {
@@ -317,7 +317,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     }
 
     private void load (String set) {
-        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
+        String file_path = MainActivity.getInstance().getExternalFolder();
         String filename = file_path + "_Tires" + set + ".csv";
         ensureFolderThere();
         try {
@@ -337,7 +337,7 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     }
 
     private void save (String set) {
-        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
+        String file_path = MainActivity.getInstance().getExternalFolder();
         String filename = file_path + "_Tires" + set + ".csv";
         ensureFolderThere();
         try {

@@ -56,7 +56,7 @@ public class FieldLogger {
             debug("DiagDump: SDcard not writeable");
             return false;
         }
-        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
+        String file_path = MainActivity.getInstance().getExternalFolder();
 
         File dir = new File(file_path);
         if (!dir.exists()) {

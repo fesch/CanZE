@@ -1229,6 +1229,20 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return (Environment.MEDIA_MOUNTED.equals(SDstate));
     }
 
+    public String getExternalFolder() {
+        // old code path
+        // return Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
+
+        // moved to new data storage framework starting Android 10
+        // On a Samsung J6 this returns /storage/emulated/0/Android/data/lu.fisch.canze/files/
+        // In the My Files app this is visible under Internal Storage > Android > data > lu.fisch.canze > files
+        // In a connected Ubuntu PC this shows up as Samsung Android > Phone > Android > data > lu.fisch.canze > files
+        // Two isues
+        // - through USB the folder is unfortunately read-only. This makes it almost impossible to use the _Research facility
+        // - it selects Internal storage instead of SD card. Why is somewhat unclear, but more or less OK for now
+        return getExternalFilesDir(null).getAbsolutePath();
+    }
+
     public static void logExceptionToCrashlytics (Exception e) {
         FirebaseCrashlytics.getInstance().recordException(e);
     }

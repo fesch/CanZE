@@ -429,7 +429,7 @@ public class DtcActivity extends CanzeActivity {
             return;
         }
 
-        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CanZE/";
+        String file_path = MainActivity.getInstance().getExternalFolder();
         File dir = new File(file_path);
         if (!dir.exists()) {
             if (!dir.mkdirs()) {
