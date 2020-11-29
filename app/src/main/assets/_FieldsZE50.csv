@@ -21,19 +21,22 @@
 # 427,40,47,0.3,0,0,kW,,,e2,Available Charging Power (UCP)
 427.40,18daf1da,24,39,.1,0,1,kW,223470,623470,ff,Available JB2 power for a battery charge
 # 427,49,57,0.1,0,1,kWh,,,e2,Available Energy
-427.49,18daf1da,24,39,0.005,0,1,kWh,22320C,62320C,ff,Available discharge Energy
+# 427.49,18daf1da,24,39,0.005,0,1,kWh,22320C,62320C,ff,Available discharge Energy
+427.49,18DAF1DB,24,47,.001,0,3,kWh,2291C8,6291C8,ff,Available Energy(Wxx_avl_e)
 # 42a,30,39,0.1,400,1,°C,,,ff,Evaporator Temp Measure
 42a.30,764,42,51,0.1,400,1,°C,2144,6144,ff,Evaporator Temp Measure
 # 42a,48,50,1,0,0,,,,e2,ClimLoopMode
 # 42a.48,764,62,64,1,0,0,-,2144,2144,e2,ClimLoopMode
 42a.48,764,21,23,1,0,0,,2167,6167,ff,ILB_HPM_ClimLoopMode,0:Unavailable;1:AC mode;2:AC de-icing mode;3:Not used (100);4:Heat Pump mode;5:Not used (101);6:Demisting mode;7:Idle mode
 # 42e,0,12,0.02,0,2,%,,,e3,State of Charge
-42e.0,18daf1da,24,39,0.02,0,2,%,222002,622002,ff,State of Charge
+# 42e.0,18daf1da,24,39,0.02,0,2,%,222002,622002,ff,State of Charge
+42e.0,18DAF1DB,24,39,.01,0,2,%,229002,629002,ff,Battery USOC(Wxx_usoc_avg)
 # 42e,20,24,5,0,0,%,,,e2,Engine Fan Speed
 # 42e.20,18daf1da,24,31,5,0,0,%,223471,613471,e2,Engine Fan Speed
 42e.20,18daf1da,24,31,1,0,0,%,22345E,62345E,ff,FAN global request from ETS in PWM including AC, Cooling needs and Relay protection check
 # 42e,44,50,1,40,0,°C,,,e3,HV Battery Temp
-42e.44,18daf1da,24,31,1,40,0,°C,222001,622001,ff,HV Battery Temp
+# 42e.44,18daf1da,24,31,1,40,0,°C,222001,622001,ff,HV Battery Temp
+42e.44,18DAF1DB,24,39,.0625,-640,2,°C,229012,629012,ff,Average Temperature(Wxx_temp_avg)
 # 430,38,39,1,0,0,,,,e2,HV Battery Cooling State
 430.38,764,168,169,1,0,0,,2144,6144,ff,HV Battery Cooling State
 # 430,40,49,0.1,400,1,°C,,,e2,HV Battery Evaporator Temp
@@ -60,7 +63,8 @@
 # 656,48,55,1,40,0,°C,,,e2,External Temp
 656.48,763,110,117,1,40,0,°C,2143,6143,ff,External Temp
 # 658,33,39,1,0,0,%,,,ff,Battery Health
-658.33,18daf1db,72,79,0.5,0,0,%,2161,6161,ff,Battery Health
+# 658.33,18daf1db,72,79,0.5,0,0,%,2161,6161,ff,Battery Health
+658.33,18DAF1DB,24,39,.1,0,1,%,2291BC,6291BC,ff,Battery SOH (Available Power calculation)(Zxx_sohap)
 # 673,0,0,1,0,0,,,,ff,Speed pressure misadaptation
 673.0,765,66,66,1,0,0,,2174,6174,ff,SpeedPressureMisadaptation
 # 673,2,4,1,0,0,,,,ff,Rear right wheel state
@@ -197,7 +201,9 @@
 7b6.59020f.0,18daf1dc,0,23,1,0,0,,19023b,59020f,ff,Query DTC
 # LBC #
 7bb.6101.336,18daf1db,24,39,0.01,0,2,kW,229018,629018,ff,Maximum battery input power
-7bb.6103.192,18daf1db,24,39,0.01,0,2,%,229002,629002,ff,Real State of Charge
+# 7bb.6103.192,18daf1db,24,39,0.01,0,2,%,229002,629002,ff,Real State of Charge
+7bb.6103.192,18daf1db,24,39,0.01,-300,2,%,229001,629001,ff,Real State of Charge
+7ec.622002.24,18DAF1DB,24,39,.01,0,2,%,229002,629002,ff,Battery USOC(Wxx_usoc_avg)
 7bb.6104.32,18daf1db,24,39,0.0625,640,2,°C,229131,629131,ff,Cell 1 Temperature
 7bb.6104.56,18daf1db,24,39,0.0625,640,2,°C,229132,629132,ff,Cell 2 Temperature
 7bb.6104.80,18daf1db,24,39,0.0625,640,2,°C,229133,629133,ff,Cell 3 Temperature
@@ -320,10 +326,14 @@
 7bb.6142.528,18daf1db,24,39,0.000976563,0,3,V,229082,629082,ff,Cell 95 V
 7bb.6142.544,18daf1db,24,39,0.000976563,0,3,V,229083,629083,ff,Cell 96 V
 7bb.6161.96,18daf1db,96,119,1,0,0,km,2161,6161,ff,Battery mileage in km
-7bb.6161.120,18daf1db,120,151,1,0,0,kWh,2161,6161,ff,kWh from beginning of Battery life
+# 7bb.6161.96,18DAF1DB,24,55,.03125,-2147483648,2,km,2291CF,6291CF,ff,Battery mileage(Zxx_dist_pack_mem)
+# 7bb.6161.120,18daf1db,120,151,1,0,0,kWh,2161,6161,ff,kWh from beginning of Battery life
+7bb.6161.120,18DAF1DB,24,55,.001,0,3,kWh,229243,629243,1ff,Cumulated energy in charge
 7bb.6162.16,18daf1db,16,47,1,0,0,,2162,6162,ff,21_62_03_Serial_Number (FIN)
-7bb.6166.48,18daf1db,48,63,1,0,0,,2166,6166,ff,Full Charge counter
-7bb.6166.64,18daf1db,64,79,1,0,0,,2166,6166,ff,Partial Charge counter
+# 7bb.6166.48,18daf1db,48,63,1,0,0,,2166,6166,ff,Full Charge counter
+7bb.6166.48,18DAF1DB,24,39,1,0,0,,229210,629210,ff,Overall number of complete charge(Zxx_full_chg_ctr)
+# 7bb.6166.64,18daf1db,64,79,1,0,0,,2166,6166,ff,Partial Charge counter
+7bb.6166.64,18DAF1DB,24,39,1,0,0,,229215,629215,ff,Overall number of partial charge(Zxx_partial_chg_ctr)
 7bb.6180.56,18daf1db,56,63,1,0,0,,2180,6180,ff,diagVersion
 7bb.6180.64,18daf1db,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 7bb.6180.128,18daf1db,128,143,1,0,0,,2180,6180,ff,Soft
@@ -364,7 +374,7 @@
 7ec.5003.0,18daf1da,0,23,1,0,0,,10c0,50c0,ff,StartDiagnosticSession.Extended
 7ec.5001.0,18daf1da,0,23,1,0,0,,1001,5001,ff,StartDiagnosticSession
 7ec.5003.0,18daf1da,0,23,1,0,0,,1003,5003,ff,StartDiagnosticSession
-7ec.622002.24,18daf1da,24,39,.02,0,2,%,222002,622002,ff,State Of Charge (SOC) HV battery
+# 7ec.622002.24,18daf1da,24,39,.02,0,2,%,222002,622002,ff,State Of Charge (SOC) HV battery
 7ec.622005.24,18daf1da,24,39,.01,0,2,V,222005,622005,ff,Battery voltage 14v
 7ec.622006.24,18daf1da,24,47,1,0,0,km,222006,622006,ff,Total vehicle distance
 7ec.62202e.24,18daf1da,24,39,.00125,0,0,-,22202E,62202E,ff,Accelerator pedal position
@@ -375,7 +385,8 @@
 7ec.623028.24,18daf1da,24,31,.390625,0,1,%,223028,623028,ff,DCDC Load
 7ec.623203.24,18daf1da,24,39,.5,0,1,V,223203,623203,ff,HV LBC voltage measure
 7ec.623204.24,18daf1da,24,39,.25,32768,1,A,223204,623204,ff,HV LBC current measure
-7ec.623206.24,18daf1da,24,31,1,0,0,%,223206,623206,ff,State Of Health (SOH) HV battery
+# 7ec.623206.24,18daf1da,24,31,1,0,0,%,223206,623206,ff,State Of Health (SOH) HV battery
+7ec.623206.24,18DAF1DB,24,39,.1,0,1,%,2291BC,6291BC,ff,Battery SOH (Available Power calculation)(Zxx_sohap)
 7ec.623318.24,18daf1da,24,31,1,1,0,,223318,623318,ff,Motor Water pump speed
 7ec.623319.24,18daf1da,24,31,1,1,0,,223319,623319,ff,Charger pump speed
 7ec.62331a.24,18daf1da,24,31,1,1,0,,22331a,62331a,ff,Heater water pump speed
