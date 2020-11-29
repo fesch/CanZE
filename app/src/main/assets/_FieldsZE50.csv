@@ -36,7 +36,7 @@
 42e.20,18daf1da,24,31,1,0,0,%,22345E,62345E,ff,FAN global request from ETS in PWM including AC, Cooling needs and Relay protection check
 # 42e,44,50,1,40,0,°C,,,e3,HV Battery Temp
 # 42e.44,18daf1da,24,31,1,40,0,°C,222001,622001,ff,HV Battery Temp
-42e.44,18DAF1DB,24,39,.0625,-640,2,°C,229012,629012,ff,Average Temperature(Wxx_temp_avg)
+42e.44,18DAF1DB,24,39,.0625,640,2,°C,229012,629012,ff,Average Temperature(Wxx_temp_avg)
 # 430,38,39,1,0,0,,,,e2,HV Battery Cooling State
 430.38,764,168,169,1,0,0,,2144,6144,ff,HV Battery Cooling State
 # 430,40,49,0.1,400,1,°C,,,e2,HV Battery Evaporator Temp
