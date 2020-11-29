@@ -177,7 +177,7 @@ public class Frames {
             }
             return "_Frames.csv";
         }
-        return "_Fields"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv";
+        return "_Frames"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv";
     }
 
 }
