@@ -1240,7 +1240,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // Two isues
         // - through USB the folder is unfortunately read-only. This makes it almost impossible to use the _Research facility
         // - it selects Internal storage instead of SD card. Why is somewhat unclear, but more or less OK for now
-        return getExternalFilesDir(null).getAbsolutePath();
+        return getExternalFilesDir(null).getAbsolutePath() + "/";
     }
 
     public static void logExceptionToCrashlytics (Exception e) {
