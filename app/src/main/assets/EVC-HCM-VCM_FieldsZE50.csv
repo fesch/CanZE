@@ -173,22 +173,22 @@
 ,18DAF1DA,31,31,1,0,0,,222237,622237,ff,($2237) Flag to limit the regenerative braking demand in case MSR function is faulty,0:No limitation;1:Limitation activated
 ,18DAF1DA,29,31,1,0,0,,222238,622238,ff,($2238) Gear level position,0:transient;1:park;2:reverse;3:neutral;4:drive
 ,18DAF1DA,24,39,.00125,0,3,-,222239,622239,ff,($2239) Powertrain setpoint (%) requested by the driver via the accelerator pedal
-,18DAF1DA,24,39,.5,-32768,1,N,22223A,62223A,ff,($223A) Force demand at the wheels (output of the drivers' arbitration)
-,18DAF1DA,24,39,.03125,-32768,2,N.m,22223B,62223B,ff,($223B) Electrical motor (EM) torque setpoint before AJS Correction action
-,18DAF1DA,24,39,.03125,-12800,2,N.m,22223C,62223C,ff,($223C) ASR setpoint torque sent to torque arbitration
-,18DAF1DA,24,39,.03125,-32768,2,N.m,22223D,62223D,ff,($223D) Torque correction calculated by AJCOR function
-,18DAF1DA,24,39,.03125,-32768,2,N.m,22223E,62223E,ff,($223E) Final torque setpoint after AJMOD action
-,18DAF1DA,24,39,.5,-32768,1,N,22223F,62223F,ff,($223F) Force demand derived from accelerator pedal position
+,18DAF1DA,24,39,.5,32768,1,N,22223A,62223A,ff,($223A) Force demand at the wheels (output of the drivers' arbitration)
+,18DAF1DA,24,39,.03125,32768,2,N.m,22223B,62223B,ff,($223B) Electrical motor (EM) torque setpoint before AJS Correction action
+,18DAF1DA,24,39,.03125,12800,2,N.m,22223C,62223C,ff,($223C) ASR setpoint torque sent to torque arbitration
+,18DAF1DA,24,39,.03125,32768,2,N.m,22223D,62223D,ff,($223D) Torque correction calculated by AJCOR function
+,18DAF1DA,24,39,.03125,32768,2,N.m,22223E,62223E,ff,($223E) Final torque setpoint after AJMOD action
+,18DAF1DA,24,39,.5,32768,1,N,22223F,62223F,ff,($223F) Force demand derived from accelerator pedal position
 ,18DAF1DA,24,31,1,0,0,,222240,622240,ff,DIDs supported in range [$2241 - $2260]
-,18DAF1DA,24,39,.03125,-12800,2,N.m,222241,622241,ff,($2241) MSR torque setting sent to torque arbitration
+,18DAF1DA,24,39,.03125,12800,2,N.m,222241,622241,ff,($2241) MSR torque setting sent to torque arbitration
 ,18DAF1DA,24,39,1,32768,0,rpm,222242,622242,ff,($2242) Filtered electric motor (EM) speed
-,18DAF1DA,24,39,.03125,-32768,2,N.m,222243,622243,ff,($2243) Final effective torque request to the electric motor (EM)
+,18DAF1DA,24,39,.03125,32768,2,N.m,222243,622243,ff,($2243) Final effective torque request to the electric motor (EM)
 ,18DAF1DA,28,31,1,0,0,-,222244,622244,ff,($2244) Lever position word
-,18DAF1DA,24,39,.03125,-32768,2,N.m,222245,622245,ff,($2245) Limited electrical motor (EM) effective torque setpoint
-,18DAF1DA,24,39,.03125,-32768,2,N.m,222246,622246,ff,($2246) Electrical motor (EM) maximum effective torque available
-,18DAF1DA,24,39,.03125,-32768,2,N.m,222247,622247,ff,($2247) Minimum effective torque that can be requested to the electrical motor (EM)
-,18DAF1DA,24,39,.5,-32768,1,N,222248,622248,ff,($2248) Force demand (at the wheels) when powertrain setpoint is equal to zero
-,18DAF1DA,24,39,.5,-32768,1,N,222249,622249,ff,($2249)Force demand(at the wheels)when PWT setpoint is 0,before saturation accounting for min tq demand available
+,18DAF1DA,24,39,.03125,32768,2,N.m,222245,622245,ff,($2245) Limited electrical motor (EM) effective torque setpoint
+,18DAF1DA,24,39,.03125,32768,2,N.m,222246,622246,ff,($2246) Electrical motor (EM) maximum effective torque available
+,18DAF1DA,24,39,.03125,32768,2,N.m,222247,622247,ff,($2247) Minimum effective torque that can be requested to the electrical motor (EM)
+,18DAF1DA,24,39,.5,32768,1,N,222248,622248,ff,($2248) Force demand (at the wheels) when powertrain setpoint is equal to zero
+,18DAF1DA,24,39,.5,32768,1,N,222249,622249,ff,($2249)Force demand(at the wheels)when PWT setpoint is 0,before saturation accounting for min tq demand available
 ,18DAF1DA,24,39,.00062561,0,3,V,22224A,62224A,ff,($224A) Voltage measure of main relay (VBR)
 ,18DAF1DA,30,31,1,0,0,,22224B,62224B,ff,($224B) Data used to validated a detection of braking,0:Nok;1:Ok;2:Failed 2
 ,18DAF1DA,30,31,1,0,0,,22224C,62224C,ff,($224C) Gear lever position validity flag,0:Nok;1:Ok;2:Failed 2
@@ -224,16 +224,16 @@
 ,18DAF1DA,24,39,.5,0,1,V,223008,623008,ff,($3008) HV PEB voltage measure
 ,18DAF1DA,24,31,1,0,0,,223020,623020,ff,DIDs supported in range [$3021 - $3040]
 ,18DAF1DA,31,31,1,0,0,,223022,623022,ff,($3022) DCDC activation request,0:DCDC Off;1:DCDC On
-,18DAF1DA,24,31,.05,240,2,V,223023,623023,ff,($3023) 14V voltage request
-,18DAF1DA,24,31,.1,40,1,V,223024,623024,ff,($3024) 14V DCDC voltage measure
+,18DAF1DA,24,31,.05,-240,2,V,223023,623023,ff,($3023) 14V voltage request
+,18DAF1DA,24,31,.1,-40,1,V,223024,623024,ff,($3024) 14V DCDC voltage measure
 ,18DAF1DA,24,31,1,0,0,A,223025,623025,ff,($3025) 14V DCDC current measure
 ,18DAF1DA,24,31,.390625,0,1,%,223028,623028,ff,($3028) DCDC Load
 ,18DAF1DA,25,31,1,0,0,%,223029,623029,ff,($3029) DCDC temperature indicator
 ,18DAF1DA,30,31,1,0,0,,22302A,62302A,ff,($302A) General DCDC state,0:Standby;1:wake up but not activated;2:wake up and activated
 ,18DAF1DA,24,31,1,0,0,,223040,623040,ff,DIDs supported in range [$3041 - $3060]
-,18DAF1DA,24,39,.5,-32768,1,A,223042,623042,ff,($3042) HV INV current measure
+,18DAF1DA,24,39,.5,32768,1,A,223042,623042,ff,($3042) HV INV current measure
 ,18DAF1DA,24,39,.03125,32768,2,N.m,223043,623043,ff,($3043) Torque request
-,18DAF1DA,24,39,10,-32767.5,0,rpm,223045,623045,ff,($3045) Electrical Motor speed
+,18DAF1DA,24,39,10,32767.5,0,rpm,223045,623045,ff,($3045) Electrical Motor speed
 ,18DAF1DA,24,39,.02,0,2,%,223047,623047,ff,($3047) INV temperature indicator
 ,18DAF1DA,24,31,1,0,0,,223100,623100,ff,DIDs supported in range [$3101 - $3120]
 ,18DAF1DA,29,31,1,0,0,,223101,623101,ff,($3101) Charger Bloc state,0:Unvailable Value;1:SlowCharge and Diag State;2:Quick Charge and Diag State;3:Nissan Quick Charge and Diag State;4:Diagnosis State;5:No State;6:Not used
@@ -254,7 +254,7 @@
 ,18DAF1DA,29,31,1,0,0,,223201,623201,ff,($3201) LBC mode request,0:Not Request;1:Slow Charge;2:Fast Charge;3:Normal Charge;4:Quick Drop;5:Not used;7:Unavailable value
 ,18DAF1DA,29,31,1,0,0,,223202,623202,ff,($3202) LBC fonctionning state,0:Not used;1:Slow Charge;2:Fast Charge;3:Init;4:Transitory;5:Normal;6:BHV_QuickDrop_mode;7:Unavailable value
 ,18DAF1DA,24,39,.5,0,1,V,223203,623203,ff,($3203) HV LBC voltage measure
-,18DAF1DA,24,39,.0625,-131070.08,2,A,223204,623204,ff,($3204) HV LBC current measure
+,18DAF1DA,24,39,.0625,131070.08,2,A,223204,623204,ff,($3204) HV LBC current measure
 ,18DAF1DA,24,31,1,0,0,%,223206,623206,ff,($3206) State Of Health (SOH) HV battery
 ,18DAF1DA,30,31,1,0,0,,223208,623208,ff,($3208) Caution flag state,0:C_HVBatteryNoDefault;1:C_HVBatteryLevel1Default;2:C_HVBatteryLevel2Default;3:C_HVBatteryDriving30sDefault
 ,18DAF1DA,30,31,1,0,0,,223209,623209,ff,($3209) Failure flag state,0:Not used;1:No Default;2:Failure : Level2 Failure;3:Unavailable Value
@@ -459,7 +459,7 @@
 ,18DAF1DA,31,31,1,0,0,,2233AD,6233AD,ff,($33AD) Computation of PTC defaults.0,0:No default;1:Default present
 ,18DAF1DA,24,39,1,0,0,rpm,2233AE,6233AE,ff,($33AE) AC compressor RPM Command
 ,18DAF1DA,24,39,.1,2730,1,°C,2233AF,6233AF,ff,($33AF)temp used to prevent the evaporator from freezing within the heating venting and air conditionner system(HVAC)
-,18DAF1DA,24,39,.1,-2730,1,°C,2233B0,6233B0,ff,($33B0) evaporator temperature setpoint for compressor control
+,18DAF1DA,24,39,.1,2730,1,°C,2233B0,6233B0,ff,($33B0) evaporator temperature setpoint for compressor control
 ,18DAF1DA,24,31,1,40,0,°C,2233B1,6233B1,ff,($33B1) CAN signal for external temperature of the vehicle.
 ,18DAF1DA,24,31,1,40,0,°C,2233B3,6233B3,ff,($33B3) water temperature setpoint for PTC control
 ,18DAF1DA,31,31,1,0,0,,2233B5,6233B5,ff,($33B5) HV Relays Connection Autorisation synthesis flag,0:Not Autorized;1:Autorized
@@ -583,8 +583,8 @@
 ,18DAF1DA,30,31,1,0,0,,2233F0,6233F0,ff,($33F0) Different states of the stand_by management stateflow,0:NoState;1:BCB_Standby_StandByRequest;2:BCB_Standby_StandByConfirmed;3:BCB_Standby_PossibleRestart
 ,18DAF1DA,24,39,.02,0,2,%,2233F1,6233F1,ff,($33F1) Electrical Machine normalised temperature
 ,18DAF1DA,24,31,1,40,0,°C,2233F2,6233F2,ff,($33F2) High Voltage Battery maximal Temperature
-,18DAF1DA,24,39,.1,-10240,1,N.m,2233F3,6233F3,ff,($33F3) Maximal torque without unballasting
-,18DAF1DA,24,39,.1,-10240,1,N.m,2233F4,6233F4,ff,($33F4) Minimal torque
+,18DAF1DA,24,39,.1,10240,1,N.m,2233F3,6233F3,ff,($33F3) Maximal torque without unballasting
+,18DAF1DA,24,39,.1,10240,1,N.m,2233F4,6233F4,ff,($33F4) Minimal torque
 ,18DAF1DA,24,31,1,40,0,°C,2233F5,6233F5,ff,($33F5) Cooling Temperature dcdc mesured
 ,18DAF1DA,24,31,1,40,0,°C,2233F6,6233F6,ff,($33F6) Temperature of the inverter given by PEB (CAN ETS)
 ,18DAF1DA,24,55,1,0,0,,2233F7,6233F7,1ff,($33F7) Counter of Efan speed on Low and very low speed
@@ -698,7 +698,7 @@
 ,18DAF1DA,30,31,1,0,0,,22342E,62342E,ff,($342E) DCDC ready to sleep (internal EVC),0:Not Used;1:Refuse to Sleep;2:Ready To Sleep;3:Not used
 ,18DAF1DA,24,55,1,-2147483648,0,min,223431,623431,1ff,($3431) Time since the vehicle has been parked (calculated in SCH)
 ,18DAF1DA,24,39,.0005,0,3,V,223432,623432,ff,($3432) Battery voltage no load estimation memorization (internal SCH)
-,18DAF1DA,24,31,.05,240,2,V,223433,623433,ff,($3433) Battery voltage request (internal SCH)
+,18DAF1DA,24,31,.05,-240,2,V,223433,623433,ff,($3433) Battery voltage request (internal SCH)
 ,18DAF1DA,30,31,1,0,0,,223435,623435,ff,($3435) AC compressor authorization command,0:Disable;1:Enable;2:Not used;3:Signal invalid
 ,18DAF1DA,24,39,1,0,0,rpm,223436,623436,ff,($3436) AC compressor RPM real value
 ,18DAF1DA,24,31,2,0,0,V,223437,623437,ff,($3437) AC compressor High Voltage value
@@ -724,7 +724,7 @@
 ,18DAF1DA,24,31,.3,0,1,kW,223444,623444,ff,($3444) CAN signal for the maximal charging power authorized by the HV battery
 ,18DAF1DA,24,39,100,0,0,W,223445,623445,ff,($3445) CAN signal for the estimation of the BCB input power (power consumed from the Mains network)
 ,18DAF1DA,31,31,1,0,0,,223446,623446,ff,($3446) eco mode request,0:Mode eco not requested;1:Mode eco requested
-,18DAF1DA,24,39,.03125,-32768,2,N·m,223448,623448,ff,($3448) Electrical motor (EM) maximum effective torque available, after eco mode limitation
+,18DAF1DA,24,39,.03125,32768,2,N·m,223448,623448,ff,($3448) Electrical motor (EM) maximum effective torque available, after eco mode limitation
 ,18DAF1DA,24,55,.01,-2147483648,2,km,223449,623449,1ff,($3449) Total vehicle distance associated with each last ten Quick Drop.9
 ,18DAF1DA,56,87,.01,-2147483648,2,km,223449,623449,1ff,($3449) Total vehicle distance associated with each last ten Quick Drop.8
 ,18DAF1DA,88,119,.01,-2147483648,2,km,223449,623449,1ff,($3449) Total vehicle distance associated with each last ten Quick Drop.7
@@ -893,7 +893,7 @@
 ,18DAF1DA,296,311,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.3
 ,18DAF1DA,312,327,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.2
 ,18DAF1DA,328,343,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.1
-,18DAF1DA,24,31,.05,240,2,V,22348E,62348E,ff,($348E) DCDC voltage control request calculated and used when no default on 14V network is detected
+,18DAF1DA,24,31,.05,-240,2,V,22348E,62348E,ff,($348E) DCDC voltage control request calculated and used when no default on 14V network is detected
 ,18DAF1DA,31,31,1,0,0,,22348F,62348F,ff,($348F) Boolean Variable : M14N resquest for activation when SOC low,0:Not Activation;1:Activation of DCDC
 ,18DAF1DA,30,31,1,0,0,,223490,623490,ff,($3490) Critical Failure detected on the 14V network (internal SCH),0:Unavailable value;1:C_K_DefaultPresent_status;2:Not used;3:C_K_DefaultConfirmed_status
 ,18DAF1DA,31,31,1,0,0,,223491,623491,ff,($3491) Request of ETS to force 14v network energy management into traction battery (from ETS CAN),0:Not Autorized;1:Autorized
@@ -913,8 +913,8 @@
 ,18DAF1DA,31,31,1,0,0,,22349F,62349F,ff,($349F) Cabin evaporator electrical Valve status (Valve for cabin HVAC),0:no activation;1:activation
 ,18DAF1DA,24,31,1,0,0,,2234A0,6234A0,ff,DIDs supported in range [$34A1 - $34C0]
 ,18DAF1DA,24,39,1,0,0,Hz,2234A1,6234A1,ff,($34A1) Battery blower speed rotation (Feedback signal)
-,18DAF1DA,24,39,.1,-2730,1,°C,2234A2,6234A2,ff,($34A2) Battery Evaporator thermal sensor
-,18DAF1DA,24,39,.1,-2730,1,°C,2234A3,6234A3,ff,($34A3) Rear Evaporator temperature target
+,18DAF1DA,24,39,.1,2730,1,°C,2234A2,6234A2,ff,($34A2) Battery Evaporator thermal sensor
+,18DAF1DA,24,39,.1,2730,1,°C,2234A3,6234A3,ff,($34A3) Rear Evaporator temperature target
 ,18DAF1DA,29,31,1,0,0,,2234A4,6234A4,ff,($34A4) Battery cooling order,0:No_Cool_Bat;1:Cool_Bat_HVAC;2:Cool_Bat_PAC;3:Cool_Bat_Chiller;4:Warm_Bat_Int_CTP;5:Warm_Bat_Ext_CTP;6:Warm_Bat_THP
 ,18DAF1DA,30,31,1,0,0,,2234A5,6234A5,ff,($34A5) TC flag ready to sleep,0:NA_0;1:refuse to sleep;2:ready to sleep;3:NA_3
 ,18DAF1DA,25,31,1,0,0,%,2234A6,6234A6,ff,($34A6) Battery HVAC speed rotation request (command of the blower)
@@ -1065,8 +1065,8 @@
 ,18DAF1DA,24,31,5,0,0,%,223537,623537,ff,($3537) IH_Pct_EngineFanSpeedPWM_HP61
 ,18DAF1DA,28,31,1,0,0,,223538,623538,ff,($3538) IH_StateValve1_HP61_status
 ,18DAF1DA,28,31,1,0,0,,223539,623539,ff,($3539) IH_StateValve2_HP61_status
-,18DAF1DA,24,39,.5,-60,1,°C,22353A,62353A,ff,($353A) Physical value of the sensor NTC1 (Td)
-,18DAF1DA,24,39,.5,-32767,1,°C,22353B,62353B,ff,($353B) Physical value of the sensor NTC2 (Ts)
+,18DAF1DA,24,39,.5,60,1,°C,22353A,62353A,ff,($353A) Physical value of the sensor NTC1 (Td)
+,18DAF1DA,24,39,.5,32767,1,°C,22353B,62353B,ff,($353B) Physical value of the sensor NTC2 (Ts)
 ,18DAF1DA,31,31,1,0,0,,22353C,62353C,ff,($353C) VH_ChillerInDriveON
 ,18DAF1DA,28,31,1,0,0,,22353D,62353D,ff,($353D) Number of batt CTP or Thp water requested
 ,18DAF1DA,30,31,1,0,0,,22353E,62353E,ff,($353E) VH_BattThpNumberThermalReq

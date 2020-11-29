@@ -61,7 +61,7 @@
 ,18DAF1DE,168,183,1,0,0,,21F1,61F1,ff,TimeOfReprogramming
 ,18DAF1DE,184,191,1,0,0,,21F1,61F1,ff,SaveMarking
 ,18DAF1DE,192,207,1,0,0,,21F1,61F1,ff,CrcOfLogSave
-,18DAF1DE,24,39,.0625,-3200,2,A,222001,622001,ff,($2001) Mains phase 1 current RMS value
+,18DAF1DE,24,39,.0625,3200,2,A,222001,622001,ff,($2001) Mains phase 1 current RMS value
 ,18DAF1DE,24,39,.0625,0,2,V,222002,622002,ff,($2002) CPU voltage supply from BI
 ,18DAF1DE,29,31,1,0,0,,222003,622003,ff,($2003) Junction box 2 state,0:Init;1:Charge;4:Wait;5:Power Off/Sleep
 ,18DAF1DE,24,31,1,0,0,%,222004,622004,ff,($2004) System Relative Temperature in %
@@ -95,42 +95,42 @@
 ,18DAF1DE,30,31,1,0,0,,22501F,62501F,ff,($501F) System Temperature State,0:Ok;1:Derating;2:Nok
 ,18DAF1DE,30,31,1,0,0,,225021,625021,ff,($5021) Cooling Temperature State,0:Ok;1:Derating;2:Nok
 ,18DAF1DE,30,31,1,0,0,,225022,625022,ff,($5022) Auto wake-up enabling,0:No change;1:Activation;2:Deactivation
-,18DAF1DE,24,39,.0625,-880,2,°C,225023,625023,ff,($5023) Raw CPU temperature value from BI
-,18DAF1DE,24,39,.0625,-3200,2,A,225024,625024,ff,($5024) Measured neutral current filtred
-,18DAF1DE,24,39,.0625,-3200,2,A,225025,625025,ff,($5025) Neutral current value from BI
+,18DAF1DE,24,39,.0625,880,2,°C,225023,625023,ff,($5023) Raw CPU temperature value from BI
+,18DAF1DE,24,39,.0625,3200,2,A,225024,625024,ff,($5024) Measured neutral current filtred
+,18DAF1DE,24,39,.0625,3200,2,A,225025,625025,ff,($5025) Neutral current value from BI
 ,18DAF1DE,24,31,.5,0,1,%,225026,625026,ff,($5026) J1772 control pilot raw duty cycle
-,18DAF1DE,24,31,.25,-60,1,V,225027,625027,ff,($5027) J1772 control pilot raw voltage
+,18DAF1DE,24,31,.25,60,1,V,225027,625027,ff,($5027) J1772 control pilot raw voltage
 ,18DAF1DE,24,31,1,40,0,°C,225028,625028,ff,($5028) Mains input filter temperature from SPI
-,18DAF1DE,24,39,.0625,-3200,2,A,225029,625029,ff,($5029) Raw AC mains phase 1 measured current
-,18DAF1DE,24,39,.0625,-3200,2,A,22502A,62502A,ff,($502A) Raw AC mains phase 2 measured current
-,18DAF1DE,24,39,.0625,-3200,2,A,22502B,62502B,ff,($502B) Raw AC mains phase 3 measured current
+,18DAF1DE,24,39,.0625,3200,2,A,225029,625029,ff,($5029) Raw AC mains phase 1 measured current
+,18DAF1DE,24,39,.0625,3200,2,A,22502A,62502A,ff,($502A) Raw AC mains phase 2 measured current
+,18DAF1DE,24,39,.0625,3200,2,A,22502B,62502B,ff,($502B) Raw AC mains phase 3 measured current
 ,18DAF1DE,25,31,1,0,0,%,22502F,62502F,ff,($502F) MMI Red LED PWM request
 ,18DAF1DE,31,31,1,0,0,,225030,625030,ff,($5030) Raw fuse interlock value,0:open;1:closed
 ,18DAF1DE,31,31,1,0,0,,225031,625031,ff,($5031) Raw Relay box plug interlock closed,0:open;1:closed
 ,18DAF1DE,24,39,.015625,0,2,V,225032,625032,ff,($5032) Driver module power supply voltage from BI
 ,18DAF1DE,24,39,.0002441406,0,3,V,225033,625033,ff,($5033) Raw Detection Logic line value
-,18DAF1DE,24,39,.0625,-32768,2,mA,225035,625035,ff,($5035) Mains ground current 1st measurement
+,18DAF1DE,24,39,.0625,32768,2,mA,225035,625035,ff,($5035) Mains ground current 1st measurement
 ,18DAF1DE,31,31,1,0,0,,225038,625038,ff,($5038) Mains Plug Locking Switch raw information,0:Unlocked;1:Locked
 ,18DAF1DE,30,31,1,0,0,,225039,625039,ff,($5039) Mains plug locking control,0:No motion;1:Close;2:Open
-,18DAF1DE,24,39,.0625,-3200,2,A,22503A,62503A,ff,($503A) Mains phase 2 current RMS value
-,18DAF1DE,24,39,.0625,-3200,2,A,22503B,62503B,ff,($503B) Mains phase 3 current RMS value
-,18DAF1DE,24,39,.0625,-3200,2,A,22503C,62503C,ff,($503C) Mains current phase 1 mean value
-,18DAF1DE,24,39,.0625,-3200,2,A,22503D,62503D,ff,($503D) Mains current phase 2 mean value
-,18DAF1DE,24,39,.0625,-3200,2,A,22503E,62503E,ff,($503E) Mains current phase 3 mean value
+,18DAF1DE,24,39,.0625,3200,2,A,22503A,62503A,ff,($503A) Mains phase 2 current RMS value
+,18DAF1DE,24,39,.0625,3200,2,A,22503B,62503B,ff,($503B) Mains phase 3 current RMS value
+,18DAF1DE,24,39,.0625,3200,2,A,22503C,62503C,ff,($503C) Mains current phase 1 mean value
+,18DAF1DE,24,39,.0625,3200,2,A,22503D,62503D,ff,($503D) Mains current phase 2 mean value
+,18DAF1DE,24,39,.0625,3200,2,A,22503E,62503E,ff,($503E) Mains current phase 3 mean value
 ,18DAF1DE,24,39,.015625,0,2,V,22503F,62503F,ff,($503F) Mains phase 1-2 voltage RMS value
 ,18DAF1DE,24,39,.015625,0,2,V,225041,625041,ff,($5041) Mains phase 2-3 voltage RMS value
 ,18DAF1DE,24,39,.015625,0,2,V,225042,625042,ff,($5042) Mains phase 3-1 voltage RMS value
-,18DAF1DE,24,39,.5,-32000,1,V,225043,625043,ff,($5043) AC mains phase 1-2 measured voltage
-,18DAF1DE,24,39,.5,-32000,1,V,225044,625044,ff,($5044) AC mains phase 2-3 measured voltage
-,18DAF1DE,24,39,.5,-32000,1,V,225045,625045,ff,($5045) AC mains phase 3-1 measured voltage
-,18DAF1DE,24,39,.5,-32000,1,V,225046,625046,ff,($5046) Mains phase 1-2 mean voltage
-,18DAF1DE,24,39,.5,-32000,1,V,225047,625047,ff,($5047) Mains phase 2-3 mean voltage
-,18DAF1DE,24,39,.5,-32000,1,V,225048,625048,ff,($5048) Mains phase 3-1 mean voltage
-,18DAF1DE,24,39,.0078125,1280,3,Hz,225049,625049,ff,($5049) Mains phase frequency
+,18DAF1DE,24,39,.5,32000,1,V,225043,625043,ff,($5043) AC mains phase 1-2 measured voltage
+,18DAF1DE,24,39,.5,32000,1,V,225044,625044,ff,($5044) AC mains phase 2-3 measured voltage
+,18DAF1DE,24,39,.5,32000,1,V,225045,625045,ff,($5045) AC mains phase 3-1 measured voltage
+,18DAF1DE,24,39,.5,32000,1,V,225046,625046,ff,($5046) Mains phase 1-2 mean voltage
+,18DAF1DE,24,39,.5,32000,1,V,225047,625047,ff,($5047) Mains phase 2-3 mean voltage
+,18DAF1DE,24,39,.5,32000,1,V,225048,625048,ff,($5048) Mains phase 3-1 mean voltage
+,18DAF1DE,24,39,.0078125,-1280,3,Hz,225049,625049,ff,($5049) Mains phase frequency
 ,18DAF1DE,24,39,1,20000,0,W,22504A,62504A,ff,($504A) Mains active power consumed
-,18DAF1DE,24,39,.0625,-9600,2,A,22504B,62504B,ff,($504B) Mains current sum
-,18DAF1DE,24,39,.5,-32000,1,V,22504C,62504C,ff,($504C) Mains voltage sum
-,18DAF1DE,24,39,.0625,-3200,2,A,22504D,62504D,ff,($504D) HV Network measured current
+,18DAF1DE,24,39,.0625,9600,2,A,22504B,62504B,ff,($504B) Mains current sum
+,18DAF1DE,24,39,.5,32000,1,V,22504C,62504C,ff,($504C) Mains voltage sum
+,18DAF1DE,24,39,.0625,3200,2,A,22504D,62504D,ff,($504D) HV Network measured current
 ,18DAF1DE,24,39,1,1023,0,V,22504E,62504E,ff,($504E) HV voltage
 ,18DAF1DE,24,31,1,0,0,,22504F,62504F,ff,($504F) Mains leakage current strategy state,0:OFF/Init;1:OK;2:NOK
 ,18DAF1DE,24,24,1,0,0,,225050,625050,ff,($5050) External controls denial status flags.0,0:Reserved for future use_0
@@ -140,10 +140,10 @@
 ,18DAF1DE,24,31,1,40,0,°C,225054,625054,ff,($5054) Mains input filter hot spot temperature
 ,18DAF1DE,24,31,1,40,0,°C,225055,625055,ff,($5055) Mains input filter hot spot temperature from SPI
 ,18DAF1DE,24,31,1,40,0,°C,225056,625056,ff,($5056) Mains input filter temperature
-,18DAF1DE,24,39,.0625,-32768,2,mA,225057,625057,ff,($5057) Raw leakage current - DC part measurement
-,18DAF1DE,24,39,.0625,-32768,2,mA,225058,625058,ff,($5058) Raw leakage current - High Frequency 10kHz part measurement
-,18DAF1DE,24,39,.0625,-32768,2,mA,225059,625059,ff,($5059) Raw leakage current - High Frequency 1st part measurement
-,18DAF1DE,24,39,.0625,-32768,2,mA,22505A,62505A,ff,($505A) Raw leakage current - Low Frequency part measurement (50Hz)
+,18DAF1DE,24,39,.0625,32768,2,mA,225057,625057,ff,($5057) Raw leakage current - DC part measurement
+,18DAF1DE,24,39,.0625,32768,2,mA,225058,625058,ff,($5058) Raw leakage current - High Frequency 10kHz part measurement
+,18DAF1DE,24,39,.0625,32768,2,mA,225059,625059,ff,($5059) Raw leakage current - High Frequency 1st part measurement
+,18DAF1DE,24,39,.0625,32768,2,mA,22505A,62505A,ff,($505A) Raw leakage current - Low Frequency part measurement (50Hz)
 ,18DAF1DE,31,31,1,0,0,,22505B,62505B,ff,($505B) Virgin neutral current acquisition tuning detection
 ,18DAF1DE,31,31,1,0,0,,22505C,62505C,ff,($505C) Inform on spi communication error
 ,18DAF1DE,31,31,1,0,0,,22505D,62505D,ff,($505D) Global checksum result on SPI frames
@@ -166,7 +166,7 @@
 ,18DAF1DE,24,31,1,0,0,,22506F,62506F,ff,($506F) PLGW card presence,0:Not Present;1:Present
 ,18DAF1DE,24,31,.25,0,1,A,225070,625070,ff,($5070) max AC current limitation configuration
 ,18DAF1DE,24,31,1,40,0,°C,225073,625073,ff,($5073 ) Cooling temperature from BI
-,18DAF1DE,24,39,.0625,-32768,2,mA,225074,625074,ff,($5074 ) Leakage current - DC part measurement - without offset
-,18DAF1DE,24,39,.0625,-32768,2,mA,225075,625075,ff,($5075 ) Filtered Leakage current -High Frequency measurement
-,18DAF1DE,24,39,.0625,-32768,2,mA,225076,625076,ff,($5076) Filtered Leakage current -High Frequency 10kHz part measurement
-,18DAF1DE,24,39,.0625,-32768,2,mA,225077,625077,ff,($5077) Leakage current - Low Frequency part measurement (50Hz)
+,18DAF1DE,24,39,.0625,32768,2,mA,225074,625074,ff,($5074 ) Leakage current - DC part measurement - without offset
+,18DAF1DE,24,39,.0625,32768,2,mA,225075,625075,ff,($5075 ) Filtered Leakage current -High Frequency measurement
+,18DAF1DE,24,39,.0625,32768,2,mA,225076,625076,ff,($5076) Filtered Leakage current -High Frequency 10kHz part measurement
+,18DAF1DE,24,39,.0625,32768,2,mA,225077,625077,ff,($5077) Leakage current - Low Frequency part measurement (50Hz)
