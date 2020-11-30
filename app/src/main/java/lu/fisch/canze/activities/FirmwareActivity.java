@@ -154,7 +154,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
 
                 Frame frame;
 
-                if (MainActivity.isZOEZE50()) {
+                if (MainActivity.isPh2()) {
                     frame = queryFrame(0x18daf1d2, "5003"); // open the gateway, as the poller is stopped
                 }
 

@@ -864,12 +864,9 @@ public class Fields {
         if (MainActivity.isZOE()) {
             if (MainActivity.altFieldsMode) {
                 return "_FieldsAlt.csv";
-            } else {
-                return "_Fields.csv";
             }
-        } else if (MainActivity.isZOEZE50())
-            return "_FieldsZE50.csv";
-        return "_Fields.csv";
+        }
+        return "_Fields" + MainActivity.getAssetSuffix();
     }
 
 }
