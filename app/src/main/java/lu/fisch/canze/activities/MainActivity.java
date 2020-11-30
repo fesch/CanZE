@@ -75,6 +75,7 @@ import java.util.Locale;
 
 import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
+import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Frames;
@@ -380,7 +381,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                     break;
             }
 
-            // since the car type may have changed, reload the frame timings and fields
+            // since the car type may have changed, reload the ecus (ze50 and non ze50), frame timings and fields
+            Ecus.getInstance().load();
             Frames.getInstance().load();
             fields.load();
 
