@@ -2,6 +2,12 @@
 ,18DAF1DB,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,18DAF1DB,0,23,1,0,0,,19023b,59020f,ff,Query DTC
 # Source:
+# NEXT 4 FIELDS MANUALLY ADDED, MIGHT NOT WORK
+,18DAF1DB,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode
+,18DAF1DB,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
+,18DAF1DB,128,143,1,0,0,,2180,6180,ff,SoftwareNumber
+,18DAF1DB,144,159,1,0,0,,2180,6180,ff,EditionNumber
+#
 ,18DAF1DB,24,55,1,0,0,,229000,629000,ff,DIDs supported in range [$9001 - $9020]
 ,18DAF1DB,24,39,.01,300,2,%,229001,629001,ff,Battery SOC(Zxx_bsoc_avg)
 ,18DAF1DB,24,39,.01,0,2,%,229002,629002,ff,Battery USOC(Wxx_usoc_avg)
