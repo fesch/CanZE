@@ -1,0 +1,13 @@
+08,Bus signal
+11,SC to ground
+12,SC to battery
+13,OC
+14,OC or SC to ground
+15,OC or SC to battery
+16,voltage below threshold
+17,voltage above threshold
+24,bad frequency
+49,internal failure
+93,no operation
+01,General Electrical Failure
+02,General signal failure
