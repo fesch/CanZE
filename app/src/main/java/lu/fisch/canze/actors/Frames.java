@@ -175,9 +175,8 @@ public class Frames {
             if (MainActivity.altFieldsMode) {
                 return "_FramesAlt.csv";
             }
-            return "_Frames.csv";
         }
-        return "_Frames"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv";
+        return "_Frames" + MainActivity.getAssetSuffix();
     }
 
 }

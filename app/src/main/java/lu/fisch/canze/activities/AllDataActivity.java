@@ -25,7 +25,6 @@ import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -124,9 +123,9 @@ public class AllDataActivity extends CanzeActivity {
     }
 
     private void testerKeepalive(Ecu ecu) {
-        if (!ecu.getSessionRequired() && !MainActivity.isZOEZE50()) return; // quit ticker if no gateway and no session
+        if (!ecu.getSessionRequired() && !MainActivity.isPh2()) return; // quit ticker if no gateway and no session
         if (Calendar.getInstance().getTimeInMillis() < ticker) return; // then, quit if no timeout
-        if (MainActivity.isZOEZE50()) {
+        if (MainActivity.isPh2()) {
             // open the gateway
             MainActivity.device.requestFrame(Frames.getInstance().getById(0x18daf1d2, "5003"));
         }
@@ -192,7 +191,7 @@ public class AllDataActivity extends CanzeActivity {
                 // here initialize this particular ECU diagnostics fields
                 try {
                     Frames.getInstance().load(ecu);
-                    Fields.getInstance().load(ecu.getMnemonic() + "_Fields"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv");
+                    Fields.getInstance().load(ecu.getMnemonic() + "_Fields" + MainActivity.getAssetSuffix());
                 } catch (Exception e) {
                     appendResult(R.string.message_NoEcuDefinition);
                     // Reload the default frame & timings

@@ -22,8 +22,6 @@
 package lu.fisch.canze.activities;
 
 import android.os.Bundle;
-import android.os.Environment;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -123,9 +121,9 @@ public class DtcActivity extends CanzeActivity {
     }
 
     private void testerKeepalive(Ecu ecu) {
-        if (!ecu.getSessionRequired() && !MainActivity.isZOEZE50()) return; // quit ticker if no gateway and no session
+        if (!ecu.getSessionRequired() && !MainActivity.isPh2()) return; // quit ticker if no gateway and no session
         if (Calendar.getInstance().getTimeInMillis() < ticker) return; // then, quit if no timeout
-        if (MainActivity.isZOEZE50()) {
+        if (MainActivity.isPh2()) {
             // open the gateway
             MainActivity.device.requestFrame(Frames.getInstance().getById(0x18daf1d2, "5003"));
         }
@@ -181,8 +179,8 @@ public class DtcActivity extends CanzeActivity {
             //methodLoad = diagEcu.getClass().getMethod("load");
             //methodLoad.invoke(diagEcu);
             Frames.getInstance().load (ecu);
-            Fields.getInstance().load(ecu.getMnemonic() + "_Fields"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv");
-            Dtcs.getInstance().load(ecu.getMnemonic() + "_Dtcs"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv", ecu.getMnemonic() + "_Tests"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv");
+            Fields.getInstance().load(ecu.getMnemonic() + "_Fields" + MainActivity.getAssetSuffix());
+            Dtcs.getInstance().load(ecu.getMnemonic() + "_Dtcs" + MainActivity.getAssetSuffix(), ecu.getMnemonic() + "_Tests" + MainActivity.getAssetSuffix());
         } catch (Exception e) {
             appendResult(R.string.message_NoEcuDefinition);
             // Reload the default frame & timings
@@ -309,7 +307,7 @@ public class DtcActivity extends CanzeActivity {
             //methodLoad = diagEcu.getClass().getMethod("load");
             //methodLoad.invoke(diagEcu);
             Frames.getInstance().load (ecu);
-            Fields.getInstance().load (ecu.getMnemonic() + "_Fields"  + (MainActivity.isZOEZE50() ? "ZE50" : "") + ".csv");
+            Fields.getInstance().load (ecu.getMnemonic() + "_Fields" + MainActivity.getAssetSuffix());
         } catch (Exception e) {
             appendResult(R.string.message_NoEcuDefinition);
             // Reload the default frame & timings

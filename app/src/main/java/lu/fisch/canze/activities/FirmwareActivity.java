@@ -154,11 +154,12 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
 
                 Frame frame;
 
-                if (MainActivity.isZOEZE50()) {
+                if (MainActivity.isPh2()) {
                     frame = queryFrame(0x18daf1d2, "5003"); // open the gateway, as the poller is stopped
-                    if (frame != null) {
-                        frame = queryFrame(ecu.getFromId(), ecu.getStartDiag()); // open the ecu, as the poller is stopped (now evc only)
-                    }
+                }
+
+                if (ecu.getSessionRequired()) {
+                    frame = queryFrame(ecu.getFromId(), ecu.getStartDiag()); // open the ecu, as the poller is stopped
                 }
 
                 // query the Frame
@@ -200,7 +201,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
         }
         message.onMessageCompleteEvent(); // set the value of all fields in the frame of this message
         return frame;
-    };
+    }
 
 
     private void setSoftwareValue(final int id, final Field field, final String label) {

@@ -69,7 +69,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        if (MainActivity.isZOEZE50()) addField("7ec.5003.0", 2000); // open EVC
+        if (MainActivity.isPh2()) addField("7ec.5003.0", 2000); // open EVC
         addField(SID_MaxCharge, 5000);
         addField(SID_UserSoC, 5000);
         addField(SID_RealSoC, 5000);

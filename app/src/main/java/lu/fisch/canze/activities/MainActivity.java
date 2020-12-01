@@ -75,6 +75,7 @@ import java.util.Locale;
 
 import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
+import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Frames;
@@ -354,8 +355,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 //case "Twizy":
                 //    car = CAR_TWIZY;
                  //   break;
+                case "ZOE R240Ph2":
+                    car = CAR_X10PH2 | CAR_ZOE_R240;
+                    altFieldsMode = false; // Ph2 car has no altfields
+                    break;
                 case "ZOE ZE50":
                     car = CAR_X10PH2;
+                    altFieldsMode = false; // Ph2 car has no altfields
                     break;
             }
 
@@ -380,7 +386,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                     break;
             }
 
-            // since the car type may have changed, reload the frame timings and fields
+            // since the car type may have changed, reload the ecus (ze50 and non ze50), frame timings and fields
+            Ecus.getInstance().load();
             Frames.getInstance().load();
             fields.load();
 
@@ -422,7 +429,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         // (de)activate the secure gateway
         field = fields.getBySID("18daf1d2.5003.0");
-        if (isZOEZE50()) {
+        if (isPh2()) {
             if (field != null) {
                 field.addListener(MainActivity.getInstance()); // callback is onFieldUpdateEvent
                 if (device != null)
@@ -1100,8 +1107,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     }
 
 
-    public static boolean isZOEZE50() {
+    public static boolean isPh2() {
         return (car == CAR_X10PH2);
+    }
+
+    public static String getAssetSuffix () {
+        if (isPh2()) return "Ph2.csv";
+        return ".csv";
     }
 
     //public static boolean isFluKan() {
