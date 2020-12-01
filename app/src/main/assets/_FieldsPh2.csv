@@ -57,7 +57,8 @@
 # 638,37,39,1,0,0,,,,ff,Battery 14v To Be Changed Display
 638.37,18daf1da,29,31,1,0,0,,223486,623486,ff,Battery 14v To Be Changed Display
 # 654,2,2,1,0,0,,,,ff,Charging Plug Connected
-654.2,18daf1da,31,31,1,0,0,,22339D,62339D,ff,Charging Plug detected as present by the Charger.processed,0:No charging plug;1:Charging plug detected
+# 654.2,18daf1da,31,31,1,0,0,,22339D,62339D,ff,Charging Plug detected as present by the Charger.processed,0:No charging plug;1:Charging plug detected
+654.2,18DAF1DA,31,31,1,0,0,,222B85,622B85,ff,Mains plug presence,0:Not present;1:present
 # 654,42,51,1,0,0,km,,,ff,Available Distance
 654.42,18daf1da,24,39,1,0,0,km,223451,623451,ff,Estimated kilometric cruising range sent to MMI
 # 656,48,55,1,40,0,°C,,,e2,External Temp
@@ -185,9 +186,12 @@
 793.62502c.24,18daf1de,24,39,.5,32000,1,V,22502c,62502c,ff,Raw AC mains phase 1 measured voltage
 793.62502d.24,18daf1de,24,39,.5,32000,1,V,22502d,62502d,ff,Raw AC mains phase 2 measured voltage
 793.62502e.24,18daf1de,24,39,.5,32000,1,V,22502e,62502e,ff,Raw AC mains phase 3 measured voltage
-793.62503f.24,18daf1de,24,39,.5,0,1,V,22503f,62503f,ff,Mains phase 1-2 voltage RMS value
-793.625041.24,18daf1de,24,39,.5,0,1,V,225041,625041,ff,Mains phase 2-3 voltage RMS value
-793.625042.24,18daf1de,24,39,.5,0,1,V,225042,625042,ff,Mains phase 3-1 voltage RMS value
+# 793.62503f.24,18daf1de,24,39,.5,0,1,V,22503f,62503f,ff,Mains phase 1-2 voltage RMS value
+# 793.625041.24,18daf1de,24,39,.5,0,1,V,225041,625041,ff,Mains phase 2-3 voltage RMS value
+# 793.625042.24,18daf1de,24,39,.5,0,1,V,225042,625042,ff,Mains phase 3-1 voltage RMS value
+793.62503f.24,18DAF1DE,24,39,.015625,0,2,V,22503F,62503F,ff,($503F) Mains phase 1-2 voltage RMS value
+793.625041.24,18DAF1DE,24,39,.015625,0,2,V,225041,625041,ff,($5041) Mains phase 2-3 voltage RMS value
+793.625042.24,18DAF1DE,24,39,.015625,0,2,V,225042,625042,ff,($5042) Mains phase 3-1 voltage RMS value
 793.62504a.24,18daf1de,24,39,1,20000,0,W,22504a,62504a,ff,Mains active power consumed
 793.625062.24,18daf1de,24,39,1,0,0,Ohm,225062,625062,ff,Mains ground resistance
 793.625063.24,18daf1de,24,31,1,0,0,,225063,625063,ff,Supervisor state,0:Init;1:Wait;2:ClosingS2;3:InitType;4:InitLkg;5:InitChg;6:Charge;7:ZeroAmpMode;8:EndOfChg;9:OpeningS2;10:ReadyToSleep;11:EmergencyStop;12:InitChargeDF;13:OCPStop;14:WaitS2
@@ -202,8 +206,10 @@
 # LBC #
 7bb.6101.336,18daf1db,24,39,0.01,0,2,kW,229018,629018,ff,Maximum battery input power
 # 7bb.6103.192,18daf1db,24,39,0.01,0,2,%,229002,629002,ff,Real State of Charge
-7bb.6103.192,18daf1db,24,39,0.01,-300,2,%,229001,629001,ff,Real State of Charge
+7bb.6103.192,18daf1db,24,39,0.01,300,2,%,229001,629001,ff,Real State of Charge
 7ec.622002.24,18DAF1DB,24,39,.01,0,2,%,229002,629002,ff,Battery USOC(Wxx_usoc_avg)
+7ec.623206.24,18DAF1DB,24,39,.1,0,1,%,2291BC,6291BC,ff,Battery SOH (Available Power calculation)(Zxx_sohap)
+7ec.623203.24,18daf1db,24,39,.1,0,2,V,229005,629005,ff,Pack voltage (LBC Can value)
 7bb.6104.32,18daf1db,24,39,0.0625,640,2,°C,229131,629131,ff,Cell 1 Temperature
 7bb.6104.56,18daf1db,24,39,0.0625,640,2,°C,229132,629132,ff,Cell 2 Temperature
 7bb.6104.80,18daf1db,24,39,0.0625,640,2,°C,229133,629133,ff,Cell 3 Temperature
@@ -383,10 +389,10 @@
 7ec.622246.24,18daf1da,24,39,.03125,32768,2,N.m,222246,622246,ff,Electrical motor (EM) maximum effective torque available
 7ec.622247.24,18daf1da,24,39,.03125,32768,2,N.m,222247,622247,ff,Minimum effective torque that can be requested to the electrical motor (EM)
 7ec.623028.24,18daf1da,24,31,.390625,0,1,%,223028,623028,ff,DCDC Load
-7ec.623203.24,18daf1da,24,39,.5,0,1,V,223203,623203,ff,HV LBC voltage measure
-7ec.623204.24,18daf1da,24,39,.25,32768,1,A,223204,623204,ff,HV LBC current measure
+#7ec.623203.24,18daf1da,24,39,.5,0,1,V,223203,623203,ff,HV LBC voltage measure
+#7ec.623204.24,18daf1da,24,39,.25,32768,1,A,223204,623204,ff,HV LBC current measure
+7ec.623204.24,18daf1da,24,39,.25,2000,1,A,2221cc,6221cc,ff,High voltage battery Current measured consolidated
 # 7ec.623206.24,18daf1da,24,31,1,0,0,%,223206,623206,ff,State Of Health (SOH) HV battery
-7ec.623206.24,18DAF1DB,24,39,.1,0,1,%,2291BC,6291BC,ff,Battery SOH (Available Power calculation)(Zxx_sohap)
 7ec.623318.24,18daf1da,24,31,1,1,0,,223318,623318,ff,Motor Water pump speed
 7ec.623319.24,18daf1da,24,31,1,1,0,,223319,623319,ff,Charger pump speed
 7ec.62331a.24,18daf1da,24,31,1,1,0,,22331a,62331a,ff,Heater water pump speed
