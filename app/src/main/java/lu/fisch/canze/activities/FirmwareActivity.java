@@ -164,22 +164,46 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
 
                 // query the Frame
                 frame = queryFrame(ecu.getFromId(), "6180");
-                if (frame == null) return;
-                for (Field field : frame.getAllFields()) {
-                    switch (field.getFrom()) {
-                        case 56:
-                            setSoftwareValue(R.id.textDiagVersion, field, "DiagVersion: ");
-                            break;
-                        case 64:
-                            setSoftwareValue(R.id.textSupplier, field, "Supplier: ");
-                            break;
-                        case 128:
-                            setSoftwareValue(R.id.textSoft, field, "Soft: ");
-                            break;
-                        case 144:
-                            setSoftwareValue(R.id.textVersion, field, "Version: ");
-                            break;
+                if (frame != null) {
+                    for (Field field : frame.getAllFields()) {
+                        switch (field.getFrom()) {
+                            case 56:
+                                setSoftwareValue(R.id.textDiagVersion, field, "DiagVersion: ");
+                                break;
+                            case 64:
+                                setSoftwareValue(R.id.textSupplier, field, "Supplier: ");
+                                break;
+                            case 128:
+                                setSoftwareValue(R.id.textSoft, field, "Soft: ");
+                                break;
+                            case 144:
+                                setSoftwareValue(R.id.textVersion, field, "Version: ");
+                                break;
+                        }
                     }
+                    return;
+                }
+
+                // else 2nd approach
+                frame = queryFrame(ecu.getFromId(), "62f18a");
+                if (frame != null) {
+                    Field field = frame.getAllFields().get(0);
+                    setSoftwareValue(R.id.textSupplier, field, "Supplier: ");
+                }
+                frame = queryFrame(ecu.getFromId(), "62f194");
+                if (frame != null) {
+                    Field field = frame.getAllFields().get(0);
+                    setSoftwareValue(R.id.textSoft, field, "Soft: ");
+                }
+                frame = queryFrame(ecu.getFromId(), "62f195");
+                if (frame != null) {
+                    Field field = frame.getAllFields().get(0);
+                    setSoftwareValue(R.id.textVersion, field, "Version: ");
+                }
+                frame = queryFrame(ecu.getFromId(), "62f1a0");
+                if (frame != null) {
+                    Field field = frame.getAllFields().get(0);
+                    setSoftwareValue(R.id.textDiagVersion, field, "DiagVersion: ");
                 }
 
             }
