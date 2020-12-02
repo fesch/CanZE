@@ -95,15 +95,5 @@
 96,component internal failure
 97,Component or system operation obstructed or blocked
 98,component or system over temperature
-F1,Safety Case 1
-F2,Safety Case 2
-F3,Multiple Failure
-F4,Temperature too Low
-F5,Negative Loop Error
-F6,Positive Loop Error
-F7,Initialisation not valid
-F8,Catalyst Destructive
-F9,Limp Home
-FA,Specific Supplier
-FB,Upstream lambda sensor pumping current
-FC,Downstream lambda sensor pumping current
+FB,-
+FC,--

@@ -4,24 +4,24 @@
 0027,Mastervac sensor power supply
 0060,Door switch
 0070,Shift Lock electrical control circuit
-0071,Gear lever
+0071,Ambient Air Temperature Sensor Range/Performance
 0080,Charge spot
-0105,Passenger compartment Thermistor
-0106,Heat water temperature sensor
+0105,Manifold Absolute Pressure Sensor
+0106,Manifold Absolute Pressure Function
 0121,Heater request relay electrical command circuit
-0130,Pulser relay power control circuit
-0140,Feedback Heater Water pump of passenger compartement
-0141,Heater Water pump of passenger compartement
+0130,O2 Sensor - Upstream
+0140,O2 Sensor Circuit Activity
+0141,O2 Sensor Heater - Downstream
 0152,Computer of Air Conditioning
 0156,Evaporator sensor for AC
 0160,Heater Led control circuit
-0170,Pulser power supply relay
+0170,Fuel Trim
 0171,Cooling Fan Motor
 0225,Accelerator Pedal Position Sensor - Track 1
 0226,Accelerator Pedal Position Sensor
-0301,Underhood switch module (USM)
-0303,EVC
-0304,Power electronic bloc
+0301,Cylinder 1 Misfire Detected
+0303,Cylinder 3 Misfire Detected
+0304,Cylinder 4 Misfire Detected
 0305,Lithium Battery Controler
 0306,Battery Charger Bloc
 0307,Power electronic bloc data
@@ -30,38 +30,38 @@
 0406,EM inverter in Default (from CAN)
 0411,Battery Charger Bloc in Default (from CAN)
 0414,High voltage network
-0420,LBC in Default (from CAN)
+0420,Catalyst System
 0431,Charge Interlock
 0432,Power train interlocks
 0433,Comfort or Passenger compartment Thermistor Interlock
 0434,Comfort or Air conditionned Interlock
-0440,Electric Insulation
+0440,Evaporative Emission System
 0441,Insulation Sensor
 0460,Engine Coolant Temperature Sensor
-0461,Cooling valve 1 control circuit
+0461,Fuel Level Sensor
 0462,Feedback driving mode water pump
 0463,Driving mode water pump
 0464,Feedback load mode water pump
 0465,Load mode water pump
 0468,Peltier fan request electrical command circuit
 0469,Peltier external fan
-0470,HV voltage sensor
-0480,Battery high voltage power relay A
+0470,Exhaust Gas Pressure Sensor - Upstream Turbine
+0480,Fan 1 Control Relay
 0491,Battery high voltage lock loop 1
 0495,Temperature sensors from CAN
 0503,Mastervac Voltage supply
 0504,Brake Pedal
 0530,A/C Refrigerant Pressure Sensor
-0560,Battery Voltage 14 V
+0560,Battery Voltage
 0564,Cruise Control/Speed Limiter - Paddle Control Button
 0571,Closed Brake Sensor
 0574,Cruise Control/Speed Limiter - Displayed Speed
 0575,Cruise Control/Speed Limiter - Switch Button
 0606,Engine Control Module - Processor
 0610,ECM torque calculation
-0641,Voltage supply range 1
-0651,Voltage supply range 2
-0657,Powerlatch relay
+0641,Power Supply 1
+0651,Power Supply 2
+0657,Actuators Power Relay
 0703,Open Brake Pedal Switch
 0833,Begining of Clutch Pedal Move Switch
 1525,Cruise Control/Speed Limiter Deactivation
@@ -82,44 +82,44 @@ C415,Invalid Data Received From Anti-Lock Brake System Control Module
 047E,Peltier Cells
 0081,Charge plug trigger
 0492,Battery high voltage lock loop 2
-0302,Air conditionned system
+0302,Cylinder 2 Misfire Detected
 0161,Self preconditioning relay
 C418,Invalid data received from uncoupled brake pedal control module
 030A,Inverter (for charge function)
 0308,Lithium battery (reductant dignosis)
-0471,HV Battery
+0471,Exhaust Gas Pressure Control Function
 0502,Battery temperature sensors
-0120,Heater electrical command circuit
-0500,No ETS Sleeping that leads to a flat lead 12V battery
-0011,Reverse Light relay command
+0120,Intake Throttle Position Sensor
+0500,Vehicle Speed Sensor
+0011,Intake Camshaft Variable Valve Timing Control Function
 0063,Door plug command
 0072,Gear lever sensor - track 1
 0073,Gear lever sensor - track 2
-0090,Eco mode switch
-0180,Battery Conditioning system (AC, CTP)
-0481,Battery high voltage power relay P2
-0482,Battery high voltage power relay P1
-0483,Battery high voltage power relay A or P1
+0090,Pressure rail actuator component
+0180,Fuel Temperature Sensor
+0481,Fan 2 Control Relay
+0482,Very low speed engine fan control relay
+0483,Back Fan
 0485,Battery high voltage power relay A or P2
 0486,Battery high voltage power relay P1 or P2
 0510,State of function (SOF) of 14V battery
 0511,14V Battery current sensor
 0512,Pulse Box
 C198,Communication With Telematic Control Module
-C140,Communication With Body Control Module
+C140,Body Control Module 1
 C155,Communication With Instrument Panel Cluster (IPC) Control Module
 0062,Door plug status
 C146,Communication With Gateway 'A' (BIC)
-0181,Battery CTP/THP relay 1
+0181,Fuel temperature upstream sensor
 0182,Battery CTP/THP relay 2
 0183,Battery CTP/THP relay 3
-0184,Battery HVAC relay electrovalve 1
-0185,Battery HVAC relay electrovalve 2
-0186,Battery HVAC fan out (command)
+0184,Gaz Temperature Function
+0185,Gaz Temperature Sensor
+0186,Fuel temperature downstream sensor
 0187,Battery HVAC temperature sensor
 C103,Communication With Gear Shift Control Module (Shifter)
-C129,Communication With Brake System Control Module
-0010,Stop Light relay command
+C129,Lost Communication With Brake System Control Module
+0010,Intake Camshaft Variable Valve Timing Solenoid Valve
 04A0,SOC error during charge
 0188,Battery blower rotation speed feedback line
 0415,Power electronic bloc (safety level 2 detection)
@@ -127,13 +127,13 @@ C129,Communication With Brake System Control Module
 0407,DCDC C class default
 C19A,Communication with CSHV Unit (Dedicated for Crash when APC is off for daimler application)
 C199,Communication with Energy Management Module
-1654,Communication with Aribag Control module
+1654,Four Thermoplunger in failure
 042F,JB interlocks
 C19B,Communication with LBC8 Unit
-0443,Insulation Clim
+0443,Canister Purge Valve
 0513,14V Battery heat relay
 060C,Engine Control Module - Electronic Stability Program Control Function (Level 2)
-C121,Communication With ABS/ESP Control Module (safety)
+C121,Lost Communication With Anti-Lock Brake System (ABS) Control Module
 C122,Communication With ABS/ESP Control Module
 C164,Communication With Climate Control ECU Module
 C123,Front Collision Warning
@@ -150,7 +150,7 @@ C123,Front Collision Warning
 060A,Engine Control Module - Reset
 0021,Vaccum Sensor pressure 2
 0024,Vacuum pump electric
-0101,Termistor Heater 1
+0101,Mass Air Flow Function
 0102,Termistor Heater 2
 0103,Termistor Heater 3
 0104,Termistor Heater 4
@@ -166,3 +166,828 @@ C123,Front Collision Warning
 C19C,Safety mode 1 received from BMS
 04B2,Capteur de température du Plug de charge (côté véhicule)
 04B3,Current consumption on 14V network
+0534,A/C Compressor
+0645,A/C Compressor Control Relay
+167A,A/C Compressor HV
+0531,A/C Compressor switch
+16BB,AC/DC converter
+16C6,AC/DC converter HV
+1616,ACC and ESP coherency
+15E7,ACC force request (from the CAN)
+15E8,ACC wheel torque setpoint
+1726,Accessory fuse box temperature of AC charge
+E25F,Active Emergency Brake System
+1717,Actuator main supply switch
+16E2,ACU ECU (Airbag Control Unit) (frame ACU_A2 on PT-FD)
+15E6,Adaptif Cruise Control brake request
+1633,Additional Fuel Tank Solenoid Control
+16A1,Advanced Driving Assist System
+16B9,Advanced Driving Assist System 2
+16B8,Advanced Driving Assist System 3
+16C2,Advanced Driving Assist System 4
+15F4,AEB brake request from CM trame
+160E,AEB brake request from CM trame2
+113F,Aerotherm branch coolant temperature overheating alert lamp
+1140,Aerotherm branch coolant temperature sensor
+15F6,AGB - Limit Slow torque request ((CAN message))
+15C8,AGB Shaft Selector
+15F3,AGB Static Creeping Torque
+5009,AGB Torque control type
+15F5,AGB torque setpoint (CAN message)
+1499,Air Charge Cooler
+1500,Air Shutters Circuit
+9C32,Airbag Crash Info
+C250,Airbag messages received on the CAN
+169A,Alternator mode
+2227,Atmospheric Pressure Function
+2226,Atmospheric Pressure Sensor
+1665,Auto hold CAN fail
+15EB,Auto park force setpoint
+16CF,Auto start high speed
+16A3,Automatic Brake Parking System
+170F,Automatic stop and start supervisor on hybrid vehicle
+16FA,Automatic transmission Stop and Start failure flag received on the CAN
+16F9,Automatic transmission Stop and Start request received on the CAN
+16DC,AutoPark function monitoring
+17CD,Available power at infrastructure output
+17CC,Available power at the charger output
+15C6,Battery Charger
+E370,Battery Charger Block
+1687,Battery Charger Block HV
+0D98,Battery Charger Coupler Unlock Control Circuit Performance
+15CD,Battery Cooling Electrovalve HV
+1683,Battery Current Sensor
+15D0,Battery Heater Relay 1
+15D1,Battery Heater Relay 2
+1691,Battery High Voltage
+168A,Battery high voltage power relay A
+168B,Battery high voltage power relay A or P1
+168C,Battery high voltage power relay A or P2
+168D,Battery high voltage power relay P1
+168F,Battery high voltage power relay P1 or P2
+168E,Battery high voltage power relay P2
+0A9B,Battery HV temperature sensor
+E344,Battery Management System
+E379,Battery Management System 2
+1689,Battery Management System 2 HV
+1688,Battery Management System HV
+15E3,Battery voltage of PM sensor
+16A6,Body Control Module
+167D,Body Control Module HV
+1662,Brake parking sensor CAN fail
+1663,Brake pressure sensor CAN fail
+16D6,BSG starter-generator
+16D5,BSG starter-generator in alternator mode
+16D4,BSG starter-generator in driving mode
+16A5,Bus CAN vehicle
+C073,Bus CAN vehicle - Control Module Communication Bus_A_Off
+149A,By-Pass Position Sensor of HP turbocharger Turbine
+15CC,Cabin cooling electrovalve HV
+16AC,Calculator Dashboard
+1681,Calculator Dashboard HV
+16AA,Calculator Hand Free Module
+16AB,Calculator Integrated Dynamics Control Module
+16BA,Calculator Integrated Dynamics Control Module 2
+E159,Calculator Power Steering Electronic System
+E265,Calculator Ultrasonic Park Assist
+C45A,Calculator Ultrasonic Park Assist 1
+15FF,Calculator Ultrasonic Park Assist 2
+E15B,Calculator Under Hood Switch Module
+1684,Calculator Under Hood Switch Module HV
+16AF,Calculator Vehicle Dynamic Control
+15E1,Calculator Vehicle Dynamic Control  10
+15F7,Calculator Vehicle Dynamic Control 1
+16B5,Calculator Vehicle Dynamic Control 2
+16B6,Calculator Vehicle Dynamic Control 3
+16B7,Calculator Vehicle Dynamic Control 4
+16C1,Calculator Vehicle Dynamic Control 5
+15F9,Calculator Vehicle Dynamic Control 6
+0017,Camshaft Position - Exhaust Camshaft Position Correlation
+0016,Camshaft Position - Intake Camshaft Position Correlation
+164C,CAN frame ACU_A1 received from Airbag Control Unit (ACU) on CAN V
+164D,CAN frame ADAS_A3 received from ADAS on CAN PT
+16C7,CAN frame ADASIS_CARTO_N1 received from IVI (In-Vehicle Infotainment) on CAN-PT
+16C8,CAN frame ADASIS_Position_N1 received from IVI (In-Vehicle Infotainment) on CAN-PT
+164E,CAN frame ATCU_A3 received from automatic transmission on CAN V
+164F,CAN frame BCM_A4 received from BCM on CAN V
+167E,CAN frame BCM_A4 received from BCM on CAN V HV
+166D,CAN frame EBA_A2 received from EBA (Electric Brake Actuator) on CAN-V
+E14A,CAN frame for 4WD ECU (frame FWD_A103_FD on PT-FD)
+C248,CAN frame for AAM ECU (accessory module) (frame AAM_R1 on CAN-V)
+E150,CAN frame for ACU ECU (Airbag Control Unit) (frame ACU_A2 on PT-FD)
+E152,CAN frame for ADAS ECU (frame ADAS_A104 on PT-FD)
+E252,CAN frame for ADAS ECU (frame ADAS_A4 on PT-CAN)
+E141,CAN frame for ATCU ECU (frame ATCU_A103_FD on PT-FD)
+E241,CAN frame for ATCU ECU (frame ATCU_A104 on PT-CAN)
+E175,CAN frame for AVM ECU (Around View Monitor) (frame AVM_A101 on PT-FD)
+E14F,CAN frame for BCM ECU (frame BCM_A111 on PT-FD)
+E18B,CAN frame for BMS_12V ECU (frame BMS12V_A101 on PT-FD)
+E258,CAN frame for BSG ECU (Belt Driven Starter Generator) (frame BSG_A101 on PT-CAN)
+E276,CAN frame for CDM ECU (Chassis Dynamic Module) (frame CDM_A111 on PT-CAN)
+E176,CAN frame for CDM ECU (Chassis Dynamic Module) (frame FVSyncFrame_CDM_FD on PT-FD)
+E18C,CAN frame for CGW ECU (Common Gateway) (frame CGW_GeneralStatus_Frame_FD on PT-FD)
+E259,CAN frame for EPS ECU (Electrical Power Steering) (frame EPS_A101 on PT-CAN)
+E26B,CAN frame for FrCamera ECU (Front Camera) (frame FRCAMERA_A110 on PT-CAN)
+E118,CAN frame for HFM ECU (Hand Free Module) (frame HFM_A104 on PT-FD)
+E153,CAN frame for HVAC_CU ECU (frame HVAC_A1_FD on PT-FD)
+E154,CAN frame for IVI ECU (In Vehicle Infotainment) (frame IVI_A5_FD on PT-FD)
+E14E,CAN frame for METER ECU (frame METER_A103_FD on PT-FD)
+E165,CAN frame for SONAR ECU (frame FVSyncFrame_SONAR_FD on PT-FD)
+E25B,CAN frame for USM ECU (frame USM_A103_FD on PT-FD)
+E148,CAN frame for VDC ECU (Vehicle Dynamic Control) (frame VDC_A10 on PT-FD)
+E248,CAN frame for VDC ECU (Vehicle Dynamic Control) (frame VDC_A2 on PT-CAN)
+165A,CAN frame USM_A1 received from USM on CAN V
+1685,CAN frame USM_A1 received from USM on CAN V HV
+15F1,CAN Gateway
+164A,CAN HV bus
+C07A,CAN powertrain - Control Module Communication Bus 'H' Off
+1420,Catalyst System 2
+1596,Charger Interlock
+2504,Charging System Voltage
+2502,Charging System Voltage Circuit
+2503,Charging System Voltage Low Voltage
+16CA,Circuit 12v of Battery Management System
+0901,Clutch actuator
+1711,Clutch actuator primary sensor
+1712,Clutch actuator secondary sensor
+0806,Clutch Contactor
+17C3,Clutch Kiss Point
+0805,Clutch position sensor - press hold
+15DB,Cold start temperature of PM sensor
+1647,Comb voltage terminal
+163F,Combo charging stand
+160A,Communication Error With Watchdog
+C299,Communication With DC to DC Converter Control Module A
+C298,Communication With DCDC
+1022,Communication with DCU
+15BC,Control pilot frequency
+1503,Controlled Air Vents Information (LIN)
+2678,Coolant Degassing Valve
+2681,Coolant Flow Valve
+2600,Coolant Pump Control Circuit
+0128,Coolant Thermostat (Coolant Temperature Below Thermostat Regulating Temperature)
+1603,COSI adaptation injector 1
+1602,COSI adaptation injector 2
+1601,COSI adaptation injector 3
+1600,COSI adaptation injector 4
+1636,Counter for GMV time activation
+0335,Crankshaft Position Sensor
+0315,Crankshaft Position System Variation Not Learned
+C551,Crash Signal
+16E3,CRC diagnosis for ACU ECU (Airbag Control Unit) (frame ACU_A101 on PT-FD)
+16E5,CRC diagnosis for ADAS ECU (frame ADAS_A104 on PT-FD)
+16E6,CRC diagnosis for ADAS ECU (frame ADAS_A112 on PT-FD)
+16E7,CRC diagnosis for ADAS ECU (frame ADAS_A114 on PT-FD)
+16E4,CRC diagnosis for ADAS ECU (frame ADAS_A4 on PT-CAN)
+16E8,CRC diagnosis for ATCU ECU (frame ATCU_A104 on PT-CAN)
+16E9,CRC diagnosis for ATCU ECU (frame ATCU_A108 on PT-CAN)
+16EC,CRC diagnosis for ATCU ECU (frame ATCU_A110 on PT-CAN)
+16EA,CRC diagnosis for ATCU ECU (frame ATCU_A111 on PT-CAN)
+16EB,CRC diagnosis for ATCU ECU (frame ATCU_A112 on PT-CAN)
+16ED,CRC diagnosis for AVM ECU (Around View Monitor) (frame AVM_A101 on PT-FD)
+16EE,CRC diagnosis for BCM ECU (frame BCM_A110 on PT-FD)
+16EF,CRC diagnosis for BCM ECU (frame BCM_A113 on PT-FD)
+C469,CRC diagnosis for BSG ECU (Belt Driven Starter Generator) (frame BSG_A101 on PT-CAN)
+16F1,CRC diagnosis for CDM ECU (Chassis Dynamic Module) (frame CDM_A111 on PT-CAN)
+16F2,CRC diagnosis for USM ECU (frame USM_A101 on PT-FD)
+C416,CRC diagnosis for VDC ECU (Vehicle Dynamic Control) (frame VDC_A10 on PT-FD)
+16F5,CRC diagnosis for VDC ECU (Vehicle Dynamic Control) (frame VDC_A113 on PT-CAN)
+16F6,CRC diagnosis for VDC ECU (Vehicle Dynamic Control) (frame VDC_A115 on PT-FD)
+16F4,CRC diagnosis for VDC ECU (Vehicle Dynamic Control) (frame VDC_A6 on PT-FD)
+16F7,CRC diagnosis for VDC ECU (Vehicle Dynamic Control) (frame VDC_A9 on PT-FD)
+0570,Cruise Control Accelerate Signal
+C235,Cruise Control Front Distance Range Sensor Frame
+15E9,Cruise Control state
+163E,Current supplied by combo terminal
+0263,Cylinder 1 Contribution/Balance
+1301,Cylinder 1 LPG Misfire Detected
+0266,Cylinder 2 Contribution/Balance
+1302,Cylinder 2 LPG Misfire Detected
+0269,Cylinder 3 Contribution/Balance
+1303,Cylinder 3 LPG Misfire Detected
+0272,Cylinder 4 Contribution/Balance
+1304,Cylinder 4 LPG Misfire Detected
+03DB,Cylinder pressure sensor
+0395,Cylinder Pressure Sensor (consolidated with condition 1)
+162B,Cylinder Pressure Sensor (consolidated with condition 2)
+162C,Cylinder Pressure Sensor (consolidated with condition 3)
+1539,Daimler Verlog
+15FB,DC Box input high voltage
+1722,DC chademo charge swich d1
+1723,DC chademo charge swich d2
+1724,DC chademo charger
+0D99,DC charge plug temperature
+1627,DC charger interlock connector charge type
+161D,DC Charger interlock traction type connector
+166C,DC Power Combo Terminal
+1518,DCDC command
+E357,DCDC high voltage converter
+16C3,DCDC high voltage converter HV
+9900,DCDC input circuit 1
+9901,DCDC input circuit 2
+9904,DCDC internal
+9902,DCDC output circuit 1
+9903,DCDC output circuit 2
+2C21,Default for oil temperature out of range error from sensor
+15A6,DetLogic signal
+2002,Diesel Particulate Filter System
+3032,Diesel Particulate Filter Temperature Sensor Correlation
+2525,Differential Tank Pressure Sensor
+158B,Double Flywheel Clutch
+2470,Downstream Gas temperature out of minimum range
+165C,Downstream underfloor NOx sensor
+165D,Downstream underfloor O2 sensor
+165E,Downstream underfloor sensor heater
+165F,Downstream underfloor sensor wire
+149F,Downstream Upstream O2 NOX Sensor Coherency
+1401,Downstream Upstream O2 Sensor Coherency
+1455,DPF forced regeneration switch located on the dashboard
+15AD,Driver Inducement System Valve coolant flow
+1678,Driver Safety Belt Buckle State (from BCM)
+1679,Driver seat belt failure state (from BCM)
+9261,Driver’s seat sensor
+1671,Drivers door open (from BCM)
+1672,Drivers door status supposed failure (from the BCM)
+15C1,Driving Cycle Charging Interlock
+16C9,Dual battery coupler
+16DA,Dual battery coupler wire circuit
+16A0,Dynamic mode switch (CAN)
+16D2,ECM to CAN powertrain connection
+16DD,EGR DUAL Diagnosis
+C417,Electric brake actuator
+1695,Electric Motor Prestation
+E255,Electric Parking Brake
+163A,Electrical blue LED
+15B8,Electrical Energy Management System
+15A2,Electrical motor prestation
+15A0,Electrical motor speed
+1588,Electrical pump unit for automatic gear box
+1023,Electrical pump unit for SCR cooling
+1028,Electrical pump unit low temperature
+1639,Electrical Red LED
+1656,Electromagnetic Torque Control
+15ED,Electromagnetic Torque Control request
+C11D,Electronic Torque Control for four wheel drive application
+1686,eMotor belt broken
+0830,End of Clutch Pedal Move Switch
+158A,End stroke clutch contactor
+16A7,Engine Control Management
+060F,Engine Control Module - Coolant Temperature Sensor (Level 2)
+0701,Engine Control Module - Detection of inconsistent TCU data
+1625,Engine Control Module - Downstream Proportionnal O2 Sensor Control
+406C,Engine Control Module - Electronic Stability Program Control Function (Level 2)
+061C,Engine Control Module - Fuel Mass Control Function (Level 2)
+062B,Engine Control Module - Injector Control
+060E,Engine Control Module - Throttle Control Driver
+061A,Engine Control Module - Torque Control Function
+1620,Engine Control Module - Upstream Proportionnal O2 Sensor Control
+0685,Engine Control Module Power Relay
+16C0,Engine Coolant Low Temperature
+0217,Engine Coolant Temperature
+1675,Engine coolant temperature (second threshold)
+0115,Engine Coolant Temperature Sensor
+0597,Engine Coolant Thermostat
+16BC,Engine Coolant Thermostat Low Temperature
+1673,Engine hood open (from the BCM)
+0524,Engine Oil Circuit Pressure
+253F,Engine Oil Deteriorated
+0298,Engine Oil overheat
+0520,Engine Oil Pressure sensor
+0195,Engine Oil Temperature Sensor
+16DB,Engine Oil Temperature Sensor A Entry
+0219,Engine over-revving
+0654,Engine RPM Exit From Engine Control Module
+15A4,Engine sailing idle
+1661,Engine speed sensor CAN fail
+1676,Engine state wired ouput
+1668,Estimated engine torque CAN fail
+1677,ETS Engine coolant temperature
+0449,Evaporative Emission System Vent Valve
+1480,Exhaust Air Flap Control Function
+148C,Exhaust Air Flap Control Function (Intrusive Diagnostic)
+1481,Exhaust Air Flap H Bridge
+1483,Exhaust Air Flap Offset Learning
+1482,Exhaust Air Flap Position Sensor
+0365,Exhaust Camshaft Position Sensor
+0013,Exhaust Camshaft Variable Valve Timing Control Function
+0014,Exhaust Camshaft Variable Valve Timing Solenoid Valve
+1205,Exhaust Fuel Injector Control Circuit
+047B,Exhaust Gas Pressure Function - Upstream Particullate Filter
+047A,Exhaust Gas Pressure Sensor - Upstream Particulate Filter
+245A,Exhaust Gas Recirculation Cooler Bypass
+245B,Exhaust Gas Recirculation Cooler Bypass 2
+2457,Exhaust Gas Recirculation Cooling Control Function
+2425,Exhaust Gas Recirculation First Cooling Water Pump Control Circuit
+049B,Exhaust Gas Recirculation Flow
+0402,Exhaust Gas Recirculation Flow Excessive Detected
+0400,Exhaust Gas Recirculation HP Flow
+049A,Exhaust Gas Recirculation LP Flow
+1425,Exhaust Gas Recirculation Second Cooling Water Pump Control Circuit
+040A,Exhaust Gas Recirculation Temperature Sensor - Downstream Cooler
+0403,Exhaust Gas Recirculation Valve Control - H Bridge
+0488,Exhaust Gas Recirculation Valve Control Function
+0487,Exhaust Gas Recirculation Valve Offset Learning
+0409,Exhaust Gas Recirculation Valve Position Sensor
+2080,Exhaust Gas Temperature Control Function - Upstream First Catalyser
+1545,Exhaust Gas Temperature Function - Upstream Particulate Filter
+1546,Exhaust Gas Temperature Monitoring - Upstream Particulate Filter
+2034,Exhaust Gas Temperature Sensor - Downstream First Catalyser
+242A,Exhaust Gas Temperature Sensor - Upstream 2nd catalyser
+2031,Exhaust Gas Temperature Sensor - Upstream First Catalyser
+1544,Exhaust Gas Temperature Sensor - Upstream Particulate Filter
+0544,Exhaust Gas Temperature Sensor - Upstream Turbine
+3080,Exhaust Gas Temperature Sensor Circuit - Bank 1 Sensor 5
+1632,Exhaust Injector Pump Control
+159A,First cooling pump
+24A7,First Exhaust Gas Recirculation Coolant Pump
+1320,First ignition timer
+E16B,Front camera
+0457,Fuel Cap
+1670,Fuel consumption
+2687,Fuel heater
+112E,Fuel heating control unit
+112F,Fuel heating control unit’s mosfet command
+1138,Fuel heating glow plug 1
+1139,Fuel heating glow plug 2
+113A,Fuel heating glow plug 3
+113B,Fuel heating glow plug 4
+112C,Fuel heating power supply relay
+112D,Fuel heating power supply relay command
+2265,Fuel Level Sensor_
+0089,Fuel Pressure Regulation Control Function
+0627,Fuel Pump Control
+025B,Fuel Pump Module Control Circuit
+025A,Fuel Pump Module Control Circuit_
+0005,Fuel Rail Over Pressure Valve
+0190,Fuel Rail Pressure Sensor
+0088,Fuel Rail/System Pressure - Too High
+0087,Fuel Rail/System Pressure - Too Low
+2688,Fuel Supply Heater Control Circuit
+1030,Fuel Tank Pressure sensor
+1031,Fuel Tank Temperature sensor
+15AB,Fuel temperature retain
+1148,Fuel Trim Control Response
+0001,Fuel Volume Regulator Control Actuator
+0002,Fuel Volume Regulator Control Regulation Function
+1316,Gasoline pump relay
+0911,Gate Select Actuator
+0904,Gate Select Position Sensor
+1608,Gaz Control Unit - Injectors Driver
+0618,Gaz Control Unit - Memory
+1610,Gaz Control Unit - Power Supply
+1612,Gaz Control Unit power supply sensor
+2293,Gaz Pressure Regulation Control Function
+2294,Gaz Pressure Regulator Valve
+018A,Gaz Pressure Sensor
+17CF,GBA Primary Claw
+17D0,GBA Secondary Claw
+17D1,GBA Shaft Selector
+1666,GBT Switch type S3 of vehicle connector
+17CE,Gear Box Actuator
+1589,Gear box neutral contactor
+17C0,Gear lever
+17C1,Gear lever track 1
+17C2,Gear lever track 2
+1718,Gear Position switch
+0731,Gear Ratio 1
+0732,Gear Ratio 2
+0733,Gear Ratio 3
+0734,Gear Ratio 4
+0735,Gear Ratio 5
+0736,Gear Ratio R
+1713,Gear select actuator primary sensor
+1714,Gear select actuator secondary sensor
+0915,Gear shift actuator
+1715,Gear shift actuator primary sensor
+1716,Gear shift actuator secondary sensor
+0914,Gear Shift Position Sensor
+E247,Gear Shifting Control Unit
+1682,Gear Shifting Control Unit HV
+171F,Gear synchronizer actuator
+160B,Gearbox sencosrs learning diagnosis
+0380,Glow Plug Circuit
+246F,GPF downstream temperature sensor
+226D,GPF removal detection (based on Pdiff)
+24FD,GPF Removal detection (based on TDiff)
+242B,GPF upstream temperature sensor
+1318,GPL Low Pressure Leakage
+17C4,Grid teach in
+15EC,Hand free parking force setpoint
+15EA,Hand free parking with break force request (CAN message)
+1611,Hardware has Reseted
+1657,Hardware voltage battery 12v failure
+1617,HBA Calculator
+1592,Heater valve
+15CB,Heater valve HV
+1613,HEVC Analogic Numeric Converter
+16D3,HEVC to CAN powertrain connection
+0A81,High Battery Voltage Cooling fan Relay
+1605,High level charge communication time out
+148A,High Pressure Exhaust Gas Recirculation Valve Control Function (Intrusive Diagnostic)
+0094,High Pressure Fuel Leakage (Routine Aftersale Test)
+11C3,High Pressure Turbocharger Boost Control - H Bridge
+004A,High Pressure Turbocharger Boost Control Solenoid Valve
+11C4,High Pressure Turbocharger Boost Control Solenoid Valve (Turbine side)
+004B,High Pressure Turbocharger Boost Control Solenoid Valve.(Turbine side)
+004C,High Pressure Turbocharger By-Pass Offset Learning
+16D9,High voltage batterie SOC for hybrid vehicule
+1690,High Voltage Battery
+1699,High Voltage Battery Fan
+1692,High voltage network
+1664,Hill assist CAN fail
+1516,HP Pump Stop and Start Function
+16D8,HSCO Powertrain shutdown for safety
+15D6,HSG (Hybrid Starter Generator) Inverter
+1597,HV battery interlock
+159D,HV battery SOC
+15A1,HV battery voltage sensor
+16BD,HV compressor insulation resistance
+1626,HV fuel pump relay
+159E,HV network voltage (2 sensors)
+159F,HV network voltage (3 sensors)
+15C3,HV PEB Interlock
+0B33,HV Relay Connection TimeOUT
+E340,Hybrid Engine Control Management
+16B4,Hybrid Engine Control Management 2
+0A10,Hybrid Engine Vehicle Control
+15CE,Hybrid Vehicle, Oil Pressure Pump pwm Command
+0C42,Hybrid/EV Battery Pack Coolant Temperature Sensor 'A' Circuit
+A081,Hybrid/EV Battery Pack Cooling Fan 1 Control Circuit/Open
+A096,Hybrid/EV Battery Pack Cooling Fan 2 Control Circuit/Open
+1637,Hybrid/EV DCBOX temperature sensor
+15F0,Hybrid/EV locked trap through which the battery is charged
+0AE1,Hybrid/EV one DCBOX relay block clos
+1638,Hybrid/EV Temperature sensor of Plug in DC
+0AE2,Hybrid/EV two DCBOX relay block clos
+1514,ICR Relay
+1517,ICR Relay command
+1513,ICR Relay Differential Voltage
+0506,Idle Speed Control
+1562,Idle speed control in warm up phase
+113C,ignition coil 1 and 4 diagnostic
+0351,Ignition Coil 1 or Ignition Coil - Cylinder 1 and 4
+113D,ignition coil 2 and 3 diagnostic
+0352,Ignition Coil 2 or Ignition Coil - Cylinder 2 and 3_
+0353,Ignition Coil 3 or Ignition Coil - Cylinder 2 and 4
+0354,Ignition Coil 4 or Ignition Coil - Cylinder 1 and 4
+F00A,Ignition Switch
+1535,Immobilizer communication
+1536,Immobilizer e2prom
+1538,Immobilizer lock mode
+1537,Immobilizer wrong code
+E00C,In Vehicle Infotainment System
+E20C,In Vehicle Infotainment System 2
+167C,In Vehicle Infotainment System 2 HV
+167B,In Vehicle Infotainment System HV
+15FC,information cohenrency sent by the locking sensor ot the plug
+0216,Injection Mode
+1221,Injector - Cylinder 1 and 4
+1222,Injector - Cylinder 2 and 3
+062D,Injector Bank1 Driver
+062E,Injector Bank2 Driver
+10AA,Injector Boost Voltage Control Function
+0201,Injector Circuit - Cylinder 1
+1319,Injector Circuit – Cylinder 1 diag condition 1
+131A,Injector Circuit – Cylinder 1 diag condition 2
+0202,Injector Circuit - Cylinder 2
+131B,Injector Circuit – Cylinder 2 diag condition 1
+131C,Injector Circuit – Cylinder 2 diag condition 2
+0203,Injector Circuit - Cylinder 3
+131D,Injector Circuit – Cylinder 3 diag condition 1
+131E,Injector Circuit – Cylinder 3 diag condition 2
+0204,Injector Circuit - Cylinder 4
+131F,Injector Circuit – Cylinder 4 diag condition 1
+1321,Injector Circuit – Cylinder 4 diag condition 2
+0200,Injectors Circuit
+1719,Input pin 1 of Gear position switch
+171A,Input pin 2 of Gear position switch
+171B,Input pin 3 of Gear position switch
+0715,Input/Turbine Speed Sensor
+0125,Insufficient Coolant Temperature for Closed Loop Fuel Control
+148D,Intake Air Flap Control Function (Intrusive Diagnostic)
+2279,Intake Air System
+0110,Intake Air Temperature Sensor
+0095,Intake Air Temperature Sensor - Upstream Air Flap
+0340,Intake Camshaft Position Sensor
+2100,Intake Throttle Actuator Control - H Bridge
+0638,Intake Throttle Actuator Control Function
+2119,Intake Throttle Actuator Offset Learning
+0220,Intake Throttle Position Sensor - Track 2
+1598,Interlock
+16BF,Interlock between inverter and Air conditioning Unit
+16BE,Interlock betwen inverter and Electric motor
+15BF,Interlock BMS HV Charger Connector
+15C0,Interlock BMS HV Charger Fuse Lid
+15BE,Interlock BMS service plug
+15C4,Interlock Electrical motor 1
+15C2,Interlock Electrical motor 2
+15C5,Interlock HV accessories
+15D3,Interlock PEB PTC
+061E,Internal Control Module Brake Signal Performance
+061B,Internal Control Module Torque Calculation (Level2)
+062C,Internal Control Module Vehicle Speed Performance
+160D,Internal Controle Module Error - Power Supply
+161C,Internal HEVC Monitoring Processor Performance
+0667,Internal Temperature Sensor Engine Control Module
+C402,Invalid Data Received From Transmission Control Module
+E342,Inverter
+1628,Inverter 2
+E346,Inverter HSG
+16C5,Inverter HSG HV
+16C4,Inverter HV
+1698,Inverter monitoring
+1696,Inverter temperature
+1697,Inverter voltage
+1515,IS Relay
+0AA6,Isolation level failure of HEV Battery
+0325,Knock Sensor
+17CB,Lane Departure Prevention
+16DF,Level 2 detection for battery lamp lighting
+15B7,Lid fuse interlock
+163D,Lighting Control Module
+163C,Lighting Control Module 1
+163B,Lighting Control Module 2
+C019,LIN bus off
+16D7,LIN communication of DBC network switch
+15E4,LIN connected electrical oil pump
+10A4,Line to by-pass gasoline injector 1
+10A5,Line to by-pass gasoline injector 2
+10A6,Line to by-pass gasoline injector 3
+10A7,Line to by-pass gasoline injector 4
+1693,Lithium Battery Controler
+1694,Lithium Battery Controler (reductant diagnosis)
+15FA,Locking plug control
+1604,Locking plug mecanism
+15FD,Locking trap mecanism
+1587,Longitudinal accelerometer sensor
+E200,Lost Communication With Alternative Fuel Control Module
+C112,Lost Communication With Battery Current Sensor from LIN
+C111,Lost Communication With Battery Energy from LIN
+C104,Lost Communication With Cruise Control Module
+C109,Lost Communication With Fuel Pump Control Module
+1629,Lost communication with rectifier
+C120,Lost Communication With Stop and Start Control module
+C101,Lost Communication with Transmission Control Module
+160F,Lost Communication with Transmission Control Module 6
+15B9,Low Coolant Temperature Sensor
+1501,Low pressure EGR cooler
+1451,Low Pressure EGR Differential pressure
+1489,Low Pressure Exhaust Gas Recirculation Temperature Sensor - Downstream Cooler
+1484,Low Pressure Exhaust Gas Recirculation Valve
+1488,Low Pressure Exhaust Gas Recirculation Valve - Control Function
+1485,Low Pressure Exhaust Gas Recirculation Valve - H Bridge
+1487,Low Pressure Exhaust Gas Recirculation Valve - Offset Learning
+1486,Low Pressure Exhaust Gas Recirculation Valve - Position Sensor
+148B,Low Pressure Exhaust Gas Recirculation Valve Control Function (Intrusive Diagnostic)
+149B,Low Pressure Exhaust Gas Recirculation Valve Temperature sensor
+018C,Low Pressure Fuel Sensor
+15A5,Low speed pre-ignition avoidance strategy
+162F,Low speed pre-ignition avoidance strategy.
+15AE,Low temperature sensor
+161A,Low temperature thermoplunger 1 Control
+1619,Low temperature thermoplunger 2 Control
+1618,Low temperature thermoplunger 3 Control
+1590,Low voltage power supply relay
+1171,LPG Fuel Adaptative Function
+1170,LPG Fuel Trim Function
+10A0,LPG injector 1 Circuit
+10A1,LPG injector 2 Circuit
+10A2,LPG injector 3 Circuit
+10A3,LPG injector 4 Circuit
+109A,LPG Safety Relay
+1570,LPG switch
+2666,LPG Tank Solenoide Valve
+1572,LPG Vaporizer Shut off Valve
+15A7,Mains control pilot voltage
+15A9,Mains RMS voltage
+0650,Malfunction Indicator Lamp (MIL) Control Circuit
+2413,Mass Air Flow Control Function
+0100,Mass Air Flow Sensor
+2526,Mastervac pressure switch
+166A,Maximum dynamique engine torque CAN fail
+15EE,Maximum electromagnetic wheel torque control setpoint
+1669,Maximum engine torque CAN fail
+166B,Minimum engine torque CAN fail
+0313,Misfire Detected with Low Fuel
+1744,Monitoring of clutch actuator and driver's will
+1742,Monitoring of crancking authorization
+1745,Monitoring of primary shaft speed and clutch position
+1743,Monitoring of transmission actuators and driver's will
+1747,Monostable lever inputs diagnosis from SCU
+1132,Mosfet 1 of the fuel heating control unit
+1133,Mosfet 2 of the fuel heating control unit
+1134,Mosfet 3 of the fuel heating control unit
+1137,Mosfet 4 of the fuel heating control unit
+1593,Multiways valve command
+1594,Multiways valve command H bridge
+1591,Multiways valve position sensor
+16CE,MVAC  HEVC diagnostic
+16CD,MVAC  HEVC diagnostic with pump on
+16CC,MVAC HEVC diagnostic with pump off
+16E0,Mvac pump wear alert level 1
+16E1,Mvac pump wear alert level 2
+15DE,Negative interdigital electrode of the SCU with the supply OFF
+15DD,Negative interdigital electrode of the SCU with the supply ON
+15CA,Nissan Engine Coolant Temperature
+1659,Non desactivation de l' ACC
+14A0,NOX Proportionnal Sensor - Downstream
+2000,NOx Trap System
+114A,O2 Downstream Proportionnal Sensor - Analog signal
+114E,O2 Downstream Proportionnal Sensor - Measured signal
+114B,O2 Downstream Proportionnal Sensor - Nernst cell
+114C,O2 Downstream Proportionnal Sensor - Pumping current
+114D,O2 Downstream Proportionnal Sensor - Virtual ground
+2626,O2 proportional Sensor Pumping Current
+1130,O2 Proportionnal Sensor  - Upstream
+1135,O2 Proportionnal Sensor - Downstream
+1172,O2 Proportionnal Sensor -Downstream
+1136,O2 Proportionnal Sensor Temperature - Downstream
+1131,O2 Proportionnal Sensor Temperature - Upstream
+0136,O2 Sensor - Downstream
+0139,O2 Sensor Circuit Response
+0133,O2 Sensor Circuit Slow Response
+0135,O2 Sensor Heater - Upstream
+2A06,O2 Sensor Negative Voltage
+114F,O2 Upstream Proportionnal Sensor - Nernst cell
+1150,O2 Upstream Proportionnal Sensor - Pumping current
+165B,Oil engine for flexfuel purpose
+16FE,Oil level out of range error
+250A,Oil level sensor
+16FB,Oil mass alert
+16DE,Oil pan sensor acquisition SCB/SCG error
+1524,Oil Pressure Pump pwm Command
+0521,Oil pressure switch
+1560,Oil pump solenoid valve
+1651,One Thermoplunger in failure
+15D8,Output gearbox Speed Sensor Circuit
+171C,Output pin 1 of Gear position switch
+171D,Output pin 2 of Gear position switch
+171E,Output pin 3 of Gear position switch
+0720,Output Speed Sensor Circuit
+1453,Particulate Filter Differential Pressure Control Function
+2452,Particulate Filter Differential Pressure Sensor
+2458,Particulate Filter Regeneration Mode
+2463,Particulate Filter Restriction - Soot Accumulation
+E39C,Particulate Matter Sensor
+24AE,Particulate Matter Sensor Circuit
+15D9,Particulate Matter Sensor Efficiency
+24B7,Particulate Matter Sensor Heater
+24C6,Particulate Matter Sensor Temperature Circuit
+2453,PDiff sensor of GPF
+1624,PEB access trap fuse lid interlock state on rectifier
+1623,PEB access trap interlock state on inverter
+15C7,PEB Charging Interlock
+1622,PEB to accessories interlock
+1621,PEB to PTC interlock
+16D0,Plug proximity detection line
+15A8,Plug temperature
+15DF,PM Sensor Control Unit
+15E2,PM sensor diagnosis
+053A,Positive Crankcase Ventilation Heater Control Circuit
+15DC,Positive interdigital electrode of the SCU
+15D2,Power Electronic Block Coolant temperature
+0697,Power Supply 3
+06A3,Power Supply 4
+17C6,Powertrain Electrical Vehicle relay
+1454,Pressure Before Compressor
+1452,Pressure Before Compressor Sensor
+1615,Primary Claw
+1607,Primary Claw in neutral position
+17C9,Primary Claw Sensor
+15E5,Protection tube of Particulate Meter Sensor
+166E,Pump 1 durability counter
+1630,Pump 3 durability counter
+1502,Quantity Balance Ajustement Torque control limitation
+1300,Random/Multiple Cylinder LPG Misfire Detected
+0300,Random/Multiple Cylinder Misfire Detected
+16FF,Raw value of Oil Pan Level outside the SRC Max and Min Range
+1707,Raw value of Oil Pan temperature outside the SRC Max and Min Range
+24D1,Regeneration of PM sensor
+1599,Relay closure
+1644,Relay of Air Heater Passenger Compartment 1
+1645,Relay of Air Heater Passenger Compartment 2
+1646,Relay of Air Heater Passenger Compartment 3
+15BA,Relay s2 and Relay s2’
+15BB,Relay s2’
+1720,Reverse light relay
+1649,Reversing lights
+1149,Richness double loop Function
+15AA,S2 relay control
+15B0,Safety DLS target
+17C5,Safety gear lever
+11C1,Safety overheating on GPF
+1631,Safety primary claw position sensor
+1634,Safety secondary claw position sensor
+15AF,Safety start starter
+15B3,Safety torque Electrical motor
+15B4,Safety torque Electrical motor 2
+15B2,Safety torque ice
+15B1,Safety torque setpoint
+1635,Safety transfert claw position sensor
+162D,SCR heater
+1021,SCR remaining distance range
+1024,SCR System
+16F8,SCR under Floor
+113E,SCRF downstream temperature
+1142,SCRF upstream temperature
+159B,Second cooling pump
+24A8,Second Exhaust Gas Recirculation Coolant Pump
+241F,Second Exhaust Gas Recirculation Cooling Control
+2632,Second fuel Pump Control for additional fuel tank
+1614,Secondary Claw
+1606,Secondary Claw in neutral position
+17C7,Secondary Claw Sensor
+15A3,SED Engine overboost
+15D7,SED Engine overboost gearbox
+15EF,Sensor Control unit relay
+17CA,Shaft Selector Sensor
+164B,Shifter Control Unit (SCU) Park actuation
+1314,Single Cylinder LPG Misfire (Cylinder not Specified)
+0314,Single Cylinder Misfire (Cylinder not Specified)
+C305,Software Incompatibility with Cruise Control Module
+15C9,Solenoid insulation of low temperature water cooling system between PEB and battery
+170E,Speed clamping Ecomode
+1512,Starter
+1519,Starter command
+15B6,Starter relays
+0A1E,Starter/Generator Control Module
+05BD,Stop-Start Mode
+1010,Swirl Flap Control Function
+1011,Swirl Flap H bridge
+1012,Swirl Flap Offset Learning
+1013,Swirl Flap Position Sensor
+15BD,Temperature inlet sensor
+11C2,Temperature sensor after compressor
+11C5,Temperature sensor between the two HP EGR coolers
+1641,Thermoplunger 1 Control
+1642,Thermoplunger 2 Control
+1643,Thermoplunger 3 Control
+1650,Thermoplunger in failure (not Specified)
+159C,Third cooling pump
+1653,Three Thermoplunger in failure
+2135,Throttle Correlation Between The Two Sensors
+0741,Torque Converter Clutch Gain
+15F8,Total gear ratio
+17C8,Transmission Claw Sensor
+15F2,Transmission Friction of gear box
+1667,Trap opening button for vehicle LOCO
+2263,Turbocharger Boost Control Function
+148E,Turbocharger Boost Control Function (intrusive Diagnostic)
+11CE,Turbocharger Boost Offset Learning
+0033,Turbocharger ByPass Valve
+149E,Turbocharger compressor element low pressure duct pressure downstream sensor
+023A,Turbocharger Coolant Pump Control
+149D,Turbocharger cooler temperature downstream sensor
+112A,Turbocharger Exhaust Pressure Control
+22D2,Turbocharger Turbine Inlet Control Function
+22CF,Turbocharger Turbine Inlet Valve H-bridge
+22D5,Turbocharger Turbine Inlet Valve Offset Learning
+22D4,Turbocharger Turbine Inlet Valve Position Sensor
+0243,Turbocharger Wastegate Solenoid
+00C0,Turbocharger/Supercharger Boost Control HBDG
+0045,Turbocharger/Supercharger Boost Control Solenoid Valve
+1173,Turbocharger/Supercharger Boost Control Solenoid Valve speed Sensor
+012B,Turbocharger/Supercharger Inlet Pressure Function
+012A,Turbocharger/Supercharger Inlet Pressure Sensor
+10AB,Twin Injector 1
+10AC,Twin Injector 2
+10AD,Twin Injector 3
+10AE,Twin Injector 4
+1652,Two Thermoplunger in failure
+15AC,UPCU relay
+242C,Upstream Gas temperature out of minimum range
+2200,Upstream NOX Sensor proportional - Analog signal
+2243,Upstream proportional oxygen sensor - Nernst Cell Circuit
+2244,Upstream proportional oxygen sensor Circuit
+0096,Upstream throttle air temperature sensor
+14A2,Urea Pump Control Unit
+14A1,Urea Pump Control Unit consumption
+14A3,Urea quality
+1557,Vacuum pressure sensor
+1555,Vacuum Pump Circuit
+1556,Vacuum Pump Relay Control
+2527,Vacuum Reservoir Pressure Sensor Circuit
+0555,Vacuum System Control
+C315,Vehicle Speed
+1746,Vehicle speed plausibility in level 2
+1674,Vehicle speed sign
+0834,Very Begining of Clutch Pedal Move Switch
+112B,VNT sensor
+16FC,Voltage out of range error from oil pan sensor
+162A,Voltage signals from shift lever
+0421,Warm Up Catalyst Efficiency
+161B,Water heater temperature sensor
+2264,Water in Fuel Sensor
+1648,Water pump cabin heating circuit of PHEV/HEV
+1353,Water Pump GPL
+1354,Water Pump GPL command
+161E,Wired Interlock from PEB output to clim compressor and charger
+162E,Wired Interlock from PEB to access trap
+161F,Wired Interlock from RCS 800 to PEB input
+2505,Wired load alternator output
+15FE,Information coherency sent by the locking sensor of the plug
+0BBF,Water Cooling Fan Supply Voltage
+E281,PLC V-CAN loss communication
+E181,PLC PT-CAN loss communication
+167F,PLC V-CAN loss communication under CHG condition
+1680,PLC PT-CAN loss communication under CHG condition

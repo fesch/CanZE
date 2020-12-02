@@ -1,0 +1,116 @@
+5056,Supply Voltage
+507B,Important function deactivated
+5051,Pump motor control
+5049,Inlet valve FL
+504A,Outlet valve FL
+504B,Inlet valve FR
+504C,Outlet valve FR
+504D,Inlet valve RL
+504E,Outlet valve RL
+504F,Inlet valve RR
+5050,Outlet valve RR
+5061,Front left wheel speed sensor
+5063,Front right wheel speed sensor
+5065,Rear left wheel speed sensor
+5067,Rear right wheel speed sensor
+5070,Lateral acceleration sensor
+5071,Longitudinal acceleration sensor
+505A,Stability system active too long
+5058,ECU ABS or ESC
+506C,Master cylinder pressure sensor
+506B,Brake pedal switch 'A'
+5073,Vacuum sensor
+5052,Brake Booster Performance
+E243,Lost Communication with HEVC on Chassis-CAN
+E204,Lost Communication with 4WS on Chassis-CAN
+E276,Lost Communication with IDM on Chassis-CAN
+5048,Valve relay
+5053,CAN Receive Monitor
+5054,Judgement time 2-2
+5055,CAN Register
+5059,Solenoid overheating
+505C,Implausible control
+5068,WSS Front Axle
+5069,WSS Rear Axle
+506A,WSS General
+506D,Vacuum booster
+5075,Activation HDC switch
+507C,Secondary function deactivated
+507D,4WD
+507E,Extended Grip button
+E252,Lost Communication with ADAS on Chassis CAN
+E25F,Lost Communication with RADAR on Chassis-CAN
+E255,Lost Communication with APB on Chassis-CAN
+E176,Lost Communication with IDM on Vehicle CAN
+E15B,Lost communication with USM on Vehicle CAN
+E156,Lost Communication with SWAS on Vehicle CAN
+E14F,Lost Communication with BCM on Vehicle CAN
+E14E,Lost Communication with METER on Vehicle CAN
+E14A,Lost Communication with 4WD on Vehicle CAN
+E143,Lost Communication with HEVC on Vehicle CAN
+E141,Lost Communication with AT on Vehicle CAN
+E140,Lost Communication with ECM on Vehicle CAN
+E104,Lost Communication with 4WS on Vehicle CAN
+E101,Lost Communication with Add. Display on Vehicle CAN
+E212,Lost Communication with EBA on Chassis-CAN
+E112,Lost Communication with EBA on Vehicle CAN
+505B,HEVC not ready as actuator
+E265,Lost Communication with USA on Chassis-CAN
+50B5,EPB_ASSEMBLY_CHECK_NOT_DONE
+50B0,EPB_ACTUATOR_RIGHT
+50B1,EPB_ACTUATOR_LEFT
+50B8,EPB_BRAKE_INCOHERENT
+50B9,EPB_BRAKE_STATE_UNKNOWN
+50B3,EPB_ELECTRONIC_ECU
+50B2,EPB_SWITCH
+50B6,EPB_MAX_BRAKING
+50A0,TPW Under Inflated
+50A1,TPW INVALID INPUT DATA
+50A2,TPW Wheel Front Left
+50A3,TPW Wheel Front Right
+50A4,TPW Wheel Rear Right
+50A5,TPW Wheel Rear Left
+50A6,TPW ERROR
+50A7,TPW AUTOCALIBRATION FAILED
+5042,Isolating valve FR/RL axe fault
+5043,Isolating valve FL/RR axe fault
+5046,Electric shuttle valve FR/RL axe fault
+5047,Electric shuttle valve FL/RR axe fault
+5076,Missing ABS or VDC calibration parameters
+5077,Invalid gearbox configuration
+5078,Invalid parking brake configuration
+5079,Invalid wheel circumference configuration
+507A,Invalid VDC Physical Implantatation Configuration
+C073,Vehicle CAN
+C076,Chassis CAN
+5080,ECM Invalid data
+5081,APB Invalid data
+5083,SWAS Invalid data
+5085,METER Invalid data
+5086,BCM Invalid data
+5087,USM Invalid data
+5089,4WS Invalid data
+5090,ADAS Invalid data
+5091,RADAR Invalid data
+5092,4WD Invalid data
+5093,USA Invalid data
+5094,HEVC Invalid data
+5095,EBA Invalid data
+5097,IDM Invalid data
+506E,SWAS
+505F,GCC commands
+505E,EBA Failure
+5041,Invalid function configuration
+505D,Brake Fluid Level
+5082,AT Invalid data
+50AA,LifeTimeCounter
+50AB,Reserved C1A-HS
+50AC,Reserved C1A-HS-1
+50AD,Reserved C1A-HS-2
+5040,Telemeter
+5088,MIU Invalid data
+E154,Lost Communication with MIU on Vehicle CAN
+5096,CDM Invalid data
+507F,Stroke sensor
+5072,Yaw rate sensor
+5074,Activation switch AYC/ASR
