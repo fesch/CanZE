@@ -40,7 +40,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
     // private static final String SID_ChargingPower                    = "42e.56";
     private static final String SID_HvCoolingState                   = "430.38";
     private static final String SID_HvEvaporationTemp                = "430.40";
-    //private static final String SID_ClimaCompressorPower             = "7ec.6233A7.24";
+    private static final String SID_ClimaCompressorPower             = "764.6143.88";
     private static final String SID_Pressure                         = "764.6143.134";
     private static final String SID_BatteryConditioningMode          = "432.36";
     private static final String SID_ClimaLoopMode                    = "42a.48";
@@ -63,7 +63,6 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
         MainActivity.getInstance().setDebugListener(this);
         //if (MainActivity.isZOE()) {
             addField(SID_EngineFanSpeed, 0);
-            addField(SID_DcPower, 0);
             // addListener(SID_ChargingPower);
             addField(SID_HvCoolingState, 0);
             addField(SID_HvEvaporationTemp, 10000);
@@ -75,6 +74,13 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
             //addField(SID_PtcRelay2, 1000);
             //addField(SID_PtcRelay3, 1000);
         //}
+
+        if (MainActivity.isPh2()) {
+            // FIXME: ensure this corresponds to the total HVAC power and not only the heater
+            addField(SID_ClimaCompressorPower, 0);
+        } else {
+            addField(SID_DcPower, 0);
+        }
     }
 
 
@@ -130,9 +136,9 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
                             tv.setText(climate_Status[value]);
                         tv = null;
                         break;
-                    //case SID_ClimaCompressorPower:
-                        // tv = findViewById(R.id.text_CPW);
-                        // break;
+                    case SID_ClimaCompressorPower:
+                         tv = findViewById(R.id.text_DCP);
+                         break;
                     //case SID_PtcRelay1:
                     //    value = (int) field.getValue();
                     //    tv = findViewById(R.id.text_PTC1);
