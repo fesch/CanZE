@@ -1,0 +1,437 @@
+,763,24,31,1,0,0,,220101,620101,ff,Language_CF,0:Albanese;1:Arabic;2:Bulgarian;3:Chinese Mandarin(Simplified Chinese character);4:Croatian;5:Czech;6:Danish;7:Dutch;8:English (UK);9:Estonian;10:Finnish;11:French;12:German;13:Greek;14:Hebrew;15:Hindi;16:Hungarian;17:Indonesian (Bahasa);18:Italian;19:Japanese;20:Korean;21:Latvian;22:Lithuanian;23:Norwegian;24:Persian (Farsi / Iranian);25:Polish;26:Portuguese (Portugal);27:Portuguese Brazilian;28:Romanian;29:Russian;30:Serbian;31:Slovakian;32:Slovenian;33:Spanish (Castillan);34:Spanish Latin American (also Mexican);35:Swedish;36:Turkish;37:Ukrainian;38:Vietnamese;255:Not used
+,763,24,31,1,0,0,,220102,620102,ff,GearBoxType_CF,0:Manual gearbox;1:Automatic gearbox (Pluristable PRND);2:Automatic gearbox (ShiftByWire H-grid);3:Automatic gearbox (I-Shifter ICE PRND);4:Automatic gearbox (I-Shifter EV/PHEV PRNDB);5:Automatic gearbox (Pluristable PRNDL --> CVT);6:Automatic gearbox (Pluristable PRNDB --> EV/PHEV)
+,763,24,31,1,0,0,,220103,620103,ff,CarburationType_CF,0:Petrol;1:Diesel;2:GNC;3:GPL;4:Petrol/GNC;5:Petrol/GPL;6:PHEV;7:EV;8:HEV
+,763,24,31,1,0,0,,220104,620104,ff,DistanceUnit_CF,0:km;1:miles
+,763,24,31,1,0,0,,220105,620105,ff,VolumeUnit_CF,0:litre;1:gallon UK;2:gallon US
+,763,24,31,1,0,0,,220106,620106,ff,TripComputerType_CF,0:without Trip Computer;1:volume/mileage (par défaut);2:mileage/volume
+,763,24,31,1,0,0,,220107,620107,ff,TyrePressureUnit_CF,0:bar;1:psi
+,763,24,31,1,0,0,,220108,620108,ff,VehicleGUIStyle_CF,0:Hatchback;1:Sedan;2:SUV;3:LCV/CDV;4:VU
+,763,24,31,1,0,0,,220109,620109,ff,FrontSBRInhibition_CF,0:Front SBR not inhibited;1:Front SBR inhibited
+,763,24,31,1,0,0,,22010A,62010A,ff,ParkingBrakeType_CF,0:Manual Parking Brake;1:Assisted Parking Brake
+,763,24,24,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_ABS,0:Not autotested;1:Autotested
+,763,25,25,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_ESC,0:Not autotested;1:Autotested
+,763,26,26,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_ESC OFF,0:Not autotested;1:Autotested
+,763,27,27,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_TPMS,0:Not autotested;1:Autotested
+,763,28,28,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_StopStart Unavailable,0:Not autotested;1:Autotested
+,763,29,29,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_EPS,0:Not autotested;1:Autotested
+,763,30,30,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_Airbag,0:Not autotested;1:Autotested
+,763,31,31,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_HFP,0:Not autotested;1:Autotested
+,763,32,32,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_GAS_LPG,0:Not autotested;1:Autotested
+,763,33,33,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_FCW,0:Not autotested;1:Autotested
+,763,34,34,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_UREA,0:Not autotested;1:Autotested
+,763,35,35,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_Electrical Failure_SED,0:not autotested;1:Autotested
+,763,36,36,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_HV Battery too hot,0:Not autotested;1:Autotested
+,763,38,38,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_AEBS failure_OFF,0:Not autotested;1:Autotested
+,763,39,39,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_MiniFlex,0:Not autotested;1:Autotested
+,763,40,40,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_MinorBrakingFailure_AMBER,0:Not autotested;1:Autotested
+,763,41,41,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_DPF,0:Not autotested;1:Autotested
+,763,42,42,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_FuelCapOpen,0:Not autotested;1:Autotested
+,763,43,43,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_LightingFailure,0:Not autotested;1:Autotested
+,763,44,44,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_LDW,0:Not autotested;1:Autotested
+,763,45,45,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_AFSfailure,0:Not autotested;1:Autotested
+,763,46,46,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.ADAS_HandsOFFdetection,0:Not autotested;1:Autotested
+,763,47,47,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_Electrical Failure Major,0:Not autotested;1:Autotested
+,763,48,48,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_Charge failure,0:Not autotested;1:Autotested
+,763,49,49,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_xEV System Failure,0:Not autotested;1:Autotested
+,763,50,50,1,0,0,,22010B,62010B,ff,TelltaleAutotestP1_CF.Autotest_SBS failure_OFF,0:Not autotested;1:Autotested
+,763,24,31,1,0,0,,22010C,62010C,ff,TACStrategy_CF,0:No Filter;1:Fast Filter only (Korean market);2:Full filter
+,763,24,31,1,0,0,,22010D,62010D,ff,UPAMMI_CF,0:Without UPA MMI;1:With UPA MMI
+,763,24,31,1,0,0,,22010E,62010E,ff,TPMSMMI_CF,0:Without TPMS;1:With TPMS;2:With TPW
+,763,24,31,1,0,0,,22010F,62010F,ff,OverspeedWarningPresent_CF,0:Without overspeed warning;1:With overspeed warning (GCC countries);2:With overspeed warning (India)
+,763,24,24,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.Hindi,0:Hindi NO;1:Hindi Yes
+,763,25,25,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.Hebrew,0:Hebrew NO;1:Hebrew Yes
+,763,26,26,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.Greek,0:Greek NO;1:Greek Yes
+,763,27,27,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.German,0:German NO;1:German Yes
+,763,28,28,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.French,0:French NO;1:French Yes
+,763,29,29,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.Finnish,0:Finnish NO;1:Finnish Yes
+,763,30,30,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.Estonian,0:Estonian NO;1:Estonian Yes
+,763,31,31,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.English.UK,0:English (UK) NO;1:English (UK) Yes
+,763,32,32,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.Dutch,0:Dutch NO;1:Dutch Yes
+,763,33,33,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.Danish,0:Danish NO;1:Danish Yes
+,763,34,34,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.Czech,0:Czech NO;1:Czech Yes
+,763,35,35,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.Croatian,0:Croatian NO;1:Croatian Yes
+,763,36,36,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.ChineseMandarin,0:ChineseMandarin (Simplified Chinese character)/Mainland NO;1:ChineseMandarin (Simplified Chinese character)/Mainland Yes
+,763,37,37,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.Bulgarian,0:Bulgarian NO;1:Bulgarian Yes
+,763,38,38,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.Arabic,0:Arabic NO;1:Arabic Yes
+,763,39,39,1,0,0,,220110,620110,ff,DisplayableLanguage_P1_CF.Albanese,0:Albanese NO;1:Albanese Yes
+,763,24,24,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Slovakian,0:Slovakian NO;1:Slovakian Yes
+,763,25,25,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Serbian,0:Serbian NO;1:Serbian Yes
+,763,26,26,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Russian,0:Russian NO;1:Russian Yes
+,763,27,27,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Romanian,0:Romanian NO;1:Romanian Yes
+,763,28,28,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Portuguese.Brazilian,0:Portuguese Brazilian NO;1:Portuguese Brazilian Yes
+,763,29,29,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Portuguese,0:Portuguese NO;1:Portuguese Yes
+,763,30,30,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Polish,0:Polish NO;1:Polish Yes
+,763,31,31,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Persian.Farsi.Iranian,0:Persian (Farsi/Iranian) NO;1:Persian (Farsi/Iranian) Yes
+,763,32,32,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Norwegian,0:Norwegian NO;1:Norwegian Yes
+,763,33,33,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Lithuanian,0:Lithuanian NO;1:Lithuanian Yes
+,763,34,34,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Latvian,0:Latvian NO;1:Latvian Yes
+,763,35,35,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Korean,0:Korean NO;1:Korean Yes
+,763,36,36,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Japanese,0:Japanese NO;1:Japanese Yes
+,763,37,37,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Italian,0:Italian NO;1:Italian Yes
+,763,38,38,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Indonesian.Bahasa,0:Indonesian (Bahasa) NO;1:Indonesian (Bahasa) Yes
+,763,39,39,1,0,0,,220111,620111,ff,DisplayableLanguage_P2_CF.Hungarian,0:Hungarian NO;1:Hungarian Yes
+,763,33,33,1,0,0,,220112,620112,ff,DisplayableLanguage_P3_CF.Vietnamese,0:Vietnamese NO;1:Vietnamese Yes
+,763,34,34,1,0,0,,220112,620112,ff,DisplayableLanguage_P3_CF.Ukrainian,0:Ukrainian NO;1:Ukrainian Yes
+,763,35,35,1,0,0,,220112,620112,ff,DisplayableLanguage_P3_CF.Turkish,0:Turkish NO;1:Turkish Yes
+,763,36,36,1,0,0,,220112,620112,ff,DisplayableLanguage_P3_CF.Swedish,0:Swedish NO;1:Swedish Yes
+,763,37,37,1,0,0,,220112,620112,ff,DisplayableLanguage_P3_CF.Spanish.LatinAmerican,0:Spanish Latin American (also Mexican) NO;1:Spanish Latin American (also Mexican) Yes
+,763,38,38,1,0,0,,220112,620112,ff,DisplayableLanguage_P3_CF.Spanish.Castillan,0:Spanish (Castillan) NO;1:Spanish (Castillan) Yes
+,763,39,39,1,0,0,,220112,620112,ff,DisplayableLanguage_P3_CF.Slovenian,0:Slovenian NO;1:Slovenian Yes
+,763,25,25,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeSRVM,0:Without SRVM;1:With SRVM
+,763,26,26,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeBSWRadar,0:Without BSW radar;1:With     BSW radar
+,763,27,27,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeEBA,0:Without NodeEBA;1:With     NodeEBA
+,763,28,28,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeMBL,0:Without NodeMBL;1:With     NodeMBL
+,763,29,29,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeDSMU,0:Without NodeDSMU;1:With     NodeDSMU
+,763,30,30,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeADB,0:Without NodeADB;1:With     NodeADB
+,763,31,31,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeVSP,0:Without NodeVSP;1:With     NodeVSP
+,763,32,32,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeHUD,0:Without NodeHUD;1:With     NodeHUD
+,763,33,33,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeMULTIMEDIA_CANM,0:Without NodeMULTIMEDIA_CANM;1:With     NodeMULTIMEDIA_CANM
+,763,34,34,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeMULTIMEDIA_CANV,0:Without NodeMULTIMEDIA_CANV;1:With     NodeMULTIMEDIA_CANV
+,763,35,35,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeTCU,0:Without NodeTCU;1:With     NodeTCU
+,763,36,36,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeMAGIC_FOLDING,0:Without NodeMAGIC_FOLDING;1:With     NodeMAGIC_FOLDING
+,763,37,37,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeFRONT_CAMERA,0:Without NodeFRONT_CAMERA;1:With     NodeFRONT_CAMERA
+,763,38,38,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeRADAR,0:Without NodeRADAR;1:With     NodeRADAR
+,763,39,39,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeADAS,0:Without NodeADAS;1:With     NodeADAS
+,763,40,40,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeVADA,0:Without NodeVADA;1:With     NodeVADA
+,763,41,41,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeIDM,0:Without NodeIDM;1:With     NodeIDM
+,763,42,42,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeFWS,0:Without NodeFWS;1:With     NodeFWS
+,763,43,43,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeETC_4GRIP,0:Without NodeETC_4GRIP;1:With     NodeETC_4GRIP
+,763,44,44,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeUPA_SONAR,0:Without NodeUPA_SONAR;1:With     NodeUPA_SONAR
+,763,45,45,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeHFM,0:Without NodeHFM;1:With     NodeHFM
+,763,46,46,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeHEPS,0:Without NodeHEPS;1:With     NodeHEPS
+,763,47,47,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeEPS,0:Without NodeEPS;1:With     NodeEPS
+,763,48,48,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeHEVC,0:Without NodeHEVC;1:With     NodeHEVC
+,763,49,49,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeECM,0:Without NodeECM;1:With     NodeECM
+,763,50,50,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeAT,0:Without NodeAT;1:With     NodeAT
+,763,51,51,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeEPKB,0:Without NodeEPKB;1:With     NodeEPKB
+,763,52,52,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeBRAKE_ABS_VDC,0:Without NodeBRAKE_ABS_VDC;1:With     NodeBRAKE_ABS_VDC
+,763,53,53,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeACU,0:Without NodeACU;1:With     NodeACU
+,763,54,54,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeEMM,0:Without NodeEMM;1:With     NodeEMM
+,763,55,55,1,0,0,,220113,620113,ff,ECUPresent_Part1_CF.NodeUSM,0:Without NodeUSM;1:With     NodeUSM
+,763,41,41,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeMM_SETTING,0:Without VNodeMM_SETTING;1:With VNodeMM_SETTING
+,763,42,42,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeAT_RPM,0:Without VNodeAT_RPM;1:With VNodeAT_RPM
+,763,43,43,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeLC,0:Without VNodeLC;1:With VNodeLC
+,763,44,44,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeAEBS,0:Without VNodeAEBS;1:With VNodeAEBS
+,763,45,45,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeSCR,0:Without VNodeSCR;1:With VNodeSCR
+,763,46,46,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeECALL,0:Without VNodeECALL;1:With VNodeECALL
+,763,47,47,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeBSWSonar,0:Without VNodeBSWSonar;1:With VNodeBSWSonar
+,763,48,48,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeSBW,0:Without VNodeSBW;1:With VNodeSBW
+,763,49,49,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeHFP_FAST,0:Without VNodeHFP_FAST;1:With VNodeHFP_FAST
+,763,50,50,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeHFP,0:Without VNodeHFP;1:With VNodeHFP
+,763,51,51,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeMULTIDRIVE,0:Without VNodeMULTIDRIVE;1:With VNodeMULTIDRIVE
+,763,52,52,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeBSW,0:Without VNodeBSW;1:With VNodeBSW
+,763,53,53,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeTPMS,0:Without VNodeTPMS;1:With VNodeTPMS
+,763,54,54,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeTPW,0:Without VNodeTPW;1:With VNodeTPW
+,763,55,55,1,0,0,,220114,620114,ff,ECUPresent_Part2_CF.VNodeESC,0:Without VNodeESC;1:With VNodeESC
+,763,24,31,1,0,0,,220117,620117,ff,WaterTempPageMMI_CF,0:Without;1:With
+,763,24,24,1,0,0,,220118,620118,ff,DayBacklightsPresent_CF.Zone1,0:no backlit;1:backlit
+,763,25,25,1,0,0,,220118,620118,ff,DayBacklightsPresent_CF.Zone2,0:no backlit;1:backlit
+,763,26,26,1,0,0,,220118,620118,ff,DayBacklightsPresent_CF.Zone3,0:no backlit;1:backlit
+,763,27,27,1,0,0,,220118,620118,ff,DayBacklightsPresent_CF.Zone4,0:no backlit;1:backlit
+,763,28,28,1,0,0,,220118,620118,ff,DayBacklightsPresent_CF.Zone5,0:no backlit;1:backlit
+,763,29,29,1,0,0,,220118,620118,ff,DayBacklightsPresent_CF.Zone6,0:no backlit;1:backlit
+,763,30,30,1,0,0,,220118,620118,ff,DayBacklightsPresent_CF.Zone7,0:no backlit;1:backlit
+,763,31,31,1,0,0,,220118,620118,ff,DayBacklightsPresent_CF.Zone8,0:no backlit;1:backlit
+,763,24,24,1,0,0,,220119,620119,ff,ClusterUserSetMenu_P2_CF.ResetToDefaultValue,0:absent;1:present
+,763,46,46,1,0,0,,220119,620119,ff,ClusterUserSetMenu_P2_CF.BSWSonar Activation,0:absent;1:present
+,763,47,47,1,0,0,,220119,620119,ff,ClusterUserSetMenu_P2_CF.BSWRadar Activation,0:absent;1:present
+,763,48,48,1,0,0,,220119,620119,ff,ClusterUserSetMenu_P2_CF.FKPActivation,0:absent;1:present
+,763,52,52,1,0,0,,220119,620119,ff,ClusterUserSetMenu_P2_CF.MirorFoldingAtDoorLockActivation,0:absent;1:present
+,763,53,53,1,0,0,,220119,620119,ff,ClusterUserSetMenu_P2_CF.WAC_APRUNactivation,0:absent;1:present
+,763,54,54,1,0,0,,220119,620119,ff,ClusterUserSetMenu_P2_CF.SilentModeActivation,0:absent;1:present
+,763,55,55,1,0,0,,220119,620119,ff,ClusterUserSetMenu_P2_CF.Auto_RelockActivation,0:absent;1:present
+,763,24,31,1,0,0,,22011A,62011A,ff,ChronoTachographPresence_CF,0:Without tachograph;1:With tachograph
+,763,24,31,1,0,0,,22011C,62011C,ff,BatteryWarnWireInhibition_CF,0:Not inhibited ( vehicle without EMM);1:inhibited (vehicle with EMM)
+,763,24,31,1,0,0,,22011D,62011D,ff,WelcomeSequenceType_CF,0:Phantom sequence LHD;1:WS Variant1 LHD;2:WS Variant 2 LHD;3:WS Variant 3 LHD;128:Phantom sequence  RHD;129:WS Variant1 RHD;130:WS Variant 2 RHD;131:WS Variant 3 RHD
+,763,24,31,1,0,0,,22011E,62011E,ff,ClusterUserSetPresent_CF,0:Without Cluster MPU;1:With Cluster MPU
+,763,24,31,1,0,0,,22011F,62011F,ff,ClockDisplayMode_CF,0:24h;1:12h international;2:12h JPN
+,763,24,31,1,0,0,,220120,620120,ff,ESCMMI_CF,0:Without ESC;1:With ESC
+,763,24,31,1,0,0,,220121,620121,ff,Clock_CF,0:Clock not displayed / RTC OFF;1:Clock Displayed from CAN / RTC OFF;2:Clock displayed / Not set / RTC ON;3:Clock displayed and set / RTC ON
+,763,24,31,1,0,0,,220122,620122,ff,ExternalTemperature_CF,0:No external Temp. management;1:External Temp. displayed (see note 1);2:External Temp. measurement / No display;3:External Temp. Measurement and Display
+,763,24,31,1,0,0,%,220124,620124,ff,DIM_OutputWhenDayNightOnly_CF
+,763,24,31,1,0,0,,220125,620125,ff,ChargingPlugTelltaleVariant_CF,0:Green telltale (Raw);1:Red telltale (China)
+,763,24,31,1,0,0,,220126,620126,ff,MexType_CF,0:Without MEX (T4);1:Without MEX (C1A);2:With MEX;3:With MEX (Renault sport);4:Without MEX (C1A VU);5:With MEX C1A VAZ
+,763,24,31,1,0,0,,220127,620127,ff,DPFManualRegenMMI_CF,0:Without DPF manual regeneration page;1:With DPF manual regeneration page
+,763,24,31,1,0,0,,220128,620128,ff,AWDMMI_CF,0:Without AWD MMI;1:With AWD MMI
+,763,31,31,1,0,0,,220129,620129,ff,ATBeepInR_CF,0:Without sound;1:With sound
+,763,24,31,1,0,0,,22012A,62012A,ff,I_BoosterSafetybag_CF,0:Deactivated;1:Activated
+,763,24,31,1,0,0,,22012B,62012B,ff,OilLevelPresent_CF,0:Without;1:With
+,763,24,31,100,0,0,km,22012C,62012C,ff,MSCOilChgWarningThresholdKM_CF
+,763,24,31,1,0,0,,22012E,62012E,ff,LDWMMI_CF,0:Without LDW;1:With LDW, without sound;2:With LDW, with sound
+,763,24,31,1,0,0,,22012F,62012F,ff,DIM_DayNightPositionLights_CF,0:Without;1:With
+,763,24,31,1,0,0,,220130,620130,ff,TemperatureUnit_CF,0:degree Celsius;1:degree Fahrenheit
+,763,24,24,1,0,0,,220131,620131,ff,ADACWorldPresence_CF.Icon,0:With MEX icon;1:With MEX data icon
+,763,28,28,1,0,0,,220131,620131,ff,ADACWorldPresence_CF.Nav,0:Absent;1:Present
+,763,29,29,1,0,0,,220131,620131,ff,ADACWorldPresence_CF.Audio,0:Absent;1:Present
+,763,30,30,1,0,0,,220131,620131,ff,ADACWorldPresence_CF.MEX,0:Absent;1:Present
+,763,31,31,1,0,0,,220131,620131,ff,ADACWorldPresence_CF.ADAS,0:Absent;1:Present
+,763,24,31,1,0,0,,220132,620132,ff,Chassis1MMI_CF,0:Without;1:With
+,763,24,31,1,0,0,,220133,620133,ff,SCRMMI_CF,0:Without SCR MMI;1:With SCR MMI ( Lightweight);2:With SCR MMI ( Heavyweight);3:Light weight ( Euro6DFull)
+,763,24,31,1,0,0,,220134,620134,ff,EgocarType_CF,0:Phantom egocar;1:Egocar 1;2:Egocar 2;3:Egocar 3;4:Egocar 4;5:Egocar 5;6:Egocar 6;7:Egocar 7;8:Egocar 8;9:Egocar 9;10:Egocar 10
+,763,24,31,1,0,0,,220136,620136,ff,DimmingStrategy_CF,0:Day/night only;1:Mechanical Rheostat (wire input);2:Virtual rheostat (CAN);3:+ and - switches
+,763,26,26,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.FrontWiperDrop,0:absent;1:present
+,763,27,27,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.AutomaticFrontWiper,0:absent;1:present
+,763,28,28,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.DWactivation,0:absent;1:present
+,763,30,30,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.AutoFMHduration,0:absent;1:present
+,763,31,31,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.AutoFMHactivation,0:absent;1:present
+,763,32,32,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.SailingIdleActivation,0:absent;1:present
+,763,33,33,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.LDWvibrationLevel,0:absent;1:present
+,763,34,34,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.LKAsensibility,0:absent;1:present
+,763,35,35,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.ClusterColorChoice,0:absent;1:present
+,763,36,36,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.ClusterSkinChoice,0:absent;1:present
+,763,37,37,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.MeterSoundLevel,0:absent;1:present
+,763,38,38,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.UTAactivation,0:absent;1:present
+,763,39,39,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.FCWactivation,0:absent;1:present
+,763,40,40,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.TSR_OSPactivation,0:absent;1:present
+,763,41,41,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.LDWvolumeByCluster,0:absent;1:present
+,763,42,42,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.LDWvolumeByECU,0:absent;1:present
+,763,43,43,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.LDWsensLevel,0:absent;1:present
+,763,44,44,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.SingleDoorOpening,0:absent;1:present
+,763,45,45,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.AutomaticIntLighting,0:absent;1:present
+,763,46,46,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.WGSactivation,0:absent;1:present
+,763,47,47,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.RearWiper,0:absent;1:present
+,763,48,48,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.ADBactivation,0:absent;1:present
+,763,49,49,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.UPAsoundVolume,0:absent;1:present
+,763,50,50,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.RearUPA,0:absent;1:present
+,763,51,51,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.FrontUPA,0:absent;1:present
+,763,52,52,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.HandfreeUnlocking,0:absent;1:present
+,763,53,53,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.AutomaticDoorLock,0:absent;1:present
+,763,54,54,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.DistanceUnitChoice,0:absent;1:present
+,763,55,55,1,0,0,,220137,620137,ff,ClusterUserSetMenu_P1_CF.LanguageChoice,0:absent;1:present
+,763,24,31,1,0,0,,220138,620138,ff,MSCOilDistanceCounterPresent_CF,0:absent;1:with cluster internal counter;2:Present with OCS;3:Present with OCS AND internal counter
+,763,24,31,1,0,0,,220139,620139,ff,MSCOilTimeCounterPresent_CF,0:Absent;1:Present
+,763,24,31,1,0,0,,22013A,62013A,ff,MSCServDistanceCounterPresent_CF,0:Absent;1:Present
+,763,24,31,1,0,0,,22013B,62013B,ff,MSCServTimeCounterPresent_CF,0:Absent;1:Present
+,763,24,31,100,0,0,km,22013C,62013C,ff,MSCServiceWarningThresholdKM_CF
+,763,24,31,1,0,0,,22013D,62013D,ff,DIM_DayNightModifiedByPCFN_CF,0:Without;1:With
+,763,24,31,1,0,0,,22013F,62013F,ff,NivocodSensorType_CF,0:Without R//;1:With R//
+,763,24,31,1,0,0,,220140,620140,ff,EthernetPresent_CF,0:Without ethernet;1:With ethernet
+,763,24,31,1,0,0,°C,220142,620142,ff,EVDeratingPointOffset_CF
+,763,24,31,1,0,0,,220145,620145,ff,EnergyFlowMMI_CF,0:Without;1:Simplified (without HVAC);2:Full (with HVAC)
+,763,24,31,1,0,0,,220147,620147,ff,WelcomeSequenceInhibition_CF,0:not inhibited;1:inhibited
+,763,24,31,1,0,0,,22014B,62014B,ff,SpeedScaleType_CF,0:280km/h or 180 mph;1:240km/h or 160mph;2:220km/h or 140mph;3:280km/h (Peer);4:240km/h (Peer);5:220km/h (Peer)
+,763,24,39,1,0,0,km,220201,620201,ff,MSCOilChgInitialDistanceInKM_CF
+,763,24,39,1,0,0,day,220202,620202,ff,MSCOilChgInitialPeriodInDay_CF
+,763,24,39,1,0,0,km,220203,620203,ff,MSCOilChgUsualDistanceInKM
+,763,24,39,1,0,0,day,220204,620204,ff,MSCOilChgUsualPeriodInDay
+,763,24,55,1,0,0,km,220207,620207,1ff,ClusterCurrentDistanceByDIAG
+,763,24,39,.1,0,1,V,22020B,62020B,ff,Supply voltage
+,763,24,39,1,0,0,km,22020C,62020C,ff,MSCServiceInitialDistanceInKM_CF
+,763,24,39,1,0,0,day,22020D,62020D,ff,MSCServiceInitialPeriodInDay_CF
+,763,24,39,1,0,0,km,22020E,62020E,ff,MSCServiceUsualDistanceInKM
+,763,24,39,1,0,0,day,22020F,62020F,ff,MSCServiceUsualPeriodInDay
+,763,24,31,1,0,0,Litres,220301,620301,ff,GaugingThreshold.High_CF
+,763,32,39,1,0,0,Litres,220301,620301,ff,GaugingThreshold.Low_CF
+,763,24,31,.01,0,2,,220302,620302,ff,S1.Kmin_CF
+,763,32,39,.01,0,2,,220302,620302,ff,S1.Kmaj_CF
+,763,24,31,.01,0,2,,220303,620303,ff,S2.Kmin_CF
+,763,32,39,.01,0,2,,220303,620303,ff,S2.Kmaj_CF
+,763,24,31,.01,0,2,,220304,620304,ff,S3.Kmin_CF
+,763,32,39,.01,0,2,,220304,620304,ff,S3.Kmaj_CF
+,763,24,31,1,0,0,Litres,220306,620306,ff,FuelReadjust.L2offL0_CF
+,763,32,39,1,0,0,Litres,220306,620306,ff,FuelReadjust.L0L3_CF
+,763,40,47,1,0,0,Litres,220306,620306,ff,FuelReadjust.L2ZeroSpeed_CF
+,763,24,31,1,0,0,l,220307,620307,ff,FuelReadjustNearFull.L0_CF
+,763,32,39,1,0,0,l,220307,620307,ff,FuelReadjustNearFull.L2_CF
+,763,40,47,1,0,0,l,220307,620307,ff,FuelReadjustNearFull.L0L3_CF
+,763,24,31,1,0,0,Litres,220308,620308,ff,V0FuncR0.V0_CF
+,763,32,47,1,0,0,Ohms,220308,620308,ff,V0FuncR0.R0_CF
+,763,24,31,1,0,0,Litres,220309,620309,ff,V1FuncR1.V1_CF
+,763,32,47,1,0,0,Ohms,220309,620309,ff,V1FuncR1.R1_CF
+,763,24,31,1,0,0,Litres,22030A,62030A,ff,V2FuncR2.V2_CF
+,763,32,47,1,0,0,Ohms,22030A,62030A,ff,V2FuncR2.R2_CF
+,763,24,31,1,0,0,Litres,22030B,62030B,ff,V3FuncR3.V3_CF
+,763,32,47,1,0,0,Ohms,22030B,62030B,ff,V3FuncR3.R3_CF
+,763,24,31,1,0,0,Litres,22030C,62030C,ff,V4FuncR4.V4_CF
+,763,32,47,1,0,0,Ohms,22030C,62030C,ff,V4FuncR4.R4_CF
+,763,24,31,1,0,0,Litres,22030D,62030D,ff,V5FuncR5.V5_CF
+,763,32,47,1,0,0,Ohms,22030D,62030D,ff,V5FuncR5.R5_CF
+,763,24,31,1,0,0,Litres,22030E,62030E,ff,V6FuncR6.V6_CF
+,763,32,47,1,0,0,Ohms,22030E,62030E,ff,V6FuncR6.R6_CF
+,763,24,31,1,0,0,Litres,22030F,62030F,ff,V7FuncR7.V7_CF
+,763,32,47,1,0,0,Ohms,22030F,62030F,ff,V7FuncR7.R7_CF
+,763,24,31,1,0,0,Litres,220310,620310,ff,V8FuncR8.V8_CF
+,763,32,47,1,0,0,Ohms,220310,620310,ff,V8FuncR8.R8_CF
+,763,24,31,1,0,0,Litres,220311,620311,ff,V9FuncR9.V9_CF
+,763,32,47,1,0,0,Ohms,220311,620311,ff,V9FuncR9.R9_CF
+,763,24,31,1,0,0,Litres,220312,620312,ff,V10FuncR10.V10_CF
+,763,32,47,1,0,0,Ohms,220312,620312,ff,V10FuncR10.R10_CF
+,763,24,39,.1,0,1,l,220314,620314,ff,L2displayed1_CF
+,763,24,39,.1,0,1,l,220315,620315,ff,L2displayed2_CF
+,763,24,39,.1,0,1,l,220316,620316,ff,L2displayed3_CF
+,763,24,39,.1,0,1,l,220317,620317,ff,L2displayed4_CF
+,763,24,39,.1,0,1,l,220318,620318,ff,L2displayed5_CF
+,763,24,39,.1,0,1,l,220319,620319,ff,L2displayed6_CF
+,763,24,39,.1,0,1,l,22031A,62031A,ff,L2displayed7_CF
+,763,24,39,.1,0,1,l,22031B,62031B,ff,L2displayed8_CF
+,763,24,39,.1,0,1,l,22031C,62031C,ff,L2displayed9_CF
+,763,24,31,1,0,0,km,22031D,62031D,ff,FuelRangeCorrectKmAutonom_CF
+,763,24,31,.1,0,1,Litres,22031E,62031E,ff,VolumeFuelWarning_CF
+,763,24,31,.1,0,1,Litres,22031F,62031F,ff,Backup.VolumeFuelWarning_CF
+,763,32,39,10,0,0,s,22031F,62031F,ff,Backup.Tau_CF
+,763,24,39,.1,0,1,l,220326,620326,ff,L2displayed10_CF
+,763,24,39,.1,0,1,l,220327,620327,ff,L2displayed11_CF
+,763,24,39,.1,0,1,l,220328,620328,ff,L2displayed12_CF
+,763,24,31,1,0,0,km,220329,620329,ff,TCI_RemainingDistanceIncreaseInhibitionThreshold_CF
+,763,24,31,.1,0,1,Litres,22032A,62032A,ff,TCI_RemainingDistanceDisapearanceThreshold_CF
+,763,24,31,1,0,0,km,22032B,62032B,ff,TCI_RemainingDistanceWarningThreshold_CF
+,763,24,31,.5,0,1,Litres,22032C,62032C,ff,GAU_BigGapForInitReadjustment_CF
+,763,24,39,.01,0,2,,22032D,62032D,ff,GAU_KConso_CF
+,763,24,31,1,0,0,,22032E,62032E,ff,GAU_LimitAngleReajustmentInhibition_CF
+,763,31,31,1,0,0,,22032F,62032F,ff,GAU_SlopeDetectionStrategy_CF,0:Without SlopeDetectionStrategy;1:With SlopeDetectionStrategy
+,763,24,31,.5,0,1,Litres,220330,620330,ff,GAU_GapForInitReadjstmentSlopeStrategy_CF
+,763,24,31,.5,0,1,Litres,220331,620331,ff,GAU_MinimumRefuelDetectionThreshold_CF
+,763,31,31,1,0,0,,220332,620332,ff,GAU_TempoForVU_CF,0:Fuel stabilization standard tempo;1:CDV/LCV fuel stabilization extended tempo
+,763,24,31,1,0,0,,220335,620335,ff,EthernetFunctionMMI_CF,0:Without;1:Navigation only;2:Navigation and picture
+,763,24,31,1,0,0,,220336,620336,ff,EgocarColor_CF
+,763,24,31,1,0,0,,220337,620337,ff,GGDiagramMMI_CF,0:Without GGDiagram;1:With GGDiagram
+,763,24,31,1,0,0,,220338,620338,ff,SCRPageMMI_CF,0:Without SCR Page;1:With SCR Dist Page only;2:With SCR Dist and Volume Page
+,763,24,31,1,0,0,,220356,620356,ff,PCFNEVChargingModeIHMStrategy_CF,0:Without HVChargeDisplay parameter use;1:With HVChargeDisplay parameter use
+,763,24,31,1,0,0,,220357,620357,ff,VacuumPumpSafety_CF,0:Deactivated;1:Activated
+,763,24,31,1,0,0,,220359,620359,ff,GaugingDevFrameAvailable_CF,0:GaugingDevFrames not available;1:GaugingDevFrames available
+,763,24,31,1,0,0,,220363,620363,ff,RegulEVInfosMMI_CF,0:Without EV MMI;1:With EV MMI
+,763,24,31,1,0,0,,222001,622001,ff,HandBrakeState,0:Parking brake released;1:Parking brake tightened;2:Unavailable
+,763,24,31,1,0,0,,222002,622002,ff,BrakeFluidLevelState,0:No default;1:Mini level is reached;2:Circuit short to battery or open circuit
+,763,24,31,1,0,0,,222003,622003,ff,WindscreenFluidLevel,0:No default;1:Mini level is reached;2:Circuit short to battery;3:Unavailable
+,763,24,39,1,0,0,,222004,622004,1ff,DeltaOilMeasures.Status,0:Not present;1:Pending;2:Valid;3:Invalid;4:Invalid power supply;5:Invalid open circuit;6:Invalid short circuit;7:Invalid out of range
+,763,40,55,1,0,0,mV,222004,622004,1ff,DeltaOilMeasures.Measurement
+,763,24,39,1,0,0,Ohm,222005,622005,ff,FuelGaugeValue
+,763,24,39,.1,0,1,V,222006,622006,ff,BatteryVoltage
+,763,24,39,1,0,0,Ohm,222007,622007,ff,DimmerResistance
+,763,24,31,1,0,0,,222009,622009,ff,TripComputerScrollState,0:No driver request;1:Upward scrolling;2:Downward scrolling;3:Page;4:OK;5:Out of range (measured resistance doesn't match with defined resistance ranges);6:Open Circuit;7:Push to talk;8:Phone;9:Short Circuit;10:Home button;11:Back button
+,763,24,31,1,0,0,,22200A,62200A,ff,IGNWire,0:IGN wire OFF;1:IGN wire ON
+,763,25,55,1,0,0,Ohm,22200C,62200C,ff,ExternalTemperature.R
+,763,24,31,1,0,0,,22200E,62200E,ff,DimmingSwitch,0:No driver request;1:Upward scrolling;2:Downward scrolling;5:Out of range (measured resistance doesn't match with defined resistance range);6:Open circuit;9:Short circuit
+,763,30,31,1,0,0,,2220C0,6220C0,ff,PWMDimmingOutputState,0:PWM output OFF;1:PWM output ON;2:PWM output in protection (over current);3:Unavailable
+,763,24,31,1,0,0,%,2220C1,6220C1,ff,PWMDimmingOutputDutyCycle
+,763,30,31,1,0,0,,2220C2,6220C2,ff,DayNightOutputState,0:Output OFF;1:Output ON;2:Output in SC;3:Unavailable
+,763,24,31,1,0,0,,2220F0,6220F0,ff,AirbagTLTDiagResult,0:TLT probably OFF;1:TLT probably ON
+,763,24,31,1,0,0,,2220F1,6220F1,ff,StopTLTFailure,0:TLT not in failure;1:TLT in failure
+,763,24,31,1,0,0,,2220F2,6220F2,ff,ServiceTLTFailure,0:TLT not in failure;1:TLT in failure
+,763,24,31,1,0,0,,2220F5,6220F5,ff,MCANActivationState,0:MCAN in Rx mode deactivated;1:MCAN in Rx mode activated;2:MCAN in Tx mode deactivated;3:MCAN in Tx mode activated;4:MCAN in Rx/Tx mode deactivated;5:MCAN in Rx/Tx mode activated
+,763,24,55,.01,0,2,km,222101,622101,1ff,TripDistanceKm
+,763,24,39,.05,0,2,Litres,222102,622102,ff,TripFuelUsed
+,763,24,55,1,0,0,s,222104,622104,1ff,TripTimer
+,763,24,31,1,0,0,,222105,622105,ff,CauseOfLastTripComputerReset,0:never resetted;1:ADAC button customer reset;2:Multimedia Customer reset;3:Dist/time/carb overflow;4:odometer update;5:CAN frame loss;6:diag routine;7:Overflow of Electrical consumption value (EV specific);8:SW reset (TCI _I loss)
+,763,24,39,.05,0,2,Litres,222106,622106,ff,TripFuelLPG
+,763,24,39,.05,0,2,Kg,222107,622107,ff,TripFuelCNG
+,763,24,55,.1,0,1,Km,222108,622108,1ff,TripDistLPGCNG
+,763,24,31,1,0,0,,222109,622109,ff,CauseOfLastTripComputerGasReset,0:Never resetted;1:ADAC buttons customer reset;2:Multimedia customer reset;3:Dist/time/carb overflow;4:Odometer update;5:CAN frame loss;6:Diag routine;7:Overflow of electrical consumption value (EV specific);8:SW reset (TCI_I loss)
+,763,24,31,1,0,0,,22210A,62210A,ff,CauseOfLastTripComputerGlobalReset,0:Never resetted;1:ADAC buttons customer reset;2:Multimedia customer reset;3:Dist/time/carb overflow;4:Odometer update;5:CAN frame loss;6:Diag routine;7:Overflow of electrical consumption value (EV specific);8:SW reset (TCI_I loss)
+,763,24,39,1,0,0,mV,22210B,62210B,ff,MemorizedOilMeasures
+,763,24,31,1,0,0,,22210C,62210C,ff,MemorizedOilMeasuresOrigin,0:Oil never measured;1:Last measure;2:Previous measure
+,763,29,29,1,0,0,,22210D,62210D,ff,OilFlags.B2,0:No flag lowered oil;1:Flag lowered oil
+,763,30,30,1,0,0,,22210D,62210D,ff,OilFlags.B1,0:No flag engine hot;1:Flag engine hot
+,763,31,31,1,0,0,,22210D,62210D,ff,OilFlags.B0,0:No flag sensor cold;1:Flag sensor cold
+,763,24,55,1,0,0,,22210E,62210E,1ff,LastKilometersFuel
+,763,24,39,.01,0,2,Litres,222201,622201,ff,L0Value
+,763,24,39,.01,0,2,Litres,222202,622202,ff,L1Value
+,763,24,39,.01,0,2,Litres,222203,622203,ff,L2Value
+,763,24,55,1,0,0,km,222204,622204,1ff,DistanceWhenFuelLowBackupUpdateOccurs
+,763,24,39,.01,0,2,Litres,222205,622205,ff,LbackupValue
+,763,24,39,.01,0,2,L,222206,622206,ff,GAU_L1Value
+,763,24,39,.1,32767,1,L,222207,622207,ff,GAU_StaticAngleLong
+,763,24,39,.1,32767,1,L,222208,622208,ff,GAU_StaticAngleTrans
+,763,24,39,.1,32767,1,L,222209,622209,ff,GAU_DynamicSlopeAngle
+,763,24,31,1,0,0,,222401,622401,ff,FuelReadjustmentCause,0:No fuel update;2:With L2 at 0 speed;3:With L2OFF_L0;4:With L0_L3 nominal;5:With diag service;8:L2 is initialized with Diag request;10:With fuel flow failure;11:With  L0_L3 near full;12:With backup alert
+,763,24,31,1,0,0,Litres,222402,622402,ff,L0onDuringFuelReadjust
+,763,24,31,1,0,0,Litres,222403,622403,ff,L3DuringFuelReadjust
+,763,24,31,1,0,0,Litres,222404,622404,ff,L2offDuringFuelReadjust
+,763,30,30,1,0,0,,222406,622406,ff,NVMStatus.B1,0:NVM backup solution by default
+,763,31,31,1,0,0,,222406,622406,ff,NVMStatus.B0,0:Status NVM OK;1:Status NVM unavailable
+,763,28,28,1,0,0,,222407,622407,ff,FuelLevelStatus.GasGauge,0:OK;1:Gas gauge in default
+,763,29,29,1,0,0,,222407,622407,ff,FuelLevelStatus.GasFlow,0:OK;1:Gas flow in default
+,763,30,30,1,0,0,,222407,622407,ff,FuelLevelStatus.FuelGauge,0:OK;1:Fuel gauge in default
+,763,31,31,1,0,0,,222407,622407,ff,FuelLevelStatus.FuelFlow,0:OK;1:Fuel flow in default
+,763,24,31,1,0,0,,222408,622408,ff,NumberResetsCausedByFailures
+,763,24,31,1,0,0,,222409,622409,ff,NumberIntendedResets
+,763,25,25,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.SRVM,0:OK;1:SRVM configuration error detection
+,763,26,26,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.BSWRadar,0:OK;1:BSWRadar configuration error detection
+,763,27,27,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.EBA,0:OK;1:EBA configuration error detection
+,763,28,28,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.MBL,0:OK;1:MBL configuration error detection
+,763,29,29,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.DSMU,0:OK;1:DSMU configuration error detection
+,763,30,30,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.ADB,0:OK;1:ADB configuration error detection
+,763,31,31,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.VSP,0:OK;1:VSP configuration error detection
+,763,32,32,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.HUD,0:OK;1:HUD configuration error detection
+,763,33,33,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.MULTIMEDIA_CANM,0:OK;1:MULTIMEDIA_CANM configuration error detection
+,763,34,34,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.MULTIMEDIA_CANV,0:OK;1:MULTIMEDIA_CANV configuration error detection
+,763,35,35,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.TCU,0:OK;1:TCU configuration error detection
+,763,36,36,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.Magic Folding_Rear Seat,0:OK;1:RearSeat configuration error detection
+,763,37,37,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.Front Camera,0:OK;1:FrontCamera configuration error detection
+,763,38,38,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.RADAR,0:OK;1:RADAR configuration error detection
+,763,39,39,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.ADAS,0:OK;1:ADAS configuration error detection
+,763,40,40,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.VADA,0:OK;1:VADA configuration error detection
+,763,41,41,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.IDM,0:OK;1:IDM configuration error detection
+,763,42,42,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.FWS,0:OK;1:FWS configuration error detection
+,763,43,43,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.ETC,0:OK;1:ETC configuration error detection
+,763,44,44,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.UPA_SONAR,0:OK;1:UPA_SONAR configuration error detection
+,763,45,45,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.HFM,0:OK;1:HFM configuration error detection
+,763,46,46,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.HEPS,0:OK;1:HEPS configuration error detection
+,763,47,47,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.EPS,0:OK;1:EPS configuration error detection
+,763,48,48,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.HEVC,0:OK;1:HEVC configuration error detection
+,763,49,49,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.ECM,0:OK;1:ECM configuration error detection
+,763,50,50,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.AT,0:OK;1:AT configuration error detection
+,763,51,51,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.EPKB,0:OK;1:EPKB configuration error detection
+,763,52,52,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.Brake_ABS_VDC,0:OK;1:Brake_ABS_VDC configuration error detection
+,763,53,53,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.ACU,0:OK;1:ACU configuration error detection
+,763,54,54,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.EMM,0:OK;1:EMM configuration error detection
+,763,55,55,1,0,0,,22240A,62240A,ff,ConfigurationErrorPart1_CF.USM,0:OK;1:USM configuration error detection
+,763,24,39,.01,0,2,L,22240C,62240C,ff,OldGauOutput_LbackupOff
+,763,24,39,.01,0,2,L,22240D,62240D,ff,OldGauOutput_L3
+,763,24,24,1,0,0,,22240E,62240E,ff,ClusterConfigurationError.Petrol gauging,0:OK;1:Petrol gauging calibration error detection
+,763,25,25,1,0,0,,22240E,62240E,ff,ClusterConfigurationError.Cluster,0:Cluster has been configured;1:Cluster has never been configured
+,763,26,26,1,0,0,,22240E,62240E,ff,ClusterConfigurationError.TripUnitConsumption,0:Trip Unit has been correctly configured;1:Trip Unit has not been correctly configured
+,763,30,30,1,0,0,,22240E,62240E,ff,ClusterConfigurationError.Configured language unknown,0:configured language is known;1:configured language is unknown
+,763,24,39,1,0,0,,22240F,62240F,ff,CauseOfLastStopService.BUIC line number related to last service alert - 1
+,763,40,55,1,0,0,,22240F,62240F,ff,CauseOfLastStopService.BUIC line number related to last stop alert - 1
+,763,24,55,.000001,0,3,L,222410,622410,1ff,OldGAUOutput_L2Off
+,763,24,39,1,0,0,Ohm,222411,622411,ff,GAU_RjaugeValue
+,763,24,39,.01,0,2,Litres,222412,622412,ff,GAU_GaugedLevel
+,763,24,39,.01,0,2,Litres,222413,622413,ff,GAU_FilteredGaugedLevel
+,763,24,39,.01,0,2,Litres,222414,622414,ff,GAU_Lbackup
+,763,24,31,1,0,0,,222415,622415,ff,GAU_IsFillingConfirmed,0:Not Confirmed;1:Confirmed
+,763,24,39,.01,0,2,Litres,222416,622416,ff,GAU_LevelDisplayedRefLastFilling
+,763,24,39,.01,0,2,Litres,222417,622417,ff,GAU_LevelGaugedRefLastFilling
+,763,24,39,.01,0,2,Litres,222418,622418,ff,GAU_LevelDisplayed
+,763,24,39,.01,0,2,Litres,222419,622419,ff,GAU_FilteredGaugedLevelBeforeSleep
+,763,24,31,1,0,0,,22241A,62241A,ff,GAU_IsFillingConfirmedBeforeSleep,0:Not confirmed;1:Confirmed
+,763,24,39,.01,0,2,Litres,22241B,62241B,ff,GAU_LBackUpBeforeSleep
+,763,24,39,.01,0,2,Litres,22241C,62241C,ff,GAU_LevelDisplayedRefBeforeSleep
+,763,24,39,.01,0,2,Litres,22241D,62241D,ff,GAU_LevelGaugedRefBeforeSleep
+,763,24,39,.01,0,2,Litres,22241E,62241E,ff,GAU_DisplayedLevelBeforeSleep
+,763,24,31,1,0,0,,22241F,62241F,ff,GAU_FuelReadjustmentCause,1:Small gap;2:Big gap;3:Refueling detected;4:W/ diag service;5:W/ fuel flow failure;6:Lbackup readjustment
+,763,24,55,.01,0,2,km,222604,622604,1ff,ExtECUDistBeforeReadjust
+,763,24,55,.01,0,2,km,222605,622605,1ff,ClusterDistBeforeReadjust
+,763,24,31,1,0,0,,222606,622606,ff,DistanceUpdateByDiagCounter
+,763,24,31,1,0,0,,222607,622607,ff,DistanceUpdateByExternalECUCounter
+,763,24,39,1,0,0,,222701,622701,ff,ClusterSWInformation.ClusterBasicSWNumber
+,763,40,55,1,0,0,,222701,622701,ff,ClusterSWInformation.ClusterApplicativeSWNumber
+,763,56,71,1,0,0,,222701,622701,ff,ClusterSWInformation.ClusterGraphicalRessourceNumber
+,763,72,87,1,0,0,,222701,622701,ff,ClusterSWInformation.ClusterNavGraphicsRessourceNumber
+,763,88,103,1,0,0,,222701,622701,ff,ClusterSWInformation.ClusterSoundRessourceNumber
+,763,24,55,1,0,0,,222703,622703,ff,CANMessageSetsExtended.CANVMessageSetNumberExtended
+,763,56,87,1,0,0,,222703,622703,ff,CANMessageSetsExtended.CANMMessageSetNumberExtended
+,763,24,39,.1,0,1,,222803,622803,ff,ExternalTempWire
+,763,24,31,1,0,0,,222804,622804,ff,InternalTempMaxRecorded
+,763,24,39,1,0,0,,222805,622805,ff,FANActivationCounter
+,763,24,55,1,0,0,,222806,622806,1ff,FANActivationTotalTime
+,763,24,31,1,0,0,,222807,622807,ff,NumberResetsCausedByFailuresGIP
+,763,24,31,1,0,0,,222808,622808,ff,NumberIntentedResetsGIP
+,763,24,151,1,0,0,,22F010,62F010,ff,ProgrammingOperationFingerprint
+,763,24,103,1,0,0,,22F012,62F012,2ff,OperationalReference
+,763,24,103,1,0,0,,22F013,62F013,2ff,SecondaryOperationalReference
+,763,24,47,1,0,0,km,22F0D0,62F0D0,1ff,Odometer of the last occurence
+,763,24,31,1,0,0,,22F0D1,62F0D1,ff,Occurence fault counter
+,763,24,103,1,0,0,,22F100,62F100,2ff,TypeApprovalNumber2
+,763,24,63,1,0,0,,22F180,62F180,2ff,BootVersion
+,763,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
+,763,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
+,763,24,183,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,763,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumber
+,763,24,159,1,0,0,,22F190,62F190,2ff,VIN
+,763,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
+,763,24,103,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,763,24,55,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,763,24,103,1,0,0,,22F196,62F196,2ff,TypeApprovalNumber
+,763,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,763,24,663,1,0,0,,22FD1B,62FD1B,ff,Record_reset

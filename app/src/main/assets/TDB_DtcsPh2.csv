@@ -1,0 +1,66 @@
+9401,Oil level sensor monitoring
+9402,Fuel gauge monitoring
+9403,Brake fluid level
+9404,Warning Airbag telltale monitoring
+F003,Power supply monitoring
+9414,Backlight Dimming level inputs monitoring
+9415,High Side PWM outputs for backlight monitoring
+9413,Error Configuration
+9408,SBR telltale command monitoring (external telltale)
+9410,Trip computer input(s) monitoring
+C028,BUS OFF CAN V
+C037,BUS OFF CAN M
+9423,FWS Frame Safety mechanisms
+9424,SafetyBag triggering
+9425,STOP Telltale diagnosis (SS1)
+9426,SERVICE Telltale diagnosis (SS2)
+940C,NVM monitoring
+9412,ExternalTemperature Inputs monitoring
+9422,EPS Frame Safety mechanisms
+C103,Perte trame VNodeSBW
+C118,Perte trame VNodeSCR
+C122,Perte trame VNodeESC
+C127,Perte trame VNodeTPMS
+E254,Perte trame NodeMULTIMEDIA_CANM
+C198,Perte trame VNodeEcall
+C19F,Perte trame VNodeMULTIDRIVE
+C235,Perte trame VNodeAEBS
+C244,Perte trame VNodeHFP_FAST
+E104,Perte trame NodeFWS
+C243,Perte trame VNodeHFP
+E10B,Perte trame NodeVADA
+E113,Perte trame NodeVSP
+E118,Perte trame NodeHFM
+C129,Perte trame VNodeTPW
+E13D,Perte trame NodeADB
+E140,Perte trame NodeECM
+E141,Perte trame NodeAT
+E143,Perte trame NodeHEVC
+E148,Perte trame NodeBrake_ABS_VDC Control Module
+E14A,Perte trame NodeETC_4GRIP
+E14F,Perte trame NodeBCM
+E150,Perte trame NodeACU
+E152,Perte trame NodeADAS
+E154,Perte trame NodeMULTIMEDIA_CANV
+E155,Perte trame NodeEPKB
+E159,Perte trame NodeEPS
+E15B,Perte trame NodeUSM
+E15F,Perte trame NodeRADAR
+E164,Perte trame NodeDSMU
+E165,Perte trame NodeUPA_SONAR
+E166,Perte trame NodeMBL
+E16B,Perte trame NodeFront_Camera
+E16D,Perte trame NodeTCU
+E173,Perte trame NodeHUD
+E176,Perte trame NodeIDM module
+E178,Perte trame NodeMAGIC_FOLDING
+9406,Safety Monitoring Reset (Historical DTC only)
+9416,+ Batt PWM monitoring
+9405,HANDS OFF Telltale diagnosis
+E167,Perte trame NodeEBA
+9428,EBA Frame Safety mechanism
+9429,VDC EV/PHEV Frame Safety mechanism
+940E,Loss of Ethernet connection
+940F,Lost communication with Multimedia
+E174,Perte trame VNodeBSWSonar
+9430,LCTakeOverFrame Safety mechanisms
