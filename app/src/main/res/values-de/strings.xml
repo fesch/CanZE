@@ -581,7 +581,7 @@
     <string name="label_Duration">Dauer (hh:mm)</string>
     <string name="label_Soc">SOC (%)</string>
     <string name="label_Range">verfügbare Reichweite</string>
-    <string name="label_DcPower">DC Ladeleistung (kW)</string>
+    <string name="label_DcPower">DC Leistung (kW)</string>
 
     <!-- Range -->
 

@@ -130,7 +130,7 @@
 
             <lu.fisch.canze.widgets.WidgetView
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="100dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
@@ -141,21 +141,21 @@
                 custom:intervals="{
                                    }"
                 custom:colorRanges="[
-                    {'sid':'764.6144.107','color':'#008a1d','from':0,'to':750},
-                    {'sid':'764.6144.107','color':'#ffaa17','from':750,'to':1500},
-                    {'sid':'764.6144.107','color':'#FF0000','from':1500,'to':2250},
-                    {'sid':'764.6144.107','color':'#cc00ff','from':2250,'to':3000},
+                    {'sid':'764.6144.107','color':'#008a1d','from':0,'to':1500},
+                    {'sid':'764.6144.107','color':'#ffaa17','from':1500,'to':3000},
+                    {'sid':'764.6144.107','color':'#FF0000','from':3000,'to':4500},
+                    {'sid':'764.6144.107','color':'#cc00ff','from':4500,'to':6000},
                     {'sid':'764.6143.86','color':'#008a1d','from':1,'to':1},
                     {'sid':'764.6143.86','color':'#ffffff','from':2,'to':2}
                     ]"
                 custom:foregroundColor="?android:attr/colorForeground"
                 custom:majorTicks="1000"
-                custom:max="3000"
+                custom:max="7000"
                 custom:min="0"
                 custom:minorTicks="500"
                 custom:options="{
                                    '764.6144.107':'gradient',
-                                   '764.6143.86':'colorline[2800],dot'
+                                   '764.6143.86':'colorline[6800],dot'
                                 }"
                 custom:text="@string/label_IH_ClimCompPWRStatus"
                 custom:widget="timeplot" />
