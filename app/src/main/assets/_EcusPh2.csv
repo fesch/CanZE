@@ -13,7 +13,7 @@ Electrical Power Steering,0,,762,742,EPS,PAS,5902ff,50c0,0
 Front Camera,0,,7dd,7dc,FCAM,-,5902ff,50c0,0
 Hands Free Module,0,,789,799,HFM,-,5902ff,50c0,0
 Integrated Dynamics Control Module,0,,700,70c,IDM,-,5902ff,5003,0
-INV-ME,0,,18daf1df,18dadff1,INF-ME,-,5902ff,50c0,0
+INV-ME,0,,18daf1df,18dadff1,INV-ME,-,5902ff,50c0,0
 Laser radar for Adaptive Cruise Control System,0,,735,723,FRRAD,-,5902ff,50c0,0
 Lithium Battery Controller,0,,18daf1db,18dadbf1,LBC,-,59020f,5003,0
 Lithium Battery Controller 2,0,,18daf1dc,18dadcf1,LBC2,-,59020f,5003,0
