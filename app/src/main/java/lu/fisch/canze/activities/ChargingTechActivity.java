@@ -46,8 +46,8 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     private static final String SID_TractionBatteryCurrent = "7ec.623204.24";
     private static final String SID_RealSoC = "7bb.6103.192";
     private static final String SID_12V = "7ec.622005.24";
-    private static final String SID_12A = "7ec.623028.24";
-    private static final String SID_DcLoad = "1fd.0";
+    private static final String SID_12A = "1fd.0";
+    private static final String SID_DcLoad = "7ec.623028.24";
     private static final String SID_HvKilometers = "7bb.6161.96";
     private static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
     private static final String SID_Preamble_BalancingBytes = "7bb.6107.";
