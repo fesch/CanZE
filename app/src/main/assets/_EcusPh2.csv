@@ -11,7 +11,7 @@ Data Communication Module,0,,7da,7ca,DCM Renault,TCU,5902ff,50c0,0
 E-ACT-EBA,0,,18daf1e2,18dae2f1,E-ACT-EBA,-,5902ff,50c0,0
 Electrical Power Steering,0,,762,742,EPS,PAS,5902ff,50c0,0
 Front Camera,0,,7dd,7dc,FCAM,-,5902ff,50c0,0
-Hands Free Module,0,,789,799,HFM,-,5902ff,50c0,0
+Hands Free Module,0,,7b9,799,HFM,-,5902ff,50c0,0
 Integrated Dynamics Control Module,0,,700,70c,IDM,-,5902ff,5003,0
 INV-ME,0,,18daf1df,18dadff1,INV-ME,-,5902ff,50c0,0
 Laser radar for Adaptive Cruise Control System,0,,735,723,FRRAD,-,5902ff,50c0,0
