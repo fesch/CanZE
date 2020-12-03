@@ -1,0 +1,35 @@
+C079,Bus Off
+E14F,DiagMux BCM lost communication
+E143,DiagMux HEVC lost communication
+AB01,Charging process HEVC lost communication
+AB03,Internal failure
+AB07,FAILED_CertificateExpired
+AB08,FAILED_ContractCanceled
+AB09,FAILED_CertificateRevoked
+AB0A,FAILED_CertificateNotAllowedAtThisEVSE
+AB0B,FAILED_NoCertificate Available
+AB0C,FAILED_WrongEnergyTransferMode
+AB0D,FAILED_WrongChargeParameter
+AB0E,FAILED_ChargingProfileInvalid
+AB0F,FAILED_ServiceIDInvalid
+AB10,FAILED_UnknownSession
+AB11,FAILED_ServiceSelectionInvalid
+AB12,FAILED_TariffSelectionInvalid
+AB13,FAILED_PaymentSelectionInvalid
+AB14,FAILED_CertChainError
+AB15,FAILED_ChallengeInvalid
+AB17,FAILED_NoChargeServiceSelected
+AB18,FAILED_SequenceError
+AB19,FAILED_SignatureError
+AB1A,FAILED_PowerDeliveryNotApplied
+AB1B,FAILED_ContactorError
+AB1C,FAILED
+AB1D,Loss of communication with EVSE
+AB1E,The charging process was aborted by the charging station.
+AB20,Pilot Line OC (can be merged with SC+ or SC-)
+AB21,Protect Earth OC (can be merged with SC+ or SC-)
+AB02,Charging process BCM lost communication
+AB05,Voltage
+AB04,Missing configuration
+AB16,FAILED_MeteringSignatureNotValid
+AB1F,Handshake failure
