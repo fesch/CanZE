@@ -29,7 +29,7 @@
 ,18DAF1DC,24,55,1,0,0,,229160,629160,ff,DIDs supported in range [$9161 - $9180]
 ,18DAF1DC,24,55,1,0,0,,229180,629180,ff,DIDs supported in range [$9181 - $91A0]
 ,18DAF1DC,24,55,1,0,0,,2291A0,6291A0,ff,DIDs supported in range [$91A1 - $91C0]
-,18DAF1DC,24,39,.0625,-640,2,°C,2291B8,6291B8,ff,Board temperature (Wxx_raw_cpu_temp)
+,18DAF1DC,24,39,.0625,640,2,°C,2291B8,6291B8,ff,Board temperature (Wxx_raw_cpu_temp)
 ,18DAF1DC,28,39,.001953125,0,3,V,2291BF,6291BF,ff,ADC 5V reference / P5VPREF_DIAG (Wxx_raw_5v_ref_diag)
 ,18DAF1DC,24,55,1,0,0,,2291C0,6291C0,ff,DIDs supported in range [$91C1 - $91E0]
 ,18DAF1DC,24,55,1,0,0,,2291E0,6291E0,ff,DIDs supported in range [$91E1 - $9200]
@@ -47,7 +47,7 @@
 ,18DAF1DC,31,31,1,0,0,,229206,629206,ff,P0VP_IRDD - 0 or 60V IRDD Bypass value (Wbx_hv_iso_supply_ctl_byp_val),0:CC 60V OFF;1:CC 60V ON
 ,18DAF1DC,31,31,1,0,0,,229207,629207,ff,P60VP_IRDD - PWM Bypass request (Wbx_hv_iso_supply_ena_byp_req),0:Bypass OFF;1:Bypass ON
 ,18DAF1DC,31,31,1,0,0,,229208,629208,ff,P60VP_IRDD - PWM Bypass value (Wbx_hv_iso_supply_ena_byp_val),0:60V Supply OFF;1:60V Supply ON
-,18DAF1DC,24,31,1,-40,0,°C,229209,629209,ff,Spare SCPU ANA input (Hot Spot Temp) (Wxx_raw_hspt_temp)
+,18DAF1DC,24,31,1,40,0,°C,229209,629209,ff,Spare SCPU ANA input (Hot Spot Temp) (Wxx_raw_hspt_temp)
 ,18DAF1DC,24,39,.001,0,3,V,22920A,62920A,1ff,IRDD_MEA (with P5VP_REF2 as ADC reference)
 ,18DAF1DC,24,55,1,0,0,,229220,629220,ff,DIDs supported in range [$9221 - $9240]
 ,18DAF1DC,24,55,1,0,0,,229240,629240,ff,DIDs supported in range [$9241 - $9260]
@@ -71,7 +71,7 @@
 ,18DAF1DC,39,39,1,0,0,,22925D,62925D,ff,ASIC internal failure identifier(Wxx_assp1_tron_id).01,0:No failure;1:NOT USED
 ,18DAF1DC,24,55,1,0,0,,229260,629260,ff,DIDs supported in range [$9261 - $9280]
 ,18DAF1DC,24,47,1,0,0,',229261,629261,ff,Abs time since first ignition
-,18DAF1DC,24,55,.01,2147483648,2,km,229262,629262,1ff,Vehicle distance totalizer
+,18DAF1DC,24,55,.01,-2147483648,2,km,229262,629262,1ff,Vehicle distance totalizer
 ,18DAF1DC,24,55,1,0,0,,229280,629280,ff,DIDs supported in range [$9281 - $92A0]
 ,18DAF1DC,24,31,1,0,0,,229282,629282,ff,PCB traceability.01
 ,18DAF1DC,32,39,1,0,0,,229282,629282,ff,PCB traceability.02

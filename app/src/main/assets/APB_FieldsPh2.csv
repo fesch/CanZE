@@ -24,7 +24,7 @@
 ,775,32,35,1,0,0,,220203,620203,ff,BCM.VehicleStates,0:Sleeping;1:Not used 1;2:CutoffPending;3:AutoACC - BatTempoLevel;4:Not used 4;5:IgnitionLevel;6:StartingInProgress;7:PowertrainRunning;8:AutoStart;9:EngineSystemStop;10:Not used 10;11:Not used 11;12:Not used 12;13:Not used 13;14:Not used 14;15:Unavailable
 ,775,36,36,1,0,0,,220203,620203,ff,BCM.EngineStopDriverRequested,0:No Engine Stop Requested by Driver;1:Nominal Engine Stop Requested by Driver
 ,775,37,39,1,0,0,,220203,620203,ff,BCM.BrakeInfoStatus,0:Not used;1:Brake pedal not pressed;2:Brake pedal pressed;3:Not used 3;4:Brake pedal confirmed pressed;5:Not used 5;6:Not used 6;7:Unavailable
-,775,40,42,1,0,0,,220203,620203,ff,BCM.GADE,0:Sleep or Crank fault, Disable DiagMuxDTC;1:AutoACC fault, Disable DiagMuxDTC;2:All fault, Disable DiagMuxDTC;3:All fault, Enable DiagMuxDTC;4:Not used 4;5:Not used 5;6:Not used 6;7:Unavailable
+,775,40,42,1,0,0,,220203,620203,ff,BCM.GADE,0:Sleep or Crank fault- Disable DiagMuxDTC;1:AutoACC fault- Disable DiagMuxDTC;2:All fault- Disable DiagMuxDTC;3:All fault- Enable DiagMuxDTC;4:Not used 4;5:Not used 5;6:Not used 6;7:Unavailable
 ,775,44,45,1,0,0,,220203,620203,ff,BCM.DriverDoorState,0:Unavailable value;1:Driver door closed;2:Driver door open;3:Not used
 ,775,46,47,1,0,0,,220203,620203,ff,BCM.PassengerDoorState,0:Unavailable value;1:Passenger door closed;2:Passenger door open;3:Not used
 ,775,48,50,1,0,0,,220203,620203,ff,BCM.DriverStopRequestWhileBattOff,0:Unavailable;1:Reserved For Safety 1;2:No engine stop requested by driver on disconnected 12V battery;3:Reserved For Safety 3;4:Reserved For Safety 4;5:Engine stop requested by driver on disconnected 12V battery;6:Reserved For Safety 6;7:Reserved For Safety 7
@@ -50,7 +50,7 @@
 ,775,24,39,1,0,0,,220220,620220,ff,EPB.ConfigurationMode
 ,775,26,27,1,0,0,,220220,620220,ff,EPB.ConfigurationMode.StopAndStartMode,0:Not Stop And Start;1:Stop And Start;3:Not Configured
 ,775,28,29,1,0,0,,220220,620220,ff,EPB.ConfigurationMode.AutoApplyInhibition,0:AutoApply;1:AutoApplyInhibited;3:Not Configured
-,775,30,31,1,0,0,,220220,620220,ff,EPB.ConfigurationMode.GearBoxType,0:MT;1:AT, CVT;2:-;3:Not Configured
+,775,30,31,1,0,0,,220220,620220,ff,EPB.ConfigurationMode.GearBoxType,0:MT;1:AT- CVT;2:-;3:Not Configured
 ,775,36,37,1,0,0,,220220,620220,ff,EPB.ConfigurationMode.ExternalAutoApplyRequest,0:No External Auto Apply request;1:External Auto Apply Request;3:Not Configured
 ,775,38,39,1,0,0,,220220,620220,ff,EPB.ConfigurationMode.RNConfig,0:Renault;1:Nissan;3:Not Configured
 ,775,24,239,1,0,0,,220221,620221,2ff,Software_Name
@@ -97,7 +97,7 @@
 ,775,29,31,1,0,0,,220262,620262,ff,BrakeInfoStatus,0:Not used;1:Brake pedal not pressed;2:Brake pedal pressed;3:Not used 3;4:Brake pedal confirmed pressed;5:Not used 5;6:Not used 6;7:Unavailable
 ,775,31,31,1,0,0,,220263,620263,ff,IgnitionSupplyConfirmation,0:no primary ignition supply;1:primary ignition supply on
 ,775,30,31,1,0,0,,220264,620264,ff,PowerTrainStatus,0:Powertrain Stopped;1:Reserved;2:Powertrain Running;3:Powertrain Starting
-,775,29,31,1,0,0,,220265,620265,ff,GADE,0:Sleep or Crank fault, Disable DiagMuxDTC;1:AutoACC fault, Disable DiagMuxDTC;2:All fault, Disable DiagMuxDTC;3:All fault, Enable DiagMuxDTC;4:Not used 4;5:Not used 5;6:Not used 6;7:Unavailable
+,775,29,31,1,0,0,,220265,620265,ff,GADE,0:Sleep or Crank fault- Disable DiagMuxDTC;1:AutoACC fault- Disable DiagMuxDTC;2:All fault- Disable DiagMuxDTC;3:All fault- Enable DiagMuxDTC;4:Not used 4;5:Not used 5;6:Not used 6;7:Unavailable
 ,775,24,31,1,0,0,,220266,620266,ff,EPBVehicleSpeedRef
 ,775,26,31,1,0,0,,220267,620267,ff,LastBrakeOperationLeft,0:None (Reset);1:AUTOAPPLY_APPLY_DEMAND;2:AUTOADJUST_APPLY_DEMAND;3:AUTOADJUST_RELEASE_DEMAND;6:DAA_DEMAND;7:DSD_REDUCED_CLAMP_APPLY_DEMAND;8:DSD_APPLY_DEMAND;9:DSD_RELEASE_DEMAND;10:DYNAMIC_SWITCH_RELEASE_DEMAND;12:HTR_DEMAND;13:HU_FUNCTION_APPLY_DEMAND;14:HU_FUNCTION_HOLD;15:HU_FUNCTION_RELEASE_DEMAND;16:LIMP_HOME_SWITCH_RELEASE_DEMAND;17:MCR_DEMAND;18:RECLAMP_DEMAND;19:RCD_APPLY_DEMAND;20:RCD_RELEASE_DEMAND;22:RWU_APPLY_DEMAND;23:RWU_HOLD_DEMAND;24:RWU_RELEASE_DEMAND;25:STATIC_SWITCH_APPLY_DEMAND;26:STATIC_SWITCH_RELEASE_DEMAND;27:STOA_DEMAND;28:DIAG_REL_TO_SERVICE_POSITION_DEMAND;30:DIAG_APPLY_DEMAND;31:DIAG_RELEASE_DEMAND;32:ASSEMBLY_CHECK_DEMAND
 ,775,24,31,1,0,0,,220268,620268,ff,LeftBrakeState,0:Applied;1:Applying;2:Fully Applied;3:Released;4:Releasing;5:Unknown;6:Init;7:Fully Released - Maintenance Mode;8:Wind Back - Release to Fully Released

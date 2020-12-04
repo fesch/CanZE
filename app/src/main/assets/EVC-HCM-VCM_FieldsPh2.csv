@@ -1,8 +1,3 @@
-# SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
-,7ec,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,7ec,0,23,1,0,0,,19023b,5902af,ff,Query DTC
-,18DAF1DA,0,0,1,0,0,,1001,5001,ff,start diag
-# Source:
 ,18DAF1DA,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
 ,18DAF1DA,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode
 ,18DAF1DA,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
@@ -142,7 +137,7 @@
 ,18DAF1DA,31,31,1,0,0,,222051,622051,ff,Displayed vehicle speed unit,0:km/h;1:mph
 ,18DAF1DA,24,31,.392156863,0,1,%,222052,622052,ff,Heating glow plugs PWM command.value
 ,18DAF1DA,24,39,10,0,0,W,222057,622057,ff,Alternator power
-,18DAF1DA,31,31,1,0,0,,222059,622059,ff,Clutch pedal - minimum travel switch state - wire,0:released;1:pressed
+,18DAF1DA,31,31,1,0,0,,222059,622059,ff,Clutch pedal - minimum travel switch state - wire,0:released;1:pressed 
 ,18DAF1DA,24,31,1,0,0,,22205A,62205A,ff,Idle engine speed regulation status,2:out of idle speed regulation;4:take off state;8:start state;16:after start state;32:condition state;64:activation state
 ,18DAF1DA,31,31,1,0,0,,22205B,62205B,ff,($205B) Limp home activation state,0:deactivated;1:activated
 ,18DAF1DA,31,31,1,0,0,,22205D,62205D,ff,No driver request state (pedal---CCSL),0:pressed or CCSL activated;1:foot up and CCSL deactivated
@@ -240,7 +235,7 @@
 ,18DAF1DA,24,39,.0000101725,-65536.1681002703,3,wu,2220D0,6220D0,ff,Raw adaptation factor on injection time with proportionnal upstream O2 sensor
 ,18DAF1DA,24,39,.0000030518,32767.54702143,3,wu,2220D1,6220D1,ff,Adaptation raw offset on injection time with proportionnal upstream O2 sensor (Bosch calculation value)
 ,18DAF1DA,24,39,.001,0,3,,2220D3,6220D3,ff,Factor to correct UEGO signal aging shifting
-,18DAF1DA,31,31,1,0,0,,2220D4,6220D4,ff,Indicator of UEGO sensor signal first gain correction achieved when sensor is changed,0:UEGO upstream sensor is changed : first gain correction calculation is requested;1:UEGO upstream sensor : first gain correction has been processed
+,18DAF1DA,31,31,1,0,0,,2220D4,6220D4,ff,Indicator of UEGO sensor signal first gain correction achieved when sensor is changed,0:UEGO upstream sensor is changed - first gain correction calculation is requested;1:UEGO upstream sensor - first gain correction has been processed
 ,18DAF1DA,31,31,1,0,0,,2220D9,6220D9,ff,Boolean for Tank Shut Off Valve Cycles Counter Reset,0:desactivated;1:activated
 ,18DAF1DA,31,31,1,0,0,,2220DA,6220DA,ff,Boolean for Vaporizer Shut Off Valve Cycles Counter Reset,0:desactivated;1:activated
 ,18DAF1DA,31,31,1,0,0,,2220DB,6220DB,ff,Boolean Reset LPG Adaptivity,0:desactivated;1:activated
@@ -271,7 +266,7 @@
 ,18DAF1DA,24,39,1,0,0,TDC,222144,622144,ff,TRZ - Learning crankshaft defaults half turn counter
 ,18DAF1DA,24,39,1,0,0,-,222145,622145,ff,TRZ adaptive corr for torque calc when cyl1and4 in combustion,filtered beta for cyl1and4 equal to 16degree ad_b1 beta
 ,18DAF1DA,24,39,1,0,0,-,222146,622146,ff,TRZ adaptive corr for torque calc when cyl2and3 in combustion,filtered beta for cyl2and3 equal to 16degree ad_b1 beta
-,18DAF1DA,30,31,1,0,0,,222147,622147,ff,TLZ - Status of target adaptive process,0:process NOT done;1:process done, torque correction factor OK;2:process done, but wrong, torque correction factor NOK;3:not used
+,18DAF1DA,30,31,1,0,0,,222147,622147,ff,TLZ - Status of target adaptive process,0:process NOT done;1:process done- torque correction factor OK;2:process done- but wrong- torque correction factor NOK;3:not used
 ,18DAF1DA,24,55,1,0,0,-,222148,622148,1ff,TLZ - Filtered adaptive value for cyl 1 and 4 in the first speed range
 ,18DAF1DA,24,55,1,0,0,-,222149,622149,1ff,TLZ - Filtered adaptive value for cyl 2 and 3 in the first speed range
 ,18DAF1DA,24,55,1,0,0,-,22214A,62214A,1ff,TLZ - Filtered adaptive value for cyl 1 and 4 in the second speed range
@@ -326,7 +321,7 @@
 ,18DAF1DA,31,31,1,0,0,,222186,622186,ff,Idle speed for LCV accessories activation requested by BCM,0:not activated;1:activated
 ,18DAF1DA,31,31,1,0,0,,222187,622187,ff,State of the CTP cutoff,0:not activated;1:activated
 ,18DAF1DA,31,31,1,0,0,,222188,622188,ff,State of the CTP unicing.value,0:not activated;1:activated
-,18DAF1DA,29,31,1,0,0,,22218D,62218D,ff,Final PTC level,0:no PTCs activated;1:only PTC 1 activated;2:only PTC 2 actived;3:PTC 1 and 2 activated;4:PTC 2 and 3 activated;5:All PTCs activated (1,2,3)
+,18DAF1DA,29,31,1,0,0,,22218D,62218D,ff,Final PTC level,0:no PTCs activated;1:only PTC 1 activated;2:only PTC 2 actived;3:PTC 1 and 2 activated;4:PTC 2 and 3 activated;5:All PTCs activated (1-2-3)
 ,18DAF1DA,31,31,1,0,0,,22218E,62218E,ff,PTC freeze request,0:not activated;1:activated
 ,18DAF1DA,31,31,1,0,0,,22218F,62218F,ff,PTC cut off request,0:not activated;1:activated
 ,18DAF1DA,24,39,10,0,0,W,222191,622191,ff,Power consumed by PTC
@@ -338,53 +333,53 @@
 ,18DAF1DA,24,55,1,0,0,,2221C0,6221C0,ff,DIDs supported in range 21C1 - 21E0
 ,18DAF1DA,24,39,.25,0,1,rpm,2221C6,6221C6,ff,Maximum engine speed for misfiring detection strategy
 ,18DAF1DA,24,47,1,0,0,km,2221C7,6221C7,ff,Vehicle distance at last succesfull detection test (Fuel level or Vehicle distance)
-,18DAF1DA,31,31,1,0,0,,2221C9,6221C9,ff,Feedback main (p1) relay status from BMS by CAN,0:0: Relay Opened;1:1: Relay Closed
-,18DAF1DA,31,31,1,0,0,,2221CA,6221CA,ff,Feedback auxiliary relay status from BMS by CAN,0:0: Relay Opened;1:1: Relay Closed
-,18DAF1DA,31,31,1,0,0,,2221CB,6221CB,ff,DCDC Activation,0:0: DCDC desactived;1:1: DCDC Activated
+,18DAF1DA,31,31,1,0,0,,2221C9,6221C9,ff,Feedback main (p1) relay status from BMS by CAN,0:0- Relay Opened;1:1- Relay Closed
+,18DAF1DA,31,31,1,0,0,,2221CA,6221CA,ff,Feedback auxiliary relay status from BMS by CAN,0:0- Relay Opened;1:1- Relay Closed
+,18DAF1DA,31,31,1,0,0,,2221CB,6221CB,ff,DCDC Activation,0:0- DCDC desactived;1:1- DCDC Activated
 ,18DAF1DA,24,39,.25,2000,1,A,2221CC,6221CC,ff,High voltage battery Current measured consolidated
 ,18DAF1DA,24,39,1,0,0,%,2221CD,6221CD,ff,User SOC
-,18DAF1DA,30,31,1,0,0,,2221CE,6221CE,ff,Electrical Energy Management DCDC status,0:0: DCDC init state;1:1: DCDC standby state;2:2: DCDC run state;3:3: DCDC fail state
-,18DAF1DA,29,31,1,0,0,,2221CF,6221CF,ff,Electric motor inverter request,1:1: Inverter request off;2:2: Inverter request on;3:3: Inverter request decharge;4:4: Inverter request alternator mode;5:5: Inverter request ready to sleep
+,18DAF1DA,30,31,1,0,0,,2221CE,6221CE,ff,Electrical Energy Management DCDC status,0:0- DCDC init state;1:1- DCDC standby state;2:2- DCDC run state;3:3- DCDC fail state
+,18DAF1DA,29,31,1,0,0,,2221CF,6221CF,ff,Electric motor inverter request,1:1- Inverter request off;2:2- Inverter request on;3:3- Inverter request decharge;4:4- Inverter request alternator mode;5:5- Inverter request ready to sleep
 ,18DAF1DA,24,31,1,40,0,°C,2221D0,6221D0,ff,DCDC temperature
 ,18DAF1DA,24,39,.01,0,2,V,2221D1,6221D1,ff,Minimum mesured battery cell voltage
-,18DAF1DA,30,31,1,0,0,,2221D2,6221D2,ff,State of DCDC Unit for CAN failure detection,0:0: ECU status present;1:1: ECU status absent;2:2: ECU status confirmed absent
+,18DAF1DA,30,31,1,0,0,,2221D2,6221D2,ff,State of DCDC Unit for CAN failure detection,0:0- ECU status present;1:1- ECU status absent;2:2- ECU status confirmed absent
 ,18DAF1DA,24,39,1,32767,0,A,2221D3,6221D3,ff,DCDC Input Current (taken on high voltage network)
-,18DAF1DA,30,31,1,0,0,,2221D4,6221D4,ff,ECM Wake Up Sleep Command,0:0: Sleep command Go to Sleep;3:3: Sleep Command Wake Up
+,18DAF1DA,30,31,1,0,0,,2221D4,6221D4,ff,ECM Wake Up Sleep Command,0:0- Sleep command Go to Sleep;3:3- Sleep Command Wake Up
 ,18DAF1DA,24,39,.01,0,2,V,2221D5,6221D5,ff,Maximum mesured battery cell voltage
 ,18DAF1DA,24,39,.03125,32768,2,N.m,2221D6,6221D6,ff,Effective electric motor (SED) torque setpoint without application of the reduction ratio
 ,18DAF1DA,24,31,1,40,0,°C,2221D7,6221D7,ff,High voltage battery maximum temperature
 ,18DAF1DA,24,31,1,40,0,°C,2221D8,6221D8,ff,High voltage battery minimum temperature
-,18DAF1DA,29,31,1,0,0,,2221D9,6221D9,ff,Consolidated Battery feedback state,1:1: Slow Charge mode High Voltage battery;2:2: Fast Charge mode High Voltage battery;3:3: Init charge mode High Voltage battery;4:4: transitory mode High Voltage battery;5:5: normal Mode High Voltage battery;6:6: quick drop mode  High Voltage battery
+,18DAF1DA,29,31,1,0,0,,2221D9,6221D9,ff,Consolidated Battery feedback state,1:1- Slow Charge mode High Voltage battery;2:2- Fast Charge mode High Voltage battery;3:3- Init charge mode High Voltage battery;4:4- transitory mode High Voltage battery;5:5- normal Mode High Voltage battery;6:6- quick drop mode  High Voltage battery
 ,18DAF1DA,24,39,.25,2000,1,A,2221DA,6221DA,ff,Inverter 1 side high voltage consolidated Current
 ,18DAF1DA,24,31,1,40,0,°C,2221DB,6221DB,ff,Inverter Input Water Temperature
-,18DAF1DA,31,31,1,0,0,,2221DC,6221DC,ff,High voltage relay p1 request,0:0: no request;1:1: request
-,18DAF1DA,30,31,1,0,0,,2221DD,6221DD,ff,Battery Management System 2 ECU state,0:0: ECU status present;1:1: ECU status absent;2:2: ECU status confirmed absent
-,18DAF1DA,29,31,1,0,0,,2221DE,6221DE,ff,Water pump state,0:0: Life beat status;1:1: Stall or unsufficient speed status;2:2: Pump over temperature status;3:3: Pump over temperature warning status;4:4: Internal error over and under voltage status;5:5: Dry run state;6:6: No pump feed back status
+,18DAF1DA,31,31,1,0,0,,2221DC,6221DC,ff,High voltage relay p1 request,0:0- no request;1:1- request
+,18DAF1DA,30,31,1,0,0,,2221DD,6221DD,ff,Battery Management System 2 ECU state,0:0- ECU status present;1:1- ECU status absent;2:2- ECU status confirmed absent
+,18DAF1DA,29,31,1,0,0,,2221DE,6221DE,ff,Water pump state,0:0- Life beat status;1:1- Stall or unsufficient speed status;2:2- Pump over temperature status;3:3- Pump over temperature warning status;4:4- Internal error over and under voltage status;5:5- Dry run state;6:6- No pump feed back status
 ,18DAF1DA,24,39,1,32767,0,A,2221DF,6221DF,ff,Low voltage power supply current supply by DCDC
 ,18DAF1DA,24,55,1,0,0,,2221E0,6221E0,ff,DIDs supported in range [$21E1 - $2200]
 ,18DAF1DA,24,55,1,0,0,,222200,622200,ff,DIDs supported in range 2201 - 2220
 ,18DAF1DA,24,39,1,0,0,wu,222204,622204,ff,Torque structure failure detection
 ,18DAF1DA,24,39,1,0,0,wu,222205,622205,ff,Torque structure failure detection.
-,18DAF1DA,31,31,1,0,0,,222207,622207,ff,Motor fan failure status on the CAN,0:0: No motor fan failure on the CAN;1:1: Motor fan failure on the CAN
-,18DAF1DA,30,31,1,0,0,,22220A,62220A,ff,State of Inverter Unit for CAN failure detection,0:0: ECU status present;1:1: ECU status absent;2:2: ECU status confirmed absent
+,18DAF1DA,31,31,1,0,0,,222207,622207,ff,Motor fan failure status on the CAN,0:0- No motor fan failure on the CAN;1:1- Motor fan failure on the CAN
+,18DAF1DA,30,31,1,0,0,,22220A,62220A,ff,State of Inverter Unit for CAN failure detection,0:0- ECU status present;1:1- ECU status absent;2:2- ECU status confirmed absent
 ,18DAF1DA,24,31,1,40,0,°C,22220B,62220B,ff,Inverter output water temperature
-,18DAF1DA,31,31,1,0,0,,22220C,62220C,ff,Alternator mode activation,0:0: No Mode activation;1:1: Mode activation
-,18DAF1DA,30,31,1,0,0,,22220D,62220D,ff,HV Connection State,0:0: HV state open;1:1: HV state med;2:2: HV state connected
-,18DAF1DA,31,31,1,0,0,,22220E,62220E,ff,High Voltage auxiliary relay request,0:0: no request;1:1: request
-,18DAF1DA,30,31,1,0,0,,22220F,62220F,ff,Diag elec state IVLD,0:0: PumpElecDiagStatus CAN message validated absent;1:1: Nominal;2:2: PumpElecDiagStatus CAN message absent
-,18DAF1DA,31,31,1,0,0,,222210,622210,ff,PumpElecDiagStatus OC on GND pump power supply,0:0: PumpElecDiagStatus OC on GND pump power supply;1:1: Nominal
-,18DAF1DA,31,31,1,0,0,,222211,622211,ff,PumpElecDiagStatus OC on 12V pump power supply,0:0: PumpElecDiagStatus OC on 12V pump power supply;1:1: Nominal
-,18DAF1DA,31,31,1,0,0,,222212,622212,ff,PumpElecDiagStatus CC 0V or CC 12V on 12V pump power supply,0:0: PumpElecDiagStatus CC 0V or CC 12V on 12V pump power supply;1:1: Nominal
-,18DAF1DA,31,31,1,0,0,,222213,622213,ff,PumpElecDiagStatus CC 12V on GND pump power supply,0:0: PumpElecDiagStatus CC 12V on GND pump power supply;1:1: Nominal
-,18DAF1DA,31,31,1,0,0,,222214,622214,ff,PumpElecDiagStatus CC 12V on 12V pump power supply,0:0: PumpElecDiagStatus CC 12V on 12V pump power supply;1:1: Nominal
-,18DAF1DA,31,31,1,0,0,,222215,622215,ff,PumpElecDiagStatus OC on PWM,0:0: Open circuit on PWM;1:1: Nominal
-,18DAF1DA,31,31,1,0,0,,222216,622216,ff,PumpElecDiagStatus CC 0V on PWM,0:0: PumpElecDiagStatus CC 0V on PWM;1:1: Nominal
-,18DAF1DA,31,31,1,0,0,,222217,622217,ff,PumpElecDiagStatus CC 12V on PWM,0:0: PumpElecDiagStatus CC 12V on PWM;1:1: Nominal
+,18DAF1DA,31,31,1,0,0,,22220C,62220C,ff,Alternator mode activation,0:0- No Mode activation;1:1- Mode activation
+,18DAF1DA,30,31,1,0,0,,22220D,62220D,ff,HV Connection State,0:0- HV state open;1:1- HV state med;2:2- HV state connected
+,18DAF1DA,31,31,1,0,0,,22220E,62220E,ff,High Voltage auxiliary relay request,0:0- no request;1:1- request
+,18DAF1DA,30,31,1,0,0,,22220F,62220F,ff,Diag elec state IVLD,0:0- PumpElecDiagStatus CAN message validated absent;1:1- Nominal;2:2- PumpElecDiagStatus CAN message absent
+,18DAF1DA,31,31,1,0,0,,222210,622210,ff,PumpElecDiagStatus OC on GND pump power supply,0:0- PumpElecDiagStatus OC on GND pump power supply;1:1- Nominal
+,18DAF1DA,31,31,1,0,0,,222211,622211,ff,PumpElecDiagStatus OC on 12V pump power supply,0:0- PumpElecDiagStatus OC on 12V pump power supply;1:1- Nominal
+,18DAF1DA,31,31,1,0,0,,222212,622212,ff,PumpElecDiagStatus CC 0V or CC 12V on 12V pump power supply,0:0- PumpElecDiagStatus CC 0V or CC 12V on 12V pump power supply;1:1- Nominal
+,18DAF1DA,31,31,1,0,0,,222213,622213,ff,PumpElecDiagStatus CC 12V on GND pump power supply,0:0- PumpElecDiagStatus CC 12V on GND pump power supply;1:1- Nominal
+,18DAF1DA,31,31,1,0,0,,222214,622214,ff,PumpElecDiagStatus CC 12V on 12V pump power supply,0:0- PumpElecDiagStatus CC 12V on 12V pump power supply;1:1- Nominal
+,18DAF1DA,31,31,1,0,0,,222215,622215,ff,PumpElecDiagStatus OC on PWM,0:0- Open circuit on PWM;1:1- Nominal
+,18DAF1DA,31,31,1,0,0,,222216,622216,ff,PumpElecDiagStatus CC 0V on PWM,0:0- PumpElecDiagStatus CC 0V on PWM;1:1- Nominal
+,18DAF1DA,31,31,1,0,0,,222217,622217,ff,PumpElecDiagStatus CC 12V on PWM,0:0- PumpElecDiagStatus CC 12V on PWM;1:1- Nominal
 ,18DAF1DA,24,39,.1,2730,1,°C,222218,622218,ff,Environmental temperature
 ,18DAF1DA,24,39,.05,0,2,kW,222219,622219,ff,Available power in discharge
-,18DAF1DA,30,31,1,0,0,,22221A,62221A,ff,State of BMS Unit for CAN failure detection,0:0: ECU status present;1:1: ECU status absent;2:2: ECU status confirmed absent
+,18DAF1DA,30,31,1,0,0,,22221A,62221A,ff,State of BMS Unit for CAN failure detection,0:0- ECU status present;1:1- ECU status absent;2:2- ECU status confirmed absent
 ,18DAF1DA,24,39,.1,0,1,%,22221C,62221C,ff,Cooling pump set point
-,18DAF1DA,28,31,1,0,0,,22221D,62221D,ff,Electrical motor 1 inverter state,0:0: Power Off Electrical PowerTrain Management;2:2: Inverter state stand by mode;4:4: Power On Electrical PowerTrain Management;5:5: Inverter state alternator mode;6:6: Prepare to sleep
+,18DAF1DA,28,31,1,0,0,,22221D,62221D,ff,Electrical motor 1 inverter state,0:0- Power Off Electrical PowerTrain Management;2:2- Inverter state stand by mode;4:4- Power On Electrical PowerTrain Management;5:5- Inverter state alternator mode;6:6- Prepare to sleep
 ,18DAF1DA,24,31,1,0,0,wu,22221E,62221E,ff,Emergency engine stop request
 ,18DAF1DA,24,39,.05,0,2,kW,22221F,62221F,ff,Battery available charge power
 ,18DAF1DA,24,55,1,0,0,,222220,622220,ff,DIDs supported in range 2221 - 2240
@@ -447,11 +442,11 @@
 ,18DAF1DA,31,31,1,0,0,-,222262,622262,ff,Activation request solenoid valve of additional fuel tank.value
 ,18DAF1DA,24,31,.3921569,0,1,%,222263,622263,ff,Activation request pump of additional fuel tank.value
 ,18DAF1DA,31,31,1,0,0,-,222264,622264,ff,Flow water valve command of water system.value
-,18DAF1DA,31,31,1,0,0,,222268,622268,ff,High Voltage Battery connection Authorization state,0:0: Not authorized;1:1: Authorized
+,18DAF1DA,31,31,1,0,0,,222268,622268,ff,High Voltage Battery connection Authorization state,0:0- Not authorized;1:1- Authorized
 ,18DAF1DA,24,39,.1,0,1,wu,222269,622269,ff,Inverter setpoint while in alternator mode
-,18DAF1DA,31,31,1,0,0,,22226A,62226A,ff,Electronic control unit of battery refuse to sleep,0:0: without;1:1: with
-,18DAF1DA,29,31,1,0,0,,22226B,62226B,ff,High voltage battery state request,0:0: No mode request;1:1: Slow charge request;2:2: Fast Charge request;3:3: Normal mode request;4:4: Quick drop request
-,18DAF1DA,31,31,1,0,0,,22226C,62226C,ff,Alternator mode initialisation,0:0: No phase initialisation;1:1: Phase initialisation
+,18DAF1DA,31,31,1,0,0,,22226A,62226A,ff,Electronic control unit of battery refuse to sleep,0:0- without;1:1- with
+,18DAF1DA,29,31,1,0,0,,22226B,62226B,ff,High voltage battery state request,0:0- No mode request;1:1- Slow charge request;2:2- Fast Charge request;3:3- Normal mode request;4:4- Quick drop request
+,18DAF1DA,31,31,1,0,0,,22226C,62226C,ff,Alternator mode initialisation,0:0- No phase initialisation;1:1- Phase initialisation
 ,18DAF1DA,24,39,.25,2000,1,A,22226D,62226D,ff,High Voltage Battery Current calculated
 ,18DAF1DA,24,31,1,0,0,wu,22226E,62226E,ff,Deconnection fail counter est
 ,18DAF1DA,24,55,1,0,0,,222280,622280,ff,DIDs supported in range 2281 - 22A0
@@ -733,7 +728,7 @@
 ,18DAF1DA,31,31,1,0,0,,222922,622922,ff,FAN 2 activation.value,0:FAN 2 activation no requested;1:FAN 2 activation requested
 ,18DAF1DA,31,31,1,0,0,,222923,622923,ff,Mux Network configuration detection: AIRBAG status,0:without;1:with
 ,18DAF1DA,24,31,.392156863,0,1,%,222927,622927,ff,Motor driven fan setpoint.value
-,18DAF1DA,24,31,1,0,0,,222928,622928,ff,Functionnal state of the vehicle with Stop and Start system,0:Stop and Start management not active;10:Engine running, Stop and Start management active;15:Stop and Start stop request received, engine still running;20:Engine stopping, engine relaunch still possible;22:Engine stopping, too late for engine relaunch;23:Engine ready for reflex start;24:Engine stalled;26:Engine stopped, restart expected soon;28:Engine stalled without stop auto;30:Engine relaunch;32:Stop and start failure;34:Torque estimated for start;36:Idle start;38:Take-off start;40:Engine restart
+,18DAF1DA,24,31,1,0,0,,222928,622928,ff,Functionnal state of the vehicle with Stop and Start system,0:Stop and Start management not active;10:Engine running- Stop and Start management active;15:Stop and Start stop request received- engine still running;20:Engine stopping- engine relaunch still possible;22:Engine stopping- too late for engine relaunch;23:Engine ready for reflex start;24:Engine stalled;26:Engine stopped- restart expected soon;28:Engine stalled without stop auto;30:Engine relaunch;32:Stop and start failure;34:Torque estimated for start;36:Idle start;38:Take-off start;40:Engine restart
 ,18DAF1DA,31,31,1,0,0,,22292A,62292A,ff,Activation ICR request.value,0:no request;1:request
 ,18DAF1DA,31,31,1,0,0,,22292B,62292B,ff,Activation voltage stabilizer request.value,0:no request;1:request
 ,18DAF1DA,31,31,1,0,0,,222934,622934,ff,Boolean indicating that upstream lambda heater close loop control is enabled,0:Opened Loop;1:Closed Loop
@@ -774,7 +769,7 @@
 ,18DAF1DA,30,31,1,0,0,,2229A7,6229A7,ff,StopAuto status (StopAutoPhase),0:not in Auto Phase;1:Start Auto;2:Stop Auto;3:Stop Auto aborted
 ,18DAF1DA,31,31,1,0,0,,2229A8,6229A8,ff,Auto stop forbidden by CLIM ECU,0:stop auto authorize;1:stop auto forbidden by AC
 ,18DAF1DA,24,31,1,5,0,,2229A9,6229A9,ff,Gear lever position received on the CAN
-,18DAF1DA,30,31,1,0,0,,2229B0,6229B0,ff,CC strategy requested by the driver for Daimler type,0:CC stop initial step;1:CC stop;2:CC running In case of default detection for Daimler specification, this label indicates the CC state.
+,18DAF1DA,30,31,1,0,0,,2229B0,6229B0,ff,CC strategy requested by the driver for Daimler type,0:CC stop initial step;1:CC stop;2:CC running In case of default detection for Daimler specification- this label indicates the CC state.
 ,18DAF1DA,31,31,1,0,0,,2229B1,6229B1,ff,CC Main Switch Coherence detected failure for Daimler type,0:CC Main Switch Coherence without failure;1:CC Main Switch Coherence failure detected
 ,18DAF1DA,24,55,1,0,0,,2229C0,6229C0,ff,DIDs supported in range [$29C1 - $29E0]
 ,18DAF1DA,24,39,1,0,0,km,2229DF,6229DF,ff,Distance driven since TLZ initialization
@@ -1004,7 +999,7 @@
 ,18DAF1DA,1208,1239,.1,0,1,kwh,222B54,622B54,1ff,Consumption data (Auxiliary consumption) matrix stored in EEPROM.03
 ,18DAF1DA,1240,1271,.1,0,1,kwh,222B54,622B54,1ff,Consumption data (Auxiliary consumption) matrix stored in EEPROM.02
 ,18DAF1DA,1272,1303,.1,0,1,kwh,222B54,622B54,1ff,Consumption data (Auxiliary consumption) matrix stored in EEPROM.01
-,18DAF1DA,24,31,1,0,0,,222B55,622B55,ff,Relay S2 state,0:S2 closed;1:S2 open | BSW fast opening line;2:S2 open | Vbx_s2_rdcy_rly_ctl request (lvl1);3:S2 open | Vbx_sfty_s2_rdcy_rly_oc request;4:4: S2 open | Predrive check
+,18DAF1DA,24,31,1,0,0,,222B55,622B55,ff,Relay S2 state,0:S2 closed;1:S2 open | BSW fast opening line;2:S2 open | Vbx_s2_rdcy_rly_ctl request (lvl1);3:S2 open | Vbx_sfty_s2_rdcy_rly_oc request;4:4- S2 open | Predrive check
 ,18DAF1DA,31,31,1,0,0,,222B59,622B59,ff,stubb in case of no presence of aebs system, to permit the activation of sailing idle system,0:system is not activated;1:activation of sailing idle system
 ,18DAF1DA,31,31,1,0,0,,222B5A,622B5A,ff,Charge LED Intel 01 response error,0:No Response_Error;1:Response_Error
 ,18DAF1DA,24,31,1,0,0,rpm,222B5B,622B5B,ff,Speed setpoint to control the HSG oil pump
@@ -1019,7 +1014,7 @@
 ,18DAF1DA,31,31,1,0,0,,222B6A,622B6A,ff,Open circuit of charge LED Inlet 01,0:No open circuit;1:Open circuit detected
 ,18DAF1DA,31,31,1,0,0,,222B6B,622B6B,ff,Short Circuit on charge LED Inlet 02,0:No open circuit;1:Open circuit detected
 ,18DAF1DA,31,31,1,0,0,,222B6C,622B6C,ff,Short Circuit on charge LED Inlet 01,0:No open circuit;1:Open circuit detected
-,18DAF1DA,28,31,1,0,0,,222B6D,622B6D,ff,Charge MMI States,0:No Charge;1:Waiting a planned charge;2:Ended charge;3:Charge in progress;4:Charge failure;5:Waiting for current charge;6:Energy flap openend : welcome MMI;7:Unavailable Value;8:Charge preparation
+,18DAF1DA,28,31,1,0,0,,222B6D,622B6D,ff,Charge MMI States,0:No Charge;1:Waiting a planned charge;2:Ended charge;3:Charge in progress;4:Charge failure;5:Waiting for current charge;6:Energy flap openend - welcome MMI;7:Unavailable Value;8:Charge preparation
 ,18DAF1DA,31,31,1,0,0,,222B6E,622B6E,ff,This variable activates meter to display charging informations,0:No activation;1:Activates meter to display charging informations
 ,18DAF1DA,30,31,1,0,0,,222B6F,622B6F,ff,HEVC Presoak Activation Status,0:forbiden presoak status;1:No presoak in progress;2:presoak in progress ok
 ,18DAF1DA,24,31,.1,0,1,mm,222B70,622B70,1ff,primary-claw position set-point
@@ -1061,7 +1056,7 @@
 ,18DAF1DA,37,37,1,0,0,,222B8E,622B8E,ff,The 10 lastest values of the flag which indicates that a charge profile is applied.02,0:not applied;1:applied
 ,18DAF1DA,38,38,1,0,0,,222B8E,622B8E,ff,The 10 lastest values of the flag which indicates that a charge profile is applied.01,0:not applied;1:applied
 ,18DAF1DA,39,39,1,0,0,,222B8E,622B8E,ff,The 10 lastest values of the flag which indicates that a charge profile is applied.00,0:not applied;1:applied
-,18DAF1DA,28,31,1,0,0,,222B8F,622B8F,ff,CPLC_FaultType,0:NoFault;1:Contract NOK;2:Energy Transfer mode type not supported;3:PLC comm failure state;4:EVSE comm Failure;5:EVSE Not Ready;6:EVSE Utility Interrupt Event;;7:EVSE Utility Interrupt Event;8:EVSE Isolation Monitoring Active;9:EVSE Emergency Shutdown;10:EVSE Malfunction Protocol with EVSE (Station charging);11:EVSE_Renegociate of profil charge
+,18DAF1DA,28,31,1,0,0,,222B8F,622B8F,ff,CPLC_FaultType,0:NoFault;1:Contract NOK;2:Energy Transfer mode type not supported;3:PLC comm failure state;4:EVSE comm Failure;5:EVSE Not Ready;6:EVSE Utility Interrupt Event-;7:EVSE Utility Interrupt Event;8:EVSE Isolation Monitoring Active;9:EVSE Emergency Shutdown;10:EVSE Malfunction Protocol with EVSE (Station charging);11:EVSE_Renegociate of profil charge
 ,18DAF1DA,24,47,1,0,0,min,222B90,622B90,ff,The 10 lastest absolute times memorized at the end/interruption of battery charge.09
 ,18DAF1DA,48,71,1,0,0,min,222B90,622B90,ff,The 10 lastest absolute times memorized at the end/interruption of battery charge.08
 ,18DAF1DA,72,95,1,0,0,min,222B90,622B90,ff,The 10 lastest absolute times memorized at the end/interruption of battery charge.07
@@ -1074,8 +1069,8 @@
 ,18DAF1DA,240,263,1,0,0,min,222B90,622B90,ff,The 10 lastest absolute times memorized at the end/interruption of battery charge.00
 ,18DAF1DA,28,31,1,0,0,,222B91,622B91,ff,Combo_EVchargeHLCRequest CAN consolidated,0:No HLC Request  state;1:Communicationservice setting request sattet;2:ChargeparameterDiscovery requeststate;3:CableCheck request state;4:Precharge request state;5:Power delivery request state;6:Current demand request state;7:Metering receipt request;8:Welding detection request state;9:Session stop request  state;10:Reset matching process counter at unplug
 ,18DAF1DA,24,39,.1,0,1,A,222B92,622B92,ff,ComboEVTargetCurrent
-,18DAF1DA,28,31,1,0,0,,222B93,622B93,ff,Combo_EVSEchargeHLCState,0:No HLC communication is established;1:Communication  Service setting is established ;2:ChargeparameterDiscovery res state ;3:CableCheck res state ;4:Precharge res state  ;5:Power delivery res state ;6:Current demande res state ;7:Metering receipt response  ;8:Welding detection res state ;9:Session stop res
-,18DAF1DA,29,31,1,0,0,,222B94,622B94,ff,CPLC_CommunicationStatus,0:No HLC communication is established;1:HLC communication is initializing;2:HLC communication is ready to charge state;3:HLC communication is stopped (gestion pauses,opt);4:HLC communication error  state
+,18DAF1DA,28,31,1,0,0,,222B93,622B93,ff,Combo_EVSEchargeHLCState,0:No HLC communication is established;1:Communication  Service setting is established ;2:ChargeparameterDiscovery res state ;3:CableCheck res state ;4:Precharge res state  ;5:Power delivery res state ;6:Current demande res state ;7:Metering receipt response  ;8:Welding detection res state ;9:Session stop res 
+,18DAF1DA,29,31,1,0,0,,222B94,622B94,ff,CPLC_CommunicationStatus,0:No HLC communication is established;1:HLC communication is initializing;2:HLC communication is ready to charge state;3:HLC communication is stopped (gestion pauses-opt);4:HLC communication error  state
 ,18DAF1DA,24,39,.1,0,1,V,222B95,622B95,ff,ComboEVMaximumVoltageLimit
 ,18DAF1DA,24,39,.1,0,1,A,222B96,622B96,ff,ComboEVMaximumCurrentLimit
 ,18DAF1DA,24,39,.1,0,1,V,222B97,622B97,ff,ComboEVTargetVoltage
@@ -1128,7 +1123,7 @@
 ,18DAF1DA,40,47,.009785,0,3,V,222BDA,622BDA,ff,Value of glow voltage.02
 ,18DAF1DA,48,55,.009785,0,3,V,222BDA,622BDA,ff,Value of glow voltage.03
 ,18DAF1DA,30,31,1,0,0,,222BDB,622BDB,ff,Connector plug Type configuration,0:Connector plug Type1;1:Connector plug Type2;2:Connector plug Type GBT
-,18DAF1DA,31,31,1,0,0,,222BDC,622BDC,ff,Desired motor configuration for plug lock delay selection,0:False: selection of Cxx_dly_plg_lck_dc;1:True: selection of Cxx_dly_plg_lck_ac
+,18DAF1DA,31,31,1,0,0,,222BDC,622BDC,ff,Desired motor configuration for plug lock delay selection,0:False- selection of Cxx_dly_plg_lck_dc;1:True- selection of Cxx_dly_plg_lck_ac
 ,18DAF1DA,31,31,1,0,0,,222BDE,622BDE,ff,Electromagnetic Traction Control configuration boolean,0:ETC absent;1:ETC present
 ,18DAF1DA,24,55,1,0,0,,222BE0,622BE0,ff,DIDs supported in range [$2BE1 - $2C00]
 ,18DAF1DA,31,31,1,0,0,-,222BE2,622BE2,ff,Driver door open information filtered for fuel heating system wake-up phase
@@ -1213,7 +1208,7 @@
 ,18DAF1DA,24,31,.0001,0,3,m,223017,623017,1ff,secondaryClaw position measured by the sensor
 ,18DAF1DA,24,39,1,0,0,rpm,223018,623018,1ff,internal secondaryShaft speed
 ,18DAF1DA,24,39,.25,0,1,rpm,223019,623019,1ff,internal primaryShaft speed
-,18DAF1DA,28,31,1,0,0,,22301A,62301A,ff,Vehicle states,5:Cut off pending;7:Auto start;2:Nsx_vh_stt_el_wkp;6:Powertrain running;3:Preparation to drive, initial starting in progress;1:Starting In Progress;4:Technical Wake up;0:Vehicle Electrically Asleep;8:Engine System Stop
+,18DAF1DA,28,31,1,0,0,,22301A,62301A,ff,Vehicle states,5:Cut off pending;7:Auto start;2:Nsx_vh_stt_el_wkp;6:Powertrain running;3:Preparation to drive- initial starting in progress;1:Starting In Progress;4:Technical Wake up;0:Vehicle Electrically Asleep;8:Engine System Stop
 ,18DAF1DA,24,39,1,0,0,N.m,22301B,62301B,1ff,setpoint torque request at wheels
 ,18DAF1DA,24,39,.03125,12800,2,N.m,22301C,62301C,ff,Target torque for the internal combustion engine, after torque distribution at crankshaft
 ,18DAF1DA,24,39,.03125,12800,2,N.m,22301D,62301D,ff,Setpoint torque for the internal combustion engine, after torque distribution at crankshaft
@@ -1264,8 +1259,8 @@
 ,18DAF1DA,24,39,.02,0,2,%,223047,623047,ff,($3047) INV temperature indicator
 ,18DAF1DA,29,31,1,0,0,,223047,623047,ff,hv connection req,0:Nsx hv relay deconnection emg req;1:Nsx hv relay connection med req;3:Nsx hv relay connection norm req;4:Nsx hv relay deconnection norm req
 ,18DAF1DA,31,31,1,0,0,,223048,623048,ff,hv relay p2 req,0:no request;1:request for h2 relay
-,18DAF1DA,30,31,1,0,0,,223049,623049,ff,MOTOR1_POSITION CAN message validity status,0:ECU sending the parameter is seen as validated absent on the CAN and Corresponding CAN parameter value is frozen OR The message has been received from the CAN with the unavailable value and Corresponding CAN parameter value has been frozen;;1:CAN frame present and valid value received (no unavailable value);2:ECU sending the parameter is seen as absent on the CAN and Corresponding CAN parameter value is frozen
-,18DAF1DA,30,31,1,0,0,,22304A,62304A,ff,MOTOR2_POSITION LIN message validity,0:ECU sending the parameter is seen as validated absent on the CAN and Corresponding CAN parameter value is frozen OR The message has been received from the CAN with the unavailable value and Corresponding CAN parameter value has been frozen;;1:CAN frame present and valid value received (no unavailable value);2:ECU sending the parameter is seen as absent on the CAN and Corresponding CAN parameter value is frozen
+,18DAF1DA,30,31,1,0,0,,223049,623049,ff,MOTOR1_POSITION CAN message validity status,0:ECU sending the parameter is seen as validated absent on the CAN and Corresponding CAN parameter value is frozen OR The message has been received from the CAN with the unavailable value and Corresponding CAN parameter value has been frozen-;1:CAN frame present and valid value received (no unavailable value);2:ECU sending the parameter is seen as absent on the CAN and Corresponding CAN parameter value is frozen
+,18DAF1DA,30,31,1,0,0,,22304A,62304A,ff,MOTOR2_POSITION LIN message validity,0:ECU sending the parameter is seen as validated absent on the CAN and Corresponding CAN parameter value is frozen OR The message has been received from the CAN with the unavailable value and Corresponding CAN parameter value has been frozen-;1:CAN frame present and valid value received (no unavailable value);2:ECU sending the parameter is seen as absent on the CAN and Corresponding CAN parameter value is frozen
 ,18DAF1DA,31,31,1,0,0,,22304B,62304B,ff,HV to PEB input interlock connector,0:closed;1:opened
 ,18DAF1DA,31,31,1,0,0,,22304C,62304C,ff,DC Charger interlock (charge type) connector state,0:closed;1:opened
 ,18DAF1DA,31,31,1,0,0,,22304D,62304D,ff,Interlock of fuse Lid of the HV BMS state,0:closed;1:opened
@@ -1283,7 +1278,7 @@
 ,18DAF1DA,31,31,1,0,0,,223059,623059,ff,Interlock of connector( plug in) service of the BMS,0:closed;1:opened
 ,18DAF1DA,31,31,1,0,0,,22305A,62305A,ff,HV Battery interlock status,0:closed;1:opened
 ,18DAF1DA,31,31,1,0,0,,22305B,62305B,ff,Interlock of load of the HV BMS,0:closed;1:opened
-,18DAF1DA,31,31,1,0,0,,22305C,62305C,ff,Insulation check for charge feedback,0:false-No RIsol Check Mod;1:true: RIsol Check Mode
+,18DAF1DA,31,31,1,0,0,,22305C,62305C,ff,Insulation check for charge feedback,0:false-No RIsol Check Mod;1:true- RIsol Check Mode
 ,18DAF1DA,24,39,.5,0,1,N.m,22305D,62305D,1ff,Electrical Machine 2 Motor Torque
 ,18DAF1DA,24,55,1,0,0,,223060,623060,ff,DIDs supported in range [$3061 - $3080]
 ,18DAF1DA,24,39,.02,0,2,%,223061,623061,ff,Inverter temperature
@@ -1419,7 +1414,7 @@
 ,18DAF1DA,24,31,.25,0,1,V,223089,623089,1ff,J1772 control pilot voltage
 ,18DAF1DA,24,39,.01,0,2,V,22308A,62308A,ff,Mains detection logic V
 ,18DAF1DA,24,31,1,40,0,°C,22308B,62308B,ff,temperature of the vehicle plug
-,18DAF1DA,31,31,1,0,0,,22308C,62308C,ff,Over current flag for the electrical oil pump,0:false: no over current;1:true: over current
+,18DAF1DA,31,31,1,0,0,,22308C,62308C,ff,Over current flag for the electrical oil pump,0:false- no over current;1:true- over current
 ,18DAF1DA,24,31,1,0,0,rpm,22308D,62308D,ff,feedback of the oil pump
 ,18DAF1DA,24,39,.1,400,1,°C,22308E,62308E,ff,actual electronic temperature of the electrical oil pump
 ,18DAF1DA,24,31,1,0,0,,22308F,62308F,ff,Vehicle driveline status,0:Driveline state in neutral;1:Driveline state in 1;2:Driveline state in 2;3:Driveline state in 3;4:Driveline state in 4;5:Driveline state in 5;6:Driveline state in 6;7:Driveline state in 7;8:Driveline state in 8;9:Driveline state in 9;10:Driveline state in 10;11:Driveline state in 11;12:Driveline state in 12;13:Driveline state in 13;14:Driveline state in 14;15:Driveline state in 15;16:Driveline state in 16;17:Driveline state in 17;18:Driveline state in 18;19:Driveline state in 19;20:Driveline state in 20;21:Driveline state in 21;22:Driveline state in 22;23:Driveline state in 23;24:Driveline state in 24;25:Driveline state in 25;26:Driveline state in 26;253:Driveline state in reverse 2.;254:Driveline state in reverse 1
@@ -1615,9 +1610,9 @@
 ,18DAF1DA,30,31,1,0,0,,223330,623330,ff,($3330) Charge Management functionning Authorization,0:Not Autorized;1:Autorized;2:Zero Ampere mode Activation request;3:Quick Charge Activation request
 ,18DAF1DA,30,31,1,0,0,,223331,623331,ff,($3331) PreHeating functionning Authorization,0:Not Authorised;1:PTC Authorised only;2:AC Authorised only;3:PTC and AC Authorised
 ,18DAF1DA,30,31,1,0,0,,223332,623332,ff,($3332) Electrical Machine functionning Authorization,0:Not used;1:Inverter Off;2:Inverter On
-,18DAF1DA,30,31,1,0,0,,223335,623335,ff,($3335) 1st level insulation Alert MMI request,0:Unavailable ;1:No ET Alert Isolation Level 1 Requested ;2:ET Alert Isolation Level 1 Requested ;3:not used
-,18DAF1DA,30,31,1,0,0,,223336,623336,ff,($3336) 2nd level insulation Alert MMI request,0:Unavailable ;1:No ET Alert Isolation Level 2 Requested ;2:ET Alert Isolation Level 2 Requested ;3:not used
-,18DAF1DA,30,31,1,0,0,,223337,623337,ff,($3337) ETS Alert MMI request,0:Unavailable ;1:No ET Alert ETS Default Requested ;2:ET Alert ETS Default Requested ;3:not used
+,18DAF1DA,30,31,1,0,0,,223335,623335,ff,($3335) 1st level insulation Alert MMI request,0:Unavailable ;1:No ET Alert Isolation Level 1 Requested ;2:ET Alert Isolation Level 1 Requested ;3:not used 
+,18DAF1DA,30,31,1,0,0,,223336,623336,ff,($3336) 2nd level insulation Alert MMI request,0:Unavailable ;1:No ET Alert Isolation Level 2 Requested ;2:ET Alert Isolation Level 2 Requested ;3:not used 
+,18DAF1DA,30,31,1,0,0,,223337,623337,ff,($3337) ETS Alert MMI request,0:Unavailable ;1:No ET Alert ETS Default Requested ;2:ET Alert ETS Default Requested ;3:not used 
 ,18DAF1DA,30,31,1,0,0,,223338,623338,ff,($3338) Motor Alert MMI request,0:Unavailable value;1:No ET Alert Motor Default Requested;2:ET Alert Motor Default Requested;3:Not used
 ,18DAF1DA,30,31,1,0,0,,22333A,62333A,ff,($333A) Low Battery 14V MMI request,2:14VBattery Low Display Requested;1:No 14VBattery Low Display Requested;0:Unavailable value;3:Not used
 ,18DAF1DA,31,31,1,0,0,,22333D,62333D,ff,($333D) Brake assist pump state,0:Pump Off;1:Pump On
@@ -1662,8 +1657,8 @@
 ,18DAF1DA,24,39,1,32768,0,rpm,223370,623370,ff,($3370) Value of the electric motor speed before a safety level 2 hotreset
 ,18DAF1DA,24,31,5,0,0,mbar,223371,623371,ff,($3371) Pressure value max in the booster during failure confirmation time
 ,18DAF1DA,24,31,5,0,0,mbar,223372,623372,ff,($3372) Current pressure in the mastervac
-,18DAF1DA,30,31,1,0,0,,223373,623373,ff,($3373)The most critical state of the brake assist system between detected and confirmed states of a mastervac failure,0:unavailable;1:Vacuum pressure below 'Safety Threshold';2:Vacuum pressure between 'Safety Threshold' and 'Pump On Threshold' ;3:Vacuum pressure between 'Pump On Threshold' and 'Pump Off Threshold'
-,18DAF1DA,30,31,1,0,0,,223374,623374,ff,($3374) The most critical state of the Brake assist system when a failure has been confirmed,0:unavailable;1:Vacuum pressure below 'Safety Threshold';2:Vacuum pressure between 'Safety Threshold' and 'Pump On Threshold' ;3:Vacuum pressure between 'Pump On Threshold' and 'Pump Off Threshold'
+,18DAF1DA,30,31,1,0,0,,223373,623373,ff,($3373)The most critical state of the brake assist system between detected and confirmed states of a mastervac failure,0:unavailable;1:Vacuum pressure below 'Safety Threshold';2:Vacuum pressure between 'Safety Threshold' and 'Pump On Threshold' ;3:Vacuum pressure between 'Pump On Threshold' and 'Pump Off Threshold' 
+,18DAF1DA,30,31,1,0,0,,223374,623374,ff,($3374) The most critical state of the Brake assist system when a failure has been confirmed,0:unavailable;1:Vacuum pressure below 'Safety Threshold';2:Vacuum pressure between 'Safety Threshold' and 'Pump On Threshold' ;3:Vacuum pressure between 'Pump On Threshold' and 'Pump Off Threshold' 
 ,18DAF1DA,24,31,1,0,0,,223375,623375,ff,($3375) Memorized reason of Starting Refuse for Start Refuse History elaboration.4,0:C_Driving_No_Refuse;1:C_Driving_Refuse_Plug;2:C_Driving_Refuse_Verrloglocked;3:C_Driving_Refuse_PRND_notN;4:C_Driving_Refuse_PRND_notP;5:C_Driving_Refuse_Batterylock;6:C_Driving_Refuse_Engine
 ,18DAF1DA,32,39,1,0,0,,223375,623375,ff,($3375) Memorized reason of Starting Refuse for Start Refuse History elaboration.3,0:C_Driving_No_Refuse;1:C_Driving_Refuse_Plug;2:C_Driving_Refuse_Verrloglocked;3:C_Driving_Refuse_PRND_notN;4:C_Driving_Refuse_PRND_notP;5:C_Driving_Refuse_Batterylock;6:C_Driving_Refuse_Engine
 ,18DAF1DA,40,47,1,0,0,,223375,623375,ff,($3375) Memorized reason of Starting Refuse for Start Refuse History elaboration.2,0:C_Driving_No_Refuse;1:C_Driving_Refuse_Plug;2:C_Driving_Refuse_Verrloglocked;3:C_Driving_Refuse_PRND_notN;4:C_Driving_Refuse_PRND_notP;5:C_Driving_Refuse_Batterylock;6:C_Driving_Refuse_Engine
@@ -2854,7 +2849,7 @@
 ,18DAF1DA,31,31,1,0,0,-,22F413,62F413,ff,Location of oxygen sensors.07
 ,18DAF1DA,24,31,.005,0,3,V,22F414,62F414,ff,Bank 1 - Sensor 1.00
 ,18DAF1DA,32,39,.78125,163.84,1,%,22F414,62F414,ff,Bank 1 - Sensor 1.01
-,18DAF1DA,24,31,1,0,0,,22F41C,62F41C,ff,OBD requirements to wich vehicle is designed,1:OBD II;2:OBD;3:OBD ans OBD II;4:OBD I;5:NO OBD;6:EOBD;7:EOBD and OBD II;8:EOBD and OBD;9:EOBD, OBD and OBD II;11:EMD;12:EMD+;13:HD OBD-C;14:HD OBD;15:WWH OBD;16:SAE/ISO reserved;17:HD EOBD-I;18:HD EOBD-I N;19:HD EOBD-II;20:IOBD II;21:HD EOBD-VI
+,18DAF1DA,24,31,1,0,0,,22F41C,62F41C,ff,OBD requirements to wich vehicle is designed,1:OBD II;2:OBD;3:OBD ans OBD II;4:OBD I;5:NO OBD;6:EOBD;7:EOBD and OBD II;8:EOBD and OBD;9:EOBD- OBD and OBD II;11:EMD;12:EMD+;13:HD OBD-C;14:HD OBD;15:WWH OBD;16:SAE/ISO reserved;17:HD EOBD-I;18:HD EOBD-I N;19:HD EOBD-II;20:IOBD II;21:HD EOBD-VI
 ,18DAF1DA,24,31,1,0,0,,22F41E,62F41E,ff,$01 - Auxiliary Input Status,0:PTO not active (OFF);1:PTO active (ON)
 ,18DAF1DA,24,39,1,0,0,s,22F41F,62F41F,ff,$01 - Time Since Engine Start
 ,18DAF1DA,24,55,1,0,0,,22F420,62F420,ff,DIDs supported in range F421 - F440

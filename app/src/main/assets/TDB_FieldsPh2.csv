@@ -157,7 +157,7 @@
 ,763,24,31,1,0,0,,22012A,62012A,ff,I_BoosterSafetybag_CF,0:Deactivated;1:Activated
 ,763,24,31,1,0,0,,22012B,62012B,ff,OilLevelPresent_CF,0:Without;1:With
 ,763,24,31,100,0,0,km,22012C,62012C,ff,MSCOilChgWarningThresholdKM_CF
-,763,24,31,1,0,0,,22012E,62012E,ff,LDWMMI_CF,0:Without LDW;1:With LDW, without sound;2:With LDW, with sound
+,763,24,31,1,0,0,,22012E,62012E,ff,LDWMMI_CF,0:Without LDW;1:With LDW- without sound;2:With LDW- with sound
 ,763,24,31,1,0,0,,22012F,62012F,ff,DIM_DayNightPositionLights_CF,0:Without;1:With
 ,763,24,31,1,0,0,,220130,620130,ff,TemperatureUnit_CF,0:degree Celsius;1:degree Fahrenheit
 ,763,24,24,1,0,0,,220131,620131,ff,ADACWorldPresence_CF.Icon,0:With MEX icon;1:With MEX data icon
