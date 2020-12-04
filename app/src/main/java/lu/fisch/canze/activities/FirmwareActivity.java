@@ -223,6 +223,9 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
             MainActivity.getInstance().dropDebugMessage(message.getError());
             return null;
         }
+
+        MainActivity.debug("msg:" + message.getData());
+
         message.onMessageCompleteEvent(); // set the value of all fields in the frame of this message
         return frame;
     }
