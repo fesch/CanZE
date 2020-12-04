@@ -1,7 +1,7 @@
 00,Device and failure type ODB codding
 01,General Electrical Failure
 02,General signal failure
-03,FM (Freq Mod) / PWM (Pulse Width Mod) Failures
+03,FM / PWM Failures
 04,System Internal Failures
 05,System Programming Failures
 06,Algorithm Based Failures
@@ -30,7 +30,7 @@
 25,signal shape / waveform failure
 26,signal rate of change below threshold
 27,signal rate of change above threshold
-28,signal bias level / zero adjustment failure
+28,signal level out of range/zero adjustment failure
 29,signal signal invalid
 2F,signal erratic
 31,no signal
@@ -93,5 +93,5 @@
 94,unexpected operation
 95,incorrect assembly
 96,component internal failure
-97,Component or operation obstructed or blocked
+97,Component | system operation obstructed or blocked
 98,component or system over temperature

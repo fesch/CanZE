@@ -1,60 +1,43 @@
-,18DAF1E2,8,15,1,0,0,,1001,5001,ff,StartDiagnosticSession.ResponseType,129:Yes
-,18DAF1E2,24,31,1,0,0,,224B18,624B18,ff,After Sales Date
-,18DAF1E2,24,31,10,-1,0,s,224B25,624B25,ff,Powerlatch
-,18DAF1E2,24,31,1,0,0,Volt,22B000,62B000,ff,BatteryVoltage
-,18DAF1E2,24,27,1,0,0,V,22B001,62B001,ff,eDLC_voltage
-,18DAF1E2,24,47,.05,0,2,Km,22B002,62B002,ff,Mileage of the first failure
-,18DAF1E2,24,27,1,0,0,,22B004,62B004,ff,Internal odometer.Reserved
-,18DAF1E2,28,55,.01,0,2,km,22B004,62B004,ff,Internal odometer.Internal odometer
-,18DAF1E2,24,27,1,0,0,,22B005,62B005,ff,Vehicle Status,0:Asleep;1:Not used 1;2:CutoffPending;3:AutoACC;4:Not used 4;5:IgnitionLevel;6:StartingInProgress;7:PowertrainRunning;8:AutoStart;9:EngineSystemStop;10:Not used 10;11:Not used 11;12:Not used 12;13:Not used 13;14:Not used 14;15:Unavailable
-,18DAF1E2,25,27,1,0,0,,22B006,62B006,ff,Function status,0:unused;1:PPU active control / not active control;2:PPU operationnal / not operationnal;3:PFC active control / not active control;4:PFC operationnal / not operationnal;5:EBR permitted by diag / inhibited by diag;6:EBR active control / not active control;7:EBR operationnal / not operationnal
-,18DAF1E2,24,39,1,0,0,km/h,22B007,62B007,ff,VehicleSpeed
-,18DAF1E2,24,39,1,0,0,Km/h,22B008,62B008,ff,VehicleSpeedBody
-,18DAF1E2,24,35,1,0,0,%,22B009,62B009,ff,BrakePedalPosition
-,18DAF1E2,24,35,1,0,0,mm,22B00B,62B00B,1ff,EBA_OutputRodActuatorPosition
-,18DAF1E2,24,31,1,0,0,MPa,22B00C,62B00C,ff,EBA_PressureRunOut
-,18DAF1E2,24,24,1,0,0,,22B00D,62B00D,ff,ABSinRegulation_CRBS
-,18DAF1E2,24,25,1,0,0,,22B00E,62B00E,ff,ExternalBrakeStatus
-,18DAF1E2,24,25,1,0,0,,22B00F,62B00F,ff,ExternalBrakeRequestStatus
-,18DAF1E2,24,31,1,0,0,,22B010,62B010,ff,ECU activities.General.Data
-,18DAF1E2,24,31,1,0,0,,22B011,62B011,ff,ECU activities.Activation.counter
-,18DAF1E2,24,31,1,0,0,,22B012,62B012,ff,ECU activities.Activation.Timer
-,18DAF1E2,24,39,1,0,0,,22EF01,62EF01,ff,Supplier fault code specified
-,18DAF1E2,24,103,1,0,0,,22F012,62F012,2ff,Calibration file reference
-,18DAF1E2,24,47,.05,0,2,km,22F0D0,62F0D0,ff,Mileage of the last occurence
-,18DAF1E2,24,31,1,0,0,,22F0D1,62F0D1,ff,DTCExtendedData.DTCOccurrenceCounter
-,18DAF1E2,24,111,1,0,0,,22F180,62F180,2ff,Boot SW identification
-,18DAF1E2,24,103,1,0,0,,22F182,62F182,2ff,CalibrationNumber
-,18DAF1E2,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
-,18DAF1E2,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
-,18DAF1E2,24,47,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
-,18DAF1E2,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumber
-,18DAF1E2,24,79,1,0,0,,22F18E,62F18E,2ff,VehicleManufacturerKitAssemblyPartNumber
-,18DAF1E2,24,159,1,0,0,,22F190,62F190,2ff,VIN
-,18DAF1E2,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
-,18DAF1E2,24,207,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
-,18DAF1E2,24,63,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
-,18DAF1E2,24,103,1,0,0,,22F196,62F196,2ff,exhaustRegulationOrTypeApprovalNumber
-,18DAF1E2,24,31,1,0,0,,22F197,62F197,ff,systemNameorEngineType.01
-,18DAF1E2,32,39,1,0,0,,22F197,62F197,ff,systemNameorEngineType.02
-,18DAF1E2,40,47,1,0,0,,22F197,62F197,ff,systemNameorEngineType.03
-,18DAF1E2,48,55,1,0,0,,22F197,62F197,ff,systemNameorEngineType.04
-,18DAF1E2,56,63,1,0,0,,22F197,62F197,ff,systemNameorEngineType.05
-,18DAF1E2,64,71,1,0,0,,22F197,62F197,ff,systemNameorEngineType.06
-,18DAF1E2,72,79,1,0,0,,22F197,62F197,ff,systemNameorEngineType.07
-,18DAF1E2,80,87,1,0,0,,22F197,62F197,ff,systemNameorEngineType.08
-,18DAF1E2,88,95,1,0,0,,22F197,62F197,ff,systemNameorEngineType.09
-,18DAF1E2,96,103,1,0,0,,22F197,62F197,ff,systemNameorEngineType.10
-,18DAF1E2,104,111,1,0,0,,22F197,62F197,ff,systemNameorEngineType.11
-,18DAF1E2,112,119,1,0,0,,22F197,62F197,ff,systemNameorEngineType.12
-,18DAF1E2,120,127,1,0,0,,22F197,62F197,ff,systemNameorEngineType.13
-,18DAF1E2,128,135,1,0,0,,22F197,62F197,ff,systemNameorEngineType.14
-,18DAF1E2,136,143,1,0,0,,22F197,62F197,ff,systemNameorEngineType.15
-,18DAF1E2,144,151,1,0,0,,22F197,62F197,ff,systemNameorEngineType.16
-,18DAF1E2,152,159,1,0,0,,22F197,62F197,ff,systemNameorEngineType.17
-,18DAF1E2,160,167,1,0,0,,22F197,62F197,ff,systemNameorEngineType.18
-,18DAF1E2,168,175,1,0,0,,22F197,62F197,ff,systemNameorEngineType.19
-,18DAF1E2,176,183,1,0,0,,22F197,62F197,ff,systemNameorEngineType.20
-,18DAF1E2,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
-,18DAF1E2,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
-,18DAF1E2,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationDataReferenceAfterConfigurationProcess
+,7A2,31,31,1,0,0,,220101,620101,ff,LIN_IN.SystemON,0:System_ON OFF;1:System_ON ON
+,7A2,24,31,.2,0,1,V,220200,620200,ff,Battery level
+,7A2,24,31,1,0,0,,222006,622006,ff,ESE/ANC parameters.ANC activation,0:Not activated;1:Activated
+,7A2,32,39,1,0,0,,222006,622006,ff,ESE/ANC parameters.ESE activation,0:Not activated;1:Activated
+,7A2,24,24,1,0,0,,222100,622100,ff,Car configuration.Centerfill speaker,0:Not present;1:present
+,7A2,25,25,1,0,0,,222100,622100,ff,Car configuration.Twidlers,0:Not Fitted;1:Fitted
+,7A2,26,31,1,0,0,,222100,622100,ff,Car configuration.Welcome Sequence volume level
+,7A2,32,32,1,0,0,,222100,622100,ff,Car configuration.Rear tweeters,0:Not present;1:Present
+,7A2,33,33,1,0,0,,222100,622100,ff,Car configuration.HEVC,0:Not present;1:Present
+,7A2,34,34,1,0,0,,222100,622100,ff,Car configuration.ECM,0:Not present;1:Present
+,7A2,25,25,1,0,0,,222109,622109,ff,Sound volume configuration.CFG_ADAS_RCTA,0:Absent;1:Present
+,7A2,26,26,1,0,0,,222109,622109,ff,Sound volume configuration.CFG_ADAS_SR,0:Absent;1:Present
+,7A2,27,27,1,0,0,,222109,622109,ff,Sound volume configuration.CFG_ADAS_PSM,0:Absent;1:Present
+,7A2,28,29,1,0,0,,222109,622109,ff,Sound volume configuration.CFG_ADAS_APA,0:APA not present;1:HFP present;2:HFPB present;3:APK present
+,7A2,30,31,1,0,0,,222109,622109,ff,Sound volume configuration.CFG_ADAS_UPA_Audio,0:UPA audio not present;1:UPA audio without settings;2:UPA audio with settings
+,7A2,32,39,1,0,0,00h-28h volume step,222109,622109,ff,Sound volume configuration.Ecall_volume
+,7A2,44,45,1,0,0,,222109,622109,ff,Sound volume configuration.CFG_ADAS_LDW,0:LDW not present;1:LDW Sound;2:LDW Haptic
+,7A2,46,47,1,0,0,,222109,622109,ff,Sound volume configuration.Sonar_System_Availability,0:Not available;1:Available
+,7A2,56,63,1,10,0,dB,222109,622109,1ff,Sound volume configuration.ParkingAids_UPA_gain
+,7A2,64,71,1,10,0,dB,222109,622109,1ff,Sound volume configuration.ParkingAids_HFP_gain
+,7A2,72,79,1,10,0,dB,222109,622109,1ff,Sound volume configuration.ParkingAids_PSM_gain
+,7A2,80,87,1,10,0,dB,222109,622109,1ff,Sound volume configuration.LateralADAS_LDW_gain
+,7A2,88,95,1,0,0,00h-28h volume step,222109,622109,ff,Sound volume configuration.Cluster_sound_level
+,7A2,120,127,1,12,0,dB,222109,622109,1ff,Sound volume configuration.Beep_Clic_Level
+,7A2,24,31,1,0,0,,222111,622111,ff,ECU configuration.Speakers,0:Bass Box;1:Subwoofers
+,7A2,32,39,1,0,0,,222111,622111,ff,ECU configuration.ANC microphones,0:Not fitted;1:Fitted
+,7A2,40,47,1,0,0,,222111,622111,ff,ECU configuration.Hand drive,0:Left hand drive (F..);1:Right hand drive (GB..)
+,7A2,24,31,1,0,0,,222112,622112,ff,CAN diversity,0:Slot 0 (Default);1:Slot 1 (C1A);2:Slot 2 (C1R);3:Slot 3 (T4Vs)
+,7A2,24,31,1,0,0,,229002,629002,ff,Loudspeaker
+,7A2,24,31,1,0,0,,229011,629011,ff,IO.Tweeter_result,0:In progress;1:Done and OK;2:Done and NOK
+,7A2,24,103,1,0,0,,22F012,62F012,2ff,Operational Reference
+,7A2,24,47,1,0,0,km,22F0D0,62F0D0,ff,Mileage
+,7A2,24,31,1,0,0,,22F0D1,62F0D1,ff,DTC Occurrence Counter
+,7A2,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
+,7A2,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
+,7A2,24,47,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7A2,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumber
+,7A2,24,159,1,0,0,,22F190,62F190,2ff,VIN
+,7A2,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
+,7A2,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7A2,24,167,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7A2,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7A2,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
