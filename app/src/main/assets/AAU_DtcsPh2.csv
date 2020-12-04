@@ -1,0 +1,53 @@
+58F7,VDC CAN Failure
+58F5,USM CAN Failure
+58F3,Thermal failure
+58F0,Supply Line EDLC
+58F1,standalone mode
+58DF,RunOut in Failure
+58EF,RPS Sensor
+58EC,Position sensor plausibility in failure
+58ED,Motor Power supply in failure
+E148,Loste communication with VDC on Chassis CAN
+E143,Loste communication with HEVC on Chassis CAN
+E140,Loste communication with ECM on Chassis CAN
+E248,Lost Communication with VDC on Vehicle CAN
+E15B,Lost Communication with USM on Chassis CAN
+E14F,Lost Communication with BCM on Chassis CAN
+58DE,LIN Communication EDLC Failure
+58F6,HEVC CAN Failure
+58E3,External Brake in failure
+58EB,EDLC Voltage monitoring
+58D6,EDLC Failure Wakeup circuit error
+58DD,EDLC Failure Vref circuit error
+58DB,EDLC Failure Thermister circuit error
+58D0,EDLC Failure overvoltage
+58D8,EDLC Failure microcomputer error
+58D9,EDLC Failure Insulation error
+58D3,EDLC Failure Discharging circuit short error
+58D2,EDLC Failure Discharging circuit open error
+58DA,EDLC Failure Charging control circuit error
+58D1,EDLC Failure Charging circuit error
+58D4,EDLC Failure Cell short or overvoltage error
+58DC,EDLC Failure Capacitor degrading error
+58D7,EDLC Failure B-IN circuit and monitor circuit error
+58D5,EDLC Failure Backup circuit error
+58FF,ECU Failure 2
+58FB,ECU Failure 1
+58E9,ECU failure
+58F8,ECM CAN Failure
+58FE,EBA Temperature Sensors Failure
+58FD,EBA Temperature Sensor 2 Failure
+58FC,EBA Temperature Sensor 1 Failure
+58FA,EBA Calibration Failure
+58EE,DTS Sensor
+58EA,Driver Brake Wish Not Detectable
+58E8,Current consumption in EDLC Mode in Failure
+58F9,CRBS failure
+58E5,CAN V1 Bus OFF
+58E6,CAN register
+58E4,CAN Chassis Bus off
+58F4,BCM CAN Failure
+58E2,Battery Voltage compliance
+58E7,Battery Voltage
+58E1,Actuation Control
+58F2,Activation switch EDLC

@@ -1,0 +1,143 @@
+,775,24,39,.0417,0,2,rpm,220201,620201,ff,VDC.WheelSpeedRL
+,775,40,55,.0417,0,2,rpm,220201,620201,ff,VDC.WheelSpeedRR
+,775,56,71,.0417,0,2,rpm,220201,620201,ff,VDC.WheelSpeedFL
+,775,72,87,.0417,0,2,rpm,220201,620201,ff,VDC.WheelSpeedFR
+,775,88,94,1,0,0,,220201,620201,ff,VDC.WheelTopRL
+,775,96,102,1,0,0,,220201,620201,ff,VDC.WheelTopRR
+,775,104,131,.01,0,2,km,220201,620201,ff,VDC.DistanceTotalizer
+,775,136,143,.5,0,1,bar,220201,620201,ff,VDC.BrakingPressure
+,775,144,155,.001,2000,3,G,220201,620201,ff,VDC.LongitudinalAccelCorrected
+,775,160,161,1,0,0,,220201,620201,ff,VDC.StandStillStatus,0:Vehicle not hold;1:Vehicle hold;2:Vehicle hold not possible;3:Not used
+,775,162,163,1,0,0,,220201,620201,ff,VDC.DynamicBrakingAvailability,0:Not used;1:Available for Dynamic Braking;2:Not available for Dynamic Braking;3:Unavailable
+,775,164,164,1,0,0,,220201,620201,ff,VDC.DynamicBrakingInProgressForEPB,0:EPB dynamic braking in progress;1:EPB dynamic braking not in progress
+,775,165,166,1,0,0,,220201,620201,ff,VDC.ABSinRegulation,0:No ABS Regulation;1:ABS in Regulation
+,775,24,39,.125,0,1,rpm,220202,620202,ff,ECM.Parameters.EngineRPM
+,775,41,55,2,10000,0,Nm,220202,620202,ff,ECM.ECM_EstimatedPWTWheelTorque
+,775,56,65,.125,0,1,%,220202,620202,ff,ECM.RawSensor
+,775,68,79,.5,800,1,Nm,220202,620202,ff,ECM.MeanEffectiveTorque
+,775,80,86,1,0,0,%,220202,620202,ff,ECM.Parameters.ClutchPositionSensor
+,775,88,90,1,0,0,,220202,620202,ff,ECM.StopAutoPhase,0:NotInAutoPhase;1:AutoStart;2:IdleStop;3:AutophaseAborted;4:InjectionStopped;5:StartByInjectionOnly;6:ReflexStart;7:Unavailable
+,775,91,92,1,0,0,,220202,620202,ff,ECM.PowerTrainStatus,0:Powertrain Stopped;1:Reserved;2:Powertrain Running;3:Powertrain Starting
+,775,24,25,1,0,0,,220203,620203,ff,BCM.WakeUpSleepCommand,0:Go To Sleep;1:Reserved 1;2:Reserved 2;3:Wake Up
+,775,26,27,1,0,0,,220203,620203,ff,BCM.DriverSeatStatus,0:Unavailable;1:Driver On Seat Detected;2:Driver On Seat NOT Detected;3:Not Used
+,775,28,30,1,0,0,,220203,620203,ff,BCM.WakeUpType,0:Full WakeUp Mode;1:Selective WakeUp Mode 1;2:Selective WakeUp Mode 2;3:Selective WakeUp Mode 3;4:Selective WakeUp Mode 4;5:Selective WakeUp Mode 5;6:Selective WakeUp Mode 6;7:Unavailable
+,775,32,35,1,0,0,,220203,620203,ff,BCM.VehicleStates,0:Sleeping;1:Not used 1;2:CutoffPending;3:AutoACC - BatTempoLevel;4:Not used 4;5:IgnitionLevel;6:StartingInProgress;7:PowertrainRunning;8:AutoStart;9:EngineSystemStop;10:Not used 10;11:Not used 11;12:Not used 12;13:Not used 13;14:Not used 14;15:Unavailable
+,775,36,36,1,0,0,,220203,620203,ff,BCM.EngineStopDriverRequested,0:No Engine Stop Requested by Driver;1:Nominal Engine Stop Requested by Driver
+,775,37,39,1,0,0,,220203,620203,ff,BCM.BrakeInfoStatus,0:Not used;1:Brake pedal not pressed;2:Brake pedal pressed;3:Not used 3;4:Brake pedal confirmed pressed;5:Not used 5;6:Not used 6;7:Unavailable
+,775,40,42,1,0,0,,220203,620203,ff,BCM.GADE,0:Sleep or Crank fault, Disable DiagMuxDTC;1:AutoACC fault, Disable DiagMuxDTC;2:All fault, Disable DiagMuxDTC;3:All fault, Enable DiagMuxDTC;4:Not used 4;5:Not used 5;6:Not used 6;7:Unavailable
+,775,44,45,1,0,0,,220203,620203,ff,BCM.DriverDoorState,0:Unavailable value;1:Driver door closed;2:Driver door open;3:Not used
+,775,46,47,1,0,0,,220203,620203,ff,BCM.PassengerDoorState,0:Unavailable value;1:Passenger door closed;2:Passenger door open;3:Not used
+,775,48,50,1,0,0,,220203,620203,ff,BCM.DriverStopRequestWhileBattOff,0:Unavailable;1:Reserved For Safety 1;2:No engine stop requested by driver on disconnected 12V battery;3:Reserved For Safety 3;4:Reserved For Safety 4;5:Engine stop requested by driver on disconnected 12V battery;6:Reserved For Safety 6;7:Reserved For Safety 7
+,775,51,51,1,0,0,,220203,620203,ff,BCM.DriverDoorStatusSupposedFailure,0:no supposed Driver's door failure;1:supposed driver's door failure
+,775,52,52,1,0,0,,220203,620203,ff,BCM.EngineStopDriverRequestValid,0:Not valid;1:Valid
+,775,53,53,1,0,0,,220203,620203,ff,BCM.ProbableFeedBackNeed,0:Customer feedback probably not needed;1:Customer feedback needed
+,775,54,55,1,0,0,,220203,620203,ff,BCM.DriverSafetyBeltBuckleState,0:SB Not monitored;1:SB unfastened;2:SB fastened;3:Unavailable
+,775,24,27,1,0,0,,220204,620204,ff,ATCU.TransmRangeEngaged_Current,0:Declutched at rest;1:1st range;2:2nd range;3:3rd range;4:4th range;5:5th range;6:6th range;7:7th range;8:8th range;9:reverse;10:neutral or parking;11:CVT in continuous mode;12:9th range;13:10th range;14:Not used;15:AT in limphome
+,775,28,31,1,0,0,,220204,620204,ff,ATCU.GearLeverPosition_v2,0:Parking - P;1:Reverse - R;2:Neutral - N;3:Drive - D;4:Manual mode - M;5:L;6:Ds;7:Confirmed lever position (no switch signal);8:B (Brake);9:Not used 9;10:Not used 10;11:Not used 11;12:Not used 12;13:Not used 13;14:Not used 14;15:Not available (init or lever switched failure)
+,775,32,33,1,0,0,,220204,620204,ff,ATCU.AT_ParkPositionCommandState,0:Not Used;1:AT park position command engaged;2:AT park position command not engaged;3:Unavailable value
+,775,24,24,1,0,0,,220205,620205,ff,USM.IgnitionSupplyConfirmation,0:no primary ignition supply;1:primary ignition supply on
+,775,25,26,1,0,0,,220205,620205,ff,USM.NeutralContact,0:Not Used;1:neutral contact not reached;2:neutral contact reached;3:Unavailable
+,775,27,28,1,0,0,,220205,620205,ff,USM.RearGearEngaged,0:Not used;1:Rear Gear not Engaged;2:Rear Gear Engaged;3:Unavailable
+,775,32,39,.06,-100,2,V,220205,620205,ff,USM.BatteryVoltage
+,775,30,31,1,0,0,,220206,620206,ff,IDM.ParkingBrakeBindingRequest,0:No parking brake binding requested;1:Parking brake binding requested
+,775,31,31,1,0,0,,220210,620210,ff,CheckSum_Parameters,0:Checksum of the configuration data not correct;1:All checksums correct
+,775,24,95,1,0,0,,220213,620213,ff,VehicleConfiguration
+,775,40,47,.001,0,3,nu,220213,620213,ff,VehicleConfiguration.PHY_RearGearRatio
+,775,48,63,1,0,0,kg,220213,620213,ff,VehicleConfiguration.PHY_VehMasse
+,775,64,79,.001,0,3,m,220213,620213,ff,VehicleConfiguration.PHY_WheelRadius
+,775,80,95,.0001,0,3,Kg*m²,220213,620213,ff,VehicleConfiguration.PHY_EngineInertia
+,775,24,31,1,0,0,,220214,620214,ff,Studies_CAN_Frames,0:STD_LOGGER_ON;1:TMO_LOGGER_ON;2:DAA_AG_LOGGER_ON;3:SANDA_LOGGER_ON;255:LOGGER_OFF
+,775,24,39,1,0,0,,220220,620220,ff,EPB.ConfigurationMode
+,775,26,27,1,0,0,,220220,620220,ff,EPB.ConfigurationMode.StopAndStartMode,0:Not Stop And Start;1:Stop And Start;3:Not Configured
+,775,28,29,1,0,0,,220220,620220,ff,EPB.ConfigurationMode.AutoApplyInhibition,0:AutoApply;1:AutoApplyInhibited;3:Not Configured
+,775,30,31,1,0,0,,220220,620220,ff,EPB.ConfigurationMode.GearBoxType,0:MT;1:AT, CVT;2:-;3:Not Configured
+,775,36,37,1,0,0,,220220,620220,ff,EPB.ConfigurationMode.ExternalAutoApplyRequest,0:No External Auto Apply request;1:External Auto Apply Request;3:Not Configured
+,775,38,39,1,0,0,,220220,620220,ff,EPB.ConfigurationMode.RNConfig,0:Renault;1:Nissan;3:Not Configured
+,775,24,239,1,0,0,,220221,620221,2ff,Software_Name
+,775,24,31,1,0,0,,220222,620222,ff,FactoryMode,0:Customer Mode;255:Factory Mode
+,775,24,31,1,0,0,,220223,620223,ff,RAMDownload,170:Disabled;255:Enabled
+,775,24,31,.1,0,1,V,220230,620230,ff,EPB.ActuatorBatteryVoltageRR
+,775,24,31,.1,0,1,V,220231,620231,ff,EPB.ActuatorBatteryVoltageRL
+,775,24,31,.2,0,1,A,220232,620232,ff,EPB.ActuatorCurrentnominalValueRR
+,775,24,31,.2,0,1,A,220233,620233,ff,EPB.ActuatorCurrentnominalValueRL
+,775,24,31,1,0,0,%g,220234,620234,1ff,VehicleForwardSlope_
+,775,24,31,.1,0,1,kN,220235,620235,ff,EPB.BrakeForceEstimated ValueRight
+,775,24,31,.1,0,1,kN,220236,620236,ff,EPB.BrakeForceEstimated ValueLeft
+,775,24,31,1,0,0,%,220237,620237,ff,ClutchPedalPosition
+,775,24,31,1,0,0,,220238,620238,ff,EPB.SwitchState,0:Apply cmd request (EPB ON);1:Neutral (no operation);2:Release cmd request (EPB OFF);3:Unavailable
+,775,24,31,1,0,0,,220239,620239,ff,EPB.FailureLevel,0:No Failure;1:Orange Warning - Spanner;2:Red Warning - STOP lamp;3:Not Used
+,775,24,31,1,0,0,,22023A,62023A,ff,EPB.DynamicBrakingCounter
+,775,24,31,1,0,0,,220240,620240,ff,EPB_BrakeStatusLeft,0:Applied;1:Applying;2:Fully Applied;3:Released;4:Releasing;5:Unknown;6:Init;7:Fully Released - Maintenance Mode;8:Wind Back - Release to Fully Released
+,775,24,31,1,0,0,,220241,620241,ff,EPB_BrakeStatusRight,0:Applied;1:Applying;2:Fully Applied;3:Released;4:Releasing;5:Unknown;6:Init;7:Fully Released - Maintenance Mode;8:Wind Back - Release to Fully Released
+,775,24,39,1,0,0,°C,220242,620242,ff,EPB_BrakeDiscTemperature
+,775,24,39,1,0,0,°C,220243,620243,ff,EPB.Highest BrakeDiscTemperature
+,775,24,47,1,0,0,km,220244,620244,ff,EPB.MileageAtHighestBrakeDiscTemperature
+,775,24,47,1,0,0,,220245,620245,ff,EPB.ManualApplyCounter
+,775,24,47,1,0,0,,220246,620246,ff,EPB.ApplyCounterLess5
+,775,24,47,1,0,0,,220247,620247,ff,EPB.ApplyCounterLess10
+,775,24,47,1,0,0,,220248,620248,ff,EPB.ApplyCounterLess20
+,775,24,47,1,0,0,,220249,620249,ff,EPB.ApplyCounterLess25
+,775,24,47,1,0,0,,22024A,62024A,ff,EPB.ApplyCounterMore25
+,775,24,47,1,0,0,,22024B,62024B,ff,EPB.ReclampCounterOdo
+,775,24,47,1,0,0,,22024C,62024C,ff,EPB.ReclampCounterHTR
+,775,24,39,1,0,0,kph,22024D,62024D,ff,EPB.VehicleSpeedRef
+,775,30,31,1,0,0,,22024E,62024E,ff,EPB.ParkingBrakeBindingStatusDisplay,0:Parking Brake Released;1:Parking Brake Applied;2:Unavailable State;3:Re-emission Request
+,775,30,31,1,0,0,,22024F,62024F,ff,EPB.ParkingBrakeMalfunctionDisplay,0:No APB Failure;1:Minor APB Failure;2:Major APB Failure
+,775,31,31,1,0,0,,220250,620250,ff,EPB.NotImmobilizedVehicleWarning,0:No warning "Vehicle not immobilized" display request;1:Warning "Vehicle not immobilized" display request
+,775,31,31,1,0,0,,220251,620251,ff,EPB.NotTightenedWarning,0:No EPB not tightened warning display requested;1:EPB not tightened warning display requested
+,775,30,31,1,0,0,,220252,620252,ff,EPB.TightenedRequestUnavailable,0:No Warning display request;1:Tightened request unavailable warning;3:Tightened request unavailable warning re-emission request
+,775,30,31,1,0,0,,220253,620253,ff,EPB.BrakePedalRequestDisplay,0:No "brake pedal Request message" display;1:Brake pedal request message to display;2:Not used;3:Brake pedal request message re-emission requested
+,775,31,31,1,0,0,,220254,620254,ff,EPB.DynamicBrakingDisplay,0:No dynamic braking display Request;1:Dynamic braking display request
+,775,30,31,1,0,0,,220255,620255,ff,EPB.TakeOffInhibitionWarning,0:No take off inhibition warning requested;1:Take off inhibition warning requested;2:Unavailable;3:Take off inhibition warning re-emission requested
+,775,30,31,1,0,0,,220256,620256,ff,EPB.LED_State,0:LED Off;1:LED On;3:LED Flashing
+,775,30,31,1,0,0,,220257,620257,ff,EPB.MalfunctionDisplay,0:No EPB default;1:Minor EPB default;2:Major EPB default;3:Unavailable
+,775,28,31,1,0,0,,220258,620258,ff,EPB.RequestBrakeControl,1:Reserved;3:No EPB dynamic braking requested;4:Reserved 4;5:Reserved 5;6:Reserved 6;7:Reserved 7;9:Reserved 9;10:Reserved 10;11:Reserved 11;12:EPB dynamic braking requested;13:Reserved 13;14:Reserved 14;15:Unavailable
+,775,24,31,.005,0,3,,220259,620259,ff,EPB.RequestTargetDeceleration
+,775,24,31,1,0,0,,220260,620260,ff,PresenceCounter
+,775,29,31,1,0,0,,220262,620262,ff,BrakeInfoStatus,0:Not used;1:Brake pedal not pressed;2:Brake pedal pressed;3:Not used 3;4:Brake pedal confirmed pressed;5:Not used 5;6:Not used 6;7:Unavailable
+,775,31,31,1,0,0,,220263,620263,ff,IgnitionSupplyConfirmation,0:no primary ignition supply;1:primary ignition supply on
+,775,30,31,1,0,0,,220264,620264,ff,PowerTrainStatus,0:Powertrain Stopped;1:Reserved;2:Powertrain Running;3:Powertrain Starting
+,775,29,31,1,0,0,,220265,620265,ff,GADE,0:Sleep or Crank fault, Disable DiagMuxDTC;1:AutoACC fault, Disable DiagMuxDTC;2:All fault, Disable DiagMuxDTC;3:All fault, Enable DiagMuxDTC;4:Not used 4;5:Not used 5;6:Not used 6;7:Unavailable
+,775,24,31,1,0,0,,220266,620266,ff,EPBVehicleSpeedRef
+,775,26,31,1,0,0,,220267,620267,ff,LastBrakeOperationLeft,0:None (Reset);1:AUTOAPPLY_APPLY_DEMAND;2:AUTOADJUST_APPLY_DEMAND;3:AUTOADJUST_RELEASE_DEMAND;6:DAA_DEMAND;7:DSD_REDUCED_CLAMP_APPLY_DEMAND;8:DSD_APPLY_DEMAND;9:DSD_RELEASE_DEMAND;10:DYNAMIC_SWITCH_RELEASE_DEMAND;12:HTR_DEMAND;13:HU_FUNCTION_APPLY_DEMAND;14:HU_FUNCTION_HOLD;15:HU_FUNCTION_RELEASE_DEMAND;16:LIMP_HOME_SWITCH_RELEASE_DEMAND;17:MCR_DEMAND;18:RECLAMP_DEMAND;19:RCD_APPLY_DEMAND;20:RCD_RELEASE_DEMAND;22:RWU_APPLY_DEMAND;23:RWU_HOLD_DEMAND;24:RWU_RELEASE_DEMAND;25:STATIC_SWITCH_APPLY_DEMAND;26:STATIC_SWITCH_RELEASE_DEMAND;27:STOA_DEMAND;28:DIAG_REL_TO_SERVICE_POSITION_DEMAND;30:DIAG_APPLY_DEMAND;31:DIAG_RELEASE_DEMAND;32:ASSEMBLY_CHECK_DEMAND
+,775,24,31,1,0,0,,220268,620268,ff,LeftBrakeState,0:Applied;1:Applying;2:Fully Applied;3:Released;4:Releasing;5:Unknown;6:Init;7:Fully Released - Maintenance Mode;8:Wind Back - Release to Fully Released
+,775,24,31,1,0,0,,220269,620269,ff,RightBrakeState,0:Applied;1:Applying;2:Fully Applied;3:Released;4:Releasing;5:Unknown;6:Init;7:Fully Released - Maintenance Mode;8:Wind Back - Release to Fully Released
+,775,24,31,.1,0,1,V,220270,620270,ff,BatteryVoltage_AD_Value
+,775,24,31,.1,0,1,kN,220271,620271,ff,BrakeForceLeft
+,775,24,31,.1,0,1,kN,220272,620272,ff,BrakeForceRight
+,775,24,31,1,0,0,%g,220274,620274,1ff,VehicleForwardSlope
+,775,28,31,1,0,0,,220276,620276,ff,VehicleStates,0:Sleeping;1:Not used 1;2:CutoffPending;3:AutoACC - BatTempoLevel;4:Not used 4;5:IgnitionLevel;6:StartingInProgress;7:PowertrainRunning;8:AutoStart;9:EngineSystemStop;10:Not used 10;11:Not used 11;12:Not used 12;13:Not used 13;14:Not used 14;15:Unavailable
+,775,26,31,1,0,0,,220277,620277,ff,LastBrakeOperationRight,0:None (Reset);1:AUTOAPPLY_APPLY_DEMAND;2:AUTOADJUST_APPLY_DEMAND;3:AUTOADJUST_RELEASE_DEMAND;6:DAA_DEMAND;7:DSD_REDUCED_CLAMP_APPLY_DEMAND;8:DSD_APPLY_DEMAND;9:DSD_RELEASE_DEMAND;10:DYNAMIC_SWITCH_RELEASE_DEMAND;12:HTR_DEMAND;13:HU_FUNCTION_APPLY_DEMAND;14:HU_FUNCTION_HOLD;15:HU_FUNCTION_RELEASE_DEMAND;16:LIMP_HOME_SWITCH_RELEASE_DEMAND;17:MCR_DEMAND;18:RECLAMP_DEMAND;19:RCD_APPLY_DEMAND;20:RCD_RELEASE_DEMAND;22:RWU_APPLY_DEMAND;23:RWU_HOLD_DEMAND;24:RWU_RELEASE_DEMAND;25:STATIC_SWITCH_APPLY_DEMAND;26:STATIC_SWITCH_RELEASE_DEMAND;27:STOA_DEMAND;28:DIAG_REL_TO_SERVICE_POSITION_DEMAND;30:DIAG_APPLY_DEMAND;31:DIAG_RELEASE_DEMAND;32:ASSEMBLY_CHECK_DEMAND
+,775,29,31,1,0,0,,220278,620278,ff,BindingStatusDisplay,0:No display request (APB is released);1:APB is tightened;2:APB is tightened re-emission;3:APB state is unknown;4:Not used 4;5:Not used 5;6:Not used 6;7:Unavailable
+,775,30,31,1,0,0,,220279,620279,ff,ParkingBrakeMalfunctionDisplay,0:No EPB default;1:Minor EPB default;2:Major EPB default;3:Unavailable
+,775,31,31,1,0,0,,220280,620280,ff,NotImmobilizedVehicleWarning,0:No warning "Vehicle not immobilized" display request;1:Warning "Vehicle not immobilized" display request
+,775,31,31,1,0,0,,220281,620281,ff,NotTightenedWarning,0:No EPB not tightened warning display requested;1:EPB not tightened warning display requested
+,775,30,31,1,0,0,,220282,620282,ff,TightenRequestUnavailable,0:No EPB tightened request unavailable warning requested;1:EPB tightened request unavailable warning requested;2:Not used;3:EPB tightened request unavailable warning re-emission requested
+,775,30,31,1,0,0,,220283,620283,ff,APBBrakePedalRequestDisplay,0:No "brake pedal Request message" display;1:Brake pedal request message to display;2:Not used;3:Brake pedal request message re-emission requested
+,775,31,31,1,0,0,,220284,620284,ff,DynamicBrakingDisplay,0:No dynamic braking display Request;1:Dynamic braking display request
+,775,30,31,1,0,0,,220285,620285,ff,TakeOffInhibitionWarning,0:No take off inhibition warning requested;1:Take off inhibition warning requested;2:Unavailable;3:Take off inhibition warning re-emission requested
+,775,30,31,1,0,0,,220286,620286,ff,LED_Status,0:LED Off;1:LED On;3:LED Flashing
+,775,24,31,1,0,0,,220287,620287,ff,DTC_Event_Status,0:event buffered (true/false);1:event re-established (true/false)
+,775,30,31,1,0,0,,220288,620288,ff,SwitchState,0:Apply cmd Request;1:Neutral position;2:Release cmd Request;3:Unavailable
+,775,31,31,1,0,0,,220290,620290,ff,IOCTRL.SwitchOnLed_Start
+,775,31,31,1,0,0,,220291,620291,ff,IOCTRL.ApplyBothActuator_Start
+,775,31,31,1,0,0,,220292,620292,ff,IOCTRL.ReleaseBothActuator_Start
+,775,24,31,1,0,0,,22EF01,62EF01,ff,SupplierFaultID,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;41:41;42:42;43:43;44:44;45:45;46:46;47:47;48:48;49:49;50:50;51:51;52:52;53:53;54:54;55:55;56:56;57:57;58:58;59:59;60:60;61:61;62:62;63:63;64:64;65:65;66:66;67:67;68:68;69:69;70:70;71:71;72:72;73:73;74:74;75:75;76:76;77:77;78:78;79:79;80:80;81:81;82:82;83:83;84:84;85:85;86:86;87:87;88:88;89:89;90:90;91:91;92:92;93:93;94:94;95:95;96:96;97:97;98:98;99:99;100:100;101:101;102:102;103:103;104:104;105:105;106:106;107:107;108:108;109:109;110:110;111:111;112:112;113:113;114:114;115:115;116:116;117:117;118:118;119:119;120:120;121:121;122:122;123:123;124:124;125:125;126:126;127:127;128:128;129:129;130:130;131:131;132:132;133:133;134:134;135:135;136:136;137:137;138:138;139:139;140:140;141:141;142:142;143:143;144:144;145:145;146:146;147:147
+,775,24,151,1,0,0,,22F010,62F010,ff,programmingOperationFingerPrint
+,775,24,95,1,0,0,,22F011,62F011,2ff,IndexSrvData
+,775,24,103,1,0,0,,22F012,62F012,2ff,Operational Reference
+,775,24,47,1,0,0,km,22F0D0,62F0D0,ff,Mileage
+,775,28,31,1,0,0,,22F0D1,62F0D1,ff,DTC_Occurrence
+,775,24,63,1,0,0,,22F180,62F180,ff,bootSoftwareIdentification
+,775,24,103,1,0,0,,22F182,62F182,2ff,CalibrationNumber
+,775,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
+,775,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
+,775,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,775,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumber
+,775,24,159,1,0,0,,22F190,62F190,2ff,VIN
+,775,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
+,775,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,775,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,775,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,775,24,103,1,0,0,,22F1A1,62F1A1,2ff,SparePartNumberNissan
+,775,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationFileReferenceLink_N

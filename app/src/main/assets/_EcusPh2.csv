@@ -20,7 +20,7 @@ Lithium Battery Controller 2,0,,18daf1dc,18dadcf1,LBC2,-,59020f,5003,0
 Meter Cluster,0,,763,743,TDB,CLUSTER;BIC,5902ff,50c0,0
 Multimedia Interface Unit,0,,734,714,MIU,-,5902ff,50c0,0
 Navigation-UCC-ITM,0,,767,747,Navigation-UCC-ITM,-,5902ff,50c0,0
-Parking Sonar,0,,76e,74e,Parking Sonar,-,5902ff,50c0,0
+Parking Sonar,0,,76e,74e,Parking-Sonar,-,5902ff,50c0,0
 Power Line connection/ Power Line Gateway,0,,7c8,7d8,PLC-PLGW,-,5902ff,50c0,0
 Security Gateway,0,,18daf1d2,18dad2f1,S-GW3,-,5902ff,5003,0
 U Safety Module,0,,76d,74d,USM,UPC;UCM,5902ff,50c0,0
