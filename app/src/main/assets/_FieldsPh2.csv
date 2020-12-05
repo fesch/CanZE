@@ -90,28 +90,32 @@
 673.32,765,128,135,13.725,0,0,mbar,2174,6174,ff,FrontRightWheelPressure
 # 673,40,47,13.725,0,0,mbar,2174,6174,ff,Front left wheel pressure
 673.40,765,136,143,13.725,0,0,mbar,2174,6174,ff,FrontLeftWheelPressure
-# ESC #
-760.6180.56,18daf12d,56,63,1,0,0,,2180,6180,ff,diagVersion
-760.6180.64,18daf12d,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-760.6180.128,18daf12d,128,143,1,0,0,,2180,6180,ff,Soft
-760.6180.144,18daf12d,144,159,1,0,0,,2180,6180,ff,Version
+# ABS-VDC / ESC #
+760.6180.56,18DAF12D,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+760.6180.64,18DAF12D,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+760.6180.128,18DAF12D,24,271,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+760.6180.144,18DAF12D,24,271,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 760.54.0.,18daf12d,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 760.5902ff.0.,18daf12d,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # EPS #
-,762,56,63,1,0,0,,2180,6180,ff,diagVersion
-,762,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-,762,128,143,1,0,0,,2180,6180,ff,Soft
-,762,144,159,1,0,0,,2180,6180,ff,Version
+,762,24,47,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,762,24,271,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,762,24,271,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,762,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
 ,762,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,762,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-# CLUSTER #
-,763,56,63,1,0,0,,2180,6180,ff,diagVersion
-,763,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-,763,128,143,1,0,0,,2180,6180,ff,Soft
-,763,144,159,1,0,0,,2180,6180,ff,Version
+# TDB / CLUSTER #
+,763,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,763,24,87,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,763,24,47,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,763,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
 ,763,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,763,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-# CLIM #
+# HVAC / CLIM #
+,764,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+764.6180.64,764,24,47,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+764.6180.128,764,24,223,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+764.6180.144,764,24,71,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 764.6121.26,764,24,39,.1,400,1,°C,224009,624009,ff,IH_IncarTempIH_IncarTemp
 764.6121.36,764,24,31,.5,0,1,%,22423B,62423B,ff,IH_RHumidity
 764.6143.86,764,24,31,1,0,0,,224266,624266,ff,IH_EcoModeRequest
@@ -122,17 +126,13 @@
 764.6145.29,764,24,31,.5,0,1,°C,224004,624004,ff,OLB_FP_LeftTempDisplay
 764.6167.21,764,24,31,1,0,0,,224402,624402,ff,OH_ClimLoopMode,1:AC Mode;2:Deicing Mode;4:HeatPump Mode;6:Demisting Mode;7:Idle Mode
 764.6167.40,764,24,39,.25,200,1,°C,224347,624347,ff,IH_ExternalTemperature
-,764,56,63,1,0,0,,2180,6180,ff,diagVersion
-764.6180.64,764,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
-764.6180.128,764,24,231,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
-764.6180.144,764,24,79,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,764,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,764,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # BCM #
-,765,56,63,1,0,0,,2180,6180,ff,diagVersion
-,765,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-,765,128,143,1,0,0,,2180,6180,ff,Soft
-,765,144,159,1,0,0,,2180,6180,ff,Version
+,765,24,191,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,765,24,271,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,765,24,271,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,765,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
 ,765,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,765,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,765,16,16,1,0,0,,2171,6171,ff,PRESENCE_SSPP,0:without;1:with
@@ -149,10 +149,10 @@
 ,76d,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,76d,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # Parking Sonar #
-,76e,56,63,1,0,0,,2180,6180,ff,diagVersion
-,76e,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-,76e,128,143,1,0,0,,2180,6180,ff,Soft
-,76e,144,159,1,0,0,,2180,6180,ff,Version
+,76e,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,76e,24,271,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,76e,24,271,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,76e,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
 ,76e,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,76e,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # AIBAG-SRS #
@@ -162,7 +162,7 @@
 ,772,144,159,1,0,0,,2180,6180,ff,Version
 ,772,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,772,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-# INV_ME
+# INV-ME
 ,18daf1df,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,18daf1df,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,18daf1df,128,143,1,0,0,,2180,6180,ff,Soft
@@ -192,9 +192,6 @@
 793.62502c.24,18daf1de,24,39,.5,32000,1,V,22502c,62502c,ff,Raw AC mains phase 1 measured voltage
 793.62502d.24,18daf1de,24,39,.5,32000,1,V,22502d,62502d,ff,Raw AC mains phase 2 measured voltage
 793.62502e.24,18daf1de,24,39,.5,32000,1,V,22502e,62502e,ff,Raw AC mains phase 3 measured voltage
-# 793.62503f.24,18daf1de,24,39,.5,0,1,V,22503f,62503f,ff,Mains phase 1-2 voltage RMS value
-# 793.625041.24,18daf1de,24,39,.5,0,1,V,225041,625041,ff,Mains phase 2-3 voltage RMS value
-# 793.625042.24,18daf1de,24,39,.5,0,1,V,225042,625042,ff,Mains phase 3-1 voltage RMS value
 793.62503f.24,18DAF1DE,24,39,.015625,0,2,V,22503F,62503F,ff,($503F) Mains phase 1-2 voltage RMS value
 793.625041.24,18DAF1DE,24,39,.015625,0,2,V,225041,625041,ff,($5041) Mains phase 2-3 voltage RMS value
 793.625042.24,18DAF1DE,24,39,.015625,0,2,V,225042,625042,ff,($5042) Mains phase 3-1 voltage RMS value
@@ -203,15 +200,21 @@
 793.625063.24,18daf1de,24,31,1,0,0,,225063,625063,ff,Supervisor state,0:Init;1:Wait;2:ClosingS2;3:InitType;4:InitLkg;5:InitChg;6:Charge;7:ZeroAmpMode;8:EndOfChg;9:OpeningS2;10:ReadyToSleep;11:EmergencyStop;12:InitChargeDF;13:OCPStop;14:WaitS2
 793.625064.24,18daf1de,24,31,1,0,0,,225064,625064,ff,Leakage current diagnostic stored completion status,0:init;1:HF10;3:Mains Ground Default;5:Earth Current default;9:Ground Default;17:Means Leakage DC;33:Means Leakage LF;49:Means Leakage DC+LF;65:Means Leakage HF;81:Means Leakage DC+HF;97:Means Leakage LF+HF;113:Means Leakage DC+LF+HF
 # LBC2 #
-7b6.6180.56,18daf1dc,56,63,1,0,0,,2180,6180,ff,diagVersion
-7b6.6180.64,18daf1dc,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-7b6.6180.128,18daf1dc,128,143,1,0,0,,2180,6180,ff,Soft
-7b6.6180.144,18daf1dc,144,159,1,0,0,,2180,6180,ff,Version
+7b6.6180.64,18DAF1DC,24,71,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+7b6.6180.128,18DAF1DC,24,55,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+7b6.6180.144,18DAF1DC,24,55,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+7b6.6180.56,18DAF1DC,24,31,1,0,0,,22F1A0,62F1A0,ff,VDIAG
 7b6.54.0,18daf1dc,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 7b6.59020f.0,18daf1dc,0,23,1,0,0,,19023b,59020f,ff,Query DTC
 # LBC #
+7bb.6180.64,18DAF1DB,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+7bb.6180.128,18DAF1DB,24,55,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+7bb.6180.144,18DAF1DB,24,55,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+7bb.6180.56,18DAF1DB,24,31,1,0,0,,22F1A0,62F1A0,ff,VDIAG
+7bb.54.0,18daf1db,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+7bb.5902ff.0,18daf1db,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+7bb.5003.0,18daf1db,0,23,1,0,0,,1003,5003,ff,StartDiagnosticSession.Extended
 7bb.6101.336,18daf1db,24,39,0.01,0,2,kW,229018,629018,ff,Maximum battery input power
-# 7bb.6103.192,18daf1db,24,39,0.01,0,2,%,229002,629002,ff,Real State of Charge
 7bb.6103.192,18daf1db,24,39,0.01,300,2,%,229001,629001,ff,Real State of Charge
 7ec.622002.24,18DAF1DB,24,39,.01,0,2,%,229002,629002,ff,Battery USOC(Wxx_usoc_avg)
 # 7ec.623206.24,18DAF1DB,24,39,.1,0,1,%,2291BC,6291BC,ff,Battery SOH (Available Power calculation)(Zxx_sohap)
@@ -340,20 +343,10 @@
 7bb.6142.544,18daf1db,24,39,0.000976563,0,3,V,229083,629083,ff,Cell 96 V
 7bb.6161.96,18daf1db,96,119,1,0,0,km,2161,6161,ff,Battery mileage in km
 # 7bb.6161.96,18DAF1DB,24,55,.03125,-2147483648,2,km,2291CF,6291CF,ff,Battery mileage(Zxx_dist_pack_mem)
-# 7bb.6161.120,18daf1db,120,151,1,0,0,kWh,2161,6161,ff,kWh from beginning of Battery life
 7bb.6161.120,18DAF1DB,24,55,.001,0,3,kWh,229243,629243,1ff,Cumulated energy in charge
 7bb.6162.16,18daf1db,16,47,1,0,0,,2162,6162,ff,21_62_03_Serial_Number (FIN)
-# 7bb.6166.48,18daf1db,48,63,1,0,0,,2166,6166,ff,Full Charge counter
 7bb.6166.48,18DAF1DB,24,39,1,0,0,,229210,629210,ff,Overall number of complete charge(Zxx_full_chg_ctr)
-# 7bb.6166.64,18daf1db,64,79,1,0,0,,2166,6166,ff,Partial Charge counter
 7bb.6166.64,18DAF1DB,24,39,1,0,0,,229215,629215,ff,Overall number of partial charge(Zxx_partial_chg_ctr)
-7bb.6180.56,18daf1db,56,63,1,0,0,,2180,6180,ff,diagVersion
-7bb.6180.64,18daf1db,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-7bb.6180.128,18daf1db,128,143,1,0,0,,2180,6180,ff,Soft
-7bb.6180.144,18daf1db,144,159,1,0,0,,2180,6180,ff,Version
-7bb.54.0,18daf1db,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-7bb.5902ff.0,18daf1db,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-7bb.5003.0,18daf1db,0,23,1,0,0,,1003,5003,ff,StartDiagnosticSession.Extended
 # UBP xxxxxxx
 #,7bc,56,63,1,0,0,,2180,6180,ff,diagVersion
 #,7bc,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
@@ -363,25 +356,25 @@
 #,7bc,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 #,7bc,28,39,1,4094,0,N·m,224B7D,624B7D,ff,Total Hydraulic brake wheels torque request
 # TCU - DCM Renault #
-,7da,56,63,1,0,0,,2180,6180,ff,diagVersion
-,7da,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-,7da,128,143,1,0,0,,2180,6180,ff,Soft
-,7da,144,159,1,0,0,,2180,6180,ff,Version
+,7da,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7da,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7da,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7da,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
 ,7da,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,7da,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # S-GW3 #
-,18daf1d2,56,63,1,0,0,,2180,6180,ff,diagVersion
-,18daf1d2,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-,18daf1d2,128,143,1,0,0,,2180,6180,ff,Soft
-,18daf1d2,144,159,1,0,0,,2180,6180,ff,Version
+,18daf1d2,24,47,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,18daf1d2,24,271,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,18daf1d2,24,271,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,18daf1d2,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
 ,18daf1d2,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,18daf1d2,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,18daf1d2,0,23,1,0,0,,1003,5003,ff,StartDiagnosticSession.Extended
 # EVC #
-7ec.6180.56,18daf1da,56,63,1,0,0,,2180,6180,ff,diagVersion
-7ec.6180.64,18daf1da,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
-7ec.6180.128,18daf1da,128,143,1,0,0,,2180,6180,ff,Soft
-7ec.6180.144,18daf1da,144,159,1,0,0,,2180,6180,ff,Version
+7ec.6180.64,18DAF1DA,24,223,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+7ec.6180.128,18DAF1DA,24,55,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+7ec.6180.144,18DAF1DA,24,55,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+7ec.6180.56,18DAF1DA,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
 7ec.54.0,18daf1da,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 7ec.5902ff.0,18daf1da,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 7ec.5003.0,18daf1da,0,23,1,0,0,,10c0,50c0,ff,StartDiagnosticSession.Extended
@@ -473,3 +466,63 @@
 7ec.6233de.24,18daf1da,24,55,0.0001,0,0,km,2233de,6233de,ff,Trip distance
 7ec.623484.24,18daf1da,24,39,1,32767,0,A,223484,623484,ff,Current measurement given by BCS Battery Current Sensor
 7ec.6234.84.24,18daf1da,24,39,.001,0,0,V,223485,623485,ff,Voltage measurement given by BCS Battery Current Sensor
+# E-ACT-EBA #
+,18DAF1E2,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,18DAF1E2,24,271,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,18DAF1E2,24,271,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,18DAF1E2,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+# IDM #
+,700,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,700,24,79,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,700,24,39,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,700,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+# AAU #
+,7A2,24,47,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7A2,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7A2,24,167,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7A2,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+# APB #
+,775,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,775,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,775,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,775,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+# FCAM #
+,7dd,24,39,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7dd,24,71,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7dd,24,143,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7dd,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+# HFM #
+,7b9,24,103,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7b9,24,271,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7b9,24,271,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7b9,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+# FRRAD #
+,735,24,47,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,735,24,87,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,735,24,87,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,735,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+# MIU #
+,734,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,734,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,734,24,79,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,734,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+# Navigation-UCC-ITM #
+,767,24,63,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,767,24,199,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,767,24,111,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,767,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+# PLC-PLGW #
+,7C8,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7C8,24,95,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7C8,24,151,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7C8,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+# VSP #
+,761,56,63,1,0,0,,2180,6180,ff,diagVersion
+,761,64,87,1,0,0,,2180,6180,2ff,Supplier (string)
+,761,128,143,1,0,0,,2180,6180,ff,Soft
+,761,144,159,1,0,0,,2180,6180,ff,Version
+# WCGS #
+,7ad,24,87,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7ad,24,71,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7ad,24,135,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7ad,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
