@@ -55,18 +55,23 @@
 ,18DAF1DE,168,183,1,0,0,,21F1,61F1,ff,TimeOfReprogramming
 ,18DAF1DE,184,191,1,0,0,,21F1,61F1,ff,SaveMarking
 ,18DAF1DE,192,207,1,0,0,,21F1,61F1,ff,CrcOfLogSave
+,18DAF1DE,24,55,1,0,0,,222000,622000,1ff,DIDs supported in range [$2001 - $2020],0:not supported;1:supported
 ,18DAF1DE,24,39,.0625,3200,2,A,222001,622001,ff,($2001) Mains phase 1 current RMS value
 ,18DAF1DE,24,39,.0625,0,2,V,222002,622002,ff,($2002) CPU voltage supply from BI
 ,18DAF1DE,29,31,1,0,0,,222003,622003,ff,($2003) Junction box 2 state,0:Init;1:Charge;4:Wait;5:Power Off/Sleep
 ,18DAF1DE,24,31,1,0,0,%,222004,622004,ff,($2004) System Relative Temperature in %
 ,18DAF1DE,24,39,1,0,0,min,222005,622005,ff,($2005) Relative time since 1st ignition truncated from CAN (HEVC)
+,18DAF1DE,24,55,1,0,0,,225000,625000,1ff,DIDs supported in range [$5001 - $5020],0:no supply;1:powered
 ,18DAF1DE,24,47,1,0,0,,225001,625001,ff,($5001) Plugging counter
 ,18DAF1DE,24,47,1,0,0,,225002,625002,ff,($5002) Wake Up counter
 ,18DAF1DE,31,31,1,0,0,,225003,625003,ff,($5003) Raw A/C plug interlock value,0:open;1:closed
+,18DAF1DE,31,31,1,0,0,,225004,625004,ff,Buck IGBT drivers power supply activation,0:no supply;1:powered
 ,18DAF1DE,31,31,1,0,0,,225005,625005,ff,($5005) CAN activity for JB2,0:No activity;1:Activity
+,18DAF1DE,31,31,1,0,0,,225006,625006,ff,Ground presence,0:present;1:absent
 ,18DAF1DE,25,31,1,0,0,%,225007,625007,ff,($5007) MMI Green LED PWM request
 ,18DAF1DE,31,31,1,0,0,,225008,625008,ff,($5008) Raw JB2 hood plug interlock value,0:open;1:closed
 ,18DAF1DE,31,31,1,0,0,,225009,625009,ff,($5009) Raw HV Battery plug interlock value,0:open;1:closed
+,18DAF1DE,31,31,1,0,0,,22500A,62500A,ff,Raw current limiter switch value,0:no limit;1:limited
 ,18DAF1DE,31,31,1,0,0,,22500B,62500B,ff,($500B) Raw mains interlock value,0:open;1:closed
 ,18DAF1DE,31,31,1,0,0,,22500C,62500C,ff,($500C) Mains tri phases permutation,0:v1/v2/v3 off;1:v1/v2/v3 on
 ,18DAF1DE,31,31,1,0,0,,22500D,62500D,ff,($500D) Mains voltage presence,0:Absent;1:Present
@@ -83,10 +88,12 @@
 ,18DAF1DE,30,31,1,0,0,,225018,625018,ff,($5018) Mains plug unlocking CAN request,0:Unavailable;1:Unlock request;2:No unlock request
 ,18DAF1DE,30,31,1,0,0,,225019,625019,ff,($5019) Memorized value of the wake up activation,1:Wake-up activated;2:Wake-up deactivated
 ,18DAF1DE,31,31,1,0,0,,22501A,62501A,ff,($501A) BCM wake-up by wire,0:No wake-up;1:Wake-up
+,18DAF1DE,31,31,1,0,0,,22501B,62501B,ff,Current limiter illumination request,0:Off;1:On
 ,18DAF1DE,31,31,1,0,0,,22501C,62501C,ff,($501C) S2 relay control,0:Open;1:Close
 ,18DAF1DE,30,31,1,0,0,,22501D,62501D,ff,($501D) Charge state request,0:No charge;1:Charge;2:Emergency stop
 ,18DAF1DE,29,31,1,0,0,,22501E,62501E,ff,($501E) Global system state,0:Init;1:Actif;2:Sleep
 ,18DAF1DE,30,31,1,0,0,,22501F,62501F,ff,($501F) System Temperature State,0:Ok;1:Derating;2:Nok
+,18DAF1DE,24,55,1,0,0,,225020,625020,1ff,DIDs supported in range [$5021 - $5040],0:not supported;1:supported
 ,18DAF1DE,30,31,1,0,0,,225021,625021,ff,($5021) Cooling Temperature State,0:Ok;1:Derating;2:Nok
 ,18DAF1DE,30,31,1,0,0,,225022,625022,ff,($5022) Auto wake-up enabling,0:No change;1:Activation;2:Deactivation
 ,18DAF1DE,24,39,.0625,880,2,°C,225023,625023,ff,($5023) Raw CPU temperature value from BI
@@ -98,6 +105,7 @@
 ,18DAF1DE,24,39,.0625,3200,2,A,225029,625029,ff,($5029) Raw AC mains phase 1 measured current
 ,18DAF1DE,24,39,.0625,3200,2,A,22502A,62502A,ff,($502A) Raw AC mains phase 2 measured current
 ,18DAF1DE,24,39,.0625,3200,2,A,22502B,62502B,ff,($502B) Raw AC mains phase 3 measured current
+,18DAF1DE,24,39,.5,32000,1,,22502C,62502C,ff,Raw AC mains phase 1 measured voltage
 ,18DAF1DE,25,31,1,0,0,%,22502F,62502F,ff,($502F) MMI Red LED PWM request
 ,18DAF1DE,31,31,1,0,0,,225030,625030,ff,($5030) Raw fuse interlock value,0:open;1:closed
 ,18DAF1DE,31,31,1,0,0,,225031,625031,ff,($5031) Raw Relay box plug interlock closed,0:open;1:closed
@@ -145,7 +153,7 @@
 ,18DAF1DE,24,39,1,0,0,ms,22505F,62505F,ff,($505F) High part of CPU clock since power up
 ,18DAF1DE,24,39,1,0,0,ms,225061,625061,ff,($5061) Low part of CPU clock since power up
 ,18DAF1DE,24,39,1,0,0,Ohm,225062,625062,ff,($5062) Mains ground resistance
-,18DAF1DE,24,31,1,0,0,,225063,625063,ff,($5063) Supervisor state,0:Init;1:StandByPowerOn;2:STestOK;3:InitType;4:Initlkg;5:StandByPowerOnSetup;6:Charge;7:ZeroAmpMode;8:EndOfCharge;9:OpeningRL;10:Not used10;11:EmergencyStop;12:STestWait;13:STestAct;14:WaitRLCHA;15:WaitRLContactorTri;16:OpeningCapaMC;17:EmergencyStopEndFwl;18:Not used18;19:Not used19;20:Not used20
+,18DAF1DE,24,31,1,0,0,,225063,625063,ff,($5063) supervisor state memorized for FF,0:Init;1:StandByPowerOn;2:ClosingS2;3:InitType;4:Initlkg;5:StandByPowerOnSetup;6:Charge;7:ZeroAmpMode;8:EndOfCharge;9:OpeningRL;10:STestOK;11:Not used;12:STestWait;13:STestAct;14:WaitRLCHA;15:WaitRLContactorTri;16:OpeningCapaMC;17:No used
 ,18DAF1DE,24,31,1,0,0,,225064,625064,ff,($5064) Leakage current diagnostic stored completion status,0:init;1:HF10;3:Mains Ground Default;5:Earth Current default;9:Ground Default;17:Means Leakage DC;33:Means Leakage LF;49:Means Leakage DC+LF;65:Means Leakage HF;81:Means Leakage DC+HF;97:Means Leakage LF+HF;113:Means Leakage DC+LF+HF
 ,18DAF1DE,24,39,.0625,32768,2,mA,225065,625065,ff,($5065) Leakage DC current saved indicator after failure
 ,18DAF1DE,24,39,.0625,32768,2,mA,225066,625066,ff,($5066) Leakage HF 10kHz current saved indicator after failure
@@ -159,8 +167,13 @@
 ,18DAF1DE,24,31,1,0,0,,22506E,62506E,ff,($506E) Cosphi regulation enable,0:Disable;1:Enable
 ,18DAF1DE,24,31,1,0,0,,22506F,62506F,ff,($506F) PLGW card presence,0:Not Present;1:Present
 ,18DAF1DE,24,31,.25,0,1,A,225070,625070,ff,($5070) max AC current limitation configuration
-,18DAF1DE,24,31,1,40,0,°C,225073,625073,ff,($5073 ) Cooling temperature from BI
-,18DAF1DE,24,39,.0625,32768,2,mA,225074,625074,ff,($5074 ) Leakage current - DC part measurement - without offset
-,18DAF1DE,24,39,.0625,32768,2,mA,225075,625075,ff,($5075 ) Filtered Leakage current -High Frequency measurement
+,18DAF1DE,24,31,1,40,0,°C,225073,625073,ff,($5073) Cooling temperature from BI
+,18DAF1DE,24,39,.0625,32768,2,mA,225074,625074,ff,($5074) Leakage current DC part measurement without offset
+,18DAF1DE,24,39,.0625,32768,2,mA,225075,625075,ff,($5075) Filtered Leakage current High Frequency measurement
 ,18DAF1DE,24,39,.0625,32768,2,mA,225076,625076,ff,($5076) Filtered Leakage current -High Frequency 10kHz part measurement
 ,18DAF1DE,24,39,.0625,32768,2,mA,225077,625077,ff,($5077) Leakage current - Low Frequency part measurement (50Hz)
+,18DAF1DE,24,31,1,0,0,,225078,625078,ff,($5078) Supervisor state,0:Init;1:StandByPowerOn;2:STestOK;3:InitType;4:Initlkg;5:StandByPowerOnSetup;6:Charge;7:ZeroAmpMode;8:EndOfCharge;9:OpeningRL;10:Not used10;11:EmergencyStop;12:STestWait;13:STestAct;14:WaitRLCHA;15:WaitRLContactorTri;16:OpeningCapaMC;17:EmergencyStopEndFwl;18:Not used18;19:Not used19;20:Not used20
+,18DAF1DE,31,31,1,0,0,,225079,625079,ff,($5079) Voltage presence between ph1 and ground,0:Voltage Not present;1:Voltage Present
+,18DAF1DE,31,31,1,0,0,,225080,625080,ff,($5080) Voltage presence between neutral and ground,0:Voltage Not present;1:Voltage Present
+,18DAF1DE,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI
+,18DAF1DE,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI
