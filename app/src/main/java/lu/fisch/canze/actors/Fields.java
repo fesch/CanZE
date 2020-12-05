@@ -669,7 +669,9 @@ public class Fields {
             if (field != null) {
                 dependantFields.put(sid, field);
             } else {
-                MainActivity.toast(MainActivity.TOAST_NONE,  String.format(Locale.getDefault(),MainActivity.getStringSingle(R.string.format_NoSid), "Fields", sid));
+                if (!MainActivity.isPh2()) { /* TODO remove this if!!!! */
+                    MainActivity.toast(MainActivity.TOAST_NONE, String.format(Locale.getDefault(), MainActivity.getStringSingle(R.string.format_NoSid), "Fields", sid));
+                }
                 allOk = false;
             }
         }
