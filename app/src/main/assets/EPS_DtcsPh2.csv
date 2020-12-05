@@ -1,0 +1,51 @@
+5604,EPS_TorqueSensor
+5608,EPS_ECU
+C073,CAN BUSS OFF Fault
+5616,EPS Fault - Derating (H)EPS thermal protection Motor
+5615,EPS Fault - Derating (H)EPS thermal protection Controller
+D321,EPS Fault - ECU Not configured
+5601,Battery Voltage Fault
+5617,Inconsistent LKA request
+5606,EPS_Motor
+561A,CAN ABS/VDC Fault (Wheel speed)
+561B,CAN ABS/VDC Fault (Vehicle speed)
+E156,DTCMux - CAN Steering Wheel Angle Fault (STRG)
+561C,CAN Steering Wheel Angle Fault (STRG)
+5634,CAN Steering Wheel Angle Fault (STRG) (Signal Fault)
+5603,CAN Steering Wheel Angle Fault (STRG) Calibration Fault)
+E140,DTCMux - CAN ECM Fault
+5623,CAN ECM Fault1
+5635,CAN ECM Fault2
+E15B,DTCMux - CAN USM Fault
+5629,CAN USM Fault
+E14F,DTCMux - CAN BCM Fault
+5621,CAN BCM Fault1
+5622,CAN BCM Fault2
+5625,CAN BCM Fault3
+E154,DTCMux - CAN IVI Fault
+E165,DTCMux - CAN HFP Fault
+5626,CAN HFP Fault
+C078,CAN BUSS OFF Fault - ADAS
+5628,CAN IPA Fault
+E152,DTCMux - CAN IPA Fault
+E26B,DTCMux - CAN LKA/LDW fault (FrCamera)
+5620,CAN LCA Fault
+5637,CAN LCA Fault (Signal Fault 1)
+5638,CAN LCA Fault (Signal Fault 2)
+E252,DTCMux - CAN LCA Fault
+E14E,DTCMux - CAN Cluster/Meter Fault
+562A,CAN Cluster/Meter Fault
+5627,CAN LKA/LDW Fault 1 (FrCamera)
+5639,CAN LKA/LDW Fault 2 (FrCamera)
+5632,CAN G-sensor Fault1 (Signal Fault)
+561E,CAN G-sensor Fault 1
+5633,CAN G-sensor Fault 2
+E148,DTCMux - CAN ABS/VDC Fault
+561F,CAN IVI Fault 1
+5636,CAN IVI Fault 2
+5614,Very_soft_ramp_down (below SafeAssist level)
+5624,Very_soft_ramp_down (above SafeAssist level)
+561D,CAN ABS/VDC Fault for LCA/TJP
+5618,Inconsistent LCA request
+D323,EPS HOD not compensated
+D322,EPS HOD not fully configured

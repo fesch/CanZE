@@ -1,0 +1,5 @@
+9B00,Bus Signal / Message Failures
+9B01,circuit voltage out of range
+9B02,circuit current out of range
+9B03,internal electronic failure
+9B04,Virgin or incomplete configuration
