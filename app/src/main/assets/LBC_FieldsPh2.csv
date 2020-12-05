@@ -684,7 +684,7 @@
 ,18DAF1DB,24,47,1,0,0,min,2291C1,6291C1,ff,Pack Time Life (since 1st power-up)(Wxx_abs_time_pack)
 ,18DAF1DB,24,39,.25,0,1,mOhm,2291C6,6291C6,ff,DC resistance (charge direction)(Wxx_dcr_chg)
 ,18DAF1DB,24,39,.25,0,1,mOhm,2291C7,6291C7,ff,DC resistance (discharge direction)(Wxx_dcr_dchg)
-,18DAF1DB,24,47,.001,0,3,kWh,2291C8,6291C8,ff,Available Energy(Wxx_avl_e)
+,18DAF1DB,24,47,.001,0,3,kW,2291C8,6291C8,ff,Available Energy(Wxx_avl_e)
 ,18DAF1DB,24,31,.5,0,1,%,2291C9,6291C9,ff,FAN control request(Wxx_fan_ctl_dcy)
 ,18DAF1DB,31,31,1,0,0,,2291CA,6291CA,ff,Main relay control request(Wxx_chg_rly_ctl),0:Openning control;1:Closing control
 ,18DAF1DB,31,31,1,0,0,,2291CB,6291CB,ff,Precharge relay control request(Wxx_pchg_rly_ctl),0:Openning control;1:Closing control
@@ -709,7 +709,7 @@
 ,18DAF1DB,45,45,1,0,0,,2291CC,6291CC,ff,Busbars number in failure(Wtx_bbar_fail_nr).03,0:No failure;1:Busbar no.3 failure
 ,18DAF1DB,46,46,1,0,0,,2291CC,6291CC,ff,Busbars number in failure(Wtx_bbar_fail_nr).02,0:No failure;1:Busbar no.2 failure
 ,18DAF1DB,47,47,1,0,0,,2291CC,6291CC,ff,Busbars number in failure(Wtx_bbar_fail_nr).01,0:No failure;1:Busbar no.1 failure
-,18DAF1DB,24,39,.0625,640,2,°C,2291CD,6291CD,ff,Cooling temperature(Wxx_temp_1)
+,18DAF1DB,24,39,.0625,640,2,°C,2291CD,6291CD,ff,Cooling temperature(Wxx_raw_temp_1)
 ,18DAF1DB,24,55,.03125,-2147483648,2,km,2291CF,6291CF,1ff,Battery mileage(Zxx_dist_pack_mem)
 ,18DAF1DB,31,31,1,0,0,,2291D0,6291D0,ff,Charge relay diag feedback (RELAY1_DIAG)(Wbx_chg_rly_ctl_dg)
 ,18DAF1DB,24,39,1,0,0,min,2291D1,6291D1,ff,Charge Deplating Driving history (T°Max/BSOC)(Ztx_drv_cd_mtrx).25
@@ -839,13 +839,17 @@
 ,18DAF1DB,24,39,.000976563,0,3,V,229226,629226,1ff,Raw busbar voltage 5(Wtx_raw_busbar_v[5])
 ,18DAF1DB,24,39,.000976563,0,3,V,229227,629227,1ff,Raw busbar voltage 6(Wtx_raw_busbar_v[6])
 ,18DAF1DB,24,39,.000976563,0,3,V,229228,629228,1ff,Raw busbar voltage 7(Wtx_raw_busbar_v[7])
+,18DAF1DB,24,39,.000976563,0,3,V,229229,629229,1ff,Raw busbar voltage 8(Wtx_raw_busbar_v[8])
+,18DAF1DB,24,39,.000976563,0,3,V,22922A,62922A,1ff,Raw busbar voltage 9(Wtx_raw_busbar_v[9])
+,18DAF1DB,24,39,.000976563,0,3,V,22922B,62922B,1ff,Raw busbar voltage 10(Wtx_raw_busbar_v[10])
+,18DAF1DB,24,39,.000976563,0,3,V,22922C,62922C,1ff,Raw busbar voltage 11(Wtx_raw_busbar_v[11])
 ,18DAF1DB,24,55,1,0,0,,229240,629240,ff,DIDs supported in range [$9241 - $9260]
 ,18DAF1DB,24,31,1,0,0,,229241,629241,ff,Index of thermistor with maximal temperature value(Wxx_temp_max_nr)
 ,18DAF1DB,24,31,1,0,0,,229242,629242,ff,Index of thermistor with minimal temperature value(Wxx_temp_min_nr)
 ,18DAF1DB,24,55,.001,0,3,,229243,629243,1ff,Cumulated energy in charge (Zxx_kwh_chg)
 ,18DAF1DB,24,55,.001,0,3,,229244,629244,1ff,Cumulated energy in discharge : CS mode(Zxx_kwh_dch_cs)
-,18DAF1DB,24,55,.001,0,3,kWh,229245,629245,1ff,Cumulated energy in discharge:CD mode(Zxx_kwh_dch_cd)
-,18DAF1DB,24,55,.001,0,3,kWh,229246,629246,1ff,Cumulated energy in regen :CS mode(Zxx_kwh_rgn_cs)
+,18DAF1DB,24,55,.001,0,3,,229245,629245,1ff,Cumulated energy in discharge:CD mode(Zxx_kwh_dch_cd)
+,18DAF1DB,24,55,.001,0,3,,229246,629246,1ff,Cumulated energy in regen :CS mode(Zxx_kwh_rgn_cs)
 ,18DAF1DB,24,55,.001,0,3,,229247,629247,1ff,Cumulated energy in regen : CD mode(Zxx_kwh_rgn_cd)
 ,18DAF1DB,24,39,.01,0,2,%,229248,629248,ff,SOHEdegrad_K(Zxx_sohe_dgrd_k)
 ,18DAF1DB,24,39,.01,0,2,%,229249,629249,ff,SOHEdegrad_K-1(Zxx_sohe_dgrd_km1)
@@ -1123,7 +1127,7 @@
 ,18DAF1DB,30,31,1,0,0,,22925C,62925C,ff,Relay status, internal value
 ,18DAF1DB,24,39,.03125,32640,2,A,22925D,62925D,ff,Current value, average at 100ms
 ,18DAF1DB,24,47,1,0,0,,22925E,62925E,ff,Vehicle ID(Zxx_id_vhc)
-,18DAF1DB,24,55,.01,-2147483648,2,km,22925F,62925F,1ff,Distance Totalizer (vehicle)
+,18DAF1DB,24,55,.01,0,2,km,22925F,62925F,1ff,Distance Totalizer (vehicle)
 ,18DAF1DB,24,55,1,0,0,,229260,629260,ff,DIDs supported in range [$9261 - $9280]
 ,18DAF1DB,24,47,1,0,0,min,229261,629261,ff,Absolute Time of Vehicle saved
 ,18DAF1DB,24,55,.0009765625,-2147483648,3,,229262,629262,1ff,Total balancing quantity, Wake Up mode (Zxx_bal_chg_tot_wk)
@@ -1523,38 +1527,38 @@
 ,18DAF1DB,257,263,1,0,0,%,229273,629273,ff,Initial mission USOC(Ztx_mission_usoc_beg).02
 ,18DAF1DB,265,271,1,0,0,%,229273,629273,ff,Initial mission USOC(Ztx_mission_usoc_beg).01
 ,18DAF1DB,273,279,1,0,0,%,229273,629273,ff,Initial mission USOC(Ztx_mission_usoc_beg).00
-,18DAF1DB,25,31,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).31
-,18DAF1DB,33,39,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).30
-,18DAF1DB,41,47,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).29
-,18DAF1DB,49,55,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).28
-,18DAF1DB,57,63,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).27
-,18DAF1DB,65,71,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).26
-,18DAF1DB,73,79,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).25
-,18DAF1DB,81,87,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).24
-,18DAF1DB,89,95,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).23
-,18DAF1DB,97,103,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).22
-,18DAF1DB,105,111,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).21
-,18DAF1DB,113,119,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).20
-,18DAF1DB,121,127,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).19
-,18DAF1DB,129,135,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).18
-,18DAF1DB,137,143,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).17
-,18DAF1DB,145,151,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).16
-,18DAF1DB,153,159,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).15
-,18DAF1DB,161,167,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).14
-,18DAF1DB,169,175,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).13
-,18DAF1DB,177,183,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).12
-,18DAF1DB,185,191,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).11
-,18DAF1DB,193,199,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).10
-,18DAF1DB,201,207,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).09
-,18DAF1DB,209,215,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).08
-,18DAF1DB,217,223,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).07
-,18DAF1DB,225,231,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).06
-,18DAF1DB,233,239,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).05
-,18DAF1DB,241,247,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).04
-,18DAF1DB,249,255,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).03
-,18DAF1DB,257,263,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).02
-,18DAF1DB,265,271,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).01
-,18DAF1DB,273,279,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).00
+,18DAF1DB,24,31,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).31
+,18DAF1DB,32,39,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).30
+,18DAF1DB,40,47,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).29
+,18DAF1DB,48,55,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).28
+,18DAF1DB,56,63,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).27
+,18DAF1DB,64,71,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).26
+,18DAF1DB,72,79,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).25
+,18DAF1DB,80,87,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).24
+,18DAF1DB,88,95,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).23
+,18DAF1DB,96,103,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).22
+,18DAF1DB,104,111,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).21
+,18DAF1DB,112,119,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).20
+,18DAF1DB,120,127,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).19
+,18DAF1DB,128,135,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).18
+,18DAF1DB,136,143,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).17
+,18DAF1DB,144,151,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).16
+,18DAF1DB,152,159,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).15
+,18DAF1DB,160,167,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).14
+,18DAF1DB,168,175,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).13
+,18DAF1DB,176,183,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).12
+,18DAF1DB,184,191,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).11
+,18DAF1DB,192,199,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).10
+,18DAF1DB,200,207,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).09
+,18DAF1DB,208,215,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).08
+,18DAF1DB,216,223,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).07
+,18DAF1DB,224,231,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).06
+,18DAF1DB,232,239,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).05
+,18DAF1DB,240,247,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).04
+,18DAF1DB,248,255,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).03
+,18DAF1DB,256,263,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).02
+,18DAF1DB,264,271,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).01
+,18DAF1DB,272,279,1,0,0,%,229274,629274,ff,End of mission USOC(Ztx_mission_usoc_end).00
 ,18DAF1DB,24,47,1,0,0,min,229275,629275,ff,Initial mission Absolute Pack Time.31
 ,18DAF1DB,48,71,1,0,0,min,229275,629275,ff,Initial mission Absolute Pack Time.30
 ,18DAF1DB,72,95,1,0,0,min,229275,629275,ff,Initial mission Absolute Pack Time.29
@@ -2133,20 +2137,22 @@
 ,18DAF1DB,24,39,1,0,0,,22F0A0,62F0A0,ff,FOTA Status
 ,18DAF1DB,24,31,1,0,0,,22F0A5,62F0A5,ff,FOTA cancel counter
 ,18DAF1DB,24,55,1,0,0,,22F100,62F100,ff,DIDs supported in range [$F101 - $F120]
+,18DAF1DB,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI
 ,18DAF1DB,24,55,1,0,0,,22F120,62F120,ff,DIDs supported in range [$F121 - $F140]
+,18DAF1DB,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI
 ,18DAF1DB,24,39,1,0,0,,22F180,62F180,2ff,Boot Version(bootSoftwareIdentification)
 ,18DAF1DB,24,39,1,0,0,,22F182,62F182,ff,Calibration number
 ,18DAF1DB,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
 ,18DAF1DB,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
-,18DAF1DB,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
-,18DAF1DB,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumberDataIdentifier
+,18DAF1DB,24,63,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,18DAF1DB,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumber
 ,18DAF1DB,24,159,1,0,0,,22F190,62F190,2ff,VIN
 ,18DAF1DB,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
-,18DAF1DB,24,55,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,18DAF1DB,24,47,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,18DAF1DB,24,55,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,18DAF1DB,24,103,1,0,0,,22F196,62F196,2ff,OBD Approval
 ,18DAF1DB,24,279,1,0,0,,22F197,62F197,2ff,OBD EngineType
-,18DAF1DB,24,31,1,0,0,,22F1A0,62F1A0,ff,VDIAG
+,18DAF1DB,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
 ,18DAF1DB,24,103,1,0,0,,22F1A1,62F1A1,2ff,Vehicle Manufacturer Spare Part Number (Nissan)
 ,18DAF1DB,24,55,1,0,0,,22F400,62F400,ff,DIDs supported in range [$F401 - $F420]
 ,18DAF1DB,24,31,1,0,0,,22F401,62F401,ff,Number of DTC and MIL lamp Status.On-board diagnostic evaluation
@@ -2159,9 +2165,9 @@
 ,18DAF1DB,24,31,1,0,0,km/h,22F40D,62F40D,ff,$0D - Vehicle speed sensor
 ,18DAF1DB,24,31,1,0,0,,22F41C,62F41C,ff,$1C - OBD requirements to wich vehicle is designed
 ,18DAF1DB,24,55,1,0,0,,22F420,62F420,ff,DIDs supported in range [$F421 - $F440]
-,18DAF1DB,24,39,1,0,0,Km,22F421,62F421,ff,$01 - Distance travelled while MIL is activated
+,18DAF1DB,24,39,1,0,0,km,22F421,62F421,ff,$01 - Distance travelled while MIL is activated
 ,18DAF1DB,24,31,1,0,0,,22F430,62F430,ff,$01 - Number of warm-ups since diagnostic trouble codes cleared
-,18DAF1DB,24,39,1,0,0,Km,22F431,62F431,ff,$01 - Distance travelled since diagnostic trouble codes cleared
+,18DAF1DB,24,39,1,0,0,km,22F431,62F431,ff,$01 - Distance travelled since diagnostic trouble codes cleared
 ,18DAF1DB,24,31,1,0,0,kPa,22F433,62F433,ff,$33 - Barometric Pressure
 ,18DAF1DB,24,55,1,0,0,,22F440,62F440,ff,DIDs supported in range [$F441 - $F460]
 ,18DAF1DB,24,31,1,0,0,,22F441,62F441,ff,Data Byte.A: ISO/SAE Reserved
