@@ -1,27 +1,25 @@
 ,18DAF1E2,8,15,1,0,0,,1001,5001,ff,StartDiagnosticSession.ResponseType,129:Yes
 ,18DAF1E2,24,31,1,0,0,,224B18,624B18,ff,After Sales Date
 ,18DAF1E2,24,31,10,-1,0,s,224B25,624B25,ff,Powerlatch
-,18DAF1E2,24,31,1,0,0,Volt,22B000,62B000,ff,BatteryVoltage
-,18DAF1E2,24,27,1,0,0,V,22B001,62B001,ff,eDLC_voltage
-,18DAF1E2,24,47,.05,0,2,Km,22B002,62B002,ff,Mileage of the first failure
-,18DAF1E2,24,27,1,0,0,,22B004,62B004,ff,Internal odometer.Reserved
-,18DAF1E2,28,55,.01,0,2,km,22B004,62B004,ff,Internal odometer.Internal odometer
-,18DAF1E2,24,27,1,0,0,,22B005,62B005,ff,Vehicle Status,0:Asleep;1:Not used 1;2:CutoffPending;3:AutoACC;4:Not used 4;5:IgnitionLevel;6:StartingInProgress;7:PowertrainRunning;8:AutoStart;9:EngineSystemStop;10:Not used 10;11:Not used 11;12:Not used 12;13:Not used 13;14:Not used 14;15:Unavailable
-,18DAF1E2,25,27,1,0,0,,22B006,62B006,ff,Function status,0:unused;1:PPU active control / not active control;2:PPU operationnal / not operationnal;3:PFC active control / not active control;4:PFC operationnal / not operationnal;5:EBR permitted by diag / inhibited by diag;6:EBR active control / not active control;7:EBR operationnal / not operationnal
-,18DAF1E2,24,39,1,0,0,km/h,22B007,62B007,ff,VehicleSpeed
-,18DAF1E2,24,39,1,0,0,Km/h,22B008,62B008,ff,VehicleSpeedBody
-,18DAF1E2,24,35,1,0,0,%,22B009,62B009,ff,BrakePedalPosition
-,18DAF1E2,24,35,1,0,0,mm,22B00B,62B00B,1ff,EBA_OutputRodActuatorPosition
-,18DAF1E2,24,31,1,0,0,MPa,22B00C,62B00C,ff,EBA_PressureRunOut
-,18DAF1E2,24,24,1,0,0,,22B00D,62B00D,ff,ABSinRegulation_CRBS
-,18DAF1E2,24,25,1,0,0,,22B00E,62B00E,ff,ExternalBrakeStatus
-,18DAF1E2,24,25,1,0,0,,22B00F,62B00F,ff,ExternalBrakeRequestStatus
-,18DAF1E2,24,31,1,0,0,,22B010,62B010,ff,ECU activities.General.Data
-,18DAF1E2,24,31,1,0,0,,22B011,62B011,ff,ECU activities.Activation.counter
-,18DAF1E2,24,31,1,0,0,,22B012,62B012,ff,ECU activities.Activation.Timer
+,18DAF1E2,24,31,.1,0,1,V,22B000,62B000,ff,BatteryVoltage
+,18DAF1E2,24,31,.1,0,1,V,22B001,62B001,ff,eDLC_voltage
+,18DAF1E2,24,47,.05,0,2,km,22B002,62B002,1ff,Mileage of the first failure
+,18DAF1E2,24,31,1,0,0,,22B003,62B003,ff,Aging Counter
+,18DAF1E2,28,31,1,0,0,,22B005,62B005,ff,Vehicle Status,0:Asleep;1:Not used 1;2:CutoffPending;3:AutoACC;4:Not used 4;5:IgnitionLevel;6:StartingInProgress;7:PowertrainRunning;8:AutoStart;9:EngineSystemStop;10:Not used 10;11:Not used 11;12:Not used 12;13:Not used 13;14:Not used 14;15:Unavailable
+,18DAF1E2,24,31,1,0,0,,22B006,62B006,ff,Function status,0:unused;1:PPU active control / not active control;2:PPU operationnal / not operationnal;3:PFC active control / not active control;4:PFC operationnal / not operationnal;5:EBR permitted by diag / inhibited by diag;6:EBR active control / not active control;7:EBR operationnal / not operationnal
+,18DAF1E2,24,39,.01,0,2,km/h,22B007,62B007,ff,VehicleSpeed
+,18DAF1E2,24,39,.01,0,2,km/h,22B008,62B008,ff,VehicleSpeedBody
+,18DAF1E2,28,39,1,0,0,%,22B009,62B009,ff,BrakePedalPosition
+,18DAF1E2,24,31,1000,0,0,kPa,22B00C,62B00C,ff,EBA_PressureRunOut
+,18DAF1E2,24,31,1,0,0,,22B00E,62B00E,ff,ABS in regulation,0:no ABS regulation;255:ABS regulation
+,18DAF1E2,30,31,1,0,0,,22B00F,62B00F,ff,ExternalBrakeRequestStatus,0:Not initialized;1:Not ready;2:Ready;3:Not used
+,18DAF1E2,24,31,1,0,0,,22B010,62B010,ff,EBR inhibition state,0:Activated;170:NotActivated;255:NotConfigured
+,18DAF1E2,24,31,1,0,0,,22B011,62B011,ff,ECU activities.General.Data
+,18DAF1E2,24,31,1,0,0,,22B012,62B012,ff,ECU activities.Activation.counter
+,18DAF1E2,24,31,1,0,0,,22B013,62B013,ff,ECU activities.Activation.Timer
 ,18DAF1E2,24,39,1,0,0,,22EF01,62EF01,ff,Supplier fault code specified
 ,18DAF1E2,24,103,1,0,0,,22F012,62F012,2ff,Calibration file reference
-,18DAF1E2,24,47,.05,0,2,km,22F0D0,62F0D0,ff,Mileage of the last occurence
+,18DAF1E2,24,47,.05,0,2,km,22F0D0,62F0D0,1ff,Mileage of the last occurence
 ,18DAF1E2,24,31,1,0,0,,22F0D1,62F0D1,ff,DTCExtendedData.DTCOccurrenceCounter
 ,18DAF1E2,24,111,1,0,0,,22F180,62F180,2ff,Boot SW identification
 ,18DAF1E2,24,103,1,0,0,,22F182,62F182,2ff,CalibrationNumber
@@ -32,8 +30,8 @@
 ,18DAF1E2,24,79,1,0,0,,22F18E,62F18E,2ff,VehicleManufacturerKitAssemblyPartNumber
 ,18DAF1E2,24,159,1,0,0,,22F190,62F190,2ff,VIN
 ,18DAF1E2,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
-,18DAF1E2,24,207,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
-,18DAF1E2,24,63,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,18DAF1E2,24,63,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,18DAF1E2,24,207,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,18DAF1E2,24,103,1,0,0,,22F196,62F196,2ff,exhaustRegulationOrTypeApprovalNumber
 ,18DAF1E2,24,31,1,0,0,,22F197,62F197,ff,systemNameorEngineType.01
 ,18DAF1E2,32,39,1,0,0,,22F197,62F197,ff,systemNameorEngineType.02
