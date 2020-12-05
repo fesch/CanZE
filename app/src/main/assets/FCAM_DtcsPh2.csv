@@ -1,0 +1,45 @@
+6507,LDW switch
+6502,Incomplete configuration
+E14F,BCM_V1_Lost_Communication
+E259,EPS_IC_Lost_Communication
+E159,EPS_V1_Lost_Communication
+E140,ECM_V1_Lost_Communication
+E148,VDC_V1_Lost_Communication
+E14E,METER_V1_Lost_Communication
+E104,4WS_CH_Lost_Communication
+E152,ADAS_IC_Lost_Communication
+E15B,USM_V1_Lost_Communication
+E176,IDM_IC_Lost_Communication
+E16E,BSWR_Lost_Communication
+650A,BCM_Error
+650B,EPS_Error
+650C,ECM_Error
+650D,VDC_Error
+650E,METER_Error
+650F,4WS_Error
+6510,RADIO_Error
+6511,ADAS_Error
+6512,ATCU_Error
+6513,IDM_Error
+6514,RADAR_Error
+6515,USM_Error
+6518,BSWR_Error
+6519,IC_CAN_ComFailure
+651A,ITS_CAN_ComFailure
+E150,Airbag_Lost_Communication
+6516,Airbag_Error
+6517,BSWL_Error
+6501,ECU_Overheating
+6570,ECU_Overheating - DEV
+6571,Camera Misalignement - DEV
+6572,Sensor_Blockage - DEV
+6504,Sensor_Blockage
+E16C,BSWL_Lost_Communication
+6576,Oily Windshield - DEV
+6573,Weather_Disturbances - DEV
+6574,Out Of Focus
+6575,Out of Focus - DEV
+6500,ECU_InternalFailure
+6503,Camera misaligned or never aligned
+6508,Power Voltage Disturbances
+E141,ATCU_V1_Lost_Communication

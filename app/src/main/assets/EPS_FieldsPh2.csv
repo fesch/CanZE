@@ -1,0 +1,109 @@
+,762,24,39,.1,32767,1,°,220100,620100,ff,EPSRelativeSteeringWheelAngle
+,762,24,39,.1,32767,1,°/s,220101,620101,ff,Steering wheel velocity
+,762,24,26,1,0,0,,220102,620102,ff,Steering wheel angle sensor internal status,0:Not initialized / No failure / Not calibrated;1:Initialized / No failure / Not calibrated;2:Not initialized / Failure / Not calibrated;3:Initialized / Failure / Not calibrated;4:Not initialized / No failure / Calibrated;5:Initialized / No failure / Calibrated;6:Not initialized / Failure / Calibrated;7:Initialized / Failure / Calibrated
+,762,24,31,1,127,0,°,220103,620103,ff,Steering wheel angle offset
+,762,24,39,.1,32767,1,°,220104,620104,ff,Absolute steering wheel angle
+,762,24,39,.1,200,1,,220112,620112,ff,InputTorque
+,762,24,31,1,127,0,A,220113,620113,ff,MotorCurrentDemand
+,762,24,31,1,0,0,%,220115,620115,ff,AssistanceLevel
+,762,24,31,1,0,0,km/h,220118,620118,ff,FilteredVehicleSpeed
+,762,24,31,1,0,0,,220119,620119,ff,SystemMode,1:SystemStop;2:PowerUpTests Wait for Assist;3:RampUpNormalOperation;4:VerySoftRampDown Unknow Vehicle State;5:SoftRampDown;6:WaitForShutdown;7:ParkAssist
+,762,24,25,1,0,0,,22011A,62011A,ff,EPSWarning,0:No failure;1:Minor failure;2:Major failure;3:Not used
+,762,24,31,1,0,0,,22011E,62011E,ff,IgnitionSwitchCounter
+,762,24,39,.1,200,1,Nm,22011F,62011F,ff,AssistanceTorqueDemand
+,762,24,24,1,0,0,,22012A,62012A,ff,RackEndStop_Activation,0:Disabled;1:Enabled
+,762,24,31,1,127,0,A,22012C,62012C,ff,MeasuredMotorCurrent
+,762,24,31,1,50,0,°C,22012D,62012D,ff,MotorTemperature
+,762,24,31,1,50,0,°C,22012E,62012E,ff,ECUTemperature
+,762,24,31,.000390625,0,3,V,22012F,62012F,ff,SupplyVoltage
+,762,24,24,1,0,0,,220131,620131,ff,IgnitionStatus,0:OFF;1:ON
+,762,24,24,1,0,0,,22014C,62014C,ff,HFP_EnhancedDiagnostic_Activation,0:Disabled;1:Enabled
+,762,24,24,1,0,0,,220151,620151,ff,RackEndStop currently active,0:not running;1:Running
+,762,24,31,1,0,0,%,220159,620159,ff,DDN level
+,762,24,24,1,0,0,,22015A,62015A,ff,ExternalAngleSensor,0:Disabled;1:Enabled
+,762,24,31,1,0,0,%,220160,620160,ff,DeratingAssistanceLevel
+,762,24,25,1,0,0,,220162,620162,ff,MultidriveTuningMap,0:Slot #0 is currently used;1:Slot #1 is currently used;2:Slot #2 is currently used;3:Slot #3 is currently used
+,762,24,39,1,0,0,,220163,620163,ff,Internal fault code for DTC
+,762,30,31,1,0,0,,220164,620164,ff,EPSDongleState,1:EPS ECU Operational- Dongle learnt;2:EPS ECU operational- Dongle blank;3:EPS ECU not operational
+,762,30,31,1,0,0,,220165,620165,ff,DonglePairingCounter
+,762,30,31,1,0,0,,220166,620166,ff,DongleError,0:No error;1:EEPROM problem on Dongle_ID;2:EEPROM problem on Dongle_pairing_counter;3:Motor disconnected from ECU
+,762,24,39,1,0,0,mm,220167,620167,ff,Front wheel circumference
+,762,24,39,1,0,0,mm,220168,620168,ff,Rear wheel circumference
+,762,24,31,1,0,0,%,220169,620169,ff,MaxCPULoad
+,762,24,31,1,0,0,V,220170,620170,ff,HFP_BoostHighVoltage
+,762,24,24,1,0,0,,220171,620171,ff,HFP_BoostVehicleVoltage_Activation,0:Disabled;1:Enabled
+,762,24,31,1,0,0,V,220172,620172,ff,HFP_BoostLowVoltage
+,762,24,31,.5,0,1,A,220173,620173,ff,BatteryCurrent
+,762,24,24,1,0,0,,220179,620179,ff,CAN XCP/CCP protocol activation,0:CAN CCP/XCP deactived (default);1:CAN CCP/XCP activated
+,762,24,25,1,0,0,,22017D,62017D,ff,MultiDrive_Activation,0:Unavailable;1:Ignore multidrive CAN frame;2:Consider multidrive CAN frame;3:Not used
+,762,24,25,1,0,0,,220182,620182,ff,HFP_Activation,0:Disabled;1:Enabled (HFP);2:Enabled (IPA);3:not used
+,762,24,39,.1,32767,1,°/s,220185,620185,ff,InternalSteeringWheelVelocity
+,762,24,24,1,0,0,,220186,620186,ff,Dedicated TJP steerfeel tuning mode (Slot3) Activation,0:Disabled;1:Enabled
+,762,24,39,1,0,0,,220187,620187,ff,HOD_Compensation_Routine switch counter
+,762,24,31,.01,127,2,N·m,220188,620188,ff,HOD TSU Compensation
+,762,24,31,1,0,0,%,220189,620189,ff,HOD TSU Comp Ratio
+,762,24,31,.01,127,2,N·m,220190,620190,ff,HOD Friction Compensation
+,762,24,31,1,0,0,%,220191,620191,ff,HOD Friction Comp Ratio
+,762,24,31,.01,127,2,N·m,220192,620192,ff,HOD Friction_th F1
+,762,24,31,.01,127,2,N·m,220193,620193,ff,HOD Friction_th F2
+,762,24,31,.01,127,2,N·m,220194,620194,ff,HOD Friction_th F3
+,762,24,183,1,0,0,,220195,620195,ff,Internal fault store (last 10 minor faults)
+,762,24,26,1,0,0,,220196,620196,ff,HOD Compensation Activation,0:no HOD compensation;1:Apply only TSU Offset Compensation;2:Apply TSU Offset Compensation + Friction Compensation;3:Reset of TSU offset compensation results;4:Reset of Friction compensation results;5:Not used;6:Not used bis;7:Not used ter
+,762,24,27,1,0,0,,2201BD,6201BD,ff,LKA_LDW_Activation,0:LKA disabled- LDW disabled-             DebugFrame disabled (default);1:LKA disabled- LDW enabled (IVI)-      DebugFrame disabled;2:LKA disabled- LDW enabled (Meter)- DebugFrame disabled;3:not used;4:LKA enabled- LDW disabled-             DebugFrame disabled;5:LKA enabled- LDW enabled (IVI)-      DebugFrame disabled;6:LKA enabled- LDW enabled (Meter)- DebugFrame disabled;7:not used';8:LKA disabled- LDW disabled-             DebugFrame enabled;9:LKA disabled- LDW enabled (IVI)-      DebugFrame enabled;10:LKA disabled- LDW enabled (Meter)- DebugFrame enabled;11:not used'';12:LKA enabled- LDW disabled-             DebugFrame enabled;13:LKA enabled- LDW enabled (IVI)-      DebugFrame enabled;14:LKA enabled- LDW enabled (Meter)- DebugFrame enabled;15:not used'''
+,762,24,24,1,0,0,,2201C3,6201C3,ff,DongleFrames_Activation,0:Dongle frames not sent;1:Dongle frames sent
+,762,24,24,1,0,0,,2201C6,6201C6,ff,CrankingStoppedMode_Activation,0:Disabled;1:Enabled
+,762,24,24,1,0,0,,2201C7,6201C7,ff,ClusterWarningLampCheck_Activation,0:Disabled;1:Enabled
+,762,24,25,1,0,0,,2201C8,6201C8,ff,ISS Status,0:00- Not Stop Auto Phase;1:01- Auto Start;2:10- Idle Stop;3:11- Auto Phase Aborted
+,762,24,24,1,0,0,,2201CA,6201CA,ff,AntiKickBack_Activation,0:Disabled;1:Enabled
+,762,24,24,1,0,0,,2201CB,6201CB,ff,TJP_Activation,0:Disabled;1:Enabled
+,762,24,24,1,0,0,,2201CC,6201CC,ff,HWP_Activation,0:Disabled;1:Enabled
+,762,24,24,1,0,0,,2201CD,6201CD,ff,ExportedSWASWV_Activation,0:Disabled;1:Enabled
+,762,24,24,1,0,0,,2201CE,6201CE,ff,TSC_Activation,0:Disabled;1:Enabled
+,762,24,31,.1,15,1,,2201CF,6201CF,ff,PullDrift_StaticCompensation_Value
+,762,24,24,1,0,0,,2201D0,6201D0,ff,PullDrift_DynamicCompensation_Activation,0:Disabled;1:Enabled
+,762,24,39,.01,0,2,kph,2201D1,6201D1,ff,VehicleSpeed
+,762,24,25,1,0,0,,2201D2,6201D2,ff,EngineStatus,0:Stopped;1:Reserved;2:Running;3:Driven
+,762,24,24,1,0,0,,2201D3,6201D3,ff,CAN_DTC_filter
+,762,24,39,1,0,0,,2201D4,6201D4,ff,Derating counter
+,762,24,47,1,0,0,,2201D5,6201D5,ff,RackEndStop counter
+,762,24,47,1,0,0,,2201D6,6201D6,ff,AntiKickBack counter
+,762,24,47,1,0,0,,2201D7,6201D7,ff,HFP_Activation counter
+,762,24,95,1,0,0,,2201D8,6201D8,ff,HFP_Deactivation counter
+,762,24,279,1,0,0,,2201D9,6201D9,ff,LKA counter
+,762,24,271,1,0,0,,2201DA,6201DA,ff,LDW counter
+,762,24,47,1,0,0,,2201DB,6201DB,ff,TJP simple counter
+,762,24,271,1,0,0,,2201DC,6201DC,ff,TJP counter
+,762,24,183,1,0,0,,2201DD,6201DD,ff,PDC counter
+,762,24,39,1,0,0,,2201DE,6201DE,ff,InternalReset counter
+,762,24,39,1,0,0,,2201DF,6201DF,ff,UnmanagedShutdown counter
+,762,24,24,1,0,0,,2201E0,6201E0,ff,AntiKickBack currently active,0:Not active;1:Active
+,762,24,24,1,0,0,,2201E1,6201E1,ff,HandFreeParking currently active,0:Function not running;1:Function currently running
+,762,24,24,1,0,0,,2201E2,6201E2,ff,LaneKeepingAssist currently active,0:Not active;1:Active
+,762,24,24,1,0,0,,2201E3,6201E3,ff,LaneDepartureWarning currently active,0:Not active;1:Active
+,762,24,24,1,0,0,,2201E4,6201E4,ff,TrafficJamPilot currently active,0:Not active;1:Active
+,762,24,24,1,0,0,,2201E5,6201E5,ff,HighwayPilot currently active,0:Not active;1:Active
+,762,24,24,1,0,0,,2201E6,6201E6,ff,PullDriftCompensation currently active,0:Not active;1:Active
+,762,24,27,1,0,0,,2201E7,6201E7,ff,CoastStop_IdleStop_Activation,0:All flags disabled;1:Idle_stop flag enabled- others disabled;2:Coast_stop flag enabled- others disabled;4:Torque_on flag enabled- others disabled;5:Idle_stop and Torque_on flags enabled- others disabled;6:Coast_stop and Torque_on flags enabled- others disabled;7:Assist_authorize flag disabled- others enabled;8:Assist_authorize flag enabled- others disabled;9:Idle_stop and Assist_authorize flags enabled- others disabled;10:Coast_stop and Assist_authorize flags enabled- others disabled;11:Torque_on flag disabled- others enabled;12:Idle_stop and Coast_stop flags disabled- others enabled;13:Coast_stop flag disabled- others enabled;14:Idle_stop flag disabled- others enabled;15:All flags enabled
+,762,24,47,1,0,0,kph,2201E8,6201E8,ff,MileageAtFirstOccurrence
+,762,24,31,1,0,0,,2201EA,6201EA,ff,CurrentlyActiveFunctions
+,762,24,24,1,0,0,,2201EB,6201EB,ff,AbsoluteSteeringWheelAngleCalibration_Activation,0:Calibration not authorized;1:Calibration authorized
+,762,24,24,1,0,0,,22C000,62C000,ff,SAF_Activation,0:Disabled;1:Enabled
+,762,24,24,1,0,0,,22C200,62C200,ff,ESP Activation,0:Disabled;1:Enabled
+,762,24,31,1,0,0,,22D001,62D001,ff,Occurrence Counter
+,762,24,71,1,0,0,,22D002,62D002,ff,DebugInfo_snapshot
+,762,24,151,1,0,0,,22F010,62F010,2ff,Fingerprint
+,762,24,103,1,0,0,,22F011,62F011,2ff,IndexSrvData
+,762,24,103,1,0,0,,22F012,62F012,2ff,OperationalReference
+,762,24,47,1,0,0,km,22F0D0,62F0D0,ff,Mileage
+,762,24,279,1,0,0,,22F180,62F180,ff,BootVersion
+,762,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
+,762,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
+,762,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,762,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumber
+,762,24,159,1,0,0,,22F190,62F190,2ff,VIN
+,762,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
+,762,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,762,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,762,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,762,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
+,762,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationFileReferenceLink_N

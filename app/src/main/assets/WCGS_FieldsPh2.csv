@@ -1,0 +1,49 @@
+,7AD,24,31,1,0,0,,220100,620100,ff,Diagnosis ID,0:Unavailable;1:Driver;2:Passenger
+,7AD,24,31,1,0,0,,220101,620101,ff,System power on,0:Unavailable;1:Yes;2:No
+,7AD,24,31,1,0,0,,220102,620102,ff,Object detected,0:Unavailable;1:No;2:Yes
+,7AD,24,31,1,0,0,,220103,620103,ff,Phone detected,0:Unavailable;1:No;2:Yes
+,7AD,24,31,1,0,0,,220104,620104,ff,Charging state,0:Unavailable;1:Uncharging;2:LP charging;3:MP Charging
+,7AD,24,31,1,0,0,,220105,620105,ff,Hardware version,0:Unknown;1:V1.1;2:V1.2;3:V1.3;4:V1.4;5:V1.5;6:V1.6;7:V1.7;8:V1.8;9:V1.9;10:V2.0;11:V2.1;12:V2.2;13:V2.3;14:V2.4;15:V2.5
+,7AD,24,55,1,0,0,,220106,620106,ff,ID of receiver's charging IC
+,7AD,24,31,1,0,0,,220107,620107,ff,Manufacturer of receiver's charging IC,0:Unknown;1:Samsung;2:LGE;3:Nokia;4:Motorola;5:Apple;6:Others
+,7AD,24,31,1,0,0,,220108,620108,ff,Charging standard and version of receiver,0:Unavailable;1:WPC 1.0;2:WPC 1.1;3:WPC 1.2;4:WPC x.x;5:PMA;6:A4WP
+,7AD,24,31,1,0,0,,220109,620109,ff,Existence of foreign object,0:Unavailable;1:No;2:Yes
+,7AD,24,31,.2,0,1,V,22010A,62010A,ff,Voltage of charging coil
+,7AD,24,31,.05,0,2,A,22010B,62010B,ff,Current of charging coil
+,7AD,24,31,.2,0,1,V,22010C,62010C,ff,Input voltage
+,7AD,24,31,.05,0,2,A,22010D,62010D,ff,Input current
+,7AD,24,31,1,40,0,°C,22010E,62010E,ff,System temperature
+,7AD,24,31,1,0,0,W,22010F,62010F,ff,Power consumption of charger
+,7AD,24,31,1,0,0,W,220110,620110,ff,Received power reported by receiver
+,7AD,24,31,1,0,0,W,220111,620111,ff,Power loss between charger and receiver
+,7AD,24,31,1,0,0,min,220112,620112,ff,Charging_Time
+,7AD,24,31,1,0,0,,220113,620113,ff,disconnection of charging coil,0:Unavailable;1:No;2:Yes
+,7AD,24,31,1,0,0,,220114,620114,ff,memory fault,0:Unavailable;1:No;2:Yes
+,7AD,24,31,1,0,0,,220115,620115,ff,reason of stop charging,0:RECHARGETIME_RX_UNKNOWN;1:RECHARGETIME_RX_CHARGE_COMPLETE;2:RECHARGETIME_TX_QFOD_ERROR;3:RECHARGETIME_TX_OVER_TEMP_FAULT;4:RECHARGETIME_TX_RCVPWR_TIMEOUT;5:RECHARGETIME_TX_FOD_ERROR;6:RECHARGETIME_TX_OVER_INCURR_LIMIT;7:RECHARGETIME_TX_INPWREXCEED;8:RECHARGETIME_TX_OVER_COILCURR_LIMIT
+,7AD,24,31,1,0,0,,220116,620116,ff,stop charing request from HFM,0:No request;1:Stop requested
+,7AD,24,31,1,0,0,,220119,620119,ff,Firmware Version,0:Unknown;1:V1.1;2:V1.2;3:V1.3;4:V1.4;5:V1.5;6:V1.6;7:V1.7;8:V1.8;9:V1.9;10:V2.0;11:V2.1;12:V2.2;13:V2.3;14:V2.4;15:V2.5
+,7AD,24,31,1,0,0,,222003,622003,ff,EE architecture configuration,0:C1A/T4VS (gateway);1:G1;2:Others
+,7AD,24,31,1,0,0,,229000,629000,ff,Control of yellow LED,0:OFF;1:ON
+,7AD,24,31,1,0,0,,229001,629001,ff,Control of Green LED,0:OFF;1:ON
+,7AD,24,31,1,0,0,,229002,629002,ff,Control of WCBS charging,0:OFF;1:ON
+,7AD,24,151,1,0,0,,22F010,62F010,ff,Fingerprint
+,7AD,24,103,1,0,0,,22F011,62F011,2ff,IndexSrvData
+,7AD,24,103,1,0,0,,22F012,62F012,2ff,Operational Reference
+,7AD,24,103,1,0,0,,22F013,62F013,2ff,SecondaryOperationnalReference
+,7AD,24,47,1,0,0,km,22F0D0,62F0D0,ff,Mileage
+,7AD,24,31,1,0,0,,22F0D1,62F0D1,ff,DTC Occurrence Counter
+,7AD,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI
+,7AD,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI
+,7AD,24,31,1,0,0,,22F180,62F180,ff,BootVersion.ModuleNumber
+,7AD,32,135,1,0,0,,22F180,62F180,2ff,BootVersion.Coding
+,7AD,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
+,7AD,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
+,7AD,24,95,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7AD,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumber
+,7AD,24,159,1,0,0,,22F190,62F190,2ff,VIN
+,7AD,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
+,7AD,24,79,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7AD,24,143,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7AD,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7AD,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
+,7AD,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationDataReferenceAfterConfigurationProcess

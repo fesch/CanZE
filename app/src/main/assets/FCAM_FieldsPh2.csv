@@ -1,0 +1,491 @@
+,7DD,28,55,.01,0,2,km,220105,620105,ff,Mileage_snapshot.Mileage_snapshot
+,7DD,31,31,1,0,0,,22010C,62010C,ff,Aiming_Done,0:Aiming Not Finished;1:Aiming Finished
+,7DD,31,31,1,0,0,,22010D,62010D,ff,Aiming_Result,0:Aiming NOK;1:OK
+,7DD,26,31,1,0,0,,22010E,62010E,ff,Aiming_NG_Reason,0:Undefined;1:Aiming OK;2:Not all targets are detected;3:TAC converged successfully but the result exceeds the max roll angle threshold;4:TAC converged successfully but the result exceed the min/max horizon and/or yaw;5:Failure loading parameters;6:Distance to target out of valid range;7:Square side size (or radius) is out of valid logical range - defined target size is too small to be recognized;8:TAC2 converged successfully but the result exceeds the min/max yaw;9:TAC2 converged successfully but the result exceeds the min/max horizon;10:Too many targets;11:General Run Error
+,7DD,26,31,1,0,0,,22010F,62010F,ff,SPC_NG_Reason,0:Unavailable;1:SPC error (SPC out of range);2:SPC OK (success);3:SPC running;4:SPC timeout;5:SPC paused
+,7DD,24,39,.0004,0,3,°,220113,620113,1ff,Check_Aiming_Yaw
+,7DD,24,39,.0004,0,3,°,220114,620114,1ff,Check_Aiming_Roll
+,7DD,24,39,.0004,0,3,°,220115,620115,1ff,Check_Aiming_Pitch
+,7DD,24,39,.0004,0,3,°,220116,620116,1ff,Factory_Aiming_Yaw
+,7DD,24,39,.0004,0,3,°,220117,620117,1ff,Factory_Aiming_Roll
+,7DD,24,39,.0004,0,3,°,220118,620118,1ff,Factory_Aiming_Pitch
+,7DD,24,25,1,0,0,,221000,621000,ff,DID_Dev.Dev frames_TargetSimulationMode,0:OFF;1:Fusion track simulation on CAN - Polar Co-ordinates;2:Fusion track simulation on CAN - Cartesean Co-ordinates
+,7DD,26,26,1,0,0,,221000,621000,ff,DID_Dev.Dev frames_Communication Interface Version,0:OFF;1:ON
+,7DD,27,30,1,0,0,,221000,621000,ff,DID_Dev.Number of tracks
+,7DD,32,32,1,0,0,,221000,621000,ff,DID_Dev.Debug frames simulink,0:OFF;1:ON
+,7DD,33,33,1,0,0,,221000,621000,ff,DID_Dev.Debug frames Supplier,0:OFF;1:ON
+,7DD,34,34,1,0,0,,221000,621000,ff,DID_Dev.LineDetectionSimulationMode,0:OFF;1:ON
+,7DD,36,36,1,0,0,,221000,621000,ff,DID_Dev.LKA,0:OFF;1:ON
+,7DD,37,39,1,0,0,,221000,621000,ff,DID_Dev.OSP,0:No Dev Frame Emiitted;1:Dev Frame Emitted
+,7DD,40,40,1,0,0,,221000,621000,ff,DID_Dev.targets,0:OFF;1:ON
+,7DD,31,31,1,0,0,,221001,621001,ff,Blindness_algorithm.Blindness_algorithm,0:Blindness algorithm OFF;1:Blindness algorithm ON
+,7DD,31,31,1,0,0,,221002,621002,ff,XCP_Protocol_Activation,0:XCP protocol OFF;1:XCP protocol ON
+,7DD,31,31,1,0,0,,222010,622010,ff,Supplier_Dev_Mode,0:Supplier Dev Mode Deactivated;1:Supplier Dev Mode Activated
+,7DD,31,31,1,0,0,,222012,622012,ff,param_veh_gearbox.P_sys_x_GearboxType,0:Manual Gearbox;1:Automatic Gearbox
+,7DD,25,31,.02,-4000,2,m,222013,622013,ff,param_veh.P_sys_m_VehicleWidth
+,7DD,38,38,1,0,0,,222013,622013,ff,param_veh.P_sys_x_FourWheelSteering,0:OFF;1:ON
+,7DD,39,39,1,0,0,,222013,622013,ff,param_veh.P_sys_x_LeftRightSteeringWheel,0:Steering Wheel on Right Side;1:Steering Wheel on Left Side
+,7DD,28,28,1,0,0,,222044,622044,ff,Configuration_finished.P_sys_x_SupplierCalibFinished,0:ECU is not calibrated in supplier plant;1:ECU is calibrated in supplier plant
+,7DD,29,29,1,0,0,,222044,622044,ff,Configuration_finished.P_sys_x_SupplierConfigFinished,0:ECU is not configured in supplier plant;1:ECU is configured in supplier plant
+,7DD,30,30,1,0,0,,222044,622044,ff,Configuration_finished.P_sys_x_RenaultCalibFinished,0:ECU is not calibrated in Renault plant;1:ECU is calibrated in Renault plant
+,7DD,31,31,1,0,0,,222044,622044,ff,Configuration_finished.P_sys_x_RenaultConfigFinished,0:ECU is not configured in Renault plant;1:ECU is configured in Renault plant
+,7DD,27,39,1,0,0,°,222057,622057,1ff,Steering_wheel_angle.Steering_wheel_angle
+,7DD,31,31,1,0,0,,222059,622059,ff,Radnav.Radnav_configuration_status,0:Radnav not present;1:Radnav present
+,7DD,31,31,1,0,0,,222060,622060,ff,EDR_Activation_Status.EDR_Activation_Status,0:EDR deactivated;1:EDR activated
+,7DD,31,31,1,0,0,,222061,622061,ff,ELKA_Configuration_Status,0:ELKA Deactivated;1:ELKA Activated
+,7DD,31,31,1,0,0,,222062,622062,ff,AEBS.AEB_Configuration,0:AEB not present;1:AEB present
+,7DD,31,31,1,0,0,,222063,622063,ff,ACC.ACC_Configuration,0:ACC not present;1:ACC present
+,7DD,31,31,1,0,0,,222064,622064,ff,TJP.TJP_Configuration,0:TJP not present;1:TJP present
+,7DD,24,31,.1,0,1,V,222065,622065,ff,Supply_voltage.Supply_voltage
+,7DD,24,31,1,0,0,,222068,622068,ff,Vehicle_type.Vehicle_type,0:BJA;1:KJA;2:X10neo;3:HJB;4:HJE;5:JFC ph2;6:BFB ph2;7:KFB ph2;8:LJL;9:LJH;10:X82ph2;11:LFF ph2;13:LFD ph2;14:KFD ph2;15:P13A;16:L21B;255:Not Used
+,7DD,31,31,1,0,0,,222069,622069,ff,ADB.ADB_enable,0:ADB Not Present;1:ADB Present
+,7DD,25,31,1,0,0,lux,222070,622070,ff,ADB_Reflector_Brightness.ADB_Reflector_Brightness_factor_THRES
+,7DD,39,39,1,0,0,,222074,622074,ff,ADB_clustering.ADB_Enable_clustering,0:Clustering is disabled;1:Clustering is enabled
+,7DD,31,31,1,0,0,,222079,622079,ff,AHL.AHL_enable,0:AHL Not Present;1:AHL Present
+,7DD,30,31,1,0,0,,222080,622080,ff,OSP_TSR.OSP_TSR_enable,0:Not Present;1:OSP/TSR Present;2:Reserved
+,7DD,24,28,25,-16,0,m,222081,622081,ff,AHL_tuning.AHL_MAX_ON_COMING_DISTANCE_DUAL
+,7DD,29,33,25,-16,0,m,222081,622081,ff,AHL_tuning.AHL_MAX_ON_COMING_DISTANCE_DUAL_LB
+,7DD,34,38,25,-16,0,m,222081,622081,ff,AHL_tuning.AHL_MAX_ON_COMING_DISTANCE_SINGLE
+,7DD,39,43,25,-16,0,m,222081,622081,ff,AHL_tuning.AHL_MAX_ON_COMING_DISTANCE_SINGLE_LB
+,7DD,44,48,25,-4,0,m,222081,622081,ff,AHL_tuning.AHL_MAX_LEADING_DISTANCE_DUAL
+,7DD,49,53,25,-4,0,m,222081,622081,ff,AHL_tuning.AHL_MAX_LEADING_DISTANCE_DUAL_LB
+,7DD,54,58,25,-4,0,m,222081,622081,ff,AHL_tuning.AHL_MAX_LEADING_DISTANCE_SINGLE
+,7DD,59,63,25,-4,0,m,222081,622081,ff,AHL_tuning.AHL_MAX_LEADING_DISTANCE_SINGLE_LB
+,7DD,64,71,.1,0,1,,222081,622081,ff,AHL_tuning.AHL_LIT_AREA_THRES_IN
+,7DD,72,79,.1,0,1,,222081,622081,ff,AHL_tuning.AHL_LIT_AREA_THRES_OUT
+,7DD,85,89,.5,0,1,s,222081,622081,ff,AHL_tuning.AHL_DELAY_OPPOSITE
+,7DD,90,94,.5,0,1,m,222081,622081,ff,AHL_tuning.AHL_DELAY_OVERTAKING
+,7DD,95,99,.5,0,1,s,222081,622081,ff,AHL_tuning.AHL_DELAY_LOST
+,7DD,100,104,5,0,0,Km/h,222081,622081,ff,AHL_tuning.AHL_SPEED_THRES_INF
+,7DD,105,109,5,0,0,Km/h,222081,622081,ff,AHL_tuning.AHL_SPEED_THRES_SUP
+,7DD,110,117,.1,0,1,,222081,622081,ff,AHL_tuning.AHL_AMBIENT_LIGHT_THRES_SUP
+,7DD,118,125,.1,0,1,,222081,622081,ff,AHL_tuning.AHL_AMBIENT_LIGHT_THRES_INF
+,7DD,31,31,1,0,0,,222084,622084,ff,OSP_NAVSPEEDSELECTION.OSP_NAVSPEEDSELECTION,0:use of only verified speed limits;1:use of all speed_limits
+,7DD,31,31,1,0,0,,222086,622086,ff,OSP_TSR_Mode.OSP_TSR_Mode,0:TSR Mode;1:OSP mode
+,7DD,31,31,1,0,0,,222093,622093,ff,LKA.LKA_configuration_Status,0:LKA not present;1:LKA present
+,7DD,31,31,1,0,0,,222094,622094,ff,LKA.LKA_ActivationState_memorized,0:LKA OFF;1:LKA ON
+,7DD,31,31,1,0,0,,222095,622095,ff,LDW.LDW_ActivationState_memorized,0:LDW OFF;1:LDW ON
+,7DD,30,31,1,0,0,,222096,622096,ff,LDW.LDW_SensibilityState,1:Low time requested;0:Not used;2:Middle time requested;3:High time requested
+,7DD,30,31,1,0,0,,222097,622097,ff,LDW.LDW_configuration_Status,0:LDW not present;1:LDW present - sonor;2:LDW present - haptique
+,7DD,24,31,.08,0,2,,222098,622098,ff,LSS.Button_Voltage
+,7DD,24,31,1,0,0,,222109,622109,ff,Country_Code.Country_Code,0:UNKNOWN;1:ABU DHABI;2:AFGHANISTAN;3:ALBANIA;4:ALGERIA;5:AMERICAN SAMOA;6:ANGOLA;7:ANTIGUA AND BARBUDA;8:ARGENTINA;9:ARMENIA;10:ARUBA;11:AUSTRALIA;12:AUSTRIA;13:AZERBAIDJAN;14:BAHAMAS;15:BAHRAIN;16:BARBADOS;17:BELARUS;18:BELGIUM;19:BELIZE;20:BENELUX;21:BENIN;22:BENGLADESH;23:BERMUDA;24:BHUTAN;25:BOLIVIA;26:BOSNIA AND HERZEGOVINA;27:BOTSWANA;28:BRAZIL;29:BRUNEI;30:BULGARIA;31:BURKINA FASO;32:BURUNDI;33:CAMBODIA;34:CAMEROON;35:CANADA;36:CAPE VERDE;37:CAYMAN ISLANDS;38:CENTRAL AFRICAN REPUBLIC;39:CHAD;40:CHILE;41:CHINA;42:COLOMBIA;43:COMOROS;44:CONGO;45:COOK ISLANDS;46:COSTA RICA;47:CROATIA;48:CUBA;49:CURACAO;50:CYPRUS;51:CZEH REPUBLIC;52:DEMOCRATIC REPUBLIC OF THE CONGO;53:DENMARK;54:DJIBOUTI;55:DOMINICA;56:DOMINICAN REPUBLIC;57:DUBAI;58:EAST EUROPA;59:ECUADOR;60:EGYPT;61:EL SALVADOR;62:EQUATORIAL GUINEA;63:ERYTRHREA;64:ESTONIA;65:ETHIOPIA;66:FEROA ISLANDS;67:FIJI;68:FINLAND;69:FRANCE;70:FRENCH GUYANA;71:FRENCH POLYNESIA;72:GABON;73:GAMBIA;74:GEORGIA;75:GERMANY;76:GHANA;77:GREECE;78:GRENADA;79:GUADELOUPE;80:GUAM;81:GUATEMALA;82:GUINEA;83:GUINEA BISSAU;84:GUYANA;85:HAITI;86:HONDURAS;87:HONG KONG;88:HUNGARY;89:IBERIAN PENINSULA;90:ICELAND;91:INDIA;92:INDIES;93:INDONESIA;94:IRAK;95:IRAN;96:IRELAND;97:ISRAEL;98:ITALY;99:IVORY COAST;100:JAMAICA;101:JAPAN;102:JORDANIA;103:KAZAKHSTAN;104:KENYA;105:KIRIBATI;106:KOREA;107:KUWAIT;108:KYRGHYZSTAN;109:LAOS;110:LATVIA;111:LEBANON;112:LESOTHO;113:LIBERIA;114:LIBYA;115:LITUANIA;116:LUXEMBOURG;117:MACAO;118:MADAGASCAR1;119:MALAWI;120:MALAYSIA;121:MALDIVES;122:MALI;123:MALTA;124:MARTINIQUE;125:MAURITANIA;126:MAURITIUS;127:MAYOTTE;128:MADAGASCAR2;129:MACEDONIA;130:MEXICO;131:MIDDLE EUROPA;132:MOLDAVIA;133:MONGOLIA;134:MONTENEGRO;135:MONTSERRAT;136:MOROCCO;137:MOZAMBIQUE;138:MYANMAR;139:NAMIBIA;140:NAURU;141:NEPAL;142:NETHERLANDS;143:NEW CALEDONIA;144:NEW ZEALAND;145:NICARAGUA;146:NIGER;147:NIGERIA;148:NORFOLK ISLAND;149:NORTH KOREA;150:NORWAY;151:NOTHERN AND BALTIC EUROPE;152:OMAN;153:PAKISTAN;154:PALESTINE;155:PANAMA;156:PAPUA NEW GUINEA;157:PARAGUAY;158:PERU;159:PHILIPPINES;160:POLAND;161:PORTO RICO;162:PORTUGAL;163:QATAR;164:REPUBLIC OF THE CONGO;165:REUNION;166:ROMANIA;167:RUSSIA;168:RWANDA;169:SAINT CHRISTOPHER AND NEVIS;170:SAINT LUCIA;171:SAINT MARTIN;172:SAINT PIERRE AND MIQUELON;173:SAINT VINCENT;174:SAIPAN;175:SAMOA;176:SAO TOME AND PRINCIPE;177:SAUDI ARABIA;178:SENEGAL;179:SERBIA;180:SEYCHELLES;181:SIERRA LEONE;182:SINGAPORE;183:SLOVAKIA;184:SLOVENIA;185:SOLOMON ISLAND;186:SOMALIA;187:SOUTH AFRICA;188:SPAIN;189:SRI LANKA;190:SUDAN;191:SURINAME;192:SWAZILAND;193:SWEDEN;194:SWITZERLAND;195:SYRIA;196:TADZHIKISTAN;197:TAIWAN;198:TANZANIA;199:THAILAND;200:TOGO;201:TONGA;202:TRINIDAD AND TOBAGO;203:TUNISIA;204:TURKEY;205:TURKMENISTAN;206:TURKS AND CAICOS ISLANDS;207:TUVALU;208:UGANDA;209:UKRAINE;210:UNITED ARAB EMIRATES;211:UZBEKISTAN;212:UNITED KINGDOM;213:URUGUAY;214:USA;215:VANUATU;216:VENEZUELA;217:VIET NAM;218:VIRGIN ISLANDS;219:WESTERN SAHARA;220:YEMEN;221:ZAMBIA;222:ZIMBABWE;223:UNITED STATES TERRITORY
+,7DD,28,39,.001,0,3,m,22210A,62210A,ff,Distance_camera_front_axle_center.Distance_camera_front_axle_center
+,7DD,24,31,2,0,0,mm,22210B,62210B,1ff,Dh
+,7DD,28,39,.001,0,3,m,22210C,62210C,1ff,Distance_camera_vehicle_centerline.Distance_camera_vehicle_centerline
+,7DD,30,39,.001,-300,3,m,22210D,62210D,ff,Distance_front_axle_to_bumper.Distance_front_axle_to_bumper
+,7DD,24,31,1,0,0,pixels,22210E,62210E,ff,Bottom
+,7DD,28,39,.001,0,3,m,22210F,62210F,ff,Camera_Height.Camera_Height
+,7DD,24,31,1,0,0,min,222201,622201,ff,CameraBlockageTimer
+,7DD,28,31,1,0,0,,222202,622202,ff,CameraBlockageMissionCounter
+,7DD,24,31,1,0,0,min,222203,622203,ff,CameraOverheatingTimer
+,7DD,24,31,1,0,0,min,222204,622204,ff,CameraMisalignmentTimer
+,7DD,28,31,1,0,0,,222205,622205,ff,CameraMisalignmentMissionCounter
+,7DD,24,31,1,0,0,min,222206,622206,ff,CameraOutOfFocusTimer
+,7DD,28,31,1,0,0,,222207,622207,ff,CameraOutOfFocusMissionCounter
+,7DD,24,31,1,0,0,min,222208,622208,ff,CameraOilyWindshieldTimer
+,7DD,28,31,1,0,0,,222209,622209,ff,CameraOilyWindshieldMissionCounter
+,7DD,24,31,1,0,0,min,222210,622210,ff,CameraWeatherDisturbancesTimer
+,7DD,28,31,1,0,0,,222211,622211,ff,CameraWeatherDisturbancesMissionCounter
+,7DD,25,39,.001,15000,3,°,222302,622302,ff,Camera_Pitch_Angle.Camera_Pitch_Angle
+,7DD,28,39,.001,0,3,m,222303,622303,ff,Referential_z_Translation_Parameter
+,7DD,24,39,5.49324788281071E-03,0,3,°,222304,622304,ff,Referential_Yaw_Rotation_Parameter
+,7DD,24,39,5.49324788281071E-03,0,3,°,222305,622305,ff,Referential_Pitch_Rotation_Parameter
+,7DD,24,39,5.49324788281071E-03,0,3,°,222306,622306,ff,Referential_Roll_Rotation_Parameter
+,7DD,24,55,1,0,0,,222400,622400,1ff,Supplier_Fault_Code.Supplier_Fault_Code
+,7DD,24,31,1,0,0,,222401,622401,ff,Ageing_Counter.Ageing_Counter
+,7DD,24,39,.01,0,2,,222402,622402,ff,Snapshot_Vehicle_Speed.Vehicle_Speed
+,7DD,24,25,1,0,0,,222403,622403,ff,Snapshot_Vehicle.Vehicle_Warning_State,0:No global  vehicle  Fault;1:"SERV" is ON (alert type R3);2:"STOP" is ON (alert type D3);3:"SERV" and "STOP" are ON (alert type R3& D3)
+,7DD,26,27,1,0,0,,222403,622403,ff,Snapshot_Vehicle.Vehicle_Driving_Status,0:Vehicle standing;1:Vehicle driving forwards;2:Vehicle driving backwards;3:Vehicle driving- without being able to determine direction
+,7DD,24,31,1,0,0,,222404,622404,ff,Absolute_Time_Since_First_Ignition.Absolute_Time_Since_First_Ignition
+,7DD,29,39,.1,1000,1,°/s,222405,622405,ff,Snapshot_Yaw_Rate
+,7DD,24,31,.5,0,1,bar,222406,622406,ff,Snapshot_Braking_Pressure
+,7DD,24,31,1,0,0,,222407,622407,ff,snapshot_non_connue
+,7DD,26,27,1,0,0,,222408,622408,ff,Snapshot.LDW_LKA_Activation_Status.LDW_AlertStatus,0:No Alert;1:Right Alert;2:Left Alert;3:Not Used
+,7DD,28,28,1,0,0,,222408,622408,ff,Snapshot.LDW_LKA_Activation_Status.ELKA_configuration_Status,0:ELKA Not Configured;1:ELKA Configured
+,7DD,29,30,1,0,0,,222408,622408,ff,Snapshot.LDW_LKA_Activation_Status.LDW_configuration_Status,0:LDW Not Configured;1:Sound LDW Configured;2:Haptic LDW Configured;3:Not Used
+,7DD,31,31,1,0,0,,222408,622408,ff,Snapshot.LDW_LKA_Activation_Status.LKA_configuration_Status,0:LKA Not Configured;1:LKA Configured
+,7DD,32,46,.01,10000,2,Nm,222408,622408,ff,Snapshot.LDW_LKA_Activation_Status.LKA_SteeringTorqueRequest
+,7DD,48,48,1,0,0,,222408,622408,ff,Snapshot.LDW_LKA_Activation_Status.LKA_SteeringTorqueRequestFlag,0:Not Requested;1:Requested
+,7DD,52,53,1,0,0,,222408,622408,ff,Snapshot.LDW_LKA_Activation_Status.E-LKA_AlertRight,0:No Alert;1:Alert Level 1;2:Alert Level 2;3:Not Used
+,7DD,54,55,1,0,0,,222408,622408,ff,Snapshot.LDW_LKA_Activation_Status.E-LKA_AlertLeft,0:No Alert;1:Alert Level 1;2:Alert Level 2;3:Not Used
+,7DD,24,31,1,0,0,,222409,622409,ff,Blindness_Status.Blindness_Status
+,7DD,24,31,1,0,0,min,222410,622410,ff,Snapshot_Blindness_Timer
+,7DD,24,27,1,0,0,,222411,622411,ff,Snapshot_Blindness_Mission_Counter
+,7DD,24,31,1,0,0,min,222412,622412,ff,Overheating_Status.Overheating_Status
+,7DD,24,31,1,0,0,min,222413,622413,ff,Snapshot_Overheating_Timer
+,7DD,24,31,1,0,0,,222414,622414,ff,Misalignment_Status.Misalignment_Status
+,7DD,24,31,1,0,0,min,222415,622415,ff,Snapshot_Misalignment_Timer
+,7DD,24,27,1,0,0,,222416,622416,ff,Snapshot_Misalignment_Mission_Counter
+,7DD,24,31,1,0,0,,222417,622417,ff,Out_Of_Focus_Status
+,7DD,24,31,1,0,0,min,222418,622418,ff,Snapshot_Out_Of_Focus_Timer
+,7DD,24,27,1,0,0,,222419,622419,ff,Snapshot_Out_Of_Focus_Mission_Counter
+,7DD,26,26,1,0,0,,222421,622421,ff,Snapshot_Side_Radars_Status.BSWrad_RightStatusForBSI,0:No permission for BSI control;1:Permission for BSI control
+,7DD,27,27,1,0,0,,222421,622421,ff,Snapshot_Side_Radars_Status.SideRadarRight_InitStatus,0:Not under initialization;1:Under initialization
+,7DD,28,28,1,0,0,,222421,622421,ff,Snapshot_Side_Radars_Status.SideRadarRight_Failure,0:No Failure;1:Failure
+,7DD,29,29,1,0,0,,222421,622421,ff,Snapshot_Side_Radars_Status.BSWrad_LeftStatusForBSI,0:No permission for BSI control;1:Permission for BSI control
+,7DD,30,30,1,0,0,,222421,622421,ff,Snapshot_Side_Radars_Status.SideRadarLeft_InitStatus,0:Not under initialization;1:Under initialization
+,7DD,31,31,1,0,0,,222421,622421,ff,Snapshot_Side_Radars_Status.SideRadarLeft_Failure,0:No Failure;1:Failure
+,7DD,25,25,1,0,0,,222422,622422,ff,Snapshot_Side_Radars_Misalignment.Left_Side_Radar_Misalignment,0:No blockage;1:Blockage
+,7DD,30,30,1,0,0,,222422,622422,ff,Snapshot_Side_Radars_Misalignment.Right_Side_Radar_Misalignment,0:No blockage;1:Blockage
+,7DD,30,31,1,0,0,,222500,622500,ff,OEM.DID_OEM,0:RENAULT;1:NISSAN;2:RENAULT SPORT;3:NOT USED
+,7DD,24,28,1,0,0,,224008,624008,ff,SNOW_MAX_TEMPERATURE
+,7DD,31,31,1,0,0,,224011,624011,ff,EXTERNAL_TEMPERATURE_STRATEGY,0:No ExternalTemperature filter;1:ExternalTemperature filter
+,7DD,31,31,1,0,0,,224012,624012,ff,TRAILER_STRATEGY,0:No TrailerPresence filter;1:TrailerPresence filter
+,7DD,24,35,1,0,0,,224014,624014,ff,NO_OVERTAKE.BEGIN
+,7DD,36,47,1,0,0,,224014,624014,ff,NO_OVERTAKE.END
+,7DD,48,48,1,0,0,,224014,624014,ff,NO_OVERTAKE.BEGIN_MODE,0:seconde;1:meter
+,7DD,49,49,1,0,0,,224014,624014,ff,NO_OVERTAKE.END_MODE,0:seconde;1:meter
+,7DD,24,24,1,0,0,,224015,624015,ff,NATIONALSPEED.START_ACTIVATION_STATUS,0:previous status;1:default ON
+,7DD,25,36,1,0,0,,224015,624015,ff,NATIONALSPEED.TYPE_COUNTER
+,7DD,37,37,1,0,0,,224015,624015,ff,NATIONALSPEED.TYPE_COUNTER_MODE,0:timer in time;1:timer in distance
+,7DD,31,31,1,0,0,,224016,624016,ff,OSP_SL_LINK,0:OSP_SL_LINK not present;1:OSP_SL_LINK present
+,7DD,31,31,1,0,0,,224017,624017,ff,EXT_TRAFFIC_SIGN,0:False = Extented Traffic Sign zone not active;1:True = Extented Traffic Sign zone active
+,7DD,24,31,1,0,0,s,224018,624018,ff,rain_strategy_selection.max_period_intermittent
+,7DD,32,39,1,0,0,,224018,624018,ff,rain_strategy_selection.maxcountwipers
+,7DD,40,47,100,0,0,ms,224018,624018,ff,rain_strategy_selection.rain_active_delay
+,7DD,48,55,100,0,0,ms,224018,624018,ff,rain_strategy_selection.rain_not_active_delay
+,7DD,63,63,1,0,0,,224018,624018,ff,rain_strategy_selection.rain_strategy_selection,0:external signal rain vehicle status;1:internal strategy based on front wiping status
+,7DD,24,25,1,0,0,,224019,624019,ff,LDW_ButtonCounter,0:0;1:1;2:2;3:3
+,7DD,24,31,1,0,0,,224020,624020,ff,CamAlignTM.camera_align_tm,0:3 targets mode;1:2 targets mode;2:1 target mode;3:autocalibrate;4:autocalibrate mode with roll angle calibration
+,7DD,24,39,.0004,0,3,°,224021,624021,1ff,FLCAlignResults.Aiming_Yaw_dynamic
+,7DD,40,55,.0004,0,3,°,224021,624021,1ff,FLCAlignResults.Aiming_Pitch_dynamic
+,7DD,56,63,1,0,0,°,224021,624021,1ff,FLCAlignResults.roll_delta_error
+,7DD,64,71,1,0,0,pixel,224021,624021,1ff,FLCAlignResults.yaw_delta_error
+,7DD,72,87,.0004,0,3,°,224021,624021,1ff,FLCAlignResults.Aiming_Roll_dynamic
+,7DD,88,95,1,0,0,pixel,224021,624021,1ff,FLCAlignResults.pitch_delta_error
+,7DD,96,96,1,0,0,,224021,624021,ff,FLCAlignResults.Autofix_Returned_First_Value,0:first value not returned;1:first value returned
+,7DD,24,39,2,0,0,mm,224022,624022,ff,FLCAlignData.targets_separation_distance
+,7DD,40,47,50,0,0,mm,224022,624022,ff,FLCAlignData.targets_distance_to_front_axle
+,7DD,48,55,10,0,0,mm,224022,624022,ff,FLCAlignData.targets_upper_height
+,7DD,56,63,10,0,0,mm,224022,624022,ff,FLCAlignData.targets_lower_height
+,7DD,64,71,10,0,0,mm,224022,624022,ff,FLCAlignData.targets_size
+,7DD,72,76,1,0,0,,224022,624022,ff,FLCAlignData.type_of_targets,1:Horizontal Rects w/ 2 SP- car shall be aligned to center of targets' panel;2:Round Targets w/ 1 SP- car shall be aligned to right target
+,7DD,24,34,1,0,0,pixel,224023,624023,1ff,Focal_Length
+,7DD,24,39,1,0,0,m,224025,624025,ff,TIMER.OVER_130_SL DISPLAY MAX DIST
+,7DD,40,47,1,0,0,s,224025,624025,ff,TIMER.OVER_130_SL_MIN_TIME
+,7DD,48,55,1,0,0,s,224025,624025,ff,TIMER.OVER_130_SL_EXT_TIME
+,7DD,56,71,1,0,0,m,224025,624025,ff,TIMER.90_130_HW_SL DISPLAY MAX DIST
+,7DD,72,79,1,0,0,s,224025,624025,ff,TIMER.90_130_HW_SL_MIN_TIME
+,7DD,80,87,1,0,0,s,224025,624025,ff,TIMER.90_130_HW_SL_EXT_TIME
+,7DD,88,103,1,0,0,m,224025,624025,ff,TIMER.90_130_NOT_HW_SL DISPLAY MAX DIST
+,7DD,104,111,1,0,0,s,224025,624025,ff,TIMER.90_130_NOT_HW_SL_MIN_TIME
+,7DD,112,119,1,0,0,s,224025,624025,ff,TIMER.90_130_NOT_HW_SL_EXT_TIME
+,7DD,120,135,1,0,0,m,224025,624025,ff,TIMER.60_80_HW_SL DISPLAY MAX DIST
+,7DD,136,143,1,0,0,s,224025,624025,ff,TIMER.60_80_HW_SL_MIN_TIME
+,7DD,144,151,1,0,0,s,224025,624025,ff,TIMER.60_80_HW_SL_EXT_TIME
+,7DD,152,167,1,0,0,m,224025,624025,ff,TIMER.60_80_NOT_HW_SL DISPLAY MAX DIST
+,7DD,168,175,1,0,0,s,224025,624025,ff,TIMER.60_80_NOT_HW_SL_MIN_TIME
+,7DD,176,183,1,0,0,s,224025,624025,ff,TIMER.60_80_NOT_HW_SL_EXT_TIME
+,7DD,184,199,1,0,0,m,224025,624025,ff,TIMER.10_50_HW_SL_DISPLAY_MAX_DIST
+,7DD,200,207,1,0,0,s,224025,624025,ff,TIMER.10_50_HW_SL_MIN_TIME
+,7DD,208,215,1,0,0,s,224025,624025,ff,TIMER.10_50_HW_SL_EXT_TIME
+,7DD,216,231,1,0,0,m,224025,624025,ff,TIMER.10_50_NOT_HW_SL DISPLAY MAX DIST
+,7DD,232,239,1,0,0,s,224025,624025,ff,TIMER.10_50_NOT_HW_SL_MIN_TIME
+,7DD,240,247,1,0,0,s,224025,624025,ff,TIMER.10_50_NOT_HW_SL_EXT_TIME
+,7DD,248,263,1,0,0,m,224025,624025,ff,TIMER.ENDOF_HW_SL_DISPLAY_MAX_DIST
+,7DD,264,271,1,0,0,s,224025,624025,ff,TIMER.ENDOF_HW_SL_MIN_TIME
+,7DD,272,279,1,0,0,s,224025,624025,ff,TIMER.ENDOF_HW_SL_EXT_TIME
+,7DD,280,295,1,0,0,m,224025,624025,ff,TIMER.ENDOF_NOT_HW_SL_DISPLAY_MAX_DIST
+,7DD,296,303,1,0,0,,224025,624025,ff,TIMER.ENDOF_NOT_HW_SL_MIN_TIME
+,7DD,304,311,1,0,0,s,224025,624025,ff,TIMER.ENDOF_NOT_HW_SL_EXT_TIME
+,7DD,24,31,1,-1,0,s,224026,624026,ff,SL DISPLAY MAX TIME
+,7DD,24,39,1,0,0,m,224027,624027,ff,Fusion_Timer.90_130 HW
+,7DD,40,55,1,0,0,m,224027,624027,ff,Fusion_Timer.60_80 HW
+,7DD,56,71,1,0,0,m,224027,624027,ff,Fusion_Timer.10_50 HW
+,7DD,72,87,1,0,0,m,224027,624027,ff,Fusion_Timer.90_130 NOT HW
+,7DD,88,103,1,0,0,m,224027,624027,ff,Fusion_Timer.60_80 NOT HW
+,7DD,104,119,1,0,0,m,224027,624027,ff,Fusion_Timer.10_50 NOT HW
+,7DD,120,135,1,0,0,m,224027,624027,ff,Fusion_Timer.SL_WITH_SUPP
+,7DD,24,39,1,0,0,km/h,224028,624028,ff,SL_LOW.THRESHOLD_KPH
+,7DD,40,55,1,0,0,mph,224028,624028,ff,SL_LOW.THRESHOLD_MPH
+,7DD,27,31,1,0,0,km/h,224029,624029,ff,RECORD_SPEED_THD
+,7DD,24,35,.1,0,1,s,224030,624030,ff,Overspeed.Overspeed_detect_time
+,7DD,36,47,.1,0,1,km/h,224030,624030,ff,Overspeed.Overspeed_tolerance_kmh
+,7DD,48,59,.1,0,1,mph,224030,624030,ff,Overspeed.Overspeed_tolerance_mph
+,7DD,60,67,1,0,0,s,224030,624030,ff,Overspeed.Rain_Start_detect_rain
+,7DD,68,75,1,0,0,s,224030,624030,ff,Overspeed.Rain_Stop_detect_rain
+,7DD,24,24,1,0,0,,224031,624031,ff,Autofix_Activation.Autofix_Activation,0:Autofix is deactivated;1:Autofix is activated
+,7DD,31,31,1,0,0,-,224072,624072,ff,DiagAddOn_RW_LKA.Diag_add_on_LKA_ena
+,7DD,28,55,.01,0,2,km,224073,624073,ff,DiagAddOn_EEPROM_act_buf_LKA_N0.Mileage_N0
+,7DD,56,71,.01,0,2,km/h,224073,624073,ff,DiagAddOn_EEPROM_act_buf_LKA_N0.V_mes_kmh_VehicleSpeed_N0
+,7DD,75,79,.001,0,3,1/m,224073,624073,ff,DiagAddOn_EEPROM_act_buf_LKA_N0.V_mes_pm_Curvature_Average_N0
+,7DD,81,85,.1,-20,1,m,224073,624073,ff,DiagAddOn_EEPROM_act_buf_LKA_N0.V_calc_m_LaneWidth_N0
+,7DD,86,95,.01,100,2,m,224073,624073,ff,DiagAddOn_EEPROM_act_buf_LKA_N0.V_mes_m_Distance_Lane_Left_N0
+,7DD,96,105,.01,100,2,m,224073,624073,ff,DiagAddOn_EEPROM_act_buf_LKA_N0.V_mes_m_Distance_Lane_Right_N0
+,7DD,106,107,1,0,0,-,224073,624073,ff,DiagAddOn_EEPROM_act_buf_LKA_N0.V_flag_2bit_LDWLKASensibility_N0
+,7DD,108,111,.1,0,1,m/s,224073,624073,ff,DiagAddOn_EEPROM_act_buf_LKA_N0.V_est_mps_LatSpeed_left_N0
+,7DD,112,115,.1,0,1,m/s,224073,624073,ff,DiagAddOn_EEPROM_act_buf_LKA_N0.V_est_mps_LatSpeed_right_N0
+,7DD,116,119,1,0,0,-,224073,624073,ff,DiagAddOn_EEPROM_act_buf_LKA_N0.V_req_5bit_LDW_LKA_Display_N0
+,7DD,28,55,.01,0,2,km,224074,624074,ff,DiagAddOn_EEPROM_act_buf_LKA_N1.Mileage_N1
+,7DD,56,71,.01,0,2,km/h,224074,624074,ff,DiagAddOn_EEPROM_act_buf_LKA_N1.V_mes_kmh_VehicleSpeed_N1
+,7DD,75,79,.001,0,3,1/m,224074,624074,ff,DiagAddOn_EEPROM_act_buf_LKA_N1.V_mes_pm_Curvature_Average_N1
+,7DD,81,85,.1,-20,1,m,224074,624074,ff,DiagAddOn_EEPROM_act_buf_LKA_N1.V_calc_m_LaneWidth_N1
+,7DD,86,95,.01,100,2,m,224074,624074,ff,DiagAddOn_EEPROM_act_buf_LKA_N1.V_mes_m_Distance_Lane_Left_N1
+,7DD,96,105,.01,100,2,m,224074,624074,ff,DiagAddOn_EEPROM_act_buf_LKA_N1.V_mes_m_Distance_Lane_Right_N1
+,7DD,106,107,1,0,0,-,224074,624074,ff,DiagAddOn_EEPROM_act_buf_LKA_N1.V_flag_2bit_LDWLKASensibility_N1
+,7DD,108,111,.1,0,1,m/s,224074,624074,ff,DiagAddOn_EEPROM_act_buf_LKA_N1.V_est_mps_LatSpeed_left_N1
+,7DD,112,115,.1,0,1,m/s,224074,624074,ff,DiagAddOn_EEPROM_act_buf_LKA_N1.V_est_mps_LatSpeed_right_N1
+,7DD,116,119,1,0,0,-,224074,624074,ff,DiagAddOn_EEPROM_act_buf_LKA_N1.V_req_5bit_LDW_LKA_Display_N1
+,7DD,28,55,.01,0,2,km,224075,624075,ff,DiagAddOn_EEPROM_act_buf_LKA_N2.Mileage_N2
+,7DD,56,71,.01,0,2,km/h,224075,624075,ff,DiagAddOn_EEPROM_act_buf_LKA_N2.V_mes_kmh_VehicleSpeed_N2
+,7DD,75,79,.001,0,3,1/m,224075,624075,ff,DiagAddOn_EEPROM_act_buf_LKA_N2.V_mes_pm_Curvature_Average_N2
+,7DD,81,85,.1,-20,1,m,224075,624075,ff,DiagAddOn_EEPROM_act_buf_LKA_N2.V_calc_m_LaneWidth_N2
+,7DD,86,95,.01,100,2,m,224075,624075,ff,DiagAddOn_EEPROM_act_buf_LKA_N2.V_mes_m_Distance_Lane_Left_N2
+,7DD,96,105,.01,100,2,m,224075,624075,ff,DiagAddOn_EEPROM_act_buf_LKA_N2.V_mes_m_Distance_Lane_Right_N2
+,7DD,106,107,1,0,0,-,224075,624075,ff,DiagAddOn_EEPROM_act_buf_LKA_N2.V_flag_2bit_LDWLKASensibility_N2
+,7DD,108,111,.1,0,1,m/s,224075,624075,ff,DiagAddOn_EEPROM_act_buf_LKA_N2.V_est_mps_LatSpeed_left_N2
+,7DD,112,115,.1,0,1,m/s,224075,624075,ff,DiagAddOn_EEPROM_act_buf_LKA_N2.V_est_mps_LatSpeed_right_N2
+,7DD,116,119,1,0,0,-,224075,624075,ff,DiagAddOn_EEPROM_act_buf_LKA_N2.V_req_5bit_LDW_LKA_Display_N2
+,7DD,28,55,.01,0,2,km,224076,624076,ff,DiagAddOn_EEPROM_act_buf_LKA_N3.Mileage_N3
+,7DD,56,71,.01,0,2,km/h,224076,624076,ff,DiagAddOn_EEPROM_act_buf_LKA_N3.V_mes_kmh_VehicleSpeed_N3
+,7DD,75,79,.001,0,3,1/m,224076,624076,ff,DiagAddOn_EEPROM_act_buf_LKA_N3.V_mes_pm_Curvature_Average_N3
+,7DD,81,85,.1,-20,1,m,224076,624076,ff,DiagAddOn_EEPROM_act_buf_LKA_N3.V_calc_m_LaneWidth_N3
+,7DD,86,95,.01,100,2,m,224076,624076,ff,DiagAddOn_EEPROM_act_buf_LKA_N3.V_mes_m_Distance_Lane_Left_N3
+,7DD,96,105,.01,100,2,m,224076,624076,ff,DiagAddOn_EEPROM_act_buf_LKA_N3.V_mes_m_Distance_Lane_Right_N3
+,7DD,106,107,1,0,0,-,224076,624076,ff,DiagAddOn_EEPROM_act_buf_LKA_N3.V_flag_2bit_LDWLKASensibility_N3
+,7DD,108,111,.1,0,1,m/s,224076,624076,ff,DiagAddOn_EEPROM_act_buf_LKA_N3.V_est_mps_LatSpeed_left_N3
+,7DD,112,115,.1,0,1,m/s,224076,624076,ff,DiagAddOn_EEPROM_act_buf_LKA_N3.V_est_mps_LatSpeed_right_N3
+,7DD,116,119,1,0,0,-,224076,624076,ff,DiagAddOn_EEPROM_act_buf_LKA_N3.V_req_5bit_LDW_LKA_Display_N3
+,7DD,28,55,.01,0,2,km,224077,624077,ff,DiagAddOn_EEPROM_act_buf_LKA_N4.Mileage_N4
+,7DD,56,71,.01,0,2,km/h,224077,624077,ff,DiagAddOn_EEPROM_act_buf_LKA_N4.V_mes_kmh_VehicleSpeed_N4
+,7DD,75,79,.001,0,3,1/m,224077,624077,ff,DiagAddOn_EEPROM_act_buf_LKA_N4.V_mes_pm_Curvature_Average_N4
+,7DD,81,85,.1,-20,1,m,224077,624077,ff,DiagAddOn_EEPROM_act_buf_LKA_N4.V_calc_m_LaneWidth_N4
+,7DD,86,95,.01,100,2,m,224077,624077,ff,DiagAddOn_EEPROM_act_buf_LKA_N4.V_mes_m_Distance_Lane_Left_N4
+,7DD,96,105,.01,100,2,m,224077,624077,ff,DiagAddOn_EEPROM_act_buf_LKA_N4.V_mes_m_Distance_Lane_Right_N4
+,7DD,106,107,1,0,0,-,224077,624077,ff,DiagAddOn_EEPROM_act_buf_LKA_N4.V_flag_2bit_LDWLKASensibility_N4
+,7DD,108,111,.1,0,1,m/s,224077,624077,ff,DiagAddOn_EEPROM_act_buf_LKA_N4.V_est_mps_LatSpeed_left_N4
+,7DD,112,115,.1,0,1,m/s,224077,624077,ff,DiagAddOn_EEPROM_act_buf_LKA_N4.V_est_mps_LatSpeed_right_N4
+,7DD,116,119,1,0,0,-,224077,624077,ff,DiagAddOn_EEPROM_act_buf_LKA_N4.V_req_5bit_LDW_LKA_Display_N4
+,7DD,28,55,.01,0,2,km,224078,624078,ff,DiagAddOn_EEPROM_act_buf_LKA_N5.Mileage_N5
+,7DD,56,71,.01,0,2,km/h,224078,624078,ff,DiagAddOn_EEPROM_act_buf_LKA_N5.V_mes_kmh_VehicleSpeed_N5
+,7DD,75,79,.001,0,3,1/m,224078,624078,ff,DiagAddOn_EEPROM_act_buf_LKA_N5.V_mes_pm_Curvature_Average_N5
+,7DD,81,85,.1,-20,1,m,224078,624078,ff,DiagAddOn_EEPROM_act_buf_LKA_N5.V_calc_m_LaneWidth_N5
+,7DD,86,95,.01,100,2,m,224078,624078,ff,DiagAddOn_EEPROM_act_buf_LKA_N5.V_mes_m_Distance_Lane_Left_N5
+,7DD,96,105,.01,100,2,m,224078,624078,ff,DiagAddOn_EEPROM_act_buf_LKA_N5.V_mes_m_Distance_Lane_Right_N5
+,7DD,106,107,1,0,0,-,224078,624078,ff,DiagAddOn_EEPROM_act_buf_LKA_N5.V_flag_2bit_LDWLKASensibility_N5
+,7DD,108,111,.1,0,1,m/s,224078,624078,ff,DiagAddOn_EEPROM_act_buf_LKA_N5.V_est_mps_LatSpeed_left_N5
+,7DD,112,115,.1,0,1,m/s,224078,624078,ff,DiagAddOn_EEPROM_act_buf_LKA_N5.V_est_mps_LatSpeed_right_N5
+,7DD,116,119,1,0,0,-,224078,624078,ff,DiagAddOn_EEPROM_act_buf_LKA_N5.V_req_5bit_LDW_LKA_Display_N5
+,7DD,28,55,.01,0,2,km,224079,624079,ff,DiagAddOn_EEPROM_act_buf_LKA_N6.Mileage_N6
+,7DD,56,71,.01,0,2,km/h,224079,624079,ff,DiagAddOn_EEPROM_act_buf_LKA_N6.V_mes_kmh_VehicleSpeed_N6
+,7DD,75,79,.001,0,3,1/m,224079,624079,ff,DiagAddOn_EEPROM_act_buf_LKA_N6.V_mes_pm_Curvature_Average_N6
+,7DD,81,85,.1,-20,1,m,224079,624079,ff,DiagAddOn_EEPROM_act_buf_LKA_N6.V_calc_m_LaneWidth_N6
+,7DD,86,95,.01,100,2,m,224079,624079,ff,DiagAddOn_EEPROM_act_buf_LKA_N6.V_mes_m_Distance_Lane_Left_N6
+,7DD,96,105,.01,100,2,m,224079,624079,ff,DiagAddOn_EEPROM_act_buf_LKA_N6.V_mes_m_Distance_Lane_Right_N6
+,7DD,106,107,1,0,0,-,224079,624079,ff,DiagAddOn_EEPROM_act_buf_LKA_N6.V_flag_2bit_LDWLKASensibility_N6
+,7DD,108,111,.1,0,1,m/s,224079,624079,ff,DiagAddOn_EEPROM_act_buf_LKA_N6.V_est_mps_LatSpeed_left_N6
+,7DD,112,115,.1,0,1,m/s,224079,624079,ff,DiagAddOn_EEPROM_act_buf_LKA_N6.V_est_mps_LatSpeed_right_N6
+,7DD,116,119,1,0,0,-,224079,624079,ff,DiagAddOn_EEPROM_act_buf_LKA_N6.V_req_5bit_LDW_LKA_Display_N6
+,7DD,28,55,.01,0,2,km,22407A,62407A,ff,DiagAddOn_EEPROM_act_buf_LKA_N7.Mileage_N7
+,7DD,56,71,.01,0,2,km/h,22407A,62407A,ff,DiagAddOn_EEPROM_act_buf_LKA_N7.V_mes_kmh_VehicleSpeed_N7
+,7DD,75,79,.001,0,3,1/m,22407A,62407A,ff,DiagAddOn_EEPROM_act_buf_LKA_N7.V_mes_pm_Curvature_Average_N7
+,7DD,81,85,.1,-20,1,m,22407A,62407A,ff,DiagAddOn_EEPROM_act_buf_LKA_N7.V_calc_m_LaneWidth_N7
+,7DD,86,95,.01,100,2,m,22407A,62407A,ff,DiagAddOn_EEPROM_act_buf_LKA_N7.V_mes_m_Distance_Lane_Left_N7
+,7DD,96,105,.01,100,2,m,22407A,62407A,ff,DiagAddOn_EEPROM_act_buf_LKA_N7.V_mes_m_Distance_Lane_Right_N7
+,7DD,106,107,1,0,0,-,22407A,62407A,ff,DiagAddOn_EEPROM_act_buf_LKA_N7.V_flag_2bit_LDWLKASensibility_N7
+,7DD,108,111,.1,0,1,m/s,22407A,62407A,ff,DiagAddOn_EEPROM_act_buf_LKA_N7.V_est_mps_LatSpeed_left_N7
+,7DD,112,115,.1,0,1,m/s,22407A,62407A,ff,DiagAddOn_EEPROM_act_buf_LKA_N7.V_est_mps_LatSpeed_right_N7
+,7DD,116,119,1,0,0,-,22407A,62407A,ff,DiagAddOn_EEPROM_act_buf_LKA_N7.V_req_5bit_LDW_LKA_Display_N7
+,7DD,28,55,.01,0,2,km,22407B,62407B,ff,DiagAddOn_EEPROM_act_buf_LKA_N8.Mileage_N8
+,7DD,56,71,.01,0,2,km/h,22407B,62407B,ff,DiagAddOn_EEPROM_act_buf_LKA_N8.V_mes_kmh_VehicleSpeed_N8
+,7DD,75,79,.001,0,3,1/m,22407B,62407B,ff,DiagAddOn_EEPROM_act_buf_LKA_N8.V_mes_pm_Curvature_Average_N8
+,7DD,81,85,.1,-20,1,m,22407B,62407B,ff,DiagAddOn_EEPROM_act_buf_LKA_N8.V_calc_m_LaneWidth_N8
+,7DD,86,95,.01,100,2,m,22407B,62407B,ff,DiagAddOn_EEPROM_act_buf_LKA_N8.V_mes_m_Distance_Lane_Left_N8
+,7DD,96,105,.01,100,2,m,22407B,62407B,ff,DiagAddOn_EEPROM_act_buf_LKA_N8.V_mes_m_Distance_Lane_Right_N8
+,7DD,106,107,1,0,0,-,22407B,62407B,ff,DiagAddOn_EEPROM_act_buf_LKA_N8.V_flag_2bit_LDWLKASensibility_N8
+,7DD,108,111,.1,0,1,m/s,22407B,62407B,ff,DiagAddOn_EEPROM_act_buf_LKA_N8.V_est_mps_LatSpeed_left_N8
+,7DD,112,115,.1,0,1,m/s,22407B,62407B,ff,DiagAddOn_EEPROM_act_buf_LKA_N8.V_est_mps_LatSpeed_right_N8
+,7DD,116,119,1,0,0,-,22407B,62407B,ff,DiagAddOn_EEPROM_act_buf_LKA_N8.V_req_5bit_LDW_LKA_Display_N8
+,7DD,28,55,.01,0,2,km,22407C,62407C,ff,DiagAddOn_EEPROM_act_buf_LKA_N9.Mileage_N9
+,7DD,56,71,.01,0,2,km/h,22407C,62407C,ff,DiagAddOn_EEPROM_act_buf_LKA_N9.V_mes_kmh_VehicleSpeed_N9
+,7DD,75,79,.001,0,3,1/m,22407C,62407C,ff,DiagAddOn_EEPROM_act_buf_LKA_N9.V_mes_pm_Curvature_Average_N9
+,7DD,81,85,.1,-20,1,m,22407C,62407C,ff,DiagAddOn_EEPROM_act_buf_LKA_N9.V_calc_m_LaneWidth_N9
+,7DD,86,95,.01,100,2,m,22407C,62407C,ff,DiagAddOn_EEPROM_act_buf_LKA_N9.V_mes_m_Distance_Lane_Left_N9
+,7DD,96,105,.01,100,2,m,22407C,62407C,ff,DiagAddOn_EEPROM_act_buf_LKA_N9.V_mes_m_Distance_Lane_Right_N9
+,7DD,106,107,1,0,0,-,22407C,62407C,ff,DiagAddOn_EEPROM_act_buf_LKA_N9.V_flag_2bit_LDWLKASensibility_N9
+,7DD,108,111,.1,0,1,m/s,22407C,62407C,ff,DiagAddOn_EEPROM_act_buf_LKA_N9.V_est_mps_LatSpeed_left_N9
+,7DD,112,115,.1,0,1,m/s,22407C,62407C,ff,DiagAddOn_EEPROM_act_buf_LKA_N9.V_est_mps_LatSpeed_right_N9
+,7DD,116,119,1,0,0,-,22407C,62407C,ff,DiagAddOn_EEPROM_act_buf_LKA_N9.V_req_5bit_LDW_LKA_Display_N9
+,7DD,28,55,.01,0,2,km,22407D,62407D,ff,DiagAddOn_EEPROM_act_buf_LKA_N10.Mileage_N10
+,7DD,56,71,.01,0,2,km/h,22407D,62407D,ff,DiagAddOn_EEPROM_act_buf_LKA_N10.V_mes_kmh_VehicleSpeed_N10
+,7DD,75,79,.001,0,3,1/m,22407D,62407D,ff,DiagAddOn_EEPROM_act_buf_LKA_N10.V_mes_pm_Curvature_Average_N10
+,7DD,81,85,.1,-20,1,m,22407D,62407D,ff,DiagAddOn_EEPROM_act_buf_LKA_N10.V_calc_m_LaneWidth_N10
+,7DD,86,95,.01,100,2,m,22407D,62407D,ff,DiagAddOn_EEPROM_act_buf_LKA_N10.V_mes_m_Distance_Lane_Left_N10
+,7DD,96,105,.01,100,2,m,22407D,62407D,ff,DiagAddOn_EEPROM_act_buf_LKA_N10.V_mes_m_Distance_Lane_Right_N10
+,7DD,106,107,1,0,0,-,22407D,62407D,ff,DiagAddOn_EEPROM_act_buf_LKA_N10.V_flag_2bit_LDWLKASensibility_N10
+,7DD,108,111,.1,0,1,m/s,22407D,62407D,ff,DiagAddOn_EEPROM_act_buf_LKA_N10.V_est_mps_LatSpeed_left_N10
+,7DD,112,115,.1,0,1,m/s,22407D,62407D,ff,DiagAddOn_EEPROM_act_buf_LKA_N10.V_est_mps_LatSpeed_right_N10
+,7DD,116,119,1,0,0,-,22407D,62407D,ff,DiagAddOn_EEPROM_act_buf_LKA_N10.V_req_5bit_LDW_LKA_Display_N10
+,7DD,28,55,.01,0,2,km,22407E,62407E,ff,DiagAddOn_EEPROM_act_buf_LKA_N11.Mileage_N11
+,7DD,56,71,.01,0,2,km/h,22407E,62407E,ff,DiagAddOn_EEPROM_act_buf_LKA_N11.V_mes_kmh_VehicleSpeed_N11
+,7DD,75,79,.001,0,3,1/m,22407E,62407E,ff,DiagAddOn_EEPROM_act_buf_LKA_N11.V_mes_pm_Curvature_Average_N11
+,7DD,81,85,.1,-20,1,m,22407E,62407E,ff,DiagAddOn_EEPROM_act_buf_LKA_N11.V_calc_m_LaneWidth_N11
+,7DD,86,95,.01,100,2,m,22407E,62407E,ff,DiagAddOn_EEPROM_act_buf_LKA_N11.V_mes_m_Distance_Lane_Left_N11
+,7DD,96,105,.01,100,2,m,22407E,62407E,ff,DiagAddOn_EEPROM_act_buf_LKA_N11.V_mes_m_Distance_Lane_Right_N11
+,7DD,106,107,1,0,0,-,22407E,62407E,ff,DiagAddOn_EEPROM_act_buf_LKA_N11.V_flag_2bit_LDWLKASensibility_N11
+,7DD,108,111,.1,0,1,m/s,22407E,62407E,ff,DiagAddOn_EEPROM_act_buf_LKA_N11.V_est_mps_LatSpeed_left_N11
+,7DD,112,115,.1,0,1,m/s,22407E,62407E,ff,DiagAddOn_EEPROM_act_buf_LKA_N11.V_est_mps_LatSpeed_right_N11
+,7DD,116,119,1,0,0,-,22407E,62407E,ff,DiagAddOn_EEPROM_act_buf_LKA_N11.V_req_5bit_LDW_LKA_Display_N11
+,7DD,28,55,.01,0,2,km,22407F,62407F,ff,DiagAddOn_EEPROM_act_buf_LKA_N12.Mileage_N12
+,7DD,56,71,.01,0,2,km/h,22407F,62407F,ff,DiagAddOn_EEPROM_act_buf_LKA_N12.V_mes_kmh_VehicleSpeed_N12
+,7DD,75,79,.001,0,3,1/m,22407F,62407F,ff,DiagAddOn_EEPROM_act_buf_LKA_N12.V_mes_pm_Curvature_Average_N12
+,7DD,81,85,.1,-20,1,m,22407F,62407F,ff,DiagAddOn_EEPROM_act_buf_LKA_N12.V_calc_m_LaneWidth_N12
+,7DD,86,95,.01,100,2,m,22407F,62407F,ff,DiagAddOn_EEPROM_act_buf_LKA_N12.V_mes_m_Distance_Lane_Left_N12
+,7DD,96,105,.01,100,2,m,22407F,62407F,ff,DiagAddOn_EEPROM_act_buf_LKA_N12.V_mes_m_Distance_Lane_Right_N12
+,7DD,106,107,1,0,0,-,22407F,62407F,ff,DiagAddOn_EEPROM_act_buf_LKA_N12.V_flag_2bit_LDWLKASensibility_N12
+,7DD,108,111,.1,0,1,m/s,22407F,62407F,ff,DiagAddOn_EEPROM_act_buf_LKA_N12.V_est_mps_LatSpeed_left_N12
+,7DD,112,115,.1,0,1,m/s,22407F,62407F,ff,DiagAddOn_EEPROM_act_buf_LKA_N12.V_est_mps_LatSpeed_right_N12
+,7DD,116,119,1,0,0,-,22407F,62407F,ff,DiagAddOn_EEPROM_act_buf_LKA_N12.V_req_5bit_LDW_LKA_Display_N12
+,7DD,28,55,.01,0,2,km,224080,624080,ff,DiagAddOn_EEPROM_act_buf_LKA_N13.Mileage_N13
+,7DD,56,71,.01,0,2,km/h,224080,624080,ff,DiagAddOn_EEPROM_act_buf_LKA_N13.V_mes_kmh_VehicleSpeed_N13
+,7DD,75,79,.001,0,3,1/m,224080,624080,ff,DiagAddOn_EEPROM_act_buf_LKA_N13.V_mes_pm_Curvature_Average_N13
+,7DD,81,85,.1,-20,1,m,224080,624080,ff,DiagAddOn_EEPROM_act_buf_LKA_N13.V_calc_m_LaneWidth_N13
+,7DD,86,95,.01,100,2,m,224080,624080,ff,DiagAddOn_EEPROM_act_buf_LKA_N13.V_mes_m_Distance_Lane_Left_N13
+,7DD,96,105,.01,100,2,m,224080,624080,ff,DiagAddOn_EEPROM_act_buf_LKA_N13.V_mes_m_Distance_Lane_Right_N13
+,7DD,106,107,1,0,0,-,224080,624080,ff,DiagAddOn_EEPROM_act_buf_LKA_N13.V_flag_2bit_LDWLKASensibility_N13
+,7DD,108,111,.1,0,1,m/s,224080,624080,ff,DiagAddOn_EEPROM_act_buf_LKA_N13.V_est_mps_LatSpeed_left_N13
+,7DD,112,115,.1,0,1,m/s,224080,624080,ff,DiagAddOn_EEPROM_act_buf_LKA_N13.V_est_mps_LatSpeed_right_N13
+,7DD,116,119,1,0,0,-,224080,624080,ff,DiagAddOn_EEPROM_act_buf_LKA_N13.V_req_5bit_LDW_LKA_Display_N13
+,7DD,28,55,.01,0,2,km,224081,624081,ff,DiagAddOn_EEPROM_act_buf_LKA_N14.Mileage_N14
+,7DD,56,71,.01,0,2,km/h,224081,624081,ff,DiagAddOn_EEPROM_act_buf_LKA_N14.V_mes_kmh_VehicleSpeed_N14
+,7DD,75,79,.001,0,3,1/m,224081,624081,ff,DiagAddOn_EEPROM_act_buf_LKA_N14.V_mes_pm_Curvature_Average_N14
+,7DD,81,85,.1,-20,1,m,224081,624081,ff,DiagAddOn_EEPROM_act_buf_LKA_N14.V_calc_m_LaneWidth_N14
+,7DD,86,95,.01,100,2,m,224081,624081,ff,DiagAddOn_EEPROM_act_buf_LKA_N14.V_mes_m_Distance_Lane_Left_N14
+,7DD,96,105,.01,100,2,m,224081,624081,ff,DiagAddOn_EEPROM_act_buf_LKA_N14.V_mes_m_Distance_Lane_Right_N14
+,7DD,106,107,1,0,0,-,224081,624081,ff,DiagAddOn_EEPROM_act_buf_LKA_N14.V_flag_2bit_LDWLKASensibility_N14
+,7DD,108,111,.1,0,1,m/s,224081,624081,ff,DiagAddOn_EEPROM_act_buf_LKA_N14.V_est_mps_LatSpeed_left_N14
+,7DD,112,115,.1,0,1,m/s,224081,624081,ff,DiagAddOn_EEPROM_act_buf_LKA_N14.V_est_mps_LatSpeed_right_N14
+,7DD,116,119,1,0,0,-,224081,624081,ff,DiagAddOn_EEPROM_act_buf_LKA_N14.V_req_5bit_LDW_LKA_Display_N14
+,7DD,28,55,.01,0,2,km,224082,624082,ff,DiagAddOn_EEPROM_act_buf_LKA_N15.Mileage_N15
+,7DD,56,71,.01,0,2,km/h,224082,624082,ff,DiagAddOn_EEPROM_act_buf_LKA_N15.V_mes_kmh_VehicleSpeed_N15
+,7DD,75,79,.001,0,3,1/m,224082,624082,ff,DiagAddOn_EEPROM_act_buf_LKA_N15.V_mes_pm_Curvature_Average_N15
+,7DD,81,85,.1,-20,1,m,224082,624082,ff,DiagAddOn_EEPROM_act_buf_LKA_N15.V_calc_m_LaneWidth_N15
+,7DD,86,95,.01,100,2,m,224082,624082,ff,DiagAddOn_EEPROM_act_buf_LKA_N15.V_mes_m_Distance_Lane_Left_N15
+,7DD,96,105,.01,100,2,m,224082,624082,ff,DiagAddOn_EEPROM_act_buf_LKA_N15.V_mes_m_Distance_Lane_Right_N15
+,7DD,106,107,1,0,0,-,224082,624082,ff,DiagAddOn_EEPROM_act_buf_LKA_N15.V_flag_2bit_LDWLKASensibility_N15
+,7DD,108,111,.1,0,1,m/s,224082,624082,ff,DiagAddOn_EEPROM_act_buf_LKA_N15.V_est_mps_LatSpeed_left_N15
+,7DD,112,115,.1,0,1,m/s,224082,624082,ff,DiagAddOn_EEPROM_act_buf_LKA_N15.V_est_mps_LatSpeed_right_N15
+,7DD,116,119,1,0,0,-,224082,624082,ff,DiagAddOn_EEPROM_act_buf_LKA_N15.V_req_5bit_LDW_LKA_Display_N15
+,7DD,28,55,.01,0,2,km,224083,624083,ff,DiagAddOn_EEPROM_act_buf_LKA_N16.Mileage_N16
+,7DD,56,71,.01,0,2,km/h,224083,624083,ff,DiagAddOn_EEPROM_act_buf_LKA_N16.V_mes_kmh_VehicleSpeed_N16
+,7DD,75,79,.001,0,3,1/m,224083,624083,ff,DiagAddOn_EEPROM_act_buf_LKA_N16.V_mes_pm_Curvature_Average_N16
+,7DD,81,85,.1,-20,1,m,224083,624083,ff,DiagAddOn_EEPROM_act_buf_LKA_N16.V_calc_m_LaneWidth_N16
+,7DD,86,95,.01,100,2,m,224083,624083,ff,DiagAddOn_EEPROM_act_buf_LKA_N16.V_mes_m_Distance_Lane_Left_N16
+,7DD,96,105,.01,100,2,m,224083,624083,ff,DiagAddOn_EEPROM_act_buf_LKA_N16.V_mes_m_Distance_Lane_Right_N16
+,7DD,106,107,1,0,0,-,224083,624083,ff,DiagAddOn_EEPROM_act_buf_LKA_N16.V_flag_2bit_LDWLKASensibility_N16
+,7DD,108,111,.1,0,1,m/s,224083,624083,ff,DiagAddOn_EEPROM_act_buf_LKA_N16.V_est_mps_LatSpeed_left_N16
+,7DD,112,115,.1,0,1,m/s,224083,624083,ff,DiagAddOn_EEPROM_act_buf_LKA_N16.V_est_mps_LatSpeed_right_N16
+,7DD,116,119,1,0,0,-,224083,624083,ff,DiagAddOn_EEPROM_act_buf_LKA_N16.V_req_5bit_LDW_LKA_Display_N16
+,7DD,28,55,.01,0,2,km,224084,624084,ff,DiagAddOn_EEPROM_act_buf_LKA_N17.Mileage_N17
+,7DD,56,71,.01,0,2,km/h,224084,624084,ff,DiagAddOn_EEPROM_act_buf_LKA_N17.V_mes_kmh_VehicleSpeed_N17
+,7DD,75,79,.001,0,3,1/m,224084,624084,ff,DiagAddOn_EEPROM_act_buf_LKA_N17.V_mes_pm_Curvature_Average_N17
+,7DD,81,85,.1,-20,1,m,224084,624084,ff,DiagAddOn_EEPROM_act_buf_LKA_N17.V_calc_m_LaneWidth_N17
+,7DD,86,95,.01,100,2,m,224084,624084,ff,DiagAddOn_EEPROM_act_buf_LKA_N17.V_mes_m_Distance_Lane_Left_N17
+,7DD,96,105,.01,100,2,m,224084,624084,ff,DiagAddOn_EEPROM_act_buf_LKA_N17.V_mes_m_Distance_Lane_Right_N17
+,7DD,106,107,1,0,0,-,224084,624084,ff,DiagAddOn_EEPROM_act_buf_LKA_N17.V_flag_2bit_LDWLKASensibility_N17
+,7DD,108,111,.1,0,1,m/s,224084,624084,ff,DiagAddOn_EEPROM_act_buf_LKA_N17.V_est_mps_LatSpeed_left_N17
+,7DD,112,115,.1,0,1,m/s,224084,624084,ff,DiagAddOn_EEPROM_act_buf_LKA_N17.V_est_mps_LatSpeed_right_N17
+,7DD,116,119,1,0,0,-,224084,624084,ff,DiagAddOn_EEPROM_act_buf_LKA_N17.V_req_5bit_LDW_LKA_Display_N17
+,7DD,28,55,.01,0,2,km,224085,624085,ff,DiagAddOn_EEPROM_act_buf_LKA_N18.Mileage_N18
+,7DD,56,71,.01,0,2,km/h,224085,624085,ff,DiagAddOn_EEPROM_act_buf_LKA_N18.V_mes_kmh_VehicleSpeed_N18
+,7DD,75,79,.001,0,3,1/m,224085,624085,ff,DiagAddOn_EEPROM_act_buf_LKA_N18.V_mes_pm_Curvature_Average_N18
+,7DD,81,85,.1,-20,1,m,224085,624085,ff,DiagAddOn_EEPROM_act_buf_LKA_N18.V_calc_m_LaneWidth_N18
+,7DD,86,95,.01,100,2,m,224085,624085,ff,DiagAddOn_EEPROM_act_buf_LKA_N18.V_mes_m_Distance_Lane_Left_N18
+,7DD,96,105,.01,100,2,m,224085,624085,ff,DiagAddOn_EEPROM_act_buf_LKA_N18.V_mes_m_Distance_Lane_Right_N18
+,7DD,106,107,1,0,0,-,224085,624085,ff,DiagAddOn_EEPROM_act_buf_LKA_N18.V_flag_2bit_LDWLKASensibility_N18
+,7DD,108,111,.1,0,1,m/s,224085,624085,ff,DiagAddOn_EEPROM_act_buf_LKA_N18.V_est_mps_LatSpeed_left_N18
+,7DD,112,115,.1,0,1,m/s,224085,624085,ff,DiagAddOn_EEPROM_act_buf_LKA_N18.V_est_mps_LatSpeed_right_N18
+,7DD,116,119,1,0,0,-,224085,624085,ff,DiagAddOn_EEPROM_act_buf_LKA_N18.V_req_5bit_LDW_LKA_Display_N18
+,7DD,28,55,.01,0,2,km,224086,624086,ff,DiagAddOn_EEPROM_act_buf_LKA_N19.Mileage_N19
+,7DD,56,71,.01,0,2,km/h,224086,624086,ff,DiagAddOn_EEPROM_act_buf_LKA_N19.V_mes_kmh_VehicleSpeed_N19
+,7DD,75,79,.001,0,3,1/m,224086,624086,ff,DiagAddOn_EEPROM_act_buf_LKA_N19.V_mes_pm_Curvature_Average_N19
+,7DD,81,85,.1,-20,1,m,224086,624086,ff,DiagAddOn_EEPROM_act_buf_LKA_N19.V_calc_m_LaneWidth_N19
+,7DD,86,95,.01,100,2,m,224086,624086,ff,DiagAddOn_EEPROM_act_buf_LKA_N19.V_mes_m_Distance_Lane_Left_N19
+,7DD,96,105,.01,100,2,m,224086,624086,ff,DiagAddOn_EEPROM_act_buf_LKA_N19.V_mes_m_Distance_Lane_Right_N19
+,7DD,106,107,1,0,0,-,224086,624086,ff,DiagAddOn_EEPROM_act_buf_LKA_N19.V_flag_2bit_LDWLKASensibility_N19
+,7DD,108,111,.1,0,1,m/s,224086,624086,ff,DiagAddOn_EEPROM_act_buf_LKA_N19.V_est_mps_LatSpeed_left_N19
+,7DD,112,115,.1,0,1,m/s,224086,624086,ff,DiagAddOn_EEPROM_act_buf_LKA_N19.V_est_mps_LatSpeed_right_N19
+,7DD,116,119,1,0,0,-,224086,624086,ff,DiagAddOn_EEPROM_act_buf_LKA_N19.V_req_5bit_LDW_LKA_Display_N19
+,7DD,27,31,1,0,0,-,224087,624087,ff,DiagAddOn_EEPROM_deact_buf_LKA_N0.Rootcause_N0
+,7DD,35,39,.5,0,1,s,224087,624087,ff,DiagAddOn_EEPROM_deact_buf_LKA_N0.Duration_N0
+,7DD,44,71,.01,0,2,km,224087,624087,ff,DiagAddOn_EEPROM_deact_buf_LKA_N0.Mileage_N0
+,7DD,27,31,1,0,0,-,224088,624088,ff,DiagAddOn_EEPROM_deact_buf_LKA_N1.Rootcause_N1
+,7DD,35,39,.5,0,1,s,224088,624088,ff,DiagAddOn_EEPROM_deact_buf_LKA_N1.Duration_N1
+,7DD,44,71,.01,0,2,km,224088,624088,ff,DiagAddOn_EEPROM_deact_buf_LKA_N1.Mileage_N1
+,7DD,27,31,1,0,0,-,224089,624089,ff,DiagAddOn_EEPROM_deact_buf_LKA_N2.Rootcause_N2
+,7DD,35,39,.5,0,1,s,224089,624089,ff,DiagAddOn_EEPROM_deact_buf_LKA_N2.Duration_N2
+,7DD,44,71,.01,0,2,km,224089,624089,ff,DiagAddOn_EEPROM_deact_buf_LKA_N2.Mileage_N2
+,7DD,27,31,1,0,0,-,22408A,62408A,ff,DiagAddOn_EEPROM_deact_buf_LKA_N3.Rootcause_N3
+,7DD,35,39,.5,0,1,s,22408A,62408A,ff,DiagAddOn_EEPROM_deact_buf_LKA_N3.Duration_N3
+,7DD,44,71,.01,0,2,km,22408A,62408A,ff,DiagAddOn_EEPROM_deact_buf_LKA_N3.Mileage_N3
+,7DD,27,31,1,0,0,-,22408B,62408B,ff,DiagAddOn_EEPROM_deact_buf_LKA_N4.Rootcause_N4
+,7DD,35,39,.5,0,1,s,22408B,62408B,ff,DiagAddOn_EEPROM_deact_buf_LKA_N4.Duration_N4
+,7DD,44,71,.01,0,2,km,22408B,62408B,ff,DiagAddOn_EEPROM_deact_buf_LKA_N4.Mileage_N4
+,7DD,27,31,1,0,0,-,22408C,62408C,ff,DiagAddOn_EEPROM_deact_buf_LKA_N5.Rootcause_N5
+,7DD,35,39,.5,0,1,s,22408C,62408C,ff,DiagAddOn_EEPROM_deact_buf_LKA_N5.Duration_N5
+,7DD,44,71,.01,0,2,km,22408C,62408C,ff,DiagAddOn_EEPROM_deact_buf_LKA_N5.Mileage_N5
+,7DD,27,31,1,0,0,-,22408D,62408D,ff,DiagAddOn_EEPROM_deact_buf_LKA_N6.Rootcause_N6
+,7DD,35,39,.5,0,1,s,22408D,62408D,ff,DiagAddOn_EEPROM_deact_buf_LKA_N6.Duration_N6
+,7DD,44,71,.01,0,2,km,22408D,62408D,ff,DiagAddOn_EEPROM_deact_buf_LKA_N6.Mileage_N6
+,7DD,27,31,1,0,0,-,22408E,62408E,ff,DiagAddOn_EEPROM_deact_buf_LKA_N7.Rootcause_N7
+,7DD,35,39,.5,0,1,s,22408E,62408E,ff,DiagAddOn_EEPROM_deact_buf_LKA_N7.Duration_N7
+,7DD,44,71,.01,0,2,km,22408E,62408E,ff,DiagAddOn_EEPROM_deact_buf_LKA_N7.Mileage_N7
+,7DD,27,31,1,0,0,-,22408F,62408F,ff,DiagAddOn_EEPROM_deact_buf_LKA_N8.Rootcause_N8
+,7DD,35,39,.5,0,1,s,22408F,62408F,ff,DiagAddOn_EEPROM_deact_buf_LKA_N8.Duration_N8
+,7DD,44,71,.01,0,2,km,22408F,62408F,ff,DiagAddOn_EEPROM_deact_buf_LKA_N8.Mileage_N8
+,7DD,27,31,1,0,0,-,224090,624090,ff,DiagAddOn_EEPROM_deact_buf_LKA_N9.Rootcause_N9
+,7DD,35,39,.5,0,1,s,224090,624090,ff,DiagAddOn_EEPROM_deact_buf_LKA_N9.Duration_N9
+,7DD,44,71,.01,0,2,km,224090,624090,ff,DiagAddOn_EEPROM_deact_buf_LKA_N9.Mileage_N9
+,7DD,27,31,1,0,0,-,224091,624091,ff,DiagAddOn_EEPROM_deact_buf_LKA_N10.Rootcause_N10
+,7DD,35,39,.5,0,1,s,224091,624091,ff,DiagAddOn_EEPROM_deact_buf_LKA_N10.Duration_N10
+,7DD,44,71,.01,0,2,km,224091,624091,ff,DiagAddOn_EEPROM_deact_buf_LKA_N10.Mileage_N10
+,7DD,27,31,1,0,0,-,224092,624092,ff,DiagAddOn_EEPROM_deact_buf_LKA_N11.Rootcause_N11
+,7DD,35,39,.5,0,1,s,224092,624092,ff,DiagAddOn_EEPROM_deact_buf_LKA_N11.Duration_N11
+,7DD,44,71,.01,0,2,km,224092,624092,ff,DiagAddOn_EEPROM_deact_buf_LKA_N11.Mileage_N11
+,7DD,27,31,1,0,0,-,224093,624093,ff,DiagAddOn_EEPROM_deact_buf_LKA_N12.Rootcause_N12
+,7DD,35,39,.5,0,1,s,224093,624093,ff,DiagAddOn_EEPROM_deact_buf_LKA_N12.Duration_N12
+,7DD,44,71,.01,0,2,km,224093,624093,ff,DiagAddOn_EEPROM_deact_buf_LKA_N12.Mileage_N12
+,7DD,27,31,1,0,0,-,224094,624094,ff,DiagAddOn_EEPROM_deact_buf_LKA_N13.Rootcause_N13
+,7DD,35,39,.5,0,1,s,224094,624094,ff,DiagAddOn_EEPROM_deact_buf_LKA_N13.Duration_N13
+,7DD,44,71,.01,0,2,km,224094,624094,ff,DiagAddOn_EEPROM_deact_buf_LKA_N13.Mileage_N13
+,7DD,27,31,1,0,0,-,224095,624095,ff,DiagAddOn_EEPROM_deact_buf_LKA_N14.Rootcause_N14
+,7DD,35,39,.5,0,1,s,224095,624095,ff,DiagAddOn_EEPROM_deact_buf_LKA_N14.Duration_N14
+,7DD,44,71,.01,0,2,km,224095,624095,ff,DiagAddOn_EEPROM_deact_buf_LKA_N14.Mileage_N14
+,7DD,27,31,1,0,0,-,224096,624096,ff,DiagAddOn_EEPROM_deact_buf_LKA_N15.Rootcause_N15
+,7DD,35,39,.5,0,1,s,224096,624096,ff,DiagAddOn_EEPROM_deact_buf_LKA_N15.Duration_N15
+,7DD,44,71,.01,0,2,km,224096,624096,ff,DiagAddOn_EEPROM_deact_buf_LKA_N15.Mileage_N15
+,7DD,27,31,1,0,0,-,224097,624097,ff,DiagAddOn_EEPROM_deact_buf_LKA_N16.Rootcause_N16
+,7DD,35,39,.5,0,1,s,224097,624097,ff,DiagAddOn_EEPROM_deact_buf_LKA_N16.Duration_N16
+,7DD,44,71,.01,0,2,km,224097,624097,ff,DiagAddOn_EEPROM_deact_buf_LKA_N16.Mileage_N16
+,7DD,27,31,1,0,0,-,224098,624098,ff,DiagAddOn_EEPROM_deact_buf_LKA_N17.Rootcause_N17
+,7DD,35,39,.5,0,1,s,224098,624098,ff,DiagAddOn_EEPROM_deact_buf_LKA_N17.Duration_N17
+,7DD,44,71,.01,0,2,km,224098,624098,ff,DiagAddOn_EEPROM_deact_buf_LKA_N17.Mileage_N17
+,7DD,27,31,1,0,0,-,224099,624099,ff,DiagAddOn_EEPROM_deact_buf_LKA_N18.Rootcause_N18
+,7DD,35,39,.5,0,1,s,224099,624099,ff,DiagAddOn_EEPROM_deact_buf_LKA_N18.Duration_N18
+,7DD,44,71,.01,0,2,km,224099,624099,ff,DiagAddOn_EEPROM_deact_buf_LKA_N18.Mileage_N18
+,7DD,27,31,1,0,0,-,22409A,62409A,ff,DiagAddOn_EEPROM_deact_buf_LKA_N19.Rootcause_N19
+,7DD,35,39,.5,0,1,s,22409A,62409A,ff,DiagAddOn_EEPROM_deact_buf_LKA_N19.Duration_N19
+,7DD,44,71,.01,0,2,km,22409A,62409A,ff,DiagAddOn_EEPROM_deact_buf_LKA_N19.Mileage_N19
+,7DD,24,215,1,0,0,,22D900,62D900,ff,Active_Fault_Table.24-byte_array_of_currently_active_faults
+,7DD,28,39,.1,2047,1,°/s,22D90A,62D90A,ff,Yaw_Rate.Yaw_Rate
+,7DD,24,39,.01,0,2,km/h,22D90C,62D90C,ff,Vehicle_Speed.Vehicle_Speed
+,7DD,24,39,1,0,0,,22D915,62D915,ff,VFP_reset_counts.VFP_Category_1_reset_count
+,7DD,24,39,1,0,0,,22D922,62D922,ff,Ignition_Cycles.Ignition_Cycles
+,7DD,24,151,1,0,0,,22F010,62F010,ff,programmingOperationFingerPrint
+,7DD,24,103,1,0,0,,22F011,62F011,2ff,secutity accessFingerPrint
+,7DD,24,103,1,0,0,,22F012,62F012,2ff,OperationnalReference
+,7DD,24,55,1,0,0,km,22F0D0,62F0D0,1ff,Snapshot_DTC_Mileage_First_Occurence
+,7DD,24,31,1,0,0,,22F0D1,62F0D1,ff,Snapshot_DTC_Occurence_Counter
+,7DD,32,111,1,0,0,,22F182,62F182,2ff,applicationDataIdentification
+,7DD,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
+,7DD,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
+,7DD,24,47,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7DD,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumber
+,7DD,24,103,1,0,0,,22F18E,62F18E,2ff,vehicleManufacturerKitAssemblyPartNumber
+,7DD,24,159,1,0,0,,22F190,62F190,2ff,VIN
+,7DD,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
+,7DD,24,87,1,0,0,,22F192,62F192,2ff,systemSupplierECUHardwareNumber
+,7DD,24,79,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7DD,24,151,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7DD,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7DD,31,31,1,0,0,,22FD01,62FD01,ff,Force_Aiming_Done,0:Aiming Not Done;1:Aiming Done

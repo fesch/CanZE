@@ -1,0 +1,81 @@
+AE09,Ecall Red LED
+AE08,Ecall Microphone
+AE0B,Ecall Auto LED
+AE0C,Ecall Blacklight LED
+AE0D,Ecall Button
+AE13,HU/NAVI USB
+AE14,SMS
+AE16,PPP Data Communication
+AE17,Vnext Authentification
+AE22,SIM
+AE24,CEP Certificate Expired
+AE25,CEP Certificate Revoked
+AE26,CEP Bad Certificate
+AE27,CEP Certificate Unsupported
+AE28,CEP Certificate Unknown
+AE30,CEP Unknown
+AE32,Audio Head-Unit Failure
+AE00,Battery Level
+AE06,Aux_In_Info/Tel_Mute_Out Failure
+AE34,Cellular Ext Antenna
+AE23,Cellular Registration Denied
+AE33,Speaker Failure
+AE4F,BCM Pairing DTC
+AE4E,Remote Actuator- PIN code missing
+AE4C,Remote Actuator without unknown ID
+AE4B,Remote Actuator without Cipher key
+AE49,Remote Actuator not Activated
+AE01,Internal Battery Status
+AE04,Internal Battery Capacity
+AE10,MIC OUT SIGNAL
+AE94,RELAY Control
+AE0E,System Internal Failure
+AE36,Accelerometer Failure
+AE15,VOICE FAILURE
+AE18,Vnext Functional
+AE19,Vnext Config
+AE21,Invalid A-IVC
+AE38,Vnext Master Authentication NOK
+AE39,Vnext Regional Authentication NOK
+AE3A,Vnext Master timeout
+AE3B,Vnext Regional timeout
+AE3C,Part ID is unknown
+AE3D,Bad Pairing A-IVC & VIN
+AE3E,No Certificate available
+AE3F,Part Certificate Verification fails
+AE41,A-IVC Authentication Fails
+AE42,A-IVC no Region Setting
+AE43,A-IVC Invalid Region Setting
+AE44,Region Setting Storage error
+AE45,A-IVC no Partition Setting
+AE46,A-IVC Invalid Partition Setting
+AE47,Partition Setting Storage error
+AE48,Service Check not complete
+AE29,CEP ILLEGAL PARAMETER
+E141,Lost communication with Automatic Transmission
+E14F,Lost communication with Body Control Module
+E140,Lost communication with Electronic Control Moteur
+E159,Lost communication with Electric Powered Steering
+E118,Lost communication with Hand Free Module
+E153,Lost communication with Climate Control
+E14E,Lost communication with Cluster
+E15B,Lost communication with Underhood Switching Module
+E148,Lost communication with Electronic Stability Control
+E143,Lost communication with Hybrid Electric Vehicle Control
+AE0A,Ecall Green LED
+AE11,A-IVC Overheat
+AE12,VIRGIN Configuration
+AE31,A-IVC Clock
+AE35,GNSS Ext Antenna
+C079,CAN V
+C074,CAN M
+AE05,Airbag Failure(eCall)
+AE37,Airbag Hardwire Malfunction
+AE40,Part Certificate Storage error
+AE50,HTTP Failures
+AE51,HTTP Server error
+AE0F,MODEM FAILURE
+E150,Lost communication with Airbag Control Unit
+E144,Lost communication with Lithium-ion Battery Controller
+E157,Lost communication with DC to DC Converter Control Module
+9380,ECU Wifi module
