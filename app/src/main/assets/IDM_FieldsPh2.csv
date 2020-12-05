@@ -12,16 +12,16 @@
 ,700,24,39,4.16666666666667E-02,0,2,rpm,220110,620110,ff,FL Wheel Speed
 ,700,24,39,4.16666666666667E-02,0,2,rpm,220111,620111,ff,RR Wheel Speed
 ,700,24,39,4.16666666666667E-02,0,2,rpm,220112,620112,ff,RL Wheel Speed
-,700,24,39,.1,0,1,deg,220113,620113,1ff,Steering Wheel Angle Value
-,700,24,39,.1,0,1,deg,220114,620114,1ff,Steering Wheel angle corrected value from VDC
-,700,24,39,.001,0,3,G,220115,620115,1ff,Front and Rear G sesnor Value
-,700,24,39,.001,0,3,G,220116,620116,1ff,Side G sensor Value
-,700,24,39,.001,0,3,G,220117,620117,ff,Side G sensor corrected value
-,700,24,39,.1,0,1,deg/s,220118,620118,1ff,Yaw Rate Sensor Value
+,700,24,39,.1,0,1,°,220113,620113,1ff,Steering Wheel Angle Value
+,700,24,39,.1,0,1,°,220114,620114,1ff,Steering Wheel angle corrected value from VDC
+,700,24,39,.001,0,3,g,220115,620115,1ff,Front and Rear G sesnor Value
+,700,24,39,.001,0,3,g,220116,620116,1ff,Side G sensor Value
+,700,24,39,.001,0,3,g,220117,620117,ff,Side G sensor corrected value
+,700,24,39,.1,0,1,°/s,220118,620118,1ff,Yaw Rate Sensor Value
 ,700,24,39,.125,0,1,%,22011C,62011C,ff,Accelerator_RawPedal Value
 ,700,24,26,1,0,0,,22011D,62011D,ff,ETC_Electric Throttle control Status,0:NORMAL;1:INCORR;2:PREV;3:INPOSSI
-,700,24,39,.5,0,1,Nm,22011E,62011E,1ff,Driver Requested Torque
-,700,24,39,.5,0,1,Nm,22011F,62011F,1ff,Current Estimated Engine Torque Value
+,700,24,39,.5,0,1,N·m,22011E,62011E,1ff,Driver Requested Torque
+,700,24,39,.5,0,1,N·m,22011F,62011F,1ff,Current Estimated Engine Torque Value
 ,700,24,28,1,0,0,,220120,620120,ff,Shift Position Signal,0:Off;1:P;2:R;3:N;4:D (A);5:S;6:L;7:B;8:1;9:2;10:3;11:4;12:5;13:6;14:NOT(0Eh);15:NOT(0Fh);16:M 1;17:M 2;18:M 3;19:M 4;20:M 5;21:M 6;22:M 7;23:M 8;24:A 1;25:A 2;26:A 3;27:A 4;28:A 5;29:A 6;30:NOT(1Eh);31:NOT(1Fh)
 ,700,24,27,1,0,0,,220121,620121,ff,GearBox Position,0:declutched at rest;1:1st gear;2:2nd gear;3:3rd gear;4:4th gear;5:5th gear;6:6th gear;7:7th gear;8:8th gear;9:Reverse;10:neutral or parking;11:CVT in continuous mode;12:Not used(0Ch);13:Not used(0Dh);14:Not used(0Eh);15:AT in limphome
 ,700,24,24,1,0,0,,220122,620122,ff,Brake SWich status.DataRead.BRAKE SWITCH 2,0:On;1:Off
@@ -36,7 +36,7 @@
 ,700,25,25,1,0,0,,220127,620127,ff,VDC Operating Condition.VDC Failure Status,0: no VDC(ESP) malfunction;1: VDC(ESP) malfunction
 ,700,26,26,1,0,0,,220127,620127,ff,VDC Operating Condition.VDC Activation Status,0: VDC(ESP) available;1: VDC(ESP) disabled by the driver
 ,700,24,39,1,0,0,,220128,620128,ff,DataRead.0128
-,700,24,39,.1,0,1,deg,220130,620130,1ff,DataRead.0130
+,700,24,39,.1,0,1,°,220130,620130,1ff,DataRead.0130
 ,700,24,39,.0625,0,2,km/h,220131,620131,ff,DataRead.0131_004_ui16_AVDC_VehicleSpeed
 ,700,24,39,.0625,0,2,km/h,220132,620132,ff,DataRead.0132_004_vAUC_VWFL
 ,700,24,39,.0625,0,2,km/h,220133,620133,ff,DataRead.0133_004_vAUC_VWFR
@@ -45,11 +45,11 @@
 ,700,24,39,.00015625,0,3,,220136,620136,ff,DataRead.0136_004_vAUC_TMRATIO
 ,700,24,31,1,0,0,bar,220137,620137,ff,DataRead.0137_004_TBD
 ,700,24,39,.05,0,2,bar,220139,620139,ff,DataRead.0139_004_ui16_CBA_BRAKE_OUT
-,700,24,39,.5,0,1,Nm,22013B,62013B,1ff,DataRead.013B_004_si16_AVDC_Moment_OUT
-,700,24,39,.25,0,1,Nm,22013C,62013C,1ff,DataRead.013C_004_si16_AUC_Moment_OUT
-,700,24,39,.5,0,1,Nm,22013D,62013D,1ff,DataRead.013D_004_si16_YLE_ITS_Target_Yawmoment
+,700,24,39,.5,0,1,N·m,22013B,62013B,1ff,DataRead.013B_004_si16_AVDC_Moment_OUT
+,700,24,39,.25,0,1,N·m,22013C,62013C,1ff,DataRead.013C_004_si16_AUC_Moment_OUT
+,700,24,39,.5,0,1,N·m,22013D,62013D,1ff,DataRead.013D_004_si16_YLE_ITS_Target_Yawmoment
 ,700,24,39,.05,0,2,bar,22013E,62013E,ff,DataRead.013E_004_ui16_BSB_BRAKE_OUT
-,700,24,39,.00390625,0,3,m/s^2,22013F,62013F,1ff,DataRead.013F_004_si16_BSB_EST_ZG
+,700,24,39,.00390625,0,3,m/s²,22013F,62013F,1ff,DataRead.013F_004_si16_BSB_EST_ZG
 ,700,25,25,1,0,0,,220170,620170,ff,DCMC_CBA_AUC.DataRead.0170._004_bit6_f_DCMC_CBA_B_req,0:NOT ACTIVATE;1:ACTIVATE
 ,700,26,26,1,0,0,,220170,620170,ff,DCMC_CBA_AUC.DataRead.0170._004_bit5_f_DCMC_CBA_A_req,0:NOT ACTIVATE;1:ACTIVATE
 ,700,27,27,1,0,0,,220170,620170,ff,DCMC_CBA_AUC.DataRead.0170._004_bit4_f_DCMC_AUC_req,0:NOT ACTIVATE;1:ACTIVATE
@@ -159,25 +159,24 @@
 ,700,24,39,10,0,0,ms,220539,620539,ff,mARB_ACCBRQ_MINMAX_TIME
 ,700,24,39,1,0,0,N·m,22053A,62053A,ff,mARB_ACCBRK_MAX
 ,700,24,39,10,0,0,ms,22053B,62053B,ff,mARB_CCSLBRQ_MINMAX_TIME
-,700,24,39,1,0,0,N.m,22053C,62053C,ff,mARB_CCSLBRK_MAX
+,700,24,39,1,0,0,N·m,22053C,62053C,ff,mARB_CCSLBRK_MAX
 ,700,24,39,.01,0,2,,22053D,62053D,ff,mARB_CCSL_Ka
 ,700,24,39,10,0,0,ms,22053E,62053E,ff,mARB_DecelGUDS_TIME
 ,700,24,39,10,0,0,ms,22053F,62053F,ff,mARB_HFPBBRQ_MINMAX_TIME
-,700,24,39,1,0,0,N.m,220540,620540,ff,mARB_HFPBBRK_MAX
+,700,24,39,1,0,0,N·m,220540,620540,ff,mARB_HFPBBRK_MAX
 ,700,24,39,10,0,0,ms,220541,620541,ff,mARB_HFPB2BRQ_MINMAX_TIME
-,700,24,39,1,0,0,N.m,220542,620542,ff,mARB_HFPB2BRK_MAX
+,700,24,39,1,0,0,N·m,220542,620542,ff,mARB_HFPB2BRK_MAX
 ,700,24,39,10,0,0,ms,220543,620543,ff,mARB_YAW_MINMAX_TIME
-,700,24,39,.5,0,1,N.m,220544,620544,1ff,mARB_YAW_MIN
-,700,24,39,.5,0,1,N.m,220545,620545,ff,mARB_YAW_MAX
+,700,24,39,.5,0,1,N·m,220544,620544,1ff,mARB_YAW_MIN
+,700,24,39,.5,0,1,N·m,220545,620545,ff,mARB_YAW_MAX
 ,700,24,39,1,0,0,,220546,620546,ff,mfSSA_INIT_MODE_OFF_SW
 ,700,24,39,1,0,0,,220547,620547,ff,mfSSA_LTS_SELECT_SW
 ,700,24,39,200,0,0,(N·m)/s,220548,620548,ff,mARB_ACC_TRGT_TORQUE_DECR
 ,700,24,103,1,0,0,,22F012,62F012,2ff,OperationnalReference
-,700,24,47,1,0,0,Km,22F0D0,62F0D0,ff,DataRead.Mileage
-,700,24,31,1,0,0,count,22F0D1,62F0D1,ff,DataRead.DTC_Occurence_Counter
+,700,24,47,1,0,0,km,22F0D0,62F0D0,ff,DataRead.Mileage
+,700,24,31,1,0,0,,22F0D1,62F0D1,ff,DataRead.DTC_Occurence_Counter
 ,700,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI
-,700,24,103,1,0,0,,22F121,62F121,2ff,VehicleManufacturerSoftwareNumber_DAI.VehicleManufacturerSoftwareNumber_DAI_ConfigPartNumber
-,700,104,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerSoftwareNumber_DAI.VehicleManufacturerSoftwareNumber_DAI_OperationalReference
+,700,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI
 ,700,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
 ,700,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
 ,700,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
