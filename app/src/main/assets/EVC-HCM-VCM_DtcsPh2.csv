@@ -1,183 +1,20 @@
-0022,Mastervac brake assistance system
-0023,Brake assistance Vacuum Pump
-0026,Mastervac control unit
-0027,Mastervac sensor power supply
-0060,Door switch
-0070,Shift Lock electrical control circuit
-0071,Ambient Air Temperature Sensor Range/Performance
-0080,Charge spot
-0105,Manifold Absolute Pressure Sensor
-0106,Manifold Absolute Pressure Function
-0121,Heater request relay electrical command circuit
-0130,O2 Sensor - Upstream
-0140,O2 Sensor Circuit Activity
-0141,O2 Sensor Heater - Downstream
-0152,Computer of Air Conditioning
-0156,Evaporator sensor for AC
-0160,Heater Led control circuit
-0170,Fuel Trim
-0171,Cooling Fan Motor
-0225,Accelerator Pedal Position Sensor - Track 1
-0226,Accelerator Pedal Position Sensor
-0301,Cylinder 1 Misfire Detected
-0303,Cylinder 3 Misfire Detected
-0304,Cylinder 4 Misfire Detected
-0305,Lithium Battery Controler
-0306,Battery Charger Bloc
-0307,Power electronic bloc data
-0404,14v static converter in Default (from CAN)
-0405,14v static converter
-0406,EM inverter in Default (from CAN)
-0411,Battery Charger Bloc in Default (from CAN)
-0414,High voltage network
-0420,Catalyst System
-0431,Charge Interlock
-0432,Power train interlocks
-0433,Comfort or Passenger compartment Thermistor Interlock
-0434,Comfort or Air conditionned Interlock
-0440,Evaporative Emission System
-0441,Insulation Sensor
-0460,Engine Coolant Temperature Sensor
-0461,Fuel Level Sensor
-0462,Feedback driving mode water pump
-0463,Driving mode water pump
-0464,Feedback load mode water pump
-0465,Load mode water pump
-0468,Peltier fan request electrical command circuit
-0469,Peltier external fan
-0470,Exhaust Gas Pressure Sensor - Upstream Turbine
-0480,Fan 1 Control Relay
-0491,Battery high voltage lock loop 1
-0495,Temperature sensors from CAN
-0503,Mastervac Voltage supply
-0504,Brake Pedal
-0530,A/C Refrigerant Pressure Sensor
-0560,Battery Voltage
-0564,Cruise Control/Speed Limiter - Paddle Control Button
-0571,Closed Brake Sensor
-0574,Cruise Control/Speed Limiter - Displayed Speed
-0575,Cruise Control/Speed Limiter - Switch Button
-0606,Engine Control Module - Processor
-0610,ECM torque calculation
-0641,Power Supply 1
-0651,Power Supply 2
-0657,Actuators Power Relay
-0703,Open Brake Pedal Switch
-0833,Begining of Clutch Pedal Move Switch
-1525,Cruise Control/Speed Limiter Deactivation
-2120,Accelerator Pedal Position Sensor - Track 2
-060B,Engine Control Module - A/D Converter
-160C,Internal Engine Control Module Error
-046A,Peltier internal fan
-046B,Feedback of Peltier external fan
-046C,Feedback of Peltier internal fan
-046D,Peltier request relay electrical command circuit
-C415,Invalid Data Received From Anti-Lock Brake System Control Module
-0525,Cruise Control Servo Control Circuit Range/Performance
-0601,Electric Motor Prestation
-0435,Interlock Sensor
-0490,Battery high voltage lock
-0020,Vacuum Sensor pressure
-046E,Peltier Temperature
-047E,Peltier Cells
-0081,Charge plug trigger
-0492,Battery high voltage lock loop 2
-0302,Cylinder 2 Misfire Detected
-0161,Self preconditioning relay
-C418,Invalid data received from uncoupled brake pedal control module
-030A,Inverter (for charge function)
-0308,Lithium battery (reductant dignosis)
-0471,Exhaust Gas Pressure Control Function
-0502,Battery temperature sensors
-0120,Intake Throttle Position Sensor
-0500,Vehicle Speed Sensor
-0011,Intake Camshaft Variable Valve Timing Control Function
-0063,Door plug command
-0072,Gear lever sensor - track 1
-0073,Gear lever sensor - track 2
-0090,Pressure rail actuator component
-0180,Fuel Temperature Sensor
-0481,Fan 2 Control Relay
-0482,Very low speed engine fan control relay
-0483,Back Fan
-0485,Battery high voltage power relay A or P2
-0486,Battery high voltage power relay P1 or P2
-0510,State of function (SOF) of 14V battery
-0511,14V Battery current sensor
-0512,Pulse Box
-C198,Communication With Telematic Control Module
-C140,Body Control Module 1
-C155,Communication With Instrument Panel Cluster (IPC) Control Module
-0062,Door plug status
-C146,Communication With Gateway 'A' (BIC)
-0181,Fuel temperature upstream sensor
-0182,Battery CTP/THP relay 2
-0183,Battery CTP/THP relay 3
-0184,Gaz Temperature Function
-0185,Gaz Temperature Sensor
-0186,Fuel temperature downstream sensor
-0187,Battery HVAC temperature sensor
-C103,Communication With Gear Shift Control Module (Shifter)
-C129,Lost Communication With Brake System Control Module
-0010,Intake Camshaft Variable Valve Timing Solenoid Valve
-04A0,SOC error during charge
-0188,Battery blower rotation speed feedback line
-0415,Power electronic bloc (safety level 2 detection)
-0442,Insulation motor
-0407,DCDC C class default
-C19A,Communication with CSHV Unit (Dedicated for Crash when APC is off for daimler application)
-C199,Communication with Energy Management Module
-1654,Four Thermoplunger in failure
-042F,JB interlocks
-C19B,Communication with LBC8 Unit
-0443,Canister Purge Valve
-0513,14V Battery heat relay
-060C,Engine Control Module - Electronic Stability Program Control Function (Level 2)
-C121,Lost Communication With Anti-Lock Brake System (ABS) Control Module
-C122,Communication With ABS/ESP Control Module
-C164,Communication With Climate Control ECU Module
-C123,Front Collision Warning
-043F,Interlock supervision
-0467,PAC box
-04A1,Power Line Gateway
-0472,Cooling valve 2 control circuit
-0473,AC - Heat pump circuit temperature sensor 1 (managed by PAC system)
-0474,AC - Heat pump circuit temperature sensor 2 (managed by PAC system)
-0475,AC - Heat pump circuit Valve 1 (managed by PAC system)
-0476,AC - Heat pump circuit Valve 2 (managed by PAC system)
-04B1,limitation puissance de charge en fonction de la température plug
-0074,Incoherence detection positio Park sur le levier entre info du CMF et info levier reçue sur le CAN
-060A,Engine Control Module - Reset
-0021,Vaccum Sensor pressure 2
-0024,Vacuum pump electric
-0101,Mass Air Flow Function
-0102,Termistor Heater 2
-0103,Termistor Heater 3
-0104,Termistor Heater 4
-0150,High Voltage Supply of the Air Conditioning - Side Compressor
-0151,Low Voltage Supply of the Air Conditioning - Side Computer
-0153,Inverter of the Air Conditioning
-0154,Electric motor of air conditioning
-0412,Battery Charger Bloc - High Voltage Side (from CAN)
-0413,Main Voltage Supply of the Battery Charger Bloc (from CAN)
-0430,Comfort Interlock
-0450,Powerlatch Main relay operating
-1655,Airbag Data further to a crash
-C19C,Safety mode 1 received from BMS
-04B2,Capteur de température du Plug de charge (côté véhicule)
-04B3,Current consumption on 14V network
 0534,A/C Compressor
 0645,A/C Compressor Control Relay
 167A,A/C Compressor HV
 0531,A/C Compressor switch
+0530,A/C Refrigerant Pressure Sensor
 16BB,AC/DC converter
 16C6,AC/DC converter HV
 1616,ACC and ESP coherency
 15E7,ACC force request (from the CAN)
 15E8,ACC wheel torque setpoint
+0226,Accelerator Pedal Position Sensor
+0225,Accelerator Pedal Position Sensor - Track 1
+2120,Accelerator Pedal Position Sensor - Track 2
 1726,Accessory fuse box temperature of AC charge
 E25F,Active Emergency Brake System
 1717,Actuator main supply switch
+0657,Actuators Power Relay
 16E2,ACU ECU (Airbag Control Unit) (frame ACU_A2 on PT-FD)
 15E6,Adaptif Cruise Control brake request
 1633,Additional Fuel Tank Solenoid Control
@@ -199,6 +36,7 @@ E25F,Active Emergency Brake System
 9C32,Airbag Crash Info
 C250,Airbag messages received on the CAN
 169A,Alternator mode
+0071,Ambient Air Temperature Sensor Range/Performance
 2227,Atmospheric Pressure Function
 2226,Atmospheric Pressure Sensor
 1665,Auto hold CAN fail
@@ -211,6 +49,7 @@ C250,Airbag messages received on the CAN
 16DC,AutoPark function monitoring
 17CD,Available power at infrastructure output
 17CC,Available power at the charger output
+0483,Back Fan
 15C6,Battery Charger
 E370,Battery Charger Block
 1687,Battery Charger Block HV
@@ -231,10 +70,14 @@ E344,Battery Management System
 E379,Battery Management System 2
 1689,Battery Management System 2 HV
 1688,Battery Management System HV
+0560,Battery Voltage
 15E3,Battery voltage of PM sensor
+0833,Begining of Clutch Pedal Move Switch
 16A6,Body Control Module
+C140,Body Control Module 1
 167D,Body Control Module HV
 1662,Brake parking sensor CAN fail
+0504,Brake Pedal
 1663,Brake pressure sensor CAN fail
 16D6,BSG starter-generator
 16D5,BSG starter-generator in alternator mode
@@ -301,12 +144,15 @@ E248,CAN frame for VDC ECU (Vehicle Dynamic Control) (frame VDC_A2 on PT-CAN)
 15F1,CAN Gateway
 164A,CAN HV bus
 C07A,CAN powertrain - Control Module Communication Bus 'H' Off
+0443,Canister Purge Valve
+0420,Catalyst System
 1420,Catalyst System 2
 1596,Charger Interlock
 2504,Charging System Voltage
 2502,Charging System Voltage Circuit
 2503,Charging System Voltage Low Voltage
 16CA,Circuit 12v of Battery Management System
+0571,Closed Brake Sensor
 0901,Clutch actuator
 1711,Clutch actuator primary sensor
 1712,Clutch actuator secondary sensor
@@ -357,16 +203,25 @@ C416,CRC diagnosis for VDC ECU (Vehicle Dynamic Control) (frame VDC_A10 on PT-FD
 16F7,CRC diagnosis for VDC ECU (Vehicle Dynamic Control) (frame VDC_A9 on PT-FD)
 0570,Cruise Control Accelerate Signal
 C235,Cruise Control Front Distance Range Sensor Frame
+0525,Cruise Control Servo Control Circuit Range/Performance
 15E9,Cruise Control state
+0574,Cruise Control/Speed Limiter - Displayed Speed
+0564,Cruise Control/Speed Limiter - Paddle Control Button
+0575,Cruise Control/Speed Limiter - Switch Button
+1525,Cruise Control/Speed Limiter Deactivation
 163E,Current supplied by combo terminal
 0263,Cylinder 1 Contribution/Balance
 1301,Cylinder 1 LPG Misfire Detected
+0301,Cylinder 1 Misfire Detected
 0266,Cylinder 2 Contribution/Balance
 1302,Cylinder 2 LPG Misfire Detected
+0302,Cylinder 2 Misfire Detected
 0269,Cylinder 3 Contribution/Balance
 1303,Cylinder 3 LPG Misfire Detected
+0303,Cylinder 3 Misfire Detected
 0272,Cylinder 4 Contribution/Balance
 1304,Cylinder 4 LPG Misfire Detected
+0304,Cylinder 4 Misfire Detected
 03DB,Cylinder pressure sensor
 0395,Cylinder Pressure Sensor (consolidated with condition 1)
 162B,Cylinder Pressure Sensor (consolidated with condition 2)
@@ -432,12 +287,15 @@ C11D,Electronic Torque Control for four wheel drive application
 0830,End of Clutch Pedal Move Switch
 158A,End stroke clutch contactor
 16A7,Engine Control Management
+060B,Engine Control Module - A/D Converter
 060F,Engine Control Module - Coolant Temperature Sensor (Level 2)
 0701,Engine Control Module - Detection of inconsistent TCU data
 1625,Engine Control Module - Downstream Proportionnal O2 Sensor Control
 406C,Engine Control Module - Electronic Stability Program Control Function (Level 2)
 061C,Engine Control Module - Fuel Mass Control Function (Level 2)
 062B,Engine Control Module - Injector Control
+0606,Engine Control Module - Processor
+060A,Engine Control Module - Reset
 060E,Engine Control Module - Throttle Control Driver
 061A,Engine Control Module - Torque Control Function
 1620,Engine Control Module - Upstream Proportionnal O2 Sensor Control
@@ -462,6 +320,7 @@ C11D,Electronic Torque Control for four wheel drive application
 1676,Engine state wired ouput
 1668,Estimated engine torque CAN fail
 1677,ETS Engine coolant temperature
+0440,Evaporative Emission System
 0449,Evaporative Emission System Vent Valve
 1480,Exhaust Air Flap Control Function
 148C,Exhaust Air Flap Control Function (Intrusive Diagnostic)
@@ -472,8 +331,10 @@ C11D,Electronic Torque Control for four wheel drive application
 0013,Exhaust Camshaft Variable Valve Timing Control Function
 0014,Exhaust Camshaft Variable Valve Timing Solenoid Valve
 1205,Exhaust Fuel Injector Control Circuit
+0471,Exhaust Gas Pressure Control Function
 047B,Exhaust Gas Pressure Function - Upstream Particullate Filter
 047A,Exhaust Gas Pressure Sensor - Upstream Particulate Filter
+0470,Exhaust Gas Pressure Sensor - Upstream Turbine
 245A,Exhaust Gas Recirculation Cooler Bypass
 245B,Exhaust Gas Recirculation Cooler Bypass 2
 2457,Exhaust Gas Recirculation Cooling Control Function
@@ -498,9 +359,12 @@ C11D,Electronic Torque Control for four wheel drive application
 0544,Exhaust Gas Temperature Sensor - Upstream Turbine
 3080,Exhaust Gas Temperature Sensor Circuit - Bank 1 Sensor 5
 1632,Exhaust Injector Pump Control
+0480,Fan 1 Control Relay
+0481,Fan 2 Control Relay
 159A,First cooling pump
 24A7,First Exhaust Gas Recirculation Coolant Pump
 1320,First ignition timer
+1654,Four Thermoplunger in failure
 E16B,Front camera
 0457,Fuel Cap
 1670,Fuel consumption
@@ -513,6 +377,7 @@ E16B,Front camera
 113B,Fuel heating glow plug 4
 112C,Fuel heating power supply relay
 112D,Fuel heating power supply relay command
+0461,Fuel Level Sensor
 2265,Fuel Level Sensor_
 0089,Fuel Pressure Regulation Control Function
 0627,Fuel Pump Control
@@ -525,7 +390,11 @@ E16B,Front camera
 2688,Fuel Supply Heater Control Circuit
 1030,Fuel Tank Pressure sensor
 1031,Fuel Tank Temperature sensor
+0186,Fuel temperature downstream sensor
 15AB,Fuel temperature retain
+0180,Fuel Temperature Sensor
+0181,Fuel temperature upstream sensor
+0170,Fuel Trim
 1148,Fuel Trim Control Response
 0001,Fuel Volume Regulator Control Actuator
 0002,Fuel Volume Regulator Control Regulation Function
@@ -539,6 +408,8 @@ E16B,Front camera
 2293,Gaz Pressure Regulation Control Function
 2294,Gaz Pressure Regulator Valve
 018A,Gaz Pressure Sensor
+0184,Gaz Temperature Function
+0185,Gaz Temperature Sensor
 17CF,GBA Primary Claw
 17D0,GBA Secondary Claw
 17D1,GBA Shaft Selector
@@ -669,9 +540,12 @@ E20C,In Vehicle Infotainment System 2
 0110,Intake Air Temperature Sensor
 0095,Intake Air Temperature Sensor - Upstream Air Flap
 0340,Intake Camshaft Position Sensor
+0011,Intake Camshaft Variable Valve Timing Control Function
+0010,Intake Camshaft Variable Valve Timing Solenoid Valve
 2100,Intake Throttle Actuator Control - H Bridge
 0638,Intake Throttle Actuator Control Function
 2119,Intake Throttle Actuator Offset Learning
+0120,Intake Throttle Position Sensor
 0220,Intake Throttle Position Sensor - Track 2
 1598,Interlock
 16BF,Interlock between inverter and Air conditioning Unit
@@ -687,8 +561,10 @@ E20C,In Vehicle Infotainment System 2
 061B,Internal Control Module Torque Calculation (Level2)
 062C,Internal Control Module Vehicle Speed Performance
 160D,Internal Controle Module Error - Power Supply
+160C,Internal Engine Control Module Error
 161C,Internal HEVC Monitoring Processor Performance
 0667,Internal Temperature Sensor Engine Control Module
+C415,Invalid Data Received From Anti-Lock Brake System Control Module
 C402,Invalid Data Received From Transmission Control Module
 E342,Inverter
 1628,Inverter 2
@@ -721,8 +597,10 @@ C019,LIN bus off
 15FD,Locking trap mecanism
 1587,Longitudinal accelerometer sensor
 E200,Lost Communication With Alternative Fuel Control Module
+C121,Lost Communication With Anti-Lock Brake System (ABS) Control Module
 C112,Lost Communication With Battery Current Sensor from LIN
 C111,Lost Communication With Battery Energy from LIN
+C129,Lost Communication With Brake System Control Module
 C104,Lost Communication With Cruise Control Module
 C109,Lost Communication With Fuel Pump Control Module
 1629,Lost communication with rectifier
@@ -761,7 +639,10 @@ C101,Lost Communication with Transmission Control Module
 15A7,Mains control pilot voltage
 15A9,Mains RMS voltage
 0650,Malfunction Indicator Lamp (MIL) Control Circuit
+0106,Manifold Absolute Pressure Function
+0105,Manifold Absolute Pressure Sensor
 2413,Mass Air Flow Control Function
+0101,Mass Air Flow Function
 0100,Mass Air Flow Sensor
 2526,Mastervac pressure switch
 166A,Maximum dynamique engine torque CAN fail
@@ -804,8 +685,11 @@ C101,Lost Communication with Transmission Control Module
 1136,O2 Proportionnal Sensor Temperature - Downstream
 1131,O2 Proportionnal Sensor Temperature - Upstream
 0136,O2 Sensor - Downstream
+0130,O2 Sensor - Upstream
+0140,O2 Sensor Circuit Activity
 0139,O2 Sensor Circuit Response
 0133,O2 Sensor Circuit Slow Response
+0141,O2 Sensor Heater - Downstream
 0135,O2 Sensor Heater - Upstream
 2A06,O2 Sensor Negative Voltage
 114F,O2 Upstream Proportionnal Sensor - Nernst cell
@@ -819,6 +703,7 @@ C101,Lost Communication with Transmission Control Module
 0521,Oil pressure switch
 1560,Oil pump solenoid valve
 1651,One Thermoplunger in failure
+0703,Open Brake Pedal Switch
 15D8,Output gearbox Speed Sensor Circuit
 171C,Output pin 1 of Gear position switch
 171D,Output pin 2 of Gear position switch
@@ -846,11 +731,14 @@ E39C,Particulate Matter Sensor
 053A,Positive Crankcase Ventilation Heater Control Circuit
 15DC,Positive interdigital electrode of the SCU
 15D2,Power Electronic Block Coolant temperature
+0641,Power Supply 1
+0651,Power Supply 2
 0697,Power Supply 3
 06A3,Power Supply 4
 17C6,Powertrain Electrical Vehicle relay
 1454,Pressure Before Compressor
 1452,Pressure Before Compressor Sensor
+0090,Pressure rail actuator component
 1615,Primary Claw
 1607,Primary Claw in neutral position
 17C9,Primary Claw Sensor
@@ -970,8 +858,10 @@ C305,Software Incompatibility with Cruise Control Module
 0555,Vacuum System Control
 C315,Vehicle Speed
 1746,Vehicle speed plausibility in level 2
+0500,Vehicle Speed Sensor
 1674,Vehicle speed sign
 0834,Very Begining of Clutch Pedal Move Switch
+0482,Very low speed engine fan control relay
 112B,VNT sensor
 16FC,Voltage out of range error from oil pan sensor
 162A,Voltage signals from shift lever
