@@ -43,6 +43,7 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
     private static final String SID_Preamble_DUR                     = "7ec.6233d9."; // 168 - 16
 
     private static final String SID_Total_kWh                        = "7bb.6161.120";
+    private static final String SID_Total_Regen_kWh                  = "18daf1db.629247.24"; // Ph2 only (for now)
     private static final String SID_Counter_Full                     = "7bb.6166.48";
     private static final String SID_Counter_Partial                  = "7bb.6166.64";
 
@@ -75,6 +76,10 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
         addField(SID_Total_kWh, 6000);
         addField(SID_Counter_Full, 6000);
         addField(SID_Counter_Partial, 6000);
+
+        if (MainActivity.isPh2()) {
+            addField(SID_Total_Regen_kWh, 6000);
+        }
     }
 
     // This event is fired as soon as any registered field is set through its setValue() method
@@ -125,6 +130,9 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
                         switch (field.getSID()) {
                             case SID_Total_kWh:
                                 tv = findViewById(R.id.textTotKwh);
+                                break;
+                            case SID_Total_Regen_kWh:
+                                tv = findViewById(R.id.textTotKwhRegen);
                                 break;
                             case SID_Counter_Full:
                                 tv = findViewById(R.id.textCountFull);

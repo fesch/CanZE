@@ -406,6 +406,7 @@
                 android:layout_height="wrap_content">
 
                 <TableRow>
+
                     <TextView
                         android:id="@+id/LabelTotKwh"
                         android:text="@string/label_TotKwh"
@@ -417,6 +418,22 @@
                         android:gravity="end"
                         android:layout_weight="1"
                         />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/LabelTotKwhRegen"
+                        android:layout_weight="2"
+                        android:text="@string/label_TotKwhRegen" />
+
+                    <TextView
+                        android:id="@+id/textTotKwhRegen"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
                 <TableRow>

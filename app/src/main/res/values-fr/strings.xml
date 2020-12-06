@@ -309,6 +309,7 @@
     </string-array>
     <string name="header_ChargeSummary">Bilan des charges</string>
     <string name="label_TotKwh">Charge cumulée totale (kWh)</string>
+    <string name="label_TotKwhRegen">Charge cumulée en freinage régénératif (kWh)</string>
     <string name="label_CountFull">Nombre de charges complètes</string>
     <string name="label_CountPartial">Nombre de charges partielles</string>
     <string name="title_activity_clima_tech">Climatisation</string>
