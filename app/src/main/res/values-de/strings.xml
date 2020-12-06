@@ -394,6 +394,7 @@
     </string-array>
     <string name="header_ChargeSummary">Zusammenfassung Ladeverlauf</string>
     <string name="label_TotKwh">Gesamt-Akkuverbrauch (kWh)</string>
+    <string name="label_TotKwhRegen">Gesamtenergie durch Rekuperation (kWh)</string>
     <string name="label_CountFull">Akku voll aufgeladen (#)</string>
     <string name="label_CountPartial">Akku partiell geladen (#)</string>
 

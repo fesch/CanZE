@@ -338,6 +338,7 @@
 7bb.6161.96,18daf1db,96,119,1,0,0,km,2161,6161,ff,Battery mileage in km
 # 7bb.6161.96,18DAF1DB,24,55,.03125,-2147483648,2,km,2291CF,6291CF,ff,Battery mileage(Zxx_dist_pack_mem)
 7bb.6161.120,18DAF1DB,24,55,.001,0,3,kWh,229243,629243,1ff,Cumulated energy in charge
+,18DAF1DB,24,55,.001,0,3,,229247,629247,1ff,Cumulated energy in regen : CD mode(Zxx_kwh_rgn_cd)
 # 7bb.6162.16,18daf1db,16,47,1,0,0,,2162,6162,ff,21_62_03_Serial_Number (FIN)
 7bb.6162.16,763,24,159,1,0,0,,22F190,62F190,2ff,VIN
 7bb.6166.48,18DAF1DB,24,39,1,0,0,,229210,629210,ff,Overall number of complete charge(Zxx_full_chg_ctr)
