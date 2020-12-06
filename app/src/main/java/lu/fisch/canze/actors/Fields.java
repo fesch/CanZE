@@ -402,7 +402,7 @@ public class Fields {
                 @Override
                 public double updateValue(HashMap<String, Field> dependantFields) {
                     Field privateField;
-                    if ((privateField = dependantFields.get(SID_HeaterSetpoint)) == null) return Double.NaN;
+                    if ((privateField = dependantFields.get(SID_OH_CabinTempTargetValue)) == null) return Double.NaN;
                     return privateField.getValue();
                 }
             });
