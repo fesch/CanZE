@@ -194,7 +194,7 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("ZOE Q90");
         arrayAdapter.add("ZOE R90/110");
         if (BuildConfig.VERSION_NAME.contains("beta")) arrayAdapter.add("ZOE ZE50");
-        if (BuildConfig.VERSION_NAME.contains("beta")) arrayAdapter.add("ZOE R240Ph2");
+        // if (BuildConfig.VERSION_NAME.contains("beta")) arrayAdapter.add("ZOE R240Ph2");
         //arrayAdapter.add("Fluence");
         //arrayAdapter.add("Kangoo");
         //arrayAdapter.add("Twizy");
@@ -204,7 +204,7 @@ public class SettingsActivity extends AppCompatActivity {
         else if (MainActivity.car == MainActivity.CAR_ZOE_Q90) index = 2;
         else if (MainActivity.car == MainActivity.CAR_ZOE_R90) index = 3;
         else if (MainActivity.car == MainActivity.CAR_X10PH2 && BuildConfig.VERSION_NAME.contains("beta")) index = 4;
-        else if (MainActivity.car == (MainActivity.CAR_ZOE_R240 | MainActivity.CAR_X10PH2) && BuildConfig.VERSION_NAME.contains("beta")) index = 5;
+        // else if (MainActivity.car == (MainActivity.CAR_ZOE_R240 | MainActivity.CAR_X10PH2) && BuildConfig.VERSION_NAME.contains("beta")) index = 5;
 
         // display the list
         Spinner carList = findViewById(R.id.car);

@@ -354,11 +354,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 //    break;
                 //case "Twizy":
                 //    car = CAR_TWIZY;
-                 //   break;
-                case "ZOE R240Ph2":
-                    car = CAR_X10PH2 | CAR_ZOE_R240;
-                    altFieldsMode = false; // Ph2 car has no altfields
-                    break;
+                //    break;
+                //case "ZOE R240Ph2":
+                //    car = CAR_X10PH2 | CAR_ZOE_R240;
+                //    altFieldsMode = false; // Ph2 car has no altfields
+                //    break;
                 case "ZOE ZE50":
                     car = CAR_X10PH2;
                     altFieldsMode = false; // Ph2 car has no altfields
