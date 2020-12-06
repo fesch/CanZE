@@ -119,8 +119,10 @@
 432.36,764,24,31,1,0,0,,22441C,62441C,ff,VH_HVBatConditionningMode,0:NoRequest;1:CoolCabinCoupleByAir;2:CoolBattCoupleByAir;3:CoolBattAloneByAir;4:CoolCabinCouple
 42a.30,764,24,39,.1,400,1,°C,22400A,62400A,ff,IH_EvapTemp
 42a.48,764,24,31,1,0,0,,224409,624409,ff,IH_HPM_ClimLoopMode,0:Unavailable;1:AC Mode;2:AC deicing mode;3:AC to heat pump mode;4:Heat pump mode;5:Heat pump to AC mode;6:Not used;7:Idle mode
+#HVAC
 ,764,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,764,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,764,24,31,.5,-32,1,°C,224360,624360,ff,OH_CabinTempTargetValue
 # BCM #
 ,765,24,199,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
 ,765,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber

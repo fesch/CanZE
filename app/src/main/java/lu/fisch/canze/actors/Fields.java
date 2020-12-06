@@ -395,8 +395,19 @@ public class Fields {
     private void addVirtualFieldHeaterSetpoint() {
         final String SID_HeaterSetpoint = "699.8";
         final String SID_OH_ClimTempDisplay = "764.6145.29";
+        final String SID_OH_CabinTempTargetValue = "764.624360.24";
 
-        if (MainActivity.altFieldsMode || MainActivity.isPh2()) {
+        if (MainActivity.isPh2()) {
+            addVirtualFieldCommon("6105", "°C", SID_OH_CabinTempTargetValue, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(SID_HeaterSetpoint)) == null) return Double.NaN;
+                    return privateField.getValue();
+                }
+            });
+
+        } else if (MainActivity.altFieldsMode) {
             addVirtualFieldCommon("6105", "°C", SID_OH_ClimTempDisplay, new VirtualFieldAction() {
                 @Override
                 public double updateValue(HashMap<String, Field> dependantFields) {
