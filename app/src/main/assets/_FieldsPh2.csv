@@ -111,7 +111,7 @@
 764.6143.134,764,24,39,.1,0,1,bar,22426C,62426C,ff,IH_ACHighPressureSensor
 764.6144.107,764,24,39,1,0,0,rpm,2243D8,6243D8,ff,IH_EcompRealSpeed
 764.6145.29,764,24,31,.5,0,1,°C,224004,624004,ff,OLB_FP_LeftTempDisplay
-699.8,764,24,31,.5,-32,1,°C,224360,624360,ff,OH_CabinTempTargetValue
+699.8,764,24,31,.5,0,1,°C,224004,624004,ff,OLB_FP_LeftTempDisplay
 764.6167.21,764,24,31,1,0,0,,224402,624402,ff,OH_ClimLoopMode,1:AC Mode;2:Deicing Mode;4:HeatPump Mode;6:Demisting Mode;7:Idle Mode
 764.6167.40,764,24,39,.25,200,1,°C,224347,624347,ff,IH_ExternalTemperature
 430.38,764,168,169,1,0,0,,2144,6144,ff,HV Battery Cooling State
