@@ -10,7 +10,7 @@
 # 1f8,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
 1f8.28,18daf1e2,28,39,-1,4096,0,Nm,999999,999999,ff,ElecBrakeWheelsTorqueApplied
 #  # 1f8,40,50,10,0,0,Rpm,,,ff,ElecEngineRPM
-#  1f8.40,7bc,24,39,10,32768,0,0,223045,623045,ff,ElecEngineRPM
+1f8.40,18DAF1DA,24,39,1,0,0,rpm,223064,623064,1ff,Electrical motor engine speed
 # 1fd,0,7,0.390625,0,1,%,,,ff,12V Battery Current?
 # 1fd.0,18daf1da,24,31,1,0,0,A,223025,623025,ff,14V DCDC current measure
 1fd.0,18DAF1DA,24,39,1,32767,0,A,2221DF,6221DF,ff,Low voltage power supply current supply by DCDC
@@ -18,18 +18,13 @@
 # Possible to use a virtual computer field here? No, so this really needs to be changed in the code
 # 1fd.48,800,24,55,1,0,0,kW,,,ff,Consumption
 # 35c,5,7,1,0,0,,,,ff,Vehicle state
-35c.5,765,152,159,1,0,0,,210D,610D,ff,Vehicle state
+# 35c.5,765,152,159,1,0,0,,210D,610D,ff,Vehicle state
+35c.5,765,24,31,1,0,0,,228003,628003,ff,VEHICLE_STATE,0:VS_SLEEPING;1:VS_TECHNICAL_WAKE_UP;2:VS_CUT_OFF_PENDING;4:VS_NOT_USED_4;5:VS_IGNITION_LEVEL;6:VS_STARTING_IN_PROGRESS;7:VS_ENGINE_RUNNING;8:VS_AUTOSTART;10:VS_NOT_USED_10;11:VS_NOT_USED_11;12:VS_NOT_USED_12;13:VS_NOT_USED_13;14:VS_NOT_USED_14;15:VS_UNAVAILABLE;9:VS_ENGINE_SYSTEM_STOP;3:VS_AUTOACC_LEVEL
 # 427,40,47,0.3,0,0,kW,,,e2,Available Charging Power (UCP)
 427.40,18daf1da,24,39,.1,0,1,kW,223470,623470,ff,Available JB2 power for a battery charge
 # 427,49,57,0.1,0,1,kWh,,,e2,Available Energy
 # 427.49,18daf1da,24,39,0.005,0,1,kWh,22320C,62320C,ff,Available discharge Energy
 427.49,18DAF1DB,24,47,.001,0,3,kWh,2291C8,6291C8,ff,Available Energy(Wxx_avl_e)
-# 42a,30,39,0.1,400,1,°C,,,ff,Evaporator Temp Measure
-42a.30,764,42,51,0.1,400,1,°C,2144,6144,ff,Evaporator Temp Measure
-# 42a,48,50,1,0,0,,,,e2,ClimLoopMode
-# 42a.48,764,62,64,1,0,0,-,2144,2144,e2,ClimLoopMode
-# 42a.48,764,21,23,1,0,0,,2167,6167,ff,ILB_HPM_ClimLoopMode,0:Unavailable;1:AC mode;2:AC de-icing mode;3:Not used (100);4:Heat Pump mode;5:Not used (101);6:Demisting mode;7:Idle mode
-42a.48,764,24,31,1,0,0,,224409,624409,ff,IH_HPM_ClimLoopMode,0:Unavailable;1:AC Mode;2:AC deicing mode;3:AC to heat pump mode;4:Heat pump mode;5:Heat pump to AC mode;6:Not used;7:Idle mode
 # 42e,0,12,0.02,0,2,%,,,e3,State of Charge
 # 42e.0,18daf1da,24,39,0.02,0,2,%,222002,622002,ff,State of Charge
 42e.0,18DAF1DB,24,39,.01,0,2,%,229002,629002,ff,Battery USOC(Wxx_usoc_avg)
@@ -39,14 +34,6 @@
 # 42e,44,50,1,40,0,°C,,,e3,HV Battery Temp
 # 42e.44,18daf1da,24,31,1,40,0,°C,222001,622001,ff,HV Battery Temp
 42e.44,18DAF1DB,24,39,.0625,640,2,°C,229012,629012,ff,Average Temperature(Wxx_temp_avg)
-# 430,38,39,1,0,0,,,,e2,HV Battery Cooling State
-430.38,764,168,169,1,0,0,,2144,6144,ff,HV Battery Cooling State
-# 430,40,49,0.1,400,1,°C,,,e2,HV Battery Evaporator Temp
-# 430.40,764,150,159,0.1,400,1,°C,2121,6121,ff,HV Battery Evaporator Temp
-430.40,764,24,39,.1,400,1,°C,224423,624423,ff,IH_HVBattEvapTempMeasure
-# 432,36,37,1,0,0,,,,e2,HV Bat Conditionning Mode
-# 432.36,764,133,134,1,0,0,,2144,6144,ff,HV Bat Conditionning Mode
-432.36,764,24,31,1,0,0,,22441C,62441C,ff,VH_HVBatConditionningMode,0:NoRequest;1:CoolCabinCoupleByAir;2:CoolBattCoupleByAir;3:CoolBattAloneByAir;4:CoolCabinCouple
 
 # Note that 5d7.0 is best always present as it is used for safe driving mode
 # 5d7,0,15,0.01,0,2,km/h,,,ff,Speed
@@ -116,7 +103,7 @@
 764.6180.64,764,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
 764.6180.128,764,24,231,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 764.6180.144,764,24,79,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
-764.6121.26,764,24,39,.1,400,1,°C,224009,624009,ff,IH_IncarTempIH_IncarTemp
+764.6121.26,764,24,39,.1,400,1,°C,224009,624009,ff,IH_IncarTemp
 764.6121.36,764,24,31,.5,0,1,%,22423B,62423B,ff,IH_RHumidity
 764.6143.86,764,24,31,1,0,0,,224266,624266,ff,IH_EcoModeRequest
 # 764.6143.88,764,24,31,100,0,0,W,224263,624263,ff,IH_ElectricalPowerDrived
@@ -124,8 +111,14 @@
 764.6143.134,764,24,39,.1,0,1,bar,22426C,62426C,ff,IH_ACHighPressureSensor
 764.6144.107,764,24,39,1,0,0,rpm,2243D8,6243D8,ff,IH_EcompRealSpeed
 764.6145.29,764,24,31,.5,0,1,°C,224004,624004,ff,OLB_FP_LeftTempDisplay
+699.8,764,24,31,.5,0,1,°C,224004,624004,ff,OLB_FP_LeftTempDisplay
 764.6167.21,764,24,31,1,0,0,,224402,624402,ff,OH_ClimLoopMode,1:AC Mode;2:Deicing Mode;4:HeatPump Mode;6:Demisting Mode;7:Idle Mode
 764.6167.40,764,24,39,.25,200,1,°C,224347,624347,ff,IH_ExternalTemperature
+430.38,764,168,169,1,0,0,,2144,6144,ff,HV Battery Cooling State
+430.40,764,24,39,.1,400,1,°C,224423,624423,ff,IH_HVBattEvapTempMeasure
+432.36,764,24,31,1,0,0,,22441C,62441C,ff,VH_HVBatConditionningMode,0:NoRequest;1:CoolCabinCoupleByAir;2:CoolBattCoupleByAir;3:CoolBattAloneByAir;4:CoolCabinCouple
+42a.30,764,24,39,.1,400,1,°C,22400A,62400A,ff,IH_EvapTemp
+42a.48,764,24,31,1,0,0,,224409,624409,ff,IH_HPM_ClimLoopMode,0:Unavailable;1:AC Mode;2:AC deicing mode;3:AC to heat pump mode;4:Heat pump mode;5:Heat pump to AC mode;6:Not used;7:Idle mode
 ,764,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,764,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # BCM #
@@ -169,7 +162,8 @@
 ,18daf1df,144,159,1,0,0,,2180,6180,ff,Version
 ,18daf1df,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,18daf1df,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-77e.623025.24,18daf1df,24,39,0.015625,15256,2,Nm,222002,622002,ff,Emotor torque estimation based on measured values
+# 77e.623025.24,18daf1df,24,39,0.015625,15256,2,Nm,222002,622002,ff,Emotor torque estimation based on measured values
+77e.623025.24,700,24,39,.5,0,1,Nm,22011F,62011F,1ff,Current Estimated Engine Torque Value
 # BCB
 793.5081.0,18daf1de,0,0,1,0,0,,1081,5081,ff,start diag
 793.50c0.0,18daf1de,0,0,1,0,0,,10c0,50c0,ff,start diag
@@ -344,7 +338,8 @@
 7bb.6161.96,18daf1db,96,119,1,0,0,km,2161,6161,ff,Battery mileage in km
 # 7bb.6161.96,18DAF1DB,24,55,.03125,-2147483648,2,km,2291CF,6291CF,ff,Battery mileage(Zxx_dist_pack_mem)
 7bb.6161.120,18DAF1DB,24,55,.001,0,3,kWh,229243,629243,1ff,Cumulated energy in charge
-7bb.6162.16,18daf1db,16,47,1,0,0,,2162,6162,ff,21_62_03_Serial_Number (FIN)
+# 7bb.6162.16,18daf1db,16,47,1,0,0,,2162,6162,ff,21_62_03_Serial_Number (FIN)
+7bb.6162.16,763,24,159,1,0,0,,22F190,62F190,2ff,VIN
 7bb.6166.48,18DAF1DB,24,39,1,0,0,,229210,629210,ff,Overall number of complete charge(Zxx_full_chg_ctr)
 7bb.6166.64,18DAF1DB,24,39,1,0,0,,229215,629215,ff,Overall number of partial charge(Zxx_partial_chg_ctr)
 # UBP xxxxxxx --> E-ACT-EBA
