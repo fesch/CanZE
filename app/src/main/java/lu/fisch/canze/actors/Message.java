@@ -110,6 +110,7 @@ public class Message {
     }
 
     private void onMessageCompleteEventField(String binString, Field field) {
+        if (field.getRequestId() == "999999") return;
         if(binString.length()>= field.getTo()) {
             // parseInt --> signed, so the first bit is "cut-off"!
             try {

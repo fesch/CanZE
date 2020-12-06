@@ -183,7 +183,7 @@ public class Fields {
         final String SID_Coasting_Torque = "18a.27";
         final String SID_HydraulicTorqueRequest = "7bc.624b7d.28"; // Total Hydraulic brake wheels torque request
 
-        if (MainActivity.altFieldsMode) {
+        if (MainActivity.altFieldsMode || MainActivity.isPh2()) {
             addVirtualFieldCommon("6101", "Nm", SID_HydraulicTorqueRequest, new VirtualFieldAction() {
                 @Override
                 public double updateValue(HashMap<String, Field> dependantFields) {
@@ -220,7 +220,7 @@ public class Fields {
         final String SID_Coasting_Torque = "18a.27";
         final String SID_PEBTorque = "77e.623025.24";
 
-        if (MainActivity.altFieldsMode) {
+        if (MainActivity.altFieldsMode || MainActivity.isPh2()) {
             addVirtualFieldCommon("610a", "Nm", SID_PEBTorque, new VirtualFieldAction() {
                 @Override
                 public double updateValue(HashMap<String, Field> dependantFields) {
@@ -253,7 +253,7 @@ public class Fields {
         final String SID_MeanEffectiveTorque = "186.16";
         final String SID_PEBTorque = "77e.623025.24";
 
-        if (MainActivity.altFieldsMode) {
+        if (MainActivity.altFieldsMode || MainActivity.isPh2()) {
             addVirtualFieldCommon("610b", "Nm", SID_PEBTorque, new VirtualFieldAction() {
                 @Override
                 public double updateValue(HashMap<String, Field> dependantFields) {
@@ -283,7 +283,7 @@ public class Fields {
         final String SID_HydraulicTorqueRequest = "7bc.624b7d.28"; // Total Hydraulic brake wheels torque request
         final String SID_PEBTorque = "77e.623025.24";
 
-        if (MainActivity.altFieldsMode) {
+        if (MainActivity.altFieldsMode || MainActivity.isPh2()) {
             addVirtualFieldCommon("610c", "Nm", SID_PEBTorque + ";" + SID_HydraulicTorqueRequest, new VirtualFieldAction() {
                 @Override
                 public double updateValue(HashMap<String, Field> dependantFields) {
@@ -396,7 +396,7 @@ public class Fields {
         final String SID_HeaterSetpoint = "699.8";
         final String SID_OH_ClimTempDisplay = "764.6145.29";
 
-        if (MainActivity.altFieldsMode) {
+        if (MainActivity.altFieldsMode || MainActivity.isPh2()) {
             addVirtualFieldCommon("6105", "°C", SID_OH_ClimTempDisplay, new VirtualFieldAction() {
                 @Override
                 public double updateValue(HashMap<String, Field> dependantFields) {
@@ -581,7 +581,7 @@ public class Fields {
         final String SID_ACPilot = "42e.38";
         final String SID_ACPilotDutyCycle = "793.625026.24";
 
-        if (MainActivity.altFieldsMode) {
+        if (MainActivity.altFieldsMode || MainActivity.isPh2()) {
             addVirtualFieldCommon("610d", "A", SID_ACPilotDutyCycle, new VirtualFieldAction() {
                 @Override
                 public double updateValue(HashMap<String, Field> dependantFields) {
@@ -663,16 +663,16 @@ public class Fields {
     private void addVirtualFieldCommon(String virtualId, String unit, String dependantSids, VirtualFieldAction virtualFieldAction) {
         // create a list of field this new virtual field will depend on
         HashMap<String, Field> dependantFields = new HashMap<>();
-        boolean allOk = true;
+        boolean allOk = false;
         for (String sid : dependantSids.split(";")) {
             Field field = getBySID(sid);
             if (field != null) {
-                dependantFields.put(sid, field);
+                if (field.getRequestId() != "999999") {
+                    dependantFields.put(sid, field);
+                    allOk = true;
+                } //else not ok, but no error toast display. This is a temporary hack to avoid toast overload while fixing _FieldsPh2
             } else {
-                if (!MainActivity.isPh2()) { /* TODO remove this if!!!! */
-                    MainActivity.toast(MainActivity.TOAST_NONE, String.format(Locale.getDefault(), MainActivity.getStringSingle(R.string.format_NoSid), "Fields", sid));
-                }
-                allOk = false;
+                MainActivity.toast(MainActivity.TOAST_NONE, String.format(Locale.getDefault(), MainActivity.getStringSingle(R.string.format_NoSid), "Fields", sid));
             }
         }
         if (allOk) {

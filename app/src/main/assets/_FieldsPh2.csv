@@ -1,14 +1,14 @@
 # SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
 # 130,44,55,-3,4094,0,Nm,,,ff,DriverBrakeWheelTq_Req
 # Note that in the next line the resolution is negated from the original definition, to match 130.44
-130.44,810,28,39,-1,4096,0,Nm,224B7E,624B7E,ff,DriverBrakeWheelTq_Req
+130.44,18daf1e2,28,39,-1,4096,0,Nm,999999,999999,ff,DriverBrakeWheelTq_Req
 # 186,40,49,0.125,0,1,%,,,ff,Throttle
 186.40,18daf1da,24,39,0.125,0,1,%,22202E,62202E,ff,Accelerator pedal position
 # ,1f8,16,27,1,4096,0,Nm,,,ff,TotalPotentialResistiveWheelsTorque
 # free frame 1f8.16 is in wheel NM, isotp 22247 in 32's motor torque
 1f8.16,18daf1da,24,39,0.29125,32768,0,N.m,222247,622247,ff,Minimum effective torque that can be requested to the electrical motor (EM)
 # 1f8,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
-1f8.28,810,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
+1f8.28,18daf1e2,28,39,-1,4096,0,Nm,999999,999999,ff,ElecBrakeWheelsTorqueApplied
 #  # 1f8,40,50,10,0,0,Rpm,,,ff,ElecEngineRPM
 #  1f8.40,7bc,24,39,10,32768,0,0,223045,623045,ff,ElecEngineRPM
 # 1fd,0,7,0.390625,0,1,%,,,ff,12V Battery Current?
@@ -347,14 +347,14 @@
 7bb.6162.16,18daf1db,16,47,1,0,0,,2162,6162,ff,21_62_03_Serial_Number (FIN)
 7bb.6166.48,18DAF1DB,24,39,1,0,0,,229210,629210,ff,Overall number of complete charge(Zxx_full_chg_ctr)
 7bb.6166.64,18DAF1DB,24,39,1,0,0,,229215,629215,ff,Overall number of partial charge(Zxx_partial_chg_ctr)
-# UBP xxxxxxx
+# UBP xxxxxxx --> E-ACT-EBA
 #,7bc,56,63,1,0,0,,2180,6180,ff,diagVersion
 #,7bc,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 #,7bc,128,143,1,0,0,,2180,6180,ff,Soft
 #,7bc,144,159,1,0,0,,2180,6180,ff,Version
 #,7bc,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 #,7bc,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
-#,7bc,28,39,1,4094,0,N·m,224B7D,624B7D,ff,Total Hydraulic brake wheels torque request
+7bc.624b7d.28,18daf1e2,28,39,1,4094,0,N·m,999999,999999,ff,Total Hydraulic brake wheels torque request
 # TCU - DCM Renault #
 ,7da,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
 ,7da,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
