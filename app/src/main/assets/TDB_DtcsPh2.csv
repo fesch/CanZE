@@ -6,7 +6,6 @@ F003,Power supply monitoring
 9414,Backlight Dimming level inputs monitoring
 9415,High Side PWM outputs for backlight monitoring
 9413,Error Configuration
-9408,SBR telltale command monitoring (external telltale)
 9410,Trip computer input(s) monitoring
 C028,BUS OFF CAN V
 C037,BUS OFF CAN M
@@ -64,3 +63,4 @@ E167,Perte trame NodeEBA
 940F,Lost communication with Multimedia
 E174,Perte trame VNodeBSWSonar
 9430,LCTakeOverFrame Safety mechanisms
+9408,SBR telltale command monitoring (ext telltale)
