@@ -144,7 +144,7 @@ public class Message {
                     //MainActivity.debug("Fields: onMessageCompleteEvent > "+field.getSID()+" = "+val);
 
                     // update the value of the field. This triggers updating all of all listeners of that field
-                    field.setValue((int)val);
+                    field.setValue((double)val);
 
                 } else {
                     field.setValue(Double.NaN);
