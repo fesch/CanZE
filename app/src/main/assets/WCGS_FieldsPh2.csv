@@ -4,8 +4,8 @@
 ,7AD,24,31,1,0,0,,220103,620103,ff,Phone detected,0:Unavailable;1:No;2:Yes
 ,7AD,24,31,1,0,0,,220104,620104,ff,Charging state,0:Unavailable;1:Uncharging;2:LP charging;3:MP Charging
 ,7AD,24,31,1,0,0,,220105,620105,ff,Hardware version,0:Unknown;1:V1.1;2:V1.2;3:V1.3;4:V1.4;5:V1.5;6:V1.6;7:V1.7;8:V1.8;9:V1.9;10:V2.0;11:V2.1;12:V2.2;13:V2.3;14:V2.4;15:V2.5
-,7AD,24,55,1,0,0,,220106,620106,ff,ID of receiver's charging IC
-,7AD,24,31,1,0,0,,220107,620107,ff,Manufacturer of receiver's charging IC,0:Unknown;1:Samsung;2:LGE;3:Nokia;4:Motorola;5:Apple;6:Others
+,7AD,24,55,1,0,0,,220106,620106,4ff,ID of receivers charging IC
+,7AD,24,31,1,0,0,,220107,620107,ff,Manufacturer of receivers charging IC,0:Unknown;1:Samsung;2:LGE;3:Nokia;4:Motorola;5:Apple;6:Others
 ,7AD,24,31,1,0,0,,220108,620108,ff,Charging standard and version of receiver,0:Unavailable;1:WPC 1.0;2:WPC 1.1;3:WPC 1.2;4:WPC x.x;5:PMA;6:A4WP
 ,7AD,24,31,1,0,0,,220109,620109,ff,Existence of foreign object,0:Unavailable;1:No;2:Yes
 ,7AD,24,31,.2,0,1,V,22010A,62010A,ff,Voltage of charging coil
@@ -26,7 +26,7 @@
 ,7AD,24,31,1,0,0,,229000,629000,ff,Control of yellow LED,0:OFF;1:ON
 ,7AD,24,31,1,0,0,,229001,629001,ff,Control of Green LED,0:OFF;1:ON
 ,7AD,24,31,1,0,0,,229002,629002,ff,Control of WCBS charging,0:OFF;1:ON
-,7AD,24,151,1,0,0,,22F010,62F010,ff,Fingerprint
+,7AD,24,151,1,0,0,,22F010,62F010,4ff,Fingerprint
 ,7AD,24,103,1,0,0,,22F011,62F011,2ff,IndexSrvData
 ,7AD,24,103,1,0,0,,22F012,62F012,2ff,Operational Reference
 ,7AD,24,103,1,0,0,,22F013,62F013,2ff,SecondaryOperationnalReference
@@ -34,7 +34,7 @@
 ,7AD,24,31,1,0,0,,22F0D1,62F0D1,ff,DTC Occurrence Counter
 ,7AD,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI
 ,7AD,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI
-,7AD,24,31,1,0,0,,22F180,62F180,ff,BootVersion.ModuleNumber
+,7AD,24,31,1,0,0,,22F180,62F180,4ff,BootVersion.ModuleNumber
 ,7AD,32,135,1,0,0,,22F180,62F180,2ff,BootVersion.Coding
 ,7AD,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
 ,7AD,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
@@ -44,6 +44,6 @@
 ,7AD,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
 ,7AD,24,79,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,7AD,24,143,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
-,7AD,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7AD,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,7AD,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
 ,7AD,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationDataReferenceAfterConfigurationProcess

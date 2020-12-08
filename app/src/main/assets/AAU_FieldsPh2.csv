@@ -39,5 +39,5 @@
 ,7A2,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
 ,7A2,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,7A2,24,167,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
-,7A2,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7A2,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,7A2,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N

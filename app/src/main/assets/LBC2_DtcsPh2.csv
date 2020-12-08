@@ -94,7 +94,6 @@
 1BA4,Current sensor input1
 1BAD,Internal memory RAM/ROM (SCPU)
 1BAE,External NV memory (EEPROM, FLASH)1
-1BAF,CAN current sensor (SCPU)
 1BB1,Safety CPU/Slave Communication
 1BB2,ASIC (redundancy)
 1BB3,Hot Spot (SPARE) sensor
@@ -108,3 +107,4 @@ E144,CAN from BMS1
 EA0D,CAN controller (MCPU)
 FD00,FOTA : SW bloc
 FD01,FOTA : Calibration bloc
+1BAF,ADC (Analog-To-Digital ) Conversion Failure - BMS2

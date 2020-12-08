@@ -1,21 +1,21 @@
 ,18DAF1DF,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
-,18DAF1DF,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode
+,18DAF1DF,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode
 ,18DAF1DF,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
 ,18DAF1DF,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
-,18DAF1DF,128,143,1,0,0,,2180,6180,ff,SoftwareNumber
-,18DAF1DF,144,159,1,0,0,,2180,6180,ff,EditionNumber
-,18DAF1DF,160,175,1,0,0,,2180,6180,ff,CalibrationNumber
+,18DAF1DF,128,143,1,0,0,,2180,6180,4ff,SoftwareNumber
+,18DAF1DF,144,159,1,0,0,,2180,6180,4ff,EditionNumber
+,18DAF1DF,160,175,1,0,0,,2180,6180,4ff,CalibrationNumber
 ,18DAF1DF,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;1:292A6;2:29170
 ,18DAF1DF,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:N/A;1:292A6
 ,18DAF1DF,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A;1:HMLGT
 ,18DAF1DF,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
 ,18DAF1DF,16,151,1,0,0,,2181,6181,2ff,V.I.N
-,18DAF1DF,152,167,1,0,0,,2181,6181,ff,CRC
-,18DAF1DF,16,39,1,0,0,,2184,6184,ff,ITG Supplier Number
+,18DAF1DF,152,167,1,0,0,,2181,6181,4ff,CRC
+,18DAF1DF,16,39,1,0,0,,2184,6184,4ff,ITG Supplier Number
 ,18DAF1DF,40,47,1,0,0,,2184,6184,2ff,Traceability Factory Code
 ,18DAF1DF,48,143,1,0,0,,2184,6184,2ff,Traceability Serial Number
-,18DAF1DF,16,103,1,0,0,,21B7,61B7,ff,Configuration of Electrical Vehicle Networks
-,18DAF1DF,16,103,1,0,0,,21B8,61B8,ff,List of Electrical Vehicle ECUs with After-sales diagnostic
+,18DAF1DF,16,103,1,0,0,,21B7,61B7,4ff,Configuration of Electrical Vehicle Networks
+,18DAF1DF,16,103,1,0,0,,21B8,61B8,4ff,List of Electrical Vehicle ECUs with After-sales diagnostic
 ,18DAF1DF,16,23,1,0,0,,21EF,61EF,2ff,Hardware Part Number 1
 ,18DAF1DF,24,31,1,0,0,,21EF,61EF,2ff,Hardware Part Number 2
 ,18DAF1DF,32,39,1,0,0,,21EF,61EF,2ff,Hardware Part Number 3
@@ -37,12 +37,12 @@
 ,18DAF1DF,160,167,1,0,0,,21EF,61EF,2ff,Software Part Number 9
 ,18DAF1DF,168,175,1,0,0,,21EF,61EF,2ff,Software Part Number 10
 ,18DAF1DF,16,55,1,0,0,,21F0,61F0,2ff,PartNumber.LowerPart
-,18DAF1DF,56,63,1,0,0,,21F0,61F0,ff,DiagnosticIdentificationCode
+,18DAF1DF,56,63,1,0,0,,21F0,61F0,4ff,DiagnosticIdentificationCode
 ,18DAF1DF,64,87,1,0,0,,21F0,61F0,2ff,SupplierNumber.ITG
 ,18DAF1DF,88,127,1,0,0,,21F0,61F0,2ff,HardwareNumber.LowerPart
-,18DAF1DF,128,143,1,0,0,,21F0,61F0,ff,SoftwareNumber
-,18DAF1DF,144,159,1,0,0,,21F0,61F0,ff,EditionNumber
-,18DAF1DF,160,175,1,0,0,,21F0,61F0,ff,CalibrationNumber
+,18DAF1DF,128,143,1,0,0,,21F0,61F0,4ff,SoftwareNumber
+,18DAF1DF,144,159,1,0,0,,21F0,61F0,4ff,EditionNumber
+,18DAF1DF,160,175,1,0,0,,21F0,61F0,4ff,CalibrationNumber
 ,18DAF1DF,176,183,1,0,0,,21F0,61F0,ff,PartNumber.BasicPartList,0:N/A;1:292A6;2:29170
 ,18DAF1DF,184,191,1,0,0,,21F0,61F0,ff,HardwareNumber.BasicPartList,0:N/A;1:292A6
 ,18DAF1DF,192,199,1,0,0,,21F0,61F0,ff,ApprovalNumber.BasicPartList,0:N/A;1:HMLGT
@@ -51,17 +51,17 @@
 ,18DAF1DF,56,95,1,0,0,,21F1,61F1,2ff,ProgrammingSiteReference
 ,18DAF1DF,96,135,1,0,0,,21F1,61F1,2ff,ProgrammingToolReference
 ,18DAF1DF,136,143,1,0,0,,21F1,61F1,ff,NumberOfReprogrammings
-,18DAF1DF,144,167,1,0,0,,21F1,61F1,ff,DateOfReprogramming
-,18DAF1DF,168,183,1,0,0,,21F1,61F1,ff,TimeOfReprogramming
+,18DAF1DF,144,167,1,0,0,,21F1,61F1,4ff,DateOfReprogramming
+,18DAF1DF,168,183,1,0,0,,21F1,61F1,4ff,TimeOfReprogramming
 ,18DAF1DF,184,191,1,0,0,,21F1,61F1,ff,SaveMarking
-,18DAF1DF,192,207,1,0,0,,21F1,61F1,ff,CrcOfLogSave
-,18DAF1DF,24,55,1,0,0,,222000,622000,ff,($2000) DIDs supported in range [$2001 - $2020]
+,18DAF1DF,192,207,1,0,0,,21F1,61F1,4ff,CrcOfLogSave
+,18DAF1DF,24,55,1,0,0,,222000,622000,4ff,($2000) DIDs supported in range [$2001 - $2020]
 ,18DAF1DF,24,39,.5,32000,1,rpm,222001,622001,ff,($2001) Rotor mechanical rotation speed
 ,18DAF1DF,24,39,.015625,16256,2,N·m,222002,622002,ff,($2002) Emotor torque estimation, based on measured current values
 ,18DAF1DF,24,39,.1,2500,1,N·m,222003,622003,ff,($2003) Torque setpoint from EVC
 ,18DAF1DF,24,39,.03125,0,2,V,222004,622004,ff,($2004) Battery voltage sensor
 ,18DAF1DF,24,39,1,0,0,mV,222005,622005,ff,($2005) DCDC output tension measure
-,18DAF1DF,24,55,1,0,0,,222060,622060,ff,($2060) DIDs supported in range [$2061 - $2080]
+,18DAF1DF,24,55,1,0,0,,222060,622060,4ff,($2060) DIDs supported in range [$2061 - $2080]
 ,18DAF1DF,31,31,1,0,0,,222070,622070,ff,($2070) Immobilizer - diagnosis availability,0:unavailable;1:available
 ,18DAF1DF,24,31,1,0,0,,222071,622071,ff,($2071) Immobilizer - Byte 1 used to allow diagnosis
 ,18DAF1DF,24,31,1,0,0,,222072,622072,ff,($2072) Immobilizer - Byte 2 used to allow diagnosis
@@ -76,7 +76,7 @@
 ,18DAF1DF,31,31,1,0,0,,222075,622075,ff,($2075) Immobilizer - engine not running due to BCM in secure mode,0:no;1:yes
 ,18DAF1DF,31,31,1,0,0,,222076,622076,ff,($2076) Immobilizer - engine not running due to no BCM authorization,0:no;1:yes
 ,18DAF1DF,31,31,1,0,0,,222077,622077,ff,($2077) Immobilizer - engine not running due to a CAN network problem with the BCM,0:no;1:yes
-,18DAF1DF,24,55,1,0,0,,227000,627000,ff,($7000) DIDs supported in range [$7001 - $7020]
+,18DAF1DF,24,55,1,0,0,,227000,627000,4ff,($7000) DIDs supported in range [$7001 - $7020]
 ,18DAF1DF,24,31,1,0,0,%,227001,627001,ff,($7001) Command of PEC fan
 ,18DAF1DF,31,31,1,0,0,,227002,627002,ff,($7002) Wired APC signal,0:APC off;1:APC on
 ,18DAF1DF,24,39,.0009765625,0,3,A,227003,627003,ff,($7003) Measured rotor current (sensor 1)
@@ -105,13 +105,13 @@
 ,18DAF1DF,24,39,1,0,0,,22701A,62701A,ff,($701A) Failure vector allowing exact identification of the failure.4
 ,18DAF1DF,24,31,1,0,0,,22701B,62701B,ff,($701B) Failure vector allowing exact identification of the DCDC event
 ,18DAF1DF,24,39,.0078125,0,3,,22701C,62701C,ff,($701C) Saved rotor position offset.value.physical
-,18DAF1DF,40,47,1,0,0,,22701C,62701C,ff,($701C) Saved rotor position offset.CRC
+,18DAF1DF,40,47,1,0,0,,22701C,62701C,4ff,($701C) Saved rotor position offset.CRC
 ,18DAF1DF,24,39,1,0,0,,22701D,62701D,ff,($701D) Counter of FAN fail times to cool the machine stator in hard conditions.1
 ,18DAF1DF,24,39,1,0,0,,22701E,62701E,ff,($701E) Counter of FAN fail times to cool the machine stator in hard conditions.2
 ,18DAF1DF,24,39,1,0,0,,22701F,62701F,ff,($701F) Counter of FAN fail times to cool the machine stator in hard conditions.3
-,18DAF1DF,24,55,1,0,0,,227020,627020,ff,($7020) DIDs supported in range [$7021 - $7040]
-,18DAF1DF,24,39,1,0,0,,227021,627021,ff,($7021) Saved resistance rotor.value
-,18DAF1DF,40,47,1,0,0,,227021,627021,ff,($7021) Saved resistance rotor.CRC
+,18DAF1DF,24,55,1,0,0,,227020,627020,4ff,($7020) DIDs supported in range [$7021 - $7040]
+,18DAF1DF,24,39,1,0,0,,227021,627021,4ff,($7021) Saved resistance rotor.value
+,18DAF1DF,40,47,1,0,0,,227021,627021,4ff,($7021) Saved resistance rotor.CRC
 ,18DAF1DF,31,31,1,0,0,,227022,627022,ff,($7022) Active discharge request from EVC to PEB,0:Discharge not requested;1:Discharge requested
 ,18DAF1DF,31,31,1,0,0,,227023,627023,ff,($7023) Effective active discharge feedback to EVC,0:Active Discharge Not In Progress;1:Active Discharge In Progress
 ,18DAF1DF,31,31,1,0,0,,227024,627024,ff,($7024) APC state (from CAN),0:APC off;1:APC on
@@ -131,20 +131,20 @@
 ,18DAF1DF,28,31,1,0,0,,227032,627032,ff,($7032) Torque Default,0:No default;1:CAN Default;2:Safety Check Default;3:"Unexpected braking" is detected by the "static control strategy";4:"Unexpected acceleration" in case of negative torque request is detected by the "static control strategy";5:"Unexpected acceleration" is detected by the "static control strategy";6:"Unexpected acceleration" is detected by the "dynamic control strategy";7:"Over braking" is detected by the "static control strategy";8:"Over braking" or "Unexpected braking" are detected by the "dynamic control strategy";9:"Lack of motricity" is detected by the "static control strategy";10:"Lack of motricity" is detected by the "dynamic control strategy";11:"Loss of regenerative torque" is detected by the "static control strategy";12:"Loss of regenerative torque" is detected by the "dynamic control strategy";13:Non zero generated torque detected in case of overvoltage;14:Non limited torque detected in case of rotor overtemperature (rotor temperature = 100%)
 ,18DAF1DF,24,39,.5,0,1,V,227033,627033,ff,($7033) DCDC input voltage
 ,18DAF1DF,24,39,1,0,0,mV,227034,627034,ff,($7034) Voltage demand for the DCDC converter from the EVC
-,18DAF1DF,24,31,1,0,0,N.m,227035,627035,ff,($7035) Maximal available calculated torque in generator mode
-,18DAF1DF,24,31,1,0,0,N.m,227036,627036,ff,($7036) Maximal available calculated torque in motor mode
-,18DAF1DF,24,39,1,0,0,,227037,627037,ff,($7037) Rotor position offset learning + CRC written by diag tool.1
-,18DAF1DF,40,47,1,0,0,,227037,627037,ff,($7037) Rotor position offset learning + CRC written by diag tool.2
+,18DAF1DF,24,31,1,0,0,N·m,227035,627035,ff,($7035) Maximal available calculated torque in generator mode
+,18DAF1DF,24,31,1,0,0,N·m,227036,627036,ff,($7036) Maximal available calculated torque in motor mode
+,18DAF1DF,24,39,1,0,0,,227037,627037,4ff,($7037) Rotor position offset learning + CRC written by diag tool.1
+,18DAF1DF,40,47,1,0,0,,227037,627037,4ff,($7037) Rotor position offset learning + CRC written by diag tool.2
 ,18DAF1DF,24,39,.0078125,5120,3,°C,227038,627038,ff,($7038) Rotor copper temperature raw estimation
 ,18DAF1DF,24,39,.015625,0,2,%,227039,627039,ff,($7039) Combination of inverter, Excitation, PCB, MC and DRI temperatures, so in %
 ,18DAF1DF,24,39,.015625,0,2,%,22703A,62703A,ff,($703A) Combination of rotor and stator temperatures, so in %
-,18DAF1DF,24,39,1,0,0,,22703B,62703B,ff,($703B) Resistance rotor learning + CRC written by diag tool.1
-,18DAF1DF,40,47,1,0,0,,22703B,62703B,ff,($703B) Resistance rotor learning + CRC written by diag tool.2
+,18DAF1DF,24,39,1,0,0,,22703B,62703B,4ff,($703B) Resistance rotor learning + CRC written by diag tool.1
+,18DAF1DF,40,47,1,0,0,,22703B,62703B,4ff,($703B) Resistance rotor learning + CRC written by diag tool.2
 ,18DAF1DF,24,47,1,0,0,km,22703C,62703C,ff,($703C) Vehicle distance totalizer from EVC
 ,18DAF1DF,25,31,1,0,0,°C,22703D,62703D,ff,($703D) The water temperature produced by the Rectifier
 ,18DAF1DF,31,31,1,0,0,,22703E,62703E,ff,($703E) Mode of the power train (motor or generator),0:Motor;1:Generator
 ,18DAF1DF,31,31,1,0,0,,22703F,62703F,ff,($703F) SPI communication default,0:No default;1:Default
-,18DAF1DF,24,55,1,0,0,,227040,627040,ff,($7040) DIDs supported in range [$7041 - $7060]
+,18DAF1DF,24,55,1,0,0,,227040,627040,4ff,($7040) DIDs supported in range [$7041 - $7060]
 ,18DAF1DF,31,31,1,0,0,,227041,627041,ff,($7041) Rotor overcurrent validated,0:No default;1:Default
 ,18DAF1DF,31,31,1,0,0,,227042,627042,ff,($7042) Stator overcurrent validated,0:No default;1:Default
 ,18DAF1DF,28,31,1,0,0,,227043,627043,ff,($7043) activated downgraded mode FPGA number,0:Nsx_no_sfty_dfl - no downgraded mode;1:Nsx_gc_md_01a - GC-MD01a;2:Nsx_gc_md_01b - GC-MD01b;3:Nsx_gc_md_01c - GC-MD01c;4:Nsx_gc_md_01d - GC-MD01d;5:Nsx_gc_md_01e - GC-MD01e;6:Nsx_gc_ci_md_01a ( 9 ) - gc_ci_md_01a;7:Nsx_gc_ci_md_01b (10)  -  gc_ci_md_01b;8:Nsx_dfl_chr_md (11) - inconsistency between PWMs and downgraded mode;9:Nsx_dfl_auto_diag_sfty_2 (12) -autodiag safety 2 fpga NOK
@@ -154,9 +154,9 @@
 ,18DAF1DF,28,31,1,0,0,,227047,627047,ff,($7047) Phase Current Default,0:Nsx_ok (0) - no sensor default;1:Nsx_i_mot_ph_dfl_1 (1) - default phase sensor 1;2:Nsx_i_mot_ph_dfl_2 (2) - default phase sensor 2;3:Nsx_i_mot_ph_dfl_3 (3) - default phase sensor 3;4:Nsx_i_mot_ph_dfl (4) - unknown phase sensor default;5:Nsx_i_mot_ph_wi_dfl_1 (5) -  phase wire 1 default;6:Nsx_i_mot_ph_wi_dfl_2 (6) - phase wire 2 default;7:Nsx_i_mot_ph_wi_dfl_3 (7) - phase wire 3 default;8:Nsx_i_mot_ph_wi_dfl (8) - unknown phase wire default;9:Nsx_i_mot_ph_igbt_dfl (9) - unknown IBGT default
 ,18DAF1DF,30,31,1,0,0,,227048,627048,ff,($7048) Validity status of the rotor electrical angular position,0:Nsx_dgt_emot_psn_chk_ok- OK;1:Nsx_dgt_emot_psn_chk_fail- Failure of the functional position acquisition;2:Nsx_dgt_emot_psn_chk_fail_sfty- Failure of the safety position acquisition;3:Nsx_dgt_emot_psn_chk_full_fail- Double failure or incoherency between functional and safety positions
 ,18DAF1DF,24,39,.03125,16000,2,A,227049,627049,ff,($7049) Combinated current value on the HV Network of Inverter and Excitation
-,18DAF1DF,24,31,1,0,0,,22704A,62704A,ff,($704A) TETA CRC received
+,18DAF1DF,24,31,1,0,0,,22704A,62704A,4ff,($704A) TETA CRC received
 ,18DAF1DF,24,39,.0078125,0,3,,22704B,62704B,ff,($704B) Received TETA position offset
-,18DAF1DF,24,31,1,0,0,,22704C,62704C,ff,($704C) Received rotor reference resistance CRC
+,18DAF1DF,24,31,1,0,0,,22704C,62704C,4ff,($704C) Received rotor reference resistance CRC
 ,18DAF1DF,24,39,.001953125,-512,3,Ohm,22704D,62704D,ff,($704D) Received value for reference rotor resistance
 ,18DAF1DF,24,39,.001953125,0,3,Ohm,227050,627050,ff,($7050) Value for reference rotor resistance (for safety monitoring)
 ,18DAF1DF,24,31,1,0,0,,227051,627051,ff,($7051) Position sensor type,0:0- Sensor type A = TAMAGAWA;1:1- Sensor type B = MINEBEA
@@ -198,7 +198,7 @@
 ,18DAF1DF,24,47,.001953125,20480,3,°C,22705D,62705D,ff,($705D) 1s average excitation temperature on break event for post mortem
 ,18DAF1DF,24,47,.001953125,20480,3,°C,22705E,62705E,ff,($705E) 1s average inverter temperature on break event for post mortem
 ,18DAF1DF,24,47,.001953125,20480,3,°C,22705F,62705F,ff,($705F) 1s average pcb temperature on break event for post mortem
-,18DAF1DF,24,55,1,0,0,,227060,627060,ff,($7060) DIDs supported in range [$7061 - $7080]
+,18DAF1DF,24,55,1,0,0,,227060,627060,4ff,($7060) DIDs supported in range [$7061 - $7080]
 ,18DAF1DF,24,47,.001953125,20480,3,°C,227061,627061,ff,($7061) Maximum driver board temperature during last derating
 ,18DAF1DF,24,47,.001953125,20480,3,°C,227062,627062,ff,($7062) Maximum excitation temperature during last derating
 ,18DAF1DF,24,47,.001953125,20480,3,°C,227063,627063,ff,($7063) Maximum inverter temperature during last derating
@@ -230,7 +230,7 @@
 ,18DAF1DF,24,31,1,0,0,,22707D,62707D,ff,($707D) Supply monitoring default,0:No default;1:Default
 ,18DAF1DF,24,31,1,0,0,,22707E,62707E,ff,($707E) Alimentation 11 state,0:Stop;1:Start
 ,18DAF1DF,24,31,1,0,0,,22707F,62707F,ff,($707F) Alimentation 21 state,0:Stop;1:Start
-,18DAF1DF,24,55,1,0,0,,227080,627080,ff,($7080) DIDs supported in range [$7081 - $70A0]
+,18DAF1DF,24,55,1,0,0,,227080,627080,4ff,($7080) DIDs supported in range [$7081 - $70A0]
 ,18DAF1DF,24,31,1,0,0,,227081,627081,ff,($7081) Bypass mode,0:Bypass off;1:Only THOCP bypass;2:Torque setpoint bypass;3:TQ setpoint and torque mode bypass;4:Current request bypass;5:Voltage control bypass;6:Voltage control + position/speed bypass;7:Inverter voltage control +excitation current +position/speed bypass;8:RGL duty cycle bypass (in PWM);9:Voltage control and speed bypass and position emulation
 ,18DAF1DF,24,31,1,0,0,,227082,627082,ff,($7082) FPGA fault sent by SPI,0:no fault;1:Vbx_invt_flt_dri_l or Vbx_invt_flt_dri_h;2:Vbx_exct_flt_dri_h or Vbx_exct_flt_dri_l;3:Vbx_ovp_udc_mem;4:Vbx_ocp_invt_mem;5:Vbx_ocp_exct_mem;6:Vbx_pwm_dfl_sfty_mem
 ,18DAF1DF,24,31,1,0,0,,227083,627083,ff,($7083) INV Automation State,0:Init;1:Traction;2:Charge;3:Motor Stop;4:Rotor Position Learning;5:Stand By;6:Active Discharge;7:Diag
@@ -262,7 +262,7 @@
 ,18DAF1DF,24,39,1,0,0,,22709D,62709D,ff,($709D) redundant supply 21 failure counter for post mortem analysis
 ,18DAF1DF,24,39,1,0,0,,22709E,62709E,ff,($709E) SeedBreaker to explain the reset cause
 ,18DAF1DF,24,39,1,0,0,,22709F,62709F,ff,($709F) Max of CPU load in micro-seconds (Vtx_TaskMaxDurationIT_A[12])
-,18DAF1DF,24,55,1,0,0,,2270A0,6270A0,ff,($70A0) DIDs supported in range [$70A1 - $70C0]
+,18DAF1DF,24,55,1,0,0,,2270A0,6270A0,4ff,($70A0) DIDs supported in range [$70A1 - $70C0]
 ,18DAF1DF,24,39,1,0,0,,2270A1,6270A1,ff,($70A1) Max of 10ms task (Vtx_TaskMaxDurationIT_A[3])
 ,18DAF1DF,24,27,1,0,0,ms,2270A2,6270A2,ff,($70A2) Vxx_invt_rst_ctx_4.($70A2) Vtx_TaskMaxDurationIT_A[3]_(bit8-11)
 ,18DAF1DF,28,31,1,0,0,ms,2270A2,6270A2,ff,($70A2) Vxx_invt_rst_ctx_4.($70A2) Vxx_10ms_max_duration_(bit12-15)
@@ -280,14 +280,14 @@
 ,18DAF1DF,24,39,.0000610352,16383.9882559572,3,,2270A7,6270A7,ff,($70A7) Maximum instant value of normalized torque for voltage derating
 ,18DAF1DF,24,39,.0000610352,16383.9882559572,3,,2270A8,6270A8,ff,($70A8) Minimum instant value of normalized torque for cell overvoltage
 ,18DAF1DF,24,39,1,0,0,,2270A9,6270A9,ff,($70A9) Vxx_invt_rst_ctx_5
-,18DAF1DF,24,55,1,0,0,,2270C0,6270C0,ff,($70C0) DIDs supported in range [$70C1 - $70E0]
+,18DAF1DF,24,55,1,0,0,,2270C0,6270C0,4ff,($70C0) DIDs supported in range [$70C1 - $70E0]
 ,18DAF1DF,24,31,1,0,0,,2270CA,6270CA,ff,($70CA) Number of the bloc which has nvrol error
 ,18DAF1DF,24,39,1,0,0,,2270CB,6270CB,ff,($70CB)Nvrol error counters.8 bits MSB(double bit errors number).8 bits LSB(simple bit errors number)
 ,18DAF1DF,24,24,1,0,0,,2270D5,6270D5,ff,($70D5) Rotor position sensor safety check,0:the 2 positions are inconsisten (difference > thershold);1:Both positions are consistent  (difference <thershold)
 ,18DAF1DF,24,25,1,0,0,,2270D6,6270D6,ff,($70D6) Rotor Positions Diag,0:both diag are OK;1:Failure of the functional position acquisitio;2:Failure of the safety position acquisition (sin cos);3:both diag are NOK
 ,18DAF1DF,24,39,.5,0,1,V,2270D7,6270D7,ff,($70D7) HVNetworkVoltage from Battery
 ,18DAF1DF,24,39,.5,0,1,V,2270D8,6270D8,ff,($70D8) HVNetworkVoltage from DCDC
-,18DAF1DF,24,55,1,0,0,,2270E0,6270E0,ff,($70E0) DIDs supported in range [$70E1 - $7100]
+,18DAF1DF,24,55,1,0,0,,2270E0,6270E0,4ff,($70E0) DIDs supported in range [$70E1 - $7100]
 ,18DAF1DF,24,39,.001953125,0,3,%,2270E7,6270E7,ff,($70E7) Normalized rotor temperature
 ,18DAF1DF,24,39,.25,160,1,°C,2270E8,6270E8,ff,($70E8) Stator temperature sensor 1 for freeze frame management
 ,18DAF1DF,24,39,.25,160,1,°C,2270E9,6270E9,ff,($70E9) Stator temperature sensor 2 for freeze frame management
@@ -298,6 +298,8 @@
 ,18DAF1DF,24,39,.25,160,1,°C,2270EE,6270EE,ff,($70EE)PCB temperature for freeze frame management
 ,18DAF1DF,24,39,1,0,0,,2270EF,6270EF,ff,($70EF) counter giving the nember of times Wsx_cuc_f_dfl is equal to Nsx_i_f_df
 ,18DAF1DF,24,39,1,0,0,min,2270F0,6270F0,ff,($70F0) Absolute time since first Ignition
-,18DAF1DF,24,39,.001953125,0,3,,2270F1,6270F1,ff,($70F1) Max ratio between the square of excitation sgnl and the sun of squares of rotor reslver cos and sin sgnl
+,18DAF1DF,24,39,.001953125,0,3,,2270F1,6270F1,ff,($70F1) Max ratio between the square of excitation sgnl and the sum of squares of rotor reslver cos and sin sgnl
 ,18DAF1DF,24,39,.0078125,5120,3,°C,2270F2,6270F2,ff,($70F2) Environment temperature
 ,18DAF1DF,24,39,.001953125,0,3,,2270F3,6270F3,ff,Ratio between square of excitation signal and sum of squares of rotor reslver cos and sine signals
+,18DAF1DF,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI
+,18DAF1DF,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI

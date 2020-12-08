@@ -1,21 +1,21 @@
 ,18DAF1DE,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
-,18DAF1DE,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode
+,18DAF1DE,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode
 ,18DAF1DE,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
 ,18DAF1DE,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
-,18DAF1DE,128,143,1,0,0,,2180,6180,ff,SoftwareNumber
-,18DAF1DE,144,159,1,0,0,,2180,6180,ff,EditionNumber
-,18DAF1DE,160,175,1,0,0,,2180,6180,ff,CalibrationNumber
+,18DAF1DE,128,143,1,0,0,,2180,6180,4ff,SoftwareNumber
+,18DAF1DE,144,159,1,0,0,,2180,6180,4ff,EditionNumber
+,18DAF1DE,160,175,1,0,0,,2180,6180,4ff,CalibrationNumber
 ,18DAF1DE,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,1:296H5;2:296H0
 ,18DAF1DE,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,1:296H5
 ,18DAF1DE,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,1:HMLGT
 ,18DAF1DE,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
 ,18DAF1DE,16,151,1,0,0,,2181,6181,2ff,Vin In Ascii
-,18DAF1DE,152,167,1,0,0,,2181,6181,ff,Vin CRC
-,18DAF1DE,16,39,1,0,0,,2184,6184,ff,ITG Supplier Number
+,18DAF1DE,152,167,1,0,0,,2181,6181,4ff,Vin CRC
+,18DAF1DE,16,39,1,0,0,,2184,6184,4ff,ITG Supplier Number
 ,18DAF1DE,40,47,1,0,0,,2184,6184,2ff,Traceability Factory Code
 ,18DAF1DE,48,143,1,0,0,,2184,6184,2ff,Traceability Serial Number
-,18DAF1DE,16,103,1,0,0,,21B7,61B7,ff,Configuration of Electrical Vehicle Networks
-,18DAF1DE,16,103,1,0,0,,21B8,61B8,ff,List of Electrical Vehicle ECUs with After-sales diagnostic
+,18DAF1DE,16,103,1,0,0,,21B7,61B7,4ff,Configuration of Electrical Vehicle Networks
+,18DAF1DE,16,103,1,0,0,,21B8,61B8,4ff,List of Electrical Vehicle ECUs with After-sales diagnostic
 ,18DAF1DE,16,23,1,0,0,,21EF,61EF,2ff,Hardware Part Number 1
 ,18DAF1DE,24,31,1,0,0,,21EF,61EF,2ff,Hardware Part Number 2
 ,18DAF1DE,32,39,1,0,0,,21EF,61EF,2ff,Hardware Part Number 3
@@ -37,12 +37,12 @@
 ,18DAF1DE,160,167,1,0,0,,21EF,61EF,2ff,Software Part Number 9
 ,18DAF1DE,168,175,1,0,0,,21EF,61EF,2ff,Software Part Number 10
 ,18DAF1DE,16,55,1,0,0,,21F0,61F0,2ff,PartNumber.LowerPart
-,18DAF1DE,56,63,1,0,0,,21F0,61F0,ff,DiagnosticIdentificationCode
-,18DAF1DE,64,87,1,0,0,,21F0,61F0,ff,SupplierNumber
+,18DAF1DE,56,63,1,0,0,,21F0,61F0,4ff,DiagnosticIdentificationCode
+,18DAF1DE,64,87,1,0,0,,21F0,61F0,4ff,SupplierNumber
 ,18DAF1DE,88,127,1,0,0,,21F0,61F0,2ff,HardwareNumber.LowerPart
-,18DAF1DE,128,143,1,0,0,,21F0,61F0,ff,SoftwareNumber
-,18DAF1DE,144,159,1,0,0,,21F0,61F0,ff,EditionNumber
-,18DAF1DE,160,175,1,0,0,,21F0,61F0,ff,CalibrationNumber
+,18DAF1DE,128,143,1,0,0,,21F0,61F0,4ff,SoftwareNumber
+,18DAF1DE,144,159,1,0,0,,21F0,61F0,4ff,EditionNumber
+,18DAF1DE,160,175,1,0,0,,21F0,61F0,4ff,CalibrationNumber
 ,18DAF1DE,176,183,1,0,0,,21F0,61F0,ff,PartNumber.BasicPartList,1:296H5;2:296H0
 ,18DAF1DE,184,191,1,0,0,,21F0,61F0,ff,HardwareNumber.BasicPartList,1:296H5
 ,18DAF1DE,192,199,1,0,0,,21F0,61F0,ff,ApprovalNumber.BasicPartList,1:HMLGT
@@ -51,10 +51,10 @@
 ,18DAF1DE,56,95,1,0,0,,21F1,61F1,2ff,ProgrammingSiteReference
 ,18DAF1DE,96,135,1,0,0,,21F1,61F1,2ff,ProgrammingToolReference
 ,18DAF1DE,136,143,1,0,0,,21F1,61F1,ff,NumberOfReprogrammings
-,18DAF1DE,144,167,1,0,0,,21F1,61F1,ff,DateOfReprogramming
-,18DAF1DE,168,183,1,0,0,,21F1,61F1,ff,TimeOfReprogramming
+,18DAF1DE,144,167,1,0,0,,21F1,61F1,4ff,DateOfReprogramming
+,18DAF1DE,168,183,1,0,0,,21F1,61F1,4ff,TimeOfReprogramming
 ,18DAF1DE,184,191,1,0,0,,21F1,61F1,ff,SaveMarking
-,18DAF1DE,192,207,1,0,0,,21F1,61F1,ff,CrcOfLogSave
+,18DAF1DE,192,207,1,0,0,,21F1,61F1,4ff,CrcOfLogSave
 ,18DAF1DE,24,55,1,0,0,,222000,622000,1ff,DIDs supported in range [$2001 - $2020],0:not supported;1:supported
 ,18DAF1DE,24,39,.0625,3200,2,A,222001,622001,ff,($2001) Mains phase 1 current RMS value
 ,18DAF1DE,24,39,.0625,0,2,V,222002,622002,ff,($2002) CPU voltage supply from BI

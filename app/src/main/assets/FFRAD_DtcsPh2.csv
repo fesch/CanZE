@@ -1,0 +1,23 @@
+6580,ECU_InternalFailure
+6581,Radar Misalignement
+6582,Sensor Blindness
+6583,Crash detection
+6587,Power Voltage Disturbance
+6589,ATCU Error
+658A,ACU Error
+658B,HEVC Error
+658C,SBW Error
+658D,IDM Error
+658E,VDC Error
+658F,USM Error
+6590,METER Error
+6591,BCM Error
+6592,ECM Error
+6593,4WS Error
+6594,IVI Error
+6595,ADAS_IC Error
+6596,Fr_Camera Error
+65A0,AEB_DegradedMode
+65A1,DW_DegradedMode
+E14F,Lost Communication BCM_V1
+E26B,Lost Communication Fr_Camera_ITS

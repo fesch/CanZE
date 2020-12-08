@@ -466,12 +466,12 @@
 ,7DD,27,31,1,0,0,-,22409A,62409A,ff,DiagAddOn_EEPROM_deact_buf_LKA_N19.Rootcause_N19
 ,7DD,35,39,.5,0,1,s,22409A,62409A,ff,DiagAddOn_EEPROM_deact_buf_LKA_N19.Duration_N19
 ,7DD,44,71,.01,0,2,km,22409A,62409A,ff,DiagAddOn_EEPROM_deact_buf_LKA_N19.Mileage_N19
-,7DD,24,215,1,0,0,,22D900,62D900,ff,Active_Fault_Table.24-byte_array_of_currently_active_faults
+,7DD,24,215,1,0,0,,22D900,62D900,4ff,Active_Fault_Table.24-byte_array_of_currently_active_faults
 ,7DD,28,39,.1,2047,1,°/s,22D90A,62D90A,ff,Yaw_Rate.Yaw_Rate
 ,7DD,24,39,.01,0,2,km/h,22D90C,62D90C,ff,Vehicle_Speed.Vehicle_Speed
 ,7DD,24,39,1,0,0,,22D915,62D915,ff,VFP_reset_counts.VFP_Category_1_reset_count
 ,7DD,24,39,1,0,0,,22D922,62D922,ff,Ignition_Cycles.Ignition_Cycles
-,7DD,24,151,1,0,0,,22F010,62F010,ff,programmingOperationFingerPrint
+,7DD,24,151,1,0,0,,22F010,62F010,4ff,programmingOperationFingerPrint
 ,7DD,24,103,1,0,0,,22F011,62F011,2ff,secutity accessFingerPrint
 ,7DD,24,103,1,0,0,,22F012,62F012,2ff,OperationnalReference
 ,7DD,24,55,1,0,0,km,22F0D0,62F0D0,1ff,Snapshot_DTC_Mileage_First_Occurence
@@ -487,5 +487,5 @@
 ,7DD,24,87,1,0,0,,22F192,62F192,2ff,systemSupplierECUHardwareNumber
 ,7DD,24,79,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,7DD,24,151,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
-,7DD,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7DD,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,7DD,31,31,1,0,0,,22FD01,62FD01,ff,Force_Aiming_Done,0:Aiming Not Done;1:Aiming Done

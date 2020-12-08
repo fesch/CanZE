@@ -53,10 +53,10 @@
 ,76E,32,39,1,0,0,cm,222018,622018,ff,cfg.FrontSensorGeometry.DistanceCentralToCentral
 ,76E,40,47,1,0,0,cm,222018,622018,ff,cfg.FrontSensorGeometry.OffsetExternal
 ,76E,48,55,1,0,0,cm,222018,622018,ff,cfg.FrontSensorGeometry.OffsetCentral
-,76E,24,127,1,0,0,,222019,622019,ff,cfg.RearInnerSensorThreshold
-,76E,24,127,1,0,0,,22201A,62201A,ff,cfg.RearOuterSensorThreshold
-,76E,24,127,1,0,0,,22201B,62201B,ff,cfg.FrontInnerSensorThreshold
-,76E,24,127,1,0,0,,22201C,62201C,ff,cfg.FrontOuterSensorThreshold
+,76E,24,127,1,0,0,,222019,622019,4ff,cfg.RearInnerSensorThreshold
+,76E,24,127,1,0,0,,22201A,62201A,4ff,cfg.RearOuterSensorThreshold
+,76E,24,127,1,0,0,,22201B,62201B,4ff,cfg.FrontInnerSensorThreshold
+,76E,24,127,1,0,0,,22201C,62201C,4ff,cfg.FrontOuterSensorThreshold
 ,76E,24,31,1,0,0,cm,22201E,62201E,ff,cfg.DetectionRangeOfRearSensors.ContinuousTone
 ,76E,32,39,1,0,0,cm,22201E,62201E,ff,cfg.DetectionRangeOfRearSensors.InnerSensorsDiscontinuousTone
 ,76E,40,47,1,0,0,cm,22201E,62201E,ff,cfg.DetectionRangeOfRearSensors.OuterSensorsDiscontinuousTone
@@ -311,11 +311,11 @@
 ,76E,31,31,1,0,0,,22203E,62203E,ff,FrontBuzzer,0:Off;1:On
 ,76E,31,31,1,0,0,,22203F,62203F,ff,RearBuzzer,0:Off;1:On
 ,76E,31,31,1,0,0,,222042,622042,ff,cfg.4WS_VehicleEquipped,0:vehicle without 4WS;1:vehicle with 4WS
-,76E,24,14583,1,0,0,,222043,622043,ff,cfg.SupplierData1
-,76E,24,1039,1,0,0,,222044,622044,ff,cfg.SupplierData2
+,76E,24,14583,1,0,0,,222043,622043,4ff,cfg.SupplierData1
+,76E,24,1039,1,0,0,,222044,622044,4ff,cfg.SupplierData2
 ,76E,24,135,1,0,0,,222045,622045,2ff,CalibrationNumber
 ,76E,24,31,.1,0,1,s,222046,622046,ff,cfg.TempoWhenRearNeutralGearTransitions
-,76E,24,599,1,0,0,,222047,622047,ff,cfg.SupplierDataDDD
+,76E,24,599,1,0,0,,222047,622047,4ff,cfg.SupplierDataDDD
 ,76E,24,55,1,0,0,,222048,622048,2ff,CalibrationNumberDDD
 ,76E,24,31,1,0,0,°,222049,622049,1ff,cfg.DistDrivingTube.DTLimitAngle
 ,76E,34,39,1,0,0,cm,222049,622049,ff,cfg.DistDrivingTube.HighAngle
@@ -404,7 +404,7 @@
 ,76E,31,31,1,0,0,,222324,622324,ff,cfg.BSW_Status_Presence,0:Absent;1:Present
 ,76E,31,39,10,0,0,°,222325,622325,ff,cfg.BSW_MaxSteeringAngle
 ,76E,30,39,.1,0,1,s,222328,622328,ff,cfg.BSW_WarningTimer
-,76E,24,1143,1,0,0,,222329,622329,ff,cfg.BSW_SupplierData
+,76E,24,1143,1,0,0,,222329,622329,4ff,cfg.BSW_SupplierData
 ,76E,28,31,10,0,0,%,222332,622332,ff,cfg.BSW_Warning_LED.day_brightness
 ,76E,36,39,10,0,0,%,222332,622332,ff,cfg.BSW_Warning_LED.night_brightness
 ,76E,28,31,10,0,0,%,222335,622335,ff,cfg.PSM_Switch_LED.day_brightness
@@ -416,8 +416,8 @@
 ,76E,28,31,10,0,0,%,22233B,62233B,ff,cfg.UPA_HFP_Switch_LED.day_brightness
 ,76E,36,39,10,0,0,%,22233B,62233B,ff,cfg.UPA_HFP_Switch_LED.night_brightness
 ,76E,44,47,10,0,0,%,22233B,62233B,ff,cfg.UPA_HFP_Switch_LED.twilight_brightness
-,76E,24,127,1,0,0,,222350,622350,ff,cfg.RearSideSensorThreshold
-,76E,24,127,1,0,0,,222351,622351,ff,cfg.FrontSideSensorThreshold
+,76E,24,127,1,0,0,,222350,622350,4ff,cfg.RearSideSensorThreshold
+,76E,24,127,1,0,0,,222351,622351,4ff,cfg.FrontSideSensorThreshold
 ,76E,24,31,1,0,0,,222403,622403,ff,GADE
 ,76E,24,31,1,0,0,h,222500,622500,ff,DDD_Time.Hours
 ,76E,32,39,1,0,0,min,222500,622500,ff,DDD_Time.Minutes
@@ -605,6 +605,6 @@
 ,76E,24,71,1,0,0,,22F192,62F192,2ff,systemSupplierECUHardwareNumber
 ,76E,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,76E,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
-,76E,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,76E,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,76E,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
 ,76E,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationDataReferenceAfterConfigurationProcess

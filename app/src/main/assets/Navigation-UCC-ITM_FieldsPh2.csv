@@ -56,7 +56,7 @@
 ,767,153,159,1,0,0,,220308,620308,ff,Wifi monitoring.Signal strength (RSSI value)
 ,767,160,183,1,0,0,,220308,620308,2ff,Wifi monitoring.Wifi channel
 ,767,184,447,1,0,0,,220308,620308,2ff,Wifi monitoring.User defined SSID (ASCII) 
-,767,24,55,1,0,0,,221000,621000,ff,VID
+,767,24,55,1,0,0,,221000,621000,4ff,VID
 ,767,31,31,1,0,0,,221005,621005,ff,Radio_State,0:Radio is in state Off user;1:Radio is in state On user
 ,767,24,31,1,0,0,°C,221007,621007,ff,ECU temperature
 ,767,24,31,1,0,0,,221008,621008,ff,Fan activation counter
@@ -65,126 +65,126 @@
 ,767,24,39,1,0,0,,221011,621011,ff,Degraded mode cumulated duration
 ,767,24,39,1,0,0,,221012,621012,ff,Time from engine stopped
 ,767,24,39,1,0,0,,221100,621100,ff,History.NumberOfReprogramming
-,767,24,31,1,0,0,,221102,621102,ff,HistoricZone0.Year
-,767,32,39,1,0,0,,221102,621102,ff,HistoricZone0.Month
-,767,40,47,1,0,0,,221102,621102,ff,HistoricZone0.Day
-,767,48,55,1,0,0,,221102,621102,ff,HistoricZone0.Hour
-,767,56,63,1,0,0,,221102,621102,ff,HistoricZone0.Minute
-,767,64,71,1,0,0,,221102,621102,ff,HistoricZone0.Second
+,767,24,31,1,0,0,,221102,621102,4ff,HistoricZone0.Year
+,767,32,39,1,0,0,,221102,621102,4ff,HistoricZone0.Month
+,767,40,47,1,0,0,,221102,621102,4ff,HistoricZone0.Day
+,767,48,55,1,0,0,,221102,621102,4ff,HistoricZone0.Hour
+,767,56,63,1,0,0,,221102,621102,4ff,HistoricZone0.Minute
+,767,64,71,1,0,0,,221102,621102,4ff,HistoricZone0.Second
 ,767,72,79,1,0,0,,221102,621102,ff,HistoricZone0.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
 ,767,80,95,1,0,0,,221102,621102,ff,HistoricZone0.Index
-,767,96,151,1,0,0,,221102,621102,ff,HistoricZone0.ReleaseSWversion
-,767,152,159,1,0,0,,221102,621102,ff,HistoricZone0.Padding character
-,767,24,31,1,0,0,,221103,621103,ff,HistoricZone1.Year
-,767,32,39,1,0,0,,221103,621103,ff,HistoricZone1.Mounth
-,767,40,47,1,0,0,,221103,621103,ff,HistoricZone1.Day
-,767,48,55,1,0,0,,221103,621103,ff,HistoricZone1.Hour
-,767,56,63,1,0,0,,221103,621103,ff,HistoricZone1.Minute
-,767,64,71,1,0,0,,221103,621103,ff,HistoricZone1.Second
+,767,96,151,1,0,0,,221102,621102,4ff,HistoricZone0.ReleaseSWversion
+,767,152,159,1,0,0,,221102,621102,4ff,HistoricZone0.Padding character
+,767,24,31,1,0,0,,221103,621103,4ff,HistoricZone1.Year
+,767,32,39,1,0,0,,221103,621103,4ff,HistoricZone1.Mounth
+,767,40,47,1,0,0,,221103,621103,4ff,HistoricZone1.Day
+,767,48,55,1,0,0,,221103,621103,4ff,HistoricZone1.Hour
+,767,56,63,1,0,0,,221103,621103,4ff,HistoricZone1.Minute
+,767,64,71,1,0,0,,221103,621103,4ff,HistoricZone1.Second
 ,767,72,79,1,0,0,,221103,621103,ff,HistoricZone1.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
 ,767,80,95,1,0,0,,221103,621103,ff,HistoricZone1.Index
-,767,96,151,1,0,0,,221103,621103,ff,HistoricZone1.ReleaseSWversion
-,767,152,159,1,0,0,,221103,621103,ff,HistoricZone1.Padding character
-,767,24,31,1,0,0,,221110,621110,ff,HistoricZoneX0.Year
-,767,32,39,1,0,0,,221110,621110,ff,HistoricZoneX0.Month
-,767,40,47,1,0,0,,221110,621110,ff,HistoricZoneX0.Day
-,767,48,55,1,0,0,,221110,621110,ff,HistoricZoneX0.Hour
-,767,56,63,1,0,0,,221110,621110,ff,HistoricZoneX0.Minute
-,767,64,71,1,0,0,,221110,621110,ff,HistoricZoneX0.Second
+,767,96,151,1,0,0,,221103,621103,4ff,HistoricZone1.ReleaseSWversion
+,767,152,159,1,0,0,,221103,621103,4ff,HistoricZone1.Padding character
+,767,24,31,1,0,0,,221110,621110,4ff,HistoricZoneX0.Year
+,767,32,39,1,0,0,,221110,621110,4ff,HistoricZoneX0.Month
+,767,40,47,1,0,0,,221110,621110,4ff,HistoricZoneX0.Day
+,767,48,55,1,0,0,,221110,621110,4ff,HistoricZoneX0.Hour
+,767,56,63,1,0,0,,221110,621110,4ff,HistoricZoneX0.Minute
+,767,64,71,1,0,0,,221110,621110,4ff,HistoricZoneX0.Second
 ,767,72,79,1,0,0,,221110,621110,ff,HistoricZoneX0.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
 ,767,80,95,1,0,0,,221110,621110,ff,HistoricZoneX0.Index
-,767,96,151,1,0,0,,221110,621110,ff,HistoricZoneX0.ReleaseSWversion
-,767,152,159,1,0,0,,221110,621110,ff,HistoricZoneX0.Padding character
-,767,24,31,1,0,0,,221111,621111,ff,HistoricZoneX1.Year
-,767,32,39,1,0,0,,221111,621111,ff,HistoricZoneX1.Month
-,767,40,47,1,0,0,,221111,621111,ff,HistoricZoneX1.Day
-,767,48,55,1,0,0,,221111,621111,ff,HistoricZoneX1.Hour
-,767,56,63,1,0,0,,221111,621111,ff,HistoricZoneX1.Minute
-,767,64,71,1,0,0,,221111,621111,ff,HistoricZoneX1.Second
+,767,96,151,1,0,0,,221110,621110,4ff,HistoricZoneX0.ReleaseSWversion
+,767,152,159,1,0,0,,221110,621110,4ff,HistoricZoneX0.Padding character
+,767,24,31,1,0,0,,221111,621111,4ff,HistoricZoneX1.Year
+,767,32,39,1,0,0,,221111,621111,4ff,HistoricZoneX1.Month
+,767,40,47,1,0,0,,221111,621111,4ff,HistoricZoneX1.Day
+,767,48,55,1,0,0,,221111,621111,4ff,HistoricZoneX1.Hour
+,767,56,63,1,0,0,,221111,621111,4ff,HistoricZoneX1.Minute
+,767,64,71,1,0,0,,221111,621111,4ff,HistoricZoneX1.Second
 ,767,72,79,1,0,0,,221111,621111,ff,HistoricZoneX1.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
 ,767,80,95,1,0,0,,221111,621111,ff,HistoricZoneX1.Index
-,767,96,151,1,0,0,,221111,621111,ff,HistoricZoneX1.ReleaseSWversion
-,767,152,159,1,0,0,,221111,621111,ff,HistoricZoneX1.Padding character
-,767,24,31,1,0,0,,221112,621112,ff,HistoricZoneX2.Year
-,767,32,39,1,0,0,,221112,621112,ff,HistoricZoneX2.Month
-,767,40,47,1,0,0,,221112,621112,ff,HistoricZoneX2.Day
-,767,48,55,1,0,0,,221112,621112,ff,HistoricZoneX2.Hour
-,767,56,63,1,0,0,,221112,621112,ff,HistoricZoneX2.Minute
-,767,64,71,1,0,0,,221112,621112,ff,HistoricZoneX2.Second
+,767,96,151,1,0,0,,221111,621111,4ff,HistoricZoneX1.ReleaseSWversion
+,767,152,159,1,0,0,,221111,621111,4ff,HistoricZoneX1.Padding character
+,767,24,31,1,0,0,,221112,621112,4ff,HistoricZoneX2.Year
+,767,32,39,1,0,0,,221112,621112,4ff,HistoricZoneX2.Month
+,767,40,47,1,0,0,,221112,621112,4ff,HistoricZoneX2.Day
+,767,48,55,1,0,0,,221112,621112,4ff,HistoricZoneX2.Hour
+,767,56,63,1,0,0,,221112,621112,4ff,HistoricZoneX2.Minute
+,767,64,71,1,0,0,,221112,621112,4ff,HistoricZoneX2.Second
 ,767,72,79,1,0,0,,221112,621112,ff,HistoricZoneX2.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
 ,767,80,95,1,0,0,,221112,621112,ff,HistoricZoneX2.Index
-,767,96,151,1,0,0,,221112,621112,ff,HistoricZoneX2.ReleaseSWversion
-,767,152,159,1,0,0,,221112,621112,ff,HistoricZoneX2.Padding character
-,767,24,31,1,0,0,,221113,621113,ff,HistoricZoneX3.Year
-,767,32,39,1,0,0,,221113,621113,ff,HistoricZoneX3.Month
-,767,40,47,1,0,0,,221113,621113,ff,HistoricZoneX3.Day
-,767,48,55,1,0,0,,221113,621113,ff,HistoricZoneX3.Hour
-,767,56,63,1,0,0,,221113,621113,ff,HistoricZoneX3.Minute
-,767,64,71,1,0,0,,221113,621113,ff,HistoricZoneX3.Second
+,767,96,151,1,0,0,,221112,621112,4ff,HistoricZoneX2.ReleaseSWversion
+,767,152,159,1,0,0,,221112,621112,4ff,HistoricZoneX2.Padding character
+,767,24,31,1,0,0,,221113,621113,4ff,HistoricZoneX3.Year
+,767,32,39,1,0,0,,221113,621113,4ff,HistoricZoneX3.Month
+,767,40,47,1,0,0,,221113,621113,4ff,HistoricZoneX3.Day
+,767,48,55,1,0,0,,221113,621113,4ff,HistoricZoneX3.Hour
+,767,56,63,1,0,0,,221113,621113,4ff,HistoricZoneX3.Minute
+,767,64,71,1,0,0,,221113,621113,4ff,HistoricZoneX3.Second
 ,767,72,79,1,0,0,,221113,621113,ff,HistoricZoneX3.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
 ,767,80,95,1,0,0,,221113,621113,ff,HistoricZoneX3.Index
-,767,96,151,1,0,0,,221113,621113,ff,HistoricZoneX3.ReleaseSWversion
-,767,152,159,1,0,0,,221113,621113,ff,HistoricZoneX3.Padding character
-,767,24,31,1,0,0,,221114,621114,ff,HistoricZoneX4.Year
-,767,32,39,1,0,0,,221114,621114,ff,HistoricZoneX4.Mounth
-,767,40,47,1,0,0,,221114,621114,ff,HistoricZoneX4.Day
-,767,48,55,1,0,0,,221114,621114,ff,HistoricZoneX4.Hour
-,767,56,63,1,0,0,,221114,621114,ff,HistoricZoneX4.Minute
-,767,64,71,1,0,0,,221114,621114,ff,HistoricZoneX4.Second
+,767,96,151,1,0,0,,221113,621113,4ff,HistoricZoneX3.ReleaseSWversion
+,767,152,159,1,0,0,,221113,621113,4ff,HistoricZoneX3.Padding character
+,767,24,31,1,0,0,,221114,621114,4ff,HistoricZoneX4.Year
+,767,32,39,1,0,0,,221114,621114,4ff,HistoricZoneX4.Mounth
+,767,40,47,1,0,0,,221114,621114,4ff,HistoricZoneX4.Day
+,767,48,55,1,0,0,,221114,621114,4ff,HistoricZoneX4.Hour
+,767,56,63,1,0,0,,221114,621114,4ff,HistoricZoneX4.Minute
+,767,64,71,1,0,0,,221114,621114,4ff,HistoricZoneX4.Second
 ,767,72,79,1,0,0,,221114,621114,ff,HistoricZoneX4.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
 ,767,80,95,1,0,0,,221114,621114,ff,HistoricZoneX4.Index
-,767,96,151,1,0,0,,221114,621114,ff,HistoricZoneX4.ReleaseSWversion
-,767,152,159,1,0,0,,221114,621114,ff,HistoricZoneX4.Padding character
-,767,24,31,1,0,0,,221115,621115,ff,HistoricZoneX5.Year
-,767,32,39,1,0,0,,221115,621115,ff,HistoricZoneX5.Month
-,767,40,47,1,0,0,,221115,621115,ff,HistoricZoneX5.Day
-,767,48,55,1,0,0,,221115,621115,ff,HistoricZoneX5.Hour
-,767,56,63,1,0,0,,221115,621115,ff,HistoricZoneX5.Minute
-,767,64,71,1,0,0,,221115,621115,ff,HistoricZoneX5.Second
+,767,96,151,1,0,0,,221114,621114,4ff,HistoricZoneX4.ReleaseSWversion
+,767,152,159,1,0,0,,221114,621114,4ff,HistoricZoneX4.Padding character
+,767,24,31,1,0,0,,221115,621115,4ff,HistoricZoneX5.Year
+,767,32,39,1,0,0,,221115,621115,4ff,HistoricZoneX5.Month
+,767,40,47,1,0,0,,221115,621115,4ff,HistoricZoneX5.Day
+,767,48,55,1,0,0,,221115,621115,4ff,HistoricZoneX5.Hour
+,767,56,63,1,0,0,,221115,621115,4ff,HistoricZoneX5.Minute
+,767,64,71,1,0,0,,221115,621115,4ff,HistoricZoneX5.Second
 ,767,72,79,1,0,0,,221115,621115,ff,HistoricZoneX5.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
 ,767,80,95,1,0,0,,221115,621115,ff,HistoricZoneX5.Index
-,767,96,151,1,0,0,,221115,621115,ff,HistoricZoneX5.ReleaseSWversion
-,767,152,159,1,0,0,,221115,621115,ff,HistoricZoneX5.Padding character
-,767,24,31,1,0,0,,221116,621116,ff,HistoricZoneX6.Year
-,767,32,39,1,0,0,,221116,621116,ff,HistoricZoneX6.Month
-,767,40,47,1,0,0,,221116,621116,ff,HistoricZoneX6.Day
-,767,48,55,1,0,0,,221116,621116,ff,HistoricZoneX6.Hour
-,767,56,63,1,0,0,,221116,621116,ff,HistoricZoneX6.Minute
-,767,64,71,1,0,0,,221116,621116,ff,HistoricZoneX6.Second
+,767,96,151,1,0,0,,221115,621115,4ff,HistoricZoneX5.ReleaseSWversion
+,767,152,159,1,0,0,,221115,621115,4ff,HistoricZoneX5.Padding character
+,767,24,31,1,0,0,,221116,621116,4ff,HistoricZoneX6.Year
+,767,32,39,1,0,0,,221116,621116,4ff,HistoricZoneX6.Month
+,767,40,47,1,0,0,,221116,621116,4ff,HistoricZoneX6.Day
+,767,48,55,1,0,0,,221116,621116,4ff,HistoricZoneX6.Hour
+,767,56,63,1,0,0,,221116,621116,4ff,HistoricZoneX6.Minute
+,767,64,71,1,0,0,,221116,621116,4ff,HistoricZoneX6.Second
 ,767,72,79,1,0,0,,221116,621116,ff,HistoricZoneX6.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
 ,767,80,95,1,0,0,,221116,621116,ff,HistoricZoneX6.Index
-,767,96,151,1,0,0,,221116,621116,ff,HistoricZoneX6.ReleaseSWversion
-,767,152,159,1,0,0,,221116,621116,ff,HistoricZoneX6.Padding character
-,767,24,31,1,0,0,,221117,621117,ff,HistoricZoneX7.Year
-,767,32,39,1,0,0,,221117,621117,ff,HistoricZoneX7.Month
-,767,40,47,1,0,0,,221117,621117,ff,HistoricZoneX7.Day
-,767,48,55,1,0,0,,221117,621117,ff,HistoricZoneX7.Hour
-,767,56,63,1,0,0,,221117,621117,ff,HistoricZoneX7.Minute
-,767,64,71,1,0,0,,221117,621117,ff,HistoricZoneX7.Second
+,767,96,151,1,0,0,,221116,621116,4ff,HistoricZoneX6.ReleaseSWversion
+,767,152,159,1,0,0,,221116,621116,4ff,HistoricZoneX6.Padding character
+,767,24,31,1,0,0,,221117,621117,4ff,HistoricZoneX7.Year
+,767,32,39,1,0,0,,221117,621117,4ff,HistoricZoneX7.Month
+,767,40,47,1,0,0,,221117,621117,4ff,HistoricZoneX7.Day
+,767,48,55,1,0,0,,221117,621117,4ff,HistoricZoneX7.Hour
+,767,56,63,1,0,0,,221117,621117,4ff,HistoricZoneX7.Minute
+,767,64,71,1,0,0,,221117,621117,4ff,HistoricZoneX7.Second
 ,767,72,79,1,0,0,,221117,621117,ff,HistoricZoneX7.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
 ,767,80,95,1,0,0,,221117,621117,ff,HistoricZoneX7.Index
-,767,96,151,1,0,0,,221117,621117,ff,HistoricZoneX7.ReleaseSWversion
-,767,152,159,1,0,0,,221117,621117,ff,HistoricZoneX7.Padding character
-,767,24,31,1,0,0,,221118,621118,ff,HistoricZoneX8.Year
-,767,32,39,1,0,0,,221118,621118,ff,HistoricZoneX8.Month
-,767,40,47,1,0,0,,221118,621118,ff,HistoricZoneX8.Day
-,767,48,55,1,0,0,,221118,621118,ff,HistoricZoneX8.Hour
-,767,56,63,1,0,0,,221118,621118,ff,HistoricZoneX8.Minute
-,767,64,71,1,0,0,,221118,621118,ff,HistoricZoneX8.Second
+,767,96,151,1,0,0,,221117,621117,4ff,HistoricZoneX7.ReleaseSWversion
+,767,152,159,1,0,0,,221117,621117,4ff,HistoricZoneX7.Padding character
+,767,24,31,1,0,0,,221118,621118,4ff,HistoricZoneX8.Year
+,767,32,39,1,0,0,,221118,621118,4ff,HistoricZoneX8.Month
+,767,40,47,1,0,0,,221118,621118,4ff,HistoricZoneX8.Day
+,767,48,55,1,0,0,,221118,621118,4ff,HistoricZoneX8.Hour
+,767,56,63,1,0,0,,221118,621118,4ff,HistoricZoneX8.Minute
+,767,64,71,1,0,0,,221118,621118,4ff,HistoricZoneX8.Second
 ,767,72,79,1,0,0,,221118,621118,ff,HistoricZoneX8.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
 ,767,80,95,1,0,0,,221118,621118,ff,HistoricZoneX8.Index
-,767,96,151,1,0,0,,221118,621118,ff,HistoricZoneX8.ReleaseSWversion
-,767,152,159,1,0,0,,221118,621118,ff,HistoricZoneX8.Padding character
-,767,24,31,1,0,0,,221119,621119,ff,HistoricZoneX9.Year
-,767,32,39,1,0,0,,221119,621119,ff,HistoricZoneX9.Month
-,767,40,47,1,0,0,,221119,621119,ff,HistoricZoneX9.Day
-,767,48,55,1,0,0,,221119,621119,ff,HistoricZoneX9.Hour
-,767,56,63,1,0,0,,221119,621119,ff,HistoricZoneX9.Minute
-,767,64,71,1,0,0,,221119,621119,ff,HistoricZoneX9.Second
+,767,96,151,1,0,0,,221118,621118,4ff,HistoricZoneX8.ReleaseSWversion
+,767,152,159,1,0,0,,221118,621118,4ff,HistoricZoneX8.Padding character
+,767,24,31,1,0,0,,221119,621119,4ff,HistoricZoneX9.Year
+,767,32,39,1,0,0,,221119,621119,4ff,HistoricZoneX9.Month
+,767,40,47,1,0,0,,221119,621119,4ff,HistoricZoneX9.Day
+,767,48,55,1,0,0,,221119,621119,4ff,HistoricZoneX9.Hour
+,767,56,63,1,0,0,,221119,621119,4ff,HistoricZoneX9.Minute
+,767,64,71,1,0,0,,221119,621119,4ff,HistoricZoneX9.Second
 ,767,72,79,1,0,0,,221119,621119,ff,HistoricZoneX9.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
 ,767,80,95,1,0,0,,221119,621119,ff,HistoricZoneX9.Index
-,767,96,151,1,0,0,,221119,621119,ff,HistoricZoneX9.ReleaseSWversion
-,767,152,159,1,0,0,,221119,621119,ff,HistoricZoneX9.Padding character
+,767,96,151,1,0,0,,221119,621119,4ff,HistoricZoneX9.ReleaseSWversion
+,767,152,159,1,0,0,,221119,621119,4ff,HistoricZoneX9.Padding character
 ,767,24,55,1,0,0,sec,222106,622106,1ff,Xcall_config.status_display_time
 ,767,56,63,1,0,0,,222106,622106,ff,Xcall_config.maximum_number_of_data_sets
 ,767,64,71,1,0,0,,222106,622106,ff,Xcall_config.maximum_POI_number_within_data_set
@@ -335,7 +335,7 @@
 ,767,136,140,1,9,0,dB,222109,622109,ff,Sound volume config.synth_voice_tonality_medium
 ,767,144,148,1,9,0,dB,222109,622109,ff,Sound volume config.synth_voice_tonality_treble
 ,767,152,157,1,0,0,dB,222109,622109,ff,Sound volume config.Cluster_sound_level
-,767,24,87,1,0,0,,222110,622110,ff,HMI config part2.CFG_Displayable_Sys_Lang
+,767,24,87,1,0,0,,222110,622110,4ff,HMI config part2.CFG_Displayable_Sys_Lang
 ,767,88,88,1,0,0,,222110,622110,ff,HMI config part2.CFG_Video,0:Without;1:With
 ,767,89,89,1,0,0,,222110,622110,ff,HMI config part2.CFG_Messaging,0:Without;1:With
 ,767,90,90,1,0,0,,222110,622110,ff,HMI config part2.CFG_AQI,0:Without;1:With
@@ -503,42 +503,42 @@
 ,767,54,54,1,0,0,,222301,622301,ff,Lock out development configuration.Renault 5-operation count restriction,0:Absent;1:Present
 ,767,55,55,1,0,0,,222301,622301,ff,Lock out development configuration.Nissan 8-operation count restriction,0:Absent;1:Present
 ,767,24,183,1,0,0,,223000,623000,2ff,BluetoothDevice.name1
-,767,184,231,1,0,0,,223000,623000,ff,BluetoothDevice.address1
+,767,184,231,1,0,0,,223000,623000,4ff,BluetoothDevice.address1
 ,767,232,391,1,0,0,,223000,623000,2ff,BluetoothDevice.name2
-,767,392,439,1,0,0,,223000,623000,ff,BluetoothDevice.address2
+,767,392,439,1,0,0,,223000,623000,4ff,BluetoothDevice.address2
 ,767,440,599,1,0,0,,223000,623000,2ff,BluetoothDevice.name3
-,767,600,647,1,0,0,,223000,623000,ff,BluetoothDevice.address3
+,767,600,647,1,0,0,,223000,623000,4ff,BluetoothDevice.address3
 ,767,648,807,1,0,0,,223000,623000,2ff,BluetoothDevice.name4
-,767,808,855,1,0,0,,223000,623000,ff,BluetoothDevice.address4
+,767,808,855,1,0,0,,223000,623000,4ff,BluetoothDevice.address4
 ,767,856,1015,1,0,0,,223000,623000,2ff,BluetoothDevice.name5
-,767,1016,1063,1,0,0,,223000,623000,ff,BluetoothDevice.address5
-,767,24,31,1,0,0,,223001,623001,ff,ANT1.current level Field strength on antenna 1
-,767,32,39,1,0,0,,223001,623001,ff,ANT1.current Multipath level
-,767,40,47,1,0,0,,223001,623001,ff,ANT1.current Noise level
-,767,48,87,1,0,0,,223001,623001,ff,ANT1.current Frequency value
+,767,1016,1063,1,0,0,,223000,623000,4ff,BluetoothDevice.address5
+,767,24,31,1,0,0,,223001,623001,4ff,ANT1.current level Field strength on antenna 1
+,767,32,39,1,0,0,,223001,623001,4ff,ANT1.current Multipath level
+,767,40,47,1,0,0,,223001,623001,4ff,ANT1.current Noise level
+,767,48,87,1,0,0,,223001,623001,4ff,ANT1.current Frequency value
 ,767,88,95,1,0,0,,223001,623001,ff,ANT1.Band info,1:FM;2:AM
-,767,24,31,1,0,0,,223002,623002,ff,ANT2.current level Field strength on antenna 2
-,767,32,39,1,0,0,,223002,623002,ff,ANT2.current Multipath level (0-F) if FM
-,767,40,47,1,0,0,,223002,623002,ff,ANT2.current Noise level (0-F) if FM
-,767,48,87,1,0,0,,223002,623002,ff,ANT2.current Frequency value
+,767,24,31,1,0,0,,223002,623002,4ff,ANT2.current level Field strength on antenna 2
+,767,32,39,1,0,0,,223002,623002,4ff,ANT2.current Multipath level (0-F) if FM
+,767,40,47,1,0,0,,223002,623002,4ff,ANT2.current Noise level (0-F) if FM
+,767,48,87,1,0,0,,223002,623002,4ff,ANT2.current Frequency value
 ,767,88,95,1,0,0,,223002,623002,ff,ANT2.Band info,1:FM
-,767,24,31,1,0,0,,223003,623003,ff,ANT3.Antenna field RSSI [dBm]
-,767,32,47,1,0,0,,223003,623003,ff,ANT3.FIC_BER
-,767,48,63,1,0,0,,223003,623003,ff,ANT3.MSC_BER
-,767,64,103,1,0,0,,223003,623003,ff,ANT3.current Channel Number
+,767,24,31,1,0,0,,223003,623003,4ff,ANT3.Antenna field RSSI [dBm]
+,767,32,47,1,0,0,,223003,623003,4ff,ANT3.FIC_BER
+,767,48,63,1,0,0,,223003,623003,4ff,ANT3.MSC_BER
+,767,64,103,1,0,0,,223003,623003,4ff,ANT3.current Channel Number
 ,767,104,167,1,0,0,,223003,623003,2ff,ANT3.Service short Name
-,767,168,183,1,0,0,,223003,623003,ff,ANT3.EnsembleID
-,767,184,215,1,0,0,,223003,623003,ff,ANT3.ServiceID
-,767,216,231,1,0,0,,223003,623003,ff,ANT3.CompID
+,767,168,183,1,0,0,,223003,623003,4ff,ANT3.EnsembleID
+,767,184,215,1,0,0,,223003,623003,4ff,ANT3.ServiceID
+,767,216,231,1,0,0,,223003,623003,4ff,ANT3.CompID
 ,767,232,239,1,0,0,,223003,623003,ff,ANT3.Band Info,3:DAB+;4:DAB;5:DMB-A;6:DMB-BSAC
 ,767,24,24,1,0,0,,223004,623004,ff,GPS.Reception_status,0:No satellite;1:At least one satellite
 ,767,28,31,1,0,0,,223004,623004,ff,GPS.Number_of_satellites
 ,767,24,31,1,0,0,,223005,623005,ff,CD_Insertion,0:No CD;1:1 CD;255:No available information
-,767,24,47,1,0,0,,227001,627001,ff,BT_HW_identifier
-,767,24,47,1,0,0,,227002,627002,ff,BT_SW_identifier
-,767,24,71,1,0,0,,227008,627008,ff,BT_ECU_address
-,767,24,71,1,0,0,,227009,627009,ff,ECU Wifi address
-,767,24,71,1,0,0,,228001,628001,ff,BluetoothRSSI.Address
+,767,24,47,1,0,0,,227001,627001,4ff,BT_HW_identifier
+,767,24,47,1,0,0,,227002,627002,4ff,BT_SW_identifier
+,767,24,71,1,0,0,,227008,627008,4ff,BT_ECU_address
+,767,24,71,1,0,0,,227009,627009,4ff,ECU Wifi address
+,767,24,71,1,0,0,,228001,628001,4ff,BluetoothRSSI.Address
 ,767,72,79,1,127,0,,228001,628001,ff,BluetoothRSSI.Indicator
 ,767,80,87,1,0,0,,228001,628001,ff,BluetoothRSSI.LinkQuality
 ,767,24,31,1,0,0,,229000,629000,ff,CDejection,0:Control in progress;1:Control complete and OK;2:Control complete and NOK
@@ -553,13 +553,13 @@
 ,767,24,31,1,0,0,,22900B,62900B,ff,IO.Speaker_result,0:In progress;1:Done and OK;2:Done and NOK
 ,767,24,31,1,0,0,,229010,629010,ff,Touch controller reset command,0:Control in progress;1:Control complete and OK;2:Control complete and NOK
 ,767,24,31,1,0,0,,229012,629012,ff,Parametric guidelines command,0:Control in progress;1:Control complete and OK;2:Control complete and NOK
-,767,24,32759,1,0,0,,22D000,62D000,ff,Phone_EC/NR_(NBS)
-,767,24,32759,1,0,0,,22D100,62D100,ff,Phone_EC/NR_(WBS)
-,767,24,32759,1,0,0,,22D200,62D200,ff,VR_Parameter_(Nuance)
-,767,24,32759,1,0,0,,22D300,62D300,ff,CarPlay_Phone_EC/NR_(NBS)
-,767,24,32759,1,0,0,,22D400,62D400,ff,CarPlay_Phone_EC/NR_(WBS)
-,767,24,32759,1,0,0,,22D500,62D500,ff,CarPlay_Facetime_EC/NR_(WBS)
-,767,24,32759,1,0,0,,22D600,62D600,ff,Acoustic_Parameter_(Arkamys)
+,767,24,32759,1,0,0,,22D000,62D000,4ff,Phone_EC/NR_(NBS)
+,767,24,32759,1,0,0,,22D100,62D100,4ff,Phone_EC/NR_(WBS)
+,767,24,32759,1,0,0,,22D200,62D200,4ff,VR_Parameter_(Nuance)
+,767,24,32759,1,0,0,,22D300,62D300,4ff,CarPlay_Phone_EC/NR_(NBS)
+,767,24,32759,1,0,0,,22D400,62D400,4ff,CarPlay_Phone_EC/NR_(WBS)
+,767,24,32759,1,0,0,,22D500,62D500,4ff,CarPlay_Facetime_EC/NR_(WBS)
+,767,24,32759,1,0,0,,22D600,62D600,4ff,Acoustic_Parameter_(Arkamys)
 ,767,24,28,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Destination,0:US;1:CAN;2:MEX;3:UK;4:TKY;5:RUS;6:other EUR;7:PRC;8:TWN;9:HKG/Macau;10:GCC;11:EGP;12:ASR/NZE;13:BRA;14:AGT;15:other LAC;16:SAF;17:THI;18:SGP;19:MLY;20:BRN;21:INN;22:VNM;23:PHL;24:IND;25:JPN;26:KOR;27:other GOM;28:ISR
 ,767,32,47,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Vehicle_Type,0:B07;1:B10;2:B52;3:BBA;4:BFB;5:BFJ;6:BJA;7:DZC;8:FFK;9:FJK;10:GJA;11:HFE;12:HHA;13:HJA;14:HJB;15:HJD;16:HJE;17:HZG;18:HZH;19:HZJ;20:HZK;21:J92;22:JFA;23:JFC;24:KFB;25:KFD;26:KFK;27:KJK;28:L52;29:LFD;30:LFF;31:LFJ;32:LJC;33:RBC;34:RFA;35:RZK;36:UJD;37:C07;38:H79;39:HBC;40:HZC;41:LBC;48:LJH;49:LJL;580:02D (L02D);581:02E (B02E);582:02F (P02F);3354:GD1 (GD1A);3411:D53 (D53H);4678:12F (L12F);4685:12M (L12M);4688:12P (B12P);4929:13A (P13A);8514:21B (L21B);12882:32R (P32R);12883:32S (P32S);12885:32U (J32U);16973:42M (P42M);16974:42N (L42N);16976:42P (L42P);16978:42R (P42R);20065:N61 (N61G);20081:N71 (N71A);20577:P61 (P61G);20593:P71 (P71A);21320:L53 (L53H);21323:53K (L53K);21856:U60;24641:60A (H60A);24903:61G (P61G);24908:61L (H61L)
 ,767,48,63,1,0,0,kg,22DAB0,62DAB0,ff,Vehicle_Information.Weight_of_vehicle
@@ -754,14 +754,14 @@
 ,767,500,501,1,0,0,,22DAB1,62DAB1,ff,System_Information.FOTA_bearer,0:NOT USE;1:USE;2:Only USE FOTA;3:Only USE MAP
 ,767,24,31,1,0,0,,22DAB2,62DAB2,ff,Antitheft/Map_Selection.Antitheft_function,0:Without antitheft function;1:With Nissan Antitheft function (Immobilizer);2:With Alliance Antitheft function
 ,767,32,47,1,0,0,,22DAB2,62DAB2,ff,Antitheft/Map_Selection.Map_selection,0:No initial activation done (default);1:No map selected
-,767,24,3359,1,0,0,,22DAC0,62DAC0,ff,Generic Tuner Parameter Set
-,767,24,2327,1,0,0,,22DAC5,62DAC5,ff,FM/AM_Tuner_Parameter_Set
-,767,24,535,1,0,0,,22DAC9,62DAC9,ff,HD_parameter_set
-,767,24,1863,1,0,0,,22DACB,62DACB,ff,DAB_Parameter
-,767,24,1071,1,0,0,,22DACC,62DACC,ff,Antenna_Parameter
-,767,24,1647,1,0,0,,22DAD0,62DAD0,ff,Sensor_Configuration_Gyro
-,767,24,119,1,0,0,,22DAD1,62DAD1,ff,Sensor_Configuration_GNSS
-,767,24,1647,1,0,0,,22DAD2,62DAD2,ff,Sensor_Configuration_ACC
+,767,24,3359,1,0,0,,22DAC0,62DAC0,4ff,Generic Tuner Parameter Set
+,767,24,2327,1,0,0,,22DAC5,62DAC5,4ff,FM/AM_Tuner_Parameter_Set
+,767,24,535,1,0,0,,22DAC9,62DAC9,4ff,HD_parameter_set
+,767,24,1863,1,0,0,,22DACB,62DACB,4ff,DAB_Parameter
+,767,24,1071,1,0,0,,22DACC,62DACC,4ff,Antenna_Parameter
+,767,24,1647,1,0,0,,22DAD0,62DAD0,4ff,Sensor_Configuration_Gyro
+,767,24,119,1,0,0,,22DAD1,62DAD1,4ff,Sensor_Configuration_GNSS
+,767,24,1647,1,0,0,,22DAD2,62DAD2,4ff,Sensor_Configuration_ACC
 ,767,24,27,1,0,0,,22DAE0,62DAE0,ff,Camera_System.ConfigStringVersionMinor
 ,767,28,31,1,0,0,,22DAE0,62DAE0,ff,Camera_System.ConfigStringVersionMajor
 ,767,32,47,1,0,0,mm,22DAE0,62DAE0,ff,Camera_System.Vehicle Width
@@ -853,8 +853,8 @@
 ,767,200,375,1,0,0,,22DAF0,62DAF0,2ff,WiFi_Name.SSID_WiFi_2
 ,767,24,199,1,0,0,,22DAF1,62DAF1,2ff,BT_Name.BT_name
 ,767,31,31,1,0,0,,22DEF0,62DEF0,ff,Factory mode,0:Market (normal) mode;1:Factory mode
-,767,24,183,1,0,0,,22DEFE,62DEFE,ff,Message_Authentication_Code
-,767,24,151,1,0,0,,22F010,62F010,ff,Fingerprint
+,767,24,183,1,0,0,,22DEFE,62DEFE,4ff,Message_Authentication_Code
+,767,24,151,1,0,0,,22F010,62F010,4ff,Fingerprint
 ,767,24,103,1,0,0,,22F011,62F011,2ff,IndexSrvData
 ,767,24,103,1,0,0,,22F012,62F012,2ff,Operational Reference
 ,767,24,103,1,0,0,,22F013,62F013,2ff,SecondaryOperationnalReference
@@ -870,6 +870,6 @@
 ,767,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
 ,767,24,199,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,767,24,111,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
-,767,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,767,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,767,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
 ,767,24,103,1,0,0,,22F1A2,62F1A2,2ff,RenaultConfigurationPartNumber

@@ -1,5 +1,5 @@
-,18DAF1DA,24,55,1,0,0,,220100,620100,ff,DIDs supported in range [$0100 - $0120]
-,18DAF1DA,24,55,1,0,0,,222000,622000,ff,DIDs supported in range 2001 - 2020
+,18DAF1DA,24,55,1,0,0,,220100,620100,4ff,DIDs supported in range [$0100 - $0120]
+,18DAF1DA,24,55,1,0,0,,222000,622000,4ff,DIDs supported in range 2001 - 2020
 ,18DAF1DA,24,39,.1,2730,1,,222001,622001,ff,Engine coolant temperature
 ,18DAF1DA,24,39,.25,0,1,rpm,222002,622002,ff,Engine speed
 ,18DAF1DA,24,39,.01,0,2,km/h,222003,622003,ff,Vehicle speed
@@ -19,7 +19,7 @@
 ,18DAF1DA,30,30,1,0,0,,22201D,62201D,ff,Thermoplungers command state.1,0:No thermoplunger 2 activation;1:thermoplunger 2 activation
 ,18DAF1DA,31,31,1,0,0,,22201D,62201D,ff,Thermoplungers command state.0,0:No thermoplunger 1 activation;1:Thermoplunger 1 activation
 ,18DAF1DA,31,31,1,0,0,,22201E,62201E,ff,Air conditioning state.value,0:deactivated;1:activated
-,18DAF1DA,24,55,1,0,0,,222020,622020,ff,DIDs supported in range 2021 - 2040
+,18DAF1DA,24,55,1,0,0,,222020,622020,4ff,DIDs supported in range 2021 - 2040
 ,18DAF1DA,24,39,1,0,0,mV,222021,622021,ff,Sensors supply voltage 1
 ,18DAF1DA,24,39,1,0,0,mV,222022,622022,ff,Sensors supply voltage 2
 ,18DAF1DA,24,39,1,0,0,mV,222023,622023,ff,Sensors supply voltage 3
@@ -38,7 +38,7 @@
 ,18DAF1DA,31,31,1,0,0,,22203D,62203D,ff,Configuration - Speed limiter (option),0:without;1:with
 ,18DAF1DA,31,31,1,0,0,,22203E,62203E,ff,Configuration - Speed limiter (On---Off button),0:without;1:with
 ,18DAF1DA,31,31,1,0,0,,22203F,62203F,ff,Speed limiter On---Off button state,0:off;1:on
-,18DAF1DA,24,55,1,0,0,,222040,622040,ff,DIDs supported in range 2041 - 2060
+,18DAF1DA,24,55,1,0,0,,222040,622040,4ff,DIDs supported in range 2041 - 2060
 ,18DAF1DA,31,31,1,0,0,,222041,622041,ff,Configuration - CCSL steering wheel push buttons,0:without;1:with
 ,18DAF1DA,31,31,1,0,0,,222042,622042,ff,Configuration - Air conditioning control unit,0:without;1:with
 ,18DAF1DA,31,31,1,0,0,,222043,622043,ff,Configuration - Freon pressure sensor,0:without;1:with
@@ -78,7 +78,7 @@
 ,18DAF1DA,31,31,1,0,0,,222059,622059,ff,Clutch pedal - minimum travel switch state - wire,0:released;1:pressed 
 ,18DAF1DA,24,31,1,0,0,,22205A,62205A,ff,Idle engine speed regulation status,2:out of idle speed regulation;4:take off state;8:start state;16:after start state;32:condition state;64:activation state
 ,18DAF1DA,31,31,1,0,0,,22205D,62205D,ff,No driver request state (pedal---CCSL),0:pressed or CCSL activated;1:foot up and CCSL deactivated
-,18DAF1DA,24,55,1,0,0,,222060,622060,ff,DIDs supported in range 2061 - 2080
+,18DAF1DA,24,55,1,0,0,,222060,622060,4ff,DIDs supported in range 2061 - 2080
 ,18DAF1DA,24,39,.03125,12800,2,N·m,222061,622061,ff,Effective engine torque target requested by real (pedal) and virtual (ACC/CC/SL) drivers
 ,18DAF1DA,24,39,.03125,12800,2,N·m,222063,622063,ff,Minimum engine torque
 ,18DAF1DA,24,39,.03125,12800,2,N·m,222064,622064,ff,Maximum engine torque
@@ -116,7 +116,7 @@
 ,18DAF1DA,24,31,1,0,0,s,22207C,62207C,ff,Maximum duration of set - button pressed
 ,18DAF1DA,24,31,1,0,0,s,22207D,62207D,ff,Maximum duration of suspend button pressed
 ,18DAF1DA,24,31,1,0,0,,22207E,62207E,ff,Maximum value of blocked button detection counter
-,18DAF1DA,24,55,1,0,0,,222080,622080,ff,DIDs supported in range 2081 - 20A0
+,18DAF1DA,24,55,1,0,0,,222080,622080,4ff,DIDs supported in range 2081 - 20A0
 ,18DAF1DA,31,31,1,0,0,,222081,622081,ff,Configuration - AGB (automatic gearbox),0:without;1:with
 ,18DAF1DA,31,31,1,0,0,,222082,622082,ff,Configuration - ACC (adaptative cruise control),0:without;1:with
 ,18DAF1DA,31,31,1,0,0,,222083,622083,ff,Configuration - SDL (speed and distance limiter),0:without;1:with
@@ -134,7 +134,7 @@
 ,18DAF1DA,31,31,1,0,0,,222095,622095,ff,Combination of all engine air conditioning compressor inhibitions,0:no;1:yes
 ,18DAF1DA,24,39,.25,0,1,rpm,222098,622098,ff,Accelerated idle speed requested by air conditioning
 ,18DAF1DA,24,31,.3921569,0,1,%,222099,622099,ff,Alternator load
-,18DAF1DA,24,55,1,0,0,,2220A0,6220A0,ff,DIDs supported in range [$20A1 - $20C0]
+,18DAF1DA,24,55,1,0,0,,2220A0,6220A0,4ff,DIDs supported in range [$20A1 - $20C0]
 ,18DAF1DA,29,31,1,0,0,,2220A3,6220A3,ff,Brake pedal states received on the CAN,1:Brake pedal not pressed;2:Brake pedal pressed;4:Brake pedal confirmed pressed;7:Brake pedal invalid (this state never happens)
 ,18DAF1DA,24,39,1,0,0,mV,2220A4,6220A4,ff,Sensors power supply 4 voltage raw acquisition
 ,18DAF1DA,24,39,1,0,0,km,2220A5,6220A5,ff,Travelled distance in road and highway from the last oil drain
@@ -154,7 +154,7 @@
 ,18DAF1DA,31,31,1,0,0,,2220BB,6220BB,ff,Request for starter relay 1 (safety),0:Relay Opened;1:Relay Closed
 ,18DAF1DA,30,31,1,0,0,,2220BD,6220BD,ff,Electrical Energy Management Stop and Start type,0:Vehicle not in stop auto phase;1:Stop Auto phase. Battery 14 V discharge allowed;2:Stop Auto phase. Battery 48 V discharge allowed
 ,18DAF1DA,24,39,.02,0,2,%,2220BE,6220BE,ff,State of charge of high voltage battery
-,18DAF1DA,24,55,1,0,0,,2220C0,6220C0,ff,DIDs supported in range [$20C1 - $20E0]
+,18DAF1DA,24,55,1,0,0,,2220C0,6220C0,4ff,DIDs supported in range [$20C1 - $20E0]
 ,18DAF1DA,31,31,1,0,0,,2220C1,6220C1,ff,DCDC wakeup request.value,0:No DCDC wakeup request;1:DCDC wakeup request
 ,18DAF1DA,31,31,1,0,0,,2220C3,6220C3,ff,Request of update (concerning Vxx_eng_last_cge_km) following a change of engine,0:No request;1:Request of updating following a change of engine
 ,18DAF1DA,24,39,1,0,0,hPa,2220C8,6220C8,ff,Gas pressure (Manifold level)
@@ -175,7 +175,7 @@
 ,18DAF1DA,31,31,1,0,0,,2220DC,6220DC,ff,Air flap configuration boolean,0:air flap absent;1:air flap present
 ,18DAF1DA,31,31,1,0,0,,2220DD,6220DD,ff,Variable for presence of oil heater vapours conf choice,0:absent;1:present
 ,18DAF1DA,24,39,.1,2730,1,,2220DE,6220DE,ff,Ambient temperature
-,18DAF1DA,24,55,1,0,0,,2220E0,6220E0,ff,DIDs supported in range [$20E1 - $2100]
+,18DAF1DA,24,55,1,0,0,,2220E0,6220E0,4ff,DIDs supported in range [$20E1 - $2100]
 ,18DAF1DA,24,31,1,5,0,,2220E1,6220E1,ff,Next gear position by shift pattern
 ,18DAF1DA,31,31,1,0,0,,2220E8,6220E8,ff,Maintenance mode status Roller bench mode information,0:Roller bench mode NOT activated;1:Roller bench mode activated
 ,18DAF1DA,24,39,.05,0,2,%,2220F1,6220F1,ff,Position setpoint of the inlet throttle sent by the monitoring system.value
@@ -187,11 +187,11 @@
 ,18DAF1DA,31,31,1,0,0,,2220FC,6220FC,ff,After sale request to erase main relay opening under current counter,0:NO command requested;1:command requested
 ,18DAF1DA,24,39,.1,0,1,V,2220FD,6220FD,ff,Inverter side High Voltage Network Voltage
 ,18DAF1DA,24,39,.1,0,1,V,2220FE,6220FE,ff,High voltage bus Battery side consolidated voltage
-,18DAF1DA,24,55,1,0,0,,222100,622100,ff,DIDs supported in range [$2101 - $2120]
+,18DAF1DA,24,55,1,0,0,,222100,622100,4ff,DIDs supported in range [$2101 - $2120]
 ,18DAF1DA,29,31,1,0,0,,222105,622105,ff,OWE - Request of change of geographic zone,1:European zone;2:international zone;3:international + zone;4:zone for future use;5:deactivated
 ,18DAF1DA,24,55,1.16415321826935E-09,-2147483648,3,%,22211F,62211F,1ff,OWE - Oil soot rate
-,18DAF1DA,24,55,1,0,0,,222120,622120,ff,DIDs supported in range 2121 - 2140
-,18DAF1DA,24,55,1,0,0,,222140,622140,ff,DIDs supported in range 2141 - 2160
+,18DAF1DA,24,55,1,0,0,,222120,622120,4ff,DIDs supported in range 2121 - 2140
+,18DAF1DA,24,55,1,0,0,,222140,622140,4ff,DIDs supported in range 2141 - 2160
 ,18DAF1DA,24,39,1,0,0,,222141,622141,ff,TRZ-Value of beta corr by adapt strategy during half-turn of cyl1and4 for tq computation assoc with the cyl2and3 comb
 ,18DAF1DA,31,31,1,0,0,,222142,622142,ff,TRZ - the learning trz beta correction is validated,0:not learned;1:learned
 ,18DAF1DA,24,39,1,0,0,,222143,622143,ff,TRZ-Value of beta corr by adapt strategy during half-turn of cyl2and3 for tq computation assoc with the cyl1and4 comb
@@ -222,7 +222,7 @@
 ,18DAF1DA,24,39,1,32768,0,,22215C,62215C,ff,TLZ - learning filtered value
 ,18DAF1DA,24,39,1,32768,0,,22215D,62215D,ff,TLZ - TLZ adaptive correction
 ,18DAF1DA,24,47,.2777778,0,1,m,22215E,62215E,ff,Distance driven since torque meter init
-,18DAF1DA,24,55,1,0,0,,222160,622160,ff,DIDs supported in range 2161 - 2180
+,18DAF1DA,24,55,1,0,0,,222160,622160,4ff,DIDs supported in range 2161 - 2180
 ,18DAF1DA,31,31,1,0,0,,222165,622165,ff,TLZ - High speed and fast adaptative crank shaft learning strategy finished,0:Not enabled;1:Enabled
 ,18DAF1DA,31,31,1,0,0,,222166,622166,ff,External controls safety authorization flag,0:Not enabled;1:Enabled
 ,18DAF1DA,24,39,.01,0,2,%,222167,622167,ff,Oil pump monitored command.value
@@ -233,7 +233,7 @@
 ,18DAF1DA,29,29,1,0,0,,222170,622170,ff,CCSL - State of the system causes for normal CCSL deactivation (2nd byte).2,0:no AEBS request;1:AEBS request
 ,18DAF1DA,30,30,1,0,0,,222170,622170,ff,CCSL - State of the system causes for normal CCSL deactivation (2nd byte).1,0:no emergency stop request;1:emergency stop request
 ,18DAF1DA,31,31,1,0,0,,222170,622170,ff,CCSL - State of the system causes for normal CCSL deactivation (2nd byte).0,0:no vehicle STOP information on the cluster;1:vehicle STOP information on the cluster
-,18DAF1DA,24,31,1,0,0,,222172,622172,ff,Reference software calbration number used by tunning team (VMAP)
+,18DAF1DA,24,31,1,0,0,,222172,622172,4ff,Reference software calbration number used by tunning team (VMAP)
 ,18DAF1DA,31,31,1,0,0,,222174,622174,ff,ACC Force request confirmed from CAN,0:not confirmed;1:confirmed
 ,18DAF1DA,28,31,1,0,0,,222175,622175,ff,ACC status from CAN,0:ACC status not available;1:ACC off;2:ACC waiting;3:ACC suspended;4:ACC in brake only mode;5:ACC in regulation;6:ACC Driver Override;7:ACC malfunction;8:ACC stop;9:ACC take off
 ,18DAF1DA,30,31,1,0,0,,222176,622176,ff,Vehicle acceleration state form CAN,0:ACC acceleration status ok;1:ACC max acceleration exceeded;2:ACC max deceleration exceeded
@@ -245,7 +245,7 @@
 ,18DAF1DA,24,31,1,0,0,s,22217D,62217D,ff,Maximum duration of DISTANCE button press
 ,18DAF1DA,24,31,1,0,0,,22217E,62217E,ff,CCSL - State of the failures which cause irreversible CC safety failure (level 2)
 ,18DAF1DA,24,31,1,0,0,,22217F,62217F,ff,Carrier for safety failure dignostic for safety monitoring
-,18DAF1DA,24,55,1,0,0,,222180,622180,ff,DIDs supported in range 2181 - 21A0
+,18DAF1DA,24,55,1,0,0,,222180,622180,4ff,DIDs supported in range 2181 - 21A0
 ,18DAF1DA,24,55,.1,-2147483648,1,km,222181,622181,1ff,Mileage recording
 ,18DAF1DA,24,39,.01,0,2,km/h,222184,622184,ff,Requested speed setpoint for FSL function
 ,18DAF1DA,31,31,1,0,0,,222186,622186,ff,Idle speed for LCV accessories activation requested by BCM,0:not activated;1:activated
@@ -258,9 +258,9 @@
 ,18DAF1DA,31,31,1,0,0,,222192,622192,ff,PTC cabin fan state,0:not activated;1:activated
 ,18DAF1DA,31,31,1,0,0,,222195,622195,ff,PTC engine idle speed increase request,0:not activated;1:activated
 ,18DAF1DA,31,31,1,0,0,,222199,622199,ff,Fuel pump activation state,0:Pump not cut off;1:Pump cut off
-,18DAF1DA,24,55,1,0,0,,2221A0,6221A0,ff,DIDs supported in range 21A1 - 21C0
+,18DAF1DA,24,55,1,0,0,,2221A0,6221A0,4ff,DIDs supported in range 21A1 - 21C0
 ,18DAF1DA,31,31,1,0,0,,2221A3,6221A3,ff,Validity of the learned default value,0:not validated;1:validated
-,18DAF1DA,24,55,1,0,0,,2221C0,6221C0,ff,DIDs supported in range 21C1 - 21E0
+,18DAF1DA,24,55,1,0,0,,2221C0,6221C0,4ff,DIDs supported in range 21C1 - 21E0
 ,18DAF1DA,24,39,.25,0,1,rpm,2221C6,6221C6,ff,Maximum engine speed for misfiring detection strategy
 ,18DAF1DA,24,47,1,0,0,km,2221C7,6221C7,ff,Vehicle distance at last succesfull detection test (Fuel level or Vehicle distance)
 ,18DAF1DA,31,31,1,0,0,,2221C9,6221C9,ff,Feedback main (p1) relay status from BMS by CAN,0:0- Relay Opened;1:1- Relay Closed
@@ -286,8 +286,8 @@
 ,18DAF1DA,30,31,1,0,0,,2221DD,6221DD,ff,Battery Management System 2 ECU state,0:0- ECU status present;1:1- ECU status absent;2:2- ECU status confirmed absent
 ,18DAF1DA,29,31,1,0,0,,2221DE,6221DE,ff,Water pump state,0:0- Life beat status;1:1- Stall or unsufficient speed status;2:2- Pump over temperature status;3:3- Pump over temperature warning status;4:4- Internal error over and under voltage status;5:5- Dry run state;6:6- No pump feed back status
 ,18DAF1DA,24,39,1,32767,0,A,2221DF,6221DF,ff,Low voltage power supply current supply by DCDC
-,18DAF1DA,24,55,1,0,0,,2221E0,6221E0,ff,DIDs supported in range [$21E1 - $2200]
-,18DAF1DA,24,55,1,0,0,,222200,622200,ff,DIDs supported in range 2201 - 2220
+,18DAF1DA,24,55,1,0,0,,2221E0,6221E0,4ff,DIDs supported in range [$21E1 - $2200]
+,18DAF1DA,24,55,1,0,0,,222200,622200,4ff,DIDs supported in range 2201 - 2220
 ,18DAF1DA,24,39,1,0,0,,222204,622204,ff,Torque structure failure detection
 ,18DAF1DA,24,39,1,0,0,,222205,622205,ff,Torque structure failure detection.
 ,18DAF1DA,31,31,1,0,0,,222207,622207,ff,Motor fan failure status on the CAN,0:0- No motor fan failure on the CAN;1:1- Motor fan failure on the CAN
@@ -312,7 +312,7 @@
 ,18DAF1DA,28,31,1,0,0,,22221D,62221D,ff,Electrical motor 1 inverter state,0:0- Power Off Electrical PowerTrain Management;2:2- Inverter state stand by mode;4:4- Power On Electrical PowerTrain Management;5:5- Inverter state alternator mode;6:6- Prepare to sleep
 ,18DAF1DA,24,31,1,0,0,,22221E,62221E,ff,Emergency engine stop request
 ,18DAF1DA,24,39,.05,0,2,kW,22221F,62221F,ff,Battery available charge power
-,18DAF1DA,24,55,1,0,0,,222220,622220,ff,DIDs supported in range 2221 - 2240
+,18DAF1DA,24,55,1,0,0,,222220,622220,4ff,DIDs supported in range 2221 - 2240
 ,18DAF1DA,31,31,1,0,0,,222221,622221,ff,Brake pedal states validity indicator is in the limp home data status,0:deactivated;1:activated
 ,18DAF1DA,31,31,1,0,0,,222222,622222,ff,Filtered unavailable clutch pedal status information,0:deactivated;1:activated
 ,18DAF1DA,31,31,1,0,0,,222223,622223,ff,Engine control request for cruise control abnormal deactivation,0:deactivated;1:activated
@@ -329,7 +329,7 @@
 ,18DAF1DA,30,31,1,0,0,,22222E,62222E,ff,Neutral engaged switch for manual gearbox,0:off;1:on;2:no norm
 ,18DAF1DA,31,31,1,0,0,,22222F,62222F,ff,Authorization to connect cruise control and speed limiter options,0:Disabled;1:Enabled
 ,18DAF1DA,24,31,.5,0,1,bar,22223E,62223E,ff,Consolidated braking pressure
-,18DAF1DA,24,55,1,0,0,,222240,622240,ff,DIDs supported in range 2241 - 2260
+,18DAF1DA,24,55,1,0,0,,222240,622240,4ff,DIDs supported in range 2241 - 2260
 ,18DAF1DA,31,31,1,0,0,,222248,622248,ff,Immobilizer 2 Failure of coded line.Immobilizer 2 Failure of coded line,0:deactivated;1:activated
 ,18DAF1DA,31,31,1,0,0,,222249,622249,ff,Immobilizer 2 ECM is locked.Immobilizer 2 ECM is locked,0:deactivated;1:activated
 ,18DAF1DA,31,31,1,0,0,,22224A,62224A,ff,Immobilizer 2 ECM is protected.Immobilizer 2 ECM is protected,0:deactivated;1:activated
@@ -338,7 +338,7 @@
 ,18DAF1DA,24,39,.01,0,2,%,22224D,62224D,ff,PWM control applied to the driver of the exhaust VVTC solenoid valve.value
 ,18DAF1DA,24,39,.02,0,2,,222255,622255,ff,Filtered angular position of the exhaust VVTC system
 ,18DAF1DA,24,39,.1,0,1,V,22225F,62225F,ff,High voltage battery bus after relay voltage
-,18DAF1DA,24,55,1,0,0,,222260,622260,ff,DIDs supported in range 2261 - 2280
+,18DAF1DA,24,55,1,0,0,,222260,622260,4ff,DIDs supported in range 2261 - 2280
 ,18DAF1DA,31,31,1,0,0,,222261,622261,ff,Power steering manostat activation,0:deactivated;1:activated
 ,18DAF1DA,31,31,1,0,0,,222262,622262,ff,Activation request solenoid valve of additional fuel tank.value
 ,18DAF1DA,24,31,.3921569,0,1,%,222263,622263,ff,Activation request pump of additional fuel tank.value
@@ -350,10 +350,10 @@
 ,18DAF1DA,31,31,1,0,0,,22226C,62226C,ff,Alternator mode initialisation,0:0- No phase initialisation;1:1- Phase initialisation
 ,18DAF1DA,24,39,.25,2000,1,A,22226D,62226D,ff,High Voltage Battery Current calculated
 ,18DAF1DA,24,31,1,0,0,,22226E,62226E,ff,Deconnection fail counter est
-,18DAF1DA,24,55,1,0,0,,222280,622280,ff,DIDs supported in range 2281 - 22A0
+,18DAF1DA,24,55,1,0,0,,222280,622280,4ff,DIDs supported in range 2281 - 22A0
 ,18DAF1DA,24,39,1,0,0,km,222298,622298,ff,Oil potential kilometers calculated
 ,18DAF1DA,24,55,1,0,0,km,222299,622299,1ff,Calculated oil potential in kilometers (can be negative)
-,18DAF1DA,24,55,1,0,0,,2222A0,6222A0,ff,DIDs supported in range 22A1 - 22C0
+,18DAF1DA,24,55,1,0,0,,2222A0,6222A0,4ff,DIDs supported in range 22A1 - 22C0
 ,18DAF1DA,24,39,1,0,0,,2222AC,6222AC,ff,Cause of the failsafe reaction triggered by level 2 monitoring.
 ,18DAF1DA,24,39,1,0,0,,2222AD,6222AD,ff,First context data for level 2 monitoring function failure.
 ,18DAF1DA,24,39,1,0,0,,2222AE,6222AE,ff,Second context data for level 2 monitoring function failure.
@@ -365,17 +365,17 @@
 ,18DAF1DA,31,31,1,0,0,,2222BD,6222BD,ff,Eco mode request received on the CAN,0:No Eco mode requested;1:Eco mode requested
 ,18DAF1DA,29,31,1,0,0,,2222BE,6222BE,ff,Drive mode received on the CAN,0:Normal drive mode request;1:Eco mode request;2:Dynamic mode request;3:Race mode request;4:Invalid drive mode request
 ,18DAF1DA,24,39,1,0,0,mV,2222BF,6222BF,ff,Power supply voltage raw acquisition of cylinder pressure sensor
-,18DAF1DA,24,55,1,0,0,,222400,622400,ff,DIDs supported in range 2401 - 2420
+,18DAF1DA,24,55,1,0,0,,222400,622400,4ff,DIDs supported in range 2401 - 2420
 ,18DAF1DA,24,39,.01,0,2,%,222403,622403,ff,Boost pressure PWM command (diesel).value
 ,18DAF1DA,24,39,.0488,32767.5,2,%,222405,622405,ff,Inlet throttle position setpoint.value
 ,18DAF1DA,24,39,.01,32768,2,%,222406,622406,ff,Inlet throttle PWM command
 ,18DAF1DA,24,39,.01,32768,2,%,222408,622408,ff,EGR valve position setpoint.value
 ,18DAF1DA,24,39,.1,2730,1,,22240D,62240D,ff,Intake air temperature
 ,18DAF1DA,24,39,.05,0,2,%,222414,622414,ff,Throttle valve position setpoint.value
-,18DAF1DA,24,55,1,0,0,,222420,622420,ff,DIDs supported in range 2421 - 2440
+,18DAF1DA,24,55,1,0,0,,222420,622420,4ff,DIDs supported in range 2421 - 2440
 ,18DAF1DA,24,39,.05,0,2,kg/h,222422,622422,ff,Amount of air pumped into cylinder
 ,18DAF1DA,24,39,.2,32768,1,mV,22243A,62243A,ff,Temperature before turbine sensor voltage
-,18DAF1DA,24,55,1,0,0,,222440,622440,ff,DIDs supported in range 2441 - 2460
+,18DAF1DA,24,55,1,0,0,,222440,622440,4ff,DIDs supported in range 2441 - 2460
 ,18DAF1DA,24,39,1,0,0,mbar,222448,622448,ff,Pressure before turbine
 ,18DAF1DA,24,39,1,0,0,mV,222449,622449,ff,Catalyst exhaust gas upstream oxygen sensor voltage
 ,18DAF1DA,24,31,.3921569,0,1,%,22244B,62244B,ff,Catalyst exhaust gas upstream oxygen resistance heater PWM command.value
@@ -388,13 +388,13 @@
 ,18DAF1DA,24,39,.05,0,2,%,22245C,62245C,ff,Throttle valve offset - max position - track 2
 ,18DAF1DA,31,31,1,0,0,,22245D,62245D,ff,Throttle valve offset - first learnings successfully done,0:no;1:yes
 ,18DAF1DA,24,39,.00006103516,0,3,,22245E,62245E,ff,Engine air load
-,18DAF1DA,24,55,1,0,0,,222460,622460,ff,DIDs supported in range 2461 - 2480
+,18DAF1DA,24,55,1,0,0,,222460,622460,4ff,DIDs supported in range 2461 - 2480
 ,18DAF1DA,24,39,.01,32768,2,%,22246E,62246E,ff,EGR cooling bypass PWM command.value
 ,18DAF1DA,24,47,.01,8388608,2,mV,22246F,62246F,ff,Throttle valve voltage command
-,18DAF1DA,24,55,1,0,0,,222480,622480,ff,DIDs supported in range 2481 - 24A0
+,18DAF1DA,24,55,1,0,0,,222480,622480,4ff,DIDs supported in range 2481 - 24A0
 ,18DAF1DA,30,31,1,0,0,,222494,622494,ff,Result of the catalyst exhaust gas upstream oxygen sensor diagnostic after-sales routine,0:initial value;1:intermediate;2:good;3:bad
-,18DAF1DA,24,55,1,0,0,,2224A0,6224A0,ff,DIDs supported in range 24A1 - 24C0
-,18DAF1DA,24,55,1,0,0,,2224C0,6224C0,ff,DIDs supported in range 24C1 - 24E0
+,18DAF1DA,24,55,1,0,0,,2224A0,6224A0,4ff,DIDs supported in range 24A1 - 24C0
+,18DAF1DA,24,55,1,0,0,,2224C0,6224C0,4ff,DIDs supported in range 24C1 - 24E0
 ,18DAF1DA,24,39,1,0,0,,2224C4,6224C4,ff,Time expected to switch on the heating of the upstream sensor
 ,18DAF1DA,24,39,.0000000596,0,3,,2224C5,6224C5,ff,Variable table for throttle area curve.16
 ,18DAF1DA,40,55,.0000000596,0,3,,2224C5,6224C5,ff,Variable table for throttle area curve.15
@@ -431,9 +431,9 @@
 ,18DAF1DA,248,263,.0000000596,0,3,,2224DD,6224DD,ff,Variable table for throttle area curve (01).02
 ,18DAF1DA,264,279,.0000000596,0,3,,2224DD,6224DD,ff,Variable table for throttle area curve (01).01
 ,18DAF1DA,280,295,.0000000596,0,3,,2224DD,6224DD,ff,Variable table for throttle area curve (01).00
-,18DAF1DA,24,55,1,0,0,,2224E0,6224E0,ff,DIDs supported in range [$24E1 - $2500]
+,18DAF1DA,24,55,1,0,0,,2224E0,6224E0,4ff,DIDs supported in range [$24E1 - $2500]
 ,18DAF1DA,24,31,.3921569,0,1,%,2224E5,6224E5,ff,Boost pressure PWM command (gasoline).value
-,18DAF1DA,24,55,1,0,0,,222500,622500,ff,DIDs supported in range 2501 - 2520
+,18DAF1DA,24,55,1,0,0,,222500,622500,4ff,DIDs supported in range 2501 - 2520
 ,18DAF1DA,31,31,1,0,0,,222501,622501,ff,End of the first learning phase, after first key on,0:false;1:true
 ,18DAF1DA,24,39,1,0,0,,222502,622502,ff,Offset Deviation detected failure local counter
 ,18DAF1DA,31,31,1,0,0,,222503,622503,ff,Request to relearn on next power latch phase,0:not learned;1:learned
@@ -446,40 +446,40 @@
 ,18DAF1DA,24,39,.1,2730,1,,22251D,62251D,ff,Internal sensor temperature
 ,18DAF1DA,24,39,.0000305176,0,3,,22251E,62251E,ff,Raw UEGO Air Fuel ratio measurement
 ,18DAF1DA,31,31,1,0,0,,22251F,62251F,ff,Vehicle speed threshold detected,0:Vehicle speed threshold not detected;1:Vehicle speed threshold detected
-,18DAF1DA,24,55,1,0,0,,222520,622520,ff,DIDs supported in range 2521 - 2540
+,18DAF1DA,24,55,1,0,0,,222520,622520,4ff,DIDs supported in range 2521 - 2540
 ,18DAF1DA,24,39,.01,0,2,%,222524,622524,ff,Pwm command for inlet throttle
 ,18DAF1DA,24,39,1,0,0,hPa,222533,622533,ff,Command of manifold pressure calculated by the torque structure
 ,18DAF1DA,24,39,.05,0,2,%,222536,622536,ff,First value of closed thrust position of the inlet throttle
 ,18DAF1DA,24,39,.001,0,3,,22253E,62253E,ff,Displayed vehicle speed factor
 ,18DAF1DA,24,31,.1,0,1,km/h,22253F,62253F,ff,Displayed vehicle speed offset
-,18DAF1DA,24,55,1,0,0,,222540,622540,ff,DIDs supported in range 2541 - 2560
-,18DAF1DA,24,55,1,0,0,,222560,622560,ff,DIDs supported in range 2561 - 2580
+,18DAF1DA,24,55,1,0,0,,222540,622540,4ff,DIDs supported in range 2541 - 2560
+,18DAF1DA,24,55,1,0,0,,222560,622560,4ff,DIDs supported in range 2561 - 2580
 ,18DAF1DA,24,39,.0488,32767.5,2,%,22256A,62256A,ff,Exhaust Air Flap - ET throttle postion setpoint used by the monitoring system.value
 ,18DAF1DA,24,39,.0000101725,32768.0806094864,3,,222573,622573,ff,Double loop offset
-,18DAF1DA,24,55,1,0,0,,222580,622580,ff,DIDs supported in range 2581 - 25A0
+,18DAF1DA,24,55,1,0,0,,222580,622580,4ff,DIDs supported in range 2581 - 25A0
 ,18DAF1DA,24,39,.0488,32767.5,2,%,22259A,62259A,ff,Low Pressure EMTV - EGR BP valve control setpoint used by the monitoring system.value
 ,18DAF1DA,24,39,.0488,34816.6803278689,2,%,22259C,62259C,ff,Swirl Flap - Swirl throttle postion setpoint used by the monitoring system.value
-,18DAF1DA,24,55,1,0,0,,2225A0,6225A0,ff,DIDs supported in range 25A1 - 25C0
+,18DAF1DA,24,55,1,0,0,,2225A0,6225A0,4ff,DIDs supported in range 25A1 - 25C0
 ,18DAF1DA,24,47,1,0,0,min,2225B1,6225B1,ff,Absolute time since the first ignition
 ,18DAF1DA,30,31,1,0,0,,2225B2,6225B2,ff,Drive mode switch status detection,0:Nominal mode constante value;1:Economic mode constante value;2:Dynamic mode constante value
 ,18DAF1DA,24,39,.001,0,3,bar,2225B9,6225B9,ff,Oil pressure mesured
 ,18DAF1DA,24,31,1,50,0,%,2225BD,6225BD,ff,Road slope value
 ,18DAF1DA,31,31,1,0,0,,2225BF,6225BF,ff,Request for starter relay 1.value,0:Opened;1:Closed
-,18DAF1DA,24,55,1,0,0,,2225C0,6225C0,ff,DIDs supported in range 25C1 - 25E0
+,18DAF1DA,24,55,1,0,0,,2225C0,6225C0,4ff,DIDs supported in range 25C1 - 25E0
 ,18DAF1DA,31,31,1,0,0,,2225D6,6225D6,ff,Circulation request of the coolant for engine,0:No Cooling request;1:Cooling request
-,18DAF1DA,24,55,1,0,0,,2225E0,6225E0,ff,DIDs supported in range 25E1 - 2600
-,18DAF1DA,24,55,1,0,0,,222600,622600,ff,DIDs supported in range 2601 - 2620
-,18DAF1DA,24,55,1,0,0,,222620,622620,ff,DIDs supported in range 2621 - 2640
-,18DAF1DA,24,55,1,0,0,,222800,622800,ff,DIDs supported in range 2801 - 2820
+,18DAF1DA,24,55,1,0,0,,2225E0,6225E0,4ff,DIDs supported in range 25E1 - 2600
+,18DAF1DA,24,55,1,0,0,,222600,622600,4ff,DIDs supported in range 2601 - 2620
+,18DAF1DA,24,55,1,0,0,,222620,622620,4ff,DIDs supported in range 2621 - 2640
+,18DAF1DA,24,55,1,0,0,,222800,622800,4ff,DIDs supported in range 2801 - 2820
 ,18DAF1DA,24,47,4,0,0,,222804,622804,ff,Main injection period
 ,18DAF1DA,24,31,.375,63,1,,222807,622807,ff,Ignition advance
 ,18DAF1DA,31,31,1,0,0,,22281B,62281B,ff,Fuel low level,0:ok;1:low
 ,18DAF1DA,31,31,1,0,0,,22281C,62281C,ff,Gas pump command state.value,0:OFF;1:ON
-,18DAF1DA,24,55,1,0,0,,222820,622820,ff,DIDs supported in range 2821 - 2840
+,18DAF1DA,24,55,1,0,0,,222820,622820,4ff,DIDs supported in range 2821 - 2840
 ,18DAF1DA,24,39,.001525902,0,3,%,222822,622822,ff,Canister drain valve command.value
 ,18DAF1DA,24,39,.01,0,2,%,222826,622826,ff,5th injector PWM command.value
 ,18DAF1DA,24,39,.0000183108,-21845.03134762,3,,22283F,62283F,ff,Fuel System diagnosis criterion (global deviation of richness closed loop control)
-,18DAF1DA,24,55,1,0,0,,222840,622840,ff,DIDs supported in range 2841 - 2860
+,18DAF1DA,24,55,1,0,0,,222840,622840,4ff,DIDs supported in range 2841 - 2860
 ,18DAF1DA,24,39,1,0,0,,222841,622841,ff,Misfire counter - cylinder 1
 ,18DAF1DA,24,39,1,0,0,,222842,622842,ff,Misfire counter - cylinder 2
 ,18DAF1DA,24,39,1,0,0,,222843,622843,ff,Misfire counter - cylinder 3
@@ -503,7 +503,7 @@
 ,18DAF1DA,24,31,3,0,0,,22285D,62285D,ff,Opening angle - cylinder 4- 1st injection
 ,18DAF1DA,24,31,.375,0,1,,22285E,62285E,ff,Maximum ignition timing correction of the slow loop for all the cylinders
 ,18DAF1DA,24,31,4,128,0,,22285F,62285F,ff,Adaptation offset on injection time
-,18DAF1DA,24,55,1,0,0,,222860,622860,ff,DIDs supported in range 2861 - 2880
+,18DAF1DA,24,55,1,0,0,,222860,622860,4ff,DIDs supported in range 2861 - 2880
 ,18DAF1DA,31,31,1,0,0,,222861,622861,ff,Gas pump priming state,0:deactivated;1:activated
 ,18DAF1DA,31,31,1,0,0,,222862,622862,ff,Gas pump priming done,0:no;1:yes
 ,18DAF1DA,24,31,1,0,0,,222863,622863,ff,Minimum gap compared to the initial linear.04
@@ -555,7 +555,7 @@
 ,18DAF1DA,24,39,.001525902,0,3,%,22287B,62287B,ff,Final alcohol adaptive
 ,18DAF1DA,24,31,1,0,0,,22287C,62287C,ff,Current value of the counter of slow alcohol adaptive computing phases
 ,18DAF1DA,24,31,1,0,0,,22287F,62287F,ff,Memorized variable of the fuel level
-,18DAF1DA,24,55,1,0,0,,222880,622880,ff,DIDs supported in range 2881 - 28A0
+,18DAF1DA,24,55,1,0,0,,222880,622880,4ff,DIDs supported in range 2881 - 28A0
 ,18DAF1DA,24,39,.001525902,0,3,%,222881,622881,ff,Alcohol rate for the after sell
 ,18DAF1DA,31,31,1,0,0,,222882,622882,ff,State of the fuel pump relay control.value,0:deactivated;1:activated
 ,18DAF1DA,31,31,1,0,0,,222884,622884,ff,Minimum level of the additional fuel tank detected,0:non detected;1:detected
@@ -575,7 +575,7 @@
 ,18DAF1DA,31,31,1,0,0,,222891,622891,ff,Mastervac vacuum pump activation request,0:no activation request;1:activation request
 ,18DAF1DA,24,31,5,0,0,kPa,222893,622893,ff,Mastervac pressure received on CAN
 ,18DAF1DA,31,31,1,0,0,,222897,622897,ff,Turbo water pump configuration boolean,0:Turbo water pump absent;1:Turbo water pump present
-,18DAF1DA,24,55,1,0,0,,2228A0,6228A0,ff,DIDs supported in range 28A1 - 28C0
+,18DAF1DA,24,55,1,0,0,,2228A0,6228A0,4ff,DIDs supported in range 28A1 - 28C0
 ,18DAF1DA,24,47,.00256,0,3,mg,2228A3,6228A3,ff,Mass to be injected on cylinder 1 on pulse 1 of injection
 ,18DAF1DA,24,47,.00256,0,3,mg,2228A4,6228A4,ff,Mass to be injected on cylinder 1 on pulse 2 of injection
 ,18DAF1DA,24,47,.00256,0,3,mg,2228A5,6228A5,ff,Mass to be injected on cylinder 2 on pulse 1 of injection
@@ -593,7 +593,7 @@
 ,18DAF1DA,24,39,.1,2730,1,,2228B1,6228B1,ff,Gas temperature (manifold level)
 ,18DAF1DA,24,39,.1,0,1,bar,2228BD,6228BD,ff,GDI - Fuel Rail Pressure
 ,18DAF1DA,24,31,.002604167,-255.999980032003,3,,2228BF,6228BF,ff,Long Term Fuel Trim - Bank 1
-,18DAF1DA,24,55,1,0,0,,2228C0,6228C0,ff,DIDs supported in range 28C1 - 28E0
+,18DAF1DA,24,55,1,0,0,,2228C0,6228C0,4ff,DIDs supported in range 28C1 - 28E0
 ,18DAF1DA,24,31,1,0,0,,2228C1,6228C1,ff,Indicator relative to vehicle acceleration for economical scoring
 ,18DAF1DA,24,31,1,0,0,,2228C2,6228C2,ff,Indicator relative to anticipation for economical scoring
 ,18DAF1DA,24,31,1,0,0,,2228C3,6228C3,ff,Indicator relative to GSI respect for economical scoring
@@ -607,7 +607,7 @@
 ,18DAF1DA,24,39,.01,0,2,V,2228DC,6228DC,ff,Alternator voltage set-point
 ,18DAF1DA,24,39,.01,0,2,V,2228DD,6228DD,ff,After-sale alternator voltage set-point
 ,18DAF1DA,24,31,.05,0,2,A,2228DF,6228DF,ff,Filtered alternator rotor current
-,18DAF1DA,24,55,1,0,0,,2228E0,6228E0,ff,DIDs supported in range [$28E1 - $2900]
+,18DAF1DA,24,55,1,0,0,,2228E0,6228E0,4ff,DIDs supported in range [$28E1 - $2900]
 ,18DAF1DA,24,31,.392156863,0,1,%,2228E1,6228E1,ff,Alternator_load
 ,18DAF1DA,24,39,.01,0,2,V,2228EF,6228EF,ff,Reference battery voltage not saturated
 ,18DAF1DA,24,39,1,0,0,mV,2228F4,6228F4,ff,Raw value of accelerator pedal potentiometer, track 1, before ECU reset
@@ -615,7 +615,7 @@
 ,18DAF1DA,24,31,32,0,0,rpm,2228F6,6228F6,ff,Engine speed before ECU reset.
 ,18DAF1DA,24,39,1,0,0,,2228F7,6228F7,ff,Error code identifying the type of incoherence between applicative functions(lvl1) and monitoring function(lvl2)
 ,18DAF1DA,24,39,.03125,0,2,N·m,2228F8,6228F8,ff,Admissible torque at level 2 monitoring function, before ECU reset.
-,18DAF1DA,24,55,1,0,0,,222900,622900,ff,DIDs supported in range [$2901 - $2920]
+,18DAF1DA,24,55,1,0,0,,222900,622900,4ff,DIDs supported in range [$2901 - $2920]
 ,18DAF1DA,31,31,1,0,0,,222901,622901,ff,EGR water pump 1 command.value,0:deactivated;1:activated
 ,18DAF1DA,31,31,1,0,0,,222902,622902,ff,EGR water pump 2 command.value,0:deactivated;1:activated
 ,18DAF1DA,31,31,1,0,0,,22291C,62291C,ff,ADOC configuration,0:ADOC strategy deactivated;1:ADOC strategy activated
@@ -624,7 +624,7 @@
 ,18DAF1DA,40,55,1,0,0,,22291E,62291E,ff,State counter value for each RON level.2
 ,18DAF1DA,56,71,1,0,0,,22291E,62291E,ff,State counter value for each RON level.1
 ,18DAF1DA,72,87,1,0,0,,22291E,62291E,ff,State counter value for each RON level.0
-,18DAF1DA,24,55,1,0,0,,222920,622920,ff,DIDs supported in range [$2921 - $2940]
+,18DAF1DA,24,55,1,0,0,,222920,622920,4ff,DIDs supported in range [$2921 - $2940]
 ,18DAF1DA,31,31,1,0,0,,222921,622921,ff,FAN 1 activation.value,0:FAN 1 activation no requested;1:FAN 1 activation requested
 ,18DAF1DA,31,31,1,0,0,,222922,622922,ff,FAN 2 activation.value,0:FAN 2 activation no requested;1:FAN 2 activation requested
 ,18DAF1DA,31,31,1,0,0,,222923,622923,ff,Mux Network configuration detection: AIRBAG status,0:without;1:with
@@ -635,7 +635,7 @@
 ,18DAF1DA,31,31,1,0,0,,222934,622934,ff,Boolean indicating that upstream lambda heater close loop control is enabled,0:Opened Loop;1:Closed Loop
 ,18DAF1DA,24,31,.392156863,0,1,%,222935,622935,ff,EGR Water Cooling Pump PWM Command.value
 ,18DAF1DA,24,39,.08,0,2,mL,22293E,62293E,ff,Quantity of fuel consumed since last tank fill up
-,18DAF1DA,24,55,1,0,0,,222940,622940,ff,DIDs supported in range [$2941 - $2960]
+,18DAF1DA,24,55,1,0,0,,222940,622940,4ff,DIDs supported in range [$2941 - $2960]
 ,18DAF1DA,31,31,1,0,0,,222941,622941,ff,Boolean to indicate that there is a possible change of fuel in course,0:not detected;1:detected
 ,18DAF1DA,31,31,1,0,0,,222945,622945,ff,Drive door state,0:driver door closed;1:driver door opened
 ,18DAF1DA,31,31,1,0,0,,222946,622946,ff,Drive seat state,0:driver not seated;1:driver seated
@@ -644,8 +644,8 @@
 ,18DAF1DA,31,31,1,0,0,,222954,622954,ff,Vehicle whit key or keyless vehicle,0:Vehicle with a smartkey;1:Vehicle with a mechanical key
 ,18DAF1DA,31,31,1,0,0,,222955,622955,ff,Stop auto inhibition via automatic air conditioner,0:Automatic air conditionning authorizes StopAuto;1:StopAuto forbidden by automatic air conditionning
 ,18DAF1DA,24,31,.5,0,1,%,222958,622958,ff,Battery state of charge
-,18DAF1DA,24,55,1,0,0,,222960,622960,ff,DIDs supported in range [$2961 - $2980]
-,18DAF1DA,24,55,1,0,0,,222980,622980,ff,DIDs supported in range [$2981 - $29A0]
+,18DAF1DA,24,55,1,0,0,,222960,622960,4ff,DIDs supported in range [$2961 - $2980]
+,18DAF1DA,24,55,1,0,0,,222980,622980,4ff,DIDs supported in range [$2981 - $29A0]
 ,18DAF1DA,24,31,10,0,0,s,222990,622990,ff,Maximum duration the engine can stay automatically stopped
 ,18DAF1DA,24,39,1,0,0,hPa,222991,622991,ff,Ambiant pressure high threshold below which auto stop is forbidden
 ,18DAF1DA,24,39,1,0,0,hPa,222992,622992,ff,Ambiant pressure low threshold below which auto stop is forbidden
@@ -662,7 +662,7 @@
 ,18DAF1DA,24,39,.1,2730,1,,22299D,62299D,ff,Minimal environment temperature inhibiting the StopAuto
 ,18DAF1DA,24,39,.1,2730,1,,22299E,62299E,ff,Minimal environment temperature authorising the StopAuto
 ,18DAF1DA,24,31,.1,0,1,km/h,22299F,62299F,ff,Maximum vehicle speed to keep the engine automatically stopped
-,18DAF1DA,24,55,1,0,0,,2229A0,6229A0,ff,DIDs supported in range [$29A1 - $29C0]
+,18DAF1DA,24,55,1,0,0,,2229A0,6229A0,4ff,DIDs supported in range [$29A1 - $29C0]
 ,18DAF1DA,24,31,.1,0,1,s,2229A1,6229A1,ff,Delay to confirm that the vehicle is stoped (consolidation of slope value)
 ,18DAF1DA,24,31,.1,0,1,km/h,2229A2,6229A2,ff,Vehicle speed threshold to validate the minimum travel conditions
 ,18DAF1DA,24,31,.1,0,1,km/h,2229A3,6229A3,ff,Vehicle speed threshold to validate the minimum travel conditions in rear detected
@@ -672,9 +672,9 @@
 ,18DAF1DA,24,31,1,5,0,,2229A9,6229A9,ff,Gear lever position received on the CAN
 ,18DAF1DA,30,31,1,0,0,,2229B0,6229B0,ff,CC strategy requested by the driver for Daimler type,0:CC stop initial step;1:CC stop;2:CC running In case of default detection for Daimler specification- this label indicates the CC state.
 ,18DAF1DA,31,31,1,0,0,,2229B1,6229B1,ff,CC Main Switch Coherence detected failure for Daimler type,0:CC Main Switch Coherence without failure;1:CC Main Switch Coherence failure detected
-,18DAF1DA,24,55,1,0,0,,2229C0,6229C0,ff,DIDs supported in range [$29C1 - $29E0]
+,18DAF1DA,24,55,1,0,0,,2229C0,6229C0,4ff,DIDs supported in range [$29C1 - $29E0]
 ,18DAF1DA,24,39,1,0,0,km,2229DF,6229DF,ff,Distance driven since TLZ initialization
-,18DAF1DA,24,55,1,0,0,,2229E0,6229E0,ff,DIDs supported in range [$29E1 - $2A00]
+,18DAF1DA,24,55,1,0,0,,2229E0,6229E0,4ff,DIDs supported in range [$29E1 - $2A00]
 ,18DAF1DA,31,31,1,0,0,,2229E2,6229E2,ff,Misfire bench mode activation boolean,0:deactivated;1:activated
 ,18DAF1DA,24,31,1,0,0,,2229E3,6229E3,ff,Rate of Misfire bench mode
 ,18DAF1DA,29,31,1,0,0,,2229E4,6229E4,ff,Physical cylinder number selected to be cut if no specific cylinder cut is needed set to 0
@@ -691,7 +691,7 @@
 ,18DAF1DA,24,39,.01,32767.5,2,A,2229FD,6229FD,ff,Battery current
 ,18DAF1DA,24,39,.01,0,2,V,2229FE,6229FE,ff,Reference battery voltage
 ,18DAF1DA,30,31,1,0,0,,2229FF,6229FF,ff,Battery Setpoint generator status,0:Nominal mode;1:EEM detected faillure for battery set point generation;2:EEM confirmed faillure for battery set point generation;3:Battery disconnetion
-,18DAF1DA,24,55,1,0,0,,222A00,622A00,ff,DIDs supported in range [$2A01 - $2A20]
+,18DAF1DA,24,55,1,0,0,,222A00,622A00,4ff,DIDs supported in range [$2A01 - $2A20]
 ,18DAF1DA,24,31,.01,-150,2,,222A01,622A01,ff,Mechanical ratio between alternator and engine
 ,18DAF1DA,29,31,1,0,0,,222A02,622A02,ff,DCDC Fault type,0:Validity data at NOK_0 state;1:Validity data at nominal state;2:Validity data at Fail_2 state;3:Validity data at Fail_3 state;4:Validity data at Fail_4 state;5:Validity data at Fail_5 state;6:Validity data at Fail_6 state
 ,18DAF1DA,30,31,1,0,0,,222A03,622A03,ff,DCDC to ECM CAN communication validity status,0:Validity data at NOK_0 state;1:Validity data at nominal state;2:Validity data at Fail_2 state
@@ -732,7 +732,7 @@
 ,18DAF1DA,40,55,1,0,0,,222A1F,622A1F,ff,Counter for number of times the rich richness is triggered because of pre ignition detection.3
 ,18DAF1DA,56,71,1,0,0,,222A1F,622A1F,ff,Counter for number of times the rich richness is triggered because of pre ignition detection.2
 ,18DAF1DA,72,87,1,0,0,,222A1F,622A1F,ff,Counter for number of times the rich richness is triggered because of pre ignition detection.1
-,18DAF1DA,24,55,1,0,0,,222A20,622A20,ff,DIDs supported in range [$2A21 - $2A40]
+,18DAF1DA,24,55,1,0,0,,222A20,622A20,4ff,DIDs supported in range [$2A21 - $2A40]
 ,18DAF1DA,24,39,1,0,0,,222A21,622A21,ff,Counter for number of times the TQ reduction is triggered because of pre ignition detection.4
 ,18DAF1DA,40,55,1,0,0,,222A21,622A21,ff,Counter for number of times the TQ reduction is triggered because of pre ignition detection.3
 ,18DAF1DA,56,71,1,0,0,,222A21,622A21,ff,Counter for number of times the TQ reduction is triggered because of pre ignition detection.2
@@ -745,7 +745,7 @@
 ,18DAF1DA,24,39,1,0,0,,222A38,622A38,ff,Offset Dirt Detection on closed thrust detected failure local counter
 ,18DAF1DA,24,39,1.52590218966964E-03,0,3,%,222A39,622A39,ff,PWM for the canister purge valve
 ,18DAF1DA,24,39,1.01725001716609E-05,0,3,,222A3A,622A3A,ff,Canister charge
-,18DAF1DA,24,55,1,0,0,,222A40,622A40,ff,DIDs supported in range [$2A41 - $2A60]
+,18DAF1DA,24,55,1,0,0,,222A40,622A40,4ff,DIDs supported in range [$2A41 - $2A60]
 ,18DAF1DA,24,47,1.52590000002002E-06,.1,3,,222A44,622A44,ff,Multi zones richness correction from OS regulation.03
 ,18DAF1DA,48,71,1.52590000002002E-06,.1,3,,222A44,622A44,ff,Multi zones richness correction from OS regulation.02
 ,18DAF1DA,72,95,1.52590000002002E-06,.1,3,,222A44,622A44,ff,Multi zones richness correction from OS regulation.01
@@ -757,7 +757,7 @@
 ,18DAF1DA,31,31,1,0,0,,222A5D,622A5D,ff,Upstream binary sensor bench mode required for homologation,0:Nominal PWM heating is applied;1:Factor is applied on heating PWM to decrease heating performance
 ,18DAF1DA,24,31,3.92156862745098E-03,0,3,,222A5E,622A5E,ff,Factor value to apply on heating PWM to decrease heater performance (OBD bench mode)
 ,18DAF1DA,24,31,3.92156862745098E-03,0,3,,222A5F,622A5F,ff,Factor value to apply on heating PWM to decrease heater performance
-,18DAF1DA,24,55,1,0,0,,222A60,622A60,ff,DIDs supported in range [$2A61 - $2A80]
+,18DAF1DA,24,55,1,0,0,,222A60,622A60,4ff,DIDs supported in range [$2A61 - $2A80]
 ,18DAF1DA,24,31,1,0,0,s,222A78,622A78,ff,Maximum duration of SL MAIN button press
 ,18DAF1DA,24,31,1,0,0,s,222A79,622A79,ff,Maximum duration of CRU MAIN button press
 ,18DAF1DA,24,31,1,0,0,,222A7A,622A7A,ff,Carrier of all the failures which cause CC SL failure
@@ -766,7 +766,7 @@
 ,18DAF1DA,30,31,1,0,0,,222A7D,622A7D,ff,Request status of activation of the regulation loop for EEM needs,0:No activation;1:Level 1 activation;2:Level 2 activation
 ,18DAF1DA,29,31,1,0,0,,222A7E,622A7E,ff,Vehicle state for EEM,0:Sleeping;1:Customer Wake-up;2:E-motor running;3:Powertrain running;4:Auto Start;5:Auto Stop;6:Unavailable
 ,18DAF1DA,24,39,.01,0,2,V,222A7F,622A7F,ff,Producer voltage setpoint
-,18DAF1DA,24,55,1,0,0,,222A80,622A80,ff,DIDs supported in range [$2A81 - $2AA0]
+,18DAF1DA,24,55,1,0,0,,222A80,622A80,4ff,DIDs supported in range [$2A81 - $2AA0]
 ,18DAF1DA,24,39,10,0,0,,222A81,622A81,ff,Alternator negative power gradient authorized by ECM
 ,18DAF1DA,24,31,.05,0,2,A,222A82,622A82,ff,DCDC output current
 ,18DAF1DA,24,31,1,0,0,A,222A83,622A83,ff,EEM Maximum current available by system consolidated
@@ -785,7 +785,7 @@
 ,18DAF1DA,29,31,1,0,0,,222A90,622A90,ff,Battery Setpoint Generator Status (01),0:Battery disconnection confirmed;1:Nominal;2:Absolute undervoltage confirmed;3:Relative undervoltage confirmed;4:Overvoltage confirmed;5:Voltage measurement fault confirmed in 12V EEM ECU;6:Producer fault confirmed C1R specific
 ,18DAF1DA,28,31,1,0,0,,222A92,622A92,ff,State of the steering wheel buttons when the main switch is placed on the steering wheel not filtered,0:unpressed;1:invalid voltage;2:open circuit;3:Resume or plus button pressed;4:set minus button pressed;5:suspend button pressed;6:Speed Limiter button pressed;7:Cruise Control button pressed;8:distance button pressed
 ,18DAF1DA,31,31,1,0,0,,222A9F,622A9F,ff,IVI ECU present configuration,0:IVI ECU is absent;1:IVI ECU is present
-,18DAF1DA,24,55,1,0,0,,222AA0,622AA0,ff,DIDs supported in range [$2AA1 - $2AC0]
+,18DAF1DA,24,55,1,0,0,,222AA0,622AA0,4ff,DIDs supported in range [$2AA1 - $2AC0]
 ,18DAF1DA,24,39,3.05175999999203E-05,0,3,,222AA2,622AA2,ff,UEGO richness corrected or not by OBD test mode
 ,18DAF1DA,24,39,.001,10000,3,mA,222AA3,622AA3,ff,Temporary raw UEGO current taking into account OBD mode
 ,18DAF1DA,24,39,.001,10000,3,mA,222AA4,622AA4,ff,Raw UEGO current
@@ -801,23 +801,23 @@
 ,18DAF1DA,24,31,1,0,0,,222ABA,622ABA,ff,Consolidated state indicating activation of bench mode by driver sequence,0:No maintenance mode activated;1:Maintenance mode 1 or 2 or 3;2:Maintenance mode 2 or 3;3:Maintenance mode 3
 ,18DAF1DA,24,39,.1,32768,1,N·m,222ABC,622ABC,ff,Value of applied offset correction
 ,18DAF1DA,24,39,3.0517600001783E-05,0,3,,222ABD,622ABD,ff,Amplitude of upstream lambda richness signal
-,18DAF1DA,24,55,1,0,0,,222AC0,622AC0,ff,DIDs supported in range [$2AC1 - $2AE0]
+,18DAF1DA,24,55,1,0,0,,222AC0,622AC0,4ff,DIDs supported in range [$2AC1 - $2AE0]
 ,18DAF1DA,24,39,10,0,0,W,222AC7,622AC7,ff,Optimal alternator power setpoint
 ,18DAF1DA,24,31,1,0,0,,222AC8,622AC8,ff,CC deactivation cause
 ,18DAF1DA,24,31,.392156862745098,0,1,%,222ACA,622ACA,ff,Fan pwm command
 ,18DAF1DA,24,31,1,0,0,,222AD0,622AD0,ff,Electrical Energy Management minimum idle speed on sailing validity status,0:Electrical Energy Management minimum idle speed on sailing signal  is NOT VALID;1:Electrical Energy Management minimum idle speed on sailing signal  is VALID
 ,18DAF1DA,24,39,.01,0,2,V,222ADA,622ADA,ff,After sales producer voltage setpoint
 ,18DAF1DA,31,31,1,0,0,,222ADC,622ADC,ff,HV ready available status,0:HV ready status unavailable;1:HV ready status available
-,18DAF1DA,24,55,1,0,0,,222AE0,622AE0,ff,DIDs supported in range [$2AE1-$2AG0]
+,18DAF1DA,24,55,1,0,0,,222AE0,622AE0,4ff,DIDs supported in range [$2AE1-$2AG0]
 ,18DAF1DA,24,39,.1,400,1,,222AE7,622AE7,ff,Internal raw sensor temperature
 ,18DAF1DA,31,31,1,0,0,,222AE8,622AE8,ff,Conf ego/ueg,0:Binary oxygen sensor;1:Linear oxygen sensor
 ,18DAF1DA,31,31,1,0,0,,222AF9,622AF9,ff,Diagnosis Parameter Clear Request for distance with neutral gear position calculation,0:No request;1:Request
 ,18DAF1DA,31,31,1,0,0,,222AFC,622AFC,ff,HFPB ECU present configuration,0:conf absent;1:conf present
 ,18DAF1DA,31,31,1,0,0,,222AFD,622AFD,ff,AEb ECU present configuration,0:conf absent;1:conf present
 ,18DAF1DA,31,31,1,0,0,,222AFF,622AFF,ff,Disabling of automatic park request by after sale tool,0:Automatic park function activate;1:Inhibition of automatic park activation
-,18DAF1DA,24,55,1,0,0,,222B00,622B00,ff,DIDs supported in range [$2B01 - $2B20]
+,18DAF1DA,24,55,1,0,0,,222B00,622B00,4ff,DIDs supported in range [$2B01 - $2B20]
 ,18DAF1DA,31,31,1,0,0,,222B02,622B02,ff,DriverSafetyBeltBuckleState bypass for the Stop and Start system,0:Use an intern ECM variable;1:Bypass the variable
-,18DAF1DA,24,55,1,0,0,,222B20,622B20,ff,DIDs supported in range [$2B21 - $2B40]
+,18DAF1DA,24,55,1,0,0,,222B20,622B20,4ff,DIDs supported in range [$2B21 - $2B40]
 ,18DAF1DA,31,31,1,0,0,,222B22,622B22,ff,ETC mode implying inhibition of Stop Auto when equal to 1,0:Nominal;1:Inhibition of Stop and Start
 ,18DAF1DA,24,31,1,0,0,,222B23,622B23,ff,Reverse gear engaged switch for manual gearbox,0:Contactor is not used (normal permanent state);1:Contactor is used (non permanent state);2:There is no contactor
 ,18DAF1DA,31,31,1,0,0,,222B2F,622B2F,ff,Technical restart request by drivers exit,0:Not requested;1:Requested
@@ -832,7 +832,7 @@
 ,18DAF1DA,24,31,.0001,0,3,m,222B3D,622B3D,1ff,bottom-right position of primary fork memorised during offset-learning sequence
 ,18DAF1DA,24,31,.0001,0,3,m,222B3E,622B3E,1ff,bottom-left position of primary actuator memorised during offset-learning sequence
 ,18DAF1DA,24,31,.0001,0,3,m,222B3F,622B3F,1ff,bottom-right position of primary actuator memorised during offset-learning sequence
-,18DAF1DA,24,55,1,0,0,,222B40,622B40,ff,DIDs supported in range [$2B41 - $2B60]
+,18DAF1DA,24,55,1,0,0,,222B40,622B40,4ff,DIDs supported in range [$2B41 - $2B60]
 ,18DAF1DA,24,31,.0001,0,3,m,222B41,622B41,1ff,left position of secondary fork memorised during offset-learning sequence
 ,18DAF1DA,24,31,.0001,0,3,m,222B42,622B42,1ff,right position of secondary fork memorised during offset-learning sequence
 ,18DAF1DA,24,31,.0001,0,3,m,222B43,622B43,1ff,left position of secondary actuator memorised during offset-learning sequence
@@ -908,7 +908,7 @@
 ,18DAF1DA,31,31,1,0,0,,222B5D,622B5D,ff,Overstress Temperature of charge LED Inlet 01,0:No overstress temperature;1:Overstress temperature
 ,18DAF1DA,31,31,1,0,0,,222B5E,622B5E,ff,Critical temperature of charge LED Inlet 02,0:No critical temperature;1:Critical temperature
 ,18DAF1DA,31,31,1,0,0,,222B5F,622B5F,ff,Open circuit on the charge LED Inlet 02,0:No open circuit;1:Open circuit detected
-,18DAF1DA,24,55,1,0,0,,222B60,622B60,ff,DIDs supported in range [$2B61 - $2B80]
+,18DAF1DA,24,55,1,0,0,,222B60,622B60,4ff,DIDs supported in range [$2B61 - $2B80]
 ,18DAF1DA,24,55,.1,0,1,s,222B61,622B61,1ff,counter of the pump 1 for PHEV configuration
 ,18DAF1DA,24,55,.1,0,1,s,222B62,622B62,1ff,counter of the pump 3 for PHEV configuration
 ,18DAF1DA,24,39,.1,0,1,%,222B66,622B66,ff,Heater water pump 5 PWM control
@@ -933,7 +933,7 @@
 ,18DAF1DA,24,31,1,0,0,,222B7D,622B7D,ff,Final driveline state target,0:Driveline state in neutral;1:Driveline state in 1;2:Driveline state in 2;3:Driveline state in 3;4:Driveline state in 4;5:Driveline state in 5;6:Driveline state in 6;7:Driveline state in 7;8:Driveline state in 8;9:Driveline state in 9;10:Driveline state in 10;11:Driveline state in 11;12:Driveline state in 12;13:Driveline state in 13;14:Driveline state in 14;15:Driveline state in 15;16:Driveline state in 16;17:Driveline state in 17;18:Driveline state in 18;19:Driveline state in 19;20:Driveline state in 20;21:Driveline state in 21;22:Driveline state in 22;23:Driveline state in 23;24:Driveline state in 24;25:Driveline state in 25;26:Driveline state in 26;253:Driveline state in reverse 2.;254:Driveline state in reverse 1
 ,18DAF1DA,31,31,1,0,0,,222B7E,622B7E,ff,Critical temperature of charge LED Inlet 01,0:No critical temperature;1:Critical temperature
 ,18DAF1DA,31,31,1,0,0,,222B7F,622B7F,ff,Charge LED Intel 02 response error,0:No Response_Error;1:Response_Error
-,18DAF1DA,24,55,1,0,0,,222B80,622B80,ff,DIDs supported in range [$2B81 - $2BA0]
+,18DAF1DA,24,55,1,0,0,,222B80,622B80,4ff,DIDs supported in range [$2B81 - $2BA0]
 ,18DAF1DA,31,31,1,0,0,,222B81,622B81,ff,request to refuse to sleep end ready to sleep,0:Ready to sleep;1:Refuse to sleep
 ,18DAF1DA,31,31,1,0,0,,222B82,622B82,ff,Inhibition of the Wake-up by infrastructure,0:no inhibition;1:inhibition
 ,18DAF1DA,30,31,1,0,0,,222B83,622B83,ff,UnlockChargingPlug,0:Unavailable;1:Unlock Requested;2:Unlock Not Requested
@@ -983,7 +983,7 @@
 ,18DAF1DA,31,31,1,0,0,,222B9D,622B9D,ff,HV available request for charge,0:Open Request;1:Close Request
 ,18DAF1DA,30,31,1,0,0,,222B9E,622B9E,ff,toggle test states,0:Toggle test is on going;1:Toggle test is done;2:Toggle test is failed;3:Toggle test is unvailable
 ,18DAF1DA,24,39,.0001,0,3,,222B9F,622B9F,ff,GearShift Lever pwm ratio measured in plant
-,18DAF1DA,24,55,1,0,0,,222BA0,622BA0,ff,DIDs supported in range [$2BA1 - $2BC0]
+,18DAF1DA,24,55,1,0,0,,222BA0,622BA0,4ff,DIDs supported in range [$2BA1 - $2BC0]
 ,18DAF1DA,28,28,1,0,0,,222BB1,622BB1,ff,Journaling Vbx_driv_cho_urb_zev_mod in case of Optimization Failure.04
 ,18DAF1DA,29,29,1,0,0,,222BB1,622BB1,ff,Journaling Vbx_driv_cho_urb_zev_mod in case of Optimization Failure.03
 ,18DAF1DA,30,30,1,0,0,,222BB1,622BB1,ff,Journaling Vbx_driv_cho_urb_zev_mod in case of Optimization Failure.02
@@ -992,7 +992,7 @@
 ,18DAF1DA,24,39,10,2000,0,rpm,222BBC,622BBC,ff,HSG Speed Request CAN message
 ,18DAF1DA,30,31,1,0,0,,222BBD,622BBD,ff,EM1 control mode set-point,0:Auto_Nsx_emot_2_ctl_no_req;1:Auto_Nsx_emot_2_ctl_tq_typ;2:Auto_Nsx_emot_2_ctl_spd_typ
 ,18DAF1DA,24,39,10,2000,0,rpm,222BBE,622BBE,ff,Electrical machine speed control input
-,18DAF1DA,24,55,1,0,0,,222BC0,622BC0,ff,DIDs supported in range [$2BC1 - $2BE0]
+,18DAF1DA,24,55,1,0,0,,222BC0,622BC0,4ff,DIDs supported in range [$2BC1 - $2BE0]
 ,18DAF1DA,24,55,1,-2147483648,0,s,222BC1,622BC1,1ff,Time of use of the vacuum pump (hev)
 ,18DAF1DA,24,39,.1,0,1,%,222BC4,622BC4,ff,Battery HVAC Fan Out
 ,18DAF1DA,31,31,1,0,0,,222BC5,622BC5,ff,Battery Heater Relay 1 request,0:no activated;1:activated
@@ -1026,7 +1026,7 @@
 ,18DAF1DA,30,31,1,0,0,,222BDB,622BDB,ff,Connector plug Type configuration,0:Connector plug Type1;1:Connector plug Type2;2:Connector plug Type GBT
 ,18DAF1DA,31,31,1,0,0,,222BDC,622BDC,ff,Desired motor configuration for plug lock delay selection,0:False- selection of Cxx_dly_plg_lck_dc;1:True- selection of Cxx_dly_plg_lck_ac
 ,18DAF1DA,31,31,1,0,0,,222BDE,622BDE,ff,Electromagnetic Traction Control configuration boolean,0:ETC absent;1:ETC present
-,18DAF1DA,24,55,1,0,0,,222BE0,622BE0,ff,DIDs supported in range [$2BE1 - $2C00]
+,18DAF1DA,24,55,1,0,0,,222BE0,622BE0,4ff,DIDs supported in range [$2BE1 - $2C00]
 ,18DAF1DA,31,31,1,0,0,,222BE2,622BE2,ff,Driver door open information filtered for fuel heating system wake-up phase
 ,18DAF1DA,30,31,1,0,0,,222BE4,622BE4,ff,Current system/ECU sub-state,0:ECU on offline mode;1:Nsx_ecu_sub_pre_drv;2:ECU on classic mode;3:ECU on post-drive state
 ,18DAF1DA,25,27,1,0,0,,222BE5,622BE5,ff,Journaling Vsx_econav_trpdata_lih.04
@@ -1056,12 +1056,12 @@
 ,18DAF1DA,29,29,1,0,0,,222BFF,622BFF,ff,Journaling Vbx_zev_zon_road in case of optimization failure.02
 ,18DAF1DA,30,30,1,0,0,,222BFF,622BFF,ff,Journaling Vbx_zev_zon_road in case of optimization failure.01
 ,18DAF1DA,31,31,1,0,0,,222BFF,622BFF,ff,Journaling Vbx_zev_zon_road in case of optimization failure.00
-,18DAF1DA,24,55,1,0,0,,222C00,622C00,ff,DIDs supported in range 2C01 - 2C20
+,18DAF1DA,24,55,1,0,0,,222C00,622C00,4ff,DIDs supported in range 2C01 - 2C20
 ,18DAF1DA,29,31,1,1,0,,222C03,622C03,ff,Targetted gear engaged
 ,18DAF1DA,29,31,1,1,0,,222C04,622C04,ff,Current gear engaged
-,18DAF1DA,24,55,1,0,0,,222C20,622C20,ff,DIDs supported in range 2C21 - 2C40
+,18DAF1DA,24,55,1,0,0,,222C20,622C20,4ff,DIDs supported in range 2C21 - 2C40
 ,18DAF1DA,31,31,1,0,0,,222C2C,622C2C,ff,Kick down state,0:no kick down;1:kick down
-,18DAF1DA,24,55,1,0,0,,222C40,622C40,ff,DIDs supported in range 2C41 - 2C60
+,18DAF1DA,24,55,1,0,0,,222C40,622C40,4ff,DIDs supported in range 2C41 - 2C60
 ,18DAF1DA,30,31,1,0,0,,222C4F,622C4F,ff,ACC steering wheel commands validity transmitted to ACC ECU,0:ACC is unavailable;1:ACC is ok;2:ACC is nok
 ,18DAF1DA,29,31,1,0,0,,222C50,622C50,ff,ACC steering wheel commands transmitted to ACC ECU,0:No steering wheel switch is pressed;1:ACC is unavailable;3:The suspend switch is pressed;4:Set- is pressed;5:Set+ is pressed;6:Resume is pressed;7:Distance is pressed
 ,18DAF1DA,30,31,1,0,0,,222C51,622C51,ff,ACC speed limiter main switch position transmitted to ACC ECU,0:ACC is unavailable;1:Main switch is on SL;2:Main switch on ACC;3:ACC is off
@@ -1069,19 +1069,19 @@
 ,18DAF1DA,24,31,1,0,0,,222C59,622C59,ff,State of active clutch,0:Transmission coupler state is unavailable;1:Transmission coupler is closed;2:Transmission coupler is sliding;8:Coupler State open
 ,18DAF1DA,24,39,1,32768,0,,222C5C,622C5C,ff,Automatic transmission range output for display
 ,18DAF1DA,24,31,1,5,0,,222C5D,622C5D,ff,Target gear for active shaft
-,18DAF1DA,24,55,1,0,0,,222C60,622C60,ff,DIDs supported in range 2C61 - 2C80
-,18DAF1DA,24,55,1,0,0,,222C80,622C80,ff,DIDs supported in range [$2C81 - $2CA0]
+,18DAF1DA,24,55,1,0,0,,222C60,622C60,4ff,DIDs supported in range 2C61 - 2C80
+,18DAF1DA,24,55,1,0,0,,222C80,622C80,4ff,DIDs supported in range [$2C81 - $2CA0]
 ,18DAF1DA,24,39,1,0,0,rpm,222C9B,622C9B,ff,Automatic Transmission output shaft revolution speed
-,18DAF1DA,24,55,1,0,0,,222D00,622D00,ff,DIDs supported in range 2D01 - 2D20
-,18DAF1DA,24,55,1,0,0,,222D40,622D40,ff,DIDs supported in range 2D41 - 2D60
-,18DAF1DA,24,55,1,0,0,,222D80,622D80,ff,DIDs supported in range [$2D81 - $2DA0]
-,18DAF1DA,24,55,1,0,0,,222E00,622E00,ff,DIDs supported in range 2E01 - 2E20
-,18DAF1DA,24,55,1,0,0,,222E20,622E20,ff,DIDs supported in range [$2E21 - $2E40]
-,18DAF1DA,24,55,1,0,0,,222F00,622F00,ff,DIDs supported in range [$2F01 - $2F20]
-,18DAF1DA,24,55,1,0,0,,222F20,622F20,ff,DIDs supported in range [$2F21 - $2F40]
-,18DAF1DA,24,55,1,0,0,,222F40,622F40,ff,DIDs supported in range [$2F41 - $2F60]
-,18DAF1DA,24,55,1,0,0,,222F60,622F60,ff,DIDs supported in range [$2F61 - $2F80]
-,18DAF1DA,24,55,1,0,0,,223000,623000,ff,DIDs supported in range [$3001 - $3020]
+,18DAF1DA,24,55,1,0,0,,222D00,622D00,4ff,DIDs supported in range 2D01 - 2D20
+,18DAF1DA,24,55,1,0,0,,222D40,622D40,4ff,DIDs supported in range 2D41 - 2D60
+,18DAF1DA,24,55,1,0,0,,222D80,622D80,4ff,DIDs supported in range [$2D81 - $2DA0]
+,18DAF1DA,24,55,1,0,0,,222E00,622E00,4ff,DIDs supported in range 2E01 - 2E20
+,18DAF1DA,24,55,1,0,0,,222E20,622E20,4ff,DIDs supported in range [$2E21 - $2E40]
+,18DAF1DA,24,55,1,0,0,,222F00,622F00,4ff,DIDs supported in range [$2F01 - $2F20]
+,18DAF1DA,24,55,1,0,0,,222F20,622F20,4ff,DIDs supported in range [$2F21 - $2F40]
+,18DAF1DA,24,55,1,0,0,,222F40,622F40,4ff,DIDs supported in range [$2F41 - $2F60]
+,18DAF1DA,24,55,1,0,0,,222F60,622F60,4ff,DIDs supported in range [$2F61 - $2F80]
+,18DAF1DA,24,55,1,0,0,,223000,623000,4ff,DIDs supported in range [$3001 - $3020]
 ,18DAF1DA,30,31,1,0,0,,223001,623001,ff,Handshake Stateflow States,0:init state of Handshake supervisor;1:Hand shake state of Handshake superviso;2:Hand shake 2 state of the Handshake supervisor
 ,18DAF1DA,29,31,1,0,0,,223002,623002,ff,ChargingPlugs_Status,0:Plug Abscent;2:Plug Present;4:Plug Locked;6:2plugs present
 ,18DAF1DA,31,31,1,0,0,,223003,623003,ff,Consolidated FastChargeRelayStatus,0:No Failure;1:Failure detected
@@ -1113,7 +1113,7 @@
 ,18DAF1DA,24,39,.03125,12800,2,N·m,22301D,62301D,ff,Setpoint torque for the internal combustion engine, after torque distribution at crankshaft
 ,18DAF1DA,29,31,1,0,0,,22301E,62301E,ff,Current gear on secondary shaft electrical engine provided by SCM (Shift Control Management),0:neutral gear;1:ZEV1 gear engaged;2:ZEV2 gear engaged;3:Undefined 1;4:Undefined 2
 ,18DAF1DA,29,31,1,0,0,,22301F,62301F,ff,Current gear on thermal engine provided by SCM (Shift Control Management),0:neutral gear;1:ICE1 gear engaged;2:ICE2 gear engaged;3:ICE3 gear engaged;4:ICE4 gear engaged;5:Undefined Left;6:Undefined Right
-,18DAF1DA,24,55,1,0,0,,223020,623020,ff,DIDs supported in range [$3021 - $3040]
+,18DAF1DA,24,55,1,0,0,,223020,623020,4ff,DIDs supported in range [$3021 - $3040]
 ,18DAF1DA,29,31,1,0,0,,223021,623021,ff,SCM actuators control mode,0:no request;1:position control;2:current control (offset learning);3:default mode;4:open-loop control;5:reset mod;6:speed control (offset learning
 ,18DAF1DA,24,31,.1,0,1,mm,223022,623022,1ff,MotorPositionCmd: Set point position of the claw motor_HEVC_LINGBA_R_01
 ,18DAF1DA,30,31,1,0,0,,223023,623023,ff,state of selector position regulation,0:no request;1:activation to shift to high position;2:hold high position
@@ -1140,7 +1140,7 @@
 ,18DAF1DA,24,39,100,0,0,Ohm,22303D,62303D,ff,Measured insulation resistance of the HVB (High Voltage Battery)
 ,18DAF1DA,24,39,.00005,0,3,,22303E,62303E,ff,Equivalent energy of 1% SOC(state of charge)
 ,18DAF1DA,24,31,1,40,0,,22303F,62303F,ff,Temperature of the HVB (High Voltage Battery)
-,18DAF1DA,24,55,1,0,0,,223040,623040,ff,DIDs supported in range [$3041 - $3060]
+,18DAF1DA,24,55,1,0,0,,223040,623040,4ff,DIDs supported in range [$3041 - $3060]
 ,18DAF1DA,29,31,1,0,0,,223041,623041,ff,Validity of status of the HVB (High Voltage Battery),0:HVB VLD;1:HVBSafety;2:MainBMSCommLoss;3:MainPRUNFault;4:BMSChgOpTypeFai;5:BMSNormalOpTypeFail;6:HVBFail;7:HVBWarn
 ,18DAF1DA,24,39,.1,0,1,V,223042,623042,ff,Voltage of HV Bus before the close of relay
 ,18DAF1DA,31,31,1,0,0,,223043,623043,ff,Flag of PEB Cooling Water Temperature is on when PEB temperature is out of range,0:Cooling Water Temperature of PEB is in its range;1:Cooling Water Temperature of PEB is out of its range
@@ -1170,7 +1170,7 @@
 ,18DAF1DA,31,31,1,0,0,,22305B,62305B,ff,Interlock of load of the HV BMS,0:closed;1:opened
 ,18DAF1DA,31,31,1,0,0,,22305C,62305C,ff,Insulation check for charge feedback,0:false-No RIsol Check Mod;1:true- RIsol Check Mode
 ,18DAF1DA,24,39,.5,0,1,N·m,22305D,62305D,1ff,Electrical Machine 2 Motor Torque
-,18DAF1DA,24,55,1,0,0,,223060,623060,ff,DIDs supported in range [$3061 - $3080]
+,18DAF1DA,24,55,1,0,0,,223060,623060,4ff,DIDs supported in range [$3061 - $3080]
 ,18DAF1DA,24,39,.02,0,2,%,223061,623061,ff,Inverter temperature
 ,18DAF1DA,24,39,.5,0,1,N·m,223062,623062,1ff,Electrical motor torque
 ,18DAF1DA,24,39,.02,0,2,%,223063,623063,ff,Electrical moteur temperature
@@ -1238,7 +1238,7 @@
 ,18DAF1DA,136,151,.1,400,1,,22307F,62307F,ff,The 10 lastest chg inlet temp_AC during the chg AC OR inlet temp_DC during the chg DC memorized at the end of batt chg.02
 ,18DAF1DA,152,167,.1,400,1,,22307F,62307F,ff,The 10 lastest chg inlet temp_AC during the chg AC OR inlet temp_DC during the chg DC memorized at the end of batt chg.01
 ,18DAF1DA,168,183,.1,400,1,,22307F,62307F,ff,The 10 lastest chg inlet temp_AC during the chg AC OR inlet temp_DC during the chg DC memorized at the end of batt chg.00
-,18DAF1DA,24,55,1,0,0,,223080,623080,ff,DIDs supported in range [$3081 - $30A0]
+,18DAF1DA,24,55,1,0,0,,223080,623080,4ff,DIDs supported in range [$3081 - $30A0]
 ,18DAF1DA,24,47,1,0,0,min,223081,623081,ff,The 10 lastest Absolute times at the start of battery charge memorized at the end/interruption of battery charge.09
 ,18DAF1DA,48,71,1,0,0,min,223081,623081,ff,The 10 lastest Absolute times at the start of battery charge memorized at the end/interruption of battery charge.08
 ,18DAF1DA,72,95,1,0,0,min,223081,623081,ff,The 10 lastest Absolute times at the start of battery charge memorized at the end/interruption of battery charge.07
@@ -1321,7 +1321,7 @@
 ,18DAF1DA,31,31,1,0,0,,22309C,62309C,ff,High Priority error present in the Fuel Heating System
 ,18DAF1DA,24,31,1,0,0,,22309D,62309D,ff,Fuel Heating System number of pre-heating performed in PREDRIVE mode
 ,18DAF1DA,24,31,1,0,0,,22309E,62309E,ff,Fuel Heating System External release conditions logic state
-,18DAF1DA,24,55,1,0,0,,2230A0,6230A0,ff,DIDs supported in range [$30A1 - $30C0]
+,18DAF1DA,24,55,1,0,0,,2230A0,6230A0,4ff,DIDs supported in range [$30A1 - $30C0]
 ,18DAF1DA,31,31,1,0,0,,2230A2,6230A2,ff,Fuel heating for flex-fuel engines is present or not
 ,18DAF1DA,24,31,.75,64,1,,2230A3,6230A3,ff,Fuel temperature setpoint
 ,18DAF1DA,24,31,.75,64,1,,2230A4,6230A4,ff,Model value of fuel temperature
@@ -1337,7 +1337,7 @@
 ,18DAF1DA,24,39,1,0,0,,2230BB,6230BB,ff,The number of AC Charger starts
 ,18DAF1DA,24,39,.0001,0,3,,2230BC,6230BC,ff,PWM gearbox lever track 1 ratio value
 ,18DAF1DA,31,31,1,0,0,,2230BF,6230BF,ff,End Of Line AC charge Test,0:Test not performed 0;1:Test performed 1
-,18DAF1DA,24,55,1,0,0,,2230C0,6230C0,ff,DIDs supported in range [$30C1 - $30E0]
+,18DAF1DA,24,55,1,0,0,,2230C0,6230C0,4ff,DIDs supported in range [$30C1 - $30E0]
 ,18DAF1DA,24,39,1,0,0,,2230C5,6230C5,ff,Tenth context data for level 2 monitoring function failure
 ,18DAF1DA,24,39,1,0,0,,2230C6,6230C6,ff,Ninth context data for level 2 monitoring function failure
 ,18DAF1DA,24,39,1,0,0,,2230C7,6230C7,ff,Eighth context data for level 2 monitoring function failure.
@@ -1350,14 +1350,14 @@
 ,18DAF1DA,24,39,1,0,0,,2230CE,6230CE,ff,Freeze frame data (1) for level 2 failure diagnosis
 ,18DAF1DA,24,39,1,0,0,,2230CF,6230CF,ff,Freeze frame data (0) for level 2 failure diagnosis
 ,18DAF1DA,24,55,1,-2147483648,0,s,2230D5,6230D5,1ff,Total boost time HEVC to BMS
-,18DAF1DA,24,55,1,0,0,,2230E0,6230E0,ff,DIDs supported in range [$30E1 - $3100]
+,18DAF1DA,24,55,1,0,0,,2230E0,6230E0,4ff,DIDs supported in range [$30E1 - $3100]
 ,18DAF1DA,31,31,1,0,0,,2230F4,6230F4,ff,End Of Line DC combo charge Test,0:DC test not performed;1:DC test performed
 ,18DAF1DA,24,31,1,0,0,,2230F5,6230F5,ff,Plug locking mechanism configuration,0:Nsx_hv_plg_lck_typ_2297a (Kiekert mechanism);1:Nsx_hv_plg_lck_typ_2297b (Kuester mechanism);2:Nsx_hv_plg_lck_typ_2297c  (Tyco locking mechanism);3:Nsx_hv_plg_lck_typ_2297d (Nissan Type1 locking mechanism)
 ,18DAF1DA,31,31,1,0,0,,2230F6,6230F6,ff,Data indicating the presence of the tachygraph in the vehicle
 ,18DAF1DA,31,31,1,0,0,,2230F7,6230F7,ff,Air conditioning ECU type (True from BCM False from HVAC)
 ,18DAF1DA,31,31,1,0,0,,2230F8,6230F8,ff,[Stop and Start Gen2] Sailing Stop MPU Status,0:Deactivated;1:Activated
 ,18DAF1DA,24,39,1,0,0,mV,2230FD,6230FD,ff,Power supply voltage raw acquisition of mastervac pressure sensor
-,18DAF1DA,24,55,1,0,0,,223100,623100,ff,DIDs supported in range [$3101 - $3120]
+,18DAF1DA,24,55,1,0,0,,223100,623100,4ff,DIDs supported in range [$3101 - $3120]
 ,18DAF1DA,24,39,.001525902,0,3,,22310E,62310E,ff,Ratio of filtered MAP signal for CPS check
 ,18DAF1DA,24,39,.1,0,1,,223110,623110,ff,Vector of the consumption data (Auxiliary consumption).00
 ,18DAF1DA,40,55,.1,0,1,,223110,623110,ff,Vector of the consumption data (Auxiliary consumption).01
@@ -1404,13 +1404,13 @@
 ,18DAF1DA,31,31,1,0,0,,223117,623117,ff,Relay request of battery HVAC fan,0:request open;1:request close
 ,18DAF1DA,24,39,1,0,0,,22311B,62311B,ff,CCSL - State of the failures which cause irreversible CC safety failure (level 2) (a)
 ,18DAF1DA,24,39,1,0,0,,22311C,62311C,ff,Carrier for safety failure dignostic for safety monitoring (a)
-,18DAF1DA,24,55,1,0,0,,223120,623120,ff,DIDs supported in range [$3121 - $3140]
+,18DAF1DA,24,55,1,0,0,,223120,623120,4ff,DIDs supported in range [$3121 - $3140]
 ,18DAF1DA,24,31,1,0,0,,22312F,62312F,ff,BSG temperature diagnosis,0:BSG overheat;1:BSG nominal temperature;2:BSG temperature high
 ,18DAF1DA,31,31,1,0,0,,223137,623137,ff,Water pumps and DCDC plants/ ASD activation Stored value,0:pumps deactivation for before factory plant / ASD in case off coolant circuit is empty;1:pumps activation for after factory plant / ASD after the filling of the coolant circuit
 ,18DAF1DA,31,31,1,0,0,,22313A,62313A,ff,Wire frame accessories accelerated idle speed request presence configuration boolean (1 = wire frame present),0:wire frame not present;1:wire frame present
 ,18DAF1DA,31,31,1,0,0,,22313C,62313C,ff,EEM activation request in function of the vehicle state for HV ready request,0:EEM desactivation request for HV ready request;1:EEM activation request for HV ready request
 ,18DAF1DA,24,39,1,0,0,kg,22313D,62313D,ff,Engine oil mass
-,18DAF1DA,24,55,1,0,0,,223140,623140,ff,DIDs supported in range [$3141 - $3160]
+,18DAF1DA,24,55,1,0,0,,223140,623140,4ff,DIDs supported in range [$3141 - $3160]
 ,18DAF1DA,31,31,1,0,0,,223149,623149,ff,HMI guidance enable
 ,18DAF1DA,24,31,1,0,0,,22314A,62314A,ff,Carrier of all the failures which cause SL EcoMode failure
 ,18DAF1DA,24,39,.01,0,2,km/h,22314B,62314B,ff,Requested speed for SL ecomode
@@ -1501,7 +1501,7 @@
 ,18DAF1DA,136,151,1,0,0,min,2233D9,6233D9,ff,($33D9) Total duration of the charge sequence to be read by diag tool.2
 ,18DAF1DA,152,167,1,0,0,min,2233D9,6233D9,ff,($33D9) Total duration of the charge sequence to be read by diag tool.1
 ,18DAF1DA,168,183,1,0,0,min,2233D9,6233D9,ff,($33D9) Total duration of the charge sequence to be read by diag tool.0
-,18DAF1DA,24,55,1,0,0,,223400,623400,ff,DIDs supported in range 3401 - 3420
+,18DAF1DA,24,55,1,0,0,,223400,623400,4ff,DIDs supported in range 3401 - 3420
 ,18DAF1DA,24,39,1,0,0,,223401,623401,ff,SFD Vector 1.47
 ,18DAF1DA,40,55,1,0,0,,223401,623401,ff,SFD Vector 1.46
 ,18DAF1DA,56,71,1,0,0,,223401,623401,ff,SFD Vector 1.45
@@ -1694,8 +1694,8 @@
 ,18DAF1DA,744,759,1,0,0,,223404,623404,ff,SFD Vector 4.02
 ,18DAF1DA,760,775,1,0,0,,223404,623404,ff,SFD Vector 4.01
 ,18DAF1DA,776,791,1,0,0,,223404,623404,ff,SFD Vector 4.00
-,18DAF1DA,24,55,1,0,0,,223420,623420,ff,DIDs supported in range [$3421 - $3440]
-,18DAF1DA,24,55,1,0,0,,223440,623440,ff,DIDs supported in range [$3441 - $3460]
+,18DAF1DA,24,55,1,0,0,,223420,623420,4ff,DIDs supported in range [$3421 - $3440]
+,18DAF1DA,24,55,1,0,0,,223440,623440,4ff,DIDs supported in range [$3441 - $3460]
 ,18DAF1DA,24,31,.01,0,2,,22345E,62345E,ff,Ratio IUPR classe pool.01
 ,18DAF1DA,32,39,.01,0,2,,22345E,62345E,ff,Ratio IUPR classe pool.02
 ,18DAF1DA,40,47,.01,0,2,,22345E,62345E,ff,Ratio IUPR classe pool.03
@@ -1738,15 +1738,15 @@
 ,18DAF1DA,136,151,.1,0,1,kW,2234E4,6234E4,ff,($34E4) Charge power available.2
 ,18DAF1DA,152,167,.1,0,1,kW,2234E4,6234E4,ff,($34E4) Charge power available.1
 ,18DAF1DA,168,183,.1,0,1,kW,2234E4,6234E4,ff,($34E4) Charge power available.0
-,18DAF1DA,24,55,1,0,0,,22EE00,62EE00,ff,DIDs supported in range [EE01 - EE20]
-,18DAF1DA,24,55,1,0,0,,22EE20,62EE20,ff,DIDs supported in range [EE21 - EE40]
-,18DAF1DA,24,55,1,0,0,,22EE40,62EE40,ff,DIDs supported in range [$EE41 - $EE60]
-,18DAF1DA,24,55,1,0,0,,22EE60,62EE60,ff,DIDs supported in range [$EE61 - $EE80]
+,18DAF1DA,24,55,1,0,0,,22EE00,62EE00,4ff,DIDs supported in range [EE01 - EE20]
+,18DAF1DA,24,55,1,0,0,,22EE20,62EE20,4ff,DIDs supported in range [EE21 - EE40]
+,18DAF1DA,24,55,1,0,0,,22EE40,62EE40,4ff,DIDs supported in range [$EE41 - $EE60]
+,18DAF1DA,24,55,1,0,0,,22EE60,62EE60,4ff,DIDs supported in range [$EE61 - $EE80]
 ,18DAF1DA,24,31,1,125,0,%,22EE61,62EE61,ff,$02 - Driver's Demand Engine - Percent Torque
-,18DAF1DA,24,55,1,0,0,,22EE80,62EE80,ff,DIDs supported in range [$EE81 - $EEA0]
-,18DAF1DA,24,55,1,0,0,,22EEA0,62EEA0,ff,DIDs supported in range [$EEA1 - $EEC0]
-,18DAF1DA,24,55,1,0,0,,22EF80,62EF80,ff,DIDs supported in range [$EF81 - $EFA0]
-,18DAF1DA,24,55,1,0,0,,22F000,62F000,ff,DIDs supported in range [$F001 - $F020]
+,18DAF1DA,24,55,1,0,0,,22EE80,62EE80,4ff,DIDs supported in range [$EE81 - $EEA0]
+,18DAF1DA,24,55,1,0,0,,22EEA0,62EEA0,4ff,DIDs supported in range [$EEA1 - $EEC0]
+,18DAF1DA,24,55,1,0,0,,22EF80,62EF80,4ff,DIDs supported in range [$EF81 - $EFA0]
+,18DAF1DA,24,55,1,0,0,,22F000,62F000,4ff,DIDs supported in range [$F001 - $F020]
 ,18DAF1DA,24,31,1,0,0,,22F010,62F010,ff,Fingerprint information.01
 ,18DAF1DA,32,39,1,0,0,,22F010,62F010,ff,Fingerprint information.02
 ,18DAF1DA,40,47,1,0,0,,22F010,62F010,ff,Fingerprint information.03
@@ -1783,7 +1783,7 @@
 ,18DAF1DA,80,87,1,0,0,,22F012,62F012,ff,VehicleManufacturerECUSoftwareNumber (Ref C).03
 ,18DAF1DA,88,95,1,0,0,,22F012,62F012,ff,VehicleManufacturerECUSoftwareNumber (Ref C).02
 ,18DAF1DA,96,103,1,0,0,,22F012,62F012,ff,VehicleManufacturerECUSoftwareNumber (Ref C).01
-,18DAF1DA,24,55,1,0,0,,22F0E0,62F0E0,ff,DIDs supported in range [$F0E1 - $F1000]
+,18DAF1DA,24,55,1,0,0,,22F0E0,62F0E0,4ff,DIDs supported in range [$F0E1 - $F1000]
 ,18DAF1DA,24,31,1,0,0,,22F10D,62F10D,ff,UDS - Diagnostic Protocol Version MBN 10747.1
 ,18DAF1DA,32,39,1,0,0,,22F10D,62F10D,ff,UDS - Diagnostic Protocol Version MBN 10747.2
 ,18DAF1DA,40,47,1,0,0,,22F10D,62F10D,ff,UDS - Diagnostic Protocol Version MBN 10747.3
@@ -1797,7 +1797,7 @@
 ,18DAF1DA,80,87,1,0,0,,22F111,62F111,ff,Hardware Part Number (10 characters).02
 ,18DAF1DA,88,95,1,0,0,,22F111,62F111,ff,Hardware Part Number (10 characters).01
 ,18DAF1DA,96,103,1,0,0,,22F111,62F111,ff,Hardware Part Number (10 characters).00
-,18DAF1DA,24,55,1,0,0,,22F120,62F120,ff,DIDs supported in range [$F121 - $F140]
+,18DAF1DA,24,55,1,0,0,,22F120,62F120,4ff,DIDs supported in range [$F121 - $F140]
 ,18DAF1DA,24,31,1,0,0,,22F121,62F121,2ff,Software Part Number (20 characters).01
 ,18DAF1DA,32,39,1,0,0,,22F121,62F121,2ff,Software Part Number (20 characters).02
 ,18DAF1DA,40,47,1,0,0,,22F121,62F121,2ff,Software Part Number (20 characters).03
@@ -1818,10 +1818,10 @@
 ,18DAF1DA,160,167,1,0,0,,22F121,62F121,2ff,Software Part Number (20 characters).18
 ,18DAF1DA,168,175,1,0,0,,22F121,62F121,2ff,Software Part Number (20 characters).19
 ,18DAF1DA,176,183,1,0,0,,22F121,62F121,2ff,Software Part Number (20 characters).20
-,18DAF1DA,24,55,1,0,0,,22F140,62F140,ff,DIDs supported in range [$F141 - $F160]
+,18DAF1DA,24,55,1,0,0,,22F140,62F140,4ff,DIDs supported in range [$F141 - $F160]
 ,18DAF1DA,24,47,1,0,0,,22F150,62F150,ff,Data Bytes 0, 1 and 2 of Hardware Version Information
-,18DAF1DA,24,47,1,0,0,,22F151,62F151,ff,Software Version Information.0_hex
-,18DAF1DA,48,71,1,0,0,,22F151,62F151,ff,Software Version Information.1_hex
+,18DAF1DA,24,47,1,0,0,,22F151,62F151,4ff,Software Version Information.0_hex
+,18DAF1DA,48,71,1,0,0,,22F151,62F151,4ff,Software Version Information.1_hex
 ,18DAF1DA,24,47,1,0,0,,22F153,62F153,ff,Boot Software Version Information
 ,18DAF1DA,24,39,1,0,0,,22F154,62F154,ff,Data Bytes 0 and 1 of Hardware Supplier Identification
 ,18DAF1DA,24,39,1,0,0,,22F155,62F155,ff,Software Supplier Identification.(Logical Block).1
@@ -1848,7 +1848,7 @@
 ,18DAF1DA,176,183,1,0,0,,22F15B,62F15B,ff,Software Fingerprints (Logical Block).00
 ,18DAF1DA,24,279,1,0,0,,22F180,62F180,2ff,Boot identification
 ,18DAF1DA,32,111,1,0,0,,22F181,62F181,2ff,applicationSoftwareIdentification
-,18DAF1DA,24,39,1,0,0,,22F182,62F182,ff,applicationDataIdentification
+,18DAF1DA,24,39,1,0,0,,22F182,62F182,4ff,applicationDataIdentification
 ,18DAF1DA,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
 ,18DAF1DA,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
 ,18DAF1DA,24,223,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
@@ -1880,7 +1880,7 @@
 ,18DAF1DA,160,167,1,0,0,,22F197,62F197,ff,systemNameorEngineType.18
 ,18DAF1DA,168,175,1,0,0,,22F197,62F197,ff,systemNameorEngineType.19
 ,18DAF1DA,176,183,1,0,0,,22F197,62F197,ff,systemNameorEngineType.20
-,18DAF1DA,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,18DAF1DA,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,18DAF1DA,24,31,1,0,0,,22F1A1,62F1A1,ff,Nissan vehicle Spare Part Number.00
 ,18DAF1DA,32,39,1,0,0,,22F1A1,62F1A1,ff,Nissan vehicle Spare Part Number.01
 ,18DAF1DA,40,47,1,0,0,,22F1A1,62F1A1,ff,Nissan vehicle Spare Part Number.02
@@ -1901,7 +1901,7 @@
 ,18DAF1DA,80,87,1,0,0,,22F1A2,62F1A2,ff,Configuration file reference information written for Nissan vehicles in plant.03
 ,18DAF1DA,88,95,1,0,0,,22F1A2,62F1A2,ff,Configuration file reference information written for Nissan vehicles in plant.02
 ,18DAF1DA,96,103,1,0,0,,22F1A2,62F1A2,ff,Configuration file reference information written for Nissan vehicles in plant.01
-,18DAF1DA,24,55,1,0,0,,22F400,62F400,ff,DIDs supported in range F401 - F420
+,18DAF1DA,24,55,1,0,0,,22F400,62F400,4ff,DIDs supported in range F401 - F420
 ,18DAF1DA,24,24,1,0,0,,22F401,62F401,ff,PID_$F401.7,0:Vbx_mil_prmt_req = OFF or Vbx_mil_flsh_req = OFF;1:Vbx_mil_prmt_req = ON or Vbx_mil_flsh_req = ON
 ,18DAF1DA,25,31,1,0,0,,22F401,62F401,ff,PID_$F401.0
 ,18DAF1DA,32,32,1,0,0,,22F401,62F401,ff,PID_$F401.15,0:---;1:Test not complete
@@ -1960,7 +1960,7 @@
 ,18DAF1DA,24,31,1,0,0,,22F41C,62F41C,ff,OBD requirements to wich vehicle is designed,1:OBD II;2:OBD;3:OBD ans OBD II;4:OBD I;5:NO OBD;6:EOBD;7:EOBD and OBD II;8:EOBD and OBD;9:EOBD- OBD and OBD II;11:EMD;12:EMD+;13:HD OBD-C;14:HD OBD;15:WWH OBD;16:SAE/ISO reserved;17:HD EOBD-I;18:HD EOBD-I N;19:HD EOBD-II;20:IOBD II;21:HD EOBD-VI
 ,18DAF1DA,24,31,1,0,0,,22F41E,62F41E,ff,$01 - Auxiliary Input Status,0:PTO not active (OFF);1:PTO active (ON)
 ,18DAF1DA,24,39,1,0,0,s,22F41F,62F41F,ff,$01 - Time Since Engine Start
-,18DAF1DA,24,55,1,0,0,,22F420,62F420,ff,DIDs supported in range F421 - F440
+,18DAF1DA,24,55,1,0,0,,22F420,62F420,4ff,DIDs supported in range F421 - F440
 ,18DAF1DA,24,39,1,0,0,km,22F421,62F421,ff,Distance travelled while MIL is activated
 ,18DAF1DA,24,39,.0790112154,0,2,kPa,22F422,62F422,ff,$01 - Fuel Pressure relative to manifold vacuum
 ,18DAF1DA,24,39,10,0,0,kPa,22F423,62F423,ff,Fuel rail pressure
@@ -1969,7 +1969,7 @@
 ,18DAF1DA,24,31,.3921568627,0,1,%,22F42E,62F42E,ff,$01 - Commanded Evaporative Purge
 ,18DAF1DA,24,31,.3921568627,0,1,%,22F42F,62F42F,ff,$01 - Fuel Level Input
 ,18DAF1DA,24,31,1,0,0,kPa,22F433,62F433,ff,$01 - Barometric Pressure
-,18DAF1DA,24,55,1,0,0,,22F440,62F440,ff,DIDs supported in range F441 - F460
+,18DAF1DA,24,55,1,0,0,,22F440,62F440,4ff,DIDs supported in range F441 - F460
 ,18DAF1DA,24,24,1,0,0,,22F441,62F441,ff,PID_$F441.24,0:Test complete or not applicable;1:Test not complete
 ,18DAF1DA,25,25,1,0,0,,22F441,62F441,ff,PID_$F441.23,0:Test complete or not applicable;1:Test not complete
 ,18DAF1DA,26,26,1,0,0,,22F441,62F441,ff,PID_$F441.22,0:Test complete or not applicable;1:Test not complete
@@ -2006,7 +2006,7 @@
 ,18DAF1DA,24,39,10,0,0,kPa,22F459,62F459,ff,$01 - Fuel Rail Pressure (absolute)
 ,18DAF1DA,24,31,.392156862745098,0,1,%,22F45B,62F45B,ff,$01 - Hybrid/EV Battery Pack Remaining Charge
 ,18DAF1DA,24,31,1,40,0,,22F45C,62F45C,ff,$01 - Engine Oil Temperature
-,18DAF1DA,24,55,1,0,0,,22F460,62F460,ff,DIDs supported in range [$F461 - $F480]
+,18DAF1DA,24,55,1,0,0,,22F460,62F460,4ff,DIDs supported in range [$F461 - $F480]
 ,18DAF1DA,24,31,1,0,0,,22F465,62F465,ff,$01 - Glow plug lamp status.01
 ,18DAF1DA,32,39,1,0,0,,22F465,62F465,ff,$01 - Glow plug lamp status.02
 ,18DAF1DA,24,31,1,0,0,,22F46C,62F46C,ff,$01 - Commanded Throttle Actuator Control and Relative Throttle Position.01
@@ -2019,22 +2019,22 @@
 ,18DAF1DA,48,63,10,0,0,kPa,22F46E,62F46E,ff,$01 - Commanded injection control pressure.03
 ,18DAF1DA,64,79,10,0,0,kPa,22F46E,62F46E,ff,$01 - Commanded injection control pressure.04
 ,18DAF1DA,80,95,10,0,0,kPa,22F46E,62F46E,ff,$01 - Commanded injection control pressure.05
-,18DAF1DA,24,55,1,0,0,,22F480,62F480,ff,DIDs supported in range [$F481 - $F4A0]
+,18DAF1DA,24,55,1,0,0,,22F480,62F480,4ff,DIDs supported in range [$F481 - $F4A0]
 ,18DAF1DA,24,39,1,32767,0,A,22F49A,62F49A,ff,$01 - Hybrid/EV Vehicle System Data for OBD.04
 ,18DAF1DA,40,71,.01,0,2,V,22F49A,62F49A,1ff,$01 - Hybrid/EV Vehicle System Data for OBD.03
 ,18DAF1DA,72,79,1,0,0,,22F49A,62F49A,ff,$01 - Hybrid/EV Vehicle System Data for OBD.02
 ,18DAF1DA,80,87,1,0,0,,22F49A,62F49A,ff,$01 - Hybrid/EV Vehicle System Data for OBD.01
 ,18DAF1DA,24,39,.02,0,2,g,22F49D,62F49D,ff,$01 - Engine Fuel Rate (except fuel injected directly into the after treatment system ).01
 ,18DAF1DA,40,55,.02,0,2,g,22F49D,62F49D,ff,$01 - Engine Fuel Rate (except fuel injected directly into the after treatment system ).02
-,18DAF1DA,24,55,1,0,0,,22F4A0,62F4A0,ff,DIDs supported in range [$F4A1 - $F4C0]
+,18DAF1DA,24,55,1,0,0,,22F4A0,62F4A0,4ff,DIDs supported in range [$F4A1 - $F4C0]
 ,18DAF1DA,24,39,.03125,0,2,,22F4A2,62F4A2,ff,$01 - cylinder fuel rate
-,18DAF1DA,24,55,1,0,0,,22F600,62F600,ff,DIDs supported in range [$F601 - $F620]
+,18DAF1DA,24,55,1,0,0,,22F600,62F600,4ff,DIDs supported in range [$F601 - $F620]
 ,18DAF1DA,24,31,1,0,0,,22F601,62F601,ff,OBDMID-Oxygen sensor diagnostic for service $06 (OBD $F601).1
 ,18DAF1DA,32,39,1,0,0,,22F601,62F601,ff,OBDMID-Oxygen sensor diagnostic for service $06 (OBD $F601).2
 ,18DAF1DA,40,55,1,0,0,,22F601,62F601,ff,OBDMID-Oxygen sensor diagnostic for service $06 (OBD $F601).3
 ,18DAF1DA,56,71,1,0,0,,22F601,62F601,ff,OBDMID-Oxygen sensor diagnostic for service $06 (OBD $F601).4
 ,18DAF1DA,72,87,1,0,0,,22F601,62F601,ff,OBDMID-Oxygen sensor diagnostic for service $06 (OBD $F601).5
-,18DAF1DA,24,55,1,0,0,,22F620,62F620,ff,DIDs supported in range F621 - F640
+,18DAF1DA,24,55,1,0,0,,22F620,62F620,4ff,DIDs supported in range F621 - F640
 ,18DAF1DA,24,39,1,0,0,,22F621,62F621,ff,$06 - Catalyst diagnostic.05
 ,18DAF1DA,40,55,1,0,0,,22F621,62F621,ff,$06 - Catalyst diagnostic.04
 ,18DAF1DA,56,71,1,0,0,,22F621,62F621,ff,$06 - Catalyst diagnostic.03
@@ -2050,11 +2050,11 @@
 ,18DAF1DA,128,143,1,0,0,,22F631,62F631,ff,$06 - EGR System Diagnostic.02
 ,18DAF1DA,144,151,.01,0,2,,22F631,62F631,ff,$06 - EGR System Diagnostic.01
 ,18DAF1DA,152,159,1,0,0,,22F631,62F631,ff,$06 - EGR System Diagnostic.00
-,18DAF1DA,24,55,1,0,0,,22F640,62F640,ff,DIDs supported in range F641- F660
+,18DAF1DA,24,55,1,0,0,,22F640,62F640,4ff,DIDs supported in range F641- F660
 ,18DAF1DA,24,55,1,0,0,,22F641,62F641,1ff,Downstream Oxygen sensor heater monitoring.01
 ,18DAF1DA,56,87,1,0,0,,22F641,62F641,1ff,Downstream Oxygen sensor heater monitoring.00
-,18DAF1DA,24,55,1,0,0,,22F660,62F660,ff,DIDs supported in range F661- F680
-,18DAF1DA,24,55,1,0,0,,22F680,62F680,ff,DIDs supported in range F681- F6A0
+,18DAF1DA,24,55,1,0,0,,22F660,62F660,4ff,DIDs supported in range F661- F680
+,18DAF1DA,24,55,1,0,0,,22F680,62F680,4ff,DIDs supported in range F681- F6A0
 ,18DAF1DA,24,39,1,0,0,,22F681,62F681,ff,$06 - Fuel system diagnostic.09
 ,18DAF1DA,40,55,1,0,0,,22F681,62F681,ff,$06 - Fuel system diagnostic.08
 ,18DAF1DA,56,71,1,0,0,,22F681,62F681,ff,$06 - Fuel system diagnostic.07
@@ -2065,31 +2065,31 @@
 ,18DAF1DA,120,135,1,0,0,,22F681,62F681,ff,$06 - Fuel system diagnostic.02
 ,18DAF1DA,136,143,.0000305,0,3,,22F681,62F681,ff,$06 - Fuel system diagnostic.01
 ,18DAF1DA,144,151,1,0,0,,22F681,62F681,ff,$06 - Fuel system diagnostic.00
-,18DAF1DA,24,31,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.21 (82h Test ID)
+,18DAF1DA,24,31,1,0,0,,22F685,62F685,4ff,Turbocharger Monitor diagnostic.21 (82h Test ID)
 ,18DAF1DA,32,39,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.22 (04h Unit and Scaling)
 ,18DAF1DA,40,55,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.23 (TEST VALUE)
 ,18DAF1DA,56,71,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.24 (TEST LIMIT MIN)
 ,18DAF1DA,72,87,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.25 (TEST LIMIT MAX)
-,18DAF1DA,96,103,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.11 (81h Test ID)
+,18DAF1DA,96,103,1,0,0,,22F685,62F685,4ff,Turbocharger Monitor diagnostic.11 (81h Test ID)
 ,18DAF1DA,104,111,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.12 (04h Unit and Scaling)
 ,18DAF1DA,112,127,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.13 (TEST VALUE)
 ,18DAF1DA,128,143,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.14 (TEST LIMIT MIN)
 ,18DAF1DA,144,159,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.15 (TEST LIMIT MAX)
-,18DAF1DA,168,175,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.01 (80h Test ID)
+,18DAF1DA,168,175,1,0,0,,22F685,62F685,4ff,Turbocharger Monitor diagnostic.01 (80h Test ID)
 ,18DAF1DA,176,183,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.02 (02h Unit and Scaling)
 ,18DAF1DA,184,199,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.03 (TEST VALUE)
 ,18DAF1DA,200,215,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.04 (TEST LIMIT MIN)
 ,18DAF1DA,216,231,1,0,0,,22F685,62F685,ff,Turbocharger Monitor diagnostic.05 (TEST LIMIT MAX)
-,18DAF1DA,24,55,1,0,0,,22F6A0,62F6A0,ff,DIDs supported in range F6A1- F6C0
+,18DAF1DA,24,55,1,0,0,,22F6A0,62F6A0,4ff,DIDs supported in range F6A1- F6C0
 ,18DAF1DA,24,39,1,0,0,,22F6A1,62F6A1,ff,$06 - Misfire diagnostic.05
 ,18DAF1DA,40,55,1,0,0,,22F6A1,62F6A1,ff,$06 - Misfire diagnostic.04
 ,18DAF1DA,56,71,1,0,0,,22F6A1,62F6A1,ff,$06 - Misfire diagnostic.03
 ,18DAF1DA,72,79,1,0,0,,22F6A1,62F6A1,ff,$06 - Misfire diagnostic.02
 ,18DAF1DA,80,87,1,0,0,,22F6A1,62F6A1,ff,$06 - Misfire diagnostic.01
-,18DAF1DA,24,55,1,0,0,,22F6C0,62F6C0,ff,DIDs supported in range F6C1- F6E0
-,18DAF1DA,24,55,1,0,0,,22F6E0,62F6E0,ff,DIDs supported in range [$F6E1- $F700]
+,18DAF1DA,24,55,1,0,0,,22F6C0,62F6C0,4ff,DIDs supported in range F6C1- F6E0
+,18DAF1DA,24,55,1,0,0,,22F6E0,62F6E0,4ff,DIDs supported in range [$F6E1- $F700]
 ,18DAF1DA,24,31,1,0,0,,22F6E3,62F6E3,ff,EGR Low Pressure System Diagnostic
-,18DAF1DA,24,31,1,0,0,,22F6E5,62F6E5,ff,Engine Cooling Temperature Monitoring.1 (Test ID)
+,18DAF1DA,24,31,1,0,0,,22F6E5,62F6E5,4ff,Engine Cooling Temperature Monitoring.1 (Test ID)
 ,18DAF1DA,32,39,1,0,0,,22F6E5,62F6E5,ff,Engine Cooling Temperature Monitoring.2 (Unit and Scaling)
 ,18DAF1DA,40,55,1,0,0,,22F6E5,62F6E5,ff,Engine Cooling Temperature Monitoring.3 (TEST VALUE)
 ,18DAF1DA,56,71,1,0,0,,22F6E5,62F6E5,ff,Engine Cooling Temperature Monitoring.4 (TEST LIMIT MIN)
@@ -2109,11 +2109,11 @@
 ,18DAF1DA,40,55,1,0,0,,22F6E8,62F6E8,ff,$06 - Evaporation diagnosis.(TEST VALUE)
 ,18DAF1DA,56,71,1,0,0,,22F6E8,62F6E8,ff,$06 - Evaporation diagnosis.(TEST LIMIT MIN)
 ,18DAF1DA,72,87,1,0,0,,22F6E8,62F6E8,ff,$06 - Evaporation diagnosis.(TEST LIMIT MAX)
-,18DAF1DA,24,55,1,0,0,,22F800,62F800,ff,DIDs supported in range [$F801 - $F820]
+,18DAF1DA,24,55,1,0,0,,22F800,62F800,4ff,DIDs supported in range [$F801 - $F820]
 ,18DAF1DA,32,167,1,0,0,,22F802,62F802,2ff,OBDMID-Vehicle identification number.1
 ,18DAF1DA,24,31,1,0,0,,22F804,62F804,ff,OBD calibration identifications.0
 ,18DAF1DA,32,159,1,0,0,,22F804,62F804,2ff,OBD calibration identifications.1
-,18DAF1DA,32,63,1,0,0,,22F806,62F806,ff,Calibration verification numbers
+,18DAF1DA,32,63,1,0,0,,22F806,62F806,4ff,Calibration verification numbers
 ,18DAF1DA,24,31,1,0,0,,22F808,62F808,ff,IUPR gasoline.00_nr
 ,18DAF1DA,32,47,1,0,0,,22F808,62F808,ff,IUPR gasoline.IUPR : general denominator
 ,18DAF1DA,48,63,1,0,0,,22F808,62F808,ff,IUPR gasoline.IUPR : Ignition counter
@@ -2175,7 +2175,7 @@
 ,18DAF1DA,272,287,1,0,0,,22F80B,62F80B,ff,IUPR diesel.15
 ,18DAF1DA,288,303,1,0,0,,22F80B,62F80B,ff,IUPR diesel.16
 ,18DAF1DA,304,319,1,0,0,,22F80B,62F80B,ff,IUPR diesel.17
-,18DAF1DA,24,31,1,0,0,,22F80F,62F80F,ff,$09 - exhaustRegulationorTypeApprovalNumber.00
+,18DAF1DA,24,31,1,0,0,,22F80F,62F80F,4ff,$09 - exhaustRegulationorTypeApprovalNumber.00
 ,18DAF1DA,88,167,1,0,0,,22F80F,62F80F,2ff,$09 - exhaustRegulationorTypeApprovalNumber.01
 ,18DAF1DA,24,31,1,0,0,,22F810,62F810,2ff,$09 - PROTOCOL IDENTIFICATION
 ,18DAF1DA,24,31,1,0,0,,22F811,62F811,2ff,$09 - WWH OBD GTR NUMBER.11
@@ -2189,7 +2189,7 @@
 ,18DAF1DA,88,95,1,0,0,,22F811,62F811,2ff,$09 - WWH OBD GTR NUMBER.03
 ,18DAF1DA,96,103,1,0,0,,22F811,62F811,2ff,$09 - WWH OBD GTR NUMBER.02
 ,18DAF1DA,104,111,1,0,0,,22F811,62F811,2ff,$09 - WWH OBD GTR NUMBER.01
-,18DAF1DA,24,55,1,0,0,,22FD90,62FD90,ff,DIDs supported in range [$FD91 - $FD9F]
+,18DAF1DA,24,55,1,0,0,,22FD90,62FD90,4ff,DIDs supported in range [$FD91 - $FD9F]
 ,18DAF1DA,24,39,.09765625,0,2,%,22FD91,62FD91,ff,Current CPU load for P0
 ,18DAF1DA,24,39,.09765625,0,2,%,22FD92,62FD92,ff,Maximum detected CPU load for P0
 ,18DAF1DA,24,39,.09765625,0,2,%,22FD93,62FD93,ff,Current CPU load for S1
@@ -2198,4 +2198,4 @@
 ,18DAF1DA,24,39,.09765625,0,2,%,22FD96,62FD96,ff,Maximum detected CPU load for S2
 ,18DAF1DA,24,31,1,0,0,,22FD97,62FD97,ff,Error code, which represents a failure detected by MC
 ,18DAF1DA,24,31,1,0,0,,22FD98,62FD98,ff,Error code which represents an error on MC detected by MU
-,18DAF1DA,24,55,1,0,0,,22FEE0,62FEE0,ff,DIDs supported in range FD01 - FEFF
+,18DAF1DA,24,55,1,0,0,,22FEE0,62FEE0,4ff,DIDs supported in range FD01 - FEFF

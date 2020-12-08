@@ -23,7 +23,7 @@
 ,762,24,24,1,0,0,,22015A,62015A,ff,ExternalAngleSensor,0:Disabled;1:Enabled
 ,762,24,31,1,0,0,%,220160,620160,ff,DeratingAssistanceLevel
 ,762,24,25,1,0,0,,220162,620162,ff,MultidriveTuningMap,0:Slot #0 is currently used;1:Slot #1 is currently used;2:Slot #2 is currently used;3:Slot #3 is currently used
-,762,24,39,1,0,0,,220163,620163,ff,Internal fault code for DTC
+,762,24,39,1,0,0,,220163,620163,4ff,Internal fault code for DTC
 ,762,30,31,1,0,0,,220164,620164,ff,EPSDongleState,1:EPS ECU Operational- Dongle learnt;2:EPS ECU operational- Dongle blank;3:EPS ECU not operational
 ,762,30,31,1,0,0,,220165,620165,ff,DonglePairingCounter
 ,762,30,31,1,0,0,,220166,620166,ff,DongleError,0:No error;1:EEPROM problem on Dongle_ID;2:EEPROM problem on Dongle_pairing_counter;3:Motor disconnected from ECU
@@ -39,7 +39,7 @@
 ,762,24,25,1,0,0,,220182,620182,ff,HFP_Activation,0:Disabled;1:Enabled (HFP);2:Enabled (IPA);3:not used
 ,762,24,39,.1,32767,1,°/s,220185,620185,ff,InternalSteeringWheelVelocity
 ,762,24,24,1,0,0,,220186,620186,ff,Dedicated TJP steerfeel tuning mode (Slot3) Activation,0:Disabled;1:Enabled
-,762,24,39,1,0,0,,220187,620187,ff,HOD_Compensation_Routine switch counter
+,762,24,39,1,0,0,,220187,620187,4ff,HOD_Compensation_Routine switch counter
 ,762,24,31,.01,127,2,N·m,220188,620188,ff,HOD TSU Compensation
 ,762,24,31,1,0,0,%,220189,620189,ff,HOD TSU Comp Ratio
 ,762,24,31,.01,127,2,N·m,220190,620190,ff,HOD Friction Compensation
@@ -47,7 +47,7 @@
 ,762,24,31,.01,127,2,N·m,220192,620192,ff,HOD Friction_th F1
 ,762,24,31,.01,127,2,N·m,220193,620193,ff,HOD Friction_th F2
 ,762,24,31,.01,127,2,N·m,220194,620194,ff,HOD Friction_th F3
-,762,24,183,1,0,0,,220195,620195,ff,Internal fault store (last 10 minor faults)
+,762,24,183,1,0,0,,220195,620195,4ff,Internal fault store (last 10 minor faults)
 ,762,24,26,1,0,0,,220196,620196,ff,HOD Compensation Activation,0:no HOD compensation;1:Apply only TSU Offset Compensation;2:Apply TSU Offset Compensation + Friction Compensation;3:Reset of TSU offset compensation results;4:Reset of Friction compensation results;5:Not used;6:Not used bis;7:Not used ter
 ,762,24,27,1,0,0,,2201BD,6201BD,ff,LKA_LDW_Activation,0:LKA disabled- LDW disabled-             DebugFrame disabled (default);1:LKA disabled- LDW enabled (IVI)-      DebugFrame disabled;2:LKA disabled- LDW enabled (Meter)- DebugFrame disabled;3:not used;4:LKA enabled- LDW disabled-             DebugFrame disabled;5:LKA enabled- LDW enabled (IVI)-      DebugFrame disabled;6:LKA enabled- LDW enabled (Meter)- DebugFrame disabled;7:not used';8:LKA disabled- LDW disabled-             DebugFrame enabled;9:LKA disabled- LDW enabled (IVI)-      DebugFrame enabled;10:LKA disabled- LDW enabled (Meter)- DebugFrame enabled;11:not used'';12:LKA enabled- LDW disabled-             DebugFrame enabled;13:LKA enabled- LDW enabled (IVI)-      DebugFrame enabled;14:LKA enabled- LDW enabled (Meter)- DebugFrame enabled;15:not used'''
 ,762,24,24,1,0,0,,2201C3,6201C3,ff,DongleFrames_Activation,0:Dongle frames not sent;1:Dongle frames sent
@@ -64,18 +64,18 @@
 ,762,24,39,.01,0,2,kph,2201D1,6201D1,ff,VehicleSpeed
 ,762,24,25,1,0,0,,2201D2,6201D2,ff,EngineStatus,0:Stopped;1:Reserved;2:Running;3:Driven
 ,762,24,24,1,0,0,,2201D3,6201D3,ff,CAN_DTC_filter
-,762,24,39,1,0,0,,2201D4,6201D4,ff,Derating counter
-,762,24,47,1,0,0,,2201D5,6201D5,ff,RackEndStop counter
-,762,24,47,1,0,0,,2201D6,6201D6,ff,AntiKickBack counter
-,762,24,47,1,0,0,,2201D7,6201D7,ff,HFP_Activation counter
-,762,24,95,1,0,0,,2201D8,6201D8,ff,HFP_Deactivation counter
-,762,24,279,1,0,0,,2201D9,6201D9,ff,LKA counter
-,762,24,271,1,0,0,,2201DA,6201DA,ff,LDW counter
-,762,24,47,1,0,0,,2201DB,6201DB,ff,TJP simple counter
-,762,24,271,1,0,0,,2201DC,6201DC,ff,TJP counter
-,762,24,183,1,0,0,,2201DD,6201DD,ff,PDC counter
-,762,24,39,1,0,0,,2201DE,6201DE,ff,InternalReset counter
-,762,24,39,1,0,0,,2201DF,6201DF,ff,UnmanagedShutdown counter
+,762,24,39,1,0,0,,2201D4,6201D4,4ff,Derating counter
+,762,24,47,1,0,0,,2201D5,6201D5,4ff,RackEndStop counter
+,762,24,47,1,0,0,,2201D6,6201D6,4ff,AntiKickBack counter
+,762,24,47,1,0,0,,2201D7,6201D7,4ff,HFP_Activation counter
+,762,24,95,1,0,0,,2201D8,6201D8,4ff,HFP_Deactivation counter
+,762,24,279,1,0,0,,2201D9,6201D9,4ff,LKA counter
+,762,24,271,1,0,0,,2201DA,6201DA,4ff,LDW counter
+,762,24,47,1,0,0,,2201DB,6201DB,4ff,TJP simple counter
+,762,24,271,1,0,0,,2201DC,6201DC,4ff,TJP counter
+,762,24,183,1,0,0,,2201DD,6201DD,4ff,PDC counter
+,762,24,39,1,0,0,,2201DE,6201DE,4ff,InternalReset counter
+,762,24,39,1,0,0,,2201DF,6201DF,4ff,UnmanagedShutdown counter
 ,762,24,24,1,0,0,,2201E0,6201E0,ff,AntiKickBack currently active,0:Not active;1:Active
 ,762,24,24,1,0,0,,2201E1,6201E1,ff,HandFreeParking currently active,0:Function not running;1:Function currently running
 ,762,24,24,1,0,0,,2201E2,6201E2,ff,LaneKeepingAssist currently active,0:Not active;1:Active
@@ -85,17 +85,17 @@
 ,762,24,24,1,0,0,,2201E6,6201E6,ff,PullDriftCompensation currently active,0:Not active;1:Active
 ,762,24,27,1,0,0,,2201E7,6201E7,ff,CoastStop_IdleStop_Activation,0:All flags disabled;1:Idle_stop flag enabled- others disabled;2:Coast_stop flag enabled- others disabled;4:Torque_on flag enabled- others disabled;5:Idle_stop and Torque_on flags enabled- others disabled;6:Coast_stop and Torque_on flags enabled- others disabled;7:Assist_authorize flag disabled- others enabled;8:Assist_authorize flag enabled- others disabled;9:Idle_stop and Assist_authorize flags enabled- others disabled;10:Coast_stop and Assist_authorize flags enabled- others disabled;11:Torque_on flag disabled- others enabled;12:Idle_stop and Coast_stop flags disabled- others enabled;13:Coast_stop flag disabled- others enabled;14:Idle_stop flag disabled- others enabled;15:All flags enabled
 ,762,24,47,1,0,0,kph,2201E8,6201E8,ff,MileageAtFirstOccurrence
-,762,24,31,1,0,0,,2201EA,6201EA,ff,CurrentlyActiveFunctions
+,762,24,31,1,0,0,,2201EA,6201EA,4ff,CurrentlyActiveFunctions
 ,762,24,24,1,0,0,,2201EB,6201EB,ff,AbsoluteSteeringWheelAngleCalibration_Activation,0:Calibration not authorized;1:Calibration authorized
 ,762,24,24,1,0,0,,22C000,62C000,ff,SAF_Activation,0:Disabled;1:Enabled
 ,762,24,24,1,0,0,,22C200,62C200,ff,ESP Activation,0:Disabled;1:Enabled
 ,762,24,31,1,0,0,,22D001,62D001,ff,Occurrence Counter
-,762,24,71,1,0,0,,22D002,62D002,ff,DebugInfo_snapshot
+,762,24,71,1,0,0,,22D002,62D002,4ff,DebugInfo_snapshot
 ,762,24,151,1,0,0,,22F010,62F010,2ff,Fingerprint
 ,762,24,103,1,0,0,,22F011,62F011,2ff,IndexSrvData
 ,762,24,103,1,0,0,,22F012,62F012,2ff,OperationalReference
 ,762,24,47,1,0,0,km,22F0D0,62F0D0,ff,Mileage
-,762,24,279,1,0,0,,22F180,62F180,ff,BootVersion
+,762,24,279,1,0,0,,22F180,62F180,4ff,BootVersion
 ,762,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
 ,762,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
 ,762,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
@@ -104,6 +104,6 @@
 ,762,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
 ,762,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,762,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
-,762,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,762,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,762,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
 ,762,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationFileReferenceLink_N

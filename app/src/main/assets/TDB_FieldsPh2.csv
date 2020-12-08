@@ -404,20 +404,20 @@
 ,763,24,55,.01,0,2,km,222605,622605,1ff,ClusterDistBeforeReadjust
 ,763,24,31,1,0,0,,222606,622606,ff,DistanceUpdateByDiagCounter
 ,763,24,31,1,0,0,,222607,622607,ff,DistanceUpdateByExternalECUCounter
-,763,24,39,1,0,0,,222701,622701,ff,ClusterSWInformation.ClusterBasicSWNumber
-,763,40,55,1,0,0,,222701,622701,ff,ClusterSWInformation.ClusterApplicativeSWNumber
-,763,56,71,1,0,0,,222701,622701,ff,ClusterSWInformation.ClusterGraphicalRessourceNumber
-,763,72,87,1,0,0,,222701,622701,ff,ClusterSWInformation.ClusterNavGraphicsRessourceNumber
-,763,88,103,1,0,0,,222701,622701,ff,ClusterSWInformation.ClusterSoundRessourceNumber
-,763,24,55,1,0,0,,222703,622703,ff,CANMessageSetsExtended.CANVMessageSetNumberExtended
-,763,56,87,1,0,0,,222703,622703,ff,CANMessageSetsExtended.CANMMessageSetNumberExtended
+,763,24,39,1,0,0,,222701,622701,4ff,ClusterSWInformation.ClusterBasicSWNumber
+,763,40,55,1,0,0,,222701,622701,4ff,ClusterSWInformation.ClusterApplicativeSWNumber
+,763,56,71,1,0,0,,222701,622701,4ff,ClusterSWInformation.ClusterGraphicalRessourceNumber
+,763,72,87,1,0,0,,222701,622701,4ff,ClusterSWInformation.ClusterNavGraphicsRessourceNumber
+,763,88,103,1,0,0,,222701,622701,4ff,ClusterSWInformation.ClusterSoundRessourceNumber
+,763,24,55,1,0,0,,222703,622703,4ff,CANMessageSetsExtended.CANVMessageSetNumberExtended
+,763,56,87,1,0,0,,222703,622703,4ff,CANMessageSetsExtended.CANMMessageSetNumberExtended
 ,763,24,39,.1,0,1,,222803,622803,ff,ExternalTempWire
 ,763,24,31,1,0,0,,222804,622804,ff,InternalTempMaxRecorded
 ,763,24,39,1,0,0,,222805,622805,ff,FANActivationCounter
 ,763,24,55,1,0,0,,222806,622806,1ff,FANActivationTotalTime
 ,763,24,31,1,0,0,,222807,622807,ff,NumberResetsCausedByFailuresGIP
 ,763,24,31,1,0,0,,222808,622808,ff,NumberIntentedResetsGIP
-,763,24,151,1,0,0,,22F010,62F010,ff,ProgrammingOperationFingerprint
+,763,24,151,1,0,0,,22F010,62F010,4ff,ProgrammingOperationFingerprint
 ,763,24,103,1,0,0,,22F012,62F012,2ff,OperationalReference
 ,763,24,103,1,0,0,,22F013,62F013,2ff,SecondaryOperationalReference
 ,763,24,47,1,0,0,km,22F0D0,62F0D0,1ff,Odometer of the last occurence
@@ -435,5 +435,5 @@
 ,763,24,95,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,763,24,55,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,763,24,103,1,0,0,,22F196,62F196,2ff,TypeApprovalNumber
-,763,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
-,763,24,663,1,0,0,,22FD1B,62FD1B,ff,Record_reset
+,763,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
+,763,24,663,1,0,0,,22FD1B,62FD1B,4ff,Record_reset

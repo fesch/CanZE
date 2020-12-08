@@ -41,13 +41,13 @@
 ,775,32,39,.06,-100,2,V,220205,620205,ff,USM.BatteryVoltage
 ,775,30,31,1,0,0,,220206,620206,ff,IDM.ParkingBrakeBindingRequest,0:No parking brake binding requested;1:Parking brake binding requested
 ,775,31,31,1,0,0,,220210,620210,ff,CheckSum_Parameters,0:Checksum of the configuration data not correct;1:All checksums correct
-,775,24,95,1,0,0,,220213,620213,ff,VehicleConfiguration
+,775,24,95,1,0,0,,220213,620213,4ff,VehicleConfiguration
 ,775,40,47,.001,0,3,nu,220213,620213,ff,VehicleConfiguration.PHY_RearGearRatio
 ,775,48,63,1,0,0,kg,220213,620213,ff,VehicleConfiguration.PHY_VehMasse
 ,775,64,79,.001,0,3,m,220213,620213,ff,VehicleConfiguration.PHY_WheelRadius
 ,775,80,95,.0001,0,3,Kg*m²,220213,620213,ff,VehicleConfiguration.PHY_EngineInertia
 ,775,24,31,1,0,0,,220214,620214,ff,Studies_CAN_Frames,0:STD_LOGGER_ON;1:TMO_LOGGER_ON;2:DAA_AG_LOGGER_ON;3:SANDA_LOGGER_ON;255:LOGGER_OFF
-,775,24,39,1,0,0,,220220,620220,ff,EPB.ConfigurationMode
+,775,24,39,1,0,0,,220220,620220,4ff,EPB.ConfigurationMode
 ,775,26,27,1,0,0,,220220,620220,ff,EPB.ConfigurationMode.StopAndStartMode,0:Not Stop And Start;1:Stop And Start;3:Not Configured
 ,775,28,29,1,0,0,,220220,620220,ff,EPB.ConfigurationMode.AutoApplyInhibition,0:AutoApply;1:AutoApplyInhibited;3:Not Configured
 ,775,30,31,1,0,0,,220220,620220,ff,EPB.ConfigurationMode.GearBoxType,0:MT;1:AT- CVT;2:-;3:Not Configured
@@ -123,12 +123,12 @@
 ,775,31,31,1,0,0,,220291,620291,ff,IOCTRL.ApplyBothActuator_Start
 ,775,31,31,1,0,0,,220292,620292,ff,IOCTRL.ReleaseBothActuator_Start
 ,775,24,31,1,0,0,,22EF01,62EF01,ff,SupplierFaultID,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;41:41;42:42;43:43;44:44;45:45;46:46;47:47;48:48;49:49;50:50;51:51;52:52;53:53;54:54;55:55;56:56;57:57;58:58;59:59;60:60;61:61;62:62;63:63;64:64;65:65;66:66;67:67;68:68;69:69;70:70;71:71;72:72;73:73;74:74;75:75;76:76;77:77;78:78;79:79;80:80;81:81;82:82;83:83;84:84;85:85;86:86;87:87;88:88;89:89;90:90;91:91;92:92;93:93;94:94;95:95;96:96;97:97;98:98;99:99;100:100;101:101;102:102;103:103;104:104;105:105;106:106;107:107;108:108;109:109;110:110;111:111;112:112;113:113;114:114;115:115;116:116;117:117;118:118;119:119;120:120;121:121;122:122;123:123;124:124;125:125;126:126;127:127;128:128;129:129;130:130;131:131;132:132;133:133;134:134;135:135;136:136;137:137;138:138;139:139;140:140;141:141;142:142;143:143;144:144;145:145;146:146;147:147
-,775,24,151,1,0,0,,22F010,62F010,ff,programmingOperationFingerPrint
+,775,24,151,1,0,0,,22F010,62F010,4ff,programmingOperationFingerPrint
 ,775,24,95,1,0,0,,22F011,62F011,2ff,IndexSrvData
 ,775,24,103,1,0,0,,22F012,62F012,2ff,Operational Reference
 ,775,24,47,1,0,0,km,22F0D0,62F0D0,ff,Mileage
 ,775,28,31,1,0,0,,22F0D1,62F0D1,ff,DTC_Occurrence
-,775,24,63,1,0,0,,22F180,62F180,ff,bootSoftwareIdentification
+,775,24,63,1,0,0,,22F180,62F180,4ff,bootSoftwareIdentification
 ,775,24,103,1,0,0,,22F182,62F182,2ff,CalibrationNumber
 ,775,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
 ,775,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
@@ -138,6 +138,6 @@
 ,775,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
 ,775,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,775,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
-,775,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,775,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,775,24,103,1,0,0,,22F1A1,62F1A1,2ff,SparePartNumberNissan
 ,775,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationFileReferenceLink_N

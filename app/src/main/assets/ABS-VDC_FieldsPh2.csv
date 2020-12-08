@@ -131,7 +131,7 @@
 ,18DAF12D,120,151,1,0,0,,224B3A,624B3A,2ff,Steering Wheel Angle Traceability.Sequence
 ,18DAF12D,24,31,1,0,0,,224B3B,624B3B,ff,LWC function inhibition state,0:Activated;170:Deactivated;255:Not configured
 ,18DAF12D,24,31,1,0,0,,224B3C,624B3C,ff,ESC Orientation,1:Config 1 ( Left hand drive / DaG);2:Config 2 (Right hand drive / DaD);3:Config 3;4:Config 4;5:Config 5;6:Config 6;7:Config 7;8:Config 8;255:Not configured
-,18DAF12D,24,39,1,0,0,,224B3D,624B3D,ff,Supplier fault code
+,18DAF12D,24,39,1,0,0,,224B3D,624B3D,4ff,Supplier fault code
 ,18DAF12D,24,31,1,0,0,,224B3E,624B3E,ff,ASR function inhibition state,0:Activated;170:Deactivated;255:Not Configured
 ,18DAF12D,24,31,1,0,0,,224B3F,624B3F,ff,AEB Type,1:ADAS;2:RADAR;255:Not configured
 ,18DAF12D,24,31,1,0,0,,224B40,624B40,ff,AYC function inhibition state,0:Activated;170:Deactivated;255:Not configured
@@ -181,14 +181,14 @@
 ,18DAF12D,272,287,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDistanceLevel.C6
 ,18DAF12D,288,303,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDistanceLevel.C7
 ,18DAF12D,304,319,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDistanceLevel.C8
-,18DAF12D,320,351,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.TimeBySpeedLevel.C1
-,18DAF12D,352,383,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.TimeBySpeedLevel.C2
-,18DAF12D,384,415,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.TimeBySpeedLevel.C3
-,18DAF12D,416,447,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.TimeBySpeedLevel.C4
-,18DAF12D,448,479,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.TimeBySpeedLevel.C5
-,18DAF12D,480,511,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.TimeBySpeedLevel.C6
-,18DAF12D,512,543,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.TimeBySpeedLevel.C7
-,18DAF12D,544,575,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.TimeBySpeedLevel.C8
+,18DAF12D,320,351,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C1
+,18DAF12D,352,383,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C2
+,18DAF12D,384,415,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C3
+,18DAF12D,416,447,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C4
+,18DAF12D,448,479,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C5
+,18DAF12D,480,511,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C6
+,18DAF12D,512,543,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C7
+,18DAF12D,544,575,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C8
 ,18DAF12D,576,591,2,0,0,min,224BA0,624BA0,ff,ECU Activities.GeneralData.Time by temperature Level.C1
 ,18DAF12D,592,607,2,0,0,min,224BA0,624BA0,ff,ECU Activities.GeneralData.Time by temperature Level.C2
 ,18DAF12D,608,623,2,0,0,min,224BA0,624BA0,ff,ECU Activities.GeneralData.Time by temperature Level.C3
@@ -246,37 +246,37 @@
 ,18DAF12D,440,447,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C8.K3
 ,18DAF12D,448,455,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C8.K4
 ,18DAF12D,456,471,1280,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABS duration
-,18DAF12D,472,535,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ASR duration
+,18DAF12D,472,535,1,0,0,,224BA2,624BA2,4ff,ECU Activities.ActivationTimers.ASR duration
 ,18DAF12D,536,551,1280,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.AYC duration
 ,18DAF12D,552,567,80,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.MSR duration
 ,18DAF12D,568,583,80,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.HBA duration
 ,18DAF12D,584,599,20.48,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.HSA duration
 ,18DAF12D,600,615,1280,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.LWC duration
 ,18DAF12D,616,639,320,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.HBB duration
-,18DAF12D,24,55,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C1
-,18DAF12D,56,87,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C2
-,18DAF12D,88,119,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C3
-,18DAF12D,120,151,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C4
-,18DAF12D,152,183,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C5
-,18DAF12D,184,215,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C6
-,18DAF12D,216,247,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C7
-,18DAF12D,248,279,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C8
-,18DAF12D,280,311,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C1
-,18DAF12D,312,343,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C2
-,18DAF12D,344,375,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C3
-,18DAF12D,376,407,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C4
-,18DAF12D,408,439,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C5
-,18DAF12D,440,471,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C1
-,18DAF12D,472,503,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C2
-,18DAF12D,504,535,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C3
-,18DAF12D,536,567,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C4
+,18DAF12D,24,55,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C1
+,18DAF12D,56,87,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C2
+,18DAF12D,88,119,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C3
+,18DAF12D,120,151,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C4
+,18DAF12D,152,183,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C5
+,18DAF12D,184,215,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C6
+,18DAF12D,216,247,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C7
+,18DAF12D,248,279,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C8
+,18DAF12D,280,311,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C1
+,18DAF12D,312,343,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C2
+,18DAF12D,344,375,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C3
+,18DAF12D,376,407,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C4
+,18DAF12D,408,439,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C5
+,18DAF12D,440,471,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C1
+,18DAF12D,472,503,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C2
+,18DAF12D,504,535,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C3
+,18DAF12D,536,567,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C4
 ,18DAF12D,568,591,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C5
 ,18DAF12D,592,615,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C6
 ,18DAF12D,616,639,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C7
 ,18DAF12D,640,663,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C8
 ,18DAF12D,664,679,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C9
-,18DAF12D,680,711,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbySWALevel.C1
-,18DAF12D,712,743,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbySWALevel.C2
+,18DAF12D,680,711,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.MissionDurationbySWALevel.C1
+,18DAF12D,712,743,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.MissionDurationbySWALevel.C2
 ,18DAF12D,744,767,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbySWALevel.C3
 ,18DAF12D,768,791,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbySWALevel.C4
 ,18DAF12D,792,815,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbySWALevel.C5
@@ -550,29 +550,29 @@
 ,18DAF12D,24,31,1,0,0,,224BDA,624BDA,ff,ConfigModeSSF1,0:ConfigModeRenault;170:ConfigModeNissan;255:NotConfigured
 ,18DAF12D,24,31,1,0,0,,224BDB,624BDB,ff,ConfigModeSSF2,0:ConfigModeRenault;170:ConfigModeNissan;255:NotConfigured
 ,18DAF12D,24,31,1,0,0,,224BF0,624BF0,ff,TPMS Indirect function inhibition state,0:TPMS indirect configuration activated;170:TPMS indirect configuration not activated;255:TPMS indirect configuration not configured
-,18DAF12D,24,823,1,0,0,,224BF1,624BF1,ff,TPMS MappingBlock0
-,18DAF12D,24,823,1,0,0,,224BF2,624BF2,ff,TPMS MappingBlock1
-,18DAF12D,24,823,1,0,0,,224BF3,624BF3,ff,TPMS MappingBlock2
-,18DAF12D,24,823,1,0,0,,224BF4,624BF4,ff,TPMS MappingBlock3
-,18DAF12D,24,823,1,0,0,,224BF5,624BF5,ff,TPMS MappingBlock4
-,18DAF12D,24,823,1,0,0,,224BF6,624BF6,ff,TPMS MappingBlock5
-,18DAF12D,24,823,1,0,0,,224BF7,624BF7,ff,TPMS MappingBlock6
-,18DAF12D,24,823,1,0,0,,224BF8,624BF8,ff,TPMS MappingBlock7
-,18DAF12D,24,823,1,0,0,,224BF9,624BF9,ff,TPMS MappingBlock8
-,18DAF12D,24,823,1,0,0,,224BFA,624BFA,ff,TPMS MappingBlock9
-,18DAF12D,24,39,1,0,0,,224BFB,624BFB,ff,TPMS FunctionalMappingChecksum
+,18DAF12D,24,823,1,0,0,,224BF1,624BF1,4ff,TPMS MappingBlock0
+,18DAF12D,24,823,1,0,0,,224BF2,624BF2,4ff,TPMS MappingBlock1
+,18DAF12D,24,823,1,0,0,,224BF3,624BF3,4ff,TPMS MappingBlock2
+,18DAF12D,24,823,1,0,0,,224BF4,624BF4,4ff,TPMS MappingBlock3
+,18DAF12D,24,823,1,0,0,,224BF5,624BF5,4ff,TPMS MappingBlock4
+,18DAF12D,24,823,1,0,0,,224BF6,624BF6,4ff,TPMS MappingBlock5
+,18DAF12D,24,823,1,0,0,,224BF7,624BF7,4ff,TPMS MappingBlock6
+,18DAF12D,24,823,1,0,0,,224BF8,624BF8,4ff,TPMS MappingBlock7
+,18DAF12D,24,823,1,0,0,,224BF9,624BF9,4ff,TPMS MappingBlock8
+,18DAF12D,24,823,1,0,0,,224BFA,624BFA,4ff,TPMS MappingBlock9
+,18DAF12D,24,39,1,0,0,,224BFB,624BFB,4ff,TPMS FunctionalMappingChecksum
 ,18DAF12D,24,31,1,0,0,,224BFC,624BFC,1ff,TPMS CarDetectionSensitivityLevel,0:normal;-1:robust;-2:max robust;-3:sensitive (positioning);-4:normal (positioning);-5:robust (positioning);-6:max robust (positioning);1:sensitive
 ,18DAF12D,24,31,1,0,0,,224BFD,624BFD,ff,TPMS DataStreamLogType,5:CAN - Renault dev frame - TPI data disabled;4:CAN - TPI with only basic functions- Renault dev frame unavailable;3:CAN - TPI- no cog;1:XCP - TPI- fully active and data;0:Disabled;6:CAN - TPI- reduced data- no cog  + Renault dev frame
 ,18DAF12D,24,31,50,0,0,km,224BFE,624BFE,ff,TPMS KmForAutomaticCalibDemand
 ,18DAF12D,24,31,2,0,0,d,224BFF,624BFF,ff,TPMS DaysForAutomaticCalibDemand
-,18DAF12D,24,31,1,0,0,,224C00,624C00,ff,TPMS WarningIndicatorPunctureFrontLeft
-,18DAF12D,24,31,1,0,0,,224C01,624C01,ff,TPMS WarningIndicatorPunctureFrontRight
-,18DAF12D,24,31,1,0,0,,224C02,624C02,ff,TPMS WarningIndicatorPunctureRearLeft
-,18DAF12D,24,31,1,0,0,,224C03,624C03,ff,TPMS WarningIndicatorPunctureRearRight
-,18DAF12D,24,31,1,0,0,,224C04,624C04,ff,TPMS WarningIndicatorDiffusionFrontLeft
-,18DAF12D,24,31,1,0,0,,224C05,624C05,ff,TPMS WarningIndicatorDiffusionFrontRight
-,18DAF12D,24,31,1,0,0,,224C06,624C06,ff,TPMS WarningIndicatorDiffusionRearLeft
-,18DAF12D,24,31,1,0,0,,224C07,624C07,ff,TPMS WarningIndicatorDiffusionRearRight
+,18DAF12D,24,31,1,0,0,,224C00,624C00,4ff,TPMS WarningIndicatorPunctureFrontLeft
+,18DAF12D,24,31,1,0,0,,224C01,624C01,4ff,TPMS WarningIndicatorPunctureFrontRight
+,18DAF12D,24,31,1,0,0,,224C02,624C02,4ff,TPMS WarningIndicatorPunctureRearLeft
+,18DAF12D,24,31,1,0,0,,224C03,624C03,4ff,TPMS WarningIndicatorPunctureRearRight
+,18DAF12D,24,31,1,0,0,,224C04,624C04,4ff,TPMS WarningIndicatorDiffusionFrontLeft
+,18DAF12D,24,31,1,0,0,,224C05,624C05,4ff,TPMS WarningIndicatorDiffusionFrontRight
+,18DAF12D,24,31,1,0,0,,224C06,624C06,4ff,TPMS WarningIndicatorDiffusionRearLeft
+,18DAF12D,24,31,1,0,0,,224C07,624C07,4ff,TPMS WarningIndicatorDiffusionRearRight
 ,18DAF12D,24,39,5,0,0,Km,224C08,624C08,ff,TPMS CalibrationKmHistory0
 ,18DAF12D,24,39,5,0,0,Km,224C09,624C09,ff,TPMS CalibrationKmHistory1
 ,18DAF12D,24,39,5,0,0,Km,224C0A,624C0A,ff,TPMS CalibrationKmHistory2
@@ -639,21 +639,21 @@
 ,18DAF12D,36,37,1,0,0,,224C26,624C26,ff,TPMS CalibStatusRollSpectrum_RR.2,2:fine;1:rough;0:not done;3:calibration finished
 ,18DAF12D,38,39,1,0,0,,224C26,624C26,ff,TPMS CalibStatusRollSpectrum_RR.1,2:fine;1:rough;0:not done;3:calibration finished
 ,18DAF12D,24,119,1,0,0,,224C27,624C27,2ff,TPMS Version
-,18DAF12D,24,55,1,0,0,,224C28,624C28,ff,TPMS DiagnosticDatalist
+,18DAF12D,24,55,1,0,0,,224C28,624C28,4ff,TPMS DiagnosticDatalist
 ,18DAF12D,24,39,.2,0,1,s,224C29,624C29,ff,TPMS HighSenModeDiffusionActiveTimer
 ,18DAF12D,24,39,.2,0,1,s,224C2A,624C2A,ff,TPMS HighSenModePunctureActiveTimer
-,18DAF12D,24,31,1,0,0,,224C2B,624C2B,ff,TPMS HighSenModeActive
+,18DAF12D,24,31,1,0,0,,224C2B,624C2B,4ff,TPMS HighSenModeActive
 ,18DAF12D,24,31,2.55,0,0,%,224C2C,624C2C,ff,TPMS WSAModuleOntime
 ,18DAF12D,24,31,1,0,0,%,224C2D,624C2D,ff,TPMS WRAModuleOntime
-,18DAF12D,24,31,1,0,0,,224C2E,624C2E,ff,TPMS AutomaticAlertByKm
-,18DAF12D,24,31,1,0,0,,224C2F,624C2F,ff,TPMS AutomaticAlertByDays
-,18DAF12D,24,31,1,0,0,,224C30,624C30,ff,TPMS HighSenModeEnabling
-,18DAF12D,24,95,1,0,0,,224D00,624D00,ff,EPB.PhysicalConfiguration
+,18DAF12D,24,31,1,0,0,,224C2E,624C2E,4ff,TPMS AutomaticAlertByKm
+,18DAF12D,24,31,1,0,0,,224C2F,624C2F,4ff,TPMS AutomaticAlertByDays
+,18DAF12D,24,31,1,0,0,,224C30,624C30,4ff,TPMS HighSenModeEnabling
+,18DAF12D,24,95,1,0,0,,224D00,624D00,4ff,EPB.PhysicalConfiguration
 ,18DAF12D,40,47,.001,0,3,nu,224D00,624D00,ff,EPB.PhysicalConfiguration.RearGearRatio
 ,18DAF12D,48,63,1,0,0,kg,224D00,624D00,ff,EPB.PhysicalConfiguration.VehMasse
 ,18DAF12D,64,79,.001,0,3,m,224D00,624D00,ff,EPB.PhysicalConfiguration.WheelRadius
 ,18DAF12D,80,95,.0001,0,3,Kg*m²,224D00,624D00,ff,EPB.PhysicalConfiguration.EngineInertia
-,18DAF12D,24,39,1,0,0,,224D01,624D01,ff,EPB.VehicleConfiguration
+,18DAF12D,24,39,1,0,0,,224D01,624D01,4ff,EPB.VehicleConfiguration
 ,18DAF12D,26,27,1,0,0,,224D01,624D01,ff,EPB.VehicleConfiguration.AutoApplyInhibitionMode,0:AutoApplyEnabled;1:AutoApplyInhibited;3:Not Configured
 ,18DAF12D,28,29,1,0,0,,224D01,624D01,ff,EPB.VehicleConfiguration.StopAndStartMode,0:Not Stop And Start;1:Stop And Start;3:Not Configured
 ,18DAF12D,30,31,1,0,0,,224D01,624D01,ff,EPB.VehicleConfiguration.SCUVehicleTypeMode,0:Not SCU Vehicle;1:SCU Vehicle;3:Not Configured
@@ -709,7 +709,7 @@
 ,18DAF12D,24,24,1,0,0,,224D30,624D30,ff,EPB-RC_AssemblyCheck
 ,18DAF12D,24,24,1,0,0,,224D31,624D31,ff,EPB-RC_MaintenanceOpen
 ,18DAF12D,24,24,1,0,0,,224D32,624D32,ff,EPB-RC_MaintenanceClose
-,18DAF12D,24,39,1,0,0,,22EF01,62EF01,ff,Supplier fault code specified
+,18DAF12D,24,39,1,0,0,,22EF01,62EF01,4ff,Supplier fault code specified
 ,18DAF12D,24,151,1,0,0,,22F010,62F010,2ff,Fingerprint
 ,18DAF12D,24,103,1,0,0,,22F011,62F011,2ff,IndexSrvData
 ,18DAF12D,24,103,1,0,0,,22F012,62F012,2ff,Calibration file reference
@@ -729,7 +729,7 @@
 ,18DAF12D,24,63,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,18DAF12D,24,207,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,18DAF12D,24,103,1,0,0,,22F196,62F196,2ff,exhaustRegulationOrTypeApprovalNumberDataIdentifier
-,18DAF12D,24,279,1,0,0,,22F197,62F197,ff,SystemNameOrEngineType
-,18DAF12D,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,18DAF12D,24,279,1,0,0,,22F197,62F197,4ff,SystemNameOrEngineType
+,18DAF12D,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,18DAF12D,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
 ,18DAF12D,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationDataReferenceAfterConfigurationProcess

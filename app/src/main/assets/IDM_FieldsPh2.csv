@@ -4,7 +4,7 @@
 ,700,32,47,10,0,0,ms,1002,5002,ff,SessionParameterRecord_2_P2.max
 ,700,16,31,1,0,0,ms,1003,5003,ff,SessionParameterRecord1_P2.max
 ,700,32,47,10,0,0,ms,1003,5003,ff,SessionParameterRecord_2_P2.max
-,700,24,55,1,0,0,,220001,620001,ff,DataRead.FFD_DTC LOCAL CODE
+,700,24,55,1,0,0,,220001,620001,4ff,DataRead.FFD_DTC LOCAL CODE
 ,700,24,39,.025,0,2,V,220100,620100,ff,Ignition Voltage.Ignition Voltage
 ,700,24,26,1,0,0,,220101,620101,ff,Control Module Malf and Gade.Gade,0:DiagMuxDTC is DISABLED(00h);1:DiagMuxDTC is DISABLED(01h);2:DiagMuxDTC is DISABLED(02h);3:DiagMuxDTC is ENABLED;4:Not Used(04h);5:Not Used(05h);6:Not Used(06h);7:Unavailable
 ,700,24,39,.01,0,2,,22010E,62010E,ff,Vehicle Speed
@@ -185,5 +185,5 @@
 ,700,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
 ,700,24,79,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,700,24,39,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
-,700,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,700,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,700,24,103,1,0,0,,22F1A1,62F1A1,2ff,vehicleManufacturerSparePartNumber_N

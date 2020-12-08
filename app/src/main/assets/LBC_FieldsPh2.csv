@@ -1,4 +1,4 @@
-,18DAF1DB,24,55,1,0,0,,229000,629000,ff,DIDs supported in range [$9001 - $9020]
+,18DAF1DB,24,55,1,0,0,,229000,629000,4ff,DIDs supported in range [$9001 - $9020]
 ,18DAF1DB,24,39,.01,300,2,%,229001,629001,ff,Battery SOC(Zxx_bsoc_avg)
 ,18DAF1DB,24,39,.01,0,2,%,229002,629002,ff,Battery USOC(Wxx_usoc_avg)
 ,18DAF1DB,24,39,.01,0,2,%,229003,629003,ff,Battery SOH(Zxx_sohe_avg)
@@ -71,7 +71,7 @@
 ,18DAF1DB,64,71,1,0,0,,22901D,62901D,2ff,Functional Identification Number (FIN).06
 ,18DAF1DB,72,79,1,0,0,,22901D,62901D,2ff,Functional Identification Number (FIN).07
 ,18DAF1DB,80,87,1,0,0,,22901D,62901D,2ff,Functional Identification Number (FIN).08
-,18DAF1DB,24,55,1,0,0,,229020,629020,ff,DIDs supported in range [$9021 - $9040]
+,18DAF1DB,24,55,1,0,0,,229020,629020,4ff,DIDs supported in range [$9021 - $9040]
 ,18DAF1DB,24,39,.000976563,0,3,V,229021,629021,ff,Cell 1 Voltage(Wtx_cell_v[0])
 ,18DAF1DB,24,39,.000976563,0,3,V,229022,629022,ff,Cell 2 Voltage(Wtx_cell_v[1])
 ,18DAF1DB,24,39,.000976563,0,3,V,229023,629023,ff,Cell 3 Voltage(Wtx_cell_v[2])
@@ -103,7 +103,7 @@
 ,18DAF1DB,24,39,.000976563,0,3,V,22903D,62903D,ff,Cell 29 Voltage(Wtx_cell_v[28])
 ,18DAF1DB,24,39,.000976563,0,3,V,22903E,62903E,ff,Cell 30 Voltage(Wtx_cell_v[29])
 ,18DAF1DB,24,39,.000976563,0,3,V,22903F,62903F,ff,Cell 31 Voltage(Wtx_cell_v[30])
-,18DAF1DB,24,55,1,0,0,,229040,629040,ff,DIDs supported in range [$9041 - $9060]
+,18DAF1DB,24,55,1,0,0,,229040,629040,4ff,DIDs supported in range [$9041 - $9060]
 ,18DAF1DB,24,39,.000976563,0,3,V,229041,629041,ff,Cell 32 Voltage(Wtx_cell_v[31])
 ,18DAF1DB,24,39,.000976563,0,3,V,229042,629042,ff,Cell 33 Voltage(Wtx_cell_v[32])
 ,18DAF1DB,24,39,.000976563,0,3,V,229043,629043,ff,Cell 34 Voltage(Wtx_cell_v[33])
@@ -135,7 +135,7 @@
 ,18DAF1DB,24,39,.000976563,0,3,V,22905D,62905D,ff,Cell 60 Voltage(Wtx_cell_v[59])
 ,18DAF1DB,24,39,.000976563,0,3,V,22905E,62905E,ff,Cell 61 Voltage(Wtx_cell_v[60])
 ,18DAF1DB,24,39,.000976563,0,3,V,22905F,62905F,ff,Cell 62 Voltage(Wtx_cell_v[61])
-,18DAF1DB,24,55,1,0,0,,229060,629060,ff,DIDs supported in range [$9061 - $9080]
+,18DAF1DB,24,55,1,0,0,,229060,629060,4ff,DIDs supported in range [$9061 - $9080]
 ,18DAF1DB,24,39,.000976563,0,3,V,229061,629061,ff,Cell 63 Voltage(Wtx_cell_v[62])
 ,18DAF1DB,24,39,.000976563,0,3,V,229062,629062,ff,Cell 64 Voltage(Wtx_cell_v[63])
 ,18DAF1DB,24,39,.000976563,0,3,V,229063,629063,ff,Cell 65 Voltage(Wtx_cell_v[64])
@@ -167,7 +167,7 @@
 ,18DAF1DB,24,39,.000976563,0,3,V,22907D,62907D,ff,Cell 91 Voltage(Wtx_cell_v[90])
 ,18DAF1DB,24,39,.000976563,0,3,V,22907E,62907E,ff,Cell 92 Voltage(Wtx_cell_v[91])
 ,18DAF1DB,24,39,.000976563,0,3,V,22907F,62907F,ff,Cell 93 Voltage(Wtx_cell_v[92])
-,18DAF1DB,24,55,1,0,0,,229080,629080,ff,DIDs supported in range [$9081 - $90A0]
+,18DAF1DB,24,55,1,0,0,,229080,629080,4ff,DIDs supported in range [$9081 - $90A0]
 ,18DAF1DB,24,39,.000976563,0,3,V,229081,629081,ff,Cell 94 Voltage(Wtx_cell_v[93])
 ,18DAF1DB,24,39,.000976563,0,3,V,229082,629082,ff,Cell 95 Voltage(Wtx_cell_v[94])
 ,18DAF1DB,24,39,.000976563,0,3,V,229083,629083,ff,Cell 96 Voltage(Wtx_cell_v[95])
@@ -199,7 +199,7 @@
 ,18DAF1DB,24,39,.000976563,0,3,V,22909D,62909D,ff,Cell 122 Voltage(Wtx_cell_v[121])
 ,18DAF1DB,24,39,.000976563,0,3,V,22909E,62909E,ff,Cell 123 Voltage(Wtx_cell_v[122])
 ,18DAF1DB,24,39,.000976563,0,3,V,22909F,62909F,ff,Cell 124 Voltage(Wtx_cell_v[123])
-,18DAF1DB,24,55,1,0,0,,2290A0,6290A0,ff,DIDs supported in range [$90A1 - $90C0]
+,18DAF1DB,24,55,1,0,0,,2290A0,6290A0,4ff,DIDs supported in range [$90A1 - $90C0]
 ,18DAF1DB,24,39,.000976563,0,3,V,2290A1,6290A1,ff,Cell 125 Voltage(Wtx_cell_v[124])
 ,18DAF1DB,24,39,.000976563,0,3,V,2290A2,6290A2,ff,Cell 126 Voltage(Wtx_cell_v[125])
 ,18DAF1DB,24,39,.000976563,0,3,V,2290A3,6290A3,ff,Cell 127 Voltage(Wtx_cell_v[126])
@@ -231,7 +231,7 @@
 ,18DAF1DB,24,39,.000976563,0,3,V,2290BD,6290BD,ff,Cell 153 Voltage(Wtx_cell_v[152])
 ,18DAF1DB,24,39,.000976563,0,3,V,2290BE,6290BE,ff,Cell 154 Voltage(Wtx_cell_v[153])
 ,18DAF1DB,24,39,.000976563,0,3,V,2290BF,6290BF,ff,Cell 155 Voltage(Wtx_cell_v[154])
-,18DAF1DB,24,55,1,0,0,,2290C0,6290C0,ff,DIDs supported in range [$90C1 - $90E0]
+,18DAF1DB,24,55,1,0,0,,2290C0,6290C0,4ff,DIDs supported in range [$90C1 - $90E0]
 ,18DAF1DB,24,39,.000976563,0,3,V,2290C1,6290C1,ff,Cell 156 Voltage(Wtx_cell_v[155])
 ,18DAF1DB,24,39,.000976563,0,3,V,2290C2,6290C2,ff,Cell 157 Voltage(Wtx_cell_v[156])
 ,18DAF1DB,24,39,.000976563,0,3,V,2290C3,6290C3,ff,Cell 158 Voltage(Wtx_cell_v[157])
@@ -263,7 +263,7 @@
 ,18DAF1DB,24,39,.000976563,0,3,V,2290DD,6290DD,ff,Cell 184 Voltage(Wtx_cell_v[183])
 ,18DAF1DB,24,39,.000976563,0,3,V,2290DE,6290DE,ff,Cell 185 Voltage(Wtx_cell_v[184])
 ,18DAF1DB,24,39,.000976563,0,3,V,2290DF,6290DF,ff,Cell 186 Voltage(Wtx_cell_v[185])
-,18DAF1DB,24,55,1,0,0,,2290E0,6290E0,ff,DIDs supported in range [$90E1 - $9100]
+,18DAF1DB,24,55,1,0,0,,2290E0,6290E0,4ff,DIDs supported in range [$90E1 - $9100]
 ,18DAF1DB,24,39,.000976563,0,3,V,2290E1,6290E1,ff,Cell 187 Voltage(Wtx_cell_v[186])
 ,18DAF1DB,24,39,.000976563,0,3,V,2290E2,6290E2,ff,Cell 188 Voltage(Wtx_cell_v[187])
 ,18DAF1DB,24,39,.000976563,0,3,V,2290E3,6290E3,ff,Cell 189 Voltage(Wtx_cell_v[188])
@@ -295,7 +295,7 @@
 ,18DAF1DB,24,39,.000976563,0,3,V,2290FD,6290FD,ff,Cell 215 Voltage(Wtx_cell_v[214])
 ,18DAF1DB,24,39,.000976563,0,3,V,2290FE,6290FE,ff,Cell 216 Voltage(Wtx_cell_v[215])
 ,18DAF1DB,24,39,.000976563,0,3,V,2290FF,6290FF,ff,Cell 217 Voltage(Wtx_cell_v[216])
-,18DAF1DB,24,55,1,0,0,,229100,629100,ff,DIDs supported in range [$9101 - $9120]
+,18DAF1DB,24,55,1,0,0,,229100,629100,4ff,DIDs supported in range [$9101 - $9120]
 ,18DAF1DB,24,39,.000976563,0,3,V,229101,629101,ff,Cell 218 Voltage(Wtx_cell_v[217])
 ,18DAF1DB,24,39,.000976563,0,3,V,229102,629102,ff,Cell 219 Voltage(Wtx_cell_v[218])
 ,18DAF1DB,24,39,.000976563,0,3,V,229103,629103,ff,Cell 220 Voltage(Wtx_cell_v[219])
@@ -327,7 +327,7 @@
 ,18DAF1DB,24,39,.000976563,0,3,V,22911D,62911D,ff,Cell 246 Voltage(Wtx_cell_v[245])
 ,18DAF1DB,24,39,.000976563,0,3,V,22911E,62911E,ff,Cell 247 Voltage(Wtx_cell_v[246])
 ,18DAF1DB,24,39,.000976563,0,3,V,22911F,62911F,ff,Cell 248 Voltage(Wtx_cell_v[247])
-,18DAF1DB,24,55,1,0,0,,229120,629120,ff,DIDs supported in range [$9121 - $9140]
+,18DAF1DB,24,55,1,0,0,,229120,629120,4ff,DIDs supported in range [$9121 - $9140]
 ,18DAF1DB,24,39,.000976563,0,3,V,229121,629121,ff,Cell 249 Voltage(Wtx_cell_v[248])
 ,18DAF1DB,24,39,.000976563,0,3,V,229122,629122,ff,Cell 250 Voltage(Wtx_cell_v[249])
 ,18DAF1DB,24,39,.000976563,0,3,V,229123,629123,ff,Cell 251 Voltage(Wtx_cell_v[250])
@@ -650,10 +650,10 @@
 ,18DAF1DB,24,39,.0625,640,2,°C,22913D,62913D,ff,Temperature sensor n°13 value[Wtx_temp[12]]
 ,18DAF1DB,24,39,.0625,640,2,°C,22913E,62913E,ff,Temperature sensor n°14 value[Wtx_temp[13]]
 ,18DAF1DB,24,39,.0625,640,2,°C,22913F,62913F,ff,Temperature sensor n°15 value[Wtx_temp[14]]
-,18DAF1DB,24,55,1,0,0,,229140,629140,ff,DIDs supported in range [$9141 - $9160]
+,18DAF1DB,24,55,1,0,0,,229140,629140,4ff,DIDs supported in range [$9141 - $9160]
 ,18DAF1DB,24,39,.0625,640,2,°C,229141,629141,ff,Temperature sensor n°16 value[Wtx_temp[15]]
 ,18DAF1DB,24,39,.0625,640,2,°C,229142,629142,ff,Temperature sensor n°17 value[Wtx_temp[16]]
-,18DAF1DB,24,55,1,0,0,,229160,629160,ff,DIDs supported in range [$9161 - $9180]
+,18DAF1DB,24,55,1,0,0,,229160,629160,4ff,DIDs supported in range [$9161 - $9180]
 ,18DAF1DB,28,39,.001953125,0,3,V,229173,629173,ff,Cooling temperature(raw voltage) T1_MEA(Wxx_raw_temp_1_v)
 ,18DAF1DB,28,39,.001953125,0,3,V,229174,629174,ff,Skin temperature(raw voltage) T2_MEA(Wxx_raw_temp_2_v)
 ,18DAF1DB,24,31,.0625,0,2,V,229175,629175,ff,Temperature sensor n°1 raw AD voltage(Wtx_raw_temp_v[0])
@@ -667,20 +667,20 @@
 ,18DAF1DB,24,31,.0625,0,2,V,22917D,62917D,ff,Temperature sensor n°9 raw AD voltage(Wtx_raw_temp_v[8])
 ,18DAF1DB,24,31,.0625,0,2,V,22917E,62917E,ff,Temperature sensor n°10 raw AD voltage(Wtx_raw_temp_v[9])
 ,18DAF1DB,24,31,.0625,0,2,V,22917F,62917F,ff,Temperature sensor n°11 raw AD voltage(Wtx_raw_temp_v[10])
-,18DAF1DB,24,55,1,0,0,,229180,629180,ff,DIDs supported in range [$9181 - $91A0]
+,18DAF1DB,24,55,1,0,0,,229180,629180,4ff,DIDs supported in range [$9181 - $91A0]
 ,18DAF1DB,24,31,.0625,0,2,V,229181,629181,ff,Temperature sensor n°12 raw AD voltage(Wtx_raw_temp_v[11])
 ,18DAF1DB,24,31,.0625,0,2,V,229182,629182,ff,Temperature sensor n°13 raw AD voltage(Wtx_raw_temp_v[12])
 ,18DAF1DB,24,31,.0625,0,2,V,229183,629183,ff,Temperature sensor n°14 raw AD voltage(Wtx_raw_temp_v[13])
 ,18DAF1DB,24,31,.0625,0,2,V,229184,629184,ff,Temperature sensor n°15 raw AD voltage(Wtx_raw_temp_v[14])
 ,18DAF1DB,24,31,.0625,0,2,V,229185,629185,ff,Temperature sensor n°16 raw AD voltage(Wtx_raw_temp_v[15])
-,18DAF1DB,24,55,1,0,0,,2291A0,6291A0,ff,DIDs supported in range [$91A1 - $91C0]
+,18DAF1DB,24,55,1,0,0,,2291A0,6291A0,4ff,DIDs supported in range [$91A1 - $91C0]
 ,18DAF1DB,24,39,.0625,640,2,°C,2291B7,6291B7,ff,Board temperature (Main CPU)(Wxx_raw_cpu_temp)
 ,18DAF1DB,24,39,.01,300,2,%,2291B9,6291B9,ff,Battery SOC min(Zxx_bsoc_min)
 ,18DAF1DB,24,39,.01,300,2,%,2291BA,6291BA,ff,Battery SOC max(Zxx_bsoc_max)
 ,18DAF1DB,24,39,.1,0,1,%,2291BC,6291BC,ff,Battery SOH (Available Power calculation)(Zxx_sohap)
 ,18DAF1DB,24,39,.1,0,1,%,2291BD,6291BD,ff,Battery SOH (Generated Power calculation)(Zxx_sohgp)
 ,18DAF1DB,28,39,.001953125,0,3,V,2291BE,6291BE,ff,ADC 5V reference / P5VPREF_DIAG (MAIN CPU)(Wxx_raw_5v_ref_diag)
-,18DAF1DB,24,55,1,0,0,,2291C0,6291C0,ff,DIDs supported in range [$91C1 - $91E0]
+,18DAF1DB,24,55,1,0,0,,2291C0,6291C0,4ff,DIDs supported in range [$91C1 - $91E0]
 ,18DAF1DB,24,47,1,0,0,min,2291C1,6291C1,ff,Pack Time Life (since 1st power-up)(Wxx_abs_time_pack)
 ,18DAF1DB,24,39,.25,0,1,mOhm,2291C6,6291C6,ff,DC resistance (charge direction)(Wxx_dcr_chg)
 ,18DAF1DB,24,39,.25,0,1,mOhm,2291C7,6291C7,ff,DC resistance (discharge direction)(Wxx_dcr_dchg)
@@ -763,11 +763,11 @@
 ,18DAF1DB,392,407,1,0,0,h,2291D2,6291D2,ff,Parking history (T°Max/BSOC)(Zxx_prk_mtrx).02
 ,18DAF1DB,408,423,1,0,0,h,2291D2,6291D2,ff,Parking history (T°Max/BSOC)(Zxx_prk_mtrx).01
 ,18DAF1DB,31,31,1,0,0,%,2291DF,6291DF,ff,Precharge relay diag feedback (RELAY2_DIAG)(Wbx_rly_2_ctl_dg)
-,18DAF1DB,24,55,1,0,0,,2291E0,6291E0,ff,DIDs supported in range [$91E1 - $9200]
-,18DAF1DB,24,1047,1,0,0,,2291E1,6291E1,ff,Mission history(Ztx_mission_mtrx_[0_15])
-,18DAF1DB,24,1047,1,0,0,,2291E2,6291E2,ff,Mission history(Ztx_mission_mtrx_[16_31])
-,18DAF1DB,24,1047,1,0,0,,2291E3,6291E3,ff,Mission history(Ztx_mission_mtrx_[32_47])
-,18DAF1DB,24,1047,1,0,0,,2291E4,6291E4,ff,Mission history(Ztx_mission_mtrx_[48_63])
+,18DAF1DB,24,55,1,0,0,,2291E0,6291E0,4ff,DIDs supported in range [$91E1 - $9200]
+,18DAF1DB,24,1047,1,0,0,,2291E1,6291E1,4ff,Mission history(Ztx_mission_mtrx_[0_15])
+,18DAF1DB,24,1047,1,0,0,,2291E2,6291E2,4ff,Mission history(Ztx_mission_mtrx_[16_31])
+,18DAF1DB,24,1047,1,0,0,,2291E3,6291E3,4ff,Mission history(Ztx_mission_mtrx_[32_47])
+,18DAF1DB,24,1047,1,0,0,,2291E4,6291E4,4ff,Mission history(Ztx_mission_mtrx_[48_63])
 ,18DAF1DB,31,31,1,0,0,,2291E5,6291E5,ff,VBATP1_CMD - Bypass request(Wbx_lv_sply_byp_req),0:Bypass OFF;1:Bypass ON
 ,18DAF1DB,31,31,1,0,0,,2291E6,6291E6,ff,VBATP1_CMD - Bypass value(Wbx_lv_sply_byp_val),0:SWITCH OPENED;1:SWITCH CLOSED
 ,18DAF1DB,31,31,1,0,0,,2291E7,6291E7,ff,P12VP_CURR_CMD - Bypass request(Wbx_bat_i_can_sply_byp_req),0:Bypass OFF;1:Bypass ON
@@ -814,7 +814,7 @@
 ,18DAF1DB,376,391,1,0,0,min,2291FF,6291FF,ff,Charge Sustaining Driving history (T°Max/BSOC)(Ztx_drv_cs_mtrx).03
 ,18DAF1DB,392,407,1,0,0,min,2291FF,6291FF,ff,Charge Sustaining Driving history (T°Max/BSOC)(Ztx_drv_cs_mtrx).02
 ,18DAF1DB,408,423,1,0,0,min,2291FF,6291FF,ff,Charge Sustaining Driving history (T°Max/BSOC)(Ztx_drv_cs_mtrx).01
-,18DAF1DB,24,55,1,0,0,,229200,629200,ff,DIDs supported in range [$9201 - $9220]
+,18DAF1DB,24,55,1,0,0,,229200,629200,4ff,DIDs supported in range [$9201 - $9220]
 ,18DAF1DB,24,39,1,0,0,,229210,629210,ff,Overall number of complete charge(Zxx_full_chg_ctr)
 ,18DAF1DB,24,39,1,0,0,,229211,629211,ff,Overall number of DC charge(Zxx_dc_chg_ctr)
 ,18DAF1DB,24,39,1,0,0,,229212,629212,ff,Overall number of external charge(Zxx_ext_chg_ctr)
@@ -830,7 +830,7 @@
 ,18DAF1DB,24,39,.0625,640,2,°C,22921C,62921C,ff,Skin temperature (T2_MEA)(Wxx_temp_2)
 ,18DAF1DB,31,31,1,0,0,,22921D,62921D,ff,CAN current sensor failure indicator(Wbx_raw_bat_i_CAN_fail),0:No failure;1:Failure occurs
 ,18DAF1DB,24,31,1,0,0,,22921E,62921E,ff,CAN current sensor failure information(Wsx_raw_bat_i_CAN_errinf),65:Error on dataflash CRC;66:Fluxgate running at high frequency;67:Fluxgate not oscillating;68:CAB in fail safe mode;70:Signal not available more than 100ms;71:Supply voltage out of range
-,18DAF1DB,24,55,1,0,0,,229220,629220,ff,DIDs supported in range [$9221 - $9240]
+,18DAF1DB,24,55,1,0,0,,229220,629220,4ff,DIDs supported in range [$9221 - $9240]
 ,18DAF1DB,24,39,.000976563,0,3,V,229221,629221,1ff,Raw busbar voltage 0(Wtx_raw_busbar_v[0])
 ,18DAF1DB,24,39,.000976563,0,3,V,229222,629222,1ff,Raw busbar voltage 1(Wtx_raw_busbar_v[1])
 ,18DAF1DB,24,39,.000976563,0,3,V,229223,629223,1ff,Raw busbar voltage 2(Wtx_raw_busbar_v[2])
@@ -843,7 +843,7 @@
 ,18DAF1DB,24,39,.000976563,0,3,V,22922A,62922A,1ff,Raw busbar voltage 9(Wtx_raw_busbar_v[9])
 ,18DAF1DB,24,39,.000976563,0,3,V,22922B,62922B,1ff,Raw busbar voltage 10(Wtx_raw_busbar_v[10])
 ,18DAF1DB,24,39,.000976563,0,3,V,22922C,62922C,1ff,Raw busbar voltage 11(Wtx_raw_busbar_v[11])
-,18DAF1DB,24,55,1,0,0,,229240,629240,ff,DIDs supported in range [$9241 - $9260]
+,18DAF1DB,24,55,1,0,0,,229240,629240,4ff,DIDs supported in range [$9241 - $9260]
 ,18DAF1DB,24,31,1,0,0,,229241,629241,ff,Index of thermistor with maximal temperature value(Wxx_temp_max_nr)
 ,18DAF1DB,24,31,1,0,0,,229242,629242,ff,Index of thermistor with minimal temperature value(Wxx_temp_min_nr)
 ,18DAF1DB,24,55,.001,0,3,,229243,629243,1ff,Cumulated energy in charge (Zxx_kwh_chg)
@@ -1128,7 +1128,7 @@
 ,18DAF1DB,24,39,.03125,32640,2,A,22925D,62925D,ff,Current value, average at 100ms
 ,18DAF1DB,24,47,1,0,0,,22925E,62925E,ff,Vehicle ID(Zxx_id_vhc)
 ,18DAF1DB,24,55,.01,0,2,km,22925F,62925F,1ff,Distance Totalizer (vehicle)
-,18DAF1DB,24,55,1,0,0,,229260,629260,ff,DIDs supported in range [$9261 - $9280]
+,18DAF1DB,24,55,1,0,0,,229260,629260,4ff,DIDs supported in range [$9261 - $9280]
 ,18DAF1DB,24,47,1,0,0,min,229261,629261,ff,Absolute Time of Vehicle saved
 ,18DAF1DB,24,55,.0009765625,-2147483648,3,,229262,629262,1ff,Total balancing quantity, Wake Up mode (Zxx_bal_chg_tot_wk)
 ,18DAF1DB,24,55,.0009765625,-2147483648,3,h,229263,629263,1ff,Total balancing time, Wake Up mode (Zxx_bal_time_tot_wk)
@@ -1975,7 +1975,7 @@
 ,18DAF1DB,31,31,1,0,0,,22927E,62927E,ff,MAIN ASIC HVMUX failure ID(Wxx_assp1_itl_id).00
 ,18DAF1DB,30,30,1,0,0,,22927F,62927F,ff,MAIN ASIC SCW failure ID(Wxx_assp1_scw_id).bit1
 ,18DAF1DB,31,31,1,0,0,,22927F,62927F,ff,MAIN ASIC SCW failure ID(Wxx_assp1_scw_id).bit0
-,18DAF1DB,24,55,1,0,0,,229280,629280,ff,DIDs supported in range [$9281 - $92A0]
+,18DAF1DB,24,55,1,0,0,,229280,629280,4ff,DIDs supported in range [$9281 - $92A0]
 ,18DAF1DB,31,31,1,0,0,,229281,629281,ff,Boolean to indicate if temporisation before sleep is activated or not(Wbx_slp_tmp_cfg),0:temporisation is activated;1:temporisation is deactivated
 ,18DAF1DB,24,31,1,0,0,,229282,629282,ff,PCB traceability.31
 ,18DAF1DB,32,39,1,0,0,,229282,629282,ff,PCB traceability.30
@@ -2008,114 +2008,114 @@
 ,18DAF1DB,248,255,1,0,0,,229282,629282,ff,PCB traceability.03
 ,18DAF1DB,256,263,1,0,0,,229282,629282,ff,PCB traceability.02
 ,18DAF1DB,264,271,1,0,0,,229282,629282,ff,PCB traceability.01
-,18DAF1DB,24,55,1,0,0,,2292A0,6292A0,ff,DIDs supported in range [$92A1 - $92C0]
-,18DAF1DB,24,55,1,0,0,,2292C0,6292C0,ff,DIDs supported in range [$92C1 - $92E0]
-,18DAF1DB,24,55,1,0,0,,2292E0,6292E0,ff,DIDs supported in range [$92E1 - $9300]
-,18DAF1DB,24,55,1,0,0,,229300,629300,ff,DIDs supported in range [$9301 - $9320]
-,18DAF1DB,24,55,1,0,0,,229320,629320,ff,DIDs supported in range [$9321 - $9340]
-,18DAF1DB,24,55,1,0,0,,229340,629340,ff,DIDs supported in range [$9341 - $9360]
-,18DAF1DB,24,55,1,0,0,,229360,629360,ff,DIDs supported in range [$9361 - $9380]
-,18DAF1DB,24,55,1,0,0,,229380,629380,ff,DIDs supported in range [$9381 - $93A0]
-,18DAF1DB,24,55,1,0,0,,2293A0,6293A0,ff,DIDs supported in range [$93A1 - $93C0]
-,18DAF1DB,24,55,1,0,0,,2293C0,6293C0,ff,DIDs supported in range [$93C1 - $93E0]
-,18DAF1DB,24,55,1,0,0,,2293E0,6293E0,ff,DIDs supported in range [$93E1 - $9400]
-,18DAF1DB,24,55,1,0,0,,229400,629400,ff,DIDs supported in range [$9401 - $9420]
-,18DAF1DB,24,55,1,0,0,,229420,629420,ff,DIDs supported in range [$9421 - $9440]
-,18DAF1DB,24,55,1,0,0,,229440,629440,ff,DIDs supported in range [$9441 - $9460]
-,18DAF1DB,24,55,1,0,0,,229460,629460,ff,DIDs supported in range [$9461 - $9480]
-,18DAF1DB,24,55,1,0,0,,229480,629480,ff,DIDs supported in range [$9481 - $94A0]
-,18DAF1DB,24,55,1,0,0,,2294A0,6294A0,ff,DIDs supported in range [$94A1 - $94C0]
-,18DAF1DB,24,55,1,0,0,,2294C0,6294C0,ff,DIDs supported in range [$94C1 - $94E0]
-,18DAF1DB,24,55,1,0,0,,2294E0,6294E0,ff,DIDs supported in range [$94E1 - $9500]
-,18DAF1DB,24,55,1,0,0,,229500,629500,ff,DIDs supported in range [$9501 - $9520]
-,18DAF1DB,24,55,1,0,0,,229520,629520,ff,DIDs supported in range [$9521 - $9540]
-,18DAF1DB,24,55,1,0,0,,229540,629540,ff,DIDs supported in range [$9541 - $9560]
-,18DAF1DB,24,55,1,0,0,,229560,629560,ff,DIDs supported in range [$9561 - $9580]
-,18DAF1DB,24,55,1,0,0,,229580,629580,ff,DIDs supported in range [$9581 - $95A0]
-,18DAF1DB,24,55,1,0,0,,2295A0,6295A0,ff,DIDs supported in range [$95A1 - $95C0]
-,18DAF1DB,24,55,1,0,0,,2295C0,6295C0,ff,DIDs supported in range [$95C1 - $95E0]
-,18DAF1DB,24,55,1,0,0,,2295E0,6295E0,ff,DIDs supported in range [$95E1 - $9600]
-,18DAF1DB,24,55,1,0,0,,229600,629600,ff,DIDs supported in range [$9601 - $9620]
-,18DAF1DB,24,55,1,0,0,,229620,629620,ff,DIDs supported in range [$9621 - $9640]
-,18DAF1DB,24,55,1,0,0,,229640,629640,ff,DIDs supported in range [$9641 - $9660]
-,18DAF1DB,24,55,1,0,0,,229660,629660,ff,DIDs supported in range [$9661 - $9680]
-,18DAF1DB,24,55,1,0,0,,229680,629680,ff,DIDs supported in range [$9681 - $96A0]
-,18DAF1DB,24,55,1,0,0,,2296A0,6296A0,ff,DIDs supported in range [$96A1 - $96C0]
-,18DAF1DB,24,55,1,0,0,,2296C0,6296C0,ff,DIDs supported in range [$96C1 - $96E0]
-,18DAF1DB,24,55,1,0,0,,2296E0,6296E0,ff,DIDs supported in range [$96E1 - $9700]
-,18DAF1DB,24,55,1,0,0,,229700,629700,ff,DIDs supported in range [$9701 - $9720]
-,18DAF1DB,24,55,1,0,0,,229720,629720,ff,DIDs supported in range [$9721 - $9740]
-,18DAF1DB,24,55,1,0,0,,229740,629740,ff,DIDs supported in range [$9741 - $9760]
-,18DAF1DB,24,55,1,0,0,,229760,629760,ff,DIDs supported in range [$9761 - $9780]
-,18DAF1DB,24,55,1,0,0,,229780,629780,ff,DIDs supported in range [$9781 - $97A0]
-,18DAF1DB,24,55,1,0,0,,2297A0,6297A0,ff,DIDs supported in range [$97A1 - $97C0]
-,18DAF1DB,24,55,1,0,0,,2297C0,6297C0,ff,DIDs supported in range [$97C1 - $97E0]
-,18DAF1DB,24,55,1,0,0,,2297E0,6297E0,ff,DIDs supported in range [$97E1 - $9800]
-,18DAF1DB,24,55,1,0,0,,229800,629800,ff,DIDs supported in range [$9801 - $9820]
-,18DAF1DB,24,55,1,0,0,,229820,629820,ff,DIDs supported in range [$9821 - $9840]
-,18DAF1DB,24,55,1,0,0,,229840,629840,ff,DIDs supported in range [$9841 - $9860]
-,18DAF1DB,24,55,1,0,0,,229860,629860,ff,DIDs supported in range [$9861 - $9880]
-,18DAF1DB,24,55,1,0,0,,229880,629880,ff,DIDs supported in range [$9881 - $98A0]
-,18DAF1DB,24,55,1,0,0,,2298A0,6298A0,ff,DIDs supported in range [$98A1 - $98C0]
-,18DAF1DB,24,55,1,0,0,,2298C0,6298C0,ff,DIDs supported in range [$98C1 - $98E0]
-,18DAF1DB,24,55,1,0,0,,2298E0,6298E0,ff,DIDs supported in range [$98E1 - $9900]
-,18DAF1DB,24,55,1,0,0,,229900,629900,ff,DIDs supported in range [$9901 - $9920]
-,18DAF1DB,24,55,1,0,0,,229920,629920,ff,DIDs supported in range [$9921 - $9940]
-,18DAF1DB,24,55,1,0,0,,229940,629940,ff,DIDs supported in range [$9941 - $9960]
-,18DAF1DB,24,55,1,0,0,,229960,629960,ff,DIDs supported in range [$9961 - $9980]
-,18DAF1DB,24,55,1,0,0,,229980,629980,ff,DIDs supported in range [$9981 - $99A0]
-,18DAF1DB,24,55,1,0,0,,2299A0,6299A0,ff,DIDs supported in range [$99A1 - $99C0]
-,18DAF1DB,24,55,1,0,0,,2299C0,6299C0,ff,DIDs supported in range [$99C1 - $99E0]
-,18DAF1DB,24,55,1,0,0,,2299E0,6299E0,ff,DIDs supported in range [$99E1 - $9A00]
-,18DAF1DB,24,55,1,0,0,,229A00,629A00,ff,DIDs supported in range [$9A01 - $9A20]
-,18DAF1DB,24,55,1,0,0,,229A20,629A20,ff,DIDs supported in range [$9A21 - $9A40]
-,18DAF1DB,24,55,1,0,0,,229A40,629A40,ff,DIDs supported in range [$9A41 - $9A60]
-,18DAF1DB,24,55,1,0,0,,229A60,629A60,ff,DIDs supported in range [$9A61 - $9A80]
-,18DAF1DB,24,55,1,0,0,,229A80,629A80,ff,DIDs supported in range [$9A81 - $9AA0]
-,18DAF1DB,24,55,1,0,0,,229AA0,629AA0,ff,DIDs supported in range [$9AA1 - $9AC0]
-,18DAF1DB,24,55,1,0,0,,229AC0,629AC0,ff,DIDs supported in range [$9AC1 - $9AE0]
-,18DAF1DB,24,55,1,0,0,,229AE0,629AE0,ff,DIDs supported in range [$9AE1 - $9B00]
-,18DAF1DB,24,55,1,0,0,,229B00,629B00,ff,DIDs supported in range [$9B01 - $9B20]
-,18DAF1DB,24,55,1,0,0,,229B20,629B20,ff,DIDs supported in range [$9B21 - $9B40]
-,18DAF1DB,24,55,1,0,0,,229B40,629B40,ff,DIDs supported in range [$9B41 - $9B60]
-,18DAF1DB,24,55,1,0,0,,229B60,629B60,ff,DIDs supported in range [$9B61 - $9B80]
-,18DAF1DB,24,55,1,0,0,,229B80,629B80,ff,DIDs supported in range [$9B81 - $9BA0]
-,18DAF1DB,24,55,1,0,0,,229BA0,629BA0,ff,DIDs supported in range [$9BA1 - $9BC0]
-,18DAF1DB,24,55,1,0,0,,229BC0,629BC0,ff,DIDs supported in range [$9BC1 - $9BE0]
-,18DAF1DB,24,55,1,0,0,,229BE0,629BE0,ff,DIDs supported in range [$9BE1 - $9C00]
-,18DAF1DB,24,55,1,0,0,,229C00,629C00,ff,DIDs supported in range [$9C01 - $9C20]
-,18DAF1DB,24,55,1,0,0,,229C20,629C20,ff,DIDs supported in range [$9C21 - $9C40]
-,18DAF1DB,24,55,1,0,0,,229C40,629C40,ff,DIDs supported in range [$9C41 - $9C60]
-,18DAF1DB,24,55,1,0,0,,229C60,629C60,ff,DIDs supported in range [$9C61 - $9C80]
-,18DAF1DB,24,55,1,0,0,,229C80,629C80,ff,DIDs supported in range [$9C81 - $9CA0]
-,18DAF1DB,24,55,1,0,0,,229CA0,629CA0,ff,DIDs supported in range [$9CA1 - $9CC0]
-,18DAF1DB,24,55,1,0,0,,229CC0,629CC0,ff,DIDs supported in range [$9CC1 - $9CE0]
-,18DAF1DB,24,55,1,0,0,,229CE0,629CE0,ff,DIDs supported in range [$9CE1 - $9D00]
-,18DAF1DB,24,55,1,0,0,,229D00,629D00,ff,DIDs supported in range [$9D01 - $9D20]
-,18DAF1DB,24,55,1,0,0,,229D20,629D20,ff,DIDs supported in range [$9D21 - $9D40]
-,18DAF1DB,24,55,1,0,0,,229D40,629D40,ff,DIDs supported in range [$9D41 - $9D60]
-,18DAF1DB,24,55,1,0,0,,229D60,629D60,ff,DIDs supported in range [$9D61 - $9D80]
-,18DAF1DB,24,55,1,0,0,,229D80,629D80,ff,DIDs supported in range [$9D81 - $9DA0]
-,18DAF1DB,24,55,1,0,0,,229DA0,629DA0,ff,DIDs supported in range [$9DA1 - $9DC0]
-,18DAF1DB,24,55,1,0,0,,229DC0,629DC0,ff,DIDs supported in range [$9DC1 - $9DE0]
-,18DAF1DB,24,55,1,0,0,,229DE0,629DE0,ff,DIDs supported in range [$9DE1 - $9E00]
-,18DAF1DB,24,55,1,0,0,,229E00,629E00,ff,DIDs supported in range [$9E01 - $9E20]
-,18DAF1DB,24,55,1,0,0,,229E20,629E20,ff,DIDs supported in range [$9E21 - $9E40]
-,18DAF1DB,24,55,1,0,0,,229E40,629E40,ff,DIDs supported in range [$9E41 - $9E60]
-,18DAF1DB,24,55,1,0,0,,229E60,629E60,ff,DIDs supported in range [$9E61 - $9E80]
-,18DAF1DB,24,55,1,0,0,,229E80,629E80,ff,DIDs supported in range [$9E81 - $9EA0]
-,18DAF1DB,24,55,1,0,0,,229EA0,629EA0,ff,DIDs supported in range [$9EA1 - $9EC0]
-,18DAF1DB,24,55,1,0,0,,229EC0,629EC0,ff,DIDs supported in range [$9EC1 - $9EE0]
-,18DAF1DB,24,55,1,0,0,,229EE0,629EE0,ff,DIDs supported in range [$9EE1 - $9F00]
-,18DAF1DB,24,55,1,0,0,,229F00,629F00,ff,DIDs supported in range [$9F01 - $9F20]
-,18DAF1DB,24,55,1,0,0,,229F20,629F20,ff,DIDs supported in range [$9F21 - $9F40]
-,18DAF1DB,24,55,1,0,0,,229F40,629F40,ff,DIDs supported in range [$9F41 - $9F60]
-,18DAF1DB,24,55,1,0,0,,229F60,629F60,ff,DIDs supported in range [$9F61 - $9F80]
-,18DAF1DB,24,55,1,0,0,,229F80,629F80,ff,DIDs supported in range [$9F81 - $9FA0]
-,18DAF1DB,24,55,1,0,0,,229FA0,629FA0,ff,DIDs supported in range [$9FA1 - $9FC0]
-,18DAF1DB,24,55,1,0,0,,229FC0,629FC0,ff,DIDs supported in range [$9FC1 - $9FE0]
-,18DAF1DB,24,55,1,0,0,,229FE0,629FE0,ff,DIDs supported in range [$9FE1 - $A000]
-,18DAF1DB,24,55,1,0,0,,22F000,62F000,ff,DIDs supported in range [$F001 - $F020]
+,18DAF1DB,24,55,1,0,0,,2292A0,6292A0,4ff,DIDs supported in range [$92A1 - $92C0]
+,18DAF1DB,24,55,1,0,0,,2292C0,6292C0,4ff,DIDs supported in range [$92C1 - $92E0]
+,18DAF1DB,24,55,1,0,0,,2292E0,6292E0,4ff,DIDs supported in range [$92E1 - $9300]
+,18DAF1DB,24,55,1,0,0,,229300,629300,4ff,DIDs supported in range [$9301 - $9320]
+,18DAF1DB,24,55,1,0,0,,229320,629320,4ff,DIDs supported in range [$9321 - $9340]
+,18DAF1DB,24,55,1,0,0,,229340,629340,4ff,DIDs supported in range [$9341 - $9360]
+,18DAF1DB,24,55,1,0,0,,229360,629360,4ff,DIDs supported in range [$9361 - $9380]
+,18DAF1DB,24,55,1,0,0,,229380,629380,4ff,DIDs supported in range [$9381 - $93A0]
+,18DAF1DB,24,55,1,0,0,,2293A0,6293A0,4ff,DIDs supported in range [$93A1 - $93C0]
+,18DAF1DB,24,55,1,0,0,,2293C0,6293C0,4ff,DIDs supported in range [$93C1 - $93E0]
+,18DAF1DB,24,55,1,0,0,,2293E0,6293E0,4ff,DIDs supported in range [$93E1 - $9400]
+,18DAF1DB,24,55,1,0,0,,229400,629400,4ff,DIDs supported in range [$9401 - $9420]
+,18DAF1DB,24,55,1,0,0,,229420,629420,4ff,DIDs supported in range [$9421 - $9440]
+,18DAF1DB,24,55,1,0,0,,229440,629440,4ff,DIDs supported in range [$9441 - $9460]
+,18DAF1DB,24,55,1,0,0,,229460,629460,4ff,DIDs supported in range [$9461 - $9480]
+,18DAF1DB,24,55,1,0,0,,229480,629480,4ff,DIDs supported in range [$9481 - $94A0]
+,18DAF1DB,24,55,1,0,0,,2294A0,6294A0,4ff,DIDs supported in range [$94A1 - $94C0]
+,18DAF1DB,24,55,1,0,0,,2294C0,6294C0,4ff,DIDs supported in range [$94C1 - $94E0]
+,18DAF1DB,24,55,1,0,0,,2294E0,6294E0,4ff,DIDs supported in range [$94E1 - $9500]
+,18DAF1DB,24,55,1,0,0,,229500,629500,4ff,DIDs supported in range [$9501 - $9520]
+,18DAF1DB,24,55,1,0,0,,229520,629520,4ff,DIDs supported in range [$9521 - $9540]
+,18DAF1DB,24,55,1,0,0,,229540,629540,4ff,DIDs supported in range [$9541 - $9560]
+,18DAF1DB,24,55,1,0,0,,229560,629560,4ff,DIDs supported in range [$9561 - $9580]
+,18DAF1DB,24,55,1,0,0,,229580,629580,4ff,DIDs supported in range [$9581 - $95A0]
+,18DAF1DB,24,55,1,0,0,,2295A0,6295A0,4ff,DIDs supported in range [$95A1 - $95C0]
+,18DAF1DB,24,55,1,0,0,,2295C0,6295C0,4ff,DIDs supported in range [$95C1 - $95E0]
+,18DAF1DB,24,55,1,0,0,,2295E0,6295E0,4ff,DIDs supported in range [$95E1 - $9600]
+,18DAF1DB,24,55,1,0,0,,229600,629600,4ff,DIDs supported in range [$9601 - $9620]
+,18DAF1DB,24,55,1,0,0,,229620,629620,4ff,DIDs supported in range [$9621 - $9640]
+,18DAF1DB,24,55,1,0,0,,229640,629640,4ff,DIDs supported in range [$9641 - $9660]
+,18DAF1DB,24,55,1,0,0,,229660,629660,4ff,DIDs supported in range [$9661 - $9680]
+,18DAF1DB,24,55,1,0,0,,229680,629680,4ff,DIDs supported in range [$9681 - $96A0]
+,18DAF1DB,24,55,1,0,0,,2296A0,6296A0,4ff,DIDs supported in range [$96A1 - $96C0]
+,18DAF1DB,24,55,1,0,0,,2296C0,6296C0,4ff,DIDs supported in range [$96C1 - $96E0]
+,18DAF1DB,24,55,1,0,0,,2296E0,6296E0,4ff,DIDs supported in range [$96E1 - $9700]
+,18DAF1DB,24,55,1,0,0,,229700,629700,4ff,DIDs supported in range [$9701 - $9720]
+,18DAF1DB,24,55,1,0,0,,229720,629720,4ff,DIDs supported in range [$9721 - $9740]
+,18DAF1DB,24,55,1,0,0,,229740,629740,4ff,DIDs supported in range [$9741 - $9760]
+,18DAF1DB,24,55,1,0,0,,229760,629760,4ff,DIDs supported in range [$9761 - $9780]
+,18DAF1DB,24,55,1,0,0,,229780,629780,4ff,DIDs supported in range [$9781 - $97A0]
+,18DAF1DB,24,55,1,0,0,,2297A0,6297A0,4ff,DIDs supported in range [$97A1 - $97C0]
+,18DAF1DB,24,55,1,0,0,,2297C0,6297C0,4ff,DIDs supported in range [$97C1 - $97E0]
+,18DAF1DB,24,55,1,0,0,,2297E0,6297E0,4ff,DIDs supported in range [$97E1 - $9800]
+,18DAF1DB,24,55,1,0,0,,229800,629800,4ff,DIDs supported in range [$9801 - $9820]
+,18DAF1DB,24,55,1,0,0,,229820,629820,4ff,DIDs supported in range [$9821 - $9840]
+,18DAF1DB,24,55,1,0,0,,229840,629840,4ff,DIDs supported in range [$9841 - $9860]
+,18DAF1DB,24,55,1,0,0,,229860,629860,4ff,DIDs supported in range [$9861 - $9880]
+,18DAF1DB,24,55,1,0,0,,229880,629880,4ff,DIDs supported in range [$9881 - $98A0]
+,18DAF1DB,24,55,1,0,0,,2298A0,6298A0,4ff,DIDs supported in range [$98A1 - $98C0]
+,18DAF1DB,24,55,1,0,0,,2298C0,6298C0,4ff,DIDs supported in range [$98C1 - $98E0]
+,18DAF1DB,24,55,1,0,0,,2298E0,6298E0,4ff,DIDs supported in range [$98E1 - $9900]
+,18DAF1DB,24,55,1,0,0,,229900,629900,4ff,DIDs supported in range [$9901 - $9920]
+,18DAF1DB,24,55,1,0,0,,229920,629920,4ff,DIDs supported in range [$9921 - $9940]
+,18DAF1DB,24,55,1,0,0,,229940,629940,4ff,DIDs supported in range [$9941 - $9960]
+,18DAF1DB,24,55,1,0,0,,229960,629960,4ff,DIDs supported in range [$9961 - $9980]
+,18DAF1DB,24,55,1,0,0,,229980,629980,4ff,DIDs supported in range [$9981 - $99A0]
+,18DAF1DB,24,55,1,0,0,,2299A0,6299A0,4ff,DIDs supported in range [$99A1 - $99C0]
+,18DAF1DB,24,55,1,0,0,,2299C0,6299C0,4ff,DIDs supported in range [$99C1 - $99E0]
+,18DAF1DB,24,55,1,0,0,,2299E0,6299E0,4ff,DIDs supported in range [$99E1 - $9A00]
+,18DAF1DB,24,55,1,0,0,,229A00,629A00,4ff,DIDs supported in range [$9A01 - $9A20]
+,18DAF1DB,24,55,1,0,0,,229A20,629A20,4ff,DIDs supported in range [$9A21 - $9A40]
+,18DAF1DB,24,55,1,0,0,,229A40,629A40,4ff,DIDs supported in range [$9A41 - $9A60]
+,18DAF1DB,24,55,1,0,0,,229A60,629A60,4ff,DIDs supported in range [$9A61 - $9A80]
+,18DAF1DB,24,55,1,0,0,,229A80,629A80,4ff,DIDs supported in range [$9A81 - $9AA0]
+,18DAF1DB,24,55,1,0,0,,229AA0,629AA0,4ff,DIDs supported in range [$9AA1 - $9AC0]
+,18DAF1DB,24,55,1,0,0,,229AC0,629AC0,4ff,DIDs supported in range [$9AC1 - $9AE0]
+,18DAF1DB,24,55,1,0,0,,229AE0,629AE0,4ff,DIDs supported in range [$9AE1 - $9B00]
+,18DAF1DB,24,55,1,0,0,,229B00,629B00,4ff,DIDs supported in range [$9B01 - $9B20]
+,18DAF1DB,24,55,1,0,0,,229B20,629B20,4ff,DIDs supported in range [$9B21 - $9B40]
+,18DAF1DB,24,55,1,0,0,,229B40,629B40,4ff,DIDs supported in range [$9B41 - $9B60]
+,18DAF1DB,24,55,1,0,0,,229B60,629B60,4ff,DIDs supported in range [$9B61 - $9B80]
+,18DAF1DB,24,55,1,0,0,,229B80,629B80,4ff,DIDs supported in range [$9B81 - $9BA0]
+,18DAF1DB,24,55,1,0,0,,229BA0,629BA0,4ff,DIDs supported in range [$9BA1 - $9BC0]
+,18DAF1DB,24,55,1,0,0,,229BC0,629BC0,4ff,DIDs supported in range [$9BC1 - $9BE0]
+,18DAF1DB,24,55,1,0,0,,229BE0,629BE0,4ff,DIDs supported in range [$9BE1 - $9C00]
+,18DAF1DB,24,55,1,0,0,,229C00,629C00,4ff,DIDs supported in range [$9C01 - $9C20]
+,18DAF1DB,24,55,1,0,0,,229C20,629C20,4ff,DIDs supported in range [$9C21 - $9C40]
+,18DAF1DB,24,55,1,0,0,,229C40,629C40,4ff,DIDs supported in range [$9C41 - $9C60]
+,18DAF1DB,24,55,1,0,0,,229C60,629C60,4ff,DIDs supported in range [$9C61 - $9C80]
+,18DAF1DB,24,55,1,0,0,,229C80,629C80,4ff,DIDs supported in range [$9C81 - $9CA0]
+,18DAF1DB,24,55,1,0,0,,229CA0,629CA0,4ff,DIDs supported in range [$9CA1 - $9CC0]
+,18DAF1DB,24,55,1,0,0,,229CC0,629CC0,4ff,DIDs supported in range [$9CC1 - $9CE0]
+,18DAF1DB,24,55,1,0,0,,229CE0,629CE0,4ff,DIDs supported in range [$9CE1 - $9D00]
+,18DAF1DB,24,55,1,0,0,,229D00,629D00,4ff,DIDs supported in range [$9D01 - $9D20]
+,18DAF1DB,24,55,1,0,0,,229D20,629D20,4ff,DIDs supported in range [$9D21 - $9D40]
+,18DAF1DB,24,55,1,0,0,,229D40,629D40,4ff,DIDs supported in range [$9D41 - $9D60]
+,18DAF1DB,24,55,1,0,0,,229D60,629D60,4ff,DIDs supported in range [$9D61 - $9D80]
+,18DAF1DB,24,55,1,0,0,,229D80,629D80,4ff,DIDs supported in range [$9D81 - $9DA0]
+,18DAF1DB,24,55,1,0,0,,229DA0,629DA0,4ff,DIDs supported in range [$9DA1 - $9DC0]
+,18DAF1DB,24,55,1,0,0,,229DC0,629DC0,4ff,DIDs supported in range [$9DC1 - $9DE0]
+,18DAF1DB,24,55,1,0,0,,229DE0,629DE0,4ff,DIDs supported in range [$9DE1 - $9E00]
+,18DAF1DB,24,55,1,0,0,,229E00,629E00,4ff,DIDs supported in range [$9E01 - $9E20]
+,18DAF1DB,24,55,1,0,0,,229E20,629E20,4ff,DIDs supported in range [$9E21 - $9E40]
+,18DAF1DB,24,55,1,0,0,,229E40,629E40,4ff,DIDs supported in range [$9E41 - $9E60]
+,18DAF1DB,24,55,1,0,0,,229E60,629E60,4ff,DIDs supported in range [$9E61 - $9E80]
+,18DAF1DB,24,55,1,0,0,,229E80,629E80,4ff,DIDs supported in range [$9E81 - $9EA0]
+,18DAF1DB,24,55,1,0,0,,229EA0,629EA0,4ff,DIDs supported in range [$9EA1 - $9EC0]
+,18DAF1DB,24,55,1,0,0,,229EC0,629EC0,4ff,DIDs supported in range [$9EC1 - $9EE0]
+,18DAF1DB,24,55,1,0,0,,229EE0,629EE0,4ff,DIDs supported in range [$9EE1 - $9F00]
+,18DAF1DB,24,55,1,0,0,,229F00,629F00,4ff,DIDs supported in range [$9F01 - $9F20]
+,18DAF1DB,24,55,1,0,0,,229F20,629F20,4ff,DIDs supported in range [$9F21 - $9F40]
+,18DAF1DB,24,55,1,0,0,,229F40,629F40,4ff,DIDs supported in range [$9F41 - $9F60]
+,18DAF1DB,24,55,1,0,0,,229F60,629F60,4ff,DIDs supported in range [$9F61 - $9F80]
+,18DAF1DB,24,55,1,0,0,,229F80,629F80,4ff,DIDs supported in range [$9F81 - $9FA0]
+,18DAF1DB,24,55,1,0,0,,229FA0,629FA0,4ff,DIDs supported in range [$9FA1 - $9FC0]
+,18DAF1DB,24,55,1,0,0,,229FC0,629FC0,4ff,DIDs supported in range [$9FC1 - $9FE0]
+,18DAF1DB,24,55,1,0,0,,229FE0,629FE0,4ff,DIDs supported in range [$9FE1 - $A000]
+,18DAF1DB,24,55,1,0,0,,22F000,62F000,4ff,DIDs supported in range [$F001 - $F020]
 ,18DAF1DB,24,31,1,0,0,,22F010,62F010,ff,Fingerprint information.01
 ,18DAF1DB,32,39,1,0,0,,22F010,62F010,ff,Fingerprint information.02
 ,18DAF1DB,40,47,1,0,0,,22F010,62F010,ff,Fingerprint information.03
@@ -2133,15 +2133,15 @@
 ,18DAF1DB,136,143,1,0,0,,22F010,62F010,ff,Fingerprint information.15
 ,18DAF1DB,144,151,1,0,0,,22F010,62F010,ff,Fingerprint information.16
 ,18DAF1DB,24,103,1,0,0,,22F012,62F012,2ff,VehicleManufacturerECUSoftwareNumber (Ref C)
-,18DAF1DB,24,55,1,0,0,,22F020,62F020,ff,DIDs supported in range [$F021 - $F040]
-,18DAF1DB,24,39,1,0,0,,22F0A0,62F0A0,ff,FOTA Status
-,18DAF1DB,24,31,1,0,0,,22F0A5,62F0A5,ff,FOTA cancel counter
-,18DAF1DB,24,55,1,0,0,,22F100,62F100,ff,DIDs supported in range [$F101 - $F120]
+,18DAF1DB,24,55,1,0,0,,22F020,62F020,4ff,DIDs supported in range [$F021 - $F040]
+,18DAF1DB,24,39,1,0,0,,22F0A0,62F0A0,4ff,FOTA Status
+,18DAF1DB,24,31,1,0,0,,22F0A5,62F0A5,4ff,FOTA cancel counter
+,18DAF1DB,24,55,1,0,0,,22F100,62F100,4ff,DIDs supported in range [$F101 - $F120]
 ,18DAF1DB,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI
-,18DAF1DB,24,55,1,0,0,,22F120,62F120,ff,DIDs supported in range [$F121 - $F140]
+,18DAF1DB,24,55,1,0,0,,22F120,62F120,4ff,DIDs supported in range [$F121 - $F140]
 ,18DAF1DB,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI
 ,18DAF1DB,24,39,1,0,0,,22F180,62F180,2ff,Boot Version(bootSoftwareIdentification)
-,18DAF1DB,24,39,1,0,0,,22F182,62F182,ff,Calibration number
+,18DAF1DB,24,39,1,0,0,,22F182,62F182,4ff,Calibration number
 ,18DAF1DB,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
 ,18DAF1DB,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
 ,18DAF1DB,24,63,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
@@ -2152,9 +2152,9 @@
 ,18DAF1DB,24,55,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,18DAF1DB,24,103,1,0,0,,22F196,62F196,2ff,OBD Approval
 ,18DAF1DB,24,279,1,0,0,,22F197,62F197,2ff,OBD EngineType
-,18DAF1DB,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,18DAF1DB,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,18DAF1DB,24,103,1,0,0,,22F1A1,62F1A1,2ff,Vehicle Manufacturer Spare Part Number (Nissan)
-,18DAF1DB,24,55,1,0,0,,22F400,62F400,ff,DIDs supported in range [$F401 - $F420]
+,18DAF1DB,24,55,1,0,0,,22F400,62F400,4ff,DIDs supported in range [$F401 - $F420]
 ,18DAF1DB,24,31,1,0,0,,22F401,62F401,ff,Number of DTC and MIL lamp Status.On-board diagnostic evaluation
 ,18DAF1DB,32,39,1,0,0,,22F401,62F401,ff,Number of DTC and MIL lamp Status.Continuous monitoring tests
 ,18DAF1DB,40,47,1,0,0,,22F401,62F401,ff,Number of DTC and MIL lamp Status.Supported tests run at least once per trip
@@ -2164,12 +2164,12 @@
 ,18DAF1DB,24,39,.25,0,1,rpm,22F40C,62F40C,ff,$0C - Engine RPM
 ,18DAF1DB,24,31,1,0,0,km/h,22F40D,62F40D,ff,$0D - Vehicle speed sensor
 ,18DAF1DB,24,31,1,0,0,,22F41C,62F41C,ff,$1C - OBD requirements to wich vehicle is designed
-,18DAF1DB,24,55,1,0,0,,22F420,62F420,ff,DIDs supported in range [$F421 - $F440]
+,18DAF1DB,24,55,1,0,0,,22F420,62F420,4ff,DIDs supported in range [$F421 - $F440]
 ,18DAF1DB,24,39,1,0,0,km,22F421,62F421,ff,$01 - Distance travelled while MIL is activated
 ,18DAF1DB,24,31,1,0,0,,22F430,62F430,ff,$01 - Number of warm-ups since diagnostic trouble codes cleared
 ,18DAF1DB,24,39,1,0,0,km,22F431,62F431,ff,$01 - Distance travelled since diagnostic trouble codes cleared
 ,18DAF1DB,24,31,1,0,0,kPa,22F433,62F433,ff,$33 - Barometric Pressure
-,18DAF1DB,24,55,1,0,0,,22F440,62F440,ff,DIDs supported in range [$F441 - $F460]
+,18DAF1DB,24,55,1,0,0,,22F440,62F440,4ff,DIDs supported in range [$F441 - $F460]
 ,18DAF1DB,24,31,1,0,0,,22F441,62F441,ff,Data Byte.A: ISO/SAE Reserved
 ,18DAF1DB,32,39,1,0,0,,22F441,62F441,ff,Data Byte.B On-board diagnostic evaluation and Continuous monitoring tests this monitoring cycle
 ,18DAF1DB,40,47,1,0,0,,22F441,62F441,ff,Data Byte.C Supported enable tests
@@ -2177,7 +2177,7 @@
 ,18DAF1DB,24,39,.001,0,3,V,22F442,62F442,ff,$42 - Control module voltage
 ,18DAF1DB,24,31,.392156863,0,1,%,22F449,62F449,ff,$49 - Accelerator Pedal Position D
 ,18DAF1DB,24,31,.392156863,0,1,%,22F45B,62F45B,ff,$5B - Hybrid/EV Battery Pack Remaining Charge
-,18DAF1DB,24,55,1,0,0,,22F480,62F480,ff,DIDs supported in range [$F481 - $F4A0]
+,18DAF1DB,24,55,1,0,0,,22F480,62F480,4ff,DIDs supported in range [$F481 - $F4A0]
 ,18DAF1DB,24,31,1,0,0,,22F49A,62F49A,ff,$9A - Hybrid/EV Vehicle System Data for OBD.00
 ,18DAF1DB,32,39,1,0,0,,22F49A,62F49A,ff,$9A - Hybrid/EV Vehicle System Data for OBD.01
 ,18DAF1DB,40,55,.015625,0,2,V,22F49A,62F49A,ff,$9A - Hybrid/EV Vehicle System Data for OBD.02

@@ -68,4 +68,4 @@
 ,734,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
 ,734,24,79,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,734,24,79,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
-,734,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,734,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion

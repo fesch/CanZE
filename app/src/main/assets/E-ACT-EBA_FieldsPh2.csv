@@ -14,10 +14,10 @@
 ,18DAF1E2,24,31,1,0,0,,22B00E,62B00E,ff,ABS in regulation,0:no ABS regulation;255:ABS regulation
 ,18DAF1E2,30,31,1,0,0,,22B00F,62B00F,ff,ExternalBrakeRequestStatus,0:Not initialized;1:Not ready;2:Ready;3:Not used
 ,18DAF1E2,24,31,1,0,0,,22B010,62B010,ff,EBR inhibition state,0:Activated;170:NotActivated;255:NotConfigured
-,18DAF1E2,24,31,1,0,0,,22B011,62B011,ff,ECU activities.General.Data
-,18DAF1E2,24,31,1,0,0,,22B012,62B012,ff,ECU activities.Activation.counter
-,18DAF1E2,24,31,1,0,0,,22B013,62B013,ff,ECU activities.Activation.Timer
-,18DAF1E2,24,39,1,0,0,,22EF01,62EF01,ff,Supplier fault code specified
+,18DAF1E2,24,31,1,0,0,,22B011,62B011,4ff,ECU activities.General.Data
+,18DAF1E2,24,31,1,0,0,,22B012,62B012,4ff,ECU activities.Activation.counter
+,18DAF1E2,24,31,1,0,0,,22B013,62B013,4ff,ECU activities.Activation.Timer
+,18DAF1E2,24,39,1,0,0,,22EF01,62EF01,4ff,Supplier fault code specified
 ,18DAF1E2,24,103,1,0,0,,22F012,62F012,2ff,Calibration file reference
 ,18DAF1E2,24,47,.05,0,2,km,22F0D0,62F0D0,1ff,Mileage of the last occurence
 ,18DAF1E2,24,31,1,0,0,,22F0D1,62F0D1,ff,DTCExtendedData.DTCOccurrenceCounter
@@ -53,6 +53,6 @@
 ,18DAF1E2,160,167,1,0,0,,22F197,62F197,ff,systemNameorEngineType.18
 ,18DAF1E2,168,175,1,0,0,,22F197,62F197,ff,systemNameorEngineType.19
 ,18DAF1E2,176,183,1,0,0,,22F197,62F197,ff,systemNameorEngineType.20
-,18DAF1E2,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,18DAF1E2,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,18DAF1E2,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
 ,18DAF1E2,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationDataReferenceAfterConfigurationProcess
