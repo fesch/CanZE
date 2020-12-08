@@ -125,8 +125,8 @@ public class Message {
 
                 } else if (field.isHexString()) {
                     StringBuilder tmpVal = new StringBuilder();
-                    for (int i = 0; i < binString.length(); i += 4) {
-                        tmpVal.append (String.format("%02X", Integer.parseInt("0" + binString.substring(i, i+4), 2)));
+                    for (int i = 0; i < binString.length(); i += 8) {
+                        tmpVal.append (String.format("%02X", Integer.parseInt("0" + binString.substring(i, i+8), 2)));
                     }
                     String val = tmpVal.toString();
                     field.setValue(val);
