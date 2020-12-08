@@ -110,8 +110,7 @@ public class Message {
     }
 
     private void onMessageCompleteEventField(String binString, Field field) {
-        if (field.getRequestId() == "999999") return;
-        if(binString.length()>= field.getTo()) {
+        if(binString.length()>= field.getTo() && field.getRequestId() != "999999") {
             // parseInt --> signed, so the first bit is "cut-off"!
             try {
                 binString = binString.substring(field.getFrom(), field.getTo() + 1);
@@ -155,9 +154,6 @@ public class Message {
                 if(MainActivity.fieldLogMode)
                     FieldLogger.getInstance().log(field.getDebugValue());
 
-                // update the fields last request date
-                field.updateLastRequest();
-
             } catch (Exception e)
             {
                 MainActivity.debug("Message.onMessageCompleteEventField: Exception:");
@@ -165,6 +161,8 @@ public class Message {
                 // ignore
             }
         }
+        // update the fields last request date
+        field.updateLastRequest();
     }
 
 
