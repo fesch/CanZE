@@ -160,7 +160,8 @@ public class Message {
 
             } catch (Exception e)
             {
-                MainActivity.debug("Message.onMessageCompleteEventField: Exception!!");
+                MainActivity.debug("Message.onMessageCompleteEventField: Exception:");
+                MainActivity.debug(e.getMessage());
                 // ignore
             }
         }
