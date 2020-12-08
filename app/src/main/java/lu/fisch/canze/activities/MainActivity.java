@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     //public static final short FIELD_TYPE_UNSIGNED = 0x000;
     public static final short FIELD_TYPE_SIGNED = 0x100;
     public static final short FIELD_TYPE_STRING = 0x200;
+    public static final short FIELD_TYPE_HEXSTRING = 0x400;
     public static final short FIELD_SELFPROPELLED = 0x800;
 
     public static final double reduction = 9.32;     // update suggested by Loc Dao

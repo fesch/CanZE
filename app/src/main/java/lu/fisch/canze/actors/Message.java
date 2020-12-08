@@ -123,6 +123,14 @@ public class Message {
                     String val = tmpVal.toString();
                     field.setValue(val);
 
+                } else if (field.isHexString()) {
+                    StringBuilder tmpVal = new StringBuilder();
+                    for (int i = 0; i < binString.length(); i += 4) {
+                        tmpVal.append (String.format("%04X", Integer.parseInt("0" + binString.substring(i, i+4), 2)));
+                    }
+                    String val = tmpVal.toString();
+                    field.setValue(val);
+
                 } else if (binString.length() <= 4 || binString.contains("0")) {
                     // experiment with unavailable: any field >= 5 bits whose value contains only 1's
                     int val;

@@ -157,7 +157,7 @@ public class Field {
     }
 
     public String getDebugValue() {
-        if (isString()) {
+        if (isString() || isHexString()) {
             return String.format(Locale.US, "%s,%s,%s,", getSID(), getName(), getStringValue());
         } else if (isList()) {
             return String.format(Locale.US, "%s,%s,%s,", getSID(), getName(), getListValue());
@@ -395,6 +395,10 @@ public class Field {
 
     public boolean isString() {
         return (this.options & MainActivity.FIELD_TYPE_MASK) == MainActivity.FIELD_TYPE_STRING;
+    }
+
+    public boolean isHexString() {
+        return (this.options & MainActivity.FIELD_TYPE_MASK) == MainActivity.FIELD_TYPE_HEXSTRING;
     }
 
     public boolean isSelfPropelled() {
