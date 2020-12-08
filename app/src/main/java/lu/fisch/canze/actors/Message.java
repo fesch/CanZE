@@ -132,19 +132,19 @@ public class Message {
 
                 } else if (binString.length() <= 4 || binString.contains("0")) {
                     // experiment with unavailable: any field >= 5 bits whose value contains only 1's
-                    int val;
+                    long val; // long to avoid craze overflows with 0x8000 ofsets
 
                     if (field.isSigned() && binString.startsWith("1")) {
                         // ugly method: flip bits, add a minus in front and subtract one
-                        val = Integer.parseInt("-" + binString.replace('0', 'q').replace('1','0').replace('q','1'), 2) - 1;
+                        val = Long.parseLong("-" + binString.replace('0', 'q').replace('1','0').replace('q','1'), 2) - 1;
                     } else {
-                        val = Integer.parseInt("0" + binString, 2);
+                        val = Long.parseLong("0" + binString, 2);
                     }
                     //MainActivity.debug("Value of " + field.getFromIdHex() + "." + field.getResponseId() + "." + field.getFrom()+" = "+val);
                     //MainActivity.debug("Fields: onMessageCompleteEvent > "+field.getSID()+" = "+val);
 
                     // update the value of the field. This triggers updating all of all listeners of that field
-                    field.setValue(val);
+                    field.setValue((int)val);
 
                 } else {
                     field.setValue(Double.NaN);
