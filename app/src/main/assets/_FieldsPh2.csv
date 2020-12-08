@@ -30,7 +30,8 @@
 42e.0,18DAF1DB,24,39,.01,0,2,%,229002,629002,ff,Battery USOC(Wxx_usoc_avg)
 # 42e,20,24,5,0,0,%,,,e2,Engine Fan Speed
 # 42e.20,18daf1da,24,31,5,0,0,%,223471,613471,e2,Engine Fan Speed
-42e.20,18daf1da,24,31,1,0,0,%,22345E,62345E,ff,FAN global request from ETS in PWM including AC, Cooling needs and Relay protection check
+# 42e.20,18daf1da,24,31,1,0,0,%,22345E,62345E,ff,FAN global request from ETS in PWM including AC, Cooling needs and Relay protection check
+42e.20,764,24,31,1,0,0,%,224258,624258,ff,OH_EngineFanSpeedRequestPWM_AC
 # 42e,44,50,1,40,0,°C,,,e3,HV Battery Temp
 # 42e.44,18daf1da,24,31,1,40,0,°C,222001,622001,ff,HV Battery Temp
 42e.44,18DAF1DB,24,39,.0625,640,2,°C,229012,629012,ff,Average Temperature(Wxx_temp_avg)
