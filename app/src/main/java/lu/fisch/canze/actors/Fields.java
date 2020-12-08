@@ -397,7 +397,7 @@ public class Fields {
         final String SID_OH_ClimTempDisplay = "764.6145.29";
 
         if (MainActivity.isPh2()) {
-            addVirtualFieldCommon("6105", "°C", SID_OH_ClimTempDisplay, new VirtualFieldAction() {
+            addVirtualFieldCommon("6105", 1, "°C", SID_OH_ClimTempDisplay, new VirtualFieldAction() {
                 @Override
                 public double updateValue(HashMap<String, Field> dependantFields) {
                     Field privateField;
@@ -679,22 +679,28 @@ public class Fields {
     }
 
     private void addVirtualFieldCommon(String virtualId, String unit, String dependantSids, VirtualFieldAction virtualFieldAction) {
+        addVirtualFieldCommon(virtualId, 0, unit, dependantSids,virtualFieldAction);
+    }
+
+    private void addVirtualFieldCommon(String virtualId, int decimals, String unit, String dependantSids, VirtualFieldAction virtualFieldAction) {
         // create a list of field this new virtual field will depend on
         HashMap<String, Field> dependantFields = new HashMap<>();
-        boolean allOk = false;
+        boolean allOk = true;
         for (String sid : dependantSids.split(";")) {
             Field field = getBySID(sid);
             if (field != null) {
                 if (field.getRequestId() != "999999") {
                     dependantFields.put(sid, field);
-                    allOk = true;
-                } //else not ok, but no error toast display. This is a temporary hack to avoid toast overload while fixing _FieldsPh2
+                } else { //else not ok, but no error toast display. This is a temporary hack to avoid toast overload while fixing _FieldsPh2
+                    allOk = false;
+                }
             } else {
+                allOk = false;
                 MainActivity.toast(MainActivity.TOAST_NONE, String.format(Locale.getDefault(), MainActivity.getStringSingle(R.string.format_NoSid), "Fields", sid));
             }
         }
         if (allOk) {
-            VirtualField virtualField = new VirtualField(virtualId, dependantFields, unit, virtualFieldAction);
+            VirtualField virtualField = new VirtualField(virtualId, dependantFields, decimals, unit, virtualFieldAction);
             // a virtualfield is always ISO-TP, so we need to create a subframe for it
             Frame frame = Frames.getInstance().getById(0x800);
             Frame subFrame = Frames.getInstance().getById(0x800, virtualField.getResponseId());

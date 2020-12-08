@@ -18,7 +18,7 @@ public class VirtualField extends Field implements FieldListener {
     private final VirtualFieldAction virtualFieldAction;
 
 
-    public VirtualField(String responseId, HashMap<String,Field> dependantFields, String unit, VirtualFieldAction virtualFieldAction)
+    public VirtualField(String responseId, HashMap<String,Field> dependantFields, int decimals, String unit, VirtualFieldAction virtualFieldAction)
     {
         // virtual frame added in the initialization block
         // super(Frames.getInstance().createVirtualIfNotExists(id), 0, 0, 1, 1, 0, unit, "", "", 0);
@@ -34,6 +34,8 @@ public class VirtualField extends Field implements FieldListener {
         this.dependantFields    = dependantFields;
         this.virtualFieldAction = virtualFieldAction;
         this.virtual            = true;
+        this.setUnit(unit);
+        this.setDecimals(decimals);
     }
 
     @Override
