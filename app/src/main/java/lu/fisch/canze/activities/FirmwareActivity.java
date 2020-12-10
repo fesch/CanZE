@@ -103,7 +103,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
         btnCsvSave.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-               doGetAllFirmware();
+                doGetAllFirmware();
             }
         });
         TextView textView = findViewById(R.id.link);
@@ -183,69 +183,90 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
                 Frame frame;
 
                 if (MainActivity.isPh2()) {
-                    frame = queryFrame(0x18daf1d2, "5003"); // open the gateway, as the poller is stopped
+                    frame = getFrame(0x18daf1d2, "5003"); // open the gateway, as the poller is stopped
+                    frame = queryFrame(frame);
                 }
 
                 if (ecu.getSessionRequired()) {
-                    frame = queryFrame(ecu.getFromId(), ecu.getStartDiag()); // open the ecu, as the poller is stopped
+                    frame = getFrame(ecu.getFromId(), ecu.getStartDiag()); // open the ecu, as the poller is stopped
+                    frame = queryFrame(frame);
                 }
 
                 // query the Frame
-                frame = queryFrame(ecu.getFromId(), "6180");
+                frame = getFrame(ecu.getFromId(), "6180");
                 if (frame != null) {
-                    for (Field field : frame.getAllFields()) {
-                        switch (field.getFrom()) {
-                            case 56:
-                                setSoftwareValue(R.id.textDiagVersion, field, "DiagVersion: ");
-                                break;
-                            case 64:
-                                setSoftwareValue(R.id.textSupplier, field, "Supplier: ");
-                                break;
-                            case 128:
-                                setSoftwareValue(R.id.textSoft, field, "Soft: ");
-                                break;
-                            case 144:
-                                setSoftwareValue(R.id.textVersion, field, "Version: ");
-                                break;
+                    frame = queryFrame(frame);
+                    if (frame != null) {
+                        for (Field field : frame.getAllFields()) {
+                            switch (field.getFrom()) {
+                                case 56:
+                                    setSoftwareValue(R.id.textDiagVersion, field, "DiagVersion: ");
+                                    break;
+                                case 64:
+                                    setSoftwareValue(R.id.textSupplier, field, "Supplier: ");
+                                    break;
+                                case 128:
+                                    setSoftwareValue(R.id.textSoft, field, "Soft: ");
+                                    break;
+                                case 144:
+                                    setSoftwareValue(R.id.textVersion, field, "Version: ");
+                                    break;
+                            }
                         }
                     }
                     return;
                 }
 
                 // else 2nd approach
-                frame = queryFrame(ecu.getFromId(), "62f18a");
+                frame = getFrame(ecu.getFromId(), "62f18a");
                 if (frame != null) {
-                    Field field = frame.getAllFields().get(0);
-                    setSoftwareValue(R.id.textSupplier, field, "Supplier: ");
+                    frame = queryFrame(frame);
+                    if (frame != null) {
+                        Field field = frame.getAllFields().get(0);
+                        setSoftwareValue(R.id.textSupplier, field, "Supplier: ");
+                    }
                 }
-                frame = queryFrame(ecu.getFromId(), "62f194");
+                frame = getFrame(ecu.getFromId(), "62f194");
                 if (frame != null) {
-                    Field field = frame.getAllFields().get(0);
-                    setSoftwareValue(R.id.textSoft, field, "Soft: ");
+                    frame = queryFrame(frame);
+                    if (frame != null) {
+                        Field field = frame.getAllFields().get(0);
+                        setSoftwareValue(R.id.textSoft, field, "Soft: ");
+                    }
                 }
-                frame = queryFrame(ecu.getFromId(), "62f195");
+                frame = getFrame(ecu.getFromId(), "62f195");
                 if (frame != null) {
-                    Field field = frame.getAllFields().get(0);
-                    setSoftwareValue(R.id.textVersion, field, "Version: ");
+                    frame = queryFrame(frame);
+                    if (frame != null) {
+                        Field field = frame.getAllFields().get(0);
+                        setSoftwareValue(R.id.textVersion, field, "Version: ");
+                    }
                 }
-                frame = queryFrame(ecu.getFromId(), "62f1a0");
+                frame = getFrame(ecu.getFromId(), "62f1a0");
                 if (frame != null) {
-                    Field field = frame.getAllFields().get(0);
-                    setSoftwareValue(R.id.textDiagVersion, field, "DiagVersion: ");
-                }
+                    frame = queryFrame(frame);
+                    if (frame != null) {
 
+                        Field field = frame.getAllFields().get(0);
+                        setSoftwareValue(R.id.textDiagVersion, field, "DiagVersion: ");
+                    }
+                }
             }
         });
         queryThread.start();
     }
 
-    private Frame queryFrame (int fromId, String responseId) {
+    private Frame getFrame (int fromId, String responseId) {
         Frame frame = Frames.getInstance().getById(fromId, responseId);
         if (frame == null) {
-            MainActivity.getInstance().dropDebugMessage("Frame for this ECU not found");
+            MainActivity.getInstance().dropDebugMessage(String.format(Locale.getDefault(), "Frame for this ECU %X.%s not found", fromId, responseId));
             return null;
         }
         MainActivity.getInstance().dropDebugMessage(frame.getFromIdHex() + "." + frame.getResponseId());
+        return frame;
+    }
+
+    private Frame queryFrame (Frame frame) {
         Message message = MainActivity.device.requestFrame(frame); //  field.getFrame());
         if (message.isError()) {
             MainActivity.getInstance().dropDebugMessage(message.getError());
@@ -318,60 +339,83 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
                 log("ECU, Version Type, Version data");
 
                 if (MainActivity.isPh2()) {
-                    frame = queryFrame(0x18daf1d2, "5003"); // open the gateway, as the poller is stopped
+                    frame = getFrame(0x18daf1d2, "5003"); // open the gateway, as the poller is stopped
+                    frame = queryFrame(frame);
                 }
 
                 for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
-                    keepAlive();
-                    if (ecu.getSessionRequired()) {
-                        frame = queryFrame(ecu.getFromId(), ecu.getStartDiag()); // open the ecu, as the poller is stopped
-                    }
-                    // query the Frame
-                    frame = queryFrame(ecu.getFromId(), "6180");
-                    if (frame != null) {
-                        for (Field field : frame.getAllFields()) {
-                            switch (field.getFrom()) {
-                                case 56:
-                                    log(ecu.getMnemonic() + "," + "DiagVersion" + "," + getSoftwareValue(field));
-                                    break;
-                                case 64:
-                                    log(ecu.getMnemonic() + "," + "Supplier" + "," + getSoftwareValue(field));
-                                    break;
-                                case 128:
-                                    log(ecu.getMnemonic() + "," + "Soft" + "," + getSoftwareValue(field));
-                                    break;
-                                case 144:
-                                    log(ecu.getMnemonic() + "," + "Version" + "," + getSoftwareValue(field));
-                                    break;
+                    // see if we need to stop right now
+                    if (((StoppableThread) Thread.currentThread()).isStopped()) return;
+                    if (ecu.getFromId() > 0 && (ecu.getFromId() < 0x800 || ecu.getFromId() >= 0x900)) {
+                        keepAlive();
+                        if (ecu.getSessionRequired()) {
+                            frame = getFrame(ecu.getFromId(), ecu.getStartDiag()); // open the ecu, as the poller is stopped
+                            frame = queryFrame(frame);
+                        }
+                        // query the Frame
+                        frame = getFrame(ecu.getFromId(), "6180");
+                        if (frame != null) {
+                            frame = queryFrame(frame);
+                            if (frame != null) {
+
+                                for (Field field : frame.getAllFields()) {
+                                    switch (field.getFrom()) {
+                                        case 56:
+                                            log(ecu.getMnemonic() + "," + "DiagVersion" + "," + getSoftwareValue(field));
+                                            break;
+                                        case 64:
+                                            log(ecu.getMnemonic() + "," + "Supplier" + "," + getSoftwareValue(field));
+                                            break;
+                                        case 128:
+                                            log(ecu.getMnemonic() + "," + "Soft" + "," + getSoftwareValue(field));
+                                            break;
+                                        case 144:
+                                            log(ecu.getMnemonic() + "," + "Version" + "," + getSoftwareValue(field));
+                                            break;
+                                    }
+                                }
+                            }
+
+                            continue;
+                        }
+
+                        // else 2nd approach
+                        frame = getFrame(ecu.getFromId(), "62f1a0");
+                        if (frame != null) {
+                            frame = queryFrame(frame);
+                            if (frame != null) {
+                                Field field = frame.getAllFields().get(0);
+                                log(ecu.getMnemonic() + "," + "DiagVersion" + "," + getSoftwareValue(field));
                             }
                         }
-                        continue;
-                    }
-
-                    // else 2nd approach
-                    frame = queryFrame(ecu.getFromId(), "62f1a0");
-                    if (frame != null) {
-                        Field field = frame.getAllFields().get(0);
-                        log(ecu.getMnemonic() + "," + "DiagVersion" + "," + getSoftwareValue(field));
-                    }
-                    frame = queryFrame(ecu.getFromId(), "62f18a");
-                    if (frame != null) {
-                        Field field = frame.getAllFields().get(0);
-                        log(ecu.getMnemonic() + "," + "Supplier" + "," + getSoftwareValue(field));
-                    }
-                    frame = queryFrame(ecu.getFromId(), "62f194");
-                    if (frame != null) {
-                        Field field = frame.getAllFields().get(0);
-                        log(ecu.getMnemonic() + "," + "Soft" + "," + getSoftwareValue(field));
-                    }
-                    frame = queryFrame(ecu.getFromId(), "62f195");
-                    if (frame != null) {
-                        Field field = frame.getAllFields().get(0);
-                        log(ecu.getMnemonic() + "," + "Version" + "," + getSoftwareValue(field));
+                        frame = getFrame(ecu.getFromId(), "62f18a");
+                        if (frame != null) {
+                            frame = queryFrame(frame);
+                            if (frame != null) {
+                                Field field = frame.getAllFields().get(0);
+                                log(ecu.getMnemonic() + "," + "Supplier" + "," + getSoftwareValue(field));
+                            }
+                        }
+                        frame = getFrame(ecu.getFromId(), "62f194");
+                        if (frame != null) {
+                            frame = queryFrame(frame);
+                            if (frame != null) {
+                                Field field = frame.getAllFields().get(0);
+                                log(ecu.getMnemonic() + "," + "Soft" + "," + getSoftwareValue(field));
+                            }
+                        }
+                        frame = getFrame(ecu.getFromId(), "62f195");
+                        if (frame != null) {
+                            frame = queryFrame(frame);
+                            if (frame != null) {
+                                Field field = frame.getAllFields().get(0);
+                                log(ecu.getMnemonic() + "," + "Version" + "," + getSoftwareValue(field));
+                            }
+                        }
                     }
                 }
                 closeDump();
-                displayProgress(false, R.id.progressBar_cyclic, R.id.csvFirmware);
+                displayProgress(false, R.id.progressBar_cyclic3, R.id.csvFirmware);
             }
         });
         queryThread.start();
