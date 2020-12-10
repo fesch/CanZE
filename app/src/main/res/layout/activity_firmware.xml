@@ -24,19 +24,18 @@
 
             <TextView
                 android:id="@+id/link"
+                android:layout_gravity="center_vertical"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:background="?attr/colorBackgroundFloating"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
+                android:padding="5dp"
                 android:layout_weight="0.7" />
 
             <Button
                 android:id="@+id/csvFirmware"
                 style="?android:attr/button"
+                android:layout_height="wrap_content"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
                 android:layout_marginTop="-6dp"
                 android:layout_marginBottom="-6dp"
                 android:layout_weight="0.3"
