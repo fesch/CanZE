@@ -418,6 +418,7 @@
     <string name="title_activity_firmware">Firmware</string>
     <string name="button_Firmware">Firmware</string>
     <string name="help_Ecus"><![CDATA[Cliquez sur un ECU pour afficher les détails. Plus d’informations sur les calculateurs de la voiture <a href="http://canze.fisch.lu/computers/">ici</a>.]]></string>
+    <string name="button_WriteCsv">Tout écrire dans csv</string>
     <string name="format_NoAsset" formatted="false">Impossible d’accéder à %s</string>
     <string name="title_activity_heatmap_bat">Température des modules</string>
     <string name="button_HeatmapTemperature">T° des modules</string>

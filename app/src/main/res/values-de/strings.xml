@@ -329,7 +329,7 @@
     <string name="label_DISTA">Reichweite</string>
     <string name="label_Volt">Spannung Akku (V)</string>
     <string name="label_Amps">Strom Akku (A)</string>
-    <string name="label_DcPwr">DC Ladeleistung (kW)</string>
+    <string name="label_DcPwr">DC Leistung (kW)</string>
     <string name="label_AvChPwr">verfügbare Ladestationleistung (kW)</string>
     <string name="label_AvEner">Verfügbare Energie (kWh)</string>
     <string name="label_12V">12V Akku Spannung (v)</string>
@@ -530,6 +530,7 @@
     <string name="title_activity_firmware">Firmware</string>
     <string name="button_Firmware">Firmware</string>
     <string name="help_Ecus"><![CDATA[Klick auf ein ECU um Details anzuzeigen. Mehr erfahren <a href="http://canze.fisch.lu/computers/">hier</a>.]]></string>
+    <string name="button_WriteCsv">Alle in csv schreiben</string>
 
     <!-- Fluence Kangoo Temps -->
 

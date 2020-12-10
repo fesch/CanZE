@@ -18,6 +18,7 @@
     <string name="button_DtcReadout">Чтение ошибок (DTC)</string>
     <string name="button_ElmTesting">Тест ELM</string>
     <string name="button_Firmware">Прошивка</string>
+    <string name="button_WriteCsv">напишите все в csv</string>
     <string name="button_HeatmapTemperature">Карта температур</string>
     <string name="button_HeatmapVoltage">Карта напряжений</string>
     <string name="button_LeakCurrents">Токи утечки</string>

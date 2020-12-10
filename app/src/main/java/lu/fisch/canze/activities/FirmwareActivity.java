@@ -22,19 +22,33 @@
 package lu.fisch.canze.activities;
 
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Button;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Ecu;
 import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.actors.Frame;
 import lu.fisch.canze.actors.Frames;
 import lu.fisch.canze.actors.Message;
@@ -42,11 +56,16 @@ import lu.fisch.canze.actors.StoppableThread;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
+import static lu.fisch.canze.activities.MainActivity.debug;
+
 // Jeroen
 
 public class FirmwareActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     private StoppableThread queryThread;
+    private BufferedWriter bufferedDumpWriter = null;
+    private boolean dumpInProgress = false;
+    private long ticker = 0;
 
     @SuppressLint("StringFormatMatches")
 
@@ -67,6 +86,8 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
                     tv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            if(dumpInProgress)
+                                return;
                             showSelected (v); // clear out previous values an the selection bar, and set the new bar
                             showDetails(thisEcu); // get the new values and populate
                         }
@@ -78,6 +99,13 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
             }
         }
 
+        final Button btnCsvSave = findViewById(R.id.csvFirmware);
+        btnCsvSave.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               doGetAllFirmware();
+            }
+        });
         TextView textView = findViewById(R.id.link);
         textView.setText(Html.fromHtml(MainActivity.getStringSingle(R.string.help_Ecus)));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
@@ -230,6 +258,17 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
         return frame;
     }
 
+    private String getSoftwareValue(final Field field) {
+        if (field == null) {
+            return "-";
+        } else if (field.isString()) {
+            return field.getStringValue();
+        } else if ((field.getTo() - field.getFrom()) < 8) {
+            return String.format(Locale.getDefault(), "%02X", (int)field.getValue());
+        } else {
+            return String.format(Locale.getDefault(), "%04X", (int)field.getValue());
+        }
+    }
 
     private void setSoftwareValue(final int id, final Field field, final String label) {
         runOnUiThread(new Runnable() {
@@ -251,7 +290,215 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
         });
     }
 
+    private void doGetAllFirmware(){
+        if(queryThread!=null) {
+            if (queryThread.isAlive()) {
+                queryThread.tryToStop();
+                try {
+                    queryThread.join();
+                } catch (Exception e) {
+                    MainActivity.debug(e.getMessage());
+                }
+            }
+        }
+
+        queryThread = new StoppableThread(new Runnable() {
+            @Override
+            public void run() {
+                freezeOrientation();
+                Frame frame;
+
+                displayProgress(true, R.id.progressBar_cyclic3, R.id.csvFirmware);
+                // re-initialize the device
+                if (!MainActivity.device.initDevice(1)) {
+                    return;
+                }
+                createDump();
+                ticker = Calendar.getInstance().getTimeInMillis();
+                log("ECU, Version Type, Version data");
+
+                if (MainActivity.isPh2()) {
+                    frame = queryFrame(0x18daf1d2, "5003"); // open the gateway, as the poller is stopped
+                }
+
+                for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
+                    keepAlive();
+                    if (ecu.getSessionRequired()) {
+                        frame = queryFrame(ecu.getFromId(), ecu.getStartDiag()); // open the ecu, as the poller is stopped
+                    }
+                    // query the Frame
+                    frame = queryFrame(ecu.getFromId(), "6180");
+                    if (frame != null) {
+                        for (Field field : frame.getAllFields()) {
+                            switch (field.getFrom()) {
+                                case 56:
+                                    log(ecu.getMnemonic() + "," + "DiagVersion" + "," + getSoftwareValue(field));
+                                    break;
+                                case 64:
+                                    log(ecu.getMnemonic() + "," + "Supplier" + "," + getSoftwareValue(field));
+                                    break;
+                                case 128:
+                                    log(ecu.getMnemonic() + "," + "Soft" + "," + getSoftwareValue(field));
+                                    break;
+                                case 144:
+                                    log(ecu.getMnemonic() + "," + "Version" + "," + getSoftwareValue(field));
+                                    break;
+                            }
+                        }
+                        continue;
+                    }
+
+                    // else 2nd approach
+                    frame = queryFrame(ecu.getFromId(), "62f1a0");
+                    if (frame != null) {
+                        Field field = frame.getAllFields().get(0);
+                        log(ecu.getMnemonic() + "," + "DiagVersion" + "," + getSoftwareValue(field));
+                    }
+                    frame = queryFrame(ecu.getFromId(), "62f18a");
+                    if (frame != null) {
+                        Field field = frame.getAllFields().get(0);
+                        log(ecu.getMnemonic() + "," + "Supplier" + "," + getSoftwareValue(field));
+                    }
+                    frame = queryFrame(ecu.getFromId(), "62f194");
+                    if (frame != null) {
+                        Field field = frame.getAllFields().get(0);
+                        log(ecu.getMnemonic() + "," + "Soft" + "," + getSoftwareValue(field));
+                    }
+                    frame = queryFrame(ecu.getFromId(), "62f195");
+                    if (frame != null) {
+                        Field field = frame.getAllFields().get(0);
+                        log(ecu.getMnemonic() + "," + "Version" + "," + getSoftwareValue(field));
+                    }
+                }
+                closeDump();
+                displayProgress(false, R.id.progressBar_cyclic, R.id.csvFirmware);
+            }
+        });
+        queryThread.start();
+    }
+
+    private void log(String text) {
+        try {
+            bufferedDumpWriter.append(text);
+            bufferedDumpWriter.append(System.getProperty("line.separator"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createDump() {
+
+        dumpInProgress = false;
+
+        if (!MainActivity.storageIsAvailable) {
+            debug("FirmwareActivity.createDump: SDcard not available");
+            return;
+        }
+
+        // ensure that there is a CanZE Folder in SDcard
+        if (!MainActivity.getInstance().isExternalStorageWritable()) {
+            debug("FirmwareActivity.createDump: SDcard not writeable");
+            return;
+        }
+
+        String file_path = MainActivity.getInstance().getExternalFolder();
+        File dir = new File(file_path);
+        if (!dir.exists()) {
+            if (!dir.mkdirs()) {
+                debug("DiagDump: Can't create directory:" + file_path);
+                return;
+            }
+        }
+        debug("DiagDump: file_path:" + file_path);
+
+        SimpleDateFormat sdf = new SimpleDateFormat(MainActivity.getStringSingle(R.string.format_YMDHMS), Locale.getDefault());
+        String exportdataFileName = file_path + "Firmwares-" + sdf.format(Calendar.getInstance().getTime()) + ".csv";
+
+        File logFile = new File(exportdataFileName);
+        if (!logFile.exists()) {
+            try {
+                if (!logFile.createNewFile()) {
+                    debug("DiagDump: Can't create file:" + exportdataFileName);
+                    return;
+                }
+                debug("DiagDump: NewFile:" + exportdataFileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+        }
+
+        try {
+            //BufferedWriter for performance, true to set append to file flag
+            bufferedDumpWriter = new BufferedWriter(new FileWriter(logFile, true));
+            dumpInProgress = true;
+            MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_DumpWriting), exportdataFileName);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void keepAlive() {
+        if (!MainActivity.isPh2()) return; // quit ticker if no gateway and no session
+        if (Calendar.getInstance().getTimeInMillis() < ticker) return; // then, quit if no timeout
+        if (MainActivity.isPh2()) {
+            // open the gateway
+            MainActivity.device.requestFrame(Frames.getInstance().getById(0x18daf1d2, "5003"));
+        }
+        ticker = ticker + 1500;
+    }
+
+    private void closeDump() {
+        try {
+            if (dumpInProgress) {
+                bufferedDumpWriter.close();
+                MainActivity.toast(MainActivity.TOAST_NONE, "Done.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     // UI elements
+
+    private void displayProgress(final boolean on, final int id_spinner, final int id_button) {
+        // remove progress spinners
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ProgressBar pb = findViewById(id_spinner);
+                if (pb != null){ pb.setVisibility(on ? View.VISIBLE : View.GONE);}
+                Button btn = findViewById(id_button);
+                if (btn != null){btn.setEnabled(!on);}
+            }
+        });
+    }
+
+    @SuppressLint("SourceLockedOrientationActivity")
+    // this is done to avoid restarting the long running activity
+    private void freezeOrientation () {
+        int rotation = getWindowManager().getDefaultDisplay().getRotation();
+        switch (getResources().getConfiguration().orientation) {
+            case Configuration.ORIENTATION_PORTRAIT:
+                if (rotation == android.view.Surface.ROTATION_90 || rotation == android.view.Surface.ROTATION_180) {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
+                } else {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                }
+                break;
+
+            case Configuration.ORIENTATION_LANDSCAPE:
+                if (rotation == android.view.Surface.ROTATION_0 || rotation == android.view.Surface.ROTATION_90) {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                } else {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+                }
+                break;
+        }
+    }
+
+
     @Override
     protected void onDestroy() {
 
@@ -267,6 +514,12 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
                     MainActivity.debug(e.getMessage());
                 }
             }
+
+        closeDump();
+
+        // Reload the frame & timings
+        Frames.getInstance().load();
+        Fields.getInstance().load();
 
         // restart the poller
         if (MainActivity.device != null) {
