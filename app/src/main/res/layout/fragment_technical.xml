@@ -175,55 +175,6 @@
                     android:layout_height="match_parent">
 
                     <Button
-                        android:id="@+id/buttonLeakCurrents"
-                        style="?android:attr/button"
-                        android:layout_width="0dp"
-                        android:layout_height="fill_parent"
-                        android:layout_column="0"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_weight="1"
-                        android:drawableStart="@drawable/button_leak"
-                        android:text="@string/button_LeakCurrents" />
-
-                    <Button
-                        android:id="@+id/buttonTires"
-                        style="?android:attr/button"
-                        android:layout_width="0dp"
-                        android:layout_height="fill_parent"
-                        android:layout_column="1"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_weight="1"
-                        android:drawableStart="@drawable/button_tire"
-                        android:text="@string/button_Tires" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <Button
-                        android:id="@+id/buttonHeatmapCellvoltage"
-                        style="?android:attr/button"
-                        android:layout_width="0dp"
-                        android:layout_height="fill_parent"
-                        android:layout_column="0"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:layout_weight="1"
-                        android:drawableStart="@drawable/button_lightning"
-                        android:text="@string/button_HeatmapVoltage" />
-
-
-                    <Button
                         android:id="@+id/buttonHeatmapBatcomp"
                         style="?android:attr/button"
                         android:layout_width="0dp"
@@ -237,11 +188,23 @@
                         android:drawableStart="@drawable/button_batterytemp"
                         android:text="@string/button_HeatmapTemperature" />
 
+                    <Button
+                        android:id="@+id/buttonHeatmapCellvoltage"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="1"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/button_lightning"
+                        android:text="@string/button_HeatmapVoltage" />
+
                 </TableRow>
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <TableRow>
 
                     <Button
                         android:id="@+id/buttonRange"
@@ -270,6 +233,40 @@
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_alldata"
                         android:text="@string/button_AllData" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/buttonLeakCurrents"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="0"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/button_leak"
+                        android:text="@string/button_LeakCurrents" />
+
+                    <Button
+                        android:id="@+id/buttonTires"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="1"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/button_tire"
+                        android:text="@string/button_Tires"/>
 
                 </TableRow>
 
