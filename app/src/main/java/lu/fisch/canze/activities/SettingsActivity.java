@@ -240,6 +240,12 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("-- Experimental --");     // 22
         for (int i = 20; i <= 22; i++) arrayAdapter.add(ActivityRegistry.getInstance().getById(i).getTitle());
         arrayAdapter.add("-- Custom --");           // 26
+
+        // filter out activities based on car model
+        if (MainActivity.isPh2()) {
+            arrayAdapter.remove(ActivityRegistry.getInstance().getById(ActivityRegistry.ACTIVITY_TIRES).getTitle());
+        }
+
         Activity a = null;
         try {
             a = ActivityRegistry.getInstance().getById(settings.getInt("startActivity", -1));
