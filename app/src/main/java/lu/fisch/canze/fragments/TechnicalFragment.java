@@ -93,19 +93,24 @@ public class TechnicalFragment extends Fragment {
 
     private void activateButton(View view, int buttonId, final Class<?> activityClass) {
         Button button = view.findViewById(buttonId);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!MainActivity.isSafe()) return;
-                if (MainActivity.device == null) {
-                    MainActivity.toast(MainActivity.TOAST_NONE, R.string.toast_AdjustSettings);
-                    return;
+        if (MainActivity.isPh2() && buttonId == R.id.buttonTires) {
+            button.setVisibility(View.INVISIBLE);
+            button.setEnabled(false);
+        } else {
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!MainActivity.isSafe()) return;
+                    if (MainActivity.device == null) {
+                        MainActivity.toast(MainActivity.TOAST_NONE, R.string.toast_AdjustSettings);
+                        return;
+                    }
+                    MainActivity.getInstance().leaveBluetoothOn = true;
+                    Intent intent = new Intent(MainActivity.getInstance(), activityClass);
+                    TechnicalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
                 }
-                MainActivity.getInstance().leaveBluetoothOn = true;
-                Intent intent = new Intent(MainActivity.getInstance(), activityClass);
-                TechnicalFragment.this.startActivityForResult(intent, MainActivity.LEAVE_BLUETOOTH_ON);
-            }
-        });
+            });
+        }
     }
 
     @Override
