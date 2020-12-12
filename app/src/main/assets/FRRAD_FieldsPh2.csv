@@ -1,5 +1,29 @@
-,735,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
-,735,0,23,1,0,0,,1902ff,590200,ff,Query DTC
+,735,-8,-1,1,0,0,,1001,5001,ff,
+,735,-8,-1,1,0,0,,1002,5002,ff,
+,735,-8,-1,1,0,0,,1003,5003,ff,
+,735,-8,-1,1,0,0,,14FFFFFF,54FFFFFF,ff,
+,735,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask
+,735,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier,0:SAE_J2012-DA_DTC;1:ISO_14229-1_DTC;2:SAE_J1939-73_DTC;3:ISO_11992-4_DTC;4:SAE_J2012-DA_WWHOBD_DTC
+,735,32,47,1,0,0,,1901FF,5901FF,ff,DTCCount
+,735,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask
+,735,24,39,1,0,0,,1902FF,5902FF,4ff,DTCDeviceAndFailureTypeOBD
+,735,40,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adj. failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or sys. operation obstructed or blocked;152:component or system over temperature
+,735,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier
+,735,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,735,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,735,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,735,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,735,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,735,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,735,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,735,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,735,-8,-1,1,0,0,,1903000000FF,5903000000FF,ff,
+,735,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord
+,735,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC
+,735,16,23,1,0,0,,190A,590A,ff,DTCStatusAvailabilityMask
+,735,24,39,1,0,0,,190A,590A,ff,DTCDeviceIdentifier,25994:ACU Error;26003:4WS Error;26005:ADAS_IC Error;25993:ATCU Error;26001:BCM Error;25987:Crash detection;26016:AEB_DegradedMode;26002:ECM Error;25984:ECU_InternalFailure;26006:Fr_Camera Error;25995:HEVC Error;25997:IDM Error;26004:IVI Error;26017:DW_DegradedMode;57679:Lost Communication BCM_V1;26000:METER Error;25991:Power Voltage Disturbance;25985:Radar Misalignement;25996:SBW Error;25986:Sensor Blindness;25999:USM Error;25998:VDC Error;57963:Lost Communication Fr_Camera_ITS
+,735,40,47,1,0,0,,190A,590A,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adj. failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or sys. operation obstructed or blocked;152:component or system over temperature
+,735,48,55,1,0,0,,190A,590A,ff,StatusOfDTC
 ,735,24,39,.01,0,2,°,220100,620100,1ff,Plant Alignment checking.Horizontal Alignment value on EEPROM-factory
 ,735,40,55,.01,0,2,°,220100,620100,1ff,Plant Alignment checking.Vertical Alignment value on EEPROM-factory
 ,735,56,71,.01,0,2,°,220100,620100,1ff,Plant Alignment checking.Horizontal Alignment value on EEPROM
@@ -1120,7 +1144,7 @@
 ,735,30,39,.01,-1000,2,-,221017,621017,ff,Param_veh_2.Steer_gear_ratio
 ,735,41,47,.005,-280,3,m,221017,621017,ff,Param_veh_2.TRACK_WIDTH_FRONT
 ,735,49,55,.005,-280,3,m,221017,621017,ff,Param_veh_2.TRACK_WIDTH_REAR
-,735,63,63,2,.5,0,-,221017,621017,ff,Param_veh_2.RPLB
+,735,63,63,2,1,0,-,221017,621017,ff,Param_veh_2.RPLB
 ,735,65,71,.01,64,2,m,221017,621017,ff,Param_veh_2.Ofpr
 ,735,72,79,.005,-460,3,m,221017,621017,ff,Param_veh_2.Wheelbase
 ,735,81,87,.02,-40,2,,221017,621017,ff,Param_veh_2.P_sys_m_VehicleWidth
@@ -4840,3 +4864,4 @@
 ,735,24,87,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,735,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,735,24,55,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
+,735,-8,-1,1,0,0,,3E00,7E00,ff,

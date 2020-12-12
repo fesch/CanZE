@@ -233,7 +233,7 @@ public class DtcActivity extends CanzeActivity {
                     testerKeepalive(ecu);
                     // compile the field query and get the Field object
                     appendResult(MainActivity.getStringSingle(R.string.message_GetDtcs) + getDtc + "]\n");
-                    field = Fields.getInstance().getBySID(filter + "." + getDtc + ".0"); // get DTC
+                    field = Fields.getInstance().getBySID(filter + "." + getDtc + ".16"); // get DTC
                     if (field != null) {
                         // query the Field
                         message = MainActivity.device.requestFrame(field.getFrame());

@@ -1,5 +1,26 @@
-,764,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
-,764,0,23,1,0,0,,1902ff,5902ff,ff,Query DTC
+,764,-8,-1,1,0,0,,1001,5001,ff,
+,764,-8,-1,1,0,0,,1002,5002,ff,
+,764,-8,-1,1,0,0,,1003,5003,ff,
+,764,-8,-1,1,0,0,,14FFFFFF,54FFFFFF,ff,
+,764,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask
+,764,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier,0:SAE_J2012-DA_DTC;1:ISO_14229-1_DTC;2:SAE_J1939-73_DTC;3:ISO_11992-4_DTC;4:SAE_J2012-DA_WWHOBD_DTC
+,764,32,47,1,0,0,,1901FF,5901FF,ff,DTCCount
+,764,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask
+,764,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceAndFailureTypeOBD,42113:PTC;42114:HPM;42115:ECompOutputLineSC;42116:ECompOutputLineOC;42117:ECompCurrentSensor;42118:ECompOverload;42119:ECompAbnormalRunUp;42121:ECompAbnormalHV;42122:EComp;42123:ECompCPU;42124:HPMACleakageDynamic;42144:ClimBox;42145:PowerSupply;42146:Config;42147:AQSReductorSensor;42148:EvapTempSensor;42149:AQSOxydantSensor;42150:InCarTempSensor;42151:AQSSupply;42152:AQSPreHeat;42153:LeftSolarSensor;42155:HumiditySensor;42156:PWMAQS;42158:HotSourceTempSensor;42159:HeatSeatFrontLeftLowRelay;42160:HeatSeatFrontLeftHighRelay;42162:IonizerMode;42164:FrontControlPanel;42165:BoilerFeedback;42167:RecyActuator;42169:FeetVentActuator;42170:HeatSeatFrontRightLowRelay;42171:LeftMixActuator;42172:HeatSeatFrontRightHighRelay;42173:RightMixActuator;42176:HPMACleakageStatic;42177:HPMStatusValve1;42178:HPMStatusValve2;42179:HPMStatusSensor1;42180:HPMStatusSensor2;42181:PTCStatElectronicDefect;42182:PWMBlowerCommand;42183:PTCStatOverTemperature;42184:PTCStatOverUndervoltage;42185:BoilerCommand;42187:CompressorValveCommand;42191:Valve1Command;42193:Valve2Command;42195:LIN1;42196:LIN2;42199:RearBlowerCommand;42206:IonizerSupply;42209:PTCStatHeatercirc1off;42210:PTCStatHeatercirc2off;42211:PTCStatHeatercirc3off;42212:PTCStatHeatercirc4off;42213:WindshieldHeating1Command;42215:WindshieldHeating2Command;42228:SteeringHeaterRelay;42229:FeetVentLINActuator;42230:RecyLINActuator;42231:LeftMixLINActuator;42232:RightMixLINActuator;42233:ECompTempSensor;53248:CANNetwork;53264:CANController;57664:DiagMuxECM;57667:DiagMuxHEVC;57672:DiagMuxVDC;57678:DiagMuxMeter;57679:DiagMuxBCM;57680:DiagMuxACU;57684:DiagMuxIVI;57691:DiagMuxUSM
+,764,40,43,1,0,0,,1902FF,5902FF,ff,DTCFailureType.Category,0:General Failure Information;1:General Electrical Failures;2:General Signal Failures;3:FM / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;10:General Electrical Failures - 2;15:Vehicle manufacturer / System supplier specific
+,764,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier
+,764,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,764,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,764,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,764,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,764,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,764,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,764,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,764,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,764,16,23,1,0,0,,190A,590A,ff,DTCStatusAvailabilityMask
+,764,24,39,1,0,0,,190A,590A,ff,DTCDeviceIdentifier,42113:PTC;42114:HPM;42115:ECompOutputLineSC;42116:ECompOutputLineOC;42117:ECompCurrentSensor;42118:ECompOverload;42119:ECompAbnormalRunUp;42121:ECompAbnormalHV;42122:EComp;42123:ECompCPU;42124:HPMACleakageDynamic;42144:ClimBox;42145:PowerSupply;42146:Config;42147:AQSReductorSensor;42148:EvapTempSensor;42149:AQSOxydantSensor;42150:InCarTempSensor;42151:AQSSupply;42152:AQSPreHeat;42153:LeftSolarSensor;42155:HumiditySensor;42156:PWMAQS;42158:HotSourceTempSensor;42159:HeatSeatFrontLeftLowRelay;42160:HeatSeatFrontLeftHighRelay;42162:IonizerMode;42164:FrontControlPanel;42165:BoilerFeedback;42167:RecyActuator;42169:FeetVentActuator;42170:HeatSeatFrontRightLowRelay;42171:LeftMixActuator;42172:HeatSeatFrontRightHighRelay;42173:RightMixActuator;42176:HPMACleakageStatic;42177:HPMStatusValve1;42178:HPMStatusValve2;42179:HPMStatusSensor1;42180:HPMStatusSensor2;42181:PTCStatElectronicDefect;42182:PWMBlowerCommand;42183:PTCStatOverTemperature;42184:PTCStatOverUndervoltage;42185:BoilerCommand;42187:CompressorValveCommand;42191:Valve1Command;42193:Valve2Command;42195:LIN1;42196:LIN2;42199:RearBlowerCommand;42206:IonizerSupply;42209:PTCStatHeatercirc1off;42210:PTCStatHeatercirc2off;42211:PTCStatHeatercirc3off;42212:PTCStatHeatercirc4off;42213:WindshieldHeating1Command;42215:WindshieldHeating2Command;42228:SteeringHeaterRelay;42229:FeetVentLINActuator;42230:RecyLINActuator;42231:LeftMixLINActuator;42232:RightMixLINActuator;42233:ECompTempSensor;53248:CANNetwork;53264:CANController;57664:DiagMuxECM;57667:DiagMuxHEVC;57672:DiagMuxVDC;57678:DiagMuxMeter;57679:DiagMuxBCM;57680:DiagMuxACU;57684:DiagMuxIVI;57691:DiagMuxUSM
+,764,40,47,1,0,0,,190A,590A,ff,DTCFailureType,8:Bus signal;17:SC to ground;18:SC to battery;19:OC;20:OC or SC to ground;21:OC or SC to battery;22:voltage below threshold;23:voltage above threshold;36:bad frequency;73:internal failure;147:no operation;1:General Electrical Failure;2:General signal failure
+,764,48,55,1,0,0,,190A,590A,ff,StatusOfDTC
 ,764,24,24,1,0,0,,220001,620001,ff,VL_HPMValve1Diag_OCFP
 ,764,24,24,1,0,0,,224001,624001,ff,OLB_DayNightStatus
 ,764,24,24,1,0,0,,224002,624002,ff,OLB_ClearDiagInfo
@@ -484,7 +505,7 @@
 ,764,24,39,.001953125,20480000000000,3,,224421,624421,ff,VH_FrontColdSourceTemp
 ,764,24,39,.1,400,1,°C,224423,624423,ff,IH_HVBattEvapTempMeasure
 ,764,24,39,.1,400,1,°C,224424,624424,ff,IH_HVBattEvapTempSetPoint
-,764,24,39,.0039063,102398689296.777,3,,224429,624429,ff,VH_FrontHotSourceTempBeforeHVPTC
+,764,24,39,.0039063,102398689297,3,,224429,624429,ff,VH_FrontHotSourceTempBeforeHVPTC
 ,764,24,31,1,40,0,°C,22442A,62442A,ff,IH_HVbatteryTemperature
 ,764,24,24,1,0,0,,22442C,62442C,ff,IH_HeatLoopPumpStatus
 ,764,24,31,1,0,0,%,22442D,62442D,ff,IH_EngineWaterPumpStatus
@@ -579,3 +600,4 @@
 ,764,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
 ,764,24,39,.125,0,1,rpm,22F40C,62F40C,ff,IH_EngineRPM
 ,764,24,31,1,40,0,°C,22F467,62F467,ff,IH_EngineCoolantTemp
+,764,-8,-1,1,0,0,,3E00,7E00,ff,

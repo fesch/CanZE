@@ -1,5 +1,29 @@
-,761,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
-,761,0,23,1,0,0,,1902ff,590239,ff,Query DTC
+,761,-8,-1,1,0,0,,1081,5081,ff,
+,761,-8,-1,1,0,0,,1085,5085,ff,
+,761,-8,-1,1,0,0,,10C0,50C0,ff,
+,761,-8,-1,1,0,0,,14FFFFFF,54FFFFFF,ff,
+,761,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask
+,761,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceAndFailureTypeOBD
+,761,40,43,1,0,0,,1902FF,5902FF,ff,DTCFailureType.Category,0:General Failure Information;1:General Electrical Failures;2:General Signal Failures;3:FM / PWM Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;15:Vehicle manufacturer / System supplier specific
+,761,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier
+,761,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested
+,761,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle
+,761,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,761,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,761,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,761,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC
+,761,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle
+,761,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,761,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord
+,761,40,47,1,8,0,,1904000000FF,5904000000FF,ff,StatusOfDTC
+,761,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord
+,761,40,47,1,8,0,,190600000080,590600000080,ff,StatusOfDTC
+,761,48,55,1,0,0,,190600000080,590600000080,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,761,56,79,1,0,0,km,190600000080,590600000080,ff,DTCExtendedData.Mileage
+,761,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord
+,761,40,47,1,8,0,,1906000000FF,5906000000FF,ff,StatusOfDTC
+,761,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,761,56,63,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedData.DTCOccurrenceCounter
 ,761,16,47,1,0,0,,2100,6100,4ff,Support LID data
 ,761,21,21,1,0,0,,2103,6103,ff,Configuration of DiagMUX DTCs.ECM_Presence,0:Absent;1:Present
 ,761,22,22,1,0,0,,2103,6103,ff,Configuration of DiagMUX DTCs.HEVC_Presence,0:Absent;1:Present
@@ -106,3 +130,4 @@
 ,761,200,207,1,0,0,,21FE,61FE,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS
 ,761,24,47,1,0,0,km,22F0D0,62F0D0,ff,DTC Mileage
 ,761,24,31,1,0,0,,22F0D1,62F0D1,ff,DTC Occurrence Counter
+,761,-8,-1,1,0,0,,3E01,7E01,ff,
