@@ -738,7 +738,7 @@ public class Fields {
                                     Short.parseShort(tokens[FIELD_TO].trim()),
                                     Double.parseDouble(tokens[FIELD_RESOLUTION].trim()),
                                     Integer.parseInt(tokens[FIELD_DECIMALS].trim()),
-                                    Integer.parseInt(tokens[FIELD_OFFSET].trim()),
+                                    Long.parseLong(tokens[FIELD_OFFSET].trim()),
                                     tokens[FIELD_UNIT].trim(),
                                     tokens[FIELD_RESPONSE_ID].trim(),
                                     options,

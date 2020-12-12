@@ -45,7 +45,7 @@ public class Field {
     private Frame frame;
     private short from;
     private short to;
-    private int offset;
+    private long offset;
     private int decimals;
     private double resolution;
     private String unit;
@@ -72,7 +72,7 @@ public class Field {
      */
 
 
-    public Field(String sid, Frame frame, short from, short to, double resolution, int decimals, int offset, String unit, String responseId, short options, String name, String list) {
+    public Field(String sid, Frame frame, short from, short to, double resolution, int decimals, long offset, String unit, String responseId, short options, String name, String list) {
         if (sid == null || sid.equals("")) {
             if (responseId != null && !responseId.trim().isEmpty())
                 this.sid = (Integer.toHexString(frame.getFromId()) + "." + responseId.trim() + "." + from).toLowerCase();
