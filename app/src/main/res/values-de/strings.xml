@@ -111,6 +111,24 @@
         <item>6</item>
         <item>7</item>
     </string-array>
+    <string-array name="list_VehicleStatePh2">
+        <item>Schlafmodus (0:rot)</item>
+        <item>Motor aus (1:grün)</item>
+        <item>Schlafmodus bevorstehend (2:blau)</item>
+        <item>AutoACC (3:yellow)</item>
+        <item>4</item>
+        <item>Zündung ein</item>
+        <item>Starten</item>
+        <item>Motor ein</item>
+        <item>Autostart</item>
+        <item>Motor stop</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
     <string-array name="list_ChargingStatus2">
         <item>kein Laden (0:rot)</item>
         <item>warten geplant (1:grün)</item>

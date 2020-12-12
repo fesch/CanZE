@@ -65,7 +65,6 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        if (MainActivity.isPh2()) addField("7bb.5003.0", 2000); // open LBC
         // Battery compartment temperatures
         for (int i = 1; i <= 62; i++) {
             String sid = SID_Preamble_CellVoltages1 + (i * 16); // remember, first is pos 16, i starts s at 1
