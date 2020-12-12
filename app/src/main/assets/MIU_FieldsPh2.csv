@@ -1,3 +1,5 @@
+,734,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,734,0,23,1,0,0,,1902ff,590200,ff,Query DTC
 ,734,24,24,1,0,0,,220101,620101,ff,Switch_Climate_Control_Short_Press.Switch_H,0:switch H not pressed;1:switch H pressed
 ,734,25,25,1,0,0,,220101,620101,ff,Switch_Climate_Control_Short_Press.Switch_G,0:switch G not pressed;1:switch G pressed
 ,734,26,26,1,0,0,,220101,620101,ff,Switch_Climate_Control_Short_Press.Switch_F,0:switch F not pressed;1:switch F pressed

@@ -1,3 +1,5 @@
+,18DAF12D,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,18DAF12D,0,23,1,0,0,,190209,5902ff,ff,Query DTC
 ,18DAF12D,8,15,1,0,0,,1000,5000,ff,StartDiagnosticSession.ResponseType,129:Yes
 ,18DAF12D,8,15,1,0,0,,1001,5001,ff,StartDiagnosticSession.ResponseType,129:Yes
 ,18DAF12D,24,39,.1,32767,1,°,220100,620100,ff,Steering Wheel Angle

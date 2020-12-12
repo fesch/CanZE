@@ -1,3 +1,5 @@
+,7AD,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,7AD,0,23,1,0,0,,1902ff,590200,ff,Query DTC
 ,7AD,24,31,1,0,0,,220100,620100,ff,Diagnosis ID,0:Unavailable;1:Driver;2:Passenger
 ,7AD,24,31,1,0,0,,220101,620101,ff,System power on,0:Unavailable;1:Yes;2:No
 ,7AD,24,31,1,0,0,,220102,620102,ff,Object detected,0:Unavailable;1:No;2:Yes

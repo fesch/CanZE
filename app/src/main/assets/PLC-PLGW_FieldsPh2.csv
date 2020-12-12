@@ -1,3 +1,5 @@
+,7C8,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,7C8,0,23,1,0,0,,1902ff,5902ff,ff,Query DTC
 ,7C8,28,31,1,0,0,,220326,620326,ff,Combo_EVchargeHLCRequest,0:No HLC Request  [inital value];1:Communication&service setting request;2:Charge parameter Discovery request;3:Cable Check request;4:Precharge request;5:Power delivery request;6:Current demand request;7:Metering receipt request;8:Welding detection request;9:Session stop request;10:Matching Reset;11:Charging Status request;12:AC BPT;13:DC BPT
 ,7C8,28,31,1,0,0,,220327,620327,ff,Combo_EVErrorCode,0:NO_ERROR  [initial value];1:FAILED_RESSTemperatureInhibit;2:FAILED_EVShiftPosition;3:FAILED_ChargerConnectorLockFault;4:FAILED_EVRESSMalfunction;5:FAILED_ChargingCurrentdifferential;6:FAILED_ChargingVoltageOutOfRange;7:Reserved_A;8:Reserved_B;9:Reserved_C;10:FAILED_ChargingSystemIncompatibility;11:NoData;12:not used;15:Unavailable Value
 ,7C8,24,35,.1,0,1,A,220328,620328,ff,Combo_EVMaximumCurrentLimit

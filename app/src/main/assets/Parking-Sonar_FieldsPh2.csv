@@ -1,3 +1,5 @@
+,76E,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,76E,0,23,1,0,0,,1902ff,590200,ff,Query DTC
 ,76E,31,31,1,0,0,,222002,622002,ff,cfg.RearDetectionState,0:Off;1:On
 ,76E,31,31,1,0,0,,222003,622003,ff,cfg.FrontDetectionState,0:Off;1:On
 ,76E,24,31,1,0,0,,222004,622004,ff,cfg.SwitchMode,0:No switch;1:Not used;2:UPA/FKP Permanent/Temporary (A.16 switch dedicated to UPA/FKP Permanent/Temporary);3:HFP (A.16 switch dedicated to HFP and UPA/FKP activated via Cluster/MMI);4:UPA/FKP Permanent (A.16 switch dedicated to  UPA/FKP Permanent);5:HFPB (A.16 switch dedicated to HFPB and UPA/FKP activated via Cluster/MMI);7:PSM (A.16 switch dedicated to PSM and UPA/FKP activated via Cluster/MMI);8:UPA/FKP Permanent/Temporary + PSM Dedicated switch (A.16 switch dedicated to UPA/FKP Permanent/Temporary and B.10 switch Dedicated to PSM);9:UPA/FKP Permanent + PSM Dedicated switch (A.16 switch dedicated to UPA/FKP Permanent and B.10 switch Dedicated to PSM)

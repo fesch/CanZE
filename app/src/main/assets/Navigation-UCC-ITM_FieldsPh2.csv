@@ -1,3 +1,5 @@
+,767,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,767,0,23,1,0,0,,1902ff,5902ff,ff,Query DTC
 ,767,31,31,1,0,0,,220100,620100,ff,LIN_OUT.SystemON,0:Not active;1:Active
 ,767,29,29,1,0,0,,220101,620101,ff,LIN_IN.MR out,0:Not active;1:Active
 ,767,30,30,1,0,0,,220101,620101,ff,LIN_IN.PKB,0:Not active;1:Active

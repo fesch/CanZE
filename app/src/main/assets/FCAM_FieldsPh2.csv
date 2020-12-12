@@ -1,3 +1,5 @@
+,7DD,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,7DD,0,23,1,0,0,,1902ff,590200,ff,Query DTC
 ,7DD,28,55,.01,0,2,km,220105,620105,ff,Mileage_snapshot.Mileage_snapshot
 ,7DD,31,31,1,0,0,,22010C,62010C,ff,Aiming_Done,0:Aiming Not Finished;1:Aiming Finished
 ,7DD,31,31,1,0,0,,22010D,62010D,ff,Aiming_Result,0:Aiming NOK;1:OK

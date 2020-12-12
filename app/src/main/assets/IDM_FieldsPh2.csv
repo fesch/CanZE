@@ -1,3 +1,5 @@
+,700,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,700,0,23,1,0,0,,1902ff,590200,ff,Query DTC
 ,700,16,31,1,0,0,ms,1001,5001,ff,SessionParameterRecord1_P2.max
 ,700,32,47,10,0,0,ms,1001,5001,ff,SessionParameterRecord_2_P2.max
 ,700,16,31,1,0,0,ms,1002,5002,ff,SessionParameterRecord1_P2.max

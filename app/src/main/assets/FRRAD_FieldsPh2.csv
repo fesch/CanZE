@@ -1,3 +1,5 @@
+,735,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,735,0,23,1,0,0,,1902ff,590200,ff,Query DTC
 ,735,24,39,.01,0,2,°,220100,620100,1ff,Plant Alignment checking.Horizontal Alignment value on EEPROM-factory
 ,735,40,55,.01,0,2,°,220100,620100,1ff,Plant Alignment checking.Vertical Alignment value on EEPROM-factory
 ,735,56,71,.01,0,2,°,220100,620100,1ff,Plant Alignment checking.Horizontal Alignment value on EEPROM

@@ -1,3 +1,5 @@
+,18DAF1DF,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,18DAF1DF,0,23,1,0,0,,1902af,590200,ff,Query DTC
 ,18DAF1DF,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
 ,18DAF1DF,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode
 ,18DAF1DF,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG

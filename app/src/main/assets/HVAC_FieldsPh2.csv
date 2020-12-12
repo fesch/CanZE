@@ -1,3 +1,5 @@
+,764,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,764,0,23,1,0,0,,1902ff,5902ff,ff,Query DTC
 ,764,24,24,1,0,0,,220001,620001,ff,VL_HPMValve1Diag_OCFP
 ,764,24,24,1,0,0,,224001,624001,ff,OLB_DayNightStatus
 ,764,24,24,1,0,0,,224002,624002,ff,OLB_ClearDiagInfo

@@ -4,29 +4,29 @@ ABS-VDC,0,,18daf12d,18da2df1,ABS-VDC,ESC;ABS,5902ff,50c0,0
 Airbag,0,,772,752,AIRBAG-SRS,AIBAG;AIRBAG,5902ff,50c0,0
 Audio Amplifier Unit,0,,7a2,782,AAU,,5902ff,50c0,0
 Automatic Parking Brake,0,,775,755,APB,,5902ff,50c0,0
-Battery Charger Block,0,,18daf1de,18dadef1,BCB-OBC,BCB,5902ff,50c0,0
-Body Control Module,0,,765,745,UCH,BCM;UCH,5902ff,50c0,0
+Battery Charger Block,0,,18daf1de,18dadef1,BCB-OBC,BCB,590200,50c0,0
+Body Control Module,0,,765,745,UCH,BCM;UCH,590200,50c0,0
 Climate Control,0,,764,744,HVAC,CLIM;CLIMA;CLIMBOX,5902ff,50c0,0
 Data Communication Module,0,,7da,7ca,DCM,TCU,5902ff,50c0,0
 E-ACT-EBA,0,,18daf1e2,18dae2f1,E-ACT-EBA,-,5902ff,50c0,0
 Electrical Power Steering,0,,762,742,EPS,PAS,5902ff,50c0,0
-Front Camera,0,,7dd,7dc,FCAM,-,5902ff,50c0,0
-Hands Free Module,0,,7b9,799,HFM,-,5902ff,50c0,0
-Integrated Dynamics Control Module,0,,700,70c,IDM,-,5902ff,5003,0
-INV-ME,0,,18daf1df,18dadff1,INV-ME,-,5902ff,50c0,0
-Laser radar for Adaptive Cruise Control System,0,,735,723,FRRAD,-,5902ff,50c0,0
-Lithium Battery Controller,0,,18daf1db,18dadbf1,LBC,-,59020f,5003,0
-Lithium Battery Controller 2,0,,18daf1dc,18dadcf1,LBC2,-,59020f,5003,0
-Meter Cluster,0,,763,743,TDB,CLUSTER;BIC,5902ff,50c0,0
-Multimedia Interface Unit,0,,734,714,MIU,-,5902ff,50c0,0
+Front Camera,0,,7dd,7dc,FCAM,-,590200,50c0,0
+Hands Free Module,0,,7b9,799,HFM,-,590200,50c0,0
+Integrated Dynamics Control Module,0,,700,70c,IDM,-,590200,5003,0
+INV-ME,0,,18daf1df,18dadff1,INV-ME,-,590200,50c0,0
+Laser radar for Adaptive Cruise Control System,0,,735,723,FRRAD,-,590200,50c0,0
+Lithium Battery Controller,0,,18daf1db,18dadbf1,LBC,-,590200,5003,0
+Lithium Battery Controller 2,0,,18daf1dc,18dadcf1,LBC2,-,590200,5003,0
+Meter Cluster,0,,763,743,TDB,CLUSTER;BIC,590200,50c0,0
+Multimedia Interface Unit,0,,734,714,MIU,-,590200,50c0,0
 Navigation-UCC-ITM,0,,767,747,Navigation-UCC-ITM,-,5902ff,50c0,0
-Parking Sonar,0,,76e,74e,Parking-Sonar,-,5902ff,50c0,0
+Parking Sonar,0,,76e,74e,Parking-Sonar,-,590200,50c0,0
 Power Line connection/ Power Line Gateway,0,,7c8,7d8,PLC-PLGW,-,5902ff,50c0,0
-Security Gateway,0,,18daf1d2,18dad2f1,S-GW3,-,5902ff,5003,0
-U Safety Module,0,,76d,74d,USM,UPC;UCM,5902ff,50c0,0
-Vehicle Controle Module,0,,18daf1da,18dadaf1,EVC-HCM-VCM,EVC;SCH,5902af,5001,0
-Vehicle Sound for Pedestrians,0,,761,73f,VSP,-,5902ff,50c0,0
-Wireless Charger Smartphone,0,,7ad,7aa,WCGS,-,5902ff,50c0,0
+Security Gateway,0,,18daf1d2,18dad2f1,S-GW3,-,590200,5003,0
+U Safety Module,0,,76d,74d,USM,UPC;UCM,590200,50c0,0
+Vehicle Controle Module,0,,18daf1da,18dadaf1,EVC-HCM-VCM,EVC;SCH,590200,5001,0
+Vehicle Sound for Pedestrians,0,,761,73f,VSP,-,590239,50c0,0
+Wireless Charger Smartphone,0,,7ad,7aa,WCGS,-,590200,50c0,0
 # 0x800 - 0x8ff is reserved for CanZE's virtuals
 VirtualField computer,9999,V,800,800,VFC,-,,50c0,0
 Free fields,9998,V,801,801,FFC,-,,50c0,0
