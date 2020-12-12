@@ -1,7 +1,7 @@
-,7C8,-8,-1,1,0,0,,1001,5001,ff,
-,7C8,-8,-1,1,0,0,,1002,5002,ff,
-,7C8,-8,-1,1,0,0,,1003,5003,ff,
-,7C8,-8,-1,1,0,0,,14FFFFFF,54FFFFFF,ff,
+,7C8,0,0,1,0,0,,1001,5001,ff,StartDiagnosticSession.Default
+,7C8,0,0,1,0,0,,1002,5002,ff,StartDiagnosticSession.Reprog
+,7C8,0,0,1,0,0,,1003,5003,ff,StartDiagnosticSession.Extended
+,7C8,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
 ,7C8,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask
 ,7C8,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier,0:SAE_J2012-DA_DTCFormat;1:ISO_14229-1_DTCFormat;2:SAE_J1939-73_DTCFormat;3:ISO_11992-4_DTCFormat;4:SAE_J2012-DA_WWHOBD_DTCFormat
 ,7C8,32,47,1,0,0,,1901FF,5901FF,4ff,DTCCount
@@ -1516,4 +1516,4 @@
 ,7C8,24,279,1,0,0,,22FEFD,62FEFD,4ff,Digest510
 ,7C8,24,279,1,0,0,,22FEFE,62FEFE,4ff,Digest511
 ,7C8,24,279,1,0,0,,22FEFF,62FEFF,4ff,Digest512
-,7C8,-8,-1,1,0,0,,3E00,7E00,ff,
+,7C8,0,0,1,0,0,,3E00,7E00,ff,TesterPresent.WithResponse

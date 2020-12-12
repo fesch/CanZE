@@ -1,7 +1,7 @@
-,761,-8,-1,1,0,0,,1081,5081,ff,
-,761,-8,-1,1,0,0,,1085,5085,ff,
-,761,-8,-1,1,0,0,,10C0,50C0,ff,
-,761,-8,-1,1,0,0,,14FFFFFF,54FFFFFF,ff,
+,761,0,0,1,0,0,,1081,5081,ff,StartDefaultSession
+,761,0,0,1,0,0,,1085,5085,ff,StartReprogSession
+,761,0,0,1,0,0,,10C0,50C0,ff,StartDiagnosticSession
+,761,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
 ,761,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask
 ,761,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceAndFailureTypeOBD
 ,761,40,43,1,0,0,,1902FF,5902FF,ff,DTCFailureType.Category,0:General Failure Information;1:General Electrical Failures;2:General Signal Failures;3:FM / PWM Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;15:Vehicle manufacturer / System supplier specific
@@ -130,4 +130,4 @@
 ,761,200,207,1,0,0,,21FE,61FE,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS
 ,761,24,47,1,0,0,km,22F0D0,62F0D0,ff,DTC Mileage
 ,761,24,31,1,0,0,,22F0D1,62F0D1,ff,DTC Occurrence Counter
-,761,-8,-1,1,0,0,,3E01,7E01,ff,
+,761,0,0,1,0,0,,3E01,7E01,ff,TesterPresent.WithResponse

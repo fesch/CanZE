@@ -1,11 +1,11 @@
-,700,-8,-1,1,0,0,,1000,5000,ff,
+,700,0,0,1,0,0,,1000,5000,ff,StartDiagnosticSession
 ,700,16,31,1,0,0,ms,1001,5001,ff,SessionParameterRecord1_P2.max
 ,700,32,47,10,0,0,ms,1001,5001,ff,SessionParameterRecord_2_P2.max
 ,700,16,31,1,0,0,ms,1002,5002,ff,SessionParameterRecord1_P2.max
 ,700,32,47,10,0,0,ms,1002,5002,ff,SessionParameterRecord_2_P2.max
 ,700,16,31,1,0,0,ms,1003,5003,ff,SessionParameterRecord1_P2.max
 ,700,32,47,10,0,0,ms,1003,5003,ff,SessionParameterRecord_2_P2.max
-,700,-8,-1,1,0,0,,14FFFFFF,54FFFFFF,ff,
+,700,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
 ,700,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask
 ,700,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier,0:SAE_J2012-DA_DTC;1:ISO_14229-1_DTC;2:SAE_J1939-73_DTC;3:ISO_11992-4_DTC;4:SAE_J2012-DA_WWHOBD_DTC
 ,700,32,47,1,0,0,,1901FF,5901FF,ff,DTCCount
@@ -210,4 +210,4 @@
 ,700,24,39,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,700,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,700,24,103,1,0,0,,22F1A1,62F1A1,2ff,vehicleManufacturerSparePartNumber_N
-,700,-8,-1,1,0,0,,3E00,7E00,ff,
+,700,0,0,1,0,0,,3E00,7E00,ff,TesterPresent.WithResponse

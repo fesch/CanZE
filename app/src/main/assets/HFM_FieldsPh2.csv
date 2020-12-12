@@ -1,7 +1,7 @@
-,7B9,-8,-1,1,0,0,,1001,5001,ff,
-,7B9,-8,-1,1,0,0,,1002,5002,ff,
-,7B9,-8,-1,1,0,0,,1003,5003,ff,
-,7B9,-8,-1,1,0,0,,14FFFFFF,54FFFFFF,ff,
+,7B9,0,0,1,0,0,,1001,5001,ff,StartDiagnosticSession.DefaultSession
+,7B9,0,0,1,0,0,,1002,5002,ff,StartDiagnosticSession.ProgrammingSession
+,7B9,0,0,1,0,0,,1003,5003,ff,StartDiagnosticSession.ExtendedDiagnosticSession
+,7B9,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
 ,7B9,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask
 ,7B9,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier
 ,7B9,32,47,1,0,0,,1901FF,5901FF,ff,DTCCount
@@ -17,7 +17,7 @@
 ,7B9,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,0:No;1:Yes
 ,7B9,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
 ,7B9,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
-,7B9,-8,-1,1,0,0,,1903000000FF,5903000000FF,ff,
+,7B9,0,0,1,0,0,,1903000000FF,5903000000FF,ff,ReadDTCInformation.ReportDTCSnapshotIdentification
 ,7B9,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord
 ,7B9,40,40,1,0,0,,1904000000FF,5904000000FF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
 ,7B9,41,41,1,0,0,,1904000000FF,5904000000FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
@@ -266,9 +266,9 @@
 ,7B9,24,24,1,0,0,,2203E2,6203E2,ff,REFUSE_TO_LOCK_INSID_IKEYFOB_CF,1:true;0:false
 ,7B9,24,24,1,0,0,,2203E3,6203E3,ff,DHA_RTL_SOUND_FEEDBACK_CF,1:true;0:false
 ,7B9,24,31,1,0,0,,221001,621001,ff,SLOC_CF,0:SLOC_AVAILABLE;1:SLOC_SECURE;2:SLOC_MEDIUM
-,7B9,-8,-1,1,0,0,,221002,621002,ff,
-,7B9,-8,-1,1,0,0,,221003,621003,ff,
-,7B9,-8,-1,1,0,0,,221004,621004,ff,
+,7B9,0,0,1,0,0,,221002,621002,ff,DataRead.ContiReserved2
+,7B9,0,0,1,0,0,,221003,621003,ff,DataRead.ContiReserved3
+,7B9,0,0,1,0,0,,221004,621004,ff,DataRead.ContiReserved4
 ,7B9,24,39,.01,0,2,,222001,622001,ff,ESCL_AIRBAG_FRAME_ABSENT_TM_TP
 ,7B9,24,31,.01,0,2,s,222002,622002,ff,ESCL_DEC_1_THERMAL_VALUE_TM_TP
 ,7B9,24,31,1,0,0,°C,222003,622003,ff,ESCL_INIT_THERMAL_VALUE_TP
@@ -1959,4 +1959,4 @@
 ,7B9,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,7B9,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumberN
 ,7B9,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigDataReferenceAfterConfigProcess
-,7B9,-8,-1,1,0,0,,3E00,7E00,ff,
+,7B9,0,0,1,0,0,,3E00,7E00,ff,TesterPresent.WithResponse

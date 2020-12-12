@@ -1,7 +1,7 @@
-,7AD,-8,-1,1,0,0,,1001,5001,ff,
-,7AD,-8,-1,1,0,0,,1002,5002,ff,
-,7AD,-8,-1,1,0,0,,1003,5003,ff,
-,7AD,-8,-1,1,0,0,,14FFFFFF,54FFFFFF,ff,
+,7AD,0,0,1,0,0,,1001,5001,ff,StartDiagnosticSession.Default
+,7AD,0,0,1,0,0,,1002,5002,ff,StartDiagnosticSession.Reprog
+,7AD,0,0,1,0,0,,1003,5003,ff,StartDiagnosticSession.Extended
+,7AD,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
 ,7AD,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask
 ,7AD,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier,0:SAE_J2012-DA_DTCFormat;1:ISO_14229-1_DTCFormat;2:SAE_J1939-73_DTCFormat;3:ISO_11992-4_DTCFormat;4:SAE_J2012-DA_WWHOBD_DTCFormat
 ,7AD,32,47,1,0,0,,1901FF,5901FF,4ff,DTCCount
@@ -17,7 +17,7 @@
 ,7AD,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC
 ,7AD,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle
 ,7AD,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
-,7AD,-8,-1,1,0,0,,1903000000FF,5903000000FF,ff,
+,7AD,0,0,1,0,0,,1903000000FF,5903000000FF,ff,ReadDTCInformation.ReportDTCSnapshotIdentification
 ,7AD,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord
 ,7AD,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC
 ,7AD,16,23,1,0,0,,190A,590A,ff,DTCStatusAvailabilityMask
@@ -70,4 +70,4 @@
 ,7AD,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,7AD,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
 ,7AD,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationDataReferenceAfterConfigurationProcess
-,7AD,-8,-1,1,0,0,,3E00,7E00,ff,
+,7AD,0,0,1,0,0,,3E00,7E00,ff,TesterPresent.WithResponse

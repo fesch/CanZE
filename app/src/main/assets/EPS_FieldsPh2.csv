@@ -1,7 +1,7 @@
-,762,-8,-1,1,0,0,,1001,5001,ff,
-,762,-8,-1,1,0,0,,1002,5002,ff,
-,762,-8,-1,1,0,0,,1003,5003,ff,
-,762,-8,-1,1,0,0,,14FFFFFF,54FFFFFF,ff,
+,762,0,0,1,0,0,,1001,5001,ff,StartDiagnosticSession.Default
+,762,0,0,1,0,0,,1002,5002,ff,StartDiagnosticSession.Programming
+,762,0,0,1,0,0,,1003,5003,ff,StartDiagnosticSession.ExtendedDiagnostic
+,762,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
 ,762,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask
 ,762,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier,0:SAE_J2012-DA_DTC;1:ISO_14229-1_DTC;2:SAE_J1939-73_DTC;3:ISO_11992-4_DTC;4:SAE_J2012-DA_WWHOBD_DTC
 ,762,32,47,1,0,0,,1901FF,5901FF,ff,DTCCount
@@ -134,4 +134,4 @@
 ,762,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,762,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
 ,762,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationFileReferenceLink_N
-,762,-8,-1,1,0,0,,3E00,7E00,ff,
+,762,0,0,1,0,0,,3E00,7E00,ff,TesterPresent.WithResponse

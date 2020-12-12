@@ -1,8 +1,8 @@
-,18DAF1E2,-8,-1,1,0,0,,1000,5000,ff,
+,18DAF1E2,0,0,1,0,0,,1000,5000,ff,StartDiagnosticSession.Start Diagnostic Session
 ,18DAF1E2,8,15,1,0,0,,1001,5001,ff,StartDiagnosticSession.ResponseType,129:Yes
-,18DAF1E2,-8,-1,1,0,0,,1002,5002,ff,
-,18DAF1E2,-8,-1,1,0,0,,1003,5003,ff,
-,18DAF1E2,-8,-1,1,0,0,,14FFFFFF,54FFFFFF,ff,
+,18DAF1E2,0,0,1,0,0,,1002,5002,ff,StartDiagnosticSession.Start Programming Session
+,18DAF1E2,0,0,1,0,0,,1003,5003,ff,StartDiagnosticSession.Start Extended Session
+,18DAF1E2,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
 ,18DAF1E2,16,23,1,0,0,,190109,590109,ff,DTCStatusAvailabilityMask
 ,18DAF1E2,24,31,1,0,0,,190109,590109,ff,DTCFormatIdentifier,0:SAE_J2012-DA_DTC;1:ISO_14229-1_DTC;2:SAE_J1939-73_DTC;3:ISO_11992-4_DTC;4:SAE_J2012-DA_WWHOBD_DTC
 ,18DAF1E2,32,47,1,0,0,,190109,590109,ff,DTCCount
@@ -30,7 +30,7 @@
 ,18DAF1E2,53,53,1,0,0,,190209,590209,ff,DTCStatus.pendingDTC,0:No;1:Yes
 ,18DAF1E2,54,54,1,0,0,,190209,590209,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
 ,18DAF1E2,55,55,1,0,0,,190209,590209,ff,DTCStatus.testFailed,0:No;1:Yes
-,18DAF1E2,-8,-1,1,0,0,,1903000000FF,5903000000FF,ff,
+,18DAF1E2,0,0,1,0,0,,1903000000FF,5903000000FF,ff,ReadDTCInformation.ReportDTCSnapshotIdentification
 ,18DAF1E2,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord
 ,18DAF1E2,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC
 ,18DAF1E2,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord
@@ -130,4 +130,4 @@
 ,18DAF1E2,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,18DAF1E2,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
 ,18DAF1E2,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationDataReferenceAfterConfigurationProcess
-,18DAF1E2,-8,-1,1,0,0,,3E00,7E00,ff,
+,18DAF1E2,0,0,1,0,0,,3E00,7E00,ff,TesterPresent.WithResponse

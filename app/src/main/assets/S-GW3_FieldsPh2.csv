@@ -1,7 +1,7 @@
-,18DAF1D2,-8,-1,1,0,0,,1001,5001,ff,
-,18DAF1D2,-8,-1,1,0,0,,1002,5002,ff,
-,18DAF1D2,-8,-1,1,0,0,,1003,5003,ff,
-,18DAF1D2,-8,-1,1,0,0,,14FFFFFF,54FFFFFF,ff,
+,18DAF1D2,0,0,1,0,0,,1001,5001,ff,StartDiagnosticSession.Default
+,18DAF1D2,0,0,1,0,0,,1002,5002,ff,StartDiagnosticSession.Reprog
+,18DAF1D2,0,0,1,0,0,,1003,5003,ff,StartDiagnosticSession.Extended
+,18DAF1D2,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
 ,18DAF1D2,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask
 ,18DAF1D2,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier
 ,18DAF1D2,32,47,1,0,0,,1901FF,5901FF,ff,DTCCount
@@ -17,7 +17,7 @@
 ,18DAF1D2,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,0:No;1:Yes
 ,18DAF1D2,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
 ,18DAF1D2,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
-,18DAF1D2,-8,-1,1,0,0,,1903,5903,ff,
+,18DAF1D2,0,0,1,0,0,,1903,5903,ff,ReadDTCInformation.ReportDTCSnapshotIdentification
 ,18DAF1D2,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord
 ,18DAF1D2,40,40,1,0,0,,1904000000FF,5904000000FF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
 ,18DAF1D2,41,41,1,0,0,,1904000000FF,5904000000FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
@@ -9205,4 +9205,4 @@
 ,18DAF1D2,24,151,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,18DAF1D2,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,18DAF1D2,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumberN
-,18DAF1D2,-8,-1,1,0,0,,3E00,7E00,ff,
+,18DAF1D2,0,0,1,0,0,,3E00,7E00,ff,TesterPresent.WithResponse

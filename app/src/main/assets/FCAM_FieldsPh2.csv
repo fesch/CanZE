@@ -1,8 +1,8 @@
-,7DD,-8,-1,1,0,0,,1000,5000,ff,
-,7DD,-8,-1,1,0,0,,1001,5001,ff,
-,7DD,-8,-1,1,0,0,,1002,5002,ff,
-,7DD,-8,-1,1,0,0,,1003,5003,ff,
-,7DD,-8,-1,1,0,0,,14FFFFFF,54FFFFFF,ff,
+,7DD,0,0,1,0,0,,1000,5000,ff,StartDiagnosticSession
+,7DD,0,0,1,0,0,,1001,5001,ff,StartDiagnosticSession.Default
+,7DD,0,0,1,0,0,,1002,5002,ff,StartDiagnosticSession.Programming
+,7DD,0,0,1,0,0,,1003,5003,ff,StartDiagnosticSession.ExtendedDiagnostic
+,7DD,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
 ,7DD,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask
 ,7DD,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier,1:ISO_14229-1_DTCFormat;2:SAE_J1939-73_DTCFormat;0:SAE_J2012-DA_DTCFormat;3:ISO_11992-4_DTCFormat;4:SAE_J2012-DA_WWHOBD_DTCFormat
 ,7DD,32,47,1,0,0,,1901FF,5901FF,4ff,DTCCount
@@ -501,9 +501,9 @@
 ,7DD,27,31,1,0,0,-,22409A,62409A,ff,DiagAddOn_EEPROM_deact_buf_LKA_N19.Rootcause_N19
 ,7DD,35,39,.5,0,1,s,22409A,62409A,ff,DiagAddOn_EEPROM_deact_buf_LKA_N19.Duration_N19
 ,7DD,44,71,.01,0,2,km,22409A,62409A,ff,DiagAddOn_EEPROM_deact_buf_LKA_N19.Mileage_N19
-,7DD,-8,-1,1,0,0,,224455,624455,ff,
-,7DD,-8,-1,1,0,0,,224456,624456,ff,
-,7DD,-8,-1,1,0,0,,224457,624457,ff,
+,7DD,0,0,1,0,0,,224455,624455,ff,DataRead.DID_4455
+,7DD,0,0,1,0,0,,224456,624456,ff,DataRead.DID_4456
+,7DD,0,0,1,0,0,,224457,624457,ff,DataRead.DID_4457
 ,7DD,24,215,1,0,0,,22D900,62D900,4ff,Active_Fault_Table.24-byte_array_of_currently_active_faults
 ,7DD,28,39,.1,2047,1,°/s,22D90A,62D90A,ff,Yaw_Rate.Yaw_Rate
 ,7DD,24,39,.01,0,2,km/h,22D90C,62D90C,ff,Vehicle_Speed.Vehicle_Speed
@@ -527,4 +527,4 @@
 ,7DD,24,151,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,7DD,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
 ,7DD,31,31,1,0,0,,22FD01,62FD01,ff,Force_Aiming_Done,0:Aiming Not Done;1:Aiming Done
-,7DD,-8,-1,1,0,0,,3E00,7E00,ff,
+,7DD,0,0,1,0,0,,3E00,7E00,ff,TesterPresent.WithResponse

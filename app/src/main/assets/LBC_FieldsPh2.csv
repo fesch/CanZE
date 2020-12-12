@@ -1,8 +1,8 @@
-,18DAF1DB,-8,-1,1,0,0,,1001,5001,ff,
-,18DAF1DB,-8,-1,1,0,0,,1002,5002,ff,
-,18DAF1DB,-8,-1,1,0,0,,1003,5003,ff,
-,18DAF1DB,-8,-1,1,0,0,,1060,5060,ff,
-,18DAF1DB,-8,-1,1,0,0,,14FFFFFF,54FFFFFF,ff,
+,18DAF1DB,0,0,1,0,0,,1001,5001,ff,StartDiagnosticSession.Default
+,18DAF1DB,0,0,1,0,0,,1002,5002,ff,StartDiagnosticSession.Programming
+,18DAF1DB,0,0,1,0,0,,1003,5003,ff,StartDiagnosticSession.ExtendedDiagnostic
+,18DAF1DB,0,0,1,0,0,,1060,5060,ff,StartDiagnosticSession.Supplier
+,18DAF1DB,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
 ,18DAF1DB,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask
 ,18DAF1DB,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier,0:SAE_J2012-DA_DTC;1:ISO_14229-1_DTC;2:SAE_J1939-73_DTC;3:ISO_11992-4_DTC;4:SAE_J2012-DA_WWHOBD_DTC
 ,18DAF1DB,32,47,1,0,0,,1901FF,5901FF,ff,DTCCount
@@ -2300,4 +2300,4 @@
 ,18DAF1DB,136,143,1,0,0,,22F80F,62F80F,ff,$09 - exhaustRegulationorTypeApprovalNumber.14
 ,18DAF1DB,144,151,1,0,0,,22F80F,62F80F,ff,$09 - exhaustRegulationorTypeApprovalNumber.15
 ,18DAF1DB,152,159,1,0,0,,22F80F,62F80F,ff,$09 - exhaustRegulationorTypeApprovalNumber.16
-,18DAF1DB,-8,-1,1,0,0,,3E00,7E00,ff,
+,18DAF1DB,0,0,1,0,0,,3E00,7E00,ff,TesterPresent.WithResponse
