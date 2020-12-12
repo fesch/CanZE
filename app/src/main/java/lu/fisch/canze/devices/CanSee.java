@@ -134,8 +134,9 @@ public class CanSee extends Device {
     }
 
     private Message responseToMessage(Frame frame, String command, int timeout) {
-        //MainActivity.debug("CanSee.rtm.send [" + command + "]");
+        MainActivity.debug("CanSee.rtm.send [" + command + "]");
         String text = sendAndWaitForAnswer(command, 0, timeout);    // send and wait for an answer, no delay
+        MainActivity.debug("CanSee.rtm.receive [" + text + "]");
         if (text.length() == 0) {
             //wrongCount++;
             if (wrongCount > WRONG_THRESHOLD) {
