@@ -343,7 +343,7 @@ public class DtcActivity extends CanzeActivity {
 
 
                 // compile the field query and get the Field object
-                field = Fields.getInstance().getBySID(filter + ".54.0"); // get DTC Clear
+                field = Fields.getInstance().getBySID(filter + ".54ffffff.0"); // get DTC Clear
                 if (field == null) {
                     appendResult(R.string.message_NoClearDtcField);
                     return;
