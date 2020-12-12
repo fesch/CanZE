@@ -19,7 +19,7 @@
 7a2,100,100,AAU
 7ad,100,100,WCGS
 7c8,100,100,PLC-PLGW
-7da,100,100,DCM-Renault
+7da,100,100,DCM
 7dd,100,100,FCAM
 # 0x800 - 0x8ff is reserved for CanZE's virtuals
 800,100,100,VFC
