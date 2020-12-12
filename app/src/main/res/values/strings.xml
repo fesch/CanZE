@@ -113,6 +113,24 @@
         <item>6</item>
         <item>7</item>
     </string-array>
+    <string-array name="list_VehicleStatePh2">
+        <item>Asleep, off (0:red)</item>
+        <item>Awake, off (1:green)</item>
+        <item>Sleep mode pending (2:blue)</item>
+        <item>AutoACC (3:yellow)</item>
+        <item>4</item>
+        <item>Ignition on</item>
+        <item>Starting in process</item>
+        <item>Engine active</item>
+        <item>Autostart</item>
+        <item>Engine stop</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
     <string-array name="list_ChargingStatus2">
         <item>No charge (0:red)</item>
         <item>Waiting (planned, 1:green)</item>

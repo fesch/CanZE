@@ -36,7 +36,8 @@ import lu.fisch.canze.interfaces.FieldListener;
 public class AuxBattTechActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     //private final String[] charging_Status = MainActivity.getStringList(R.array.list_ChargingStatus2);
-    private final String[] vehicle_Status = MainActivity.getStringList(R.array.list_VehicleState);
+    private final String[] vehicle_Status = MainActivity.getStringList(MainActivity.isPh2() ? R.array.list_VehicleStatePh2
+                                                                                            : R.array.list_VehicleState);
     private final String[] aux_Status = MainActivity.getStringList(R.array.list_AuxStatus);
 
     private  static final String SID_AuxVoltage                       = "7ec.622005.24"; //"7bb.6101.224";
