@@ -1,3 +1,5 @@
+,762,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,762,0,23,1,0,0,,1902ff,5902ff,ff,Query DTC
 ,762,24,39,.1,32767,1,°,220100,620100,ff,EPSRelativeSteeringWheelAngle
 ,762,24,39,.1,32767,1,°/s,220101,620101,ff,Steering wheel velocity
 ,762,24,26,1,0,0,,220102,620102,ff,Steering wheel angle sensor internal status,0:Not initialized / No failure / Not calibrated;1:Initialized / No failure / Not calibrated;2:Not initialized / Failure / Not calibrated;3:Initialized / Failure / Not calibrated;4:Not initialized / No failure / Calibrated;5:Initialized / No failure / Calibrated;6:Not initialized / Failure / Calibrated;7:Initialized / Failure / Calibrated

@@ -1,3 +1,5 @@
+,761,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,761,0,23,1,0,0,,1902ff,590239,ff,Query DTC
 ,761,16,47,1,0,0,,2100,6100,4ff,Support LID data
 ,761,21,21,1,0,0,,2103,6103,ff,Configuration of DiagMUX DTCs.ECM_Presence,0:Absent;1:Present
 ,761,22,22,1,0,0,,2103,6103,ff,Configuration of DiagMUX DTCs.HEVC_Presence,0:Absent;1:Present

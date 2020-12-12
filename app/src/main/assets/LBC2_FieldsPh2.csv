@@ -1,3 +1,5 @@
+,18DAF1DC,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,18DAF1DC,0,23,1,0,0,,1902ff,590200,ff,Query DTC
 ,18DAF1DC,24,55,1,0,0,,229000,629000,4ff,DIDs supported in range [$9001 - $9020]
 ,18DAF1DC,24,39,.000976563,0,3,V,229007,629007,ff,Maximum cell voltage (Wxx_avg_high_voltage)
 ,18DAF1DC,24,31,1,0,0,,229008,629008,ff,Number of Maximum Cell Voltage (Wxx_id_avg_high_voltage)

@@ -1,3 +1,5 @@
+,18DAF1DA,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,18DAF1DA,0,23,1,0,0,,1902AF,590200,ff,Query DTC
 ,18DAF1DA,24,55,1,0,0,,220100,620100,4ff,DIDs supported in range [$0100 - $0120]
 ,18DAF1DA,24,55,1,0,0,,222000,622000,4ff,DIDs supported in range 2001 - 2020
 ,18DAF1DA,24,39,.1,2730,1,,222001,622001,ff,Engine coolant temperature

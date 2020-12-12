@@ -1,3 +1,5 @@
+,763,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,763,0,23,1,0,0,,1902ff,590200,ff,Query DTC
 ,763,24,31,1,0,0,,220101,620101,ff,Language_CF,0:Albanese;1:Arabic;2:Bulgarian;3:Chinese Mandarin(Simplified Chinese character);4:Croatian;5:Czech;6:Danish;7:Dutch;8:English (UK);9:Estonian;10:Finnish;11:French;12:German;13:Greek;14:Hebrew;15:Hindi;16:Hungarian;17:Indonesian (Bahasa);18:Italian;19:Japanese;20:Korean;21:Latvian;22:Lithuanian;23:Norwegian;24:Persian (Farsi / Iranian);25:Polish;26:Portuguese (Portugal);27:Portuguese Brazilian;28:Romanian;29:Russian;30:Serbian;31:Slovakian;32:Slovenian;33:Spanish (Castillan);34:Spanish Latin American (also Mexican);35:Swedish;36:Turkish;37:Ukrainian;38:Vietnamese;255:Not used
 ,763,24,31,1,0,0,,220102,620102,ff,GearBoxType_CF,0:Manual gearbox;1:Automatic gearbox (Pluristable PRND);2:Automatic gearbox (ShiftByWire H-grid);3:Automatic gearbox (I-Shifter ICE PRND);4:Automatic gearbox (I-Shifter EV/PHEV PRNDB);5:Automatic gearbox (Pluristable PRNDL --> CVT);6:Automatic gearbox (Pluristable PRNDB --> EV/PHEV)
 ,763,24,31,1,0,0,,220103,620103,ff,CarburationType_CF,0:Petrol;1:Diesel;2:GNC;3:GPL;4:Petrol/GNC;5:Petrol/GPL;6:PHEV;7:EV;8:HEV

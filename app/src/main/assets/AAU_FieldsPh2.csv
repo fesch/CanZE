@@ -1,3 +1,5 @@
+,7A2,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,7A2,0,23,1,0,0,,1902ff,5902ff,ff,Query DTC
 ,7A2,31,31,1,0,0,,220101,620101,ff,LIN_IN.SystemON,0:System_ON OFF;1:System_ON ON
 ,7A2,24,31,.2,0,1,V,220200,620200,ff,Battery level
 ,7A2,24,31,1,0,0,,222006,622006,ff,ESE/ANC parameters.ANC activation,0:Not activated;1:Activated

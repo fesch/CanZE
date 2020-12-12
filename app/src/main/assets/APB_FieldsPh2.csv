@@ -1,3 +1,5 @@
+,775,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,775,0,23,1,0,0,,1902ff,5902ff,ff,Query DTC
 ,775,24,39,.0417,0,2,rpm,220201,620201,ff,VDC.WheelSpeedRL
 ,775,40,55,.0417,0,2,rpm,220201,620201,ff,VDC.WheelSpeedRR
 ,775,56,71,.0417,0,2,rpm,220201,620201,ff,VDC.WheelSpeedFL

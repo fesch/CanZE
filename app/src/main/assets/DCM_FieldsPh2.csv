@@ -1,3 +1,5 @@
+,7DA,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,7DA,0,23,1,0,0,,1902ff,5902ff,ff,Query DTC
 ,7DA,24,31,1,0,0,,220100,620100,ff,USB_connected,0:Not connected;1:Connected or alimented;2:Undefined
 ,7DA,24,279,1,0,0,,220101,620101,2ff,Application_parameters.Name
 ,7DA,280,535,1,0,0,,220101,620101,2ff,Application_parameters.Company

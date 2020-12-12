@@ -1,3 +1,5 @@
+,18DAF1DB,0,7,1,0,0,,14ffffff,54,ff,Reset DTC
+,18DAF1DB,0,23,1,0,0,,1902ff,590200,ff,Query DTC
 ,18DAF1DB,24,55,1,0,0,,229000,629000,4ff,DIDs supported in range [$9001 - $9020]
 ,18DAF1DB,24,39,.01,300,2,%,229001,629001,ff,Battery SOC(Zxx_bsoc_avg)
 ,18DAF1DB,24,39,.01,0,2,%,229002,629002,ff,Battery USOC(Wxx_usoc_avg)
