@@ -193,7 +193,7 @@ public class SettingsActivity extends AppCompatActivity {
         arrayAdapter.add("ZOE R240");
         arrayAdapter.add("ZOE Q90");
         arrayAdapter.add("ZOE R90/110");
-        if (BuildConfig.VERSION_NAME.contains("beta")) arrayAdapter.add("ZOE ZE50");
+        arrayAdapter.add("ZOE ZE50");
         // if (BuildConfig.VERSION_NAME.contains("beta")) arrayAdapter.add("ZOE R240Ph2");
         //arrayAdapter.add("Fluence");
         //arrayAdapter.add("Kangoo");
