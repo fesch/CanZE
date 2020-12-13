@@ -275,6 +275,10 @@ public abstract class Device {
                             removeActivityField(field);
                         }
                     } else {
+                        if (message.isError7f()) {
+                            message.onMessageIncompleteEvent();
+                            return;
+                        }
                         // one plain retry
                         MainActivity.getInstance().appendDebugMessage("...");
                         message = requestFrame(field.getFrame());
@@ -285,6 +289,10 @@ public abstract class Device {
                                 removeActivityField(field);
                             }
                         } else {
+                            if (message.isError7f()) {
+                                message.onMessageIncompleteEvent();
+                                return;
+                            }
                             MainActivity.getInstance().appendDebugMessage("fail");
                             // failed after single retry. Mark underlying fields as updated to avoid
                             // queue clogging. The frame will have to get back to the end of the queue

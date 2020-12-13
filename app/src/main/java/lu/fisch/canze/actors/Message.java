@@ -44,19 +44,22 @@ public class Message {
     private final Frame frame;
     private final String data;
     private final boolean error;
+    private final boolean error7f;
 
     public Message(Frame frame, String data, boolean error) {
         MainActivity.debug("Message.new.data:" + data);
-        this.frame=frame;
+        this.frame = frame;
         if (frame.isIsoTp()) {
             if (data.startsWith("7f")) {
+                this.error7f = true;
                 this.error = true;
                 this.data = "-E-Message.isotp.startswith7f";
                 return;
             }
         }
-        this.data=data;
-        this.error=error;
+        this.data = data;
+        this.error = error;
+        this.error7f = false;
     }
 
     /* --------------------------------
@@ -81,6 +84,8 @@ public class Message {
 
     public boolean isError () {return error;}
 
+    public boolean isError7f () {return error7f;}
+    
     public String getError () { return error ? data : ""; }
 
     public void onMessageIncompleteEvent () {
