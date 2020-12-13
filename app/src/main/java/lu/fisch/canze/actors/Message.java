@@ -115,7 +115,7 @@ public class Message {
     }
 
     private void onMessageCompleteEventField(String binString, Field field) {
-        if(binString.length()>= field.getTo() && field.getRequestId() != "999999") {
+        if(binString.length()>= field.getTo() && !field.getRequestId().equals("999999")) {
             // parseInt --> signed, so the first bit is "cut-off"!
             try {
                 binString = binString.substring(field.getFrom(), field.getTo() + 1);

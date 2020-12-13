@@ -316,7 +316,9 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     protected void addField(String sid, int intervalMs) {
         Field field = MainActivity.fields.getBySID(sid);
         if (field != null) {
-            addField(field, intervalMs);
+            if (!field.getRequestId().equals ("999999")) {
+                addField(field, intervalMs);
+            }
         } else {
             MainActivity.debug(this.getClass().getSimpleName() + " (CanzeActivity): SID " + sid + " does not exist in class Fields");
             MainActivity.toast(MainActivity.TOAST_NONE, String.format(Locale.getDefault(), MainActivity.getStringSingle(R.string.format_NoSid), this.getClass().getSimpleName(), sid));
@@ -324,7 +326,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     }
 
     protected void addField(Field field, int intervalMs) {
-        if (field != null) {
+        if (field != null && !field.getRequestId().equals("999999")) {
             // add a listener to the field
             field.addListener(this);
             // register it in the queue // enable it to self propel
