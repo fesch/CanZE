@@ -73,9 +73,8 @@ public class DtcActivity extends CanzeActivity {
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
             if (ecu.getFromId() > 0 && ecu.getFromId() != 0x800 && ecu.getFromId() != 0x801 &&
                     (!BuildConfig.BRANCH.equals("master") || (
-                            !ecu.getMnemonic().contains("ABS") &&
-                                    !ecu.getMnemonic().contains("AIBAG") &&
-                                    !ecu.getMnemonic().contains("ESC"))
+                            !ecu.getAliases().contains("AIRBAG") &&
+                                    !ecu.getAliases().contains("ESC"))
                     ))
             {
                     arrayAdapter.add(ecu.getMnemonic()); // only list real, known, reachable ECUs

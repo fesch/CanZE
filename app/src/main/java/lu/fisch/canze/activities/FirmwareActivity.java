@@ -80,9 +80,8 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
             // ensure we are only selecting true (as in physical boxes) and reachable (as in, i.e. skipping R-LINK) ECU's
             if (ecu.getFromId() > 0 && ecu.getFromId() != 0x800 && ecu.getFromId() != 0x801 &&
                     (!BuildConfig.BRANCH.equals("master") || (
-                            !ecu.getMnemonic().contains("ABS") &&
-                            !ecu.getMnemonic().contains("AIBAG") &&
-                            !ecu.getMnemonic().contains("ESC"))
+                            !ecu.getAliases().contains("AIRBAG") &&
+                                    !ecu.getAliases().contains("ESC"))
                     ))
             {
                 TextView tv;
