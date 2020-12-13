@@ -127,9 +127,9 @@ public class DtcActivity extends CanzeActivity {
             // open the gateway
             MainActivity.device.requestFrame(Frames.getInstance().getById(0x18daf1d2, "5003"));
         }
-        //MainActivity.device.requestFrame(Frames.getInstance().getById(ecu.getFromId(), "7e01"));
+        // TODO: we should use KeepAlive here
         MainActivity.device.requestFrame(Frames.getInstance().getById(ecu.getFromId(), ecu.getStartDiag()));
-        ticker = ticker + 1500;
+        ticker = ticker + 3000;
     }
 
     private boolean testerInit(Ecu ecu) {
@@ -137,16 +137,15 @@ public class DtcActivity extends CanzeActivity {
         String filter = Integer.toHexString(ecu.getFromId());
         // we are a testerInit
         appendResult(MainActivity.getStringSingle(R.string.message_StartTestSession) + " (testerInit)\n");
-        //field = Fields.getInstance().getBySID(filter + ".7e01.0");
-        Field field = Fields.getInstance().getBySID(filter + ".50c0.0");
+        Field field = Fields.getInstance().getBySID(filter + "." + ecu.getStartDiag() + ".0");
         if (field != null) {
             // query the Field
             Message message = MainActivity.device.requestFrame(field.getFrame());
             if (!message.isError()) {
                 String backRes = message.getData();
                 // check the response
-                if (backRes.toLowerCase().startsWith("50c0")) {
-                    testerKeepalive();
+                if (backRes.toLowerCase().startsWith(ecu.getStartDiag())) {
+                    testerKeepalive(); // start the keepalive timer
                     return true;
                 } else {
                     appendResult("Start Diag Session, unexpected result [" + backRes + "]\n");

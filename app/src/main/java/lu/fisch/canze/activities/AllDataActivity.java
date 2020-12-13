@@ -131,7 +131,7 @@ public class AllDataActivity extends CanzeActivity {
         }
         //MainActivity.device.requestFrame(Frames.getInstance().getById(ecu.getFromId(), "7e01"));
         MainActivity.device.requestFrame(Frames.getInstance().getById(ecu.getFromId(), ecu.getStartDiag()));
-        ticker = ticker + 1500;
+        ticker = ticker + 3000;
     }
 
     private boolean testerInit(Ecu ecu) {

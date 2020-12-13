@@ -434,7 +434,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             if (field != null) {
                 field.addListener(MainActivity.getInstance()); // callback is onFieldUpdateEvent
                 if (device != null)
-                    device.addApplicationField(field, 2000); // keep awake every 2 seconds
+                    device.addApplicationField(field, 3000); // keep awake every 3 seconds
             }
 
         } else {

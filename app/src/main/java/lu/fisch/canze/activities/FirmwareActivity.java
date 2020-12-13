@@ -491,7 +491,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
             // open the gateway
             MainActivity.device.requestFrame(Frames.getInstance().getById(0x18daf1d2, "5003"));
         }
-        ticker = ticker + 1500;
+        ticker = ticker + 3000;
     }
 
     private void closeDump() {

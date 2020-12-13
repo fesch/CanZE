@@ -338,7 +338,8 @@
 7bb.6142.512,18daf1db,24,39,0.000976563,0,3,V,229081,629081,ff,Cell 94 V
 7bb.6142.528,18daf1db,24,39,0.000976563,0,3,V,229082,629082,ff,Cell 95 V
 7bb.6142.544,18daf1db,24,39,0.000976563,0,3,V,229083,629083,ff,Cell 96 V
-7bb.6161.96,18daf1db,96,119,1,0,0,km,2161,6161,ff,Battery mileage in km
+7bb.6161.96,18daf1db,96,119,1,0,0,km,999999,999999,ff,Battery mileage in km
+# 7bb.6161.96,18DAF1DB,24,55,.03125,-2147483648,2,km,2291CF,6291CF,1ff,Battery mileage(Zxx_dist_pack_mem)
 # 7bb.6161.96,18DAF1DB,24,55,.03125,-2147483648,2,km,2291CF,6291CF,ff,Battery mileage(Zxx_dist_pack_mem)
 7bb.6161.120,18DAF1DB,24,55,.001,0,3,kWh,229243,629243,1ff,Cumulated energy in charge
 ,18DAF1DB,24,55,.001,0,3,,229247,629247,1ff,Cumulated energy in regen : CD mode(Zxx_kwh_rgn_cd)
@@ -369,6 +370,7 @@
 ,18daf1d2,0,7,1,0,0,,14ffff,54,ff,Reset DTC
 ,18daf1d2,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,18daf1d2,0,23,1,0,0,,1003,5003,ff,StartDiagnosticSession.Extended
+,18daf1d2,0,7,1,0,0,,3E00,7E00,ff,TesterPresent.WithResponse
 # EVC #
 7ec.6180.64,18DAF1DA,24,223,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
 7ec.6180.128,18DAF1DA,24,55,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
@@ -463,8 +465,10 @@
 7ec.623457.24,18daf1da,24,39,.001953125,0,3,kW,223457,623457,ff,Mean pessimistic electrical consumption (worst possible consumption)
 7ec.6233dd.24,18daf1da,24,47,0.001,0,0,kwh,2233dd,6233dd,ff,Trip energy consumed
 7ec.6233de.24,18daf1da,24,55,0.0001,0,0,km,2233de,6233de,ff,Trip distance
-7ec.623484.24,18daf1da,24,39,1,32767,0,A,223484,623484,ff,Current measurement given by BCS Battery Current Sensor
-7ec.6234.84.24,18daf1da,24,39,.001,0,0,V,223485,623485,ff,Voltage measurement given by BCS Battery Current Sensor
+7ec.623484.24,18daf1da,24,39,1,32767,0,A,999999,999999,ff,Current measurement given by BCS Battery Current Sensor
+7ec.6234.84.24,18daf1da,24,39,.001,0,0,V,999999,999999,ff,Voltage measurement given by BCS Battery Current Sensor
+# 7ec.6234.84.24,76D,24,39,.001,0,3,,2260B3,6260B3,ff,S_U_Prim_Storage_NoLoad
+
 # E-ACT-EBA #
 ,18DAF1E2,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
 ,18DAF1E2,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
@@ -476,10 +480,10 @@
 ,700,24,39,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,700,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
 # AAU #
-#,7A2,24,47,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
-#,7A2,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
-#,7A2,24,167,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
-#,7A2,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7A2,24,47,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7A2,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7A2,24,167,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7A2,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
 # APB #
 ,775,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
 ,775,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
