@@ -220,27 +220,30 @@ public class AllDataActivity extends CanzeActivity {
                     if (((StoppableThread) Thread.currentThread()).isStopped()) return;
 
                     Frame frame = Frames.getInstance().get(i);
-                    testerKeepalive(ecu); // may need to set a keepalive/session
+                    if (!frame.getResponseId().startsWith("5")) { // ship dtc commands and mode controls
 
-                    if (frame.getContainingFrame() != null || ecu.getFromId() == 0x801) { // only use subframes and free frames
+                        testerKeepalive(ecu); // may need to set a keepalive/session
 
-                        // query the Frame
-                        Message message = MainActivity.device.requestFrame(frame);
-                        if (!message.isError()) {
-                            // process the frame by going through all the containing fields
-                            // setting their values and notifying all listeners (there should be none)
-                            // Fields.getInstance().onMessageCompleteEvent(message);
-                            message.onMessageCompleteEvent();
+                        if (frame.getContainingFrame() != null || ecu.getFromId() == 0x801) { // only use subframes and free frames
 
-                            for (Field field : frame.getAllFields()) {
-                                appendResult(field.getDebugValue());
-                            }
+                            // query the Frame
+                            Message message = MainActivity.device.requestFrame(frame);
+                            if (!message.isError()) {
+                                // process the frame by going through all the containing fields
+                                // setting their values and notifying all listeners (there should be none)
+                                // Fields.getInstance().onMessageCompleteEvent(message);
+                                message.onMessageCompleteEvent();
 
-                        } else {
-                            appendResult(frame.getFromIdHex() + "." + frame.getResponseId() + ":" + message.getError() + "\n");
-                            if (!MainActivity.device.initDevice(1)) {
-                                appendResult(MainActivity.getStringSingle(R.string.message_InitFailed));
-                                return;
+                                for (Field field : frame.getAllFields()) {
+                                    appendResult(field.getDebugValue());
+                                }
+
+                            } else {
+                                appendResult(frame.getFromIdHex() + "." + frame.getResponseId() + ":" + message.getError() + "\n");
+                                if (!MainActivity.device.initDevice(1)) {
+                                    appendResult(MainActivity.getStringSingle(R.string.message_InitFailed));
+                                    return;
+                                }
                             }
                         }
                     }
