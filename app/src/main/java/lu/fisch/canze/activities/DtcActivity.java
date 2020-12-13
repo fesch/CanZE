@@ -37,6 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Dtcs;
 import lu.fisch.canze.actors.Ecu;
@@ -70,8 +71,14 @@ public class DtcActivity extends CanzeActivity {
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
-            if (ecu.getFromId() != 0 && (ecu.getFromId() < 0x800 || ecu.getFromId() >= 0x900)) {
-                arrayAdapter.add(ecu.getMnemonic()); // only list real, known, reachable ECUs
+            if (ecu.getFromId() > 0 && ecu.getFromId() != 0x800 && ecu.getFromId() != 0x801 &&
+                    (!BuildConfig.BRANCH.equals("master") || (
+                            !ecu.getMnemonic().contains("ABS") &&
+                                    !ecu.getMnemonic().contains("AIBAG") &&
+                                    !ecu.getMnemonic().contains("ESC"))
+                    ))
+            {
+                    arrayAdapter.add(ecu.getMnemonic()); // only list real, known, reachable ECUs
             }
         }
         // display the list

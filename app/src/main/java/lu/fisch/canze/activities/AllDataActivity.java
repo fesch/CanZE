@@ -41,6 +41,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Ecu;
 import lu.fisch.canze.actors.Ecus;
@@ -73,9 +74,17 @@ public class AllDataActivity extends CanzeActivity {
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
-            if (ecu.getFromId() > 0 && ecu.getFromId() != 0x800)
+            if (ecu.getFromId() > 0 && ecu.getFromId() != 0x800 && ecu.getFromId() != 0x801 &&
+                    (!BuildConfig.BRANCH.equals("master") || (
+                            !ecu.getMnemonic().contains("ABS") &&
+                                    !ecu.getMnemonic().contains("AIBAG") &&
+                                    !ecu.getMnemonic().contains("ESC"))
+                    ))
+            {
                 arrayAdapter.add(ecu.getMnemonic()); // all reachable ECU's plus the Free Fields Computer. We skip the Virtual Fields Computer for now as it requires real fields and thus frames.
+            }
         }
+
         // display the list
         final Spinner spinnerEcu = findViewById(R.id.ecuList);
         spinnerEcu.setAdapter(arrayAdapter);

@@ -44,6 +44,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Ecu;
 import lu.fisch.canze.actors.Ecus;
@@ -77,7 +78,13 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
         int index = 0;
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
             // ensure we are only selecting true (as in physical boxes) and reachable (as in, i.e. skipping R-LINK) ECU's
-            if (ecu.getFromId() > 0 && (ecu.getFromId() < 0x800 || ecu.getFromId() >= 0x900)) {
+            if (ecu.getFromId() > 0 && ecu.getFromId() != 0x800 && ecu.getFromId() != 0x801 &&
+                    (!BuildConfig.BRANCH.equals("master") || (
+                            !ecu.getMnemonic().contains("ABS") &&
+                            !ecu.getMnemonic().contains("AIBAG") &&
+                            !ecu.getMnemonic().contains("ESC"))
+                    ))
+            {
                 TextView tv;
                 tv = findViewById(getResources().getIdentifier("lEcu" + index, "id", getPackageName()));
                 if (tv != null) {
