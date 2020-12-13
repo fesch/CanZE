@@ -559,7 +559,7 @@ public class ELM327 extends Device {
                     if (!initCommandExpectOk("atsp7"))
                         return new Message(frame, "-E-Problem sending atsp7 command", true);
                     // set prio using AT CP
-                    if (!initCommandExpectOk("atcp" + frame.getToIdHexMSB()))
+                    if (!initCommandExpectOk("atcp" + frame.getToIdHexMSB(), true))
                         return new Message(frame, "-E-Problem sending atcp command", true);
                 }
             } else {
