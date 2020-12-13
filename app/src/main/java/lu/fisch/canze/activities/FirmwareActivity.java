@@ -267,6 +267,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
     }
 
     private Frame queryFrame (Frame frame) {
+        if (frame == null) return null;
         Message message = MainActivity.device.requestFrame(frame); //  field.getFrame());
         if (message.isError()) {
             MainActivity.getInstance().dropDebugMessage(message.getError());

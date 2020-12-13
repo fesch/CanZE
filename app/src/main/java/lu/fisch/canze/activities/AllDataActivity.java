@@ -220,7 +220,7 @@ public class AllDataActivity extends CanzeActivity {
                     if (((StoppableThread) Thread.currentThread()).isStopped()) return;
 
                     Frame frame = Frames.getInstance().get(i);
-                    if (!frame.getResponseId().startsWith("5")) { // ship dtc commands and mode controls
+                    if (frame.getResponseId() != null && !frame.getResponseId().startsWith("5")) { // ship dtc commands and mode controls
 
                         testerKeepalive(ecu); // may need to set a keepalive/session
 
