@@ -563,7 +563,7 @@ public class ELM327 extends Device {
                         return new Message(frame, "-E-Problem sending atcp command", true);
                 }
             } else {
-                if (lastId >= 0x1000) {
+                if (lastId >= 0x1000 || lastId == 0) {
                     // switch to 11 bit
                     if (!initCommandExpectOk("atsp6", true))
                         return new Message(frame, "-E-Problem sending atsp6 command", true);
