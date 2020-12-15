@@ -556,7 +556,7 @@ public class ELM327 extends Device {
             if (frame.isExtended()) {
                 if (lastId < 0x1000) {
                     // switch to 29 bit
-                    if (!initCommandExpectOk("atsp7"))
+                    if (!initCommandExpectOk("atsp7",true))
                         return new Message(frame, "-E-Problem sending atsp7 command", true);
                     // set prio using AT CP
                     if (!initCommandExpectOk("atcp" + frame.getToIdHexMSB(), true))
@@ -565,7 +565,7 @@ public class ELM327 extends Device {
             } else {
                 if (lastId >= 0x1000) {
                     // switch to 11 bit
-                    if (!initCommandExpectOk("atsp6"))
+                    if (!initCommandExpectOk("atsp6", true))
                         return new Message(frame, "-E-Problem sending atsp6 command", true);
                 }
             }
