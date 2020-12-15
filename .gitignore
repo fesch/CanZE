@@ -51,3 +51,5 @@ obj/
 
 # Keystores
 *.jks
+
+compiler.xml
