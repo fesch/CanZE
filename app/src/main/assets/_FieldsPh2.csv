@@ -115,7 +115,7 @@
 699.8,764,24,31,.5,0,1,°C,224004,624004,ff,OLB_FP_LeftTempDisplay
 764.6167.21,764,24,31,1,0,0,,224402,624402,ff,OH_ClimLoopMode,1:AC Mode;2:Deicing Mode;4:HeatPump Mode;6:Demisting Mode;7:Idle Mode
 764.6167.40,764,24,39,.25,200,1,°C,224347,624347,ff,IH_ExternalTemperature
-430.38,764,168,169,1,0,0,,2144,6144,ff,HV Battery Cooling State
+430.38,764,168,169,1,0,0,,999999,999999,ff,HV Battery Cooling State
 430.40,764,24,39,.1,400,1,°C,224423,624423,ff,IH_HVBattEvapTempMeasure
 432.36,764,24,31,1,0,0,,22441C,62441C,ff,VH_HVBatConditionningMode,0:NoRequest;1:CoolCabinCoupleByAir;2:CoolBattCoupleByAir;3:CoolBattAloneByAir;4:CoolCabinCouple
 42a.30,764,24,39,.1,400,1,°C,22400A,62400A,ff,IH_EvapTemp
