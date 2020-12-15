@@ -689,7 +689,7 @@ public class Fields {
         for (String sid : dependantSids.split(";")) {
             Field field = getBySID(sid);
             if (field != null) {
-                if (!field.getRequestId().equals("999999")) {
+                if (!field.getResponseId().equals("999999")) {
                     dependantFields.put(sid, field);
                 } else { //else not ok, but no error toast display. This is a temporary hack to avoid toast overload while fixing _FieldsPh2
                     allOk = false;

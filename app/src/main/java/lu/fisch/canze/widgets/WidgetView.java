@@ -224,7 +224,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                             if (field == null) {
                                 //MainActivity.debug("WidgetView: init: Field with SID <" + sids[s] + "> (index <" + s + "> in <" + R.styleable.WidgetView_text + "> not found!");
                                 MainActivity.toast(MainActivity.TOAST_NONE, String.format(Locale.getDefault(), MainActivity.getStringSingle(R.string.format_NoSid), "Widget", sids[s]));
-                            } else if (field.getRequestId().equals("999999")) {
+                            } else if (field.getResponseId().equals("999999")) {
                                 //do nothing for temporary disabled fields
 
                             } else {

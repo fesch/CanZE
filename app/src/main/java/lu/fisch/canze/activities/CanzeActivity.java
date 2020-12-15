@@ -316,7 +316,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     protected void addField(String sid, int intervalMs) {
         Field field = MainActivity.fields.getBySID(sid);
         if (field != null) {
-            if (!field.getRequestId().equals ("999999")) {
+            if (!field.getResponseId().equals ("999999")) {
                 addField(field, intervalMs);
             }
         } else {
@@ -326,7 +326,7 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     }
 
     protected void addField(Field field, int intervalMs) {
-        if (field != null && !field.getRequestId().equals("999999")) {
+        if (field != null && !field.getResponseId().equals("999999")) {
             // add a listener to the field
             field.addListener(this);
             // register it in the queue // enable it to self propel
