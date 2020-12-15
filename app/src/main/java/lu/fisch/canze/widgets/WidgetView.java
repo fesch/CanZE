@@ -223,7 +223,9 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                             Field field = MainActivity.fields.getBySID(sids[s]);
                             if (field == null) {
                                 //MainActivity.debug("WidgetView: init: Field with SID <" + sids[s] + "> (index <" + s + "> in <" + R.styleable.WidgetView_text + "> not found!");
-                                MainActivity.toast(MainActivity.TOAST_NONE,  String.format(Locale.getDefault(),MainActivity.getStringSingle(R.string.format_NoSid), "Widget", sids[s]));
+                                MainActivity.toast(MainActivity.TOAST_NONE, String.format(Locale.getDefault(), MainActivity.getStringSingle(R.string.format_NoSid), "Widget", sids[s]));
+                            } else if (field.getRequestId().equals("999999")) {
+                                //do nothing for temporary disabled fields
 
                             } else {
                                 // add field to list of registered sids for this widget
