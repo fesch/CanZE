@@ -249,8 +249,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             Log.d(TAG, text);
         //}
         if (storageIsAvailable && debugLogMode) {
-            SimpleDateFormat sdf = new SimpleDateFormat(getStringSingle(R.string.format_YMDHMSs), Locale.getDefault());
-            DebugLogger.getInstance().log(sdf.format(Calendar.getInstance().getTime()) + ": " + text);
+            DebugLogger.getInstance().log(text);
         }
     }
 
