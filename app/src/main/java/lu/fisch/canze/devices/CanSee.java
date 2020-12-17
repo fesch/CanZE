@@ -199,6 +199,9 @@ public class CanSee extends Device {
         if (BuildConfig.BRANCH.equals("master")) {
             sendAndWaitForAnswer("n110,0", 0, TIMEOUT_FREE); // disable all serial when on master branch
             sendAndWaitForAnswer("n114,0", 0, TIMEOUT_FREE); // disable all debugging when on master branch
+        } else {
+            sendAndWaitForAnswer("n110,1", 0, TIMEOUT_FREE); // enable all serial
+            sendAndWaitForAnswer("n114,0xf6", 0, TIMEOUT_FREE); // enable all debugging
         }
         lastInitProblem = "";
         return true;
