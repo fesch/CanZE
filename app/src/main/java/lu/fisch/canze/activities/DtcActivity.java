@@ -55,6 +55,8 @@ import static lu.fisch.canze.activities.MainActivity.debug;
 
 public class DtcActivity extends CanzeActivity {
 
+    // List, or clear, DTC's. This is done on a per ECU basis
+
     private TextView textView;
     private BufferedWriter bufferedDumpWriter = null;
     private boolean dumpInProgress = false;
@@ -69,6 +71,7 @@ public class DtcActivity extends CanzeActivity {
 
         textView = findViewById(R.id.textResult);
 
+        // add all ECUs to the pull down list
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
             if (ecu.getFromId() > 0 && ecu.getFromId() != 0x800 && ecu.getFromId() != 0x801 &&
@@ -84,6 +87,7 @@ public class DtcActivity extends CanzeActivity {
         final Spinner spinnerEcu = findViewById(R.id.ecuList);
         spinnerEcu.setAdapter(arrayAdapter);
 
+        // bind code to button2
         final Button btnQuery = findViewById(R.id.ecuQuery);
         btnQuery.setOnClickListener(new OnClickListener() {
             @Override
@@ -100,6 +104,7 @@ public class DtcActivity extends CanzeActivity {
             }
         });
 
+        // stop the poller
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -120,12 +125,15 @@ public class DtcActivity extends CanzeActivity {
     }
 
     protected void initListeners() {
+        // the poller is stopped. No fields will be updated
     }
 
+    // initialize the keeplive timer
     private void testerKeepalive() {
         ticker = Calendar.getInstance().getTimeInMillis();
     }
 
+    // check if we need to ie keep the gateway open, keep diadnostic sessions, testerpresent, etc
     private void testerKeepalive(Ecu ecu) {
         if (!ecu.getSessionRequired() && !MainActivity.isPh2()) return; // quit ticker if no gateway and no session
         if (Calendar.getInstance().getTimeInMillis() < ticker) return; // then, quit if no timeout

@@ -58,6 +58,9 @@ import static lu.fisch.canze.activities.MainActivity.debug;
 
 public class AllDataActivity extends CanzeActivity {
 
+    // queries all known fields for
+
+
     private TextView textView;
     private BufferedWriter bufferedDumpWriter = null;
     private boolean dumpInProgress = false;
