@@ -519,6 +519,34 @@
 ,7C8,24,103,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,7C8,24,159,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,7C8,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7C8,28,31,1,0,0,,220326,620326,ff,Combo_EVchargeHLCRequest,0:No HLC Request  [inital value];1:Communication&service setting request;2:Charge parameter Discovery request;3:Cable Check request;4:Precharge request;5:Power delivery request;6:Current demand request;7:Metering receipt request;8:Welding detection request;9:Session stop request;10:Matching Reset;11:Charging Status request;12:AC BPT;13:DC BPT
+,7C8,28,31,1,0,0,,220327,620327,ff,Combo_EVErrorCode,0:NO_ERROR  [initial value];1:FAILED_RESSTemperatureInhibit;2:FAILED_EVShiftPosition;3:FAILED_ChargerConnectorLockFault;4:FAILED_EVRESSMalfunction;5:FAILED_ChargingCurrentdifferential;6:FAILED_ChargingVoltageOutOfRange;7:Reserved_A;8:Reserved_B;9:Reserved_C;10:FAILED_ChargingSystemIncompatibility;11:NoData;12:not used;15:Unavailable Value
+,7C8,24,35,1.6,0,1,A,220328,620328,ff,Combo_EVMaximumCurrentLimit
+,7C8,31,31,1,0,0,,220329,620329,ff,Combo_EVReady,0:EV isn't ready to charge  [initial value];1:EV is ready to charge
+,7C8,24,37,.4,0,1,V,22032A,62032A,ff,Combo_EVMaximumVoltageLimit
+,7C8,28,31,1,0,0,,22032C,62032C,ff,Combo_EVSEchargeHLCState,0:No HLC communication is established [initial value];1:Communication&service setting is established;2:ChargeparameterDiscovery res;3:CableCheck response;4:Precharge response;5:Power delivery response;6:Current demand response;7:Metering receipt response;8:Welding detection response;9:Session stop response with EVSE(station charging);10:Charging Status response
+,7C8,31,31,1,0,0,,22032D,62032D,ff,Combo_EVSECurrentLimitAchieved,0:EVSE hasn't reached its current limit  [initial value];1:EVSE has reached its current limit
+,7C8,24,35,800,0,0,W,22032E,62032E,ff,Combo_EVSEMaximumPowerLimit
+,7C8,24,37,.4,0,1,V,22032F,62032F,ff,Combo_EVSEMaximumVoltageLimit
+,7C8,24,37,.4,0,1,V,220330,620330,ff,Combo_EVSEMinimumVoltageLimit
+,7C8,24,35,1.6,0,1,A,220331,620331,ff,Combo_EVSEMaximumCurrentLimit
+,7C8,24,35,1.6,0,1,A,220332,620332,ff,Combo_EVSEMinimumCurrentLimit
+,7C8,24,35,.1,0,1,A,220333,620333,ff,Combo_EVSEPeakCurrentRipple
+,7C8,31,31,1,0,0,,220334,620334,ff,Combo_EVSEPowerLimitAchieved,0:EVSE hasn't reached its power limit   [initial value];1:EVSE has reached its power limit
+,7C8,24,35,1.6,0,1,A,220335,620335,ff,Combo_EVSEPresentCurrent
+,7C8,24,37,.4,0,1,V,220336,620336,ff,Combo_EVSEPresentVoltage
+,7C8,31,31,1,0,0,,220337,620337,ff,Combo_EVSEVoltageLimitAchieved,0:the EVSE hasn't reached its voltage limit;1:the EVSE has reached its voltage limit
+,7C8,29,31,1,0,0,,220338,620338,ff,CPLC_ChargeProgress,0:Stop;1:Start;2:Renegociate;3:Not used;7:Unavailable Value  [initial value]
+,7C8,29,31,1,0,0,,220339,620339,ff,CPLC_ChargingSession,0:No state [Initial Value];1:terminate the V2G Communication Session;2:pause the V2G Communication Session;3:reset the V2G Communication Session;4:emergency stop  the V2G Communication Session;5:Not used
+,7C8,28,31,1,0,0,,22033A,62033A,ff,CPLC_CommunicationStatus,0:No HLC communication is established;1:HLC communication is initializing;2:HLC communication is ready - secured mode;3:HLC communication is stopped;4:HLC communication error;5:HLC Communication is ready - not secured mode;6:Not used;7:Unavailable Value[initial value];8:HLC Communication is not ready- TLS setup failed;9:HLC Communication is not ready- TLS timeout;10:HLC Communication is not ready- TLS not supported;11:HLC Communication is not ready- SDP timeout;12:HLC Communication is not ready- not supported ISO-2 version;13:HLC Communication is not ready- V2G setup timeout;14:HLC Communication is not ready- V2G failed
+,7C8,24,31,1,0,0,,22033B,62033B,ff,Failure_Status,0:Ok;1:OK_CertificateExpiresSoon;2:FAILED_CertificateExpired;3:FAILED_ContractCanceled;4:FAILED_CertificateRevoked;5:FAILED_CertificateNotAllowedAtThisEVSE;6:FAILED_NoCertificate Available;8:FAILED_WrongEnergyTransferMode;9:FAILED_WrongChargeParameter;10:FAILED_ChargingProfileInvalid;11:FAILED_ServiceIDInvalid;12:FAILED_UnknownSession;13:FAILED_ServiceSelectionInvalid;14:FAILED_TariffSelectionInvalid;15:FAILED_PaymentSelectionInvalid;16:FAILED_CertChainError;17:FAILED_ChallengeInvalid;18:FAILED_MeteringSignatureNotValid;19:FAILED_NoChargeServiceSelected;20:FAILED_SequenceError;21:FAILED_SignatureError;22:FAILED_NoCertificateAvailable;23:FAILED_PowerDeliveryNotApplied;24:FAILED;25:FAILED_ContactorError
+,7C8,24,31,1,0,0,,22033C,62033C,ff,EVSE_Status,0:Ok;1:EVSEnotReady;2:EVSEShutdown;3:EVSE_UtilityInterruptEvent;4:EVSE_IsolationMonitoringActive;5:EVSE_EmergencyShutdown;6:EVSE_Malfunction;7:Reserved 8-C;8:Renegotiate
+,7C8,29,31,1,0,0,,22033D,62033D,ff,CPLC_RequestedEnergyTransferMode,0:No request  [initial value];1:AC_single_phase_core;2:AC_three_phase_core;3:DC_core;4:DC_combo_core;5:DC_unique;6:DC_extended;7:not used
+,7C8,30,31,1,0,0,,22033E,62033E,ff,Combo_DCExtendedConnectStatus,0:Unavailable[initial value];1:DC extended not detected;2:DC extended detected;3:not used
+,7C8,24,39,.01,0,2,V,220340,620340,ff,Supply voltage
+,7C8,27,31,1,0,0,,220341,620341,ff,DEBUG_MODE.indication,0:Nominal;1:Debug;3:Debug + Mirroring;5:Debug + By-pass validation;7:Debug + Mirroring + By-pass validation;9:Debug + Force validation;11:Debug + Mirroring + Force validation;17:Debug + Power Emission Meas;21:Debug + power emission meas + by pass validation;25:Debug + power emission meas + force validation
+,7C8,30,31,1,0,0,,220343,620343,ff,MAT_ERROR-RECOVERY-MODE,0:BC Priority;1:HLC-C Priority;2:BC_PriorityByDefault;3:Not used
+,7C8,24,25,1,0,0,,220344,620344,ff,SEC_SET-TLS-PREFERENCE.indication,0:No_TLS;1:Prioritize_TLS;2:Not Used
 # VSP #
 ,761,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,761,64,87,1,0,0,,2180,6180,2ff,Supplier (string)
