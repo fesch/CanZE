@@ -36,10 +36,17 @@ import lu.fisch.canze.classes.FieldLogger;
 public class Message {
 
     // A message represents a message coming from a device as a result from a frame request.
-    // Note that for ISO-TP frames, a frame is always a sub-frame
-    // If an error occurs while fetching a message, the error flag is set to true and the data
-    // part now represents a readable error. The methods ensure that the data part is only
-    // processed when there is no error condition set
+    // Note that for ISO-TP frames, a frame is always a sub-frame. It's parent frame is one
+    // related to the ECU
+
+    // If a communication error occurs while fetching a message, the error flag is set to true and
+    // the data part now represents a readable error.
+    //
+    // If the ECU reports an error (as opposed to a comms error), error7f is raised. This is done
+    // since in this case a reinitialization of the dongle makes no sense.
+
+    // While the Message object does not automatically trigger field updates related the frame,
+    // it provides methods to do so, both for an error or all good condition.
 
     private final Frame frame;
     private final String data;
@@ -89,13 +96,12 @@ public class Message {
     public String getError () { return error ? data : ""; }
 
     public void onMessageIncompleteEvent () {
-        // simply update the fields last request date to send them to the end of the queue
+        // simply update the fields last request datetime to send them to the back end of the queue
         for (Field field : frame.getAllFields()) {
             field.updateLastRequest();
             //field.setValue(Double.NaN);
         }
     }
-
 
     public void onMessageCompleteEvent() {
 
@@ -103,7 +109,7 @@ public class Message {
         // Note that for an IsoTP field, the getFrame() method returns as sub-frame. The sub-frame's
         // getAllFields() method only returns the fields with the same responseId.
 
-        // this function is called from DtcActivity ("manual mode") and
+        // This method is called from DtcActivity ("manual mode") and
         // Device.queryNextFilter ("auto mode")
 
         if (error) return;

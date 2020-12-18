@@ -39,7 +39,7 @@ public class CanSee extends Device {
     //private String buffer = "";
     //private final String separator = "\n";
 
-    // If there are more than WRONG_THRESHOLD empyy answer strings (meaning either just
+    // If there are more than WRONG_THRESHOLD empty answer strings (meaning either just
     // EOM as answer or no answer in TIMEOUT milliseconds, Bluetooth will be restarted
     private static final int WRONG_THRESHOLD = 20;
     private int wrongCount = 0;
@@ -116,12 +116,13 @@ public class CanSee extends Device {
     @Override
     public void clearFields() {
         super.clearFields();
-        //fieldIndex =0;
     }
 
     @Override
     public Message requestFreeFrame(Frame frame) {
         // build the command string to send to the remote device
+        // CanSee maintains a table of all received free frames and immediately responds with
+        // the last known frame
         String command = "g" + frame.getFromIdHex();
         return responseToMessage(frame, command, TIMEOUT_FREE);
     }
@@ -129,11 +130,13 @@ public class CanSee extends Device {
     @Override
     public Message requestIsoTpFrame(Frame frame) {
         // build the command string to send to the remote device
+        // Note that all ISOTP handling is done by the CanSee device
         String command = "i" + frame.getFromIdHex() + "," + frame.getRequestId() + "," + frame.getResponseId();
         return responseToMessage(frame, command, TIMEOUT_ISO);
     }
 
     private Message responseToMessage(Frame frame, String command, int timeout) {
+        // convert CanSee output to a Message object
         MainActivity.debug("CanSee.rtm.send [" + command + "]");
         String text = sendAndWaitForAnswer(command, 0, timeout);    // send and wait for an answer, no delay
         MainActivity.debug("CanSee.rtm.receive [" + text + "]");
@@ -167,24 +170,11 @@ public class CanSee extends Device {
             return new Message(frame, "-E-CanSee.rtm.Nan:" + text, true);
         }
 
-/*        if (frame.getFromId() < 0x700) {
-            if (id != frame.getFromId()) {
-                MainActivity.debug("CanSee.rtm.difffree [" + text + "]");
-                return new Message(frame, "-E-CanSee.rtm.difffree", true);
-            }
-        } else {
-            if (id < 0x700 || id > 0x7ff) { // crude but I don't know the exact behavior of CanSee here
-                MainActivity.debug("CanSee.rtm.diffiso [" + text + "]");
-                return new Message(frame, "CanSee.rtm.diffiso", true);
-            }
-        } */
         if (id != frame.getFromId()) {
             MainActivity.debug("CanSee.rtm.diffid [" + text + "]");
             return new Message(frame, "-E-CanSee.rtm.diffid:" + text, true);
         }
 
-        // we could add answer length but that is not in the frame definition now
-        //  everything is fine so
         wrongCount = 0;
         return new Message(frame, pieces[1].trim().toLowerCase(), false);
     }

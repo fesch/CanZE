@@ -29,6 +29,24 @@ import java.util.Calendar;
  */
 public class Frame {
 
+    // A frame is one of
+    // - a representation of a free frame floating on the bus (Ph1 only). Though we do not use the
+    //   term "packet" like in ethernet, it's totally equivalent. Size is max 8 bytes
+    //   A free frame is identified by an ID below 0x700, at least on Ph1. We have not detected yet
+    //   accessible free frames on Ph2.
+    // - an ISOTP formatted frame, which can (not need) consist of more than one "packet". ISOTP
+    //   carries out sequencing, (dis)assembly and flow control
+    //   ISOTP frames are almost exclusively use for "request-response" traffic, meant for
+    //   diagnstic tools. Since the ID of many ISOTP frames are the same (in principle, all ECUs
+    //   have one rc and one tx ID only), sub-frames are defined for each single ISOTP frames.
+    //   An ISOTP sub-frame is identified by an ID and a response string.
+
+    // A frames is the basic unit of communication. A frame is received from the car or potentially
+    // send to the car. Once a frame is received, it's content is stored in a Message, which is
+    // processed further down the line.
+
+    // A frame usually contains one or more Fields.
+
     private final int fromId;
     private final String responseId;
     private final Ecu sendingEcu;

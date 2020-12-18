@@ -38,10 +38,14 @@ import lu.fisch.canze.bluetooth.BluetoothManager;
  */
 public class ELM327 extends Device {
 
-    // *** needed by the "decoder" part of this device
-    //private String buffer = "";
-    //private final String SEPARATOR = "\r\n";
+    // Implementation of requestFreeFrame and requestIsotpFrame for the eLM327 style KONNWEI and
+    // comparable drivers. Note that all ISOTP handling is done in this driver, as well as the
+    // low level serial command interface.
 
+    // Note that the output of the driver is an object of the type Message
+
+    // This is a fairly complex driver dealing with subtle intricacies and it's better not touched
+    // without extensive testing afterwards. Any assumpion may safely be considered wrong ;-)
 
     // define the Timeout we may wait to get an answer
     private static int DEFAULT_TIMEOUT = 500;
@@ -54,11 +58,8 @@ public class ELM327 extends Device {
 
     private boolean deviceIsInitialized = false;
 
-    /**
-     * the index of the actual field to request
-     */
-    private int lastId = 0;
-    private boolean lastCommandWasFreeFrame = false;
+    private int lastId = 0; // used to skip sending unneeded commands
+    private boolean lastCommandWasFreeFrame = false; // ditto
 
 
     protected boolean initDevice(int toughness, int retries) {
@@ -246,10 +247,12 @@ public class ELM327 extends Device {
         sendNoWait("x");
         // discard everything that still comes in
         flushWithTimeoutCore(200, '\0');
-        // if a command was running, it is interrupted now and the ELM is waiting for a command. However, if there was no command running, the x
-        // in the buffer will screw up the next command. There are two possibilities: Sending a Backspace and hope for the best, or sending x <CR>
-        // and being sure the ELM will report an unknown command (prompt a ? mark), as it will be processing either x <CR> or xx <CR>. We choose the latter
-        // discard the ? anser
+        // if a command was running, it is interrupted now and the ELM is waiting for a command.
+        // However, if there was no command running, the x in the buffer will screw up the next
+        // command. There are two possibilities: Sending a Backspace and hope for the best, or
+        // sending x <CR> and being sure the ELM will report an unknown command (prompt a ? mark),
+        // as it will be processing either x <CR> or xx <CR>. We choose the latter and discard
+        // the ? anser
         sendNoWait("x\r");
         if (!flushWithTimeoutCore(500, '\0')) {
             MainActivity.debug("ELM327: KillCurrentOperation unable to flush after x");
@@ -587,6 +590,7 @@ public class ELM327 extends Device {
             lastId = frame.getFromId();
         }
 
+        // ISOTP outgoing starts here
         int outgoingLength = frame.getRequestId().length();
         String elmResponse = "";
         if (outgoingLength <= 12) {
@@ -637,6 +641,7 @@ public class ELM327 extends Device {
             }
         }
 
+        // ISOTP receiver starts here
         // clean-up if there is mess around
         elmResponse = elmResponse.trim();
         if (elmResponse.startsWith(">")) elmResponse = elmResponse.substring(1);
