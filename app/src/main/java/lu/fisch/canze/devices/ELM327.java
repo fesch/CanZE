@@ -549,10 +549,13 @@ public class ELM327 extends Device {
             lastCommandWasFreeFrame = false;
         }
 
-        // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If the current ID is the same, no need to re-address that ECU
-        // disable for now
-        lastId = 0;
+        // PERFORMANCE ENHANCEMENT II: lastId contains the CAN id of the previous ISO-TP command. If
+        // the current ID is the same, no need to re-address that ECU. Even if different ECU but
+        // same id length, no change 11/29 bit mode needed either.
+        // (re)enabled after 1.54 release
+        // lastId = 0;
         if (lastId != frame.getFromId()) {
+            // IIa: 11/29 bit mode change only if needed
             if (frame.isExtended()) {
                 if (lastId < 0x1000) {
                     // switch to 29 bit
@@ -563,15 +566,14 @@ public class ELM327 extends Device {
                         return new Message(frame, "-E-Problem sending atcp command", true);
                 }
             } else {
-                if (lastId >= 0x1000 || lastId == 0) {
+                if (lastId >= 0x1000 || lastId == 0) { // 0 check if optimization II is disabled
                     // switch to 11 bit
                     if (!initCommandExpectOk("atsp6", true))
                         return new Message(frame, "-E-Problem sending atsp6 command", true);
                 }
             }
 
-            lastId = frame.getFromId();
-
+            // change ECU address
             // Set header
             if (!initCommandExpectOk("atsh" + frame.getToIdHexLSB()))
                 return new Message(frame, "-E-Problem sending atsh command", true);
@@ -581,6 +583,8 @@ public class ELM327 extends Device {
             // Set flow control response ID
             if (!initCommandExpectOk("atfcsh" + frame.getToIdHex()))
                 return new Message(frame, "-E-Problem sending atfcsh command", true);
+
+            lastId = frame.getFromId();
         }
 
         int outgoingLength = frame.getRequestId().length();
