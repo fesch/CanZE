@@ -842,6 +842,245 @@
 
             </TableLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/header_EVSEParameters"
+                android:textStyle="bold" />
+
+            <TableLayout
+                android:id="@+id/tableLayoutEVSE"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/EVSEStatus"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textEVSEStatus"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/EVSEFailureStatus"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textEVSEFailureStatus"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/EVReady"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textEVReady"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/CPLCComStatus"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textCPLCComStatus"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/EVRequestState"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textEVRequestState"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/EVSEState"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textEVSEState"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/EVSEMaxPower"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textEVSEMaxPower"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/EVSEPowerLimitReached"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textEVSEPowerLimitReached"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/EVSEMaxVoltage"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textEVSEMaxVoltage"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/EVSEPresentVoltage"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textEVSEPresentVoltage"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/EVSEVoltageLimitReached"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textEVSEVoltageLimitReached"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/EVSEMaxCurrent"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textEVSEMaxCurrent"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/EVSEPresentCurrent"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textEVSEPresentCurrent"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/EVSECurrentLimitReached"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+
+                    <TextView
+                        android:id="@+id/textEVSECurrentLimitReached"
+                        android:text="@string/default_Dash"
+                        android:gravity="end"
+                        android:layout_weight="0.7"
+                        android:width="0dp"
+                        />
+                </TableRow>
+
+            </TableLayout>
+
 
         </LinearLayout>
 

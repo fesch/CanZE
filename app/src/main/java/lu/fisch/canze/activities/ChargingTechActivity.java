@@ -22,6 +22,8 @@
 package lu.fisch.canze.activities;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -72,10 +74,32 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     private static final String SID_GroundResistance = "793.625062.24";
     private static final String SID_SupervisorState = "793.625063.24";
     private static final String SID_CompletionStatus = "793.625064.24";
+    private static final String SID_CCSEVSEStatus = "7c8.62033c.24";
+    private static final String SID_CCSFailureStatus = "7c8.62033b.24";
+    private static final String SID_CCSEVReady = "7c8.620329.31";
+    private static final String SID_CCSCPLCComStatus = "7c8.62033a.28";
+    private static final String SID_CCSEVRequestState = "7c8.620326.28";
+    private static final String SID_CCSEVSEState = "7c8.62032c.28";
+    private static final String SID_CCSEVSEMaxPower = "7c8.62032e.24";
+    private static final String SID_CCSEVSEPowerLimitReached = "7c8.620334.31";
+    private static final String SID_CCSEVSEMaxVoltage = "7c8.62032f.24";
+    private static final String SID_CCSEVSEPresentVoltage = "7c8.620336.24";
+    private static final String SID_CCSEVSEVoltageLimitReaced = "7c8.620337.31";
+    private static final String SID_CCSEVSEMaxCurrent = "7c8.620331.24";
+    private static final String SID_CCSEVSEPresentCurrent = "7c8.620335.24";
+    private static final String SID_CCSEVSECurrentLimitReached = "7c8.62032d.31";
+
     private final String[] plug_Status = MainActivity.getStringList(R.array.list_PlugStatus);
     private final String[] mains_Current_Type = MainActivity.getStringList(R.array.list_MainsCurrentType);
     private final String[] supervisor_State = MainActivity.getStringList(R.array.list_SupervisorState);
     private final String[] completion_Status = MainActivity.getStringList(R.array.list_CompletionStatus);
+    private final String[] evse_status = MainActivity.getStringList(R.array.list_EVSEStatus);
+    private final String[] evse_failure_status = MainActivity.getStringList(R.array.list_EVSEFailureStatus);
+    private final String[] ev_ready_status = MainActivity.getStringList(R.array.list_EVReady);
+    private final String[] cplc_com_status = MainActivity.getStringList(R.array.list_CPLCComStatus);
+    private final String[] ev_request_state = MainActivity.getStringList(R.array.list_EVRequestState);
+    private final String[] evse_state = MainActivity.getStringList(R.array.list_EVSEState);
+    private final String[] limit_reached = MainActivity.getStringList(R.array.list_EVSELimitReached);
 
     private double dcVolt = 0; // holds the DC voltage, so we can calculate the power when the amps come in
     private double pilot = 0;
@@ -85,6 +109,11 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chargingtech);
+        if (MainActivity.isPh2()){
+            TableLayout tl;
+            tl = findViewById(R.id.tableLayoutEVSE);
+            tl.setVisibility(View.VISIBLE);
+        }
     }
 
     protected void initListeners() {
@@ -99,9 +128,9 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addField(SID_AvEnergy, 5000);
         addField(SID_SOH, 5000); // state of health gives continuous timeouts. This frame is send at a very low rate
         addField(SID_RangeEstimate, 5000);
-        addField(SID_12V, 5000);
-        addField(SID_12A, 5000);
-        addField(SID_DcLoad, 5000);
+        addField(SID_12V, 2000);
+        addField(SID_12A, 1000);
+        addField(SID_DcLoad, 1000);
         addField(SID_HvKilometers, 5000);
         addField(SID_TractionBatteryVoltage, 5000);
         addField(SID_TractionBatteryCurrent, 5000);
@@ -120,9 +149,11 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addField(SID_Phase1currentRMS);
         addField(SID_Phase2CurrentRMS);
         addField(SID_Phase3CurrentRMS);
-        addField(SID_PhaseVoltage1);
-        addField(SID_PhaseVoltage2);
-        addField(SID_PhaseVoltage3);
+        if (!MainActivity.isPh2()) {
+            addField(SID_PhaseVoltage1);
+            addField(SID_PhaseVoltage2);
+            addField(SID_PhaseVoltage3);
+        }
         addField(SID_InterPhaseVoltage12);
         addField(SID_InterPhaseVoltage23);
         addField(SID_InterPhaseVoltage31);
@@ -130,6 +161,24 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addField(SID_GroundResistance);
         addField(SID_SupervisorState);
         addField(SID_CompletionStatus);
+
+        // TODO: Add variable holding information if CCS charging is available for the car
+        if (MainActivity.isPh2()){
+            addField(SID_CCSEVSEStatus);
+            addField(SID_CCSFailureStatus);
+            addField(SID_CCSEVReady);
+            addField(SID_CCSCPLCComStatus);
+            addField(SID_CCSEVRequestState);
+            addField(SID_CCSEVSEState);
+            addField(SID_CCSEVSEMaxPower);
+            addField(SID_CCSEVSEPowerLimitReached);
+            addField(SID_CCSEVSEMaxVoltage);
+            addField(SID_CCSEVSEPresentVoltage);
+            addField(SID_CCSEVSEVoltageLimitReaced);
+            addField(SID_CCSEVSEMaxCurrent);
+            addField(SID_CCSEVSEPresentCurrent);
+            addField(SID_CCSEVSECurrentLimitReached);
+        }
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -411,6 +460,84 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         value = (int) field.getValue();
                         if (tv != null && completion_Status != null && value >= 0 && value < completion_Status.length)
                             tv.setText(completion_Status[value]);
+                        tv = null;
+                        break;
+                    case SID_CCSEVSEStatus:
+                        tv = findViewById(R.id.textEVSEStatus);
+                        value = (int) field.getValue();
+                        if (tv != null && evse_status != null && value >= 0 && value < evse_status.length)
+                            tv.setText(evse_status[value]);
+                        tv = null;
+                        break;
+                    case SID_CCSFailureStatus:
+                        tv = findViewById(R.id.textEVSEFailureStatus);
+                        value = (int) field.getValue();
+                        if (tv != null && evse_failure_status != null && value >= 0 && value < evse_failure_status.length)
+                            tv.setText(evse_failure_status[value]);
+                        tv = null;
+                        break;
+                    case SID_CCSEVReady:
+                        tv = findViewById(R.id.textEVReady);
+                        value = (int) field.getValue();
+                        if (tv != null && ev_ready_status != null && value >= 0 && value < ev_ready_status.length)
+                            tv.setText(ev_ready_status[value]);
+                        tv = null;
+                        break;
+                    case SID_CCSCPLCComStatus:
+                        tv = findViewById(R.id.textCPLCComStatus);
+                        value = (int) field.getValue();
+                        if (tv != null && cplc_com_status != null && value >= 0 && value < cplc_com_status.length)
+                            tv.setText(cplc_com_status[value]);
+                        tv = null;
+                        break;
+                    case SID_CCSEVRequestState:
+                        tv = findViewById(R.id.textEVRequestState);
+                        value = (int) field.getValue();
+                        if (tv != null && ev_request_state != null && value >= 0 && value < ev_request_state.length)
+                            tv.setText(ev_request_state[value]);
+                        tv = null;
+                        break;
+                    case SID_CCSEVSEState:
+                        tv = findViewById(R.id.textEVSEState);
+                        value = (int) field.getValue();
+                        if (tv != null && evse_state != null && value >= 0 && value < evse_state.length)
+                            tv.setText(evse_state[value]);
+                        tv = null;
+                        break;
+                    case SID_CCSEVSEMaxPower:
+                        tv = findViewById(R.id.textEVSEMaxPower);
+                        break;
+                    case SID_CCSEVSEPowerLimitReached:
+                        tv = findViewById(R.id.textEVSEPowerLimitReached);
+                        value = (int) field.getValue();
+                        if (tv != null && limit_reached != null && value >= 0 && value < limit_reached.length)
+                            tv.setText(limit_reached[value]);
+                        tv = null;
+                        break;
+                    case SID_CCSEVSEMaxVoltage:
+                        tv = findViewById(R.id.textEVSEMaxVoltage);
+                        break;
+                    case SID_CCSEVSEPresentVoltage:
+                        tv = findViewById(R.id.textEVSEPresentVoltage);
+                        break;
+                    case SID_CCSEVSEVoltageLimitReaced:
+                        tv = findViewById(R.id.textEVSEVoltageLimitReached);
+                        value = (int) field.getValue();
+                        if (tv != null && limit_reached != null && value >= 0 && value < limit_reached.length)
+                            tv.setText(limit_reached[value]);
+                        tv = null;
+                        break;
+                    case SID_CCSEVSEMaxCurrent:
+                        tv = findViewById(R.id.textEVSEMaxCurrent);
+                        break;
+                    case SID_CCSEVSEPresentCurrent:
+                        tv = findViewById(R.id.textEVSEPresentCurrent);
+                        break;
+                    case SID_CCSEVSECurrentLimitReached:
+                        tv = findViewById(R.id.textEVSECurrentLimitReached);
+                        value = (int) field.getValue();
+                        if (tv != null && limit_reached != null && value >= 0 && value < limit_reached.length)
+                            tv.setText(limit_reached[value]);
                         tv = null;
                         break;
                 }

@@ -310,7 +310,7 @@
         <item>InitChargeDF</item>
         <item>OCPStop</item>
         <item>WaitS2</item>
-    </string-array> 
+    </string-array>
     
     <!-- Braking -->
 
@@ -369,6 +369,25 @@
     <string-array name="list_PlugStatus">
         <item>Nicht verbunden</item>
         <item>Verbunden</item>
+    </string-array>
+    <string name="header_EVSEParameters">CCS Parameter</string>
+    <string name="EVSEStatus">Status Ladestation</string>
+    <string name="EVSEFailureStatus">Fehlerstatus Ladestation</string>
+    <string name="EVReady">Bereitschaft Fahrzeug</string>
+    <string name="CPLCComStatus">Status Kommunikation</string>
+    <string name="EVRequestState">Fahrzeug Anfragezustand</string>
+    <string name="EVSEState">Zustand Ladestation</string>
+    <string name="EVSEMaxPower">Ladestation max Leistung (W)</string>
+    <string name="EVSEPowerLimitReached">Ladestation Leistungslimit erreicht</string>
+    <string name="EVSEMaxVoltage">Ladestation max Spannung (V)</string>
+    <string name="EVSEPresentVoltage">Ladestation aktuelle Spannung (V)</string>
+    <string name="EVSEVoltageLimitReached">Ladestation Spannungslimit erreicht</string>
+    <string name="EVSEMaxCurrent">Ladestation max Strom (A)</string>
+    <string name="EVSEPresentCurrent">Ladestation aktueller Strom (A)</string>
+    <string name="EVSECurrentLimitReached">Ladestation Stromlimit erreicht</string>
+    <string-array name="list_EVSELimitReached">
+        <item>Nein</item>
+        <item>Ja</item>
     </string-array>
 
     <!-- Charging graph -->

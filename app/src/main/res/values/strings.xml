@@ -372,6 +372,113 @@
         <item>Not connected</item>
         <item>Connected</item>
     </string-array>
+    <string name="header_EVSEParameters">CCS Parameters</string>
+    <string name="EVSEStatus">Charger Status</string>
+    <string-array name="list_EVSEStatus">
+        <item>Ok</item>
+        <item>EVSEnotReady</item>
+        <item>EVSEShutdown</item>
+        <item>EVSE_UtilityInterruptEvent</item>
+        <item>EVSE_IsolationMonitoringActive</item>
+        <item>EVSE_EmergencyShutdown</item>
+        <item>EVSE_Malfunction</item>
+        <item>Reserved 8-C</item>
+        <item>Renegotiate</item>
+    </string-array>
+    <string name="EVSEFailureStatus">Failure Status</string>
+    <string-array name="list_EVSEFailureStatus">
+        <item>Ok</item>
+        <item>OK_CertificateExpiresSoon</item>
+        <item>FAILED_CertificateExpired</item>
+        <item>FAILED_ContractCanceled</item>
+        <item>FAILED_CertificateRevoked</item>
+        <item>FAILED_CertificateNotAllowedAtThisEVSE</item>
+        <item>FAILED_NoCertificate Available</item>
+        <item>FAILED_WrongEnergyTransferMode</item>
+        <item>FAILED_WrongChargeParameter</item>
+        <item>FAILED_ChargingProfileInvalid</item>
+        <item>FAILED_ServiceIDInvalid</item>
+        <item>FAILED_UnknownSession</item>
+        <item>FAILED_ServiceSelectionInvalid</item>
+        <item>FAILED_TariffSelectionInvalid</item>
+        <item>FAILED_PaymentSelectionInvalid</item>
+        <item>FAILED_CertChainError</item>
+        <item>FAILED_ChallengeInvalid</item>
+        <item>FAILED_MeteringSignatureNotValid</item>
+        <item>FAILED_NoChargeServiceSelected</item>
+        <item>FAILED_SequenceError</item>
+        <item>FAILED_SignatureError</item>
+        <item>FAILED_NoCertificateAvailable</item>
+        <item>FAILED_PowerDeliveryNotApplied</item>
+        <item>FAILED</item>
+        <item>FAILED_ContactorError</item>
+    </string-array>
+    <string name="EVReady">EV Ready</string>
+    <string-array name="list_EVReady">
+        <item>EV isn\'t ready to charge</item>
+        <item>EV is ready to charge</item>
+    </string-array>
+    <string name="CPLCComStatus">Communication Status</string>
+    <string-array name="list_CPLCComStatus">
+        <item>No HLC communication is established</item>
+        <item>HLC communication is initializing</item>
+        <item>HLC communication is ready - secured mode</item>
+        <item>HLC communication is stopped</item>
+        <item>HLC communication error</item>
+        <item>HLC Communication is ready - not secured mode</item>
+        <item>Not used</item>
+        <item>Unavailable Value[initial value]</item>
+        <item>HLC Communication is not ready- TLS setup failed</item>
+        <item>HLC Communication is not ready- TLS timeout</item>
+        <item>HLC Communication is not ready- TLS not supported</item>
+        <item>HLC Communication is not ready- SDP timeout</item>
+        <item>HLC Communication is not ready- not supported ISO-2 version</item>
+        <item>HLC Communication is not ready- V2G setup timeout</item>
+        <item>HLC Communication is not ready- V2G failed</item>
+    </string-array>
+    <string name="EVRequestState">EV Request State</string>
+    <string-array name="list_EVRequestState">
+        <item>No HLC Request</item>
+        <item>Communication and service setting request</item>
+        <item>Charge parameter discovery request</item>
+        <item>Cable Check request</item>
+        <item>Precharge request</item>
+        <item>Power delivery request</item>
+        <item>Current demand request</item>
+        <item>Metering receipt request</item>
+        <item>Welding detection request</item>
+        <item>Session stop request</item>
+        <item>Matching Reset</item>
+        <item>Charging Status request</item>
+        <item>AC BPT</item>
+        <item>DC BPT</item>
+    </string-array>
+    <string name="EVSEState">Charger State</string>
+    <string-array name="list_EVSEState">
+        <item>No HLC communication is established</item>
+        <item>Communication and service setting is established</item>
+        <item>Charge parameter discovery response</item>
+        <item>CableCheck response</item>
+        <item>Precharge response</item>
+        <item>Power delivery response</item>
+        <item>Current demand response</item>
+        <item>Metering receipt response</item>
+        <item>Welding detection response</item>
+        <item>Session stop response with EVSE(station charging)</item>
+        <item>Charging Status response</item>
+    </string-array>
+    <string name="EVSEMaxPower">Charger max power (W)</string>
+    <string name="EVSEPowerLimitReached">Charger power limit reached</string>
+    <string name="EVSEMaxVoltage">Charger max voltage (V)</string>
+    <string name="EVSEPresentVoltage">Charger present voltage (V)</string>
+    <string name="EVSEVoltageLimitReached">Charger voltage limit reached</string>
+    <string name="EVSEMaxCurrent">Charger max current (A)</string>
+    <string name="EVSEPresentCurrent">Charger present current (A)</string>
+    <string name="EVSECurrentLimitReached">Charger current limit reached</string>
+    <string-array name="list_EVSELimitReached">
+        <item>No</item>
+        <item>Yes</item>
+    </string-array>
 
     <!-- Charging graph -->
 
