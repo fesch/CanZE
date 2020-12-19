@@ -124,7 +124,7 @@ public class Dtcs {
         dtcs.clear();
         tests.clear();
         if (dtcsAssetName.equals("")) { // default dtcs and tests is basically nonsense. so no ZE50 specific implementation
-            fillFromAsset("_Dtcs.csv", "_Tests.csv");
+            fillFromAsset("_DtcsPh1.csv", "_TestsPh1.csv");
         } else {
             fillFromAsset(dtcsAssetName, testsAssetName);
         }

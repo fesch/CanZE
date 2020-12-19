@@ -889,7 +889,7 @@ public class Fields {
         // note - we might ditch non-alt mode. I doubt if it's worth the effort for CanSee dongle only
         if (MainActivity.isZOE()) {
             if (MainActivity.altFieldsMode) {
-                return "_FieldsAlt.csv";
+                return "_FieldsAlt" + MainActivity.getAssetSuffix();
             }
         }
         return "_Fields" + MainActivity.getAssetSuffix();
