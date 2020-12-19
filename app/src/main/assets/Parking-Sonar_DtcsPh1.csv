@@ -1,0 +1,14 @@
+A728,Led
+A725,RearBuzzer
+A72D,FrontBuzzer
+A72C,FrontOuterRightSensor
+A729,FrontOuterLeftSensor
+A72B,FrontInnerRightSensor
+A72A,FrontInnerLeftSensor
+A724,ECU
+A723,RearOuterRightSensor
+A720,RearOuterLeftSensor
+A722,RearInnerRightSensor
+A721,RearInnerLeftSensor
+A726,RearCenterSensor
+A727,FrontCenterSensor

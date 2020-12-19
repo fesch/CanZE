@@ -72,7 +72,6 @@
 046B,Feedback of Peltier external fan
 046C,Feedback of Peltier internal fan
 046D,Peltier request relay electrical command circuit
-C121,Lost Communication With Anti-Lock Brake System (ABS) Control Module
 C415,Invalid Data Received From Anti-Lock Brake System Control Module
 0525,Cruise Control Servo Control Circuit Range/Performance
 0601,Electric Motor Prestation
@@ -106,13 +105,11 @@ C418,Invalid data received from uncoupled brake pedal control module
 0510,State of function (SOF) of 14V battery
 0511,14V Battery current sensor
 0512,Pulse Box
-C122,Communication With Vehicle Dynamics Control Module
 C198,Communication With Telematic Control Module
 C140,Communication With Body Control Module
 C155,Communication With Instrument Panel Cluster (IPC) Control Module
 0062,Door plug status
 C146,Communication With Gateway 'A' (BIC)
-C164,Communication With HVAC Control Module
 0181,Battery CTP/THP relay 1
 0182,Battery CTP/THP relay 2
 0183,Battery CTP/THP relay 3
@@ -121,7 +118,6 @@ C164,Communication With HVAC Control Module
 0186,Battery HVAC fan out (command)
 0187,Battery HVAC temperature sensor
 C103,Communication With Gear Shift Control Module (Shifter)
-060A,Engine Control Module - Electronic Stability Program - Control Function (Level 2)
 C129,Communication With Brake System Control Module
 0010,Stop Light relay command
 04A0,SOC error during charge
@@ -132,5 +128,41 @@ C129,Communication With Brake System Control Module
 C19A,Communication with CSHV Unit (Dedicated for Crash when APC is off for daimler application)
 C199,Communication with Energy Management Module
 1654,Communication with Aribag Control module
-0436,JB interlocks
+042F,JB interlocks
 C19B,Communication with LBC8 Unit
+0443,Insulation Clim
+0513,14V Battery heat relay
+060C,Engine Control Module - Electronic Stability Program Control Function (Level 2)
+C121,Communication With ABS/ESP Control Module (safety)
+C122,Communication With ABS/ESP Control Module
+C164,Communication With Climate Control ECU Module
+C123,Front Collision Warning
+043F,Interlock supervision
+0467,PAC box
+04A1,Power Line Gateway
+0472,Cooling valve 2 control circuit
+0473,AC - Heat pump circuit temperature sensor 1 (managed by PAC system)
+0474,AC - Heat pump circuit temperature sensor 2 (managed by PAC system)
+0475,AC - Heat pump circuit Valve 1 (managed by PAC system)
+0476,AC - Heat pump circuit Valve 2 (managed by PAC system)
+04B1,limitation puissance de charge en fonction de la température plug
+0074,Incoherence detection positio Park sur le levier entre info du CMF et info levier reçue sur le CAN
+060A,Engine Control Module - Reset
+0021,Vaccum Sensor pressure 2
+0024,Vacuum pump electric
+0101,Termistor Heater 1
+0102,Termistor Heater 2
+0103,Termistor Heater 3
+0104,Termistor Heater 4
+0150,High Voltage Supply of the Air Conditioning - Side Compressor
+0151,Low Voltage Supply of the Air Conditioning - Side Computer
+0153,Inverter of the Air Conditioning
+0154,Electric motor of air conditioning
+0412,Battery Charger Bloc - High Voltage Side (from CAN)
+0413,Main Voltage Supply of the Battery Charger Bloc (from CAN)
+0430,Comfort Interlock
+0450,Powerlatch Main relay operating
+1655,Airbag Data further to a crash
+C19C,Safety mode 1 received from BMS
+04B2,Capteur de température du Plug de charge (côté véhicule)
+04B3,Current consumption on 14V network

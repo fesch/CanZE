@@ -50,22 +50,22 @@
 ,760,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,760,128,143,1,0,0,,2180,6180,ff,Soft
 ,760,144,159,1,0,0,,2180,6180,ff,Version
-,760,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,760,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,760,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,760,16,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # EPS
 ,762,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,762,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,762,128,143,1,0,0,,2180,6180,ff,Soft
 ,762,144,159,1,0,0,,2180,6180,ff,Version
-,762,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,762,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,762,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,762,16,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # CLUSTER
 ,763,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,763,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,763,128,143,1,0,0,,2180,6180,ff,Soft
 ,763,144,159,1,0,0,,2180,6180,ff,Version
-,763,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,763,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,763,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,763,16,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # CLIM
 ,764,26,35,0.1,400,1,°C,2121,6121,ff,IH_InCarTemp
 ,764,36,43,1,0,0,%,2121,6121,ff,IH_RHumidity
@@ -79,8 +79,8 @@
 ,764,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,764,128,143,1,0,0,,2180,6180,ff,Soft
 ,764,144,159,1,0,0,,2180,6180,ff,Version
-,764,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,764,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,764,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,764,16,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # BCM
 ,765,0,0,1,0,0,,1081,5081,ff,start diag
 ,765,0,0,1,0,0,,10c0,50c0,ff,start diag
@@ -89,8 +89,8 @@
 ,765,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,765,128,143,1,0,0,,2180,6180,ff,Soft
 ,765,144,159,1,0,0,,2180,6180,ff,Version
-,765,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,765,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,765,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,765,16,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,765,16,16,1,0,0,,2171,6171,ff,PRESENCE_SSPP,0:without;1:with
 ,765,24,47,1,0,0,,2171,6171,ff,TPMS
 ,765,48,71,1,0,0,,2171,6171,ff,TPMS
@@ -101,29 +101,29 @@
 ,76d,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,76d,128,143,1,0,0,,2180,6180,ff,Soft
 ,76d,144,159,1,0,0,,2180,6180,ff,Version
-,76d,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,76d,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,76d,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,76d,16,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # UPA
 ,76e,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,76e,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,76e,128,143,1,0,0,,2180,6180,ff,Soft
 ,76e,144,159,1,0,0,,2180,6180,ff,Version
-,76e,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,76e,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,76e,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,76e,16,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # AIBAG
 ,772,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,772,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,772,128,143,1,0,0,,2180,6180,ff,Soft
 ,772,144,159,1,0,0,,2180,6180,ff,Version
-,772,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,772,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,772,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,772,16,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # PEB
 ,77e,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,77e,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,77e,128,143,1,0,0,,2180,6180,ff,Soft
 ,77e,144,159,1,0,0,,2180,6180,ff,Version
-,77e,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,77e,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,77e,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,77e,16,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,77e,24,39,0.015625,0,2,ºC,223018,623018,ff,DCDC converter temperature
 ,77e,24,31,0.015625,0,2,°C,22302b,62302b,ff,inverter temperature
 ,77e,24,39,0.03125,0,0,Nm,223025,623025,1ff,PEBTorque
@@ -135,8 +135,8 @@
 ,793,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,793,128,143,1,0,0,,2180,6180,ff,Soft
 ,793,144,159,1,0,0,,2180,6180,ff,Version
-,793,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,793,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,793,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,793,16,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,793,24,39,0.0625,32768,2,mA,225057,625057,ff,DataRead.Raw leakage current - DC part measurement
 ,793,24,39,0.0625,32768,2,mA,225058,625058,ff,DataRead.Raw leakage current - High Frequency 10kHz part measurement
 ,793,24,39,0.0625,32768,2,mA,225059,625059,ff,DataRead.Raw leakage current - High Frequency 1st part measurement
@@ -160,8 +160,8 @@
 ,7b6,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7b6,128,143,1,0,0,,2180,6180,ff,Soft
 ,7b6,144,159,1,0,0,,2180,6180,ff,Version
-,7b6,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,7b6,0,23,1,0,0,,19023b,59020f,ff,Query DTC
+,7b6,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,7b6,16,23,1,0,0,,19023b,59020f,ff,Query DTC
 # LBC
 ,7bb,336,351,0.01,0,2,kW,2101,6101,ff,Maximum battery input power
 ,7bb,192,207,0.01,0,2,%,2103,6103,ff,Real State of Charge
@@ -295,30 +295,30 @@
 ,7bb,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7bb,128,143,1,0,0,,2180,6180,ff,Soft
 ,7bb,144,159,1,0,0,,2180,6180,ff,Version
-,7bb,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,7bb,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,7bb,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,7bb,16,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # UBP
 ,7bc,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7bc,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7bc,128,143,1,0,0,,2180,6180,ff,Soft
 ,7bc,144,159,1,0,0,,2180,6180,ff,Version
-,7bc,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,7bc,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,7bc,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,7bc,16,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,7bc,28,39,1,4094,0,N·m,224B7D,624b7d,ff,Total Hydraulic brake wheels torque request
 # TCU
 ,7da,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7da,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7da,128,143,1,0,0,,2180,6180,ff,Soft
 ,7da,144,159,1,0,0,,2180,6180,ff,Version
-,7da,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,7da,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,7da,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,7da,16,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # EVC
 ,7ec,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,7ec,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,7ec,128,143,1,0,0,,2180,6180,ff,Soft
 ,7ec,144,159,1,0,0,,2180,6180,ff,Version
-,7ec,0,7,1,0,0,,14ffff,54,ff,Reset DTC
-,7ec,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
+,7ec,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
+,7ec,16,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,7ec,24,39,.02,0,2,%,222002,622002,ff,State Of Charge (SOC) HV battery
 ,7ec,24,39,.01,0,2,V,222005,622005,ff,Battery voltage 14v
 ,7ec,24,47,1,0,0,km,222006,622006,ff,Total vehicle distance

@@ -1,7 +1,25 @@
-# SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
-,764,0,7,1,0,0,,14ffffff,54ffffff,ff,Reset DTC
-,764,16,23,1,0,0,,190ffb,5902ff,ff,Query DTC
-# Source: X10_X98_X87_X52ClimBoxGen1_v08_2_20141023T111453_20150407T090928.xml
+,764,0,0,1,0,0,,10C0,50C0,ff,StartDiagnosticSession
+,764,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
+,764,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask
+,764,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceIdentifier,37221:AQM_FragranceMotor;37222:AQM_Ionizer;37237:AQM_FragranceBlower;37147:AQS_Oxydant;37179:AQS_PreHeating;37131:AQS_Reductor;37163:AQS_Supply;37238:AQM_IonizerMode;37251:BatteryBlowerControl;37253:BatteryBlowerSystem1;37250:BatteryCoolingActr;37254:BatteryBlowerSystem2;37139:BatteryEvapTemp;37129:BlowerControl;37255:CabinCoolingElectroVanne;37171:CompValve;37217:DistMildActr;37125:ECU;37124:EvapTemp;37218:FeetVentActr;37256:BatteryCoolingElectroVanne;37287:FrontControlPanel;37332:HeatPumpECU;37335:HeatPumpSensor1;37333:HeatPumpValve1;37334:HeatPumpValve2;37140:HotSourceTemp;37123:HumiditySensor;37121:InCarTemp;37232:LeftMixActr;37126:LeftSolarSensor;37200:LIN_Bus;37201:LIN2_Bus;37216:RecyActr;37252:RelayOutput;37233:RightMixActr;37323:SpareInput1;37324:SpareInput2;37309:SpareOutput1;37336:HeatPumpSensor2;61443:VBatt
+,764,40,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM (Frequency Modulated) - PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adjustment failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or system operation obstructed or blocked;152:component or system over temperature
+,764,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier
+,764,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,764,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,764,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,764,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,764,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,764,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,764,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,764,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,764,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord
+,764,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC
+,764,48,55,1,0,0,,190600000080,590600000080,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,764,56,79,1,0,0,km,190600000080,590600000080,ff,DTCExtendedData.Mileage
+,764,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord
+,764,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC
+,764,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,764,56,79,1,0,0,km,1906000000FF,5906000000FF,ff,DTCExtendedData.Mileage
 ,764,16,23,1,0,0,,2102,6102,ff,CL_VehicleType,0:Not Configured;9:X98;16:X10
 ,764,16,23,1,0,0,,2103,6103,ff,CL_ACType,0:Not Configured;1:Manual Monozone;2:Heater - Chauffo;16:Monozone Regulated -  CAREG MZ
 ,764,16,23,1,0,0,,2104,6104,ff,CL_PTCType,0:Not Configured;1:Without PTC;9:PTC 900W;16:PTC 1000W;21:PTC 1500W;24:PTC 1800W
@@ -17,7 +35,7 @@
 ,764,16,23,1,0,0,,210E,610E,ff,CL_WithHumiditySensor,0:Not Configured;1:KL_WithoutSensor;2:KL_WithLocalSensor
 ,764,16,23,1,0,0,,210F,610F,ff,CL_WithExtTempSensor,0:Not Configured;1:KL_WithoutSensor;2:KL_WithLocalSensor;3:KL_SensorByCAN
 ,764,16,23,1,0,0,,2111,6111,ff,CL_ColdLoopType,0:Not Configured;1:Cold Loop inside ECU Clim;2:Cold Loop outside ECU Clim
-,764,16,143,1,0,0,,2114,6114,ff,CL_DiagnosticConfiguration
+,764,16,143,1,0,0,,2114,6114,4ff,CL_DiagnosticConfiguration
 ,764,16,23,1,0,0,,2115,6115,ff,CL_EngineType,0:Not Configured;1:Thermic engine;3:Electrical engine
 ,764,16,23,1,0,0,,2116,6116,ff,CL_WithInCarTempSensor,0:Not Configured;1:KL_WithoutSensor;2:KL_WithLocalSensor
 ,764,16,23,1,0,0,,2117,6117,ff,CL_WithHotSourceSensor,0:Not Configured;1:KL_WithoutSensor;2:KL_WithLocalSensor
@@ -231,7 +249,7 @@
 ,764,55,55,1,0,0,,2128,6128,ff,IH_RightTempDnPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
 ,764,56,56,1,0,0,,2128,6128,ff,IH_RightTempUpLongPushState,0:no long push detected;1:long push detected
 ,764,57,57,1,0,0,,2128,6128,ff,IH_RightTempUpPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
-,764,58,63,1,0,0,,2128,6128,ff,OH_LeftTempDisplay,0:No display;2:All segment displayed;4:Display OF;6:Display --;8:Display LO;10:Display HI;11:5,5;12:6;13:6,5;14:7;15:7,5;16:8;17:8,5;18:9;19:9,5;20:10;21:10,5;22:11;23:11,5;24:12;25:12,5;26:13;27:13,5;28:14;29:14,5;30:15;31:15,5;32:16;33:16,5;34:17;35:17,5;36:18;37:18,5;38:19;39:19,5;40:20;41:20,5;42:21;43:21,5;44:22;45:22,5;46:23;47:23,5;48:24;49:24,5;50:25;51:25,5;52:26;53:26,5;54:27;55:27,5;56:28;57:28,5;58:29;59:29,5;60:30
+,764,58,63,1,0,0,,2128,6128,ff,OH_LeftTempDisplay,0:No display;2:All segment displayed;4:Display OF;6:Display --;8:Display LO;10:Display HI;11:5-5;12:6;13:6-5;14:7;15:7-5;16:8;17:8-5;18:9;19:9-5;20:10;21:10-5;22:11;23:11-5;24:12;25:12-5;26:13;27:13-5;28:14;29:14-5;30:15;31:15-5;32:16;33:16-5;34:17;35:17-5;36:18;37:18-5;38:19;39:19-5;40:20;41:20-5;42:21;43:21-5;44:22;45:22-5;46:23;47:23-5;48:24;49:24-5;50:25;51:25-5;52:26;53:26-5;54:27;55:27-5;56:28;57:28-5;58:29;59:29-5;60:30
 ,764,64,69,.5,0,1,,2128,6128,ff,OH_RightTempDisplay
 ,764,70,70,1,0,0,,2128,6128,ff,OH_ACOnDisplay,0:No display;1:Display indicator
 ,764,71,71,1,0,0,,2128,6128,ff,OH_ACOffDisplay,0:No display;1:Display indicator
@@ -261,7 +279,7 @@
 ,764,120,120,1,0,0,,2128,6128,ff,IH_RecyLongPushState,0:no long push detected;1:long push detected
 ,764,121,121,1,0,0,,2128,6128,ff,IH_RecyPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
 ,764,16,23,1,0,0,,212B,612B,ff,CL_WithControlPanel,0:Not Configured;1:WithoutCP;2:CP Type 1;3:CP Type 2;4:CP Type 3;5:CP Type 4
-,764,16,23,1,0,0,,212C,612C,ff,CL_WithInternalAirQualityManagement,0:Not Configured;1:Without Air Quality Management;2:With Fragrance, Without Ionizer;3:Without Fragrance, With Ionizer;4:With Fragrance, With Ionizer
+,764,16,23,1,0,0,,212C,612C,ff,CL_WithInternalAirQualityManagement,0:Not Configured;1:Without Air Quality Management;2:With Fragrance- Without Ionizer;3:Without Fragrance- With Ionizer;4:With Fragrance- With Ionizer
 ,764,16,23,1,0,0,,212D,612D,ff,CL_CompValveType,0:Not configured;1:without Compressor Valve;2:with Compressor Valve type 1;3:with Compressor Valve type 2;4:with Compressor Valve type 3
 ,764,16,31,1,0,0,Steps,2130,6130,ff,ILW_RecyActrPosition
 ,764,32,47,1,0,0,Steps,2130,6130,ff,ILW_FeetVentActrPosition
@@ -290,7 +308,7 @@
 ,764,110,117,1,40,0,°C,2143,6143,ff,IH_ExternalTemp
 ,764,118,125,.4,0,1,%,2143,6143,ff,IH_NightRheostatedLightMaxPercent
 ,764,126,126,1,0,0,,2143,6143,ff,IH_DayNightStatus,0:Day time;1:Night time
-,764,127,128,1,0,0,,2143,6143,ff,IH_EngineStatus_R,0:Engine Stopped;1:Not used : Reserved;2:running engine;3:Running-engine driven
+,764,127,128,1,0,0,,2143,6143,ff,IH_EngineStatus_R,0:Engine Stopped;1:Not used - Reserved;2:running engine;3:Running-engine driven
 ,764,129,132,1,0,0,,2143,6143,ff,IH_EngineStopOrigine,0:No stop request;1:Stopped by other causes;2:Stopped by normal request;3:Value not defined (0011);4:Stopped  by driver request;5:Value not defined (0101);6:Value not defined (0110);7:Value not defined (0111);8:Stopped by emergency request;9:Value not defined (1001);10:Value not defined (1010);11:Value not defined (1011);12:Value not defined (1100);13:Value not defined (1101);14:Value not defined (1110);15:Value not defined (1111)
 ,764,133,133,1,0,0,,2143,6143,ff,IH_ACCompAuthorized,0:AC not Authorized;1:AC Authorized
 ,764,134,142,.1,0,1,bar,2143,6143,ff,IH_ACHighPressureSensor
@@ -352,7 +370,7 @@
 ,764,20,23,1,0,0,,2145,6145,ff,IH_AQMFragIntensityRequest,0:No request;1:No intensity/Not used;2:intensity 1;3:intensity 2;4:intensity 3;5:intensity 4;6:intensity 5;7:intensity 6;8:intensity 7
 ,764,24,26,1,0,0,,2145,6145,ff,IH_AQMFragSelectRequest,0:No request;1:Fragrance 1;2:Fragrance 2;3:Off;7:Auto
 ,764,27,28,1,0,0,,2145,6145,ff,OH_ClimECOModeStatusDisplay,0:No Display;1:Activated;2:Not activated;3:Unavailable
-,764,29,36,1,0,0,,2145,6145,ff,OH_ClimTempDisplay,0:No display;1:Not used (01);2:All segment displayed;3:Not used (11);4:Display OF;5:Not used (101);6:Display --;8:Display LO;9:Not used (1001);10:Display HI;11:5,5;12:6;13:6,5;14:7;16:Not used (10000);17:18,5;18:Not used (10010);20:Real display;21:10,5;22:11;23:11,5;24:12;25:12,5;26:13;27:13,5;28:14;29:14,5;30:15;31:15,5;32:16;33:16,5;34:17;35:17,5;36:18;37:28,5;38:19;39:19,5;40:20;41:30,5;42:21;43:21,5;44:22;45:22,5;46:23;47:23,5;48:24;49:24,5;50:25;51:25,5;52:26;53:26,5;54:27;55:27,5;56:28;57:38,5;58:29;59:29,5;60:30
+,764,29,36,1,0,0,,2145,6145,ff,OH_ClimTempDisplay,0:No display;1:Not used (01);2:All segment displayed;3:Not used (11);4:Display OF;5:Not used (101);6:Display --;8:Display LO;9:Not used (1001);10:Display HI;11:5-5;12:6;13:6-5;14:7;16:Not used (10000);17:18-5;18:Not used (10010);20:Real display;21:10-5;22:11;23:11-5;24:12;25:12-5;26:13;27:13-5;28:14;29:14-5;30:15;31:15-5;32:16;33:16-5;34:17;35:17-5;36:18;37:28-5;38:19;39:19-5;40:20;41:30-5;42:21;43:21-5;44:22;45:22-5;46:23;47:23-5;48:24;49:24-5;50:25;51:25-5;52:26;53:26-5;54:27;55:27-5;56:28;57:38-5;58:29;59:29-5;60:30
 ,764,37,38,1,0,0,,2145,6145,ff,OH_ClimRearDefrostDisplay,0:No Display;1:Rear Defrost ON;2:Rear Defrost OFF;3:Not used
 ,764,39,40,1,0,0,,2145,6145,ff,OH_ClimClearnessDisplay,0:No Display;1:Clearness ON;2:Clearness OFF;3:Not used
 ,764,41,44,1,0,0,,2145,6145,ff,OH_ClimFlowDistrDisplay,0:No Display;1:Feet Arrow;2:Aerator Arrow;3:Feet + Aerator Arrow;4:Mild flow Arrow;5:Feet + Mild Arrow;6:Mild + Feet Arrow;7:Feet + Aerator Mild Arrow;8:Defrost Arrow;9:Feet + Defrost  Arrow;10:Aerator + Defrost  Arrow;11:Feet + Aerator + Defrost  Arrow;12:Mild + Defrost  Arrow;13:Feet + Mild + Defrost  Arrow;14:Aerator + Mild + Defrost  Arrow;15:Feet + Aerator + Mild + Defrost  Arrow
@@ -398,7 +416,7 @@
 ,764,16,23,1,0,0,km/h,2162,6162,ff,OLB_HPM_VehicleSpeed
 ,764,24,33,.1,400,1,°C,2162,6162,ff,OLB_HPM_IncarTemp
 ,764,34,36,1,0,0,,2162,6162,ff,OLB_HPM_CoolingModeRequest,0:No cooling mode requested;1:Cooling mode;2:Heating mode;3:Demisting
-,764,37,39,1,0,0,,2162,6162,ff,OLB_HPM_DeiceVehicleRequest,0:No de-ice vehicle requested;1:De-ice vehicle state 1 request : battery loading;2:De-ice vehicle state 2 request : preconditionning;3:De-ice vehicle state3 request: high speed driving;4:De-ice vehicle state4 request: idle state driving;5:De-ice vehicle state 5 request : low battery SOC
+,764,37,39,1,0,0,,2162,6162,ff,OLB_HPM_DeiceVehicleRequest,0:No de-ice vehicle requested;1:De-ice vehicle state 1 request - battery loading;2:De-ice vehicle state 2 request - preconditionning;3:De-ice vehicle state3 request- high speed driving;4:De-ice vehicle state4 request- idle state driving;5:De-ice vehicle state 5 request - low battery SOC
 ,764,40,41,1,0,0,,2162,6162,ff,OLB_HPM_DeicePermission,0:Unavailable;1:De-ice not permetted;2:De-ice permetted;3:Not used
 ,764,42,43,1,0,0,,2162,6162,ff,OLB_HPM_OutputControlValve1,0:no request;1:request for opening valve during xx secondes;2:request for closing valve during xx secondes;3:Not used
 ,764,44,45,1,0,0,,2162,6162,ff,OLB_HPM_OutputControlValve2,0:no request;1:request for opening valve during xx secondes;2:request for closing valve during xx secondes;3:Not used
@@ -420,7 +438,7 @@
 ,764,45,51,1,0,0,%,2164,6164,ff,OLB_HPM_RightMixActrPosition
 ,764,52,58,1,0,0,%,2164,6164,ff,OLB_HPM_BatteryCoolingActrPosition
 ,764,59,68,.1,400,1,°C,2164,6164,ff,OLB_HPM_EvaporatorTempSetPoint
-,764,16,23,1,0,0,,2165,6165,ff,OLB_FP_LeftTempDisplay,0:No display;1:Not used (01);2:All segment displayed;3:Not used (11);4:Display OF;5:Not used (101);6:Display --;8:Display LO;9:Not used (1001);10:Display HI;11:5,5;12:6;13:6,5;14:7;15:7,5;16:8;17:8,5;18:9;19:9,5;20:10;21:10,5;22:11;23:11,5;24:12;25:12,5;26:13;27:13,5;28:14;29:14,5;30:15;31:15,5;32:16;33:16,5;34:17;35:17,5;36:18;37:18,5;38:19;39:19,5;40:20;41:20,5;42:21;43:21,5;44:22;45:22,5;46:23;47:23,5;48:24;49:24,5;50:25;51:25,5;52:26;53:26,5;54:27;55:27,5;56:28;57:28,5;58:29;59:29,5;60:30
+,764,16,23,1,0,0,,2165,6165,ff,OLB_FP_LeftTempDisplay,0:No display;1:Not used (01);2:All segment displayed;3:Not used (11);4:Display OF;5:Not used (101);6:Display --;8:Display LO;9:Not used (1001);10:Display HI;11:5-5;12:6;13:6-5;14:7;15:7-5;16:8;17:8-5;18:9;19:9-5;20:10;21:10-5;22:11;23:11-5;24:12;25:12-5;26:13;27:13-5;28:14;29:14-5;30:15;31:15-5;32:16;33:16-5;34:17;35:17-5;36:18;37:18-5;38:19;39:19-5;40:20;41:20-5;42:21;43:21-5;44:22;45:22-5;46:23;47:23-5;48:24;49:24-5;50:25;51:25-5;52:26;53:26-5;54:27;55:27-5;56:28;57:28-5;58:29;59:29-5;60:30
 ,764,24,31,1,0,0,,2165,6165,ff,OLB_FP_RightTempDisplay,0:No display;1:Not used (01);2:All segment displayed;3:Not used (11);4:Display OF;5:Not used (101);6:Display --;8:Display LO;9:Not used (1001);10:Display HI;11:Not used (1011);12:Not used (1100);13:Not used (1101);15:Not used (1111);16:Not used (10000);18:Not used (10010);20:Real display
 ,764,32,33,1,0,0,,2165,6165,ff,OLB_FP_MMIState,0:Inactive;1:Light;2:Full;3:Not used
 ,764,34,34,1,0,0,,2165,6165,ff,OLB_FP_MMIModeTemp,0:Display mode 1;1:Display mode 2
@@ -509,8 +527,8 @@
 ,764,40,41,1,0,0,,2167,6167,ff,ILB_HPM_DeiceLoopRequest,0:Unavailable;1:De-ice loop requested;2:No de-ice loop requested;3:Not used
 ,764,42,51,.5,60,1,°C,2167,6167,ff,ILB_HPM_State_Sensor1_Status
 ,764,52,61,.5,80,1,°C,2167,6167,ff,ILB_HPM_State_Sensor2_Status
-,764,16,23,1,0,0,,2168,6168,ff,ILB_HPM_Version_rel_HW
-,764,24,31,1,0,0,,2168,6168,ff,ILB_HPM_Version_rel_SW
+,764,16,23,1,0,0,,2168,6168,4ff,ILB_HPM_Version_rel_HW
+,764,24,31,1,0,0,,2168,6168,4ff,ILB_HPM_Version_rel_SW
 ,764,32,35,1,0,0,,2168,6168,ff,ILB_HPM_FailureStatus_Valve1,0:No failure;1:Open circuit;2:Short circuit to battery;3:Short circuit to ground
 ,764,36,39,1,0,0,,2168,6168,ff,ILB_HPM_FailureStatus_Valve2,0:No failure;1:Open circuit;2:Short circuit to battery;3:Short circuit to ground
 ,764,40,43,1,0,0,,2168,6168,ff,ILB_HPM_FailureStatus_Sensor1,0:No failure;1:Short circuit to ground;2:Open circuit/Short circuit to battery;4:Over max threshold;8:Under min threshold
@@ -527,22 +545,22 @@
 ,764,16,23,1,0,0,,2171,6171,ff,CL_WithBattEvapSensor,0:Not Configured;1:KL_WithoutSensor;2:KL_WithLocalSensor
 ,764,16,23,1,0,0,,2172,6172,ff,CL_WithCabinCoolingEV,0:Not Configured;1:KL_WithoutOutput;2:KL_WithLocalOutput
 ,764,16,23,1,0,0,,2173,6173,ff,CL_WithBatteryCoolingEV,0:Not Configured;1:KL_WithoutOutput;2:KL_WithLocalOutput
-,764,16,23,1,0,0,,2174,6174,ff,CL_BatteryPTCType,0:Not Configured;1:Without PTC;16:PTC 1kW;24:PTC 1,8kW
-,764,16,23,1,0,0,,2175,6175,ff,CL_HVPTCType,0:Not Configured;1:Without HV PTC;35:HV PTC 3,5 kW;50:HV PTC 5kW
+,764,16,23,1,0,0,,2174,6174,ff,CL_BatteryPTCType,0:Not Configured;1:Without PTC;16:PTC 1kW;24:PTC 1-8kW
+,764,16,23,1,0,0,,2175,6175,ff,CL_HVPTCType,0:Not Configured;1:Without HV PTC;35:HV PTC 3-5 kW;50:HV PTC 5kW
 ,764,16,23,1,0,0,,217D,617D,ff,CL_MMIArchitecture,0:Not Configured;1:Front Control Panel only;2:Multimedia Display + Front Control Panel
 ,764,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
-,764,56,63,1,0,0,,2180,6180,ff,DiagnosticIdentificationCode
+,764,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode
 ,764,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
 ,764,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
-,764,128,143,1,0,0,,2180,6180,ff,SoftwareNumber
-,764,144,159,1,0,0,,2180,6180,ff,EditionNumber
-,764,160,175,1,0,0,,2180,6180,ff,CalibrationNumber
+,764,128,143,1,0,0,,2180,6180,4ff,SoftwareNumber
+,764,144,159,1,0,0,,2180,6180,4ff,EditionNumber
+,764,160,175,1,0,0,,2180,6180,4ff,CalibrationNumber
 ,764,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;2:27531
 ,764,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:N/A;1:28526
 ,764,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A;1:RENO1;2:NISS1
 ,764,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
 ,764,16,151,1,0,0,,2181,6181,2ff,VIN
-,764,16,31,1,0,0,,2182,6182,ff,MessagesSetReference
+,764,16,31,1,0,0,,2182,6182,4ff,MessagesSetReference
 ,764,32,32,1,0,0,,2182,6182,ff,CurrentFaultBus_OFF,0:False;1:True
 ,764,33,33,1,0,0,,2182,6182,ff,ConfirmedFaultBus_OFF,0:False;1:True
 ,764,34,39,1,0,0,,2182,6182,ff,M_Bus_OFF
@@ -563,7 +581,9 @@
 ,764,201,201,1,0,0,,2182,6182,ff,ConfirmedFaultUSM,0:False;1:True
 ,764,202,207,1,0,0,,2182,6182,ff,M_USM
 ,764,16,143,1,0,0,,2184,6184,2ff,UnitaryDataTraceability
-,764,24,39,1,0,0,,229101,629101,ff,EngineeringSoftwareNumber
-,764,24,39,1,0,0,,229102,629102,ff,EngineeringCalibrationNumber
+,764,0,0,1,0,0,,21EF,61EF,ff,DataRead.DAIMLERIdentification
+,764,24,39,1,0,0,,229101,629101,4ff,EngineeringSoftwareNumber
+,764,24,39,1,0,0,,229102,629102,4ff,EngineeringCalibrationNumber
 ,764,24,103,1,0,0,,22F187,62F187,2ff,VehiculeManufacturerSparPartNumber
 ,764,24,103,1,0,0,,22F18E,62F18E,2ff,VehicleManufacturerKitAssemblyPartNumber
+,764,0,0,1,0,0,,3E01,7E01,ff,TesterPresent.WithResponse

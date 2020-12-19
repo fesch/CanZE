@@ -1,4 +1,4 @@
-00,Device and failure type ODB codding/ General Failure Information
+00,Device and failure type ODB codding
 01,General Electrical Failure
 02,General signal failure
 03,FM (Frequency Modulated) / PWM (Pulse Width Modulated) Failures
@@ -8,7 +8,6 @@
 07,Mechanical Failures
 08,Bus Signal / Message Failures
 09,Component Failures
-0F,Vehicle manufacturer / System supplier specific
 11,circuit short to ground
 12,circuit short to battery
 13,circuit open
@@ -72,13 +71,13 @@
 72,actuator stuck open
 73,actuator stuck closed
 74,actuator slipping
-7B,low fluid level
-7A,fluid leak or seal failure
-79,mechanical linkage failure
-78,alignment or adjustment incorrect
-77,commanded position not reachable
-76,wrong mounting position
 75,emergency position not reachable
+76,wrong mounting position
+77,commanded position not reachable
+78,alignment or adjustment incorrect
+79,mechanical linkage failure
+7A,fluid leak or seal failure
+7B,low fluid level
 81,invalid serial data received
 82,alive / sequence counter incorrect / not updated
 83,value of signal protection calculation incorrect

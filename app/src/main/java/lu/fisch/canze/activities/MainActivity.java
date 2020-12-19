@@ -1113,7 +1113,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public static String getAssetSuffix () {
         if (isPh2()) return "Ph2.csv";
-        return ".csv";
+        return "Ph1.csv";
     }
 
     //public static boolean isFluKan() {

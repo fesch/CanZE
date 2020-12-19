@@ -1,0 +1,641 @@
+,76D,0,0,1,0,0,,10C0,50C0,ff,Start Diagnostic Session
+,76D,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
+,76D,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask
+,76D,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceIdentifier,37489:ECU;37488:2ndeCompression;37481:Water_Pump;37480:ESM;37479:StopStart;37478:BCS;37477:LED;37476:VS2;37475:VS1;37474:BUTTON_SW;37473:DRIVERSEAT;37472:MASTERVAC;37464:O_LIGHT_POSITION_NIGHT;37463:O_LIGHT_POSITION_REAR_RH_PLATE;37462:O_LIGHT_FR_FOG_LAMPS_RH;37461:SEC_SIGNAL_GND;37458:SIGNAL_GND;37441:O_LIGHT_DTRL_LH;37440:LO_EXTERNAL_FAN_RELAY_2;37434:BATTERY;37433:BDU;37432:LO_EXTERNAL_FAN_RELAY_1;37431:Ac Valve;37430:Batt 2 Pos BDU;37429:Batt 1 Pos BDU;37427:LO_EXTERNAL_FAN_RELAY_3;37425:O_LIGHT_DTRL_RH;37424:Starter;37423:Reverse SW;37422:Neutral SW;37421:Auto Stop Wiper;37420:Oil Pressure SW;37418:PCS BDU;37417:Batt Motor FAN LO;37415:Battery AT GEAR LPG;37414:Battery ABS valves;37412:Ignition EPS RWD;37411:Ignition Reverse SW;37410:Ignition LCS Cabin;37409:Ignition AT LPG;37408:Ignition AIRBAG Safetyline;37407:Ignition;37406:Ignition ECM;37405:Ignition Not column lock;37404:H/L Washer;37402:O_LIGHT_FR_FOG_LAMPS_LH;37401:High Beam RH;37400:High Beam LH;37399:FR wiper;37398:AC clutch;37397:O_LIGHT_POSITION_FR_RH_LH;37396:O_LIGHT_POSITION_REAR_LH;37395:Low beam RH;37394:Low beam LH;37393:USM supply Batt Pre BDU;37391:BSS;37390:ECU failure;37490:Lights
+,76D,40,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM (Frequency Modulated) / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adjustment failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or system operation obstructed or blocked;152:component or system over temperature
+,76D,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier,0:Specific Default 0;1:Specific Default 1;2:Specific Default 2;3:Specific Default 3;8:Mon defaut à moi;15:Il fait pas beau
+,76D,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,76D,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,76D,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,76D,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,76D,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,76D,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,76D,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,76D,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,76D,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord
+,76D,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC
+,76D,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord
+,76D,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC
+,76D,48,55,1,0,0,,190600000080,590600000080,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,76D,56,79,1,0,0,km,190600000080,590600000080,ff,DTCExtendedData.Mileage
+,76D,16,39,1,0,0,,190600000081,590600000081,4ff,DTCRecord
+,76D,40,47,1,0,0,,190600000081,590600000081,ff,StatusOfDTC
+,76D,48,55,1,0,0,,190600000081,590600000081,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,76D,56,63,1,0,0,,190600000081,590600000081,ff,DTCExtendedData.AgingCounter
+,76D,16,39,1,0,0,,190600000082,590600000082,4ff,DTCRecord
+,76D,40,47,1,0,0,,190600000082,590600000082,ff,StatusOfDTC
+,76D,48,55,1,0,0,,190600000082,590600000082,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,76D,56,63,1,0,0,,190600000082,590600000082,ff,DTCExtendedData.DTCOccurrenceCounter
+,76D,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord
+,76D,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC
+,76D,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,76D,56,63,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedData.DTCOccurrenceCounter
+,76D,16,16,1,0,0,,2101,6101,ff,LI_NEUTRAL,0:Not reached;1:Reached
+,76D,17,17,1,0,0,,2101,6101,ff,LI_LIGHT_REVERSE_SW,0:Reverse gear not reached;1:Reverse gear reached
+,76D,18,18,1,0,0,,2101,6101,ff,O_IGN_AT_LPG_OUT_DIAG,0:OFF;1:ON
+,76D,20,20,1,0,0,,2101,6101,ff,O_IGN_AIRBAG_OUT_DIAG,0:OFF;1:ON
+,76D,21,21,1,0,0,,2101,6101,ff,OIL_PRESSURE_SW,0:Pressure switch open;1:Pressure switch close
+,76D,22,22,1,0,0,,2101,6101,ff,EXT_MOTOR_FAN2_DIAG,0:OFF;1:ON
+,76D,24,24,1,0,0,,2101,6101,ff,EXT_MOTOR_FAN1_DIAG,0:EXT MOTOR FAN1 OFF;1:EXT MOTOR FAN1 ON
+,76D,28,28,1,0,0,,2101,6101,ff,CONVERTER _DIAG,0:CONVERTER OFF;1:CONVERTER ON
+,76D,29,29,1,0,0,,2101,6101,ff,LED_ON_OFF_DIAG,0:LED OFF;1:LED ON
+,76D,30,30,1,0,0,,2101,6101,ff,SAFETYLINE_INPUT,0:safetyline BDU ON;1:safetyline BDU OFF
+,76D,31,31,1,0,0,,2101,6101,ff,BUTTON_SW_ON_OFF,0:BUTTON SW OFF;1:BUTTON SW ON
+,76D,16,23,1,0,0,,2102,6102,ff,Batt_Voltage_Sense_High
+,76D,24,31,1,0,0,,2102,6102,ff,Batt_Voltage_Sense_Low
+,76D,32,39,1,0,0,,2102,6102,ff,Ac_Valve_Adiag_High
+,76D,40,47,1,0,0,,2102,6102,ff,Ac_Valve_Adiag_Low
+,76D,48,55,1,0,0,,2102,6102,ff,Low_Beam_Left_Adiag_High
+,76D,56,63,1,0,0,,2102,6102,ff,Low_Beam_Left_Adiag_Low
+,76D,64,71,1,0,0,,2102,6102,ff,Low_Beam_Right_Adiag_High
+,76D,72,79,1,0,0,,2102,6102,ff,Low_Beam_Right_Adiag_Low
+,76D,80,87,1,0,0,,2102,6102,ff,Auto_Stop_Wiper_High
+,76D,88,95,1,0,0,,2102,6102,ff,Auto_Stop_Wiper_Low
+,76D,96,103,1,0,0,,2102,6102,ff,MASTERVAC_PRESSURE_SENSE_MSB
+,76D,104,111,1,0,0,,2102,6102,ff,MASTERVAC_PRESSURE_SENSE_LSB
+,76D,112,119,1,0,0,,2102,6102,ff,DTRL_VOLT_REREAD_LEFT_MSB
+,76D,120,127,1,0,0,,2102,6102,ff,DTRL_VOLT_REREAD_LEFT_LSB
+,76D,128,135,1,0,0,,2102,6102,ff,DTRL_VOLT_REREAD_RIGHT_MSB
+,76D,136,143,1,0,0,,2102,6102,ff,DTRL_VOLT_REREAD_RIGHT_LSB
+,76D,144,151,1,0,0,,2102,6102,ff,AC_Clutch_Adiag_High
+,76D,152,159,1,0,0,,2102,6102,ff,AC_Clutch_Adiag_Low
+,76D,160,167,1,0,0,,2102,6102,ff,SEAT_SENSOR_SENSE_MSB
+,76D,168,175,1,0,0,,2102,6102,ff,SEAT_SENSOR_SENSE_LSB
+,76D,176,183,1,0,0,,2102,6102,ff,Batt1_Voltage_Sense_High
+,76D,184,191,1,0,0,,2102,6102,ff,Batt1_Voltage_Sense_Low
+,76D,192,199,1,0,0,,2102,6102,ff,HIGH_BEAM_RIGHT_MSB
+,76D,200,207,1,0,0,,2102,6102,ff,HIGH_BEAM_RIGHT_LSB
+,76D,208,215,1,0,0,,2102,6102,ff,HIGH_BEAM_LEFT_MSB
+,76D,216,223,1,0,0,,2102,6102,ff,HIGH_BEAM_LEFT_LSB
+,76D,224,231,1,0,0,,2102,6102,ff,INT_THERMAL_SENSE_MSB
+,76D,232,239,1,0,0,,2102,6102,ff,INT_THERMAL_SENSE_LSB
+,76D,240,247,1,0,0,,2102,6102,ff,Batt2_D_Sense_High
+,76D,248,255,1,0,0,,2102,6102,ff,Batt2_D_Sense_Low
+,76D,16,16,1,0,0,,2103,6103,ff,Diag_contactor,0:< = 3.5 V;1:> 3.5 V
+,76D,18,18,1,0,0,,2103,6103,ff,Bat_Abs_Valves_Reread,0:< = 3.5 V;1:> 3.5 V
+,76D,19,19,1,0,0,,2103,6103,ff,Bat_At_Gear_Lpg_Reread,0:< = 3.5 V;1:> 3.5 V
+,76D,22,22,1,0,0,,2103,6103,ff,Ignition_Ddiag,0:< = 3.5 V;1:> 3.5 V
+,76D,24,31,1,0,0,,2103,6103,ff,Feedback1_Adiag_High
+,76D,32,39,1,0,0,,2103,6103,ff,Feedback1_Adiag_Low
+,76D,40,47,1,0,0,,2103,6103,ff,Feedback2_Adiag_High
+,76D,48,55,1,0,0,,2103,6103,ff,Feedback2_Adiag_Low
+,76D,72,79,1,0,0,,2103,6103,ff,Feedback4_Adiag_High
+,76D,80,87,1,0,0,,2103,6103,ff,Feedback4_Adiag_Low
+,76D,104,111,1,0,0,,2103,6103,ff,FIRST_GND_A_DIAG_MSB
+,76D,112,119,1,0,0,,2103,6103,ff,FIRST_GND_A_DIAG_LSB
+,76D,120,127,1,0,0,,2103,6103,ff,FBL_ADIAG_LH_MSB
+,76D,128,135,1,0,0,,2103,6103,ff,FBL_ADIAG_LH_LSB
+,76D,136,143,1,0,0,,2103,6103,ff,POSITION_NIGHT_ADIAG_MSB
+,76D,144,151,1,0,0,,2103,6103,ff,POSITION_NIGHT_ADIAG_LSB
+,76D,152,159,1,0,0,,2103,6103,ff,POSITION_REAR_LH_ADIAG MSB
+,76D,160,167,1,0,0,,2103,6103,ff,POSITION_REAR_LH_ADIAG LSB
+,76D,168,175,1,0,0,,2103,6103,ff,POSITION_FRONT_LEFT_AND_RIGHT_MSB
+,76D,176,183,1,0,0,,2103,6103,ff,POSITION_FRONT_LEFT_AND_RIGHT_LSB
+,76D,184,191,1,0,0,,2103,6103,ff,POSITION_REAR_RIGHT_MSB
+,76D,192,199,1,0,0,,2103,6103,ff,POSITION_REAR_RIGHT_LSB
+,76D,200,207,1,0,0,,2103,6103,ff,FOG_LAMPS_LH_A_DIAG_MSB
+,76D,208,215,1,0,0,,2103,6103,ff,FOG_LAMPS_LH_A_DIAG_LSB
+,76D,216,223,1,0,0,,2103,6103,ff,FOG_LAMPS_RH_A_DIAG_MSB
+,76D,224,231,1,0,0,,2103,6103,ff,FOG_LAMPS_RH_A_DIAG_LSB
+,76D,232,239,1,0,0,,2103,6103,ff,IGNITION_NOT_COLUMN_LOCK_ADIAG_MSB
+,76D,240,247,1,0,0,,2103,6103,ff,IGNITION_NOT_COLUMN_LOCK_ADIAG_LSB
+,76D,248,255,1,0,0,,2103,6103,ff,FBL_ADIAG_RH_MSB
+,76D,256,263,1,0,0,,2103,6103,ff,FBL_ADIAG_RH_LSB
+,76D,16,16,1,0,0,,2104,6104,ff,IgnitionReset_status,0:OFF;1:ON
+,76D,17,17,1,0,0,,2104,6104,ff,Right_Washer_Relay,0:OFF;1:ON
+,76D,20,20,1,0,0,,2104,6104,ff,Left_Washer_Relay,0:OFF;1:ON
+,76D,21,21,1,0,0,,2104,6104,ff,Starter_relay,0:OFF;1:ON
+,76D,23,23,1,0,0,,2104,6104,ff,Motor_Fan_Lo_Relay,0:OFF;1:ON
+,76D,24,24,1,0,0,,2104,6104,ff,IgnitionSet_status,0:OFF;1:ON
+,76D,25,25,1,0,0,,2104,6104,ff,Close_Contactor_Relay,0:OFF;1:ON
+,76D,26,26,1,0,0,,2104,6104,ff,Ac_Clutch_Relay,0:OFF;1:ON
+,76D,27,27,1,0,0,,2104,6104,ff,WATER_PUMP,0:OFF;1:ON
+,76D,28,28,1,0,0,,2104,6104,ff,External_Fan_Relay_1,0:OFF;1:ON
+,76D,29,29,1,0,0,,2104,6104,ff,LED_ON_OFF,0:OFF;1:ON
+,76D,30,30,1,0,0,,2104,6104,ff,CONVERTER,0:OFF;1:ON
+,76D,31,31,1,0,0,,2104,6104,ff,EXT_MOTOR_FAN2_RELAY,0:OFF;1:ON
+,76D,32,32,1,0,0,,2104,6104,ff,FRONT_WIPER_LO_HI_RELAY,0:OFF;1:ON
+,76D,33,33,1,0,0,,2104,6104,ff,Control_Contactor_Fet,0:OFF;1:ON
+,76D,34,34,1,0,0,,2104,6104,ff,IGNITION NOT COLUMN LOCK,0:OFF;1:ON
+,76D,36,36,1,0,0,,2104,6104,ff,Control_Diag_Contactor,0:OFF;1:ON
+,76D,37,37,1,0,0,,2104,6104,ff,Open_Contactor_Relay,0:OFF;1:ON
+,76D,38,38,1,0,0,,2104,6104,ff,FRONT_WIPER_ON_OFF_RELAY,0:OFF;1:ON
+,76D,43,43,1,0,0,,2104,6104,ff,POSITION NIGHT,0:OFF;1:ON
+,76D,44,44,1,0,0,,2104,6104,ff,External_Fan_Relay_3,0:OFF;1:ON
+,76D,48,48,1,0,0,,2104,6104,ff,CONTROL_LIGHTING,0:OFF;1:ON
+,76D,49,49,1,0,0,,2104,6104,ff,VCC_LIGHTING_ENABLE,0:OFF;1:ON
+,76D,16,23,1,0,0,,2105,6105,ff,AC_valve_duty_cycle
+,76D,24,31,1,0,0,,2105,6105,ff,HIGH_BEAM_LEFT
+,76D,32,39,1,0,0,,2105,6105,ff,HIGH_BEAM_RIGHT
+,76D,40,47,1,0,0,,2105,6105,ff,LOW_BEAM_LEFT_duty_cycle
+,76D,48,55,1,0,0,,2105,6105,ff,LOW_BEAM_RIGHT_duty_cycle
+,76D,56,63,1,0,0,,2105,6105,ff,DRL_LEFT
+,76D,72,79,1,0,0,,2105,6105,ff,DRL_RIGHT
+,76D,80,87,1,0,0,,2105,6105,ff,FOG_LAMPS_LEFT
+,76D,88,95,1,0,0,,2105,6105,ff,FOG_LAMPS_RIGHT
+,76D,96,103,1,0,0,,2105,6105,ff,FBL_LEFT
+,76D,104,111,1,0,0,,2105,6105,ff,FBL RIGHT
+,76D,112,119,1,0,0,,2105,6105,ff,POSTION_FRONT_LEFT_AND_RIGHT
+,76D,120,127,1,0,0,,2105,6105,ff,POSITION_REAR_RIGHT
+,76D,128,135,1,0,0,,2105,6105,ff,POSITION
+,76D,16,16,1,0,0,,2106,6106,ff,E_B_OilPressureFailureInhibition,0:Oil Pressure Failure is not inhibited;1:Oil Pressure Failure is inhibited
+,76D,17,17,1,0,0,,2106,6106,ff,C_B_StressProtectionEnable,0:Without Wiper protection;1:With Wiper protection
+,76D,19,19,1,0,0,,2106,6106,ff,E_B_GearBoxType,0:Manual Gearbox;1:Automatic Gearbox
+,76D,20,20,1,0,0,,2106,6106,ff,E_B_LCS,0:Without LCS;1:With  LCS
+,76D,21,21,1,0,0,,2106,6106,ff,C_B_StarterProtection,0:No activation of starter protection;1:Activation of starter protection
+,76D,22,22,1,0,0,,2106,6106,ff,C_B_VRLA_Batt,0:Leaded Classical Battery;1:VRLA
+,76D,23,23,1,0,0,,2106,6106,ff,C_B_IHMLowBatteryActiv,0:No activation of IHM Low battery voltage;1:Activation of IHM Low battery voltage
+,76D,24,31,1,0,0,,2106,6106,4ff,E_K_CompType
+,76D,32,32,1,0,0,,2106,6106,ff,C_B_BDUActivation,0:No activation of BDU Module;1:Activation of BDU Module
+,76D,33,33,1,0,0,,2106,6106,ff,C_B_AutoStopProtection,0:No auto stop blocked reached protection;1:Auto stop blocked reached protection
+,76D,34,36,1,0,0,,2106,6106,ff,C_K_BatteryType,0:reserved;1:reserved1;2:L2;3:L3;4:L4;5:L5;6:L6;7:reserved2
+,76D,37,37,1,0,0,,2106,6106,ff,C_K_FrontBattery_type,0:rear;1:front
+,76D,38,38,1,0,0,,2106,6106,ff,C_B_UsingDirectActivation,0:No direct compressor activation from ECM is used;1:Direct compressor activation from ECM is used
+,76D,39,39,1,0,0,,2106,6106,ff,C_B_NeutralContact_Diag,0:neutral contact diagnosis (algo plausibility) is inhibited;1:neutral contact diagnosis (algo plausibility) is not inhibited
+,76D,40,47,1,0,0,,2106,6106,ff,C_K_Alt15_DATA2
+,76D,48,55,.01,-150,2,,2106,6106,ff,C_K_MechanicalRatio
+,76D,56,135,1,0,0,,2106,6106,4ff,E_B_FailureInhibition
+,76D,136,136,1,0,0,,2106,6106,ff,E_B_NeutralNeverReachedInhibition,0:no inhibition of neutral contact never reached diagnosis;1:inhibition of neutral contact never reached diagnosis
+,76D,137,143,.01,0,2,,2106,6106,ff,C_K_Low_limit_min
+,76D,144,144,1,0,0,,2106,6106,ff,E_B_DRLWithoutPWM,0:DRL with PWM;1:DRL without PWM
+,76D,145,151,.01,0,2,,2106,6106,ff,C_K_Low_limit_max
+,76D,153,159,.01,0,2,,2106,6106,ff,C_K_High_limit_min
+,76D,160,160,1,0,0,,2106,6106,ff,C_B_FloatingInhibit,0:Floating not inhibited;1:Floating inhibited
+,76D,161,167,.01,0,2,,2106,6106,ff,C_K_High_limit_max
+,76D,168,177,1,0,0,,2106,6106,ff,E_B_EEM_FailureInhibition
+,76D,178,178,1,0,0,,2106,6106,ff,E_B_AlertBDUDirect,0:The BDU alert can only be erased by diag tool;1:The BDU alert disappears once the failure had
+,76D,179,179,1,0,0,,2106,6106,ff,C_B_VehiculeRunning,0:Allows to switch OFF Ignition when VehicleSpeed is >0;1:Inhibits from switching OFF Ignition when VehicleSpeed is >0
+,76D,180,183,100,-5,0,,2106,6106,ff,C_RPM_EngineThreshold
+,76D,16,16,1,0,0,,2107,6107,ff,E_B_ECMReset,0:Without condition on "ECM reset";1:With condition on "ECM reset"
+,76D,23,28,1000,0,0,ms,2107,6107,ff,C_TM_LowSpeedWipingProtection
+,76D,29,34,1000,0,0,ms,2107,6107,ff,C_TM_HighSpeedWipingProtection
+,76D,35,40,100,0,0,ms,2107,6107,ff,C_TM_HighSpeedPeriod_limit_max
+,76D,41,46,100,0,0,ms,2107,6107,ff,C_TM_LowSpeedPeriod_limit_max
+,76D,47,52,1,0,0,,2107,6107,ff,C_K_Mission
+,76D,53,60,5,0,0,min,2107,6107,ff,C_Tau_Engine
+,76D,61,66,.1,0,1,s,2107,6107,ff,C_TM_HeadLampFirstWash
+,76D,67,75,.1,0,1,s,2107,6107,ff,C_TM_HeadLampSecondWash
+,76D,76,79,.1,0,1,s,2107,6107,ff,C_TM_HeadLampStopped
+,76D,16,1295,1,0,0,,2108,6108,4ff,C_K_AlternatorTable
+,76D,16,16,1,0,0,,2109,6109,ff,E_B_EnableDebugFrames,0:no emission/debug frames disabled;1:emission/debug frames enabled
+,76D,16,16,1,0,0,,2110,6110,ff,AlternatorUnknown,0:Alternator known;1:Alternator unknown
+,76D,17,17,1,0,0,,2110,6110,ff,V_B_FloatingActive_status,0:No floating mode;1:Floating mode
+,76D,18,23,.1,-106,1,V,2110,6110,ff,V_U_alt
+,76D,24,25,1,0,0,,2110,6110,ff,V_K_alt_RampTMChoice
+,76D,26,31,.1,-106,1,V,2110,6110,ff,V_U_batt
+,76D,32,55,1,0,0,min,2110,6110,ff,V_TM_TimeAtOpening_mem
+,76D,56,56,1,0,0,,2110,6110,ff,V_B_alt_Fault,0:No alternator default;1:Alternator default
+,76D,57,63,1,0,0,,2110,6110,ff,V_K_JaugeVT
+,76D,64,79,1,0,0,,2110,6110,ff,V_K_BatteryWearCounter_mem
+,76D,80,84,3.2,0,0,,2110,6110,ff,V_Pct_DF_bss_read
+,76D,85,87,1,0,0,,2110,6110,ff,V_K_DefaultNumber
+,76D,88,90,1,0,0,,2110,6110,ff,V_K_alt_FaultType
+,76D,91,95,.25,0,1,,2110,6110,ff,V_I_alt_Rotor_read
+,76D,97,98,1,0,0,,2110,6110,ff,V_K_Default_status
+,76D,99,102,1,0,0,,2110,6110,ff,AlternatorNumber
+,76D,103,111,1,0,0,,2110,6110,ff,Default_Counter
+,76D,112,113,1,0,0,,2110,6110,ff,V_K_ComBssNOk_status
+,76D,16,23,1,0,0,,2111,6111,ff,LIN_USM_missing
+,76D,24,31,1,0,0,,2111,6111,ff,LIN_BCS_missing
+,76D,32,39,1,0,0,,2111,6111,ff,LIN_VS1_missing
+,76D,40,47,1,0,0,,2111,6111,ff,LIN_VS2_missing
+,76D,17,23,.01,0,2,s,2114,6114,ff,C_TM_FUSES_DIAG
+,76D,31,39,.01,0,2,V,2114,6114,ff,C_U_2RelaysON_1RelayOFF
+,76D,40,42,1,0,0,s,2114,6114,ff,C_TM_STARTER_DISCONNECTION
+,76D,43,47,1,0,0,s,2114,6114,ff,C_TM_FAN_UNIT_DISCONNECTION
+,76D,19,23,.05,-40,2,V,2115,6115,ff,C_U_LBEAM_HID_TRANSIENT_max
+,76D,27,31,.1,-20,1,V,2115,6115,ff,C_U_LBEAM_HAL_TRANSIENT_max
+,76D,35,39,.1,-20,1,V,2115,6115,ff,C_U_LBEAM_STABILIZED_max
+,76D,40,47,.0125,-8,2,V,2115,6115,ff,C_U_DTRL_intermediate
+,76D,51,55,.1,-20,1,V,2115,6115,ff,C_U_DTRL_max
+,76D,60,63,.01,0,2,s,2115,6115,ff,C_TM_LowBeam_HAL_StabDelay
+,76D,67,71,1,-10,0,s,2115,6115,ff,C_TM_LowBeam_HID_StabDelay
+,76D,76,79,.1,0,1,s,2115,6115,ff,C_TM_DTRL_StabDelay
+,76D,82,84,1,-1,0,,2115,6115,ff,C_K_LBEAM_SCG_Fail_max
+,76D,85,87,1,-1,0,,2115,6115,ff,C_K_DTRL_SCG_Fail_max
+,76D,16,17,1,0,0,,2121,6121,ff,StartingMode_BCM_R,0:Engine stopped request;1:No request;2:Ignition request;3:Starting request
+,76D,18,19,1,0,0,,2121,6121,ff,BCM_WakeUpSleepCommand,0:Go to sleep;1:reserved;2:reserved2;3:Wake Up
+,76D,20,22,1,0,0,,2121,6121,ff,FrontWipingRequest,0:In Stop Position;1:Forced to Stop;2:One time low speed requested;3:One time high speed requested;4:Unavailable;5:Reserved;6:Low Speed requested;7:High Speed requested
+,76D,23,23,1,0,0,,2121,6121,ff,HeadLampsWasherRequest,0:Headlamps washer not requested;1:headlamps washer requested
+,76D,24,25,1,0,0,,2121,6121,ff,ClutchSwitchMaximumTravel,0:Not used;1:Maximum clutch travel switch not active;2:Maximum clutch travel switch active;3:Unavailable
+,76D,26,53,.01,0,2,km,2121,6121,ff,DistanceTotalizer
+,76D,54,77,1,0,0,mn,2121,6121,ff,AbsoluteTimeSince1rstIgnition
+,76D,78,78,1,0,0,,2121,6121,ff,WakeUpType,0:Customer wake up;1:Technical wake up
+,76D,79,79,1,0,0,,2121,6121,ff,PositionLightsRequest,0:Position Lights not requested;1:Position Lights requested
+,76D,80,80,1,0,0,,2121,6121,ff,LowBeamRequest,0:Low beam not requested;1:Low Beam requested
+,76D,81,81,1,0,0,,2121,6121,ff,HighBeamRequest,0:High Beam not requested;1:High Beam requested
+,76D,82,82,1,0,0,,2121,6121,ff,FrontFogLightsRequest,0:Front Fog not requested;1:Front fog requested
+,76D,83,90,1,40,0,°C,2121,6121,ff,EngineCoolantTemp
+,76D,91,106,.01,0,2,km/h,2121,6121,ff,VehicleSpeed
+,76D,107,108,1,0,0,,2121,6121,ff,EngineFanSpeedRequest,0:Not requested;1:Low Speed requested;2:Middle Speed requested [Nissan];3:High Speed requested
+,76D,109,109,1,0,0,,2121,6121,ff,ACCompAuthorized,0:Ac compressor not authorized;1:Ac compressor authorized
+,76D,110,110,1,0,0,,2121,6121,ff,ACCompClutchRequest,0:Ac compressor not requested;1:Ac compressor requested
+,76D,111,117,.01,0,2,A,2121,6121,ff,ACCompValveRequest
+,76D,118,118,1,0,0,,2121,6121,ff,ACCompWorkingMode,0:Running in idle mode or stopped;1:Running not in idle mode
+,76D,119,120,1,0,0,,2121,6121,ff,EngineStatus_R,0:Stopped;1:Reserved;2:Running;3:Cranking
+,76D,121,128,40,0,0,W/s,2121,6121,ff,AllowedPowerGradient
+,76D,129,130,1,0,0,,2121,6121,ff,CrankingAuthorisation_ECM,0:Cranking not allowed;1:Cranking allowed;2:Cranking stopped required;3:No request
+,76D,131,132,1,0,0,,2121,6121,ff,CrankingAuthorisation_AT,0:Cranking not allowed;1:Cranking allowed;2:Reserved;3:No request
+,76D,133,140,40,0,0,watts,2121,6121,ff,AlternatorMaximumPower
+,76D,141,156,.125,0,1,tr/min,2121,6121,ff,EngineRPM
+,76D,157,164,1,40,0,°C,2121,6121,ff,ExternalTemp
+,76D,165,165,1,0,0,,2121,6121,ff,DeliveryModeInfo,0:customer mode;1:delivery mode
+,76D,166,166,1,0,0,,2121,6121,ff,DayRunningLightRequest,0:No DRL requested;1:DRL  requested
+,76D,167,167,1,0,0,,2121,6121,ff,DiagMuxOn_BCM,0:counting and storage of CAN mute/absent failures  masked;1:counting and storage of CAN mute/absent failures not masked
+,76D,168,169,1,0,0,,2121,6121,ff,ClutchSwitchMinimumTravel,0:Not used;1:Minimum clutch travel switch not active;2:Minimum clutch travel switch active;3:Unavailable
+,76D,170,170,1,0,0,,2121,6121,ff,FrontDefrostRequest,0:Front defrost not requested;1:Front defrost requested
+,76D,171,172,1,0,0,,2121,6121,ff,FloatingInhibition,0:Unavailable;1:Floating forbidden;2:Floating not forbidden;3:Not used
+,76D,173,173,1,0,0,,2121,6121,ff,ACCompClutchActivation,0:no compressor activation req;1:compressor activation req
+,76D,174,176,1,0,0,,2121,6121,ff,VehicleState,0:VEHICLEASLEEP_ENGINESTOPPED;1:VEHICLEAWAKE_ENGINESTOPPED;2:ENGINE_READY_TO_START;3:STARTING_IN_PROGRESS;4:VEHICLEAWAKE_ENGINERUNNING
+,76D,177,178,1,0,0,,2121,6121,ff,VehicleStateSSExtension,0:VEHICLE_NOT_IN_AUTOMATIC_STATE;1:VEHICLE_IN_AUTOMATIC_STATE;2:VEHICLESTATE_SS_EEXTENSION_NOT_USED;3:VEHICLE_EXTENSION_UNAVAILABLE
+,76D,179,180,1,0,0,,2121,6121,ff,GenericApplicativeDiagEnable,0:Only faults reports and alerts that MUST remain active during cranking or sleeping periods are enabled;1:All faults reports and alerts not related to APC power level are enabled;2:All faults reports and alerts are enabled;3:Unavailable
+,76D,181,183,1,0,0,,2121,6121,ff,BrakeInfoStatus,0:;1:PEDAL_NOT_PRESSED;2:PEDAL_PRESSED;4:PEDAL_CONFIRMED_PRESSED;7:UNAVAILABLE
+,76D,184,184,1,0,0,,2121,6121,ff,DriverDoorState,0:DRIVER_DOOR_CLOSE;1:DRIVER_DOOR_OPEN
+,76D,185,186,1,0,0,,2121,6121,ff,EngineHoodState,0:ENGINEHOOD_UNAVAILABLE;1:ENGINEHOOD_OPENED;2:ENGINEHOOD_CLOSED;3:ENGINEHOOD_NOT_USED
+,76D,187,191,4,0,0,cm,2121,6121,ff,AccurateOdometer
+,76D,192,193,1,0,0,,2121,6121,ff,AC_StopAutoForbidden,0:UNAVAILABLE_REQUEST_CLIM;1:STOP_AUTO_FORBIDDEN_CLIM;2:STOP_AUTO_AUTHORIZED_CLIM;3:CLIM_REQUEST_NOT_USED
+,76D,194,197,.25,-46,1,V,2121,6121,ff,MinimumVoltagebyAC
+,76D,198,199,1,0,0,,2121,6121,ff,PumpActivationRequest,0:UNAVAILABLE_VALUE;1:NO_PUMP_ACTIVATION_REQUESTED;2:PUMP_ACTIVATION_REQUESTED;3:PUMP_NOT_USED
+,76D,200,203,.25,-46,1,V,2121,6121,ff,MinimumVoltagebySteer
+,76D,204,205,1,0,0,,2121,6121,ff,DriverSafetyBeltReminder,0:DRIVER_SAFETY_BELT_REMINDER;1:DRIVER_SAFETY_BELT_WARNING_L1;2:DRIVER_SAFETY_BELT_WARNING_L2;3:DRIVER_SAFETY_BELT_NOT_USED
+,76D,206,207,1,0,0,,2121,6121,ff,ETC_StopAutoForbidden,0:UNAVAILABLE_REQUEST_ETC;1:STOP_AUTO_FORBIDDEN_ETC;2:STOP_AUTO_AUTHORIZED_ETC;3:ETC_REQUEST_NOT_USED
+,76D,208,208,1,0,0,,2121,6121,ff,ABSinRegulation,0:NO_ABS_REGULATION;1:ABS_REGULATION
+,76D,209,209,1,0,0,,2121,6121,ff,ASRinRegulation,0:NO_ASR_REGULATION;1:ASR_REGULATION
+,76D,210,210,1,0,0,,2121,6121,ff,AYCinRegulation,0:NO_AYC_REGULATION;1:AYC_REGULATION
+,76D,211,211,1,0,0,,2121,6121,ff,MSRinRegulation,0:NO_MSR_REGULATION;1:MSR_REGULATION
+,76D,212,212,1,0,0,,2121,6121,ff,ABSMalfunction,0:no ABS malfunction;1:ABS in malfunction
+,76D,213,216,.25,-46,1,V,2121,6121,ff,MinimumVoltagebyECM
+,76D,217,224,40,0,0,W/s,2121,6121,ff,AllowedPowerGradientNeg
+,76D,225,226,1,0,0,,2121,6121,ff,ECM_StopAutoForbidden,0:UNAVAILABLE_REQUEST_ECM;1:STOP_AUTO_FORBIDDEN_ECM;2:STOP_AUTO_AUTHORIZED_ECM;3:ECM_REQUEST_NOT_USED
+,76D,227,234,40,0,0,W,2121,6121,ff,AlternatorOptimumPower
+,76D,235,236,1,0,0,,2121,6121,ff,BatteryChangedActivation,0:Not Used;1:NO battery parameter reset request;2:Battery parameter reset requested;3:Unvailable Value
+,76D,237,237,1,0,0,,2121,6121,ff,StartAutoSystemFailure,0:NO_START_AUTO_SYSTEM_FAILURE;1:START_AUTO_SYSTEM_FAILURE
+,76D,238,241,.25,-46,1,V,2121,6121,ff,MinimumVoltagebyBCM
+,76D,242,242,1,0,0,,2121,6121,ff,CrashDetected,0:No crash detected;1:Crash Detected
+,76D,243,243,1,0,0,,2121,6121,ff,CrashDetectionOutOfOrder,0:Crash Detection OK;1:Crash Detection Out Of Order
+,76D,16,17,1,0,0,,2122,6122,ff,StarterStatus,0:OFF;1:Short relaxation;2:Long relaxation;3:ON
+,76D,18,19,1,0,0,,2122,6122,ff,FrontWiperStatus,0:OFF;1:LS;2:HS;3:Unavailable
+,76D,20,20,1,0,0,,2122,6122,ff,FrontWiperStopPosition,0:Not Reached;1:Reached
+,76D,21,21,1,0,0,,2122,6122,ff,ACCompClutchStatus,0:Compressor clutch off;1:Compressor clutch on
+,76D,22,22,1,0,0,,2122,6122,ff,IgnitionSupplyConfirmation,0:No primary ignition supply;1:Primary ignition supply
+,76D,25,25,1,0,0,,2122,6122,ff,WeakOilPressureWarning,0:No Weak Oil Pressure Warning;1:Weak Oil Pressure Warning
+,76D,26,33,.0625,0,2,V,2122,6122,ff,BatteryVoltage
+,76D,34,35,1,0,0,,2122,6122,ff,USM_Refuse_to_Sleep,0:reserved;1:Refuse_to_sleep;2:Ready_to_sleep;3:reserved2
+,76D,36,43,.390625,0,1,%,2122,6122,ff,AlternatorLoad
+,76D,44,45,1,0,0,,2122,6122,ff,RearGearEngaged,0:Not used;1:Not engaged;2:Engaged;3:Unavailable
+,76D,46,47,1,0,0,,2122,6122,ff,NeutralContact,0:Reserved;1:Not reached;2:Reached;3:Unavailable
+,76D,48,49,1,0,0,,2122,6122,ff,CoolingFanSpeedStatus,0:Stopped;1:Low Speed;2:Middle Speed (not used in Renault);3:High Speed
+,76D,50,57,40,0,0,Watts,2122,6122,ff,InstantMechanicalPowerByAlt
+,76D,58,58,1,0,0,,2122,6122,ff,ACCompClutchDefault,0:No AC Compressor clutch default;1:AC Compressor clutch default
+,76D,59,65,.01,0,2,A,2122,6122,ff,ACCompValveCurrent
+,76D,66,66,1,0,0,,2122,6122,ff,ACCompValveDefault,0:No AC Compressor valve default;1:AC Compressor valve default
+,76D,67,67,1,0,0,,2122,6122,ff,BatteryWarning,0:No Battery Warning requested;1:Battery Warning requested
+,76D,68,69,1,0,0,,2122,6122,ff,LowBatteryVoltageDisplay,0:No display request;1:Battery weak;2:Battery weak - start engine;3:Battery in charge
+,76D,70,70,1,0,0,,2122,6122,ff,BDUOpeningAnticipation,0:BDU not about to open;1:BDU is about to open
+,76D,71,71,1,0,0,,2122,6122,ff,OilPressureSwitchFaultDisplay,0:No oil pressure switch fault warning requested;1:Oil pressure switch fault warning requested
+,76D,72,73,1,0,0,,2122,6122,ff,MiniConsumptionRequest,0:reserved;1:No minimum consumption requested;2:Minimum consumption requested;3:reserved_
+,76D,74,74,1,0,0,,2122,6122,ff,IgnitionControlState,0:Primary ign supply relay ctrl OFF;1:Primary ign supply relay ctrl ON
+,76D,75,75,1,0,0,,2122,6122,ff,FrontDefrostEngaged,0:Front Defrost not engaged;1:Front Defrost engaged
+,76D,76,76,1,0,0,,2122,6122,ff,NeutralSwitchFaultDisplay,0:No neutral switch failure display;1:Neutral switch failure display
+,76D,77,77,1,0,0,,2122,6122,ff,BDUCommandLineFailure,0:No BDU command line failure - in;1:BDU command line failure
+,76D,78,85,40,0,0,W,2122,6122,ff,ElecPowerConsumedByAux
+,76D,86,91,.5,-138,1,%,2122,6122,ff,SOCBattery14V
+,76D,92,93,1,0,0,,2122,6122,ff,StopStartStateDisplayRequest,0:No_SS_State_Display_Request;1:SS_Activation_Display_Request;2:SS_Desactivation_Display_Request;3:StopStart_Display_Unavailability_for_Failure
+,76D,94,94,1,0,0,,2122,6122,ff,StopAutoStateDisplayRequest,0:NO_REQUEST_DISPLAY_SS;1:REQUEST_DISPLAY_SS
+,76D,95,95,1,0,0,,2122,6122,ff,BatteryChangedDisplay,0:NO Stop Auto Display Request;1:1 Stop Auto Display Request
+,76D,96,97,1,0,0,,2122,6122,ff,TechnicalStartAutoRequest,0:UNAVAILABLE;1:TECHNICAL_AUTOSTART_NOT_REQUESTED;2:TECHNICAL_AUTOSTART_REQUESTED;3:NOT USED
+,76D,98,99,1,0,0,,2122,6122,ff,StopAutoRequest,0:UNAVAILABLE;1:STOP_AUTO_REQUESTED;2:STOP_AUTO_NOT_REQUESTED;3:NOT USED
+,76D,100,101,1,0,0,,2122,6122,ff,StartAutoAuthorization,0:START_AUTO_UNAVAILABLE;1:START_AUTO_AUTHORIZED;2:START_AUTO_FALSE_DEFINITIVELY;3:START_AUTO_FALSE_TEMPORARILY
+,76D,102,103,1,0,0,,2122,6122,ff,DriverSeatStatus,0:DRIVER_NAPPE_UNAVAILABLE;1:DRIVER_NAPPE_DETECTED;2:DRIVER_NAPPE_NOT_DETECTED;3:DRIVER_NAPPE_NOT_USED
+,76D,104,105,1,0,0,,2122,6122,ff,IdleSpeedInhibitionRequest,0:Unavalaible Value;1:IdleSpeed Inhibition Requested;2:IdleSpeed Inhibition not Requested;3:Not Used
+,76D,112,119,40,0,0,Watts,2122,6122,ff,SharpInstantMechanicalPowerByAlt
+,76D,16,26,.001,-11500,3,V,2123,6123,ff,LastBattSleep
+,76D,27,39,.1,2000,1,A,2123,6123,ff,IBattSensor
+,76D,40,47,.5,60,1,°C,2123,6123,ff,TBattSensor
+,76D,48,48,1,0,0,,2123,6123,ff,BCS_Diag_2,0:no current measurement error;1:current measurement error
+,76D,49,49,1,0,0,,2123,6123,ff,BCS_Diag_3,0:no voltage measurement error;1:voltage measurement error
+,76D,50,50,1,0,0,,2123,6123,ff,BCS_Diag_4,0:no temperature measurement error;1:temperature measurement error
+,76D,51,51,1,0,0,,2123,6123,ff,BCS_Diag_5,0:no BCS error (internal failure);1:BCS error (internal failure)
+,76D,52,62,.01,-600,2,V,2123,6123,ff,Ubattsensor
+,76D,63,63,1,0,0,,2123,6123,ff,BCS_Response_Error,0:no error;1:error
+,76D,64,64,1,0,0,,2123,6123,ff,BSC_State,0:Awaken;1:StandBy
+,76D,65,65,1,0,0,,2123,6123,ff,VS1_Diag_1,0:No SSVS#1 error (internal failure);1:SSVS#1 error (internal failure)
+,76D,66,66,1,0,0,,2123,6123,ff,VS1_Diag_2,0:No derating;1:derating
+,76D,67,67,1,0,0,,2123,6123,ff,VS1_Diag_3,0:ING Input Low;1:ING Input Hight
+,76D,68,68,1,0,0,,2123,6123,ff,VS1_Diag_4,0:Cranck Input Low;1:Cranck Input Hight
+,76D,69,69,1,0,0,,2123,6123,ff,VS2_Diag_1,0:No SSVS#1 error (internal failure);1:SSVS#1 error (internal failure)
+,76D,70,70,1,0,0,,2123,6123,ff,VS2_Diag_2,0:No derating;1:derating
+,76D,71,71,1,0,0,,2123,6123,ff,VS2_Diag_3,0:ING Input Low;1:ING Input Hight
+,76D,72,72,1,0,0,,2123,6123,ff,VS2_Diag_4,0:Cranck Input Low;1:Cranck Input Hight
+,76D,73,73,1,0,0,,2123,6123,ff,VS1_Conti_1,0:Converter OK;1:Converter doesn't work
+,76D,74,74,1,0,0,,2123,6123,ff,VS1_Conti_2,0:Temperature OK;1:Over temperature
+,76D,75,75,1,0,0,,2123,6123,ff,VS1_Conti_3,0:Relay OK;1:Relay doesn't work
+,76D,76,76,1,0,0,,2123,6123,ff,VS1_Conti_4,0:Ubatt OK;1:Ubatt to low
+,76D,77,77,1,0,0,,2123,6123,ff,VS1_Conti_5,0:Output OK;1:Output to low
+,76D,78,78,1,0,0,,2123,6123,ff,VS1_Conti_6,0:ING / CRANCK Logical;1:ING / CRANCK not Logical
+,76D,79,79,1,0,0,,2123,6123,ff,VS1_Conti_7,0:Activation Time OK;1:Activation too long
+,76D,80,80,1,0,0,,2123,6123,ff,VS1_Conti_8,0:Ubatt OK;1:Ubatt to High
+,76D,81,81,1,0,0,,2123,6123,ff,VS1_Conti_9,0:LIN OK;1:Shorted GND LIN
+,76D,82,82,1,0,0,,2123,6123,ff,VS2_Conti_1,0:Converter OK;1:Converter doesn't work
+,76D,83,83,1,0,0,,2123,6123,ff,VS2_Conti_2,0:Temperature OK;1:Over temperature
+,76D,84,84,1,0,0,,2123,6123,ff,VS2_Conti_3,0:Relay OK;1:Relay doesn't work
+,76D,85,85,1,0,0,,2123,6123,ff,VS2_Conti_4,0:Ubatt OK;1:Ubatt to low
+,76D,86,86,1,0,0,,2123,6123,ff,VS2_Conti_5,0:Output OK;1:Output to low
+,76D,87,87,1,0,0,,2123,6123,ff,VS2_Conti_6,0:ING / CRANCK Logical;1:ING / CRANCK not Logical
+,76D,88,88,1,0,0,,2123,6123,ff,VS2_Conti_7,0:Activation Time OK;1:Activation too long
+,76D,89,89,1,0,0,,2123,6123,ff,VS2_Conti_8,0:Ubatt OK;1:Ubatt to High
+,76D,90,90,1,0,0,,2123,6123,ff,VS2_Conti_9,0:LIN OK;1:Shorted GND LIN
+,76D,91,91,1,0,0,,2123,6123,ff,VS1_Response_Error,0:no error;1:error
+,76D,92,92,1,0,0,,2123,6123,ff,VS2_Response_Error,0:no error;1:error
+,76D,16,16,1,0,0,,2124,6124,ff,BCS_State_Request,0:Awaken;1:StandBy
+,76D,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
+,76D,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode
+,76D,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
+,76D,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
+,76D,128,143,1,0,0,,2180,6180,4ff,SoftwareNumber
+,76D,144,159,1,0,0,,2180,6180,4ff,EditionNumber
+,76D,160,175,1,0,0,,2180,6180,4ff,CalibrationNumber
+,76D,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;1:284B6;2:284A9
+,76D,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,1:284B6
+,76D,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A
+,76D,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+,76D,16,151,1,0,0,,2181,6181,2ff,VIN
+,76D,152,167,1,0,0,,2181,6181,ff,VIN CRC
+,76D,16,31,1,0,0,,2182,6182,4ff,CAN_MessageSet_Ref
+,76D,32,39,1,0,0,,2182,6182,ff,CAN_Bus_OFF_parameter
+,76D,40,47,1,0,0,,2182,6182,ff,CAN_Mute_parameter
+,76D,48,55,1,0,0,,2182,6182,ff,CAN_ECM_missing
+,76D,56,63,1,0,0,,2182,6182,ff,CAN_BRAKE_missing
+,76D,64,71,1,0,0,,2182,6182,ff,CAN_CLUSTER_missing
+,76D,72,79,1,0,0,,2182,6182,ff,CAN_BCM_missing
+,76D,80,87,1,0,0,,2182,6182,ff,CAN_AIRBAG_missing
+,76D,104,111,1,0,0,,2182,6182,ff,CAN_CLIM_missing
+,76D,112,119,1,0,0,,2182,6182,ff,CAN_TORQUE_AT_missing
+,76D,16,95,1,0,0,,2184,6184,2ff,traceability_SerialNumber
+,76D,96,143,1,0,0,,2184,6184,2ff,traceability_ManufactureDate
+,76D,144,175,1,0,0,,2184,6184,4ff,Traceability_padding
+,76D,16,23,.0000001,100,3,,2191,6191,ff,A_ACCompensationParameter
+,76D,24,39,.0000005,-2000,3,,2191,6191,ff,B_ACCompensationParameter
+,76D,40,47,.001137255,-9,3,,2191,6191,ff,C_ACCompensationParameter
+,76D,16,23,1,0,0,,2192,6192,ff,TestResult,1:Test Ok (Difference between actual and calculated value of BATT_Voltage_Sense is not more than 0.3);2:Test NOK(Difference between actual and calculated value of BATT_Voltage_Sense is more than 0.3)
+,76D,24,39,1,0,0,,2192,6192,4ff,BATT_Voltage_Sense_Actual_Reading
+,76D,40,55,1,0,0,,2192,6192,4ff,BATT_Voltage_Sense_Calculated_Reading
+,76D,16,16,1,0,0,,2193,6193,ff,INT
+,76D,17,17,1,0,0,,2193,6193,ff,SPARE1
+,76D,18,18,1,0,0,,2193,6193,ff,SPARE2
+,76D,19,19,1,0,0,,2193,6193,ff,SPARE3
+,76D,20,20,1,0,0,,2193,6193,ff,SPARE4
+,76D,21,21,1,0,0,,2193,6193,ff,SPARE_RELAY_DRIVER2_DIAG
+,76D,22,22,1,0,0,,2193,6193,ff,FAULT_STATUS
+,76D,23,23,1,0,0,,2193,6193,ff,SPARE_REALY_DRIVER1_DIAG
+,76D,24,31,1,0,0,,2193,6193,ff,VSUP_MSB
+,76D,32,39,1,0,0,,2193,6193,ff,VSUP_LSB
+,76D,40,47,1,0,0,,2193,6193,ff,VSENSE_MSB
+,76D,48,55,1,0,0,,2193,6193,ff,VSENSE_LSB
+,76D,56,63,1,0,0,,2193,6193,ff,VTEMP_MSB
+,76D,64,71,1,0,0,,2193,6193,ff,VTEMP_LSB
+,76D,72,79,1,0,0,,2193,6193,ff,VREF_MSB
+,76D,80,87,1,0,0,,2193,6193,ff,VREF_LSB
+,76D,88,95,1,0,0,,2193,6193,ff,IDDCOPY_TEST_2
+,76D,96,103,1,0,0,,2193,6193,ff,IDDCOPY_TEST_1
+,76D,104,104,1,0,0,,2193,6193,ff,AWAKE_SIGNAL
+,76D,16,31,1,0,0,,2198,6198,ff,Battery_Disconnection_Detection_counter
+,76D,16,23,1,0,0,,2199,6199,ff,FIRST_GND_ADIAG_1_WIRE
+,76D,24,31,1,0,0,,2199,6199,ff,FIRST_GND_ADIAG_2_WIRE
+,76D,24,143,1,0,0,,220400,620400,4ff,C_I_IMax
+,76D,24,263,1,0,0,,220500,620500,4ff,C_P_PMecaMax
+,76D,24,1175,1,0,0,,220600,620600,4ff,C_K_AlternatorTablePOLYPOLY_00
+,76D,24,1175,1,0,0,,220601,620601,4ff,C_K_AlternatorTablePOLYPOLY_01
+,76D,24,30,.02,-5,2,,220700,620700,ff,C_Kp_Alt15_Ualt_0
+,76D,24,30,.02,-5,2,,220701,620701,ff,C_Kp_Alt15_Ualt_1
+,76D,24,30,.02,-5,2,,220702,620702,ff,C_Kp_Alt15_Ualt_2
+,76D,24,30,.02,-5,2,,220703,620703,ff,C_Kp_Alt15_Ualt_3
+,76D,24,31,.02,-5,2,,220704,620704,ff,C_Ki_Alt15_Ualt_0
+,76D,24,31,.02,-5,2,,220705,620705,ff,C_Ki_Alt15_Ualt_1
+,76D,24,31,.02,-5,2,,220706,620706,ff,C_Ki_Alt15_Ualt_2
+,76D,24,31,.02,-5,2,,220707,620707,ff,C_Ki_Alt15_Ualt_3
+,76D,24,30,.02,-8,2,s,220708,620708,ff,C_Tau_Alt15_Ualt_0
+,76D,24,30,.02,-8,2,s,220709,620709,ff,C_Tau_Alt15_Ualt_1
+,76D,24,31,10,0,0,,22070A,62070A,ff,C_K_res_CCABatterieNominale
+,76D,24,31,1,-1,0,,22070B,62070B,ff,C_K_res_CapaciteNominale
+,76D,24,31,1,0,0,,22070C,62070C,ff,C_B_2ndCompInhibition
+,76D,24,31,1,0,0,,22070F,62070F,ff,C_B_ReflexStart
+,76D,24,30,.02,-8,2,s,220710,620710,ff,C_Tau_Alt15_Ualt_2
+,76D,24,30,.02,-8,2,s,220711,620711,ff,C_Tau_Alt15_Ualt_3
+,76D,24,31,1,0,0,,220712,620712,ff,V_K_CheckingCounter_status
+,76D,24,24,1,0,0,,220713,620713,ff,V_B_OldBattery_status
+,76D,24,55,1,0,0,,220714,620714,4ff,V_K_CorrosionBat_est
+,76D,24,55,1,0,0,,220715,620715,4ff,V_K_CyclageBat_est
+,76D,24,55,1,0,0,,220716,620716,4ff,C1d_U_res_BattThreshold
+,76D,24,55,1,0,0,,220717,620717,4ff,V_K_CorrosionBatMem
+,76D,24,55,1,0,0,,220718,620718,4ff,V_K_CyclageBatMem
+,76D,24,29,.1,-100,1,V,220719,620719,ff,C_U_Floating
+,76D,24,135,1,0,0,,22071F,62071F,4ff,C1d_Pct_EngSpeed_Y
+,76D,24,30,1,0,0,%,220720,620720,ff,C_Pct_FloatingSOCLow
+,76D,24,30,1,0,0,%,220721,620721,ff,C_Pct_FloatingSOCHigh
+,76D,24,79,1,0,0,,220722,620722,4ff,C1d_interESM_X
+,76D,24,29,.1,-100,1,V,220723,620723,ff,C_U_ESM_pt3
+,76D,24,31,40,0,0,W,220724,620724,ff,C_P_alt_min_low_1
+,76D,24,31,40,0,0,W,220725,620725,ff,C_P_alt_min_low_2
+,76D,24,31,40,0,0,W,220726,620726,ff,C_P_alt_offset_1
+,76D,24,31,40,0,0,W,220727,620727,ff,C_P_alt_offset_2
+,76D,24,29,.1,-100,1,V,220728,620728,ff,C_U_ESM_batt_min
+,76D,24,29,.1,-100,1,V,220729,620729,ff,C_U_ESM_batt_max
+,76D,24,31,40,0,0,W,220730,620730,ff,C_P_alt_min_high
+,76D,24,31,1,0,0,Vs,220731,620731,ff,C_UTM_BattHighVoltage_max
+,76D,24,31,.1,0,1,V/s,220732,620732,ff,C_dU_ESM_pos_limit
+,76D,24,31,1,0,0,A,220733,620733,ff,C_I_Batt_max
+,76D,24,31,.1,0,1,V/s,220734,620734,ff,C_dU_ESM_pos
+,76D,24,55,1,0,0,,220735,620735,4ff,GTNx
+,76D,24,71,1,0,0,,220736,620736,4ff,APB_Nxx
+,76D,24,27,5,-5,0,%,220737,620737,ff,C_Pct_SOCCurrent_limp
+,76D,24,24,1,0,0,,22073A,62073A,ff,C_B_CyclingInhibition,0:not inhibited;1:inhibited
+,76D,24,24,1,0,0,,22073B,62073B,ff,C_B_CorrosionInhibition,0:not inhibited;1:inhibited
+,76D,24,31,.1,0,1,cm,220748,620748,ff,C_D_DistStopAuto_min
+,76D,24,28,1,0,0,km/h,220749,620749,ff,C_S_VehSpeedStopAuto_min
+,76D,24,27,1,0,0,km/h,220750,620750,ff,C_S_VehSpeedStopAuto_max
+,76D,24,27,1,0,0,km/h,220751,620751,ff,C_S_VehSpeedStart
+,76D,24,24,1,0,0,,220752,620752,ff,C_B_STOPSTARTInhibit,0:Stop Start not inhibited;1:Stop Start inhibited
+,76D,24,24,1,0,0,,220753,620753,ff,C_B_ESMInhibit,0:ESM not inhibited;1:ESM inhibited
+,76D,24,24,1,0,0,,220755,620755,ff,C_B_ETC_present,0:ETC not present;1:ETC present
+,76D,24,24,1,0,0,,220756,620756,ff,C_B_InhibitonStrategieProtectionDemarreur,0:Thermal Starter Protection not inhibited;1:Thermal Starter Protection inhibited
+,76D,24,24,1,0,0,,220758,620758,ff,C_B_ClimType,0:CAMAN;1:CAREG
+,76D,24,24,1,0,0,,220759,620759,ff,C_B_APBPresent,0:APB not present;1:APB present
+,76D,24,24,1,0,0,,220761,620761,ff,C_B_SteerPresent,0:Steer not present;1:Steer present
+,76D,24,24,1,0,0,,220762,620762,ff,C_B_BatteryChangeNeed,0:Battery Changed alert inhibited;1:Battery Changed alert not inhibited
+,76D,24,24,1,0,0,,220763,620763,ff,C_B_StopStartStateDisplayRequest,0:Stop StopStartStateDisplayRequest alert inhibited;1:StopStartStateDisplayRequest alert not inhibited
+,76D,24,24,1,0,0,,220764,620764,ff,C_B_StopAutoStateDisplayRequest,0:StopAutoStateDisplayRequest alert inhibited;1:StopAutoStateDisplayRequest alert not inhibited
+,76D,24,24,1,0,0,,220765,620765,ff,C_B_Protection_ShowRoom_Enable,0:Protection ShowRoom disable;1:Protection ShowRoom enable
+,76D,24,24,1,0,0,,220766,620766,ff,C_K_MotorCylinder_status,0:4 cylinders;1:6 cylinders
+,76D,24,24,1,0,0,,220767,620767,ff,C_K_MotorType_status,0:Gasoil;1:Essence
+,76D,24,24,1,0,0,,220768,620768,ff,C_B_ResolIrotor_125mA,0:I rotor resolution- 250 mA;1:I rotor resolution- 125 mA
+,76D,24,31,1,0,0,,220769,620769,4ff,C_K_LIN_ID0
+,76D,24,31,1,0,0,,220770,620770,4ff,C_K_LIN_ID1
+,76D,24,31,1,0,0,,220771,620771,4ff,C_K_LIN_ID2
+,76D,24,31,1,0,0,,220772,620772,4ff,C_K_LIN_ID3
+,76D,24,24,1,0,0,,220775,620775,ff,E_B_HighBeamWithoutPWM,0:HighBeam with PWM;1:HighBeam without PWM
+,76D,24,24,1,0,0,,220776,620776,ff,E_B_FogWithoutPWM,0:FR FOG with PWM;1:FR FOG without PWM
+,76D,24,24,1,0,0,,220777,620777,ff,E_B_TAIL1WithoutPWM,0:TAIL1 with PWM;1:TAIL1 without PWM
+,76D,24,24,1,0,0,,220778,620778,ff,E_B_TAIL2WithoutPWM,0:TAIL2 with PWM;1:TAIL2 without PWM
+,76D,24,24,1,0,0,,220779,620779,ff,E_B_TAIL3WithoutPWM,0:TAIL3 with PWM;1:TAIL3 without PWM
+,76D,24,24,1,0,0,,220780,620780,ff,E_B_TAIL4WithoutPWM,0:TAIL4 with PWM;1:TAIL4 without PWM
+,76D,24,24,1,0,0,,220781,620781,ff,E_B_Singlebulb_DRL_Tail,0:DTRL and Tail independent;1:Bifunction DTRL and Tail
+,76D,24,24,1,0,0,,220782,620782,ff,E_B_DRL_with_LED,0:DRL with BULB;1:DRL with LED
+,76D,24,24,1,0,0,,220783,620783,ff,E_B_TAIL_1_with_LED,0:TAIL1 with BULB;1:TAIL1 with LED
+,76D,24,24,1,0,0,,220784,620784,ff,E_B_TAIL_2_with_LED,0:TAIL2 with BULB;1:TAIL2 with LED
+,76D,24,24,1,0,0,,220785,620785,ff,E_B_TAIL_3_with_LED,0:TAIL3 with BULB;1:TAIL3 with LED
+,76D,24,24,1,0,0,,220786,620786,ff,E_B_TAIL_4_with_LED,0:TAIL4 with BULB;1:TAIL4 with LED
+,76D,24,119,1,0,0,,220787,620787,4ff,C2d_PWM_BULB_XY
+,76D,24,119,1,0,0,,220788,620788,4ff,C2d_PWM_LED_XY
+,76D,24,30,.01,0,2,,220789,620789,ff,C_PWM_adaptation_for_DRL
+,76D,24,30,.01,0,2,,220790,620790,ff,C_PWM_adaptation_for_DRL_as_Tail
+,76D,24,30,.01,0,2,,220791,620791,ff,C_PWM_adaptation_for_TAIL_1
+,76D,24,30,.01,0,2,,220792,620792,ff,C_PWM_adaptation_for_TAIL_2
+,76D,24,30,.01,0,2,,220793,620793,ff,C_PWM_adaptation_for_TAIL_3
+,76D,24,30,.01,0,2,,220794,620794,ff,C_PWM_adaptation_for_TAIL_4
+,76D,24,71,1,0,0,,220795,620795,4ff,E_B_HW_FailureInhibition
+,76D,24,39,1,0,0,,220796,620796,4ff,E_B_BCS_VS_FailureInhibition
+,76D,24,31,1,0,0,,220797,620797,4ff,E_B_StopStart_ESM_FailureInhibition
+,76D,24,31,1,0,0,,220798,620798,ff,C_TM_RearGearPlausibFailureCp
+,76D,24,31,1,0,0,,220799,620799,ff,C_V_RearGearFailVehiclSpeedThres
+,76D,24,31,1,0,0,,2207A0,6207A0,ff,C_TM_Stop_req
+,76D,24,33,1,0,0,,2207A1,6207A1,ff,C_RPM_DisplayEngineStop
+,76D,24,28,.005,-1,3,,2207A2,6207A2,ff,C_TM_SSVSActivationBeforeBoost
+,76D,24,31,1,0,0,,2207A3,6207A3,ff,C_B_SSVSStartMask
+,76D,24,31,.01,0,2,s,2207A4,6207A4,ff,C_TM_AntMilling
+,76D,24,31,1,0,0,,2207A5,6207A5,ff,C_K_NBR_BRK_1
+,76D,24,31,1,0,0,s,2207A6,6207A6,ff,C_TM_DefautBouton
+,76D,24,30,.05,0,2,,2207A7,6207A7,ff,C_TM_DriverSeatToNotSeat_Delay
+,76D,24,24,1,0,0,,2207A8,6207A8,ff,C_B_WaterPumpControlledByUSM
+,76D,24,31,.1,-106,1,V,2207A9,6207A9,ff,V_U_charge_batt_req
+,76D,24,31,.1,-106,1,,2207AA,6207AA,ff,V_U_Floating_prim
+,76D,24,31,.1,-106,1,,2207AB,6207AB,ff,V_U_interESM_batt_req
+,76D,24,24,1,0,0,,2207AC,6207AC,ff,BatteryDischargeByESM_OK
+,76D,24,31,.1,-106,1,,2207AD,6207AD,ff,V_U_ESM_req
+,76D,24,55,1,0,0,,2207AE,6207AE,4ff,V_K_CorrosionBat
+,76D,24,55,1,0,0,,2207AF,6207AF,4ff,V_K_CyclageBat
+,76D,24,31,1,0,0,,2207B0,6207B0,ff,V_K_CompressionBatM20_Init
+,76D,31,39,1,0,0,,2207B1,6207B1,ff,V_K_Type_ESM_Inhibition
+,76D,24,31,1,0,0,,2207B7,6207B7,ff,V_K_CompressionBatMoy
+,76D,24,31,1,0,0,,2207B8,6207B8,ff,V_K_CompressionBat
+,76D,26,39,.1,0,1,,2207B9,6207B9,ff,V_Pct_PerteSOC_Autorise
+,76D,24,31,.01,0,2,,2207BA,6207BA,ff,V_K_n
+,76D,24,31,1,40,0,°C,2207BB,6207BB,ff,T_eq_cond
+,76D,24,31,.1,-106,1,,2207BC,6207BC,ff,V_U_batt_desat
+,76D,24,24,1,0,0,,2207BD,6207BD,ff,V_B_Ramp_Detected_status
+,76D,24,37,.01,0,2,,2207BE,6207BE,ff,V_Pct_SOCInit_est
+,76D,24,31,.1,0,1,,2207BF,6207BF,ff,V_C_alt_est
+,76D,24,25,1,0,0,,2207C1,6207C1,ff,ECM_status,0:CAN frames present;1:CAN frames absent;2:CAN frames confirmed absent
+,76D,24,25,1,0,0,,2207C2,6207C2,ff,BCM_status,0:CAN frames present;1:CAN frames absent;2:CAN frames confirmed absent
+,76D,24,25,1,0,0,,2207C3,6207C3,ff,BRAKE_status,0:CAN frames present;1:CAN frames absent;2:CAN frames confirmed absent
+,76D,24,24,1,0,0,,2207C4,6207C4,ff,ECM_updated,0:CAN frames absent;1:CAN frames updated
+,76D,24,24,1,0,0,,2207C5,6207C5,ff,BCM_updated,0:CAN frames absent;1:CAN frames updated
+,76D,24,24,1,0,0,,2207C6,6207C6,ff,BRAKE_updated,0:CAN frames absent;1:CAN frames updated
+,76D,24,29,.1,-106,1,V,2207C7,6207C7,ff,V_U_batt req
+,76D,24,29,.1,-106,1,V,2207C8,6207C8,ff,V_U_alt req
+,76D,26,39,.01,0,2,,2207C9,6207C9,ff,V_K_JaugeVT_mem
+,76D,26,39,.01,0,2,,2207CA,6207CA,ff,V_Pct_SOCCurrent_est
+,76D,24,31,1,40,0,°C,2207CB,6207CB,ff,V_Temp_Batt_est
+,76D,24,29,1,0,0,,2207CC,6207CC,ff,V_K_ESM_status
+,76D,24,24,1,0,0,,2207CE,6207CE,ff,V_B_ZoneBatt_OK,0:Zone Batt Not OK;1:Zone Batt OK
+,76D,24,25,1,0,0,,2207CF,6207CF,ff,BMS_StopAutoForbidden,0:UNAVAILABLE_BMS;1:STOP_AUTO_FORBIDDEN_BMS;2:STOP_AUTO_AUTHORIZED_BMS
+,76D,24,31,.390625,0,1,%,2207D0,6207D0,ff,AlternatorLoad
+,76D,24,47,1,0,0,mn,2207D1,6207D1,ff,AbsoluteTimeSince1rstIgnition
+,76D,24,25,1,0,0,,2207D2,6207D2,ff,EngineStatus_R,0:Stopped;1:Reserved;2:Running;3:Cranking
+,76D,24,31,.0625,0,2,V,2207D3,6207D3,ff,BatteryVoltage
+,76D,24,26,1,0,0,,2207D4,6207D4,ff,VehicleState,0:VEHICLEASLEEP_ENGINESTOPPED;1:VEHICLEAWAKE_ENGINESTOPPED;2:ENGINE_READY_TO_START;3:STARTING_IN_PROGRESS;4:VEHICLEAWAKE_ENGINERUNNING
+,76D,24,24,1,0,0,,2207D5,6207D5,ff,StopAutoStateDisplayRequest,0:NO_REQUEST_DISPLAY_SS;1:REQUEST_DISPLAY_SS
+,76D,24,25,1,0,0,,2207D6,6207D6,ff,StopStartStateDisplayRequest,0:No_SS_State_Display_Request;1:SS_Activation_Display_Request;2:SS_Desactivation_Display_Request;3:StopStart_Display_Unavailability_for_Failure
+,76D,24,39,.125,0,1,tr/min,2207D7,6207D7,ff,EngineRPM
+,76D,24,24,1,0,0,,2207D8,6207D8,ff,BatteryChangedDisplay,0:NO Stop Auto Display Request;1:1 Stop Auto Display Request
+,76D,24,25,1,0,0,,2207D9,6207D9,ff,BatteryChangedActivation,0:Not Used;1:NO battery parameter reset request;2:Battery parameter reset requested;3:Unvailable Value
+,76D,24,25,1,0,0,,2207DA,6207DA,ff,V_K_StopStart_state,0:UNAVAILABLE NOMINAL;1:UNAVAILABLE NOT NOMINAL;2:AVAILABLE INACTIVE;3:AVAILABLE ACTIVE
+,76D,28,28,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.Number_of_cycles_Failure,0:No failure;1:Failure
+,76D,29,29,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.CrashDetection_Failure,0:No failure;1:Failure
+,76D,30,30,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.CrashDetected_Failure,0:No failure;1:Failure
+,76D,31,31,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.Bus_OFF_Failure,0:No failure;1:Failure
+,76D,32,32,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.ECM_absent_Failure,0:No failure;1:Failure
+,76D,33,33,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.BCM_absent_Failure,0:No failure;1:Failure
+,76D,34,34,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.Brake_Failure,0:No failure;1:Failure
+,76D,35,35,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.BMS_Failure,0:No failure;1:Failure
+,76D,36,36,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.RearGear_Failure,0:No failure;1:Failure
+,76D,37,37,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.Neutral_Failure,0:No failure;1:Failure
+,76D,38,38,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.Clutch_max_travel_Failure,0:No failure;1:Failure
+,76D,39,39,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.Clutch_min_travel_Failure,0:No failure;1:Failure
+,76D,40,40,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.ASS_StopAuto_Failure,0:No failure;1:Failure
+,76D,41,41,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.VehicleSpeed_Failure,0:No failure;1:Failure
+,76D,42,42,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.Activation_Driver_Failure,0:No failure;1:Failure
+,76D,43,43,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.Airbag_Failure,0:No failure;1:Failure
+,76D,44,44,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.StopAutoReq_Failure,0:No failure;1:Failure
+,76D,45,45,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.ECM_Failure,0:No failure;1:Failure
+,76D,46,46,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.Supposed_Driving_State_Failure,0:No failure;1:Failure
+,76D,47,47,1,0,0,,2207DB,6207DB,ff,V_K_TypeFailure.StartAutoSystem_Failure,0:No failure;1:Failure
+,76D,24,25,1,0,0,,2207DC,6207DC,ff,CrankingAuthorisation_ECM,0:Cranking not allowed;1:Cranking allowed;2:Cranking stopped required;3:No request
+,76D,24,25,1,0,0,,2207DE,6207DE,ff,StarterStatus,0:OFF;1:Short relaxation;2:Long relaxation;3:ON
+,76D,24,25,1,0,0,,2207DF,6207DF,ff,StopAutoRequest,0:UNAVAILABLE;1:STOP_AUTO_REQUESTED;2:STOP_AUTO_NOT_REQUESTED;3:NOT USED
+,76D,24,25,1,0,0,,2207E0,6207E0,ff,TechnicalStartAutoRequest,0:UNAVAILABLE;1:TECHNICAL_AUTOSTART_NOT_REQUESTED;2:TECHNICAL_AUTOSTART_REQUESTED;3:NOT USED
+,76D,24,26,1,0,0,,2207E1,6207E1,ff,BrakeInfoStatus,0:;1:PEDAL_NOT_PRESSED;2:PEDAL_PRESSED;4:PEDAL_CONFIRMED_PRESSED;7:UNAVAILABLE
+,76D,24,25,1,0,0,,2207E2,6207E2,ff,V_K_PSS_ASS,0:Contactor Open (Pressure OK);1:Contactor Closed (Pressure Not OK);2:NOT USED;3:Open Circuit
+,76D,24,24,1,0,0,,2207E3,6207E3,ff,DriverDoorState,0:DRIVER_DOOR_CLOSE;1:DRIVER_DOOR_OPEN
+,76D,24,24,1,0,0,,2207E4,6207E4,ff,PassengerDoorState,0:DRIVER_DOOR_CLOSE;1:DRIVER_DOOR_OPEN
+,76D,24,25,1,0,0,,2207E5,6207E5,ff,DriverSafetyBeltReminder,0:DRIVER_SAFETY_BELT_REMINDER;1:DRIVER_SAFETY_BELT_WARNING_L1;2:DRIVER_SAFETY_BELT_WARNING_L2;3:DRIVER_SAFETY_BELT_NOT_USED
+,76D,24,25,1,0,0,,2207E6,6207E6,ff,V_K_DriverNappe_sens,0:DRIVER_NAPPE_UNAVAILABLE;1:DRIVER_NAPPE_DETECTED;2:DRIVER_NAPPE_NOT_DETECTED;3:DRIVER_NAPPE_NOT_USED
+,76D,24,25,1,0,0,,2207E7,6207E7,ff,DriverSeatStatus,0:DRIVER_NAPPE_UNAVAILABLE;1:DRIVER_NAPPE_DETECTED;2:DRIVER_NAPPE_NOT_DETECTED;3:DRIVER_NAPPE_NOT_USED
+,76D,24,25,1,0,0,,2207E8,6207E8,ff,EngineHoodState,0:ENGINEHOOD_UNAVAILABLE;1:ENGINEHOOD_OPENED;2:ENGINEHOOD_CLOSED;3:ENGINEHOOD_NOT_USED
+,76D,24,25,1,0,0,,2207E9,6207E9,ff,StartAutoAuthorization,0:START_AUTO_UNAVAILABLE;1:START_AUTO_AUTHORIZED;2:START_AUTO_FALSE_DEFINITIVELY;3:START_AUTO_FALSE_TEMPORARILY
+,76D,24,25,1,0,0,,2207EA,6207EA,ff,VehicleStateSSExtension,0:VEHICLE_NOT_IN_AUTOMATIC_STATE;1:VEHICLE_IN_AUTOMATIC_STATE;2:VEHICLESTATE_SS_EEXTENSION_NOT_USED;3:VEHICLE_EXTENSION_UNAVAILABLE
+,76D,24,25,1,0,0,,2207EB,6207EB,ff,GenericApplicativeDiagEnable,0:Only faults reports and alerts that MUST remain active during cranking or sleeping periods are enabled;1:All faults reports and alerts not related to APC power level are enabled;2:All faults reports and alerts are enabled;3:Unavailable
+,76D,24,25,1,0,0,,2207EC,6207EC,ff,AC_StopAutoForbidden,0:UNAVAILABLE_REQUEST_CLIM;1:STOP_AUTO_FORBIDDEN_CLIM;2:STOP_AUTO_AUTHORIZED_CLIM;3:CLIM_REQUEST_NOT_USED
+,76D,27,27,1,0,0,,2207ED,6207ED,ff,V_K_Type_Stop_Interdiction.StartAutoAuthorization,0:No failure;1:Failure
+,76D,28,28,1,0,0,,2207ED,6207ED,ff,V_K_Type_Stop_Interdiction.ETC_Failure,0:No failure;1:Failure
+,76D,29,29,1,0,0,,2207ED,6207ED,ff,V_K_Type_Stop_Interdiction.MSRInRegulation,0:No failure;1:Failure
+,76D,30,30,1,0,0,,2207ED,6207ED,ff,V_K_Type_Stop_Interdiction.AYCInRegulation,0:No failure;1:Failure
+,76D,31,31,1,0,0,,2207ED,6207ED,ff,V_K_Type_Stop_Interdiction.ASRInRegulation,0:No failure;1:Failure
+,76D,32,32,1,0,0,,2207ED,6207ED,ff,V_K_Type_Stop_Interdiction.ABSInRegulation,0:No failure;1:Failure
+,76D,33,33,1,0,0,,2207ED,6207ED,ff,V_K_Type_Stop_Interdiction.ABSMalfunction,0:No failure;1:Failure
+,76D,34,34,1,0,0,,2207ED,6207ED,ff,V_K_Type_Stop_Interdiction.ECM_StopAutoForbidden,0:No failure;1:Failure
+,76D,35,35,1,0,0,,2207ED,6207ED,ff,V_K_Type_Stop_Interdiction.BMS_StopAutoForbidden,0:No failure;1:Failure
+,76D,36,36,1,0,0,,2207ED,6207ED,ff,V_K_Type_Stop_Interdiction.ClimFailure,0:No failure;1:Failure
+,76D,37,37,1,0,0,,2207ED,6207ED,ff,V_K_Type_Stop_Interdiction.DefinitiveDriverExit,0:No failure;1:Failure
+,76D,38,38,1,0,0,,2207ED,6207ED,ff,V_K_Type_Stop_Interdiction.ASS_StopAutoForbidden,0:No failure;1:Failure
+,76D,39,39,1,0,0,,2207ED,6207ED,ff,V_K_Type_Stop_Interdiction.Starter_Inhibition,0:No failure;1:Failure
+,76D,24,25,1,0,0,,2207EF,6207EF,ff,ClutchSwitchMinimumTravel,0:Not used;1:Minimum clutch travel switch not active;2:Minimum clutch travel switch active;3:Unavailable
+,76D,24,25,1,0,0,,2207F0,6207F0,ff,ClutchSwitchMaximumTravel,0:Not used;1:Maximum clutch travel switch not active;2:Maximum clutch travel switch active;3:Unavailable
+,76D,24,25,1,0,0,,2207F1,6207F1,ff,NeutralContact,0:Reserved;1:Not reached;2:Reached;3:Unavailable
+,76D,24,25,1,0,0,,2207F2,6207F2,ff,RearGearEngaged,0:Not used;1:Not engaged;2:Engaged;3:Unavailable
+,76D,24,24,1,0,0,,2207F3,6207F3,ff,V_B_ParcoursStopAutoOK_status,0:ParcoursStopAuto Not OK;1:ParcoursStopAuto OK
+,76D,24,39,.01,0,2,km/h,2207F4,6207F4,ff,VehicleSpeed
+,76D,24,24,1,0,0,,2207F5,6207F5,ff,V_B_AppuiBtnConfirmed_status
+,76D,24,25,1,0,0,,2207F6,6207F6,ff,V_K_Activation_driver,0:NO_DRIVER_REQUEST;1:DRIVER_ACTIVATION_REQUEST;2:DRIVER_DEACTIVATION_REQUEST;3:DRIVER_REQUEST_UNKNOW
+,76D,24,25,1,0,0,,2207F7,6207F7,ff,V_K_CheckingInProgress,0:No check battery;1:Check of old battery before disconnection;2:Check of not old battery before disconnection;3:Check battery in TimeOut
+,76D,24,25,1,0,0,,2207F8,6207F8,ff,V_B_EndOfLearning_status,0:Not finished;1:Finished
+,76D,24,31,1,0,0,,2207F9,6207F9,ff,V_K_LearningCounter_status
+,76D,24,31,1,0,0,,2207FA,6207FA,ff,V_K_StartCounter_status
+,76D,24,24,1,0,0,,2207FB,6207FB,ff,V_B_DefautGEE_status
+,76D,24,24,1,0,0,,2207FC,6207FC,ff,V_B_ReserveSOC_ESM_OK
+,76D,24,24,1,0,0,,2207FD,6207FD,ff,V_B_ReserveSOC_SS_OK
+,76D,24,24,1,0,0,,2207FE,6207FE,ff,V_B_TempBattOK
+,76D,24,24,1,0,0,,2207FF,6207FF,ff,V_B_ButtonFail_Present_Algo,0:No Defect;1:Defect present
+,76D,24,55,1,0,0,,220800,620800,4ff,V_K_InitialStartNbr1
+,76D,24,55,1,0,0,,220801,620801,4ff,V_K_TotalStartNbr1
+,76D,24,55,1,0,0,,220802,620802,4ff,V_K_ROM_InitialStartNbr
+,76D,24,55,1,0,0,,220803,620803,4ff,V_K_ROM_TotalStartNbr
+,76D,24,29,10000,0,0,,220804,620804,ff,C_K_NbrOfStartThreshold
+,76D,24,24,1,0,0,,220805,620805,ff,C_B_PositionLights,0:No Follow me home;1:Follow me home
+,76D,24,39,1,0,0,,220806,620806,ff,C_K_EEPROM_StopStartChecksum
+,76D,24,55,1,0,0,,220807,620807,4ff,E_B_ECUFailure_FailureInhibition
+,76D,24,31,80000,0,0,,220808,620808,ff,C_K_CorrosionBatMax
+,76D,24,31,1000,0,0,,220809,620809,ff,C_K_CyclageBatMax
+,76D,24,55,1,0,0,,220810,620810,4ff,V_K_InitialStartNbr2
+,76D,24,55,1,0,0,,220811,620811,4ff,V_K_TotalStartNbr2
+,76D,31,31,1,0,0,,2208A1,6208A1,ff,C_B_VehicleType,0:Key vehicle;1:Keyless vehicle
+,76D,24,31,.1,-100,1,V,2208A7,6208A7,ff,C_U_alt_Start
+,76D,24,24,1,0,0,,2208A8,6208A8,ff,C_B_ABSMalfunction_Inhibition,0:Stop Auto Authorised in case of ABS Malufunction flags;1:No Stop Auto in case of ABS Malufunction flags
+,76D,24,31,1,0,0,%,2208A9,6208A9,ff,C_Pct_SOCZoneTravailESM_min
+,76D,24,55,1,0,0,,2208AA,6208AA,4ff,V_K_ECUFailureType_U32
+,76D,24,1983,1,0,0,,220901,620901,4ff,DataRecorderData_01
+,76D,24,1983,1,0,0,,220902,620902,4ff,DataRecorderData_02
+,76D,24,1423,1,0,0,,220903,620903,4ff,DataRecorderData_03
+,76D,24,583,1,0,0,,220904,620904,4ff,DataRecorderData_04
+,76D,31,31,1,0,0,,220905,620905,ff,E_B_ElectricalVehicle,0:Not an electrical vehicle;1:Electrical vehicle
+,76D,0,0,1,0,0,,3E01,7E01,ff,TesterPresent.WithResponse

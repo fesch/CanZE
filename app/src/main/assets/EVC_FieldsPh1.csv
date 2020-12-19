@@ -1,0 +1,1158 @@
+,7EC,0,0,1,0,0,,1081,5081,ff,StartDiagnosticSession.Default
+,7EC,0,0,1,0,0,,1085,5085,ff,StartDiagnosticSession.Programming
+,7EC,0,0,1,0,0,,10C0,50C0,ff,StartDiagnosticSession.ExtendedDiagnosticSession
+,7EC,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
+,7EC,16,23,1,0,0,,1902AF,5902AF,ff,DTCStatusAvailabilityMask
+,7EC,24,39,1,0,0,,1902AF,5902AF,ff,DTCDeviceAndFailureTypeOBD
+,7EC,40,47,1,0,0,,1902AF,5902AF,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM (Frequency Modulated) / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;10:Not compatible;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;32:test;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adjustment failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or system operation obstructed or blocked;152:component or system over temperature;241:Safety Case 1;242:Safety Case 2;243:Multiple Failure;244:Temperature too Low;245:Negative Loop Error;246:Positive Loop Error;247:Initialisation not valid;248:Overspeed;249:Limp Home;250:Specific Supplier;251:-;252:--;253:Drift low;254:Drift  high
+,7EC,44,47,1,0,0,,1902AF,5902AF,ff,DTCFailureType.ManufacturerOrSupplier
+,7EC,48,48,1,0,0,,1902AF,5902AF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,7EC,49,49,1,0,0,,1902AF,5902AF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,7EC,50,50,1,0,0,,1902AF,5902AF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,7EC,51,51,1,0,0,,1902AF,5902AF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,7EC,52,52,1,0,0,,1902AF,5902AF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,7EC,53,53,1,0,0,,1902AF,5902AF,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,7EC,54,54,1,0,0,,1902AF,5902AF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,7EC,55,55,1,0,0,,1902AF,5902AF,ff,DTCStatus.testFailed,0:No;1:Yes
+,7EC,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord
+,7EC,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC
+,7EC,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord
+,7EC,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC
+,7EC,56,79,1,0,0,km,190600000080,590600000080,ff,DTCExtendedData.Mileage
+,7EC,16,39,1,0,0,,190600000081,590600000081,4ff,DTCRecord
+,7EC,40,47,1,0,0,,190600000081,590600000081,ff,StatusOfDTC
+,7EC,48,55,1,0,0,,190600000081,590600000081,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage
+,7EC,56,63,1,0,0,,190600000081,590600000081,ff,DTCExtendedData.AgingCounter
+,7EC,16,39,1,0,0,,190600000082,590600000082,4ff,DTCRecord
+,7EC,40,47,1,0,0,,190600000082,590600000082,ff,StatusOfDTC
+,7EC,48,55,1,0,0,,190600000082,590600000082,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage
+,7EC,56,63,1,0,0,,190600000082,590600000082,ff,DTCExtendedData.DTCOccurrenceCounter
+,7EC,16,39,1,0,0,,190600000084,590600000084,4ff,DTCRecord
+,7EC,40,47,1,0,0,,190600000084,590600000084,ff,StatusOfDTC
+,7EC,56,63,1,0,0,,190600000084,590600000084,ff,DTCExtendedData.DTCOccurrenceCounter_2
+,7EC,16,39,1,0,0,,190600000085,590600000085,4ff,DTCRecord
+,7EC,40,47,1,0,0,,190600000085,590600000085,ff,StatusOfDTC
+,7EC,56,79,1,0,0,km,190600000085,590600000085,ff,DTCExtendedData.DTCLastDiseappearMileage
+,7EC,16,39,1,0,0,,190600000086,590600000086,4ff,DTCRecord
+,7EC,40,47,1,0,0,,190600000086,590600000086,ff,StatusOfDTC
+,7EC,56,79,1,0,0,km,190600000086,590600000086,ff,DTCExtendedData.DTCTravelledDistanceFailurePresent
+,7EC,16,39,1,0,0,,190600000087,590600000087,4ff,DTCRecord
+,7EC,40,47,1,0,0,,190600000087,590600000087,ff,StatusOfDTC
+,7EC,56,79,1,0,0,km,190600000087,590600000087,ff,DTCExtendedData.DTCFirstAppearMileage
+,7EC,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord
+,7EC,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC
+,7EC,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage
+,7EC,56,63,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedData.DTCOccurrenceCounter
+,7EC,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
+,7EC,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode
+,7EC,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
+,7EC,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
+,7EC,128,143,1,0,0,,2180,6180,4ff,SoftwareNumber
+,7EC,144,159,1,0,0,,2180,6180,4ff,EditionNumber
+,7EC,160,175,1,0,0,,2180,6180,4ff,CalibrationNumber
+,7EC,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;1:237D4;2:237D3
+,7EC,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:N/A;1:237D4
+,7EC,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A;1:HMLGT
+,7EC,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+,7EC,16,151,1,0,0,,2181,6181,2ff,V.I.N
+,7EC,152,167,1,0,0,,2181,6181,4ff,CRC
+,7EC,16,39,1,0,0,,2184,6184,4ff,ITG Supplier Number
+,7EC,40,47,1,0,0,,2184,6184,2ff,Traceability Factory Code
+,7EC,48,143,1,0,0,,2184,6184,2ff,Traceability Serial Number
+,7EC,16,103,1,0,0,,21B7,61B7,4ff,Configuration of Electrical Vehicle Networks
+,7EC,16,103,1,0,0,,21B8,61B8,4ff,List of Electrical Vehicle ECUs with After-sales diagnostic
+,7EC,16,23,1,0,0,,21EF,61EF,2ff,Hardware Part Number 1
+,7EC,24,31,1,0,0,,21EF,61EF,2ff,Hardware Part Number 2
+,7EC,32,39,1,0,0,,21EF,61EF,2ff,Hardware Part Number 3
+,7EC,40,47,1,0,0,,21EF,61EF,2ff,Hardware Part Number 4
+,7EC,48,55,1,0,0,,21EF,61EF,2ff,Hardware Part Number 5
+,7EC,56,63,1,0,0,,21EF,61EF,2ff,Hardware Part Number 6
+,7EC,64,71,1,0,0,,21EF,61EF,2ff,Hardware Part Number 7
+,7EC,72,79,1,0,0,,21EF,61EF,2ff,Hardware Part Number 8
+,7EC,80,87,1,0,0,,21EF,61EF,2ff,Hardware Part Number 9
+,7EC,88,95,1,0,0,,21EF,61EF,2ff,Hardware Part Number 10
+,7EC,96,103,1,0,0,,21EF,61EF,2ff,Software Part Number 1
+,7EC,104,111,1,0,0,,21EF,61EF,2ff,Software Part Number 2
+,7EC,112,119,1,0,0,,21EF,61EF,2ff,Software Part Number 3
+,7EC,120,127,1,0,0,,21EF,61EF,2ff,Software Part Number 4
+,7EC,128,135,1,0,0,,21EF,61EF,2ff,Software Part Number 5
+,7EC,136,143,1,0,0,,21EF,61EF,2ff,Software Part Number 6
+,7EC,144,151,1,0,0,,21EF,61EF,2ff,Software Part Number 7
+,7EC,152,159,1,0,0,,21EF,61EF,2ff,Software Part Number 8
+,7EC,160,167,1,0,0,,21EF,61EF,2ff,Software Part Number 9
+,7EC,168,175,1,0,0,,21EF,61EF,2ff,Software Part Number 10
+,7EC,16,55,1,0,0,,21F0,61F0,2ff,PartNumber.LowerPart
+,7EC,56,63,1,0,0,,21F0,61F0,4ff,DiagnosticIdentificationCode
+,7EC,64,87,1,0,0,,21F0,61F0,2ff,SupplierNumber.ITG
+,7EC,88,127,1,0,0,,21F0,61F0,2ff,HardwareNumber.LowerPart
+,7EC,128,143,1,0,0,,21F0,61F0,4ff,SoftwareNumber
+,7EC,144,159,1,0,0,,21F0,61F0,4ff,EditionNumber
+,7EC,160,175,1,0,0,,21F0,61F0,4ff,CalibrationNumber
+,7EC,176,183,1,0,0,,21F0,61F0,ff,PartNumber.BasicPartList,0:N/A;1:237D4;2:237D3
+,7EC,184,191,1,0,0,,21F0,61F0,ff,HardwareNumber.BasicPartList,0:N/A;1:237D4
+,7EC,192,199,1,0,0,,21F0,61F0,ff,ApprovalNumber.BasicPartList,0:N/A;1:HMLGT
+,7EC,200,207,1,0,0,,21F0,61F0,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+,7EC,16,55,1,0,0,,21FF,61FF,2ff,ApprovalNumber.LowerPart
+,7EC,56,95,1,0,0,,21FF,61FF,2ff,ProgrammingSiteReference
+,7EC,96,135,1,0,0,,21FF,61FF,2ff,ProgrammingToolReference
+,7EC,136,143,1,0,0,,21FF,61FF,ff,NumberOfReprogrammings
+,7EC,144,167,1,0,0,,21FF,61FF,4ff,DateOfReprogramming
+,7EC,168,183,1,0,0,,21FF,61FF,4ff,TimeOfReprogramming
+,7EC,184,191,1,0,0,,21FF,61FF,ff,SaveMarking
+,7EC,192,207,1,0,0,,21FF,61FF,4ff,CrcOfLogSave
+,7EC,24,31,1,0,0,,222000,622000,4ff,DIDs supported in range [$2001 - $2020]
+,7EC,24,31,1,40,0,°C,222001,622001,ff,($2001) Battery Rack temperature
+,7EC,24,39,.02,0,2,%,222002,622002,ff,($2002) State Of Charge (SOC) HV battery
+,7EC,24,39,.01,0,2,km/h,222003,622003,ff,($2003) Vehicle speed
+,7EC,24,39,.5,0,1,V,222004,622004,ff,($2004) consolidated HV voltage
+,7EC,24,39,.01,0,2,V,222005,622005,ff,($2005) Battery voltage 14v
+,7EC,24,47,1,0,0,km,222006,622006,ff,($2006) Total vehicle distance
+,7EC,24,39,1,0,0,mV,22200B,62200B,ff,($200B) Accelerator pedal voltage _ track 1
+,7EC,24,39,1,0,0,mV,22200C,62200C,ff,($200C) Accelerator pedal voltage _ track 2
+,7EC,24,39,.01,0,2,V,22200D,62200D,ff,Freon pressure sensor voltage
+,7EC,31,31,1,0,0,,22200E,62200E,ff,($200E) Key state,0:key off;1:key on
+,7EC,28,31,1,0,0,,22200F,62200F,ff,($200F) Brake pedal _ switches consolidation state,0:Not used;1:not pressed;2:pressed;3:Not Used;4:confirmed pressed
+,7EC,24,31,1,0,0,,222010,622010,ff,($2010) Engine status,0:0-engine stopped;16:16-engine driven;32:32-engine stalled;48:48-engine autonomious
+,7EC,24,31,1,0,0,,222020,622020,4ff,DIDs supported in range [$2021 - $2040]
+,7EC,24,39,1,0,0,mV,222021,622021,ff,($2021) Sensors supply voltage 1
+,7EC,24,39,1,0,0,mV,222022,622022,ff,($2022) Sensors supply voltage 2
+,7EC,30,31,1,0,0,,222025,622025,ff,($2025) Brake pedal _ close active switch state,0:reserved;1:not pressed;2:pressed
+,7EC,30,31,1,0,0,,222026,622026,ff,($2026) Brake pedal _ open active switch state,0:reserved;1:not pressed;2:pressed
+,7EC,24,39,.00125,0,3,-,22202E,62202E,ff,($202E) Accelerator pedal position
+,7EC,24,31,1,0,0,km/h,222035,622035,ff,($2035) CCSL _ Cruise control speed setpoint
+,7EC,24,31,1,0,0,-,222036,622036,ff,($2036) Counter of inconsistencies between accelerator pedal and brake
+,7EC,24,39,1,0,0,mV,222039,622039,ff,($2039) CCSL _ Steering wheel push buttons voltage
+,7EC,31,31,1,0,0,,22203A,62203A,ff,($203A) Configuration _ Cruise control (option),0:without;1:with
+,7EC,31,31,1,0,0,,22203B,62203B,ff,($203B) Configuration _ Cruise control (OnOff button),0:without;1:with
+,7EC,31,31,1,0,0,,22203C,62203C,ff,($203C) Cruise control OnOff button state,0:off;1:on
+,7EC,31,31,1,0,0,,22203D,62203D,ff,($203D) Configuration _ Speed limiter (option),0:without;1:with
+,7EC,31,31,1,0,0,,22203E,62203E,ff,($203E) Configuration _ Speed limiter (OnOff button),0:without;1:with
+,7EC,31,31,1,0,0,,22203F,62203F,ff,($203F) Speed limiter OnOff button state,0:off;1:on
+,7EC,24,31,1,0,0,,222040,622040,4ff,DIDs supported in range [$2041 - $2060]
+,7EC,31,31,1,0,0,,222041,622041,ff,($2041) Configuration _ CCSL steering wheel push buttons,0:without;1:with
+,7EC,31,31,1,0,0,,222042,622042,ff,Configuration _ Air conditioning control unit,0:without;1:with
+,7EC,31,31,1,0,0,,222043,622043,ff,Configuration _ Freon pressure sensor,0:without;1:with
+,7EC,31,31,1,0,0,,222047,622047,ff,($2047) First start done,0:no;1:yes
+,7EC,29,31,1,0,0,,22204B,62204B,ff,($204B) CCSL _ Steering wheel push buttons state,0:unpressed;1:invalid voltage;2:open circuit;3:suspend button pressed;4:set - button pressed;5:set + button pressed;6:resume button pressed
+,7EC,29,31,1,0,0,,22204C,62204C,ff,($204C) CCSL _ Status,0:CC and SL off;1:SL on (active or over-speed);2:SL on (awaiting or supsended);3:SL requested and in failure;4:CC on (active);5:CC on (awaiting or supsended);6:CC requested and in failure;7:CC and SL not present
+,7EC,29,29,1,0,0,,22204D,62204D,ff,($204D) CCSL - State of the failures which cause irreversible CC safety failure.2,0:No activation of the minimum travel clutch switch without CC deactivation;1:activation of the minimum travel clutch switch without CC deactivation
+,7EC,30,30,1,0,0,,22204D,62204D,ff,($204D) CCSL - State of the failures which cause irreversible CC safety failure.1,0:No activation of the open brake switch without CC deactivation;1:activation of the open brake switch without CC deactivation
+,7EC,31,31,1,0,0,,22204D,62204D,ff,($204D) CCSL - State of the failures which cause irreversible CC safety failure.0,0:No Presence of CC force request despite the CC deactivation;1:Presence of CC force request despite the CC deactivation
+,7EC,26,26,1,0,0,,22204E,62204E,ff,($204E) CCSL - State of the reversible failures not due to CCSL which cause CCSL failure.5,0:No SL engine inhibition;1:SL engine inhibition
+,7EC,27,27,1,0,0,,22204E,62204E,ff,($204E) CCSL - State of the reversible failures not due to CCSL which cause CCSL failure.4,0:No change of the displayed speed unit;1:Change of the displayed speed unit
+,7EC,28,28,1,0,0,,22204E,62204E,ff,($204E) CCSL - State of the reversible failures not due to CCSL which cause CCSL failure.3,0:No displayed vehicle speed absence;1:Displayed vehicle speed absence
+,7EC,29,29,1,0,0,,22204E,62204E,ff,($204E) CCSL - State of the reversible failures not due to CCSL which cause CCSL failure.2,0:No real vehicle speed absence;1:Real vehicle speed absence
+,7EC,30,30,1,0,0,,22204E,62204E,ff,($204E) CCSL - State of the reversible failures not due to CCSL which cause CCSL failure.1,0:No displayed vehicle speed unavailable;1:Displayed vehicle speed unavailable
+,7EC,31,31,1,0,0,,22204E,62204E,ff,($204E) CCSL - State of the reversible failures not due to CCSL which cause CCSL failure.0,0:No real vehicle speed unavailable;1:Real vehicle speed unavailable
+,7EC,24,24,1,0,0,,22204F,62204F,ff,($204F) CCSL - State of the reversible failures not due to CC which cause CC failure.7,0:No CC engine inhibition;1:CC engine inhibition
+,7EC,25,25,1,0,0,,22204F,62204F,ff,($204F) CCSL - State of the reversible failures not due to CC which cause CC failure.6,0:No Multi Function Contactor failure;1:Multi Function Contactor failure
+,7EC,26,26,1,0,0,,22204F,62204F,ff,($204F) CCSL - State of the reversible failures not due to CC which cause CC failure.5,0:No sudden braking detected without brake information;1:Sudden braking detected without brake information
+,7EC,27,27,1,0,0,,22204F,62204F,ff,($204F) CCSL - State of the reversible failures not due to CC which cause CC failure.4,0:No braking detected without brake information;1:Braking detected without brake information
+,7EC,28,28,1,0,0,,22204F,62204F,ff,($204F) CCSL - State of the reversible failures not due to CC which cause CC failure.3,0:No brake information absence;1:Brake information absence
+,7EC,29,29,1,0,0,,22204F,62204F,ff,($204F) CCSL - State of the reversible failures not due to CC which cause CC failure.2,0:No brake information unavailable;1:Brake information unavailable
+,7EC,30,30,1,0,0,,22204F,62204F,ff,($204F) CCSL - State of the reversible failures not due to CC which cause CC failure.1
+,7EC,31,31,1,0,0,,22204F,62204F,ff,($204F) CCSL - State of the reversible failures not due to CC which cause CC failure.0
+,7EC,24,39,.01,0,2,km/h,222050,622050,ff,($2050) Displayed vehicle speed received on the CAN network
+,7EC,31,31,1,0,0,,222051,622051,ff,($2051) Displayed vehicle speed unit,0:km/h;1:mph
+,7EC,31,31,1,0,0,,22205B,62205B,ff,($205B) Limp home activation state,0:deactivated;1:activated
+,7EC,24,31,1,0,0,,222060,622060,4ff,DIDs supported in range [$2061 - $2080]
+,7EC,24,39,1,0,0,s,22206A,62206A,ff,($206A) Brake pedal _ duration of the close active switch blocked
+,7EC,24,39,1,0,0,s,22206B,62206B,ff,($206B) Brake pedal _ duration of the open active switch blocked
+,7EC,31,31,1,0,0,,22206E,62206E,ff,($206E) Configuration _ Brake pedal _ open active switch,0:without;1:with
+,7EC,26,26,1,0,0,,222078,622078,ff,($2078) CCSL - State of the causes for normal CCSL deactivation.5,0:No Eco mode request change;1:Eco mode request change
+,7EC,27,27,1,0,0,,222078,622078,ff,($2078) CCSL - State of the causes for normal CCSL deactivation.4,0:No Gearbox on a neutral position;1:Gearbox on a neutral position
+,7EC,28,28,1,0,0,,222078,622078,ff,($2078) CCSL - State of the causes for normal CCSL deactivation.3,0:no Clutch pedal pressed or no connection;1:Clutch pedal pressed or no connection
+,7EC,29,29,1,0,0,,222078,622078,ff,($2078) CCSL - State of the causes for normal CCSL deactivation.2,0:No Braking;1:Braking
+,7EC,30,30,1,0,0,,222078,622078,ff,($2078) CCSL - State of the causes for normal CCSL deactivation.1,0:No Suspend button pressed;1:Suspend button pressed
+,7EC,31,31,1,0,0,,222078,622078,ff,($2078) CCSL - State of the causes for normal CCSL deactivation.0,0:No Main switch changed;1:Main switch changed
+,7EC,25,25,1,0,0,,222079,622079,ff,($2079) CCSL - State of the system causes for normal CCSL deactivation.6,0:No SL system engine control inhibition;1:SL system engine control inhibition
+,7EC,26,26,1,0,0,,222079,622079,ff,($2079) CCSL - State of the system causes for normal CCSL deactivation.5,0:No CC system engine control inhibition;1:CC system engine control inhibition
+,7EC,27,27,1,0,0,,222079,622079,ff,($2079) CCSL - State of the system causes for normal CCSL deactivation.4,0:No Assisted nor manual parking brake;1:Assisted or manual parking brake
+,7EC,28,28,1,0,0,,222079,622079,ff,($2079) CCSL - State of the system causes for normal CCSL deactivation.3,0:Speed / setpoint ratio not too small;1:Speed / setpoint ratio too small
+,7EC,29,29,1,0,0,,222079,622079,ff,($2079) CCSL - State of the system causes for normal CCSL deactivation.2,0:ASR or AYC not in regulation;1:ASR or AYC in regulation
+,7EC,30,30,1,0,0,,222079,622079,ff,($2079) CCSL - State of the system causes for normal CCSL deactivation.1,0:Gearbox not on a reverse position;1:Gearbox on a reverse position
+,7EC,31,31,1,0,0,,222079,622079,ff,($2079) CCSL - State of the system causes for normal CCSL deactivation.0,0:Start button not pressed;1:Start button pressed
+,7EC,24,31,1,0,0,s,22207A,62207A,ff,($207A) Maximum duration of resume button pressed
+,7EC,24,31,1,0,0,s,22207B,62207B,ff,($207B) Maximum duration of set + button pressed
+,7EC,24,31,1,0,0,s,22207C,62207C,ff,($207C) Maximum duration of set manus button pressed
+,7EC,24,31,1,0,0,s,22207D,62207D,ff,($207D) Maximum duration of suspend button pressed
+,7EC,24,31,1,0,0,-,22207E,62207E,ff,($207E) Maximum value of blocked button detection counter
+,7EC,24,31,1,0,0,,222080,622080,4ff,DIDs supported in range [$2081 - $20A0]
+,7EC,30,31,1,0,0,,222093,622093,ff,($2093) Test of underload made on the freon pressure measure,0:Test conditions not satisfied;1:Reserved;2:Test conditions satisfied and incorrect cooling gas load;3:Test conditions satisfied and correct cooling gas load
+,7EC,24,31,1,0,0,,222120,622120,4ff,DIDs supported in range [$2121-$2140]
+,7EC,31,31,1,0,0,,22212E,62212E,ff,($212E) A crash occured and the diagnostic add-on strategy is frozen,0:No crash detected;1:Crash detected
+,7EC,24,31,1,0,0,,222160,622160,4ff,DIDs supported in range [$2161 - $2180]
+,7EC,31,31,1,0,0,,222166,622166,ff,($2166) External controls safety authorization flag,0:Not enabled;1:Enabled
+,7EC,24,24,1,0,0,,222170,622170,ff,($2170) CCSL - State of the system causes for normal CCSL deactivation (2nd byte).7,1:Reserved
+,7EC,25,25,1,0,0,,222170,622170,ff,($2170) CCSL - State of the system causes for normal CCSL deactivation (2nd byte).6,1:Reserved
+,7EC,26,26,1,0,0,,222170,622170,ff,($2170) CCSL - State of the system causes for normal CCSL deactivation (2nd byte).5,1:Reserved
+,7EC,27,27,1,0,0,,222170,622170,ff,($2170) CCSL - State of the system causes for normal CCSL deactivation (2nd byte).4,1:Reserved
+,7EC,28,28,1,0,0,,222170,622170,ff,($2170) CCSL - State of the system causes for normal CCSL deactivation (2nd byte).3,1:Reserved
+,7EC,29,29,1,0,0,,222170,622170,ff,($2170) CCSL - State of the system causes for normal CCSL deactivation (2nd byte).2,1:Reserved
+,7EC,30,30,1,0,0,,222170,622170,ff,($2170) CCSL - State of the system causes for normal CCSL deactivation (2nd byte).1,1:Reserved
+,7EC,31,31,1,0,0,,222170,622170,ff,($2170) CCSL - State of the system causes for normal CCSL deactivation (2nd byte).0,0:no vehicle STOP information on the cluster;1:vehicle STOP information on the cluster
+,7EC,24,31,1,0,0,,222180,622180,4ff,DIDs supported in range [$2181 - $21A0]
+,7EC,24,55,.1,0,1,km,222181,622181,1ff,($2181) Mileage recording
+,7EC,24,39,.01,0,2,km/h,222184,622184,ff,($2184) Requested speed setpoint for FSL function
+,7EC,24,31,1,0,0,,222220,622220,4ff,DIDs supported in range [$2221 - $2240]
+,7EC,31,31,1,0,0,,222221,622221,ff,($2221) Brake pedal states validity indicator is in the limp home data status,0:deactivated;1:activated
+,7EC,31,31,1,0,0,,222223,622223,ff,($2223) Engine control request for cruise control abnormal deactivation,0:deactivated;1:activated
+,7EC,31,31,1,0,0,,222224,622224,ff,($2224) Engine control request for cruise control system deactivation,0:deactivated;1:activated
+,7EC,31,31,1,0,0,,222225,622225,ff,($2225) Vehicle speed received on the CAN network not available after a filtering time,0:deactivated;1:activated
+,7EC,31,31,1,0,0,,222226,622226,ff,($2226) Displayed vehicle speed received on the CAN network not available after a filtering time,0:deactivated;1:activated
+,7EC,31,31,1,0,0,,222227,622227,ff,($2227) Engine control request for speed limiter abnormal deactivation,0:deactivated;1:activated
+,7EC,31,31,1,0,0,,222228,622228,ff,($2228) Engine control request for speed limiter system deactivation,0:deactivated;1:activated
+,7EC,31,31,1,0,0,,22222B,62222B,ff,($222B) Automatic or manual parking brake detected,0:deactivated;1:activated
+,7EC,31,31,1,0,0,,22222F,62222F,ff,($222F) Authorization to connect cruise control and speed limiter options,0:Disabled;1:Enabled
+,7EC,31,31,1,0,0,,222230,622230,ff,($2230) ABS in regulation,0:No activated;1:Activated
+,7EC,31,31,1,0,0,,222231,622231,ff,($2231) Authorized ASR torque request,0:Not Autorized;1:Autorized
+,7EC,31,31,1,0,0,,222232,622232,ff,($2232) AYC in regulation,0:No activated;1:Activated
+,7EC,31,31,1,0,0,,222233,622233,ff,($2233) Request to turn the brake lights on (1) during regenerative braking,0:Brake light off;1:Brake light on
+,7EC,31,31,1,0,0,,222234,622234,ff,($2234) PTC accessories activation flag.,0:No activated;1:Activated
+,7EC,31,31,1,0,0,,222235,622235,ff,($2235) Flag indicating that a MSR torque request is being applied,0:No request of MSR torque;1:Request of MSR torque
+,7EC,31,31,1,0,0,,222236,622236,ff,($2236) Foot_up situation detected,0:No foot up detected;1:Foot up detected
+,7EC,31,31,1,0,0,,222237,622237,ff,($2237) Flag to limit the regenerative braking demand in case MSR function is faulty,0:No limitation;1:Limitation activated
+,7EC,29,31,1,0,0,,222238,622238,ff,($2238) Gear level position,0:transient;1:park;2:reverse;3:neutral;4:drive
+,7EC,24,39,.00125,0,3,-,222239,622239,ff,($2239) Powertrain setpoint (%) requested by the driver via the accelerator pedal
+,7EC,24,39,.5,32768,1,N,22223A,62223A,ff,($223A) Force demand at the wheels (output of the drivers' arbitration)
+,7EC,24,39,.03125,32768,2,N.m,22223B,62223B,ff,($223B) Electrical motor (EM) torque setpoint before AJS Correction action
+,7EC,24,39,.03125,12800,2,N.m,22223C,62223C,ff,($223C) ASR setpoint torque sent to torque arbitration
+,7EC,24,39,.03125,32768,2,N.m,22223D,62223D,ff,($223D) Torque correction calculated by AJCOR function
+,7EC,24,39,.03125,32768,2,N.m,22223E,62223E,ff,($223E) Final torque setpoint after AJMOD action
+,7EC,24,39,.5,32768,1,N,22223F,62223F,ff,($223F) Force demand derived from accelerator pedal position
+,7EC,24,31,1,0,0,,222240,622240,4ff,DIDs supported in range [$2241 - $2260]
+,7EC,24,39,.03125,12800,2,N.m,222241,622241,ff,($2241) MSR torque setting sent to torque arbitration
+,7EC,24,39,1,32768,0,rpm,222242,622242,ff,($2242) Filtered electric motor (EM) speed
+,7EC,24,39,.03125,32768,2,N.m,222243,622243,ff,($2243) Final effective torque request to the electric motor (EM)
+,7EC,28,31,1,0,0,-,222244,622244,ff,($2244) Lever position word
+,7EC,24,39,.03125,32768,2,N.m,222245,622245,ff,($2245) Limited electrical motor (EM) effective torque setpoint
+,7EC,24,39,.03125,32768,2,N.m,222246,622246,ff,($2246) Electrical motor (EM) maximum effective torque available
+,7EC,24,39,.03125,32768,2,N.m,222247,622247,ff,($2247) Minimum effective torque that can be requested to the electrical motor (EM)
+,7EC,24,39,.5,32768,1,N,222248,622248,ff,($2248) Force demand (at the wheels) when powertrain setpoint is equal to zero
+,7EC,24,39,.5,32768,1,N,222249,622249,ff,($2249)Force demand(at the wheels)when PWT setpoint is 0,before saturation accounting for min tq demand available
+,7EC,24,39,.00062561,0,3,V,22224A,62224A,ff,($224A) Voltage measure of main relay (VBR)
+,7EC,30,31,1,0,0,,22224B,62224B,ff,($224B) Data used to validated a detection of braking,0:Nok;1:Ok;2:Failed 2
+,7EC,30,31,1,0,0,,22224C,62224C,ff,($224C) Gear lever position validity flag,0:Nok;1:Ok;2:Failed 2
+,7EC,30,31,1,0,0,,22224D,62224D,ff,($224D) METS Vehicle speed validity flag,0:Nok;1:Ok;2:Failed 2 Degraded mode (Vehicle speed from engine speed);3:Failed 3 Degraded mode (ESP ECU absent but not confirmed absent- vehicle speed frozen)
+,7EC,30,31,1,0,0,,22224E,62224E,ff,($224E) Engine speed validity flag from ECC,0:Nok;1:Ok;2:Failed 2
+,7EC,24,31,1,0,0,,222500,622500,4ff,DIDs supported in range [$2501 - $2520]
+,7EC,31,31,1,0,0,,22251F,62251F,ff,($251F) Vehicle speed threshold detected,0:0- Vehicle speed threshold not detected;1:1- Vehicle speed threshold detected
+,7EC,24,31,1,0,0,,222860,622860,4ff,DIDs supported in range [$2861 - $2880]
+,7EC,24,24,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.7,0:Temperature before turbine correcte;1:Temperature before turbine too high
+,7EC,25,25,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.6,0:Pression turbo correcte;1:Turbocharger/Manifold overpressure
+,7EC,26,26,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.5,0:Normal Engine Speed;1:Engine overspeed
+,7EC,27,27,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.4,0:Stop and Start not ON;1:Stop and Start not OFF
+,7EC,28,28,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.3,0:Not null vehicle speed;1:Unavailable vehicle speed
+,7EC,29,29,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.2,0:Accelerator pedal Not presed;1:Pressed accelerator pedal
+,7EC,30,30,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.1,0:Ignition in ON position;1:Ignition in OFF position
+,7EC,31,31,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.0,0:MGB in neutral position OR other kind of transmission in park or in neutral position;1:BVA/BVR en position autre que N ou P
+,7EC,32,32,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.15,0:-;1:reserved fot futur use
+,7EC,33,33,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.14,0:-;1:reserved fot futur use
+,7EC,34,34,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.13,0:-;1:reserved fot futur use
+,7EC,35,35,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.12,0:-;1:reserved fot futur use
+,7EC,36,36,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.11,0:brake pedal not pressed;1:brake pedal pressed
+,7EC,37,37,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.10,0:Normal coolant temperature;1:Excessive coolant temperature
+,7EC,38,38,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.9,0:Normal Manifold pressure;1:Manifold overpressure
+,7EC,39,39,1,0,0,,222875,622875,ff,($2875) External controls denial status flag.8,0:pression rail correcte;1:Excessive rail pressure
+,7EC,24,31,1,0,0,,222C00,622C00,4ff,DIDs supported in range [$2C01 - $2C20]
+,7EC,29,31,1,1,0,,222C04,622C04,ff,($2C04) Current gear engaged
+,7EC,24,31,1,0,0,,222C20,622C20,4ff,DIDs supported in range [$2C21 - $2C40]
+,7EC,31,31,1,0,0,,222C2C,622C2C,ff,($2C2C) Kick down state,0:no kick down;1:kick down
+,7EC,24,31,1,0,0,,223000,623000,4ff,DIDs supported in range [$3001 - $3020]
+,7EC,30,31,1,0,0,,223001,623001,ff,($3001) Verlog state,1:Vehicle Not Locked;2:Vehicle Locked;3:Not used
+,7EC,30,31,1,0,0,,223006,623006,ff,($3006) HV Network discharge request,0:Not used;1:Discharge not requested;2:Discharge requested
+,7EC,31,31,1,0,0,,223007,623007,ff,($3007) HV Network discharge Feedback,0:Active Discharge Not In Progress;1:Active Discharge In Progress
+,7EC,24,39,.5,0,1,V,223008,623008,ff,($3008) HV PEB voltage measure
+,7EC,24,31,1,0,0,,223020,623020,4ff,DIDs supported in range [$3021 - $3040]
+,7EC,31,31,1,0,0,,223022,623022,ff,($3022) DCDC activation request,0:DCDC Off;1:DCDC On
+,7EC,24,31,.05,-240,2,V,223023,623023,ff,($3023) 14V voltage request
+,7EC,24,31,.1,-40,1,V,223024,623024,ff,($3024) 14V DCDC voltage measure
+,7EC,24,31,1,0,0,A,223025,623025,ff,($3025) 14V DCDC current measure
+,7EC,24,31,.390625,0,1,%,223028,623028,ff,($3028) DCDC Load
+,7EC,25,31,1,0,0,%,223029,623029,ff,($3029) DCDC temperature indicator
+,7EC,30,31,1,0,0,,22302A,62302A,ff,($302A) General DCDC state,0:Standby;1:wake up but not activated;2:wake up and activated
+,7EC,24,31,1,0,0,,223040,623040,4ff,DIDs supported in range [$3041 - $3060]
+,7EC,24,39,.5,32768,1,A,223042,623042,ff,($3042) HV INV current measure
+,7EC,24,39,.03125,32768,2,N.m,223043,623043,ff,($3043) Torque request
+,7EC,24,39,10,32768,0,rpm,223045,623045,ff,($3045) Electrical Motor speed
+,7EC,24,39,.02,0,2,%,223047,623047,ff,($3047) INV temperature indicator
+,7EC,24,31,1,0,0,,223100,623100,4ff,DIDs supported in range [$3101 - $3120]
+,7EC,29,31,1,0,0,,223101,623101,ff,($3101) Charger Bloc state,0:Unvailable Value;1:SlowCharge and Diag State;2:Quick Charge and Diag State;3:Nissan Quick Charge and Diag State;4:Diagnosis State;5:No State;6:Not used
+,7EC,24,39,.5,0,1,V,223103,623103,ff,($3103) HV BCB voltage measure
+,7EC,31,31,1,0,0,,223104,623104,ff,($3104) Mains Network detection,0:Domestic Network is not present;1:Domestic Network is present
+,7EC,30,31,1,0,0,,223107,623107,ff,($3107) Charge current limitation,0:Unvailable value;1:10A Type;2:16A Type;3:Not used
+,7EC,31,31,1,0,0,,223108,623108,ff,($3108) Earth plug connection,0:No ground plug connection Failure;1:Ground Plug Connection Failure
+,7EC,25,31,1,0,0,°C,223109,623109,ff,($3109) BCB water temperature
+,7EC,24,31,1,0,0,%,22310A,62310A,ff,($310A) BCB internal temperature
+,7EC,30,31,1,0,0,,22310B,62310B,ff,($310B) interlock connection HV Bat, PEB,0:Unvailable Value;1:Open;2:Closed;3:Not used
+,7EC,30,31,1,0,0,,22310D,62310D,ff,($310D) Interlock JB cover,0:Unvailable Value;1:Open;2:Closed;3:Not used
+,7EC,30,31,1,0,0,,22310E,62310E,ff,($310E) Interlock JB Charge,0:Unvailable Value;1:Open;2:Closed;3:Not used
+,7EC,24,31,1,0,0,A,223110,623110,ff,($3110) Charge current measure
+,7EC,31,31,1,0,0,,223111,623111,ff,($3111) Quick charge start,0:Quick Charge Start Not Requested;1:Quick Charge Start Requested
+,7EC,31,31,1,0,0,,223112,623112,ff,($3112) Quick charge stop,0:Quick Charge Stop Not Requested;1:Quick Charge Stop Requested
+,7EC,24,31,1,0,0,A,223113,623113,ff,($3113) Quick charge current request
+,7EC,24,31,1,0,0,,223200,623200,4ff,DIDs supported in range [$3201 - $3220]
+,7EC,29,31,1,0,0,,223201,623201,ff,($3201) LBC mode request,0:Not Request;1:Slow Charge;2:Fast Charge;3:Normal Charge;4:Quick Drop;5:Not used;7:Unavailable value
+,7EC,29,31,1,0,0,,223202,623202,ff,($3202) LBC fonctionning state,0:Not used;1:Slow Charge;2:Fast Charge;3:Init;4:Transitory;5:Normal;6:BHV_QuickDrop_mode;7:Unavailable value
+,7EC,24,39,.5,0,1,V,223203,623203,ff,($3203) HV LBC voltage measure
+,7EC,24,39,.0625,131070,2,A,223204,623204,ff,($3204) HV LBC current measure
+,7EC,24,31,1,0,0,%,223206,623206,ff,($3206) State Of Health (SOH) HV battery
+,7EC,30,31,1,0,0,,223208,623208,ff,($3208) Caution flag state,0:C_HVBatteryNoDefault;1:C_HVBatteryLevel1Default;2:C_HVBatteryLevel2Default;3:C_HVBatteryDriving30sDefault
+,7EC,30,31,1,0,0,,223209,623209,ff,($3209) Failure flag state,0:Not used;1:No Default;2:Failure - Level2 Failure;3:Unavailable Value
+,7EC,24,31,.5,0,1,Kw,22320A,62320A,ff,($320A) Available discharge power
+,7EC,24,31,.5,0,1,Kw,22320B,62320B,ff,($320B) Available charge power
+,7EC,24,39,.005,0,3,kwh,22320C,62320C,ff,($320C) Available discharge Energy
+,7EC,31,31,1,0,0,,22320D,62320D,ff,($320D) Saving of the state of the interlocks.8,0:No default;1:Default present
+,7EC,32,32,1,0,0,,22320D,62320D,ff,($320D) Saving of the state of the interlocks.7,0:No default;1:Default present
+,7EC,33,33,1,0,0,,22320D,62320D,ff,($320D) Saving of the state of the interlocks.6,0:No default;1:Default present
+,7EC,34,34,1,0,0,,22320D,62320D,ff,($320D) Saving of the state of the interlocks.5,0:No default;1:Default present
+,7EC,35,35,1,0,0,,22320D,62320D,ff,($320D) Saving of the state of the interlocks.4,0:No default;1:Default present
+,7EC,36,36,1,0,0,,22320D,62320D,ff,($320D) Saving of the state of the interlocks.3,0:No default;1:Default present
+,7EC,37,37,1,0,0,,22320D,62320D,ff,($320D) Saving of the state of the interlocks.2,0:No default;1:Default present
+,7EC,38,38,1,0,0,,22320D,62320D,ff,($320D) Saving of the state of the interlocks.1,0:No default;1:Default present
+,7EC,39,39,1,0,0,,22320D,62320D,ff,($320D) Saving of the state of the interlocks.0,0:No default;1:Default present
+,7EC,24,31,1,0,0,,223300,623300,4ff,DIDs supported in range [$3301 - $3320]
+,7EC,24,31,.0625,0,2,V,223301,623301,ff,($3301) USM 14V Voltage measure (from CAN)
+,7EC,31,31,1,0,0,,223302,623302,ff,($3302) Wake Up Type,0:Customer Wake Up;1:System Wake Up
+,7EC,24,31,1,40,0,°C,223307,623307,ff,($3307) Heat water temperature
+,7EC,30,31,1,0,0,,223308,623308,ff,($3308) HV relay connection state,0:HV_Open;1:HV_Intermediate;2:HV_Connected
+,7EC,31,31,1,0,0,,223309,623309,ff,($3309) HV relay P1 command,0:Request for opening the main relay P1;1:Request for closing the main relay P1
+,7EC,31,31,1,0,0,,22330A,62330A,ff,($330A) HV relay P2 command,0:Request for opening the main relay P2;1:Request for closing the main relay P2
+,7EC,31,31,1,0,0,,22330B,62330B,ff,($330B) HV Battery relay A request,0:Request for opening the precharge relay A;1:Request for closing the precharge relay A
+,7EC,30,31,1,0,0,,22330C,62330C,ff,($330C) HV Network Insulation level,0:No InsulationFailure;1:Insulation Failure Level1;2:Insulation Failure Level2;3:Unavailable Insulation Detection
+,7EC,31,31,1,0,0,,22330D,62330D,ff,($330D) 14V Unballasting request,0:Not Unballasting request;1:Unballasting request
+,7EC,31,31,1,0,0,,223310,623310,ff,($3310) 14V Batterie charge request,0:Charge not requested;1:Charge requested
+,7EC,31,31,1,0,0,,223311,623311,ff,($3311) Heater switch state,0:Heater button deactivated;1:Heater button activated
+,7EC,31,31,1,0,0,,223312,623312,ff,($3312) Hot switch state,0:Hot heater button deactivated;1:Hot heater button activated
+,7EC,31,31,1,0,0,,223313,623313,ff,($3313) Cold switch state,0:Cold heater button deactivated;1:Cold heater button activated
+,7EC,31,31,1,0,0,,223315,623315,ff,($3315) QuickDrop lock 1st loop state,0:at least one battery lock open;1:both two battery locks are closed
+,7EC,31,31,1,0,0,,223316,623316,ff,($3316) QuickDrop lock 2nd loop state,0:at least one battery lock open;1:both two battery locks are closed
+,7EC,30,31,1,0,0,,223317,623317,ff,($3317) QuickDrop lock global state,0:BatteryLock open;1:Only one BatteryLock open;2:BatteryLock closed
+,7EC,24,31,1,0,0,%,223318,623318,ff,($3318) Driving pump Feedback
+,7EC,24,31,1,0,0,%,223319,623319,ff,($3319) Charge pump Feedback
+,7EC,24,31,1,0,0,%,22331A,62331A,ff,($331A) Heat pump Feedback
+,7EC,31,31,1,0,0,,22331B,62331B,ff,($331B) Cooling valve request,0:Request for opening the water gate of the charge mode;1:Request for closing the water gate of the charge mode
+,7EC,31,31,1,0,0,,22331D,62331D,ff,($331D) Pulser relay request,0:Request for opening the pulser relay;1:Request for closing the pulser relay
+,7EC,31,31,1,0,0,,22331E,62331E,ff,($331E) Heater request,0:Request for opening the heater relay;1:Request for closing the heater relay
+,7EC,24,31,1,0,0,,223320,623320,4ff,DIDs supported in range [$3321 - $3340]
+,7EC,31,31,1,0,0,,223322,623322,ff,($3322) Heater led state,0:Request for switching off the heater led;1:Request for switching on the heater led
+,7EC,31,31,1,0,0,,223325,623325,ff,($3325) Shiftlock request,0:Request for deactivate the shiftlock (P signal);1:Request for activate the shiftlock (P signal)
+,7EC,25,31,1,0,0,%,223326,623326,ff,($3326) Driving pump Request
+,7EC,25,31,1,0,0,%,223327,623327,ff,($3327) Charge pump Request
+,7EC,25,31,1,0,0,%,223328,623328,ff,($3328) Heat pump Request
+,7EC,31,31,1,0,0,,22332A,62332A,ff,($332A) Fan cabin status,0:Blower OK;1:Blower not OK
+,7EC,29,31,1,0,0,,22332B,62332B,ff,($332B) ETS state,0:ETS_Standby;1:ETS_WakeUp;2:ETS_Comfort;3:ETS_Driving;4:ETS_QuickDrop
+,7EC,29,31,1,0,0,,22332C,62332C,ff,($332C) Start refuse Reason,0:NO_REFUSE;1:REFUSE_PLUG;2:REFUSE_VERRLOGLOCKED;3:REFUSE_PRND_notN;4:REFUSE_PRND_notP;5:REFUSE_BATTERYLOCK;6:REFUSE_ENGINE
+,7EC,31,31,1,0,0,,22332D,62332D,ff,($332D) 14V Network functionning Authorization,0:Not Autorized;1:Autorized
+,7EC,31,31,1,0,0,,22332E,62332E,ff,($332E) PowerTrain functionning Authorization,0:Not Autorized;1:Autorized
+,7EC,30,31,1,0,0,,22332F,62332F,ff,($332F) Thermal Comfort functionning Authorization,0:Not Authorised;1:PTC Authorised only;2:AC Authorised only;3:PTC and AC Authorised
+,7EC,30,31,1,0,0,,223330,623330,ff,($3330) Charge Management functionning Authorization,0:Not Autorized;1:Autorized;2:Zero Ampere mode Activation request;3:Quick Charge Activation request
+,7EC,30,31,1,0,0,,223331,623331,ff,($3331) PreHeating functionning Authorization,0:Not Authorised;1:PTC Authorised only;2:AC Authorised only;3:PTC and AC Authorised
+,7EC,30,31,1,0,0,,223332,623332,ff,($3332) Electrical Machine functionning Authorization,0:Not used;1:Inverter Off;2:Inverter On
+,7EC,30,31,1,0,0,,223335,623335,ff,($3335) 1st level insulation Alert MMI request,0:Unavailable ;1:No ET Alert Isolation Level 1 Requested ;2:ET Alert Isolation Level 1 Requested ;3:not used 
+,7EC,30,31,1,0,0,,223336,623336,ff,($3336) 2nd level insulation Alert MMI request,0:Unavailable ;1:No ET Alert Isolation Level 2 Requested ;2:ET Alert Isolation Level 2 Requested ;3:not used 
+,7EC,30,31,1,0,0,,223337,623337,ff,($3337) ETS Alert MMI request,0:Unavailable ;1:No ET Alert ETS Default Requested ;2:ET Alert ETS Default Requested ;3:not used 
+,7EC,30,31,1,0,0,,223338,623338,ff,($3338) Motor Alert MMI request,0:Unavailable value;1:No ET Alert Motor Default Requested;2:ET Alert Motor Default Requested;3:Not used
+,7EC,30,31,1,0,0,,22333A,62333A,ff,($333A) Low Battery 14V MMI request,2:14VBattery Low Display Requested;1:No 14VBattery Low Display Requested;0:Unavailable value;3:Not used
+,7EC,31,31,1,0,0,,22333D,62333D,ff,($333D) Brake assist pump state,0:Pump Off;1:Pump On
+,7EC,24,31,1,0,0,,223340,623340,4ff,DIDs supported in range [$3341 - $3360]
+,7EC,24,31,1,0,0,%,223348,623348,ff,($3348) PTC request
+,7EC,24,55,1,0,0,-,223349,623349,1ff,($3349) Time Counter for the driving WEP in Low Speed
+,7EC,24,55,1,0,0,-,22334A,62334A,1ff,($334A) Time Counter for the driving WEP in Middle Speed
+,7EC,24,55,1,0,0,-,22334B,62334B,1ff,($334B) Time Counter for the driving WEP in High Speed
+,7EC,24,55,1,0,0,-,22334D,62334D,1ff,($334D) Time Counter for the load WEP in Low Speed
+,7EC,24,55,1,0,0,-,22334E,62334E,1ff,($334E) Time Counter for the load WEP in Middle Speed
+,7EC,24,55,1,0,0,-,22334F,62334F,1ff,($334F) Time Counter for the load WEP in High Speed
+,7EC,24,55,1,0,0,-,223351,623351,1ff,($3351) Time Counter for the Cooling fan in Low Speed
+,7EC,24,55,1,0,0,-,223352,623352,1ff,($3352) Time Counter for the Cooling fan in Middle Speed
+,7EC,24,55,1,0,0,-,223353,623353,1ff,($3353) Time Counter for the Cooling fan in High Speed
+,7EC,24,55,1,0,0,-,223355,623355,1ff,($3355) Time Counter for the PEB temperature in driving mode below 40 degrees celcius
+,7EC,24,55,1,0,0,-,223356,623356,1ff,($3356) Time Counter for the PEB temperature in driving mode between 40 degrees celcius and 50 degrees celcius
+,7EC,24,55,1,0,0,-,223357,623357,1ff,($3357) Time Counter for the PEB temperature in driving mode between 50degrees celcius and 60degrees celcius
+,7EC,24,55,1,0,0,-,223358,623358,1ff,($3358) Time Counter for the PEB temperature in driving mode between 60degrees celcius and 70degrees celcius
+,7EC,24,55,1,0,0,-,223359,623359,1ff,($3359) Time Counter for the PEB temperature in driving mode above 70 degrees celcius
+,7EC,24,55,1,0,0,-,22335A,62335A,1ff,($335A) Time Counter for the PEB temperature in load mode below 40 degrees celcius
+,7EC,24,55,1,0,0,-,22335B,62335B,1ff,($335B) Time Counter for the PEB temperature in load mode between 40 degrees celcius and 50 degrees celcius
+,7EC,24,55,1,0,0,-,22335C,62335C,1ff,($335C) Time Counter for the PEB temperature in load mode between 50 degrees celcius and 60 degrees celcius
+,7EC,24,55,1,0,0,-,22335D,62335D,1ff,($335D) Time Counter for the PEB temperature in load mode between 60 degrees celcius and 70 degrees celcius
+,7EC,24,55,1,0,0,-,22335E,62335E,1ff,($335E) Time Counter for the PEB temperature in load mode above 70 degrees celcius
+,7EC,24,55,1,0,0,-,22335F,62335F,1ff,($335F) Time Counter for the BCB temperature in driving mode below 40 degrees celcius
+,7EC,24,31,1,0,0,,223360,623360,4ff,DIDs supported in range [$3361 - $3380]
+,7EC,24,55,1,0,0,-,223361,623361,1ff,($3361) Time Counter for the BCB temperature in driving mode between 40 degrees celcius and 50 degrees celcius
+,7EC,24,55,1,0,0,-,223362,623362,1ff,($3362) Time Counter for the BCB temperature in driving mode between 50 degrees celcius and 60 degrees celcius
+,7EC,24,55,1,0,0,-,223363,623363,1ff,($3363) Time Counter for the BCB temperature in driving mode between 60 degrees celcius and 70 degrees celcius
+,7EC,24,55,1,0,0,-,223364,623364,1ff,($3364) Time Counter for the BCB temperature in driving mode above 70 degrees celcius
+,7EC,24,55,1,0,0,-,223365,623365,1ff,($3365) Time Counter for the BCB temperature in load mode below 40 degrees celcius
+,7EC,24,55,1,0,0,-,223366,623366,1ff,($3366) Time Counter for the BCB temperature in load mode between 40 degrees celcius and 50 degrees celcius
+,7EC,24,55,1,0,0,-,223367,623367,1ff,($3367) Time Counter for the BCB temperature in load mode between 50 degrees celcius and 60 degrees celcius
+,7EC,24,55,1,0,0,-,223368,623368,1ff,($3368) Time Counter for the BCB temperature in load mode between 60 degrees celcius and 70 degrees celcius
+,7EC,24,55,1,0,0,-,223369,623369,1ff,($3369) Time Counter for the BCB temperature in load mode above 70 degrees celcius
+,7EC,24,31,1,0,0,%,22336A,62336A,ff,($336A) Maximale value of PEB temperature
+,7EC,24,31,1,0,0,%,22336B,62336B,ff,($336B) Maximale value of BCB temperature
+,7EC,24,39,1,0,0,-,22336C,62336C,ff,($336C) Quick Drop operating counter
+,7EC,24,47,1,0,0,s,22336D,62336D,ff,($336D) Data store memory use to store the activation time of the pump
+,7EC,24,39,.01,0,2,km/h,22336E,62336E,ff,($336E) Value of the vehicle speed before a safety level 2 hotreset
+,7EC,24,39,1,0,0,-,22336F,62336F,ff,($336F) Value of the safety monitoring status flags before the hotreset
+,7EC,24,39,1,32768,0,rpm,223370,623370,ff,($3370) Value of the electric motor speed before a safety level 2 hotreset
+,7EC,24,31,5,0,0,mbar,223371,623371,ff,($3371) Pressure value max in the booster during failure confirmation time
+,7EC,24,31,5,0,0,mbar,223372,623372,ff,($3372) Current pressure in the mastervac
+,7EC,30,31,1,0,0,,223373,623373,ff,($3373)The most critical state of the brake assist system between detected and confirmed states of a mastervac failure,0:unavailable;1:Vacuum pressure below 'Safety Threshold';2:Vacuum pressure between 'Safety Threshold' and 'Pump On Threshold' ;3:Vacuum pressure between 'Pump On Threshold' and 'Pump Off Threshold' 
+,7EC,30,31,1,0,0,,223374,623374,ff,($3374) The most critical state of the Brake assist system when a failure has been confirmed,0:unavailable;1:Vacuum pressure below 'Safety Threshold';2:Vacuum pressure between 'Safety Threshold' and 'Pump On Threshold' ;3:Vacuum pressure between 'Pump On Threshold' and 'Pump Off Threshold' 
+,7EC,24,31,1,0,0,,223375,623375,ff,($3375) Memorized reason of Starting Refuse for Start Refuse History elaboration.4,0:C_Driving_No_Refuse;1:C_Driving_Refuse_Plug;2:C_Driving_Refuse_Verrloglocked;3:C_Driving_Refuse_PRND_notN;4:C_Driving_Refuse_PRND_notP;5:C_Driving_Refuse_Batterylock;6:C_Driving_Refuse_Engine
+,7EC,32,39,1,0,0,,223375,623375,ff,($3375) Memorized reason of Starting Refuse for Start Refuse History elaboration.3,0:C_Driving_No_Refuse;1:C_Driving_Refuse_Plug;2:C_Driving_Refuse_Verrloglocked;3:C_Driving_Refuse_PRND_notN;4:C_Driving_Refuse_PRND_notP;5:C_Driving_Refuse_Batterylock;6:C_Driving_Refuse_Engine
+,7EC,40,47,1,0,0,,223375,623375,ff,($3375) Memorized reason of Starting Refuse for Start Refuse History elaboration.2,0:C_Driving_No_Refuse;1:C_Driving_Refuse_Plug;2:C_Driving_Refuse_Verrloglocked;3:C_Driving_Refuse_PRND_notN;4:C_Driving_Refuse_PRND_notP;5:C_Driving_Refuse_Batterylock;6:C_Driving_Refuse_Engine
+,7EC,48,55,1,0,0,,223375,623375,ff,($3375) Memorized reason of Starting Refuse for Start Refuse History elaboration.1,0:C_Driving_No_Refuse;1:C_Driving_Refuse_Plug;2:C_Driving_Refuse_Verrloglocked;3:C_Driving_Refuse_PRND_notN;4:C_Driving_Refuse_PRND_notP;5:C_Driving_Refuse_Batterylock;6:C_Driving_Refuse_Engine
+,7EC,56,63,1,0,0,,223375,623375,ff,($3375) Memorized reason of Starting Refuse for Start Refuse History elaboration.0,0:C_Driving_No_Refuse;1:C_Driving_Refuse_Plug;2:C_Driving_Refuse_Verrloglocked;3:C_Driving_Refuse_PRND_notN;4:C_Driving_Refuse_PRND_notP;5:C_Driving_Refuse_Batterylock;6:C_Driving_Refuse_Engine
+,7EC,24,39,.1,0,1,bar,223376,623376,ff,($3376) Measure of the freon pressure
+,7EC,30,31,1,0,0,,223377,623377,ff,($3377) AC compressor Interlock State,0:Unvailable Value;1:Open;2:Closed;3:Sensor Unavailable
+,7EC,30,31,1,0,0,,223378,623378,ff,($3378) Interlock HV battery,0:Not used;1:Open;2:Closed;3:Unvailable Value
+,7EC,30,31,1,0,0,,223379,623379,ff,($3379) Interlock of PTCs,0:Unvailable Value;1:Open;2:Closed;3:Not used
+,7EC,24,24,1,0,0,,22337D,62337D,ff,($337D) Context not safety datas microcontroller memorised carrier 1.7-Internal diag Stop Light Relay,0:No default;1:Default present
+,7EC,25,25,1,0,0,,22337D,62337D,ff,($337D) Context not safety datas microcontroller memorised carrier 1.6-Internal diag Water Cooling Valve,0:No default;1:Default present
+,7EC,26,26,1,0,0,,22337D,62337D,ff,($337D) Context not safety datas microcontroller memorised carrier 1.5-Internal diag Shift Lock,0:No default;1:Default present
+,7EC,27,27,1,0,0,,22337D,62337D,ff,($337D) Context not safety datas microcontroller memorised carrier 1.4-Internal diag RELAY N,0:No default;1:Default present
+,7EC,28,28,1,0,0,,22337D,62337D,ff,($337D) Context not safety datas microcontroller memorised carrier 1.3-Internal diag RELAY P,0:No default;1:Default present
+,7EC,29,29,1,0,0,,22337D,62337D,ff,($337D) Context not safety datas microcontroller memorised carrier 1.2-Internal diag RELAY A,0:No default;1:Default present
+,7EC,30,30,1,0,0,,22337D,62337D,ff,($337D) Context not safety datas microcontroller memorised carrier 1.1
+,7EC,31,31,1,0,0,,22337D,62337D,ff,($337D) Context not safety datas microcontroller memorised carrier 1.0-diagnostic of NVMY,0:No default;1:Default present
+,7EC,32,32,1,0,0,,22337E,62337E,ff,($337E) Context not safety data microcontroller memorised Carrier 2.7
+,7EC,33,33,1,0,0,,22337E,62337E,ff,($337E) Context not safety data microcontroller memorised Carrier 2.6-ERR_SYM_SPI-4,0:No default;1:Default present
+,7EC,34,34,1,0,0,,22337E,62337E,ff,($337E) Context not safety data microcontroller memorised Carrier 2.5-ERR_SYM_SPI-3,0:No default;1:Default present
+,7EC,35,35,1,0,0,,22337E,62337E,ff,($337E) Context not safety data microcontroller memorised Carrier 2.4-ERR_SYM_SPI-2,0:No default;1:Default present
+,7EC,36,36,1,0,0,,22337E,62337E,ff,($337E) Context not safety data microcontroller memorised Carrier 2.3-ERR_SYM_SPI-1,0:No default;1:Default present
+,7EC,37,37,1,0,0,,22337E,62337E,ff,($337E) Context not safety data microcontroller memorised Carrier 2.2-ERR_SYM_SPI-0,0:No default;1:Default present
+,7EC,38,38,1,0,0,,22337E,62337E,ff,($337E) Context not safety data microcontroller memorised Carrier 2.1-ERR_SYM_RAM,0:No default;1:Default present
+,7EC,39,39,1,0,0,,22337E,62337E,ff,($337E) Context not safety data microcontroller memorised Carrier 2.0-ERR_SYM_ROM,0:No default;1:Default present
+,7EC,24,31,1,0,0,,22337F,62337F,ff,($337F) Context safety datas memorised in main microcontroller,0:No error;1:Header-byte error detected on MC;2:Checksum error detected on MC;3:Parity error detected on MC;4:Wrong configuration data sent by MU;5:Error in switch-off path check;6:Error in compatibility check on MC;7:Error in Standard ROM check;8:Error in Standard RAM check;9:Error in Level 2 ROM check;10:Error in Level 2 RAM check;11:FS-IST MU sent wrong question;12:FS-IST MU does not react to deliberately wrong answer;13:FS-IST MU does not decrease its FS-IST anti-bounce counter;14:Error in check of MU readiness;15:not used;16:PFM MU does not toggle PFM bit 0 in time;17:PFM MU does not toggle PFM bit 1 in time;18:PFM MU does not toggle PFM bit 2 in time;19:PFM MU does not toggle PFM bit 3 in time;20:PFM MU does not toggle PFM bit 4 in time;21:PFM MU does not toggle PFM bit 5 in time;22:PFM MU does not toggle PFM bit 6 in time;23:Invalid state transition or undefined state on MC;24:PFM MU does not react to deliberately wrong PFM bit 0;25:PFM MU does not react to deliberately wrong PFM bit 1;26:PFM MU does not react to deliberately wrong PFM bit 2;27:PFM MU does not react to deliberately wrong PFM bit 3;28:PFM MU does not react to deliberately wrong PFM bit 4;29:PFM MU does not react to deliberately wrong PFM bit 5;30:PFM MU does not react to deliberately wrong PFM bit 6;31:Not used
+,7EC,24,31,1,0,0,,223380,623380,4ff,DIDs supported in range [$3381 - $33A0]
+,7EC,24,31,1,0,0,-,223381,623381,ff,($3381) Context safty datas memorised in Safety microcontroller
+,7EC,24,39,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-5
+,7EC,40,55,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-4
+,7EC,56,71,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-3
+,7EC,72,87,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-2
+,7EC,88,88,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.15 Under_voltage_HV,0:No default;1:Default present
+,7EC,89,89,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.14 Over_voltage_HV,0:No default;1:Default present
+,7EC,90,90,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.13 Current_Restriction,0:No default;1:Default present
+,7EC,91,91,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.12 Voltage_Restriction,0:No default;1:Default present
+,7EC,92,92,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.11 Internal_communication_error,0:No default;1:Default present
+,7EC,93,93,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.10 Over_heat_warning,0:No default;1:Default present
+,7EC,94,94,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.09 Low_Voltage_error,0:No default;1:Default present
+,7EC,95,95,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.08 Short_Circuit,0:No default;1:Default present
+,7EC,96,96,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.07 Open_contact,0:No default;1:Default present
+,7EC,97,97,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.06 Current_sensor_Error,0:No default;1:Default present
+,7EC,98,98,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.05 Over_load,0:No default;1:Default present
+,7EC,99,99,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.04 Over_heat,0:No default;1:Default present
+,7EC,100,100,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.03 Abnormal_Run_up,0:No default;1:Default present
+,7EC,101,101,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.02 High_Voltage_error,0:No default;1:Default present
+,7EC,102,103,1,0,0,,223382,623382,ff,($3382) AC compressor Error Bits Recordings.-1.00 CI_Error_Status,0:No default;1:Degraded mode;2:Compressor shut-off safety reasons;3:Compressor has to be changed
+,7EC,26,31,1,0,0,,223383,623383,ff,($3383) Reasons of cut off PTCs.-5
+,7EC,32,37,1,0,0,,223383,623383,ff,($3383) Reasons of cut off PTCs.-4
+,7EC,38,43,1,0,0,,223383,623383,ff,($3383) Reasons of cut off PTCs.-3
+,7EC,44,49,1,0,0,,223383,623383,ff,($3383) Reasons of cut off PTCs.-2
+,7EC,50,55,1,0,0,,223383,623383,ff,($3383) Reasons of cut off PTCs.-1
+,7EC,51,51,1,0,0,,223383,623383,ff,($3383) Reasons of cut off PTCs.-1.4 Error PTC stage 3,0:No default;1:Default present
+,7EC,52,52,1,0,0,,223383,623383,ff,($3383) Reasons of cut off PTCs.-1.3 Error PTC stage 2,0:No default;1:Default present
+,7EC,53,53,1,0,0,,223383,623383,ff,($3383) Reasons of cut off PTCs.-1.2 Error PTC stage 1,0:No default;1:Default present
+,7EC,54,54,1,0,0,,223383,623383,ff,($3383) Reasons of cut off PTCs.-1.1 Under Voltage,0:No default;1:Default present
+,7EC,55,55,1,0,0,,223383,623383,ff,($3383) Reasons of cut off PTCs.-1.0 Over temperature,0:No default;1:Default present
+,7EC,24,31,1,0,0,-,223384,623384,ff,($3384) Mission counter without driver door transition
+,7EC,24,47,1,0,0,s,223386,623386,ff,($3386) Life time of the pump read from the VPM memory via LIN
+,7EC,28,31,1,0,0,,223387,623387,ff,($3387) Brake pedal state during diagnostic confirmation,0:Not used;1:not pressed;2:pressed;3:Not Used;4:confirmed pressed
+,7EC,31,31,1,0,0,,223388,623388,ff,($3388) Bcb Activation failed Flag : charge or pre_heating not authorized any more,0:no failure ;1:failure
+,7EC,31,31,1,0,0,,22338A,62338A,ff,($338A) Customer WakeUp flag after internal processing,0:No Customer WakeUp;1:Customer WakeUp
+,7EC,31,31,1,0,0,,22338B,62338B,ff,($338B) Event type technical WakeUp flag after internal processing,0:No Event Technical WakeUp;1:Event technical WakeUp
+,7EC,31,31,1,0,0,,22338C,62338C,ff,($338C) ComfortMode failed and ended after confirmed non HV relays connexion,0:Confort mode ok ;1:Confort mode failed
+,7EC,31,31,1,0,0,,22338D,62338D,ff,($338D) Comfort mode disabled,0:Allowed;1:Not Allowed
+,7EC,31,31,1,0,0,,22338E,62338E,ff,($338E) Indicates the status of the driver door of the vehicle,0:Closed;1:Opened
+,7EC,31,31,1,0,0,,22338F,62338F,ff,($338F) Driving Restart flag (after EVC reset),0:desactivated;1:activated
+,7EC,31,31,1,0,0,,223390,623390,ff,($3390) EVC reset flag for HV connexion after EVC reset management,0:desactivated;1:activated
+,7EC,31,31,1,0,0,,223391,623391,ff,($3391) Gaz Heater not allowed flag,0:Allowed;1:Not Allowed
+,7EC,31,31,1,0,0,,223392,623392,ff,($3392) 400 V Battery Cooling Needed flag,0:No request;1:Request
+,7EC,31,31,1,0,0,,223393,623393,ff,($3393) HV Network Power cut request,0:no request;1:power cut request
+,7EC,31,31,1,0,0,,223394,623394,ff,($3394) Flag for LBC Actual status(= to 1 when LBC status is Driving ). AfterK_BHVStateConfirmed_status processing,0:Not ready for driving;1:Ready for driving
+,7EC,31,31,1,0,0,,223395,623395,ff,($3395) Internal condition for Zero Ampere mode Autorisation,0:Allowed;1:Not Allowed
+,7EC,31,31,1,0,0,,223396,623396,ff,($3396) PEB State failure defect present : PEB is Absent or PEB Status is not power on . PEB status is in limp mode,0:PEB Power ON;1:PEB Not Power ON
+,7EC,31,31,1,0,0,,223397,623397,ff,($3397) Gaz Heater Activation Authorisation flag,0:Not Autorized;1:Autorized
+,7EC,31,31,1,0,0,,223398,623398,ff,($3398) HV Battery cooling Authorisation flag,0:Not Autorized;1:Autorized
+,7EC,31,31,1,0,0,,223399,623399,ff,($3399) Quick Drop flag memorisation (EEPROM memorisation),0:Not Memorized;1:Memorized
+,7EC,31,31,1,0,0,,22339A,62339A,ff,($339A) No Major failure,0:No failure;1:failure
+,7EC,31,31,1,0,0,,22339B,62339B,ff,($339B) Front passenger door state from CANV,0:Closed;1:Opened
+,7EC,31,31,1,0,0,,22339C,62339C,ff,($339C) PEB status after internal processing,0:NOK;1:OK for driving
+,7EC,31,31,1,0,0,,22339D,62339D,ff,($339D) Charging Plug detected as present by the Charger.processed,0:No charging plug;1:Charging plug detected
+,7EC,31,31,1,0,0,,22339E,62339E,ff,($339E) Quick drop condition is active,0:No Active;1:Active
+,7EC,31,31,1,0,0,,22339F,62339F,ff,($339F) Soc authorisation for pre_heating authorisation during charge,0:Not Autorized;1:Autorized
+,7EC,24,31,1,0,0,,2233A0,6233A0,4ff,DIDs supported in range [$33A1 - $33C0]
+,7EC,31,31,1,0,0,,2233A1,6233A1,ff,($33A1) BCM absent and vehicle stopped flag : driving interruptiion,0:Not Autorized;1:Autorized
+,7EC,31,31,1,0,0,,2233A2,6233A2,ff,($33A2) Button AC from the cluster (X61) or AC request from CAREG (L38),0:no AC requested ;1:AC requested
+,7EC,31,31,1,0,0,,2233A3,6233A3,ff,($33A3) For L38 vehicule, this is the demand from the CAREG to start a PreHeating.,0:no PreHeat demand from CAREG  ;1:PreHeat demand from CAREG
+,7EC,24,31,2,0,0,%,2233A4,6233A4,ff,($33A4) Measure of the speed of the cabin blower
+,7EC,29,31,1,0,0,,2233A6,6233A6,ff,($33A6) AC compressor DTC Rootcause,0:No fault;1:CPU Self Error;2:Internal Communication Error;3:Short Circuit;4:Open Contact;5:Current sensor error;6:Abnormal Run-up;7:High-Voltage Error
+,7EC,24,31,25,0,0,W,2233A7,6233A7,ff,($33A7) AC compressor Power Consumption Estimation
+,7EC,24,31,1,0,0,,2233A8,6233A8,ff,($33A8) Request of FAN activation from the thermal comfort,0:no FAN requested;1:(61- low- 38- very low) speed fan request;2:61- not used- 38- low speed fan request;3:high speed fan request
+,7EC,31,31,1,0,0,,2233AA,6233AA,ff,($33AA) Minimum gasoline Level indicator in the tank supplying the heater,0:minimum level not reached ;1:minimum level reached
+,7EC,29,31,1,0,0,,2233AB,6233AB,ff,($33AB) State of PreHeating to display,0:PreHeating OFF;1:PreHeating requested for H1;2:PreHeating requested for H2;3:PreHeating Not Available;4:PreHeating in progress;5:PreHeating Finished OK;6:PreHeating Finished not OK;7:not used
+,7EC,30,31,1,0,0,,2233AC,6233AC,ff,($33AC) Status of pre_heating sent to Manage ETS,0:pre-heating available;1:pre-heating running;2:pre-heating refused;3:pre-heating waiting
+,7EC,26,26,1,0,0,,2233AD,6233AD,ff,($33AD) Computation of PTC defaults.5,0:No default;1:Default present
+,7EC,27,27,1,0,0,,2233AD,6233AD,ff,($33AD) Computation of PTC defaults.4,0:No default;1:Default present
+,7EC,28,28,1,0,0,,2233AD,6233AD,ff,($33AD) Computation of PTC defaults.3,0:No default;1:Default present
+,7EC,29,29,1,0,0,,2233AD,6233AD,ff,($33AD) Computation of PTC defaults.2,0:No default;1:Default present
+,7EC,30,30,1,0,0,,2233AD,6233AD,ff,($33AD) Computation of PTC defaults.1,0:No default;1:Default present
+,7EC,31,31,1,0,0,,2233AD,6233AD,ff,($33AD) Computation of PTC defaults.0,0:No default;1:Default present
+,7EC,24,39,1,0,0,rpm,2233AE,6233AE,ff,($33AE) AC compressor RPM Command
+,7EC,24,39,.1,2730,1,°C,2233AF,6233AF,ff,($33AF)temp used to prevent the evaporator from freezing within the heating venting and air conditionner system(HVAC)
+,7EC,24,39,.1,2730,1,°C,2233B0,6233B0,ff,($33B0) evaporator temperature setpoint for compressor control
+,7EC,24,31,1,40,0,°C,2233B1,6233B1,ff,($33B1) CAN signal for external temperature of the vehicle.
+,7EC,24,31,1,40,0,°C,2233B3,6233B3,ff,($33B3) water temperature setpoint for PTC control
+,7EC,31,31,1,0,0,,2233B5,6233B5,ff,($33B5) HV Relays Connection Autorisation synthesis flag,0:Not Autorized;1:Autorized
+,7EC,30,31,1,0,0,,2233B6,6233B6,ff,($33B6) Charge Management status for ETS,0:NoActiveMode;1:SlowCharge;2:ZAMode;3:QuickCharge
+,7EC,30,31,1,0,0,,2233B7,6233B7,ff,($33B7) Technical WakeUp type,0:not used;1:Periodic technical WakeUo;2:Event technical WakeUp;3:Not used
+,7EC,30,31,1,0,0,,2233B8,6233B8,ff,($33B8) Confirmation of the state of the battery from ManageHVBattery,0:NoState_Confirmed;1:SlowCharge_Confirmed;2:QuickCharge_Confirmed;3:Driving_Confirmed
+,7EC,30,31,1,0,0,,2233B9,6233B9,ff,($33B9) Start_up Authorisation _ Anti_kick off management,0:CrankingNotAllowed Start up not allowed by anti-kick off;1:CrankingAllowed Start_up allowed by anti-kick off;2:Not used;3:Unavailable value
+,7EC,30,31,1,0,0,,2233BA,6233BA,ff,($33BA) Indicates if the external power supply is present and the type of power supply,0:NoExtEnergyAvail;1:SlowExtEnergyAvail;2:QuickExtEnergyAvail
+,7EC,31,31,1,0,0,,2233BB,6233BB,ff,($33BB) Signal coming from Manage HVBattery indicating if the battery need to be charged or to be cooled,0:NoHVBChargeNeeded;1:HVBChargeRequest
+,7EC,30,31,1,0,0,,2233BC,6233BC,ff,($33BC) HV connection request from LBC,0:Not used;1:Closing of Power Contacts Allowed;2:Closing of Power Contacts Not Allowed;3:Unavailable Value
+,7EC,30,31,1,0,0,,2233BD,6233BD,ff,($33BD) Plug status validity flag,0:Nok;1:Ok;2:failed 2
+,7EC,30,31,1,0,0,,2233BE,6233BE,ff,($33BE) LBC sleep mode request,0:Normal Sleep;1:14 Supervision;2:Quick Drop;3:Unavailable value
+,7EC,29,31,1,0,0,,2233BF,6233BF,ff,($33BF) HV connection request,0:Disfunctional disconnexion request;1:Nominal disconnexion request;2:Dysfunctional connexion request;3:Nominal connexion request;4:Not Used;5:Emergency disconnexion request
+,7EC,24,31,1,0,0,,2233C0,6233C0,4ff,DIDs supported in range [$33C1 - $33E0]
+,7EC,30,31,1,0,0,,2233C1,6233C1,ff,($33C1) K_StartingMode_BCM_req input validity state,0:BCM absent or confirmed unavailable value for K_StartingMode_BCM_req;1:K_StartingMode_BCM_req available and valid;2:Invalid value for K_StartingMode_BCM_req
+,7EC,29,31,1,0,0,,2233C2,6233C2,ff,($33C2) IVLD of the signal Pct_UserSOC_bhv_est,0:invalid value NOK 0;1:valid value OK 1;2:invalid value FAIL 2;3:invalid value FAIL 3;4:invalid value FAIL 4
+,7EC,29,31,1,0,0,,2233C3,6233C3,ff,($33C3) PEB status from CAN ETS,0:Starting up or power off;2:stand-by;4:power on;7:invalid
+,7EC,30,31,1,0,0,,2233C4,6233C4,ff,($33C4) Preheating requested by the vehicle,0:no preheating requested;1:preheating requested
+,7EC,30,31,1,0,0,,2233C5,6233C5,ff,($33C5) ETS System Sleeping authorisation synthesis,0:Not used;1:Refuse to sleep;2:Ready to sleep;3:not used
+,7EC,30,31,1,0,0,,2233C6,6233C6,ff,($33C6) Electrical Motor state requested bu user and build by the BCM, signal coming from CAN, not checked,0:Motor stop requested;1:Unavailable;2:+APC requested;3:Starting requested
+,7EC,29,31,1,0,0,,2233C7,6233C7,ff,($33C7) Driver requests synthesis,0:Sleep request;1:Wake up request;2:Transient state before sleep;3:Life on Board request (HV network request);4:Driving request
+,7EC,30,31,1,0,0,,2233C8,6233C8,ff,($33C8) ETS Organs on CAN_E Wake up or Sleep request,0:GotoSleep;1:Not used;2:not used;3:WakeUp
+,7EC,31,31,1,0,0,,2233C9,6233C9,ff,($33C9) High level failure in the BCB,0:No failure;1:High level failure in the BCB
+,7EC,31,31,1,0,0,,2233CA,6233CA,ff,($33CA) Low level failure in the BCB.,0:No failure;1:Low level failure in the BCB
+,7EC,31,31,1,0,0,,2233CB,6233CB,ff,($33CB) This flag from Charge Management indicates that a charge is finished.,0:Charge not finished;1:Charge finished
+,7EC,31,31,1,0,0,,2233CC,6233CC,ff,($33CC) Request for the Gasoline heater relay,0:no request ;1:request
+,7EC,31,31,1,0,0,,2233CD,6233CD,ff,($33CD) Request of Hvac power Relay,0:no request ;1:request
+,7EC,31,31,1,0,0,,2233CE,6233CE,ff,($33CE) Software failure detected in the quick charge stateflow,0:No failure;1:Failure detected
+,7EC,31,31,1,0,0,,2233CF,6233CF,ff,($33CF) Specific failure during the quick charge,0:No failure;1:Failure detected
+,7EC,31,31,1,0,0,,2233D0,6233D0,ff,($33D0) This signal indicates that a quick drop is finished,0:No quick-drop has occured;1:A quick-drop has occured
+,7EC,31,31,1,0,0,,2233D1,6233D1,ff,($33D1) Specific failure during slow charge or zero ampere mode,0:No failure;1:Failure detected
+,7EC,31,31,1,0,0,,2233D3,6233D3,ff,($33D3) BPLC spot presence status to be read by diag tool.9,0:spot not present;1:spot present
+,7EC,39,39,1,0,0,,2233D3,6233D3,ff,($33D3) BPLC spot presence status to be read by diag tool.8,0:spot not present;1:spot present
+,7EC,47,47,1,0,0,,2233D3,6233D3,ff,($33D3) BPLC spot presence status to be read by diag tool.7,0:spot not present;1:spot present
+,7EC,55,55,1,0,0,,2233D3,6233D3,ff,($33D3) BPLC spot presence status to be read by diag tool.6,0:spot not present;1:spot present
+,7EC,63,63,1,0,0,,2233D3,6233D3,ff,($33D3) BPLC spot presence status to be read by diag tool.5,0:spot not present;1:spot present
+,7EC,71,71,1,0,0,,2233D3,6233D3,ff,($33D3) BPLC spot presence status to be read by diag tool.4,0:spot not present;1:spot present
+,7EC,79,79,1,0,0,,2233D3,6233D3,ff,($33D3) BPLC spot presence status to be read by diag tool.3,0:spot not present;1:spot present
+,7EC,87,87,1,0,0,,2233D3,6233D3,ff,($33D3) BPLC spot presence status to be read by diag tool.2,0:spot not present;1:spot present
+,7EC,95,95,1,0,0,,2233D3,6233D3,ff,($33D3) BPLC spot presence status to be read by diag tool.1,0:spot not present;1:spot present
+,7EC,103,103,1,0,0,,2233D3,6233D3,ff,($33D3) BPLC spot presence status to be read by diag tool.0,0:spot not present;1:spot present
+,7EC,24,47,1,0,0,km,2233D4,6233D4,ff,($33D4) Total travelled distance to be read by diag tool.9
+,7EC,48,71,1,0,0,km,2233D4,6233D4,ff,($33D4) Total travelled distance to be read by diag tool.8
+,7EC,72,95,1,0,0,km,2233D4,6233D4,ff,($33D4) Total travelled distance to be read by diag tool.7
+,7EC,96,119,1,0,0,km,2233D4,6233D4,ff,($33D4) Total travelled distance to be read by diag tool.6
+,7EC,120,143,1,0,0,km,2233D4,6233D4,ff,($33D4) Total travelled distance to be read by diag tool.5
+,7EC,144,167,1,0,0,km,2233D4,6233D4,ff,($33D4) Total travelled distance to be read by diag tool.4
+,7EC,168,191,1,0,0,km,2233D4,6233D4,ff,($33D4) Total travelled distance to be read by diag tool.3
+,7EC,192,215,1,0,0,km,2233D4,6233D4,ff,($33D4) Total travelled distance to be read by diag tool.2
+,7EC,216,239,1,0,0,km,2233D4,6233D4,ff,($33D4) Total travelled distance to be read by diag tool.1
+,7EC,240,263,1,0,0,km,2233D4,6233D4,ff,($33D4) Total travelled distance to be read by diag tool.0
+,7EC,24,31,1,0,0,,2233D5,6233D5,ff,($33D5) Reason of end of charge to be read by diag tool.9,0:Nominal end of charge (battery full);1:Unplugged (Vehicle side);2:PowerCut (Spot side);3:Failure (except charger fault);4:Scheduled Charge;5:ChargerFaultType1;6:ChargerFaultType2;7:ChargerFaultType3;8:ChargerFaultType4;9:ChargerFaultType5;10:ChargerFaultType6
+,7EC,32,39,1,0,0,,2233D5,6233D5,ff,($33D5) Reason of end of charge to be read by diag tool.8,0:Nominal end of charge (battery full);1:Unplugged (Vehicle side);2:PowerCut (Spot side);3:Failure (except charger fault);4:Scheduled Charge;5:ChargerFaultType1;6:ChargerFaultType2;7:ChargerFaultType3;8:ChargerFaultType4;9:ChargerFaultType5;10:ChargerFaultType6
+,7EC,40,47,1,0,0,,2233D5,6233D5,ff,($33D5) Reason of end of charge to be read by diag tool.7,0:Nominal end of charge (battery full);1:Unplugged (Vehicle side);2:PowerCut (Spot side);3:Failure (except charger fault);4:Scheduled Charge;5:ChargerFaultType1;6:ChargerFaultType2;7:ChargerFaultType3;8:ChargerFaultType4;9:ChargerFaultType5;10:ChargerFaultType6
+,7EC,48,55,1,0,0,,2233D5,6233D5,ff,($33D5) Reason of end of charge to be read by diag tool.6,0:Nominal end of charge (battery full);1:Unplugged (Vehicle side);2:PowerCut (Spot side);3:Failure (except charger fault);4:Scheduled Charge;5:ChargerFaultType1;6:ChargerFaultType2;7:ChargerFaultType3;8:ChargerFaultType4;9:ChargerFaultType5;10:ChargerFaultType6
+,7EC,56,63,1,0,0,,2233D5,6233D5,ff,($33D5) Reason of end of charge to be read by diag tool.5,0:Nominal end of charge (battery full);1:Unplugged (Vehicle side);2:PowerCut (Spot side);3:Failure (except charger fault);4:Scheduled Charge;5:ChargerFaultType1;6:ChargerFaultType2;7:ChargerFaultType3;8:ChargerFaultType4;9:ChargerFaultType5;10:ChargerFaultType6
+,7EC,64,71,1,0,0,,2233D5,6233D5,ff,($33D5) Reason of end of charge to be read by diag tool.4,0:Nominal end of charge (battery full);1:Unplugged (Vehicle side);2:PowerCut (Spot side);3:Failure (except charger fault);4:Scheduled Charge;5:ChargerFaultType1;6:ChargerFaultType2;7:ChargerFaultType3;8:ChargerFaultType4;9:ChargerFaultType5;10:ChargerFaultType6
+,7EC,72,79,1,0,0,,2233D5,6233D5,ff,($33D5) Reason of end of charge to be read by diag tool.3,0:Nominal end of charge (battery full);1:Unplugged (Vehicle side);2:PowerCut (Spot side);3:Failure (except charger fault);4:Scheduled Charge;5:ChargerFaultType1;6:ChargerFaultType2;7:ChargerFaultType3;8:ChargerFaultType4;9:ChargerFaultType5;10:ChargerFaultType6
+,7EC,80,87,1,0,0,,2233D5,6233D5,ff,($33D5) Reason of end of charge to be read by diag tool.2,0:Nominal end of charge (battery full);1:Unplugged (Vehicle side);2:PowerCut (Spot side);3:Failure (except charger fault);4:Scheduled Charge;5:ChargerFaultType1;6:ChargerFaultType2;7:ChargerFaultType3;8:ChargerFaultType4;9:ChargerFaultType5;10:ChargerFaultType6
+,7EC,88,95,1,0,0,,2233D5,6233D5,ff,($33D5) Reason of end of charge to be read by diag tool.1,0:Nominal end of charge (battery full);1:Unplugged (Vehicle side);2:PowerCut (Spot side);3:Failure (except charger fault);4:Scheduled Charge;5:ChargerFaultType1;6:ChargerFaultType2;7:ChargerFaultType3;8:ChargerFaultType4;9:ChargerFaultType5;10:ChargerFaultType6
+,7EC,96,103,1,0,0,,2233D5,6233D5,ff,($33D5) Reason of end of charge to be read by diag tool.0,0:Nominal end of charge (battery full);1:Unplugged (Vehicle side);2:PowerCut (Spot side);3:Failure (except charger fault);4:Scheduled Charge;5:ChargerFaultType1;6:ChargerFaultType2;7:ChargerFaultType3;8:ChargerFaultType4;9:ChargerFaultType5;10:ChargerFaultType6
+,7EC,24,31,1,0,0,,2233D6,6233D6,ff,($33D6) Type of charge to be read by diag tool.9,0:Slow Charge;1:Quick Charge;2:Quick Drop;3:Unknown;4:Charge scheduled
+,7EC,32,39,1,0,0,,2233D6,6233D6,ff,($33D6) Type of charge to be read by diag tool.8,0:Slow Charge;1:Quick Charge;2:Quick Drop;3:Unknown;4:Charge scheduled
+,7EC,40,47,1,0,0,,2233D6,6233D6,ff,($33D6) Type of charge to be read by diag tool.7,0:Slow Charge;1:Quick Charge;2:Quick Drop;3:Unknown;4:Charge scheduled
+,7EC,48,55,1,0,0,,2233D6,6233D6,ff,($33D6) Type of charge to be read by diag tool.6,0:Slow Charge;1:Quick Charge;2:Quick Drop;3:Unknown;4:Charge scheduled
+,7EC,56,63,1,0,0,,2233D6,6233D6,ff,($33D6) Type of charge to be read by diag tool.5,0:Slow Charge;1:Quick Charge;2:Quick Drop;3:Unknown;4:Charge scheduled
+,7EC,64,71,1,0,0,,2233D6,6233D6,ff,($33D6) Type of charge to be read by diag tool.4,0:Slow Charge;1:Quick Charge;2:Quick Drop;3:Unknown;4:Charge scheduled
+,7EC,72,79,1,0,0,,2233D6,6233D6,ff,($33D6) Type of charge to be read by diag tool.3,0:Slow Charge;1:Quick Charge;2:Quick Drop;3:Unknown;4:Charge scheduled
+,7EC,80,87,1,0,0,,2233D6,6233D6,ff,($33D6) Type of charge to be read by diag tool.2,0:Slow Charge;1:Quick Charge;2:Quick Drop;3:Unknown;4:Charge scheduled
+,7EC,88,95,1,0,0,,2233D6,6233D6,ff,($33D6) Type of charge to be read by diag tool.1,0:Slow Charge;1:Quick Charge;2:Quick Drop;3:Unknown;4:Charge scheduled
+,7EC,96,103,1,0,0,,2233D6,6233D6,ff,($33D6) Type of charge to be read by diag tool.0,0:Slow Charge;1:Quick Charge;2:Quick Drop;3:Unknown;4:Charge scheduled
+,7EC,24,39,.2,0,1,%,2233D7,6233D7,ff,($33D7) State of charge (UserSOC) to be read by diag tool.9
+,7EC,40,55,.2,0,1,%,2233D7,6233D7,ff,($33D7) State of charge (UserSOC) to be read by diag tool.8
+,7EC,56,71,.2,0,1,%,2233D7,6233D7,ff,($33D7) State of charge (UserSOC) to be read by diag tool.7
+,7EC,72,87,.2,0,1,%,2233D7,6233D7,ff,($33D7) State of charge (UserSOC) to be read by diag tool.6
+,7EC,88,103,.2,0,1,%,2233D7,6233D7,ff,($33D7) State of charge (UserSOC) to be read by diag tool.5
+,7EC,104,119,.2,0,1,%,2233D7,6233D7,ff,($33D7) State of charge (UserSOC) to be read by diag tool.4
+,7EC,120,135,.2,0,1,%,2233D7,6233D7,ff,($33D7) State of charge (UserSOC) to be read by diag tool.3
+,7EC,136,151,.2,0,1,%,2233D7,6233D7,ff,($33D7) State of charge (UserSOC) to be read by diag tool.2
+,7EC,152,167,.2,0,1,%,2233D7,6233D7,ff,($33D7) State of charge (UserSOC) to be read by diag tool.1
+,7EC,168,183,.2,0,1,%,2233D7,6233D7,ff,($33D7) State of charge (UserSOC) to be read by diag tool.0
+,7EC,24,31,1,40,0,°C,2233D8,6233D8,ff,($33D8) Battery temperature to be read by diag tool.9
+,7EC,32,39,1,40,0,°C,2233D8,6233D8,ff,($33D8) Battery temperature to be read by diag tool.8
+,7EC,40,47,1,40,0,°C,2233D8,6233D8,ff,($33D8) Battery temperature to be read by diag tool.7
+,7EC,48,55,1,40,0,°C,2233D8,6233D8,ff,($33D8) Battery temperature to be read by diag tool.6
+,7EC,56,63,1,40,0,°C,2233D8,6233D8,ff,($33D8) Battery temperature to be read by diag tool.5
+,7EC,64,71,1,40,0,°C,2233D8,6233D8,ff,($33D8) Battery temperature to be read by diag tool.4
+,7EC,72,79,1,40,0,°C,2233D8,6233D8,ff,($33D8) Battery temperature to be read by diag tool.3
+,7EC,80,87,1,40,0,°C,2233D8,6233D8,ff,($33D8) Battery temperature to be read by diag tool.2
+,7EC,88,95,1,40,0,°C,2233D8,6233D8,ff,($33D8) Battery temperature to be read by diag tool.1
+,7EC,96,103,1,40,0,°C,2233D8,6233D8,ff,($33D8) Battery temperature to be read by diag tool.0
+,7EC,24,39,1,0,0,min,2233D9,6233D9,ff,($33D9) Total duration of the charge sequence to be read by diag tool.9
+,7EC,40,55,1,0,0,min,2233D9,6233D9,ff,($33D9) Total duration of the charge sequence to be read by diag tool.8
+,7EC,56,71,1,0,0,min,2233D9,6233D9,ff,($33D9) Total duration of the charge sequence to be read by diag tool.7
+,7EC,72,87,1,0,0,min,2233D9,6233D9,ff,($33D9) Total duration of the charge sequence to be read by diag tool.6
+,7EC,88,103,1,0,0,min,2233D9,6233D9,ff,($33D9) Total duration of the charge sequence to be read by diag tool.5
+,7EC,104,119,1,0,0,min,2233D9,6233D9,ff,($33D9) Total duration of the charge sequence to be read by diag tool.4
+,7EC,120,135,1,0,0,min,2233D9,6233D9,ff,($33D9) Total duration of the charge sequence to be read by diag tool.3
+,7EC,136,151,1,0,0,min,2233D9,6233D9,ff,($33D9) Total duration of the charge sequence to be read by diag tool.2
+,7EC,152,167,1,0,0,min,2233D9,6233D9,ff,($33D9) Total duration of the charge sequence to be read by diag tool.1
+,7EC,168,183,1,0,0,min,2233D9,6233D9,ff,($33D9) Total duration of the charge sequence to be read by diag tool.0
+,7EC,24,31,1,0,0,kWh,2233DB,6233DB,ff,($33DB) Memorized value of domestic energy consumption
+,7EC,24,47,.001,0,3,kwh,2233DC,6233DC,ff,($33DC) This variable allows to memorize the energy consumed
+,7EC,24,47,.001,0,3,kwh,2233DD,6233DD,ff,($33DD) This variable allows to memorize the reseted energy consumed
+,7EC,24,55,.0001,0,3,km,2233DE,6233DE,1ff,($33DE) This variable allows to memorize the reseted distance
+,7EC,24,31,1,0,0,,2233E0,6233E0,4ff,DIDs supported in range [$33E0 - $3400]
+,7EC,29,31,1,0,0,,2233E2,6233E2,ff,($33E2) Flow that requests the BCB to make available certain functionalities,0:init;1:slow charge or ZA or Diag;2:Quick charge or Diag;3:Nissan quick charge or Diag;4:Diag;5:Power off;6:Not used;7:unavailable
+,7EC,28,31,1,0,0,,2233E3,6233E3,ff,($33E3) Status of Manage HV Battery Master Stateflow,0:NoRequest;1:BHV_SlowCharge requested;2:BHV_QuickCharge requested;3:BHV_Normal requested;4:BHV_QuickDrop requested;5:BHV_SlowCharge confirmed;6:BHV_Normal confirmed;7:BHV_QuickCharge confirmed;8:BHV_QuickDrop_Confirmed
+,7EC,30,31,1,0,0,,2233E4,6233E4,ff,($33E4) Cooling Management status answering to cooling request from Manage ETS,0:Cooling ON;1:Cooling ON Downgraded;2:Cooling OFF;3:Cooling OFF Failure
+,7EC,28,31,1,0,0,,2233E5,6233E5,ff,($33E5) Charge WEP Feedback Diag,0:No defined value;1:PWM between 0% and 2%;2:Warning pump;3:Pump to zero RPM;4:Pump can not read Input;5:Normal operation (750 - 4700 rpm);6:Over or Undervoltage;7:Fault Pump;8:PWM between 92 and 94;9:PWM between 96 and 100
+,7EC,28,31,1,0,0,,2233E6,6233E6,ff,($33E6) Driving WEP Feedback Diag,0:No defined value;1:PWM between 0% and 2%;2:Warning pump;3:Pump to zero RPM;4:Pump can not read Input;5:Normal operation (750 - 4700 rpm);6:Over or Undervoltage;7:Fault Pump;8:PWM between 92 and 94;9:PWM between 96 and 100
+,7EC,24,39,1,0,0,,2233E7,6233E7,ff,($33E7) Code Failure of All the sensors of temperature
+,7EC,30,31,1,0,0,,2233E8,6233E8,ff,($33E8) JB_AC Interlock status,0:Unavailable Value;1:Interlock Open;2:Interlock Close;3:Not used
+,7EC,30,31,1,0,0,,2233E9,6233E9,ff,($33E9) JB_PTC Interlock status,0:Unavailable Value;1:Interlock Open;2:Interlock Close;3:Not used
+,7EC,29,31,1,0,0,,2233EA,6233EA,ff,($33EA) CAN signal for the status of the plugs connection,0:No plug connected;2:Plug connected- no button pressed;4:1 Plug connected- button pressed;6:2 Plugs connected;7:Unavaliable Value
+,7EC,30,31,1,0,0,,2233EB,6233EB,ff,($33EB) Power supply relay of fan requested by EVC,0:open relay;3:closed relay
+,7EC,29,31,1,0,0,,2233EC,6233EC,ff,($33EC) Different states of CM master stateflow,0:BCB_Awake;1:BCB_Normal;2:BCB_Standby;3:BCB_Slow_Charge;4:BCB_Quick_Charge;5:BCB_Nissan_Quick_Charge;6:BCB_Zero_Ampere
+,7EC,29,31,1,0,0,,2233ED,6233ED,ff,($33ED) Different states of quick charge management stateflow,0:NoState;1:BCB_QuickCharge_ICId;2:BCB_QuickCharge_ICSftL;3:BCB_QuickCharge_ICRelClos;4:BCB_QuickCharge_ICStrt;5:BCB_QuickCharge_InProgress;6:BCB_QuickCharge_NominalExit;7:BCB_QuickCharge_DysfExit
+,7EC,24,39,100,0,0,Ohm,2233EE,6233EE,ff,($33EE) Resistance insulation value
+,7EC,29,31,1,0,0,,2233EF,6233EF,ff,($33EF) Different states of slow charge management stateflow,0:0-NoState;1:1-BCB_SlowCharge_InitCheck;2:2-BCB_SlowCharge_InProgress;3:3-BCB_SlowCharge_NominalExit;4:4-BCB_SlowCharge_DysfunctExit;5:5-BCB_SlowCharge_TCExit
+,7EC,30,31,1,0,0,,2233F0,6233F0,ff,($33F0) Different states of the stand_by management stateflow,0:NoState;1:BCB_Standby_StandByRequest;2:BCB_Standby_StandByConfirmed;3:BCB_Standby_PossibleRestart
+,7EC,24,39,.02,0,2,%,2233F1,6233F1,ff,($33F1) Electrical Machine normalised temperature
+,7EC,24,31,1,40,0,°C,2233F2,6233F2,ff,($33F2) High Voltage Battery maximal Temperature
+,7EC,24,39,.1,10240,1,N.m,2233F3,6233F3,ff,($33F3) Maximal torque without unballasting
+,7EC,24,39,.1,10240,1,N.m,2233F4,6233F4,ff,($33F4) Minimal torque
+,7EC,24,31,1,40,0,°C,2233F5,6233F5,ff,($33F5) Cooling Temperature dcdc mesured
+,7EC,24,31,1,40,0,°C,2233F6,6233F6,ff,($33F6) Temperature of the inverter given by PEB (CAN ETS)
+,7EC,24,55,1,0,0,,2233F7,6233F7,1ff,($33F7) Counter of Efan speed on Low and very low speed
+,7EC,29,31,1,0,0,,2233F8,6233F8,ff,($33F8) Different states of the Zero Ampere mode management stateflow.,0:0- NoState;1:1- BCB_ZeroAmpere_InitCheck;2:2- BCB_ZeroAmpere_InProgress;3:3- BCB_ZeroAmpere_NominalExit;4:4- BCB_ZeroAmpere_DysfExit;5:5- BCB_ZeroAmpere_TCExit
+,7EC,30,31,1,0,0,,2233F9,6233F9,ff,($33F9) Primary ignition supply state, signal coming from CAN, not checked,0:Not used;1:+ACC off;2:+ACC on;3:not used
+,7EC,31,31,1,0,0,,2233FA,6233FA,ff,($33FA) Pedal pressed flag internal processing,0:pedal not pressed;1:pedal pressed
+,7EC,31,31,1,0,0,,2233FB,6233FB,ff,($33FB) Preheating requested by the vehicle. Processed,0:no request;1:request
+,7EC,30,31,1,0,0,,2233FC,6233FC,ff,($33FC) Electrical Motor state requested by user and build by the BCM,0:Motor stop resquested;1:Unavailable;2:+APC requested;3:Starting requested
+,7EC,31,31,1,0,0,,2233FD,6233FD,ff,($33FD) Peltier Control Order,0:no control;1:control ativated
+,7EC,31,31,1,0,0,,2233FE,6233FE,ff,($33FE) Peltier Fan control order,0:no control;1:control ativated
+,7EC,31,31,1,0,0,,2233FF,6233FF,ff,($33FF) Major failure detected on the ETS,0:no failure;1:failure
+,7EC,24,31,1,0,0,,223400,623400,4ff,DIDs supported in range [$3400 - $3420]
+,7EC,31,31,1,0,0,,223401,623401,ff,($3401) Manage Failure Authorization of the AC,0:Not Autorized;1:Autorized
+,7EC,31,31,1,0,0,,223402,623402,ff,($3402) Manage Failure Authorization of the 14V Network management,0:Not Autorized;1:Autorized
+,7EC,31,31,1,0,0,,223403,623403,ff,($3403) Manage Failure Authorization of the heater,0:Not Autorized;1:Autorized
+,7EC,31,31,1,0,0,,223404,623404,ff,($3404) Manage Failure Authorization of the Peltier,0:Not Autorized;1:Autorized
+,7EC,31,31,1,0,0,,223405,623405,ff,($3405) Manage Failure Authorization of the PowerTrain,0:Not Autorized;1:Autorized
+,7EC,31,31,1,0,0,,223407,623407,ff,($3407) Manage Failure Authorization of the RSA Quick Charge,0:Not Autorized;1:Autorized
+,7EC,31,31,1,0,0,,223408,623408,ff,($3408) Manage Failure Authorization of the Slow Charge,0:Not Autorized;1:Autorized
+,7EC,30,31,1,0,0,,223409,623409,ff,($3409) Signal of requesting the MMI EBAAlertLevel1 (brake failure with SERV),0:Not used;1:alert off;2:alert on;3:not used
+,7EC,30,31,1,0,0,,22340A,62340A,ff,($340A) Signal of requesting the MMI EBAAlertLevel1 (brake failure with STOP),0:Not used;1:alert off;2:alert on;3:not used
+,7EC,30,31,1,0,0,,22340B,62340B,ff,($340B) Signal of requesting the MMI QuickDropIterationExceededDisplay,0:Not used;1:alert off;2:alert on;3:not used
+,7EC,30,31,1,0,0,,22340C,62340C,ff,($340C) Signal of requesting the MMI QuickDropLockFailureDisplay,0:Not used;1:alert off;2:alert on;3:not used
+,7EC,30,31,1,0,0,,22340D,62340D,ff,($340D) Signal of requesting the MMI QuickDropUnlockedDisplay,0:Not used;1:alert off;2:alert on;3:not used
+,7EC,30,31,1,0,0,,22340E,62340E,ff,($340E) Signal of requesting the MMI ETAlertDCDC,0:Not used;1:alert off;2:alert on;3:not used
+,7EC,30,31,1,0,0,,22340F,62340F,ff,($340F) Signal of requesting the MMI ETAlertRepairETS,0:Unavailable value;1:alert off;2:alert on;3:not used
+,7EC,29,31,1,0,0,,223410,623410,ff,($3410) HV Network Diagnosis synthesis,0:No connection Allowed but connection can stand still;1:Connection Allowed;3:Not used;4:No Connection Allowed and Disconnection Needed;5:Emergency disconnection Needed
+,7EC,24,47,1,0,0,km,223411,623411,ff,($3411) Distance memorized for energy consumption journal.9
+,7EC,48,71,1,0,0,km,223411,623411,ff,($3411) Distance memorized for energy consumption journal.8
+,7EC,72,95,1,0,0,km,223411,623411,ff,($3411) Distance memorized for energy consumption journal.7
+,7EC,96,119,1,0,0,km,223411,623411,ff,($3411) Distance memorized for energy consumption journal.6
+,7EC,120,143,1,0,0,km,223411,623411,ff,($3411) Distance memorized for energy consumption journal.5
+,7EC,144,167,1,0,0,km,223411,623411,ff,($3411) Distance memorized for energy consumption journal.4
+,7EC,168,191,1,0,0,km,223411,623411,ff,($3411) Distance memorized for energy consumption journal.3
+,7EC,192,215,1,0,0,km,223411,623411,ff,($3411) Distance memorized for energy consumption journal.2
+,7EC,216,239,1,0,0,km,223411,623411,ff,($3411) Distance memorized for energy consumption journal.1
+,7EC,240,263,1,0,0,km,223411,623411,ff,($3411) Distance memorized for energy consumption journal.0
+,7EC,24,39,.01,0,2,kWh,223412,623412,ff,Memorized accumulated HV battery output energy for energy consumption journal.9
+,7EC,40,55,.01,0,2,kWh,223412,623412,ff,Memorized accumulated HV battery output energy for energy consumption journal.8
+,7EC,56,71,.01,0,2,kWh,223412,623412,ff,Memorized accumulated HV battery output energy for energy consumption journal.7
+,7EC,72,87,.01,0,2,kWh,223412,623412,ff,Memorized accumulated HV battery output energy for energy consumption journal.6
+,7EC,88,103,.01,0,2,kWh,223412,623412,ff,Memorized accumulated HV battery output energy for energy consumption journal.5
+,7EC,104,119,.01,0,2,kWh,223412,623412,ff,Memorized accumulated HV battery output energy for energy consumption journal.4
+,7EC,120,135,.01,0,2,kWh,223412,623412,ff,Memorized accumulated HV battery output energy for energy consumption journal.3
+,7EC,136,151,.01,0,2,kWh,223412,623412,ff,Memorized accumulated HV battery output energy for energy consumption journal.2
+,7EC,152,167,.01,0,2,kWh,223412,623412,ff,Memorized accumulated HV battery output energy for energy consumption journal.1
+,7EC,168,183,.01,0,2,kWh,223412,623412,ff,Memorized accumulated HV battery output energy for energy consumption journal.0
+,7EC,24,39,.01,0,2,kWh,223413,623413,ff,Memorized accumulated electrical inverter energy for energy consumption journal.9
+,7EC,40,55,.01,0,2,kWh,223413,623413,ff,Memorized accumulated electrical inverter energy for energy consumption journal.8
+,7EC,56,71,.01,0,2,kWh,223413,623413,ff,Memorized accumulated electrical inverter energy for energy consumption journal.7
+,7EC,72,87,.01,0,2,kWh,223413,623413,ff,Memorized accumulated electrical inverter energy for energy consumption journal.6
+,7EC,88,103,.01,0,2,kWh,223413,623413,ff,Memorized accumulated electrical inverter energy for energy consumption journal.5
+,7EC,104,119,.01,0,2,kWh,223413,623413,ff,Memorized accumulated electrical inverter energy for energy consumption journal.4
+,7EC,120,135,.01,0,2,kWh,223413,623413,ff,Memorized accumulated electrical inverter energy for energy consumption journal.3
+,7EC,136,151,.01,0,2,kWh,223413,623413,ff,Memorized accumulated electrical inverter energy for energy consumption journal.2
+,7EC,152,167,.01,0,2,kWh,223413,623413,ff,Memorized accumulated electrical inverter energy for energy consumption journal.1
+,7EC,168,183,.01,0,2,kWh,223413,623413,ff,Memorized accumulated electrical inverter energy for energy consumption journal.0
+,7EC,24,39,.01,0,2,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.9
+,7EC,40,55,.01,0,2,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.8
+,7EC,56,71,.01,0,2,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.7
+,7EC,72,87,.01,0,2,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.6
+,7EC,88,103,.01,0,2,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.5
+,7EC,104,119,.01,0,2,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.4
+,7EC,120,135,.01,0,2,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.3
+,7EC,136,151,.01,0,2,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.2
+,7EC,152,167,.01,0,2,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.1
+,7EC,168,183,.01,0,2,kWh,223414,623414,ff,Memorized accumutation of the energy used by the thermal comfort for energy consumption journal.0
+,7EC,24,39,.02,0,2,%,223415,623415,ff,($3415) Memorized User SOC for energy consumption journal.9
+,7EC,40,55,.02,0,2,%,223415,623415,ff,($3415) Memorized User SOC for energy consumption journal.8
+,7EC,56,71,.02,0,2,%,223415,623415,ff,($3415) Memorized User SOC for energy consumption journal.7
+,7EC,72,87,.02,0,2,%,223415,623415,ff,($3415) Memorized User SOC for energy consumption journal.6
+,7EC,88,103,.02,0,2,%,223415,623415,ff,($3415) Memorized User SOC for energy consumption journal.5
+,7EC,104,119,.02,0,2,%,223415,623415,ff,($3415) Memorized User SOC for energy consumption journal.4
+,7EC,120,135,.02,0,2,%,223415,623415,ff,($3415) Memorized User SOC for energy consumption journal.3
+,7EC,136,151,.02,0,2,%,223415,623415,ff,($3415) Memorized User SOC for energy consumption journal.2
+,7EC,152,167,.02,0,2,%,223415,623415,ff,($3415) Memorized User SOC for energy consumption journal.1
+,7EC,168,183,.02,0,2,%,223415,623415,ff,($3415) Memorized User SOC for energy consumption journal.0
+,7EC,24,39,.01,0,2,kWh,223416,623416,ff,($3416) Memorization of accumulated electrical DCDC energy for energy consumption journal.9
+,7EC,40,55,.01,0,2,kWh,223416,623416,ff,($3416) Memorization of accumulated electrical DCDC energy for energy consumption journal.8
+,7EC,56,71,.01,0,2,kWh,223416,623416,ff,($3416) Memorization of accumulated electrical DCDC energy for energy consumption journal.7
+,7EC,72,87,.01,0,2,kWh,223416,623416,ff,($3416) Memorization of accumulated electrical DCDC energy for energy consumption journal.6
+,7EC,88,103,.01,0,2,kWh,223416,623416,ff,($3416) Memorization of accumulated electrical DCDC energy for energy consumption journal.5
+,7EC,104,119,.01,0,2,kWh,223416,623416,ff,($3416) Memorization of accumulated electrical DCDC energy for energy consumption journal.4
+,7EC,120,135,.01,0,2,kWh,223416,623416,ff,($3416) Memorization of accumulated electrical DCDC energy for energy consumption journal.3
+,7EC,136,151,.01,0,2,kWh,223416,623416,ff,($3416) Memorization of accumulated electrical DCDC energy for energy consumption journal.2
+,7EC,152,167,.01,0,2,kWh,223416,623416,ff,($3416) Memorization of accumulated electrical DCDC energy for energy consumption journal.1
+,7EC,168,183,.01,0,2,kWh,223416,623416,ff,($3416) Memorization of accumulated electrical DCDC energy for energy consumption journal.0
+,7EC,31,31,1,0,0,,223417,623417,ff,Saving of the NAVL state of the interlocks.8,0:Interlock OK;1:Interlock failed
+,7EC,32,32,1,0,0,,223417,623417,ff,Saving of the NAVL state of the interlocks.7,0:Interlock OK;1:Interlock failed
+,7EC,33,33,1,0,0,,223417,623417,ff,Saving of the NAVL state of the interlocks.6,0:Interlock OK;1:Interlock failed
+,7EC,34,34,1,0,0,,223417,623417,ff,Saving of the NAVL state of the interlocks.5,0:Interlock OK;1:Interlock failed
+,7EC,35,35,1,0,0,,223417,623417,ff,Saving of the NAVL state of the interlocks.4,0:Interlock OK;1:Interlock failed
+,7EC,36,36,1,0,0,,223417,623417,ff,Saving of the NAVL state of the interlocks.3,0:Interlock OK;1:Interlock failed
+,7EC,37,37,1,0,0,,223417,623417,ff,Saving of the NAVL state of the interlocks.2,0:Interlock OK;1:Interlock failed
+,7EC,38,38,1,0,0,,223417,623417,ff,Saving of the NAVL state of the interlocks.1,0:Interlock OK;1:Interlock failed
+,7EC,39,39,1,0,0,,223417,623417,ff,Saving of the NAVL state of the interlocks.0,0:Interlock OK;1:Interlock failed
+,7EC,31,31,1,0,0,,223418,623418,ff,($3418) DCDC desactivation requested by diagnostic tool in plant,0:Activated ;1:Desactevated
+,7EC,31,31,1,0,0,,223419,623419,ff,($3419) Memorized crash level 1 (medium) detection,0:no memorized ;1:Memorized
+,7EC,31,31,1,0,0,,22341A,62341A,ff,($341A) Memorized crash level 2 (violent) detection,0:no memorized ;1:Memorized
+,7EC,24,39,1,0,0,Hz,22341E,62341E,ff,($341E) Rotation speed of External Fan for battery cooling (Peltier)
+,7EC,24,31,1,0,0,,223420,623420,4ff,DIDs supported in range [$3420 - $3440]
+,7EC,24,31,1,40,0,°C,223421,623421,ff,($3421) For reading Battery temperature starting point of the Peltier System (Diagnostic Input)
+,7EC,24,31,1,40,0,°C,223422,623422,ff,($3422) External temperature (Peltier side)
+,7EC,31,31,1,0,0,,223423,623423,ff,($3423) P_R_N_D_P_N,0:12 V;1:0V
+,7EC,31,31,1,0,0,,223424,623424,ff,($3424) P_R_N_D_L2,0:12 V;1:0V
+,7EC,31,31,1,0,0,,223425,623425,ff,($3425) P_R_N_D_L3,0:12 V;1:0V
+,7EC,31,31,1,0,0,,223426,623426,ff,($3426) P_R_N_D_L4,0:12 V;1:0V
+,7EC,31,31,1,0,0,,223427,623427,ff,($3427) debounced signal from eco mode button,0:switch not pushed;1:switch pushed
+,7EC,24,39,.0005,0,3,V,223428,623428,ff,($3428) Battery 14V Voltage after everychecking (internal SCH)
+,7EC,31,31,1,0,0,,223429,623429,ff,($3429) DCDC ready or not (internal EVC),0:DCDC Off;1:DCDC On
+,7EC,30,31,1,0,0,,22342E,62342E,ff,($342E) DCDC ready to sleep (internal EVC),0:Not Used;1:Refuse to Sleep;2:Ready To Sleep;3:Not used
+,7EC,24,55,1,-2147483648,0,min,223431,623431,1ff,($3431) Time since the vehicle has been parked (calculated in SCH)
+,7EC,24,39,.0005,0,3,V,223432,623432,ff,($3432) Battery voltage no load estimation memorization (internal SCH)
+,7EC,24,31,.05,-240,2,V,223433,623433,ff,($3433) Battery voltage request (internal SCH)
+,7EC,30,31,1,0,0,,223435,623435,ff,($3435) AC compressor authorization command,0:Disable;1:Enable;2:Not used;3:Signal invalid
+,7EC,24,39,1,0,0,rpm,223436,623436,ff,($3436) AC compressor RPM real value
+,7EC,24,31,2,0,0,V,223437,623437,ff,($3437) AC compressor High Voltage value
+,7EC,24,31,1,40,0,°C,223438,623438,ff,($3438) AC compressor Power Module Temperature
+,7EC,30,31,1,0,0,,223439,623439,ff,($3439) AC compressor Error Status,0:No problem;1:Degraded mode;2:Compressor shut-off safety reasons;3:Compressor has to te changed
+,7EC,24,31,.1,0,1,,22343A,62343A,ff,($343A) AC compressor Motor Phase Current
+,7EC,30,31,1,0,0,,22343B,62343B,ff,($343B) AC compressor State,0:Signal Invalid;1:Compressor Off;2:Compressor is starting;3:Compressor On
+,7EC,24,31,1,0,0,,22343C,62343C,ff,($343C) Dysfunctional disconnections counter
+,7EC,24,55,1,-2147483648,0,,22343D,62343D,1ff,($343D) Identification number of the batteries for the 10 last quick drop.9
+,7EC,56,87,1,-2147483648,0,,22343D,62343D,1ff,($343D) Identification number of the batteries for the 10 last quick drop.8
+,7EC,88,119,1,-2147483648,0,,22343D,62343D,1ff,($343D) Identification number of the batteries for the 10 last quick drop.7
+,7EC,120,151,1,-2147483648,0,,22343D,62343D,1ff,($343D) Identification number of the batteries for the 10 last quick drop.6
+,7EC,152,183,1,-2147483648,0,,22343D,62343D,1ff,($343D) Identification number of the batteries for the 10 last quick drop.5
+,7EC,184,215,1,-2147483648,0,,22343D,62343D,1ff,($343D) Identification number of the batteries for the 10 last quick drop.4
+,7EC,216,247,1,-2147483648,0,,22343D,62343D,1ff,($343D) Identification number of the batteries for the 10 last quick drop.3
+,7EC,248,279,1,-2147483648,0,,22343D,62343D,1ff,($343D) Identification number of the batteries for the 10 last quick drop.2
+,7EC,280,311,1,-2147483648,0,,22343D,62343D,1ff,($343D) Identification number of the batteries for the 10 last quick drop.1
+,7EC,312,343,1,-2147483648,0,,22343D,62343D,1ff,($343D) Identification number of the batteries for the 10 last quick drop.0
+,7EC,24,55,1,-2147483648,0,,22343F,62343F,1ff,($343F) Identification number of the battery received by CAN
+,7EC,24,31,1,0,0,,223440,623440,4ff,DIDs supported in range [$3440 - $3460]
+,7EC,31,31,1,0,0,,223441,623441,ff,($3441) CAN signal for the status of the K-Line communication,0:No presence;1:presence
+,7EC,30,31,1,0,0,,223442,623442,ff,($3442) ETS Sleeping authorisation according to HV Battery Management Strategies,0:Not used;1:Refuse to sleep;2:Ready to sleep;3:unused
+,7EC,24,31,.3,0,1,kW,223444,623444,ff,($3444) CAN signal for the maximal charging power authorized by the HV battery
+,7EC,24,39,100,0,0,W,223445,623445,ff,($3445) CAN signal for the estimation of the BCB input power (power consumed from the Mains network)
+,7EC,31,31,1,0,0,,223446,623446,ff,($3446) eco mode request,0:Mode eco not requested;1:Mode eco requested
+,7EC,24,39,.03125,32768,2,N·m,223448,623448,ff,($3448) Electrical motor (EM) maximum effective torque available, after eco mode limitation
+,7EC,24,55,.01,-2147483648,2,km,223449,623449,1ff,($3449) Total vehicle distance associated with each last ten Quick Drop.9
+,7EC,56,87,.01,-2147483648,2,km,223449,623449,1ff,($3449) Total vehicle distance associated with each last ten Quick Drop.8
+,7EC,88,119,.01,-2147483648,2,km,223449,623449,1ff,($3449) Total vehicle distance associated with each last ten Quick Drop.7
+,7EC,120,151,.01,-2147483648,2,km,223449,623449,1ff,($3449) Total vehicle distance associated with each last ten Quick Drop.6
+,7EC,152,183,.01,-2147483648,2,km,223449,623449,1ff,($3449) Total vehicle distance associated with each last ten Quick Drop.5
+,7EC,184,215,.01,-2147483648,2,km,223449,623449,1ff,($3449) Total vehicle distance associated with each last ten Quick Drop.4
+,7EC,216,247,.01,-2147483648,2,km,223449,623449,1ff,($3449) Total vehicle distance associated with each last ten Quick Drop.3
+,7EC,248,279,.01,-2147483648,2,km,223449,623449,1ff,($3449) Total vehicle distance associated with each last ten Quick Drop.2
+,7EC,280,311,.01,-2147483648,2,km,223449,623449,1ff,($3449) Total vehicle distance associated with each last ten Quick Drop.1
+,7EC,312,343,.01,-2147483648,2,km,223449,623449,1ff,($3449) Total vehicle distance associated with each last ten Quick Drop.0
+,7EC,24,31,1,0,0,,22344A,62344A,ff,($344A)Counter of the funct diag which aim at detecting a too often low performance of batt cooling system in study
+,7EC,31,31,1,0,0,,22344B,62344B,ff,($344B) Allow to control the BattVE Relay which gives energy to several ECU linked to thermal comfort,0:Opened;1:Closed
+,7EC,31,31,1,0,0,,22344C,62344C,ff,($344C) Plug Unlock/ Trap Open Push Button request,0:No request;1:Request activated
+,7EC,31,31,1,0,0,,22344D,62344D,ff,($344D) Energy Trap sensor status,0:Closed;1:Open
+,7EC,31,31,1,0,0,,22344E,62344E,ff,($344E) Energy Trap Actuator Command,0:No open trap command;1:Open trap command
+,7EC,31,31,1,0,0,,22344F,62344F,ff,($344F) Plug Unlock/ Trap Open Push Button Status,0:Not pressed;1:Pressed
+,7EC,31,31,1,0,0,,223450,623450,ff,($3450) Configuration of the Quick Drop (Enable or disable),0:No quickdrop;1:Quickdrop
+,7EC,24,39,1,0,0,km,223451,623451,ff,($3451) Estimated kilometric cruising range sent to MMI
+,7EC,31,31,1,0,0,,223452,623452,ff,($3452) Eco mode request to be sent on the CAN for CLIM and MMC,0:Mode ECO not requested;1:Mode ECO requested
+,7EC,31,31,1,0,0,,223453,623453,ff,($3453) EEPROM memorized value of the eco mode switch request,0:Mode ECO not requested;1:Mode ECO requested
+,7EC,24,47,.001,0,3,kWh,223454,623454,ff,($3454) Contributions of anticipation lack and excessive vehicle speed to elec overconsumption since cluster reset.1
+,7EC,48,71,.001,0,3,kWh,223454,623454,ff,($3454) Contributions of anticipation lack and excessive vehicle speed to elec overconsumption since cluster reset.0
+,7EC,24,39,.00001953125,-1,3,kW,223455,623455,ff,($3455) Mean eco electrical consumption (if driver has economical driving behavior)
+,7EC,24,39,1,0,0,km,223456,623456,ff,($3456) Temporary estimated kilometric cruising range sent to MMI (economical driving)
+,7EC,24,39,.00001953125,-1,3,kW,223457,623457,ff,($3457) Mean pessimistic electrical consumption (worst possible consumption)
+,7EC,24,39,1,0,0,km,223458,623458,ff,($3458) Temporary estimated minimum kilometric cruising range sent to MMI
+,7EC,24,39,.00001953125,-1,3,kW,223459,623459,ff,($3459) Mean consumption per unit of distance, used for calculation of kilometric range
+,7EC,24,31,1,0,0,,22345A,62345A,ff,($345A) Indicator relative to anticipation for economical scoring
+,7EC,24,31,1,0,0,,22345B,62345B,ff,($345B) Indicator of economical monitoring
+,7EC,24,31,1,0,0,,22345C,62345C,ff,($345C) Indicator relative to vehicle speed for economical scoring
+,7EC,24,31,1,0,0,,22345D,62345D,ff,($345D) Information about the performance of Battery conditionning system memorized in E2PROM
+,7EC,24,31,1,0,0,%,22345E,62345E,ff,($345E) FAN global request from ETS in PWM including AC, Cooling needs and Relay protection check
+,7EC,29,29,1,0,0,,22345F,62345F,ff,($345F) This internal M14N variable is a frame composed of every RTS from all ETS system.10,0:Peltier OK;1:Peltier NOK
+,7EC,30,30,1,0,0,,22345F,62345F,ff,($345F) This internal M14N variable is a frame composed of every RTS from all ETS system.9,0:PWT OK;1:PWT NOK
+,7EC,31,31,1,0,0,,22345F,62345F,ff,($345F) This internal M14N variable is a frame composed of every RTS from all ETS system.8,0:MHVN OK;1:MHVN NOK
+,7EC,32,32,1,0,0,,22345F,62345F,ff,($345F) This internal M14N variable is a frame composed of every RTS from all ETS system.7,0:METS OK;1:METS NOK
+,7EC,33,33,1,0,0,,22345F,62345F,ff,($345F) This internal M14N variable is a frame composed of every RTS from all ETS system.6,0:MHVB OK;1:MHVB NOK
+,7EC,34,34,1,0,0,,22345F,62345F,ff,($345F) This internal M14N variable is a frame composed of every RTS from all ETS system.5,0:MC OK;1:MC NOK
+,7EC,35,35,1,0,0,,22345F,62345F,ff,($345F) This internal M14N variable is a frame composed of every RTS from all ETS system.4,0:TC OK;1:TC NOK
+,7EC,36,36,1,0,0,,22345F,62345F,ff,($345F) This internal M14N variable is a frame composed of every RTS from all ETS system.3,0:MCS OK;1:MCS NOK
+,7EC,37,37,1,0,0,,22345F,62345F,ff,($345F) This internal M14N variable is a frame composed of every RTS from all ETS system.2,0:BHV OK;1:BHV NOK
+,7EC,38,38,1,0,0,,22345F,62345F,ff,($345F) This internal M14N variable is a frame composed of every RTS from all ETS system.1,0:BCB OK;1:BCB NOK
+,7EC,39,39,1,0,0,,22345F,62345F,ff,($345F) This internal M14N variable is a frame composed of every RTS from all ETS system.0,0:EM OK;1:EM NOK
+,7EC,24,31,1,0,0,,223460,623460,4ff,DIDs supported in range [$3460 - $3480]
+,7EC,31,31,1,0,0,,223461,623461,ff,($3461) Frame consistency ok,0:UBP frame Nok;1:UBP frame Ok
+,7EC,31,31,1,0,0,,223462,623462,ff,($3462) Vehicle configured with UBP (1) or VPM (0),0:configured with VPM;1:configured with UBP
+,7EC,31,31,1,0,0,,223463,623463,ff,($3463) electrical braking torque setpoint,0:unvalid braking torque setpoint;1:valid braking torque setpoint
+,7EC,24,31,.01,0,2,,223464,623464,ff,($3464) UBP brake pedal ratio from CAN
+,7EC,24,39,1,32768,0,N·m,223465,623465,ff,($3465) UBP wheel torque request from CAN
+,7EC,31,31,1,0,0,,223466,623466,ff,($3466) memorisation flag in NVMY of HV battery over-heating,0:no HV battery over-heating memorisation in NVMY;1:HV battery over-heating memorisation in NVMY
+,7EC,31,31,1,0,0,,223469,623469,ff,($3469) Flag to prevent the activation of downgraded mode when MSR function is disabled,0:No MSR Limp Home mode deactivation requested;1:MSR Limp Home mode deactivation requested
+,7EC,24,31,1,40,0,°C,22346A,62346A,ff,($346A) High Voltage Battery maximal Temperature from reductant LBC
+,7EC,24,31,1,0,0,,22346B,62346B,ff,($346B) No pump allowed neither DCDC if this boolean is set to 0,0:no pump neither DCDC;1:pump and DCDC activation authorized
+,7EC,29,31,1,0,0,,22346E,62346E,ff,($346E) CAN signal for the PEB class of failure status (on charge),0:Classe A;1:Classe B;2:Classe C;3:Classe D;7:Unavailable value
+,7EC,29,31,1,0,0,,22346F,62346F,ff,($346F) Synthesis of JB charger fault type,0:No fault type;1:Fault type 1;2:Fault type 2;3:Unavailable value
+,7EC,24,39,.1,0,1,kW,223470,623470,ff,($3470) Available JB2 power for a battery charge
+,7EC,24,31,5,0,0,%,223471,623471,ff,($3471) Request for engine fan speed from ClimBox
+,7EC,24,39,.0001,0,3,,223472,623472,ff,($3472) Lever 1st track duty cycle
+,7EC,24,39,.0001,0,3,,223473,623473,ff,($3473) Lever 2nd track duty cycle
+,7EC,29,31,1,0,0,,223474,623474,ff,($3474) PWM gearbox lever track 1 position,0:transient;1:park;2:reverse;3:neutral;4:drive
+,7EC,29,31,1,0,0,,223475,623475,ff,($3475) PWM gearbox lever track 2 position,0:transient;1:park;2:reverse;3:neutral;4:drive
+,7EC,24,47,25,0,0,J,223476,623476,ff,($3476) Counter during one trip for contributions of anticipation lack and excessive vehicle speed to overconsumption.1
+,7EC,48,71,25,0,0,J,223476,623476,ff,($3476) Counter during one trip for contributions of anticipation lack and excessive vehicle speed to overconsumption.0
+,7EC,24,47,7.62939453125E-08,0,3,kWh/km,223477,623477,ff,($3477) Raw mean electrical consumption while economical driving
+,7EC,24,47,7.62939453125E-08,0,3,kWh/km,223478,623478,ff,($3478) Raw mean consumption per unit of distance
+,7EC,24,47,5.96046447753906E-08,0,3,kWh/km,223479,623479,ff,($3479) Average over-consumption used for economical monitoring
+,7EC,31,31,1,0,0,,22347A,62347A,ff,($347A) Request to turn the reverse lights on (1) during reverse mode,0:Reverse light off;1:Reverse light on
+,7EC,31,31,1,0,0,,22347B,62347B,ff,($347B) Pulse box command,0:SOF test not requested;1:SOF test requested
+,7EC,31,31,1,0,0,,22347C,62347C,ff,($347C) Pulse box diagnosis status,0:Pulse box not activated;1:Pulse box activated
+,7EC,24,24,1,0,0,,22347D,62347D,ff,($347D) Internal errors detected by Battery Current Sensor.7,1:bcs diag5 - BCS internal failure
+,7EC,25,25,1,0,0,,22347D,62347D,ff,($347D) Internal errors detected by Battery Current Sensor.6,1:bcs diag3 - voltage measurement error
+,7EC,26,26,1,0,0,,22347D,62347D,ff,($347D) Internal errors detected by Battery Current Sensor.5,1:bcs diag2 - current measurement error
+,7EC,28,28,1,0,0,,22347D,62347D,ff,($347D) Internal errors detected by Battery Current Sensor.3,1:Trigger inconsistency - Min found at end of interval
+,7EC,29,29,1,0,0,,22347D,62347D,ff,($347D) Internal errors detected by Battery Current Sensor.2,1:Trigger inconsistency - Min found at beginning of interval
+,7EC,30,30,1,0,0,,22347D,62347D,ff,($347D) Internal errors detected by Battery Current Sensor.1,1:Value not consistent
+,7EC,31,31,1,0,0,,22347D,62347D,ff,($347D) Internal errors detected by Battery Current Sensor.0,1:Umin not available
+,7EC,24,39,1,0,0,d,22347E,62347E,ff,($347E) Memorization of next 4 years alert value in time
+,7EC,31,31,1,0,0,,22347F,62347F,ff,($347F) Reinitialisation of memorization of next 4 years alert value in time,0:Do nothing;1:Reinitialize
+,7EC,24,31,1,0,0,,223480,623480,4ff,DIDs supported in range [$3480 - $34A0]
+,7EC,24,31,1,0,0,,223481,623481,ff,($3481) Internal counter for SOF test KO
+,7EC,24,31,1,0,0,,223482,623482,ff,($3482) Internal counter for SOF test failed
+,7EC,24,55,1,-2147483648,0,min,223483,623483,1ff,($3483) Time of the last SOF Test that occured
+,7EC,24,39,1,32768,0,A,223484,623484,ff,($3484) Current measurement given by BCS Battery Current Sensor
+,7EC,24,39,.001,0,3,V,223485,623485,ff,($3485) Voltage measurement given by BCS Battery Current Sensor
+,7EC,29,31,1,0,0,,223486,623486,ff,($3486) Alert for changing battery,0:No display;1:Safety Reserved_1;2:Safety Reserved_2;3:Information- Battery should be changed soon;4:Safety Reserved_4;5:Alert Battery should be changed Now;6:Safety Reserved_6;7:Safety Reserved_7
+,7EC,24,55,1,0,0,,223487,623487,1ff,($3487) Counter of PWM Efan speed on Low speeds
+,7EC,24,55,1,0,0,,223488,623488,1ff,($3488) Counter of PWM Efan speed on Medium speeds
+,7EC,24,55,1,0,0,,223489,623489,1ff,($3489) Counter of PWM Efan speed on High speeds
+,7EC,24,39,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.20
+,7EC,40,55,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.19
+,7EC,56,71,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.18
+,7EC,72,87,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.17
+,7EC,88,103,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.16
+,7EC,104,119,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.15
+,7EC,120,135,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.14
+,7EC,136,151,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.13
+,7EC,152,167,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.12
+,7EC,168,183,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.11
+,7EC,184,199,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.10
+,7EC,200,215,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.9
+,7EC,216,231,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.8
+,7EC,232,247,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.7
+,7EC,248,263,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.6
+,7EC,264,279,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.5
+,7EC,280,295,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.4
+,7EC,296,311,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.3
+,7EC,312,327,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.2
+,7EC,328,343,1,32768,0,A,22348A,62348A,ff,($348A) Current memorized for SOF test.1
+,7EC,24,47,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.20
+,7EC,48,71,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.19
+,7EC,72,95,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.18
+,7EC,96,119,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.17
+,7EC,120,143,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.16
+,7EC,144,167,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.15
+,7EC,168,191,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.14
+,7EC,192,215,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.13
+,7EC,216,239,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.12
+,7EC,240,263,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.11
+,7EC,264,287,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.10
+,7EC,288,311,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.9
+,7EC,312,335,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.8
+,7EC,336,359,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.7
+,7EC,360,383,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.6
+,7EC,384,407,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.5
+,7EC,408,431,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.4
+,7EC,432,455,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.3
+,7EC,456,479,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.2
+,7EC,480,503,1,0,0,,22348B,62348B,ff,($348B) Result of measure memorized for SOF test.1
+,7EC,24,47,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.20
+,7EC,48,71,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.19
+,7EC,72,95,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.18
+,7EC,96,119,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.17
+,7EC,120,143,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.16
+,7EC,144,167,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.15
+,7EC,168,191,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.14
+,7EC,192,215,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.13
+,7EC,216,239,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.12
+,7EC,240,263,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.11
+,7EC,264,287,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.10
+,7EC,288,311,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.9
+,7EC,312,335,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.8
+,7EC,336,359,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.7
+,7EC,360,383,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.6
+,7EC,384,407,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.5
+,7EC,408,431,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.4
+,7EC,432,455,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.3
+,7EC,456,479,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.2
+,7EC,480,503,1,0,0,min,22348C,62348C,ff,($348C) Absolut time memorized for SOF test.1
+,7EC,24,39,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.20
+,7EC,40,55,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.19
+,7EC,56,71,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.18
+,7EC,72,87,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.17
+,7EC,88,103,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.16
+,7EC,104,119,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.15
+,7EC,120,135,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.14
+,7EC,136,151,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.13
+,7EC,152,167,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.12
+,7EC,168,183,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.11
+,7EC,184,199,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.10
+,7EC,200,215,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.9
+,7EC,216,231,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.8
+,7EC,232,247,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.7
+,7EC,248,263,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.6
+,7EC,264,279,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.5
+,7EC,280,295,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.4
+,7EC,296,311,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.3
+,7EC,312,327,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.2
+,7EC,328,343,.001,0,3,V,22348D,62348D,ff,($348D) Voltage memorized for SOF test.1
+,7EC,24,31,.05,-240,2,V,22348E,62348E,ff,($348E) DCDC voltage control request calculated and used when no default on 14V network is detected
+,7EC,31,31,1,0,0,,22348F,62348F,ff,($348F) Boolean Variable : M14N resquest for activation when SOC low,0:Not Activation;1:Activation of DCDC
+,7EC,30,31,1,0,0,,223490,623490,ff,($3490) Critical Failure detected on the 14V network (internal SCH),0:Unavailable value;1:C_K_DefaultPresent_status;2:Not used;3:C_K_DefaultConfirmed_status
+,7EC,31,31,1,0,0,,223491,623491,ff,($3491) Request of ETS to force 14v network energy management into traction battery (from ETS CAN),0:Not Autorized;1:Autorized
+,7EC,31,31,1,0,0,,223492,623492,ff,($3492) Boolean that indicates the loss of a correct measurement on 14V,0:Tension Battery Available;1:Tension Battery Unavailable
+,7EC,31,31,1,0,0,,223493,623493,ff,($3493) Authorization from METS to activare DCDC converter,0:Not Autorized DCDC Activation;1:Autorized DCDC Activation
+,7EC,24,39,10,0,0,W,223494,623494,ff,($3494) Instantaneous DCDC output power
+,7EC,24,31,.390625,0,1,%,223495,623495,ff,($3495) Current ratio from DCDC. (Idcdc / Idcdcmax)
+,7EC,31,31,1,0,0,,223496,623496,ff,($3496) 14 V battery charge Autorisation flag from METS,0:dcdc activation forbidden;1:dcdc activation authorised
+,7EC,31,31,1,0,0,,223497,623497,ff,($3497) Better Place Config,0:NO BetterPlace Vehicle;1:Better Place Vehicle
+,7EC,31,31,1,0,0,,223498,623498,ff,($3498) This flag shows the battery relay PTC n°1(X10,L38G2,X61G3) request,0:no activation;1:activation
+,7EC,31,31,1,0,0,,223499,623499,ff,($3499) relay thermoplunger (X07) n°1 request,0:no activation;1:activation
+,7EC,31,31,1,0,0,,22349A,62349A,ff,($349A) This flag shows the battery relay PTC n°2 (X10,L38G2,X61G3) request,0:no activation;1:activation
+,7EC,31,31,1,0,0,,22349B,62349B,ff,($349B) relay thermoplunger (X07) n°2 request,0:no activation;1:activation
+,7EC,31,31,1,0,0,,22349C,62349C,ff,($349C) This flag shows the battery relay PTC n°3 (X10,L38G2,X61G3) request,0:no activation;1:activation
+,7EC,31,31,1,0,0,,22349D,62349D,ff,($349D) relay thermoplunger (X07) n°3 request,0:no activation;1:activation
+,7EC,31,31,1,0,0,,22349E,62349E,ff,($349E) Battery evaporator electrical Valve status (Valve for battery HVAC),0:no activation;1:activation
+,7EC,31,31,1,0,0,,22349F,62349F,ff,($349F) Cabin evaporator electrical Valve status (Valve for cabin HVAC),0:no activation;1:activation
+,7EC,24,31,1,0,0,,2234A0,6234A0,4ff,DIDs supported in range [$34A1 - $34C0]
+,7EC,24,39,1,0,0,Hz,2234A1,6234A1,ff,($34A1) Battery blower speed rotation (Feedback signal)
+,7EC,24,39,.1,2730,1,°C,2234A2,6234A2,ff,($34A2) Battery Evaporator thermal sensor
+,7EC,24,39,.1,2730,1,°C,2234A3,6234A3,ff,($34A3) Rear Evaporator temperature target
+,7EC,29,31,1,0,0,,2234A4,6234A4,ff,($34A4) Battery cooling order,0:No_Cool_Bat;1:Cool_Bat_HVAC;2:Cool_Bat_PAC;3:Cool_Bat_Chiller;4:Warm_Bat_Int_CTP;5:Warm_Bat_Ext_CTP;6:Warm_Bat_THP
+,7EC,30,31,1,0,0,,2234A5,6234A5,ff,($34A5) TC flag ready to sleep,0:NA_0;1:refuse to sleep;2:ready to sleep;3:NA_3
+,7EC,25,31,1,0,0,%,2234A6,6234A6,ff,($34A6) Battery HVAC speed rotation request (command of the blower)
+,7EC,29,31,1,0,0,,2234A7,6234A7,ff,($34A7) Battery Cooling System Type,0:without;1:Air Cooling by PAC;2:Air Cooling by HVAC EVC;3:Water Cooling without chiller;4:Water Cooling with chiller
+,7EC,29,31,1,0,0,,2234A8,6234A8,ff,($34A8) Battery Heating System Type,0:without;1:Air PTC by evc Power n°1(2relays);2:Air PTC by evc Power n°2(3relays);3:Air PTC via Mux;4:Water Coolant Heaters(CTP) evc (1 relay)
+,7EC,31,31,1,0,0,,2234A9,6234A9,ff,($34A9) Configuration of the TCU (Enable or disable),0:sans TCU;1:avec TCU
+,7EC,31,31,1,0,0,,2234AA,6234AA,ff,($34AA) Differential Protection in EVC,0:NO Differential Protection in EVC;1:Differential Protection in EVC Active
+,7EC,24,39,.1,32768,1,A,2234AD,6234AD,ff,($34AD) Set-point for the charge current for the JB2
+,7EC,24,31,1,0,0,,2234AE,6234AE,ff,($34AE) PEB frame monitoring status flags.all
+,7EC,27,27,1,0,0,,2234AE,6234AE,ff,($34AE) PEB frame monitoring status flags.B4,0:Frame presence;1:No frame
+,7EC,29,29,1,0,0,,2234AE,6234AE,ff,($34AE) PEB frame monitoring status flags.B2,0:No CRC default;1:CRC default
+,7EC,30,30,1,0,0,,2234AE,6234AE,ff,($34AE) PEB frame monitoring status flags.B1,0:No clock default;1:Clock default
+,7EC,31,31,1,0,0,,2234AE,6234AE,ff,($34AE) PEB frame monitoring status flags.B0,0:Default on engine speed frame sent by PEB (see other bits);1:No default on engine speed frame sent by PEB
+,7EC,31,31,1,0,0,,2234AF,6234AF,ff,($34AF) EVC waiting for isolation confirmation before starting charge,0:Driving mode;1:Waiting for charge
+,7EC,31,31,1,0,0,,2234B0,6234B0,ff,($34B0) Configuration of the Load Shedding,0:No load shedding;1:Load shedding
+,7EC,30,31,1,0,0,,2234B2,6234B2,ff,($34B2) Gasoline heater configuration V2,0:no heater;1:Eberspächer Hydronic 2;2:Do not use (2);3:Do not use (3)
+,7EC,30,31,1,0,0,,2234B3,6234B3,ff,($34B3) PTC_Config V2,0:no HV PTC;1:HV PTC with water;2:HV PTC with air
+,7EC,31,31,1,0,0,,2234B4,6234B4,ff,($34B4) Cut off charge request by thermal comfort to start compressor with safety conditions,0:Cut off for Charge requested;1:No cut off for charge requested
+,7EC,30,31,1,0,0,,2234B5,6234B5,ff,($34B5) Authorization for deicing function,0:0- Not used;1:1- DeIcing requested;2:2- DeIcing not requested;3:3- Unavailable value
+,7EC,24,31,100,0,0,Wh,2234B6,6234B6,ff,($34B6) Pre-conditionning available energy
+,7EC,29,31,1,0,0,,2234B7,6234B7,ff,($34B7) Defaults and state of the compressor description,0:On;1:Off;2:On downgraded;3:Off with fault;4:Off to change
+,7EC,31,31,1,0,0,,2234B8,6234B8,ff,($34B8) Request for activation of preconditionning from EVC to Climbox,0:No PC requested;1:PC requested
+,7EC,30,31,1,0,0,,2234B9,6234B9,ff,($34B9) Pre Conditionning activation request from cluster,0:No PreHeating;1:PreHeating Prog n1;2:PreHeating Prog n2
+,7EC,30,31,1,0,0,,2234BA,6234BA,ff,($34BA) Pre-conditionning request memorized by EVC
+,7EC,30,31,1,0,0,,2234BB,6234BB,ff,($34BB) Request for low level battery,0:No alert;1:Not used;2:Battery low alert;3:Unavailable
+,7EC,30,31,1,0,0,,2234BC,6234BC,ff,($34BC) Request for flashers when Immediate PreHeating is requested,0:Unavailable;1:No pre heat requested;2:Immediate pre heating authorized;3:Immediate pre heating not authorized
+,7EC,24,31,1,0,0,min,2234BD,6234BD,ff,($34BD) Left time calculated before the customer hour programmation
+,7EC,24,39,1,0,0,min,2234BE,6234BE,ff,($34BE) Local time received by EVC
+,7EC,30,31,1,0,0,,2234BF,6234BF,ff,($34BF) Immediate pre-conditionning request,0:C_METS_TC_NoAuth (No Authorization);1:C_METS_TC_PTCAuth (PTC Authorization only);2:C_METS_TC_ACAuth (AC Authorization only);3:C_METS_TC_Auth ( PTC and AC Authorization)
+,7EC,24,31,1,0,0,,2234C0,6234C0,4ff,DIDs supported in range [$34C1 - $34E0]
+,7EC,30,31,1,0,0,,2234C1,6234C1,ff,($34C1) Pre Conditionning activation request from climbox,0:No PreHeating;1:PreHeating Prog n1;2:PreHeating Prog n2
+,7EC,30,31,1,0,0,,2234C2,6234C2,ff,($34C2) Defaults and state of the HV PTC description,0:On;1:Off;2:On downgraded;3:Off with fault
+,7EC,24,39,1,0,0,min,2234C3,6234C3,ff,($34C3) Scheduled time 1 requested by the customer for the preconditionning system
+,7EC,24,39,1,0,0,min,2234C4,6234C4,ff,($34C4) Scheduled time 2 requested by the customer for the preconditionning system
+,7EC,31,31,1,0,0,,2234C5,6234C5,ff,($34C5) Request to the BCM to start the counter for vehicle wakeup due to preconditionning
+,7EC,31,31,1,0,0,,2234C6,6234C6,ff,($34C6) Request to the BCM to stop the counter for vehicle wakeup due to preconditionning
+,7EC,30,31,1,0,0,,2234C7,6234C7,ff,($34C7) Supposed customer departure value
+,7EC,24,31,.1,0,1,kW,2234C8,6234C8,ff,($34C8) Power available for Climate functions
+,7EC,24,39,.1,0,1,kW,2234C9,6234C9,ff,($34C9) Available charging power necessary to authorize some functions (preconditionning, battery cooling)
+,7EC,24,31,25,0,0,W,2234CA,6234CA,ff,($34CA) Available power for preconditionning
+,7EC,24,31,2,0,0,%,2234CB,6234CB,ff,($34CB) Cabin blower command
+,7EC,24,39,1,0,0,min,2234CC,6234CC,ff,($34CC) Scheduled Time 1 memorized by EVC
+,7EC,24,39,1,0,0,min,2234CD,6234CD,ff,($34CD) Scheduled Time 2 memorized by EVC
+,7EC,31,31,1,0,0,,2234CE,6234CE,ff,($34CE) Manage Failure Authorization of the HV PTC,0:HV PTC not authorized;1:HV PTC authorized
+,7EC,24,31,25,0,0,,2234CF,6234CF,ff,($34CF) Power consumed by the 400V components for Thermal Comfort
+,7EC,31,31,1,0,0,,2234D0,6234D0,ff,($34D0) Internal flag : HV Battery Conditionning Authorisation flag
+,7EC,24,47,.001,0,3,KWh,2234D1,6234D1,ff,($34D1) This variable allows to memorize the reseted energy consumed 2
+,7EC,24,55,.0001,0,3,,2234D2,6234D2,1ff,($34D2) This variable allows to memorize the reseted distance 2
+,7EC,30,31,1,0,0,,2234D3,6234D3,ff,($34D3) HV Battery Conditionning Activation Autorisation,0:0- No Authorisation;1:1- PTC Authorisation only;2:2- AC Authorisation only;3:3- PTC and AC Autorisation
+,7EC,30,31,1,0,0,,2234D4,6234D4,ff,($34D4) Signal of requesting the MMI DoNotTow,0:0- Unavailable;1:1- No ET Alert Do Not Tow Requested;2:2- ET Alert Do Not Tow Requested;3:3- Not Used
+,7EC,30,31,1,0,0,,2234D5,6234D5,ff,($34D5) Chiller activation request,0:0- Not used;1:1- No Chiller Activation Requested;2:2- Chiller activation requested;3:3- Unavailable
+,7EC,24,31,1,40,0,°C,2234D7,6234D7,ff,($34D7) HVB chiller temperature set point
+,7EC,25,31,1,0,0,°C,2234D8,6234D8,ff,($34D8) Water Temperature in BCB
+,7EC,30,31,1,0,0,,2234D9,6234D9,ff,($34D9) State of Chiller valves received from CAREG,0:0- no actived valves;1:1- actived valves
+,7EC,31,31,1,0,0,,2234DA,6234DA,ff,($34DA) Postal service configuration,0:No Lot of quick Driving Breaks;1:Lot of quick Driving Breaks
+,7EC,30,31,1,0,0,,2234DC,6234DC,ff,($34DC) CAN signal for PEB charge mode status V2,0:Unavailable value;1:Not in charge;2:In charge;3:Not used
+,7EC,30,31,1,0,0,,2234DD,6234DD,ff,($34DD) Request for PEB Charge mode V2,0:Unavailable value;1:No charge requested;2:Charge requested;3:Not used
+,7EC,30,31,1,0,0,,2234DE,6234DE,ff,($34DE) Compressor Configuration V3,0:no compressor;1:Denso compressor;2:Do not use (2);3:Do not use (3)
+,7EC,24,31,1,0,0,,2234E0,6234E0,4ff,DIDs supported in range [$34E0 - $3500]
+,7EC,24,39,.1,0,1,kW,2234E4,6234E4,ff,($34E4) Charge power available.9
+,7EC,40,55,.1,0,1,kW,2234E4,6234E4,ff,($34E4) Charge power available.8
+,7EC,56,71,.1,0,1,kW,2234E4,6234E4,ff,($34E4) Charge power available.7
+,7EC,72,87,.1,0,1,kW,2234E4,6234E4,ff,($34E4) Charge power available.6
+,7EC,88,103,.1,0,1,kW,2234E4,6234E4,ff,($34E4) Charge power available.5
+,7EC,104,119,.1,0,1,kW,2234E4,6234E4,ff,($34E4) Charge power available.4
+,7EC,120,135,.1,0,1,kW,2234E4,6234E4,ff,($34E4) Charge power available.3
+,7EC,136,151,.1,0,1,kW,2234E4,6234E4,ff,($34E4) Charge power available.2
+,7EC,152,167,.1,0,1,kW,2234E4,6234E4,ff,($34E4) Charge power available.1
+,7EC,168,183,.1,0,1,kW,2234E4,6234E4,ff,($34E4) Charge power available.0
+,7EC,24,31,1,0,0,,2234E5,6234E5,ff,($34E5) Low level battery warning sent to the MMI,0:Not LED;1:LED
+,7EC,24,31,1,0,0,,2234E6,6234E6,ff,($34E6) Empty level battery warning sent to the MMI,0:Not LED;1:LED
+,7EC,24,39,.5,60,1,,2234E7,6234E7,ff,($34E7) Coding Signal from CAN data CompTemperatureDischarge
+,7EC,24,31,1,0,0,,2234E8,6234E8,ff,($34E8) Coding Signal from CAN data DeIcingRequest,0:Not used;1:De Icing requested;2:De Icing not requested;3:Unavailable
+,7EC,24,31,1,0,0,,2234E9,6234E9,ff,($34E9) Ratio of PTC power used
+,7EC,24,31,.2,0,1,,2234EA,6234EA,ff,($34EA) Estimation of the current consumed by the PTC
+,7EC,24,31,25,0,0,W,2234EB,6234EB,ff,($34EB) Power used by HVPTC
+,7EC,24,31,1,0,0,,2234EC,6234EC,ff,($34EC) State of the AC Loop,0:Unavailable;1:A/C Mode;2:A/C to Heat Pump Mode;3:Heat pump mode;4:Heat pump to A/C mode;5:A/C and heat pump OFF;6:Default;7:Not Used
+,7EC,24,31,1,0,0,,2234ED,6234ED,ff,($34ED) PreheatingSelectedDisplayRequest,0:No request to display PreHeating state;1:Request to display Preheating state
+,7EC,24,39,1,0,0,min,2234EE,6234EE,ff,($34EE) LeftTimeBeforeVehicleWakeUp
+,7EC,24,31,1,40,0,°C,2234EF,6234EF,ff,($34EF) HVB Water Cooling Temperature
+,7EC,24,31,1,0,0,,2234F0,6234F0,ff,($34F0) Command of battery heater relay,0:Request for opening the battery heater relay;1:Request for closing the battery heater relay
+,7EC,24,31,1,0,0,,2234F1,6234F1,ff,($34F1) Request to METS asking for authorisation of battery heating,0:Not Autorized;1:Autorized
+,7EC,24,31,.1,0,1,kW,2234F2,6234F2,ff,($34F2) Maximal power authorised for thermal comfort
+,7EC,24,39,.1,2730,1,°C,2234F3,6234F3,ff,($34F3)High Voltage min Batt Temp checked by CAN,invalid value limp home strategies,filtred with a diff resolution
+,7EC,24,31,1,40,0,°C,2234F4,6234F4,ff,($34F4) Threshold for HVBattery conditioning received from BMS
+,7EC,24,31,1,40,0,°C,2234F5,6234F5,ff,($34F5) Threshold for HVBattery conditioning received from BMS (01)
+,7EC,24,31,1,40,0,°C,2234F6,6234F6,ff,($34F6) Threshold for HVBattery conditioning received from BMS (02)
+,7EC,24,31,1,40,0,°C,2234F7,6234F7,ff,($34F7) Threshold for battery thermal management
+,7EC,24,31,1,40,0,°C,2234F8,6234F8,ff,($34F8) Threshold for HVBattery conditioning received from BMS (03)
+,7EC,24,31,1,0,0,,2234F9,6234F9,ff,($34F9) Number of authorized stages for CTP battery
+,7EC,24,31,1,0,0,,2234FA,6234FA,ff,($34FA) Power authorized for CTP battery activation
+,7EC,24,31,1,0,0,,2234FB,6234FB,ff,($34FB) Number of authorized stages for CTP battery taking power allocated into account
+,7EC,24,31,1,40,0,°C,2234FC,6234FC,ff,($34FC) Water temperature used for Chiller
+,7EC,24,39,.1,2730,1,°C,2234FD,6234FD,ff,($34FD)High Voltage min Batt Temp checked by CAN,invalid value limp home strategies,filtred with a diff resolution(01)
+,7EC,31,31,1,0,0,,2234FE,6234FE,ff,($34FE) Authorisation req checking for compressor in charge mode,0:Not Autorized;1:Autorized
+,7EC,31,31,1,0,0,,2234FF,6234FF,ff,($34FF) Second water gate when battery is cooled with water,0:Opened;1:Closed
+,7EC,24,31,1,0,0,,223500,623500,4ff,DIDs supported in range [$3500 - $3520]
+,7EC,24,31,1,0,0,,223502,623502,ff,($3502) FANConfig flag memorised into EVC EEPROM at powelatch,0:GMV by state;1:GMV PWM
+,7EC,24,31,1,0,0,,223505,623505,ff,($3505) PLGWConfig flag memorised into EVC EEPROM at powelatch,0:without PLGW;1:with PLGW
+,7EC,24,31,1,0,0,,223506,623506,ff,($3506) PlugTypeConfig flag memorised into EVC EEPROM at powelatch,0:Plug Type 2 WITHOUT Temperature sensor;1:Plug Type 1 WITHOUT Temperature sensor;2:Plug Type 2 WITH Temperature sensor;3:Plug Type 1 WITH Temperature sensor
+,7EC,24,31,1,0,0,,223508,623508,ff,($3508) AEBS presence for regenerative braking,0:without AEBS;1:with AEBS
+,7EC,24,31,1,0,0,,223509,623509,ff,($3509) BatVE presence,0:No Bat VE;1:Bat VE present
+,7EC,24,31,1,0,0,,22350A,62350A,ff,($350A) Battery Heating 12V presence,0:0- without Battery Heating;1:1- with Battery Heating
+,7EC,24,31,1,0,0,,22350B,62350B,ff,($350B) Raw gear position of PWM lever corresponding to the actual lever position,0:0-Transient;1:1- Park;2:2- Reverse;3:3- Neutral;4:4- Drive
+,7EC,24,31,1,0,0,-,22350C,62350C,ff,($350C) flag configuration X61 with Heat pump
+,7EC,24,31,1,0,0,-,22350D,62350D,ff,($350D) Response Error HP61
+,7EC,24,39,1,0,0,-,22350E,62350E,ff,($350E) Climatisation Compressor Speed Heat HP61 request
+,7EC,24,31,1,0,0,,22350F,62350F,ff,($350F) Climatisation Loop Mode HP61 status,0:0- Unavailable;1:1- AC Mode;2:2- AC deIcing Mode;3:3- not used;4:4- Heat pump;5:5- not used;6:6- demisting;7:7- idle mode
+,7EC,24,31,1,0,0,,223510,623510,ff,($3510) Cooling Mode Request,0:0- No cooling mode requested;1:1- Cooling mode;2:2- Heating mode;3:3- Demisting;4:4- Not Used;5:5- Not Used;6:6- Not Used;7:7- Not Used
+,7EC,31,31,1,0,0,,223511,623511,ff,($3511) Delcing Request HP61 status,0:0- no de-ice loop requested;1:1- de-ice loop requested
+,7EC,24,31,1,0,0,-,223512,623512,ff,($3512) BatVE ShutDown Alert HP61
+,7EC,24,31,1,0,0,,223513,623513,ff,($3513) Cooling Mode Request (01),0:0- No cooling mode requested;1:1- Cooling mode;2:2- Heating mode;3:3- Demisting;4:4- Not Used;5:5- Not Used;6:6- Not Used;7:7- Not Used
+,7EC,24,31,1,0,0,,223514,623514,ff,($3514) DeIce Vehicle Request,0:0- No deIce vehicle request;1:1- DeIce vehicle state 1 request (battery loading);2:2- DeIce vehicle state 2 request (preconditionning);3:3- DeIce vehicle state 3 request (high speed driving);4:4- DeIce vehicle state 4 request (idle state driving);5:5- DeIce vehicle state 5 request (low battery SOC);6:6- Not Used;7:7- Not Used
+,7EC,24,31,1,0,0,,223515,623515,ff,($3515) Deice Permission,0:0- Unavailable;1:1- DeIce not permetted;2:2- DeIce  permetted;3:3- Not Used
+,7EC,24,31,1,0,0,,223516,623516,ff,($3516) Heating Mode Request,0:0- No heating mode requested;1:1- Thermal comfort;2:2- Preconditionning;3:3- Battery Heating;4:4- Not Used;5:5- Not Used;6:6- Not Used;7:7- Not Used
+,7EC,24,31,1,0,0,-,223517,623517,ff,($3517) PTC Number Thermal BCM request
+,7EC,24,39,1,0,0,°C,223518,623518,ff,($3518) Water Temperature SetPoint HP61
+,7EC,24,31,1,0,0,%,223519,623519,ff,($3519) BlowerSpeed PH61 status
+,7EC,24,39,.1,2730,1,°C,22351A,62351A,ff,($351A) Temperature Evaporation SetPoint HP61 request
+,7EC,24,31,1,40,0,°C,22351B,62351B,ff,($351B) Temperature Hot Source HP61
+,7EC,24,31,1,0,0,-,22351C,62351C,ff,($351C) Hot Mode HP61
+,7EC,24,31,1,0,0,-,22351D,62351D,ff,($351D) flag configuration X61 with Heat pump
+,7EC,24,31,1,0,0,,22351E,62351E,ff,($351E) Cooling fluid config (01),0:0- 1234YF;1:1- R134a
+,7EC,24,31,1,0,0,,22351F,62351F,ff,($351F) AC Heat pump circuit Valve 1 managed by PAC system on LIN,0:0 - no request;1:1 - request for opening valve during xx secondes;2:2 - request for closing valve during xx secondes;3:3 - Not Used
+,7EC,24,31,1,0,0,,223520,623520,4ff,DIDs supported in range [$3520 - $3540]
+,7EC,30,31,1,0,0,,223521,623521,ff,($3521) AC Heat pump circuit Valve 2 managed by PAC system on LIN,0:0 - no request;1:1 - request for opening valve during xx secondes;2:2 - request for closing valve during xx secondes;3:3 - Not Used
+,7EC,28,31,1,0,0,,223522,623522,ff,($3522) IH_FailureValve1_HP61_status
+,7EC,28,31,1,0,0,,223523,623523,ff,($3523) IH_FailureValve2_HP61_status
+,7EC,28,31,1,0,0,,223524,623524,ff,($3524) VH_FailureSensor2_HP61_status
+,7EC,28,31,1,0,0,,223525,623525,ff,($3525) VH_FailureSensor1_HP61_status
+,7EC,24,39,1,0,0,,223526,623526,ff,($3526) Reset fault identifying number
+,7EC,31,31,1,0,0,,223527,623527,ff,($3527) Preheating requested by the customer
+,7EC,31,31,1,0,0,,223528,623528,ff,($3528) Authorization boolean from METS for PreheatByKey f(SOC)
+,7EC,31,31,1,0,0,,223529,623529,ff,($3529) Authorization boolean from METS for Preheat f(SOC)
+,7EC,30,31,1,0,0,,22352A,62352A,ff,($352A) Less power range by AC to decrease IHM range autonomy
+,7EC,31,31,1,0,0,,22352B,62352B,ff,($352B) B_Batt_BlowerState for MCS
+,7EC,31,31,1,0,0,,22352C,62352C,ff,($352C) B_CTP_Rly_ConfirmedFail to MCS
+,7EC,24,31,1,0,0,,22352D,62352D,ff,($352D) K_LessPowerRangeByAC for MMI display X07
+,7EC,24,31,.5,0,1,,22352E,62352E,ff,($352E) ClimTempDisplay
+,7EC,24,31,1,40,0,°C,22352F,62352F,ff,($352F) Internal Temp
+,7EC,24,55,1,-2147483648,0,s,223530,623530,1ff,($3530) V_Timer_ChargeWEP_ON
+,7EC,24,55,1,-2147483648,0,s,223531,623531,1ff,($3531) V_Timer_DrivWEP_ON
+,7EC,24,31,1,0,0,,223532,623532,ff,($3532) Contry configuration,0:0 - Remain of the world;1:1 - USA;2:2 - Canada;3:3 - Japan;4:4 - Switzerland;5:5 - Australia;6:6 - Gulf states;7:7 - United Kingdom;8:8 - China
+,7EC,31,31,1,0,0,,223533,623533,ff,($3533) DeIcing Activation,0:0- Not activated;1:1- Activated
+,7EC,30,31,1,0,0,,223534,623534,ff,($3534) HV Battery cooling State,0:0- No HV Battery cooling;1:1- HV Battery cooling mode alone;2:2- HV Battery cooling mode coupled;3:3- Unavailable
+,7EC,31,31,1,0,0,,223535,623535,ff,($3535) DeIce Activation Authorisation flag,0:0- Not Autorized;1:1- Autorized
+,7EC,29,31,1,0,0,,223536,623536,ff,($3536) HV Battery Condtionning mode,0:0- CondVentil;1:1- CondCool;2:2- CondHeat;3:3- CondNotReq;4:4- CondHeat
+,7EC,24,31,5,0,0,%,223537,623537,ff,($3537) IH_Pct_EngineFanSpeedPWM_HP61
+,7EC,28,31,1,0,0,,223538,623538,ff,($3538) IH_StateValve1_HP61_status
+,7EC,28,31,1,0,0,,223539,623539,ff,($3539) IH_StateValve2_HP61_status
+,7EC,24,39,.5,60,1,°C,22353A,62353A,ff,($353A) Physical value of the sensor NTC1 (Td)
+,7EC,24,39,.5,32767,1,°C,22353B,62353B,ff,($353B) Physical value of the sensor NTC2 (Ts)
+,7EC,31,31,1,0,0,,22353C,62353C,ff,($353C) VH_ChillerInDriveON
+,7EC,28,31,1,0,0,,22353D,62353D,ff,($353D) Number of batt CTP or Thp water requested
+,7EC,30,31,1,0,0,,22353E,62353E,ff,($353E) VH_BattThpNumberThermalReq
+,7EC,29,31,1,0,0,,22353F,62353F,ff,($353F) Raw gear position of lever by CAN corresponding to the actual lever position,0:0-Transient;1:1- Park;2:2- Reverse;3:3- Neutral;4:4- Drive
+,7EC,24,31,1,0,0,,223540,623540,4ff,DIDs supported in range [$3540 - $3560]
+,7EC,24,31,1,0,0,,223541,623541,ff,($3541) Boolean of Charge limitation during Very cold preheat,0:No limitation;1:Limitation of charge
+,7EC,24,39,1,0,0,,223542,623542,ff,($3542) Value of the safety torque structure monitoring status flags before the hot-reset
+,7EC,24,31,1,40,0,°C,223543,623543,ff,Temperature plug vehicle
+,7EC,24,47,1,0,0,min,223544,623544,ff,($3544) Time spent since first ignition of the vehicle for the last extrafeeding.00
+,7EC,48,71,1,0,0,min,223544,623544,ff,($3544) Time spent since first ignition of the vehicle for the last extrafeeding.01
+,7EC,72,95,1,0,0,min,223544,623544,ff,($3544) Time spent since first ignition of the vehicle for the last extrafeeding.02
+,7EC,96,119,1,0,0,min,223544,623544,ff,($3544) Time spent since first ignition of the vehicle for the last extrafeeding.03
+,7EC,120,143,1,0,0,min,223544,623544,ff,($3544) Time spent since first ignition of the vehicle for the last extrafeeding.04
+,7EC,144,167,1,0,0,min,223544,623544,ff,($3544) Time spent since first ignition of the vehicle for the last extrafeeding.05
+,7EC,168,191,1,0,0,min,223544,623544,ff,($3544) Time spent since first ignition of the vehicle for the last extrafeeding.06
+,7EC,192,215,1,0,0,min,223544,623544,ff,($3544) Time spent since first ignition of the vehicle for the last extrafeeding.07
+,7EC,24,31,1,40,0,°C,223545,623545,ff,($3545) CAN signal for external temperature of the vehicle for the last extrafeeding.00
+,7EC,32,39,1,40,0,°C,223545,623545,ff,($3545) CAN signal for external temperature of the vehicle for the last extrafeeding.01
+,7EC,40,47,1,40,0,°C,223545,623545,ff,($3545) CAN signal for external temperature of the vehicle for the last extrafeeding.02
+,7EC,48,55,1,40,0,°C,223545,623545,ff,($3545) CAN signal for external temperature of the vehicle for the last extrafeeding.03
+,7EC,56,63,1,40,0,°C,223545,623545,ff,($3545) CAN signal for external temperature of the vehicle for the last extrafeeding.04
+,7EC,64,71,1,40,0,°C,223545,623545,ff,($3545) CAN signal for external temperature of the vehicle for the last extrafeeding.05
+,7EC,72,79,1,40,0,°C,223545,623545,ff,($3545) CAN signal for external temperature of the vehicle for the last extrafeeding.06
+,7EC,80,87,1,40,0,°C,223545,623545,ff,($3545) CAN signal for external temperature of the vehicle for the last extrafeeding.07
+,7EC,24,39,.0005,0,3,V,223546,623546,ff,($3546) No Load Battery Voltage for the last extrafeeding.00
+,7EC,40,55,.0005,0,3,V,223546,623546,ff,($3546) No Load Battery Voltage for the last extrafeeding.01
+,7EC,56,71,.0005,0,3,V,223546,623546,ff,($3546) No Load Battery Voltage for the last extrafeeding.02
+,7EC,72,87,.0005,0,3,V,223546,623546,ff,($3546) No Load Battery Voltage for the last extrafeeding.03
+,7EC,88,103,.0005,0,3,V,223546,623546,ff,($3546) No Load Battery Voltage for the last extrafeeding.04
+,7EC,104,119,.0005,0,3,V,223546,623546,ff,($3546) No Load Battery Voltage for the last extrafeeding.05
+,7EC,120,135,.0005,0,3,V,223546,623546,ff,($3546) No Load Battery Voltage for the last extrafeeding.06
+,7EC,136,151,.0005,0,3,V,223546,623546,ff,($3546) No Load Battery Voltage for the last extrafeeding.07
+,7EC,24,31,1,0,0,,223547,623547,ff,($3547) DID for identifying the resaon why perfo are limited in motor mot,0:Not used;1:Tq_Max_Bat_MotorMot;2:Tq_Max_Bat_Anticipation_Mot;3:Flag_UnderVolt_Pack;4:Flag_UnderVolt_Cell;5:Flag_Activ_Regul_Therm_Mot;6:Flag_Activation_Wat_Regul_Therm_Mot
+,7EC,24,39,1,0,0,,22354E,62354E,ff,Counter: number of time Park is engaged when the vehicle is running
+,7EC,24,39,.01,0,2,km/h,22354F,62354F,ff,Maximum vehicle speed when Park is engaged
+,7EC,24,39,1,0,0,,223550,623550,ff,Counter: number of shaft revolution when Park is engaged
+,7EC,24,39,1,0,0,kWh/100,223553,623553,ff,Memorisation value of average consumption
+,7EC,24,39,1,0,0,kWh/100,223554,623554,ff,Memorisation value of average consumption 2
+,7EC,24,31,1,0,0,,22F800,62F800,4ff,DIDs supported in range [$F801 - $F820]
+,7EC,24,55,1,0,0,,22F804,62F804,1ff,($F804) $09 - OBD calibration identifications.7
+,7EC,56,87,1,0,0,,22F804,62F804,1ff,($F804) $09 - OBD calibration identifications.6
+,7EC,88,119,1,0,0,,22F804,62F804,1ff,($F804) $09 - OBD calibration identifications.5
+,7EC,120,151,1,0,0,,22F804,62F804,1ff,($F804) $09 - OBD calibration identifications.4
+,7EC,152,183,1,0,0,,22F804,62F804,1ff,($F804) $09 - OBD calibration identifications.3
+,7EC,184,215,1,0,0,,22F804,62F804,1ff,($F804) $09 - OBD calibration identifications.2
+,7EC,216,247,1,0,0,,22F804,62F804,1ff,($F804) $09 - OBD calibration identifications.1
+,7EC,248,279,1,0,0,,22F804,62F804,1ff,($F804) $09 - OBD calibration identifications.0
+,7EC,0,0,1,0,0,,3E01,7E01,ff,TesterPresent.WithResponse

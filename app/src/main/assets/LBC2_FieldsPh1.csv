@@ -1,0 +1,30 @@
+,7BB,0,0,1,0,0,,1085,5085,ff,StartDiagnosticSession.ProgrammingSession
+,7BB,0,0,1,0,0,,10C0,50C0,ff,StartDiagnosticSession.ExtendedDiagSession
+,7BB,0,0,1,0,0,,10F2,50F2,ff,StartDiagnosticSession.RenautSession
+,7BB,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
+,7BB,16,23,1,0,0,,19020F,59020F,ff,DTCStatusAvailabilityMask
+,7BB,24,39,1,0,0,,19020F,59020F,ff,DTCDeviceAndFailureTypeOBD
+,7BB,40,47,1,0,0,,19020F,59020F,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level oor / zero adjustment failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or system operation obstructedorblocked;152:component or system over temperature
+,7BB,44,47,1,0,0,,19020F,59020F,ff,DTCFailureType.ManufacturerOrSupplier
+,7BB,48,48,1,0,0,,19020F,59020F,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,7BB,49,49,1,0,0,,19020F,59020F,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,7BB,50,50,1,0,0,,19020F,59020F,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,7BB,51,51,1,0,0,,19020F,59020F,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,7BB,52,52,1,0,0,,19020F,59020F,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,7BB,53,53,1,0,0,,19020F,59020F,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,7BB,54,54,1,0,0,,19020F,59020F,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,7BB,55,55,1,0,0,,19020F,59020F,ff,DTCStatus.testFailed,0:No;1:Yes
+,7BB,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord
+,7BB,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC
+,7BB,16,47,1,0,0,,190600000080,590600000080,1ff,1427 Vehicle Mileage
+,7BB,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord
+,7BB,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC
+,7BB,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode
+,7BB,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
+,7BB,144,159,1,0,0,,2180,6180,4ff,EditionNumber
+,7BB,160,175,1,0,0,,2180,6180,4ff,CalibrationNumber
+,7BB,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,2:293A0
+,7BB,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,1:293A0
+,7BB,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList
+,7BB,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,136:5DIGITS R2;255:Renault R3;0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3
+,7BB,0,0,1,0,0,,3E01,7E01,ff,TesterPresent.WithResponse
