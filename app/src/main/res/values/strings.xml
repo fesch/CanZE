@@ -467,14 +467,14 @@
         <item>Session stop response with EVSE(station charging)</item>
         <item>Charging Status response</item>
     </string-array>
-    <string name="EVSEMaxPower">Charger max power (W)</string>
-    <string name="EVSEPowerLimitReached">Charger power limit reached</string>
-    <string name="EVSEMaxVoltage">Charger max voltage (V)</string>
-    <string name="EVSEPresentVoltage">Charger present voltage (V)</string>
-    <string name="EVSEVoltageLimitReached">Charger voltage limit reached</string>
-    <string name="EVSEMaxCurrent">Charger max current (A)</string>
-    <string name="EVSEPresentCurrent">Charger present current (A)</string>
-    <string name="EVSECurrentLimitReached">Charger current limit reached</string>
+    <string name="EVSEMaxPower">DC charge max power (W)</string>
+    <string name="EVSEPowerLimitReached">DC charge power limit reached</string>
+    <string name="EVSEMaxVoltage">DC charge max voltage (V)</string>
+    <string name="EVSEPresentVoltage">DC charge present voltage (V)</string>
+    <string name="EVSEVoltageLimitReached">DC charge voltage limit reached</string>
+    <string name="EVSEMaxCurrent">DC charge max current (A)</string>
+    <string name="EVSEPresentCurrent">DC charge present current (A)</string>
+    <string name="EVSECurrentLimitReached">DC charge current limit reached</string>
     <string-array name="list_EVSELimitReached">
         <item>No</item>
         <item>Yes</item>

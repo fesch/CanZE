@@ -80,12 +80,12 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
     private static final String SID_CCSCPLCComStatus = "7c8.62033a.28";
     private static final String SID_CCSEVRequestState = "7c8.620326.28";
     private static final String SID_CCSEVSEState = "7c8.62032c.28";
-    private static final String SID_CCSEVSEMaxPower = "7c8.62032e.24";
+    private static final String SID_CCSEVSEMaxPower = "18daf1da.623006.24";
     private static final String SID_CCSEVSEPowerLimitReached = "7c8.620334.31";
-    private static final String SID_CCSEVSEMaxVoltage = "7c8.62032f.24";
+    private static final String SID_CCSEVSEMaxVoltage = "18daf1da.623008.24";
     private static final String SID_CCSEVSEPresentVoltage = "7c8.620336.24";
     private static final String SID_CCSEVSEVoltageLimitReaced = "7c8.620337.31";
-    private static final String SID_CCSEVSEMaxCurrent = "7c8.620331.24";
+    private static final String SID_CCSEVSEMaxCurrent = "18daf1da.62300a.24";
     private static final String SID_CCSEVSEPresentCurrent = "7c8.620335.24";
     private static final String SID_CCSEVSECurrentLimitReached = "7c8.62032d.31";
 

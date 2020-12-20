@@ -377,14 +377,14 @@
     <string name="CPLCComStatus">Status Kommunikation</string>
     <string name="EVRequestState">Fahrzeug Anfragezustand</string>
     <string name="EVSEState">Zustand Ladestation</string>
-    <string name="EVSEMaxPower">Ladestation max Leistung (W)</string>
-    <string name="EVSEPowerLimitReached">Ladestation Leistungslimit erreicht</string>
-    <string name="EVSEMaxVoltage">Ladestation max Spannung (V)</string>
-    <string name="EVSEPresentVoltage">Ladestation aktuelle Spannung (V)</string>
-    <string name="EVSEVoltageLimitReached">Ladestation Spannungslimit erreicht</string>
-    <string name="EVSEMaxCurrent">Ladestation max Strom (A)</string>
-    <string name="EVSEPresentCurrent">Ladestation aktueller Strom (A)</string>
-    <string name="EVSECurrentLimitReached">Ladestation Stromlimit erreicht</string>
+    <string name="EVSEMaxPower">DC max Ladeleistung (W)</string>
+    <string name="EVSEPowerLimitReached">DC Leistungslimit erreicht</string>
+    <string name="EVSEMaxVoltage">DC max Ladespannung (V)</string>
+    <string name="EVSEPresentVoltage">DC aktuelle Ladespannung (V)</string>
+    <string name="EVSEVoltageLimitReached">DC Spannungslimit erreicht</string>
+    <string name="EVSEMaxCurrent">DC max Ladestrom (A)</string>
+    <string name="EVSEPresentCurrent">DC aktueller Ladestrom (A)</string>
+    <string name="EVSECurrentLimitReached">DC Stromlimit erreicht</string>
     <string-array name="list_EVSELimitReached">
         <item>Nein</item>
         <item>Ja</item>
