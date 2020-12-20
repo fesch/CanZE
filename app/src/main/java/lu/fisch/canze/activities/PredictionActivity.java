@@ -50,7 +50,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
         addField(Sid.RangeEstimate, 10000);                 //0x08
-        addField(Sid.AvChargingPower, 10000);               //0x01
+        addField(Sid.AvailableChargingPower, 10000);               //0x01
         addField(Sid.UserSoC, 10000);                       //0x02
         //addField(Sid.ChargingStatusDisplay, 10000);
         addField(Sid.AverageBatteryTemperature, 10000);     //0x04
@@ -68,7 +68,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
         // get the text field
         switch (fieldId) {
 
-            case Sid.AvChargingPower:
+            case Sid.AvailableChargingPower:
                 car_charger_ac_power = fieldVal;
                 car_status |= 0x01;
                 if (car_charger_ac_power > 1){

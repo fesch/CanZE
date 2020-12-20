@@ -57,6 +57,7 @@ public class Sid {
     public static final String BcbTesterAwake                       = "793.7e01.0";
     public static final String BcbVersion                           = "793.6180.144";
     public static final String ACPilotDutyCycle                     = "793.625026.24";
+    public static final String ACPilotAmps                          = "42e.38";
 
     public static final String MainsCurrentType                     = "793.625017.29";
     public static final String Phase1currentRMS                     = "793.622001.24";
@@ -131,7 +132,16 @@ public class Sid {
     public static final String TireRRState                          = "673.2";
     public static final String TireRRPressure                       = "673.16";
 
-    public static final String EVC = "7ec.5003.0"; // EVC open Note we use 7ec as the EVC has custom SID codes for older model compatilbility
+    public static final String EVC                                  = "7ec.5003.0"; // EVC open Note we use 7ec as the EVC has custom SID codes for older model compatilbility
     public static final String TorqueRequest                        = "7ec.622243.24";
+    public static final String HeaterSetpoint                       = "699.8";
+    public static final String OH_ClimTempDisplay                   = "764.6145.29";
+
+    public static final String DriverBrakeWheel_Torque_Request      = "130.44"; //UBP braking wheel torque the driver wants
+    public static final String ElecBrakeWheelsTorqueApplied         = "1f8.28"; //10ms
+    public static final String Coasting_Torque                      = "18a.27";
+    public static final String HydraulicTorqueRequest               = "7bc.624b7d.28"; // Total Hydraulic brake wheels torque request
+    public static final String PEBTorque                            = "77e.623025.24";
+    public static final String MeanEffectiveTorque                  = "186.16";
 
 }
