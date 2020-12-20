@@ -280,6 +280,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/tableRowRangeMi"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="horizontal"

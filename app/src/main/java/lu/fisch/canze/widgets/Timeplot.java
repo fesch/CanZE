@@ -146,7 +146,7 @@ public class Timeplot extends Drawable {
         barWidth -= spaceAlt;
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        int graphHeight = height - g.stringHeight(sdf.format(Calendar.getInstance().getTime())) - 5;
+        int graphHeight = height - g.stringHeight(sdf.format(Calendar.getInstance().getTime())) - 15;
 
         // draw the ticks
         double realMaxAlt = getMaxAlt();
@@ -205,6 +205,7 @@ public class Timeplot extends Drawable {
                     // draw String
                     if (showLabels) {
                         g.setColor(getForeground());
+                        g.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, Resources.getSystem().getDisplayMetrics()));
                         String text = (actual) + "";
                         double sw = g.stringWidth(text);
                         bx = x + width - barWidth - 16 - sw - spaceAlt;

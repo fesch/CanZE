@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:keepScreenOn="true"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -12,7 +12,7 @@
     tools:context="lu.fisch.canze.activities.ChargingTechActivity">
 
     <TableLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TableRow>
@@ -131,9 +131,7 @@
             <lu.fisch.canze.widgets.WidgetView
                 android:layout_width="0dp"
                 android:layout_height="100dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginBottom="0dp"
                 android:layout_weight="1"
                 custom:backgroundColor="?android:attr/colorBackground"
@@ -177,9 +175,7 @@
     <lu.fisch.canze.widgets.WidgetView
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="0dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
         custom:backgroundColor="?android:attr/colorBackground"

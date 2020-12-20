@@ -24,7 +24,10 @@ package lu.fisch.canze.activities;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -71,8 +74,20 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
         {
             if (MainActivity.milesMode) {
                 setContentView(R.layout.activity_consumption_mi);
+                if (MainActivity.isPh2()){
+                    TableRow tr;
+                    tr = findViewById(R.id.tableRowRangeMi);
+                    tr.setVisibility(View.GONE);
+                    tr.setEnabled(false);
+                }
             } else {
                 setContentView(R.layout.activity_consumption);
+                if (MainActivity.isPh2()){
+                    TableRow tr;
+                    tr = findViewById(R.id.tableRowRange);
+                    tr.setVisibility(View.GONE);
+                    tr.setEnabled(false);
+                }
             }
         }
     }
