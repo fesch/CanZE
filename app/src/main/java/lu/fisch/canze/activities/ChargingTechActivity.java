@@ -29,6 +29,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
@@ -138,6 +139,11 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
             addField(Sid.CCSEVSEPresentCurrent);
             addField(Sid.CCSEVSECurrentLimitReached);
         }
+
+        if (!MainActivity.altFieldsMode) {
+            addField(Sid.BcbVersion); // pre 0x0800 versions have a pilot PWM resolution of 1
+        }
+
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -499,6 +505,8 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                             tv.setText(limit_reached[value]);
                         tv = null;
                         break;
+                    case Sid.BcbVersion:
+                        Fields.getInstance().getBySID(Sid.ACPilotDutyCycle).setResolution(((int)field.getValue() < 0x0800) ? 1.0 : 0.5);
                 }
                 // set regular new content, all exceptions handled above
                 if (tv != null) {

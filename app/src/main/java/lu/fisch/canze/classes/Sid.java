@@ -20,7 +20,7 @@ public class Sid {
     public static final String MaxCharge                            = "7bb.6101.336";
     public static final String UserSoC                              = "42e.0";
     public static final String RealSoC                              = "7bb.6103.192";
-    public static final String AvChargingPower                      = "427.40";
+    public static final String AvailableChargingPower               = "427.40";
     public static final String HvTemp                               = "42e.44";
 
     public static final String RangeEstimate                        = "654.42";
@@ -38,9 +38,8 @@ public class Sid {
     public static final String Total_kWh                            = "7bb.6161.120";
     public static final String Total_Regen_kWh                      = "18daf1db.629247.24"; // Ph2 only (for now)
     public static final String Counter_Full                         = "7bb.6166.48";
-    public static final String Counter_Partial                      =    "7bb.6166.64";
+    public static final String Counter_Partial                      = "7bb.6166.64";
 
-    public static final String AvailableChargingPower               = "427.40";
     public static final String ACPilot                              = "800.610d.24";
     public static final String AvEnergy                             = "427.49";
 
@@ -56,6 +55,8 @@ public class Sid {
 
     public static final String BcbTesterInit                        = "793.50c0.0";
     public static final String BcbTesterAwake                       = "793.7e01.0";
+    public static final String BcbVersion                           = "793.6180.144";
+    public static final String ACPilotDutyCycle                     = "793.625026.24";
 
     public static final String MainsCurrentType                     = "793.625017.29";
     public static final String Phase1currentRMS                     = "793.622001.24";
@@ -72,19 +73,19 @@ public class Sid {
     public static final String SupervisorState                      = "793.625063.24";
     public static final String CompletionStatus                     = "793.625064.24";
     public static final String CCSEVSEStatus                        = "7c8.62033c.24";
-    public static final String CCSFailureStatus = "7c8.62033b.24";
-    public static final String CCSEVReady = "7c8.620329.31";
-    public static final String CCSCPLCComStatus = "7c8.62033a.28";
-    public static final String CCSEVRequestState = "7c8.620326.28";
-    public static final String CCSEVSEState = "7c8.62032c.28";
-    public static final String CCSEVSEMaxPower = "18daf1da.623006.24";
-    public static final String CCSEVSEPowerLimitReached = "7c8.620334.31";
-    public static final String CCSEVSEMaxVoltage = "18daf1da.623008.24";
-    public static final String CCSEVSEPresentVoltage = "7c8.620336.24";
-    public static final String CCSEVSEVoltageLimitReaced = "7c8.620337.31";
-    public static final String CCSEVSEMaxCurrent = "18daf1da.62300a.24";
-    public static final String CCSEVSEPresentCurrent = "7c8.620335.24";
-    public static final String CCSEVSECurrentLimitReached = "7c8.62032d.31";
+    public static final String CCSFailureStatus                     = "7c8.62033b.24";
+    public static final String CCSEVReady                           = "7c8.620329.31";
+    public static final String CCSCPLCComStatus                     = "7c8.62033a.28";
+    public static final String CCSEVRequestState                    = "7c8.620326.28";
+    public static final String CCSEVSEState                         = "7c8.62032c.28";
+    public static final String CCSEVSEMaxPower                      = "18daf1da.623006.24";
+    public static final String CCSEVSEPowerLimitReached             = "7c8.620334.31";
+    public static final String CCSEVSEMaxVoltage                    = "18daf1da.623008.24";
+    public static final String CCSEVSEPresentVoltage                = "7c8.620336.24";
+    public static final String CCSEVSEVoltageLimitReaced            = "7c8.620337.31";
+    public static final String CCSEVSEMaxCurrent                    = "18daf1da.62300a.24";
+    public static final String CCSEVSEPresentCurrent                = "7c8.620335.24";
+    public static final String CCSEVSECurrentLimitReached           = "7c8.62032d.31";
 
     public static final String EngineFanSpeed                       = "42e.20";
     public static final String ChargingPower                        = "42e.56";
@@ -131,6 +132,6 @@ public class Sid {
     public static final String TireRRPressure                       = "673.16";
 
     public static final String EVC = "7ec.5003.0"; // EVC open Note we use 7ec as the EVC has custom SID codes for older model compatilbility
-    public static final String TorqueRequest = "7ec.622243.24";
+    public static final String TorqueRequest                        = "7ec.622243.24";
 
 }

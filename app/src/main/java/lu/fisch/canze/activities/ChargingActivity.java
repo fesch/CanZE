@@ -67,7 +67,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
         addField(Sid.SOH, 5000); // state of health gives continuous timeouts. This frame is send at a very low rate
         addField(Sid.RangeEstimate, 5000);
         addField(Sid.DcPowerIn, 5000);
-        addField(Sid.AvChargingPower, 5000);
+        addField(Sid.AvailableChargingPower, 5000);
         addField(Sid.HvTemp, 5000);
     }
 
@@ -115,7 +115,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
                     case Sid.DcPowerIn:
                         tv = findViewById(R.id.textDcPwr);
                         break;
-                    case Sid.AvChargingPower:
+                    case Sid.AvailableChargingPower:
                         avChPwr = field.getValue();
                         tv = findViewById(R.id.textAvChPwr);
                         if (avChPwr > 45.0) {
