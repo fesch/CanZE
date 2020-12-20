@@ -27,6 +27,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
@@ -40,14 +41,6 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
                                                                                             : R.array.list_VehicleState);
     private final String[] aux_Status = MainActivity.getStringList(R.array.list_AuxStatus);
 
-    private  static final String SID_AuxVoltage                       = "7ec.622005.24"; //"7bb.6101.224";
-    private  static final String SID_AuxStatus                        = "638.37";
-    private  static final String SID_VehicleState                     = "35c.5";
-    //private  static final String SID_ChargingStatusDisplay            = "65b.41";
-    private  static final String SID_VoltageUnderLoad                 = "7ec.623485.24"; // Voltage measurement given by BCS Battery Current Sensor
-    private  static final String SID_CurrentUnderLoad                 = "7ec.623484.24"; // Current measurement given by BCS Battery Current Sensor
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,12 +49,12 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_AuxVoltage);
-        addField(SID_AuxStatus, 1000);
-        addField(SID_VehicleState);
-        //addField(SID_ChargingStatusDisplay, 1000);
-        addField(SID_VoltageUnderLoad, 6000);
-        addField(SID_CurrentUnderLoad, 6000);
+        addField(Sid.AuxVoltage);
+        addField(Sid.AuxStatus, 1000);
+        addField(Sid.VehicleState);
+        //addField(Sid.ChargingStatusDisplay, 1000);
+        addField(Sid.VoltageUnderLoad, 6000);
+        addField(Sid.CurrentUnderLoad, 6000);
     }
 
 
@@ -81,34 +74,34 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
                 // get the text field
                 switch (fieldId) {
 
-                    case SID_AuxVoltage:
+                    case Sid.AuxVoltage:
                         tv = findViewById(R.id.text_12V);
                         break;
-                    case SID_AuxStatus:
+                    case Sid.AuxStatus:
                         tv = findViewById(R.id.textAuxStatus);
                         value = (int) field.getValue();
                         if (tv != null && aux_Status != null && value >= 0 && value <= 7)
                             tv.setText(aux_Status[value]);
                         tv = null;
                         break;
-                    case SID_VehicleState:
+                    case Sid.VehicleState:
                         tv = findViewById(R.id.text_vehicle_state);
                         value = (int) field.getValue();
                         if (tv != null && vehicle_Status != null && value >= 0 && value <= 7)
                             tv.setText(vehicle_Status[value]);
                         tv = null;
                         break;
-                    //case SID_ChargingStatusDisplay:
+                    //case Sid.ChargingStatusDisplay:
                     //    tv = findViewById(R.id.textChaStatus);
                     //    value = (int) field.getValue();
                     //    if (tv != null && charging_Status != null && value >= 0 && value <= 7)
                     //        tv.setText(charging_Status[value]);
                     //    tv = null;
                     //    break;
-                    case SID_VoltageUnderLoad:
+                    case Sid.VoltageUnderLoad:
                         tv = findViewById(R.id.textVoltageLoad);
                         break;
-                    case SID_CurrentUnderLoad:
+                    case Sid.CurrentUnderLoad:
                         tv = findViewById(R.id.textCurrentLoad);
                         break;
                 }

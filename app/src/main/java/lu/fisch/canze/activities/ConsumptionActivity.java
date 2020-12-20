@@ -24,24 +24,19 @@ package lu.fisch.canze.activities;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
-import android.view.Menu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class ConsumptionActivity extends CanzeActivity implements FieldListener, DebugListener {
-
-    private static final String SID_TotalPositiveTorque = "800.610b.24";
-    private static final String SID_TotalNegativeTorque = "800.610c.24";
-    private static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //UBP 10ms
-    private static final String SID_Instant_Consumption                  = "800.6100.24";
-
+    
     private int coasting_Torque                     = 0;
     private int driverBrakeWheel_Torque_Request     = 0;
     private int posTorque                           = 0;
@@ -49,10 +44,10 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
 
     public void initListeners () {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_TotalPositiveTorque);
-        addField(SID_TotalNegativeTorque);
-        addField(SID_TotalPotentialResistiveWheelsTorque, 7200);
-        addField(SID_Instant_Consumption, 0);
+        addField(Sid.TotalPositiveTorque);
+        addField(Sid.TotalNegativeTorque);
+        addField(Sid.TotalPotentialResistiveWheelsTorque, 7200);
+        addField(Sid.Instant_Consumption, 0);
     }
 
     @Override
@@ -97,7 +92,7 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
 
                 switch (fieldId) {
 
-                    case SID_TotalPositiveTorque:
+                    case Sid.TotalPositiveTorque:
                         posTorque = (int)(field.getValue());
                         pb = findViewById(R.id.MeanEffectiveAccTorque);
                         pb.setProgress(posTorque);
@@ -105,7 +100,7 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
                         if (tv != null) tv.setText((posTorque - negTorque) + " " + field.getUnit());
                         break;
 
-                    case SID_TotalNegativeTorque:
+                    case Sid.TotalNegativeTorque:
                         negTorque = (int)(field.getValue());
                         pb = findViewById(R.id.pb_driver_torque_request);
                         pb.setProgress(negTorque);
@@ -114,14 +109,14 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
                         break;
 
                     // negative blue bar
-                    case SID_TotalPotentialResistiveWheelsTorque:
+                    case Sid.TotalPotentialResistiveWheelsTorque:
                         int tprwt = -((int) field.getValue());
                         pb = findViewById(R.id.MaxBreakTorque);
                         if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 10);
                         break;
 
                     // consumption
-                    case SID_Instant_Consumption:
+                    case Sid.Instant_Consumption:
                         double consumptionDbl = field.getValue();
                         int consumptionInt = (int)consumptionDbl;
                         tv = findViewById(R.id.text_instant_consumption_negative);

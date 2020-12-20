@@ -27,6 +27,7 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
@@ -34,19 +35,7 @@ import lu.fisch.canze.interfaces.FieldListener;
 // If you want to monitor changes, you must add a FieldListener to the fields.
 // For the simple activity, the easiest way is to implement it in the actitviy itself.
 public class ChargingHistActivity extends CanzeActivity implements FieldListener, DebugListener {
-
-    private static final String SID_Preamble_KM                      = "7ec.6233d4."; // 240 - 24
-    private static final String SID_Preamble_END                     = "7ec.6233d5."; //  96 -  8
-    private static final String SID_Preamble_TYP                     = "7ec.6233d6."; //  96 -  8
-    private static final String SID_Preamble_SOC                     = "7ec.6233d7."; // 168 - 16
-    private static final String SID_Preamble_TMP                     = "7ec.6233d8."; //  96 -  8
-    private static final String SID_Preamble_DUR                     = "7ec.6233d9."; // 168 - 16
-
-    private static final String SID_Total_kWh                        = "7bb.6161.120";
-    private static final String SID_Total_Regen_kWh                  = "18daf1db.629247.24"; // Ph2 only (for now)
-    private static final String SID_Counter_Full                     = "7bb.6166.48";
-    private static final String SID_Counter_Partial                  = "7bb.6166.64";
-
+    
     private final String[] charging_HistEnd = MainActivity.getStringList(R.array.list_ChargingHistEnd);
     private final String[] charging_HistTyp = MainActivity.getStringList(R.array.list_ChargingHistTyp);
 
@@ -60,25 +49,25 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
         String sid;
         MainActivity.getInstance().setDebugListener(this);
         for (int i = 0; i < 10; i++) {
-            sid = SID_Preamble_KM  + (240 - i * 24);
+            sid = Sid.Preamble_KM  + (240 - i * 24);
             addField(sid, 6000);
-            sid = SID_Preamble_END + ( 96 - i *  8);
+            sid = Sid.Preamble_END + ( 96 - i *  8);
             addField(sid, 6000);
-            sid = SID_Preamble_TYP + ( 96 - i *  8);
+            sid = Sid.Preamble_TYP + ( 96 - i *  8);
             addField(sid, 6000);
-            sid = SID_Preamble_SOC + (168 - i * 16);
+            sid = Sid.Preamble_SOC + (168 - i * 16);
             addField(sid, 6000);
-            sid = SID_Preamble_TMP + ( 96 - i *  8);
+            sid = Sid.Preamble_TMP + ( 96 - i *  8);
             addField(sid, 6000);
-            sid = SID_Preamble_DUR + (168 - i * 16);
+            sid = Sid.Preamble_DUR + (168 - i * 16);
             addField(sid, 6000);
         }
-        addField(SID_Total_kWh, 6000);
-        addField(SID_Counter_Full, 6000);
-        addField(SID_Counter_Partial, 6000);
+        addField(Sid.Total_kWh, 6000);
+        addField(Sid.Counter_Full, 6000);
+        addField(Sid.Counter_Partial, 6000);
 
         if (MainActivity.isPh2()) {
-            addField(SID_Total_Regen_kWh, 6000);
+            addField(Sid.Total_Regen_kWh, 6000);
         }
     }
 
@@ -100,44 +89,44 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
 
                 // get the text column, select the row through the bit position
                 switch (sidPreamble) {
-                    case SID_Preamble_KM:
+                    case Sid.Preamble_KM:
                         tv = findViewById(getResources().getIdentifier("textKM"  + ((264 - Integer.parseInt(startBit)) / 24), "id", getPackageName()));
                         break;
-                    case SID_Preamble_END:
+                    case Sid.Preamble_END:
                         tv = findViewById(getResources().getIdentifier("textEND" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
                         value = (int) val;
                         if (tv != null && !Double.isNaN(val) && charging_HistEnd != null && value >= 0 && value < charging_HistEnd.length)
                             tv.setText(charging_HistEnd[value]);
                         tv = null;
                         break;
-                    case SID_Preamble_TYP:
+                    case Sid.Preamble_TYP:
                         tv = findViewById(getResources().getIdentifier("textTYP" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
                         value = (int) val;
                         if (tv != null && !Double.isNaN(val) && charging_HistTyp != null && value >= 0 && value < charging_HistTyp.length)
                             tv.setText(charging_HistTyp[value]);
                         tv = null;
                         break;
-                    case SID_Preamble_SOC:
+                    case Sid.Preamble_SOC:
                         tv = findViewById(getResources().getIdentifier("textSOC" + ((184 - Integer.parseInt(startBit)) / 16), "id", getPackageName()));
                         break;
-                    case SID_Preamble_TMP:
+                    case Sid.Preamble_TMP:
                         tv = findViewById(getResources().getIdentifier("textTMP" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
                         break;
-                    case SID_Preamble_DUR:
+                    case Sid.Preamble_DUR:
                         tv = findViewById(getResources().getIdentifier("textDUR" + ((184 - Integer.parseInt(startBit)) / 16), "id", getPackageName()));
                         break;
                     default:
                         switch (field.getSID()) {
-                            case SID_Total_kWh:
+                            case Sid.Total_kWh:
                                 tv = findViewById(R.id.textTotKwh);
                                 break;
-                            case SID_Total_Regen_kWh:
+                            case Sid.Total_Regen_kWh:
                                 tv = findViewById(R.id.textTotKwhRegen);
                                 break;
-                            case SID_Counter_Full:
+                            case Sid.Counter_Full:
                                 tv = findViewById(R.id.textCountFull);
                                 break;
-                            case SID_Counter_Partial:
+                            case Sid.Counter_Partial:
                                 tv = findViewById(R.id.textCountPartial);
                                 break;
                         }

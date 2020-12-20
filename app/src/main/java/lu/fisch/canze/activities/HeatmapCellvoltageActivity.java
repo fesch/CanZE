@@ -31,6 +31,7 @@ import androidx.annotation.ColorInt;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
@@ -39,9 +40,6 @@ import lu.fisch.canze.interfaces.FieldListener;
  * Heatmap by jeroen on 27-10-15.
  */
 public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldListener, DebugListener {
-
-    private static final String SID_Preamble_CellVoltages1 = "7bb.6141."; // (LBC)
-    private static final String SID_Preamble_CellVoltages2 = "7bb.6142."; // (LBC)
 
     private double mean = 0;
     private double cutoff;
@@ -67,11 +65,11 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
         MainActivity.getInstance().setDebugListener(this);
         // Battery compartment temperatures
         for (int i = 1; i <= 62; i++) {
-            String sid = SID_Preamble_CellVoltages1 + (i * 16); // remember, first is pos 16, i starts s at 1
+            String sid = Sid.Preamble_CellVoltages1 + (i * 16); // remember, first is pos 16, i starts s at 1
             addField(sid);
         }
         for (int i = 63; i <= 96; i++) {
-            String sid = SID_Preamble_CellVoltages2 + ((i - 62) * 16); // remember, first is pos 16, i starts s at 1
+            String sid = Sid.Preamble_CellVoltages2 + ((i - 62) * 16); // remember, first is pos 16, i starts s at 1
             addField(sid);
         }
     }
@@ -83,9 +81,9 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
         // get the text field
         final String fieldId = field.getSID();
         int cell = 0;
-        if (fieldId.startsWith(SID_Preamble_CellVoltages1)) {
+        if (fieldId.startsWith(Sid.Preamble_CellVoltages1)) {
             cell = (Integer.parseInt(fieldId.split("[.]")[2])) / 16; // cell is 1-based
-        } else if (fieldId.startsWith(SID_Preamble_CellVoltages2)) {
+        } else if (fieldId.startsWith(Sid.Preamble_CellVoltages2)) {
             cell = (Integer.parseInt(fieldId.split("[.]")[2])) / 16 + 62; // cell is 1-based
         }
         if (cell > 0 && cell <= lastCell) {

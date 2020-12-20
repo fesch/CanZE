@@ -23,7 +23,6 @@ package lu.fisch.canze.activities;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
@@ -41,6 +40,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Ecu;
 import lu.fisch.canze.actors.Ecus;
 import lu.fisch.canze.actors.Field;
@@ -54,18 +54,7 @@ import static lu.fisch.canze.activities.MainActivity.debug;
 
 
 public class TiresActivity extends CanzeActivity implements FieldListener, DebugListener {
-
-    private static final String SID_TpmsState = "765.6171.16";
-    private static final String SID_TireSpdPresMisadaption = "673.0";
-    private static final String SID_TireFLState = "673.11";
-    private static final String SID_TireFLPressure = "673.40";
-    private static final String SID_TireFRState = "673.8";
-    private static final String SID_TireFRPressure = "673.32";
-    private static final String SID_TireRLState = "673.5";
-    private static final String SID_TireRLPressure = "673.24";
-    private static final String SID_TireRRState = "673.2";
-    private static final String SID_TireRRPressure = "673.16";
-
+    
     private static final String[] val_TireSpdPresMisadaption = {MainActivity.getStringSingle(R.string.default_Ok), MainActivity.getStringSingle(R.string.default_NotOk)};
     private static final String[] val_TireState = MainActivity.getStringList(R.array.list_TireStatus);
     private static final String val_Unavailable = MainActivity.getStringSingle(R.string.default_Dash);
@@ -166,16 +155,16 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
     // set the fields the poller should query
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_TpmsState, 1000);
-        addField(SID_TireSpdPresMisadaption, 6000);
-        addField(SID_TireFLState, 6000);
-        addField(SID_TireFLPressure, 6000);
-        addField(SID_TireFRState, 6000);
-        addField(SID_TireFRPressure, 6000);
-        addField(SID_TireRLState, 6000);
-        addField(SID_TireRLPressure, 6000);
-        addField(SID_TireRRState, 6000);
-        addField(SID_TireRRPressure, 6000);
+        addField(Sid.TpmsState, 1000);
+        addField(Sid.TireSpdPresMisadaption, 6000);
+        addField(Sid.TireFLState, 6000);
+        addField(Sid.TireFLPressure, 6000);
+        addField(Sid.TireFRState, 6000);
+        addField(Sid.TireFRPressure, 6000);
+        addField(Sid.TireRLState, 6000);
+        addField(Sid.TireRLPressure, 6000);
+        addField(Sid.TireRRState, 6000);
+        addField(Sid.TireRRPressure, 6000);
     }
 
     // fired event when any of the registered fields are getting updated by the device
@@ -195,52 +184,52 @@ public class TiresActivity extends CanzeActivity implements FieldListener, Debug
 
                 // get the text field
                 switch (fieldId) {
-                    case SID_TpmsState:
+                    case Sid.TpmsState:
                         tpmsState (intValue);
                         tv = null;
                         break;
-                    case SID_TireSpdPresMisadaption:
+                    case Sid.TireSpdPresMisadaption:
                         tv = findViewById(R.id.text_TireSpdPresMisadaption);
                         color = 0; // don't set color
                         value = val_TireSpdPresMisadaption[intValue];
                         break;
-                    case SID_TireFLState:
+                    case Sid.TireFLState:
                         if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TireFLState);
                         if (intValue > 1) color = alarmColor;
                         value = val_TireState != null ? val_TireState[intValue] : "";
                         break;
-                    case SID_TireFLPressure:
+                    case Sid.TireFLPressure:
                         tv = findViewById(R.id.text_TireFLPressure);
                         value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
-                    case SID_TireFRState:
+                    case Sid.TireFRState:
                         if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TireFRState);
                         if (intValue > 1) color = alarmColor;
                         value = val_TireState != null ? val_TireState[intValue] : "";
                         break;
-                    case SID_TireFRPressure:
+                    case Sid.TireFRPressure:
                         tv = findViewById(R.id.text_TireFRPressure);
                         value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
-                    case SID_TireRLState:
+                    case Sid.TireRLState:
                         if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TireRLState);
                         if (intValue > 1) color = alarmColor;
                         value = val_TireState != null ? val_TireState[intValue] : "";
                         break;
-                    case SID_TireRLPressure:
+                    case Sid.TireRLPressure:
                         tv = findViewById(R.id.text_TireRLPressure);
                         value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;
-                    case SID_TireRRState:
+                    case Sid.TireRRState:
                         if (intValue < 0 || intValue > 6) return;
                         tv = findViewById(R.id.text_TireRRState);
                         if (intValue > 1) color = alarmColor;
                         value = val_TireState != null ? val_TireState[intValue] : "";
                         break;
-                    case SID_TireRRPressure:
+                    case Sid.TireRRPressure:
                         tv = findViewById(R.id.text_TireRRPressure);
                         value = (intValue >= 3499) ? val_Unavailable : ("" + intValue);
                         break;

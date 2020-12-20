@@ -22,15 +22,21 @@
 package lu.fisch.canze.activities;
 
 import android.os.Bundle;
-import android.view.Menu;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.interfaces.DebugListener;
 
 public class LeakCurrentsActivity extends CanzeActivity implements DebugListener {
 
-    private static final String SID_TesterInit  = "793.50c0.0";
-    private static final String SID_TesterAwake = "793.7e01.0";
+    // Bcbtesterinit and -awake are hardcoded here, but shoud of course be optionally taken from
+    // the ECU getSessionRequired and getStartDiag. However, since the BCB fields are aliassed in
+    // Ph2 to the 11 bits address, we leave it like this for now
+    
+    /* Todo
+         Add unaliased settings for BCB tester fields in _FieldsPh2, and make tester logic here
+         use the formal ECU settings
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +46,8 @@ public class LeakCurrentsActivity extends CanzeActivity implements DebugListener
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_TesterInit, lu.fisch.canze.devices.Device.INTERVAL_ONCE);
-        addField(SID_TesterAwake, 1500);
+        addField(Sid.BcbTesterInit, lu.fisch.canze.devices.Device.INTERVAL_ONCE);
+        addField(Sid.BcbTesterAwake, 1500);
     }
 
 }

@@ -30,12 +30,11 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 
 public class BatteryActivity extends CanzeActivity implements DebugListener {
-
-    private static final String SID_BatterySerial                        = "7bb.6162.16"; //EVC
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,7 @@ public class BatteryActivity extends CanzeActivity implements DebugListener {
 
     protected void initListeners () {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_BatterySerial, 60000);
+        addField(Sid.BatterySerial, 60000);
     }
 
     /********************************/
@@ -65,7 +64,7 @@ public class BatteryActivity extends CanzeActivity implements DebugListener {
 
                 switch (field.getSID()) {
                     // positive torque
-                    case SID_BatterySerial:
+                    case Sid.BatterySerial:
                         tv = findViewById(R.id.textBatterySerial);
                         if (tv != null) tv.setText(String.format(Locale.getDefault(), "Serial: %X", (long)field.getValue()).replace (" 26", "F"));
                         //tv = null;

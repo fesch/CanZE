@@ -31,6 +31,7 @@ import androidx.annotation.ColorInt;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
@@ -38,16 +39,6 @@ import lu.fisch.canze.interfaces.FieldListener;
 // If you want to monitor changes, you must add a FieldField to the fields.
 // For the simple activity, the easiest way is to implement it in the activity itself.
 public class ChargingActivity extends CanzeActivity implements FieldListener, DebugListener {
-
-    private static final String SID_MaxCharge                        = "7bb.6101.336";
-    private static final String SID_UserSoC                          = "42e.0";
-    private static final String SID_RealSoC                          = "7bb.6103.192";
-    private static final String SID_AvChargingPower                  = "427.40";
-    private static final String SID_HvTemp                           = "42e.44";
-
-    private static final String SID_RangeEstimate                    = "654.42";
-    private static final String SID_DcPower                          = "800.6103.24"; // Virtual field
-    private static final String SID_SOH                              = "7ec.623206.24";
 
     private double avChPwr;
     @ColorInt private int baseColor;
@@ -70,14 +61,14 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
         if (MainActivity.isPh2()) addField("7ec.5003.0", 2000); // open EVC
-        addField(SID_MaxCharge, 5000);
-        addField(SID_UserSoC, 5000);
-        addField(SID_RealSoC, 5000);
-        addField(SID_SOH, 5000); // state of health gives continuous timeouts. This frame is send at a very low rate
-        addField(SID_RangeEstimate, 5000);
-        addField(SID_DcPower, 5000);
-        addField(SID_AvChargingPower, 5000);
-        addField(SID_HvTemp, 5000);
+        addField(Sid.MaxCharge, 5000);
+        addField(Sid.UserSoC, 5000);
+        addField(Sid.RealSoC, 5000);
+        addField(Sid.SOH, 5000); // state of health gives continuous timeouts. This frame is send at a very low rate
+        addField(Sid.RangeEstimate, 5000);
+        addField(Sid.DcPowerIn, 5000);
+        addField(Sid.AvChargingPower, 5000);
+        addField(Sid.HvTemp, 5000);
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -95,24 +86,24 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
                 // get the text field
                 switch (fieldId) {
 
-                    case SID_MaxCharge:
+                    case Sid.MaxCharge:
                         double maxCharge = field.getValue();
                         tv = findViewById(R.id.text_max_charge);
                         tv.setBackgroundColor((maxCharge < (avChPwr * 0.8) && avChPwr < 45.0) ? alarmColor : baseColor);
                         break;
-                    case SID_UserSoC:
+                    case Sid.UserSoC:
                         tv = findViewById(R.id.textUserSOC);
                         break;
-                    case SID_RealSoC:
+                    case Sid.RealSoC:
                         tv = findViewById(R.id.textRealSOC);
                         break;
-                    case SID_HvTemp:
+                    case Sid.HvTemp:
                         tv = findViewById(R.id.textHvTemp);
                         break;
-                    case SID_SOH:
+                    case Sid.SOH:
                         tv = findViewById(R.id.textSOH);
                         break;
-                    case SID_RangeEstimate:
+                    case Sid.RangeEstimate:
                         tv = findViewById(R.id.textKMA);
                         if (field.getValue() >= 1023) {
                             tv.setText("---");
@@ -121,10 +112,10 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
                         }
                         tv = null;
                         break;
-                    case SID_DcPower:
+                    case Sid.DcPowerIn:
                         tv = findViewById(R.id.textDcPwr);
                         break;
-                    case SID_AvChargingPower:
+                    case Sid.AvChargingPower:
                         avChPwr = field.getValue();
                         tv = findViewById(R.id.textAvChPwr);
                         if (avChPwr > 45.0) {

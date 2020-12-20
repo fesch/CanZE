@@ -28,18 +28,12 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class BrakingActivity extends CanzeActivity implements FieldListener, DebugListener {
-
-    // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
-
-    // free data
-    private static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; // UBP 10ms
-    private static final String SID_FrictionTorque                       = "800.6101.24";
-    private static final String SID_ElecBrakeTorque                      = "800.610a.24";
 
     private double frictionTorque = 0;
     private double elecBrakeTorque = 0;
@@ -52,9 +46,9 @@ public class BrakingActivity extends CanzeActivity implements FieldListener, Deb
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_TotalPotentialResistiveWheelsTorque);
-        addField(SID_FrictionTorque);
-        addField(SID_ElecBrakeTorque);
+        addField(Sid.TotalPotentialResistiveWheelsTorque);
+        addField(Sid.FrictionTorque);
+        addField(Sid.ElecBrakeTorque);
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -73,13 +67,13 @@ public class BrakingActivity extends CanzeActivity implements FieldListener, Deb
                 // get the text field
                 switch (fieldId) {
 
-                    case SID_TotalPotentialResistiveWheelsTorque: //bluebar
+                    case Sid.TotalPotentialResistiveWheelsTorque: //bluebar
                         int tprwt = - ((int) field.getValue());
                         pb = findViewById(R.id.MaxBreakTorque);
                         if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 20);
                         break;
 
-                    case SID_FrictionTorque:
+                    case Sid.FrictionTorque:
                         frictionTorque = field.getValue();
                         pb = findViewById(R.id.pb_diff_friction_torque);
                         pb.setProgress((int) frictionTorque);
@@ -91,7 +85,7 @@ public class BrakingActivity extends CanzeActivity implements FieldListener, Deb
                         if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + MainActivity.getStringSingle(R.string.unit_Nm), frictionTorque + elecBrakeTorque));
                         break;
 
-                    case SID_ElecBrakeTorque:
+                    case Sid.ElecBrakeTorque:
                         elecBrakeTorque = field.getValue();
                         pb = findViewById(R.id.pb_ElecBrakeWheelsTorqueApplied);
                         pb.setProgress((int) elecBrakeTorque);

@@ -29,65 +29,24 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class ChargingTechActivity extends CanzeActivity implements FieldListener, DebugListener {
 
-    private static final String SID_MaxCharge = "7bb.6101.336";
-    private static final String SID_UserSoC = "42e.0";          // user SOC, not raw
-    private static final String SID_AvailableChargingPower = "427.40";
-    private static final String SID_ACPilot = "800.610d.24";
-    private static final String SID_AvEnergy = "427.49";
+    // Bcbtesterinit and -awake are hardcoded here, but shoud of course be optionally taken from
+    // the ECU getSessionRequired and getStartDiag. However, since the BCB fields are aliassed in
+    // Ph2 to the 11 bits address, we leave it like this for now
 
-    private static final String SID_PlugConnected = "654.2";
-    private static final String SID_SOH = "7ec.623206.24";
-    private static final String SID_RangeEstimate = "654.42";
-    private static final String SID_TractionBatteryVoltage = "7ec.623203.24";
-    private static final String SID_TractionBatteryCurrent = "7ec.623204.24";
-    private static final String SID_RealSoC = "7bb.6103.192";
-    private static final String SID_12V = "7ec.622005.24";
-    private static final String SID_12A = "1fd.0";
-    private static final String SID_DcLoad = "7ec.623028.24";
-    private static final String SID_HvKilometers = "7bb.6161.96";
-    private static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
-    private static final String SID_Preamble_BalancingBytes = "7bb.6107.";
+    /* Todo
+         Add unaliased settings for BCB tester fields in _FieldsPh2, and make tester logic here
+         use the formal ECU settings
+     */
 
-    private static final String DefaultFormatTemperature = "%3.0f";
-    private static final String DefaultFormatBalancing = "%02X";
-
-    private static final String SID_TesterInit = "793.50c0.0";
-    private static final String SID_TesterAwake = "793.7e01.0";
-
-    private static final String SID_MainsCurrentType = "793.625017.29";
-    private static final String SID_Phase1currentRMS = "793.622001.24";
-    private static final String SID_Phase2CurrentRMS = "793.62503a.24"; // Raw <= this seems to be instant DC coupled value
-    private static final String SID_Phase3CurrentRMS = "793.62503b.24";
-    private static final String SID_PhaseVoltage1 = "793.62502c.24"; // Raw
-    private static final String SID_PhaseVoltage2 = "793.62502d.24";
-    private static final String SID_PhaseVoltage3 = "793.62502e.24";
-    private static final String SID_InterPhaseVoltage12 = "793.62503f.24"; // Measured
-    private static final String SID_InterPhaseVoltage23 = "793.625041.24";
-    private static final String SID_InterPhaseVoltage31 = "793.625042.24";
-    private static final String SID_MainsActivePower = "793.62504a.24";
-    private static final String SID_GroundResistance = "793.625062.24";
-    private static final String SID_SupervisorState = "793.625063.24";
-    private static final String SID_CompletionStatus = "793.625064.24";
-    private static final String SID_CCSEVSEStatus = "7c8.62033c.24";
-    private static final String SID_CCSFailureStatus = "7c8.62033b.24";
-    private static final String SID_CCSEVReady = "7c8.620329.31";
-    private static final String SID_CCSCPLCComStatus = "7c8.62033a.28";
-    private static final String SID_CCSEVRequestState = "7c8.620326.28";
-    private static final String SID_CCSEVSEState = "7c8.62032c.28";
-    private static final String SID_CCSEVSEMaxPower = "18daf1da.623006.24";
-    private static final String SID_CCSEVSEPowerLimitReached = "7c8.620334.31";
-    private static final String SID_CCSEVSEMaxVoltage = "18daf1da.623008.24";
-    private static final String SID_CCSEVSEPresentVoltage = "7c8.620336.24";
-    private static final String SID_CCSEVSEVoltageLimitReaced = "7c8.620337.31";
-    private static final String SID_CCSEVSEMaxCurrent = "18daf1da.62300a.24";
-    private static final String SID_CCSEVSEPresentCurrent = "7c8.620335.24";
-    private static final String SID_CCSEVSECurrentLimitReached = "7c8.62032d.31";
+    public static final String DefaultFormatTemperature = "%3.0f";
+    public static final String DefaultFormatBalancing = "%02X";
 
     private final String[] plug_Status = MainActivity.getStringList(R.array.list_PlugStatus);
     private final String[] mains_Current_Type = MainActivity.getStringList(R.array.list_MainsCurrentType);
@@ -118,66 +77,66 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_TesterInit, lu.fisch.canze.devices.Device.INTERVAL_ONCE);
-        addField(SID_MaxCharge, 5000);
-        addField(SID_ACPilot, 5000);
-        addField(SID_PlugConnected, 5000);
-        addField(SID_UserSoC, 5000);
-        addField(SID_RealSoC, 5000);
-        addField(SID_AvailableChargingPower, 5000);
-        addField(SID_AvEnergy, 5000);
-        addField(SID_SOH, 5000); // state of health gives continuous timeouts. This frame is send at a very low rate
-        addField(SID_RangeEstimate, 5000);
-        addField(SID_12V, 2000);
-        addField(SID_12A, 1000);
-        addField(SID_DcLoad, 1000);
-        addField(SID_HvKilometers, 5000);
-        addField(SID_TractionBatteryVoltage, 5000);
-        addField(SID_TractionBatteryCurrent, 5000);
+        addField(Sid.BcbTesterInit, lu.fisch.canze.devices.Device.INTERVAL_ONCE);
+        addField(Sid.MaxCharge, 5000);
+        addField(Sid.ACPilot, 5000);
+        addField(Sid.PlugConnected, 5000);
+        addField(Sid.UserSoC, 5000);
+        addField(Sid.RealSoC, 5000);
+        addField(Sid.AvailableChargingPower, 5000);
+        addField(Sid.AvEnergy, 5000);
+        addField(Sid.SOH, 5000); // state of health gives continuous timeouts. This frame is send at a very low rate
+        addField(Sid.RangeEstimate, 5000);
+        addField(Sid.Aux12V, 2000);
+        addField(Sid.Aux12A, 1000);
+        addField(Sid.DcLoad, 1000);
+        addField(Sid.HvKilometers, 5000);
+        addField(Sid.TractionBatteryVoltage, 5000);
+        addField(Sid.TractionBatteryCurrent, 5000);
 
         // Battery compartment temperatures
         int lastCell = 12;
         for (int i = 0; i < lastCell; i++) {
-            String sid = SID_Preamble_CompartmentTemperatures + (32 + i * 24);
+            String sid = Sid.Preamble_CompartmentTemperatures + (32 + i * 24);
             addField(sid, 5000);
-            sid = SID_Preamble_BalancingBytes + (16 + i * 8);
+            sid = Sid.Preamble_BalancingBytes + (16 + i * 8);
             addField(sid, 5000);
         }
 
-        addField(SID_TesterAwake, 1500);
-        addField(SID_MainsCurrentType);
-        addField(SID_Phase1currentRMS);
-        addField(SID_Phase2CurrentRMS);
-        addField(SID_Phase3CurrentRMS);
+        addField(Sid.BcbTesterAwake, 1500);
+        addField(Sid.MainsCurrentType);
+        addField(Sid.Phase1currentRMS);
+        addField(Sid.Phase2CurrentRMS);
+        addField(Sid.Phase3CurrentRMS);
         if (!MainActivity.isPh2()) {
-            addField(SID_PhaseVoltage1);
-            addField(SID_PhaseVoltage2);
-            addField(SID_PhaseVoltage3);
+            addField(Sid.PhaseVoltage1);
+            addField(Sid.PhaseVoltage2);
+            addField(Sid.PhaseVoltage3);
         }
-        addField(SID_InterPhaseVoltage12);
-        addField(SID_InterPhaseVoltage23);
-        addField(SID_InterPhaseVoltage31);
-        addField(SID_MainsActivePower);
-        addField(SID_GroundResistance);
-        addField(SID_SupervisorState);
-        addField(SID_CompletionStatus);
+        addField(Sid.InterPhaseVoltage12);
+        addField(Sid.InterPhaseVoltage23);
+        addField(Sid.InterPhaseVoltage31);
+        addField(Sid.MainsActivePower);
+        addField(Sid.GroundResistance);
+        addField(Sid.SupervisorState);
+        addField(Sid.CompletionStatus);
 
         // TODO: Add variable holding information if CCS charging is available for the car
         if (MainActivity.isPh2()){
-            addField(SID_CCSEVSEStatus);
-            addField(SID_CCSFailureStatus);
-            addField(SID_CCSEVReady);
-            addField(SID_CCSCPLCComStatus);
-            addField(SID_CCSEVRequestState);
-            addField(SID_CCSEVSEState);
-            addField(SID_CCSEVSEMaxPower);
-            addField(SID_CCSEVSEPowerLimitReached);
-            addField(SID_CCSEVSEMaxVoltage);
-            addField(SID_CCSEVSEPresentVoltage);
-            addField(SID_CCSEVSEVoltageLimitReaced);
-            addField(SID_CCSEVSEMaxCurrent);
-            addField(SID_CCSEVSEPresentCurrent);
-            addField(SID_CCSEVSECurrentLimitReached);
+            addField(Sid.CCSEVSEStatus);
+            addField(Sid.CCSFailureStatus);
+            addField(Sid.CCSEVReady);
+            addField(Sid.CCSCPLCComStatus);
+            addField(Sid.CCSEVRequestState);
+            addField(Sid.CCSEVSEState);
+            addField(Sid.CCSEVSEMaxPower);
+            addField(Sid.CCSEVSEPowerLimitReached);
+            addField(Sid.CCSEVSEMaxVoltage);
+            addField(Sid.CCSEVSEPresentVoltage);
+            addField(Sid.CCSEVSEVoltageLimitReaced);
+            addField(Sid.CCSEVSEMaxCurrent);
+            addField(Sid.CCSEVSEPresentCurrent);
+            addField(Sid.CCSEVSECurrentLimitReached);
         }
     }
 
@@ -197,31 +156,31 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                 // get the text field
                 switch (fieldId) {
 
-                    case SID_MaxCharge:
+                    case Sid.MaxCharge:
                         tv = findViewById(R.id.text_max_charge);
                         break;
-                    case SID_ACPilot:
+                    case Sid.ACPilot:
                         // save pilot amps
                         pilot = field.getValue();
                         tv = findViewById(R.id.text_max_pilot);
                         break;
 
-                    case SID_UserSoC:
+                    case Sid.UserSoC:
                         usoc = field.getValue() / 100.0;
                         tv = findViewById(R.id.textUserSOC);
                         break;
 
-                    case SID_RealSoC:
+                    case Sid.RealSoC:
                         tv = findViewById(R.id.textRealSOC);
                         break;
 
-                    case SID_SOH:
+                    case Sid.SOH:
                         tv = findViewById(R.id.textSOH);
                         tv.setText(String.format(Locale.getDefault(), "%.0f", field.getValue()));
                         tv = null;
                         break;
 
-                    case SID_RangeEstimate:
+                    case Sid.RangeEstimate:
                         tv = findViewById(R.id.textKMA);
                         if (field.getValue() >= 1023) {
                             tv.setText("---");
@@ -231,14 +190,14 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         tv = null;
                         break;
 
-                    case SID_TractionBatteryVoltage: // DC volts
+                    case Sid.TractionBatteryVoltage: // DC volts
                         // save DC voltage for DC power purposes
                         dcVolt = field.getValue();
                         // continue
                         tv = findViewById(R.id.textVolt);
                         break;
 
-                    case SID_TractionBatteryCurrent: // DC amps
+                    case Sid.TractionBatteryCurrent: // DC amps
                         // calculate DC power
                         double dcPwr = dcVolt * field.getValue() / 1000.0;
                         tv = findViewById(R.id.textDcPwr);
@@ -247,7 +206,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         tv = findViewById(R.id.textAmps);
                         break;
 
-                    case SID_AvailableChargingPower:
+                    case Sid.AvailableChargingPower:
                         double avChPwr = field.getValue();
                         tv = findViewById(R.id.textAvChPwr);
                         if (avChPwr > 45.0) {
@@ -256,7 +215,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         }
                         break;
 
-                    case SID_AvEnergy:
+                    case Sid.AvEnergy:
                         if (usoc > 0) {
                             tv = findViewById(R.id.textETF);
                             tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue() * (1 - usoc) / usoc));
@@ -264,23 +223,23 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         tv = findViewById(R.id.textAvEner);
                         break;
 
-                    case SID_12V:
+                    case Sid.Aux12V:
                         tv = findViewById(R.id.text12V);
                         break;
-                    case SID_12A:
+                    case Sid.Aux12A:
                         tv = findViewById(R.id.text12A);
                         break;
-                    case SID_DcLoad:
+                    case Sid.DcLoad:
                         tv = findViewById(R.id.textDcLoad);
                         break;
 
-                    case SID_HvKilometers:
+                    case Sid.HvKilometers:
                         tv = findViewById(R.id.textHKM);
                         tv.setText(String.format(Locale.getDefault(), "%.0f", field.getValue()));
                         tv = null;
                         break;
 
-                    case SID_PlugConnected:
+                    case Sid.PlugConnected:
                         value = (int) field.getValue();
                         tv = findViewById(R.id.textPlug);
                         if (tv != null && plug_Status != null && value >= 0 && value < plug_Status.length)
@@ -288,252 +247,252 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         tv = null;
                         break;
 
-                    case SID_Preamble_CompartmentTemperatures + "32":
+                    case Sid.Preamble_CompartmentTemperatures + "32":
                         tv = findViewById(R.id.text_comp_1_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatTemperature, field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_CompartmentTemperatures + "56":
+                    case Sid.Preamble_CompartmentTemperatures + "56":
                         tv = findViewById(R.id.text_comp_2_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatTemperature, field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_CompartmentTemperatures + "80":
+                    case Sid.Preamble_CompartmentTemperatures + "80":
                         tv = findViewById(R.id.text_comp_3_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatTemperature, field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_CompartmentTemperatures + "104":
+                    case Sid.Preamble_CompartmentTemperatures + "104":
                         tv = findViewById(R.id.text_comp_4_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatTemperature, field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_CompartmentTemperatures + "128":
+                    case Sid.Preamble_CompartmentTemperatures + "128":
                         tv = findViewById(R.id.text_comp_5_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatTemperature, field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_CompartmentTemperatures + "152":
+                    case Sid.Preamble_CompartmentTemperatures + "152":
                         tv = findViewById(R.id.text_comp_6_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatTemperature, field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_CompartmentTemperatures + "176":
+                    case Sid.Preamble_CompartmentTemperatures + "176":
                         tv = findViewById(R.id.text_comp_7_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatTemperature, field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_CompartmentTemperatures + "200":
+                    case Sid.Preamble_CompartmentTemperatures + "200":
                         tv = findViewById(R.id.text_comp_8_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatTemperature, field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_CompartmentTemperatures + "224":
+                    case Sid.Preamble_CompartmentTemperatures + "224":
                         tv = findViewById(R.id.text_comp_9_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatTemperature, field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_CompartmentTemperatures + "248":
+                    case Sid.Preamble_CompartmentTemperatures + "248":
                         tv = findViewById(R.id.text_comp_10_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatTemperature, field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_CompartmentTemperatures + "272":
+                    case Sid.Preamble_CompartmentTemperatures + "272":
                         tv = findViewById(R.id.text_comp_11_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatTemperature, field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_CompartmentTemperatures + "296":
+                    case Sid.Preamble_CompartmentTemperatures + "296":
                         tv = findViewById(R.id.text_comp_12_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatTemperature, field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_BalancingBytes + "16":
+                    case Sid.Preamble_BalancingBytes + "16":
                         tv = findViewById(R.id.text_bala_1_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancing, (int) field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_BalancingBytes + "24":
+                    case Sid.Preamble_BalancingBytes + "24":
                         tv = findViewById(R.id.text_bala_2_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancing, (int) field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_BalancingBytes + "32":
+                    case Sid.Preamble_BalancingBytes + "32":
                         tv = findViewById(R.id.text_bala_3_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancing, (int) field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_BalancingBytes + "40":
+                    case Sid.Preamble_BalancingBytes + "40":
                         tv = findViewById(R.id.text_bala_4_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancing, (int) field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_BalancingBytes + "48":
+                    case Sid.Preamble_BalancingBytes + "48":
                         tv = findViewById(R.id.text_bala_5_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancing, (int) field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_BalancingBytes + "56":
+                    case Sid.Preamble_BalancingBytes + "56":
                         tv = findViewById(R.id.text_bala_6_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancing, (int) field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_BalancingBytes + "64":
+                    case Sid.Preamble_BalancingBytes + "64":
                         tv = findViewById(R.id.text_bala_7_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancing, (int) field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_BalancingBytes + "72":
+                    case Sid.Preamble_BalancingBytes + "72":
                         tv = findViewById(R.id.text_bala_8_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancing, (int) field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_BalancingBytes + "80":
+                    case Sid.Preamble_BalancingBytes + "80":
                         tv = findViewById(R.id.text_bala_9_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancing, (int) field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_BalancingBytes + "88":
+                    case Sid.Preamble_BalancingBytes + "88":
                         tv = findViewById(R.id.text_bala_10_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancing, (int) field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_BalancingBytes + "96":
+                    case Sid.Preamble_BalancingBytes + "96":
                         tv = findViewById(R.id.text_bala_11_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancing, (int) field.getValue()));
                         tv = null;
                         break;
-                    case SID_Preamble_BalancingBytes + "104":
+                    case Sid.Preamble_BalancingBytes + "104":
                         tv = findViewById(R.id.text_bala_12_temp);
                         tv.setText(String.format(Locale.getDefault(), DefaultFormatBalancing, (int) field.getValue()));
                         tv = null;
                         break;
-                    case SID_MainsCurrentType:
+                    case Sid.MainsCurrentType:
                         tv = findViewById(R.id.textMainsCurrentType);
                         value = (int) field.getValue();
                         if (tv != null && mains_Current_Type != null && value >= 0 && value < mains_Current_Type.length)
                             tv.setText(mains_Current_Type[value]);
                         tv = null;
                         break;
-                    case SID_Phase1currentRMS:
+                    case Sid.Phase1currentRMS:
                         tv = findViewById(R.id.textPhase1CurrentRMS);
                         break;
-                    case SID_Phase2CurrentRMS:
+                    case Sid.Phase2CurrentRMS:
                         tv = findViewById(R.id.textPhase2CurrentRMS);
                         break;
-                    case SID_Phase3CurrentRMS:
+                    case Sid.Phase3CurrentRMS:
                         tv = findViewById(R.id.textPhase3CurrentRMS);
                         break;
-                    case SID_PhaseVoltage1:
+                    case Sid.PhaseVoltage1:
                         tv = findViewById(R.id.textPhaseVoltage1);
                         break;
-                    case SID_PhaseVoltage2:
+                    case Sid.PhaseVoltage2:
                         tv = findViewById(R.id.textPhaseVoltage2);
                         break;
-                    case SID_PhaseVoltage3:
+                    case Sid.PhaseVoltage3:
                         tv = findViewById(R.id.textPhaseVoltage3);
                         break;
-                    case SID_InterPhaseVoltage12:
+                    case Sid.InterPhaseVoltage12:
                         tv = findViewById(R.id.textInterPhaseVoltage12);
                         break;
-                    case SID_InterPhaseVoltage23:
+                    case Sid.InterPhaseVoltage23:
                         tv = findViewById(R.id.textInterPhaseVoltage23);
                         break;
-                    case SID_InterPhaseVoltage31:
+                    case Sid.InterPhaseVoltage31:
                         tv = findViewById(R.id.textInterPhaseVoltage31);
                         break;
-                    case SID_MainsActivePower:
+                    case Sid.MainsActivePower:
                         tv = findViewById(R.id.textMainsActivePower);
                         break;
-                    case SID_GroundResistance:
+                    case Sid.GroundResistance:
                         tv = findViewById(R.id.textGroundResistance);
                         break;
-                    case SID_SupervisorState:
+                    case Sid.SupervisorState:
                         tv = findViewById(R.id.textSupervisorState);
                         value = (int) field.getValue();
                         if (tv != null && supervisor_State != null && value >= 0 && value < supervisor_State.length)
                             tv.setText(supervisor_State[value]);
                         tv = null;
                         break;
-                    case SID_CompletionStatus:
+                    case Sid.CompletionStatus:
                         tv = findViewById(R.id.textCompletionStatus);
                         value = (int) field.getValue();
                         if (tv != null && completion_Status != null && value >= 0 && value < completion_Status.length)
                             tv.setText(completion_Status[value]);
                         tv = null;
                         break;
-                    case SID_CCSEVSEStatus:
+                    case Sid.CCSEVSEStatus:
                         tv = findViewById(R.id.textEVSEStatus);
                         value = (int) field.getValue();
                         if (tv != null && evse_status != null && value >= 0 && value < evse_status.length)
                             tv.setText(evse_status[value]);
                         tv = null;
                         break;
-                    case SID_CCSFailureStatus:
+                    case Sid.CCSFailureStatus:
                         tv = findViewById(R.id.textEVSEFailureStatus);
                         value = (int) field.getValue();
                         if (tv != null && evse_failure_status != null && value >= 0 && value < evse_failure_status.length)
                             tv.setText(evse_failure_status[value]);
                         tv = null;
                         break;
-                    case SID_CCSEVReady:
+                    case Sid.CCSEVReady:
                         tv = findViewById(R.id.textEVReady);
                         value = (int) field.getValue();
                         if (tv != null && ev_ready_status != null && value >= 0 && value < ev_ready_status.length)
                             tv.setText(ev_ready_status[value]);
                         tv = null;
                         break;
-                    case SID_CCSCPLCComStatus:
+                    case Sid.CCSCPLCComStatus:
                         tv = findViewById(R.id.textCPLCComStatus);
                         value = (int) field.getValue();
                         if (tv != null && cplc_com_status != null && value >= 0 && value < cplc_com_status.length)
                             tv.setText(cplc_com_status[value]);
                         tv = null;
                         break;
-                    case SID_CCSEVRequestState:
+                    case Sid.CCSEVRequestState:
                         tv = findViewById(R.id.textEVRequestState);
                         value = (int) field.getValue();
                         if (tv != null && ev_request_state != null && value >= 0 && value < ev_request_state.length)
                             tv.setText(ev_request_state[value]);
                         tv = null;
                         break;
-                    case SID_CCSEVSEState:
+                    case Sid.CCSEVSEState:
                         tv = findViewById(R.id.textEVSEState);
                         value = (int) field.getValue();
                         if (tv != null && evse_state != null && value >= 0 && value < evse_state.length)
                             tv.setText(evse_state[value]);
                         tv = null;
                         break;
-                    case SID_CCSEVSEMaxPower:
+                    case Sid.CCSEVSEMaxPower:
                         tv = findViewById(R.id.textEVSEMaxPower);
                         break;
-                    case SID_CCSEVSEPowerLimitReached:
+                    case Sid.CCSEVSEPowerLimitReached:
                         tv = findViewById(R.id.textEVSEPowerLimitReached);
                         value = (int) field.getValue();
                         if (tv != null && limit_reached != null && value >= 0 && value < limit_reached.length)
                             tv.setText(limit_reached[value]);
                         tv = null;
                         break;
-                    case SID_CCSEVSEMaxVoltage:
+                    case Sid.CCSEVSEMaxVoltage:
                         tv = findViewById(R.id.textEVSEMaxVoltage);
                         break;
-                    case SID_CCSEVSEPresentVoltage:
+                    case Sid.CCSEVSEPresentVoltage:
                         tv = findViewById(R.id.textEVSEPresentVoltage);
                         break;
-                    case SID_CCSEVSEVoltageLimitReaced:
+                    case Sid.CCSEVSEVoltageLimitReaced:
                         tv = findViewById(R.id.textEVSEVoltageLimitReached);
                         value = (int) field.getValue();
                         if (tv != null && limit_reached != null && value >= 0 && value < limit_reached.length)
                             tv.setText(limit_reached[value]);
                         tv = null;
                         break;
-                    case SID_CCSEVSEMaxCurrent:
+                    case Sid.CCSEVSEMaxCurrent:
                         tv = findViewById(R.id.textEVSEMaxCurrent);
                         break;
-                    case SID_CCSEVSEPresentCurrent:
+                    case Sid.CCSEVSEPresentCurrent:
                         tv = findViewById(R.id.textEVSEPresentCurrent);
                         break;
-                    case SID_CCSEVSECurrentLimitReached:
+                    case Sid.CCSEVSECurrentLimitReached:
                         tv = findViewById(R.id.textEVSECurrentLimitReached);
                         value = (int) field.getValue();
                         if (tv != null && limit_reached != null && value >= 0 && value < limit_reached.length)

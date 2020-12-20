@@ -31,6 +31,7 @@ import androidx.annotation.ColorInt;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
@@ -39,9 +40,7 @@ import lu.fisch.canze.interfaces.FieldListener;
  * Heatmap by jeroen on 27-10-15.
  */
 public class HeatmapBatcompActivity extends CanzeActivity implements FieldListener, DebugListener {
-
-    private static final String SID_Preamble_CompartmentTemperatures = "7bb.6104."; // (LBC)
-
+    
     private double mean = 0;
     private final double[] lastVal = {0,15,15,15,15,15,15,15,15,15,15,15,15};
     private final int lastCell = 12; //4;
@@ -67,7 +66,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
         //    lastCell = 12;
         //}
         for (int i = 1; i <= lastCell; i++) {
-            String sid = SID_Preamble_CompartmentTemperatures + (8 + i * 24); // remember, first is pos 32, i starts s at 1
+            String sid = Sid.Preamble_CompartmentTemperatures + (8 + i * 24); // remember, first is pos 32, i starts s at 1
             addField(sid, 5000);
         }
     }
@@ -80,7 +79,7 @@ public class HeatmapBatcompActivity extends CanzeActivity implements FieldListen
 
         // get the text field
 
-        if (fieldId.startsWith(SID_Preamble_CompartmentTemperatures)) {
+        if (fieldId.startsWith(Sid.Preamble_CompartmentTemperatures)) {
             int cell = (Integer.parseInt(fieldId.split("[.]")[2]) - 8) / 24; // cell is 1-based
             final double value = field.getValue();
             lastVal[cell] = value;

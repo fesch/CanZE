@@ -8,17 +8,12 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class RangeActivity extends CanzeActivity implements FieldListener, DebugListener {
-
-    private static final String SID_AvailableDistance = "654.42";
-    private static final String SID_AvailableEnvergy = "427.49";
-    private static final String SID_AverageConsumption = "654.52";
-    private static final String SID_WorstAverageConsumption = "62d.0";
-    private static final String SID_BestAverageConsumption = "62d.10";
 
     private double distance = 0;
     private double range = 0;
@@ -73,11 +68,11 @@ public class RangeActivity extends CanzeActivity implements FieldListener, Debug
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_AvailableDistance, 2000);
-        addField(SID_AvailableEnvergy, 2000);
-        addField(SID_AverageConsumption, 2000);
-        addField(SID_WorstAverageConsumption, 8000);
-        addField(SID_BestAverageConsumption, 8000);
+        addField(Sid.AvailableDistance, 2000);
+        addField(Sid.AvailableEnvergy, 2000);
+        addField(Sid.AverageConsumption, 2000);
+        addField(Sid.WorstAverageConsumption, 8000);
+        addField(Sid.BestAverageConsumption, 8000);
     }
 
     private void updateSeekBar(SeekBar seekBar) {
@@ -112,30 +107,30 @@ public class RangeActivity extends CanzeActivity implements FieldListener, Debug
                 TextView tv;
 
                 switch (fieldId) {
-                    case SID_AvailableDistance:
+                    case Sid.AvailableDistance:
                         distance = field.getValue();
                         tv = findViewById(R.id.carRange);
                         if (tv != null)
                             tv.setText(String.format(Locale.getDefault(), "%.1f", distance));
                         break;
-                    case SID_AvailableEnvergy:
+                    case Sid.AvailableEnvergy:
                         energy = field.getValue();
                         range = energy / consumption * 100;
                         rangeWorst = energy / consumptionWorst * 100;
                         rangeBest = energy / consumptionBest * 100;
                         updateRange();
                         break;
-                    case SID_AverageConsumption:
+                    case Sid.AverageConsumption:
                         consumption = field.getValue();
                         range = energy / consumption * 100;
                         updateRange();
                         break;
-                    case SID_WorstAverageConsumption:
+                    case Sid.WorstAverageConsumption:
                         consumptionWorst = field.getValue();
                         rangeWorst = energy / consumptionWorst * 100;
                         updateRange();
                         break;
-                    case SID_BestAverageConsumption:
+                    case Sid.BestAverageConsumption:
                         consumptionBest = field.getValue();
                         rangeBest = energy / consumptionBest * 100;
                         updateRange();

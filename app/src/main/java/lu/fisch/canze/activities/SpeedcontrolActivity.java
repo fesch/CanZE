@@ -2,6 +2,7 @@ package lu.fisch.canze.activities;
 
 import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
@@ -16,9 +17,6 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class SpeedcontrolActivity extends CanzeActivity implements FieldListener, DebugListener {
-
-    private static final String SID_Odometer = "7ec.6233de.24";
-    private static final String SID_RealSpeed = "5d7.0";  //ESC-ABS
 
     private long timeStart = 0;
     private long timeLast = 0;
@@ -73,8 +71,8 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
     @Override
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_Odometer, 100);
-        addField(SID_RealSpeed, 100);
+        addField(Sid.Odometer, 100);
+        addField(Sid.RealSpeed, 100);
     }
 
     @Override
@@ -87,10 +85,10 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                 String fieldId = field.getSID();
 
                 switch (fieldId) {
-                    case SID_RealSpeed:
+                    case Sid.RealSpeed:
                         speed = field.getValue();
                         break;
-                    case SID_Odometer:
+                    case Sid.Odometer:
                         distanceEnd = field.getValue();
                         long timeEnd = System.currentTimeMillis();
                         // if starting time has been set

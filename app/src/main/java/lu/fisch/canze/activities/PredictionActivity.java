@@ -7,19 +7,13 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Battery;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class PredictionActivity extends CanzeActivity implements FieldListener, DebugListener {
-
-    private static final String SID_AvChargingPower                  = "427.40";
-    private static final String SID_UserSoC                          = "42e.0";          // user SOC, not raw
-    private static final String SID_AverageBatteryTemperature        = "7bb.6104.600";   // (LBC)
-    private static final String SID_RangeEstimate                    = "654.42";
-    //private static final String SID_ChargingStatusDisplay            = "65b.41";
-    private static final String SID_SOH                              = "7ec.623206.24";
 
     private Battery battery;
 
@@ -55,12 +49,12 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_RangeEstimate, 10000);                 //0x08
-        addField(SID_AvChargingPower, 10000);               //0x01
-        addField(SID_UserSoC, 10000);                       //0x02
-        //addField(SID_ChargingStatusDisplay, 10000);
-        addField(SID_AverageBatteryTemperature, 10000);     //0x04
-        addField(SID_SOH, 10000);                           //0x20
+        addField(Sid.RangeEstimate, 10000);                 //0x08
+        addField(Sid.AvChargingPower, 10000);               //0x01
+        addField(Sid.UserSoC, 10000);                       //0x02
+        //addField(Sid.ChargingStatusDisplay, 10000);
+        addField(Sid.AverageBatteryTemperature, 10000);     //0x04
+        addField(Sid.SOH, 10000);                           //0x20
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -74,7 +68,7 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
         // get the text field
         switch (fieldId) {
 
-            case SID_AvChargingPower:
+            case Sid.AvChargingPower:
                 car_charger_ac_power = fieldVal;
                 car_status |= 0x01;
                 if (car_charger_ac_power > 1){
@@ -84,23 +78,23 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
                     charging_status = 0;
                 }
                 break;
-            case SID_UserSoC:
+            case Sid.UserSoC:
                 car_soc = fieldVal;
                 car_status |= 0x02;
                 break;
-            case SID_AverageBatteryTemperature:
+            case Sid.AverageBatteryTemperature:
                 car_bat_temp  = fieldVal;
                 car_status |= 0x04;
                 break;
-            case SID_RangeEstimate:
+            case Sid.RangeEstimate:
                 car_range_est = fieldVal;
                 car_status |= 0x08;
                 break;
-            //case SID_ChargingStatusDisplay:
+            //case Sid.ChargingStatusDisplay:
             //    charging_status = (fieldVal == 3) ? 1 : 0;
             //    car_status |= 0x10;
             //    break;
-            case SID_SOH:
+            case Sid.SOH:
                 car_soh = fieldVal;
                 car_status |= 0x20;
                 break;

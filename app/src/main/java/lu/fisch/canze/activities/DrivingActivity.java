@@ -39,29 +39,12 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class DrivingActivity extends CanzeActivity implements FieldListener, DebugListener {
-
-    // for ISO-TP optimization to work, group all identical CAN ID's together when calling addListener
-
-    // free data
-    private static final String SID_DcPower = "800.6109.24"; // "1fd.48"; //EVC
-    private static final String SID_Pedal = "186.40"; //EVC
-    private static final String SID_TotalPositiveTorque = "800.610b.24";
-    private static final String SID_RealSpeed = "5d7.0";  //ESC-ABS
-    private static final String SID_SoC = "42e.0"; //EVC
-    private static final String SID_RangeEstimate = "654.42"; //EVC
-    private static final String SID_TotalNegativeTorque = "800.610c.24";
-    private static final String SID_TotalPotentialResistiveWheelsTorque = "1f8.16"; //UBP 10ms
-
-    // ISO-TP data
-    private static final String SID_MaxCharge = "7bb.6101.336";
-    private static final String SID_EVC_Odometer = "7ec.622006.24";
-    private static final String SID_EVC_TripBmeter = "7ec.6233de.24";
-    private static final String SID_EVC_TripBenergy = "7ec.6233dd.24";
 
     private float odo = 0;
     private float destOdo = 0; // have to init from save file
@@ -112,20 +95,20 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
 
         // Make sure to add ISO-TP listeners grouped by ID
         MainActivity.getInstance().setDebugListener(this);
-        addField(SID_DcPower, 0);
-        addField(SID_Pedal, 0);
-        //addField(SID_DriverBrakeWheel_Torque_Request, 0);
-        //addField(SID_ElecBrakeWheelsTorqueApplied, 0);
-        //addField(SID_Coasting_Torque, 0);
-        addField(SID_TotalPositiveTorque, 0);
-        addField(SID_TotalNegativeTorque, 0);
-        addField(SID_TotalPotentialResistiveWheelsTorque, 0);
-        addField(SID_RealSpeed, 0);
-        addField(SID_SoC, 7200);
-        addField(SID_RangeEstimate, 7200);
-        addField(SID_EVC_Odometer, 6000);
-        addField(SID_EVC_TripBmeter, 6000);
-        addField(SID_EVC_TripBenergy, 6000);
+        addField(Sid.DcPower, 0);
+        addField(Sid.Pedal, 0);
+        //addField(Sid.DriverBrakeWheel_Torque_Request, 0);
+        //addField(Sid.ElecBrakeWheelsTorqueApplied, 0);
+        //addField(Sid.Coasting_Torque, 0);
+        addField(Sid.TotalPositiveTorque, 0);
+        addField(Sid.TotalNegativeTorque, 0);
+        addField(Sid.TotalPotentialResistiveWheelsTorque, 0);
+        addField(Sid.RealSpeed, 0);
+        addField(Sid.SoC, 7200);
+        addField(Sid.RangeEstimate, 7200);
+        addField(Sid.EVC_Odometer, 6000);
+        addField(Sid.EVC_TripBmeter, 6000);
+        addField(Sid.EVC_TripBenergy, 6000);
     }
 
     private void setDistanceToDestination() {
@@ -300,41 +283,41 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
 
                 // get the text field
                 switch (fieldId) {
-                    case SID_SoC:
+                    case Sid.SoC:
                         tv = findViewById(R.id.textSOC);
                         break;
-                    case SID_Pedal:
+                    case Sid.Pedal:
                         pb = findViewById(R.id.pedalBar);
                         pb.setProgress((int) field.getValue());
                         break;
-                    case SID_TotalPositiveTorque:
+                    case Sid.TotalPositiveTorque:
                         pb = findViewById(R.id.MeanEffectiveAccTorque);
                         pb.setProgress((int)field.getValue()); // --> translate from motor torque to wheel torque
                         break;
-                    case SID_EVC_Odometer:
+                    case Sid.EVC_Odometer:
                         odo = (float) field.getValue();
                         tv = null;
                         break;
-                    case SID_EVC_TripBmeter:
+                    case Sid.EVC_TripBmeter:
                         tripBdistance = (float) field.getValue();
                         tripDistance = tripBdistance - startBdistance;
                         displayTripData ();
                         tv = null;
                         break;
-                    case SID_EVC_TripBenergy:
+                    case Sid.EVC_TripBenergy:
                         tripBenergy = (float) field.getValue();
                         tripEnergy = tripBenergy - startBenergy;
                         displayTripData ();
                         tv = null;
                         break;
-                    case SID_MaxCharge:
+                    case Sid.MaxCharge:
                         tv = findViewById(R.id.text_max_charge);
                         break;
-                    case SID_RealSpeed:
+                    case Sid.RealSpeed:
                         realSpeed = field.getValue();
                         tv = findViewById(R.id.textRealSpeed);
                         break;
-                    case SID_DcPower:
+                    case Sid.DcPower:
                         double dcPwr = field.getValue();
                         tv = findViewById(R.id.textConsumption);
                         if (!MainActivity.milesMode && realSpeed > 5) {
@@ -347,7 +330,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         }
                         tv = null;
                         break;
-                    case SID_RangeEstimate:
+                    case Sid.RangeEstimate:
                         //int rangeInBat = (int) Utils.kmOrMiles(field.getValue());
                         int rangeInBat = (int) field.getValue();
                         if (rangeInBat > 0 && odo > 0 && destOdo > 0) { // we update only if there are no weird values
@@ -362,27 +345,27 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         tv = null;
                         break;
 
-                    case SID_TotalPotentialResistiveWheelsTorque: //blue bar
+                    case Sid.TotalPotentialResistiveWheelsTorque: //blue bar
                         int tprwt = -((int) field.getValue());
                         pb = findViewById(R.id.MaxBrakeTorque);
                         if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 10);
                         tv = null; // findViewById(R.id.textTPRWT);
                         break;
 
-                    case SID_TotalNegativeTorque:
+                    case Sid.TotalNegativeTorque:
                         pb = findViewById(R.id.pb_driver_torque_request);
                         if (pb != null) pb.setProgress((int) field.getValue());
                         tv = null;
                         break;
 
-                    //case SID_DriverBrakeWheel_Torque_Request:
+                    //case Sid.DriverBrakeWheel_Torque_Request:
                     //    driverBrakeWheel_Torque_Request = field.getValue() + coasting_Torque;
                     //    pb = findViewById(R.id.pb_driver_torque_request);
                     //    if (pb != null) pb.setProgress((int) driverBrakeWheel_Torque_Request);
                     //    tv = null;
                     //    break;
 
-                    //case SID_Coasting_Torque:
+                    //case Sid.Coasting_Torque:
                     //    coasting_Torque = field.getValue() * MainActivity.reduction; // this torque is given in motor torque, not in wheel torque
                     //    break;
                 }

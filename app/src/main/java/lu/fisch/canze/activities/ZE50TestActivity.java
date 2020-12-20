@@ -28,19 +28,13 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
 public class ZE50TestActivity extends CanzeActivity implements FieldListener, DebugListener {
-
-
-    // ISO-TP data
-    private static final String SID_Pedal = "186.40"; // Pedal
-    private static final String SID_GW3 = "18daf1d2.5003.0"; // Gateway open
-    private static final String SID_EVC = "7ec.5003.0"; // EVC open Note we use 7ec as the EVC has custom SID codes for older model compatilbility
-    private static final String SID_TorqueRequest = "7ec.622243.24";
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +43,11 @@ public class ZE50TestActivity extends CanzeActivity implements FieldListener, De
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        //addField(SID_GW3, 2000);
+        //addField(Sid.GW3, 2000);
 
-        addField(SID_EVC, 2000);
-        addField(SID_Pedal);
-        addField(SID_TorqueRequest);
+        addField(Sid.EVC, 2000);
+        addField(Sid.Pedal);
+        addField(Sid.TorqueRequest);
     }
 
     // This is the event fired as soon as this the registered fields are
@@ -72,12 +66,12 @@ public class ZE50TestActivity extends CanzeActivity implements FieldListener, De
 
                 // get the text field
                 switch (fieldId) {
-                    case SID_Pedal:
+                    case Sid.Pedal:
                         tv = findViewById(R.id.tv_test_11);
                         pb = null;
                         break;
 
-                    case SID_TorqueRequest:
+                    case Sid.TorqueRequest:
                         tv = findViewById(R.id.tv_test_12);
                         pb = null;
                         break;

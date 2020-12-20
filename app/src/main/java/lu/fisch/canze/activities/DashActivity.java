@@ -27,20 +27,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import lu.fisch.canze.R;
+import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
 
 public class DashActivity extends CanzeActivity {
 
-    private static final String SID_TotalPotentialResistiveWheelsTorque  = "1f8.16"; //UBP 10ms
-    private static final String SID_TotalPositiveTorque = "800.610b.24";
-    private static final String SID_TotalNegativeTorque = "800.610c.24";
-
-
     public void initListeners () {
-        addField(SID_TotalPotentialResistiveWheelsTorque, 7200);
-        //addField(SID_Instant_Consumption, 0);
-        addField(SID_TotalPositiveTorque, 0);
-        addField(SID_TotalNegativeTorque, 0);
+        addField(Sid.TotalPotentialResistiveWheelsTorque, 7200);
+        //addField(Sid.Instant_Consumption, 0);
+        addField(Sid.TotalPositiveTorque, 0);
+        addField(Sid.TotalNegativeTorque, 0);
     }
 
     @Override
@@ -63,20 +59,20 @@ public class DashActivity extends CanzeActivity {
 
                 switch (fieldId) {
 
-                    case SID_TotalPotentialResistiveWheelsTorque: //blue bar
+                    case Sid.TotalPotentialResistiveWheelsTorque: //blue bar
                         int tprwt = -((int) field.getValue());
                         pb = findViewById(R.id.MaxBrakeTorque);
                         if (pb != null) pb.setProgress(tprwt < 2047 ? tprwt : 10);
                         tv = null; // findViewById(R.id.textTPRWT);
                         break;
 
-                    case SID_TotalNegativeTorque:
+                    case Sid.TotalNegativeTorque:
                         pb = findViewById(R.id.pb_driver_torque_request);
                         if (pb != null) pb.setProgress((int) field.getValue());
                         tv = null;
                         break;
 
-                    case SID_TotalPositiveTorque:
+                    case Sid.TotalPositiveTorque:
                         pb = findViewById(R.id.MeanEffectiveAccTorque);
                         pb.setProgress((int)field.getValue()); // --> translate from motor torque to wheel torque
                         break;
