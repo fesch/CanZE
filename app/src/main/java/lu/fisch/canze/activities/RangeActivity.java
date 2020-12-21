@@ -68,7 +68,7 @@ public class RangeActivity extends CanzeActivity implements FieldListener, Debug
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(Sid.AvailableDistance, 2000);
+        addField(Sid.RangeEstimate, 2000);
         addField(Sid.AvailableEnvergy, 2000);
         addField(Sid.AverageConsumption, 2000);
         addField(Sid.WorstAverageConsumption, 8000);
@@ -107,7 +107,7 @@ public class RangeActivity extends CanzeActivity implements FieldListener, Debug
                 TextView tv;
 
                 switch (fieldId) {
-                    case Sid.AvailableDistance:
+                    case Sid.RangeEstimate:
                         distance = field.getValue();
                         tv = findViewById(R.id.carRange);
                         if (tv != null)

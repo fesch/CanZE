@@ -71,7 +71,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
     @Override
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(Sid.Odometer, 100);
+        addField(Sid.TripMeterB, 100);
         addField(Sid.RealSpeed, 100);
     }
 
@@ -88,7 +88,7 @@ public class SpeedcontrolActivity extends CanzeActivity implements FieldListener
                     case Sid.RealSpeed:
                         speed = field.getValue();
                         break;
-                    case Sid.Odometer:
+                    case Sid.TripMeterB:
                         distanceEnd = field.getValue();
                         long timeEnd = System.currentTimeMillis();
                         // if starting time has been set

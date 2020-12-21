@@ -95,7 +95,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
 
         // Make sure to add ISO-TP listeners grouped by ID
         MainActivity.getInstance().setDebugListener(this);
-        addField(Sid.DcPower, 0);
+        addField(Sid.DcPowerOut, 0);
         addField(Sid.Pedal, 0);
         //addField(Sid.DriverBrakeWheel_Torque_Request, 0);
         //addField(Sid.ElecBrakeWheelsTorqueApplied, 0);
@@ -107,8 +107,8 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         addField(Sid.SoC, 7200);
         addField(Sid.RangeEstimate, 7200);
         addField(Sid.EVC_Odometer, 6000);
-        addField(Sid.EVC_TripBmeter, 6000);
-        addField(Sid.EVC_TripBenergy, 6000);
+        addField(Sid.TripMeterB, 6000);
+        addField(Sid.TripEnergyB, 6000);
     }
 
     private void setDistanceToDestination() {
@@ -298,13 +298,13 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         odo = (float) field.getValue();
                         tv = null;
                         break;
-                    case Sid.EVC_TripBmeter:
+                    case Sid.TripMeterB:
                         tripBdistance = (float) field.getValue();
                         tripDistance = tripBdistance - startBdistance;
                         displayTripData ();
                         tv = null;
                         break;
-                    case Sid.EVC_TripBenergy:
+                    case Sid.TripEnergyB:
                         tripBenergy = (float) field.getValue();
                         tripEnergy = tripBenergy - startBenergy;
                         displayTripData ();
@@ -317,7 +317,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                         realSpeed = field.getValue();
                         tv = findViewById(R.id.textRealSpeed);
                         break;
-                    case Sid.DcPower:
+                    case Sid.DcPowerOut:
                         double dcPwr = field.getValue();
                         tv = findViewById(R.id.textConsumption);
                         if (!MainActivity.milesMode && realSpeed > 5) {

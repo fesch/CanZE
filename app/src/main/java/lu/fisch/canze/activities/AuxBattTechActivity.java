@@ -49,7 +49,7 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(Sid.AuxVoltage);
+        addField(Sid.Aux12V);
         addField(Sid.AuxStatus, 1000);
         addField(Sid.VehicleState);
         //addField(Sid.ChargingStatusDisplay, 1000);
@@ -74,7 +74,7 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
                 // get the text field
                 switch (fieldId) {
 
-                    case Sid.AuxVoltage:
+                    case Sid.Aux12V:
                         tv = findViewById(R.id.text_12V);
                         break;
                     case Sid.AuxStatus:
