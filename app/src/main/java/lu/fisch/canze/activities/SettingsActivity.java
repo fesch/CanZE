@@ -164,9 +164,9 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         settingsFragment.saveSettings();
         MainActivity.getInstance().handleDarkMode();
+        super.onBackPressed();
     }
 
     @Override
@@ -184,6 +184,7 @@ public class SettingsActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == android.R.id.home) {
+            settingsFragment.saveSettings();
             MainActivity.getInstance().handleDarkMode();
             finish();
             return true;
