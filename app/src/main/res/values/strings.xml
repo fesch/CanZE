@@ -763,6 +763,27 @@
     <!-- <string name="toast_PleaseUseTop">Please use one of the top buttons to quit the settings …</string> -->
     <string name="toast_NoBluetooth">This device does not have any bluetooth adapter.\n\nSorry…</string>
 
+    <string name="label_Settings_Device">Device</string>
+    <string name="label_CarModel">Model</string>
+    <string name="label_DistanceUnit">Distance unit</string>
+    <string name="label_Kilometers">Kilometers</string>
+    <string name="label_Security">Security</string>
+    <string name="label_Display">Display</string>
+    <string name="label_CanSeeSettings">CanSee settings</string>
+    <string name="label_LogLevelSummary">Defines the level of debug toast messages shown</string>
+    <string name="label_LoggingSettings">Logging settings</string>
+    <string name="label_Logging">Logging</string>
+    <string name="label_ConfigureCustomFragment">Configure custom fragment</string>
+    <string name="label_StartupActivity">Startup activity</string>
+    <string name="label_Theme">Theme</string>
+    <string name="label_ThemeFollowSystem">Follow system</string>
+    <string name="label_ThemeDark">Dark</string>
+    <string name="label_ThemeLight">Light</string>
+    <string name="label_ToastLevelNone">None</string>
+    <string name="label_ToastLevelElm">Device</string>
+    <string name="label_ToastLevelElmCar">All</string>
+    <string name="label_Info">Info</string>
+
     <!-- SettingsCustom -->
 
     <string name="title_activity_settingscustom">Custom button settings</string>

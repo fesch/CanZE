@@ -1,0 +1,144 @@
+<!-- DO NEVER EVER USE CODE -> REFORMAT CODE AS IT MESSES UP THE SEQUENCE OF ELEMENTS -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:iconSpaceReserved="false"
+    app:title="@string/title_activity_settings">
+
+    <PreferenceCategory
+        app:title="@string/label_Settings_Device"
+        app:iconSpaceReserved="false">
+        <ListPreference
+            app:iconSpaceReserved="false"
+            app:key="btDeviceChoice"
+            app:persistent="false"
+            app:title="@string/label_RemoteDevice"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:iconSpaceReserved="false"
+            app:key="btDeviceAddress"
+            app:title="@string/label_DeviceAddress"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:iconSpaceReserved="false"
+            app:key="btDeviceType"
+            app:entries="@array/btDeviceType_entries"
+            app:entryValues="@array/btDeviceType_values"
+            app:title="@string/label_DeviceType"
+            app:useSimpleSummaryProvider="true" />
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="btnCanSeeSettings"
+            app:isPreferenceVisible="false"
+            app:title="@string/label_CanSeeSettings" />
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            app:key="btUseIsotp"
+            app:title="@string/label_AltFields" />
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            app:key="btUseBackgroundMode"
+            app:title="@string/label_BluetoothBackgroundMode" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/label_Car"
+        app:iconSpaceReserved="false">
+        <ListPreference
+            app:iconSpaceReserved="false"
+            app:key="carModel"
+            app:title="@string/label_CarModel"
+            app:persistent="false"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            app:key="carUseMiles"
+            app:summaryOff="@string/label_Kilometers"
+            app:summaryOn="@string/label_Miles"
+            app:title="@string/label_DistanceUnit" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/label_Security"
+        app:iconSpaceReserved="false">
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            app:key="securitySafeMode"
+            app:defaultValue="true"
+            app:title="@string/label_SafeDrivingMode" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/label_Display"
+        app:iconSpaceReserved="false">
+        <ListPreference
+            app:iconSpaceReserved="false"
+            app:key="displayTheme"
+            app:title="@string/label_Theme"
+            app:entries="@array/displayTheme_entries"
+            app:persistent="false"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:iconSpaceReserved="false"
+            app:key="displayToastLevel"
+            app:summary="@string/label_LogLevelSummary"
+            app:entries="@array/displayToastLevel_entries"
+            app:persistent="false"
+            app:title="@string/label_LogLevel" />
+        <ListPreference
+            app:iconSpaceReserved="false"
+            app:key="displayStartupActivity"
+            app:persistent="false"
+            app:useSimpleSummaryProvider="true"
+            app:title="@string/label_StartupActivity" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/label_Logging"
+        app:iconSpaceReserved="false">
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="btnLoggingSettings"
+            app:isPreferenceVisible="false"
+            app:title="@string/label_LoggingSettings" />
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            app:key="loggingDebugLog"
+            app:summary="@string/label_SdCardLogging"
+            app:title="@string/label_Debug" />
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            app:key="loggingFieldLog"
+            app:summary="@string/help_Fields"
+            app:title="@string/label_Fields" />
+        <SwitchPreference
+            app:iconSpaceReserved="false"
+            app:key="loggingUseSdCard"
+            app:title="@string/label_LogToSdcard1" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/label_Actions"
+        app:iconSpaceReserved="false">
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="btnClearCache"
+            app:title="@string/label_ClearCachedData" />
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="btnCustomFragment"
+            app:title="@string/label_ConfigureCustomFragment" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/label_Info"
+        app:iconSpaceReserved="false">
+        <EditTextPreference
+            app:key="lblVersionInfo"
+            app:persistent="false"
+            app:selectable="false"
+            app:title="@string/version"
+            app:iconSpaceReserved="false"
+            app:enableCopying="true"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

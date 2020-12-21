@@ -162,8 +162,8 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     drawable = (Drawable) constructor.newInstance();
                     drawable.setDrawSurface(WidgetView.this);
                     // apply attributes
-                    drawable.setMin(Integer.valueOf(extractCarValue(attributes.getString(R.styleable.WidgetView_min).split(","))));
-                    drawable.setMax(Integer.valueOf(extractCarValue(attributes.getString(R.styleable.WidgetView_max).split(","))));
+                    drawable.setMin(Integer.valueOf(extractCarValue(attributes.getString(R.styleable.WidgetView_axisMinY).split(","))));
+                    drawable.setMax(Integer.valueOf(extractCarValue(attributes.getString(R.styleable.WidgetView_axisMaxY).split(","))));
                     //drawable.setMin(attributes.getInt(R.styleable.WidgetView_min, 0));
                     //drawable.setMax(attributes.getInt(R.styleable.WidgetView_max, 0));
                     drawable.setMajorTicks(Integer.valueOf(extractCarValue(attributes.getString(R.styleable.WidgetView_majorTicks).split(","))));
@@ -206,11 +206,11 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
                     //drawable.setMinAlt(attributes.getInt(R.styleable.WidgetView_minAlt, -1));
                     //drawable.setMaxAlt(attributes.getInt(R.styleable.WidgetView_maxAlt, -1));
 
-                    String minAlt = attributes.getString(R.styleable.WidgetView_minAlt);
+                    String minAlt = attributes.getString(R.styleable.WidgetView_axisMinYAlt);
                     if(minAlt!=null && !minAlt.trim().isEmpty())
                         drawable.setMinAlt(Integer.valueOf(extractCarValue(minAlt.split(","))));
 
-                    String maxAlt = attributes.getString(R.styleable.WidgetView_maxAlt);
+                    String maxAlt = attributes.getString(R.styleable.WidgetView_axisMaxYAlt);
                     if(maxAlt!=null && !maxAlt.trim().isEmpty())
                         drawable.setMaxAlt(Integer.valueOf(extractCarValue(maxAlt.split(","))));
 

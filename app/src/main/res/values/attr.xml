@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="WidgetView">
-        <attr name="min" format="string" />
-        <attr name="max" format="string" />
-        <attr name="minAlt" format="string" />
-        <attr name="maxAlt" format="string" />
+        <attr name="axisMinY" format="string" />
+        <attr name="axisMaxY" format="string" />
+        <attr name="axisMinYAlt" format="string" />
+        <attr name="axisMaxYAlt" format="string" />
         <attr name="timeScale" format="integer" />
         <attr name="majorTicks" format="string" />
         <attr name="minorTicks" format="string" />
