@@ -108,7 +108,6 @@
 764.6121.26,764,24,39,.1,400,1,°C,224009,624009,ff,IH_IncarTemp
 764.6121.36,764,24,31,.5,0,1,%,22423B,62423B,ff,IH_RHumidity
 764.6143.86,764,24,31,1,0,0,,224266,624266,ff,IH_EcoModeRequest
-# 764.6143.88,764,24,31,100,0,0,W,224263,624263,ff,IH_ElectricalPowerDrived
 764.6143.110,764,24,39,.25,200,1,°C,224347,624347,ff,IH_ExternalTemperature
 764.6143.134,764,24,39,.1,0,1,bar,22426C,62426C,ff,IH_ACHighPressureSensor
 764.6144.107,764,24,39,1,0,0,rpm,2243D8,6243D8,ff,IH_EcompRealSpeed
@@ -183,7 +182,7 @@
 793.625059.24,18daf1de,24,39,0.0625,32768,2,mA,225059,625059,ff,DataRead.Raw leakage current - High Frequency 1st part measurement
 793.62505a.24,18daf1de,24,39,0.0625,32768,2,mA,22505a,62505a,ff,DataRead.Raw leakage current - Low Frequency part measurement (50Hz)
 793.622001.24,18daf1de,24,39,.0625,3200,2,A,222001,622001,ff,Mains phase 1 current RMS value
-793.625026.24,18daf1de,24,31,1,0,1,%,225026,625026,ff,J1772 control pilot raw duty cycle
+# 793.625026.24,18daf1de,24,31,1,0,1,%,225026,625026,ff,J1772 control pilot raw duty cycle
 793.62503a.24,18daf1de,24,39,.0625,3200,2,A,22503a,62503a,ff,Mains phase 2 current RMS
 793.62503b.24,18daf1de,24,39,.0625,3200,2,A,22503b,62503b,ff,Mains phase 3 current RMS
 793.625017.29,18daf1de,29,31,1,0,0,,225017,625017,ff,Mains current type,0:Nok;1:AC mono;2:AC tri;3:DC;4:AC bi
@@ -471,6 +470,8 @@
 ,18DAF1DA,24,39,50,0,0,W,223006,623006,ff,ComboEVSEMaximumPowerLimit
 ,18DAF1DA,24,39,.1,0,1,V,223008,623008,ff,ComboEVSEMaximumVoltageLimit
 ,18DAF1DA,24,39,.1,0,1,A,22300A,62300A,ff,ComboEVSEMaximumCurrentLimit
+793.625026.24,18DAF1DA,24,31,.5,0,1,%,223088,623088,ff,J1772 control pilot raw duty cycle
+764.6143.88,18DAF1DA,24,39,1,0,0,W,222B79,622B79,ff,thermal comfort power consumption
 # 7ec.6234.84.24,76D,24,39,.001,0,3,,2260B3,6260B3,ff,S_U_Prim_Storage_NoLoad
 
 # E-ACT-EBA #

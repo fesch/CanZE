@@ -54,7 +54,6 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
             // addListener(Sid.ChargingPower);
             addField(Sid.HvCoolingState, 0);
             addField(Sid.HvEvaporationTemp, 10000);
-            // addField(Sid.ClimaCompressorPower,0);
             addField(Sid.Pressure, 1000);
             addField(Sid.BatteryConditioningMode, 0);
             addField(Sid.ClimaLoopMode, 0);
@@ -65,7 +64,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
 
         if (MainActivity.isPh2()) {
             // FIXME: ensure this corresponds to the total HVAC power and not only the heater
-            addField(Sid.ClimaCompressorPower, 0);
+            addField(Sid.ThermalComfortPower, 0);
         } else {
             addField(Sid.DcPowerOut, 0);
         }
@@ -124,7 +123,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
                             tv.setText(climate_Status[value]);
                         tv = null;
                         break;
-                    case Sid.ClimaCompressorPower:
+                    case Sid.ThermalComfortPower:
                          tv = findViewById(R.id.text_DCP);
                          break;
                     //case Sid.PtcRelay1:
