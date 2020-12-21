@@ -37,8 +37,10 @@ import lu.fisch.canze.interfaces.FieldListener;
 public class ClimaTechActivity extends CanzeActivity implements FieldListener, DebugListener {
     
     private final String[] cooling_Status = MainActivity.getStringList(R.array.list_CoolingStatus);
-    private final String[] conditioning_Status = MainActivity.getStringList (R.array.list_ConditioningStatus);
-    private final String[] climate_Status = MainActivity.getStringList(R.array.list_ClimateStatus);
+    private final String[] conditioning_Status = MainActivity.getStringList (MainActivity.isPh2() ? R.array.list_ConditioningStatusPh2
+                                                                                                  : R.array.list_ConditioningStatus);
+    private final String[] climate_Status = MainActivity.getStringList(MainActivity.isPh2() ? R.array.list_ClimateStatusPh2
+                                                                                            : R.array.list_ClimateStatus);
     private final String[] ptc_Relay = MainActivity.getStringList(R.array.list_PtcRelay);
 
     @Override
@@ -62,11 +64,13 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
             //addField(Sid.PtcRelay3, 1000);
         //}
 
+        TextView tv = findViewById(R.id.textLabel_climatePower);
         if (MainActivity.isPh2()) {
-            // FIXME: ensure this corresponds to the total HVAC power and not only the heater
             addField(Sid.ThermalComfortPower, 0);
+            tv.setText(getResources().getString(R.string.label_ThermalComfortPower));
         } else {
             addField(Sid.DcPowerOut, 0);
+            tv.setText(getResources().getString(R.string.label_DcPwr));
         }
     }
 
@@ -91,7 +95,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
                         tv = findViewById(R.id.text_EFS);
                         break;
                     case Sid.DcPowerOut:
-                        tv = findViewById(R.id.text_DCP);
+                        tv = findViewById(R.id.text_ClimatePower);
                         break;
                     // case Sid.ChargingPower:
                     //     tv = (TextView) findViewById(R.id.text_CPO);
@@ -124,7 +128,7 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
                         tv = null;
                         break;
                     case Sid.ThermalComfortPower:
-                         tv = findViewById(R.id.text_DCP);
+                         tv = findViewById(R.id.text_ClimatePower);
                          break;
                     //case Sid.PtcRelay1:
                     //    value = (int) field.getValue();

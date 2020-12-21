@@ -183,13 +183,13 @@
         <item>Init</item>
         <item>HF10</item>
         <item>-</item>
-        <item>Mains Grnd. Def.</item>
+        <item>Mains Ground</item>
         <item>-</item>
-        <item>Earth Cur. def.</item>
+        <item>Earth Current</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Ground Def.</item>
+        <item>Ground</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -312,6 +312,26 @@
         <item>InitChargeDF</item>
         <item>OCPStop</item>
         <item>WaitS2</item>
+    </string-array>
+    <string-array name="list_SupervisorStatePh2">
+        <item>Init</item>
+        <item>StandByPowerOn</item>
+        <item>ClosingS2</item>
+        <item>InitType</item>
+        <item>Initlkg</item>
+        <item>StandByPowerOnSetup</item>
+        <item>Charge</item>
+        <item>ZeroAmpMode</item>
+        <item>EndOfCharge</item>
+        <item>OpeningRL</item>
+        <item>STestOK</item>
+        <item>-</item>
+        <item>STestWait</item>
+        <item>STestAct</item>
+        <item>WaitRLCHA</item>
+        <item>WaitRLContactorTri</item>
+        <item>OpeningCapaMC</item>
+        <item>-</item>
     </string-array>
 
     <!-- Braking -->
@@ -529,6 +549,7 @@
 
     <string name="title_activity_clima_tech">Climate</string>
     <string name="button_Climate">Climate</string>
+    <string name="label_ThermalComfortPower">Thermal comfort power usage (W)</string>
     <string name="label_ClimaLoopMode">Climate loop mode</string>
     <string name="label_HVBatConditioningMode">HV Bat conditioning mode</string>
     <string name="label_Temperatures">Temperatures (°C)</string>
@@ -549,6 +570,13 @@
         <item>Heat cond req</item>
         <item>Cond not req</item>
     </string-array>
+    <string-array name="list_ConditioningStatusPh2">
+        <item>NoRequest</item>
+        <item>CoolCabinCoupleByAir</item>
+        <item>CoolBattCoupleByAir</item>
+        <item>CoolBattAloneByAir</item>
+        <item>CoolCabinCouple</item>
+    </string-array>
     <string-array name="list_ClimateStatus">
         <item>Unavailable</item>
         <item>AC</item>
@@ -558,6 +586,16 @@
         <item> </item>
         <item>Demisting</item>
         <item>Idle</item>
+    </string-array>
+    <string-array name="list_ClimateStatusPh2">
+        <item>Unavailable</item>
+        <item>AC</item>
+        <item>AC deicing</item>
+        <item>AC to heat pump</item>
+        <item>Heat pump</item>
+        <item>Heat pump to AC</item>
+        <item>-</item>
+        <item>Idle mode</item>
     </string-array>
     <string name="label_IH_ClimCompPWRStatus">Compressor RPM, ECO</string>
     <string name="graph_Climatech">External (°C), Internal (°C), Setpoint (°C), Battery (°C)</string>

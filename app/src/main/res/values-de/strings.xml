@@ -95,10 +95,10 @@
     
     <!-- Auxiliary battery -->
 
-    <string name="title_activity_auxbatt">12V Zusatzakkumulator</string>
+    <string name="title_activity_auxbatt">12V Zusatzakku</string>
     <string name="button_AuxBatt">12V Akku</string>
     <string name="label_auxbat">Spannung, Fahrzeugstatus, Ladezustand</string>
-    <string name="label_auxbatvolt">Spannunge</string>
+    <string name="label_auxbatvolt">Spannung</string>
     <string name="label_AuxStatus">Austausch-Meldung</string>
     <string name="label_vehiclestate">Fahrzeugstatus</string>
     <string-array name="list_VehicleState">
@@ -152,13 +152,13 @@
     
     <!-- Battery -->
 
-    <string name="title_activity_battery">Hochspannungs-Akkumulator</string>
+    <string name="title_activity_battery">Hochspannungs-Akku</string>
     <string name="button_Battery">HV Akku</string>
     <string name="graph_SOH">Akku-Vitalität (SOH) (%)</string> <!--Lebendauer-->
     <string name="graph_RealIndicatedSoc">Echte, Angezeigte Kapazität (SOC) (%)</string>
     <string name="help_QA"><![CDATA[Weitere Details zu diesen Daten können in der <a href=\'http://canze.fisch.lu/qa/\'>Q & A Sektion</a> der <a href=\'http://canze.fisch.lu/\'>CanZE homepage</a>.]]></string>
-    <string name="graph_CellVoltages">Spannung der Akukumulatorzellen (V)</string>
-    <string name="graph_ModuleTemperatures">Temperatur der Akkumulatorzellen (°C)</string>
+    <string name="graph_CellVoltages">Spannung der Akkuzellen (V)</string>
+    <string name="graph_ModuleTemperatures">Temperatur der Akkuzellen (°C)</string>
 
     <!-- BCB (now integrated in ChargingTech) -->
 
@@ -174,20 +174,20 @@
     <string name="label_phaseCurrent">Phasenstrom RMS 1/2/3 (A)</string>
     <string name="label_PhaseVoltage">Stern-Phasenspannung 1/2/3 (V)</string>
     <string name="label_InterPhaseVoltage">Dreieck-Phasenspannung 12/23/31 (V)</string>
-    <string name="label_MainsActivePowerConsumed">Gesamtstromaufnahme (W)</string>
+    <string name="label_MainsActivePowerConsumed">Gesamtleistungsaufnahme (W)</string>
     <string name="label_GroundResistanceOhm">Erdungswiderstand (Ω)</string>
     <string name="label_CompletionStatus">Abschlußbericht</string>
     <string-array name="list_CompletionStatus">
         <item>Init</item>
         <item>HF10</item>
         <item>-</item>
-        <item>Vorgabe Gesamt-Erdungswiderstand</item>
+        <item>AC Erdungswiderstand</item>
         <item>-</item>
-        <item>Vorgabe Erdstrom</item>
+        <item>Erdungsstrom</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>Vorgabe Erdungswiderstand</item>
+        <item>Erdungswiderstand</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -195,7 +195,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>mittlerer Verlust DC</item>
+        <item>Leckstrom DC</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -210,7 +210,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>mittlerer Verlust LF</item>
+        <item>Leckstrom LF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -227,7 +227,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>mittlerer Verlust DC+LF</item>
+        <item>Leckstrom DC+LF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -243,7 +243,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>mittlerer Verlust HF</item>
+        <item>Leckstrom HF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -259,7 +259,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>mittlerer Verlust DC+HF</item>
+        <item>Leckstrom DC+HF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -275,7 +275,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>mittlerer Verlust LF+HF</item>
+        <item>Leckstrom LF+HF</item>
         <item>-</item>
         <item>-</item>
         <item>-</item>
@@ -291,7 +291,7 @@
         <item>-</item>
         <item>-</item>
         <item>-</item>
-        <item>mittlerer Verlust DC+LF+HF</item>
+        <item>Leckstrom DC+LF+HF</item>
     </string-array>
     <string name="label_SupervisorState">Kontrollstatus</string>
     <string-array name="list_SupervisorState">
@@ -311,7 +311,27 @@
         <item>OCPStop</item>
         <item>WaitS2</item>
     </string-array>
-    
+    <string-array name="list_SupervisorStatePh2">
+        <item>Init</item>
+        <item>StandByPowerOn</item>
+        <item>ClosingS2</item>
+        <item>InitType</item>
+        <item>Initlkg</item>
+        <item>StandByPowerOnSetup</item>
+        <item>Charge</item>
+        <item>ZeroAmpMode</item>
+        <item>EndOfCharge</item>
+        <item>OpeningRL</item>
+        <item>STestOK</item>
+        <item>-</item>
+        <item>STestWait</item>
+        <item>STestAct</item>
+        <item>WaitRLCHA</item>
+        <item>WaitRLContactorTri</item>
+        <item>OpeningCapaMC</item>
+        <item>-</item>
+    </string-array>
+
     <!-- Braking -->
 
     <string name="title_activity_braking">Bremsinformationen</string>
@@ -334,7 +354,7 @@
     <string name="header_Charging">Ladeparameter</string>
     <string name="header_Battery">HV Akkudaten</string>
     <string name="header_DrivingCh">Fahren</string>
-    <string name="header_CompTemp">Temperaturen und Balancing der Akkumulatorzellen</string>
+    <string name="header_CompTemp">Temperaturen und Balancing der Akkuzellen</string>
     <string name="label_max_charge">max Akkumulator-Aufladung/Rekuperation (kW)</string>
     <string name="label_max_pilot">Ladestrom (A)</string>
     <string name="label_Phases">Phasen</string>
@@ -392,17 +412,17 @@
 
     <!-- Charging graph -->
 
-    <string name="title_activity_charging_graph">Lade-Grafik</string>
-    <string name="button_ChargingGraphs">Ladegrafiken</string>
-    <string name="graph_PilotPower">Ladestrom Amp (A), Ladeleistung (kW)</string>
-    <string name="graph_MaxRealChPwr">Max Akkumulatorleistung (kW) / DC Ladeleistung (kW)</string>
+    <string name="title_activity_charging_graph">Lade-Diagramm</string>
+    <string name="button_ChargingGraphs">Ladediagramme</string>
+    <string name="graph_PilotPower">Ladestrom (A), Ladeleistung (kW)</string>
+    <string name="graph_MaxRealChPwr">Max Akkuladeleistung (kW) / DC Ladeleistung (kW)</string>
     <string name="graph_EnergyTemperature">Verfügbare Energie (kWh), Temperatur (°C)</string>
 
     <!-- Charging history -->
 
     <string name="title_activity_charging_history">Lade-Chronik</string>
     <string name="button_chargingHistory">Ladeverlauf</string>
-    <string name="header_ChargingHistory">Letzten 10 Aufladungen</string>
+    <string name="header_ChargingHistory">Letzte 10 Ladevorgänge</string>
     <string name="label_distance">km-Zähler</string>
     <string name="label_EndOfChargeStatus">Ende</string>
     <string name="label_TypeOfCharge">Typ</string>
@@ -430,22 +450,23 @@
         <item>Sched</item>
     </string-array>
     <string name="header_ChargeSummary">Zusammenfassung Ladeverlauf</string>
-    <string name="label_TotKwh">Gesamt-Akkuverbrauch (kWh)</string>
+    <string name="label_TotKwh">Gesamtverbrauch (kWh)</string>
     <string name="label_TotKwhRegen">Gesamtenergie durch Rekuperation (kWh)</string>
-    <string name="label_CountFull">Akku voll aufgeladen (#)</string>
+    <string name="label_CountFull">Akku voll geladen (#)</string>
     <string name="label_CountPartial">Akku partiell geladen (#)</string>
 
      <!-- Clima tech -->
 
-    <string name="title_activity_clima_tech">Klimatisierung Akkumulator</string>
-    <string name="button_Climate">Akku-Klimatisierung</string>
+    <string name="title_activity_clima_tech">Klimatisierung</string>
+    <string name="button_Climate">Klimatisierung</string>
+    <string name="label_ThermalComfortPower">Leistung Innenraumtemperierung (W)</string>
     <string name="label_ClimaLoopMode">Umluftbetrieb</string>
     <string name="label_HVBatConditioningMode">Klimatisierungsmodus des Akkkus</string>
     <string name="label_Temperatures">Temperaturen</string>
     <string name="label_HVEvaporationTemp">Verdampfertemperatur des Akkus (°C)</string>
     <string name="label_ACPressure">Klimatisierungsanlage Betriebsdruck (bar)</string>
     <string name="label_HVCoolingState">Kühlungsstatus des Akkus</string>
-    <string name="label_EngineFanSpeed">Ventilator-Geschwindigkeit der Antriebseinheit (%)</string>
+    <string name="label_EngineFanSpeed">Lüfter-Geschwindigkeit der Antriebseinheit (%)</string>
     <string name="label_ClimateBatteryInteraction">Wechselwirkung Klimaanlage-Akku</string>
     <string-array name="list_CoolingStatus">
         <item>Nein</item>
@@ -459,6 +480,13 @@
         <item>Heizen erforderlich</item>
         <item>keine Aktion erforderlich</item>
     </string-array>
+    <string-array name="list_ConditioningStatusPh2">
+        <item>NoRequest</item>
+        <item>CoolCabinCoupleByAir</item>
+        <item>CoolBattCoupleByAir</item>
+        <item>CoolBattAloneByAir</item>
+        <item>CoolCabinCouple</item>
+    </string-array>
     <string-array name="list_ClimateStatus">
         <item>Nicht verfügbar</item>
         <item>Klimatisierung</item>
@@ -467,6 +495,16 @@
         <item>Wärmepumpe</item>
         <item> </item>
         <item>Antischeibenbeschlag</item>
+        <item>Inaktiv</item>
+    </string-array>
+    <string-array name="list_ClimateStatusPh2">
+        <item>Nicht verfügbar</item>
+        <item>Klimatisierung</item>
+        <item>Entfroster</item>
+        <item>Klimatisierung zu Wärmepumpe</item>
+        <item>Wärmepumpe</item>
+        <item>Wärmepumpe zu Klimatisierung</item>
+        <item>-</item>
         <item>Inaktiv</item>
     </string-array>
     <string name="label_IH_ClimCompPWRStatus">Kompressor UpM, ECO</string>
@@ -524,7 +562,7 @@
     <string name="message_PollerStopping">\n\nBitte warten bis der Hintergrundprozess beendet ist …\n</string>
     <string name="message_NoConnection">\nKeine Verbindung. Diese Anzeige schließen und Verbindung prüfen\n</string>
     <string name="message_NoEcuDefinition">\nKeine Definitionen gefunden für diese ECU. Nur DTC Codes Anzeige\n</string>
-    <string name="message_SendingInit">\nÜbertragungs initialisieren\n</string>
+    <string name="message_SendingInit">\nÜbertragung initialisieren\n</string>
     <string name="message_InitFailed">\nInitialisierung gescheitert\n</string>
     <string name="message_StartTestSession">\nStarte Testsequenz\n</string>
     <string name="message_NoTestSessionField">Testsequenz existiert nicht\n</string>
@@ -577,12 +615,12 @@
 
     <!-- Heatmap battery modules -->
 
-    <string name="title_activity_heatmap_bat">Übersicht: Temperaturen der einzelnen Akkumulatorzellen</string>
+    <string name="title_activity_heatmap_bat">Übersicht: Temperaturen der einzelnen Akkuzellen</string>
     <string name="button_HeatmapTemperature">Übersicht Zellen-Temperatur</string>
 
     <!-- Heatmap voltages -->
 
-    <string name="title_activity_heatmap_cellvoltage">Übersicht: Spannungen der einzelnen Akkumulatorzellen</string>
+    <string name="title_activity_heatmap_cellvoltage">Übersicht: Spannungen der einzelnen Akkuzellen</string>
     <string name="button_HeatmapVoltage">Übersicht Zellen-Spannung</string>
 
 
@@ -611,11 +649,11 @@
     <!-- Prediction -->
 
     <string name="title_activity_prediction">Aufladevorhersage</string>
-    <string name="button_ChargingPrediction">Aufadevorhersage</string>
+    <string name="button_ChargingPrediction">Aufladevorhersage</string>
     <string name="label_StateAtThisMoment">Aktuelle Ladeparameter</string>
-    <string name="label_BatteryTemperature">Akkumulatortemperatur (°C)</string>
+    <string name="label_BatteryTemperature">Akkutemperatur (°C)</string>
     <string name="label_ACPower">AC Ladestationsleistung (kW)</string>
-    <string name="label_StateOfCharge">Ladezustand (%)</string>
+    <string name="label_StateOfCharge">Ladestand (%)</string>
     <string name="label_ChargingPrediction">Ladevorhersage</string>
     <string name="label_Duration">Dauer (hh:mm)</string>
     <string name="label_Soc">SOC (%)</string>
@@ -690,20 +728,20 @@
     <string name="message_gotfirst">Got first value…</string>
     <string name="message_gotsecond">Got second value…</string>
     <string name="message_waitsecond">Waiting for second value…</string>
-    <string name="title_activity_research">Research</string>
-    <string name="title_activity_speedcontrol">Average speed</string>
+    <string name="title_activity_research">Forschung</string>
+    <string name="title_activity_speedcontrol">Durchschnittsgeschwindigkeit</string>
     <string name="unit_ConsumptionMiAlt">\u0020mi/kWh</string>
     <string name="unit_ConsumptionKm">\u0020kWh/100km</string>
     <string name="unit_Nm">Nm</string>
     <string name="unit_SpeedKm">\u0020km/h</string>
     <string name="unit_SpeedMi">\u0020mi/h</string>
     <string name="message_NoFreeTesting">\nNot testing free frames, as you selected Use ISOTP fields\n</string>
-    <string name="label_TapToStart">Tap anywhere to start or reset</string>
-    <string name="label_averageSpeed">Average speed</string>
-    <string name="button_Research">Research</string>
+    <string name="label_TapToStart">Zum Starten oder Zurücksetzen tippen</string>
+    <string name="label_averageSpeed">Durchschnittsgeschw.</string>
+    <string name="button_Research">Forschung</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="menu_Custom">Custom</string>
-    <string name="button_speedcontrol">Avg speed</string>
-    <string name="title_activity_settingscustom">Custom button settings</string>
+    <string name="menu_Custom">Benutzerdefiniert</string>
+    <string name="button_speedcontrol">Durchschn. Geschw.</string>
+    <string name="title_activity_settingscustom">Benutzerdefinierte button Einstellungen</string>
 
 </resources>

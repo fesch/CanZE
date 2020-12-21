@@ -35,12 +35,12 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textLabel_climatePower"
                 android:layout_weight="0.7"
-                android:width="0dp"
-                android:text="@string/label_DcPwr" />
+                android:width="0dp" />
 
             <TextView
-                android:id="@+id/text_DCP"
+                android:id="@+id/text_ClimatePower"
                 android:layout_weight="0.3"
                 android:width="0dp"
                 android:gravity="end"

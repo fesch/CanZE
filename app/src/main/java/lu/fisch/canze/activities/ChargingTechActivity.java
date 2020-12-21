@@ -51,7 +51,8 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
 
     private final String[] plug_Status = MainActivity.getStringList(R.array.list_PlugStatus);
     private final String[] mains_Current_Type = MainActivity.getStringList(R.array.list_MainsCurrentType);
-    private final String[] supervisor_State = MainActivity.getStringList(R.array.list_SupervisorState);
+    private final String[] supervisor_State = MainActivity.getStringList(MainActivity.isPh2() ? R.array.list_SupervisorStatePh2
+                                                                                              : R.array.list_SupervisorState);
     private final String[] completion_Status = MainActivity.getStringList(R.array.list_CompletionStatus);
     private final String[] evse_status = MainActivity.getStringList(R.array.list_EVSEStatus);
     private final String[] evse_failure_status = MainActivity.getStringList(R.array.list_EVSEFailureStatus);
