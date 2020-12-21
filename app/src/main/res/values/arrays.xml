@@ -1,0 +1,27 @@
+<resources>
+    <!-- BT device type -->
+    <string-array name="btDeviceType_entries">
+        <item>ELM327</item>
+        <item>CanSee</item>
+        <item>Http</item>
+    </string-array>
+    <string-array name="btDeviceType_values">
+        <item>ELM327</item>
+        <item>CanSee</item>
+        <item>Http</item>
+    </string-array>
+
+    <!-- Display contrast modes -->
+    <string-array name="displayTheme_entries">
+        <item>@string/label_ThemeFollowSystem</item>
+        <item>@string/label_ThemeDark</item>
+        <item>@string/label_ThemeLight</item>
+    </string-array>
+
+    <!-- Display toast levels -->
+    <string-array name="displayToastLevel_entries">
+        <item>@string/label_ToastLevelNone</item>
+        <item>@string/label_ToastLevelElm</item>
+        <item>@string/label_ToastLevelElmCar</item>
+    </string-array>
+</resources>

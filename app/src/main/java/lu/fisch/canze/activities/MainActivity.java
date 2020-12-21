@@ -139,6 +139,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static final short FIELD_TYPE_HEXSTRING = 0x400;
     public static final short FIELD_SELFPROPELLED = 0x800;
 
+    // Menus
+    public static final int MENU_MAIN = 0;
+    public static final int MENU_TECHNICAL = 1;
+    public static final int MENU_EXPERIMENTAL = 2;
+    public static final int MENU_CUSTOM = 3;
+
     public static final double reduction = 9.32;     // update suggested by Loc Dao
 
     static int screenOrientation = 0;
@@ -148,6 +154,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     // private int count;
     // private long start;
+
+    private SharedPreferences settings = null;
 
     private boolean visible = true;
     public boolean leaveBluetoothOn = false;
@@ -305,64 +313,36 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     private void loadSettings() {
         debug("MainActivity: loadSettings");
         try {
-            SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
+            this.settings = getSharedPreferences(PREFERENCES_FILE, 0);
+
+            // First, migrate old settings if needed
+            SettingsActivity.convertOldSettings(settings);
+
             versionChangeCheck(settings);
-            bluetoothDeviceName = settings.getString("deviceName", null);
-            bluetoothDeviceAddress = settings.getString("deviceAddress", null);
-            gatewayUrl = settings.getString("gatewayUrl", null);
+            bluetoothDeviceName = settings.getString(SettingsActivity.SETTING_DEVICE_NAME, null);
+            bluetoothDeviceAddress = settings.getString(SettingsActivity.SETTING_DEVICE_ADDRESS, null);
+            gatewayUrl = settings.getString(SettingsActivity.SETTING_DEVICE_HTTP_GATEWAY, null);
             // String dataFormat = settings.getString("dataFormat", "crdt");
-            String deviceType = settings.getString("device", "Arduino");
-            safeDrivingMode = settings.getBoolean("optSafe", true);
-            bluetoothBackgroundMode = settings.getBoolean("optBTBackground", false);
-            milesMode = settings.getBoolean("optMiles", false);
-            altFieldsMode = settings.getBoolean("optAltFields", false);
-            dataExportMode = settings.getBoolean("optDataExport", false);
-            debugLogMode = settings.getBoolean("optDebugLog", false);
-            fieldLogMode = settings.getBoolean("optFieldLog", false);
-            toastLevel = settings.getInt("optToast", 1);
+            String deviceType = settings.getString(SettingsActivity.SETTING_DEVICE_TYPE, "Arduino");
+            safeDrivingMode = settings.getBoolean(SettingsActivity.SETTING_SECURITY_SAFE_MODE, true);
+            bluetoothBackgroundMode = settings.getBoolean(SettingsActivity.SETTING_DEVICE_USE_BACKGROUND_MODE, false);
+            milesMode = settings.getBoolean(SettingsActivity.SETTING_CAR_USE_MILES, false);
+            altFieldsMode = settings.getBoolean(SettingsActivity.SETTING_DEVICE_USE_ISOTP_FIELDS, false);
+            dataExportMode = settings.getBoolean(SettingsActivity.SETTING_LOGGING_USE_SD_CARD, false);
+            debugLogMode = settings.getBoolean(SettingsActivity.SETTING_LOGGING_DEBUG_LOG, false);
+            fieldLogMode = settings.getBoolean(SettingsActivity.SETTING_LOGGING_FIELDS_LOG, false);
+            toastLevel = settings.getInt(SettingsActivity.SETTING_DISPLAY_TOAST_LEVEL, MainActivity.TOAST_ELM);
 
 
             if (bluetoothDeviceName != null && !bluetoothDeviceName.isEmpty() && bluetoothDeviceName.length() > 4)
                 BluetoothManager.getInstance().setDummyMode(bluetoothDeviceName.substring(0, 4).compareTo("HTTP") == 0);
 
-            String carStr = settings.getString("car", "None");
-            if (carStr == null) carStr = "None"; // overdone, but keep lint happy
-            switch (carStr) {
-                case "None":
-                    car = CAR_NONE;
-                    break;
-                case "Zoé":
-                case "ZOE":
-                case "ZOE Q210":
-                    car = CAR_ZOE_Q210;
-                    break;
-                case "ZOE R240":
-                    car = CAR_ZOE_R240;
-                    break;
-                case "ZOE Q90":
-                    car = CAR_ZOE_Q90;
-                    break;
-                case "ZOE R90":
-                case "ZOE R90/110":
-                    car = CAR_ZOE_R90;
-                    break;
-                //case "Fluence":
-                //    car = CAR_FLUENCE;
-                //    break;
-                //case "Kangoo":
-                //    car = CAR_KANGOO;
-                //    break;
-                //case "Twizy":
-                //    car = CAR_TWIZY;
-                //    break;
-                //case "ZOE R240Ph2":
-                //    car = CAR_X10PH2 | CAR_ZOE_R240;
-                //    altFieldsMode = false; // Ph2 car has no altfields
-                //    break;
-                case "ZOE ZE50":
-                    car = CAR_X10PH2;
-                    altFieldsMode = false; // Ph2 car has no altfields
-                    break;
+            // Set car model
+            car = settings.getInt(SettingsActivity.SETTING_CAR_MODEL, CAR_NONE);
+
+            // Ph2 car has no altfields
+            if (car == CAR_X10PH2) {
+                altFieldsMode = false;
             }
 
             // as the settings may have changed, we need to reload different things
@@ -634,9 +614,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         SharedPreferences set = c.getSharedPreferences(PREFERENCES_FILE, 0);
         int darkModeSetting;
         try { // handle old boolean preference
-            darkModeSetting = set.getInt("optDark", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+            darkModeSetting = set.getInt(SettingsActivity.SETTING_DISPLAY_THEME, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         } catch (ClassCastException e) {
-            darkModeSetting = set.getBoolean("optDark", false) ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+            darkModeSetting = set.getBoolean(SettingsActivity.SETTING_DISPLAY_THEME, false) ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
         }
 
         if(AppCompatDelegate.getDefaultNightMode() != darkModeSetting) { // 2
@@ -679,6 +659,11 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             }
         });
 
+        // load/reload settings if they have not been loaded yet
+        if (null == this.settings) {
+            this.loadSettings();
+        }
+
         if (!leaveBluetoothOn) {
             showBluetoothState(BLUETOOTH_DISCONNECTED);
             (new Thread(new Runnable() {
@@ -689,9 +674,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             })).start();
         }
 
-        final SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
-        if (!settings.getBoolean("disclaimer", false)) {
-
+        if (!this.settings.getBoolean(SettingsActivity.SETTING_APP_DISCLAIMER_SEEN, false)) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
             // set title
@@ -721,7 +704,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                         public void onClick(DialogInterface dialog, int id) {
                             // if this button is clicked, close
                             SharedPreferences.Editor editor = settings.edit();
-                            editor.putBoolean("disclaimer", true);
+                            editor.putBoolean(SettingsActivity.SETTING_APP_DISCLAIMER_SEEN, true);
                             // editor.commit();
                             editor.apply();
                             // current activity
@@ -755,12 +738,12 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // activity. -1 means no change, 0 means you might actually also select an activity even
         // if it is on the 0th fragment.
         if (startAnotherFragmentIndex == -2) {
-            startAnotherFragmentIndex = settings.getInt("startMenu", -1);
+            startAnotherFragmentIndex = settings.getInt(SettingsActivity.SETTING_DISPLAY_STARTUP_MENU, -1);
         }
         //debug("LOADING: "+startAnotherFragmentIndex);
         int startAnotherActivityIndex = -1;
         try { // try as in a test version this was a string
-            startAnotherActivityIndex = settings.getInt("startActivity", -1);
+            startAnotherActivityIndex = settings.getInt(SettingsActivity.SETTING_DISPLAY_STARTUP_ACTIVITY, -1);
         } catch (Exception e) {
             // do nothing
         }
@@ -1133,7 +1116,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     private void versionChangeCheck(SharedPreferences settings) {
         // get the current and the saved version of the app
-        String previousVersion = settings.getString("appVersion", "");
+        String previousVersion = settings.getString(SettingsActivity.SETTING_APP_VERSION, "");
         String currentVersion = "";
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
@@ -1158,7 +1141,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // if we successfully got the current version of the app, we save it in the preferences
         if (!currentVersion.equals("")) {
             SharedPreferences.Editor editor = settings.edit();
-            editor.putString("appVersion", currentVersion);
+            editor.putString(SettingsActivity.SETTING_APP_VERSION, currentVersion);
             editor.apply();
             // finish(); // unclear why I put this here. I see no need to finish the app after a conversion, and finishing in a thread is a pretty bad idea anyway.
         }

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.AllDataActivity;
@@ -41,30 +42,61 @@ public class ActivityRegistry {
 
     private static ActivityRegistry registry = null;
 
-    public static int ACTIVITY_CONSUMPTION          = 0;
-    public static int ACTIVITY_CHARGING             = 1;
-    public static int ACTIVITY_BATTERY              = 2;
-    public static int ACTIVITY_DRIVING              = 3;
-    public static int ACTIVITY_CLIMATE              = 4;
-    public static int ACTIVITY_BRAKING              = 5;
-    public static int ACTIVITY_AVERAGE_SPEED        = 6;
-    public static int ACTIVITY_CHARGING_TECH        = 7;
-    public static int ACTIVITY_DTC_READOUT          = 8;
-    public static int ACTIVITY_CHARGING_GRAPHS      = 9;
-    public static int ACTIVITY_FIRMWARE             = 10;
-    public static int ACTIVITY_CHARGING_PREDICTION  = 11;
-    public static int ACTIVITY_ELM_TESTING          = 12;
-    public static int ACTIVITY_CHARGING_HISTORY     = 13;
-    public static int ACTIVITY_12_VOLT_BATT         = 14;
-    public static int ACTIVITY_LEAK_CURRENTS        = 15;
-    public static int ACTIVITY_TIRES                = 16;
-    public static int ACTIVITY_VOLTAGE_HEATMAP      = 17;
-    public static int ACTIVITY_TEMPERATURE_HEATMAP  = 18;
-    public static int ACTIVITY_RANGE                = 19;
-    public static int ACTIVITY_ALL_DATA             = 20;
-    public static int ACTIVITY_DASH                 = 21;
-    public static int ACTIVITY_RESEARCH             = 22;
-    public static int ACTIVITY_FIELD_TEST           = 23;
+    public static final int ACTIVITY_CONSUMPTION          = 0;
+    public static final int ACTIVITY_CHARGING             = 1;
+    public static final int ACTIVITY_BATTERY              = 2;
+    public static final int ACTIVITY_DRIVING              = 3;
+    public static final int ACTIVITY_CLIMATE              = 4;
+    public static final int ACTIVITY_BRAKING              = 5;
+    public static final int ACTIVITY_AVERAGE_SPEED        = 6;
+    public static final int ACTIVITY_CHARGING_TECH        = 7;
+    public static final int ACTIVITY_DTC_READOUT          = 8;
+    public static final int ACTIVITY_CHARGING_GRAPHS      = 9;
+    public static final int ACTIVITY_FIRMWARE             = 10;
+    public static final int ACTIVITY_CHARGING_PREDICTION  = 11;
+    public static final int ACTIVITY_ELM_TESTING          = 12;
+    public static final int ACTIVITY_CHARGING_HISTORY     = 13;
+    public static final int ACTIVITY_12_VOLT_BATT         = 14;
+    public static final int ACTIVITY_LEAK_CURRENTS        = 15;
+    public static final int ACTIVITY_TIRES                = 16;
+    public static final int ACTIVITY_VOLTAGE_HEATMAP      = 17;
+    public static final int ACTIVITY_TEMPERATURE_HEATMAP  = 18;
+    public static final int ACTIVITY_RANGE                = 19;
+    public static final int ACTIVITY_ALL_DATA             = 20;
+    public static final int ACTIVITY_DASH                 = 21;
+    public static final int ACTIVITY_RESEARCH             = 22;
+    public static final int ACTIVITY_FIELD_TEST           = 23;
+
+    public static final int[] ACTIVITIES_MAIN = {
+            ACTIVITY_CONSUMPTION,
+            ACTIVITY_CHARGING,
+            ACTIVITY_BATTERY,
+            ACTIVITY_DRIVING,
+            ACTIVITY_CLIMATE,
+            ACTIVITY_BRAKING,
+            ACTIVITY_AVERAGE_SPEED
+    };
+    public static final int[] ACTIVITIES_TECHNICAL = {
+            ACTIVITY_CHARGING_TECH,
+            ACTIVITY_DTC_READOUT,
+            ACTIVITY_CHARGING_GRAPHS,
+            ACTIVITY_FIRMWARE,
+            ACTIVITY_CHARGING_PREDICTION,
+            ACTIVITY_ELM_TESTING,
+            ACTIVITY_CHARGING_HISTORY,
+            ACTIVITY_12_VOLT_BATT,
+            ACTIVITY_LEAK_CURRENTS,
+            ACTIVITY_TIRES,
+            ACTIVITY_VOLTAGE_HEATMAP,
+            ACTIVITY_TEMPERATURE_HEATMAP,
+            ACTIVITY_RANGE,
+            ACTIVITY_ALL_DATA
+    };
+    public static final int[] ACTIVITIES_EXPERIMENTAL = {
+            ACTIVITY_DASH,
+            ACTIVITY_RESEARCH,
+            ACTIVITY_FIELD_TEST
+    };
 
     public void loadSelection()
     {

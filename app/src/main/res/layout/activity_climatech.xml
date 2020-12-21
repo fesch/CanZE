@@ -148,8 +148,8 @@
                     ]"
                 custom:foregroundColor="?android:attr/colorForeground"
                 custom:majorTicks="1000"
-                custom:max="7000"
-                custom:min="0"
+                custom:axisMaxY="7000"
+                custom:axisMinY="0"
                 custom:minorTicks="500"
                 custom:options="{
                                    '764.6144.107':'gradient',
@@ -191,8 +191,8 @@
                                    '42e.44':10000
                                    }"
         custom:majorTicks="10"
-        custom:max="40"
-        custom:min="-10"
+        custom:axisMaxY="40"
+        custom:axisMinY="-10"
         custom:minorTicks="2"
         custom:text="@string/graph_Climatech"
         custom:widget="timeplot" />

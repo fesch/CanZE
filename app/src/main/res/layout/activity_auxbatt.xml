@@ -120,8 +120,8 @@
         custom:fieldSID="7ec.622005.24,35c.5"
         custom:foregroundColor="?android:attr/colorForeground"
         custom:majorTicks="1"
-        custom:max="15"
-        custom:min="9"
+        custom:axisMaxY="15"
+        custom:axisMinY="9"
         custom:minorTicks="1"
         custom:options="{
                      '7ec.622005.24':'gradient',

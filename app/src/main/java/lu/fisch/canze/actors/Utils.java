@@ -26,6 +26,8 @@
 package lu.fisch.canze.actors;
 
 
+import java.lang.reflect.Field;
+
 import lu.fisch.canze.activities.MainActivity;
 
 /**
@@ -128,5 +130,38 @@ public class Utils {
     }
 
     public static double kmOrMiles (double km) {if (MainActivity.milesMode) return km/1.609344; return km;}
+
+    /**
+     * Get a resource from its name
+     * @param resName Resource name
+     * @param c Resource class
+     * @return int
+     * @see "https://stackoverflow.com/a/4428288/4011313"
+     */
+    public static int getResId(String resName, Class<?> c) {
+        try {
+            Field idField = c.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    /**
+     * Capitalize the first letter of a String
+     * @param str
+     * @return String
+     * @see "https://stackoverflow.com/a/62404137/4011313"
+     */
+    public static String capitalizeString(String str) {
+        String retStr = str;
+        try {
+            // We can face index out of bound exception if the string is null
+            retStr = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+        } catch (Exception e) {
+        }
+        return retStr;
+    }
 
 }
