@@ -92,7 +92,7 @@ public class Sid {
     public static final String ChargingPower                        = "42e.56";
     public static final String HvCoolingState                       = "430.38";
     public static final String HvEvaporationTemp                    = "430.40";
-    public static final String ClimaCompressorPower                 = "764.6143.88";
+    public static final String ThermalComfortPower                  = "764.6143.88";
     public static final String Pressure                             = "764.6143.134";
     public static final String BatteryConditioningMode              = "432.36";
     public static final String ClimaLoopMode                        = "42a.48";
