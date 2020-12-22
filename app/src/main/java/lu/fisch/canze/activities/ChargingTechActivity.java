@@ -86,7 +86,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addField(Sid.UserSoC, 5000);
         addField(Sid.RealSoC, 5000);
         addField(Sid.AvailableChargingPower, 5000);
-        addField(Sid.AvEnergy, 5000);
+        addField(Sid.AvailableEnergy, 5000);
         addField(Sid.SOH, 5000); // state of health gives continuous timeouts. This frame is send at a very low rate
         addField(Sid.RangeEstimate, 5000);
         addField(Sid.Aux12V, 2000);
@@ -222,7 +222,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         }
                         break;
 
-                    case Sid.AvEnergy:
+                    case Sid.AvailableEnergy:
                         if (usoc > 0) {
                             tv = findViewById(R.id.textETF);
                             tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue() * (1 - usoc) / usoc));
