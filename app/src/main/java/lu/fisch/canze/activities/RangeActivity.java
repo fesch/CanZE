@@ -69,7 +69,7 @@ public class RangeActivity extends CanzeActivity implements FieldListener, Debug
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
         addField(Sid.RangeEstimate, 2000);
-        addField(Sid.AvailableEnvergy, 2000);
+        addField(Sid.AvailableEnergy, 2000);
         addField(Sid.AverageConsumption, 2000);
         addField(Sid.WorstAverageConsumption, 8000);
         addField(Sid.BestAverageConsumption, 8000);
@@ -113,7 +113,7 @@ public class RangeActivity extends CanzeActivity implements FieldListener, Debug
                         if (tv != null)
                             tv.setText(String.format(Locale.getDefault(), "%.1f", distance));
                         break;
-                    case Sid.AvailableEnvergy:
+                    case Sid.AvailableEnergy:
                         energy = field.getValue();
                         range = energy / consumption * 100;
                         rangeWorst = energy / consumptionWorst * 100;
