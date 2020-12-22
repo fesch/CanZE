@@ -69,8 +69,6 @@ import android.widget.Toast;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Locale;
 
 import lu.fisch.canze.BuildConfig;
@@ -88,7 +86,7 @@ import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.devices.CanSee;
 import lu.fisch.canze.devices.Device;
 import lu.fisch.canze.devices.ELM327;
-import lu.fisch.canze.devices.ELM327OverHttp;
+import lu.fisch.canze.devices.Http;
 import lu.fisch.canze.interfaces.BluetoothEvent;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
@@ -359,7 +357,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                     break;
                 case "ELM327Http":
                 case "Http":
-                    device = new ELM327OverHttp();
+                    device = new Http();
                     break;
                 default:
                     device = null;
