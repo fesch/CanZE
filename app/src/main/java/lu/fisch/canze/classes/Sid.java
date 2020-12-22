@@ -12,7 +12,7 @@ public class Sid {
     public static final String ElecBrakeWheelsTorqueApplied         = "1f8.28"; //10ms
     public static final String Aux12A                               = "1fd.0";
     public static final String VehicleState                         = "35c.5";
-    public static final String AvailableEnvergy                     = "427.49";
+    public static final String AvailableEnergy                      = "427.49";
     public static final String SoC                                  = "42e.0"; //EVC
     public static final String EngineFanSpeed                       = "42e.20";
     public static final String ACPilotAmps                          = "42e.38";
