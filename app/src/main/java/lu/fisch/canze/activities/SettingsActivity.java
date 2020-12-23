@@ -371,13 +371,13 @@ public class SettingsActivity extends AppCompatActivity {
             loadDisplaySettings();
             loadInfo();
         }
-
+/*
         @Override
         public void onDetach() {
             super.onDetach();
-            saveSettings();
+            // saveSettings();
         }
-
+*/
         private void bindSettingsEvents() {
             // On BT device choice
             findPreference(SETTING_DEVICE_CHOICE).setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -662,7 +662,11 @@ public class SettingsActivity extends AppCompatActivity {
             ListPreference devicesList = findPreference(SETTING_DEVICE_CHOICE);
             tryTofillDeviceList();
             String deviceAddressValue = settings.getString(SETTING_DEVICE_ADDRESS, "");
-            if (deviceAddressValue.isEmpty()) {
+            String deviceNameValue = settings.getString(SETTING_DEVICE_NAME, "");
+            if (deviceNameValue.toLowerCase().startsWith(DEVICE_NAME_HTTP_GATEWAY)) {
+                devicesList.setValue(DEVICE_TYPE_HTTP_GATEWAY);
+                //deviceAddressValue = settings.getString(SETTING_DEVICE_HTTP_GATEWAY, "");
+            } else if (deviceAddressValue.isEmpty()) {
                 devicesList.setValueIndex(0);
             } else {
                 devicesList.setValue(deviceAddressValue);
@@ -671,7 +675,7 @@ public class SettingsActivity extends AppCompatActivity {
             // Propagate device settings to other fields
             applyDeviceSettings(
                     settings.getString(SETTING_DEVICE_NAME, ""),
-                    settings.getString(SETTING_DEVICE_ADDRESS, "")
+                    deviceAddressValue
             );
         }
 
@@ -840,7 +844,7 @@ public class SettingsActivity extends AppCompatActivity {
             SwitchPreference useIsotp = (SwitchPreference) findPreference(SETTING_DEVICE_USE_ISOTP_FIELDS);
 
             // Set fields depending on the detected dongle type
-            if (choiceValue.startsWith(DEVICE_TYPE_HTTP_GATEWAY)) {
+            if (choiceLabel.toLowerCase().startsWith(DEVICE_NAME_HTTP_GATEWAY)) {
                 // Enable manual address selection
                 deviceAddress.setEnabled(true);
                 // Set gateway address
@@ -898,7 +902,7 @@ public class SettingsActivity extends AppCompatActivity {
             List<CharSequence> listValues = new ArrayList<>();
 
             int selectedIndex = -1;
-            int i = 0;
+            //int i = 0; // activateing the selection is now done in loadDeviceSettings
 
             // Get the bluetooth adapter
             BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -931,10 +935,10 @@ public class SettingsActivity extends AppCompatActivity {
 
                         // Set selected index if the device equals the one in the settings
                         if (deviceAlias != null && deviceAlias.equals(deviceName)) {
-                            selectedIndex = i; // plus one as HTTP is always first in list
+                            //selectedIndex = i; // plus one as HTTP is always first in list
                             //MainActivity.debug("SELECT: found = "+i+" ("+deviceAlias+")");
                         }
-                        i++;
+                        //i++;
                     }
 
                 }
@@ -944,8 +948,8 @@ public class SettingsActivity extends AppCompatActivity {
             listLabels.add("HTTP Gateway\n-");
             listValues.add(DEVICE_TYPE_HTTP_GATEWAY);
 
-            if ("HTTP Gateway".equals(deviceName))
-                selectedIndex = i;
+            //if ("HTTP Gateway".equals(deviceName))
+            //    selectedIndex = i;
 
             // Map the labels/values to the list
             ListPreference devicesList = (ListPreference) findPreference(SETTING_DEVICE_CHOICE);
@@ -953,7 +957,7 @@ public class SettingsActivity extends AppCompatActivity {
             devicesList.setEntryValues(listValues.toArray(new CharSequence[listValues.size()]));
 
             // Select the actual device
-            devicesList.setValueIndex(selectedIndex == -1 ? i : selectedIndex);
+            //devicesList.setValueIndex(selectedIndex == -1 ? i : selectedIndex);
         }
 
         public void fillStartupActivityList() {
@@ -1011,10 +1015,15 @@ public class SettingsActivity extends AppCompatActivity {
             // the "meta" (without View) settings
             SharedPreferences.Editor editor = settings.edit();
             ListPreference devicesList = (ListPreference) findPreference(SETTING_DEVICE_CHOICE);
-            editor.putString(SETTING_DEVICE_NAME, devicesList.getEntry().toString());
+            if (devicesList != null && devicesList.getEntry() != null) {
+                editor.putString(SETTING_DEVICE_NAME, devicesList.getEntry().toString());
+            }
 
             // As we use ListPreference that only accept string, we have to manually save some
             // non-string settings
+            EditTextPreference url = findPreference(SETTING_DEVICE_ADDRESS);
+            editor.putString(SETTING_DEVICE_HTTP_GATEWAY, url.getText());
+
             saveCarSettings(editor);
             saveDisplaySettings(editor);
 
