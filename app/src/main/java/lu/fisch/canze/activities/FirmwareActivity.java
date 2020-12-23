@@ -348,11 +348,11 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
         if (field == null) {
             toDisplay = "";
         } else if (field.isString()) {
-            toDisplay = label + field.getStringValue();
+            toDisplay = label + ":" + field.getStringValue();
         } else if ((field.getTo() - field.getFrom()) < 8) {
-            toDisplay = label + String.format(Locale.getDefault(), "%02X", (int)field.getValue());
+            toDisplay = label + String.format(Locale.getDefault(), ":%02X", (int)field.getValue());
         } else {
-            toDisplay = label + String.format(Locale.getDefault(), "%04X", (int)field.getValue());
+            toDisplay = label + String.format(Locale.getDefault(), ":%04X", (int)field.getValue());
         }
 
         if (id == 0) { //log
@@ -365,9 +365,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
             public void run() {
                 TextView tv = findViewById(id);
                 if (tv != null) {
-                    if (field == null) {
-                        tv.setText(toDisplay);
-                    }
+                    tv.setText(toDisplay);
                 }
             }
         });
