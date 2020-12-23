@@ -141,7 +141,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
             addField(Sid.CCSEVSECurrentLimitReached);
         }
 
-        if (!MainActivity.altFieldsMode) {
+        if (MainActivity.altFieldsMode) {
             addField(Sid.BcbVersion); // pre 0x0800 versions have a pilot PWM resolution of 1
         }
 
