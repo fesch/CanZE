@@ -1016,13 +1016,16 @@ public class SettingsActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = settings.edit();
             ListPreference devicesList = (ListPreference) findPreference(SETTING_DEVICE_CHOICE);
             if (devicesList != null && devicesList.getEntry() != null) {
-                editor.putString(SETTING_DEVICE_NAME, devicesList.getEntry().toString());
+                String device = devicesList.getEntry().toString();
+                editor.putString(SETTING_DEVICE_NAME, device);
+                if (device.toLowerCase().startsWith(DEVICE_NAME_HTTP_GATEWAY)) {
+                    EditTextPreference url = findPreference(SETTING_DEVICE_ADDRESS);
+                    editor.putString(SETTING_DEVICE_HTTP_GATEWAY, url.getText());
+                }
             }
 
             // As we use ListPreference that only accept string, we have to manually save some
             // non-string settings
-            EditTextPreference url = findPreference(SETTING_DEVICE_ADDRESS);
-            editor.putString(SETTING_DEVICE_HTTP_GATEWAY, url.getText());
 
             saveCarSettings(editor);
             saveDisplaySettings(editor);
