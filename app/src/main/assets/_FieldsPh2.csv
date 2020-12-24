@@ -84,21 +84,21 @@
 760.6180.64,18DAF12D,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
 760.6180.128,18DAF12D,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 760.6180.144,18DAF12D,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
-760.54.0.,18daf12d,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+760.54.0.,18daf12d,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 760.5902ff.0.,18daf12d,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # EPS #
 ,762,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
 ,762,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,762,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,762,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
-,762,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,762,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 ,762,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # TDB / CLUSTER #
 ,763,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
 ,763,24,95,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,763,24,55,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,763,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
-,763,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,763,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 ,763,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # HVAC / CLIM #
 ,764,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
@@ -121,7 +121,7 @@
 42a.30,764,24,39,.1,400,1,°C,22400A,62400A,ff,IH_EvapTemp
 42a.48,764,24,31,1,0,0,,224409,624409,ff,IH_HPM_ClimLoopMode,0:Unavailable;1:AC Mode;2:AC deicing mode;3:AC to heat pump mode;4:Heat pump mode;5:Heat pump to AC mode;6:Not used;7:Idle mode
 #HVAC
-,764,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,764,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 ,764,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,764,24,31,.5,-32,1,°C,224360,624360,ff,OH_CabinTempTargetValue
 # BCM #
@@ -129,7 +129,7 @@
 ,765,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,765,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,765,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
-,765,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,765,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 ,765,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,765,16,16,1,0,0,,2171,6171,ff,PRESENCE_SSPP,0:without;1:with
 ,765,24,47,1,0,0,,2171,6171,ff,TPMS
@@ -141,7 +141,7 @@
 ,76d,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,76d,128,143,1,0,0,,2180,6180,ff,Soft
 ,76d,144,159,1,0,0,,2180,6180,ff,Version
-,76d,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,76d,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 ,76d,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,76d,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # Parking-Sonar #
@@ -149,21 +149,21 @@
 ,76e,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,76e,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,76e,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
-,76e,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,76e,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 ,76e,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # AIRBAG-SRS #
 ,772,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,772,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,772,128,143,1,0,0,,2180,6180,ff,Soft
 ,772,144,159,1,0,0,,2180,6180,ff,Version
-,772,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,772,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 ,772,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # INV-ME
 ,18daf1df,56,63,1,0,0,,2180,6180,ff,diagVersion
 ,18daf1df,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 ,18daf1df,128,143,1,0,0,,2180,6180,ff,Soft
 ,18daf1df,144,159,1,0,0,,2180,6180,ff,Version
-,18daf1df,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,18daf1df,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 ,18daf1df,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # 77e.623025.24,18daf1df,24,39,0.015625,15256,2,Nm,222002,622002,ff,Emotor torque estimation based on measured values
 77e.623025.24,700,24,39,.5,0,1,Nm,22011F,62011F,1ff,Current Estimated Engine Torque Value
@@ -175,7 +175,7 @@
 793.6180.64,18daf1de,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 793.6180.128,18daf1de,128,143,1,0,0,,2180,6180,ff,Soft
 793.6180.144,18daf1de,144,159,1,0,0,,2180,6180,ff,Version
-793.54.0,18daf1de,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+793.54.0,18daf1de,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 793.5902ff.0,18daf1de,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 793.625057.24,18daf1de,24,39,0.0625,32768,2,mA,225057,625057,ff,DataRead.Raw leakage current - DC part measurement
 793.625058.24,18daf1de,24,39,0.0625,32768,2,mA,225058,625058,ff,DataRead.Raw leakage current - High Frequency 10kHz part measurement
@@ -201,14 +201,14 @@
 7b6.6180.128,18DAF1DC,24,55,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 7b6.6180.144,18DAF1DC,24,55,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 7b6.6180.56,18DAF1DC,24,31,1,0,0,,22F1A0,62F1A0,ff,VDIAG
-7b6.54.0,18daf1dc,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+7b6.54.0,18daf1dc,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 7b6.59020f.0,18daf1dc,0,23,1,0,0,,19023b,59020f,ff,Query DTC
 # LBC #
 7bb.6180.64,18DAF1DB,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
 7bb.6180.128,18DAF1DB,24,55,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 7bb.6180.144,18DAF1DB,24,55,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 7bb.6180.56,18DAF1DB,24,31,1,0,0,,22F1A0,62F1A0,ff,VDIAG
-7bb.54.0,18daf1db,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+7bb.54.0,18daf1db,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 7bb.5902ff.0,18daf1db,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 7bb.5003.0,18daf1db,0,23,1,0,0,,1003,5003,ff,StartDiagnosticSession.Extended
 7bb.6101.336,18daf1db,24,39,0.01,0,2,kW,229018,629018,ff,Maximum battery input power
@@ -352,7 +352,7 @@
 #,7bc,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
 #,7bc,128,143,1,0,0,,2180,6180,ff,Soft
 #,7bc,144,159,1,0,0,,2180,6180,ff,Version
-#,7bc,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+#,7bc,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 #,7bc,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 7bc.624b7d.28,18daf1e2,28,39,1,4094,0,N·m,999999,999999,ff,Total Hydraulic brake wheels torque request
 # TCU - DCM Renault #
@@ -360,14 +360,14 @@
 ,7da,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,7da,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,7da,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
-,7da,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,7da,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 ,7da,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 # S-GW3 #
 ,18daf1d2,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
 ,18daf1d2,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 ,18daf1d2,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 ,18daf1d2,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
-,18daf1d2,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+,18daf1d2,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 ,18daf1d2,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 ,18daf1d2,0,23,1,0,0,,1003,5003,ff,StartDiagnosticSession.Extended
 ,18daf1d2,0,7,1,0,0,,3E00,7E00,ff,TesterPresent.WithResponse
@@ -376,7 +376,7 @@
 7ec.6180.128,18DAF1DA,24,55,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
 7ec.6180.144,18DAF1DA,24,55,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
 7ec.6180.56,18DAF1DA,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
-7ec.54.0,18daf1da,0,7,1,0,0,,14ffff,54,ff,Reset DTC
+7ec.54.0,18daf1da,0,7,1,0,0,14FFFFFF,54FFFFFF,ff,Reset DTC
 7ec.5902ff.0,18daf1da,0,23,1,0,0,,19023b,5902ff,ff,Query DTC
 7ec.5003.0,18daf1da,0,23,1,0,0,,10c0,50c0,ff,StartDiagnosticSession.Extended
 7ec.5001.0,18daf1da,0,23,1,0,0,,1001,5001,ff,StartDiagnosticSession
