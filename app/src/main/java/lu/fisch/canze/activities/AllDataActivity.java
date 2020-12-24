@@ -64,6 +64,8 @@ public class AllDataActivity extends CanzeActivity {
     private TextView textView;
     private BufferedWriter bufferedDumpWriter = null;
     private boolean dumpInProgress = false;
+    private StringBuffer resultbuffer;
+    private int bufferedLines = 0;
 
     private StoppableThread queryThread;
     private long ticker = 0;
@@ -246,19 +248,20 @@ public class AllDataActivity extends CanzeActivity {
                                 message.onMessageCompleteEvent();
 
                                 for (Field field : frame.getAllFields()) {
-                                    appendResult(field.getDebugValue());
+                                    appendResultBuffered(field.getDebugValue());
                                 }
 
                             } else {
                                 appendResult(frame.getFromIdHex() + "." + frame.getResponseId() + ":" + message.getError() + "\n");
                                 if (!MainActivity.device.initDevice(1)) {
                                     appendResult(MainActivity.getStringSingle(R.string.message_InitFailed));
-                                    return;
+                                    break;
                                 }
                             }
                         }
                     }
                 }
+                appendResultBuffered(""); // empty buffer
                 closeDump();
                 MainActivity.toast(MainActivity.TOAST_NONE, R.string.message_DumpDone);
                 displayProgressSpinner(false, R.id.progressBar_cyclic);
@@ -278,6 +281,19 @@ public class AllDataActivity extends CanzeActivity {
                 textView.setText("");
             }
         });
+    }
+
+    private void appendResultBuffered (String str) {
+        // optimize speed and avoid ANRs by reducing UI work
+        if (dumpInProgress) log(str);
+        if (bufferedLines-- == 0 || str == "") {
+            if (resultbuffer != null) { // empty buffer
+                appendResult(resultbuffer.toString());
+            }
+            resultbuffer = new StringBuffer();
+            bufferedLines = 100;
+        }
+        resultbuffer.append(str);
     }
 
     private void appendResult(String str) {
