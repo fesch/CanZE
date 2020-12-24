@@ -593,7 +593,9 @@ public class ELM327 extends Device {
         // ISOTP outgoing starts here
         int outgoingLength = frame.getRequestId().length();
         String elmResponse = "";
-        if (outgoingLength <= 12) {
+        if (outgoingLength <= 14) {
+            // SINGLE transfers up to 7 bytes. If we ever implement extended addressing (which is
+            // not the same as 29 bits mode) this driver considers this simply data
             // 022104           ISO-TP single frame - length 2 - payload 2104, which means PID 21 (??), id 04 (see first tab).
             String elmCommand = "0" + (outgoingLength / 2) + frame.getRequestId();
             // send SING frame.
