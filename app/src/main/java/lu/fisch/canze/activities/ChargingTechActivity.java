@@ -166,10 +166,12 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                     case Sid.MaxCharge:
                         tv = findViewById(R.id.text_max_charge);
                         break;
+
                     case Sid.ACPilot:
-                        // save pilot amps
-                        pilot = field.getValue();
+                        pilot = field.getValue(); // save pilot amps
                         tv = findViewById(R.id.text_max_pilot);
+                        tv.setText(String.format(Locale.getDefault(), "%.0f", field.getValue()));
+                        tv = null;
                         break;
 
                     case Sid.UserSoC:
