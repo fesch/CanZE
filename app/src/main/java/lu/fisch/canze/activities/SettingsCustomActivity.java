@@ -34,8 +34,6 @@ public class SettingsCustomActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_settings_custom);
 
-        this.setTitle("Custom fragment settings");
-
         all = (ListView) findViewById(R.id.lstAll);
         all.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
