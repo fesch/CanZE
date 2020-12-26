@@ -82,7 +82,7 @@ public class CanSee extends Device {
             }
         // init the buffer
         boolean stop = false;
-        StringBuffer readBuffer = new StringBuffer();
+        StringBuilder readBuffer = new StringBuilder();
         // wait for answer
         long start = Calendar.getInstance().getTimeInMillis();
         long runtime = 0;
@@ -101,8 +101,8 @@ public class CanSee extends Device {
                             readBuffer.append(ch);
                         }
                     }
-                } else {
-                    //stop = true;
+                //} else {
+                //    //stop = true;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -186,13 +186,13 @@ public class CanSee extends Device {
 
     @Override
     protected boolean initDevice(int toughness, int retries) {
-        if (BuildConfig.BRANCH.equals("master")) {
+        //if (BuildConfig.BRANCH.equals("master")) {
             sendAndWaitForAnswer("n110,0", 0, TIMEOUT_FREE); // disable all serial when on master branch
             sendAndWaitForAnswer("n114,0", 0, TIMEOUT_FREE); // disable all debugging when on master branch
-        } else {
-            sendAndWaitForAnswer("n110,1", 0, TIMEOUT_FREE); // enable all serial
-            sendAndWaitForAnswer("n114,f6", 0, TIMEOUT_FREE); // enable all default debugging
-        }
+        //} else {
+        //    sendAndWaitForAnswer("n110,1", 0, TIMEOUT_FREE); // enable all serial
+        //    sendAndWaitForAnswer("n114,f6", 0, TIMEOUT_FREE); // enable all default debugging
+        //}
         lastInitProblem = "";
         return true;
     }
