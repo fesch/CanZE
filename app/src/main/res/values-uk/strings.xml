@@ -27,6 +27,16 @@
     <string name="button_Tires">Шини</string>
     <string name="button_Tires_read">зчитати</string>
     <string name="button_Tires_write">записати</string>
+    <string-array name="list_TireStatus">
+        <item>OK</item>
+        <item>Немає інфо</item>
+        <item>Перекачана</item>
+        <item>-</item>
+        <item>Порожня</item>
+        <item>Порожня</item>
+        <item>Недокачана</item>
+        <item>-</item>
+    </string-array>
     <string name="button_alldata">Всі дані</string>
     <string name="button_AuxBatt">12В батарея</string>
     <string name="button_chargingHistory">Історія зарядок</string>
@@ -39,7 +49,7 @@
     <string name="format_DumpWriting" formatted="false">Зачекайте, йде запис %s</string>
     <string name="format_NoAsset" formatted="false">Немає доступу до %s</string>
     <string name="format_NoSid" formatted="false">%s: sid %s відсутній у класі Fields</string>
-    <string name="format_NoView">Немає екрану з id \'%$1s%$2s\'</string>
+    <string name="format_NoView" formatted="false">Немає екрану з id \'%s%s\'</string>
     <string name="graph_CellVoltages">Напруга на комірках (В)</string>
     <string name="graph_Climatech">Ззовні (°C), Всередині (°C), Замовлення (°C), Батарея (°C)</string>
     <string name="graph_DistanceEnergy">Наявний пробіг (км), наявна енергія (кВтг)</string>
@@ -60,12 +70,16 @@
     <string name="prompt_SetDistance">Будь ласка, введіть відстань до пункту призначення. На екрані відображатиметься прогноз залишку пробігу, наявного у вашій батареї по прибутті</string>
     <string name="prompt_Distance">ЗАЛИШОК ПРОБІГУ</string>
     <string name="label_PtcRelay1">Реле PTC-термістору 1</string>
-    <string name="label_PtcRelay2">Реле PTC-термістору 1</string>
-    <string name="label_PtcRelay3">Реле PTC-термістору 1</string>
+    <string name="label_PtcRelay2">Реле PTC-термістору 2</string>
+    <string name="label_PtcRelay3">Реле PTC-термістору 3</string>
+    <string-array name="list_PtcRelay">
+        <item>Увімк.</item>
+        <item>Вимк.</item>
+    </string-array>
     <string name="label_Phases">Фази</string>
     <string name="label_Range">Наяв. пробіг</string>
     <string name="label_Fields">Поля</string>
-    <string name="label_Car">Автівка</string>
+    <string name="label_Car">Електроавтівка</string>
     <string name="label_12A">12В струм (А)</string>
     <string name="label_12V">12В напруга (В)</string>
     <string name="graph_ModuleTemperatures">Температура модулів батареї (°C)</string>
@@ -86,13 +100,35 @@
     <string name="label_LogLevel">Рівень журналювання</string>
     <string name="label_LogToSdcard1">Журналювання на SD-карту 1</string>
     <string name="label_MainsCurrentType">Тип мережі</string>
+    <string-array name="list_MainsCurrentType">
+        <item>Помилка</item>
+        <item>AC монофазна</item>
+        <item>AC трифазна</item>
+        <item>DC</item>
+        <item>AC двохфазна</item>
+    </string-array>
     <string name="label_MainsActivePowerConsumed">Активна потужність, що споживається з мережі (Вт)</string>
     <string name="label_Options">Опції</string>
     <string name="label_Plug">Стан підключення</string>
+    <string-array name="list_ChargingStatus">
+        <item>Не заряджається</item>
+        <item>Очікування (заплановане)</item>
+        <item>Завершено</item>
+        <item>В процесі</item>
+        <item>Помилка</item>
+        <item>Очікування</item>
+        <item>Лючок відчинений</item>
+        <item>Недоступно</item>
+    </string-array>
+    <string-array name="list_PlugStatus">
+        <item>Не підключено</item>
+        <item>Підключено</item>
+    </string-array>
     <string name="label_StateOfCharge">Рівень заряду (SOC) (%)</string>
     <string name="label_TTF">Час повної зарядки (хв)</string>
     <string name="label_Temperatures">Температури (°C)</string>
     <string name="label_TotKwh">Сумарне використання батареї (кВтг)</string>
+    <string name="label_TotKwhRegen">Сумарна енергія рекуперативного гальмування (кВтг)</string>
     <string name="label_TripConsumption">Споживання за поїздку</string>
     <string name="label_TripDistance">Відстань поїздки</string>
     <string name="label_TripEnergy">Енергія за поїздку (кВтг)</string>
@@ -108,7 +144,7 @@
     <string name="label_UserSOC">Наявний рівень заряду (%)</string>
     <string name="label_Volt">Напруга ВВ батареї (В)</string>
     <string name="label_WheelTorque">Момент на колесах</string>
-    <string name="label_auxbat">Напруга, Стан авто, Стан зарядки</string>
+    <string name="label_auxbat">Напруга, Стан ЕМ, Стан зарядки</string>
     <string name="label_auxbatvolt">Напруга</string>
     <string name="label_debug">"Debug "</string>
     <string name="label_diff_friction_torque">Прикладений момент фрикційних гальм (втрати)</string>
@@ -117,7 +153,45 @@
     <string name="label_kWh100km">кВтг/100км</string>
     <string name="label_pedal">Положення педалі</string>
     <string name="label_wheel_torque">Момент на колесах</string>
-    <string name="label_vehiclestate">Стан авто</string>
+    <string name="label_vehiclestate">Стан ЕМ</string>
+    <string-array name="list_VehicleState">
+        <item>Спить, вимк. (0:червоний)</item>
+        <item>Не спить, вимк. (1:зелений)</item>
+        <item>Запалювання увімк. (2:синій)</item>
+        <item>Запускається (3:жовтий)</item>
+        <item>Не спить, увімк. (4:блакитний)</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="list_VehicleStatePh2">
+        <item>Спить, вимк. (0:червоний)</item>
+        <item>Не спить, вимк. (1:зелений)</item>
+        <item>Очікує режим сну (2:синій)</item>
+        <item>Живлення бортової мережі (3:жовтий)</item>
+        <item>4</item>
+        <item>Запалювання увімк.</item>
+        <item>Запускається</item>
+        <item>Мотор активний</item>
+        <item>Автозапуск</item>
+        <item>Зупинка мотора</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+    <string-array name="list_ChargingStatus2">
+        <item>Не заряджається (0:червоний)</item>
+        <item>Очікування (заплановане, 1:зелений)</item>
+        <item>Завершено (2:синій)</item>
+        <item>В процесі (3:жовтий)</item>
+        <item>Помилка (4:блакитний)</item>
+        <item>Очікування (5:бузковий)</item>
+        <item>Лючок відчинений (6:чорний)</item>
+        <item>Недоступно (7:сірий)</item>
+    </string-array>
     <string name="label_phaseCurrent">Фазові струми (серед.кв.) 1/2/3 (А)</string>
     <string name="label_max_pilot">Пілотний сигнал струму (А)</string>
     <string name="label_max_charge">Максимум зарядки/реген. (кВт)</string>
@@ -136,6 +210,16 @@
     <string name="label_Actions">Дії</string>
     <string name="label_Amps">Струм ВВ батареї (А)</string>
     <string name="label_AuxStatus">Порада щодо заміни</string>
+    <string-array name="list_AuxStatus">
+        <item>Немає</item>
+        <item>1</item>
+        <item>2</item>
+        <item>Скоро</item>
+        <item>4</item>
+        <item>Зараз</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
     <string name="label_AvChPwr">Наявна потужність зарядки (кВт)</string>
     <string name="label_AvEner">Наявна енергія (кВтг)</string>
     <string name="label_BatteryTemperature">Температура батареї (°C)</string>
@@ -152,9 +236,29 @@
     <string name="label_ETF">Залишок енергії до повного (кВтг)</string>
     <string name="label_ElecBrakeWheelsTorqueApplied">Прикладений електричний момент (регенерація)</string>
     <string name="label_EndBatteryTemp">Темп.</string>
-    <string name="label_EndOfChargeStatus">Кінець</string>
+    <string name="label_EndOfChargeStatus">Підсумок</string>
+    <string-array name="list_ChargingHistEnd">
+        <item>Повний</item>
+        <item>Вимкнено</item>
+        <item>Знеструмлено</item>
+        <item>Не вдалось</item>
+        <item>За графіком</item>
+        <item>Помилка 1</item>
+        <item>Помилка 22</item>
+        <item>Помилка 3</item>
+        <item>Помилка 4</item>
+        <item>Помилка 5</item>
+        <item>Помилка 6</item>
+    </string-array>
+    <string-array name="list_ChargingHistTyp">
+        <item>Повіль.</item>
+        <item>Швидк.</item>
+        <item>Заміна</item>
+        <item>Невід.</item>
+        <item>План.</item>
+    </string-array>
     <string name="label_EndSoc">SOC</string>
-    <string name="label_RangeRemaining">Пробіг згідно авто:</string>
+    <string name="label_RangeRemaining">Пробіг згідно ЕМ:</string>
     <string name="label_RangeRemainingCanZE">Пробіг згідно CanZE:</string>
     <string name="label_RealSOC">Справжній рівень заряду (%)</string>
     <string name="label_RemoteDevice">Віддаленний пристрій</string>
@@ -164,6 +268,43 @@
     <string name="label_Soc">SOC (%)</string>
     <string name="label_StateAtThisMoment">Стан на зараз</string>
     <string name="label_SupervisorState">Стан супервізору</string>
+    <string-array name="list_SupervisorState">
+        <item>Початок</item>
+        <item>Очікування</item>
+        <item>Замикання S2</item>
+        <item>Ініц. Типу</item> <!--TODO-->
+        <item>Ініц. Витоку</item> <!--TODO-->
+        <item>Ініц. Заряду</item> <!--TODO-->
+        <item>Зарядка</item>
+        <item>Режим нуля ампер</item>
+        <item>Кінець зарядки</item>
+        <item>Розімкнення S2</item>
+        <item>Готовність до сну</item>
+        <item>Аварійна зупинка</item>
+        <item>InitChargeDF</item> <!--TODO-->
+        <item>OCPStop</item> <!--TODO-->
+        <item>Очікування S2</item>
+    </string-array>
+    <string-array name="list_SupervisorStatePh2">
+        <item>Початок</item>
+        <item>StandByPowerOn</item> <!--TODO-->
+        <item>Замикання S2</item>
+        <item>Ініц. Типу</item> <!--TODO-->
+        <item>Ініц. Витоку</item> <!--TODO-->
+        <item>StandByPowerOnSetup</item> <!--TODO-->
+        <item>Зарядка</item>
+        <item>Режим нуля ампер</item>
+        <item>Кінець зарядки</item>
+        <item>OpeningRL</item> <!--TODO is this S2? -->
+        <item>STestOK</item> <!--TODO-->
+        <item>-</item>
+        <item>STestWait</item> <!--TODO-->
+        <item>STestAct</item> <!--TODO-->
+        <item>WaitRLCHA</item> <!--TODO-->
+        <item>WaitRLContactorTri</item> <!--TODO-->
+        <item>OpeningCapaMC</item> <!--TODO-->
+        <item>-</item>
+    </string-array>
     <string name="label_TireSpdPresMisadaption">Помилка адаптації швидкості-тиску</string>
     <string name="title_activity_settings">Налаштунки</string>
     <string name="toast_BluetoothLost">Втрачено з\'єднання Bluetooth!</string>
@@ -192,7 +333,7 @@
     <string name="title_activity_auxbatt">12В батарея</string>
     <string name="title_activity_alldata">Усі дані</string>
     <string name="prompt_YesIKnow">Так</string>
-    <string name="label_Miles">Мілі</string>
+    <string name="label_Miles">Милі</string>
     <string name="label_InterPhaseVoltage">Міжфазна напруга 12/23/31 (В)</string>
     <string name="label_InstantConsumption">Миттєве споживання</string>
     <string name="label_EngineFanSpeed">Швидкість вентилятору двигуна (%)</string>
@@ -208,9 +349,164 @@
     <string name="label_ClearCachedData">Очистити кешовані дані</string>
     <string name="label_ClimaLoopMode">Цикл роботи кліматизації</string>
     <string name="label_ClimateBatteryInteraction">Взаємодія батареї і кліматизації</string>
+    <string-array name="list_CoolingStatus">
+        <item>Ні</item>
+        <item>Лише охолодження</item> <!--TODO-->
+        <item>Об\'єднане охолодження</item> <!--TODO-->
+        <item>Недоступно</item>
+    </string-array>
+    <string-array name="list_ConditioningStatus">
+        <item>Потрібна вентиляція</item>
+        <item>Потрібне охолодження</item>
+        <item>Потрібний підігрів</item>
+        <item>Кондиціонування непотрібне</item>
+    </string-array>
+    <string-array name="list_ConditioningStatusPh2">
+        <item>Ні</item>
+        <item>Об\'єднане охолодження салону повітрям</item> <!--TODO-->
+        <item>Об\'єднане охолодження батареї повітрям</item> <!--TODO-->
+        <item>Лише охолодження батареї повітрям</item> <!--TODO-->
+        <item>Об\'єднане охолодження салону</item> <!--TODO-->
+    </string-array>
+    <string-array name="list_ClimateStatus">
+        <item>Недступно</item>
+        <item>Кондиціонер</item>
+        <item>Кондиціонер (розмороження)</item>
+        <item> </item>
+        <item>Тепловий насос</item>
+        <item> </item>
+        <item>Розпотівання</item>
+        <item>Режим простою</item>
+    </string-array>
+    <string-array name="list_ClimateStatusPh2">
+        <item>Недступно</item>
+        <item>Кондиціонер</item>
+        <item>Кондиціонер (розмороження)</item>
+        <item>Від кондиціонеру до теплового насосу</item> <!--TODO-->
+        <item>Тепловий насос</item>
+        <item>Від теплового насосу до кондиціонеру</item> <!--TODO-->
+        <item>-</item>
+        <item>Режим простою</item>
+    </string-array>
     <string name="label_CountFull">Повних зарядок (#)</string>
     <string name="label_CountPartial">Часткових зарядок (#)</string>
     <string name="label_CompletionStatus">Стан завершення</string>
+    <string-array name="list_CompletionStatus">
+        <item>Початок</item>
+        <item>ВЧ10</item>
+        <item>-</item>
+        <item>Проблема з заземленням</item> <!--TODO-->
+        <item>-</item>
+        <item>Струм у заземлення</item> <!--TODO-->
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Проблема з масою</item> <!--TODO-->
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Витік DC</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Витік НЧ</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Витік DC+НЧ</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Витік ВЧ</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Витік DC+ВЧ</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Витік НЧ+ВЧ</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Витік DC+НЧ+ВЧ</item>
+    </string-array>
     <string name="label_ChargingPrediction">Прогноз зарядки</string>
     <string name="label_ChaStatus">Стан зарядки</string>
     <string name="message_clear">Очистити</string>
@@ -238,7 +534,7 @@
     <string name="prompt_NoSd">Зовнішня SD-карта не доступна, захищена від запису або має недостатній залишок ємності для запису даних журналу.<br /><br /><b>Неможливо увімкнути експорт даних!</b></string>
     <string name="prompt_WarningDriving">Не приділяти повну увагу дорожній обстановці під час руху вкрай небезпечно та піддає загрозі ваше життя та життя оточуючих. Вимкнення цього режима абсолютно не рекомендовано!\n\nЧи ви впевнені, що дійсно хочете вимкнути режим блокування під час руху?</string>
     <string name="message_NoClearDtcField">"Поле скидання помилки  (DTC) не існує "</string>
-    <string name="message_MessageNull">Значення Msg дорівнює null. Чи авто увімкнене?\n</string>
+    <string name="message_MessageNull">Значення Msg дорівнює null. Чи ЕМ увімкнений?\n</string>
     <string name="message_DevicePassed">\nВаш пристрій пройшов всі тести, скоріше за все він буде працювати відмінно</string>
     <string name="message_GetDtcs">\nВідправляю початок послідовності помилок (DTC):[</string>
     <string name="message_InitFailed">\nПомилка ініціалізації</string>
@@ -246,7 +542,7 @@
     <string name="message_NoActiveDtcs">\nНемає активних помилок (DTC)</string>
     <string name="help_Fields">Журналює усі поля, що запитані поточним екраном.</string>
     <string name="help_Experimental">Ці кнопки призначені виключно для тестування</string>
-    <string name="help_Ecus"><![CDATA[Натисніть на ЕБУ для отримання детальної інформації. Більше інформації про комп\'ютери в авто <a href="http://canze.fisch.lu/computers/">тут</a>.]]></string>
+    <string name="help_Ecus"><![CDATA[Натисніть на ЕБУ для отримання детальної інформації. Більше інформації про комп\'ютери в ЕМ <a href="http://canze.fisch.lu/computers/">тут</a>.]]></string>
     <string name="help_DTC">Щоби увімкнути можливість очистки помилок  (DTC):\n\nВставте ключ-карту\n\nСелектор передач у  D\n\nЗатисніть кнопку START приблизно на 5 секунд, поки не з\'явиться повідомлення «Remove card»\n\nСелектор передач у P</string>
     <string name="help_QA"><![CDATA[Більш детальну інформацію про ці дані можна знайти у <a href=\'http://canze.fisch.lu/qa/\'>разділі Q & A</a> <a href=\'http://canze.fisch.lu/\'>домашньої сторінки CanZE</a>.]]></string>
     <string name="message_NoConnection">\nНемає зв\'язку. Зачініть цей екран і пересвідчіться, що ваш пристрій підключено та з ним утворено пару\n</string>
@@ -261,17 +557,149 @@
     <string name="default_NotOk">Не ОК</string>
     <string name="label_AltFields">Використовувати поля ISOTP</string>
     <string name="label_Darkmode">Примусовий Темний Режим</string>
-    <string name="message_gotfirst">Got first value…</string>
-    <string name="message_gotsecond">Got second value…</string>
-    <string name="message_waitsecond">Waiting for second value…</string>
-    <string name="title_activity_research">Research</string>
-    <string name="title_activity_speedcontrol">Average speed</string>
-    <string name="message_NoFreeTesting">\nNot testing free frames, as you selected Use ISOTP fields\n</string>
-    <string name="label_TapToStart">Tap anywhere to start or reset</string>
-    <string name="label_averageSpeed">Average speed</string>
-    <string name="button_Research">Research</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="menu_Custom">Custom</string>
-    <string name="button_speedcontrol">Avg speed</string>
-    <string name="title_activity_settingscustom">Custom button settings</string>
+    <string name="message_gotfirst">Отримано перше значення…</string>
+    <string name="message_gotsecond">Отримано друге значення…</string>
+    <string name="message_waitsecond">Очікування другого значення…</string>
+    <string name="title_activity_research">Дослідження</string>
+    <string name="title_activity_speedcontrol">Середня швидкість</string>
+    <string name="message_NoFreeTesting">\nНе перевіряємо вільні кадри, оскільки ви обрали використання полів ISOTP\n</string>
+    <string name="label_TapToStart">Натисніть у будь-якому місці для початку чи скидання</string>
+    <string name="label_averageSpeed">Середня швидкість</string>
+    <string name="button_Research">Дослідження</string>
+    <string name="hello_blank_fragment">Привіт, порожній фрагменте</string>
+    <string name="menu_Custom">Персоналізований екран</string>
+    <string name="button_speedcontrol">Сер. швидкість</string>
+    <string name="title_activity_settingscustom">Налаштування персоналізованого екрану</string>
+    <string name="CPLCComStatus">Стан зв\'язку високого рівня (HLC)</string>
+    <string-array name="list_CPLCComStatus">
+        <item>Зв\'язок HLC не встановлено</item>
+        <item>Початок зв\'язку HLC</item>
+        <item>Зв\'язок HLC готовий - безпечний режим</item>
+        <item>Зв\'язок HLC зупинений</item>
+        <item>Помилка зв\'язку HLCr</item>
+        <item>Зв\'язок HLC готовий - небезпечний режим</item>
+        <item>Не використовуєтся</item>
+        <item>Недоступне значення[початкове значення]</item>
+        <item>Зв\'язок HLC не готовий - помикла встановлення TLS</item>
+        <item>Зв\'язок HLC не готовий - таймаут TLS</item>
+        <item>Зв\'язок HLC не готовий - TLS не підтримується</item>
+        <item>Зв\'язок HLC не готовий - таймаут SDP</item>
+        <item>Зв\'язок HLC не готовий - версія ISO-2 не підтримується</item>
+        <item>Зв\'язок HLC не готовий - таймаут встановлення V2G</item>
+        <item>Зв\'язок HLC не готовий - помилка V2G</item>
+    </string-array>
+    <string name="EVReady">Готовність ЕМ</string>
+    <string-array name="list_EVReady">
+        <item>ЕМ не готовий до зарядки</item>
+        <item>ЕМ готовий до зарядки</item>
+    </string-array>
+    <string name="EVRequestState">Запит від ЕМ</string>
+    <string-array name="list_EVRequestState">
+        <item>Нема запиту по HLC</item>
+        <item>Запит налаштунків зв\'язку та сервісів</item>
+        <item>Запит знаходження параметрів зарядки</item>
+        <item>Запит перевірки кабелю</item>
+        <item>Запит попередьної зарядки</item>
+        <item>Запит підключення потужності</item>
+        <item>Запит замовлення струму</item>
+        <item>Запит показів лічильника</item> <!--TODO is this money or kWh? -->
+        <item>Запит перевірки сплавлення контактів</item>
+        <item>Запит зупинки сесії</item>
+        <item>Скидання парування</item> <!--TODO-->
+        <item>Запит стану зарядки</item>
+        <item>AC BPT</item> <!--TODO-->
+        <item>DC BPT</item> <!--TODO-->
+    </string-array>
+    <!-- Translator: I don't quite like those, but literal translation would be wordy -->
+    <string name="EVSEState">Відповіді зарядної станції</string>
+    <string-array name="list_EVSEState">
+        <item>Зв\'язок HLC не встановлено</item>
+        <item>Встановлені налаштунки зв\'язку та сервісів</item>
+        <item>Відповідь знаходження параметрів зарядки</item>
+        <item>Відповідь перевірки кабеля</item>
+        <item>Відповідь попередньої зарядки</item>
+        <item>Відповідь підключення потужності</item>
+        <item>Відповідь замовлення струму</item>
+        <item>Відповідь показів лічильника</item>
+        <item>Відповідь перевірки сплавлення контактів</item>
+        <item>Відповідь зупкинки сесії</item> <!--TODO: with EVSE(station charging)-->
+        <item>Відповідь стану зарядки</item>
+    </string-array>
+    <string name="EVSEVoltageLimitReached">Досягнуто граничної напруги зарядки DC</string>
+    <string name="EVSECurrentLimitReached">Досягнуто граничного струму зарядки DC</string>
+    <string name="EVSEPowerLimitReached">Досягнуто граничної потужності зарядки DC</string>
+    <string-array name="list_EVSELimitReached">
+        <item>Ні</item>
+        <item>Так</item>
+    </string-array>
+    <string name="EVSEMaxCurrent">Максимальний струм зарядки DC (А)</string>
+    <string name="EVSEMaxPower">Максимальна потужність зарядки DC (Вт)</string>
+    <string name="EVSEMaxVoltage">Максимальна напруга зарядки DC (В)</string>
+    <string name="EVSEPresentCurrent">Поточний струм зарядки DC (А)</string>
+    <string name="EVSEPresentVoltage">Поточна напруга зарядки DC (В)</string>
+    <string name="EVSEFailureStatus">Наявна помилка</string>
+    <string-array name="list_EVSEFailureStatus">
+        <item>Нема помилки</item>
+        <item>Витікає строк дії сертифікату</item>
+        <item>ПОМИЛКА Строк дії сертифікату витік</item>
+        <item>ПОМИЛКА Договір скасований</item>
+        <item>ПОМИЛКА Сертифікат відкликаний</item>
+        <item>ПОМИЛКА Сертифікат недозволений на цій станції</item>
+        <item>ПОМИЛКА Брак сертифікату</item>
+        <item>ПОМИЛКА Неправильний режим передачі енергії</item>
+        <item>ПОМИЛКА Неправильний параметр зарядки</item>
+        <item>ПОМИЛКА Неправильний профіль зарядки</item>
+        <item>ПОМИЛКА Неправильний ідентифікатор сервісу</item>
+        <item>ПОМИЛКА Невідома сесія</item>
+        <item>ПОМИЛКА Неправильний вибір сервісу</item>
+        <item>ПОМИЛКА Неправильний вибір тарифу</item>
+        <item>ПОМИЛКА Неправильний вибір оплати</item>
+        <item>ПОМИЛКА Помилка у ланцюгу сертифікатів</item>
+        <item>ПОМИЛКА Неправильна відповідь</item> <!--TODO Challenge -->
+        <item>ПОМИЛКА Невірний підис показників лічильнику</item>
+        <item>ПОМИЛКА Не обрано сервіс зарядки</item>
+        <item>ПОМИЛКА Помилка коду послідовності</item>
+        <item>ПОМИЛКА Помилка підпису</item>
+        <item>ПОМИЛКА Брак сертифікату</item> <!-- TODO double value? -->
+        <item>ПОМИЛКА Не застосовано підключення потужності</item>
+        <item>ПОМИЛКА</item>
+        <item>ПОМИЛКА Помилка контактору</item>
+    </string-array>
+    <string name="EVSEStatus">Стан зарядної станції</string>
+    <string-array name="list_EVSEStatus">
+        <item>Ок</item>
+        <item>Станція не готова</item>
+        <item>Станція вимикається</item>
+        <item>Перерва роботи електромережі</item> <!-- TODO -->
+        <item>Триває моніторинг ізоляції</item>
+        <item>Аварійне вимкнення</item>
+        <item>Несправність</item>
+        <item>Зарезервовано 8-C</item>
+        <item>Потрібне повторне встановлення зв\'язку</item> <!-- TODO -->
+    </string-array>
+    <string name="header_EVSEParameters">Параметри CCS</string>
+    <string name="label_CanSeeSettings">Налаштунки CanSee</string>
+    <string name="label_CarModel">Модель</string>
+    <string name="label_ConfigureCustomFragment">Налаштування персоналізованого екрану</string>
+    <string name="label_Display">Екран</string>
+    <string name="label_DistanceUnit">Одиниці виміру</string>
+    <string name="label_Info">Інформація</string>
+    <string name="label_Kilometers">Кілометри</string>
+    <string name="label_Logging">Журналювання</string>
+    <string name="label_LoggingSettings">Налаштунки журналювання</string>
+    <string name="label_LogLevelSummary">Рівень відображення повідомлень режиму налагоджування</string>
+    <string name="label_Security">Безпека</string>
+    <string name="label_Settings_Device">Пристій</string>
+    <string name="label_StartupActivity">Початковий екран</string>
+    <string name="label_Theme">Кольорова схема</string>
+    <string name="label_ThemeDark">Темна</string>
+    <string name="label_ThemeFollowSystem">Як в системі</string>
+    <string name="label_ThemeLight">Світла</string>
+    <string name="label_ThermalComfortPower">Споживання потужності клімат-контролю (Вт)</string>
+    <string name="label_ToastLevelElm">Пристрій</string>
+    <string name="label_ToastLevelElmCar">Всі</string>
+    <string name="label_ToastLevelNone">Жодних</string>
+    <string name="title_activity_ZE50Test">Тест ZE50</string>
+    <string name="toast_PleaseUseTop">Будь ласка, скористайтеся кнопками нагорі, щоб вийти з налаштунків …</string>
+    <string name="toast_WaitingSettings">Зупинка Bluetooth. Налаштунки завантажуються. Зачекайте, будь ласка …</string>
 </resources>
