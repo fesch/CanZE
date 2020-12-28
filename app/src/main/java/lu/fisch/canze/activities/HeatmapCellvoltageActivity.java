@@ -131,7 +131,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
                             }
                             tv = findViewById(R.id.text_CellVoltageDelta);
                             if (tv != null) {
-                                tv.setText(String.format("%.3f", 1000 * (highest - lowest)));
+                                tv.setText(String.format("%d", Math.round(1000 * (highest - lowest))));
                             }
                         }
                     }
