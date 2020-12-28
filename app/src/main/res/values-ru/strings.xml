@@ -319,6 +319,9 @@
     <string name="title_activity_range">Пробег</string>
     <string name="title_activity_heatmap_bat">Карта температур</string>
     <string name="title_activity_heatmap_cellvoltage">Карта напряжений</string>
+    <string name="label_CellVoltageTop">Наивысшее напряжение ячейки (В)</string>
+    <string name="label_CellVoltageBottom">Наинизшее напряжение ячейки (В)</string>
+    <string name="label_CellVoltageDelta">Разница напряжений ячейки (мВ)</string>
     <string name="title_activity_firmware">Прошивка</string>
     <string name="title_activity_elm_test">Тест адаптора ELM327</string>
     <string name="title_activity_dtc">Коды ошибок (DTC)</string>

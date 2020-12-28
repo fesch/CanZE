@@ -12,6 +12,51 @@
     >
 
     <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_CellVoltageTop" />
+            <TextView
+                android:id="@+id/text_CellVoltageTop"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_CellVoltageBottom" />
+            <TextView
+                android:id="@+id/text_CellVoltageBottom"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_CellVoltageDelta" />
+            <TextView
+                android:id="@+id/text_CellVoltageDelta"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:stretchColumns="*"

@@ -42,6 +42,7 @@ import lu.fisch.canze.interfaces.FieldListener;
 public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldListener, DebugListener {
 
     private double mean = 0;
+    private double lowest, highest;
     private double cutoff;
     private final double[] lastVoltage = {0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4};
     private final int lastCell = 96;
@@ -92,8 +93,8 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
             lastVoltage[cell] = value;
             if (cell == lastCell) {
                 mean = 0;
-                double lowest = 5;
-                double highest = 3;
+                lowest = 5;
+                highest = 3;
                 // lastVoltage[20] = 3.5; fake for test
                 for (int i = 1; i <= lastCell; i++) {
                     mean += lastVoltage[i];
@@ -103,7 +104,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
                 mean /= lastCell;
                 cutoff = lowest < 3.712 ? mean - (highest - mean) * 1.5 : 2;
 
-                        // the update has to be done in a separate thread
+                // the update has to be done in a separate thread
                 // otherwise the UI will not be repainted
                 runOnUiThread(new Runnable() {
                     @Override
@@ -115,6 +116,22 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
                                 tv.setText(String.format(Locale.getDefault(), "%.3f", lastVoltage[i]));
                                 int delta = (int) (5000 * (lastVoltage[i] - mean)); // color is temp minus mean. 1mV difference is 5 color ticks
                                 tv.setBackgroundColor(makeColor (delta));
+                            }
+                        }
+
+                        // Only update the high-low if we have realistic data
+                        if (highest >= lowest) {
+                            TextView tv = findViewById(R.id.text_CellVoltageTop);
+                            if (tv != null) {
+                                tv.setText(String.format("%.3f", highest));
+                            }
+                            tv = findViewById(R.id.text_CellVoltageBottom);
+                            if (tv != null) {
+                                tv.setText(String.format("%.3f", lowest));
+                            }
+                            tv = findViewById(R.id.text_CellVoltageDelta);
+                            if (tv != null) {
+                                tv.setText(String.format("%.3f", 1000 * (highest - lowest)));
                             }
                         }
                     }
