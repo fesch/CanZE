@@ -622,18 +622,9 @@
 
     <string name="title_activity_heatmap_cellvoltage">Übersicht: Spannungen der einzelnen Akkuzellen</string>
     <string name="button_HeatmapVoltage">Übersicht Zellen-Spannung</string>
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <string name="label_CellVoltageTop">Höchste Zellen-Spannung (V)</string>
+    <string name="label_CellVoltageBottom">Niedrigste Zellen-Spannung (V)</string>
+    <string name="label_CellVoltageDelta">Zellen-Spannungsdifferenz (mV)</string>
     
     <!-- Kangoo fluence temperatures -->
 

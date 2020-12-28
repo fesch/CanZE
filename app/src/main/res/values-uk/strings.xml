@@ -318,6 +318,9 @@
     <string name="title_activity_range">Пробіг</string>
     <string name="title_activity_heatmap_bat">Мапа температур</string>
     <string name="title_activity_heatmap_cellvoltage">Мапа напруг</string>
+    <string name="label_CellVoltageTop">Найвища напруга комірки (В)</string>
+    <string name="label_CellVoltageBottom">Найнижча напруга комірки (В)</string>
+    <string name="label_CellVoltageDelta">Різниця напруг комірки (мВ)</string>
     <string name="title_activity_firmware">Прошивка</string>
     <string name="title_activity_elm_test">Тест адаптору ELM327</string>
     <string name="title_activity_dtc">Коди помилок (DTC)</string>

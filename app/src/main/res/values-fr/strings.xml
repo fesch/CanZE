@@ -424,6 +424,9 @@
     <string name="button_HeatmapTemperature">T° des modules</string>
     <string name="title_activity_heatmap_cellvoltage">Tension des cellules</string>
     <string name="button_HeatmapVoltage">Tension des cellules</string>
+    <string name="label_CellVoltageTop">Tension de cellule la plus haute (V)</string>
+    <string name="label_CellVoltageBottom">Tension de cellule la plus basse (V)</string>
+    <string name="label_CellVoltageDelta">Différence des tensions (mV)</string>
     <string name="title_activity_leakCurrents">Courant de fuite harmoniques</string>
     <string name="button_LeakCurrents">Harmoniques</string>
     <string name="label_LeakCurrentDc">Courant de fuite DC (mA)</string>

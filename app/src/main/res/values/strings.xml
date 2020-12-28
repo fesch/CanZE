@@ -728,6 +728,9 @@
     <string name="_73" translatable="false">73</string>
     <string name="_81" translatable="false">81</string>
     <string name="_89" translatable="false">89</string>
+    <string name="label_CellVoltageTop">Highest cell voltage (V)</string>
+    <string name="label_CellVoltageBottom">Lowest cell voltage (V)</string>
+    <string name="label_CellVoltageDelta">Cell voltage difference (mV)</string>
 
     <!-- LeakCurrents -->
 
