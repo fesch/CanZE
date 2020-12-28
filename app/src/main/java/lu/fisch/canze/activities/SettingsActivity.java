@@ -223,32 +223,33 @@ public class SettingsActivity extends AppCompatActivity {
         // Iterate over all the settings
         boolean removeSetting;
         for (Map.Entry<String, ?> entry : oldSettings.entrySet()) {
+            String oldValue = entry.getValue().toString();
             removeSetting = false;
             switch (entry.getKey()) {
                 // Map the old setting to the new one
                 case "deviceName":
-                    editor.putString(SETTING_DEVICE_NAME, entry.getValue().toString());
+                    editor.putString(SETTING_DEVICE_NAME, oldValue);
                     removeSetting = true;
                     break;
                 case "gatewayUrl":
-                    editor.putString(SETTING_DEVICE_HTTP_GATEWAY, entry.getValue().toString());
+                    editor.putString(SETTING_DEVICE_HTTP_GATEWAY, oldValue);
                     removeSetting = true;
                     break;
                 case "startActivity":
-                    editor.putInt(SETTING_DISPLAY_STARTUP_ACTIVITY, Integer.parseInt(entry.getValue().toString()));
+                    editor.putInt(SETTING_DISPLAY_STARTUP_ACTIVITY, StrToIntDefault(oldValue, 0));
                     removeSetting = true;
                     break;
                 case "deviceAddress":
-                    editor.putString(SETTING_DEVICE_ADDRESS, entry.getValue().toString());
+                    editor.putString(SETTING_DEVICE_ADDRESS, oldValue);
                     removeSetting = true;
                     break;
                 case "device":
-                    editor.putString(SETTING_DEVICE_TYPE, entry.getValue().toString());
+                    editor.putString(SETTING_DEVICE_TYPE, oldValue);
                     removeSetting = true;
                     break;
                 case "car":
                     short car = MainActivity.CAR_NONE;
-                    switch (entry.getValue().toString()) {
+                    switch (oldValue) {
                         case "None":
                             car = MainActivity.CAR_NONE;
                             break;
@@ -275,47 +276,47 @@ public class SettingsActivity extends AppCompatActivity {
                     removeSetting = true;
                     break;
                 case "optDebugLog":
-                    editor.putBoolean(SETTING_LOGGING_DEBUG_LOG, Boolean.parseBoolean(entry.getValue().toString()));
+                    editor.putBoolean(SETTING_LOGGING_DEBUG_LOG, Boolean.parseBoolean(oldValue));
                     removeSetting = true;
                     break;
                 case "optToast":
-                    editor.putInt(SETTING_DISPLAY_TOAST_LEVEL, Integer.parseInt(entry.getValue().toString()));
+                    editor.putInt(SETTING_DISPLAY_TOAST_LEVEL, StrToIntDefault(oldValue, MainActivity.TOAST_ELMCAR));
                     removeSetting = true;
                     break;
                 case "optBTBackground":
-                    editor.putBoolean(SETTING_DEVICE_USE_BACKGROUND_MODE, Boolean.parseBoolean(entry.getValue().toString()));
+                    editor.putBoolean(SETTING_DEVICE_USE_BACKGROUND_MODE, Boolean.parseBoolean(oldValue));
                     removeSetting = true;
                     break;
                 case "optSafe":
-                    editor.putBoolean(SETTING_SECURITY_SAFE_MODE, Boolean.parseBoolean(entry.getValue().toString()));
+                    editor.putBoolean(SETTING_SECURITY_SAFE_MODE, Boolean.parseBoolean(oldValue));
                     removeSetting = true;
                     break;
                 case "optMiles":
-                    editor.putBoolean(SETTING_CAR_USE_MILES, Boolean.parseBoolean(entry.getValue().toString()));
+                    editor.putBoolean(SETTING_CAR_USE_MILES, Boolean.parseBoolean(oldValue));
                     removeSetting = true;
                     break;
                 case "optAltFields":
-                    editor.putBoolean(SETTING_DEVICE_USE_ISOTP_FIELDS, Boolean.parseBoolean(entry.getValue().toString()));
+                    editor.putBoolean(SETTING_DEVICE_USE_ISOTP_FIELDS, Boolean.parseBoolean(oldValue));
                     removeSetting = true;
                     break;
                 case "optFieldLog":
-                    editor.putBoolean(SETTING_LOGGING_FIELDS_LOG, Boolean.parseBoolean(entry.getValue().toString()));
+                    editor.putBoolean(SETTING_LOGGING_FIELDS_LOG, Boolean.parseBoolean(oldValue));
                     removeSetting = true;
                     break;
                 case "optDataExport":
-                    editor.putBoolean(SETTING_LOGGING_USE_SD_CARD, Boolean.parseBoolean(entry.getValue().toString()));
+                    editor.putBoolean(SETTING_LOGGING_USE_SD_CARD, Boolean.parseBoolean(oldValue));
                     removeSetting = true;
                     break;
                 case "optDark":
-                    editor.putInt(SETTING_DISPLAY_THEME, Integer.parseInt(entry.getValue().toString()));
+                    editor.putInt(SETTING_DISPLAY_THEME, StrToIntDefault (oldValue, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM));
                     removeSetting = true;
                     break;
                 case "disclaimer":
-                    editor.putBoolean(SETTING_APP_DISCLAIMER_SEEN, Boolean.parseBoolean(entry.getValue().toString()));
+                    editor.putBoolean(SETTING_APP_DISCLAIMER_SEEN, Boolean.parseBoolean(oldValue));
                     removeSetting = true;
                     break;
                 case "startMenu":
-                    editor.putInt(SETTING_DISPLAY_STARTUP_MENU, Integer.parseInt(entry.getValue().toString()));
+                    editor.putInt(SETTING_DISPLAY_STARTUP_MENU, StrToIntDefault (oldValue, 0));
                     removeSetting = true;
                     break;
             }
@@ -333,6 +334,14 @@ public class SettingsActivity extends AppCompatActivity {
         editor.apply();
 
         MainActivity.debug("Settings after migration: " + settings.getAll().toString());
+    }
+
+    private static int StrToIntDefault (String s, int defaultValue) {
+        try{
+            return Integer.parseInt(s);
+        } catch (Exception e) {
+            return defaultValue;
+        }
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
