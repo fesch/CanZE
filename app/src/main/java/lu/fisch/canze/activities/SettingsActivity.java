@@ -1032,7 +1032,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString(SETTING_DEVICE_NAME, device);
                 if (device.toLowerCase().startsWith(DEVICE_NAME_HTTP_GATEWAY)) {
                     EditTextPreference url = findPreference(SETTING_DEVICE_ADDRESS);
-                    editor.putString(SETTING_DEVICE_HTTP_GATEWAY, url.getText());
+                    editor.putString(SETTING_DEVICE_HTTP_GATEWAY, url.getText().replace ("http:", "https:"));
                 }
             }
 
