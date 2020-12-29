@@ -101,8 +101,12 @@ public class ActivityRegistry {
     public void loadSelection()
     {
         selected.clear();
+        // avoid crash on context problem
+        if (MainActivity.getInstance().getBaseContext() == null)
+            return;
+
         SharedPreferences settings = MainActivity.getInstance().getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
-        SharedPreferences.Editor editor = settings.edit();
+        //SharedPreferences.Editor editor = settings.edit();
         for(int i = 0; i< CustomFragment.BUTTONCOUNT; i++)
         {
             int act = settings.getInt("buttonC"+i,-1);
@@ -192,7 +196,9 @@ public class ActivityRegistry {
 
     public Activity get(int index)
     {
-        return activities.get(index);
+        if (index >= 0 && index < activities.size())
+            return activities.get(index);
+        return null;
     }
 
     public Activity getById (int id) {
@@ -218,7 +224,9 @@ public class ActivityRegistry {
 
     public Activity selectedGet(int index)
     {
-        return selected.get(index);
+        if (index >= 0 && index < selected.size())
+            return selected.get(index);
+        return null;
     }
 
     public int selectedSize()
@@ -246,11 +254,13 @@ public class ActivityRegistry {
 
     public void addToSelected(int index)
     {
-        selected.add(activities.get(index));
+        if (index >= 0 && index < activities.size())
+            selected.add(activities.get(index));
     }
 
     public void removeFromSelected(int index)
     {
+        if (index >= 0 && index < selected.size())
         selected.remove(index);
     }
 
@@ -261,7 +271,7 @@ public class ActivityRegistry {
 
     public boolean moveSelectedUp(int index)
     {
-        if(index>0) {
+        if(index > 0 && index < selected.size()) {
             Activity a = selected.get(index);
             selected.remove(index);
             selected.add(index - 1, a);
@@ -272,7 +282,7 @@ public class ActivityRegistry {
 
     public boolean moveSelectedDown(int index)
     {
-        if(index<selected.size()-1) {
+        if(index >= 0 && index < selected.size()-1) {
             Activity a = selected.get(index);
             selected.remove(index);
             selected.add(index + 1, a);
