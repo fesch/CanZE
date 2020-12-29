@@ -509,7 +509,9 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                         tv = null;
                         break;
                     case Sid.BcbVersion:
-                        Fields.getInstance().getBySID(Sid.ACPilotDutyCycle).setResolution(((int)field.getValue() < 0x0800) ? 1.0 : 0.5);
+                        Field bcbVersionField = Fields.getInstance().getBySID(Sid.ACPilotDutyCycle);
+                        if (bcbVersionField != null)
+                            bcbVersionField.setResolution(((int)field.getValue() < 0x0800) ? 1.0 : 0.5);
                 }
                 // set regular new content, all exceptions handled above
                 if (tv != null) {
