@@ -1020,6 +1020,9 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         public void saveSettings() {
+            // double check if settings is set. We've seen crashes on that
+            if (settings == null) return;
+
             // Using the fragment, all visible settings are automatically saved, we need to save
             // the "meta" (without View) settings
             SharedPreferences.Editor editor = settings.edit();
