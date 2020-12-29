@@ -82,7 +82,9 @@ public class CanSee extends Device {
             }
         // init the buffer
         boolean stop = false;
-        StringBuilder readBuffer = new StringBuilder();
+        //Do not use StringBuilder as it's not thread safe
+        //StringBuilder readBuffer = new StringBuilder();
+        StringBuffer readBuffer = new StringBuffer();
         // wait for answer
         long start = Calendar.getInstance().getTimeInMillis();
         long runtime = 0;
