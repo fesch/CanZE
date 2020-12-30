@@ -331,7 +331,7 @@ public abstract class Device {
                 // return it's index in the global registered field array
                 if (field.isDue(referenceTime)) {
                     //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
-                    MainActivity.debug("Device.getNextField: applicationFields, " + field.getSID());
+                    MainActivity.debug("Device.getNextField (" + pollerThread.getId() + "): applicationFields, " + field.getSID());
                     return field;
                 }
             }
@@ -349,7 +349,7 @@ public abstract class Device {
                 // return it's index in the global registered field array
                 if (field.isDue(referenceTime)) {
                     //MainActivity.debug(Calendar.getInstance().getTimeInMillis()/1000.+" > Chosing: "+field.getSID());
-                    MainActivity.debug("Device.getNextField: activityFieldsScheduled, " + field.getSID());
+                    MainActivity.debug("Device.getNextField (" + pollerThread.getId() + "): activityFieldsScheduled, " + field.getSID());
                     return field;
                 }
             }
@@ -357,11 +357,11 @@ public abstract class Device {
             if (activityFieldsAsFastAsPossible.size() > 0) {
                 activityFieldIndex = (activityFieldIndex + 1) % activityFieldsAsFastAsPossible.size();
                 Field field = activityFieldsAsFastAsPossible.get(activityFieldIndex);
-                MainActivity.debug("Device.getNextField: activityFieldsAsFastAsPossible, " + field.getSID());
+                MainActivity.debug("Device.getNextField (" + pollerThread.getId() + "): activityFieldsAsFastAsPossible, " + field.getSID());
                 return field;
             }
 
-            MainActivity.debug("Device.getNextField: empty:" + applicationFields.size() + " / " + activityFieldsScheduled.size() + " / " + activityFieldsAsFastAsPossible.size());
+            MainActivity.debug("Device.getNextField (" + pollerThread.getId() + "): empty:" + applicationFields.size() + " / " + activityFieldsScheduled.size() + " / " + activityFieldsAsFastAsPossible.size());
 
             return null;
         }
