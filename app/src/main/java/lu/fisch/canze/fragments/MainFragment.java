@@ -73,22 +73,34 @@ public class MainFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        activateButton(view, R.id.buttonConsumption, ConsumptionActivity.class);
-        activateButton(view, R.id.buttonChargingActivity, ChargingActivity.class);
+        // For a bundle, the app might have been installed by users of rooted devices without the
+        // proper "sub-APKs", which will make it crash on not found resources when inflating the
+        // screen. We try to catch that here without using any resource.
+        try {
+            View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        activateButton(view, R.id.buttonBattery, BatteryActivity.class);
-        activateButton(view, R.id.buttonDrivingActivity, DrivingActivity.class);
+            activateButton(view, R.id.buttonConsumption, ConsumptionActivity.class);
+            activateButton(view, R.id.buttonChargingActivity, ChargingActivity.class);
 
-        activateButton(view, R.id.buttonClimaTech, ClimaTechActivity.class);
-        activateButton(view, R.id.buttonBraking, BrakingActivity.class);
+            activateButton(view, R.id.buttonBattery, BatteryActivity.class);
+            activateButton(view, R.id.buttonDrivingActivity, DrivingActivity.class);
 
-        activateButton(view, R.id.buttonSpeed, SpeedcontrolActivity.class);
+            activateButton(view, R.id.buttonClimaTech, ClimaTechActivity.class);
+            activateButton(view, R.id.buttonBraking, BrakingActivity.class);
 
-        getNews(view);
+            activateButton(view, R.id.buttonSpeed, SpeedcontrolActivity.class);
 
-        return view;
+            getNews(view);
+            return view;
+
+        } catch (Exception e) {
+            MainActivity.toast(MainActivity.TOAST_NONE, "Please install from the play store");
+            MainActivity.getInstance().finish();
+            System.exit(0);
+        }
+
+        return null;
     }
 
     private void activateButton(View view, int buttonId, final Class<?> activityClass) {
