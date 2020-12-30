@@ -61,16 +61,17 @@
             android:orientation="horizontal"
             android:layout_weight="1">
 
-            <!-- pilot amp / available power -->
+            <!-- max battery charge / DC charging power -->
             <lu.fisch.canze.widgets.WidgetView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
                 android:layout_marginTop="8dp"
                 custom:axisMinY="0"
-                custom:axisMaxY="40"
+                custom:axisMaxY="40,16:50,64:40,128:40"
                 custom:axisMinYAlt="0"
-                custom:axisMaxYAlt="40"            custom:majorTicks="10"
+                custom:axisMaxYAlt="40,16:50,64:40,128:40"
+                custom:majorTicks="10"
                 custom:minorTicks="5"
                 custom:fieldSID="7bb.6101.336,800.6103.24"
                 custom:widget="timeplot"
