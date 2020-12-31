@@ -74,14 +74,17 @@ public class Plotter extends Drawable {
 
     public void setValue(int index, double value)
     {
-        try {
-            values.set(index, value);
-        } catch (IndexOutOfBoundsException e) {
-            MainActivity.logExceptionToCrashlytics(e);
-            // Bail out. Based on Play Console Crash Report
+        // synchronized as loadValuesFromDatabase can be running
+        synchronized (values) {
+            try {
+                values.set(index, value);
+            } catch (IndexOutOfBoundsException e) {
+                MainActivity.logExceptionToCrashlytics(e);
+                // Bail out. Based on Play Console Crash Report
+            }
+            //if(value<minValues.get(index)) minValues.set(index,value);
+            //if(value>maxValues.get(index)) maxValues.set(index,value);
         }
-        //if(value<minValues.get(index)) minValues.set(index,value);
-        //if(value>maxValues.get(index)) maxValues.set(index,value);
     }
 
     @Override
@@ -307,8 +310,8 @@ public class Plotter extends Drawable {
 
             int index = sids.indexOf(sid);
             if (index == -1) {
-                sids.add(sid);
                 values.add(field.getValue());
+                sids.add(sid);
                 //minValues.add(CanzeDataSource.getInstance().getMin(sid));
                 //maxValues.add(CanzeDataSource.getInstance().getMax(sid));
 
@@ -327,15 +330,19 @@ public class Plotter extends Drawable {
     public void loadValuesFromDatabase() {
         super.loadValuesFromDatabase();
 
-        values.clear();
-        //maxValues.clear();
-        //minValues.clear();
+        // since this code is called in a separate thread (see WidgetView.SurfaceCreated) we need
+        // to synchronize "values"
+        synchronized (values) {
+            values.clear();
+            //maxValues.clear();
+            //minValues.clear();
 
-        for(int s=0; s<sids.size(); s++) {
-            String sid = sids.get(s);
-            values.add(CanzeDataSource.getInstance().getLast(sid));
-            //maxValues.add(CanzeDataSource.getInstance().getMax(sid));
-            //minValues.add(CanzeDataSource.getInstance().getMin(sid));
+            for (int s = 0; s < sids.size(); s++) {
+                String sid = sids.get(s);
+                values.add(CanzeDataSource.getInstance().getLast(sid));
+                //maxValues.add(CanzeDataSource.getInstance().getMax(sid));
+                //minValues.add(CanzeDataSource.getInstance().getMin(sid));
+            }
         }
     }
 
@@ -360,8 +367,9 @@ public class Plotter extends Drawable {
         //maxValues=data.get(2);
     }
 
-
-    public void setValues(ArrayList<Double> values) {
-        this.values     = values;
-    }
+    //unused and faulty anyway as the size of sids and values may now divert
+    //public void setValues(ArrayList<Double> values)
+    //{
+    //    this.values     = values;
+    //}
 }
