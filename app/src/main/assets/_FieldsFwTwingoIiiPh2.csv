@@ -1,0 +1,233 @@
+# SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
+,767,56,63,1,0,0,,2180,6180,ff,diagVersion
+,767,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,767,128,143,1,0,0,,2180,6180,ff,Soft
+,767,5144,159,1,0,0,,2180,6180,ff,Version
+,767,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,767,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,767,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,767,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7A5,56,63,1,0,0,,2180,6180,ff,diagVersion
+,7A5,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,7A5,128,143,1,0,0,,2180,6180,ff,Soft
+,7A5,5144,159,1,0,0,,2180,6180,ff,Version
+,7A5,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7A5,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7A5,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7A5,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,765,56,63,1,0,0,,2180,6180,ff,diagVersion
+,765,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,765,128,143,1,0,0,,2180,6180,ff,Soft
+,765,5144,159,1,0,0,,2180,6180,ff,Version
+,765,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,765,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,765,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,765,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,734,56,63,1,0,0,,2180,6180,ff,diagVersion
+,734,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,734,128,143,1,0,0,,2180,6180,ff,Soft
+,734,5144,159,1,0,0,,2180,6180,ff,Version
+,734,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,734,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,734,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,734,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7BB,56,63,1,0,0,,2180,6180,ff,diagVersion
+,7BB,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,7BB,128,143,1,0,0,,2180,6180,ff,Soft
+,7BB,5144,159,1,0,0,,2180,6180,ff,Version
+,7BB,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7BB,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7BB,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7BB,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,18DAF1D2,56,63,1,0,0,,2180,6180,ff,diagVersion
+,18DAF1D2,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,18DAF1D2,128,143,1,0,0,,2180,6180,ff,Soft
+,18DAF1D2,5144,159,1,0,0,,2180,6180,ff,Version
+,18DAF1D2,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,18DAF1D2,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,18DAF1D2,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,18DAF1D2,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,764,56,63,1,0,0,,2180,6180,ff,diagVersion
+,764,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,764,128,143,1,0,0,,2180,6180,ff,Soft
+,764,5144,159,1,0,0,,2180,6180,ff,Version
+,764,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,764,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,764,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,764,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,763,56,63,1,0,0,,2180,6180,ff,diagVersion
+,763,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,763,128,143,1,0,0,,2180,6180,ff,Soft
+,763,5144,159,1,0,0,,2180,6180,ff,Version
+,763,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,763,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,763,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,763,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7E9,56,63,1,0,0,,2180,6180,ff,diagVersion
+,7E9,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,7E9,128,143,1,0,0,,2180,6180,ff,Soft
+,7E9,5144,159,1,0,0,,2180,6180,ff,Version
+,7E9,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7E9,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7E9,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7E9,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,76D,56,63,1,0,0,,2180,6180,ff,diagVersion
+,76D,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,76D,128,143,1,0,0,,2180,6180,ff,Soft
+,76D,5144,159,1,0,0,,2180,6180,ff,Version
+,76D,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,76D,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,76D,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,76D,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7E8,56,63,1,0,0,,2180,6180,ff,diagVersion
+,7E8,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,7E8,128,143,1,0,0,,2180,6180,ff,Soft
+,7E8,5144,159,1,0,0,,2180,6180,ff,Version
+,7E8,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7E8,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7E8,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7E8,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7EC,56,63,1,0,0,,2180,6180,ff,diagVersion
+,7EC,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,7EC,128,143,1,0,0,,2180,6180,ff,Soft
+,7EC,5144,159,1,0,0,,2180,6180,ff,Version
+,7EC,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7EC,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7EC,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7EC,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,793,56,63,1,0,0,,2180,6180,ff,diagVersion
+,793,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,793,128,143,1,0,0,,2180,6180,ff,Soft
+,793,5144,159,1,0,0,,2180,6180,ff,Version
+,793,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,793,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,793,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,793,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7DD,56,63,1,0,0,,2180,6180,ff,diagVersion
+,7DD,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,7DD,128,143,1,0,0,,2180,6180,ff,Soft
+,7DD,5144,159,1,0,0,,2180,6180,ff,Version
+,7DD,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7DD,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7DD,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7DD,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,732,56,63,1,0,0,,2180,6180,ff,diagVersion
+,732,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,732,128,143,1,0,0,,2180,6180,ff,Soft
+,732,5144,159,1,0,0,,2180,6180,ff,Version
+,732,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,732,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,732,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,732,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,772,56,63,1,0,0,,2180,6180,ff,diagVersion
+,772,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,772,128,143,1,0,0,,2180,6180,ff,Soft
+,772,5144,159,1,0,0,,2180,6180,ff,Version
+,772,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,772,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,772,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,772,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7D7,56,63,1,0,0,,2180,6180,ff,diagVersion
+,7D7,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,7D7,128,143,1,0,0,,2180,6180,ff,Soft
+,7D7,5144,159,1,0,0,,2180,6180,ff,Version
+,7D7,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7D7,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7D7,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7D7,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,739,56,63,1,0,0,,2180,6180,ff,diagVersion
+,739,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,739,128,143,1,0,0,,2180,6180,ff,Soft
+,739,5144,159,1,0,0,,2180,6180,ff,Version
+,739,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,739,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,739,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,739,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7DA,56,63,1,0,0,,2180,6180,ff,diagVersion
+,7DA,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,7DA,128,143,1,0,0,,2180,6180,ff,Soft
+,7DA,5144,159,1,0,0,,2180,6180,ff,Version
+,7DA,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7DA,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7DA,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7DA,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,760,56,63,1,0,0,,2180,6180,ff,diagVersion
+,760,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,760,128,143,1,0,0,,2180,6180,ff,Soft
+,760,5144,159,1,0,0,,2180,6180,ff,Version
+,760,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,760,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,760,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,760,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,761,56,63,1,0,0,,2180,6180,ff,diagVersion
+,761,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,761,128,143,1,0,0,,2180,6180,ff,Soft
+,761,5144,159,1,0,0,,2180,6180,ff,Version
+,761,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,761,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,761,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,761,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7AD,56,63,1,0,0,,2180,6180,ff,diagVersion
+,7AD,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,7AD,128,143,1,0,0,,2180,6180,ff,Soft
+,7AD,5144,159,1,0,0,,2180,6180,ff,Version
+,7AD,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7AD,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7AD,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7AD,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,762,56,63,1,0,0,,2180,6180,ff,diagVersion
+,762,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,762,128,143,1,0,0,,2180,6180,ff,Soft
+,762,5144,159,1,0,0,,2180,6180,ff,Version
+,762,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,762,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,762,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,762,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,77D,56,63,1,0,0,,2180,6180,ff,diagVersion
+,77D,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,77D,128,143,1,0,0,,2180,6180,ff,Soft
+,77D,5144,159,1,0,0,,2180,6180,ff,Version
+,77D,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,77D,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,77D,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,77D,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,76B,56,63,1,0,0,,2180,6180,ff,diagVersion
+,76B,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,76B,128,143,1,0,0,,2180,6180,ff,Soft
+,76B,5144,159,1,0,0,,2180,6180,ff,Version
+,76B,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,76B,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,76B,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,76B,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,77E,56,63,1,0,0,,2180,6180,ff,diagVersion
+,77E,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,77E,128,143,1,0,0,,2180,6180,ff,Soft
+,77E,5144,159,1,0,0,,2180,6180,ff,Version
+,77E,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,77E,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,77E,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,77E,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7C8,56,63,1,0,0,,2180,6180,ff,diagVersion
+,7C8,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,7C8,128,143,1,0,0,,2180,6180,ff,Soft
+,7C8,5144,159,1,0,0,,2180,6180,ff,Version
+,7C8,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7C8,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7C8,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7C8,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7BD,56,63,1,0,0,,2180,6180,ff,diagVersion
+,7BD,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,7BD,128,143,1,0,0,,2180,6180,ff,Soft
+,7BD,5144,159,1,0,0,,2180,6180,ff,Version
+,7BD,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7BD,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7BD,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7BD,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7A2,56,63,1,0,0,,2180,6180,ff,diagVersion
+,7A2,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,7A2,128,143,1,0,0,,2180,6180,ff,Soft
+,7A2,5144,159,1,0,0,,2180,6180,ff,Version
+,7A2,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7A2,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7A2,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7A2,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion

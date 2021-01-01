@@ -85,6 +85,7 @@
                         android:text="Field test" />
 
                     <Button
+                        android:id="@+id/buttonTwingoTest"
                         style="?android:attr/button"
                         android:layout_width="0dp"
                         android:layout_height="fill_parent"
@@ -95,8 +96,7 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_test"
-                        android:text=""
-                        android:visibility="invisible" />
+                        android:text="T III Ph2 test" />
 
                 </TableRow>
 

@@ -126,6 +126,9 @@
             android:name=".activities.ResearchActivity"
             android:label="@string/title_activity_research" />
         <activity
+            android:name=".activities.TwingoTestActivity"
+            android:label="T III Ph2 test" />
+        <activity
             android:name=".activities.CanSeeActivity"
             android:label="CanSee"/>
     </application>
