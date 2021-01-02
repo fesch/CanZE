@@ -83,10 +83,9 @@ public class ExperimentalFragment extends Fragment {
 
     private void activateButton(View view, int buttonId, final Class<?> activityClass, boolean onlyDebug) {
         if (BuildConfig.BRANCH.equals("master") & onlyDebug) {
-            // if on master and onlyDebug is true, remove text and image
+            // if on master and onlyDebug is true, hide button
             Button button = view.findViewById(buttonId);
-            button.setText("");
-            button.setCompoundDrawables(null, null,null, null);
+            button.setVisibility(View.INVISIBLE);
         } else {
             activateButton(view, buttonId, activityClass);
         }
