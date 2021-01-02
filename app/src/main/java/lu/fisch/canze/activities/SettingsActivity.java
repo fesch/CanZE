@@ -28,6 +28,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Environment;
@@ -981,9 +982,15 @@ public class SettingsActivity extends AppCompatActivity {
             for (String menu : new String[]{"MAIN", "TECHNICAL", "EXPERIMENTAL", "CUSTOM"}) {
                 // Add the menu item
                 try {
-                    listValues.add("m" + MainActivity.class.getField("MENU_" + menu).get(null));
-                    listLabels.add("-- " + getString(Utils.getResId("menu_" + Utils.capitalizeString(menu), R.string.class)) + " --");
-                } catch (NoSuchFieldException | IllegalAccessException e) {
+                    // not happu with the resId check, as it would be easier to have getResId trap a NoSuchFieldException
+                    String val = "m" + MainActivity.class.getField("MENU_" + menu).get(null);
+                    int resId = Utils.getResId("menu_" + Utils.capitalizeString(menu), R.string.class);
+                    if (resId != -1) {
+                        String lab = "-- " + getString(resId) + " --";
+                        listValues.add(val);
+                        listLabels.add(lab);
+                    }
+                } catch (NoSuchFieldException | IllegalAccessException | Resources.NotFoundException e) {
                     // Fail silently as we won't add the menu if the field does not exist
                 }
 
