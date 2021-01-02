@@ -175,7 +175,8 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
         }
 
         if (BluetoothManager.getInstance().isDummyMode())
-            MainActivity.device.initConnection();
+            if (MainActivity.device != null)
+                MainActivity.device.initConnection();
 
         if (!widgetClicked) {
             MainActivity.debug("CanzeActivity: onResume > initWidgets");
