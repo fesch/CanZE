@@ -547,7 +547,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
             @Override
             public void onAfterConnect(BluetoothSocket bluetoothSocket) {
-                device.init(visible);
+                if (device != null)
+                    device.init(visible);
                 showBluetoothState(BLUETOOTH_CONNECTED);
             }
 
