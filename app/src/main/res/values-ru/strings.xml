@@ -556,7 +556,7 @@
     <string name="message_PrepFree">\nОбрабатываю подготовленный кадр PARK BRAKE\n</string>
     <string name="message_PollerStopping">"\nПожалуйста, подождите, пока остановится опрашивающий поток…\n "</string>
     <string name="message_PrepIsoTp">\nОбрабатываю подготовленную команду ISO-TP CLUSTER SW\n</string>
-    <string name="prompt_BluetoothOn">Работа Bluetooth в фоновом режиме может мешать работе других приложений, использующих Bluetooth. Также, это может привести к разряду вашей батареи, если вы забудете выйти из CanZE или отключить эту опцию. <br /><br /><b>С этой опцией соединение будет поддерживаться, даже если вы перезагрузите ваше Android-устройство!</b><br /><br />Вы действительно хотите включить фоновый режим Bluetooth?</string>
+    <string name="prompt_BluetoothOn">Работа Bluetooth в фоновом режиме может мешать работе других приложений, использующих Bluetooth. Также, это может привести к разряду вашей батареи, если вы забудете выйти из CanZE или отключить эту опцию.<br /><br /><b>С этой опцией соединение будет поддерживаться, даже если вы перезагрузите ваше Android-устройство.</b><br /><br />Вы действительно хотите включить фоновый режим Bluetooth?</string>
     <string name="default_NotOk">Не ОК</string>
     <string name="label_AltFields">Использовать поля ISOTP</string>
     <string name="label_Darkmode">Принудительный Тёмный Режим</string>
