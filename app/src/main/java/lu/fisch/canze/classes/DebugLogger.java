@@ -86,6 +86,9 @@ public class DebugLogger {
             }
         }
 
+        // this should not happen, but it did 30-12-2020 Android 6.0.1 App 1.54
+        if (logFile == null) return false;
+
         try {
             //BufferedWriter for performance, true to set append to file flag
             FileWriter fileWriter = new FileWriter(logFile, true);
