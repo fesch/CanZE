@@ -24,6 +24,7 @@ package lu.fisch.canze.activities;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -225,14 +226,17 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (!MainActivity.isSafe()) return true;
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (!MainActivity.isSafe()) return true; // do nothing
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == android.R.id.home) {
             back = true;
             finish();
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
