@@ -145,7 +145,7 @@ public class Ecus {
     }
 
     private String getDefaultAssetName() {
-        return "_Ecus" + (MainActivity.getAssetSuffix());
+        return MainActivity.getAssetPrefix() + "_Ecus.csv";
     }
 
 }

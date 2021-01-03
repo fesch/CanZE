@@ -132,7 +132,7 @@ public class Frames {
             // add the field to the list of available fields
             add(frame);
         } else { // for the FCC, load all Free Frames
-            this.load("FFC_FramesPh1.csv");
+            this.load(MainActivity.getAssetPrefix() + "FFC_FramesPh1.csv");
         }
     }
 
@@ -173,10 +173,10 @@ public class Frames {
         // note - we might ditch non-alt mode. I doubt if it's worth the effort for CanSee dongle only
         if (MainActivity.isZOE()) {
             if (MainActivity.altFieldsMode) {
-                return "_FramesAlt" + MainActivity.getAssetSuffix();
+                return MainActivity.getAssetPrefix() + "_FramesAlt.csv";
             }
         }
-        return "_Frames" + MainActivity.getAssetSuffix();
+        return MainActivity.getAssetPrefix() + "_Frames.csv";
     }
 
 }

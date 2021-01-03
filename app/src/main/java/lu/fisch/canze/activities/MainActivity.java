@@ -1093,9 +1093,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return (car == CAR_X10PH2);
     }
 
-    public static String getAssetSuffix () {
-        if (isPh2()) return "Ph2.csv";
-        return "Ph1.csv";
+    public static String getAssetPrefix() {
+        if (isPh2()) return "ZOE_Ph2/";
+        return "ZOE/";
     }
 
     //public static boolean isFluKan() {

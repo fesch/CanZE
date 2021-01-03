@@ -122,9 +122,9 @@ public class TwingoTestActivity extends CanzeActivity implements FieldListener, 
                     return;
                 }
 
-                Ecus.getInstance().load("_EcusFwTwingoIiiPh2.csv");
-                Frames.getInstance().load("_FramesFwTwingoIiiPh2.csv");
-                Fields.getInstance().load("_FieldsFwTwingoIiiPh2.csv");
+                Ecus.getInstance().load("Twingo_3_Ph2/_Ecus.csv");
+                Frames.getInstance().load("Twingo_3_Ph2/_Frames.csv");
+                Fields.getInstance().load("Twingo_3_Ph2/_Fields.csv");
 
                 createDump();
                 ticker = Calendar.getInstance().getTimeInMillis();

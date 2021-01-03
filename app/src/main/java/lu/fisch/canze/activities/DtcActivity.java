@@ -192,8 +192,8 @@ public class DtcActivity extends CanzeActivity {
             //methodLoad = diagEcu.getClass().getMethod("load");
             //methodLoad.invoke(diagEcu);
             Frames.getInstance().load (ecu);
-            Fields.getInstance().load(ecu.getMnemonic() + "_Fields" + MainActivity.getAssetSuffix());
-            Dtcs.getInstance().load(ecu.getMnemonic() + "_Dtcs" + MainActivity.getAssetSuffix(), ecu.getMnemonic() + "_Tests" + MainActivity.getAssetSuffix());
+            Fields.getInstance().load(MainActivity.getAssetPrefix() + ecu.getMnemonic() + "_Fields.csv");
+            Dtcs.getInstance().load(MainActivity.getAssetPrefix() + ecu.getMnemonic() + "_Dtcs.csv", MainActivity.getAssetPrefix() + ecu.getMnemonic() + "_Tests.csv");
         } catch (Exception e) {
             appendResult(R.string.message_NoEcuDefinition);
             // Reload the default frame & timings
@@ -320,7 +320,7 @@ public class DtcActivity extends CanzeActivity {
             //methodLoad = diagEcu.getClass().getMethod("load");
             //methodLoad.invoke(diagEcu);
             Frames.getInstance().load (ecu);
-            Fields.getInstance().load (ecu.getMnemonic() + "_Fields" + MainActivity.getAssetSuffix());
+            Fields.getInstance().load (MainActivity.getAssetPrefix() + ecu.getMnemonic() + "_Fields.csv");
         } catch (Exception e) {
             appendResult(R.string.message_NoEcuDefinition);
             // Reload the default frame & timings
