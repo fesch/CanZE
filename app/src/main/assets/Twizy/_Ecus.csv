@@ -1,0 +1,5 @@
+# Descriptive name, Renault ID, Network (s), From ID (used in fields), To ID, Mnemonic, Alias(ses), GetDtc responseID (s),  Session required
+# If more than one, semicolon separated
+Meter Cluster,0,,763,743,TDB,,5902ff,5003,0
+Lithium Battery Controller,0,,7BB,79B,LBC,-,5902ff,5003,0
+Battery Charger Block,0,,793,792,BCB-OBC,BCB,5902ff,5003,0

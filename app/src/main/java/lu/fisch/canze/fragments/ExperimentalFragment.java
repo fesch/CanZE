@@ -39,6 +39,7 @@ import lu.fisch.canze.activities.FieldTestActivity;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.activities.ResearchActivity;
 import lu.fisch.canze.activities.TwingoTestActivity;
+import lu.fisch.canze.activities.TwizyTestActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,6 +61,8 @@ public class ExperimentalFragment extends Fragment {
 
         activateButton(view, R.id.buttonFieldTest, FieldTestActivity.class, true);
         activateButton(view, R.id.buttonTwingoTest, TwingoTestActivity.class, false);
+
+        activateButton(view, R.id.buttonTwizyTest, TwizyTestActivity.class, false);
 
         return view;
     }

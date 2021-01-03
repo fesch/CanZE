@@ -1,0 +1,25 @@
+# SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
+,763,56,63,1,0,0,,2180,6180,ff,diagVersion
+,763,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,763,128,143,1,0,0,,2180,6180,ff,Soft
+,763,5144,159,1,0,0,,2180,6180,ff,Version
+,763,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,763,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,763,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,763,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,7BB,56,63,1,0,0,,2180,6180,ff,diagVersion
+,7BB,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,7BB,128,143,1,0,0,,2180,6180,ff,Soft
+,7BB,5144,159,1,0,0,,2180,6180,ff,Version
+,7BB,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7BB,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7BB,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7BB,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion
+,793,56,63,1,0,0,,2180,6180,ff,diagVersion
+,793,64,87,1,0,0,,2180,6180,2ff,Supplier (string!)
+,793,128,143,1,0,0,,2180,6180,ff,Soft
+,793,5144,159,1,0,0,,2180,6180,ff,Version
+,793,24,55,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,793,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,793,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,793,24,31,1,0,0,,22F1A0,62F1A0,ff,diagnosticVersion

@@ -129,6 +129,9 @@
             android:name=".activities.TwingoTestActivity"
             android:label="T III Ph2 test" />
         <activity
+            android:name=".activities.TwizyTestActivity"
+            android:label="Tw test" />
+        <activity
             android:name=".activities.CanSeeActivity"
             android:label="CanSee"/>
     </application>

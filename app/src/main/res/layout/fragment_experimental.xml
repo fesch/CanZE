@@ -100,6 +100,40 @@
 
                 </TableRow>
 
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/buttonTwizyTest"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="0"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/button_test"
+                        android:text="Tw test" />
+
+                    <Button
+                        android:id="@+id/buttonEmpty"
+                        style="?android:attr/button"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_column="1"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/button_test"
+                        android:visibility="invisible" />
+
+                </TableRow>
+
             </TableLayout>
 
         </ScrollView>
