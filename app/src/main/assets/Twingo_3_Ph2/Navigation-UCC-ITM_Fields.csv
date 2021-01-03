@@ -1,0 +1,900 @@
+,767,0,0,1,0,0,,1001,5001,ff,StartDiagnosticSession.Default
+,767,0,0,1,0,0,,1002,5002,ff,StartDiagnosticSession.Reprog
+,767,0,0,1,0,0,,1003,5003,ff,StartDiagnosticSession.Extended
+,767,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
+,767,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask
+,767,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier,0:SAE_J2012-DA_DTCFormat;1:ISO_14229-1_DTCFormat;2:SAE_J1939-73_DTCFormat;3:ISO_11992-4_DTCFormat;4:SAE_J2012-DA_WWHOBD_DTCFormat
+,767,32,47,1,0,0,,1901FF,5901FF,4ff,DTCCount
+,767,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask
+,767,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceAndFailureTypeOBD,49273:BUS off (Ext-CAN)
+,767,40,43,1,0,0,,1902FF,5902FF,ff,DTCFailureType.Category,0:General Failure Information;1:General Electrical Failures;2:General Signal Failures;3:FM / PWM Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;15:Vehicle manufacturer / System supplier specific
+,767,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier
+,767,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested
+,767,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle
+,767,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,767,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,767,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,767,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC
+,767,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle
+,767,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,767,0,0,1,0,0,,1903000000FF,5903000000FF,ff,ReadDTCInformation.ReportDTCSnapshotIdentification
+,767,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC
+,767,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC
+,767,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC
+,767,56,63,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedData.DTCOccurrenceCounter
+,767,16,23,1,0,0,,190A,590A,ff,DTCStatusAvailabilityMask
+,767,31,31,1,0,0,,220100,620100,ff,LIN_OUT.SystemON,0:Not active;1:Active
+,767,29,29,1,0,0,,220101,620101,ff,LIN_IN.MR out,0:Not active;1:Active
+,767,30,30,1,0,0,,220101,620101,ff,LIN_IN.PKB,0:Not active;1:Active
+,767,31,31,1,0,0,,220101,620101,ff,LIN_IN.IGN,0:Not active;1:Active
+,767,32,32,1,0,0,,220101,620101,ff,LIN_IN.Auto ACC,0:Not active;1:Active
+,767,33,33,1,0,0,,220101,620101,ff,LIN_IN.ACC,0:Not active;1:Active
+,767,34,34,1,0,0,,220101,620101,ff,LIN_IN.Info_Aux_IN,0:Jack not connected;1:Jack connected
+,767,35,35,1,0,0,,220101,620101,ff,LIN_IN.Info_Aux_IN_2,0:Jack not connected;1:Jack connected
+,767,36,36,1,0,0,,220101,620101,ff,LIN_IN.MuteTCU,0:Mute OFF;1:Mute ON
+,767,37,37,1,0,0,,220101,620101,ff,LIN_IN.REV,0:Not active;1:Active
+,767,38,38,1,0,0,,220101,620101,ff,LIN_IN.Illumination,0:Not active;1:Active
+,767,39,39,1,0,0,,220101,620101,ff,LIN_IN.Illumination Con,0:Not active;1:Active
+,767,24,31,.2,0,1,V,220200,620200,ff,Batterylevel
+,767,24,39,.01,0,2,,220201,620201,ff,Speed information
+,767,24,24,1,0,0,,220300,620300,ff,SWRC_button.9,0:Not pressed;1:Pressed
+,767,25,25,1,0,0,,220300,620300,ff,SWRC_button.8,0:Not pressed;1:Pressed
+,767,26,26,1,0,0,,220300,620300,ff,SWRC_button.6,0:Not pressed;1:Pressed
+,767,27,27,1,0,0,,220300,620300,ff,SWRC_button.5,0:Not pressed;1:Pressed
+,767,28,28,1,0,0,,220300,620300,ff,SWRC_button.4,0:Not pressed;1:Pressed
+,767,29,29,1,0,0,,220300,620300,ff,SWRC_button.3,0:Not pressed;1:Pressed
+,767,30,30,1,0,0,,220300,620300,ff,SWRC_button.2,0:Not pressed;1:Pressed
+,767,31,31,1,0,0,,220300,620300,ff,SWRC_button.1,0:Not pressed;1:Pressed
+,767,38,38,1,0,0,,220300,620300,ff,SWRC_button.11,0:Not pressed;1:Pressed
+,767,39,39,1,0,0,,220300,620300,ff,SWRC_button.10,0:Not pressed;1:Pressed
+,767,24,24,1,0,0,,220301,620301,ff,SWRC_rotary.'7'UpToDown,0:Not pressed;1:Rotary switch turned Up to Down
+,767,25,25,1,0,0,,220301,620301,ff,SWRC_rotary.'7'DownToUp,0:Not pressed;1:Rotary switch turned Down to Up
+,767,25,25,1,0,0,,220302,620302,ff,OSW.Key-7,0:Not pressed;1:Pressed
+,767,26,26,1,0,0,,220302,620302,ff,OSW.PTT,0:Not pressed;1:Pressed
+,767,27,27,1,0,0,,220302,620302,ff,OSW.Phone,0:Not pressed;1:Pressed
+,767,28,28,1,0,0,,220302,620302,ff,OSW.Key-3,0:Not pressed;1:Pressed
+,767,29,29,1,0,0,,220302,620302,ff,OSW.Key-4,0:Not pressed;1:Pressed
+,767,30,30,1,0,0,,220302,620302,ff,OSW.Key-5,0:Not pressed;1:Pressed
+,767,31,31,1,0,0,,220302,620302,ff,OSW.Key-6,0:Not pressed;1:Pressed
+,767,24,24,1,0,0,,220303,620303,ff,CSW.rotaryAnticlockwise,0:Not pressed;1:Pressed
+,767,25,25,1,0,0,,220303,620303,ff,CSW.rotaryClockwise,0:Not pressed;1:Pressed
+,767,26,26,1,0,0,,220303,620303,ff,CSW.rotaryRight,0:Not pressed;1:Pressed
+,767,27,27,1,0,0,,220303,620303,ff,CSW.rotaryLeft,0:Not pressed;1:Pressed
+,767,28,28,1,0,0,,220303,620303,ff,CSW.rotaryDown,0:Not pressed;1:Pressed
+,767,29,29,1,0,0,,220303,620303,ff,CSW.rotaryUp,0:Not pressed;1:Pressed
+,767,30,30,1,0,0,,220303,620303,ff,CSW.rotaryPush,0:Not pressed;1:Pressed
+,767,36,36,1,0,0,,220303,620303,ff,CSW.button4,0:Not pressed;1:Pressed
+,767,37,37,1,0,0,,220303,620303,ff,CSW.button3,0:Not pressed;1:Pressed
+,767,38,38,1,0,0,,220303,620303,ff,CSW.button2,0:Not pressed;1:Pressed
+,767,39,39,1,0,0,,220303,620303,ff,CSW.button1,0:Not pressed;1:Pressed
+,767,27,27,1,0,0,,220304,620304,ff,CP_buttons.button5,0:Not pressed;1:Pressed
+,767,28,28,1,0,0,,220304,620304,ff,CP_buttons.button4,0:Not pressed;1:Pressed
+,767,29,29,1,0,0,,220304,620304,ff,CP_buttons.button3,0:Not pressed;1:Pressed
+,767,30,30,1,0,0,,220304,620304,ff,CP_buttons.button2,0:Not pressed;1:Pressed
+,767,31,31,1,0,0,,220304,620304,ff,CP_buttons.button1,0:Not pressed;1:Pressed
+,767,25,25,1,0,0,,220305,620305,ff,CD_drive.Eject,0:Not pressed;1:Pressed
+,767,31,31,1,0,0,,220306,620306,ff,CP_touchscreen,0:Not pressed;1:Pressed
+,767,24,143,1,0,0,,220308,620308,2ff,Wifi monitoring.A-IVI IP address
+,767,145,147,1,0,0,,220308,620308,ff,Wifi monitoring.Number of connected devices
+,767,148,151,1,0,0,,220308,620308,ff,Wifi monitoring.Wifi status,0:Wifi if OFF;1:Wifi is in client mode;2:Wifi is in hotspot mode without internet sharing;3:Wifi is in hotspot mode with internet sharing;4:Wifi is in hotspot mode due to Carplay Wireless
+,767,152,152,1,0,0,,220308,620308,ff,Wifi monitoring.Wifi band,0:2.4 GHz band;1:5 GHz band
+,767,153,159,1,0,0,,220308,620308,ff,Wifi monitoring.Signal strength (RSSI value)
+,767,160,183,1,0,0,,220308,620308,2ff,Wifi monitoring.Wifi channel
+,767,184,447,1,0,0,,220308,620308,2ff,Wifi monitoring.User defined SSID (ASCII) 
+,767,24,55,1,0,0,,221000,621000,4ff,VID
+,767,31,31,1,0,0,,221005,621005,ff,Radio_State,0:Radio is in state Off user;1:Radio is in state On user
+,767,24,31,1,0,0,°C,221007,621007,ff,ECU temperature
+,767,24,31,1,0,0,,221008,621008,ff,Fan activation counter
+,767,24,39,1,0,0,min,221009,621009,ff,Fan activation duration
+,767,24,31,1,0,0,,221010,621010,ff,Degraded mode counter
+,767,24,39,1,0,0,,221011,621011,ff,Degraded mode cumulated duration
+,767,24,39,1,0,0,,221012,621012,ff,Time from engine stopped
+,767,24,39,1,0,0,,221100,621100,ff,History.NumberOfReprogramming
+,767,24,31,1,0,0,,221102,621102,4ff,HistoricZone0.Year
+,767,32,39,1,0,0,,221102,621102,4ff,HistoricZone0.Month
+,767,40,47,1,0,0,,221102,621102,4ff,HistoricZone0.Day
+,767,48,55,1,0,0,,221102,621102,4ff,HistoricZone0.Hour
+,767,56,63,1,0,0,,221102,621102,4ff,HistoricZone0.Minute
+,767,64,71,1,0,0,,221102,621102,4ff,HistoricZone0.Second
+,767,72,79,1,0,0,,221102,621102,ff,HistoricZone0.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
+,767,80,95,1,0,0,,221102,621102,ff,HistoricZone0.Index
+,767,96,151,1,0,0,,221102,621102,4ff,HistoricZone0.ReleaseSWversion
+,767,152,159,1,0,0,,221102,621102,4ff,HistoricZone0.Padding character
+,767,24,31,1,0,0,,221103,621103,4ff,HistoricZone1.Year
+,767,32,39,1,0,0,,221103,621103,4ff,HistoricZone1.Mounth
+,767,40,47,1,0,0,,221103,621103,4ff,HistoricZone1.Day
+,767,48,55,1,0,0,,221103,621103,4ff,HistoricZone1.Hour
+,767,56,63,1,0,0,,221103,621103,4ff,HistoricZone1.Minute
+,767,64,71,1,0,0,,221103,621103,4ff,HistoricZone1.Second
+,767,72,79,1,0,0,,221103,621103,ff,HistoricZone1.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
+,767,80,95,1,0,0,,221103,621103,ff,HistoricZone1.Index
+,767,96,151,1,0,0,,221103,621103,4ff,HistoricZone1.ReleaseSWversion
+,767,152,159,1,0,0,,221103,621103,4ff,HistoricZone1.Padding character
+,767,24,31,1,0,0,,221110,621110,4ff,HistoricZoneX0.Year
+,767,32,39,1,0,0,,221110,621110,4ff,HistoricZoneX0.Month
+,767,40,47,1,0,0,,221110,621110,4ff,HistoricZoneX0.Day
+,767,48,55,1,0,0,,221110,621110,4ff,HistoricZoneX0.Hour
+,767,56,63,1,0,0,,221110,621110,4ff,HistoricZoneX0.Minute
+,767,64,71,1,0,0,,221110,621110,4ff,HistoricZoneX0.Second
+,767,72,79,1,0,0,,221110,621110,ff,HistoricZoneX0.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
+,767,80,95,1,0,0,,221110,621110,ff,HistoricZoneX0.Index
+,767,96,151,1,0,0,,221110,621110,4ff,HistoricZoneX0.ReleaseSWversion
+,767,152,159,1,0,0,,221110,621110,4ff,HistoricZoneX0.Padding character
+,767,24,31,1,0,0,,221111,621111,4ff,HistoricZoneX1.Year
+,767,32,39,1,0,0,,221111,621111,4ff,HistoricZoneX1.Month
+,767,40,47,1,0,0,,221111,621111,4ff,HistoricZoneX1.Day
+,767,48,55,1,0,0,,221111,621111,4ff,HistoricZoneX1.Hour
+,767,56,63,1,0,0,,221111,621111,4ff,HistoricZoneX1.Minute
+,767,64,71,1,0,0,,221111,621111,4ff,HistoricZoneX1.Second
+,767,72,79,1,0,0,,221111,621111,ff,HistoricZoneX1.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
+,767,80,95,1,0,0,,221111,621111,ff,HistoricZoneX1.Index
+,767,96,151,1,0,0,,221111,621111,4ff,HistoricZoneX1.ReleaseSWversion
+,767,152,159,1,0,0,,221111,621111,4ff,HistoricZoneX1.Padding character
+,767,24,31,1,0,0,,221112,621112,4ff,HistoricZoneX2.Year
+,767,32,39,1,0,0,,221112,621112,4ff,HistoricZoneX2.Month
+,767,40,47,1,0,0,,221112,621112,4ff,HistoricZoneX2.Day
+,767,48,55,1,0,0,,221112,621112,4ff,HistoricZoneX2.Hour
+,767,56,63,1,0,0,,221112,621112,4ff,HistoricZoneX2.Minute
+,767,64,71,1,0,0,,221112,621112,4ff,HistoricZoneX2.Second
+,767,72,79,1,0,0,,221112,621112,ff,HistoricZoneX2.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
+,767,80,95,1,0,0,,221112,621112,ff,HistoricZoneX2.Index
+,767,96,151,1,0,0,,221112,621112,4ff,HistoricZoneX2.ReleaseSWversion
+,767,152,159,1,0,0,,221112,621112,4ff,HistoricZoneX2.Padding character
+,767,24,31,1,0,0,,221113,621113,4ff,HistoricZoneX3.Year
+,767,32,39,1,0,0,,221113,621113,4ff,HistoricZoneX3.Month
+,767,40,47,1,0,0,,221113,621113,4ff,HistoricZoneX3.Day
+,767,48,55,1,0,0,,221113,621113,4ff,HistoricZoneX3.Hour
+,767,56,63,1,0,0,,221113,621113,4ff,HistoricZoneX3.Minute
+,767,64,71,1,0,0,,221113,621113,4ff,HistoricZoneX3.Second
+,767,72,79,1,0,0,,221113,621113,ff,HistoricZoneX3.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
+,767,80,95,1,0,0,,221113,621113,ff,HistoricZoneX3.Index
+,767,96,151,1,0,0,,221113,621113,4ff,HistoricZoneX3.ReleaseSWversion
+,767,152,159,1,0,0,,221113,621113,4ff,HistoricZoneX3.Padding character
+,767,24,31,1,0,0,,221114,621114,4ff,HistoricZoneX4.Year
+,767,32,39,1,0,0,,221114,621114,4ff,HistoricZoneX4.Mounth
+,767,40,47,1,0,0,,221114,621114,4ff,HistoricZoneX4.Day
+,767,48,55,1,0,0,,221114,621114,4ff,HistoricZoneX4.Hour
+,767,56,63,1,0,0,,221114,621114,4ff,HistoricZoneX4.Minute
+,767,64,71,1,0,0,,221114,621114,4ff,HistoricZoneX4.Second
+,767,72,79,1,0,0,,221114,621114,ff,HistoricZoneX4.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
+,767,80,95,1,0,0,,221114,621114,ff,HistoricZoneX4.Index
+,767,96,151,1,0,0,,221114,621114,4ff,HistoricZoneX4.ReleaseSWversion
+,767,152,159,1,0,0,,221114,621114,4ff,HistoricZoneX4.Padding character
+,767,24,31,1,0,0,,221115,621115,4ff,HistoricZoneX5.Year
+,767,32,39,1,0,0,,221115,621115,4ff,HistoricZoneX5.Month
+,767,40,47,1,0,0,,221115,621115,4ff,HistoricZoneX5.Day
+,767,48,55,1,0,0,,221115,621115,4ff,HistoricZoneX5.Hour
+,767,56,63,1,0,0,,221115,621115,4ff,HistoricZoneX5.Minute
+,767,64,71,1,0,0,,221115,621115,4ff,HistoricZoneX5.Second
+,767,72,79,1,0,0,,221115,621115,ff,HistoricZoneX5.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
+,767,80,95,1,0,0,,221115,621115,ff,HistoricZoneX5.Index
+,767,96,151,1,0,0,,221115,621115,4ff,HistoricZoneX5.ReleaseSWversion
+,767,152,159,1,0,0,,221115,621115,4ff,HistoricZoneX5.Padding character
+,767,24,31,1,0,0,,221116,621116,4ff,HistoricZoneX6.Year
+,767,32,39,1,0,0,,221116,621116,4ff,HistoricZoneX6.Month
+,767,40,47,1,0,0,,221116,621116,4ff,HistoricZoneX6.Day
+,767,48,55,1,0,0,,221116,621116,4ff,HistoricZoneX6.Hour
+,767,56,63,1,0,0,,221116,621116,4ff,HistoricZoneX6.Minute
+,767,64,71,1,0,0,,221116,621116,4ff,HistoricZoneX6.Second
+,767,72,79,1,0,0,,221116,621116,ff,HistoricZoneX6.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
+,767,80,95,1,0,0,,221116,621116,ff,HistoricZoneX6.Index
+,767,96,151,1,0,0,,221116,621116,4ff,HistoricZoneX6.ReleaseSWversion
+,767,152,159,1,0,0,,221116,621116,4ff,HistoricZoneX6.Padding character
+,767,24,31,1,0,0,,221117,621117,4ff,HistoricZoneX7.Year
+,767,32,39,1,0,0,,221117,621117,4ff,HistoricZoneX7.Month
+,767,40,47,1,0,0,,221117,621117,4ff,HistoricZoneX7.Day
+,767,48,55,1,0,0,,221117,621117,4ff,HistoricZoneX7.Hour
+,767,56,63,1,0,0,,221117,621117,4ff,HistoricZoneX7.Minute
+,767,64,71,1,0,0,,221117,621117,4ff,HistoricZoneX7.Second
+,767,72,79,1,0,0,,221117,621117,ff,HistoricZoneX7.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
+,767,80,95,1,0,0,,221117,621117,ff,HistoricZoneX7.Index
+,767,96,151,1,0,0,,221117,621117,4ff,HistoricZoneX7.ReleaseSWversion
+,767,152,159,1,0,0,,221117,621117,4ff,HistoricZoneX7.Padding character
+,767,24,31,1,0,0,,221118,621118,4ff,HistoricZoneX8.Year
+,767,32,39,1,0,0,,221118,621118,4ff,HistoricZoneX8.Month
+,767,40,47,1,0,0,,221118,621118,4ff,HistoricZoneX8.Day
+,767,48,55,1,0,0,,221118,621118,4ff,HistoricZoneX8.Hour
+,767,56,63,1,0,0,,221118,621118,4ff,HistoricZoneX8.Minute
+,767,64,71,1,0,0,,221118,621118,4ff,HistoricZoneX8.Second
+,767,72,79,1,0,0,,221118,621118,ff,HistoricZoneX8.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
+,767,80,95,1,0,0,,221118,621118,ff,HistoricZoneX8.Index
+,767,96,151,1,0,0,,221118,621118,4ff,HistoricZoneX8.ReleaseSWversion
+,767,152,159,1,0,0,,221118,621118,4ff,HistoricZoneX8.Padding character
+,767,24,31,1,0,0,,221119,621119,4ff,HistoricZoneX9.Year
+,767,32,39,1,0,0,,221119,621119,4ff,HistoricZoneX9.Month
+,767,40,47,1,0,0,,221119,621119,4ff,HistoricZoneX9.Day
+,767,48,55,1,0,0,,221119,621119,4ff,HistoricZoneX9.Hour
+,767,56,63,1,0,0,,221119,621119,4ff,HistoricZoneX9.Minute
+,767,64,71,1,0,0,,221119,621119,4ff,HistoricZoneX9.Second
+,767,72,79,1,0,0,,221119,621119,ff,HistoricZoneX9.Status,0:Reprogramming succeed;1:Reprogramming failed;2:Reprogramming uncompleted;255:No log recorded
+,767,80,95,1,0,0,,221119,621119,ff,HistoricZoneX9.Index
+,767,96,151,1,0,0,,221119,621119,4ff,HistoricZoneX9.ReleaseSWversion
+,767,152,159,1,0,0,,221119,621119,4ff,HistoricZoneX9.Padding character
+,767,24,55,1,0,0,s,222106,622106,1ff,Xcall_config.status_display_time
+,767,56,63,1,0,0,,222106,622106,ff,Xcall_config.maximum_number_of_data_sets
+,767,64,71,1,0,0,,222106,622106,ff,Xcall_config.maximum_POI_number_within_data_set
+,767,72,87,1,0,0,s,222106,622106,ff,Xcall_config.call_display_status_reaction
+,767,24,223,1,0,0,,222107,622107,2ff,Connectivity configuration.URL
+,767,24,24,1,0,0,,222108,622108,ff,HMI config.CFG_DSI_Settings,0:Absent;1:Present
+,767,25,25,1,0,0,,222108,622108,ff,HMI config.CFG_Cluster_style_forMEX,0:Cluster 7inch;1:Cluster 10inch
+,767,26,26,1,0,0,,222108,622108,ff,HMI config.AIR_FRESHNER_CF,0:Absent;1:Present
+,767,27,27,1,0,0,,222108,622108,ff,HMI config.CFG_HeatedWindscreen,0:Absent;1:Present
+,767,28,28,1,0,0,,222108,622108,ff,HMI config.CFG_RearClim,0:Absent;1:Present
+,767,29,29,1,0,0,,222108,622108,ff,HMI config.CFG_Dualzone_Monozone,0:monozone display;1:dualzone display
+,767,30,30,1,0,0,,222108,622108,ff,HMI config.CFG_Color_selection,0:Absent;1:Present
+,767,31,31,1,0,0,,222108,622108,ff,HMI config.CFG_Cluster_style,0:Absent;1:Present
+,767,32,33,1,0,0,,222108,622108,ff,HMI config.CFG_Seat_massage,0:without massage;1:with driver massage;2:with driver and passenger massage;3:not used
+,767,34,35,1,0,0,,222108,622108,ff,HMI config.CFG_Heated_ventilated_seats,0:without heating and ventilating;1:with heating only;2:with ventilating;3:with heating and ventilating
+,767,36,36,1,0,0,,222108,622108,ff,HMI config.CFG_HMD,0:Absent;1:Present
+,767,37,37,1,0,0,,222108,622108,ff,HMI config.CFG_RVC_dynamic_guidelines,0:Absent;1:Present
+,767,38,38,1,0,0,,222108,622108,ff,HMI config.CFG_RVC_fixed_guidelines,0:Absent;1:Present
+,767,39,39,1,0,0,,222108,622108,ff,HMI config.CFG_Synchronize,0:Absent;1:Present
+,767,40,40,1,0,0,,222108,622108,ff,HMI config.CFG_AQS_Histogram,0:Absent;1:Present
+,767,41,41,1,0,0,,222108,622108,ff,HMI config.CFG_Fragance,0:Absent;1:Present
+,767,42,42,1,0,0,,222108,622108,ff,HMI config.CFG_Ionizer,0:Absent;1:Present
+,767,43,43,1,0,0,,222108,622108,ff,HMI config.CFG_FLOW_SED_ACTIVATION,0:Absent;1:Present
+,767,44,44,1,0,0,,222108,622108,ff,HMI config.CFG_Memo_seat,0:Absent;1:Present
+,767,45,47,1,0,0,,222108,622108,ff,HMI config.CFG_Magic_folding,0:without magic folding;1:with 1/3 - 2/3;2:with 1/3 - 2/3 and 2 seats;3:with 5 seats;4:with 7 seats;5:with 2 seats row 3
+,767,48,48,1,0,0,,222108,622108,ff,HMI config.cf_MPU_WAC_Buzzer,0:absent;1:present
+,767,49,49,1,0,0,,222108,622108,ff,HMI config.CFG_ADAS_RCTA,0:Absent;1:Present
+,767,50,50,1,0,0,,222108,622108,ff,HMI config.CFG_EcoMode,0:Absent;1:Present
+,767,51,51,1,0,0,,222108,622108,ff,HMI config.CFG_OffBoard_consulting,0:Absent;1:Present
+,767,52,52,1,0,0,,222108,622108,ff,HMI config.CFG_DimmingStrategy,0:by meter;1:by head-unit
+,767,53,54,1,0,0,,222108,622108,ff,HMI config.CFG_RemoteEngineStart,0:RES not present;1:RES without additional boiler;2:RES with additional boiler;3:not used
+,767,55,55,1,0,0,,222108,622108,ff,HMI config.CFG_AmbientLighting,0:Absent;1:Present
+,767,56,56,1,0,0,,222108,622108,ff,HMI config.CFG_ELF,0:ELF (contract) is not required;1:ELF (contract) is required
+,767,57,57,1,0,0,,222108,622108,ff,HMI config.cf_MPU_FlashersVolumeSelection,0:Absent;1:Present
+,767,58,58,1,0,0,,222108,622108,ff,HMI config.cf_MPU_AutoFrontWiper,0:Absent;1:Present
+,767,59,59,1,0,0,,222108,622108,ff,HMI config.cf_MPU_RearWiper,0:Absent;1:Present
+,767,60,60,1,0,0,,222108,622108,ff,HMI config.CFG_DRIVECO,0:Absent;1:Present
+,767,61,63,1,0,0,,222108,622108,ff,HMI config.CFG_VehicleMode,0:ICE;1:EV;2:HEV;3:PHEV
+,767,64,64,1,0,0,,222108,622108,ff,HMI config.cf_MPU_MirrorsFolding,0:Absent;1:Present
+,767,65,65,1,0,0,,222108,622108,ff,HMI config.cf_MPU_WAC_APRUN,0:Absent;1:Present
+,767,66,66,1,0,0,,222108,622108,ff,HMI config.cf_MPU_WAC_SilentMode,0:Absent;1:Present
+,767,67,67,1,0,0,,222108,622108,ff,HMI config.cf_MPU_HandFreeLock_Unlock,0:Absent;1:Present
+,767,68,68,1,0,0,,222108,622108,ff,HMI config.cf_MPU_AutoLockUp,0:Absent;1:Present
+,767,69,69,1,0,0,,222108,622108,ff,HMI config.cf_MPU_SingleDoorOpening,0:Absent;1:Present
+,767,70,70,1,0,0,,222108,622108,ff,HMI config.cf_MPU_FRWiperDrop,0:Absent;1:Present
+,767,71,71,1,0,0,,222108,622108,ff,HMI config.cf_MPU_MotorwayFlashersNb,0:Absent;1:Present
+,767,72,72,1,0,0,,222108,622108,ff,HMI config.cf_MPU_ALS_threshold,0:Absent;1:Present
+,767,73,73,1,0,0,,222108,622108,ff,HMI config.cf_MPU_AHL_function,0:Absent;1:Present
+,767,74,74,1,0,0,,222108,622108,ff,HMI config.cf_MPU_ADB,0:Absent;1:Present
+,767,75,75,1,0,0,,222108,622108,ff,HMI config.cf_MPU_AFS,0:Absent;1:Present
+,767,76,76,1,0,0,,222108,622108,ff,HMI config.cf_MPU_DrivingSide,0:Absent;1:Present
+,767,77,77,1,0,0,,222108,622108,ff,HMI config.cf_MPU_WGS,0:Absent;1:Present
+,767,78,78,1,0,0,,222108,622108,ff,HMI config.cf_MPU_AutoFMH,0:Absent;1:Present
+,767,79,79,1,0,0,,222108,622108,ff,HMI config.cf_MPU_AutoRelock,0:Absent;1:Present
+,767,80,80,1,0,0,,222108,622108,ff,HMI config.ADAS_DangerousArea,0:Absent;1:Present
+,767,81,81,1,0,0,,222108,622108,ff,HMI config.ADAS_DW,0:Absent;1:Present
+,767,82,82,1,0,0,,222108,622108,ff,HMI config.ADAS_UTA,0:Absent;1:Present
+,767,83,83,1,0,0,,222108,622108,ff,HMI config.ADAS_SR,0:Absent;1:Present
+,767,84,85,1,0,0,,222108,622108,ff,HMI config.CFG_4WD_HMI,0:no HMI;1:display only torque split HMI;2:display only clinometer HMI;3:display torque split and clinometer HMI
+,767,86,87,1,0,0,,222108,622108,ff,HMI config.TPMSMMI_CF,0:TPW is NOT present & TPMS is NOT present;1:TPW is NOT present & TPMS is present;2:TPW is present & TPMS is NOT present
+,767,88,88,1,0,0,,222108,622108,ff,HMI config.ADAS_PSM,0:Absent;1:Present
+,767,90,91,1,0,0,,222108,622108,ff,HMI config.ADAS_LDW,0:LDW not present;1:LDW Sound;2:LDW Haptic
+,767,92,92,1,0,0,,222108,622108,ff,HMI config.ADAS_LKA,0:Absent;1:Present
+,767,93,93,1,0,0,,222108,622108,ff,HMI config.ADAS_OSP,0:Absent;1:Present
+,767,94,95,1,0,0,,222108,622108,ff,HMI config.ADAS_AEB,0:AEB not present;1:FCW present;2:AEB present
+,767,96,97,1,0,0,,222108,622108,ff,HMI config.ADAS_UPA_Visual,0:UPA not present;1:UPA Rear;2:UPA Rear/front
+,767,98,98,1,0,0,,222108,622108,ff,HMI config.Display format,0:landscape;1:portrait
+,767,99,100,1,0,0,,222108,622108,ff,HMI config.ADAS_UPA_Audio,0:UPA audio not present;1:UPA audio without settings;2:UPA audio with settings
+,767,101,101,1,0,0,,222108,622108,ff,HMI config.ADAS_FKP,0:Absent;1:Present
+,767,102,103,1,0,0,,222108,622108,ff,HMI config.CFG_ADAS_APA,0:APA not present;1:HFP present;2:HFPB present;3:APK present
+,767,109,110,1,0,0,,222108,622108,ff,HMI config.ADAS_BSW,0:Not present;1:BSW Radar;2:BSW Sonar
+,767,111,111,1,0,0,,222108,622108,ff,HMI config.CFG_ExtendedGrip,0:Absent;1:Present
+,767,112,112,1,0,0,,222108,622108,ff,HMI config.CFG_AM,0:absent;1:Present
+,767,113,113,1,0,0,,222108,622108,ff,HMI config.CFG_SPVR,0:Absent;1:Present
+,767,114,115,1,0,0,,222108,622108,ff,HMI config.CFG_HMI_DATE_DISPLAY,0:absent;1:Numeric;2:Text format
+,767,116,116,1,0,0,,222108,622108,ff,HMI config.CFG_SMART_INT_LIGHT,0:Absent;1:Present
+,767,117,117,1,0,0,,222108,622108,ff,HMI config.TyrePressureUnit_CF,0:Bar;1:PSI
+,767,118,118,1,0,0,,222108,622108,ff,HMI config.CFG_AUDIO_Speakers,0:Front speaker only;1:Rear and front speakers
+,767,119,119,1,0,0,,222108,622108,ff,HMI config.Volume_popup_position,0:Top;1:Bottom
+,767,120,120,1,0,0,,222108,622108,ff,HMI config.REMOTE_START_2HOURS_CF,0:Absent;1:Present
+,767,121,121,1,0,0,,222108,622108,ff,HMI config.CFG_Seat_courtesy,0:Absent;1:Present
+,767,122,122,1,0,0,,222108,622108,ff,HMI config.CFG_Clim,0:no clim display;1:clim display
+,767,123,123,1,0,0,,222108,622108,ff,HMI config.CFG_DRECO_TTS,0:Absent;1:Present
+,767,124,124,1,0,0,,222108,622108,ff,HMI config.CFG_DRECO_ECOMode,0:Absent;1:Present
+,767,125,125,1,0,0,,222108,622108,ff,HMI config.CFG_DRECO_STOPANDSTART,0:Absent;1:Present
+,767,126,126,1,0,0,,222108,622108,ff,HMI config.CFG_DRECO_SAILING,0:Absent;1:Present
+,767,127,127,1,0,0,,222108,622108,ff,HMI config.CFG_Forgot_Phone_Popup,0:Absent;1:Present
+,767,128,135,1,0,0,s,222108,622108,ff,HMI config.CFG_ADAS_UPA_Mute
+,767,136,136,1,0,0,,222108,622108,ff,HMI config.CFG_Favorite,0:Absent;1:Present
+,767,137,137,1,0,0,,222108,622108,ff,HMI config.CFG_Edit_Home,0:2 Pages;1:3 Pages
+,767,138,139,1,0,0,,222108,622108,ff,HMI config.CFG_Home,0:with menu button;1:without menu buton;2:Not used;3:not used
+,767,140,140,1,0,0,,222108,622108,ff,HMI config.TPMS_Autoloc_CF,0:Absent;1:Present
+,767,142,143,1,0,0,,222108,622108,ff,HMI config.CFG_Easy_access,0:without easy access;1:with driver easy access;2:with driver and passenger easy access;3:not used
+,767,144,144,1,0,0,,222108,622108,ff,HMI config.CFG_DRECO_Distance_wo_cons,0:Absent;1:Present
+,767,145,145,1,0,0,,222108,622108,ff,HMI config.CFG_DRECO_ResetType,0:Absent;1:Present
+,767,146,146,1,0,0,,222108,622108,ff,HMI config.CFG_DRECO_EcoNav,0:Absent;1:Present
+,767,147,147,1,0,0,,222108,622108,ff,HMI config.CFG_DRECO_CMI,0:Absent;1:Present
+,767,148,148,1,0,0,,222108,622108,ff,HMI config.CFG_DRECO_RangeIncrease,0:Absent;1:Present
+,767,149,149,1,0,0,,222108,622108,ff,HMI config.CFG_DRECO_Distance_wo_accel,0:Absent;1:Present
+,767,150,150,1,0,0,,222108,622108,ff,HMI config.CFG_GSI_CONTACT_BREAKER_BUZZER_RST,0:Absent;1:Present
+,767,151,151,1,0,0,,222108,622108,ff,HMI config.CFG_EnergyInfo,0:Absent;1:Present
+,767,152,159,1,0,0,,222108,622108,ff,HMI config.CFG_ELF_NOTIF_NUMBER
+,767,160,160,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL4,0:Absent;1:Present
+,767,161,161,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL3,0:Absent;1:Present
+,767,162,162,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL2,0:Absent;1:Present
+,767,163,163,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL1,0:Absent;1:Present
+,767,164,164,1,0,0,,222108,622108,ff,HMI config.CFG_AL_AREA3,0:Absent;1:Present
+,767,165,165,1,0,0,,222108,622108,ff,HMI config.CFG_AL_AREA2,0:Absent;1:Present
+,767,166,166,1,0,0,,222108,622108,ff,HMI config.CFG_AL_AREA1,0:Absent;1:Present
+,767,167,167,1,0,0,,222108,622108,ff,HMI config.CFG_AL_Dynamic Pattern,0:Absent;1:Present
+,767,168,168,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL12,0:Absent;1:Present
+,767,169,169,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL11,0:Absent;1:Present
+,767,170,170,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL10,0:Absent;1:Present
+,767,171,171,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL9,0:Absent;1:Present
+,767,172,172,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL8,0:Absent;1:Present
+,767,173,173,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL7,0:Absent;1:Present
+,767,174,174,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL6,0:Absent;1:Present
+,767,175,175,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL5,0:Absent;1:Present
+,767,176,176,1,0,0,,222108,622108,ff,HMI config.CFG_Dual_Sync_Clim,0:Dual Mode is Activated;1:Sync Mode is Activated
+,767,177,177,1,0,0,,222108,622108,ff,HMI config.CFG_AQS_Clim,0:absent;1:present
+,767,178,179,1,0,0,,222108,622108,ff,HMI config.CFG_User_Profile,0:User profile not present;1:Not connected user profile present;2:Reserved (connected user profile present);3:not used
+,767,180,180,1,0,0,,222108,622108,ff,HMI config.CFG_FLOW_PHEV_ACTIVATION,0:absent;1:present
+,767,181,181,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL15,0:Absent;1:Present
+,767,182,182,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL14,0:Absent;1:Present
+,767,183,183,1,0,0,,222108,622108,ff,HMI config.CFG_AL_COL13,0:Absent;1:Present
+,767,184,184,1,0,0,,222108,622108,ff,HMI config.REMOTE_FUEL_BURNER_CF,0:Absent;1:Present
+,767,185,185,1,0,0,,222108,622108,ff,HMI config.REMOTE_START_CF,0:Absent;1:Present
+,767,186,186,1,0,0,,222108,622108,ff,HMI config.CGF_FLOW_EV_ACTIVATION,0:Absent;1:Present
+,767,187,187,1,0,0,,222108,622108,ff,HMI config.CFG_Heated_Steering_Wheel_Clim,0:absent;1:present
+,767,188,191,1,0,0,,222108,622108,ff,HMI config.Welcome Sequence,0:Without welcome sequence;1:Welcome sequence 1;2:Welcome sequence 2;3:Welcome sequence 3;4:Welcome sequence 4;5:Welcome sequence 5;6:Welcome sequence 6;7:Welcome sequence 7;8:Welcome sequence 8
+,767,24,29,1,0,0,,222109,622109,ff,Sound volume config.MaxVolumeStartup
+,767,32,37,1,0,0,,222109,622109,ff,Sound volume config.Ecall_volume
+,767,44,47,1,0,0,,222109,622109,ff,Sound volume config.Minimum_volume_set_by_user
+,767,48,53,1,0,0,,222109,622109,ff,Sound volume config.Welcome_sequence_volume
+,767,56,60,1,0,0,,222109,622109,1ff,Sound volume config.ParkingAids_UPA_gain
+,767,64,68,1,0,0,,222109,622109,1ff,Sound volume config.ParkingAids_HFP_gain
+,767,72,76,1,0,0,,222109,622109,1ff,Sound volume config.ParkingAids_PSM_gain
+,767,80,84,1,0,0,,222109,622109,1ff,Sound volume config.LateralADAS_LDW_gain
+,767,88,92,1,0,0,,222109,622109,1ff,Sound volume config.LateralADAS_LKA_gain
+,767,96,99,1,0,0,,222109,622109,ff,Sound volume config.ParkingAids_UPA_default_UserVolume,0:OFF;1:Very low;2:Low;3:Medium;4:High;5:Very High
+,767,100,103,1,0,0,,222109,622109,ff,Sound volume config.ParkingAids_HFP_default_UserVolume,0:OFF;1:Very low;2:Low;3:Medium;4:High;5:Very High
+,767,104,107,1,0,0,,222109,622109,ff,Sound volume config.ParkingAids_PSM_default_UserVolume,0:OFF;1:Very low;2:Low;3:Medium;4:High;5:Very High
+,767,108,111,1,0,0,,222109,622109,ff,Sound volume config.LateralADAS_LDW_default_UserVolume,0:OFF;1:Very low;2:Low;3:Medium;4:High;5:Very High
+,767,112,115,1,0,0,,222109,622109,ff,Sound volume config.LateralADAS_LKA_default_UserVolume,0:OFF;1:Very low;2:Low;3:Medium;4:High;5:Very High
+,767,120,124,1,12,0,,222109,622109,ff,Sound volume config.Beep_Clic_Level
+,767,125,125,1,0,0,,222109,622109,ff,Sound volume config.Loudness,0:Disabled;1:Enabled
+,767,128,132,1,9,0,,222109,622109,ff,Sound volume config.synth_voice_tonality_bass
+,767,136,140,1,9,0,,222109,622109,ff,Sound volume config.synth_voice_tonality_medium
+,767,144,148,1,9,0,,222109,622109,ff,Sound volume config.synth_voice_tonality_treble
+,767,152,157,1,0,0,,222109,622109,ff,Sound volume config.Cluster_sound_level
+,767,24,87,1,0,0,,222110,622110,4ff,HMI config part2.CFG_Displayable_Sys_Lang
+,767,88,88,1,0,0,,222110,622110,ff,HMI config part2.CFG_Video,0:Without;1:With
+,767,89,89,1,0,0,,222110,622110,ff,HMI config part2.CFG_Messaging,0:Without;1:With
+,767,90,90,1,0,0,,222110,622110,ff,HMI config part2.CFG_AQI,0:Without;1:With
+,767,91,91,1,0,0,,222110,622110,ff,HMI config part2.CFG_HMI_Temp_PreCond,0:Without;1:With
+,767,92,92,1,0,0,,222110,622110,ff,HMI config part2.HEV_Comfort_Battery,0:Without;1:With
+,767,93,93,1,0,0,,222110,622110,ff,HMI config part2.CFG_FLOW_HEV_ACTIVATION,0:Without;1:With
+,767,94,94,1,0,0,,222110,622110,ff,HMI config part2.CFG_Distribution,0:Without;1:With
+,767,95,95,1,0,0,,222110,622110,ff,HMI config part2.CFG_Blower_Setting,0:Without;1:With
+,767,100,100,1,0,0,,222110,622110,ff,HMI config part2.CFG_PictureViewer,0:Without;1:With
+,767,101,101,1,0,0,,222110,622110,ff,HMI config part2.CFG_PrivacyMode,0:Without;1:With
+,767,102,102,1,0,0,,222110,622110,ff,HMI config part2.CFG_Animation,0:Without;1:With
+,767,103,103,1,0,0,,222110,622110,ff,HMI config part2.CFG_InfotainmentPicture,0:Without;1:With
+,767,24,24,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_Present,0:Absent;1:Present
+,767,25,27,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_Mode_Def,0:Eco;1:Comfort;2:Normal;3:Dynamic;4:Perso
+,767,28,30,1,0,0,,222123,622123,ff,MEX configuration.CF_MexSys_Mode,0:SysMode table 1;1:SysMode table 2;2:SysMode table 3;3:SysMode table 4;4:SysMode table 5;5:SysMode table 6;6:SysMode table 7;7:SysMode table 8
+,767,31,31,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ACC,0:Absent;1:Present
+,767,32,32,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_EPS,0:Absent;1:Present
+,767,33,33,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ADB,0:Absent;1:Present
+,767,34,34,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DBL,0:Absent;1:Present
+,767,35,37,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_Restart,0:Previous;1:Normal;2:Eco;3:Normal if dynamic;4:Eco if dynamic;5:Zen;6:Hybrid;7:Perso
+,767,38,38,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_Wsequence,0:Absent;1:Present
+,767,39,39,1,0,0,,222123,622123,ff,MEX configuration.CF_RangeSaver,0:absent;1:present
+,767,40,40,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DUAL,0:Absent;1:Present
+,767,41,41,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_VADA,0:Absent;1:Present
+,767,42,42,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_4WAS,0:Absent;1:Present
+,767,43,43,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_VDC,0:Absent;1:Present
+,767,44,44,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ShiftLightSoundAlert,0:Absent;1:Present
+,767,45,45,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_Pedal,0:Absent;1:Present
+,767,46,46,1,0,0,,222123,622123,ff,MEX configuration.CF_DynamicDriveSystem,0:absent;1:present
+,767,47,47,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_Heel_ToeShifting,0:Absent;1:Present
+,767,48,52,5,0,0,%,222123,622123,ff,MEX configuration.CF_MEX_ALDINT_RAC
+,767,53,53,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ThrottleResponse,0:Absent;1:Present
+,767,54,54,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_IDM,0:Absent;1:Present
+,767,55,55,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_AT,0:Absent;1:Present
+,767,56,63,1,0,0,km/h,222123,622123,ff,MEX configuration.CF_Max_Speed
+,767,64,65,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALACT_ECO,0:No change;1:Activation Request;2:Deactivation Request;3:Reserved
+,767,66,67,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALACT_COM,0:No change;1:Activation Request;2:Deactivation Request;3:Reserved
+,767,68,69,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALACT_NOM,0:No change;1:Activation Request;2:Deactivation Request;3:Reserved
+,767,70,71,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALACT_DYN,0:No change;1:Activation Request;2:Deactivation Request;3:Reserved
+,767,72,73,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALACT_PER,0:No change;1:Activation Request;2:Deactivation Request;3:Reserved
+,767,74,75,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALACT_RAC,0:No change;1:Activation Request;2:Deactivation Request;3:Reserved
+,767,76,77,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA1_RAC,0:No change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,78,79,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA2_RAC,0:No change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,80,81,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA1_ECO,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,82,83,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA1_COM,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,84,85,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA1_NOM,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,86,87,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA1_DYN,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,88,89,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA1_PER,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,90,91,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA2_ECO,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,92,93,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA2_COM,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,94,95,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA2_NOM,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,96,97,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA2_DYN,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,98,99,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA2_PER,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,100,101,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA3_ECO,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,102,103,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA3_COM,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,104,105,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA3_NOM,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,106,107,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA3_DYN,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,108,109,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA3_PER,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,110,111,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALA3_RAC,0:No Change;1:AmbientLighting Area requested;2:AmbientLighting not requested;3:Reserved
+,767,112,116,5,0,0,%,222123,622123,ff,MEX configuration.CF_MEX_ALDINT_ECO
+,767,117,117,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_GearShiftIndicator,0:Absent;1:Present
+,767,118,118,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_SynchroRevs,0:Absent;1:Present
+,767,119,119,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_RegBrake,0:Absent;1:Present
+,767,120,124,5,0,0,%,222123,622123,ff,MEX configuration.CF_MEX_ALDINT_COM
+,767,125,125,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_AmbExhaust,0:Absent;1:Present
+,767,126,126,1,0,0,,222123,622123,ff,MEX configuration.CF_COMFORT,0:Absent;1:Present
+,767,127,127,1,0,0,,222123,622123,ff,MEX configuration.CF_NORMAL,0:Absent;1:Present
+,767,128,132,5,0,0,%,222123,622123,ff,MEX configuration.CF_MEX_ALDINT_NOM
+,767,133,133,1,0,0,,222123,622123,ff,MEX configuration.CF_ECO,0:Absent;1:Present
+,767,134,134,1,0,0,,222123,622123,ff,MEX configuration.CF_SPORT,0:Absent;1:Present
+,767,135,135,1,0,0,,222123,622123,ff,MEX configuration.CF_RACE,0:Absent;1:Present
+,767,136,140,5,0,0,%,222123,622123,ff,MEX configuration.CF_MEX_ALDINT_DYN
+,767,141,141,1,0,0,,222123,622123,ff,MEX configuration.CF_Zen,0:Absent;1:Present
+,767,142,142,1,0,0,,222123,622123,ff,MEX configuration.CF_ZEVCityDriving,0:Absent;1:Present
+,767,143,143,1,0,0,,222123,622123,ff,MEX configuration.CF_ModeAtEngineStart,0:Not activated;1:Activated
+,767,144,148,5,0,0,%,222123,622123,ff,MEX configuration.CF_MEX_ALDINT_PER
+,767,152,156,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALC_ECO,0:No Change;1:Color 1;2:Color 2;3:Color 3;4:Color 4;5:Color 5;6:Color 6;7:Color 7;8:Color 8;9:Color 9;10:Color 10;11:Color 11;12:Color 12;13:Color 13;14:Color 14;15:Color 15;16:Color 16
+,767,160,164,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALC_COM,0:No Change;1:Color 1;2:Color 2;3:Color 3;4:Color 4;5:Color 5;6:Color 6;7:Color 7;8:Color 8;9:Color 9;10:Color 10;11:Color 11;12:Color 12;13:Color 13;14:Color 14;15:Color 15;16:Color 16
+,767,168,172,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALC_NOM,0:No Change;1:Color 1;2:Color 2;3:Color 3;4:Color 4;5:Color 5;6:Color 6;7:Color 7;8:Color 8;9:Color 9;10:Color 10;11:Color 11;12:Color 12;13:Color 13;14:Color 14;15:Color 15;16:Color 16
+,767,176,180,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALC_DYN,0:No Change;1:Color 1;2:Color 2;3:Color 3;4:Color 4;5:Color 5;6:Color 6;7:Color 7;8:Color 8;9:Color 9;10:Color 10;11:Color 11;12:Color 12;13:Color 13;14:Color 14;15:Color 15;16:Color 16
+,767,184,188,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALC_PER,0:No Change;1:Color 1;2:Color 2;3:Color 3;4:Color 4;5:Color 5;6:Color 6;7:Color 7;8:Color 8;9:Color 9;10:Color 10;11:Color 11;12:Color 12;13:Color 13;14:Color 14;15:Color 15;16:Color 16
+,767,192,199,5,0,0,%,222123,622123,ff,MEX configuration.CF_MEX_ALNINT_ECO
+,767,200,207,5,0,0,%,222123,622123,ff,MEX configuration.CF_MEX_ALNINT_COM
+,767,208,215,5,0,0,%,222123,622123,ff,MEX configuration.CF_MEX_ALNINT_NOM
+,767,216,223,5,0,0,%,222123,622123,ff,MEX configuration.CF_MEX_ALNINT_DYN
+,767,224,231,5,0,0,%,222123,622123,ff,MEX configuration.CF_MEX_ALNINT_PER
+,767,232,233,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSACT_ECO,0:No Change;1:OFF;2:ON;3:Reserved
+,767,234,235,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSACT_COM,0:No Change;1:OFF;2:ON;3:Reserved
+,767,236,237,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSACT_NOM,0:No Change;1:OFF;2:ON;3:Reserved
+,767,238,239,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSACT_DYN,0:No Change;1:OFF;2:ON;3:Reserved
+,767,240,241,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSACT_PER,0:No Change;1:OFF;2:ON;3:Reserved
+,767,242,243,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSACT_RAC,0:No Change;1:OFF;2:ON;3:Reserved
+,767,244,245,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSPRG_RAC,0:No Change;1:Program 1;2:Program 2;3:Program 3
+,767,246,247,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DYNPAT_RAC,0:No request;1:Activation Request;2:Deactivation Request;3:Reset request
+,767,248,249,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSPRG_ECO,0:No change;1:Program 1;2:Program 2;3:Program 3
+,767,250,251,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSPRG_COM,0:No change;1:Program 1;2:Program 2;3:Program 3
+,767,252,253,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSPRG_NOM,0:No change;1:Program 1;2:Program 2;3:Program 3
+,767,254,255,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSPRG_DYN,0:No change;1:Program 1;2:Program 2;3:Program 3
+,767,256,257,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSPRG_PER,0:No change;1:Program 1;2:Program 2;3:Program 3
+,767,258,260,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSSPD_ECO,0:No Change;1:Velocity 1;2:Velocity 2;3:Velocity 3;4:Velocity 4;5:Velocity 5;6:Reserved1;7:Reserved2
+,767,261,263,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSSPD_COM,0:No Change;1:Velocity 1;2:Velocity 2;3:Velocity 3;4:Velocity 4;5:Velocity 5;6:Reserved1;7:Reserved2
+,767,264,266,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSSPD_NOM,0:No Change;1:Velocity 1;2:Velocity 2;3:Velocity 3;4:Velocity 4;5:Velocity 5;6:Reserved1;7:Reserved2
+,767,267,269,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSSPD_DYN,0:No Change;1:Velocity 1;2:Velocity 2;3:Velocity 3;4:Velocity 4;5:Velocity 5;6:Reserved1;7:Reserved2
+,767,272,274,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSSPD_PER,0:No Change;1:Velocity 1;2:Velocity 2;3:Velocity 3;4:Velocity 4;5:Velocity 5;6:Reserved1;7:Reserved2
+,767,275,277,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSSPD_RAC,0:No Change;1:Velocity 1;2:Velocity 2;3:Velocity 3;4:Velocity 4;5:Velocity 5;6:Reserved1;7:Reserved2
+,767,280,282,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSINT_ECO,0:No change;1:Intensity 1;2:Intensity 2;3:Intensity 3;4:Intensity 4;5:Intensity 5;6:Reserved1;7:Reserved2
+,767,284,286,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSINT_RAC,0:No change;1:Intensity 1;2:Intensity 2;3:Intensity 3;4:Intensity 4;5:Intensity 5;6:Reserved1;7:Reserved2
+,767,287,287,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_Engine,0:Absent;1:Present
+,767,288,290,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSINT_COM,0:No change;1:Intensity 1;2:Intensity 2;3:Intensity 3;4:Intensity 4;5:Intensity 5;6:Reserved1;7:Reserved2
+,767,291,295,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_ALC_RAC,0:No Change;1:Color 1;2:Color 2;3:Color 3;4:Color 4;5:Color 5;6:Color 6;7:Color 7;8:Color 8;9:Color 9;10:Color 10;11:Color 11;12:Color 12;13:Color 13;14:Color 14;15:Color 15;16:Color 16
+,767,296,298,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSINT_NOM,0:No change;1:Intensity 1;2:Intensity 2;3:Intensity 3;4:Intensity 4;5:Intensity 5;6:Reserved1;7:Reserved2
+,767,299,301,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSINT_DYN,0:No change;1:Intensity 1;2:Intensity 2;3:Intensity 3;4:Intensity 4;5:Intensity 5;6:Reserved1;7:Reserved2
+,767,304,306,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DMSINT_PER,0:No change;1:Intensity 1;2:Intensity 2;3:Intensity 3;4:Intensity 4;5:Intensity 5;6:Reserved1;7:Reserved2
+,767,307,309,1,0,0,,222123,622123,ff,MEX configuration.CF_MexMode_MMI,0:Mode table 1;1:Mode table 2;2:Mode table 3;3:Mode table 4;4:Mode table 5;5:Mode table 6;6:Mode table 7;7:Mode table 8
+,767,310,311,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DYNPAT_PER,0:No request;1:Activation Request;2:Deactivation Request;3:Reset request
+,767,312,312,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_Comb1,0:Deactivated;1:Activated
+,767,313,313,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_Comb2,0:Deactivated;1:Activated
+,767,314,314,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_Comb3,0:Deactivated;1:Activated
+,767,315,317,1,0,0,,222123,622123,ff,MEX configuration.CF_Proposed_MexMode,0:Mode table 1;1:Mode table 2;2:Mode table 3;3:Mode table 4;4:Mode table 5;5:Mode table 6;6:Mode table 7;7:Mode table 8
+,767,318,318,1,0,0,,222123,622123,ff,MEX configuration.CF_HMI_sMassage,0:Absent;1:Present
+,767,319,319,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_SeatPosition,0:Absent;1:Present
+,767,320,320,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_S&S,0:Absent;1:Present
+,767,321,321,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_SAILING,0:Absent;1:Present
+,767,322,322,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_VADADUAL,0:Absent;1:Present
+,767,323,323,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_LC,0:Absent;1:Present
+,767,324,324,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_CREEPING,0:Absent;1:Present
+,767,325,325,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_HVAC,0:Absent;1:Present
+,767,326,326,1,0,0,,222123,622123,ff,MEX configuration.CF_HMI_ALC,0:Absent;1:Present
+,767,327,327,1,0,0,,222123,622123,ff,MEX configuration.CF_HMI_DspC,0:Absent;1:Present
+,767,328,335,5,0,0,%,222123,622123,ff,MEX configuration.CF_MEX_ALNINT_RAC
+,767,336,337,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DYNPAT_COM,0:No request;1:Activation Request;2:Deactivation Request;3:Reset request
+,767,338,339,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DYNPAT_DYN,0:No request;1:Activation Request;2:Deactivation Request;3:Reset request
+,767,340,341,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DYNPAT_ECO,0:No request;1:Activation Request;2:Deactivation Request;3:Reset request
+,767,342,343,1,0,0,,222123,622123,ff,MEX configuration.CF_MEX_DYNPAT_NOM,0:No request;1:Activation Request;2:Deactivation Request;3:Reset request
+,767,344,350,5,0,0,,222123,622123,ff,MEX configuration.CF_Temp_HybTract
+,767,24,24,1,0,0,,222301,622301,ff,Lock out development configuration.Navigation destination input restriction,0:Absent;1:Present
+,767,25,25,1,0,0,,222301,622301,ff,Lock out development configuration.Phone dial input restriction,0:Absent;1:Present
+,767,26,26,1,0,0,,222301,622301,ff,Lock out development configuration.Text input restriction,0:Absent;1:Present
+,767,27,27,1,0,0,,222301,622301,ff,Lock out development configuration.System user handbook restriction,0:Absent;1:Present
+,767,28,28,1,0,0,,222301,622301,ff,Lock out development configuration.Features tutorials restriction,0:Absent;1:Present
+,767,29,29,1,0,0,,222301,622301,ff,Lock out development configuration.SMS text input restriction,0:Absent;1:Present
+,767,30,30,1,0,0,,222301,622301,ff,Lock out development configuration.Picture slideshow restriction,0:Absent;1:Present
+,767,31,31,1,0,0,,222301,622301,ff,Lock out development configuration.Video playing restriction,0:Absent;1:Present
+,767,32,32,1,0,0,,222301,622301,ff,Lock out development configuration.Smooth map scrool operation restriction,0:Absent;1:Present
+,767,33,33,1,0,0,,222301,622301,ff,Lock out development configuration.One by one line operation nonMusic list scroll restriction,0:Absent;1:Present
+,767,34,34,1,0,0,,222301,622301,ff,Lock out development configuration.Stationary picture indiction restriction,0:Absent;1:Present
+,767,35,35,1,0,0,,222301,622301,ff,Lock out development configuration.HMI animations restriction,0:Absent;1:Present
+,767,36,36,1,0,0,,222301,622301,ff,Lock out development configuration.Displayed text lenght restriction,0:Absent;1:Present
+,767,37,37,1,0,0,,222301,622301,ff,Lock out development configuration.Service activation restriction,0:Absent;1:Present
+,767,38,38,1,0,0,,222301,622301,ff,Lock out development configuration.General HMI restriction,0:Absent;1:Present
+,767,39,39,1,0,0,,222301,622301,ff,Lock out development configuration.Music/radio cover dsplay restriction,0:Absent;1:Present
+,767,40,40,1,0,0,,222301,622301,ff,Lock out development configuration.Nissan 5-operation count restriction,0:Absent;1:Present
+,767,41,41,1,0,0,,222301,622301,ff,Lock out development configuration.Picture/text background display restriction,0:Absent;1:Present
+,767,42,42,1,0,0,,222301,622301,ff,Lock out development configuration.Map rotation restriction,0:Absent;1:Present
+,767,43,43,1,0,0,,222301,622301,ff,Lock out development configuration.Camera settings restriction,0:Absent;1:Present
+,767,44,44,1,0,0,,222301,622301,ff,Lock out development configuration.Home menu edition restriction,0:Absent;1:Present
+,767,45,45,1,0,0,,222301,622301,ff,Lock out development configuration.User profile restriction,0:Absent;1:Present
+,767,46,46,1,0,0,,222301,622301,ff,Lock out development configuration.Pinch in/out operation restriction,0:Absent;1:Present
+,767,47,47,1,0,0,,222301,622301,ff,Lock out development configuration.Dragging operation restriction,0:Absent;1:Present
+,767,49,49,1,0,0,,222301,622301,ff,Lock out development configuration.One by one line operation Music list scroll restriction,0:Absent;1:Present
+,767,50,50,1,0,0,,222301,622301,ff,Lock out development configuration.SXM Stock,0:Absent;1:Present
+,767,51,51,1,0,0,,222301,622301,ff,Lock out development configuration.System update restriction,0:Absent;1:Present
+,767,52,52,1,0,0,,222301,622301,ff,Lock out development configuration.Audio play automatically restriction,0:Absent;1:Present
+,767,53,53,1,0,0,,222301,622301,ff,Lock out development configuration.Renault 8-operation count restriction,0:Absent;1:Present
+,767,54,54,1,0,0,,222301,622301,ff,Lock out development configuration.Renault 5-operation count restriction,0:Absent;1:Present
+,767,55,55,1,0,0,,222301,622301,ff,Lock out development configuration.Nissan 8-operation count restriction,0:Absent;1:Present
+,767,24,183,1,0,0,,223000,623000,2ff,BluetoothDevice.name1
+,767,184,231,1,0,0,,223000,623000,4ff,BluetoothDevice.address1
+,767,232,391,1,0,0,,223000,623000,2ff,BluetoothDevice.name2
+,767,392,439,1,0,0,,223000,623000,4ff,BluetoothDevice.address2
+,767,440,599,1,0,0,,223000,623000,2ff,BluetoothDevice.name3
+,767,600,647,1,0,0,,223000,623000,4ff,BluetoothDevice.address3
+,767,648,807,1,0,0,,223000,623000,2ff,BluetoothDevice.name4
+,767,808,855,1,0,0,,223000,623000,4ff,BluetoothDevice.address4
+,767,856,1015,1,0,0,,223000,623000,2ff,BluetoothDevice.name5
+,767,1016,1063,1,0,0,,223000,623000,4ff,BluetoothDevice.address5
+,767,24,31,1,0,0,,223001,623001,4ff,ANT1.current level Field strength on antenna 1
+,767,32,39,1,0,0,,223001,623001,4ff,ANT1.current Multipath level
+,767,40,47,1,0,0,,223001,623001,4ff,ANT1.current Noise level
+,767,48,87,1,0,0,,223001,623001,4ff,ANT1.current Frequency value
+,767,88,95,1,0,0,,223001,623001,ff,ANT1.Band info,1:FM;2:AM
+,767,24,31,1,0,0,,223002,623002,4ff,ANT2.current level Field strength on antenna 2
+,767,32,39,1,0,0,,223002,623002,4ff,ANT2.current Multipath level (0-F) if FM
+,767,40,47,1,0,0,,223002,623002,4ff,ANT2.current Noise level (0-F) if FM
+,767,48,87,1,0,0,,223002,623002,4ff,ANT2.current Frequency value
+,767,88,95,1,0,0,,223002,623002,ff,ANT2.Band info,1:FM
+,767,24,31,1,0,0,,223003,623003,4ff,ANT3.Antenna field RSSI [dBm]
+,767,32,47,1,0,0,,223003,623003,4ff,ANT3.FIC_BER
+,767,48,63,1,0,0,,223003,623003,4ff,ANT3.MSC_BER
+,767,64,103,1,0,0,,223003,623003,4ff,ANT3.current Channel Number
+,767,104,167,1,0,0,,223003,623003,2ff,ANT3.Service short Name
+,767,168,183,1,0,0,,223003,623003,4ff,ANT3.EnsembleID
+,767,184,215,1,0,0,,223003,623003,4ff,ANT3.ServiceID
+,767,216,231,1,0,0,,223003,623003,4ff,ANT3.CompID
+,767,232,239,1,0,0,,223003,623003,ff,ANT3.Band Info,3:DAB+;4:DAB;5:DMB-A;6:DMB-BSAC
+,767,24,24,1,0,0,,223004,623004,ff,GPS.Reception_status,0:No satellite;1:At least one satellite
+,767,28,31,1,0,0,,223004,623004,ff,GPS.Number_of_satellites
+,767,24,31,1,0,0,,223005,623005,ff,CD_Insertion,0:No CD;1:1 CD;255:No available information
+,767,24,47,1,0,0,,227001,627001,4ff,BT_HW_identifier
+,767,24,47,1,0,0,,227002,627002,4ff,BT_SW_identifier
+,767,24,71,1,0,0,,227008,627008,4ff,BT_ECU_address
+,767,24,71,1,0,0,,227009,627009,4ff,ECU Wifi address
+,767,24,71,1,0,0,,228001,628001,4ff,BluetoothRSSI.Address
+,767,72,79,1,127,0,,228001,628001,ff,BluetoothRSSI.Indicator
+,767,80,87,1,0,0,,228001,628001,ff,BluetoothRSSI.LinkQuality
+,767,24,31,1,0,0,,229000,629000,ff,CDejection,0:Control in progress;1:Control complete and OK;2:Control complete and NOK
+,767,24,31,1,0,0,,229001,629001,ff,Tuner,0:Control in progress;1:Control complete and OK;2:Control complete and NOK
+,767,24,31,1,0,0,,229002,629002,ff,Loudspeaker,0:Control in progress;1:Control complete and OK;2:Control complete and NOK
+,767,24,31,1,0,0,,229005,629005,ff,Graphic display test,0:Control in progress;1:Control complete and OK;2:Control complete and NOK
+,767,24,31,1,0,0,,229006,629006,ff,Rear Camera Activation,0:Control in progress;1:Control complete and OK;2:Control complete and NOK
+,767,24,31,1,0,0,,229007,629007,ff,Rear Camera Configuration,0:Control in progress;1:Control complete and OK;2:Control complete and NOK
+,767,24,31,1,0,0,,229009,629009,ff,System ON output command,0:Control in progress;1:Control complete and OK;2:Control complete and NOK
+,767,24,31,1,0,0,,22900A,62900A,ff,IO.Tweeter_result,0:In progress;1:Done and OK;2:Done and NOK
+,767,24,31,1,0,0,,22900B,62900B,ff,IO.Speaker_result,0:In progress;1:Done and OK;2:Done and NOK
+,767,24,31,1,0,0,,229010,629010,ff,Touch controller reset command,0:Control in progress;1:Control complete and OK;2:Control complete and NOK
+,767,24,31,1,0,0,,229012,629012,ff,Parametric guidelines command,0:Control in progress;1:Control complete and OK;2:Control complete and NOK
+,767,24,32759,1,0,0,,22D000,62D000,4ff,Phone_EC/NR_(NBS)
+,767,24,32759,1,0,0,,22D100,62D100,4ff,Phone_EC/NR_(WBS)
+,767,24,32759,1,0,0,,22D200,62D200,4ff,VR_Parameter_(Nuance)
+,767,24,32759,1,0,0,,22D300,62D300,4ff,CarPlay_Phone_EC/NR_(NBS)
+,767,24,32759,1,0,0,,22D400,62D400,4ff,CarPlay_Phone_EC/NR_(WBS)
+,767,24,32759,1,0,0,,22D500,62D500,4ff,CarPlay_Facetime_EC/NR_(WBS)
+,767,24,32759,1,0,0,,22D600,62D600,4ff,Acoustic_Parameter_(Arkamys)
+,767,24,28,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Destination,0:US;1:CAN;2:MEX;3:UK;4:TKY;5:RUS;6:other EUR;7:PRC;8:TWN;9:HKG/Macau;10:GCC;11:EGP;12:ASR/NZE;13:BRA;14:AGT;15:other LAC;16:SAF;17:THI;18:SGP;19:MLY;20:BRN;21:INN;22:VNM;23:PHL;24:IND;25:JPN;26:KOR;27:other GOM;28:ISR
+,767,32,47,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Vehicle_Type,0:B07;1:B10;2:B52;3:BBA;4:BFB;5:BFJ;6:BJA;7:DZC;8:FFK;9:FJK;10:GJA;11:HFE;12:HHA;13:HJA;14:HJB;15:HJD;16:HJE;17:HZG;18:HZH;19:HZJ;20:HZK;21:J92;22:JFA;23:JFC;24:KFB;25:KFD;26:KFK;27:KJK;28:L52;29:LFD;30:LFF;31:LFJ;32:LJC;33:RBC;34:RFA;35:RZK;36:UJD;37:C07;38:H79;39:HBC;40:HZC;41:LBC;48:LJH;49:LJL;580:02D (L02D);581:02E (B02E);582:02F (P02F);3354:GD1 (GD1A);3411:D53 (D53H);4678:12F (L12F);4685:12M (L12M);4688:12P (B12P);4929:13A (P13A);8514:21B (L21B);12882:32R (P32R);12883:32S (P32S);12885:32U (J32U);16973:42M (P42M);16974:42N (L42N);16976:42P (L42P);16978:42R (P42R);20065:N61 (N61G);20081:N71 (N71A);20577:P61 (P61G);20593:P71 (P71A);21320:L53 (L53H);21323:53K (L53K);21856:U60;24641:60A (H60A);24903:61G (P61G);24908:61L (H61L)
+,767,48,63,1,0,0,kg,22DAB0,62DAB0,ff,Vehicle_Information.Weight_of_vehicle
+,767,64,79,1,0,0,mm,22DAB0,62DAB0,ff,Vehicle_Information.Width_of_vehicle
+,767,80,95,1,0,0,mm,22DAB0,62DAB0,ff,Vehicle_Information.Height_of_vehicle
+,767,96,111,1,0,0,mm,22DAB0,62DAB0,ff,Vehicle_Information.Length_of_vehicle
+,767,112,119,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Vehicle-body_shape,0:Default/ Not use;50:Convertible;65:Sedan 2 Door;66:Sedan 4 Door;67:Sedan 4 Door(Wide);69:H/B 2 Door;70:H/B 4 Door;71:Coupe 2 Door;72:Coupe T Bar;73:Wagon 4 Door (Wide);75:H/T 2 Door;76:H/T 2 Door(HighRoof);77:H/T 4 Door;78:H/T 4 Door(Wide);83:Wagon 2 Door;84:Wagon 4 Door(HighRoof);85:Wagon 4 Door(Wide);87:Van 2 Door;89:Van 4 Door;90:Van 4 Door(HighRoof)
+,767,123,124,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.TPMS,0:OFF;1:ON (without EUR Regulation);2:ON (with EUR Regulation);3:OFF(with V-CAN Communication)
+,767,125,126,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Driving_type,0:Front;1:Rear;2:4WD
+,767,127,127,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Steering_position,0:LHD;1:RHD
+,767,131,132,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Petrol_type,0:NA;1:Regular;2:Premium;3:Non Petrol
+,767,133,135,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Fuel_type,0:Petrol;1:Diesel;2:Hybrid(Diesel);3:Hybrid(Petrol);4:Electricity;5:Plug-in Hybrid
+,767,136,136,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.VCAN-MCAN_Gateway_for_ANC/ASC,0:OFF;1:ON
+,767,137,139,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Type_of_meter,0:Nissan Type 1;1:Renault V_CAN;2:Renault V_CAN/M_CAN;3:GD1A Type;4:Mitsubishi
+,767,141,143,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.PowerPlatform,0:Default;1:Auto_ACC without M-CAN (Nissan CMFB);2:Auto_ACC with M-CAN (Nissan CMFC/D);3:ACC with V-CAN wake-up (Nissan other vehicles);4:V-CAN wake-up C1A (Renault C1A);5:V-CAN wake-up T4VS (Renault T4VS);6:ACC of current vehicle (Reference);7:Auto_ACC with V-CAN (Nissan C1A)
+,767,144,151,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.CAN_diversity,0:Slot 0 (Default);1:Slot 1 (C1A);2:Slot 2 (C1R);3:Slot 3 (T4vs);4:Slot 4 (G1);5:Slot 5 (C1N);6:Slot 6 (Old Nissan cars OR Nissan EV cars);7:Slot7 (C1A HS)
+,767,152,152,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.CAN_activation_C1A,0:Nissan  message set;1:Renault message set
+,767,153,155,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.IPA/HFP,0:Not present;1:IPA;2:FAP;3:HFP (Renault)
+,767,156,156,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Intelligent_speed_assist,0:OFF;1:ON
+,767,157,159,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Steering_SW,0:None (No steering wheel controls available.);1:MCAN;2:Hardwire P42M resistor set;3:Hardwire P32RS/L42P resistor set;4:RVLV 5 contacts;5:RVLV 4 contacts;6:VCAN;7:Daimler version
+,767,161,161,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Traffic_sign_recognition,0:Without;1:With
+,767,162,164,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Microphone,0:None;1:1 MIC (Renault);2:BFM2;3:BFM3(HDM);4:2 MIC (Renault)
+,767,165,167,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.RCS_(Rear_Armrest_Switch),0:Without;1:With(legacy HVAC&AUDIO);2:With(legacy AUDIO);3:With(A-IVI)
+,767,168,168,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.ETC2.0,0:Without;1:With
+,767,169,170,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.External_CD_drive,0:Without;1:With;2:Auto
+,767,173,175,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.IT-Commander_/_Central_Switch,0:Without;1:With (Nissan Type1);2:With (Nissan Type2);3:With (Renault Type1)
+,767,177,179,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.TCU,0:Without TCU (Not activate USB DTC detection nor MCAN communication);1:With eCall (Not activate USB DTC detection but activate MCAN communication);2:Without TCU or With eCall (Use MCAN auto-configuration. Not activate USB DTC detection even if TCU is auto-configured);5:With TCU (Activate USB DTC detection and MCAN communication);6:Without TCU or with TCU (Use MCAN auto-configuration. Activate USB DTC detection if TCU is auto-configured)
+,767,180,181,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.RSE,0:Without;1:With;2:Auto
+,767,182,183,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Media_Player,0:Without;1:With;2:Auto
+,767,187,189,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.HEV_Shape_of_body,0:No body shape;1:Sedan;2:SUV;3:Wagon;4:SUV2
+,767,190,191,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.EV_HVAC,0:None;1:EV X12G Type
+,767,192,207,.001,0,3,,22DAB0,62DAB0,ff,Vehicle_Information.Motor_efficiency
+,767,208,223,.001,0,3,,22DAB0,62DAB0,ff,Vehicle_Information.Reduction_gear_efficiency
+,767,224,239,.001,0,3,,22DAB0,62DAB0,ff,Vehicle_Information.Cd_value
+,767,240,247,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Charging cable - Connector,0:IEC 62196-2 Type 1 Connector;1:IEC 62196-2 Type 2 Connector;2:China Specific (AC Charging) GBT 20234.2;3:China Specific (DC Charging) GBT 20234.3;4:Chademo;5:IEC 62196-3 type 2 connector CCS (Combo 2);6:SAE J1772 CCS (combo 1);7:not present
+,767,248,255,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Charging cable - Spot side Plug,0:Standard Household;1:IEC 62196-2 Type -2;2:IEC 62196-2 Type -3;3:309-Single Phase-Industrial;4:China Infrastructure (AC Charging);5:Korea specific EVSE Plug;6:Not present
+,767,256,263,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Vehicle Inlet,0:IEC 62196-2 Type 1 Inlet;1:IEC 62196-2 Type 2 Inlet;2:China Specific (AC Charging) GBT 20234.2;3:China Specific (DC Charging) GBT 20234.3;4:Chademo;5:IEC 62196-3 type 2 inlet CCS (Combo 2);6:SAE J1772 CCS (combo 1);7:Combo 1 + Type 2;8:Chademo + Combo2;9:China specific AC + China specific DC;10:Chademo + Combo 1;11:Combo 2 + Type 1;12:China Specific AC + Chademo;13:China specific AC + Combo 2;14:Combo 1 + China Specific AC;15:not present
+,767,264,265,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Motor maximum regenerative power,0:50;1:35
+,767,266,267,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.The maximum motor output power,0:80;1:110;2:180
+,767,268,271,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.CNF_CHG_FACTYPE,0:Standard/Normal Charge;1:Accelerated Charge;2:Fast Charge;3:DC;4:Normal + Accelerated + Fast;5:not present;6:Normal + Accelerated + Fast + DC
+,767,279,279,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.BlowerReductionRequest,0:Disabled;1:Enabled
+,767,280,280,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Inductive charger,0:Without;1:With
+,767,281,281,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.HUD,0:Without;1:With
+,767,282,284,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.RADIO SATELLITE SWITCH,0:Version 1;1:Version 2;2:Version 3;3:Version 4;4:Version 5
+,767,287,287,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Ethernet interface,0:Without;1:With
+,767,288,289,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Remote_Park_function,0:Off;1:Type 1;2:Type 2;3:Type 3
+,767,290,291,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Learning_Park_function,0:Off;1:Type 1;2:Type 2;3:Type 3
+,767,292,292,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Navi_available,0:NonNavi;1:Navi
+,767,293,293,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.HUD_setting,0:OFF;1:ON
+,767,294,295,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Fuel_consumption_info,0:OFF;1:ON (Display Bar graph from V-CAN);2:ON (Display Numeric number from V-CAN));3:Reserved
+,767,299,299,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Smart charging,0:absent;1:Present
+,767,301,301,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Meter_setting_icon,0:Without (IT-System shall not show Meter Setting ICON.);1:With (IT-System shall show Meter Setting ICON.)
+,767,302,303,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Transmission_type,0:Unknown;1:AT;2:CVT;3:MT
+,767,304,311,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Charging cable grouping,0:Group 1;1:Group 2;2:Group 3;3:Group 4;4:Group 5;5:Group 6;6:Rest of the world - Group 1 + Group 2 + Group 4;7:France specific  - Group 1 + Group 2 + Group 3 + Group 4;8:China specific  - Group 1 + Group 5;9:Not present
+,767,312,319,1,0,0,min,22DAB0,62DAB0,ff,Vehicle_Information.Unballast warning time
+,767,321,321,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Unballast_counter,0:absent;1:Present
+,767,322,327,1,0,0,min,22DAB0,62DAB0,ff,Vehicle_Information.Min time before unballast
+,767,328,332,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Camera Picture Color
+,767,336,343,1,-100,0,cm,22DAB0,62DAB0,ff,Vehicle_Information.DynamicLenght
+,767,344,344,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Warning Text Pos,0:Bottom;1:Top
+,767,345,351,1,0,0,cm,22DAB0,62DAB0,1ff,Vehicle_Information.TuningDeltaXFarLeftDyn
+,767,352,352,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.RearView Activation,0:Off;1:On
+,767,353,359,1,0,0,cm,22DAB0,62DAB0,1ff,Vehicle_Information.TuningDeltaXFarRightDyn
+,767,360,360,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Additional RVC configuration items,0:not taken in account;1:taken in account
+,767,361,367,1,0,0,%,22DAB0,62DAB0,ff,Vehicle_Information.Crop-Up
+,767,369,375,1,0,0,%,22DAB0,62DAB0,ff,Vehicle_Information.Crop-Down
+,767,377,383,1,0,0,%,22DAB0,62DAB0,ff,Vehicle_Information.Crop-Left
+,767,385,391,1,0,0,%,22DAB0,62DAB0,ff,Vehicle_Information.Crop-Right
+,767,392,394,1,0,0,s,22DAB0,62DAB0,ff,Vehicle_Information.Camera Picture Holding Time
+,767,396,399,1,0,0,ms,22DAB0,62DAB0,ff,Vehicle_Information.Reverse Gear Debouncing
+,767,400,402,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Camera rear trunk behaviour,0:no action;1:switch off;2:warning text;3:switch off +warning text;4:black screen;6:black screen + warning tex
+,767,403,407,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Camera Picture Contrast
+,767,411,415,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Camera Picture Tint
+,767,417,418,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Camera Image Mirror,0:none;1:Vert.;2:Horiz.;3:Vert+Horiz
+,767,419,423,1,0,0,km/h,22DAB0,62DAB0,ff,Vehicle_Information.Vehicle Speed Too High
+,767,427,431,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Camera Picture Black Level Day
+,767,435,439,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Camera Picture Black Level Night
+,767,442,444,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Seat_Guidance_PS,0:no seat guidance;1:ps-8w-2wl;2:ps-6w-2wl;3:ps-8w-4wl-m;4:ps-8w-4wl;5:ps-6w-2wl-o
+,767,445,447,1,0,0,,22DAB0,62DAB0,ff,Vehicle_Information.Seat_Guidance_DR,0:no seat guidance;1:ds-8w-2wl;2:ds-6w-2wl;3:ds-8w-4wl-m;4:ds-8w-4wl
+,767,32,32,1,0,0,,22DAB1,62DAB1,ff,System_Information.Default_Temperature_unit,0:Celsius;1:Fahrenheit
+,767,33,34,1,0,0,,22DAB1,62DAB1,ff,System_Information.Supported_Temperature_units,0:Celsius & Fahrenheit;1:Celsius only
+,767,35,36,1,0,0,,22DAB1,62DAB1,ff,System_Information.Default_Distance_Fuel_Consumption_unit,0:km- L/100km;1:UK mile- MPG(UK);2:US mile- MPG(US);3:km- km/L
+,767,37,39,1,0,0,,22DAB1,62DAB1,ff,System_Information.Supported_Distance_Fuel_Consumption_units,0:US mile(MPG(US)) & km(L/100km) & km(km/L);1:US mile(MPG(US)) & km(L/100km);2:km(L/100km) & km(km/L);3:UK mile(MPG(UK)) & km(L/100km) & km(km/L);4:UK mile(MPG(UK)) & km(L/100km)
+,767,40,47,1,0,0,,22DAB1,62DAB1,ff,System_Information.Default_Language,0:Automatic;1:Albanese;2:Arabic;3:Bulgarian;4:Reserved;5:Chinese Cantonese (Traditional Chinese character) HK;6:Chinese Mandarin (Simplified Chinses character)- CN;7:Croatian;8:Czech;9:Danish;10:Dutch;11:English (Australian);12:English (UK);13:English (US);14:English (US) for JPN;15:English (US) for PRC;16:English Canadian;17:English India;18:Estonian;19:Finnish;20:Flemish;21:French;22:French Canadian;23:German;24:Greek;25:Hebrew;26:Hindi;27:Hungarian;28:Indonesian;29:Italian;30:Japanese;31:Korean;32:Latvian;33:Lithuanian;34:Malay;35:Norwegian;36:Persian (Farsi/Iranian);37:Philippines;38:Polish;39:Portuguese;40:Portuguese Brazilian;41:Romanian;42:Russian;43:Serbian;44:Slovakian;45:Slovenian;46:Spanish;47:Spanish Latin American;48:Spanish Mexican;49:Swedish;50:Taiwanese;51:Thai;52:Turkish;53:Ukrainian;54:Vietnamese
+,767,50,50,1,0,0,,22DAB1,62DAB1,ff,System_Information.Off_road_information,0:Disabled;1:Enabled
+,767,51,51,1,0,0,,22DAB1,62DAB1,ff,System_Information.Eco_score_display,0:Disabled;1:Enabled
+,767,54,54,1,0,0,,22DAB1,62DAB1,ff,System_Information.Clock_12/24h,0:24h;1:12h
+,767,55,55,1,0,0,,22DAB1,62DAB1,ff,System_Information.Show_clock,0:Disabled;1:Enabled
+,767,57,60,1,0,0,,22DAB1,62DAB1,ff,System_Information.Opening_animation,0:Renault;1:Nissan;2:Infiniti;3:Mitsubishi;4:RSM;5:GT line;6:Initiale;7:RS;8:Infiniti with R;9:Infiniti (Skyline)
+,767,61,63,1,0,0,,22DAB1,62DAB1,ff,System_Information.Brand,0:Renault;1:Nissan;2:Infiniti;3:Mitsubishi;4:Dacia;5:Daimler;6:Avtovaz;7:RSM
+,767,68,70,1,0,0,,22DAB1,62DAB1,ff,System_Information.HEV_Drive_type,0:Non HEV;1:FF;2:FR;5:FF+4WD;6:FR+4WD;7:4WD
+,767,71,71,1,0,0,,22DAB1,62DAB1,ff,System_Information.HEV_information_function,0:OFF;1:ON
+,767,76,76,1,0,0,,22DAB1,62DAB1,ff,System_Information.Speed_lock_restrictions,0:OFF;1:ON
+,767,77,77,1,0,0,,22DAB1,62DAB1,ff,System_Information.Eco function,0:Absent;1:Present
+,767,78,78,1,0,0,,22DAB1,62DAB1,ff,System_Information.Eco challenge,0:absent;1:present
+,767,79,79,1,0,0,,22DAB1,62DAB1,ff,System_Information.Sound_on_encoder_press,0:Disabled;1:Enabled
+,767,80,87,1,0,0,km/h,22DAB1,62DAB1,ff,System_Information.Speed_lock_min_threshold_for_use_restriction_(km/h)
+,767,88,95,1,0,0,km/h,22DAB1,62DAB1,ff,System_Information.Speed_lock_max_threshold_for_use_restriction_(km/h)
+,767,100,100,1,0,0,,22DAB1,62DAB1,ff,System_Information.ExtTempDisplayCfg,0:Disabled;1:Enabled
+,767,101,101,1,0,0,,22DAB1,62DAB1,ff,System_Information.Display_activation,0:Disabled;1:Enabled
+,767,102,102,1,0,0,,22DAB1,62DAB1,ff,System_Information.Seat_restriction,0:Not Restricted;1:Restricted
+,767,103,103,1,0,0,,22DAB1,62DAB1,ff,System_Information.Tyre_Pressure_Reset_restriction,0:Not Restricted;1:Restricted
+,767,104,119,1,0,0,min,22DAB1,62DAB1,ff,System_Information.PORT
+,767,216,217,1,0,0,,22DAB1,62DAB1,ff,System_Information.ESE_activation,0:Disabled;1:Enabled in head-unit;2:Enabled in external amplifier
+,767,219,219,1,0,0,,22DAB1,62DAB1,ff,System_Information.ANC activation,0:Disabled;1:Enabled
+,767,227,227,1,0,0,,22DAB1,62DAB1,ff,System_Information.TTS,0:Disabled;1:Enabled
+,767,228,228,1,0,0,,22DAB1,62DAB1,ff,System_Information.VR_short_prompts,0:OFF;1:ON
+,767,229,229,1,0,0,,22DAB1,62DAB1,ff,System_Information.VR_beep_only,0:OFF;1:ON
+,767,230,231,1,0,0,,22DAB1,62DAB1,ff,System_Information.Voice_recognition,0:Absent;1:Reserved;2:Present
+,767,232,233,1,0,0,,22DAB1,62DAB1,ff,System_Information.Tweeter_setup,0:No tweeters;1:Only front tweeters mounted;2:Only rear tweeters mounted;3:Front and Rear tweeters mounted
+,767,234,237,1,0,0,,22DAB1,62DAB1,ff,System_Information.Output_Information,0:Internal AMP (2channels) / Head-unit alone (2channels);1:Premium 1;2:Bose Booster w/o MCAN;3:Premium 2;4:Bose 2ch stereo MCAN Amplifier;5:external ANC box;6:Bose 5.1ch MCAN Amplifier (future extension) / Not applicable for Renault;7:Daimler external amplifier (4 channels);8:Head-unit alone (4channels)+ SubOut;9:Internal AMP (4channels) / Head-unit alone (4channels);10:Daimler external amplifier (2 channels);11:Bose Personal Space;12:external ANC box for only front
+,767,238,239,1,0,0,,22DAB1,62DAB1,ff,System_Information.Auto_barge_in,0:Off;1:ON (Feedback inside PCB);2:ON (Feedback from OUT)
+,767,242,244,1,0,0,,22DAB1,62DAB1,ff,System_Information.Speed_curve,0:Speed curve 0;1:Speed curve 1;2:Speed curve 2;3:Speed curve 3;4:Speed curve 4;5:Speed curve 5
+,767,245,247,1,0,0,,22DAB1,62DAB1,ff,System_Information.Sonar_Volume,0:-3dB;1:-2dB;2:-1dB;3:0dB;4:+1dB;5:+2dB;6:+3dB
+,767,258,259,1,0,0,,22DAB1,62DAB1,ff,System_Information.AM tuner activation,0:AM (LW & MW) activated;1:Reserved;2:LW deactivated- MW activated;3:AM (LW & MW) deactivated
+,767,260,261,1,0,0,,22DAB1,62DAB1,ff,System_Information.MCH1_mount_information,0:No MCH1 mounted in car;1:1 USB port (MCH1- w/o HUB);2:2 USB ports (MCH1- with HUB);3:1 USB port (MCH1- with HUB)
+,767,262,263,1,0,0,,22DAB1,62DAB1,ff,System_Information.AUX,0:without AUX;1:wirh AUX and without Pin detection;2:with AUX and with Pin detection
+,767,271,271,1,0,0,,22DAB1,62DAB1,ff,System_Information.DAB,0:Disabled;1:Enabled
+,767,279,279,1,0,0,,22DAB1,62DAB1,ff,System_Information.CMF_support_for_ETC,0:Disabled;1:Enabled
+,767,280,281,1,0,0,,22DAB1,62DAB1,ff,System_Information.ATBOX,0:Disabled;1:Type 1 (Nissan specific);2:Type 2 (Alliance)
+,767,282,282,1,0,0,,22DAB1,62DAB1,ff,System_Information.MySPIN,0:Disabled;1:Enabled
+,767,283,283,1,0,0,,22DAB1,62DAB1,ff,System_Information.Android_Auto,0:Disabled;1:Enabled
+,767,284,284,1,0,0,,22DAB1,62DAB1,ff,System_Information.CarPlay,0:Disabled;1:Enabled
+,767,285,285,1,0,0,,22DAB1,62DAB1,ff,System_Information.WiFi_IVC_tethering,0:Disabled;1:Enabled
+,767,286,286,1,0,0,,22DAB1,62DAB1,ff,System_Information.Bluetooth_function,0:Disabled;1:Enabled
+,767,287,287,1,0,0,,22DAB1,62DAB1,ff,System_Information.Wifi_function,0:Disabled;1:Enabled
+,767,289,289,1,0,0,,22DAB1,62DAB1,ff,System_Information.OnCar,0:Disabled;1:Enabled
+,767,290,290,1,0,0,,22DAB1,62DAB1,ff,System_Information.Wifi_5GHz_support,0:Disabled;1:Enabled
+,767,291,295,1,0,0,,22DAB1,62DAB1,ff,System_Information.Model_year,0:17 MY;1:18 MY;2:19 MY;3:20 MY;4:21 MY;5:22 MY;6:23 MY;7:24 MY;8:25 MY;9:26 MY;10:27 MY;11:28 MY;12:29 MY;13:30 MY;14:31 MY;15:32 MY;16:33 MY;17:34 MY;18:35 MY;19:36 MY;20:37 MY;21:38 MY;22:39 MY;23:40 MY;24:41 MY;25:42 MY;26:43 MY;27:44 MY;28:45 MY;29:46 MY;30:47 MY;31:MY not determined
+,767,299,299,1,0,0,,22DAB1,62DAB1,ff,System_Information.Minimize_unpaved_roads,0:Disabled;1:Enabled
+,767,303,303,1,0,0,,22DAB1,62DAB1,ff,System_Information.Truck/LCV_route,0:Disabled;1:Enabled
+,767,304,304,1,0,0,,22DAB1,62DAB1,ff,System_Information.MQTTPayloadCompression,0:absent;1:present
+,767,306,306,1,0,0,,22DAB1,62DAB1,ff,System_Information.Map_zoom,0:Encoder;1:Touch
+,767,308,311,1,0,0,,22DAB1,62DAB1,ff,System_Information.Kind_of_destination_entry,0:EUR (European style i.e. form basd.);1:NAR (Amercian style i.e. user guided entry flow.);2:JPN (Japanese style i.e. user guided fixed entry flow.)
+,767,315,315,1,0,0,,22DAB1,62DAB1,ff,System_Information.VA_on_shortpress,0:OFF;1:ON
+,767,316,316,1,0,0,,22DAB1,62DAB1,ff,System_Information.WBS,0:OFF;1:ON
+,767,317,317,1,0,0,,22DAB1,62DAB1,ff,System_Information.SIRI,0:OFF;1:ON
+,767,318,318,1,0,0,,22DAB1,62DAB1,ff,System_Information.VA/SPVR,0:OFF;1:ON
+,767,320,327,1,0,0,,22DAB1,62DAB1,ff,System_Information.MQTTSessionType,0:Always connected;1:On Demand;2:IVI Periodic
+,767,336,336,1,0,0,,22DAB1,62DAB1,ff,System_Information.CNF_REACH_AREA,0:Patatoid solution (Default);1:Reachable Circle (Backup solution)
+,767,337,337,1,0,0,,22DAB1,62DAB1,ff,System_Information.CNF_REROUTE_ALT,0:Not present (service de-activation);1:Present (service activation)
+,767,338,338,1,0,0,,22DAB1,62DAB1,ff,System_Information.CNF_PSOC,0:Not present (service de-activation);1:Present (service activation)
+,767,339,339,1,0,0,,22DAB1,62DAB1,ff,System_Information.CNF_CHG_TIME_FORECAST,0:Not present (service de-activation);1:Present (service activation)
+,767,340,340,1,0,0,,22DAB1,62DAB1,ff,System_Information.CNF_GUARD_ANG,0:Not present (service de-activation);1:Present (service activation)
+,767,341,341,1,0,0,,22DAB1,62DAB1,ff,System_Information.CNF_LOWBAT_ALT,0:Not present (service de-activation);1:Present (service activation)
+,767,342,342,1,0,0,,22DAB1,62DAB1,ff,System_Information.CNF_CHGSTN_SORT,0:(Ascending order- Nearest charging station to Farthest charging station);1:(Descending order- Farthest charging station to Nearest charging station)
+,767,343,343,1,0,0,,22DAB1,62DAB1,ff,System_Information.CNF_CHGSTN_FIND,0:Not present (service de-activation);1:Present (service activation)
+,767,345,345,1,0,0,,22DAB1,62DAB1,ff,System_Information.Remote application support,0:Not present (service de-activation);1:Present (service activation)
+,767,347,347,1,0,0,,22DAB1,62DAB1,ff,System_Information.TIMER PRE-AIR-CONDITIONING,0:Not present (service de-activation);1:Present (service activation)
+,767,348,348,1,0,0,,22DAB1,62DAB1,ff,System_Information.TIMER CHARGING,0:Not present (service de-activation);1:Present (service activation)
+,767,349,349,1,0,0,,22DAB1,62DAB1,ff,System_Information.Info from Meter_DC/DC caution,0:Not present (service de-activation);1:Present (service activation)
+,767,350,350,1,0,0,,22DAB1,62DAB1,ff,System_Information.Info from Meter_Limited power,0:Not present (service de-activation);1:Present (service activation)
+,767,356,356,1,0,0,,22DAB1,62DAB1,ff,System_Information.Power Consumption Information,0:Not present (service de-activation);1:Present (service activation)
+,767,357,357,1,0,0,,22DAB1,62DAB1,ff,System_Information.Energy Information,0:Not present (service de-activation);1:Present (service activation)
+,767,358,358,1,0,0,,22DAB1,62DAB1,ff,System_Information.EV & PHEV Energy Flow 15mn historical graph,0:Not present (service de-activation);1:Present (service activation)
+,767,359,359,1,0,0,,22DAB1,62DAB1,ff,System_Information.EV & PHEV real time Energy Flow display,0:Not present (service de-activation);1:Present (service activation)
+,767,360,367,1,128,0,°C,22DAB1,62DAB1,ff,System_Information.Pre-conditioning duration-vehicle not plugged
+,767,368,375,1,0,0,°C,22DAB1,62DAB1,ff,System_Information.Pre-conditioning median temperature request
+,767,376,378,1,0,0,,22DAB1,62DAB1,ff,System_Information.Car_type,0:Standard (or Nissan vehicle);1:GT;2:RS
+,767,380,382,1,0,0,,22DAB1,62DAB1,ff,System_Information.SkinChoice_Race,0:No change;1:Skin 1;2:Skin 2;3:Skin 3;4:Skin 4;5:Skin 5;6:Skin 6
+,767,384,386,1,0,0,,22DAB1,62DAB1,ff,System_Information.SkinChoice -Eco,0:No change;1:Skin 1;2:Skin 2;3:Skin 3;4:Skin 4;5:Skin 5;6:Skin 6
+,767,387,389,1,0,0,,22DAB1,62DAB1,ff,System_Information.SkinChoice-Comfort,0:No change;1:Skin 1;2:Skin 2;3:Skin 3;4:Skin 4;5:Skin 5;6:Skin 6
+,767,392,394,1,0,0,,22DAB1,62DAB1,ff,System_Information.SkinChoice-Normal,0:No change;1:Skin 1;2:Skin 2;3:Skin 3;4:Skin 4;5:Skin 5;6:Skin 6
+,767,395,397,1,0,0,,22DAB1,62DAB1,ff,System_Information.SkinChoice-Dynamic,0:No change;1:Skin 1;2:Skin 2;3:Skin 3;4:Skin 4;5:Skin 5;6:Skin 6
+,767,400,402,1,0,0,,22DAB1,62DAB1,ff,System_Information.SkinChoice-Perso,0:No change;1:Skin 1;2:Skin 2;3:Skin 3;4:Skin 4;5:Skin 5;6:Skin 6
+,767,408,415,5,0,0,%,22DAB1,62DAB1,ff,System_Information.MexSwitch_IntensityWithoutAmbient_lighting
+,767,417,417,1,0,0,,22DAB1,62DAB1,ff,System_Information.DualMode_Mgt,0:Without Dual Management;1:With Dual Management
+,767,418,420,1,0,0,,22DAB1,62DAB1,ff,System_Information.Preferential_Mode1,0:Not Available;1:Eco;2:Comfort;3:Normal;4:Dynamic;5:Race;6:Perso;7:Reserved
+,767,421,423,1,0,0,,22DAB1,62DAB1,ff,System_Information.Preferential_Mode2,0:Not Available;1:Eco;2:Comfort;3:Normal;4:Dynamic;5:Race;6:Perso;7:Reserved
+,767,424,426,1,0,0,,22DAB1,62DAB1,ff,System_Information.CF_ESESoundVolume_Eco,0:No request;1:0;2:low;3:high
+,767,427,429,1,0,0,,22DAB1,62DAB1,ff,System_Information.CF_ESESoundVolume_Comfort,0:No Change;1:OFF;2:low;3:high
+,767,432,434,1,0,0,,22DAB1,62DAB1,ff,System_Information.CF_ESESoundVolume_Normal,0:No request;1:0;2:low;3:high
+,767,435,437,1,0,0,,22DAB1,62DAB1,ff,System_Information.CF_ESESoundVolume_Dynamic,0:No request;1:0;2:low;3:high
+,767,442,444,1,0,0,,22DAB1,62DAB1,ff,System_Information.CF_ESESoundVolume_Perso,0:No request;1:0;2:low;3:high
+,767,445,446,1,0,0,,22DAB1,62DAB1,ff,System_Information.CF_ESESoundType_Eco,0:No change;1:Neutral;2:Sound1;3:Sound2
+,767,448,449,1,0,0,,22DAB1,62DAB1,ff,System_Information.CF_ESESoundType_Comfort,0:No change;1:Neutral;2:Sound1;3:Sound2
+,767,450,451,1,0,0,,22DAB1,62DAB1,ff,System_Information.CF_ESESoundType_Normal,0:No change;1:Neutral;2:Sound1;3:Sound2
+,767,452,453,1,0,0,,22DAB1,62DAB1,ff,System_Information.CF_ESESoundType_Dynamic,0:No change;1:Neutral;2:Sound1;3:Sound2
+,767,454,455,1,0,0,,22DAB1,62DAB1,ff,System_Information.CF_ESESoundType_Perso,0:No change;1:Neutral;2:Sound1;3:Sound2
+,767,456,456,1,0,0,,22DAB1,62DAB1,ff,System_Information.ESE sound 2 volume HMI,0:Disabled;1:Enabled
+,767,457,457,1,0,0,,22DAB1,62DAB1,ff,System_Information.ESE sound 1 volume HMI,0:Disabled;1:Enabled
+,767,458,460,1,0,0,,22DAB1,62DAB1,ff,System_Information.ESE sound 2 name,0:Sport;1:Comfort;2:Race
+,767,461,463,1,0,0,,22DAB1,62DAB1,ff,System_Information.ESE sound 1 name,0:Sport;1:Comfort;2:Race
+,767,464,465,1,0,0,,22DAB1,62DAB1,ff,System_Information.ESE HMI,0:No HMI for ESE;1:ESE With Driving Modes;2:ESE With Rsound
+,767,466,468,1,0,0,,22DAB1,62DAB1,ff,System_Information.CF_ESESoundVolume_Race,0:No request;1:0;2:low;3:high
+,767,472,473,1,0,0,,22DAB1,62DAB1,ff,System_Information.CNF_VPA,0:Not present;1:Present;3:Reserved
+,767,479,479,1,0,0,,22DAB1,62DAB1,ff,System_Information.Wireless_Android_Auto_function,0:OFF;1:ON
+,767,480,483,1,0,0,,22DAB1,62DAB1,ff,System_Information.Touch_screen_configuration,0:Attached fascia (A-IVI);1:CMF1 7 inches central panel carry back;2:C7D 7 inches display carry back;3:CMFCDph2 9.3 inches central panel;4:CMFB 9.3 inches central panel;5:CMFB 7 affordable display;6:CMFB 7 best level display;7:CMF1 8.7 central panel carry back;8:HFE 7 inches central panel;9:CMFCDph2 7 inches central panel;14:Custom display + Atmel touch;15:Custom display + cypress
+,767,486,487,1,0,0,,22DAB1,62DAB1,ff,System_Information.CF_ESESoundType_Race,0:No change;1:Neutral;2:Sound1;3:Sound2
+,767,494,494,1,0,0,,22DAB1,62DAB1,ff,System_Information.Wireless_CarPlay_function,0:OFF;1:ON
+,767,495,495,1,0,0,,22DAB1,62DAB1,ff,System_Information.Baidu_CarLife_function,0:OFF;1:ON
+,767,500,501,1,0,0,,22DAB1,62DAB1,ff,System_Information.FOTA_bearer,0:NOT USE;1:USE;2:Only USE FOTA;3:Only USE MAP
+,767,24,31,1,0,0,,22DAB2,62DAB2,ff,Antitheft/Map_Selection.Antitheft_function,0:Without antitheft function;1:With Nissan Antitheft function (Immobilizer);2:With Alliance Antitheft function
+,767,32,47,1,0,0,,22DAB2,62DAB2,ff,Antitheft/Map_Selection.Map_selection,0:No initial activation done (default);1:No map selected
+,767,24,3359,1,0,0,,22DAC0,62DAC0,4ff,Generic Tuner Parameter Set
+,767,24,2327,1,0,0,,22DAC5,62DAC5,4ff,FM/AM_Tuner_Parameter_Set
+,767,24,535,1,0,0,,22DAC9,62DAC9,4ff,HD_parameter_set
+,767,24,1863,1,0,0,,22DACB,62DACB,4ff,DAB_Parameter
+,767,24,1071,1,0,0,,22DACC,62DACC,4ff,Antenna_Parameter
+,767,24,1647,1,0,0,,22DAD0,62DAD0,4ff,Sensor_Configuration_Gyro
+,767,24,119,1,0,0,,22DAD1,62DAD1,4ff,Sensor_Configuration_GNSS
+,767,24,1647,1,0,0,,22DAD2,62DAD2,4ff,Sensor_Configuration_ACC
+,767,24,27,1,0,0,,22DAE0,62DAE0,ff,Camera_System.ConfigStringVersionMinor
+,767,28,31,1,0,0,,22DAE0,62DAE0,ff,Camera_System.ConfigStringVersionMajor
+,767,32,47,1,0,0,mm,22DAE0,62DAE0,ff,Camera_System.Vehicle Width
+,767,48,63,1,0,0,mm,22DAE0,62DAE0,ff,Camera_System.WheelBase
+,767,64,79,1,0,0,mm,22DAE0,62DAE0,ff,Camera_System.RearOverhang
+,767,80,95,.00001,0,3,,22DAE0,62DAE0,1ff,Camera_System.SteerWheelCalib_f1
+,767,96,111,.0000000001,0,3,,22DAE0,62DAE0,1ff,Camera_System.SteerWheelCalib_f3
+,767,112,127,1,0,0,°,22DAE0,62DAE0,ff,Camera_System.MaxSteerWheelAngle
+,767,128,143,.01,0,2,°,22DAE0,62DAE0,ff,Camera_System.MaxRearWheelAngle
+,767,144,159,.01,0,2,°,22DAE0,62DAE0,ff,Camera_System.RadiusTuningFact
+,767,160,160,1,0,0,,22DAE0,62DAE0,ff,Camera_System.TestConfigOnlyFlag,0:verified configuration for use in customer vehicle;1:test configuration
+,767,161,163,1,0,0,,22DAE0,62DAE0,ff,Camera_System.GuidelineStyle,0:not definded;1:Nissan;2:Renault;3:Mitsubishi
+,767,164,165,1,0,0,,22DAE0,62DAE0,ff,Camera_System.TireAngleReferencePoint,0:front axle center;1:outer front tire;2:inner front tire;3:reserved
+,767,166,166,1,0,0,,22DAE0,62DAE0,ff,Camera_System.TireAngleTurnSense,0:clockwise tire turn;1:counterclockwise tire turn
+,767,167,167,1,0,0,,22DAE0,62DAE0,ff,Camera_System.FourWheelSteering,0:2WS vehicle;1:4WS vehicle
+,767,168,183,1,0,0,mm,22DAE0,62DAE0,1ff,Camera_System.CamXOffset
+,767,184,199,1,0,0,mm,22DAE0,62DAE0,ff,Camera_System.CamYOffset
+,767,200,215,1,0,0,mm,22DAE0,62DAE0,1ff,Camera_System.CamZOffset
+,767,216,231,.1,0,1,°,22DAE0,62DAE0,1ff,Camera_System.CamYaw
+,767,232,247,.1,0,1,°,22DAE0,62DAE0,1ff,Camera_System.CamPitch
+,767,248,263,.1,0,1,°,22DAE0,62DAE0,1ff,Camera_System.CamRoll
+,767,264,271,.01,0,2,°,22DAE0,62DAE0,ff,Camera_System.FrontTireThresh
+,767,272,279,.01,0,2,°,22DAE0,62DAE0,ff,Camera_System.MinFrontTireChange
+,767,280,287,.01,0,2,°,22DAE0,62DAE0,ff,Camera_System.RearTireThresh
+,767,288,295,.01,0,2,°,22DAE0,62DAE0,ff,Camera_System.MinRearTireChange
+,767,296,303,1,0,0,cm,22DAE0,62DAE0,ff,Camera_System.GuidelineStartDistance
+,767,304,311,1,0,0,cm,22DAE0,62DAE0,ff,Camera_System.GuidelineSideMargin
+,767,312,319,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorStaticSideNear_R
+,767,320,327,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorStaticSideNear_G
+,767,328,335,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorStaticSideNear_B
+,767,336,343,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorStaticSideMid_R
+,767,344,351,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorStaticSideMid_G
+,767,352,359,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorStaticSideMid_B
+,767,360,367,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorStaticSideFar_R
+,767,368,375,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorStaticSideFar_G
+,767,376,383,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorStaticSideFar_B
+,767,384,391,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorStaticCenter_R
+,767,392,399,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorStaticCenter_G
+,767,400,407,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorStaticCenter_B
+,767,408,415,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorDynamic_R
+,767,416,423,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorDynamic_G
+,767,424,431,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RgbColorDynamic_B
+,767,432,435,1,0,0,,22DAE0,62DAE0,ff,Camera_System.LineWidthStaticSideFar
+,767,436,439,1,0,0,,22DAE0,62DAE0,ff,Camera_System.LineWidthStaticSideNear
+,767,440,443,1,0,0,,22DAE0,62DAE0,ff,Camera_System.LineWidthDynamicFar
+,767,444,447,1,0,0,,22DAE0,62DAE0,ff,Camera_System.LineWidthDynamicNear
+,767,448,451,1,0,0,,22DAE0,62DAE0,ff,Camera_System.LineWidthStaticCenterFar
+,767,452,455,1,0,0,,22DAE0,62DAE0,ff,Camera_System.LineWidthStaticCenterNear
+,767,456,463,1,0,0,cm,22DAE0,62DAE0,ff,Camera_System.StaticLineLengthNear
+,767,464,471,1,0,0,cm,22DAE0,62DAE0,ff,Camera_System.StaticLineLengthMid
+,767,472,479,1,0,0,cm,22DAE0,62DAE0,ff,Camera_System.StaticLineLengthFar1
+,767,480,487,1,0,0,cm,22DAE0,62DAE0,ff,Camera_System.StaticLineLengthFar2
+,767,488,495,1,0,0,cm,22DAE0,62DAE0,ff,Camera_System.StaticHorizLineLength
+,767,496,503,.01,0,2,,22DAE0,62DAE0,ff,Camera_System.LineWidthFactorNearHLine
+,767,504,507,1,0,0,,22DAE0,62DAE0,ff,Camera_System.TuningMethod,0:no tuning;1:input d_yaw/pitch/roll tuning;2:input d_pitch + input d_x/y tuning;3:input d_pitch + estimated d_yaw/roll tuning;4:input d_pitch + estimated d_yaw/roll + residual d_x/y tuning;5:estimated d_yaw/pitch/roll tuning;6:estimated d_yaw/pitch/roll + residual d_x/y tuning;7:improved input d_pitch + estimated d_yaw/roll tuning;8:improved input d_pitch + estimated d_yaw/roll + residual d_x/y tuning
+,767,508,511,1,0,0,,22DAE0,62DAE0,ff,Camera_System.TuningStringVersion
+,767,512,519,.1,0,1,°,22DAE0,62DAE0,1ff,Camera_System.TuningDeltaCamYaw
+,767,520,527,.1,0,1,°,22DAE0,62DAE0,1ff,Camera_System.TuningDeltaCamPitch
+,767,528,535,.1,0,1,°,22DAE0,62DAE0,1ff,Camera_System.TuningDeltaCamRoll
+,767,536,543,1,0,0,cm,22DAE0,62DAE0,1ff,Camera_System.TuningDeltaXNearLeft
+,767,544,551,1,0,0,cm,22DAE0,62DAE0,1ff,Camera_System.TuningDeltaYNearLeft
+,767,552,559,1,0,0,cm,22DAE0,62DAE0,1ff,Camera_System.TuningDeltaXFarLeft
+,767,560,567,1,0,0,cm,22DAE0,62DAE0,1ff,Camera_System.TuningDeltaXNearRight
+,767,568,575,1,0,0,cm,22DAE0,62DAE0,1ff,Camera_System.TuningDeltaYNearRight
+,767,576,583,1,0,0,cm,22DAE0,62DAE0,1ff,Camera_System.TuningDeltaXFarRight
+,767,584,591,1,0,0,cm,22DAE0,62DAE0,ff,Camera_System.TuningNearLineLengthLeft
+,767,592,599,1,0,0,cm,22DAE0,62DAE0,ff,Camera_System.TuningNearLineLengthRight
+,767,600,607,1,0,0,°,22DAE0,62DAE0,1ff,Camera_System.TuningSwaZeroPointOffset
+,767,608,615,.01,0,2,,22DAE0,62DAE0,1ff,Camera_System.TuningRwaZeroPointOffset
+,767,665,667,1,0,0,,22DAE0,62DAE0,ff,Camera_System.Camera connection,0:Without;1:CVBS;2:LVDS;3:Ethernet
+,767,668,670,1,0,0,,22DAE0,62DAE0,ff,Camera_System.cameraSystem,0:None;1:Entry AVM;2:Reserved (2);3:Rear Camera;4:Reserved (4);5:MVC;6:AVM Ph3;7:Reserved (7)
+,767,671,671,1,0,0,,22DAE0,62DAE0,ff,Camera_System.anticipatoryLine,0:Disabled;1:Enabled
+,767,672,672,1,0,0,,22DAE0,62DAE0,ff,Camera_System.Sonar_AVM,0:AVM (integration into video-signal);1:Headunit (drawing an overlay)
+,767,673,674,1,0,0,,22DAE0,62DAE0,ff,Camera_System.Sonar_Type,0:None;1:FR+RR Sonar;2:RR Sonar
+,767,675,677,1,0,0,,22DAE0,62DAE0,ff,Camera_System.Sonar_menu,0:None;1:Gen3 menu;2:Gen3 GD1A menu;3:Gen5 menu
+,767,678,678,1,0,0,,22DAE0,62DAE0,ff,Camera_System.Sonar_Switch_display,0:OFF;1:ON
+,767,679,679,1,0,0,,22DAE0,62DAE0,ff,Camera_System.Sonar_System_Availability,0:not available;1:available
+,767,685,685,1,0,0,,22DAE0,62DAE0,ff,Camera_System.Sonar_FKP,0:OFF;1:ON
+,767,686,686,1,0,0,,22DAE0,62DAE0,ff,Camera_System.Sonar Sound,0:OFF;1:ON
+,767,687,687,1,0,0,,22DAE0,62DAE0,ff,Camera_System.Sonar Display,0:OFF;1:ON
+,767,688,695,1,0,0,,22DAE0,62DAE0,ff,Camera_System.Sonar vehicle image,0:No body shape;1:Sedan;2:SUV;3:Van;4:Coupe;5:42P;6:H/B
+,767,696,703,1,0,0,%,22DAE0,62DAE0,ff,Camera_System.Camera brightness (Day)
+,767,704,711,1,0,0,%,22DAE0,62DAE0,ff,Camera_System.Camera brightness (Night)
+,767,712,719,1,0,0,,22DAE0,62DAE0,ff,Camera_System.Camera Steering Message,0:CAN ID 002;1:CAN ID 0C1
+,767,720,727,1,0,0,,22DAE0,62DAE0,ff,Camera_System.RVC Lens Parameter,0:Type1 (Sony_2400S_W130_6);1:Type2 (Sony_2200S_W130);2:Type3 (Panasonic);3:Type4 (Sony 2400S (Renault FOV));4:Type5 (Semco Logo);5:Type6 (Semco Generic);6:Type7 (Semco L47);7:Type8 (Sony S2500);8:Type9 (Whetron);9:Type10 (Clarion)
+,767,28,31,1,0,0,,22DAE5,62DAE5,ff,ECO_Route.ECO_Route_Vehicle_type,0:SUV;1:Sedan;2:Coupe;3:Mini Van / Van/ Wagon;4:Hatchback;5:Truck;6:unknown / other;7:RenaultDefaultModel
+,767,35,39,1,0,0,,22DAE5,62DAE5,ff,ECO_Route.Engine_size,1:Petrol -> 2L class engine;2:Petrol -> over 2L to 3.5L class engine;3:Petrol -> over 3.5L class engine;4:Diesel -> 2L class engine;5:Diesel -> over 2L to 3.5L class engine;6:Diesel -> over 3.5L class engine;7:EV 40kWh JPN;8:EV 60kWh JPN;9:EV 40kWh NAM/CAN;10:EV 60kWh NAM/CAN;11:EV 40kWh EUR;12:EV 60kWh EUR;13:Renault Default Petrol;14:Renault Default Diesel Light vehicle;15:Renault Default EV;16:Renault Default Petrol Hybrid;17:Renault Default Diesel Hybrid;18:Renault Default Diesel Heavy Vehicle;19:Renault Default EV 30kWh;20:Renault Default EV 40kWh;21:Renault Default EV 50kWh;22:Renault Default EV 60kWh;31:unknown / other
+,767,24,199,1,0,0,,22DAF0,62DAF0,2ff,WiFi_Name.SSID_WiFi_1
+,767,200,375,1,0,0,,22DAF0,62DAF0,2ff,WiFi_Name.SSID_WiFi_2
+,767,24,199,1,0,0,,22DAF1,62DAF1,2ff,BT_Name.BT_name
+,767,31,31,1,0,0,,22DEF0,62DEF0,ff,Factory mode,0:Market (normal) mode;1:Factory mode
+,767,24,183,1,0,0,,22DEFE,62DEFE,4ff,Message_Authentication_Code
+,767,24,151,1,0,0,,22F010,62F010,4ff,Fingerprint
+,767,24,103,1,0,0,,22F011,62F011,2ff,IndexSrvData
+,767,24,103,1,0,0,,22F012,62F012,2ff,Operational Reference
+,767,24,103,1,0,0,,22F013,62F013,2ff,SecondaryOperationnalReference
+,767,24,47,1,0,0,km,22F0D0,62F0D0,ff,Mileage
+,767,24,31,1,0,0,,22F0D1,62F0D1,ff,DTC Occurrence Counter
+,767,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI
+,767,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI
+,767,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
+,767,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
+,767,24,63,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,767,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumber
+,767,24,159,1,0,0,,22F190,62F190,2ff,VIN
+,767,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
+,767,24,199,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,767,24,111,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,767,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
+,767,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
+,767,24,103,1,0,0,,22F1A2,62F1A2,2ff,RenaultConfigurationPartNumber
+,767,0,0,1,0,0,,3E00,7E00,ff,TesterPresent.WithResponse

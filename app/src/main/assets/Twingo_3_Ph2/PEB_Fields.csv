@@ -1,0 +1,349 @@
+,77E,0,0,1,0,0,,1081,5081,ff,StartDiagnosticSession.Default
+,77E,0,0,1,0,0,,1085,5085,ff,StartDiagnosticSession.Programming
+,77E,0,0,1,0,0,,10C0,50C0,ff,StartDiagnosticSession.ExtendedDiagnosticSession
+,77E,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
+,77E,16,23,1,0,0,,1902AF,5902AF,ff,DTCStatusAvailabilityMask
+,77E,24,39,1,0,0,,1902AF,5902AF,ff,DTCDeviceAndFailureTypeOBD
+,77E,40,47,1,0,0,,1902AF,5902AF,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM (Frequency Modulated) / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adjustment failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or system operation obstructed or blocked;152:component or system over temperature;241:Safety Case 1;242:Safety Case 2;243:Multiple Failure;244:Temperature too Low;245:Negative Loop Error;246:Positive Loop Error;247:Initialisation not valid;248:Overspeed;249:Limp Home;250:Specific Supplier;251:-;252:--;253:Drift low;254:Drift  high
+,77E,44,47,1,0,0,,1902AF,5902AF,ff,DTCFailureType.ManufacturerOrSupplier
+,77E,48,48,1,0,0,,1902AF,5902AF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,77E,49,49,1,0,0,,1902AF,5902AF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,77E,50,50,1,0,0,,1902AF,5902AF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,77E,51,51,1,0,0,,1902AF,5902AF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,77E,52,52,1,0,0,,1902AF,5902AF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,77E,53,53,1,0,0,,1902AF,5902AF,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,77E,54,54,1,0,0,,1902AF,5902AF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,77E,55,55,1,0,0,,1902AF,5902AF,ff,DTCStatus.testFailed,0:No;1:Yes
+,77E,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord
+,77E,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC
+,77E,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord
+,77E,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC
+,77E,48,55,1,0,0,,190600000080,590600000080,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage
+,77E,56,79,1,0,0,km,190600000080,590600000080,ff,DTCExtendedData.Mileage
+,77E,16,39,1,0,0,,190600000081,590600000081,4ff,DTCRecord
+,77E,40,47,1,0,0,,190600000081,590600000081,ff,StatusOfDTC
+,77E,48,55,1,0,0,,190600000081,590600000081,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage
+,77E,56,63,1,0,0,,190600000081,590600000081,ff,DTCExtendedData.AgingCounter
+,77E,16,39,1,0,0,,190600000082,590600000082,4ff,DTCRecord
+,77E,40,47,1,0,0,,190600000082,590600000082,ff,StatusOfDTC
+,77E,48,55,1,0,0,,190600000082,590600000082,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage
+,77E,56,63,1,0,0,,190600000082,590600000082,ff,DTCExtendedData.DTCOccurrenceCounter
+,77E,16,39,1,0,0,,190600000084,590600000084,4ff,DTCRecord
+,77E,40,47,1,0,0,,190600000084,590600000084,ff,StatusOfDTC
+,77E,56,63,1,0,0,,190600000084,590600000084,ff,DTCExtendedData.DTCOccurrenceCounter_2
+,77E,16,39,1,0,0,,190600000085,590600000085,4ff,DTCRecord
+,77E,40,47,1,0,0,,190600000085,590600000085,ff,StatusOfDTC
+,77E,56,79,1,0,0,km,190600000085,590600000085,ff,DTCExtendedData.DTCLastDiseappearMileage
+,77E,16,39,1,0,0,,190600000086,590600000086,4ff,DTCRecord
+,77E,40,47,1,0,0,,190600000086,590600000086,ff,StatusOfDTC
+,77E,56,79,1,0,0,km,190600000086,590600000086,ff,DTCExtendedData.DTCTravelledDistanceFailurePresent
+,77E,16,39,1,0,0,,190600000087,590600000087,4ff,DTCRecord
+,77E,40,47,1,0,0,,190600000087,590600000087,ff,StatusOfDTC
+,77E,56,79,1,0,0,km,190600000087,590600000087,ff,DTCExtendedData.DTCFirstAppearMileage
+,77E,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord
+,77E,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC
+,77E,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage
+,77E,56,63,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedData.DTCOccurrenceCounter
+,77E,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
+,77E,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode
+,77E,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
+,77E,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
+,77E,128,143,1,0,0,,2180,6180,4ff,SoftwareNumber
+,77E,144,159,1,0,0,,2180,6180,4ff,EditionNumber
+,77E,160,175,1,0,0,,2180,6180,4ff,CalibrationNumber
+,77E,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;1:292A6;2:29170
+,77E,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:N/A;1:292A6
+,77E,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A;1:HMLGT
+,77E,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+,77E,16,151,1,0,0,,2181,6181,2ff,V.I.N
+,77E,152,167,1,0,0,,2181,6181,4ff,CRC
+,77E,16,39,1,0,0,,2184,6184,4ff,ITG Supplier Number
+,77E,40,47,1,0,0,,2184,6184,2ff,Traceability Factory Code
+,77E,48,143,1,0,0,,2184,6184,2ff,Traceability Serial Number
+,77E,16,103,1,0,0,,21B7,61B7,4ff,Configuration of Electrical Vehicle Networks
+,77E,16,103,1,0,0,,21B8,61B8,4ff,List of Electrical Vehicle ECUs with After-sales diagnostic
+,77E,16,23,1,0,0,,21EF,61EF,2ff,Hardware Part Number 1
+,77E,24,31,1,0,0,,21EF,61EF,2ff,Hardware Part Number 2
+,77E,32,39,1,0,0,,21EF,61EF,2ff,Hardware Part Number 3
+,77E,40,47,1,0,0,,21EF,61EF,2ff,Hardware Part Number 4
+,77E,48,55,1,0,0,,21EF,61EF,2ff,Hardware Part Number 5
+,77E,56,63,1,0,0,,21EF,61EF,2ff,Hardware Part Number 6
+,77E,64,71,1,0,0,,21EF,61EF,2ff,Hardware Part Number 7
+,77E,72,79,1,0,0,,21EF,61EF,2ff,Hardware Part Number 8
+,77E,80,87,1,0,0,,21EF,61EF,2ff,Hardware Part Number 9
+,77E,88,95,1,0,0,,21EF,61EF,2ff,Hardware Part Number 10
+,77E,96,103,1,0,0,,21EF,61EF,2ff,Software Part Number 1
+,77E,104,111,1,0,0,,21EF,61EF,2ff,Software Part Number 2
+,77E,112,119,1,0,0,,21EF,61EF,2ff,Software Part Number 3
+,77E,120,127,1,0,0,,21EF,61EF,2ff,Software Part Number 4
+,77E,128,135,1,0,0,,21EF,61EF,2ff,Software Part Number 5
+,77E,136,143,1,0,0,,21EF,61EF,2ff,Software Part Number 6
+,77E,144,151,1,0,0,,21EF,61EF,2ff,Software Part Number 7
+,77E,152,159,1,0,0,,21EF,61EF,2ff,Software Part Number 8
+,77E,160,167,1,0,0,,21EF,61EF,2ff,Software Part Number 9
+,77E,168,175,1,0,0,,21EF,61EF,2ff,Software Part Number 10
+,77E,16,55,1,0,0,,21F0,61F0,2ff,PartNumber.LowerPart
+,77E,56,63,1,0,0,,21F0,61F0,4ff,DiagnosticIdentificationCode
+,77E,64,87,1,0,0,,21F0,61F0,2ff,SupplierNumber.ITG
+,77E,88,127,1,0,0,,21F0,61F0,2ff,HardwareNumber.LowerPart
+,77E,128,143,1,0,0,,21F0,61F0,4ff,SoftwareNumber
+,77E,144,159,1,0,0,,21F0,61F0,4ff,EditionNumber
+,77E,160,175,1,0,0,,21F0,61F0,4ff,CalibrationNumber
+,77E,176,183,1,0,0,,21F0,61F0,ff,PartNumber.BasicPartList,0:N/A;1:292A6;2:29170
+,77E,184,191,1,0,0,,21F0,61F0,ff,HardwareNumber.BasicPartList,0:N/A;1:292A6
+,77E,192,199,1,0,0,,21F0,61F0,ff,ApprovalNumber.BasicPartList,0:N/A;1:HMLGT
+,77E,200,207,1,0,0,,21F0,61F0,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+,77E,16,55,1,0,0,,21F1,61F1,2ff,ApprovalNumber.LowerPart
+,77E,56,95,1,0,0,,21F1,61F1,2ff,ProgrammingSiteReference
+,77E,96,135,1,0,0,,21F1,61F1,2ff,ProgrammingToolReference
+,77E,136,143,1,0,0,,21F1,61F1,ff,NumberOfReprogrammings
+,77E,144,167,1,0,0,,21F1,61F1,4ff,DateOfReprogramming
+,77E,168,183,1,0,0,,21F1,61F1,4ff,TimeOfReprogramming
+,77E,184,191,1,0,0,,21F1,61F1,ff,SaveMarking
+,77E,192,207,1,0,0,,21F1,61F1,4ff,CrcOfLogSave
+,77E,16,55,1,0,0,,21FF,61FF,2ff,ApprovalNumber.LowerPart
+,77E,56,95,1,0,0,,21FF,61FF,2ff,ProgrammingSiteReference
+,77E,96,135,1,0,0,,21FF,61FF,2ff,ProgrammingToolReference
+,77E,136,143,1,0,0,,21FF,61FF,ff,NumberOfReprogrammings
+,77E,144,167,1,0,0,,21FF,61FF,4ff,DateOfReprogramming
+,77E,168,183,1,0,0,,21FF,61FF,4ff,TimeOfReprogramming
+,77E,184,191,1,0,0,,21FF,61FF,ff,SaveMarking
+,77E,192,207,1,0,0,,21FF,61FF,4ff,CrcOfLogSave
+,77E,24,55,1,0,0,,222000,622000,4ff,DIDs supported in range [$2001 - $2020]
+,77E,24,39,.5,32000,1,rpm,222001,622001,ff,($2001) Rotor mechanical rotation speed
+,77E,24,39,.015625,16256,2,N·m,222002,622002,ff,($2002) Emotor torque estimation, based on measured current values
+,77E,24,39,.1,2500,1,N·m,222003,622003,ff,($2003) Torque setpoint from EVC
+,77E,24,39,.03125,0,2,V,222004,622004,ff,($2004) Battery voltage sensor
+,77E,24,39,1,0,0,mV,222005,622005,ff,($2005) DCDC output tension measure
+,77E,24,55,1,0,0,,222060,622060,4ff,DIDs supported in range [$2061 - $2080]
+,77E,31,31,1,0,0,,222070,622070,ff,($2070) Immobilizer - diagnosis availability,0:unavailable;1:available
+,77E,24,31,1,0,0,,222071,622071,ff,($2071) Immobilizer - Byte 1 used to allow diagnosis
+,77E,24,31,1,0,0,,222072,622072,ff,($2072) Immobilizer - Byte 2 used to allow diagnosis
+,77E,24,24,1,0,0,,222073,622073,ff,($2073) Immobilizer - Byte 3 used to allow diagnosis.7,0:Not used
+,77E,25,25,1,0,0,,222073,622073,ff,($2073) Immobilizer - Byte 3 used to allow diagnosis.6,0:ECM not protected;1:ECM protected
+,77E,26,27,1,0,0,,222073,622073,ff,($2073) Immobilizer - Byte 3 used to allow diagnosis.4,0:ECM virgin - Secret key not learnt;1:Not used;2:Not virgin ECM - Secret key learnt in erasable area;3:Not virgin ECM - Secret key learnt in non erasable area
+,77E,28,28,1,0,0,,222073,622073,ff,($2073) Immobilizer - Byte 3 used to allow diagnosis.3,0:Not used
+,77E,29,29,1,0,0,,222073,622073,ff,($2073) Immobilizer - Byte 3 used to allow diagnosis.2,0:Cleappli not set;1:Cleappli set
+,77E,30,30,1,0,0,,222073,622073,ff,($2073) Immobilizer - Byte 3 used to allow diagnosis.1,0:Not used
+,77E,31,31,1,0,0,,222073,622073,ff,($2073) Immobilizer - Byte 3 used to allow diagnosis.0,0:Immobilizer engine running forbidden;1:Immobilizer engine running authorized
+,77E,31,31,1,0,0,,222074,622074,ff,($2074) Immobilizer - engine not running due to ECM,0:no;1:yes
+,77E,31,31,1,0,0,,222075,622075,ff,($2075) Immobilizer - engine not running due to BCM in secure mode,0:no;1:yes
+,77E,31,31,1,0,0,,222076,622076,ff,($2076) Immobilizer - engine not running due to no BCM authorization,0:no;1:yes
+,77E,31,31,1,0,0,,222077,622077,ff,($2077) Immobilizer - engine not running due to a CAN network problem with the BCM,0:no;1:yes
+,77E,24,31,1,0,0,%,227001,627001,ff,($7001) Command of PEC fan
+,77E,31,31,1,0,0,,227002,627002,ff,($7002) Wired APC signal,0:APC off;1:APC on
+,77E,24,39,.0009765625,0,3,A,227003,627003,ff,($7003) Measured rotor current (sensor 1)
+,77E,24,39,.0009765625,0,3,A,227004,627004,ff,($7004) Measured rotor current (sensor 2)
+,77E,31,31,1,0,0,,227005,627005,ff,($7005) Verlog Status,0:Vehicle locked;1:Vehicle unlocked
+,77E,31,31,1,0,0,,227006,627006,ff,($7006) Wire frame APC state,0:APC off;1:APC on
+,77E,24,39,.03125,16000,2,A,227007,627007,ff,($7007) Measured stator current on phase U
+,77E,24,39,.03125,16000,2,A,227008,627008,ff,($7008) Measured stator current on phase V
+,77E,24,39,.03125,16000,2,A,227009,627009,ff,($7009) Measured stator current on phase W
+,77E,31,31,1,0,0,,22700A,62700A,ff,($700A) Feedback fan raw diagnostic,0:OK;1:NOK
+,77E,24,47,.001953125,20480,3,°C,22700B,62700B,ff,($700B) Excitation temperature
+,77E,24,47,.001953125,20480,3,°C,22700C,62700C,ff,($700C) Inverter temperature sensor 1
+,77E,24,47,.001953125,20480,3,°C,22700D,62700D,ff,($700D) MICRO temperature
+,77E,24,47,.001953125,20480,3,°C,22700E,62700E,ff,($700E) PCB temperature
+,77E,24,47,.001953125,20480,3,°C,22700F,62700F,ff,($700F) Stator temperature sensor 1
+,77E,24,47,.001953125,20480,3,°C,227010,627010,ff,($7010) Stator temperature sensor 2
+,77E,24,39,.0078125,0,3,°,227011,627011,ff,($7011) Raw rotor position resolver angular position measurement
+,77E,24,31,1,0,0,,227012,627012,ff,($7012) Status flag of the Smartcoder
+,77E,24,39,.0002441406,0,3,V,227013,627013,ff,($7013) Raw rotor position resolver cosine voltage
+,77E,24,39,.0002441406,0,3,V,227014,627014,ff,($7014) Raw rotor position resolver cosine voltage with 25µs delay
+,77E,24,39,.0002441406,0,3,V,227015,627015,ff,($7015) Raw rotor position resolver excitation peak voltage
+,77E,31,31,1,0,0,,227016,627016,ff,($7016) result of the check on CAN communication with EVC,0:Check is Ok;1:Check is Nok
+,77E,24,39,1,0,0,,227017,627017,ff,($7017) Failure vector allowing exact identification of the failure.1
+,77E,24,31,1,0,0,,227018,627018,ff,($7018) Failure vector allowing exact identification of the failure.2
+,77E,24,31,1,0,0,,227019,627019,ff,($7019) Failure vector allowing exact identification of the failure.3
+,77E,24,39,1,0,0,,22701A,62701A,ff,($701A) Failure vector allowing exact identification of the failure.4
+,77E,24,31,1,0,0,,22701B,62701B,ff,($701B) Failure vector allowing exact identification of the DCDC event
+,77E,24,39,.0078125,0,3,,22701C,62701C,ff,($701C) Saved rotor position offset.value.physical
+,77E,40,47,1,0,0,,22701C,62701C,4ff,($701C) Saved rotor position offset.CRC
+,77E,24,39,1,0,0,,22701D,62701D,ff,($701D) Counter of FAN fail times to cool the machine stator in hard conditions.1
+,77E,24,39,1,0,0,,22701E,62701E,ff,($701E) Counter of FAN fail times to cool the machine stator in hard conditions.2
+,77E,24,39,1,0,0,,22701F,62701F,ff,($701F) Counter of FAN fail times to cool the machine stator in hard conditions.3
+,77E,24,39,1,0,0,,227021,627021,4ff,($7021) Saved resistance rotor.value
+,77E,40,47,1,0,0,,227021,627021,4ff,($7021) Saved resistance rotor.CRC
+,77E,31,31,1,0,0,,227022,627022,ff,($7022) Active discharge request from EVC to PEB,0:Discharge not requested;1:Discharge requested
+,77E,31,31,1,0,0,,227023,627023,ff,($7023) Effective active discharge feedback to EVC,0:Active Discharge Not In Progress;1:Active Discharge In Progress
+,77E,31,31,1,0,0,,227024,627024,ff,($7024) APC state (from CAN),0:APC off;1:APC on
+,77E,31,31,1,0,0,,227025,627025,ff,($7025) Charge request from EVC to PEB,0:No charge requested;1:Charge requested
+,77E,31,31,1,0,0,,227026,627026,ff,($7026) Effective Charge feedback to EVC,0:No charge in progress;1:Charging in progress
+,77E,31,31,1,0,0,,227027,627027,ff,($7027) On/Off request of the DCDC from EVC,0:DCDC Off;1:DCDC On
+,77E,31,31,1,0,0,,227028,627028,ff,($7028) status verlog from PEB to EVC,0:Vehicle locked;1:Vehicle unlocked
+,77E,31,31,1,0,0,,227029,627029,ff,($7029) On/Off power train activation request from EVC,0:Inverter Off;1:Inverter On
+,77E,29,31,1,0,0,,22702B,62702B,ff,($702B) Auto Diag enable,0:Nsx_auto_diag_nok (0) - Auto diag not allowed;1:Nsx_auto_diag_apc_off (1) - Auto diag without apc allowed;2:Nsx_auto_diag_apc_on (2) - Auto diag with apc allowed;3:Nsx_auto_diag_sfty_1 (3) - auto diag Safety 1 (DM);4:Nsx_auto_diag_sfty_2 (4) - auto diag Safety 2 (FPGA)
+,77E,29,31,1,0,0,,22702D,62702D,ff,($702D) Failure class of the DCDC converter,0:Nsx_dcdc_err_stt_ok  - No Fault type;1:Nsx_dcdc_err_stt_1 - GE-MD1 Class C;2:Nsx_dcdc_err_stt_1_prmt - GE-MD1 Class D;3:Nsx_dcdc_err_stt_2 - Not used;4:Nsx_dcdc_err_stt_3 - GE-MD3;5:Nsx_dcdc_err_stt_4 - GE-MD4
+,77E,29,31,1,0,0,,22702E,62702E,ff,($702E) DCDC state,0:Init (Nsx_dcdc_stt_ini);1:Autodiag (Nsx_dcdc_stt_dgt);2:Reset  (Nsx_dcdc_stt_rst);3:Standby (Nsx_dcdc_stt_stby);4:Pwer ON (Nsx_dcdc_stt_on);5:MD1 (Nsx_dcdc_stt_def_mod_1);6:MD4 on (Nsx_dcdc_stt_def_mod_4_on);7:MD4 stby (Nsx_dcdc_stt_def_mod_4_stby)
+,77E,28,31,1,0,0,,22702F,62702F,ff,($702F) High Voltage Network Default,0:Nsx_hv_nok (0)- More than one sensor failure;1:Nsx_hv_ok (1)- No Default;2:Nsx_hv_udc_dfl (2)- HV UDC Failure;3:Nsx_hv_dcdc_dfl (3)- HV DCDC voltage sensor Failure;4:Nsx_hv_bat_dfl (4)-  HV Battery voltage sensor Failure;5:Nsx_hv_nw_loss - HV Network Loss or false relay status information;6:Nsx_hv_bat_cell_ov_dfl - HV battery overvoltage (cell);7:Nsx_hv_bat_ov_dfl - HV battery overvoltage (pack);8:Nsx_hv_rly_open_dfl- false open relay status information
+,77E,29,31,1,0,0,,227030,627030,ff,($7030) Failure class of the Inverter,0:Nsx_invt_flt_type_0 (0)- no downgraded mode;1:Nsx_invt_flt_type_1 (1)-  INV Stopped (class C);2:Nsx_invt_flt_type_2 (2)-  INV Stopped (class D);3:Nsx_invt_flt_type_3 (3)- not used;4:Nsx_invt_flt_type_4 (4) - Safety Barrier Lost;5:Nsx_invt_flt_type_5 (5) - Alert Service;6:Nsx_invt_flt_type_6 (6) - Charge Stop Alert
+,77E,30,31,1,0,0,,227031,627031,ff,($7031) Interlock plug service status, from LBC (condition for reprogramming),0:Closed;1:Opened;2:Unavailable;3:not used
+,77E,28,31,1,0,0,,227032,627032,ff,($7032) Torque Default,0:No default;1:CAN Default;2:Safety Check Default;3:"Unexpected braking" is detected by the "static control strategy";4:"Unexpected acceleration" in case of negative torque request is detected by the "static control strategy";5:"Unexpected acceleration" is detected by the "static control strategy";6:"Unexpected acceleration" is detected by the "dynamic control strategy";7:"Over braking" is detected by the "static control strategy";8:"Over braking" or "Unexpected braking" are detected by the "dynamic control strategy";9:"Lack of motricity" is detected by the "static control strategy";10:"Lack of motricity" is detected by the "dynamic control strategy";11:"Loss of regenerative torque" is detected by the "static control strategy";12:"Loss of regenerative torque" is detected by the "dynamic control strategy";13:Non zero generated torque detected in case of overvoltage;14:Non limited torque detected in case of rotor overtemperature (rotor temperature = 100%)
+,77E,24,39,.5,0,1,V,227033,627033,ff,($7033) DCDC input voltage
+,77E,24,39,1,0,0,mV,227034,627034,ff,($7034) Voltage demand for the DCDC converter from the EVC
+,77E,24,31,1,0,0,N·m,227035,627035,ff,($7035) Maximal available calculated torque in generator mode
+,77E,24,31,1,0,0,N·m,227036,627036,ff,($7036) Maximal available calculated torque in motor mode
+,77E,24,39,1,0,0,,227037,627037,4ff,($7037) Rotor position offset learning + CRC written by diag tool.1
+,77E,40,47,1,0,0,,227037,627037,4ff,($7037) Rotor position offset learning + CRC written by diag tool.2
+,77E,24,39,.0078125,5120,3,°C,227038,627038,ff,($7038) Rotor copper temperature raw estimation
+,77E,24,39,.015625,0,2,%,227039,627039,ff,($7039) Combination of inverter, Excitation, PCB, MC and DRI temperatures, so in %
+,77E,24,39,.015625,0,2,%,22703A,62703A,ff,($703A) Combination of rotor and stator temperatures, so in %
+,77E,24,39,1,0,0,,22703B,62703B,4ff,($703B) Resistance rotor learning + CRC written by diag tool.1
+,77E,40,47,1,0,0,,22703B,62703B,4ff,($703B) Resistance rotor learning + CRC written by diag tool.2
+,77E,24,47,1,0,0,km,22703C,62703C,ff,($703C) Vehicle distance totalizer from EVC
+,77E,25,31,1,0,0,°C,22703D,62703D,ff,($703D) The water temperature produced by the Rectifier
+,77E,31,31,1,0,0,,22703E,62703E,ff,($703E) Mode of the power train (motor or generator),0:Motor;1:Generator
+,77E,31,31,1,0,0,,22703F,62703F,ff,($703F) SPI communication default,0:No default;1:Default
+,77E,31,31,1,0,0,,227041,627041,ff,($7041) Rotor overcurrent validated,0:No default;1:Default
+,77E,31,31,1,0,0,,227042,627042,ff,($7042) Stator overcurrent validated,0:No default;1:Default
+,77E,28,31,1,0,0,,227043,627043,ff,($7043) activated downgraded mode FPGA number,0:Nsx_no_sfty_dfl - no downgraded mode;1:Nsx_gc_md_01a - GC-MD01a;2:Nsx_gc_md_01b - GC-MD01b;3:Nsx_gc_md_01c - GC-MD01c;4:Nsx_gc_md_01d - GC-MD01d;5:Nsx_gc_md_01e - GC-MD01e;6:Nsx_gc_ci_md_01a ( 9 ) - gc_ci_md_01a;7:Nsx_gc_ci_md_01b (10)  -  gc_ci_md_01b;8:Nsx_dfl_chr_md (11) - inconsistency between PWMs and downgraded mode;9:Nsx_dfl_auto_diag_sfty_2 (12) -autodiag safety 2 fpga NOK
+,77E,28,31,1,0,0,,227044,627044,ff,($7044) activated downgraded mode number,0:Nsx_no_sfty_dfl - no downgraded mode;1:Nsx_gc_md_01a - GC-MD01a;2:Nsx_gc_md_01b - GC-MD01b;3:Nsx_gc_md_01c - GC-MD01c;4:Nsx_gc_md_01d - GC-MD01d;5:Nsx_gc_md_01e - GC-MD01e;6:Nsx_gc_md_03 - GC-MD03;7:Nsx_gc_ci_md_01a ( 9 ) - gc_ci_md_01a;8:Nsx_gc_ci_md_01b (10)  -  gc_ci_md_01b
+,77E,30,31,1,0,0,,227045,627045,ff,($7045) Validity status of the rotor electrical rotation speed,0:Nsx_emot_n_chk_ok- OK;1:Nsx_emot_n_chk_fail- Rotor speed is based on backup position acquisition- increased noise.;2:Nsx_emot_n_full_fail- No reliable position inforamtion to compute rotor speed or incoherency between functional and safety rotation speeds
+,77E,29,31,1,0,0,,227046,627046,ff,($7046) Excitation Current Default,0:Nsx_ok (0) - no excitation sensor default;1:Nsx_i_f_dfl_1 (1) - default excitation sensor 1;2:Nsx_i_f_dfl_2 (2) - default excitation sensor 2;3:Nsx_i_f_dfl (3) - unknown excitation sensor default;4:Nsx_i_f_wi_dfl (4) - excitation wire default
+,77E,28,31,1,0,0,,227047,627047,ff,($7047) Phase Current Default,0:Nsx_ok (0) - no sensor default;1:Nsx_i_mot_ph_dfl_1 (1) - default phase sensor 1;2:Nsx_i_mot_ph_dfl_2 (2) - default phase sensor 2;3:Nsx_i_mot_ph_dfl_3 (3) - default phase sensor 3;4:Nsx_i_mot_ph_dfl (4) - unknown phase sensor default;5:Nsx_i_mot_ph_wi_dfl_1 (5) -  phase wire 1 default;6:Nsx_i_mot_ph_wi_dfl_2 (6) - phase wire 2 default;7:Nsx_i_mot_ph_wi_dfl_3 (7) - phase wire 3 default;8:Nsx_i_mot_ph_wi_dfl (8) - unknown phase wire default;9:Nsx_i_mot_ph_igbt_dfl (9) - unknown IBGT default
+,77E,30,31,1,0,0,,227048,627048,ff,($7048) Validity status of the rotor electrical angular position,0:Nsx_dgt_emot_psn_chk_ok- OK;1:Nsx_dgt_emot_psn_chk_fail- Failure of the functional position acquisition;2:Nsx_dgt_emot_psn_chk_fail_sfty- Failure of the safety position acquisition;3:Nsx_dgt_emot_psn_chk_full_fail- Double failure or incoherency between functional and safety positions
+,77E,24,39,.03125,16000,2,A,227049,627049,ff,($7049) Combinated current value on the HV Network of Inverter and Excitation
+,77E,24,31,1,0,0,,22704A,62704A,4ff,($704A) TETA CRC received
+,77E,24,39,.0078125,0,3,,22704B,62704B,ff,($704B) Received TETA position offset
+,77E,24,31,1,0,0,,22704C,62704C,4ff,($704C) Received rotor reference resistance CRC
+,77E,24,39,.001953125,-512,3,Ohm,22704D,62704D,ff,($704D) Received value for reference rotor resistance
+,77E,24,39,.001953125,0,3,Ohm,227050,627050,ff,($7050) Value for reference rotor resistance (for safety monitoring)
+,77E,24,31,1,0,0,,227051,627051,ff,($7051) Position sensor type,0:0- Sensor type A = TAMAGAWA;1:1- Sensor type B = MINEBEA
+,77E,24,47,.001953125,20480,3,°C,227052,627052,ff,($7052) Vector of 5 average dcdc temperature on 1s in the minute before break event for post mortem.4
+,77E,48,71,.001953125,20480,3,°C,227052,627052,ff,($7052) Vector of 5 average dcdc temperature on 1s in the minute before break event for post mortem.3
+,77E,72,95,.001953125,20480,3,°C,227052,627052,ff,($7052) Vector of 5 average dcdc temperature on 1s in the minute before break event for post mortem.2
+,77E,96,119,.001953125,20480,3,°C,227052,627052,ff,($7052) Vector of 5 average dcdc temperature on 1s in the minute before break event for post mortem.1
+,77E,120,143,.001953125,20480,3,°C,227052,627052,ff,($7052) Vector of 5 average dcdc temperature on 1s in the minute before break event for post mortem.0
+,77E,24,47,.001953125,20480,3,°C,227053,627053,ff,($7053) Vector of 5 average driver board temperature on 1s in the minute before break event for post mortem.4
+,77E,48,71,.001953125,20480,3,°C,227053,627053,ff,($7053) Vector of 5 average driver board temperature on 1s in the minute before break event for post mortem.3
+,77E,72,95,.001953125,20480,3,°C,227053,627053,ff,($7053) Vector of 5 average driver board temperature on 1s in the minute before break event for post mortem.2
+,77E,96,119,.001953125,20480,3,°C,227053,627053,ff,($7053) Vector of 5 average driver board temperature on 1s in the minute before break event for post mortem.1
+,77E,120,143,.001953125,20480,3,°C,227053,627053,ff,($7053) Vector of 5 average driver board temperature on 1s in the minute before break event for post mortem.0
+,77E,24,47,.001953125,20480,3,°C,227054,627054,ff,($7054) Vector of 5 average excitation temperature on 1s in the minute before break event for post mortem.4
+,77E,48,71,.001953125,20480,3,°C,227054,627054,ff,($7054) Vector of 5 average excitation temperature on 1s in the minute before break event for post mortem.3
+,77E,72,95,.001953125,20480,3,°C,227054,627054,ff,($7054) Vector of 5 average excitation temperature on 1s in the minute before break event for post mortem.2
+,77E,96,119,.001953125,20480,3,°C,227054,627054,ff,($7054) Vector of 5 average excitation temperature on 1s in the minute before break event for post mortem.1
+,77E,120,143,.001953125,20480,3,°C,227054,627054,ff,($7054) Vector of 5 average excitation temperature on 1s in the minute before break event for post mortem.0
+,77E,24,47,.001953125,20480,3,°C,227055,627055,ff,($7055) Vector of 5 average inverter temperature on 1s in the minute before break event for post mortem.4
+,77E,48,71,.001953125,20480,3,°C,227055,627055,ff,($7055) Vector of 5 average inverter temperature on 1s in the minute before break event for post mortem.3
+,77E,72,95,.001953125,20480,3,°C,227055,627055,ff,($7055) Vector of 5 average inverter temperature on 1s in the minute before break event for post mortem.2
+,77E,96,119,.001953125,20480,3,°C,227055,627055,ff,($7055) Vector of 5 average inverter temperature on 1s in the minute before break event for post mortem.1
+,77E,120,143,.001953125,20480,3,°C,227055,627055,ff,($7055) Vector of 5 average inverter temperature on 1s in the minute before break event for post mortem.0
+,77E,24,47,.001953125,20480,3,°C,227056,627056,ff,($7056) Vector of 5 average pcb temperature on 1s in the minute before break event for post mortem.4
+,77E,48,71,.001953125,20480,3,°C,227056,627056,ff,($7056) Vector of 5 average pcb temperature on 1s in the minute before break event for post mortem.3
+,77E,72,95,.001953125,20480,3,°C,227056,627056,ff,($7056) Vector of 5 average pcb temperature on 1s in the minute before break event for post mortem.2
+,77E,96,119,.001953125,20480,3,°C,227056,627056,ff,($7056) Vector of 5 average pcb temperature on 1s in the minute before break event for post mortem.1
+,77E,120,143,.001953125,20480,3,°C,227056,627056,ff,($7056) Vector of 5 average pcb temperature on 1s in the minute before break event for post mortem.0
+,77E,24,47,.001953125,20480,3,°C,227057,627057,ff,($7057) Vector of 5 average wtr temperature on 1s in the minute before break event for post mortem.4
+,77E,48,71,.001953125,20480,3,°C,227057,627057,ff,($7057) Vector of 5 average wtr temperature on 1s in the minute before break event for post mortem.3
+,77E,72,95,.001953125,20480,3,°C,227057,627057,ff,($7057) Vector of 5 average wtr temperature on 1s in the minute before break event for post mortem.2
+,77E,96,119,.001953125,20480,3,°C,227057,627057,ff,($7057) Vector of 5 average wtr temperature on 1s in the minute before break event for post mortem.1
+,77E,120,143,.001953125,20480,3,°C,227057,627057,ff,($7057) Vector of 5 average wtr temperature on 1s in the minute before break event for post mortem.0
+,77E,24,47,.001953125,20480,3,°C,227058,627058,ff,($7058) 1s average dcdc temperature on break event for post mortem
+,77E,24,47,.001953125,20480,3,°C,227059,627059,ff,($7059) 1s average driver board temperature on break event for post mortem
+,77E,24,39,1,0,0,,22705A,62705A,ff,($705A) Derating counter for post mortem
+,77E,24,39,1,0,0,,22705B,62705B,ff,($705B) Blocked rotor counter for post mortem
+,77E,24,39,1,0,0,,22705C,62705C,ff,($705C) Water overheat temperature counter for post mortem
+,77E,24,47,.001953125,20480,3,°C,22705D,62705D,ff,($705D) 1s average excitation temperature on break event for post mortem
+,77E,24,47,.001953125,20480,3,°C,22705E,62705E,ff,($705E) 1s average inverter temperature on break event for post mortem
+,77E,24,47,.001953125,20480,3,°C,22705F,62705F,ff,($705F) 1s average pcb temperature on break event for post mortem
+,77E,24,47,.001953125,20480,3,°C,227061,627061,ff,($7061) Maximum driver board temperature during last derating
+,77E,24,47,.001953125,20480,3,°C,227062,627062,ff,($7062) Maximum excitation temperature during last derating
+,77E,24,47,.001953125,20480,3,°C,227063,627063,ff,($7063) Maximum inverter temperature during last derating
+,77E,24,47,.001953125,20480,3,°C,227064,627064,ff,($7064) Maximum pcb temperature during last derating
+,77E,24,47,.001953125,20480,3,°C,227065,627065,ff,($7065) Maximum water temperature during last derating
+,77E,24,55,1,0,0,s,227066,627066,1ff,($7066) Charge or non zero torque time counter for post mortem analysis
+,77E,24,55,1,0,0,s,227067,627067,1ff,($7067) APC and zero torque time counter for post mortem analysis
+,77E,24,39,1,0,0,,227068,627068,ff,($7068) Software overcurrent protection counter for post mortem analysis
+,77E,24,39,1,0,0,,227069,627069,ff,($7069) Hardware (by the fpga) overcurrent protection counter for post mortem analysis
+,77E,24,39,1,0,0,,22706A,62706A,ff,($706A) Hardware (by the fpga) overvoltage protection counter for post mortem analysis
+,77E,24,39,1,0,0,,22706B,62706B,ff,($706B) Software overvoltage protection counter for post mortem analysis
+,77E,24,31,1,0,0,,22706C,62706C,ff,($706C) Alim 21 monitoring,0:No default;1:Default
+,77E,24,31,1,0,0,,22706D,62706D,ff,($706D) Alim 21 with redundance monitoring,0:No default;1:Default
+,77E,24,31,1,0,0,,22706E,62706E,ff,($706E) DID for activation of bypass frame,0:Frame inactivated;1:Frame active
+,77E,24,31,1,0,0,,22706F,62706F,ff,($706F) Excitation high arm IGBT driver fault,0:No default;1:Default
+,77E,24,31,1,0,0,,227070,627070,ff,($7070) Excitation low arm IGBT driver fault,0:No default;1:Default
+,77E,24,31,1,0,0,,227071,627071,ff,($7071) Inverter high arm IGBT driver fault,0:No default;1:Default
+,77E,24,31,1,0,0,,227072,627072,ff,($7072) Inverter low arm IGBT driver fault,0:No default;1:Default
+,77E,24,31,1,0,0,,227073,627073,ff,($7073) Excitation over current protection (before flipflop) High,0:No default;1:Default
+,77E,24,31,1,0,0,,227074,627074,ff,($7074) Excitation over current protection (before flipflop) Low,0:No default;1:Default
+,77E,24,31,1,0,0,,227075,627075,ff,($7075) Inverter over current protection (before flipflop) Arm U,0:No default;1:Default
+,77E,24,31,1,0,0,,227076,627076,ff,($7076) Inverter over current protection (before flipflop) Arm V,0:No default;1:Default
+,77E,24,31,1,0,0,,227077,627077,ff,($7077) Inverter over current protection (before flipflop) Arm W,0:No default;1:Default
+,77E,24,31,1,0,0,,227078,627078,ff,($7078) Over voltage protection (before flipflop),0:No default;1:Default
+,77E,24,31,1,0,0,,227079,627079,ff,($7079) Copy Over voltage protection (before flipflop),0:No default;1:Default
+,77E,24,31,1,0,0,,22707A,62707A,ff,($707A) Excitation driver state (ready or not),0:Not Ready;1:Ready
+,77E,24,31,1,0,0,,22707B,62707B,ff,($707B) Inverter high IGBT driver state (ready or not),0:Not Ready;1:Ready
+,77E,24,31,1,0,0,,22707C,62707C,ff,($707C) Inverter low IGBT driver state (ready or not),0:Not Ready;1:Ready
+,77E,24,31,1,0,0,,22707D,62707D,ff,($707D) Supply monitoring default,0:No default;1:Default
+,77E,24,31,1,0,0,,22707E,62707E,ff,($707E) Alimentation 11 state,0:Stop;1:Start
+,77E,24,31,1,0,0,,22707F,62707F,ff,($707F) Alimentation 21 state,0:Stop;1:Start
+,77E,24,31,1,0,0,,227081,627081,ff,($7081) Bypass mode,0:Bypass off;1:Only THOCP bypass;2:Torque setpoint bypass;3:TQ setpoint and torque mode bypass;4:Current request bypass;5:Voltage control bypass;6:Voltage control + position/speed bypass;7:Inverter voltage control +excitation current +position/speed bypass;8:RGL duty cycle bypass (in PWM);9:Voltage control and speed bypass and position emulation
+,77E,24,31,1,0,0,,227082,627082,ff,($7082) FPGA fault sent by SPI,0:no fault;1:Vbx_invt_flt_dri_l or Vbx_invt_flt_dri_h;2:Vbx_exct_flt_dri_h or Vbx_exct_flt_dri_l;3:Vbx_ovp_udc_mem;4:Vbx_ocp_invt_mem;5:Vbx_ocp_exct_mem;6:Vbx_pwm_dfl_sfty_mem
+,77E,24,31,1,0,0,,227083,627083,ff,($7083) INV Automation State,0:Init;1:Traction;2:Charge;3:Motor Stop;4:Rotor Position Learning;5:Stand By;6:Active Discharge;7:Diag
+,77E,24,39,1,0,0,A,227084,627084,ff,($7084) DCDC Input current measure
+,77E,24,39,1,0,0,A,227085,627085,ff,($7085) DCDC output current measure
+,77E,24,31,1,0,0,°C,227086,627086,ff,($7086) DCDC power card temperature
+,77E,24,39,.0078125,5120,3,°C,227087,627087,ff,($7087) Observer estimation for stack rotor temperature
+,77E,24,39,.0078125,5120,3,°C,227088,627088,ff,($7088) Rotor copper temperature estimation
+,77E,24,39,.0078125,5120,3,°C,227089,627089,ff,($7089) Stator copper temperature estimation
+,77E,24,39,1,0,0,,22708A,62708A,ff,($708A) FPGA firmware version Identifier
+,77E,24,39,.0078125,0,3,,22708B,62708B,ff,($708B) Rotor position measure
+,77E,24,39,.000244140625,0,3,V,22708C,62708C,ff,($708C) Copy Raw rotor position resolver excitation peak voltage
+,77E,24,39,.0078125,0,3,,22708D,62708D,ff,($708D) Rotor position measure (for safety monitoring)
+,77E,24,47,.001953125,20480,3,°C,22708E,62708E,ff,($708E) Spare signal for driver board temperature
+,77E,24,31,1,0,0,,22708F,62708F,ff,($708F) Opening relays wire request,0:Not open;1:Open
+,77E,24,47,.001953125,20480,3,°C,227091,627091,ff,($7091) Last driver board temperature on 1s in the minute before break event for post mortem
+,77E,24,31,1,0,0,,227092,627092,ff,($7092) CAN Etude activation,0:deactivated;1:activated
+,77E,24,39,1,0,0,,227093,627093,ff,($7093) Number of Derating CFA functionnal failure 1 cycles saved
+,77E,24,39,1,0,0,,227094,627094,ff,($7094) Number of Derating CFA functionnal failure 2 cycles saved
+,77E,24,39,1,0,0,,227095,627095,ff,($7095) Number of Derating CFA functionnal failure 3 cycles saved
+,77E,24,39,.015625,0,2,%,227096,627096,ff,($7096) Normalized inverter-Excitation temperature
+,77E,24,39,.015625,0,2,%,227097,627097,ff,($7097) Normalized PCB-Micro_driverboard temperature
+,77E,24,31,1,0,0,,227098,627098,ff,($7098) Excitation currents safety check,0:Both currents are consistent  (difference <thershold);1:both currents are out of range  OR the 2 currents are inconsistent (difference > thershold);2:current from sensor 1 (Vxx_i_f_1) is out of range;3:current from sensor 2 (Vxx_i_f_2) is out of range
+,77E,24,31,1,0,0,,227099,627099,ff,($7099) Phase currents safety check,0:the summ of the 3 currents is close to zero (< threshold);1:the summ of the 3 currents isn't close to zero (>threshold)  OR at least 2 of the currents are out of range;2:current from sensor 1 (Vxx_i_mot_ph_1) is out of range;3:current from sensor 2 (Vxx_i_mot_ph_2) is out of range;4:current from sensor 3 (Vxx_i_mot_ph_3) is out of range
+,77E,24,31,1,0,0,µs,22709A,62709A,ff,($709A) Max CPU load at 10ms
+,77E,24,31,1,0,0,µs,22709B,62709B,ff,($709B) CPU load at 10ms
+,77E,24,31,1,0,0,,22709C,62709C,ff,($709C) Gestion of current sensors,0:No Default;1:Phase open circuit default;2:IGBT open circuit default
+,77E,24,39,1,0,0,,22709D,62709D,ff,($709D) redundant supply 21 failure counter for post mortem analysis
+,77E,24,39,1,0,0,,22709E,62709E,ff,($709E) SeedBreaker to explain the reset cause
+,77E,24,39,1,0,0,,22709F,62709F,ff,($709F) Max of CPU load in micro-seconds (Vtx_TaskMaxDurationIT_A[12])
+,77E,24,39,1,0,0,,2270A1,6270A1,ff,($70A1) Max of 10ms task (Vtx_TaskMaxDurationIT_A[3])
+,77E,24,27,1,0,0,ms,2270A2,6270A2,ff,($70A2) Vxx_invt_rst_ctx_4.($70A2) Vtx_TaskMaxDurationIT_A[3]_(bit8-11)
+,77E,28,31,1,0,0,ms,2270A2,6270A2,ff,($70A2) Vxx_invt_rst_ctx_4.($70A2) Vxx_10ms_max_duration_(bit12-15)
+,77E,32,33,1,0,0,,2270A2,6270A2,ff,($70A2) Vxx_invt_rst_ctx_4.($70A2) Stack Overflow on State_(bit6-7),0:No overflow;1:overflow on Istack;2:overflow on Ustack;3:overflowon Csa
+,77E,34,34,1,0,0,,2270A2,6270A2,ff,($70A2) Vxx_invt_rst_ctx_4.($70A2) Vbx_sply_mon_(bit5)
+,77E,35,35,1,0,0,,2270A2,6270A2,ff,($70A2) Vxx_invt_rst_ctx_4.($70A2) Vbx_alim_21_mon_red_(bit4)
+,77E,36,36,1,0,0,,2270A2,6270A2,ff,($70A2) Vxx_invt_rst_ctx_4.($70A2) Vbx_alim_21_mon_(bit3)
+,77E,37,37,1,0,0,,2270A2,6270A2,ff,($70A2) Vxx_invt_rst_ctx_4.($70A2) Vbx_dfl_i_f_low_(bit2)
+,77E,38,38,1,0,0,,2270A2,6270A2,ff,($70A2) Vxx_invt_rst_ctx_4.($70A2) Vsx_emot_n_dfl_sfty_(bit1)
+,77E,39,39,1,0,0,,2270A2,6270A2,ff,($70A2) Vxx_invt_rst_ctx_4.($70A2) Vbx_rot_temp_dfl_sfty_(bit0)
+,77E,24,39,.0000610352,16384,3,,2270A3,6270A3,ff,($70A3) Maximum normalized torque corresponding to max current saturation value
+,77E,24,39,.0000610352,16384,3,,2270A4,6270A4,ff,($70A4) Minimum normalized torque corresponding to max current saturation value
+,77E,24,39,.0000610352,16384,3,,2270A5,6270A5,ff,($70A5) Maximum instant value of normalized torque for cell overvoltage
+,77E,24,39,.0000610352,16384,3,,2270A6,6270A6,ff,($70A6) Maximum instant value of normalized torque for temperature derating
+,77E,24,39,.0000610352,16384,3,,2270A7,6270A7,ff,($70A7) Maximum instant value of normalized torque for voltage derating
+,77E,24,39,.0000610352,16384,3,,2270A8,6270A8,ff,($70A8) Minimum instant value of normalized torque for cell overvoltage
+,77E,24,39,1,0,0,,2270A9,6270A9,ff,($70A9) Vxx_invt_rst_ctx_5
+,77E,24,31,1,0,0,,2270CA,6270CA,ff,($70CA) Number of the bloc which has nvrol error
+,77E,24,39,1,0,0,,2270CB,6270CB,ff,($70CB) Nvrol error counters.8 bits MSB.8 bits LSB
+,77E,31,31,1,0,0,,2270D5,6270D5,ff,($70D5) Rotor position sensor safety check,0:the 2 positions are inconsisten (difference > thershold);1:Both positions are consistent  (difference <thershold)
+,77E,30,31,1,0,0,,2270D6,6270D6,ff,($70D6) Rotor Positions Diag,0:both diag are OK;1:Failure of the functional position acquisitio;2:Failure of the safety position acquisition (sin cos);3:both diag are NOK
+,77E,24,39,.5,0,1,V,2270D7,6270D7,ff,($70D7) HVNetworkVoltage from Battery
+,77E,24,39,.5,0,1,V,2270D8,6270D8,ff,($70D8) HVNetworkVoltage from DCDC
+,77E,24,39,.001953125,0,3,%,2270E7,6270E7,ff,($70E7) Normalized rotor temperature
+,77E,24,39,.25,160,1,°C,2270E8,6270E8,ff,($70E8) Stator temperature sensor 1 for freeze frame management
+,77E,24,39,.25,160,1,°C,2270E9,6270E9,ff,($70E9) Stator temperature sensor 2 for freeze frame management
+,77E,24,39,.25,160,1,°C,2270EA,6270EA,ff,($70EA) spare signal for driver board temperature for freeze frame management
+,77E,24,39,.25,160,1,°C,2270EB,6270EB,ff,($70EB) Excitation temperature for freeze frame management
+,77E,24,39,.25,160,1,°C,2270EC,6270EC,ff,($70EC) Inverter temperature sensor 1 for freeze frame management
+,77E,24,39,.25,160,1,°C,2270ED,6270ED,ff,($70ED) MICRO temperature for freeze frame management
+,77E,24,39,.25,160,1,°C,2270EE,6270EE,ff,($70EE) PCB temperature for freeze frame management
+,77E,24,39,1,0,0,,2270EF,6270EF,ff,($70EF) Counter giving the nb of times Wsx_cuc_f_dfl is equal to Nsx_i_f_df
+,77E,24,55,1,-2147483648,0,min,2270F0,6270F0,1ff,($70F0) Absolute time since first Ignition
+,77E,24,39,.001953125,0,3,,2270F1,6270F1,ff,($70F1) Max ratio between the square of excitation sgnl and the sun of squares of rotor reslver cos and sin sgnl
+,77E,24,39,.0078125,5120,3,°C,2270F2,6270F2,ff,($70F2) Environment temperature
+,77E,24,39,.001953125,0,3,,2270F3,6270F3,ff,($70F3) Ratio between square of excitation signal and sum of squares of rotor reslver cos and sine signals
+,77E,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI
+,77E,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI
+,77E,0,0,1,0,0,,3E01,7E01,ff,TesterPresent.WithResponse

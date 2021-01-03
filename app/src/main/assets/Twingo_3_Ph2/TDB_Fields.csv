@@ -1,0 +1,311 @@
+,763,0,0,1,0,0,,1081,5081,ff,StartDiagnosticSession.Default
+,763,0,0,1,0,0,,1085,5085,ff,StartDiagnosticSession.Programming
+,763,0,0,1,0,0,,10C0,50C0,ff,StartDiagnosticSession
+,763,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
+,763,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask
+,763,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceIdentifier,37890:Fuel gauge monitoring;37900:EEPROM monitoring;37906:External temperature inputs;37892:Warning Airbag telltale monitoring;37907:Error configuration;37920:Alternator Excitation Input;49153:Lost CAN communication or BUS OFF;49154:Lost LIN communication or BUS OFF;61443:Power supply monitoring
+,763,40,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM  / PWM Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adjt failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component/system operation obstructed or blocked;152:component or system over temperature
+,763,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier
+,763,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,763,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,763,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,763,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,763,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,763,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,763,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,763,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,763,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord
+,763,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC
+,763,48,55,1,0,0,,190600000080,590600000080,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,763,56,79,1,0,0,km,190600000080,590600000080,ff,DTCExtendedData.Mileage
+,763,16,39,1,0,0,,190600000081,590600000081,4ff,DTCRecord
+,763,40,47,1,0,0,,190600000081,590600000081,ff,StatusOfDTC
+,763,48,55,1,0,0,,190600000081,590600000081,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,763,56,63,1,0,0,,190600000081,590600000081,ff,DTCExtendedData.AgingCounter
+,763,40,47,1,0,0,,190600000082,590600000082,ff,StatusOfDTC
+,763,48,55,1,0,0,,190600000082,590600000082,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,763,56,63,1,0,0,,190600000082,590600000082,ff,DTCExtendedData.DTCOccurrenceCounter
+,763,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord
+,763,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC
+,763,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,763,56,79,1,0,0,km,1906000000FF,5906000000FF,ff,DTCExtendedData.Mileage
+,763,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
+,763,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode
+,763,64,87,1,0,0,,2180,6180,4ff,SupplierNumber
+,763,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
+,763,128,143,1,0,0,,2180,6180,4ff,SoftwareNumber
+,763,144,159,1,0,0,,2180,6180,4ff,EditionNumber
+,763,160,175,1,0,0,,2180,6180,4ff,CalibrationNumber
+,763,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;2:248B3
+,763,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:N/A;1:25046
+,763,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A
+,763,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+,763,16,151,1,0,0,,2181,6181,2ff,VIN
+,763,152,167,1,0,0,,2181,6181,4ff,VINcrc
+,763,16,31,1,0,0,,2182,6182,ff,Ref Messagerie Mux
+,763,32,33,1,0,0,,2182,6182,ff,Produce Bus Off,0:Present;2:Missing;3:Missing Confirmed
+,763,34,39,1,0,0,,2182,6182,ff,Produce Bus Off Counter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,763,40,41,1,0,0,,2182,6182,ff,Produce Bus Mute,0:Present;2:Missing;3:Missing Confirmed
+,763,42,47,1,0,0,,2182,6182,ff,Produce Bus Mute Counter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,763,48,49,1,0,0,,2182,6182,ff,MUX ECM,0:Present;2:Missing;3:Missing Confirmed
+,763,50,55,1,0,0,,2182,6182,ff,MUX ECM counter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,763,56,57,1,0,0,,2182,6182,ff,MUX BRAKE,0:Present;2:Missing;3:Missing Confirmed
+,763,58,63,1,0,0,,2182,6182,ff,MUX BRAKE counter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,763,64,65,1,0,0,,2182,6182,ff,MUX Cluster,0:Present;2:Missing;3:Missing Confirmed
+,763,66,71,1,0,0,,2182,6182,ff,MUX Cluster counter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,763,72,73,1,0,0,,2182,6182,ff,MUX BCM,0:Present;2:Missing;3:Missing Confirmed
+,763,74,79,1,0,0,,2182,6182,ff,MUX BCM counter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,763,80,81,1,0,0,,2182,6182,ff,MUX AIRBAG,0:Present;2:Missing;3:Missing Confirmed
+,763,82,87,1,0,0,,2182,6182,ff,MUX AIRBAG counter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,763,112,113,1,0,0,,2182,6182,ff,MUX AT,0:Present;2:Missing;3:Missing Confirmed
+,763,114,119,1,0,0,,2182,6182,ff,MUX AT counter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,763,120,121,1,0,0,,2182,6182,ff,MUX MIU BIC,0:Present;2:Missing;3:Missing Confirmed
+,763,122,127,1,0,0,,2182,6182,ff,MUX MIU BIC counter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,763,184,185,1,0,0,,2182,6182,ff,MUX EPS,0:Present;2:Missing;3:Missing Confirmed
+,763,186,191,1,0,0,,2182,6182,ff,MUX EPS counter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,763,200,201,1,0,0,,2182,6182,ff,MUX EMM,0:Present;2:Missing;3:Missing Confirmed
+,763,202,207,1,0,0,,2182,6182,ff,MUX EMM counter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,763,536,537,1,0,0,,2182,6182,ff,MUX FrontCamera,0:Present;2:Missing;3:Missing Confirmed
+,763,538,543,1,0,0,,2182,6182,ff,MUX FrontCamera counter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,763,592,593,1,0,0,,2182,6182,ff,MUX TCU,0:Present;2:Missing;3:Missing Confirmed
+,763,594,599,1,0,0,,2182,6182,ff,MUX TCU counter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,763,744,745,1,0,0,,2182,6182,ff,MUX INS FCW,0:Present;2:Missing;3:Missing Confirmed
+,763,746,751,1,0,0,,2182,6182,ff,MUX INS FCW counter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,763,16,95,1,0,0,,2184,6184,2ff,ClusterProductionNumber_ASCII
+,763,96,143,1,0,0,,2184,6184,2ff,ClusterProductionDate_ASCII
+,763,16,127,1,0,0,,21B1,61B1,4ff,networkConfB1
+,763,16,127,1,0,0,,21B2,61B2,4ff,networkConfB2
+,763,16,95,1,0,0,,21EF,61EF,2ff,PartNumber.Hardware
+,763,96,175,1,0,0,,21EF,61EF,2ff,PartNumber.Software
+,763,27,31,1,0,0,,220101,620101,ff,Language_CF,0:0x00 = Français;1:0x01 = English_UK;2:0x02 = Italiano;3:0x03 = Deutsch;4:0x04 = Español;5:0x05 = Nederlands - Dutch;6:0x06 = Português;7:0x07 = Türkçe;8:0x08 = Polski - (FR - Polonais) (Polish);9:0x09 = [NO] Coréen;10:0x0A = [NO] Svenska (EN) - Suédois;11:0x0B = [NO] Suomi (EN) - Finnois;12:0x0C = [NO] Bulgare;13:0x0D = [NO] Slovensko (EN) - Slovène;14:0x0E = [NO] (EN) - Grec;15:0x0F = [NO] Magyar (EN) - Hongrois;16:0x10 = [NO] Jazyk (EN) - Slovaque;17:0x11 = [NO] Ceština (EN) - Tchèque;18:0x12 = [NO] Dansk (EN) - Danois;19:0x13 = [NO] Eesti keel (PL) - Estonien;20:0x14 = [NO]  Latviešu (PL) - Letton;21:0x15 = [NO] Lituanien;22:0x16 = [NO] Româna (EN) - Roumain;23:0x17 = [NO] Brasileiro;24:0x18 = Russian;25:0x19 = English_US;26:0x1A = Japanese_Kanji;27:0x1B = Chinese_Simple;28:0x1C = Chinese_Tradition;29:0x1D to 0x1F = Not used
+,763,30,31,1,0,0,,220102,620102,ff,GearBoxType_CF,0:00b = Automatic gearbox;1:01b = Manual gearbox;2:10b = Not Used;3:11b = Not Used
+,763,29,31,1,0,0,,220103,620103,ff,CarburationType_CF,0:000b = Petrol;1:001b = Diesel;2:010b = GNC;3:011b = GPL;4:100b = Petrol/GNC;5:101b = Petrol/GPL;6:110 = Not Used;7:111 = Not Used
+,763,31,31,1,0,0,,220104,620104,ff,DistanceUnit_CF,0:km;1:miles
+,763,30,31,1,0,0,,220105,620105,ff,VolumeUnit_CF,0:00b = Litre;1:01b = Gallon UK;2:10b = Gallon US;3:11b = Reserved
+,763,30,31,1,0,0,,220106,620106,ff,TripComputerType_CF,0:00b = without Trip Computer;1:01b = volume/distance;2:10b = distance/volume;3:11b = Not used
+,763,30,31,1,0,0,,220108,620108,ff,CCSLACCServiceCustomer_CF,0:00b = without;1:01b = CC/SL;2:10b = ACC/SL;3:11b = SL only
+,763,31,31,1,0,0,,220109,620109,ff,FrontSBRInhibition_CF,0:0b = Activated;1:1b = De-activated
+,763,31,31,1,0,0,,22010B,62010B,ff,ESCPresent_CF,0:0b = Without ESC (with ABS);1:1b = With ESC (with ABS)
+,763,30,31,1,0,0,,22010E,62010E,ff,TPMSPresent_CF,0:00b = Without TPMS;1:01b = With Direct TPMS;2:10b = With Idirect TPMS;3:11b = Not Used
+,763,31,31,1,0,0,,22010F,62010F,ff,OverspeedWarningPresent_CF,0:0b = Without overspeed warning;1:1b = With overspeed warning
+,763,31,31,1,0,0,,220113,620113,ff,SingleDoorOpeningUserSetPrefPresent_CF,0:Without;1:With
+,763,30,31,1,0,0,,220115,620115,ff,PowerSteeringType_CF,0:00b = Without;1:01b = Hydraulic (HEPS);2:10b = Electrical (EPS);3:11b = Not used
+,763,31,31,1,0,0,,220118,620118,ff,DayBacklightsPresent_CF,0:0b = Without;1:1b = With
+,763,27,31,100,0,0,rpm,220119,620119,ff,OilPressureThreshold_CF
+,763,31,31,1,0,0,,22011C,62011C,ff,EMMPresent_CF,0:0b = Without EMM;1:1b = With EMM
+,763,28,31,1,0,0,,22011D,62011D,ff,BodyType_CF,0:0000b = B;1:0001b = D;2:0010b = E;3:0011b = L;4:0100b = K;5:0101b = J;6:0110b = R;7:0111b = C;8:1000b = H;9:1001b = N;10:1010b = F;11:1011b = U;12:1100b = Not used;13:1101b = Not used;14:1110b = Not used;15:1111b = Not used
+,763,31,31,1,0,0,,22011E,62011E,ff,RearSBRPresent_CF,0:0b = Without;1:1b = With
+,763,30,31,1,0,0,,220121,620121,ff,ClockDisplayed_CF,0:00b = Not displayed / not Managed => RTC off;1:01b = Displayed / managed => RTC on;2:10b = Displayed / not managed => RTC off;3:11b = Not Used
+,763,30,31,1,0,0,,220122,620122,ff,ExternalTemperaturePresent_CF,0:00b = No external Temp. management;1:01b = External Temp. displayed;2:10b = External Temp. measurement;3:11b = External Temp. Measurement and Display
+,763,24,31,1,0,0,,220123,620123,ff,TripComputerScrollControlSwitchAcquisition_CF,0:0x00 = CAN input;1:0x01 = Digital input;2:0x02 = Digital input + PTT;3:0x03 = MFL (Daimler switches)
+,763,31,31,1,0,0,,220124,620124,ff,AirbagPresent_CF,0:0b = Without AIRBAG ECU;1:1b = With AIRBAG ECU
+,763,29,31,1,0,0,,220129,620129,ff,TelematicSystemPresent_CF,0:000b = Without;1:001b = LPN;2:010b = ITD2;3:011b = ITX;4:100b  = NFA;5:101b = MFD and/or BIC (steering wheel switches DAI);6:110b = Not used;7:111b = Not used
+,763,31,31,1,0,0,,22012A,62012A,ff,OCSPresent_CF,0:Without OCS;1:With OCS
+,763,24,31,100,0,0,km,22012C,62012C,ff,FirstWarningThresholdMaintenanceScheduleInKm_CF
+,763,31,31,1,0,0,,22012D,62012D,ff,StopStartPresent_CF,0:0b = without StopStart;1:1b = with StopStart
+,763,31,31,1,0,0,,22012E,62012E,ff,LDWPresent_CF,0:0b = Without Line Departure Warning;1:1b = With Line Departure Warning
+,763,31,31,1,0,0,,220130,620130,ff,TemperatureUnit_CF,0:0b = degree Celsius;1:1b = degree Fahrenheit
+,763,31,31,1,0,0,,220131,620131,ff,MuteRadioFunction_CF,0:0b = Mute radio function deactivated;1:1b = Mute radio function activated
+,763,31,31,1,0,0,,220132,620132,ff,ClockDisplayMode_CF,0:0b = 24h format;1:1b = 12h format
+,763,24,24,1,0,0,,220135,620135,ff,EVStartupSoundInhibition_CF,0:0 = StartupSound present;1:1 = StartupSound inhibited
+,763,30,31,1,0,0,,220136,620136,ff,DimmingStrategy_CF,0:00b = Day/Night only;1:01b = Mechnical rheostat (wired input);2:10b = Virtual rheostat (CAN);3:11b = Rheostat by MPU (Daimler)
+,763,30,31,1,0,0,,220139,620139,ff,DigitalSpeedometerPresent_CF,0:00b = No display;1:01b = DigitalSpeed in MPH;2:10b = DigitalSpeed in Km/h;3:11b = Digitalspeed always in Km/h
+,763,24,24,1,0,0,,22013D,62013D,ff,ChargingScreenActivation_CF,0:0 = Charging screen desactivated;1:1 = Charging screen activated
+,763,30,31,1,0,0,,220140,620140,ff,CCSLOverspeedBuzzerPresent_CF,0:00b = without buzzer;1:01b = With expected and unexpected;2:10b = With unexpected only;3:11b = Not used
+,763,31,31,1,0,0,,220142,620142,ff,TCU_EcallPresent_CF,0:0 = without TCU or With TCU/Without Ecall (frame loss HMI filtered);1:1 = With TCU/With Ecal (frame loss HMI not filtered)
+,763,31,31,1,0,0,,220148,620148,ff,SBRModuleType_CF,0:0b = Wire module;1:1b = LIN Module
+,763,31,31,1,0,0,,220149,620149,ff,AT_BeepInRPresent_CF,0:0b = Without beep;1:1b = With beep
+,763,24,24,1,0,0,,22014D,62014D,ff,BatteryWarningType_CF,0:0b = wire;1:1b = CAN by ECM
+,763,31,31,1,0,0,,220150,620150,ff,AEBSPresent_CF,0:0b = without AEBS;1:1b = with AEBS
+,763,31,31,1,0,0,,220151,620151,ff,GeotrackingPresent_CF,0:0b = Without geotracking;1:1b = With geotracking
+,763,24,24,1,0,0,,220152,620152,ff,GPFPresent_CF,0:0b = Without GPF;1:1b = With GPF
+,763,24,31,1,0,0,L,220153,620153,ff,FuelRangeDisplayThreshold_CF
+,763,30,31,1,0,0,,220154,620154,ff,StartUpAnimationDisplay_CF,0:00b = General animation (Same as Ph1);1:01b = Specific S2S EV animation;2:10b = Specific S4S EV animation;3:11b = Not used
+,763,24,31,1,0,0,kW,220155,620155,ff,MaxElecPower_TP
+,763,24,31,1,0,0,kW,220156,620156,ff,MinElecPower_TP
+,763,24,31,1,0,0,%,220157,620157,ff,BatteryIncThreshold0_CF
+,763,24,31,1,0,0,%,220158,620158,ff,BatteryIncThresholdHalf_CF
+,763,24,31,1,0,0,%,220159,620159,ff,BatteryIncThreshold1_CF
+,763,24,31,1,0,0,%,22015A,62015A,ff,BatteryIncThreshold2_CF
+,763,24,31,1,0,0,%,22015B,62015B,ff,BatteryIncThreshold3_CF
+,763,24,31,1,0,0,%,22015C,62015C,ff,BatteryIncThreshold4_CF
+,763,24,31,1,0,0,%,22015D,62015D,ff,BatteryIncThreshold5_CF
+,763,24,31,1,0,0,%,22015E,62015E,ff,BatteryIncThreshold6_CF
+,763,24,31,1,0,0,%,22015F,62015F,ff,BatteryIncThreshold7_CF
+,763,24,31,1,0,0,%,220160,620160,ff,BatteryDecThreshold8_CF
+,763,24,31,1,0,0,%,220161,620161,ff,BatteryDecThreshold7_CF
+,763,24,31,1,0,0,%,220162,620162,ff,BatteryDecThreshold6_CF
+,763,24,31,1,0,0,%,220163,620163,ff,BatteryDecThreshold5_CF
+,763,24,31,1,0,0,%,220164,620164,ff,BatteryDecThreshold4_CF
+,763,24,31,1,0,0,%,220165,620165,ff,BatteryDecThreshold3_CF
+,763,24,31,1,0,0,%,220166,620166,ff,BatteryDecThreshold2_CF
+,763,24,31,1,0,0,%,220167,620167,ff,BatteryDecThreshold1_CF
+,763,24,31,1,0,0,%,220168,620168,ff,BatteryDecThresholdHalf_CF
+,763,24,31,1,0,0,%,220169,620169,1ff,PowermeterThreshold0_CF
+,763,24,31,1,0,0,%,22016A,62016A,1ff,PowermeterThreshold1_CF
+,763,24,31,1,0,0,%,22016B,62016B,1ff,PowermeterThreshold2_CF
+,763,24,31,1,0,0,%,22016C,62016C,1ff,PowermeterThreshold3_CF
+,763,24,31,1,0,0,%,22016D,62016D,1ff,PowermeterThreshold4_CF
+,763,24,31,1,0,0,%,22016E,62016E,1ff,PowermeterThreshold5_CF
+,763,24,31,1,0,0,%,22016F,62016F,1ff,PowermeterThreshold6_CF
+,763,24,31,1,0,0,%,220170,620170,1ff,PowermeterThreshold7_CF
+,763,24,31,1,0,0,%,220171,620171,1ff,PowermeterThreshold8_CF
+,763,24,31,1,0,0,%,220172,620172,1ff,PowermeterThreshold9_CF
+,763,24,31,1,0,0,%,220173,620173,1ff,PowermeterThreshold10_CF
+,763,24,31,1,0,0,%,220174,620174,1ff,PowermeterThreshold11_CF
+,763,24,31,1,0,0,%,220175,620175,1ff,PowermeterThreshold12_CF
+,763,24,31,1,0,0,%,220176,620176,ff,SOCNoDisplayThreshold_CF
+,763,24,31,1,0,0,ms,220177,620177,ff,EconometerInterSegmentReachTime_CF
+,763,31,31,1,0,0,,220180,620180,ff,AdditionnalInstrumentPresent_CF,0:0b = Without Additional Instrument;1:1b = With Additional Instrument
+,763,29,31,1,0,0,,220182,620182,ff,CountrySpecificity_CF,0:000b = RoW;1:001b = UK;2:010b = USA;3:011b = Japan;4:100b = China;5:101b = Canada;6:110b = Not used;7:111b = Not used
+,763,31,31,1,0,0,,220184,620184,ff,FCWPresent_CF,0:0b = Without Front Collision Warning;1:1b = With Front Collision Warning
+,763,31,31,1,0,0,,220185,620185,ff,SBRLogic_CF,0:0b = Standard logic;1:1b = US/Canada logic
+,763,31,31,1,0,0,,220186,620186,ff,BlackIceWarningInhibition_CF,0:0b = Black ICE Warning Activated (Daimler);1:1b = Black ICE Warning Deactivated (Daimler)
+,763,31,31,1,0,0,,220187,620187,ff,ECOScoreInhibition_CF,0:0b = ECO Score Activated (Daimler);1:1b = ECO Score Deactivated (Daimler)
+,763,31,31,1,0,0,,220188,620188,ff,MaintenanceLevelFlag_CF,0:0b = Lower Maintenance Level;1:1b = Higher Maintenance Level
+,763,31,31,1,0,0,,220189,620189,ff,AmbientLightPresent_CF,0:0b = de-activated;1:1b = Activated
+,763,31,31,1,0,0,,22018A,62018A,ff,ECOModePresent_CF,0:0b = de-activated;1:1b = Activated
+,763,24,24,1,0,0,,22018B,62018B,ff,SmartChargingPresent_CF,0:0b = De-activated;1:1b = Activated
+,763,24,24,1,0,0,,22018C,62018C,ff,RRPresent_CF,0:0b = Without RR;1:1b = With RR
+,763,31,31,1,0,0,,22018D,62018D,ff,CF_MPU_RearWiper,0:Rear wiper when rear gear engaged not present;1:Rear wiper when rear gear engaged present
+,763,31,31,1,0,0,,22018E,62018E,ff,CF_MPU_AutoLockUp,0:Automatic door lock not present;1:Automatic door lock present
+,763,24,103,1,0,0,,220190,620190,2ff,AdditionnalInstrumentPartNumber_Ref_Daimler
+,763,24,63,1,0,0,,220191,620191,2ff,AdditionnalInstrumentPartNumber_Ref_Renault
+,763,24,39,1,0,0,km,2201A0,6201A0,ff,TripDistanceKm_START
+,763,24,39,50,0,0,mL,2201A1,6201A1,ff,TripFuelUsed_START
+,763,24,47,1,0,0,s,2201A2,6201A2,ff,TripTimer_START
+,763,28,31,1,0,0,,2201A3,6201A3,ff,CauseOfLastTripComputerStart,0:0000b = Never Resetted;1:0001b = ADAC button customer reset;2:0010b = Multimedia customer reset;3:0011b = Dist/Time/Carb overflow;4:0100b = Odometer update;5:0101b = CAN frame loss;6:0110b = Diag routine;7:0111b = After Start automatic reset (Daimler);8:1000b = Not used;9:1001b = Not used;10:1010b = Not used;11:1011b = Not used;12:1100b = Not used;13:1101b = Not used;14:1110b = Not used;15:1111b = Not used
+,763,24,39,1,0,0,km,2201A4,6201A4,ff,MSCDistanceInKM_Elapsed
+,763,24,39,1,0,0,d,2201A5,6201A5,ff,MSCDurationInDay_Elapsed
+,763,24,39,1,0,0,km,220201,620201,ff,MSCChangeInitialDistanceInKM_CF
+,763,24,39,1,0,0,d,220202,620202,ff,MSCChangeInitialDurationInDay_CF
+,763,24,39,1,0,0,km,220203,620203,ff,MSCChangeUsualDistanceInKM
+,763,24,39,1,0,0,d,220204,620204,ff,MSCChangeUsualDurationInDay
+,763,24,47,1,0,0,km,220207,620207,ff,ClusterCurrentDistanceByDiag_CF
+,763,24,31,1,0,0,L,220301,620301,ff,GaugingThreshold.High_CF
+,763,32,39,1,0,0,L,220301,620301,ff,GaugingThreshold.Low_CF
+,763,24,31,.01,0,2,,220302,620302,ff,S1.Kmin_CF
+,763,32,39,.01,0,2,,220302,620302,ff,S1.Kmaj_CF
+,763,24,31,.01,0,2,,220303,620303,ff,S2.Kmin_CF
+,763,32,39,.01,0,2,,220303,620303,ff,S2.Kmaj_CF
+,763,24,31,.01,0,2,,220304,620304,ff,S3.Kmin_CF
+,763,32,39,.01,0,2,,220304,620304,ff,S3.Kmaj_CF
+,763,24,31,.1,0,1,,220305,620305,ff,TCCorrection_CF
+,763,24,31,1,0,0,L,220306,620306,ff,FuelReadjustment.L2offL0_CF
+,763,32,39,1,0,0,L,220306,620306,ff,FuelReadjustment.L0L3_CF
+,763,40,47,1,0,0,L,220306,620306,ff,FuelReadjustment.L2ZeroSpeed_CF
+,763,24,31,1,0,0,L,220307,620307,ff,FuelReadjustmentNearFull.L0_CF
+,763,32,39,1,0,0,L,220307,620307,ff,FuelReadjustmentNearFull.L2_CF
+,763,40,47,1,0,0,L,220307,620307,ff,FuelReadjustmentNearFull.L0L3_CF
+,763,24,31,1,0,0,L,220308,620308,ff,V0FuncR0.V0
+,763,32,47,1,0,0,Ohm,220308,620308,ff,V0FuncR0.R0
+,763,24,31,1,0,0,L,220309,620309,ff,V1FuncR1.V1
+,763,32,47,1,0,0,Ohm,220309,620309,ff,V1FuncR1.R1
+,763,24,31,1,0,0,L,22030A,62030A,ff,V2FuncR2.V2
+,763,32,47,1,0,0,Ohm,22030A,62030A,ff,V2FuncR2.R2
+,763,24,31,1,0,0,L,22030B,62030B,ff,V3FuncR3.V3
+,763,32,47,1,0,0,Ohm,22030B,62030B,ff,V3FuncR3.R3
+,763,24,31,1,0,0,L,22030C,62030C,ff,V4FuncR4.V4
+,763,32,47,1,0,0,Ohm,22030C,62030C,ff,V4FuncR4.R4
+,763,24,31,1,0,0,L,22030D,62030D,ff,V5FuncR5.V5
+,763,32,47,1,0,0,Ohm,22030D,62030D,ff,V5FuncR5.R5
+,763,24,31,1,0,0,L,22030E,62030E,ff,V6FuncR6.V6
+,763,32,47,1,0,0,Ohm,22030E,62030E,ff,V6FuncR6.R6
+,763,24,31,1,0,0,L,22030F,62030F,ff,V7FuncR7.V7
+,763,32,47,1,0,0,Ohm,22030F,62030F,ff,V7FuncR7.R7
+,763,24,31,1,0,0,L,220310,620310,ff,V8FuncR8.V8
+,763,32,47,1,0,0,Ohm,220310,620310,ff,V8FuncR8.R8
+,763,24,31,1,0,0,L,220311,620311,ff,V9FuncR9.V9
+,763,32,47,1,0,0,Ohm,220311,620311,ff,V9FuncR9.R9
+,763,24,31,1,0,0,L,220312,620312,ff,V10FuncR10.V10
+,763,32,47,1,0,0,Ohm,220312,620312,ff,V10FuncR10.R10
+,763,24,31,1,0,0,L,220314,620314,ff,L2Displayed1_CF
+,763,24,31,1,0,0,L,220315,620315,ff,L2Displayed2_CF
+,763,24,31,1,0,0,L,220316,620316,ff,L2Displayed3_CF
+,763,24,31,1,0,0,L,220317,620317,ff,L2Displayed4_CF
+,763,24,31,1,0,0,L,220318,620318,ff,L2Displayed5_CF
+,763,24,31,1,0,0,L,220319,620319,ff,L2Displayed6_CF
+,763,24,31,1,0,0,L,22031A,62031A,ff,L2Displayed7_CF
+,763,24,31,1,0,0,L,22031B,62031B,ff,L2Displayed8_CF
+,763,24,31,1,0,0,km,22031D,62031D,ff,FuelRangeCorrection.KmAutonomyCalculation_CF
+,763,32,39,.1,0,1,L,22031D,62031D,ff,FuelRangeCorrection.L2Alert_CF
+,763,40,47,.1,0,1,,22031D,62031D,ff,FuelRangeCorrection.CoeffAlert_CF
+,763,24,31,.1,0,1,L,22031E,62031E,ff,VolumeFuelWarning_CF
+,763,24,31,.1,0,1,L,22031F,62031F,ff,Backup.VolumeFuelWarning_CF
+,763,32,39,10,0,0,s,22031F,62031F,ff,Backup.Tau_CF
+,763,31,31,1,0,0,,220320,620320,ff,FuelGaugingType_CF,0:0b = Using petrol flow;1:1b = Without petrol flow
+,763,30,31,1,0,0,,222001,622001,ff,HandBrakeState,0:00b = Parking brake released;1:01b = Parking brake tightened;2:10b = Circuit short to battery;3:11b = Unavailable
+,763,30,31,1,0,0,,222002,622002,ff,BrakeFluidLevelState,0:00b = No default;1:01b = Mini level is reached;2:10b = Circuit short to battery;3:11b = Unavailable
+,763,24,39,1,0,0,Ohm,222005,622005,ff,FuelGaugeValue
+,763,24,39,1,0,0,mV,222006,622006,ff,BatteryVoltage
+,763,30,31,1,0,0,,222008,622008,ff,OilPressureState,0:00b = Switch OFF;1:01b = Switch ON;2:10b = Circuit short to battery;3:11b = Open circuit
+,763,30,31,1,0,0,,222009,622009,ff,TripComputerScrollState,0:00b = No driver request;1:01b = Upward scrolling request;2:10b = Downward scrolling request;3:11b = Both scrolling request
+,763,24,39,1,0,0,Ohm,22200C,62200C,ff,ExternalTemperatureValue.External_Temperature.R
+,763,40,55,.1,400,1,°C,22200C,62200C,1ff,ExternalTemperatureValue.External_Temperature.Temp
+,763,31,31,1,0,0,,22200D,62200D,ff,BatteryWarningState,0:0b = Switch OFF (telltale OFF);1:1b = Switch ON
+,763,26,26,1,0,0,,2220F0,6220F0,ff,AnalogInput.OnSWRC.ADAC Up since reset
+,763,27,27,1,0,0,,2220F0,6220F0,ff,AnalogInput.OnSWRC.ADAC DOWN since reset
+,763,28,28,1,0,0,,2220F0,6220F0,ff,AnalogInput.OnSWRC.ADAC OK since reset
+,763,29,29,1,0,0,,2220F0,6220F0,ff,AnalogInput.OnSWRC.Vol plus since reset
+,763,30,30,1,0,0,,2220F0,6220F0,ff,AnalogInput.OnSWRC.Vol moins since reset
+,763,31,31,1,0,0,,2220F0,6220F0,ff,AnalogInput.OnSWRC.Push to Talk since reset
+,763,34,34,1,0,0,,2220F0,6220F0,ff,AnalogInput.OnSWRC.ADAC UP
+,763,35,35,1,0,0,,2220F0,6220F0,ff,AnalogInput.OnSWRC.ADAC DOWN
+,763,36,36,1,0,0,,2220F0,6220F0,ff,AnalogInput.OnSWRC.ADAC OK
+,763,37,37,1,0,0,,2220F0,6220F0,ff,AnalogInput.OnSWRC.Vol plus
+,763,38,38,1,0,0,,2220F0,6220F0,ff,AnalogInput.OnSWRC.Vol moins
+,763,39,39,1,0,0,,2220F0,6220F0,ff,AnalogInput.OnSWRC.Push to Talk
+,763,24,39,1,0,0,km,222101,622101,ff,TripDistanceKm
+,763,24,39,50,0,0,mL,222102,622102,ff,TripFuelUsed
+,763,24,47,1,0,0,s,222104,622104,ff,TripTimer
+,763,28,31,1,0,0,,222105,622105,ff,CauseOfLastTripComputerReset,0:0000b = Never Resetted;1:0001b = ADAC button customer reset;2:0010b = Multimedia customer reset;3:0011b = Dist/Time/Carb overflow;4:0100b = Odometer update;5:0101b = CAN frame loss;6:0110b = Diag routine;7:0111b = ECO-Score (Instr. Cluster);8:1000b = Not used;9:1001b = Not used;10:1010b = Not used;11:1011b = Not used;12:1100b = Not used;13:1101b = Not used;14:1110b = Not used;15:1111b = Not used
+,763,24,39,.01,0,2,L,222201,622201,ff,L0_Value
+,763,24,39,.01,0,2,L,222202,622202,ff,L1_Value
+,763,24,39,.01,0,2,L,222203,622203,ff,L2_Value
+,763,24,55,1,0,0,km,222204,622204,1ff,Distance_When_Fuel_Low_Backup_Update_Occurs
+,763,24,39,.01,0,2,L,222205,622205,ff,LBackup_Value
+,763,24,24,1,0,0,,222401,622401,ff,FuelReadjustmentCause.L2_during_fuel_flow_failure,0:L2 without fuel flow failure;1:L2 with fuel flow failure
+,763,26,26,1,0,0,,222401,622401,ff,FuelReadjustmentCause.Plein_Fuel_Update,0:No update with C_RECALAGE_PLEIN;1:L2 is initialized with C_RECALAGE_PLEIN
+,763,27,27,1,0,0,,222401,622401,ff,FuelReadjustmentCause.Fuel_Update_Backup,0:No update with C_BACKUP.ALERTVOLUME;1:L2 is initialized with C_BACKUP.ALERTVOLUME
+,763,28,28,1,0,0,,222401,622401,ff,FuelReadjustmentCause.Fuel_Update_Diag_request,0:No update with Diag request;1:L2 is initialized with Diag request
+,763,29,29,1,0,0,,222401,622401,ff,FuelReadjustmentCause.L3_Fuel_Update,0:No update with C_RECALAGE.RecalageL0_L3;1:L2 init. with C_RECALAGE.RecalageL0_L3 threshold
+,763,30,30,1,0,0,,222401,622401,ff,FuelReadjustmentCause.L2off_Fuel_Update,0:No update with C_RECALAGE.RecalageL2off_L0;1:L2 is initialized with RecalageL2off_L0 threshold
+,763,31,31,1,0,0,,222401,622401,ff,FuelReadjustmentCause.Fuel_During_ignition_ON,0:No update with C_RECALAGE.RecalageL2_EnAPC;1:L2 is initialized with RecalageL2_EnAPC threshold
+,763,24,31,1,0,0,L,222402,622402,ff,L0onValueDuringFuelReadjustment
+,763,24,31,1,0,0,L,222403,622403,ff,L3ValueDuringFuelReadjustment
+,763,24,31,1,0,0,,222404,622404,ff,L2offValueDuringFuelReadjustment
+,763,30,30,1,0,0,,222406,622406,ff,NVMStatus.NVM Backup Solution,0:By Default;1:Use ROM Values
+,763,31,31,1,0,0,,222406,622406,ff,NVMStatus.Status NVM,0:OK;1:NOK
+,763,28,28,1,0,0,,222407,622407,ff,FuelLevelStatus.Gas_Gauge,0:OK;1:Gas gauge in default
+,763,29,29,1,0,0,,222407,622407,ff,FuelLevelStatus.Gas_flow,0:OK;1:Fuel flow in default
+,763,30,30,1,0,0,,222407,622407,ff,FuelLevelStatus.Fuel_Gauge,0:OK;1:Fuel gauge in default
+,763,31,31,1,0,0,,222407,622407,ff,FuelLevelStatus.Fuel_flow,0:OK;1:Fuel flow in default
+,763,24,31,1,0,0,,222408,622408,ff,NumberResetsCausedByFailures
+,763,24,31,1,0,0,,222409,622409,ff,NumberIntendedResets
+,763,24,24,1,0,0,,22240A,62240A,ff,ConfigurationError.Multimedia,0:OK;1:Multimedia configuration error detection
+,763,28,28,1,0,0,,22240A,62240A,ff,ConfigurationError.LIN,0:OK;1:LIN configuration error detection
+,763,29,29,1,0,0,,22240A,62240A,ff,ConfigurationError.Trip_UnitConsumption,0:OK;1:ERROR - Correct trip unit.
+,763,30,30,1,0,0,,22240A,62240A,ff,ConfigurationError.Cluster,0:OK;1:ERROR - Apply cluster conf
+,763,31,31,1,0,0,,22240A,62240A,ff,ConfigurationError.Petrol_Gauging,0:OK;1:ERROR - Apply gauging conf
+,763,32,32,1,0,0,,22240A,62240A,ff,ConfigurationError.AIRBAG,0:OK;1:ERROR
+,763,33,33,1,0,0,,22240A,62240A,ff,ConfigurationError.EPS,0:OK;1:ERROR
+,763,34,34,1,0,0,,22240A,62240A,ff,ConfigurationError.AT,0:OK;1:ERROR
+,763,35,35,1,0,0,,22240A,62240A,ff,ConfigurationError.FCW,0:OK;1:ERROR
+,763,36,36,1,0,0,,22240A,62240A,ff,ConfigurationError.TPMS,0:OK;1:ERROR
+,763,38,38,1,0,0,,22240A,62240A,ff,ConfigurationError.RadarRec,0:OK;1:ERROR
+,763,39,39,1,0,0,,22240A,62240A,ff,ConfigurationError.AEBS,0:OK;1:ERROR
+,763,24,31,1,0,0,,22240D,62240D,ff,LINFailureCounter.LIN_BusOffCounter
+,763,32,39,1,0,0,,22240D,62240D,ff,LINFailureCounter.LIN_AICLossCounter
+,763,40,47,1,0,0,,22240D,62240D,ff,LINFailureCounter.LIN_SBRModuleLossCounter
+,763,48,55,1,0,0,,22240D,62240D,ff,LINFailureCounter.LIN_SBRModuleConfigErrorCounter
+,763,56,87,1,0,0,,22240D,62240D,4ff,LINFailureCounter.RESERVED
+,763,24,55,.01,0,2,km,222604,622604,1ff,ExternalECUDistanceBeforeOdoReadjustment
+,763,24,55,1,0,0,km,222605,622605,1ff,ClusterDistanceBeforeOdoReadjustment
+,763,24,31,1,0,0,,222606,622606,ff,DistanceUpdateByDiagCounter
+,763,24,31,1,0,0,,222607,622607,ff,DistanceUpdateByExternalECUCounter
+,763,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI
+,763,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI
+,763,24,103,1,0,0,,22F187,62F187,2ff,VehiculeManufacturerSparPartNumber
+,763,24,103,1,0,0,,22F18E,62F18E,2ff,VehicleManufacturerKitAssemblyPartNumber
+,763,24,103,1,0,0,,22F196,62F196,2ff,Spare Part Number Approval Reference Number
+,763,0,0,1,0,0,,3E01,7E01,ff,TesterPresent.WithResponse

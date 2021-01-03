@@ -121,10 +121,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public static final short CAR_NONE = 0x000;
     //public static final int CAR_ANY               = 0x0ff;
-    //public static final short CAR_FLUENCE = 0x001;
+    public static final short CAR_TWINGO = 0x001;
     public static final short CAR_ZOE_Q210 = 0x002;
     //public static final short CAR_KANGOO = 0x004;
-    //public static final short CAR_TWIZY = 0x008;     // you'll never know ;-)
+    public static final short CAR_TWIZY = 0x008;
     public static final short CAR_X10PH2 = 0x010;     // ZE50
     public static final short CAR_ZOE_R240 = 0x020;
     public static final short CAR_ZOE_Q90 = 0x040;
@@ -1093,8 +1093,18 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return (car == CAR_X10PH2);
     }
 
+    public static boolean isTwingo()  {
+        return (car == CAR_TWINGO);
+    }
+
+    public static boolean isTwizy()  {
+        return (car == CAR_TWIZY);
+    }
+
     public static String getAssetPrefix() {
         if (isPh2()) return "ZOE_Ph2/";
+        if (isTwingo()) return "Twingo_3_Ph2/";
+        if (isTwingo()) return "Twizy/";
         return "ZOE/";
     }
 

@@ -1,0 +1,217 @@
+,793,0,0,1,0,0,,1081,5081,ff,StartDiagnosticSession.Default
+,793,0,0,1,0,0,,1085,5085,ff,StartDiagnosticSession.Programming
+,793,0,0,1,0,0,,10C0,50C0,ff,StartDiagnosticSession.ExtendedDiagnostic
+,793,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
+,793,16,23,1,0,0,,1902AF,5902AF,ff,DTCStatusAvailabilityMask
+,793,24,39,1,0,0,,1902AF,5902AF,ff,DTCDeviceAndFailureTypeOBD
+,793,40,47,1,0,0,,1902AF,5902AF,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM (Frequency Modulated) / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adjustment failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or system operation obstructed or blocked;152:component or system over temperature;241:Safety Case 1;242:Safety Case 2;243:Multiple Failure;244:Temperature too Low;245:Negative Loop Error;246:Positive Loop Error;247:Initialisation not valid;248:Overspeed;249:Limp Home;250:Specific Supplier;251:-;252:--;253:Drift low;254:Drift  high
+,793,44,47,1,0,0,,1902AF,5902AF,ff,DTCFailureType.ManufacturerOrSupplier
+,793,48,48,1,0,0,,1902AF,5902AF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,793,49,49,1,0,0,,1902AF,5902AF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,793,50,50,1,0,0,,1902AF,5902AF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,793,51,51,1,0,0,,1902AF,5902AF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,793,52,52,1,0,0,,1902AF,5902AF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,793,53,53,1,0,0,,1902AF,5902AF,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,793,54,54,1,0,0,,1902AF,5902AF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,793,55,55,1,0,0,,1902AF,5902AF,ff,DTCStatus.testFailed,0:No;1:Yes
+,793,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord
+,793,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC
+,793,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord
+,793,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC
+,793,48,55,1,0,0,,190600000080,590600000080,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage
+,793,56,79,1,0,0,km,190600000080,590600000080,ff,DTCExtendedData.Mileage
+,793,16,39,1,0,0,,190600000081,590600000081,4ff,DTCRecord
+,793,40,47,1,0,0,,190600000081,590600000081,ff,StatusOfDTC
+,793,48,55,1,0,0,,190600000081,590600000081,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage
+,793,56,63,1,0,0,,190600000081,590600000081,ff,DTCExtendedData.AgingCounter
+,793,16,39,1,0,0,,190600000082,590600000082,4ff,DTCRecord
+,793,40,47,1,0,0,,190600000082,590600000082,ff,StatusOfDTC
+,793,48,55,1,0,0,,190600000082,590600000082,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage
+,793,56,63,1,0,0,,190600000082,590600000082,ff,DTCExtendedData.DTCOccurrenceCounter
+,793,16,39,1,0,0,,190600000084,590600000084,4ff,DTCRecord
+,793,40,47,1,0,0,,190600000084,590600000084,ff,StatusOfDTC
+,793,56,63,1,0,0,,190600000084,590600000084,ff,DTCExtendedData.DTCOccurrenceCounter_2
+,793,16,39,1,0,0,,190600000085,590600000085,4ff,DTCRecord
+,793,40,47,1,0,0,,190600000085,590600000085,ff,StatusOfDTC
+,793,56,79,1,0,0,km,190600000085,590600000085,ff,DTCExtendedData.DTCLastDiseappearMileage
+,793,16,39,1,0,0,,190600000086,590600000086,4ff,DTCRecord
+,793,40,47,1,0,0,,190600000086,590600000086,ff,StatusOfDTC
+,793,56,79,1,0,0,km,190600000086,590600000086,ff,DTCExtendedData.DTCTravelledDistanceFailurePresent
+,793,16,39,1,0,0,,190600000087,590600000087,4ff,DTCRecord
+,793,40,47,1,0,0,,190600000087,590600000087,ff,StatusOfDTC
+,793,56,79,1,0,0,km,190600000087,590600000087,ff,DTCExtendedData.DTCFirstAppearMileage
+,793,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord
+,793,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC
+,793,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage
+,793,56,63,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedData.DTCOccurrenceCounter
+,793,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
+,793,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode
+,793,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
+,793,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
+,793,128,143,1,0,0,,2180,6180,4ff,SoftwareNumber
+,793,144,159,1,0,0,,2180,6180,4ff,EditionNumber
+,793,160,175,1,0,0,,2180,6180,4ff,CalibrationNumber
+,793,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,1:296H5;2:296H0
+,793,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,1:296H5
+,793,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,1:HMLGT
+,793,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+,793,16,151,1,0,0,,2181,6181,2ff,Vin In Ascii
+,793,152,167,1,0,0,,2181,6181,4ff,Vin CRC
+,793,16,39,1,0,0,,2184,6184,4ff,ITG Supplier Number
+,793,40,47,1,0,0,,2184,6184,2ff,Traceability Factory Code
+,793,48,143,1,0,0,,2184,6184,2ff,Traceability Serial Number
+,793,16,103,1,0,0,,21B7,61B7,4ff,Configuration of Electrical Vehicle Networks
+,793,16,103,1,0,0,,21B8,61B8,4ff,List of Electrical Vehicle ECUs with After-sales diagnostic
+,793,16,23,1,0,0,,21EF,61EF,2ff,Hardware Part Number 1
+,793,24,31,1,0,0,,21EF,61EF,2ff,Hardware Part Number 2
+,793,32,39,1,0,0,,21EF,61EF,2ff,Hardware Part Number 3
+,793,40,47,1,0,0,,21EF,61EF,2ff,Hardware Part Number 4
+,793,48,55,1,0,0,,21EF,61EF,2ff,Hardware Part Number 5
+,793,56,63,1,0,0,,21EF,61EF,2ff,Hardware Part Number 6
+,793,64,71,1,0,0,,21EF,61EF,2ff,Hardware Part Number 7
+,793,72,79,1,0,0,,21EF,61EF,2ff,Hardware Part Number 8
+,793,80,87,1,0,0,,21EF,61EF,2ff,Hardware Part Number 9
+,793,88,95,1,0,0,,21EF,61EF,2ff,Hardware Part Number 10
+,793,96,103,1,0,0,,21EF,61EF,2ff,Software Part Number 1
+,793,104,111,1,0,0,,21EF,61EF,2ff,Software Part Number 2
+,793,112,119,1,0,0,,21EF,61EF,2ff,Software Part Number 3
+,793,120,127,1,0,0,,21EF,61EF,2ff,Software Part Number 4
+,793,128,135,1,0,0,,21EF,61EF,2ff,Software Part Number 5
+,793,136,143,1,0,0,,21EF,61EF,2ff,Software Part Number 6
+,793,144,151,1,0,0,,21EF,61EF,2ff,Software Part Number 7
+,793,152,159,1,0,0,,21EF,61EF,2ff,Software Part Number 8
+,793,160,167,1,0,0,,21EF,61EF,2ff,Software Part Number 9
+,793,168,175,1,0,0,,21EF,61EF,2ff,Software Part Number 10
+,793,16,55,1,0,0,,21F0,61F0,2ff,PartNumber.LowerPart
+,793,56,63,1,0,0,,21F0,61F0,4ff,DiagnosticIdentificationCode
+,793,64,87,1,0,0,,21F0,61F0,4ff,SupplierNumber
+,793,88,127,1,0,0,,21F0,61F0,2ff,HardwareNumber.LowerPart
+,793,128,143,1,0,0,,21F0,61F0,4ff,SoftwareNumber
+,793,144,159,1,0,0,,21F0,61F0,4ff,EditionNumber
+,793,160,175,1,0,0,,21F0,61F0,4ff,CalibrationNumber
+,793,176,183,1,0,0,,21F0,61F0,ff,PartNumber.BasicPartList,1:296H5;2:296H0
+,793,184,191,1,0,0,,21F0,61F0,ff,HardwareNumber.BasicPartList,1:296H5
+,793,192,199,1,0,0,,21F0,61F0,ff,ApprovalNumber.BasicPartList,1:HMLGT
+,793,200,207,1,0,0,,21F0,61F0,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS;255:Renault R3
+,793,16,55,1,0,0,,21F1,61F1,2ff,ApprovalNumber.LowerPart
+,793,56,95,1,0,0,,21F1,61F1,2ff,ProgrammingSiteReference
+,793,96,135,1,0,0,,21F1,61F1,2ff,ProgrammingToolReference
+,793,136,143,1,0,0,,21F1,61F1,ff,NumberOfReprogrammings
+,793,144,167,1,0,0,,21F1,61F1,4ff,DateOfReprogramming
+,793,168,183,1,0,0,,21F1,61F1,4ff,TimeOfReprogramming
+,793,184,191,1,0,0,,21F1,61F1,ff,SaveMarking
+,793,192,207,1,0,0,,21F1,61F1,4ff,CrcOfLogSave
+,793,24,39,.0625,3200,2,A,222001,622001,ff,($2001) Mains phase 1 current RMS value
+,793,24,39,.0625,0,2,V,222002,622002,ff,($2002) CPU voltage supply from BI
+,793,29,31,1,0,0,,222003,622003,ff,($2003) Junction box 2 state,0:Init;1:Charge;4:Wait;5:Power Off/Sleep
+,793,24,31,1,0,0,%,222004,622004,ff,($2004) System Relative Temperature in %
+,793,24,31,1,40,0,°C,222005,622005,ff,($2005) Cooling temperature from BI
+,793,24,47,1,0,0,,225001,625001,ff,($5001) Plugging counter
+,793,24,47,1,0,0,,225002,625002,ff,($5002) Wake Up counter
+,793,31,31,1,0,0,,225003,625003,ff,($5003) Raw A/C plug interlock value,0:open;1:closed
+,793,31,31,1,0,0,,225005,625005,ff,($5005) CAN activity for JB2,0:No activity;1:Activity
+,793,25,31,1,0,0,%,225007,625007,ff,($5007) MMI Green LED PWM request
+,793,31,31,1,0,0,,225008,625008,ff,($5008) Raw JB2 hood plug interlock value,0:open;1:closed
+,793,31,31,1,0,0,,225009,625009,ff,($5009) Raw HV Battery plug interlock value,0:open;1:closed
+,793,31,31,1,0,0,,22500B,62500B,ff,($500B) Raw mains interlock value,0:open;1:closed
+,793,31,31,1,0,0,,22500C,62500C,ff,($500C) Mains tri phases permutation,0:v1/v2/v3 off;1:v1/v2/v3 on
+,793,31,31,1,0,0,,22500D,62500D,ff,($500D) Mains voltage presence,0:Absent;1:Present
+,793,31,31,1,0,0,,22500E,62500E,ff,($500E) Wake-Up request from Mains or plug presence,0:No wake-up request;1:Wake-up request
+,793,31,31,1,0,0,,22500F,62500F,ff,($500F) Raw PEB plug interlock value,0:open;1:closed
+,793,31,31,1,0,0,,225010,625010,ff,($5010) Raw PEB neutral interlock value,0:open;1:closed
+,793,31,31,1,0,0,,225011,625011,ff,($5011) Raw PTC plug interlock value,0:open;1:closed
+,793,31,31,1,0,0,,225012,625012,ff,($5012) Mains phase 1-2 voltage presence,0:Absent;1:Present
+,793,31,31,1,0,0,,225013,625013,ff,($5013) Mains phase 2-3 voltage presence,0:Absent;1:Present
+,793,31,31,1,0,0,,225014,625014,ff,($5014) Mains phase 3-1 voltage presence,0:Absent;1:Present
+,793,30,31,1,0,0,,225015,625015,ff,($5015) Wake-Up / Sleep request from EVC,0:GoToSleep;1:Reserved1;2:Reserved2;3:WakeUp
+,793,29,31,1,0,0,,225016,625016,ff,($5016) Junction box 2 state request from EVC,0:init;1:Charge;4:Wait;5:Power Off/Sleep
+,793,29,31,1,0,0,,225017,625017,ff,($5017) Mains current type,0:Nok;1:AC mono;2:AC tri;3:DC;4:AC bi
+,793,30,31,1,0,0,,225018,625018,ff,($5018) Mains plug unlocking CAN request,0:Unavailable;1:Unlock request;2:No unlock request
+,793,30,31,1,0,0,,225019,625019,ff,($5019) Memorized value of the wake up activation,1:Wake-up activated;2:Wake-up deactivated
+,793,31,31,1,0,0,,22501A,62501A,ff,($501A) BCM wake-up by wire,0:No wake-up;1:Wake-up
+,793,31,31,1,0,0,,22501C,62501C,ff,($501C) S2 relay control,0:Open;1:Close
+,793,30,31,1,0,0,,22501D,62501D,ff,($501D) Charge state request,0:No charge;1:Charge;2:Emergency stop
+,793,29,31,1,0,0,,22501E,62501E,ff,($501E) Global system state,0:Init;1:Actif;2:Sleep
+,793,30,31,1,0,0,,22501F,62501F,ff,($501F) System Temperature State,0:Ok;1:Derating;2:Nok
+,793,30,31,1,0,0,,225021,625021,ff,($5021) Cooling Temperature State,0:Ok;1:Derating;2:Nok
+,793,30,31,1,0,0,,225022,625022,ff,($5022) Auto wake-up enabling,0:No change;1:Activation;2:Deactivation
+,793,24,39,.0625,880,2,°C,225023,625023,ff,($5023) Raw CPU temperature value from BI
+,793,24,39,.0625,3200,2,A,225024,625024,ff,($5024) Measured neutral current filtred
+,793,24,39,.0625,3200,2,A,225025,625025,ff,($5025) Neutral current value from BI
+,793,24,31,.5,0,1,%,225026,625026,ff,($5026) J1772 control pilot raw duty cycle
+,793,24,31,.25,60,1,V,225027,625027,ff,($5027) J1772 control pilot raw voltage
+,793,24,31,1,40,0,°C,225028,625028,ff,($5028) Mains input filter temperature from SPI
+,793,24,39,.0625,3200,2,A,225029,625029,ff,($5029) Raw AC mains phase 1 measured current
+,793,24,39,.0625,3200,2,A,22502A,62502A,ff,($502A) Raw AC mains phase 2 measured current
+,793,24,39,.0625,3200,2,A,22502B,62502B,ff,($502B) Raw AC mains phase 3 measured current
+,793,24,39,.5,32000,1,V,22502C,62502C,ff,($502C) Raw AC mains phase 1 measured voltage
+,793,24,39,.5,32000,1,V,22502D,62502D,ff,($502D) Raw AC mains phase 2 measured voltage
+,793,24,39,.5,32000,1,V,22502E,62502E,ff,($502E) Raw AC mains phase 3 measured voltage
+,793,25,31,1,0,0,%,22502F,62502F,ff,($502F) MMI Red LED PWM request
+,793,31,31,1,0,0,,225030,625030,ff,($5030) Raw fuse interlock value,0:open;1:closed
+,793,31,31,1,0,0,,225031,625031,ff,($5031) Raw Relay box plug interlock closed,0:open;1:closed
+,793,24,39,.015625,0,2,V,225032,625032,ff,($5032) Driver module power supply voltage from BI
+,793,24,39,.0002441406,0,3,V,225033,625033,ff,($5033) Raw Detection Logic line value
+,793,24,39,.0625,32768,2,mA,225035,625035,ff,($5035) Mains ground current 1st measurement
+,793,31,31,1,0,0,,225038,625038,ff,($5038) Mains Plug Locking Switch raw information,0:Unlocked;1:Locked
+,793,30,31,1,0,0,,225039,625039,ff,($5039) Mains plug locking control,0:No motion;1:Close;2:Open
+,793,24,39,.0625,3200,2,A,22503A,62503A,ff,($503A) Mains phase 2 current RMS value
+,793,24,39,.0625,3200,2,A,22503B,62503B,ff,($503B) Mains phase 3 current RMS value
+,793,24,39,.0625,3200,2,A,22503C,62503C,ff,($503C) Mains current phase 1 mean value
+,793,24,39,.0625,3200,2,A,22503D,62503D,ff,($503D) Mains current phase 2 mean value
+,793,24,39,.0625,3200,2,A,22503E,62503E,ff,($503E) Mains current phase 3 mean value
+,793,24,39,.5,0,1,V,22503F,62503F,ff,($503F) Mains phase 1-2 voltage RMS value
+,793,24,39,.5,0,1,V,225041,625041,ff,($5041) Mains phase 2-3 voltage RMS value
+,793,24,39,.5,0,1,V,225042,625042,ff,($5042) Mains phase 3-1 voltage RMS value
+,793,24,39,.5,32000,1,V,225043,625043,ff,($5043) AC mains phase 1-2 measured voltage
+,793,24,39,.5,32000,1,V,225044,625044,ff,($5044) AC mains phase 2-3 measured voltage
+,793,24,39,.5,32000,1,V,225045,625045,ff,($5045) AC mains phase 3-1 measured voltage
+,793,24,39,.5,32000,1,V,225046,625046,ff,($5046) Mains phase 1-2 mean voltage
+,793,24,39,.5,32000,1,V,225047,625047,ff,($5047) Mains phase 2-3 mean voltage
+,793,24,39,.5,32000,1,V,225048,625048,ff,($5048) Mains phase 3-1 mean voltage
+,793,24,39,.0078125,-1280,3,Hz,225049,625049,ff,($5049) Mains phase frequency
+,793,24,39,1,20000,0,W,22504A,62504A,ff,($504A) Mains active power consumed
+,793,24,39,.0625,9600,2,A,22504B,62504B,ff,($504B) Mains current sum
+,793,24,39,.5,32000,1,V,22504C,62504C,ff,($504C) Mains voltage sum
+,793,24,39,.0625,3200,2,A,22504D,62504D,ff,($504D) HV Network measured current
+,793,24,39,1,1023,0,V,22504E,62504E,ff,($504E) HV voltage
+,793,24,31,1,0,0,,22504F,62504F,ff,($504F) Mains leakage current strategy state,0:OFF/Init;1:OK;2:NOK
+,793,24,24,1,0,0,,225050,625050,ff,($5050) External controls denial status flags.0,0:Reserved for future use_0
+,793,24,31,1,40,0,°C,225051,625051,ff,($5051) CPU temperature value
+,793,24,31,1,40,0,°C,225052,625052,ff,($5052) IGBT Buck arm 1 temperature
+,793,24,31,1,40,0,°C,225053,625053,ff,($5053) Raw IGBT Buck arm 1 temperature
+,793,24,31,1,40,0,°C,225054,625054,ff,($5054) Mains input filter hot spot temperature
+,793,24,31,1,40,0,°C,225055,625055,ff,($5055) Mains input filter hot spot temperature from SPI
+,793,24,31,1,40,0,°C,225056,625056,ff,($5056) Mains input filter temperature
+,793,24,39,.0625,32768,2,mA,225057,625057,ff,($5057) Raw leakage current - DC part measurement
+,793,24,39,.0625,32768,2,mA,225058,625058,ff,($5058) Raw leakage current - High Frequency 10kHz part measurement
+,793,24,39,.0625,32768,2,mA,225059,625059,ff,($5059) Raw leakage current - High Frequency 1st part measurement
+,793,24,39,.0625,32768,2,mA,22505A,62505A,ff,($505A) Raw leakage current - Low Frequency part measurement (50Hz)
+,793,31,31,1,0,0,,22505B,62505B,ff,($505B) Virgin neutral current acquisition tuning detection
+,793,31,31,1,0,0,,22505C,62505C,ff,($505C) Inform on spi communication error
+,793,31,31,1,0,0,,22505D,62505D,ff,($505D) Global checksum result on SPI frames
+,793,24,39,1,0,0,,22505E,62505E,ff,($505E) FPGA ident
+,793,24,39,1,0,0,ms,22505F,62505F,ff,($505F) High part of CPU clock since power up
+,793,24,39,1,0,0,ms,225061,625061,ff,($5061) Low part of CPU clock since power up
+,793,24,39,1,0,0,Ohm,225062,625062,ff,($5062) Mains ground resistance
+,793,24,31,1,0,0,,225063,625063,ff,($5063) Supervisor state,0:Init;1:Wait;2:ClosingS2;3:InitType;4:InitLkg;5:InitChg;6:Charge;7:ZeroAmpMode;8:EndOfChg;9:OpeningS2;10:ReadyToSleep;11:EmergencyStop;12:InitChargeDF;13:OCPStop;14:WaitS2;15:Reload;16:Prohibition;17:Not used17;18:Not used18;19:Not used19;20:Not used20
+,793,24,31,1,0,0,,225064,625064,ff,($5064) Leakage current diagnostic stored completion status,0:init;1:HF10;3:Mains Ground Default;5:Earth Current default;9:Ground Default;17:Means Leakage DC;33:Means Leakage LF;49:Means Leakage DC+LF;65:Means Leakage HF;81:Means Leakage DC+HF;97:Means Leakage LF+HF;113:Means Leakage DC+LF+HF
+,793,24,39,.0625,32768,2,mA,225065,625065,ff,($5065) Leakage DC current saved indicator after failure
+,793,24,39,.0625,32768,2,mA,225066,625066,ff,($5066) Leakage HF 10kHz current saved indicator after failure
+,793,24,39,.0625,32768,2,mA,225067,625067,ff,($5067) Leakage HF current saved indicator after failure
+,793,24,39,.0625,32768,2,mA,225068,625068,ff,($5068) Leakage LF current saved indicator after failure
+,793,24,31,1,0,0,,225069,625069,ff,($5069) LED absence configuration,0:LED present;1:LED absent
+,793,24,31,1,0,0,,22506A,62506A,ff,($506A) Old MMI configuration,0:New MMI;1:Old MMI
+,793,24,31,1,0,0,,22506B,62506B,ff,($506B) Vehicle configuration type,0:X10 configuration;1:X07 configuration
+,793,24,39,.015625,0,2,,22506C,62506C,ff,($506C) 15V from Driver flyback
+,793,24,39,1,0,0,,22506D,62506D,ff,($506D) Saved number of quickdrop values
+,793,24,31,1,0,0,,22506E,62506E,ff,($506E) Cosphi regulation enable,0:Disable;1:Enable
+,793,24,31,1,0,0,,22506F,62506F,ff,($506F) PLGW card presence,0:Not Present;1:Present
+,793,24,31,.25,0,1,A,225070,625070,ff,($5070) max AC current limitation configuration
+,793,24,39,.0625,32768,2,mA,225074,625074,ff,($5074) Leakage current - DC part measurement - without offset
+,793,24,39,.0625,32768,2,mA,225075,625075,ff,($5075) Filtered Leakage current -High Frequency measurement
+,793,24,39,.0625,32768,2,mA,225076,625076,ff,($5076) Filtered Leakage current -High Frequency 10kHz part measurement
+,793,24,39,.0625,32768,2,mA,225077,625077,ff,($5077) Leakage current - Low Frequency part measurement (50Hz)
+,793,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI
+,793,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI
+,793,0,0,1,0,0,,3E01,7E01,ff,TesterPresent.WithResponse

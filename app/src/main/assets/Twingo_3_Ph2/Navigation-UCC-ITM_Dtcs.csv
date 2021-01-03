@@ -1,0 +1,277 @@
+9341,Internal self-diagnosis abnormality_Others
+9311,Rear Left Loudspeaker
+930B,Rear Right Loudspeaker
+930D,Front Right Loudspeaker
+930F,Front Left Loudspeaker
+9320,Rear Right Tweeter
+9321,Front Right Tweeter
+9322,Front Left Tweeter
+9323,Rear Left Tweeter
+9346,GNSS antenna
+9315,AM/FM1 antenna supply
+9316,FM2 antenna supply
+D000,CAN communication
+D300,AV Communication
+93EC,Configuration error2 and Factory mode
+9382,Amp temperature up
+9383,Angle sensor calibration
+9381,ETC self-diagnosis abnormality
+933C,AMP connection abnormality
+933B,Beacon unit connection abnormality
+9360,Cluster meter connection abnormality
+9303,DAB antenna connection abnormality
+93DF,DSRC unit connection abnormality
+9333,D-TV antenna 1 connection abnormality
+9334,D-TV antenna 2 connection abnormality
+9317,SXM antenna connection abnormality
+9332,MCH1 External Aux IN
+932A,MCH1 external USB
+93D9,MCH1 external USB_Comm
+932C,TCU external USB
+93E5,TCU external USB_Comm
+933A,CVBS IN AVM line
+9339,CVBS IN rear cam line
+9375,Rear camera Power supply
+93DD,LVDS IN CP Line
+9351,ECU Amplifier
+93CF,ECU Buttons
+9342,Locked ECU
+9309,System ON
+9347,ECU Bluetooth module
+935E,ECU Fan
+9380,ECU Wifi module
+C079,Bus off (Ext-CAN)
+9328,External Microphone signal line 1
+9329,External Microphone signal line 2
+9372,RearSwitch connection abnormality
+E141,Lost communication with Automatic Transmission on Powertrain CAN
+E14E,lost communication with Cluster on V1 CAN
+E14F,lost communication with Body Control Module
+E159,lost communication with Electric Powered Steering on V1 CAN
+E148,lost communication with Electronic Stability Control on IC CAN
+E15B,lost communication with Underhood Switching Module
+E16B,lost communication with Front Camera
+E176,lost communication with Integrated Dynamics-control on chassis CAN
+E165,lost communication with Ultra Sonic Adas
+E104,lost communication with Four Wheels Steering
+E175,lost communication with Around view monitoring
+E118,lost communication with Hand free Module
+E153,lost communication with Climate Control
+E173,lost communication with Head Up display on multimedia CAN
+E16D,lost communication with Telematic Control Unit on V1 CAN
+E150,lost communication with Airbag Control Unit
+E152,lost communication with Advanced driver assistance system
+E16E,lost communication with Blind Sport Warning Right
+E140,lost communication with Engine Control Module
+E143,lost communication with Hybrid Electric Vehicle Control
+E187,lost communication with Scene recorder
+E164,lost communication with Automatic Driver Seat positionning
+E177,lost communication with Seat Passenger
+E023,lost communication with Central Panel
+E24E,lost communication with Cluster on multimedia CAN
+E025,lost communication with AMP on V1 CAN
+E26D,lost communication with Telematic Control Unit on multimedia CAN
+9384,2nd Display self-diagnosis abnormality
+93C1,RR Display self-diagnosis abnormality
+93C2,RL Display self-diagnosis abnormality
+93C3,RR Display High temperature
+93C4,RL Display High temperature
+93C5,RSE Self diagnosis abnormality
+93C6,RSE High Temperature
+9335,D-TV antenna 3 connection abnormality
+9336,D-TV antenna 4 connection abnormality
+9366,Media Box Connection abnormality
+9370,2nd Display connection abnormality
+9371,RSE connection abnormality
+937A,Integrated Switch connection abnormality
+937B,DTV Box UART connection abnormality
+937C,DTV Box Power supply
+93EB,ANC Microphone supply1
+9368,External CD Drive disc
+936C,External CD Drive
+93DE,LVDS IN Media Player
+930A,LVDS IN Digital Player
+93DA,LVDS IN LVDS Camera
+93DB,LVDS IN 2nd Display
+93D8,LVDS IN DTV Box
+93AF,AUDIO IN RSE
+9343,ECU ROM
+9344,ECU EEPROM
+9345,ECU Gyro
+9356,ECU DSP
+E768,lost communication with Gateway
+AE17,TLS Session error
+9F0B,mic1 input
+9F10,mic2 input
+9F15,mic3 input
+9F1A,mic4 input
+9F01,TACHO Pulse
+9A00,speaker DTC 1
+9A01,speaker DTC 2
+9A02,speaker DTC 3
+9A03,speaker DTC 4
+9A04,speaker DTC 5
+9A05,speaker DTC 6
+9A06,speaker DTC 7
+9A07,speaker DTC 8
+9A08,speaker DTC 9
+9A09,speaker DTC 10
+9A0A,speaker DTC 11
+9A0B,speaker DTC 12
+9A0C,speaker DTC 13
+9A0D,speaker DTC 14
+9A0E,speaker DTC 15
+9A0F,speaker DTC 16
+9A10,speaker DTC 17
+9A11,speaker DTC 18
+9A12,speaker DTC 19
+9A13,speaker DTC 20
+9A14,speaker DTC 21
+9A15,speaker DTC 22
+9A16,speaker DTC 23
+9A17,speaker DTC 24
+9A18,speaker DTC 25
+9A19,speaker DTC 26
+9A1A,speaker DTC 27
+9A1B,speaker DTC 28
+9A1C,speaker DTC 29
+9A1D,speaker DTC 30
+9A1E,speaker DTC 31
+9A1F,speaker DTC 32
+9A20,speaker DTC 33
+9A21,speaker DTC 34
+9A22,speaker DTC 35
+9A23,speaker DTC 36
+9A24,speaker DTC 37
+9A25,speaker DTC 38
+9A26,speaker DTC 39
+9A27,speaker DTC 40
+9A28,speaker DTC 41
+9A29,speaker DTC 42
+9A2A,speaker DTC 43
+9A2B,speaker DTC 44
+9A2C,speaker DTC 45
+9A2D,speaker DTC 46
+9A2E,speaker DTC 47
+9A2F,speaker DTC 48
+9A30,speaker DTC 49
+9A31,speaker DTC 50
+9A32,speaker DTC 51
+9A33,speaker DTC 52
+9A34,speaker DTC 53
+9A35,speaker DTC 54
+9A36,speaker DTC 55
+9A37,speaker DTC 56
+9A38,speaker DTC 57
+9A39,speaker DTC 58
+9A3A,speaker DTC 59
+9A3B,speaker DTC 60
+9A3C,speaker DTC 61
+9A3D,speaker DTC 62
+9A3E,speaker DTC 63
+9A3F,speaker DTC 64
+9A40,speaker DTC 65
+9A41,speaker DTC 66
+9A42,speaker DTC 67
+9A43,speaker DTC 68
+9A44,speaker DTC 69
+9A45,speaker DTC 70
+9A46,speaker DTC 71
+9A47,speaker DTC 72
+9A48,speaker DTC 73
+9A49,speaker DTC 74
+9A4A,speaker DTC 75
+9A4B,speaker DTC 76
+9A4C,speaker DTC 77
+9A4D,speaker DTC 78
+9A4E,speaker DTC 79
+9A4F,speaker DTC 80
+9A50,speaker DTC 81
+9A51,speaker DTC 82
+9A52,speaker DTC 83
+9A53,speaker DTC 84
+9A54,speaker DTC 85
+9A55,speaker DTC 86
+9A56,speaker DTC 87
+9A57,speaker DTC 88
+9A58,speaker DTC 89
+9A59,speaker DTC 90
+9A5A,speaker DTC 91
+9A5B,speaker DTC 92
+9A5C,speaker DTC 93
+9A5D,speaker DTC 94
+9A5E,speaker DTC 95
+9A5F,speaker DTC 96
+9A60,speaker DTC 97
+9A61,speaker DTC 98
+9A62,speaker DTC 99
+9A63,speaker DTC 100
+9A64,speaker DTC 101
+9A65,speaker DTC 102
+9A66,speaker DTC 103
+9A67,speaker DTC 104
+9A68,speaker DTC 105
+9A69,speaker DTC 106
+9A6A,speaker DTC 107
+9A6B,speaker DTC 108
+9A6C,speaker DTC 109
+9A6D,speaker DTC 110
+9A6E,speaker DTC 111
+9A6F,speaker DTC 112
+9A70,speaker DTC 113
+9A71,speaker DTC 114
+9A72,speaker DTC 115
+9A73,speaker DTC 116
+9A74,speaker DTC 117
+9A75,speaker DTC 118
+9A76,speaker DTC 119
+9A77,speaker DTC 120
+9A78,speaker DTC 121
+9A79,speaker DTC 122
+9A7A,speaker DTC 123
+9A7B,speaker DTC 124
+9A7C,speaker DTC 125
+9A7D,speaker DTC 126
+9A7E,speaker DTC 127
+9A7F,speaker DTC 128
+9A80,speaker DTC 129
+9A81,speaker DTC 130
+9A82,speaker DTC 131
+9A83,speaker DTC 132
+9A84,speaker DTC 133
+9A85,speaker DTC 134
+9A86,speaker DTC 135
+9A87,speaker DTC 136
+9A88,speaker DTC 137
+9A89,speaker DTC 138
+9A8A,speaker DTC 139
+9A8B,speaker DTC 140
+AE38,Vnext Master Authentication NOK
+AE39,Vnext Regional Authentication NOK
+AE3A,Vnext Master timeout
+AE3B,Vnext Regional timeout
+AE3C,Unknown Part-ID
+AE3D,Bad Pairing A-IVI & VIN
+AE3E,No Certificate available
+AE40,Part Certificate Storage error
+AE41,A-IVI Authentication Fails
+AE42,A-IVI no Region Setting
+AE43,A-IVI Invalid Region Setting
+AE44,Region Setting Storage error
+AE45,A-IVI no Partition Setting
+AE46,A-IVI Invalid Partition Setting
+AE47,Partition Setting Storage error
+AE48,Service Check not complete
+AE21,Invalid A-IVI certificate
+E00A,lost communication with V-DIST (RSE) on multimedia CAN
+D600,Front Left-DOOR speaker output
+D608,Front Right-DOOR speaker output
+D711,Rear Right-DOOR woofer output
+D709,Rear Left-DOOR woofer output
+9F0A,Mic1 input old
+932E,A+T BOX/ETC2.0 USB
+93D7,A+TBOX Internal failure
+E754,lost communication with gateway 3.0
+E075,lost communication with AMP
+AE19,Vnext configuration discarded
+AE3F,Part certificate verification fails

@@ -1,0 +1,54 @@
+0030,+APC
+030C,BCM (Body Control Module)
+030B,Boost PWM (between rectifier and inverter modules)
+0306,Charger Controler
+0854,DCDC
+0852,DCDC driver
+0850,DCDC High voltage side
+0851,DCDC low voltage side
+0861,ECU monitoring (Safety torque estimation)
+0860,ECU monitoring (Watchdog)
+0848,Electric engine FAN
+0849,Electric engine phase
+0847,Electric engine temperature
+030D,EVC
+0820,Excitation
+0821,Excitation current sensor
+0830,Excitation driver (high arm)
+0831,Excitation driver (low arm)
+0832,Excitation driver ready
+0822,Excitation temperature sensor
+0870,High voltage network
+0803,High voltage sensor
+0801,Inverter
+0802,Inverter current sensor
+0810,Inverter driver (high arm)
+0811,Inverter driver (low arm)
+0805,Inverter temperature
+0804,Inverter temperature sensor
+0305,Lithium Battery Controler
+0864,Main controler temperature sensor
+0865,PCB controler temperature sensor
+0867,Power supply 2.1
+0842,PWM Electric Engine command
+084A,Rotor position offset learning
+0841,Rotor position sensor
+0840,Rotor position speed
+084B,Rotor resistance leaning
+0843,Safety rotor temperature estimation
+0862,SPI communication
+0845,Stator temperature sensor 1
+0846,Stator temperature sensor 2
+0863,Supply monitoring
+0806,Water temperature
+030E,EVC relays
+0807,Hardware over voltage protection
+0808,Inverter phase
+0868,Driver board temperature sensor
+0880,Voltage supply A11
+0809,Inverter non traction safety watch
+080A,Inverter auto diagnosis
+080B,Inverter DFLASH memory corruption
+080C,Inverter Reset failure
+0812,Inverter driver ready (high arm)
+0813,Inverter driver ready (low arm)

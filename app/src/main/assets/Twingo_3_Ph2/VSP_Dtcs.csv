@@ -1,0 +1,11 @@
+C075,CAN_COMM_CIRCUIT
+A860,CONTROL UNIT(CAN) *2
+A861,DSC_FAILURE
+E141,Communication Failure of ATCU ECU
+E14F,Communication Failure of BCM ECU
+E148,Communication Failure of VDC ECU
+E143,Communication Failure of HEVC ECU
+E140,Communication Failure of ECM ECU
+E14E,Communication Failure of METER ECU
+E15B,Communication Failure of USM ECU
+A862,ECU Missing Configuration

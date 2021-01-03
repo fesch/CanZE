@@ -1,0 +1,133 @@
+,761,0,0,1,0,0,,1081,5081,ff,StartDefaultSession
+,761,0,0,1,0,0,,1085,5085,ff,StartReprogSession
+,761,0,0,1,0,0,,10C0,50C0,ff,StartDiagnosticSession
+,761,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
+,761,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask
+,761,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceAndFailureTypeOBD
+,761,40,43,1,0,0,,1902FF,5902FF,ff,DTCFailureType.Category,0:General Failure Information;1:General Electrical Failures;2:General Signal Failures;3:FM / PWM Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;15:Vehicle manufacturer / System supplier specific
+,761,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier
+,761,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested
+,761,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle
+,761,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,761,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,761,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,761,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC
+,761,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle
+,761,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,761,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord
+,761,40,47,1,8,0,,1904000000FF,5904000000FF,ff,StatusOfDTC
+,761,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord
+,761,40,47,1,8,0,,190600000080,590600000080,ff,StatusOfDTC
+,761,48,55,1,0,0,,190600000080,590600000080,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,761,56,79,1,0,0,km,190600000080,590600000080,ff,DTCExtendedData.Mileage
+,761,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord
+,761,40,47,1,8,0,,1906000000FF,5906000000FF,ff,StatusOfDTC
+,761,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,761,56,63,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedData.DTCOccurrenceCounter
+,761,16,47,1,0,0,,2100,6100,4ff,Support LID data
+,761,21,21,1,0,0,,2103,6103,ff,Configuration of DiagMUX DTCs.ECM_Presence,0:Absent;1:Present
+,761,22,22,1,0,0,,2103,6103,ff,Configuration of DiagMUX DTCs.HEVC_Presence,0:Absent;1:Present
+,761,23,23,1,0,0,,2103,6103,ff,Configuration of DiagMUX DTCs.ATCU_Presence,0:Absent;1:Present
+,761,16,23,1,0,0,,2104,6104,4ff,SoundVolumeValue ChargingSound.SoundVolumeValue_ChargingSound
+,761,16,16,1,0,0,,2105,6105,ff,Data monitor value request.IgnitionSupplyConfirmation,0:no primary ignition supply;1:primary ignition supply on
+,761,17,17,1,0,0,,2105,6105,ff,Data monitor value request.VSPstatusDisplay,0:VSP deactivated not request;1:VSP deactivated request
+,761,24,39,.125,0,1,rpm,2105,6105,ff,Data monitor value request.EngineRPM
+,761,40,41,1,0,0,,2105,6105,ff,Data monitor value request.PowerTrainStatus,0:Powertrain Stopped;1:Reserved;2:Powertrain Running;3:Powertrain Starting
+,761,42,43,1,0,0,,2105,6105,ff,Data monitor value request.DayNightForBacklights,0:Day;1:Twilight;2:Night;3:Unavailable
+,761,44,45,1,0,0,,2105,6105,ff,Data monitor value request.ChargingSoundRequest,0:No request;1:Play charging plug sound request;2:Play Admit to charge battery sound request;3:Play Unlock charging plug sound request
+,761,46,46,1,0,0,,2105,6105,ff,Data monitor value request.PeriodicReverseBuzzerTrigger,0:No request;1:Reverse alert trigger
+,761,47,47,1,0,0,,2105,6105,ff,Data monitor value request.DiagMuxOn_BCM,0:counting and storage of CAN mute/absent failures  masked;1:counting and storage of CAN mute/absent failures not masked
+,761,48,63,.01,0,2,km/h,2105,6105,ff,Data monitor value request.VehicleSpeed
+,761,64,67,1,0,0,,2105,6105,ff,Data monitor value request.VehicleStateExtented,0:Sleeping;1:Technical Wakeup;2:CutOffPending;3:BatTempoLevel;4:AccessoryLevel;5:IgnitionLevel;6:StartingInProgress;7:EngineRunning;8:AutoStart;9:EngineSystemStop;10:UnvailableValue
+,761,68,95,.01,0,2,km,2105,6105,ff,Data monitor value request.DistanceTotalizer
+,761,96,98,1,0,0,,2105,6105,ff,Data monitor value request.BrakeInfoStatus,0:Not used;1:Brake pedal not pressed;2:Brake pedal pressed;4:Brake pedal confirmed pressed;7:unavailable
+,761,16,23,1,0,0,,2106,6106,4ff,Parameter VSP_Sound_A
+,761,16,23,1,0,0,,2107,6107,4ff,Parameter VSP_Sound_B
+,761,16,23,1,0,0,,2108,6108,4ff,Parameter VSP_Sound_C
+,761,16,17,1,0,0,,2109,6109,ff,VSP Configuration Parameters.Sound type,0:Sound 1;1:Sound 2;2:Sound 3
+,761,18,18,1,0,0,,2109,6109,ff,VSP Configuration Parameters. LED_DTC_ENABLE,0:Absent;1:Present
+,761,19,19,1,0,0,,2109,6109,ff,VSP Configuration Parameters.Activation by switch,0:absent;1:present
+,761,20,20,1,0,0,,2109,6109,ff,VSP Configuration Parameters.REVERSE sound,0:absent;1:present
+,761,21,21,1,0,0,,2109,6109,ff,VSP Configuration Parameters.CHARGING sound,0:absent;1:present
+,761,22,22,1,0,0,,2109,6109,ff,VSP Configuration Parameters.D_R_Identical_sound,0:absent;1:present
+,761,23,23,1,0,0,,2109,6109,ff,VSP Configuration Parameters. SWITCH_DTC_ENABLE,0:Absent;1:Present
+,761,28,31,1,0,0,,2109,6109,ff,VSP Configuration Parameters. Engine Speed Treshold,0:300rpm;1:400rpm;2:500rpm;3:600rpm;4:700rpm;5:800rpm;6:900rpm;7:1000rpm;8:1100rpm;9:1200rpm;10:1300rpm;11:1400rpm;12:1500rpm;13:1600rpm;14:1700rpm;15:1800rpm
+,761,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
+,761,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode
+,761,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
+,761,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
+,761,128,143,1,0,0,,2180,6180,4ff,SoftwareNumber
+,761,144,159,1,0,0,,2180,6180,4ff,EditionNumber
+,761,160,175,1,0,0,,2180,6180,4ff,CalibrationNumber
+,761,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:NA;1:256A8;2:285N6
+,761,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:HARDW;1:285J9
+,761,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:NA
+,761,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS
+,761,16,151,1,0,0,,2181,6181,2ff,VIN.VIN
+,761,152,167,1,0,0,,2181,6181,4ff,VIN.CRC
+,761,40,40,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.Mute Module_Current_fault status,0:failure absent;1:failure present
+,761,41,41,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.Mute Module_Confirmed_fault status,0:failure absent;1:failure present
+,761,42,47,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.Mute Module_Fault counter
+,761,64,64,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.METER Absent_Current_fault status,0:failure absent;1:failure present
+,761,65,65,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.METER Absent_Confirmed_fault status,0:failure absent;1:failure present
+,761,66,71,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.METER Absent_Fault counter
+,761,72,72,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.BCM Absent_Current_fault status,0:failure absent;1:failure present
+,761,73,73,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.BCM Absent_Confirmed_fault status,0:failure absent;1:failure present
+,761,74,79,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.BCM Absent_Fault counter
+,761,112,112,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.AT Absent_HEV_Current_fault status,0:failure absent;1:failure present
+,761,113,113,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.AT Absent_HEV_Confirmed_fault status,0:failure absent;1:failure present
+,761,114,119,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.AT Absent_HEV_Fault counter
+,761,424,424,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.VCM Absent_Current_fault status,0:failure absent;1:failure present
+,761,425,425,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.VCM Absent_Confirmed_fault status,0:failure absent;1:failure present
+,761,426,431,1,0,0,,2182,6182,ff,Multiplex network diagnostic request.VCM Absent_Fault counter
+,761,16,55,1,0,0,,2183,6183,2ff,NissanID.PartNumberLowerPart
+,761,56,63,1,0,0,,2183,6183,4ff,NissanID.DiagnosticIdentificationCode
+,761,64,87,1,0,0,,2183,6183,2ff,NissanID.SupplierNumberITG
+,761,88,127,1,0,0,,2183,6183,4ff,NissanID.HardwareNumberLowerPart
+,761,128,143,1,0,0,,2183,6183,4ff,NissanID.SoftwareNumber
+,761,144,159,1,0,0,,2183,6183,4ff,NissanID.EditionNumber
+,761,160,175,1,0,0,,2183,6183,4ff,NissanID.CalibrationNumber
+,761,176,199,1,0,0,,2183,6183,4ff,NissanID.Other system features
+,761,200,207,1,0,0,,2183,6183,ff,NissanID.ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS
+,761,16,39,1,0,0,,2184,6184,2ff,Traceability.SupplierCode
+,761,40,71,1,0,0,,2184,6184,2ff,Traceability.ProductionYear
+,761,72,87,1,0,0,,2184,6184,2ff,Traceability.ProductionWeek
+,761,88,175,1,0,0,,2184,6184,2ff,Traceability.SerialNumber
+,761,16,95,1,0,0,,21EF,61EF,2ff,DaimlerID.HardwarePartNumber
+,761,96,175,1,0,0,,21EF,61EF,2ff,DaimlerID.SoftwarePartNumber
+,761,16,55,1,0,0,,21FA,61FA,2ff,PartNumber.LowerPart
+,761,56,63,1,0,0,,21FA,61FA,4ff,DiagnosticIdentificationCode
+,761,64,87,1,0,0,,21FA,61FA,2ff,SupplierNumber.ITG
+,761,88,127,1,0,0,,21FA,61FA,2ff,HardwareNumber.LowerPart
+,761,128,143,1,0,0,,21FA,61FA,4ff,SoftwareNumber
+,761,144,159,1,0,0,,21FA,61FA,4ff,EditionNumber
+,761,160,175,1,0,0,,21FA,61FA,4ff,CalibrationNumber
+,761,176,183,1,0,0,,21FA,61FA,ff,PartNumber.BasicPartList,0:NA;1:256A8;2:285N6
+,761,184,191,1,0,0,,21FA,61FA,ff,HardwareNumber.BasicPartList,0:HARDW;1:285J9
+,761,192,199,1,0,0,,21FA,61FA,ff,ApprovalNumber.BasicPartList,0:NA
+,761,200,207,1,0,0,,21FA,61FA,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS
+,761,16,55,1,0,0,,21FC,61FC,2ff,PartNumber.LowerPart
+,761,56,63,1,0,0,,21FC,61FC,4ff,DiagnosticIdentificationCode
+,761,64,87,1,0,0,,21FC,61FC,2ff,SupplierNumber.ITG
+,761,88,127,1,0,0,,21FC,61FC,2ff,HardwareNumber.LowerPart
+,761,128,143,1,0,0,,21FC,61FC,4ff,SoftwareNumber
+,761,144,159,1,0,0,,21FC,61FC,4ff,EditionNumber
+,761,160,175,1,0,0,,21FC,61FC,4ff,CalibrationNumber
+,761,176,183,1,0,0,,21FC,61FC,ff,PartNumber.BasicPartList,0:NA;1:256A8;2:285N6
+,761,184,191,1,0,0,,21FC,61FC,ff,HardwareNumber.BasicPartList,0:HARDW;1:285J9
+,761,192,199,1,0,0,,21FC,61FC,ff,ApprovalNumber.BasicPartList,0:NA
+,761,200,207,1,0,0,,21FC,61FC,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS
+,761,16,55,1,0,0,,21FE,61FE,2ff,PartNumber.LowerPart
+,761,56,63,1,0,0,,21FE,61FE,4ff,DiagnosticIdentificationCode
+,761,64,87,1,0,0,,21FE,61FE,2ff,SupplierNumber.ITG
+,761,88,127,1,0,0,,21FE,61FE,2ff,HardwareNumber.LowerPart
+,761,128,143,1,0,0,,21FE,61FE,4ff,SoftwareNumber
+,761,144,159,1,0,0,,21FE,61FE,4ff,EditionNumber
+,761,160,175,1,0,0,,21FE,61FE,4ff,CalibrationNumber
+,761,176,183,1,0,0,,21FE,61FE,ff,PartNumber.BasicPartList,0:NA;1:256A8;2:285N6
+,761,184,191,1,0,0,,21FE,61FE,ff,HardwareNumber.BasicPartList,0:HARDW;1:285J9
+,761,192,199,1,0,0,,21FE,61FE,ff,ApprovalNumber.BasicPartList,0:NA
+,761,200,207,1,0,0,,21FE,61FE,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS
+,761,24,47,1,0,0,km,22F0D0,62F0D0,ff,DTC Mileage
+,761,24,31,1,0,0,,22F0D1,62F0D1,ff,DTC Occurrence Counter
+,761,0,0,1,0,0,,3E01,7E01,ff,TesterPresent.WithResponse

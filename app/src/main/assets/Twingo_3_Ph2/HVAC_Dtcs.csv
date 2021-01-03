@@ -1,0 +1,66 @@
+A4A1,VBatt
+A4A6,InCarTemp
+A4A4,EvapTemp
+A4A3,AQS_Reductor
+A4A5,AQS_Oxydant
+A4A7,AQS_Supply
+A4A8,AQS_PreHeating
+A4AB,HumiditySensor
+A4D3,LIN_Bus
+A4DA,AQM_FragranceMotor
+A4DE,AQM_Ionizer
+A4DC,AQM_FragranceBlower
+A4D4,LIN2_Bus
+A4B4,FrontControlPanel
+A4C6,BlowerControl
+A4B7,Motor1Actr
+A4BF,Motor5Actr
+A4B9,Motor2Actr
+A4D5,RearControlPanel
+A4D8,AQMControlPanel
+A4B6,CentralPanel
+A4BB,Motor3Actr
+A4C1,Motor6Actr
+A4C3,BlowerSystem1
+A4AC,AQS_PWM
+A4AD,RearMixActr
+A4BD,Motor4Actr
+A4CD,BatteryBlowerSystem1
+A4D7,RearBlowerFanFeedback
+A4B8,RearAirTempSensor
+A4A0,EEPROM
+A4A2,Config
+A4E0,RearDistActr
+D010,CAN Self Diag
+D000,CAN Communication
+A4E8,BlowerByLin
+A4B2,AQM_IonizerMode
+A4AE,Hot_Source / Blower_Fan_Feedback
+A4E1,Rear_Hot_Blower_PWM
+A4E3,Rear_Cold_Blower_PWM
+A4B5,Blower_BatFan_Feedback / Rear_Switch/Boiler_Feedback
+A4AA,Heated_Seat_FL_Feedback / Sensor_2nd_Sunload
+A4A9,Heated_Seat_RR_Feedback / Sensor_Sunload
+A4B1,Heated_Seat_FR_Feedback
+A4C7,Heated_Seat_FR_CMD / BatFan_PWM /Rear_Fan_CMD
+A4CB,Heated_Seat_FL_CMD_LED / Comp_Valve_output
+A4E5,Heated_Seat_FR_CMD_LED / Windshield_Defroster_Right
+A4E7,Wipers_Defroster_ /Windshield_Defroster_Left
+A4CF,Cabin_Cool_Valve_output
+A4D1,Battery_Cool_Valve_output
+A4C9,Heated_Seat_FL_CMD /Relay_Control_Output/Boiler_CMD
+A4B3,Heated_Seat_RL_Feedback or LARC
+A481,PTC
+A483,ECompOutputLineSC
+A484,ECompOutputLineOC
+A485,ECompCurrentSensor
+A486,ECompOverload
+A487,ECompAbnormalRunUp
+A489,ECompAbnormalHV
+A48A,EComp
+A48B,ECompCPU
+A48C,HPMACleakageDynamic
+A4C0,HPMACleakageStatic
+A4C8,PTCStatOverUndervoltage
+A4E2,PTCStatHeatercirc2off
+A4F9,ECompTempSensor

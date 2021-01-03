@@ -1,0 +1,838 @@
+,7DA,0,0,1,0,0,,1001,5001,ff,StartDiagnosticSession.Default
+,7DA,0,0,1,0,0,,1002,5002,ff,StartDiagnosticSession.Reprog
+,7DA,0,0,1,0,0,,1003,5003,ff,StartDiagnosticSession.Extended
+,7DA,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
+,7DA,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask
+,7DA,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier,0:SAE_J2012-DA_DTCFormat;1:ISO_14229-1_DTCFormat;2:SAE_J1939-73_DTCFormat;3:ISO_11992-4_DTCFormat;4:SAE_J2012-DA_WWHOBD_DTCFormat
+,7DA,32,47,1,0,0,,1901FF,5901FF,4ff,DTCCount
+,7DA,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask
+,7DA,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceAndFailureTypeOBD
+,7DA,40,43,1,0,0,,1902FF,5902FF,ff,DTCFailureType.Category,0:General Failure Information;1:General Electrical Failures;2:General Signal Failures;3:FM / PWM Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;15:Vehicle manufacturer / System supplier specific
+,7DA,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier,0:None
+,7DA,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested
+,7DA,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle
+,7DA,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,7DA,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,7DA,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,7DA,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC
+,7DA,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle
+,7DA,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,7DA,0,0,1,0,0,,1903000000FF,5903000000FF,ff,ReadDTCInformation.ReportDTCSnapshotIdentification
+,7DA,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord
+,7DA,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC
+,7DA,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC
+,7DA,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC
+,7DA,16,23,1,0,0,,190A,590A,ff,DTCStatusAvailabilityMask
+,7DA,24,31,1,0,0,,220100,620100,ff,USB_connected,0:Not connected;1:Connected or alimented;2:Undefined
+,7DA,24,279,1,0,0,,220101,620101,2ff,Application_parameters.Name
+,7DA,280,535,1,0,0,,220101,620101,2ff,Application_parameters.Company
+,7DA,536,791,1,0,0,,220101,620101,2ff,Application_parameters.Version
+,7DA,24,31,1,0,0,,220102,620102,ff,Num_satellites
+,7DA,24,31,1,0,0,%,220103,620103,ff,GSM_reception_level
+,7DA,24,343,1,0,0,,220104,620104,2ff,Communication Network.Name
+,7DA,344,423,1,0,0,,220104,620104,2ff,Communication Network.ID
+,7DA,24,143,1,0,0,,220106,620106,2ff,IMEI
+,7DA,24,31,1,0,0,,220107,620107,ff,RSSI,0:(< -113 dBm) No Signal;1:(-111dBm) Very Poor Signal;2:(-109 dBm) Very Poor Signal;3:(-107 dBm) Poor Signal;4:(-105 dBm) Poor Signal;5:(-103 dBm) Poor Signal;6:(-101dBm) Poor Signal;7:(-99 dBm) Fair Signal;8:(-97 dBm) Fair Signal;9:(-95 dBm) Fair Signal;10:(-93 dBm) Fair Signal;11:(-91 dBm) Fair Signal;12:(-89 dBm) Fair Signal;13:(-87 dBm) Fair Signal;14:(-85 dBm) Good Signal;15:(-83 dBm) Good Signal;16:(-81 dBm) Good Signal;17:(-79 dBm) Good Signal;18:(-77 dBm) Good Signal;19:(-75 dBm) Good Signal;20:(-73 dBm) Good Signal;21:(-71 dBm) Good Signal;22:(-69 dBm) Excellent Signal;23:(-67 dBm) Excellent Signal;24:(-65 dBm) Excellent Signal;25:(-63 dBm) Excellent Signal;26:(-61 dBm) Excellent Signal;27:(-59 dBm) Excellent Signal;28:(-57 dBm) Excellent Signal;29:(-55 dBm) Excellent Signal;30:(-53 dBm) Excellent Signal;31:(> -51 dBm) Excellent Signal;255:Not known or not detectable
+,7DA,24,31,1,0,0,,220108,620108,ff,GNSS_sensing
+,7DA,24,47,1,0,0,,220109,620109,ff,GNSS_parameters_status.Latitude position
+,7DA,48,55,1,0,0,,220109,620109,2ff,GNSS_parameters_status.Latitude orientation
+,7DA,56,79,1,0,0,,220109,620109,ff,GNSS_parameters_status.Longitude position
+,7DA,80,87,1,0,0,,220109,620109,2ff,GNSS_parameters_status.Longitude orientation
+,7DA,88,103,1,0,0,wk,220109,620109,ff,GNSS_parameters_status.Week_Number
+,7DA,104,135,1,0,0,s,220109,620109,1ff,GNSS_parameters_status.Week_Seconds
+,7DA,136,143,1,0,0,,220109,620109,2ff,GNSS_parameters_status.Lack
+,7DA,24,31,1,0,0,,22010A,62010A,ff,AIVC_state,0:St On;1:StOnRFOff;2:StOnSwap;3:StDisc;4:StDrx;5:StDrxDisc;6:StOffSms;7:StOffData;8:StOff;9:StOffRFOff;10:StOffSwap;11:StFota;12:StECall;13:StCallBack;14:StReprog;15:StOnInit;16:StOnError;17:StOffInit
+,7DA,24,279,1,0,0,,22010E,62010E,2ff,EcallChangeLog_SMSfallback.Old_Number
+,7DA,280,535,1,0,0,,22010E,62010E,2ff,EcallChangeLog_SMSfallback.New_Number
+,7DA,536,791,1,0,0,,22010E,62010E,2ff,EcallChangeLog_SMSfallback.Request_From
+,7DA,792,1047,1,0,0,,22010E,62010E,2ff,EcallChangeLog_SMSfallback.Timestamp
+,7DA,24,279,1,0,0,,22010F,62010F,2ff,EcallChangeLog_TestNumber.Old_Number
+,7DA,280,535,1,0,0,,22010F,62010F,2ff,EcallChangeLog_TestNumber.New_Number
+,7DA,536,791,1,0,0,,22010F,62010F,2ff,EcallChangeLog_TestNumber.Request_From
+,7DA,792,1047,1,0,0,,22010F,62010F,2ff,EcallChangeLog_TestNumber.Timestamp
+,7DA,24,31,1,0,0,,220112,620112,ff,CCS_SERVICE_ACTIVATION,0:Inactive;1:Active
+,7DA,24,31,1,0,0,,220113,620113,ff,CCS_CURRENT_RENTAL_STATUS,0:Unavailable;1:Available;2:Reserved;3:Booking Registration;4:In rental;5:Restoration Registration
+,7DA,24,31,1,0,0,%,220119,620119,ff,BER
+,7DA,24,31,1,0,0,,22011A,62011A,ff,SIM Status.SIM _lock_status,0:SIM lock;1:SIM unlock
+,7DA,32,191,1,0,0,,22011A,62011A,2ff,SIM Status.SIM CCID
+,7DA,192,311,1,0,0,,22011A,62011A,2ff,SIM Status.SIM identification(IMSI)
+,7DA,24,31,1,0,0,,22011B,62011B,ff,Data channel,0:Not connected;1:2G channel open;2:3G channel open;3:4G channel open;4:5G channel open;255:Unknown
+,7DA,24,31,1,0,0,,22011C,62011C,ff,IP_address_APN1.status,0:IP address not available;1:IPV4 address available;2:IPV6 address available
+,7DA,32,159,1,0,0,,22011C,62011C,4ff,IP_address_APN1.address
+,7DA,24,39,1,0,0,°,220121,620121,ff,GNSS_VEHICLE_DIRECTION
+,7DA,24,175,1,0,0,,220123,620123,2ff,NETWORK_MONITORING.NOKtoOK
+,7DA,176,327,1,0,0,,220123,620123,2ff,NETWORK_MONITORING.OKtoNOK
+,7DA,24,1143,1,0,0,,220124,620124,4ff,GET_ENCODED_MSD
+,7DA,24,175,1,0,0,,220125,620125,2ff,LAST_CRASH_DETECTED
+,7DA,24,31,1,40,0,°C,220126,620126,1ff,BUB_INTERNAL_TEMPERATURE
+,7DA,24,39,1,0,0,mV,220127,620127,ff,BUB_OUTPUT_VOLTAGE
+,7DA,24,31,1,0,0,,220129,620129,ff,BUB_CALCULATED_SOH,0:End of Life of the Battery;1:Battery not End of Life
+,7DA,24,39,1,0,0,d,22012A,62012A,ff,BUB_AGE
+,7DA,24,31,1,0,0,,22012B,62012B,ff,AutomaticEcallMemorizationState,0:No automatic eCall has ever been detected before;1:In progress;2:Sucessful violent Automatic eCall end;3:Successful medium Automatic eCall end;4:Failure automatic eCall end
+,7DA,24,31,.1,0,1,V,22012D,62012D,ff,A-IVC input voltage
+,7DA,24,39,1,0,0,,22012E,62012E,1ff,GET_ACCELEROMETER_AXIS_VALUES.Xaxis
+,7DA,40,55,1,0,0,,22012E,62012E,1ff,GET_ACCELEROMETER_AXIS_VALUES.Yaxis
+,7DA,56,71,1,0,0,,22012E,62012E,1ff,GET_ACCELEROMETER_AXIS_VALUES.Zaxis
+,7DA,24,39,1,0,0,mg,22012F,62012F,ff,GET_ACCELEROMETER_THRESOLD_VALUES.rolloverzthreshold
+,7DA,40,55,1,0,0,,22012F,62012F,ff,GET_ACCELEROMETER_THRESOLD_VALUES.endpositionzthreshold
+,7DA,24,31,1,0,0,,220130,620130,ff,Conf_Monitoring,0:De Activated;1:Activated
+,7DA,24,39,1,0,0,s,220131,620131,ff,Conf Monitoring Upload Period IGN-ON
+,7DA,24,31,1,0,0,h,220132,620132,ff,Conf Monitoring Upload Period IGN_OFF
+,7DA,24,39,1,0,0,s,220133,620133,ff,ConfTracking Upload Period IGN_ON
+,7DA,24,39,1,0,0,min,220134,620134,ff,ConfTracking Upload Period IGN_OFF
+,7DA,24,31,1,0,0,,220135,620135,ff,Conf Tdp Extra Data,0:De Activated;1:Activated
+,7DA,24,31,1,0,0,,220137,620137,ff,Service activation status (SVT),0:De Activated;1:Activated
+,7DA,24,31,1,0,0,,220138,620138,ff,AT+CREG,0:Not registered- MS is not currently searching for a new operator;1:Registered- home network;2:Not registered- MS currently searching for a base station;3:Registration denied;4:unknown;5:Registered- roaming
+,7DA,24,31,1,0,0,,220139,620139,ff,AT+CGREG,0:Not registered- MS is not currently searching for a new operator;1:Registered- home network;2:Not registered- MS currently searching for a base station;3:Registration denied;4:unknown;5:Registered- roaming
+,7DA,24,151,1,0,0,,220140,620140,4ff,[OutPut1] Remote order frame
+,7DA,24,151,1,0,0,,220141,620141,4ff,[Input2] vehicle ACK frame
+,7DA,24,31,1,0,0,,220144,620144,ff,Remote Actuator - WakeUpReqMax
+,7DA,24,31,1,0,0,,220145,620145,ff,eUICC_status.PIN used,0:PIN code activated;1:PIN code deactivated
+,7DA,32,287,1,0,0,,220145,620145,2ff,eUICC_status.EID
+,7DA,288,447,1,0,0,,220145,620145,2ff,eUICC_status.ICCID
+,7DA,448,567,1,0,0,,220145,620145,2ff,eUICC_status.IMSI
+,7DA,568,687,1,0,0,,220145,620145,2ff,eUICC_status.MSISDN
+,7DA,24,31,1,0,0,,220146,620146,ff,IP_address_APN5.status,0:IP address not available;1:IPV4 address available;2:IPV6 address available
+,7DA,32,159,1,0,0,,220146,620146,4ff,IP_address_APN5.address
+,7DA,24,31,1,0,0,,220147,620147,ff,IP_address_APN6.status,0:IP address not available;1:IPV4 address available;2:IPV6 address available
+,7DA,32,159,1,0,0,,220147,620147,4ff,IP_address_APN6.address
+,7DA,24,31,1,0,0,,220148,620148,ff,IP_address_APN7.status,0:IP address not available;1:IPV4 address available;2:IPV6 address available
+,7DA,32,159,1,0,0,,220148,620148,4ff,IP_address_APN7.address
+,7DA,24,31,1,0,0,,220149,620149,ff,IP_address_APN8.status,0:IP address not available;1:IPV4 address available;2:IPV6 address available
+,7DA,32,159,1,0,0,,220149,620149,4ff,IP_address_APN8.address
+,7DA,24,31,1,0,0,W.h,22014A,62014A,ff,EMPC Budget
+,7DA,24,39,1,0,0,,22014B,62014B,ff,TimerDRX
+,7DA,24,31,1,0,0,,22014C,62014C,ff,Remote Charging Activation status,0:Activated;1:Deactivated
+,7DA,24,31,1,0,0,,22014E,62014E,ff,BUB_CALCULATED_SOC_B,0:Not available;1:Fully charged (>95%);2:In charge;3:Low charge (<=5%)
+,7DA,24,119,1,0,0,,22014F,62014F,4ff,eUICCC Version
+,7DA,24,151,1,0,0,,220150,620150,4ff,eUICC SPN
+,7DA,24,111,1,0,0,,220151,620151,2ff,SIM_REF_NUMBER
+,7DA,24,31,1,0,0,,220154,620154,ff,Key storage status,0:Request pending;1:Requested;2:Stored
+,7DA,24,31,1,0,0,,220155,620155,ff,CALL_SWITCH_STATUS,0:OFF;1:ON
+,7DA,24,39,1,0,0,,220156,620156,4ff,SW components version part1.SOP version
+,7DA,40,103,1,0,0,,220156,620156,4ff,SW components version part1.VUC Version
+,7DA,104,167,1,0,0,,220156,620156,4ff,SW components version part1.SOC version
+,7DA,168,231,1,0,0,,220156,620156,4ff,SW components version part1.DCM Version
+,7DA,232,295,1,0,0,,220156,620156,4ff,SW components version part1.UCD Version
+,7DA,296,359,1,0,0,,220156,620156,4ff,SW components version part1.MDD Version
+,7DA,360,535,1,0,0,,220156,620156,4ff,SW components version part1.Padding $20
+,7DA,24,87,1,0,0,,220157,620157,4ff,SW components version part2.Whitelist version
+,7DA,88,151,1,0,0,,220157,620157,4ff,SW components version part2.TriggerContext
+,7DA,152,215,1,0,0,,220157,620157,4ff,SW components version part2.FunctionDB version
+,7DA,216,279,1,0,0,,220157,620157,4ff,SW components version part2.MqttTopicConfig version
+,7DA,280,343,1,0,0,,220157,620157,4ff,SW components version part2.AivcConfig version
+,7DA,344,535,1,0,0,,220157,620157,4ff,SW components version part2.Padding $20
+,7DA,24,31,1,0,0,,220158,620158,ff,Reprogramming Fota by USB (through IVI),0:Reprog on going;1:end of SOC reprog
+,7DA,24,31,1,0,0,,220159,620159,ff,DIAG_Part Authentification Skip/Reset,0:Inactive;1:Skip (force the transition from [StOnInit] to [StOn]);2:Reset (force the transition from [StOn] to[StOnInit])
+,7DA,24,31,1,0,0,,224000,624000,ff,Architecture Definition,0:Virgin A-IVC;1:C1A ICE;2:C1A xEV;3:T4VS ICE;4:T4VS xEV;5:GEN5 ICE;6:GEN5 xEV;7:GEN3 ICE;8:GEN3 xEV;9:x07;10:G1;11:C1A-HS ICE;12:C1A-HS xEV
+,7DA,24,31,1,0,0,,224003,624003,4ff,Speaker Settings.Codec gain
+,7DA,32,39,1,0,0,,224003,624003,4ff,Speaker Settings.Pre-processing gain
+,7DA,40,151,1,0,0,,224003,624003,4ff,Speaker Settings.Auto gain control
+,7DA,152,279,1,0,0,,224003,624003,4ff,Speaker Settings.FIR
+,7DA,280,1239,1,0,0,,224003,624003,4ff,Speaker Settings.IIR
+,7DA,1240,1263,1,0,0,,224003,624003,4ff,Speaker Settings.Auto volume control
+,7DA,24,31,1,0,0,,224004,624004,4ff,Microphone Settings.Codec gain
+,7DA,32,39,1,0,0,,224004,624004,4ff,Microphone Settings.Pre-processing gain
+,7DA,40,151,1,0,0,,224004,624004,4ff,Microphone Settings.Auto gain ctrl
+,7DA,152,279,1,0,0,,224004,624004,4ff,Microphone Settings.FIR
+,7DA,280,1239,1,0,0,,224004,624004,4ff,Microphone Settings.IIR
+,7DA,1240,1871,1,0,0,,224004,624004,4ff,Microphone Settings.Echo
+,7DA,24,71,1,0,0,,224005,624005,4ff,HPLMN Profile1
+,7DA,24,527,1,0,0,,224006,624006,4ff,APN1 parameters Profile 1.APN1
+,7DA,528,783,1,0,0,,224006,624006,4ff,APN1 parameters Profile 1.APN1UID
+,7DA,784,1039,1,0,0,,224006,624006,4ff,APN1 parameters Profile 1.APN1PWD
+,7DA,24,39,1,0,0,min,224007,624007,ff,DRX mode duration
+,7DA,24,31,1,0,0,,224008,624008,ff,Ecall Vehicle Type,0:Passenger Vehicle (Class M1);1:Buses and Coaches (Class M2);2:Buses and Coaches (Class M3);3:Light Commercial Vehicles (Class N1);4:Heavy Duty Vehicles (Class N2);5:Heavy Duty Vehicles (Class N3);6:Motorcycles (Class L1e);7:Motorcycles (Class L2e);8:Motorcycles (Class L3e);9:Motorcycles (Class L4e);10:Motorcycles (Class L5e);11:Motorcycles (Class L6e);12:Motorcycles (Class L7e);13:Light passenger vehicle ( Classe K1)
+,7DA,25,25,1,0,0,,224009,624009,ff,Ecall Vehicle Propulsion Storage.otherPropulsion,0:Not present;1:Present
+,7DA,26,26,1,0,0,,224009,624009,ff,Ecall Vehicle Propulsion Storage.hydrogen,0:Not present;1:Present
+,7DA,27,27,1,0,0,,224009,624009,ff,Ecall Vehicle Propulsion Storage.electricEnergy,0:Not present;1:Present
+,7DA,28,28,1,0,0,,224009,624009,ff,Ecall Vehicle Propulsion Storage.liquidPropaneGas,0:Not Present;1:Present
+,7DA,29,29,1,0,0,,224009,624009,ff,Ecall Vehicle Propulsion Storage.compressedNaturalGas,0:Not present;1:Present
+,7DA,30,30,1,0,0,,224009,624009,ff,Ecall Vehicle Propulsion Storage.dieselTank,0:Not present;1:Present
+,7DA,31,31,1,0,0,,224009,624009,ff,Ecall Vehicle Propulsion Storage.gasolineTank,0:Not Present;1:Present
+,7DA,24,279,1,0,0,,22400C,62400C,2ff,SIM SMS Centre1
+,7DA,24,151,1,0,0,,22400D,62400D,2ff,Ecall Number _ Operational
+,7DA,24,151,1,0,0,,22400E,62400E,2ff,Ecall Number _ Life cycle Test
+,7DA,24,31,1,0,0,,22400F,62400F,ff,Priv_Ecall_Manual_Function_Activation,0:Priv Ecall Manual deactivated;1:Priv Ecall Manual activated
+,7DA,24,31,1,0,0,,224010,624010,ff,Priv Ecall Auto Activation.ACN,0:Priv Eecall auto ACN deactivated;1:Priv Ecall auto ACN activated
+,7DA,32,39,1,0,0,,224010,624010,ff,Priv Ecall Auto Activation.AACN,0:Priv Ecall auto AACN deactivated;1:Priv Ecall auto AACN activated
+,7DA,24,279,1,0,0,,224013,624013,2ff,SIM PIN Code Profile 1
+,7DA,24,31,1,0,0,,224014,624014,ff,SIM PIN Used Profile 1,0:Deactivated;1:Activated
+,7DA,24,31,1,0,0,,224016,624016,ff,A-IVC Activation Status,1:A-IVC activated;2:A-IVC deactivated;3:Not Available
+,7DA,24,31,1,0,0,,22401C,62401C,ff,USB_definition,0:USB cable not mounted;1:USB cable mounted
+,7DA,24,31,1,0,0,,22401D,62401D,ff,Ecall Activation Status,0:Reg Ecall deactivated;1:Reg Ecall activated
+,7DA,24,151,1,0,0,,22401E,62401E,2ff,ECALL_SMS_FALLBACK_NUMBER
+,7DA,24,31,1,0,0,,22401F,62401F,ff,Ecall ZONE,0:Europe;1:Russia;2:China Renault;3:Japan;4:NAM;5:China Nissan;6:China Infiniti;7:Latam;8:Korea;9:Austraria;10:MMC China;99:Master
+,7DA,24,31,1,0,0,,224020,624020,ff,ECALL_NO_AUTOMATIC_TRIGGERING,0:False (Reg Auto Ecall activated);1:True (Reg Auto Ecall deactivated)
+,7DA,24,31,1,0,0,,224022,624022,ff,ECALL_ABORT_ALLOWED,0:False;1:True
+,7DA,24,31,1,0,0,,224023,624023,ff,Ecall H_ENTRIES_NUMBER
+,7DA,24,31,1,0,0,,224024,624024,ff,MODIFICATIONS_NUMBER
+,7DA,24,31,1,0,0,min,224025,624025,ff,Ecall CLEARDOWN_TIMEOUT
+,7DA,24,39,1,0,0,min,224026,624026,ff,Ecall CALL-BACK_TIMEOUT
+,7DA,24,31,1,0,0,,224027,624027,ff,Ecall VOICE_REQ_NO_RECEIVED_TIMEOUT
+,7DA,24,31,1,0,0,min,224028,624028,ff,Ecall INT MEM TRANSMIT INTERVAL
+,7DA,24,31,1,0,0,,224029,624029,ff,Ecall INT MEM TRANSMIT ATTEMPT
+,7DA,24,31,1,0,0,s,22402A,62402A,ff,STOP_MSD_TIMEOUT
+,7DA,24,39,1,0,0,min,22402B,62402B,ff,NAD_DEREGISTRATION_TIME
+,7DA,24,39,1,0,0,s,22402C,62402C,ff,Ecall DIAL DURATION
+,7DA,24,31,1,0,0,,22402D,62402D,ff,Ecall AUTO DIAL ATTEMPTS
+,7DA,24,31,1,0,0,,22402E,62402E,ff,Ecall MANUAL DIAL ATTEMPTS
+,7DA,24,31,1,0,0,,22402F,62402F,ff,MSD_SEND_BY_SMS_IF_NOT_ACK,0:False;1:True
+,7DA,24,31,1,0,0,s,224030,624030,ff,SEND_MSD_NO_RECEIVED_TIMEOUT
+,7DA,24,39,1,0,0,s,224032,624032,ff,Ecall TEST REGISTRATION PERIOD
+,7DA,24,39,1,0,0,m,224033,624033,ff,Ecall TEST MODE END DISTANCE
+,7DA,24,31,1,0,0,Hz,224034,624034,ff,Ecall F FAST
+,7DA,24,31,1,0,0,Hz,224035,624035,ff,Ecall F SLOW
+,7DA,24,31,1,0,0,s,224036,624036,ff,Ecall DURATION LED ON AT START
+,7DA,24,31,1,0,0,s,224037,624037,ff,ECALL T LONG PUSH
+,7DA,24,31,1,0,0,%,224038,624038,ff,Ecall HMI LUMINOSITY GREEN MIN
+,7DA,24,31,1,0,0,%,224039,624039,ff,Ecall HMI LUMINOSITY GREEN MAX
+,7DA,24,31,1,0,0,%,22403A,62403A,ff,Ecall HMI LUMINOSITY GREEN DAY
+,7DA,24,31,1,0,0,%,22403B,62403B,ff,Ecall HMI LUMINOSITY GREEN NIGHT
+,7DA,24,31,1,0,0,%,22403C,62403C,ff,Ecall HMI LUMINOSITY RED MIN
+,7DA,24,31,1,0,0,%,22403D,62403D,ff,Ecall HMI LUMINOSITY RED MAX
+,7DA,24,31,1,0,0,%,22403E,62403E,ff,Ecall HMI LUMINOSITY RED DAY
+,7DA,24,31,1,0,0,%,22403F,62403F,ff,Ecall HMI LUMINOSITY RED NIGHT
+,7DA,24,31,1,0,0,%,224040,624040,ff,Ecall HMI LUMINOSITY BACKLIGHT MIN
+,7DA,24,31,1,0,0,%,224041,624041,ff,Ecall HMI LUMINOSITY BACKLIGHT MAX
+,7DA,24,31,1,0,0,%,224042,624042,ff,Ecall HMI LUMINOSITY BACKLIGHT DEFAULT
+,7DA,24,31,1,0,0,%,224043,624043,ff,HMI_LUMINOSITY_BACKLIGHT_DAY
+,7DA,24,31,1,0,0,s,224044,624044,ff,Ecall T_HYSTERESIS
+,7DA,24,31,1,0,0,,224045,624045,ff,Ecall REMOTE_CALL_BACK_REQUEST,0:False (callback request by sms is not allowed);1:True (callback request by sms is allowed)
+,7DA,24,31,1,0,0,,224047,624047,ff,Ecall MSD_REQUEST_BY_SMS,0:False;1:True
+,7DA,24,31,1,0,0,,224048,624048,ff,Ecall TEST_MODE_AVAILABLE,0:False (Test Mode NOTavailable);1:True (Test Mode available)
+,7DA,24,31,1,0,0,,224050,624050,ff,PPP.ReconnectionConfiguration.ConnectionRetry
+,7DA,32,47,1,0,0,s,224050,624050,ff,PPP.ReconnectionConfiguration.FailureTimeout
+,7DA,48,63,1,0,0,s,224050,624050,ff,PPP.ReconnectionConfiguration.DisconnectionTimeout
+,7DA,64,71,1,0,0,,224050,624050,ff,PPP.ReconnectionConfiguration.RejectionRetry,0:No retry until next ON cycle;1:Retry as PPP sequence timeout
+,7DA,24,29,1,0,0,Year,224054,624054,ff,Default A-IVC time.Year
+,7DA,30,33,1,0,0,Month,224054,624054,ff,Default A-IVC time.Month
+,7DA,34,38,1,0,0,d,224054,624054,ff,Default A-IVC time.Day
+,7DA,39,43,1,0,0,h,224054,624054,ff,Default A-IVC time.Hour
+,7DA,44,49,1,0,0,min,224054,624054,ff,Default A-IVC time.Minute
+,7DA,50,55,1,0,0,s,224054,624054,ff,Default A-IVC time.Seconds
+,7DA,24,39,1,0,0,s,224058,624058,ff,Sync gap
+,7DA,24,31,1,0,0,s,224059,624059,ff,DRX notification time
+,7DA,24,39,1,0,0,s,22405D,62405D,ff,PPP reconnection time
+,7DA,24,31,1,0,0,,22405E,62405E,ff,Max SMS treated
+,7DA,24,31,1,0,0,,22405F,62405F,ff,Time Synchro activation status,0:Deactivated;1:Activated
+,7DA,24,39,1,0,0,s,224060,624060,ff,UTN Time out
+,7DA,24,39,1,0,0,s,224061,624061,ff,Sync Latch up
+,7DA,24,31,1,0,0,,224062,624062,ff,RNQ service type,0:Transmission Mode 1;1:Transmission Mode 2;2:Transmission Mode 3
+,7DA,24,55,1,0,0,,224063,624063,1ff,SMS Counter1
+,7DA,24,31,1,0,0,,224065,624065,ff,MUTE_BY_CAN,0:mute by wire;1:mute by CAN
+,7DA,24,31,1,0,0,,224069,624069,ff,SIMULATE_A-IVC_RADIO_MUTE,0:Radio not muted;1:Radio muted
+,7DA,24,31,1,0,0,,22406B,62406B,ff,MULTIPROFILE_MANAGEMENT,0:commercial use (ECALL + Services);1:Glonass Union (ECALL only)
+,7DA,24,31,1,0,0,,22406E,62406E,ff,ECALL_INPUT_TYPE,0:Renault Configuration;1:Nissan Configuration
+,7DA,24,31,1,0,0,,22406F,62406F,ff,ECALL_OUTPUT_TYPE,0:Renault Configuration;1:Nissan Configuration
+,7DA,24,31,1,0,0,s,224070,624070,ff,CANCEL_CALL_PUSH_DURATION
+,7DA,24,39,1,0,0,min,224079,624079,ff,StOffDataMaxT2
+,7DA,24,39,1,0,0,ms,22407A,62407A,ff,ECU processing time N_Br
+,7DA,24,39,1,0,0,ms,22407B,62407B,ff,ECU processing time N_Cs
+,7DA,24,31,1,0,0,,22407C,62407C,ff,CLEAR_DIAG_ECALL,0:No reset requested;1:Reset requested
+,7DA,24,39,1,0,0,°,22407E,62407E,ff,A-IVC Mount Angle.MountAngle_X
+,7DA,40,55,1,0,0,°,22407E,62407E,ff,A-IVC Mount Angle.MountAngle_Y
+,7DA,56,71,1,0,0,°,22407E,62407E,ff,A-IVC Mount Angle.MountAngle_Z
+,7DA,24,31,1,0,0,°,224081,624081,ff,SET_ROLLOVER_THRESHOLD_ANGLE
+,7DA,24,31,1,0,0,km/h,224082,624082,ff,SET_VEHICLE_SPEED_LIMIT
+,7DA,24,31,100,0,0,ms,224083,624083,ff,SET_MIN_ROTATION_DETECTED_TIME
+,7DA,24,31,1,0,0,,22408C,62408C,ff,Service activation status (Geofencing),0:De Activated;1:Activated
+,7DA,24,31,1,0,0,,22408E,62408E,ff,Detect Stop Infringement For Time Limit,0:De Activated;1:Activated
+,7DA,24,39,1,0,0,s,22408F,62408F,ff,Time To Confim Start Infringement For Time Limit
+,7DA,24,39,1,0,0,s,224090,624090,ff,Time To Confirm Stop Infringement For Time Limit
+,7DA,24,31,1,0,0,,224091,624091,ff,Detect Stop Infringement For Speed Limit,0:De Activated;1:Activated
+,7DA,24,39,1,0,0,s,224092,624092,ff,Time To Confim Start Infringement For Speed Limit
+,7DA,24,39,1,0,0,s,224093,624093,ff,Time To Confirm Stop Infringement For Speed Limit
+,7DA,24,31,1,0,0,,224094,624094,ff,Detect Stop Infringement For Area Limit,0:De Activated;1:Activated
+,7DA,24,39,1,0,0,s,224095,624095,ff,Time To Confim StartInfringement For Area Limit
+,7DA,24,39,1,0,0,s,224096,624096,ff,Time To Confirm Stop Infringement For Area Limit
+,7DA,24,31,1,0,0,,224097,624097,ff,Tow_Service Activation Status,0:De Activated;1:Activated
+,7DA,24,39,1,0,0,mg,224098,624098,ff,Tow_ThresholdTiltValue
+,7DA,24,39,1,0,0,s,224099,624099,ff,Tow_ParkedDelayConfirmation
+,7DA,24,31,1,0,0,,22409A,62409A,ff,Burglar_Service Activation Status,0:De Activated;1:Activated
+,7DA,24,39,1,0,0,s,22409B,62409B,ff,Burglar_ConfirmationDelay
+,7DA,24,31,1,0,0,,2240A6,6240A6,ff,MQTTsessType,0:Always Connected;1:On demand
+,7DA,24,39,1,0,0,s,2240A7,6240A7,ff,MQTTTkeepAlive
+,7DA,24,39,1,0,0,s,2240A8,6240A8,ff,MQTTsessionTimeout
+,7DA,24,31,1,0,0,min,2240A9,6240A9,ff,MQTTperiodicConnectInterval
+,7DA,24,31,1,0,0,,2240AA,6240AA,ff,MQTTpayloadCompression,0:Compression disable;1:Compression enable
+,7DA,24,31,1,0,0,s,2240AB,6240AB,ff,MQTTRetryCONNECTInterval
+,7DA,24,31,1,0,0,,2240AC,6240AC,ff,MQTTRetryCONNECTOccurrence
+,7DA,24,31,1,0,0,,2240AD,6240AD,ff,MQTTRetryPUBLISHInterval
+,7DA,24,31,1,0,0,,2240AE,6240AE,ff,MQTTRetryPUBLISHOccurrence
+,7DA,24,31,1,0,0,,2240B1,6240B1,ff,VoLTE activation flag,0:voLTE deactivated;1:voLTE activated
+,7DA,24,31,1,0,0,°,2240B5,6240B5,ff,GNSS_MIN_ELEVATION
+,7DA,24,39,1,0,0,,2240B6,6240B6,ff,CELLULAR NUMBER OF DATA Rx.Number of datas
+,7DA,24,39,1,0,0,,2240B7,6240B7,ff,CELLULAR NUMBER OF DATA Tx.Number of datas
+,7DA,25,25,1,0,0,,2240B8,6240B8,ff,Conf_Vehicle_WakeUp_timeout.no time/infinite time
+,7DA,26,31,1,0,0,s,2240B8,6240B8,ff,Conf_Vehicle_WakeUp_timeout.Time configuration
+,7DA,24,24,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte0.Stop_Engine,0:Code not needed;1:Code needed
+,7DA,25,25,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte0.Start_Engine,0:Code not needed;1:Code needed
+,7DA,26,26,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte0.Forbid_Charge,0:Code not needed;1:Code needed
+,7DA,27,27,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte0.Allow_Charge,0:Code not needed;1:Code needed
+,7DA,28,28,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte0.Configure_without_Protect_Unprotect,0:Code not needed;1:Code needed
+,7DA,29,29,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte0.Configure_with_Protect_Unprotect,0:Code not needed;1:Code needed
+,7DA,30,30,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.bye0.Unprotect_Vehicle,0:Code not needed;1:Code needed
+,7DA,31,31,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte0.Protect_Vehicle,0:Code not needed;1:Code needed
+,7DA,32,32,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte1.Close_Sunroof,0:Code not needed;1:Code needed
+,7DA,33,33,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte1.Open_Sunroof,0:Code not needed;1:Code needed
+,7DA,34,34,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte1.Unlock_Trunk,0:Code not needed;1:Code needed
+,7DA,35,35,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte1.Lock_Trunk,0:Code not needed;1:Code needed
+,7DA,36,36,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte1.Lock_Doors,0:Code not needed;1:Code needed
+,7DA,37,37,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte1.Unlock_Driver_Door,0:Code not needed;1:Code needed
+,7DA,38,38,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte1.Unlock_All_Doors,0:Code not needed;1:Code needed
+,7DA,39,39,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte1.Double_Start_Engine,0:Code not needed;1:Code needed
+,7DA,40,40,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte2.Remote_Horn&Light_StopRequest,0:Code not needed;1:Code needed
+,7DA,41,41,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte2.Start_Horn&Lights,0:Code not needed;1:Code needed
+,7DA,42,42,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte2.Start_Lights,0:Code not needed;1:Code needed
+,7DA,43,43,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte2.Start_Horn,0:Code not needed;1:Code needed
+,7DA,44,44,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte2.Stop_Pre_Conditioning,0:Code not needed;1:Code needed
+,7DA,45,45,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte2.Start_Pre_Conditioning,0:Code not needed;1:Code needed
+,7DA,46,46,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte2.Close_Windows,0:Code not needed;1:Code needed
+,7DA,47,47,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte2.Windows_Open,0:Code not needed;1:Code needed
+,7DA,54,54,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte3.Stop_Charging,0:Code not needed;1:Code needed
+,7DA,55,55,1,0,0,,2240B9,6240B9,ff,Param_Pin_Code_need.byte3.Start_Charging,0:Code not needed;1:Code needed
+,7DA,24,24,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte0.Stop_Engine,0:Presence not needed;1:Presence needed
+,7DA,25,25,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte0.Start_Engine,0:Presence not needed;1:Presence needed
+,7DA,32,32,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte1.Close_Sunroof,0:Presence not needed;1:Presence needed
+,7DA,33,33,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte1.Open_Sunroof,0:Presence not needed;1:Presence needed
+,7DA,34,34,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte1.Unlock_Trunk,0:Presence not needed;1:Presence needed
+,7DA,35,35,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte1.Lock_Trunk,0:Presence not needed;1:Presence needed
+,7DA,36,36,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte1.Lock_Doors,0:Presence not needed;1:Presence needed
+,7DA,37,37,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte1.Unlock_Driver_Door,0:Presence not needed;1:Presence needed
+,7DA,38,38,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte1.Unlock_All_Doors,0:Presence not needed;1:Presence needed
+,7DA,39,39,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte1.Double_Start_Engine,0:Presence not needed;1:Presence needed
+,7DA,40,40,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte2.Remote_Horn&Light_StopRequest,0:Presence not needed;1:Presence needed
+,7DA,41,41,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte2.Start_Horn&Lights,0:Presence not needed;1:Presence needed
+,7DA,42,42,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte2.Start_Lights,0:Presence not needed;1:Presence needed
+,7DA,43,43,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte2.Start_Horn,0:Presence not needed;1:Presence needed
+,7DA,44,44,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte2.Stop_Pre_Conditioning,0:Presence not needed;1:Presence needed
+,7DA,45,45,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte2.Start_Pre_Conditioning,0:Presence not needed;1:Presence needed
+,7DA,46,46,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte2.Close_Windows,0:Presence not needed;1:Presence needed
+,7DA,47,47,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte2.Windows_Open,0:Presence not needed;1:Presence needed
+,7DA,54,54,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte3.Stop_Charging,0:Presence not needed;1:Presence needed
+,7DA,55,55,1,0,0,,2240BA,6240BA,ff,Conf_Customer_Presence_need.byte3.Start_Charging,0:Presence not needed;1:Presence needed
+,7DA,24,31,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte0.Protect_Vehicle
+,7DA,32,39,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte1.Unprotect_Vehicle
+,7DA,40,47,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte2.Configure_with_protect_unprotect
+,7DA,48,55,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte3.Configure_without_protect_unprotect
+,7DA,56,63,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte4.Allow_Charge
+,7DA,64,71,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte5.Forbid_Charge
+,7DA,72,79,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte6.Start_Engine
+,7DA,80,87,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte7.Stop_Engine
+,7DA,88,95,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte8.Double_Start_Engine
+,7DA,96,103,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte9.Unlock_All_Doors
+,7DA,104,111,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte10.Unlock_Driver_Door
+,7DA,112,119,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte11.Lock_Doors
+,7DA,120,127,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte12.Lock_Trunk
+,7DA,128,135,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte13.Unlock_Trunk
+,7DA,136,143,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte14.Open_Sunroof
+,7DA,144,151,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte15.Close_Sunroof
+,7DA,152,159,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte16.Windows_Open
+,7DA,160,167,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte17.Close_Windows
+,7DA,168,175,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte18.Start_Pre_conditioning
+,7DA,176,183,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte19.Stop_Pre_conditioning
+,7DA,184,191,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte20.Start_Horn
+,7DA,192,199,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte21.Start_Lights
+,7DA,200,207,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte22.Start_Horn&Lights
+,7DA,208,215,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte23.Remote_Horn&Light_Stop Request
+,7DA,216,223,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte24.Start_Charging
+,7DA,224,231,1,0,0,min,2240BB,6240BB,ff,Conf_Request_timeout_1.byte25.Stop_Charging
+,7DA,24,24,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte0.Stop_Engine,0:not Inhibited on board;1:inhibited on board
+,7DA,25,25,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte0.Start_Engine,0:not Inhibited on board;1:inhibited on board
+,7DA,32,32,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte1.Close_Sunroof,0:not Inhibited on board;1:inhibited on board
+,7DA,33,33,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte1.Open_Sunroof,0:not Inhibited on board;1:inhibited on board
+,7DA,34,34,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte1.Unlock_Trunk,0:not Inhibited on board;1:inhibited on board
+,7DA,35,35,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte1.Lock_Trunk,0:not Inhibited on board;1:inhibited on board
+,7DA,36,36,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte1.Lock_Doors,0:not Inhibited on board;1:inhibited on board
+,7DA,37,37,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte1.Unlock_Driver_Door,0:not Inhibited on board;1:inhibited on board
+,7DA,38,38,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte1.Unlock_All_Doors,0:not Inhibited on board;1:inhibited on board
+,7DA,39,39,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte1.Double_Start_Engine,0:not Inhibited on board;1:inhibited on board
+,7DA,40,40,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte2.Remote_Horn&Light_StopRequest,0:not Inhibited on board;1:inhibited on board
+,7DA,41,41,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte2.Start_Horn&Lights,0:not Inhibited on board;1:inhibited on board
+,7DA,42,42,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte2.Start_Lights,0:not Inhibited on board;1:inhibited on board
+,7DA,43,43,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte2.Start_Horn,0:not Inhibited on board;1:inhibited on board
+,7DA,44,44,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte2.Stop_Pre_Conditioning,0:not Inhibited on board;1:inhibited on board
+,7DA,45,45,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte2.Start_Pre_Conditioning,0:not Inhibited on board;1:inhibited on board
+,7DA,46,46,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte2.Close_Windows,0:not Inhibited on board;1:inhibited on board
+,7DA,47,47,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte2.Windows_Open,0:not Inhibited on board;1:inhibited on board
+,7DA,54,54,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte3.Stop_Charging,0:not Inhibited on board;1:inhibited on board
+,7DA,55,55,1,0,0,,2240BC,6240BC,ff,Conf_Remote_function_inhibited_onboard.byte3.Start_Charging,0:not Inhibited on board;1:inhibited on board
+,7DA,24,27,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte0.Unprotect_Vehicle
+,7DA,28,31,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte0.Protect_Vehicle
+,7DA,32,35,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte1.Configure_without_protect_unprotect
+,7DA,36,39,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte1.Configure_with_protect_unprotect
+,7DA,40,43,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte2.Forbid_Charge
+,7DA,44,47,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte2.Allow_Charge
+,7DA,48,51,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte3.Stop_Engine
+,7DA,52,55,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte3.Start_Engine
+,7DA,56,59,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte4.Unlock_All_Doors
+,7DA,60,63,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte4.Double_Start_Engine
+,7DA,64,67,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte5.Lock_Doors
+,7DA,68,71,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte5.Unlock_Driver_Door
+,7DA,72,75,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte6.Unlock_Trunk
+,7DA,76,79,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte6.Lock_Trunk
+,7DA,80,83,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte7.Close_Sunroof
+,7DA,84,87,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte7.Open_Sunroof
+,7DA,88,91,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte8.Close_Windows
+,7DA,92,95,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte8.Windows_Open
+,7DA,96,99,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte9.Stop_Pre_conditioning
+,7DA,100,103,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte9.Start_Pre_conditioning
+,7DA,104,107,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte10.Start_Lights
+,7DA,108,111,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte10.Start_Horn
+,7DA,112,115,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte11.Remote_Horn&Light_StopRequest
+,7DA,116,119,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte11.Start_Horn&Lights
+,7DA,120,123,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte12.Stop_Charging
+,7DA,124,127,1,0,0,,2240BD,6240BD,ff,Conf_Cipher_secured_retry.byte12.Start_Charging
+,7DA,24,31,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte0.Protect_Vehicle
+,7DA,32,39,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte1.Unprotect_Vehicle
+,7DA,40,47,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte2.Configure_with_protect_unprotect
+,7DA,48,55,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte3.Configure_without_protect_unprotect
+,7DA,56,63,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte4.Allow_Charge
+,7DA,64,71,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte5.Forbid_Charge
+,7DA,72,79,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte6.Start_Engine
+,7DA,80,87,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte7.Stop_Engine
+,7DA,88,95,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte8.Double_Start_Engine
+,7DA,96,103,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte9.Unlock_All_Doors
+,7DA,104,111,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte10.Unlock_Driver_Door
+,7DA,112,119,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte11.Lock_Doors
+,7DA,120,127,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte12.Lock_Trunk
+,7DA,128,135,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte13.Unlock_Trunk
+,7DA,136,143,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte14.Open_Sunroof
+,7DA,144,151,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte15.Close_Sunroof
+,7DA,152,159,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte16.Windows_Open
+,7DA,160,167,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte17.Close_Windows
+,7DA,168,175,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte18.Start_Pre_conditioning
+,7DA,176,183,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte19.Stop_Pre_conditioning
+,7DA,184,191,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte20.Start_Horn
+,7DA,192,199,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte21.Start_Lights
+,7DA,200,207,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte22.Start_Horn&Lights
+,7DA,208,215,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte23.Remote_Horn&Light_StopRequest
+,7DA,216,223,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte24.Start_Charging
+,7DA,224,231,1,0,0,s,2240BE,6240BE,ff,Conf_Request_comm_timeout.byte25.Stop_Charging
+,7DA,24,31,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte0.Protect_Vehicle
+,7DA,32,39,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte1.Unprotect_Vehicle
+,7DA,40,47,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte2.Configure_with_protect_unprotect
+,7DA,48,55,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte3.Configure_without_protect_unprotect
+,7DA,56,63,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte4.Allow_Charge
+,7DA,64,71,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte5.Forbid_Charge
+,7DA,72,79,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte6.Start_Engine
+,7DA,80,87,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte7.Stop_Engine
+,7DA,88,95,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte8.Double_Start_Engine
+,7DA,96,103,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte9.Unlock_All_Doors
+,7DA,104,111,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte10.Unlock_Driver_Door
+,7DA,112,119,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte11.Lock_Doors
+,7DA,120,127,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte12.Lock_Trunk
+,7DA,128,135,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte13.Unlock_Trunk
+,7DA,136,143,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte14.Open_Sunroof
+,7DA,144,151,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte15.Close_Sunroof
+,7DA,152,159,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte16.Windows_Open
+,7DA,160,167,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte17.Close_Windows
+,7DA,168,175,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte18.Start_Pre_conditioning
+,7DA,176,183,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte19.Stop_Pre_conditioning
+,7DA,184,191,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte20.Start_Horn
+,7DA,192,199,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte21.Start_Lights
+,7DA,200,207,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte22.Start_Horn&Lights
+,7DA,208,215,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte23.Remote_Horn&Light_StopRequest
+,7DA,216,223,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte24.Start_Charging
+,7DA,224,231,1,0,0,s,2240BF,6240BF,ff,Conf_Cipher_secured_comm_timeout.byte25.Stop_Charging
+,7DA,24,527,1,0,0,,2240C2,6240C2,2ff,APN3 parameters Profile 1.APN3
+,7DA,528,783,1,0,0,,2240C2,6240C2,2ff,APN3 parameters Profile 1.APN3UID
+,7DA,784,1039,1,0,0,,2240C2,6240C2,2ff,APN3 parameters Profile 1.APN3PWD
+,7DA,24,527,1,0,0,,2240C4,6240C4,2ff,APN5 parameters Profile 1.APN5
+,7DA,528,783,1,0,0,,2240C4,6240C4,2ff,APN5 parameters Profile 1.APN5UID
+,7DA,784,1039,1,0,0,,2240C4,6240C4,2ff,APN5 parameters Profile 1.APN5PWD
+,7DA,24,527,1,0,0,,2240C5,6240C5,2ff,APN6 parameters Profile 1.APN6
+,7DA,528,783,1,0,0,,2240C5,6240C5,2ff,APN6 parameters Profile 1.APN6UID
+,7DA,784,1039,1,0,0,,2240C5,6240C5,2ff,APN6 parameters Profile 1.APN6PWD
+,7DA,24,527,1,0,0,,2240C6,6240C6,2ff,APN7 parameters Profile 1.APN7
+,7DA,528,783,1,0,0,,2240C6,6240C6,2ff,APN7 parameters Profile 1.APN7UID
+,7DA,784,1039,1,0,0,,2240C6,6240C6,2ff,APN7 parameters Profile 1.APN7PWD
+,7DA,24,527,1,0,0,,2240C7,6240C7,2ff,APN8 parameters Profile 1.APN8
+,7DA,528,783,1,0,0,,2240C7,6240C7,2ff,APN8 parameters Profile 1.APN8UID
+,7DA,784,1039,1,0,0,,2240C7,6240C7,2ff,APN8 parameters Profile 1.APN8PWD
+,7DA,24,71,1,0,0,,2240C8,6240C8,2ff,HPLMN profile 2
+,7DA,24,279,1,0,0,,2240C9,6240C9,2ff,SIM PIN Code Profile 2
+,7DA,24,31,1,0,0,,2240CA,6240CA,ff,SIM PIN Used Profile 2,0:Deactivated;1:Activated
+,7DA,24,527,1,0,0,,2240CB,6240CB,2ff,APN1 parameters Profile 2.APN1
+,7DA,528,783,1,0,0,,2240CB,6240CB,2ff,APN1 parameters Profile 2.APN1UID
+,7DA,784,1039,1,0,0,,2240CB,6240CB,2ff,APN1 parameters Profile 2.APN1PWD
+,7DA,24,527,1,0,0,,2240CC,6240CC,2ff,APN3 parameters Profile 2.APN3
+,7DA,528,783,1,0,0,,2240CC,6240CC,2ff,APN3 parameters Profile 2.APN3UID
+,7DA,784,1039,1,0,0,,2240CC,6240CC,2ff,APN3 parameters Profile 2.APN3PWD
+,7DA,24,527,1,0,0,,2240CD,6240CD,2ff,APN5 parameters Profile 2.APN5
+,7DA,528,783,1,0,0,,2240CD,6240CD,2ff,APN5 parameters Profile 2.APN5UID
+,7DA,784,1039,1,0,0,,2240CD,6240CD,2ff,APN5 parameters Profile 2.APN5PWD
+,7DA,24,527,1,0,0,,2240CE,6240CE,2ff,APN6 parameters Profile 2.APN6
+,7DA,528,783,1,0,0,,2240CE,6240CE,2ff,APN6 parameters Profile 2.APN6UID
+,7DA,784,1039,1,0,0,,2240CE,6240CE,2ff,APN6 parameters Profile 2.APN6PWD
+,7DA,24,527,1,0,0,,2240CF,6240CF,2ff,APN7 parameters Profile 2.APN7
+,7DA,528,783,1,0,0,,2240CF,6240CF,2ff,APN7 parameters Profile 2.APN7UID
+,7DA,784,1039,1,0,0,,2240CF,6240CF,2ff,APN7 parameters Profile 2.APN7PWD
+,7DA,24,527,1,0,0,,2240D0,6240D0,2ff,APN8 parameters Profile 2.APN8
+,7DA,528,783,1,0,0,,2240D0,6240D0,4ff,APN8 parameters Profile 2.APN8UID
+,7DA,784,1039,1,0,0,,2240D0,6240D0,2ff,APN8 parameters Profile 2.APN8PWD
+,7DA,24,31,1,0,0,,2240E0,6240E0,ff,Radio Wave RF,0:Radio wave RF OFF;1:Radio wave RF ON
+,7DA,24,279,1,0,0,,2240E7,6240E7,2ff,MQTTServerPort
+,7DA,24,31,1,0,0,,2240EC,6240EC,ff,DRX to Off Notification,0:Deactivated;1:Activated
+,7DA,24,31,1,0,0,s,2240ED,6240ED,ff,StOffSmsMaxT
+,7DA,24,31,1,0,0,s,2240EF,6240EF,ff,StOffDataMaxT
+,7DA,24,31,1,0,0,d,2240F0,6240F0,ff,TowDeactivateTime
+,7DA,24,39,1,0,0,s,2240F3,6240F3,ff,DRMdataReqTimeout
+,7DA,24,31,1,0,0,,2240F4,6240F4,ff,DRXactStatus,0:Deactivated;1:Activated
+,7DA,24,31,1,0,0,km/h,2240F6,6240F6,ff,Speed_Threshold
+,7DA,24,39,1,0,0,m,2240F7,6240F7,ff,Distance_threshold
+,7DA,24,31,1,0,0,,2240F8,6240F8,ff,Ecall crash detected conf,0:Inactive;1:Active
+,7DA,24,31,1,0,0,,2240F9,6240F9,ff,Ecall internal detection conf,0:Inactive;1:Active
+,7DA,24,31,1,0,0,,2240FB,6240FB,ff,IP_address_APN3.status,0:IP address not available;1:IPV4 address available;2:IPV6 address available
+,7DA,32,159,1,0,0,,2240FB,6240FB,4ff,IP_address_APN3.address
+,7DA,24,31,1,0,0,,2240FE,6240FE,ff,Powertype,0:ICE;1:EV;2:HEV;3:PHEV
+,7DA,24,31,1,0,0,,2240FF,6240FF,ff,XCALL - Destination_address,1:A_Vnext;2:Call_center
+,7DA,24,279,1,0,0,,224100,624100,2ff,Xcall - Offboard_server_number
+,7DA,24,287,1,0,0,,224101,624101,2ff,Xcall - Call_center_directory
+,7DA,24,183,1,0,0,,224102,624102,2ff,Xcall - Operator Service Primary (w/DTMF)
+,7DA,24,183,1,0,0,,224103,624103,2ff,Xcall - Operator Service Secondary (w/DTMF)
+,7DA,24,183,1,0,0,,224104,624104,2ff,Xcall - Operator Service voice-only (no DTMF)
+,7DA,24,279,1,0,0,,22410D,62410D,2ff,Ecall Private - Ecall_number
+,7DA,24,183,1,0,0,,22410F,62410F,2ff,Ecall Private - Airbag Primary (w/DTMF)
+,7DA,24,183,1,0,0,,224110,624110,2ff,Ecall Private - Airbag Secondary (w/DTMF)
+,7DA,24,183,1,0,0,,224111,624111,2ff,Ecall Private - Airbag voice-only (no DTMF)
+,7DA,24,183,1,0,0,,224112,624112,2ff,Ecall Private - Emergency Assistance Primary (w/DTMF)
+,7DA,24,183,1,0,0,,224113,624113,2ff,Ecall Private - Emergency Assistance Secondary (w/DTMF)
+,7DA,24,183,1,0,0,,224114,624114,2ff,Ecall Private - Emergency Assistance voice-only (no DTMF)
+,7DA,24,31,1,0,0,,224115,624115,ff,Ecall Private - Ecall_availability_after_cancelling
+,7DA,24,31,1,0,0,s,224117,624117,ff,Ecall Private - Enable_cancelation_timer
+,7DA,24,31,1,0,0,,224119,624119,ff,Ecall Private - Audio_Output,0:Dedicated speaker;1:Multimedia speaker
+,7DA,24,279,1,0,0,,22411A,62411A,2ff,ACN - acn_call_number
+,7DA,24,39,1,0,0,ms,22411B,62411B,ff,ACN - acn_response_time
+,7DA,24,279,1,0,0,,22411C,62411C,2ff,AACN - aacn_call_number
+,7DA,24,39,100,0,0,ms,22411E,62411E,ff,AACN - aacn_response_time
+,7DA,24,31,1,0,0,,22411F,62411F,ff,User_Authtentication - Number_wrong_Pin_Retry
+,7DA,24,31,1,0,0,s,224121,624121,ff,User_Authtentication - Timeout4
+,7DA,24,31,1,0,0,s,224122,624122,ff,User_Authtentication - Timeout6
+,7DA,24,31,1,0,0,s,224123,624123,ff,User_Authtentication - Timeout9
+,7DA,24,31,1,0,0,min,224125,624125,ff,User_Authtentication - Timeout_SRP_A-IVC
+,7DA,24,31,1,0,0,,224126,624126,ff,IVC Basic Service - MQTT_DownloadTopicArray
+,7DA,24,31,1,0,0,,224127,624127,ff,IVC Basic Service - MQTT_UploadTopicArray
+,7DA,24,279,1,0,0,,224128,624128,2ff,IVC Basic Service - MQTTUsernameConfig
+,7DA,24,279,1,0,0,,224129,624129,2ff,IVC Basic Service - MQTTPasswordConfig
+,7DA,24,47,1,0,0,s,22412D,62412D,ff,Remote DIAG - T_ECU_QUESTIONING
+,7DA,24,39,1,0,0,,22412E,62412E,ff,RNQ - RNQ Status Data frequency Upload
+,7DA,24,31,1,0,0,,224130,624130,ff,IVC Basic Service - Brandswitch,0:Renault;1:Nissan;2:Infinity;3:Mitsubishi
+,7DA,24,31,1,0,0,,224131,624131,ff,Wifi Hotspot- Activation status,0:Deactivated;1:Activated
+,7DA,24,31,1,0,0,,224132,624132,ff,Wifi hotspot available network,0:ALL;1:4G;2:3G
+,7DA,24,39,1,0,0,ms,224133,624133,ff,Remote Actuator - Request_Duration.Byte0-1: Door_Lock_request_duration
+,7DA,40,55,1,0,0,ms,224133,624133,ff,Remote Actuator - Request_Duration.Byte2-3: Horn_LIGHT_request_duration
+,7DA,56,71,1,0,0,ms,224133,624133,ff,Remote Actuator - Request_Duration.Byte4-5: RES_request_duration
+,7DA,72,87,1,0,0,ms,224133,624133,ff,Remote Actuator - Request_Duration.Byte6-7: Charge_request_duration
+,7DA,88,103,1,0,0,ms,224133,624133,ff,Remote Actuator - Request_Duration.Byte8-9: PriAirConditioner_request_duration
+,7DA,104,119,1,0,0,ms,224133,624133,ff,Remote Actuator - Request_Duration.Byte10-11: Battery_Inhibitor_request_duration
+,7DA,24,31,1,0,0,,224134,624134,ff,RNQ transmission Level,0:None;1:Full;2:Partial
+,7DA,24,31,1,0,0,,224135,624135,ff,Reg Ecall Audio Output,0:Dedicated Speaker;1:Relay Control
+,7DA,24,31,1,0,0,h,224136,624136,ff,MSD_HISTORIC_TIMEOUT
+,7DA,24,39,1,0,0,ms,224137,624137,ff,Inter_Request
+,7DA,24,31,.1,0,1,V,224138,624138,ff,VEH_CHARGER_THRESHOLD
+,7DA,24,31,1,0,0,,224139,624139,ff,Xcall Activation Status.Ccall,0:Deactivated;1:Activated
+,7DA,32,39,1,0,0,,224139,624139,ff,Xcall Activation Status.Bcall,0:Deactivated;1:Bcall Activated
+,7DA,40,47,1,0,0,,224139,624139,ff,Xcall Activation Status.Bcall_Diag status,0:Deactivated;1:Activated
+,7DA,48,55,1,0,0,,224139,624139,ff,Xcall Activation Status.Hcall,0:Deactivated;1:Activated
+,7DA,24,279,1,0,0,,22413A,62413A,2ff,Xcall - Ccall_Number
+,7DA,24,279,1,0,0,,22413B,62413B,2ff,Xcall - Bcall_Number
+,7DA,24,279,1,0,0,,22413C,62413C,2ff,Xcall - Hcall_Number
+,7DA,24,31,1,0,0,s,22413D,62413D,ff,T_before_calling
+,7DA,24,31,1,0,0,,22413E,62413E,ff,RDIAG Activation Status,0:RDaig Deactivated;1:RDaig activated
+,7DA,24,31,1,0,0,,22413F,62413F,ff,MQTT_DownloadZlibTopicArray
+,7DA,24,31,1,0,0,s,224141,624141,ff,MQTTConnectionTimeOut
+,7DA,24,31,1,0,0,s,224142,624142,ff,MQTTSubscriptionTimeOut
+,7DA,24,31,1,0,0,s,224143,624143,ff,MQTTPublishTimeOut
+,7DA,24,31,1,0,0,s,224144,624144,ff,EVCAN TimeOut
+,7DA,24,39,1,0,0,ms,224145,624145,ff,P2Timer_UDS
+,7DA,24,39,1,0,0,ms,224146,624146,ff,P2Timer_BC
+,7DA,24,31,1,0,0,,224147,624147,ff,Tx_Mode_Configuration,0:MQTT+SMS;1:MQTT
+,7DA,24,151,1,0,0,,224148,624148,2ff,XCALL - SMS FALLBACK NUMBER
+,7DA,24,31,1,0,0,°,224149,624149,ff,SET_END_POSITION_THRESHOLD_ANGLE
+,7DA,24,31,100,0,0,ms,22414A,62414A,ff,SET_MIN_END_POSITION_DETECTED_TIME
+,7DA,24,31,1,0,0,,22414B,62414B,ff,RNQ Service Activation Status,0:Deactivated;1:Activated
+,7DA,24,31,1,0,0,,22414C,62414C,ff,Geofencing - UseLegacyMPDT,0:Use New MPDT Specification;1:Use Legacy MPDT Message
+,7DA,24,31,1,0,0,,22414D,62414D,ff,UCD Activation status,0:Deactivated;1:Activated
+,7DA,24,39,1,0,0,s,22414E,62414E,ff,OffToDrxTimeout
+,7DA,24,31,1,0,0,s,224150,624150,ff,Priv Ecall T LONG PUSH
+,7DA,24,31,1,0,0,s,224151,624151,ff,Priv ECALL - CANCEL_CALL_PUSH_DURATION
+,7DA,24,31,.1,0,1,,224152,624152,ff,OffsetCorrectionForAreaLimit
+,7DA,24,31,.001,0,3,,224153,624153,ff,OffsetCorrectionForSpeedLimit
+,7DA,24,31,1,0,0,,224154,624154,ff,NumNotifByAccCycleForAreaLimit
+,7DA,24,31,1,0,0,,224155,624155,ff,NumNotifByAccCycleForSpeedLimit
+,7DA,24,31,1,0,0,,224156,624156,ff,NumNotifByAccCycleForTimeLimit
+,7DA,24,31,1,0,0,,224157,624157,ff,EPMC Activation,0:Deactivated;1:Activated
+,7DA,24,31,1,0,0,,224158,624158,ff,InitEPMCBudget
+,7DA,24,31,.1,0,1,Wh,224159,624159,ff,PwRemote
+,7DA,24,31,.1,0,1,W.h,22415A,62415A,ff,PwFOTA
+,7DA,24,31,1,0,0,mA,22415B,62415B,ff,PwDRX
+,7DA,24,31,.01,0,2,Wh,22415C,62415C,ff,PwMQTT
+,7DA,24,31,1,0,0,Wh,22415D,62415D,ff,ThresholdWarningUser
+,7DA,24,31,1,0,0,Wh,22415E,62415E,ff,ThresholdLimit
+,7DA,24,39,.1,0,1,Wh,22415F,62415F,ff,ThresholdMQTT
+,7DA,24,31,1,0,0,,224160,624160,ff,retry_number_X_CALL
+,7DA,24,31,1,0,0,,224161,624161,ff,retry_number_E_CALL
+,7DA,24,31,1,0,0,,224162,624162,ff,Cloud_Privacy_Mode,0:Deactivated;1:Activated
+,7DA,24,31,1,0,0,,224163,624163,ff,FOTA _Enable_Disable,0:FOTA OFF;255:FOTA ON
+,7DA,24,31,1,0,0,,224164,624164,ff,FOTA Periodic Check,0:No(Infinite);1:7 days;2:30 days;3:180 days
+,7DA,24,31,10,0,0,ms,224166,624166,ff,Timer_CCS_Lock_Unlock_cmd
+,7DA,24,31,1,0,0,,224167,624167,ff,MQTTRetrySUBSCRIBEInterval
+,7DA,24,31,1,0,0,,224168,624168,ff,MQTTRetrySUBSCRIBEOccurrence
+,7DA,24,39,1,0,0,s,22416A,62416A,ff,TLS_EXPBackOffStartDelay
+,7DA,24,1047,1,0,0,,22416B,62416B,2ff,URL
+,7DA,24,39,1,0,0,,22416C,62416C,ff,PORT
+,7DA,24,103,1,0,0,,22416D,62416D,2ff,Data Dictionary(DD) Version
+,7DA,24,39,1,0,0,s,22416F,62416F,ff,T_FOTA
+,7DA,24,31,1,0,0,s,224170,624170,ff,Ecall_Priv_VOICE_CONNECTION_TIMEOUT
+,7DA,24,31,1,0,0,,224171,624171,ff,Panic_Call Activation Status,0:Deactivated;1:Activated
+,7DA,24,279,1,0,0,,224172,624172,2ff,Panic_Call number
+,7DA,24,31,1,0,0,,224173,624173,ff,ACN_AD call Activation Status,0:Deactivated;1:Activated
+,7DA,24,279,1,0,0,,224174,624174,2ff,ACN_AD call number
+,7DA,24,31,1,0,0,s,224175,624175,ff,Ecall_Priv Ring Call Back Timer
+,7DA,24,31,1,0,0,,224176,624176,ff,Plug In Reminder Activation Status,0:Deactivated;1:Activated
+,7DA,24,31,1,0,0,,224177,624177,ff,Remote Blocking Charging Activation Status,0:deactivated;1:activated
+,7DA,24,31,1,0,0,,224178,624178,ff,IMS Activation,0:Deactivated;1:activated
+,7DA,24,31,1,0,0,,224179,624179,ff,SMS over IP Activation,0:Deactivated;1:Activated
+,7DA,24,55,1,0,0,,22417A,62417A,1ff,SMS Counter2
+,7DA,24,55,1,0,0,,22417B,62417B,1ff,SMS Counter3
+,7DA,24,55,1,0,0,,22417C,62417C,1ff,SMS Counter4
+,7DA,24,55,1,0,0,,22417D,62417D,1ff,SMS Counter5
+,7DA,24,39,1,0,0,s,22417E,62417E,ff,OffToDrxTimeoutBase
+,7DA,24,31,.1,0,1,,22417F,62417F,ff,OffToDrxTimeoutMultiplier
+,7DA,24,31,1,0,0,h,224180,624180,ff,OffToDrxTimeoutMax
+,7DA,24,39,1,0,0,,224181,624181,ff,OffToDrxMaxRetries
+,7DA,24,39,1,0,0,min,224182,624182,ff,Ecall_Priv_call_back Timeout
+,7DA,24,279,1,0,0,,224183,624183,2ff,SIM SMS Center 2
+,7DA,24,31,1,0,0,,224184,624184,ff,SMSenActStatus,0:Deactivated;1:Activated
+,7DA,24,103,1,0,0,,224200,624200,2ff,Model Code
+,7DA,24,1999,1,0,0,,224201,624201,2ff,Current Emergency Call URL Information
+,7DA,24,1999,1,0,0,,224202,624202,2ff,Current Inspection URL Information
+,7DA,24,1999,1,0,0,,224203,624203,2ff,New Emergency Call URL Information
+,7DA,24,1999,1,0,0,,224204,624204,2ff,New Inspection URL Information
+,7DA,24,223,1,0,0,,224205,624205,2ff,Scheduled Change Date and Time
+,7DA,24,183,1,0,0,,224206,624206,2ff,Center’s Telephone Number
+,7DA,24,31,1,0,0,,224207,624207,ff,User_collation_result_of_the_inspection.judge,0:Inspected (Available)-;1:Inspected (Unavailable)-;2:Uninspected
+,7DA,24,223,1,0,0,,224208,624208,2ff,Automatic inspection time
+,7DA,24,31,1,0,0,,224209,624209,ff,Driver_Info_Upload_Permit,0:Deactivated;1:Activated
+,7DA,24,31,1,0,0,,22420A,62420A,ff,Probe_Upload_Permit,0:Deactivated;1:Activated
+,7DA,24,55,1,0,0,m,22420B,62420B,1ff,Location Data Mileage No Fixed Location
+,7DA,24,1623,1,0,0,,22420C,62420C,2ff,Location Data Acquisition Time1
+,7DA,24,1623,1,0,0,,22420D,62420D,2ff,Location Data Acquisition Time2
+,7DA,24,1623,1,0,0,,22420E,62420E,2ff,Location Data Acquisition Time3
+,7DA,24,1623,1,0,0,,22420F,62420F,2ff,Location Data Acquisition Time4
+,7DA,24,1623,1,0,0,,224210,624210,2ff,Location Data Acquisition Time5
+,7DA,24,1623,1,0,0,,224211,624211,2ff,Location Data Acquisition Time6
+,7DA,24,1623,1,0,0,,224212,624212,2ff,Location Data Acquisition Time7
+,7DA,24,1623,1,0,0,,224213,624213,2ff,Location Data Acquisition Time8
+,7DA,24,535,1,0,0,,224214,624214,4ff,Location Data Difference Between Front Wheels Rotation
+,7DA,24,1047,1,0,0,,224215,624215,2ff,Location Data Steering Angle
+,7DA,24,55,1,0,0,,224216,624216,2ff,Location Data Vehicle Speed
+,7DA,24,4119,1,0,0,,224217,624217,2ff,Emergency Call Data1
+,7DA,24,4119,1,0,0,,224218,624218,2ff,Emergency Call Data2
+,7DA,24,4119,1,0,0,,224219,624219,2ff,Emergency Call Data3
+,7DA,24,4119,1,0,0,,22421A,62421A,2ff,Emergency Call Data4
+,7DA,24,4119,1,0,0,,22421B,62421B,2ff,Emergency Call Data5
+,7DA,24,47,1,0,0,,22421C,62421C,2ff,Emergency Call Log
+,7DA,24,31,1,0,0,,22421D,62421D,2ff,Radio reception condition
+,7DA,24,39,1,0,0,,22421E,62421E,2ff,Outgoing Call Retry Count
+,7DA,24,223,1,0,0,,22421F,62421F,2ff,Error Histoy.TCU ON time
+,7DA,224,423,1,0,0,,22421F,62421F,2ff,Error Histoy.TCU OFF time
+,7DA,424,623,1,0,0,,22421F,62421F,2ff,Error Histoy.ecall start time
+,7DA,624,823,1,0,0,,22421F,62421F,2ff,Error Histoy.ecall end time
+,7DA,824,1023,1,0,0,,22421F,62421F,2ff,Error Histoy.failure occurrence time
+,7DA,1024,1063,1,0,0,,22421F,62421F,2ff,Error Histoy.failure contents
+,7DA,1064,1263,1,0,0,,22421F,62421F,2ff,Error Histoy.Switch to backup battery time
+,7DA,24,31,1,0,0,,224220,624220,ff,RA_Presoak_Underhood_Check_Activation_CF,0:INACTIVE;1:ACTIVE
+,7DA,24,31,1,0,0,,224221,624221,ff,Privacy_Mode_Activation,0:Activated;1:Deactivated
+,7DA,24,31,1,0,0,,224300,624300,ff,Remote Ajustable SOC Activation Status,0:OFF;1:ON
+,7DA,24,31,1,0,0,,224301,624301,ff,Remote KeyFob Inhibition Activation Status,0:OFF;1:ON
+,7DA,24,31,1,0,0,,224302,624302,ff,Remote KeyFob Inhibition Supported,0:Remote KeyFob Inhibition command is not supported by HFM;1:Remote KeyFob Inhibition command is supported by HFM
+,7DA,24,24,1,0,0,,224303,624303,ff,Param_Pin_Code_need_Extn.Unlock VU Cargo Zone,0:Code not needed;1:Code needed
+,7DA,25,25,1,0,0,,224303,624303,ff,Param_Pin_Code_need_Extn.Lock VU Cargo Zone,0:Code not needed;1:Code needed
+,7DA,26,26,1,0,0,,224303,624303,ff,Param_Pin_Code_need_Extn.Unlock VU Cabin Zone,0:Code not needed;1:Code needed
+,7DA,27,27,1,0,0,,224303,624303,ff,Param_Pin_Code_need_Extn.Lock VU Cabin Zone,0:Code not needed;1:Code needed
+,7DA,29,29,1,0,0,,224303,624303,ff,Param_Pin_Code_need_Extn.Lock Driver Door Only,0:Code not needed;1:Code needed
+,7DA,36,36,1,0,0,,224303,624303,ff,Param_Pin_Code_need_Extn.ikey_Inhibited,0:Code not needed;1:Code needed
+,7DA,37,37,1,0,0,,224303,624303,ff,Param_Pin_Code_need_Extn.ikey_Authorized,0:Code not needed;1:Code needed
+,7DA,38,38,1,0,0,,224303,624303,ff,Param_Pin_Code_need_Extn.Unlock Superlock,0:Code not needed;1:Code needed
+,7DA,39,39,1,0,0,,224303,624303,ff,Param_Pin_Code_need_Extn.Lock Superlock,0:Code not needed;1:Code needed
+,7DA,24,24,1,0,0,,224304,624304,ff,Conf_Customer_Presence_need_Extn.Unlock VU Cargo Zone,0:Presence not needed;1:Presence needed
+,7DA,25,25,1,0,0,,224304,624304,ff,Conf_Customer_Presence_need_Extn.Lock VU Cargo Zone,0:Presence not needed;1:Presence needed
+,7DA,26,26,1,0,0,,224304,624304,ff,Conf_Customer_Presence_need_Extn.Unlock VU Cabin Zone,0:Presence not needed;1:Presence needed
+,7DA,27,27,1,0,0,,224304,624304,ff,Conf_Customer_Presence_need_Extn.Lock VU Cabin Zone,0:Presence not needed;1:Presence needed
+,7DA,29,29,1,0,0,,224304,624304,ff,Conf_Customer_Presence_need_Extn.Lock Driver Door Only,0:Presence not needed;1:Presence needed
+,7DA,36,36,1,0,0,,224304,624304,ff,Conf_Customer_Presence_need_Extn.ikey_Inhibited,0:Presence not needed;1:Presence needed
+,7DA,37,37,1,0,0,,224304,624304,ff,Conf_Customer_Presence_need_Extn.ikey_Authorized,0:Presence not needed;1:Presence needed
+,7DA,38,38,1,0,0,,224304,624304,ff,Conf_Customer_Presence_need_Extn.Unlock Superlock,0:Presence not needed;1:Presence needed
+,7DA,39,39,1,0,0,,224304,624304,ff,Conf_Customer_Presence_need_Extn.Lock Superlock,0:Presence not needed;1:Presence needed
+,7DA,40,47,1,0,0,min,224305,624305,ff,Conf_Request_timeout_1_Extn.Lock Driver Door Only
+,7DA,48,55,1,0,0,min,224305,624305,ff,Conf_Request_timeout_1_Extn.Unlock Driver Door Only
+,7DA,56,63,1,0,0,min,224305,624305,ff,Conf_Request_timeout_1_Extn.Lock VU Cabin Zone
+,7DA,64,71,1,0,0,min,224305,624305,ff,Conf_Request_timeout_1_Extn.Unlock VU Cabin Zone
+,7DA,72,79,1,0,0,min,224305,624305,ff,Conf_Request_timeout_1_Extn.Lock VU Cargo Zone
+,7DA,80,87,1,0,0,min,224305,624305,ff,Conf_Request_timeout_1_Extn.Unlock VU Cargo Zone
+,7DA,88,95,1,0,0,min,224305,624305,ff,Conf_Request_timeout_1_Extn.Lock Superlock
+,7DA,96,103,1,0,0,min,224305,624305,ff,Conf_Request_timeout_1_Extn.Unlock Superlock
+,7DA,104,111,1,0,0,min,224305,624305,ff,Conf_Request_timeout_1_Extn.ikay_Authorized
+,7DA,112,119,1,0,0,min,224305,624305,ff,Conf_Request_timeout_1_Extn.ikey_Inhibited
+,7DA,24,24,1,0,0,,224306,624306,ff,Conf_Remote_fn_inhibited_onboard_Extn.Unlock VU Cargo Zone,0:not inhibited on board;1:inhibited on board
+,7DA,25,25,1,0,0,,224306,624306,ff,Conf_Remote_fn_inhibited_onboard_Extn.Lock VU Cargo Zone,0:not inhibited on board;1:inhibited on board
+,7DA,26,26,1,0,0,,224306,624306,ff,Conf_Remote_fn_inhibited_onboard_Extn.Unlock VU Cabin Zone,0:not inhibited on board;1:inhibited on board
+,7DA,27,27,1,0,0,,224306,624306,ff,Conf_Remote_fn_inhibited_onboard_Extn.Lock VU Cabin Zone,0:not inhibited on board;1:inhibited on board
+,7DA,28,28,1,0,0,,224306,624306,ff,Conf_Remote_fn_inhibited_onboard_Extn.Unlock Driver Door Only,0:not inhibited on board;1:inhibited on board
+,7DA,29,29,1,0,0,,224306,624306,ff,Conf_Remote_fn_inhibited_onboard_Extn.Lock Driver Door Only,0:not inhibited on board;1:inhibited on board
+,7DA,36,36,1,0,0,,224306,624306,ff,Conf_Remote_fn_inhibited_onboard_Extn.ikey_Inhibited,0:not inhibited on board;1:inhibited on board
+,7DA,37,37,1,0,0,,224306,624306,ff,Conf_Remote_fn_inhibited_onboard_Extn.ikay_Authorized,0:not inhibited on board;1:inhibited on board
+,7DA,38,38,1,0,0,,224306,624306,ff,Conf_Remote_fn_inhibited_onboard_Extn.Unlock Superlock,0:not inhibited on board;1:inhibited on board
+,7DA,39,39,1,0,0,,224306,624306,ff,Conf_Remote_fn_inhibited_onboard_Extn.Lock Superlock,0:not inhibited on board;1:inhibited on board
+,7DA,32,35,1,0,0,,224307,624307,ff,Conf_Cipher_secured_retry_Extn.Unlock Driver Door Only
+,7DA,36,39,1,0,0,,224307,624307,ff,Conf_Cipher_secured_retry_Extn.Lock Driver Door Only
+,7DA,40,43,1,0,0,,224307,624307,ff,Conf_Cipher_secured_retry_Extn.Unlock VU Cabin Zone
+,7DA,44,47,1,0,0,,224307,624307,ff,Conf_Cipher_secured_retry_Extn.Lock VU Cabin Zone
+,7DA,48,51,1,0,0,,224307,624307,ff,Conf_Cipher_secured_retry_Extn.Unlock VU Cargo Zone
+,7DA,52,55,1,0,0,,224307,624307,ff,Conf_Cipher_secured_retry_Extn.Lock VU Cargo Zone
+,7DA,56,59,1,0,0,,224307,624307,ff,Conf_Cipher_secured_retry_Extn.Unlock Superlock
+,7DA,60,63,1,0,0,,224307,624307,ff,Conf_Cipher_secured_retry_Extn.Lock Superlock
+,7DA,64,67,1,0,0,,224307,624307,ff,Conf_Cipher_secured_retry_Extn.ikey_Inhibited
+,7DA,68,71,1,0,0,,224307,624307,ff,Conf_Cipher_secured_retry_Extn.ikay_Authorized
+,7DA,40,47,1,0,0,,224308,624308,ff,CipherSecCommTimeout_Extn.Lock Driver Door Only
+,7DA,48,55,1,0,0,,224308,624308,ff,CipherSecCommTimeout_Extn.Unlock Driver Door Only
+,7DA,56,63,1,0,0,,224308,624308,ff,CipherSecCommTimeout_Extn.Lock VU Cabin Zone
+,7DA,64,71,1,0,0,,224308,624308,ff,CipherSecCommTimeout_Extn.Unlock VU Cabin Zone
+,7DA,72,79,1,0,0,,224308,624308,ff,CipherSecCommTimeout_Extn.Lock VU Cargo Zone
+,7DA,80,87,1,0,0,,224308,624308,ff,CipherSecCommTimeout_Extn.Unlock VU Cargo Zone
+,7DA,88,95,1,0,0,,224308,624308,ff,CipherSecCommTimeout_Extn.Lock Superlock
+,7DA,96,103,1,0,0,,224308,624308,ff,CipherSecCommTimeout_Extn.Unlock Superlock
+,7DA,104,111,1,0,0,,224308,624308,ff,CipherSecCommTimeout_Extn.iKEY_AUTHORIZED
+,7DA,112,119,1,0,0,,224308,624308,ff,CipherSecCommTimeout_Extn.iKEY_INHIBITED
+,7DA,24,39,1,0,0,h,224309,624309,ff,Technical_Cold_Reboot_Frequency
+,7DA,24,31,1,0,0,,224310,624310,ff,SCM_Activation_Status,0:Deactivated;1:Activated
+,7DA,24,31,1,0,0,s,224312,624312,ff,RA_KeepRefuseToSleepTime
+,7DA,24,24,1,0,0,,226000,626000,ff,DTC Activation.Ecall Microphone,0:Deactivated;1:Activated
+,7DA,25,25,1,0,0,,226000,626000,ff,DTC Activation.EMU,0:Deactivated;1:Activated
+,7DA,26,26,1,0,0,,226000,626000,ff,DTC Activation.Aux_In_Info/Tel_Mute_Out,0:Deactivated;1:Activated
+,7DA,27,27,1,0,0,,226000,626000,ff,DTC Activation.AirbagCAN,0:Deactivated;1:Activated
+,7DA,28,28,1,0,0,,226000,626000,ff,DTC Activation.CAN-M,0:Deactivated;1:Activated
+,7DA,29,29,1,0,0,,226000,626000,ff,DTC Activation.CAN-V,0:Deactivated;1:Activated
+,7DA,30,30,1,0,0,,226000,626000,ff,DTC Activation.InternalBattery status,0:Deactivated;1:Activated
+,7DA,31,31,1,0,0,,226000,626000,ff,DTC Activation.Battery,0:Deactivated;1:Activated
+,7DA,32,32,1,0,0,,226000,626000,ff,DTC Activation.MIC_OUT,0:Deactivated;1:Activated
+,7DA,33,33,1,0,0,,226000,626000,ff,DTC Activation.GNSS COMMUNICATIONS FAILURE,0:Deactivated;1:Activated
+,7DA,34,34,1,0,0,,226000,626000,ff,DTC Activation.System Internal Failure,0:Deactivated;1:Activated
+,7DA,35,35,1,0,0,,226000,626000,ff,DTC Activation.Ecall Button,0:Deactivated;1:Activated
+,7DA,36,36,1,0,0,,226000,626000,ff,DTC Activation.Ecall Blacklight LED,0:Deactivated;1:Activated
+,7DA,37,37,1,0,0,,226000,626000,ff,DTC Activation.Ecall Auto LED,0:Deactivated;1:Activated
+,7DA,38,38,1,0,0,,226000,626000,ff,DTC Activation.Ecall Green LED,0:Deactivated;1:Activated
+,7DA,39,39,1,0,0,,226000,626000,ff,DTC Activation.Ecall Red LED,0:Deactivated;1:Activated
+,7DA,40,40,1,0,0,,226000,626000,ff,DTC Activation.Vnext Functional,0:Deactivated;1:Activated
+,7DA,41,41,1,0,0,,226000,626000,ff,DTC Activation.Vnext Authentication,0:Deactivated;1:Activated
+,7DA,42,42,1,0,0,,226000,626000,ff,DTC Activation.PPP Data Comm. Authentication,0:Deactivated;1:Activated
+,7DA,43,43,1,0,0,,226000,626000,ff,DTC Activation.Voice Failure,0:Deactivated;1:Activated
+,7DA,44,44,1,0,0,,226000,626000,ff,DTC Activation.SMS,0:Deactivated;1:Activated
+,7DA,45,45,1,0,0,,226000,626000,ff,DTC Activation.HU/Navi USB,0:Deactivated;1:Activated
+,7DA,46,46,1,0,0,,226000,626000,ff,DTC Activation.Virgin Configuration,0:Deactivated;1:Activated
+,7DA,47,47,1,0,0,,226000,626000,ff,DTC Activation.A-IVC OVERHEAT,0:Deactivated;1:Activated
+,7DA,48,48,1,0,0,,226000,626000,ff,DTC Activation.Dedicated speaker,0:Deactivated;1:Activated
+,7DA,49,49,1,0,0,,226000,626000,ff,DTC Activation.Audio HU,0:Deactivated;1:Activated
+,7DA,50,50,1,0,0,,226000,626000,ff,DTC Activation.A-IVC Clock,0:Deactivated;1:Activated
+,7DA,51,51,1,0,0,,226000,626000,ff,DTC Activation. Cellular Registration Denied,0:Deactivated;1:Activated
+,7DA,52,52,1,0,0,,226000,626000,ff,DTC Activation.SIM Failure,0:Deactivated;1:Activated
+,7DA,53,53,1,0,0,,226000,626000,ff,DTC Activation. Invalid A-IVC,0:Deactivated;1:Activated
+,7DA,54,54,1,0,0,,226000,626000,ff,DTC Activation.Ext. GNSS Antenna for Splitter,0:Deactivated;1:Activated
+,7DA,55,55,1,0,0,,226000,626000,ff,DTC Activation.Vnext Config,0:Deactivated;1:Activated
+,7DA,56,56,1,0,0,,226000,626000,ff,DTC Activation.Vnext Regional Timeout,0:Deactivated;1:Activated
+,7DA,57,57,1,0,0,,226000,626000,ff,DTC Activation.Vnext Master Timeout,0:Deactivated;1:Activated
+,7DA,58,58,1,0,0,,226000,626000,ff,DTC Activation.Vnext Regional Authentication NOK,0:Deactivated;1:Activated
+,7DA,59,59,1,0,0,,226000,626000,ff,DTC Activation.Vnext Master Authentication NOK,0:Deactivated;1:Activated
+,7DA,60,60,1,0,0,,226000,626000,ff,DTC Activation. Airbag Hardwire,0:Deactivated;1:Activated
+,7DA,61,61,1,0,0,,226000,626000,ff,DTC Activation.Acceleromter Failure,0:Deactivated;1:Activated
+,7DA,62,62,1,0,0,,226000,626000,ff,DTC Activation.Ext. GNSS Antenna,0:Deactivated;1:Activated
+,7DA,63,63,1,0,0,,226000,626000,ff,DTC Activation.Ext. Cellular Antenna,0:Deactivated;1:Activated
+,7DA,64,64,1,0,0,,226000,626000,ff,DTC Activation.A-IVC Invalid Region Setting,0:Deactivated;1:Activated
+,7DA,65,65,1,0,0,,226000,626000,ff,DTC Activation.A-IVC No Region Setting,0:Deactivated;1:Activated
+,7DA,66,66,1,0,0,,226000,626000,ff,DTC Activation.A-IVC Authentication Fails,0:Deactivated;1:Activated
+,7DA,67,67,1,0,0,,226000,626000,ff,DTC Activation.Part Certificate Storage Error,0:Deactivated;1:Activated
+,7DA,68,68,1,0,0,,226000,626000,ff,DTC Activation.Part Certificate Verification Fails,0:Deactivated;1:Activated
+,7DA,69,69,1,0,0,,226000,626000,ff,DTC Activation.No Certificate Available,0:Deactivated;1:Activated
+,7DA,70,70,1,0,0,,226000,626000,ff,DTC Activation.Bad Pairing A-IVC & VIN,0:Deactivated;1:Activated
+,7DA,71,71,1,0,0,,226000,626000,ff,DTC Activation.Part ID is Unknown,0:Deactivated;1:Activated
+,7DA,72,72,1,0,0,,226000,626000,ff,DTC Activation. Remote Actuator not Activated,0:Deactivated;1:Activated
+,7DA,73,73,1,0,0,,226000,626000,ff,DTC Activation.Internal Battery Capacity Low_A,0:Deactivated;1:Activated
+,7DA,74,74,1,0,0,,226000,626000,ff,DTC Activation.Relay Control,0:Deactivated;1:Activated
+,7DA,75,75,1,0,0,,226000,626000,ff,DTC Activation.Service Check Not Complete,0:Deactivated;1:Activated
+,7DA,76,76,1,0,0,,226000,626000,ff,DTC Activation.Partition Setting Storage Error,0:Deactivated;1:Activated
+,7DA,77,77,1,0,0,,226000,626000,ff,DTC Activation.A-IVC Invalid Partition Setting,0:Deactivated;1:Activated
+,7DA,78,78,1,0,0,,226000,626000,ff,DTC Activation.A-IVC No Partition Setting,0:Deactivated;1:Activated
+,7DA,79,79,1,0,0,,226000,626000,ff,DTC Activation.Region Setting Storage Error,0:Deactivated;1:Activated
+,7DA,80,80,1,0,0,,226000,626000,ff,DTC Activation.Internal HTTP Server Error,0:Deactivated;1:Activated
+,7DA,81,81,1,0,0,,226000,626000,ff,DTC Activation.Bad HTTP Request,0:Deactivated;1:Activated
+,7DA,82,82,1,0,0,,226000,626000,ff,DTC Activation.BCM Pairing DTC,0:Deactivated;1:Activated
+,7DA,83,83,1,0,0,,226000,626000,ff,DTC Activation.Remote Actuator- PIN code missing,0:Deactivated;1:Activated
+,7DA,84,84,1,0,0,,226000,626000,ff,DTC Activation. Remote Actuator- CAN failure,0:Deactivated;1:Activated
+,7DA,85,85,1,0,0,,226000,626000,ff,DTC Activation.Remote Actuator without unknown ID,0:Deactivated;1:Activated
+,7DA,86,86,1,0,0,,226000,626000,ff,DTC Activation. Remote Actuator without Cipher key,0:Deactivated;1:Activated
+,7DA,87,87,1,0,0,,226000,626000,ff,DTC Activation.Remote Actuator service activated without ciphering key,0:Deactivated;1:Activated
+,7DA,24,39,1,0,0,,227000,627000,4ff,Audio Car Group tunning.CarGroup
+,7DA,40,55,1,0,0,,227000,627000,4ff,Audio Car Group tunning.Checksum
+,7DA,24,1767,1,0,0,,227001,627001,4ff,Audio Tunning 1.RawData
+,7DA,1768,1783,1,0,0,,227001,627001,4ff,Audio Tunning 1.Checksum
+,7DA,24,1767,1,0,0,,227002,627002,4ff,Audio Tunning 2.RawData
+,7DA,1768,1783,1,0,0,,227002,627002,4ff,Audio Tunning 2.Checksum
+,7DA,24,1767,1,0,0,,227003,627003,4ff,Audio Tunning 3.RawData
+,7DA,1768,1783,1,0,0,,227003,627003,4ff,Audio Tunning 3.Checksum
+,7DA,24,1767,1,0,0,,227004,627004,4ff,Audio Tunning 4.RawData
+,7DA,1768,1783,1,0,0,,227004,627004,4ff,Audio Tunning 4.Checksum
+,7DA,24,1767,1,0,0,,227005,627005,4ff,Audio Tunning 5.RawData
+,7DA,1768,1783,1,0,0,,227005,627005,4ff,Audio Tunning 5.Checksum
+,7DA,24,1767,1,0,0,,227006,627006,4ff,Audio Tunning 6.RawData
+,7DA,1768,1783,1,0,0,,227006,627006,4ff,Audio Tunning 6.Checksum
+,7DA,24,1767,1,0,0,,227007,627007,4ff,Audio Tunning 7.RawData
+,7DA,1768,1783,1,0,0,,227007,627007,4ff,Audio Tunning 7.Checksum
+,7DA,24,1767,1,0,0,,227008,627008,4ff,Audio Tunning 8.RawData
+,7DA,1768,1783,1,0,0,,227008,627008,4ff,Audio Tunning 8.Checksum
+,7DA,24,1767,1,0,0,,227009,627009,4ff,Audio Tunning 9.RawData
+,7DA,1768,1783,1,0,0,,227009,627009,4ff,Audio Tunning 9.Checksum
+,7DA,24,1767,1,0,0,,227010,627010,4ff,Audio Tunning 10.RawData
+,7DA,1768,1783,1,0,0,,227010,627010,4ff,Audio Tunning 10.Checksum
+,7DA,24,31,1,0,0,,229000,629000,ff,Control of Microphone connection,0:Control in progress;1:Control Completed and OK;2:Control complete and NOK
+,7DA,24,31,1,0,0,,229001,629001,ff,Control of Loudspeaker Connection,0:Control in progress;1:Control Completed and OK;2:Control complete and NOK
+,7DA,24,31,1,0,0,,229003,629003,ff,CONTROL AUX_IN_INFO OUTPUT,0:Control in progress;1:Control Completed and OK;2:Control complete and NOK
+,7DA,24,31,1,0,0,,229006,629006,ff,Control Of Led Ecall,0:Control in progress;1:Control Completed and OK;2:Control complete and NOK;3:No Control done
+,7DA,24,31,1,0,0,,229007,629007,ff,Control Of Led Ecall Malfunction Green,0:Control in progress;1:Control Completed and OK;2:Control complete and NOK;3:No Control done
+,7DA,24,31,1,0,0,,229008,629008,ff,Control Of Led Ecall Malfunction Red,0:Control in progress;1:Control Completed and OK;2:Control complete and NOK;3:No Control done
+,7DA,24,31,1,0,0,,229009,629009,ff,Control Of Led Backlight,0:Control in progress;1:Control Completed and OK;2:Control complete and NOK;3:No Control done
+,7DA,24,31,1,0,0,,229100,629100,ff,CONTROL OF Test TEL Number In Validation,0:Control in progress;1:Control Completed and OK;2:Control complete and NOK
+,7DA,24,31,1,0,0,,22C000,62C000,ff,USB Timeout
+,7DA,24,2495,1,0,0,,22DA00,62DA00,2ff,V-SSD
+,7DA,24,599,1,0,0,,22DA10,62DA10,2ff,V-TDD_No.0
+,7DA,24,599,1,0,0,,22DA11,62DA11,2ff,V-TDD_No.1
+,7DA,24,599,1,0,0,,22DA12,62DA12,2ff,V-TDD_No.2
+,7DA,24,599,1,0,0,,22DA13,62DA13,2ff,V-TDD_No.3
+,7DA,24,599,1,0,0,,22DA14,62DA14,2ff,V-TDD_No.4
+,7DA,24,31,1,0,0,,22DAB0,62DAB0,ff,TriggerFrameFunctionActivation,0:Deactivated;170:Activated
+,7DA,24,151,1,0,0,,22F010,62F010,4ff,programmingOperationFingerPrint
+,7DA,24,103,1,0,0,,22F011,62F011,2ff,IndexSrvData
+,7DA,24,103,1,0,0,,22F012,62F012,2ff,Operational Reference
+,7DA,24,103,1,0,0,,22F013,62F013,2ff,SecondaryOperationnalReference
+,7DA,24,47,1,0,0,km,22F0D0,62F0D0,ff,Mileage
+,7DA,24,31,1,0,0,,22F0D1,62F0D1,ff,DTC Occurrence Counter
+,7DA,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI
+,7DA,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI
+,7DA,24,279,1,0,0,,22F180,62F180,4ff,Boot Version
+,7DA,24,103,1,0,0,,22F182,62F182,2ff,CalibrationNumber
+,7DA,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber
+,7DA,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber
+,7DA,24,535,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier
+,7DA,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumber
+,7DA,24,159,1,0,0,,22F190,62F190,2ff,VIN
+,7DA,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber
+,7DA,24,127,1,0,0,,22F192,62F192,2ff,ecuHardware.hardware
+,7DA,128,151,1,0,0,,22F192,62F192,2ff,ecuHardware.version
+,7DA,24,279,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber
+,7DA,24,279,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber
+,7DA,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion
+,7DA,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N
+,7DA,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationDataReferenceAfterConfigurationProcess
+,7DA,0,0,1,0,0,,3E00,7E00,ff,TesterPresent.WithResponse

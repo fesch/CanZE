@@ -1,0 +1,12 @@
+F003,Battery
+D000,CAN_Bus
+D001,CAN_WheelSpeed
+5608,EPS_Ecu
+5606,EPS_Motor
+5614,EPS_ThermalProtection
+5604,EPS_TorqueSensor
+C129,CAN_ESC_Absent
+C418,CAN_VehicleSpeedInvalid
+C100,CAN_EngineStatusAbsent
+C126,CAN_SWA_Fault
+5617,CAN_RearGear_Fault

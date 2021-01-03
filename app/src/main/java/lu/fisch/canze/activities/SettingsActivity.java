@@ -120,14 +120,18 @@ public class SettingsActivity extends AppCompatActivity {
             "ZOE R240",
             "ZOE Q90",
             "ZOE R90/110",
-            "ZOE ZE50"
+            "ZOE ZE50",
+            "TWINGO 3 Ph2 (unsupported)",
+            "TWIZY (unsupported)"
     };
     public static final CharSequence[] CAR_MODELS_VALUES = {
             String.valueOf(MainActivity.CAR_ZOE_Q210),
             String.valueOf(MainActivity.CAR_ZOE_R240),
             String.valueOf(MainActivity.CAR_ZOE_Q90),
             String.valueOf(MainActivity.CAR_ZOE_R90),
-            String.valueOf(MainActivity.CAR_X10PH2)
+            String.valueOf(MainActivity.CAR_X10PH2),
+            String.valueOf(MainActivity.CAR_TWINGO),
+            String.valueOf(MainActivity.CAR_TWIZY)
     };
 
     // Display contrast modes

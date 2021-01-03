@@ -1,0 +1,1003 @@
+,764,0,0,1,0,0,,10C0,50C0,ff,StartDiagnosticSession
+,764,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All
+,764,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask
+,764,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceAndFailureTypeOBD
+,764,40,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM (Frequency Modulated) - PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adjustment failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or system operation obstructed or blocked;152:component or system over temperature
+,764,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier
+,764,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,764,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,764,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,764,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,764,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,764,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,764,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,764,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,764,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord
+,764,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC
+,764,48,55,1,0,0,,190600000080,590600000080,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,764,56,79,1,0,0,km,190600000080,590600000080,ff,DTCExtendedData.Mileage
+,764,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord
+,764,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC
+,764,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,764,56,79,1,0,0,km,1906000000FF,5906000000FF,ff,DTCExtendedData.Mileage
+,764,16,23,1,0,0,,2100,6100,4ff,Supported Lid for RDBLID(01-08)
+,764,24,31,1,0,0,,2100,6100,4ff,Supported Lid for RDBLID(09-10)
+,764,32,39,1,0,0,,2100,6100,4ff,Supported Lid for RDBLID(11-18)
+,764,40,47,1,0,0,,2100,6100,4ff,Supported Lid for RDBLID(19-20)
+,764,16,16,1,0,0,,2101,6101,ff,External temperature sensor value 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,17,17,1,0,0,,2101,6101,ff,Internal temperature sensor value 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,18,18,1,0,0,,2101,6101,ff,Intake temperature sensor value 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,19,19,1,0,0,,2101,6101,ff,Insolation sensor value 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,20,20,1,0,0,,2101,6101,ff,External temperature sensor calculated value 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,21,21,1,0,0,,2101,6101,ff,Internal temperature sensor calculated value 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,22,22,1,0,0,,2101,6101,ff,Passenger side internal temperature sensor calculated value 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,23,23,1,0,0,,2101,6101,ff,Intake temperature sensor calculated value 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,24,24,1,0,0,,2101,6101,ff,Insolation sensor calculated value 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,25,25,1,0,0,,2101,6101,ff,Passenger side insolation sensor calculated value2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,26,26,1,0,0,,2101,6101,ff,Compressor request signal 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,27,27,1,0,0,,2101,6101,ff,Compressor ECV DUTY 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,28,28,1,0,0,,2101,6101,ff,Blower fan request signal 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,29,29,1,0,0,,2101,6101,ff,Floor fan DUTY or voltage 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,30,30,1,0,0,,2101,6101,ff,XM 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,31,31,1,0,0,,2101,6101,ff,Rear internal temperature sensor value 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,32,32,1,0,0,,2101,6101,ff,Rear intake temperature sensor value 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,33,33,1,0,0,,2101,6101,ff,Rear internal temperature sensor calculated value 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,34,34,1,0,0,,2101,6101,ff,Rear intake temperature sensor calculated value 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,35,35,1,0,0,,2101,6101,ff,Rear XM 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,36,36,1,0,0,,2101,6101,ff,Rear blower fan request signal 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,37,37,1,0,0,,2101,6101,ff,Rear floor fan DUTY or voltage 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,38,38,1,0,0,,2101,6101,ff,Water temperature signal 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,39,39,1,0,0,,2101,6101,ff,Vehicle speed signal 2101,0:Not to use the value for data monitor;1:To use the value for data monitor
+,764,16,23,1,0,0,,2102,6102,ff,CL_VehicleType,0:Not Configured;9:X98;16:X10;17:P32;18:EspaceConcept;19:X82;20:X07VE;21:X07ICE
+,764,16,23,1,0,0,,2103,6103,ff,CL_ACType,0:Not Configured;1:Manual Monozone;2:Heater - Chauffo;16:Monozone Regulated -  CAREG MZ;17:Dualzone without rear vent ducts;18:Dualzone with rear vent ducts;19:Trizone with temperature;20:Trizone with temperature and with distribution;21:Dualzone with additional rear monozone;22:Monozone Regulated - with rear blowers
+,764,16,23,1,0,0,,2104,6104,ff,CL_PTCType,0:Not Configured;1:Without PTC;16:PTC 0-9kW or 1kW;24:PTC 1-5kW-1-6kW or 1-8kW;25:CTP 0-9KW + THP;27:THP Only
+,764,16,23,1,0,0,,2105,6105,ff,CL_CountryCfg,0:Not Configured;1:zone 1 (mild);2:zone 2;3:zone 3;4:zone 4
+,764,16,23,1,0,0,,2106,6106,ff,CL_Steering,0:Not Configured;1:Right Hand Drive;2:Left Hand Drive
+,764,16,23,1,0,0,,2107,6107,ff,CL_CompType,0:Not Configured;1:Compressor 1 (Ext Ctrl - Clutch);33:Compressor 5 (Electrical Vehicle);67:Compressor 3 (Int Ctrl - Clutch);68:Compressor 4 (Fixed Cap - Clutch);129:Compressor 2 (Ext Ctrl - Clutchless)
+,764,16,23,.01,0,2,,2108,6108,ff,CL_CompPulleyRatio
+,764,16,23,1,0,0,,2109,6109,ff,CL_WithEvapSensor,0:Not Configured;1:WithoutSensor;2:WithLocalSensorType1;3:With local sensor type2
+,764,16,23,1,0,0,,210A,610A,ff,CL_WithSolarSensor,0:Not Configured;1:KL_WithoutSensor;2:KL_WithLocalSensor(left & right);3:KL_SensorByCAN;4:with sensor (local Right only);5:with sensor (local Left only)
+,764,16,23,1,0,0,,210B,610B,ff,CL_WithAirQualitySensor,0:Not Configured;1:KL_WithoutSensor;2:with sensor Type1(Renault);3:with sensor Type2(Nissan)
+,764,16,23,1,0,0,,210C,610C,ff,CL_WindshieldType,0:Not Configured;1:Without Windshield Option;2:With Ft Defrost;3:With Heat Reflecting;4:With Ft Defrost &Heat Reflecting;5:with front defrost by CAN;6:with front defrost +heat Reflect by CAN;7:with deicer;8:with deicer+HeatReflecting;9:With front defrost and switch
+,764,16,23,1,0,0,,210D,610D,ff,CL_WithLINBus,0:Not Configured;1:KL_WithoutLINBus;2:with message set 1(LINCLIM3);3:with message set 2(TBD)
+,764,16,23,1,0,0,,210E,610E,ff,CL_WithHumiditySensor,0:Not Configured;1:Without Sensor;2:WithLocalSensorType1 (Renault);3:With local sensor Type 2
+,764,16,23,1,0,0,,210F,610F,ff,CL_WithExtTempSensor,0:Not Configured;1:KL_WithoutSensor;2:KL_WithLocalSensor;3:KL_SensorByCAN
+,764,16,23,1,40,0,°C,2110,6110,1ff,External temperature sensor value
+,764,24,31,1,40,0,°C,2110,6110,1ff,Internal temperature sensor value
+,764,32,39,1,40,0,°C,2110,6110,1ff,Intake temperature sensor value
+,764,40,47,5,0,0,W/m²,2110,6110,ff,Insolation sensor value
+,764,48,55,1,40,0,°C,2110,6110,1ff,External temperature sensor calculated value
+,764,56,63,1,40,0,°C,2110,6110,1ff,Internal temperature sensor calculated value
+,764,72,79,1,40,0,°C,2110,6110,1ff,Intake temperature sensor calculated value
+,764,80,87,5,0,0,W/m²,2110,6110,ff,Insolation sensor calculated value
+,764,96,96,1,0,0,,2110,6110,ff,Compressor request signal,0:Request OFF;1:Request ON
+,764,97,103,1,0,0,%,2110,6110,ff,Compressor ECV DUTY
+,764,104,104,1,0,0,,2110,6110,ff,Blower fan request signal,0:Request OFF;1:Request ON
+,764,105,111,1,0,0,%,2110,6110,ff,Floor fan DUTY or voltage
+,764,112,119,1,100,0,,2110,6110,1ff,XM
+,764,168,175,1,40,0,°C,2110,6110,1ff,Water temperature signal
+,764,176,183,1,40,0,,2110,6110,ff,Vehicle speed signal
+,764,16,23,1,0,0,,2111,6111,ff,CL_ColdLoopType,0:Not Configured;1:Cold Loop inside ECU Clim;2:Cold Loop outside ECU Clim
+,764,0,0,1,0,0,,2112,6112,ff,HLS_WorkingMode
+,764,16,16,1,0,0,,2112,6112,ff,IH_LLSReady
+,764,17,17,1,0,0,,2112,6112,ff,VH_BlowerAvailable
+,764,18,18,1,0,0,,2112,6112,ff,VH_AvgFrontSetPoint
+,764,19,19,1,0,0,,2112,6112,ff,VH_StopAutoForClim
+,764,20,20,1,0,0,,2112,6112,ff,VH_PreHeatingForRequest
+,764,24,31,1,0,0,,2112,6112,ff,VH_RegulationState
+,764,32,39,1,0,0,,2112,6112,ff,VH_MMIState
+,764,40,47,1,0,0,,2112,6112,ff,VH_PCState
+,764,48,55,1,0,0,,2112,6112,ff,VH_EcoMode
+,764,56,63,1,0,0,,2112,6112,ff,VH_GeneralMode
+,764,64,71,1,0,0,,2112,6112,ff,VH_ExternalTemp_cor
+,764,72,79,.1,400,1,°C,2112,6112,1ff,VH_FrontIncarAirTemp
+,764,80,87,1,0,0,,2112,6112,ff,VH_AvgSolarLevel
+,764,88,95,1,0,0,,2112,6112,ff,VH_AutoType
+,764,96,103,1,0,0,,2112,6112,ff,VH_VehicleSpeed
+,764,104,119,1,0,0,,2112,6112,ff,VH_TimerPCImm
+,764,16,23,1,0,0,,2113,6113,ff,VH_Misting
+,764,24,31,1,0,0,,2113,6113,ff,VH_TairWindshield
+,764,32,39,.1,400,1,°C,2113,6113,1ff,VH_FrontIncarAirTemp
+,764,40,55,1,0,0,,2113,6113,ff,VH_DriverTempNeed
+,764,56,71,1,0,0,,2113,6113,ff,VH_PassTempNeed
+,764,72,79,1,0,0,,2113,6113,ff,VH_RearTempNeed
+,764,16,191,1,0,0,,2114,6114,4ff,CL_DiagnosticConfiguration
+,764,16,23,1,0,0,,2115,6115,ff,CL_EngineType,0:Not Configured;1:Thermic engine;2:SAS Engine;3:Electrical engine;5:Thermic Nissan engine;6:Hybrid Nissan engine
+,764,16,23,1,0,0,,2116,6116,ff,CL_WithInCarTempSensor,0:Not Configured;1:WithoutSensor;2:WithLocalSensor Type 1(Renault);3:WithLocalSensor Type 2(Nissan)
+,764,16,23,1,0,0,,2117,6117,ff,CL_WithHotSourceSensor,0:Not Configured;1:Without Sensor;2:WithLocalSensor
+,764,16,23,1,0,0,,2118,6118,ff,CL_CANArchitecture,0:Not Configured;1:Architecture type 1=T4(X82) / T4 Edison X07 ph2;2:Architecture type 2=1540;3:Architecture type 3=P32;4:Architecture type 4=X07VE;5:Architecture type 5=X07ICE;6:Architecture type 6;7:Architecture type 7;8:Architecture type 8;12:Architecture type 12=C1A
+,764,16,23,1,0,0,,2119,6119,ff,CL_WithLINBus2,0:Not Configured;1:KL_WithoutLINBus2;2:with message set 1(LINCLIM3);3:with message set 2(TBD);4:with message set 2(HVPTC + Compressor)
+,764,16,23,1,0,0,,211A,611A,ff,CL_WithBatteryBlower,0:Not Configured;1:Without Output;2:With Local Output;3:with output and feedback input
+,764,0,0,1,0,0,,211B,611B,ff,HLS_ColdSource
+,764,16,16,1,0,0,,211B,611B,ff,VH_ColdSourceNeed
+,764,17,17,1,0,0,,211B,611B,ff,OH_ACCompWorkingMode,0:Running in idle mode or stopped;1:Running not in idle mode
+,764,18,18,1,0,0,,211B,611B,ff,VH_ManualColdSourceReq
+,764,24,31,1,0,0,,211B,611B,ff,VH_FrontColdSourceModeSelection
+,764,32,39,1,0,0,,211B,611B,ff,VH_ColdSourceTempNeed
+,764,40,47,50,0,0,W,211B,611B,ff,OH_ACCompPowerUsed
+,764,48,55,1,0,0,,211B,611B,ff,VH_EvapTemp
+,764,56,63,1,0,0,,211B,611B,ff,VH_ClearnessAirFlowReq
+,764,64,71,1,0,0,,211B,611B,ff,VH_AC_StopAutoForbidden
+,764,0,0,1,0,0,,211C,611C,ff,HLS_HotSource
+,764,16,16,1,0,0,,211C,611C,ff,VH_HotSourceNeed
+,764,17,17,1,0,0,,211C,611C,ff,VH_ClimFrontDefrostReq
+,764,18,18,1,0,0,,211C,611C,ff,VH_FrontDefNeed
+,764,19,19,1,0,0,,211C,611C,ff,VH_RearDefNeed
+,764,20,20,1,0,0,,211C,611C,ff,OH_FrontDefrostRequest,0:Not Requested;1:Requested
+,764,24,24,1,0,0,,211C,611C,ff,OH_RearDefrostRequest,0:Not Requested;1:Requested
+,764,32,39,1,0,0,,211C,611C,ff,VH_HotSourceTempNeed
+,764,40,43,1,0,0,,211C,611C,ff,OH_PTCNumberThermalReq,0:0 PTC requested;1:1 PTC requested;2:2 PTC requested;3:3 PTC requested;4:4 PTC requested;5:5 PTC requested;6:6 PTC requested;7:7 PTC requested;8:8 PTC requested;9:9 PTC requested;10:10 PTC requested;11:Not used;15:No Request
+,764,48,49,1,0,0,,211C,611C,ff,OH_PTCActivationRequest,0:Unavailable;1:On Requested;2:Off Requested;3:Not used
+,764,56,63,1,0,0,,211C,611C,ff,VH_WEPNeed
+,764,64,79,1,0,0,,211C,611C,ff,VH_HotSourceTemp
+,764,0,0,1,0,0,,211D,611D,ff,HLS_Distribution
+,764,16,23,1,0,0,,211D,611D,ff,VH_FrontDistModeSelection
+,764,24,31,1,0,0,,211D,611D,ff,VH_DistLevel
+,764,32,39,1,0,0,,211D,611D,ff,IH_RearDistActrPosition
+,764,40,47,1,0,0,,211D,611D,ff,VH_Prct_FeetAndRearNeed
+,764,48,55,1,0,0,,211D,611D,ff,VH_ManualPrct_DefrostReq
+,764,56,63,1,0,0,,211D,611D,ff,VH_ManualPrct_FrontVentReq
+,764,64,71,1,0,0,,211D,611D,ff,VH_ManualFrontVentCor
+,764,16,23,1,0,0,,211E,611E,ff,CL_WithHPM,0:Not Configured;1:WithoutHPM;2:WithHPM
+,764,16,23,1,0,0,,2120,6120,4ff,Supported Lid for RDBLID(21-28)
+,764,24,31,1,0,0,,2120,6120,4ff,Supported Lid for RDBLID(29-30)
+,764,32,39,1,0,0,,2120,6120,4ff,Supported Lid for RDBLID(31-38)
+,764,40,47,1,0,0,,2120,6120,4ff,Supported Lid for RDBLID(39-40)
+,764,0,0,1,0,0,,2121,6121,ff,HLS_AirFlow
+,764,16,16,1,0,0,,2121,6121,ff,VH_DriverSetPoint
+,764,24,31,1,0,0,,2121,6121,ff,VH_BlowerMode
+,764,32,39,1,0,0,,2121,6121,ff,VH_FrontAirFlowModeSelection
+,764,40,47,1,0,0,,2121,6121,ff,VH_AirFlowNeed
+,764,48,55,1,0,0,,2121,6121,ff,VH_ComfortAirFlowReq
+,764,56,63,1,0,0,,2121,6121,ff,VH_FrontManualAirFlowReq
+,764,64,71,1,0,0,,2121,6121,ff,VH_RearManualAirFlowReq
+,764,72,87,1,0,0,,2121,6121,ff,VH_DriverBlowAirTemp
+,764,88,103,1,0,0,,2121,6121,ff,VH_ComfortDriverTempReq
+,764,104,119,1,0,0,,2121,6121,ff,VH_DriverTempNeed
+,764,16,23,1,0,0,,2122,6122,ff,CL_WithSED,0:Not configured;1:Without SED;2:SED with low pressure drop ducts;3:SED with medium pressure drop ducts;4:SED with high pressure drop ducts
+,764,16,23,1,0,0,,2123,6123,ff,CL_WithSteeringHeater,0:Not Configured;1:Without Steering Heater;2:With Steering Heater;3:With steering heater type 2 (PHEV)
+,764,23,31,.3,167,1,°C,2124,6124,ff,IH_EX_TEMP
+,764,32,39,.4,0,1,%,2124,6124,ff,IH_NightRheostatedLightMaxPercent
+,764,20,20,1,0,0,,2125,6125,ff,VL_InCarTempDiag_OCFP,0:False;1:True
+,764,21,21,1,0,0,,2125,6125,ff,VL_InCarTempDiag_SCFP,0:False;1:True
+,764,22,22,1,0,0,,2125,6125,ff,VL_EvapTempDiag_OCFP,0:False;1:True
+,764,23,23,1,0,0,,2125,6125,ff,VL_EvapTempDiag_SCFP,0:False;1:True
+,764,24,24,1,0,0,,2125,6125,ff,VL_HeatAQSDiag_OCFP,0:False;1:True
+,764,25,25,1,0,0,,2125,6125,ff,VL_HeatAQSDiag_SCFP,0:False;1:True
+,764,26,26,1,0,0,,2125,6125,ff,VL_AQS_VrefSupply_BAT_SCFP,0:False;1:True
+,764,27,27,1,0,0,,2125,6125,ff,VL_AQS_VrefSupply_GND_SCFP,0:False;1:True
+,764,28,28,1,0,0,,2125,6125,ff,VL_OxydantDiag_OCFP,0:False;1:True
+,764,29,29,1,0,0,,2125,6125,ff,VL_OxydantDiag_SCFP,0:False;1:True
+,764,30,30,1,0,0,,2125,6125,ff,VL_ReductorDiag_OCFP,0:False;1:True
+,764,31,31,1,0,0,,2125,6125,ff,VL_ReductorDiag_SCFP,0:False;1:True
+,764,32,32,1,0,0,,2125,6125,ff,VL_LINComDiag_ERFP,0:False;1:True
+,764,35,35,1,0,0,,2125,6125,ff,VL_EEPROM_ERFP,0:False;1:True
+,764,36,36,1,0,0,,2125,6125,ff,VL_VBattDiag_FP,0:False;1:True
+,764,37,37,1,0,0,,2125,6125,ff,VL_RHumidityDiag_BFFP,0:False;1:True
+,764,38,38,1,0,0,,2125,6125,ff,VL_RHumidityDiag_OCFP,0:False;1:True
+,764,39,39,1,0,0,,2125,6125,ff,VL_RHumidityDiag_SCFP,0:False;1:True
+,764,49,49,1,0,0,,2125,6125,ff,VL_Config_ERFP,0:False;1:True
+,764,50,50,1,0,0,,2125,6125,ff,VL_BlowerSystDefaultType1FP,0:False;1:True
+,764,51,51,1,0,0,,2125,6125,ff,VL_BlowerSystDefaultType2FP,0:False;1:True
+,764,54,54,1,0,0,,2125,6125,ff,VL_RearMixActrDiag_OCFP,0:False;1:True
+,764,55,55,1,0,0,,2125,6125,ff,VL_RearMixActrDiag_SCFP,0:False;1:True
+,764,65,65,1,0,0,,2125,6125,ff,VL_AQMCP_Ionizer_OCFP,0:False;1:True
+,764,66,66,1,0,0,,2125,6125,ff,VL_AQMCP_Ionizer_SCFP,0:False;1:True
+,764,67,67,1,0,0,,2125,6125,ff,VL_AQMCP_FragranceBlower_OCFP,0:False;1:True
+,764,68,68,1,0,0,,2125,6125,ff,VL_AQMCP_FragranceBlower_SCFP,0:False;1:True
+,764,69,69,1,0,0,,2125,6125,ff,VL_AQMCP_FragranceMotor_OCFP,0:False;1:True
+,764,70,70,1,0,0,,2125,6125,ff,VL_AQMCP_FragranceMotor_SCFP,0:False;1:True
+,764,71,71,1,0,0,,2125,6125,ff,VL_AQMCPComDiag_DCFP,0:False;1:True
+,764,75,75,1,0,0,,2125,6125,ff,VL_RearMZCP_RearBlowerFanFeedbackDiag_OCFP,0:False;1:True
+,764,76,76,1,0,0,,2125,6125,ff,VL_RearMZCP_RearBlowerFanFeedbackDiag_SCFP,0:False;1:True
+,764,77,77,1,0,0,,2125,6125,ff,VL_RearMZCP_RearAirTempSensor_OCFP,0:False;1:True
+,764,78,78,1,0,0,,2125,6125,ff,VL_RearMZCP_RearAirTempSensor_SCFP,0:False;1:True
+,764,79,79,1,0,0,,2125,6125,ff,VL_RearMZCPComDiag_DCFP,0:False;1:True
+,764,97,97,1,0,0,,2125,6125,ff,VL_BlowerControlDiag_OCFP,0:False;1:True
+,764,98,98,1,0,0,,2125,6125,ff,VL_BlowerControlDiag_SCFP,0:False;1:True
+,764,109,109,1,0,0,,2125,6125,ff,VL_LIN2ComDiag_ERFP,0:False;1:True
+,764,110,110,1,0,0,,2125,6125,ff,VL_FrontCPComDiag_DCFP,0:False;1:True
+,764,120,120,1,0,0,,2125,6125,ff,VL_HotSourceTempDiag_OCFP,0:False;1:True
+,764,121,121,1,0,0,,2125,6125,ff,VL_HotSourceTempDiag_SCFP,0:False;1:True
+,764,20,20,1,0,0,,2126,6126,ff,VL_InCarTempDiag_OCFM,0:False;1:True
+,764,21,21,1,0,0,,2126,6126,ff,VL_InCarTempDiag_SCFM,0:False;1:True
+,764,22,22,1,0,0,,2126,6126,ff,VL_EvapTempDiag_OCFM,0:False;1:True
+,764,23,23,1,0,0,,2126,6126,ff,VL_EvapTempDiag_SCFM,0:False;1:True
+,764,24,24,1,0,0,,2126,6126,ff,VL_HeatAQSDiag_OCFM,0:False;1:True
+,764,25,25,1,0,0,,2126,6126,ff,VL_HeatAQSDiag_SCFM,0:False;1:True
+,764,26,26,1,0,0,,2126,6126,ff,VL_AQS_VrefSupply_BAT_SCFM,0:False;1:True
+,764,27,27,1,0,0,,2126,6126,ff,VL_AQS_VrefSupply_GND_SCFM,0:False;1:True
+,764,28,28,1,0,0,,2126,6126,ff,VL_OxydantDiag_OCFM,0:False;1:True
+,764,29,29,1,0,0,,2126,6126,ff,VL_OxydantDiag_SCFM,0:False;1:True
+,764,30,30,1,0,0,,2126,6126,ff,VL_ReductorDiag_OCFM,0:False;1:True
+,764,31,31,1,0,0,,2126,6126,ff,VL_ReductorDiag_SCFM,0:False;1:True
+,764,32,32,1,0,0,,2126,6126,ff,VL_LINComDiag_ERFM,0:False;1:True
+,764,35,35,1,0,0,,2126,6126,ff,VL_EEPROM_ERFM,0:False;1:True
+,764,36,36,1,0,0,,2126,6126,ff,VL_VBattDiag_FM,0:False;1:True
+,764,37,37,1,0,0,,2126,6126,ff,VL_RHumidityDiag_BFFM,0:False;1:True
+,764,38,38,1,0,0,,2126,6126,ff,VL_RHumidityDiag_OCFM,0:False;1:True
+,764,39,39,1,0,0,,2126,6126,ff,VL_RHumidityDiag_SCFM,0:False;1:True
+,764,49,49,1,0,0,,2126,6126,ff,VL_Config_ERFM,0:False;1:True
+,764,50,50,1,0,0,,2126,6126,ff,VL_BlowerSystDefaultType1FM,0:False;1:True
+,764,51,51,1,0,0,,2126,6126,ff,VL_BlowerSystDefaultType2FM,0:False;1:True
+,764,54,54,1,0,0,,2126,6126,ff,VL_RearMixActrDiag_OCFM,0:False;1:True
+,764,55,55,1,0,0,,2126,6126,ff,VL_RearMixActrDiag_SCFM,0:False;1:True
+,764,65,65,1,0,0,,2126,6126,ff,VL_AQMCP_Ionizer_OCFM,0:False;1:True
+,764,66,66,1,0,0,,2126,6126,ff,VL_AQMCP_Ionizer_SCFM,0:False;1:True
+,764,67,67,1,0,0,,2126,6126,ff,VL_AQMCP_FragranceBlower_OCFM,0:False;1:True
+,764,68,68,1,0,0,,2126,6126,ff,VL_AQMCP_FragranceBlower_SCFM,0:False;1:True
+,764,69,69,1,0,0,,2126,6126,ff,VL_AQMCP_FragranceMotor_OCFM,0:False;1:True
+,764,70,70,1,0,0,,2126,6126,ff,VL_AQMCP_FragranceMotor_SCFM,0:False;1:True
+,764,71,71,1,0,0,,2126,6126,ff,VL_AQMCPComDiag_DCFM,0:False;1:True
+,764,75,75,1,0,0,,2126,6126,ff,VL_RearMZCP_RearBlowerFanFeedbackDiag_OCFM,0:False;1:True
+,764,76,76,1,0,0,,2126,6126,ff,VL_RearMZCP_RearBlowerFanFeedbackDiag_SCFM,0:False;1:True
+,764,77,77,1,0,0,,2126,6126,ff,VL_RearMZCP_RearAirTempSensor_OCFM,0:False;1:True
+,764,78,78,1,0,0,,2126,6126,ff,VL_RearMZCP_RearAirTempSensor_SCFM,0:False;1:True
+,764,79,79,1,0,0,,2126,6126,ff,VL_RearMZCPComDiag_DCFM,0:False;1:True
+,764,97,97,1,0,0,,2126,6126,ff,VL_BlowerControlDiag_OCFM,0:False;1:True
+,764,98,98,1,0,0,,2126,6126,ff,VL_BlowerControlDiag_SCFM,0:False;1:True
+,764,109,109,1,0,0,,2126,6126,ff,VL_LIN2ComDiag_ERFM,0:False;1:True
+,764,110,110,1,0,0,,2126,6126,ff,VL_FrontCPComDiag_DCFM,0:False;1:True
+,764,120,120,1,0,0,,2126,6126,ff,VL_HotSourceTempDiag_OCFM,0:False;1:True
+,764,121,121,1,0,0,,2126,6126,ff,VL_HotSourceTempDiag_SCFM,0:False;1:True
+,764,16,16,1,0,0,,2128,6128,ff,IH_ACLongPushState,0:no long push detected;1:long push detected
+,764,17,17,1,0,0,,2128,6128,ff,IH_ACPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,18,18,1,0,0,,2128,6128,ff,IH_AirQualityLongPushState,0:no long push detected;1:long push detected
+,764,19,19,1,0,0,,2128,6128,ff,IH_AirQualityPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,20,20,1,0,0,,2128,6128,ff,IH_AutoFastLongPushState,0:no long push detected;1:long push detected
+,764,21,21,1,0,0,,2128,6128,ff,IH_AutoFastPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,22,22,1,0,0,,2128,6128,ff,IH_AutoNormalLongPushState,0:no long push detected;1:long push detected
+,764,23,23,1,0,0,,2128,6128,ff,IH_AutoNormalPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,24,24,1,0,0,,2128,6128,ff,IH_AutoSoftLongPushState,0:no long push detected;1:long push detected
+,764,25,25,1,0,0,,2128,6128,ff,IH_AutoSoftPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,26,26,1,0,0,,2128,6128,ff,IH_BlowerDnLongPushState,0:no long push detected;1:long push detected
+,764,27,27,1,0,0,,2128,6128,ff,IH_BlowerDnPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,28,28,1,0,0,,2128,6128,ff,IH_BlowerUpLongPushState,0:no long push detected;1:long push detected
+,764,29,29,1,0,0,,2128,6128,ff,IH_BlowerUpPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,30,30,1,0,0,,2128,6128,ff,IH_ClearnessLongPushState,0:no long push detected;1:long push detected
+,764,31,31,1,0,0,,2128,6128,ff,IH_ClearnessPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,32,32,1,0,0,,2128,6128,ff,IH_DistDegiMildLongPushState,0:no long push detected;1:long push detected
+,764,33,33,1,0,0,,2128,6128,ff,IH_DistDegiMildPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,34,34,1,0,0,,2128,6128,ff,IH_DistFeetLongPushState,0:no long push detected;1:long push detected
+,764,35,35,1,0,0,,2128,6128,ff,IH_DistFeetPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,36,36,1,0,0,,2128,6128,ff,IH_DistVentLongPushState,0:no long push detected;1:long push detected
+,764,37,37,1,0,0,,2128,6128,ff,IH_DistVentPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,38,38,1,0,0,,2128,6128,ff,IH_DualModeLongPushState,0:no long push detected;1:long push detected
+,764,39,39,1,0,0,,2128,6128,ff,IH_DualModePushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,40,40,1,0,0,,2128,6128,ff,IH_ForcedFreshAirLongPushState,0:no long push detected;1:long push detected
+,764,41,41,1,0,0,,2128,6128,ff,IH_ForcedFreshAirPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,42,42,1,0,0,,2128,6128,ff,IH_ForcedRecyLongPushState,0:no long push detected;1:long push detected
+,764,43,43,1,0,0,,2128,6128,ff,IH_ForcedRecyPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,44,44,1,0,0,,2128,6128,ff,IH_LeftTempDnLongPushState,0:no long push detected;1:long push detected
+,764,45,45,1,0,0,,2128,6128,ff,IH_LeftTempDnPushToggle,0:transition means switch pressed;1:transition to 1 means switch pressed
+,764,46,46,1,0,0,,2128,6128,ff,IH_LeftTempUpLongPushState,0:no long push detected;1:long push detected
+,764,47,47,1,0,0,,2128,6128,ff,IH_LeftTempUpPushToggle,0:transition means switch pressed;1:transition to 1 means switch pressed
+,764,48,48,1,0,0,,2128,6128,ff,IH_ModeOffLongPushState,0:no long push detected;1:long push detected
+,764,49,49,1,0,0,,2128,6128,ff,IH_ModeOffPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,50,50,1,0,0,,2128,6128,ff,IH_RearDefLongPushState,0:no long push detected;1:long push detected
+,764,51,51,1,0,0,,2128,6128,ff,IH_RearDefPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,52,52,1,0,0,,2128,6128,ff,IH_RearLongPushState,0:no long push detected;1:long push detected
+,764,53,53,1,0,0,,2128,6128,ff,IH_RearPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,54,54,1,0,0,,2128,6128,ff,IH_RightTempDnLongPushState,0:no long push detected;1:long push detected
+,764,55,55,1,0,0,,2128,6128,ff,IH_RightTempDnPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,56,56,1,0,0,,2128,6128,ff,IH_RightTempUpLongPushState,0:no long push detected;1:long push detected
+,764,57,57,1,0,0,,2128,6128,ff,IH_RightTempUpPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,58,63,1,0,0,,2128,6128,ff,OH_LeftTempDisplay,0:No display;2:All segment displayed;4:Display OF;6:Display --;8:Display LO;10:Display HI;11:5-5;12:6;13:6-5;14:7;15:7-5;16:8;17:8-5;18:9;19:9-5;20:10;21:10-5;22:11;23:11-5;24:12;25:12-5;26:13;27:13-5;28:14;29:14-5;30:15;31:15-5;32:16;33:16-5;34:17;35:17-5;36:18;37:18-5;38:19;39:19-5;40:20;41:20-5;42:21;43:21-5;44:22;45:22-5;46:23;47:23-5;48:24;49:24-5;50:25;51:25-5;52:26;53:26-5;54:27;55:27-5;56:28;57:28-5;58:29;59:29-5;60:30
+,764,64,69,.5,0,1,,2128,6128,ff,OH_RightTempDisplay
+,764,76,79,1,0,0,,2128,6128,ff,OH_BlowerLevelDisplay,0:No display;1:display 1 blades and fan symbol;2:display 2 blades and fan symbol;3:display 3 blades and fan symbol;4:display 4 blades and fan symbol;5:display 5 blades and fan symbol;6:display 6 blades and fan symbol;7:display 7 blades and fan symbol;8:display 8 blades and fan symbol;15:display the fan symbol only
+,764,100,100,1,0,0,,2128,6128,ff,IH_EcoHighModeLongPushState,0:no long push detected;1:long push detected
+,764,101,101,1,0,0,,2128,6128,ff,IH_EcoHighModePushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,102,102,1,0,0,,2128,6128,ff,IH_EcoLowModeLongPushState,0:no long push detected;1:long push detected
+,764,103,103,1,0,0,,2128,6128,ff,IH_EcoLowModePushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,108,108,1,0,0,,2128,6128,ff,IH_PreConditionningLongPushState,0:no long push detected;1:long push detected
+,764,109,109,1,0,0,,2128,6128,ff,IH_PreConditionningPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,110,110,1,0,0,,2128,6128,ff,IH_TempDnLongPushState,0:no long push detected;1:long push detected
+,764,111,111,1,0,0,,2128,6128,ff,IH_TempDnPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,112,112,1,0,0,,2128,6128,ff,IH_TempUpLongPushState,0:no long push detected;1:long push detected
+,764,113,113,1,0,0,,2128,6128,ff,IH_TempUpPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,114,117,1,0,0,,2128,6128,ff,OH_FP_RotaryTempDisplay,0:No display;1:Display Indicator 1;2:Display Indicator 2;3:Display Indicator 3;4:Display Indicator 4;5:Display Indicator 5;6:Display Indicator 6;7:Display Indicator 7;8:Display Indicator 8;9:Display Indicator 9;10:Display Indicator 10;11:Display Indicator 11;12:Display Indicator 12;13:Display Indicator 13;14:Display Indicator 14;15:Display Indicator 15
+,764,118,118,1,0,0,,2128,6128,ff,OH_FP_MMIModeTemp,0:Mode 1 (only one LED Display);1:Mode 2 (not only one LED Display)
+,764,119,119,1,0,0,,2128,6128,ff,OH_FP_MMIModeBlower,0:Mode 1 (only one LED Display);1:Mode 2 (not only one LED Display)
+,764,120,120,1,0,0,,2128,6128,ff,IH_RecyAutoLongPushState,0:no long push detected;1:long push detected
+,764,121,121,1,0,0,,2128,6128,ff,IH_RecyAutoPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,16,23,1,0,0,,212A,612A,ff,CL_SeatsHeatingCommand,0:Not Configured;1:without Seats Heating;2:With seat heating control FL;4:With seat heating control FR;6:With seat heating control FL +FR;8:With seat heating control RL;10:With seat heating control FL+RL;12:With seat heating control FR+RL;14:With seat heating control FR+FR+RL;16:With seat heating control RR;18:With seat heating control FL+ RR;20:With seat heating control FR+ RR;22:With seat heating control FL+FR+ RR;24:With seat heating control RL + RR;26:With seat heating control FL+ RL + RR;28:With seat heating control FR+ RL + RR;30:With seat heating control FL+FR+ RL + RR
+,764,16,23,1,0,0,,212B,612B,ff,CL_WithControlPanel,0:Not Configured;1:WithoutCP;2:CP Type 1 - X10 CAREG / X07 EV CAREG RSA;3:CP Type 2 - X10 CHAUFFO / X07 EV CHAUFFO RSA;4:CP Type 3 - CAREG X07 ICE  RSA;5:CP Type 4 - X07 ICE & EV CAREG Daimler;6:CP Type 5 - Careg X82;7:CP Type 6 - 1540 E2;8:CP Type 7 - 1540 E3;9:CP Type 8 - Nissan USA;10:CP Type 9 - X07 ICE & EV CHAUFFO Daimler;11:CP Type 10- NISSAN Europe;12:CP Type 11 - 1540 Caman;13:CP Type 12 - CP HFE CAREG without HFS;14:CP Type 13 - CP HFE Caman;15:CP Type 14 - CP HFE CAREG with HFS;16:CP Type 15 - 1540 E2 KOREA;17:CP Type 16 - NISSAN P32 RUSSIA;18:CP Type 17;19:CP Type 18;20:CP Type 19;21:CP Type 20
+,764,16,23,1,0,0,,212C,612C,ff,CL_WithInternalAirQualityManagement,0:Not Configured;1:Without Air Quality Management;2:With Fragrance- Without Ionizer;3:Without Fragrance- With Ionizer Type1;4:With Fragrance- With Ionizer Type1;5:without fragrance with ionizer type 2;6:with fragrance with ionizer type 2
+,764,16,23,1,0,0,,212D,612D,ff,CL_CompValveType,0:Not configured;1:without Compressor Valve;2:with Compressor Valve type 1;3:with Compressor Valve type 2;4:with Compressor Valve type 3
+,764,16,23,1,0,0,,212E,612E,ff,CL_SeatsHeatingFeedback,0:Not Configured;1:without Seats Heating Feedback;2:With seat heating feedback FL;4:With seat heating feedback FR;6:With seat heating feedback FL +FR;8:With seat heating feedback RL;10:With seat heating feedback FL+RL;12:With seat heating feedback FR+RL;14:With seat heating feedback FR+FR+RL;16:With seat heating feedback RR;18:With seat heating feedback FL+ RR;20:With seat heating feedback FR+ RR;22:With seat heating feedback FL+FR+ RR;24:With seat heating feedback RL + RR;26:With seat heating feedback FL+ RL + RR;28:With seat heating feedback FR+ RL + RR;30:With seat heating feedback FL+FR+ RL + RR
+,764,16,23,1,0,0,,212F,612F,ff,CL_WithBoiler,0:Not Configured;1:Without boiler;2:With Boiler Type 1;3:With Boiler Type 2;4:With Boiler Type 3
+,764,16,23,.390625,0,1,%,2131,6131,ff,IH_DCDCLoad
+,764,48,48,1,0,0,,2131,6131,ff,IH_PreHeatingActivation,0:Don't Activate;1:Activate
+,764,56,63,25,0,0,W,2131,6131,ff,IH_ClimAvailablePower
+,764,16,16,1,0,0,,2132,6132,ff,OH_PreHeatingRequest,0:No Requested;1:Requested
+,764,22,31,.1,400,1,°C,2132,6132,ff,OH_EvaporatorTempSetPoint
+,764,40,45,2,0,0,,2132,6132,ff,OH_ClimAirFlow
+,764,46,55,.1,400,1,°C,2132,6132,ff,OH_EvaporatorTempMeasure
+,764,67,68,1,0,0,,2132,6132,ff,OH_PTCActivationRequest,0:Unavailable;1:On Requested;2:Off Requested;3:Not used
+,764,16,23,1,0,0,,2133,6133,ff,VH_FrontRecyclingModeSelection
+,764,24,31,1,0,0,,2133,6133,ff,VH_RecyclingNeed
+,764,32,39,1,0,0,,2133,6133,ff,VH_AQSRecyclingNeed
+,764,40,47,1,0,0,,2133,6133,ff,VH_ComfortRecyPartialReq
+,764,48,55,1,0,0,,2133,6133,ff,VH_ComfortRecyPerfoReq
+,764,56,63,1,0,0,,2133,6133,ff,VH_DemistingRecyReq
+,764,16,16,1,0,0,,2134,6134,ff,VH_IoniserWakenUp
+,764,17,17,1,0,0,,2134,6134,ff,VH_AirFreshenerWakenUp
+,764,24,31,1,0,0,,2134,6134,ff,VH_IoniserAutoLaunchState
+,764,0,0,1,0,0,,2135,6135,ff,DataRead.CAN_RX_BRAKE_CANHS_R_01
+,764,16,17,1,0,0,,2136,6136,ff,IH_EngineFanSpeedRequest,1:Low speed engine fan speed request;2:Mid speed engine fan speed request;0:No engine fan speed request;3:High speed engine fan speed request
+,764,26,27,1,0,0,,2136,6136,ff,IH_EngineStatus_R,0:Engine Stopped;1:Not used - Reserved;2:running engine;3:Running-engine driven
+,764,28,31,1,0,0,,2136,6136,ff,IH_EngineStopOrigine,0:No stop request;1:Stopped by other causes;2:Stopped by normal request;3:Value not defined (0011);4:Stopped  by driver request;5:Value not defined (0101);6:Value not defined (0110);7:Value not defined (0111);8:Stopped by emergency request;9:Value not defined (1001);10:Value not defined (1010);11:Value not defined (1011);12:Value not defined (1100);13:Value not defined (1101);14:Value not defined (1110);15:Value not defined (1111)
+,764,38,38,1,0,0,,2136,6136,ff,IH_ACCompAuthorized,0:AC not Authorized;1:AC Authorized
+,764,39,47,.1,0,1,bar,2136,6136,ff,IH_ACHighPressureSensor
+,764,72,79,25,0,0,W,2136,6136,ff,IH_ACMaxCompPowerAllowed
+,764,16,23,1,40,0,°C,2137,6137,ff,IH_EngineCoolantTemp
+,764,72,73,1,0,0,,2137,6137,ff,IH_EngineCoolantFlowStatus,0:Unavailable Value;1:No Engine Coolant Flow;2:Engine Coolant Flow;3:Not used
+,764,16,23,1,40,0,°C,2138,6138,ff,IH_ExternalTemp
+,764,24,31,.4,0,1,%,2138,6138,ff,IH_NightRheostatedLightMaxPercent
+,764,32,32,1,0,0,,2138,6138,ff,IH_DayNightStatus,0:Day time;1:Night time
+,764,36,40,5,0,0,%,213A,613A,ff,IH_EngineFanSpeed
+,764,16,17,1,0,0,,213B,613B,ff,IH_BatVEShutdownAlert,0:Unavailable;1:No +BatVE shutdown alert;2:+BatVE shutdown alert;3:Not used
+,764,20,21,1,0,0,,213B,613B,ff,IH_HVBatteryLevelAlert,0:No alert;1:Not used;2:Battery low alert;3:unavailable
+,764,26,35,10,0,0,rpm,213B,613B,ff,IH_ClimCompRPMStatus
+,764,36,38,1,0,0,,213B,613B,ff,IH_ClimCompDefaultStatus,0:No Failure and On;1:No Failure and Off;2:Downgraded;3:Failure;4:To change;5:Not used (101);6:Not used (110);7:Unavailable
+,764,42,44,1,0,0,,213B,613B,ff,IH_PTCDefaultStatus,0:No Failure and On;1:No Failure and Off;2:Downgraded;3:Failure;4:To change;5:Not used (101);6:Not used (110);7:Unavailable
+,764,58,64,100,0,0,,213B,613B,ff,IH_ClimAvailableEnergy
+,764,72,73,1,0,0,,213B,613B,ff,IH_LowVoltageUnballast_Request,0:Unavailable;1:No Unballast request;2:Unballast request;3:Not used
+,764,56,63,.3,0,1,,213C,613C,ff,IH_AvailableChargingPower
+,764,31,31,1,0,0,,213D,613D,ff,OH_ClimateCoolingSelect,0:No AC request;1:AC requested
+,764,38,38,1,0,0,,213D,613D,ff,OH_ACVbatTempoMaintain,0:Not Requested;1:Requested
+,764,48,49,1,0,0,,213D,613D,ff,OH_ClimCustomerAction
+,764,16,17,1,0,0,,213E,613E,ff,OH_ClimAQSActivationState,0:Unavailable;1:Activated;2:Not activated;3:Not used
+,764,18,19,1,0,0,,213E,613E,ff,OH_ThermalComfortEcoAdvice,2:Thermal comfort eco advice not requested;1:Thermal comfort eco advice requested;0:Unavailable;3:Not Used
+,764,18,19,1,0,0,,213F,613F,ff,OH_ClimRearDefrostDisplay,0:No Display;1:Rear Defrost ON;2:Rear Defrost OFF;3:Not used
+,764,20,22,1,0,0,,213F,613F,ff,OH_ClimModeTypeDisplay,0:No Display;1:Auto mode;2:Eco mode;3:Clearness mode;4:Manual mode;5:Off;6:Not used (110);7:Not used (111)
+,764,24,31,1,0,0,,213F,613F,ff,OH_ClimTempDisplay,0:No display;1:Not used (01);2:All segment displayed;3:Not used (11);4:Display OF;5:Not used (101);6:Display --;8:Display LO;9:Not used (1001);10:Display HI;11:5-5;12:6;13:6-5;14:7;16:Not used (10000);17:18-5;18:Not used (10010);20:Real display;21:10-5;22:11;23:11-5;24:12;25:12-5;26:13;27:13-5;28:14;29:14-5;30:15;31:15-5;32:16;33:16-5;34:17;35:17-5;36:18;37:28-5;38:19;39:19-5;40:20;41:30-5;42:21;43:21-5;44:22;45:22-5;46:23;47:23-5;48:24;49:24-5;50:25;51:25-5;52:26;53:26-5;54:27;55:27-5;56:28;57:38-5;58:29;59:29-5;60:30
+,764,32,35,1,0,0,,213F,613F,ff,OH_ClimFlowDistrDisplay,0:No Display;1:Feet Arrow;2:Aerator Arrow;3:Feet + Aerator Arrow;4:Mild flow Arrow;5:Feet + Mild Arrow;6:Mild + Feet Arrow;7:Feet + Aerator Mild Arrow;8:Defrost Arrow;9:Feet + Defrost  Arrow;10:Aerator + Defrost  Arrow;11:Feet + Aerator + Defrost  Arrow;12:Mild + Defrost  Arrow;13:Feet + Mild + Defrost  Arrow;14:Aerator + Mild + Defrost  Arrow;15:Feet + Aerator + Mild + Defrost  Arrow
+,764,36,37,1,0,0,,213F,613F,ff,OH_ClimForcedRecyDisplay,0:No display;1:Recycling On;2:Recycling Off;3:Not used
+,764,38,39,1,0,0,,213F,613F,ff,OH_ClimECOModeStatusDisplay,0:No Display;1:Activated;2:Not activated;3:Unavailable
+,764,40,43,1,0,0,,213F,613F,ff,OH_BlowerLevelDisplay,0:No display;1:display 1 blades and fan symbol;2:display 2 blades and fan symbol;3:display 3 blades and fan symbol;4:display 4 blades and fan symbol;5:display 5 blades and fan symbol;6:display 6 blades and fan symbol;7:display 7 blades and fan symbol;8:display 8 blades and fan symbol;15:display the fan symbol only
+,764,44,47,1,0,0,,213F,613F,ff,OH_ClimLastFuncModifiedByCustomer,0:No last action;1:Temperature;2:Not used;3:Rear Defrost;4:Clearness;5:Flow Distribution;6:Forced Recycling;7:Eco Button;8:Blower Level;9:Conso Button;10:Auto;11:AC Off
+,764,48,49,1,0,0,,213F,613F,ff,OH_ClimMMIActivationRequest,0:Unavailable;1:No request;2:Request;3:Not used
+,764,63,63,1,0,0,,213F,613F,ff,OH_ClimEcoLowSocDisplay,0:No Display;1:Display Request
+,764,68,69,1,0,0,,213F,613F,ff,OH_ClimAutoDisplay,0:No Display;1:Auto activated;2:Auto not activated;3:Not used
+,764,70,71,1,0,0,,213F,613F,ff,OH_ClimACOffDisplay,0:No Display;1:AC Off activated;2:AC Off Deactivated;3:Not used
+,764,72,73,1,0,0,,213F,613F,ff,OH_ClimClearnessDisplay,0:No Display;1:Clearness ON;2:Clearness OFF;3:Not used
+,764,16,23,1,0,0,,2140,6140,4ff,Supported Lid for RDBLID(41-48)
+,764,24,31,1,0,0,,2140,6140,4ff,Supported Lid for RDBLID(49-50)
+,764,32,39,1,0,0,,2140,6140,4ff,Supported Lid for RDBLID(51-58)
+,764,40,47,1,0,0,,2140,6140,4ff,Supported Lid for RDBLID(59-60)
+,764,16,23,25,0,0,W,2141,6141,ff,OH_ACCompPowerUsed_V2
+,764,25,25,1,0,0,,2141,6141,ff,OH_Blower_State,0:Blower fan OFF;1:Blower fan ON
+,764,26,27,1,0,0,,2141,6141,ff,OH_ACCoolingFanSpeedRequest,0:No Request;1:Low Request;2:Mid Request;3:High Request
+,764,28,29,1,0,0,,2141,6141,ff,OH_PumpActivationRequest,0:Unvailable Value;1:No Activation Requested;2:Activation Requested;3:Not Used
+,764,30,31,1,0,0,,2141,6141,ff,OH_AC_StopAutoFobidden,0:Unvailable Value;1:Auto Stop forbidden;2:Auto Stop authorized;3:Not used
+,764,32,35,1,0,0,,2141,6141,ff,OH_PTCNumberThermalReq,0:0 PTC requested;1:1 PTC requested;2:2 PTC requested;3:3 PTC requested;4:4 PTC requested;5:5 PTC requested;6:6 PTC requested;7:7 PTC requested;8:8 PTC requested;9:9 PTC requested;10:10 PTC requested;11:Not used;15:No Request
+,764,36,39,50,-10,0,rpm,2141,6141,ff,OH_ACMinEngineIdleSpeedRequest
+,764,40,43,.25,-46,1,V,2141,6141,ff,OH_MinimumVoltagebyAC
+,764,44,44,1,0,0,,2141,6141,ff,OH_ACCompRequest,0:No AC Requested;1:AC Requested
+,764,45,45,1,0,0,,2141,6141,ff,OH_ACCompClutchRequest,0:Compressor Not Requested;1:Compressor Requested
+,764,46,46,1,0,0,,2141,6141,ff,OH_RearDefrostRequest,0:Not Requested;1:Requested
+,764,52,52,1,0,0,,2141,6141,ff,OH_FrontDefrostRequest,0:Not Requested;1:Requested
+,764,32,38,1,0,0,%,2142,6142,ff,OH_HighVoltagePTCRequestPWM
+,764,52,53,1,0,0,,2142,6142,ff,OH_ClimPanelPCActivationRequest,0:No Request;1:Pre-heating time requested;2:Pre-heating OFF requested;3:Unavailable
+,764,18,19,1,0,0,,2143,6143,ff,OH_ClimRearDefrostDisplay,0:No Display;1:Rear Defrost ON;2:Rear Defrost OFF;3:Not used
+,764,20,22,1,0,0,,2143,6143,ff,OH_ClimModeTypeDisplay,0:No Display;1:Auto mode;2:Eco mode;3:Clearness mode;4:Manual mode;5:Off;6:Not used (110);7:Not used (111)
+,764,24,31,1,0,0,,2143,6143,ff,OH_ClimTempDisplay,0:No display;1:Not used (01);2:All segment displayed;3:Not used (11);4:Display OF;5:Not used (101);6:Display --;8:Display LO;9:Not used (1001);10:Display HI;11:5-5;12:6;13:6-5;14:7;16:Not used (10000);17:18-5;18:Not used (10010);20:Real display;21:10-5;22:11;23:11-5;24:12;25:12-5;26:13;27:13-5;28:14;29:14-5;30:15;31:15-5;32:16;33:16-5;34:17;35:17-5;36:18;37:28-5;38:19;39:19-5;40:20;41:30-5;42:21;43:21-5;44:22;45:22-5;46:23;47:23-5;48:24;49:24-5;50:25;51:25-5;52:26;53:26-5;54:27;55:27-5;56:28;57:38-5;58:29;59:29-5;60:30
+,764,32,35,1,0,0,,2143,6143,ff,OH_ClimFlowDistrDisplay,0:No Display;1:Feet Arrow;2:Aerator Arrow;3:Feet + Aerator Arrow;4:Mild flow Arrow;5:Feet + Mild Arrow;6:Mild + Feet Arrow;7:Feet + Aerator Mild Arrow;8:Defrost Arrow;9:Feet + Defrost  Arrow;10:Aerator + Defrost  Arrow;11:Feet + Aerator + Defrost  Arrow;12:Mild + Defrost  Arrow;13:Feet + Mild + Defrost  Arrow;14:Aerator + Mild + Defrost  Arrow;15:Feet + Aerator + Mild + Defrost  Arrow
+,764,36,37,1,0,0,,2143,6143,ff,OH_ClimForcedRecyDisplay,0:No display;1:Recycling On;2:Recycling Off;3:Not used
+,764,40,43,1,0,0,,2143,6143,ff,OH_ClimBlowerLevelDisplay,0:No display;1:Level 1;2:Level 2;3:Level 3;4:Level 4;5:Level 5;6:Level 6;7:Level 7;8:Level 8;9:Level 9;10:Level 10;11:Level 11;12:Level 12;13:Level 13;14:Level 14;15:Blower Off
+,764,44,47,1,0,0,,2143,6143,ff,OH_ClimLastFuncModifiedByCustomer,0:No last action;1:Temperature;2:Not used;3:Rear Defrost;4:Clearness;5:Flow Distribution;6:Forced Recycling;7:Eco Button;8:Blower Level;9:Conso Button;10:Auto;11:AC Off
+,764,48,49,1,0,0,,2143,6143,ff,OH_ClimMMIActivationRequest,0:Unavailable;1:No request;2:Request;3:Not used
+,764,50,55,2,0,0,,2143,6143,ff,OH_ClimAQSIndicator
+,764,56,61,1,0,0,,2143,6143,ff,OH_ClimAQMIoniserMaxTimerDisplay,0:No display;1:1 min;2:2 min;3:3 min;4:4 min;5:5 min;6:6 min;7:7 min;8:8 min;9:9 min;10:10 min;11:11 min;12:12 min;13:13 min;14:14 min;15:15 min;16:16 min;17:17 min;18:18 min;19:19 min;20:20 min;21:21 min;22:22 min;23:23 min;24:24 min;25:25 min;26:26 min;27:27 min;28:28 min;29:29 min;30:30 min;31:31 min;32:32 min;33:33 min;34:34 min;35:35 min;36:36 min;37:37 min;38:38 min;39:39 min;40:40 min;41:41 min;42:42 min;43:43 min;44:44 min;45:45 min;46:46 min;47:47 min;48:48 min;49:49 min;50:50 min;51:51 min;52:52 min;53:53 min;54:54 min;55:55 min;56:56 min;57:57 min;58:58 min;59:59 min;60:60 min;63:Infinite Time
+,764,62,67,1,0,0,,2143,6143,ff,OH_ClimAQMIoniserTimerDisplay,0:No display;1:1 min;2:2 min;3:3 min;4:4 min;5:5 min;6:6 min;7:7 min;8:8 min;9:9 min;10:10 min;11:11 min;12:12 min;13:13 min;14:14 min;15:15 min;16:16 min;17:17 min;18:18 min;19:19 min;20:20 min;21:21 min;22:22 min;23:23 min;24:24 min;25:25 min;26:26 min;27:27 min;28:28 min;29:29 min;30:30 min;31:31 min;32:32 min;33:33 min;34:34 min;35:35 min;36:36 min;37:37 min;38:38 min;39:39 min;40:40 min;41:41 min;42:42 min;43:43 min;44:44 min;45:45 min;46:46 min;47:47 min;48:48 min;49:49 min;50:50 min;51:51 min;52:52 min;53:53 min;54:54 min;55:55 min;56:56 min;57:57 min;58:58 min;59:59 min;60:60 min;63:Infinite Time
+,764,68,69,1,0,0,,2143,6143,ff,OH_ClimAutoDisplay,0:No Display;1:Auto activated;2:Auto not activated;3:Not used
+,764,70,71,1,0,0,,2143,6143,ff,OH_ClimACOffDisplay,0:No Display;1:AC Off activated;2:AC Off Deactivated;3:Not used
+,764,72,73,1,0,0,,2143,6143,ff,OH_ClimClearnessDisplay,0:No Display;1:Clearness ON;2:Clearness OFF;3:Not used
+,764,74,74,1,0,0,,2143,6143,ff,OH_FrontDefrostDisplay,0:No front defrost display request;1:Front defrost display request
+,764,76,77,1,0,0,,2143,6143,ff,OH_ZoneMenuDisplayReq,0:No Zone Menu Display Request;1:Rear Only Menu Display Request;2:Dual Only Menu Display Request;3:Rear + Dual Menu Display Request
+,764,16,19,1,0,0,,2144,6144,ff,ILB_LeftTempReq,0:Unavailable;1:+3 Click;2:+2 Click;3:+1 Click;4:+0 Click;5:-1 Click;6:-2 Click;7:-3 Click;8:Not Used
+,764,20,23,1,0,0,,2144,6144,ff,ILB_RightTempReq,0:Unavailable;1:+3 Click;2:+2 Click;3:+1 Click;4:+0 Click;5:-1 Click;6:-2 Click;7:-3 Click;8:Not Used
+,764,24,27,1,0,0,,2144,6144,ff,ILB_BlowerLevelReq,0:Unavailable;1:+3 Click;2:+2 Click;3:+1 Click;4:+0 Click;5:-1 Click;6:-2 Click;7:-3 Click;8:Not Used
+,764,28,31,1,0,0,,2144,6144,ff,ILB_FP_SliderRequest,0:No Request;1:Position 1;2:Position 2;3:Position 3;4:Position 4;5:Position 5;6:Position 6;7:Position 7;8:Position 8;9:Position 9;10:Position 10;11:Position 11;12:Position 12;13:Position 13;14:Position 14;15:Position 15
+,764,35,36,1,0,0,,2145,6145,ff,IH_ClimAQSActivationRequest,0:No request;1:Activation request;2:No activation request;3:Not used
+,764,37,38,1,0,0,,2145,6145,ff,IH_IoniserAutoLaunchRequest,0:Unavailable;1:Activated;2:Not activated;3:Not used
+,764,16,22,1,0,0,,2146,6146,ff,IH_FragranceActrPosition
+,764,23,29,1,0,0,,2146,6146,ff,OH_FragranceActrReq
+,764,30,45,1,0,0,,2146,6146,ff,ILW_FragranceActrPosition
+,764,46,61,1,0,0,,2146,6146,ff,OLW_FragranceActrTarget
+,764,62,62,1,0,0,,2146,6146,ff,OH_FragranceFanReq,0:Off;1:On
+,764,63,64,1,0,0,,2146,6146,ff,OH_IonizerMode,0:Off;1:Clean;2:Relax
+,764,68,68,1,0,0,,2146,6146,ff,OLW_IonizerSupply,0:output inactive;1:output active
+,764,69,69,1,0,0,,2146,6146,ff,OLW_OnOffOutput_1,0:output inactive;1:output active
+,764,16,23,1,0,0,,2147,6147,ff,CL_SolarSensorType,0:Not Configured;1:Local sensor Renault (type 1);2:Local sensor Nissan_CK (type 2);3:Local sensor Nissan_Valéo (type 3)
+,764,16,23,1,0,0,,2149,6149,ff,PresetTemperatureCorrection
+,764,24,24,1,0,0,,2149,6149,ff,Set_REC_Memory,0:Use memory for manual REC;1:Do not use memory for manual REC
+,764,25,25,1,0,0,,2149,6149,ff,Set_FRE_Memory,0:Use memory for manual FRE;1:Do not use memory for manual FRE
+,764,26,27,1,0,0,,2149,6149,ff,Set_air_transfer_condition,0:DEF door open when auto- DEF door closed when manual;1:DEF door open when auto- DEF door open when manual;2:DEF door closed when auto- DEF door open when manual;3:DEF door closed when auto- DEF door closed when manual
+,764,32,39,1,0,0,,2149,6149,ff,Set_sensor_sensitivity_correction
+,764,40,41,1,0,0,,2149,6149,ff,Set_operation_CAV_SW,0:Turn ON compressor when CAV SW is operated;1:Do not turn ON compressor when CAV SW is operated;2:Do not accept CAV SW operations when A/C SW is OFF;3:When CAV SW is operated compressor must be OFF
+,764,96,97,1,0,0,,2149,6149,ff,Set_evaporator_temp_target,0:default;1:3°C;2:5°C;3:7°C
+,764,16,23,1,0,0,,214B,614B,ff,KH_RemoteEnable,0:Enable (0);1:Disable (1)
+,764,45,45,1,0,0,,214D,614D,ff,IH_ELAMP,0:Eco mode lamp OFF;1:Eco mode lamp ON
+,764,42,43,1,0,0,,214E,614E,ff,IH_DriveMode_Status,0:Standard;1:ECO;2:Sports;3:Snow
+,764,16,31,.01,0,2,km/h,214F,614F,ff,IH_VSP
+,764,32,55,.1,0,1,km,214F,614F,ff,IH_DIS_TOTAL
+,764,66,66,1,0,0,,214F,614F,ff,IH_Dis_Unit,0:Km;1:Miles
+,764,16,16,1,0,0,,2150,6150,ff,VL_AnalogInput_3DefType1FP,0:False;1:True
+,764,17,17,1,0,0,,2150,6150,ff,VL_AnalogInput_3DefType2FP,0:False;1:True
+,764,18,18,1,0,0,,2150,6150,ff,VL_OnOffOutput_2DefType1FP,0:False;1:True
+,764,19,19,1,0,0,,2150,6150,ff,VL_OnOffOutput_2DefType2FP,0:False;1:True
+,764,20,20,1,0,0,,2150,6150,ff,VL_AnalogInput_4DefType1FP,0:False;1:True
+,764,21,21,1,0,0,,2150,6150,ff,VL_AnalogInput_4DefType2FP,0:False;1:True
+,764,22,22,1,0,0,,2150,6150,ff,VL_AnalogInput_5DefType1FP,0:False;1:True
+,764,23,23,1,0,0,,2150,6150,ff,VL_AnalogInput_5DefType2FP,0:False;1:True
+,764,24,24,1,0,0,,2150,6150,ff,VL_AnalogInput_2DefType1FP,0:False;1:True
+,764,25,25,1,0,0,,2150,6150,ff,VL_AnalogInput_2DefType2FP,0:False;1:True
+,764,26,26,1,0,0,,2150,6150,ff,VL_AQS_PWMDiag_SCFP,0:False;1:True
+,764,27,27,1,0,0,,2150,6150,ff,VL_AQS_PWMDiag_OCFP,0:False;1:True
+,764,28,28,1,0,0,,2150,6150,ff,VL_PWMOutput_6DefType1FP,0:False;1:True
+,764,29,29,1,0,0,,2150,6150,ff,VL_PWMOutput_6DefType2FP,0:False;1:True
+,764,30,30,1,0,0,,2150,6150,ff,VL_Motor1ActrDiag_OCFP,0:False;1:True
+,764,31,31,1,0,0,,2150,6150,ff,VL_Motor1ActrDiag_SCFP,0:False;1:True
+,764,32,32,1,0,0,,2150,6150,ff,VL_Motor2ActrDiag_OCFP,0:False;1:True
+,764,33,33,1,0,0,,2150,6150,ff,VL_Motor2ActrDiag_SCFP,0:False;1:True
+,764,34,34,1,0,0,,2150,6150,ff,VL_Motor3ActrDiag_OCFP,0:False;1:True
+,764,35,35,1,0,0,,2150,6150,ff,VL_Motor3ActrDiag_SCFP,0:False;1:True
+,764,36,36,1,0,0,,2150,6150,ff,VL_Motor4ActrDiag_OCFP,0:False;1:True
+,764,37,37,1,0,0,,2150,6150,ff,VL_Motor4ActrDiag_SCFP,0:False;1:True
+,764,38,38,1,0,0,,2150,6150,ff,VL_Motor5ActrDiag_OCFP,0:False;1:True
+,764,39,39,1,0,0,,2150,6150,ff,VL_Motor5ActrDiag_SCFP,0:False;1:True
+,764,40,40,1,0,0,,2150,6150,ff,VL_Motor6ActrDiag_OCFP,0:False;1:True
+,764,41,41,1,0,0,,2150,6150,ff,VL_Motor6ActrDiag_SCFP,0:False;1:True
+,764,42,42,1,0,0,,2150,6150,ff,VL_PWMOutput_4DefType1FP,0:False;1:True
+,764,43,43,1,0,0,,2150,6150,ff,VL_PWMOutput_4DefType2FP,0:False;1:True
+,764,44,44,1,0,0,,2150,6150,ff,VL_OnOffOutput_3DefType1FP,0:False;1:True
+,764,45,45,1,0,0,,2150,6150,ff,VL_OnOffOutput_3DefType2FP,0:False;1:True
+,764,46,46,1,0,0,,2150,6150,ff,VL_OnOffOutput_4DefType1FP,0:False;1:True
+,764,47,47,1,0,0,,2150,6150,ff,VL_OnOffOutput_4DefType2FP,0:False;1:True
+,764,48,48,1,0,0,,2150,6150,ff,VL_PWMOutput_1DefType1FP,0:False;1:True
+,764,49,49,1,0,0,,2150,6150,ff,VL_PWMOutput_1DefType2FP,0:False;1:True
+,764,50,50,1,0,0,,2150,6150,ff,VL_PWMOutput_2DefType1FP,0:False;1:True
+,764,51,51,1,0,0,,2150,6150,ff,VL_PWMOutput_2DefType2FP,0:False;1:True
+,764,52,52,1,0,0,,2150,6150,ff,VL_PWMOutput_3DefType1FP,0:False;1:True
+,764,53,53,1,0,0,,2150,6150,ff,VL_PWMOutput_3DefType2FP,0:False;1:True
+,764,54,54,1,0,0,,2150,6150,ff,VL_OnOffOutput_1DefType1FP,0:False;1:True
+,764,55,55,1,0,0,,2150,6150,ff,VL_OnOffOutput_1DefType2FP,0:False;1:True
+,764,56,56,1,0,0,,2150,6150,ff,VL_PWMOutput_5DefType1FP,0:False;1:True
+,764,57,57,1,0,0,,2150,6150,ff,VL_PWMOutput_5DefType2FP,0:False;1:True
+,764,58,58,1,0,0,,2150,6150,ff,VL_CPComDiag_DCFP,0:False;1:True
+,764,59,59,1,0,0,,2150,6150,ff,VL_AnalogInput_6DefType1FP,0:False;1:True
+,764,60,60,1,0,0,,2150,6150,ff,VL_AnalogInput_6DefType2FP,0:False;1:True
+,764,61,61,1,0,0,,2150,6150,ff,VL_CANComDiag_ERFP,0:False;1:True
+,764,62,62,1,0,0,,2150,6150,ff,VL_CAN_SelfDiag_ErFP,0:False;1:True
+,764,63,63,1,0,0,,2150,6150,ff,VL_BlowerComDiag_DCFP,0:False;1:True
+,764,16,16,1,0,0,,2151,6151,ff,VL_AnalogInput_3DefType1FM,0:False;1:True
+,764,17,17,1,0,0,,2151,6151,ff,VL_AnalogInput_3DefType2FM,0:False;1:True
+,764,18,18,1,0,0,,2151,6151,ff,VL_OnOffOutput_2DefType1FM,0:False;1:True
+,764,19,19,1,0,0,,2151,6151,ff,VL_OnOffOutput_2DefType2FM,0:False;1:True
+,764,20,20,1,0,0,,2151,6151,ff,VL_AnalogInput_4DefType1FM,0:False;1:True
+,764,21,21,1,0,0,,2151,6151,ff,VL_AnalogInput_4DefType2FM,0:False;1:True
+,764,22,22,1,0,0,,2151,6151,ff,VL_AnalogInput_5DefType1FM,0:False;1:True
+,764,23,23,1,0,0,,2151,6151,ff,VL_AnalogInput_5DefType2FM,0:False;1:True
+,764,24,24,1,0,0,,2151,6151,ff,VL_AnalogInput_2DefType1FM,0:False;1:True
+,764,25,25,1,0,0,,2151,6151,ff,VL_AnalogInput_2DefType2FM,0:False;1:True
+,764,26,26,1,0,0,,2151,6151,ff,VL_AQS_PWMDiag_SCFM,0:False;1:True
+,764,27,27,1,0,0,,2151,6151,ff,VL_AQS_PWMDiag_OCFM,0:False;1:True
+,764,28,28,1,0,0,,2151,6151,ff,VL_PWMOutput_6DefType1FM,0:False;1:True
+,764,29,29,1,0,0,,2151,6151,ff,VL_PWMOutput_6DefType2FM,0:False;1:True
+,764,30,30,1,0,0,,2151,6151,ff,VL_Motor1ActrDiag_OCFM,0:False;1:True
+,764,31,31,1,0,0,,2151,6151,ff,VL_Motor1ActrDiag_SCFM,0:False;1:True
+,764,32,32,1,0,0,,2151,6151,ff,VL_Motor2ActrDiag_OCFM,0:False;1:True
+,764,33,33,1,0,0,,2151,6151,ff,VL_Motor2ActrDiag_SCFM,0:False;1:True
+,764,34,34,1,0,0,,2151,6151,ff,VL_Motor3ActrDiag_OCFM,0:False;1:True
+,764,35,35,1,0,0,,2151,6151,ff,VL_Motor3ActrDiag_SCFM,0:False;1:True
+,764,36,36,1,0,0,,2151,6151,ff,VL_Motor4ActrDiag_OCFM,0:False;1:True
+,764,37,37,1,0,0,,2151,6151,ff,VL_Motor4ActrDiag_SCFM,0:False;1:True
+,764,38,38,1,0,0,,2151,6151,ff,VL_Motor5ActrDiag_OCFM,0:False;1:True
+,764,39,39,1,0,0,,2151,6151,ff,VL_Motor5ActrDiag_SCFM,0:False;1:True
+,764,40,40,1,0,0,,2151,6151,ff,VL_Motor6ActrDiag_OCFM,0:False;1:True
+,764,41,41,1,0,0,,2151,6151,ff,VL_Motor6ActrDiag_SCFM,0:False;1:True
+,764,42,42,1,0,0,,2151,6151,ff,VL_PWMOutput_4DefType1FM,0:False;1:True
+,764,43,43,1,0,0,,2151,6151,ff,VL_PWMOutput_4DefType2FM,0:False;1:True
+,764,44,44,1,0,0,,2151,6151,ff,VL_OnOffOutput_3DefType1FM,0:False;1:True
+,764,45,45,1,0,0,,2151,6151,ff,VL_OnOffOutput_3DefType2FM,0:False;1:True
+,764,46,46,1,0,0,,2151,6151,ff,VL_OnOffOutput_4DefType1FM,0:False;1:True
+,764,47,47,1,0,0,,2151,6151,ff,VL_OnOffOutput_4DefType2FM,0:False;1:True
+,764,48,48,1,0,0,,2151,6151,ff,VL_PWMOutput_1DefType1FM,0:False;1:True
+,764,49,49,1,0,0,,2151,6151,ff,VL_PWMOutput_1DefType2FM,0:False;1:True
+,764,50,50,1,0,0,,2151,6151,ff,VL_PWMOutput_2DefType1FM,0:False;1:True
+,764,51,51,1,0,0,,2151,6151,ff,VL_PWMOutput_2DefType2FM,0:False;1:True
+,764,52,52,1,0,0,,2151,6151,ff,VL_PWMOutput_3DefType1FM,0:False;1:True
+,764,53,53,1,0,0,,2151,6151,ff,VL_PWMOutput_3DefType2FM,0:False;1:True
+,764,54,54,1,0,0,,2151,6151,ff,VL_OnOffOutput_1DefType1FM,0:False;1:True
+,764,55,55,1,0,0,,2151,6151,ff,VL_OnOffOutput_1DefType2FM,0:False;1:True
+,764,56,56,1,0,0,,2151,6151,ff,VL_PWMOutput_5DefType1FM,0:False;1:True
+,764,57,57,1,0,0,,2151,6151,ff,VL_PWMOutput_5DefType2FM,0:False;1:True
+,764,58,58,1,0,0,,2151,6151,ff,VL_CPComDiag_DCFM,0:False;1:True
+,764,59,59,1,0,0,,2151,6151,ff,VL_AnalogInput_6DefType1FM,0:False;1:True
+,764,60,60,1,0,0,,2151,6151,ff,VL_AnalogInput_6DefType2FM,0:False;1:True
+,764,61,61,1,0,0,,2151,6151,ff,VL_CANComDiag_ERFM,0:False;1:True
+,764,62,62,1,0,0,,2151,6151,ff,VL_CAN_SelfDiag_ErFM,0:False;1:True
+,764,63,63,1,0,0,,2151,6151,ff,VL_BlowerComDiag_DCFM,0:False;1:True
+,764,16,16,1,0,0,,2152,6152,ff,IH_BlowerState,0:No fan;1:Fan
+,764,17,17,1,0,0,,2152,6152,ff,IH_BlowerDefault,0:No Blower failure;1:Blower failure
+,764,18,25,.5,0,1,%,2152,6152,ff,IH_BlowerVoltRatio
+,764,26,35,.1,400,1,°C,2152,6152,ff,IH_EvapTemp
+,764,36,45,.1,400,1,°C,2152,6152,ff,IH_InCarTemp
+,764,51,66,.0048828125,0,3,mV,2152,6152,ff,IH_OxydantRatio
+,764,67,82,.0048828125,0,3,mV,2152,6152,ff,IH_ReductorRatio
+,764,83,90,.5,0,1,%,2152,6152,ff,IH_RHumidity
+,764,91,98,.1,0,1,V,2152,6152,ff,IH_Vbatt
+,764,99,109,.1,400,1,°C,2152,6152,ff,IH_HotSourceTemp
+,764,110,116,.1,0,1,A,2152,6152,ff,IH_ACCompValveCurrent
+,764,117,117,1,0,0,,2152,6152,ff,IH_BattBlowerState,0:No fan;1:Fan
+,764,118,118,1,0,0,,2152,6152,ff,IH_BattBlowerDefault,0:No Battery Blower failure;1:Battery Blower failure
+,764,119,126,.5,0,1,%,2152,6152,ff,IH_BattBlowerVoltRatio
+,764,127,127,1,0,0,,2152,6152,ff,IH_Rear_Switch,0:Rear Off;1:Rear On
+,764,128,132,5,0,0,%,2152,6152,ff,IH_AQS_PWM
+,764,133,140,5,0,0,W/m²,2152,6152,ff,IH_LeftSolarLevelN
+,764,141,141,1,0,0,,2152,6152,ff,IH_HeatSeatRearRightCmd,0:Heating Off;1:Heating On
+,764,142,142,1,0,0,,2152,6152,ff,IH_HeatSeatFrontLeftReq,0:Heating Off;1:Heating On
+,764,143,143,1,0,0,,2152,6152,ff,IH_HeatSeatFrontRightReq,0:Heating Off;1:Heating On
+,764,144,144,1,0,0,,2152,6152,ff,IH_HeatSeatRearLeftCmd,0:Heating Off;1:Heating On
+,764,145,152,1,0,0,%,2152,6152,ff,OH_BlowerReq
+,764,153,160,1,0,0,%,2152,6152,ff,OH_BattBlowerReq
+,764,161,161,1,0,0,,2152,6152,ff,OH_BattBlowerRelayReq,0:Off;1:On
+,764,162,168,1,0,0,%,2152,6152,ff,OH_ACCompValveCommand
+,764,169,169,1,0,0,,2152,6152,ff,OH_CabinValveRequest,0:Off;1:On
+,764,170,170,1,0,0,,2152,6152,ff,OH_CoolingValveRequest,0:Off;1:On
+,764,171,178,.5,0,1,%,2152,6152,ff,OH_HotAirBlowerReq
+,764,179,179,1,0,0,,2152,6152,ff,OH_WindshieldHeating1Req,0:Off;1:On
+,764,180,187,.5,0,1,%,2152,6152,ff,OH_ColdAirBlowerReq
+,764,188,188,1,0,0,,2152,6152,ff,OH_WindshieldHeating2Req,0:Off;1:On
+,764,189,189,1,0,0,,2152,6152,ff,OH_HeatSeatFrontLeftCmd,0:Off;1:On
+,764,190,190,1,0,0,,2152,6152,ff,OH_HeatSeatFrontRightCmd,0:Off;1:On
+,764,191,191,1,0,0,,2152,6152,ff,OH_HeatSeatFrontLeftIndic,0:Off;1:On
+,764,192,192,1,0,0,,2152,6152,ff,OH_HeatSeatFrontRightIndic,0:Off;1:On
+,764,193,198,1,0,0,,2152,6152,ff,IH_RearBlowerRotaryState
+,764,199,199,1,0,0,,2152,6152,ff,IH_RearFastMode,0:means auto fast mode off;1:means auto fast mode on
+,764,200,200,1,0,0,,2152,6152,ff,IH_RearOffMode,0:means rear off mode not activated;1:means rear off mode activated
+,764,201,201,1,0,0,,2152,6152,ff,IH_RearAutoMode,0:means auto mode off;1:means auto mode on
+,764,202,205,1,0,0,,2152,6152,ff,IH_RearBlowerLevelReq,0:No Request;1:Level 1;2:Level 2;3:Level 3;4:Level 4;5:Level 5;6:Level 6;7:Level 7;8:Level 8;9:Level 9;10:Level 10;11:Level 11;12:Level 12;13:Level 13;14:Level 14;15:Off
+,764,206,206,1,0,0,,2152,6152,ff,IH_RearBlowerState,0:No fan;1:Fan
+,764,207,207,1,0,0,,2152,6152,ff,IH_RearBlowerDefault,0:No Rear Blower failure;1:Rear Blower failure
+,764,208,215,.5,0,1,%,2152,6152,ff,IH_RearBlowerVoltRatio
+,764,216,222,1,0,0,%,2152,6152,ff,OH_RearBlowerReq
+,764,223,224,1,0,0,,2152,6152,ff,OH_RearActrScalingReq,0:00 (Transition to 1 or 3) - auto-indexing CCW;1:01 (Transition to 0 or 2) - auto-indexing CW;2:10 (Transition to 1 or 3) - auto-indexing CCW;3:11 (Transition to 0 or 2) - auto-indexing CW
+,764,225,231,1,0,0,,2152,6152,ff,OH_RearMixActrReq
+,764,232,238,1,0,0,,2152,6152,ff,IH_RearMixActrPosition
+,764,239,248,.1,400,1,°C,2152,6152,ff,IH_RearBlowedAirTemp
+,764,249,249,1,0,0,,2152,6152,ff,OH_RearOnOffIndic,0:Off;1:On
+,764,255,255,1,0,0,,2152,6152,ff,IH_BoilerFeedback,0:Inactive;1:Active
+,764,256,256,1,0,0,,2152,6152,ff,OH_Boiler_Cde,0:Off;1:On
+,764,257,257,1,0,0,,2152,6152,ff,OH_WipersHeating_Cde,0:Off;1:On
+,764,259,261,1,0,0,,2152,6152,ff,IH_VehicleStateForClim,0:Sleeping;1:CutOffPending;2:BatTempoLevel;3:Blower_Available;4:Starting_In_Progress;5:Engine_Running;6:Not_Used;7:Unavailable
+,764,262,263,1,0,0,,2152,6152,ff,IH_FrontWiperStatus,0:Unavailable;1:Wiper_Off;2:Wiper_On;3:Not_Used
+,764,17,23,1,0,0,,2153,6153,ff,IH_FeetVentActrPosition
+,764,25,31,1,0,0,,2153,6153,ff,IH_LeftMixActrPosition
+,764,33,39,1,0,0,,2153,6153,ff,IH_RecyActrPosition
+,764,41,47,1,0,0,,2153,6153,ff,IH_RightMixActrPosition
+,764,49,55,1,0,0,,2153,6153,ff,IH_DefActrPosition
+,764,57,63,1,0,0,,2153,6153,ff,IH_ReserveActrPosition
+,764,65,71,1,0,0,,2153,6153,ff,OH_FeetVentActrReq
+,764,73,79,1,0,0,,2153,6153,ff,OH_LeftMixActrReq
+,764,81,87,1,0,0,,2153,6153,ff,OH_RecyActrReq
+,764,89,95,1,0,0,,2153,6153,ff,OH_RightMixActrReq
+,764,97,103,1,0,0,,2153,6153,ff,OH_DefActrReq
+,764,105,111,1,0,0,,2153,6153,ff,OH_ReserveActrReq
+,764,121,127,1,0,0,,2153,6153,ff,IH_RearMixActrPosition
+,764,137,143,1,0,0,,2153,6153,ff,OH_RearMixActrReq
+,764,16,31,1,0,0,,2154,6154,ff,ILW_Motor1ActrPosition
+,764,32,47,1,0,0,,2154,6154,ff,ILW_Motor2ActrPosition
+,764,48,63,1,0,0,,2154,6154,ff,ILW_Motor3ActrPosition
+,764,64,79,1,0,0,,2154,6154,ff,ILW_Motor4ActrPosition
+,764,80,95,1,0,0,,2154,6154,ff,ILW_Motor5ActrPosition
+,764,96,111,1,0,0,,2154,6154,ff,ILW_Motor6ActrPosition
+,764,19,21,1,0,0,,2155,6155,ff,IH_UserIdentification,0:Undefined user;1:User n°1;2:User n°2;3:User n°3;4:User n°4
+,764,37,37,1,0,0,,2155,6155,ff,IH_PTCThermalRegulatorFreeze,0:Not requested;1:Freeze requested
+,764,20,20,1,0,0,,2156,6156,ff,IH_DiagMuxOn_BCM,0:counting and storing CAN mute/absent failure masked;1:counting and storing CAN mute/absent failure not masked
+,764,35,39,100,0,0,W,2156,6156,ff,IH_ElectricalPowerDrived
+,764,48,49,1,0,0,,2156,6156,ff,ILN_GenericApplicativeDiagEnable,0:Diag frozen;1:Diag enabled (01);2:Diag enabled (10);3:Unavailable Value
+,764,69,71,1,0,0,,2156,6156,ff,IH_VehicleActivationState,0:Vehicle Electrically Asleep;1:BatTempoLevel;2:Ignition ON (Engine Ready To Start);3:Initial Starting in Progress;4:Driving State;5:Not Used (101);6:Not Used (110);7:Unavailable
+,764,22,22,1,0,0,,2157,6157,ff,CAN_RX_BCM_CANHS_R_04.IH_VehicleOutsideLockedToggle,0:VehicleNotLockedFromOutside;1:VehicleLockedFromOutside
+,764,24,25,1,0,0,,2157,6157,ff,IH_SupposedCustomerDeparture,0:Event 0;1:Event 1;2:Event 2;3:Unavailable
+,764,34,35,1,0,0,,2157,6157,ff,IH_EcoModeRequest,0:Unavailable Value;1:Eco mode requested;2:Eco mode not requested;3:Not used
+,764,16,39,1,0,0,min,2158,6158,ff,IH_AbsoluteTimeSinceFirstIgnition
+,764,16,39,1,0,0,,2159,6159,ff,IH_DistanceTotalizer
+,764,24,31,1,40,0,°C,215A,615A,ff,IH_ExternalTemp
+,764,32,39,.4,0,1,%,215A,615A,ff,IH_NightRheostatedLightMaxPercent
+,764,62,62,1,0,0,,215A,615A,ff,IH_DayNightStatus,0:Day time;1:Night time
+,764,23,31,.1,0,1,bar,215B,615B,ff,IH_ACHighPressureSensor
+,764,32,33,1,0,0,,215B,615B,ff,IH_EngineStatus_R,0:Engine Stopped;1:Not used - Reserved;2:running engine;3:Running-engine driven
+,764,34,37,1,0,0,,215B,615B,ff,IH_EngineStopOrigine,0:No stop request;1:Stopped by other causes;2:Stopped by normal request;3:Value not defined (0011);4:Stopped  by driver request;5:Value not defined (0101);6:Value not defined (0110);7:Value not defined (0111);8:Stopped by emergency request;9:Value not defined (1001);10:Value not defined (1010);11:Value not defined (1011);12:Value not defined (1100);13:Value not defined (1101);14:Value not defined (1110);15:Value not defined (1111)
+,764,48,48,1,0,0,,215B,615B,ff,IH_ACCompAuthorized,0:AC not Authorized;1:AC Authorized
+,764,56,60,3.22,0,0,,215B,615B,ff,IH_AlternatorLoad
+,764,61,61,1,0,0,,215B,615B,ff,IH_StopAutoForClim,0:Vehicle not in automatic state;1:Vehicle in automatic state
+,764,72,79,25,0,0,W,215B,615B,ff,IH_ACMaxCompPowerAllowed
+,764,16,23,1,40,0,°C,215C,615C,ff,IH_EngineCoolantTemp
+,764,42,43,1,0,0,,215C,615C,ff,IH_EngineCoolantFlowStatus,0:Unavailable Value;1:No Engine Coolant Flow;2:Engine Coolant Flow;3:Not used
+,764,16,16,1,0,0,,215E,615E,ff,IH_AC_OnPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,17,17,1,0,0,,215E,615E,ff,IH_AutoNormalPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,18,18,1,0,0,,215E,615E,ff,IH_ClearnessPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,19,19,1,0,0,,215E,615E,ff,IH_DistDegiMildPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,20,20,1,0,0,,215E,615E,ff,IH_DistFeetPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,21,21,1,0,0,,215E,615E,ff,IH_DistMildFlowPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,22,22,1,0,0,,215E,615E,ff,IH_DistVentPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,23,23,1,0,0,,215E,615E,ff,IH_ForcedRecyPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,24,24,1,0,0,,215E,615E,ff,IH_ModeOffPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,25,25,1,0,0,,215E,615E,ff,IH_RecyAutoPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,26,26,1,0,0,,215E,615E,ff,IH_AutoFastPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,27,27,1,0,0,,215E,615E,ff,IH_AutoSoftPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,28,28,1,0,0,,215E,615E,ff,IH_DualModePushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,29,29,1,0,0,,215E,615E,ff,IH_RearDefPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,30,30,1,0,0,,215E,615E,ff,IH_RearPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,31,31,1,0,0,,215E,615E,ff,IH_ClimFrontDeFrostPush,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,32,35,1,0,0,,215E,615E,ff,IH_ClimFPBlowerRequest,0:No Request;1:Level 1;2:Level 2;3:Level 3;4:Level 4;5:Level 5;6:Level 6;7:Level 7;8:Level 8;9:Level 9;10:Level 10;11:Level 11;12:Level 12;13:Level 13;14:Level 14;15:Blower OFF
+,764,36,39,1,0,0,,215E,615E,ff,IH_AQMFragIntensityRequest,0:No request;1:No intensity/Not used;2:intensity 1;3:intensity 2;4:intensity 3;5:intensity 4;6:intensity 5;7:intensity 6;8:intensity 7
+,764,40,47,.5,-20,1,°,215E,615E,ff,IH_LeftTempRequest
+,764,48,55,.5,-20,1,°,215E,615E,ff,IH_RightTempRequest
+,764,56,58,1,0,0,,215E,615E,ff,IH_AQMFragSelectRequest,0:No request;1:Fragrance 1;2:Fragrance 2;3:Off;7:Auto
+,764,59,60,1,0,0,,215E,615E,ff,IH_AQMIoniserModeSelectionReq,0:No request;1:Off;2:Clean;3:Relax
+,764,16,16,1,0,0,,215F,615F,ff,IH_DistDnLongPushState,0:no long push detected;1:long push detected
+,764,17,17,1,0,0,,215F,615F,ff,IH_DistDnPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,18,18,1,0,0,,215F,615F,ff,IH_DistUpLongPushState,0:no long push detected;1:long push detected
+,764,19,19,1,0,0,,215F,615F,ff,IH_DistUpPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,20,20,1,0,0,,215F,615F,ff,IH_DistMildFlowLongPushState,0:no long push detected;1:long push detected
+,764,21,21,1,0,0,,215F,615F,ff,IH_DistMildFlowPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,22,22,1,0,0,,215F,615F,ff,IH_AC_OnLongPushState,0:no long push detected;1:long push detected
+,764,23,23,1,0,0,,215F,615F,ff,IH_AC_OnPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,24,27,1,0,0,,215F,615F,ff,IH_LeftTempReq,0:Unavailable;1:+3 Click;2:+2 Click;3:+1 Click;4:+0 Click;5:-1 Click;6:-2 Click;7:-3 Click;8:Not used(1000);9:Not used(1001);10:Not used(1010);11:Not used(1011);12:Not used(1100);13:Not used(1101);14:Not used(1110);15:Not used(11111)
+,764,28,31,1,0,0,,215F,615F,ff,IH_RightTempReq,0:Unavailable;1:+3 Click;2:+2 Click;3:+1 Click;4:+0 Click;5:-1 Click;6:-2 Click;7:-3 Click;8:Not used(1000);9:Not used(1001);10:Not used(1010);11:Not used(1011);12:Not used(1100);13:Not used(1101);14:Not used(1110);15:Not used(11111)
+,764,32,35,1,0,0,,215F,615F,ff,IH_BlowerLevelReq,0:Unavailable;1:+3 Click;2:+2 Click;3:+1 Click;4:+0 Click;5:-1 Click;6:-2 Click;7:-3 Click;8:Not used(1000);9:Not used(1001);10:Not used(1010);11:Not used(1011);12:Not used(1100);13:Not used(1101);14:Not used(1110);15:Not used(11111)
+,764,36,36,1,0,0,,215F,615F,ff,OH_ACIndic,0:Indic Off;1:Indic On
+,764,37,37,1,0,0,,215F,615F,ff,OH_AirQualityIndic,0:Indic Off;1:Indic On
+,764,38,38,1,0,0,,215F,615F,ff,OH_AutoFastIndic,0:Indic Off;1:Indic On
+,764,39,39,1,0,0,,215F,615F,ff,OH_AutoNormalIndic,0:Indic Off;1:Indic On
+,764,40,40,1,0,0,,215F,615F,ff,OH_AutoSoftIndic,0:Indic Off;1:Indic On
+,764,41,41,1,0,0,,215F,615F,ff,OH_ClearnessIndic,0:Indic Off;1:Indic On
+,764,42,42,1,0,0,,215F,615F,ff,OH_DistDegiMildIndic,0:Indic Off;1:Indic On
+,764,43,43,1,0,0,,215F,615F,ff,OH_DistFeetIndic,0:Indic Off;1:Indic On
+,764,44,44,1,0,0,,215F,615F,ff,OH_DistVentIndic,0:Indic Off;1:Indic On
+,764,45,45,1,0,0,,215F,615F,ff,OH_DualModeIndic,0:Indic Off;1:Indic On
+,764,46,46,1,0,0,,215F,615F,ff,OH_ForcedFreshAirIndic,0:Indic Off;1:Indic On
+,764,47,47,1,0,0,,215F,615F,ff,OH_ForcedRecyIndic,0:Indic Off;1:Indic On
+,764,48,48,1,0,0,,215F,615F,ff,OH_ModeOffIndic,0:Indic Off;1:Indic On
+,764,49,49,1,0,0,,215F,615F,ff,OH_RearControlIndic,0:Indic Off;1:Indic On
+,764,50,50,1,0,0,,215F,615F,ff,OH_RearDefIndic,0:Indic Off;1:Indic On
+,764,51,51,1,0,0,,215F,615F,ff,OH_RecyIndic,0:Indic Off;1:Indic On
+,764,52,52,1,0,0,,215F,615F,ff,OH_DayNightStatus,0:day;1:night
+,764,53,53,1,0,0,,215F,615F,ff,OH_FP_MMITempUnit,0:Celsius;1:Farenheit
+,764,54,57,1,0,0,,215F,615F,ff,OH_FP_RightTempByLEDs,0:No display;1:Display indicator 1;2:Display indicator 2;3:Display indicator 3;4:Display indicator 4;5:Display indicator 5;6:Display indicator 6;7:Display indicator 7;8:Display indicator 8;9:Display indicator 9;10:Display indicator 10;11:Display indicator 11;12:Display indicator 12;13:Display indicator 13;14:Display indicator 14;15:Display indicator 15
+,764,58,58,1,0,0,,215F,615F,ff,OH_DistMildFlowIndic,0:Indic Off;1:Indic On
+,764,59,59,1,0,0,,215F,615F,ff,OH_AC_OnIndic,0:Indic Off;1:Indic On
+,764,60,63,1,0,0,,215F,615F,ff,OH_ClimFlowDistrDisplay,0:No Display;1:Feet Arrow;2:Aerator Arrow;3:Feet + Aerator Arrow;4:Mild flow Arrow;5:Feet + Mild Arrow;6:Mild + Feet Arrow;7:Feet + Aerator Mild Arrow;8:Defrost Arrow;9:Feet + Defrost  Arrow;10:Aerator + Defrost  Arrow;11:Feet + Aerator + Defrost  Arrow;12:Mild + Defrost  Arrow;13:Feet + Mild + Defrost  Arrow;14:Aerator + Mild + Defrost  Arrow;15:Feet + Aerator + Mild + Defrost  Arrow
+,764,64,67,1,0,0,,215F,615F,ff,IH_FP_SliderTempReq,0:No Request;1:Position 1;2:Position 2;3:Position 3;4:Position 4;5:Position 5;6:Position 6;7:Position 7;8:Position 8;9:Position 9;10:Position 10;11:Position 11;12:Position 12;13:Position 13;14:Position 14;15:Position 15
+,764,68,68,1,0,0,,215F,615F,ff,IH_DistribModeLongPushState,0:no long push detected;1:long push detected
+,764,69,69,1,0,0,,215F,615F,ff,IH_DistribModePushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,70,70,1,0,0,,215F,615F,ff,IH_RearDualMenuLongPushState,0:no long push detected;1:long push detected
+,764,71,71,1,0,0,,215F,615F,ff,IH_RearDualMenuPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,72,72,1,0,0,,215F,615F,ff,IH_BlowerMinPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,73,73,1,0,0,,215F,615F,ff,IH_BlowerMaxPushToggle,0:transition to 0 means switch pressed;1:transition to 1 means switch pressed
+,764,74,74,1,0,0,,215F,615F,ff,IH_BlowerMinLongPushState,0:no long push detected;1:long push detected
+,764,75,75,1,0,0,,215F,615F,ff,IH_BlowerMaxLongPushState,0:no long push detected;1:long push detected
+,764,76,82,1,0,0,%,215F,615F,ff,OH_BackLightDimming2
+,764,83,87,5,0,0,%,215F,615F,ff,OH_IndicDimming2
+,764,88,94,1,0,0,%,215F,615F,ff,OH_ScreenDimming2
+,764,95,95,1,0,0,,215F,615F,ff,OH_EcoHighModeIndic,0:Indic Off;1:Indic On
+,764,96,96,1,0,0,,215F,615F,ff,OH_EcoLowModeIndic,0:Indic Off;1:Indic On
+,764,97,97,1,0,0,,215F,615F,ff,OH_PreConditioningIndic,0:Indic Off;1:Indic On
+,764,98,98,1,0,0,,215F,615F,ff,OH_SliderDisplayMode,0:No display;1:Display Blower
+,764,99,99,1,0,0,,215F,615F,ff,OH_SliderTempIndic,0:Indic Off;1:Indic On
+,764,100,103,1,0,0,,215F,615F,ff,IH_ClimFPBlowerRequest,0:No Request;1:Level 1;2:Level 2;3:Level 3;4:Level 4;5:Level 5;6:Level 6;7:Level 7;8:Level 8;9:Level 9;10:Level 10;11:Level 11;12:Level 12;13:Level 13;14:Level 14;15:Blower OFF
+,764,104,104,1,0,0,,215F,615F,ff,OH_IgnitionState,0:before ignition (off or AUTO ACC);1:Ignition
+,764,105,105,1,0,0,,215F,615F,ff,OH_HFS_Left,0:HFS Left OFF;1:HFS Left ON
+,764,106,106,1,0,0,,215F,615F,ff,OH_HFS_Right,0:HFS Right OFF;1:HFS Right ON
+,764,107,109,1,0,0,,215F,615F,ff,IH_AQMFragSelectRequest,0:No request;1:Fragrance 1;2:Fragrance 2;3:Off;7:Auto
+,764,110,111,1,0,0,,215F,615F,ff,IH_AQMIoniserModeSelectionReq,0:No request;1:Off;2:Clean;3:Relax
+,764,112,115,1,0,0,,215F,615F,ff,IH_AQMFragIntensityRequest,0:No request;1:No intensity/Not used;2:intensity 1;3:intensity 2;4:intensity 3;5:intensity 4;6:intensity 5;7:intensity 6;8:intensity 7
+,764,116,119,1,0,0,,215F,615F,ff,OH_AQMFragIntensityState,0:Unavailable;1:No intensity;2:intensity 1;3:intensity 2;4:intensity 3;5:intensity 4;6:intensity 5;7:intensity 6;8:intensity 7
+,764,120,122,1,0,0,,215F,615F,ff,OH_AQMFragSelectState,0:Unavailable;1:Fragrance 1;2:Fragrance 2;3:Off;7:Auto
+,764,123,125,1,0,0,,215F,615F,ff,OH_AQMIoniserModeState,0:Unavailable;1:Off;2:Clean;3:Relax;4:Refused
+,764,16,23,1,0,0,,2160,6160,4ff,Supported Lid for RDBLID(61-68)
+,764,24,31,1,0,0,,2160,6160,4ff,Supported Lid for RDBLID(69-70)
+,764,32,39,1,0,0,,2160,6160,4ff,Supported Lid for RDBLID(71-78)
+,764,40,47,1,0,0,,2160,6160,4ff,Supported Lid for RDBLID(79-80)
+,764,16,22,1,0,0,%,2161,6161,ff,OLB_BacklightDimming
+,764,23,23,1,0,0,,2161,6161,ff,OLB_DayNightStatus,0:Day;1:Night
+,764,24,28,1,0,0,%,2161,6161,ff,OLB_IndicDimming
+,764,32,38,1,0,0,%,2161,6161,ff,OLB_ScreenDimming
+,764,39,39,1,0,0,,2161,6161,ff,OLB_ClearDiaginfo,0:no clear diag;1:clear diag
+,764,16,23,1,0,0,,2165,6165,ff,OLB_FP_LeftTempDisplay,0:No display;1:Not used (01);2:All segment displayed;3:Not used (11);4:Display OF;5:Not used (101);6:Display --;8:Display LO;9:Not used (1001);10:Display HI;11:5-5;12:6;13:6-5;14:7;16:Not used (10000);18:Not used (10010);20:Real display;22:11;23:11-5;24:12;25:12-5;26:13;27:13-5;28:14;29:14-5;30:15;31:15-5;32:16;33:16-5;34:17;35:17-5;36:18;37:18-5;38:19;39:19-5;40:20;41:20-5;42:21;43:21-5;44:22;45:22-5;46:23;47:23-5;48:24;49:24-5;50:25;51:25-5;52:26;53:26-5;54:27;55:27-5;56:28;57:28-5;58:29;59:29-5;60:30
+,764,24,31,1,0,0,,2165,6165,ff,OLB_FP_RightTempDisplay,0:No display;1:Not used (01);2:All segment displayed;3:Not used (11);4:Display OF;5:Not used (101);6:Display --;8:Display LO;9:Not used (1001);10:Display HI;11:Not used (1011);12:Not used (1100);13:Not used (1101);15:Not used (1111);16:Not used (10000);18:Not used (10010);20:Real display
+,764,32,33,1,0,0,,2165,6165,ff,OLB_FP_MMIState,0:Inactive;1:Light;2:Full;3:Not used
+,764,34,34,1,0,0,,2165,6165,ff,OLB_FP_MMIModeTemp,0:Display mode 1;1:Display mode 2
+,764,35,35,1,0,0,,2165,6165,ff,OLB_FP_MMIModeBlower,0:Display mode 1;1:Display mode 2
+,764,36,39,1,0,0,,2165,6165,ff,OLB_FP_RotaryTempDisplay,0:No display;1:Display indicator 1;2:Display indicator 2;3:Display indicator 3;4:Display indicator 4;5:Display indicator 5;6:Display indicator 6;7:Display indicator 7;8:Display indicator 8;9:Display indicator 9;10:Display indicator 10;11:Display indicator 11;12:Display indicator 12;13:Display indicator 13;14:Display indicator 14;15:Display indicator 15
+,764,40,43,1,0,0,,2165,6165,ff,OLB_FP_DistDisplay,0:No display;1:Feet;2:Aerator;3:Feet + Aerator;4:Mild flow;5:Feet + Mild flow;6:Mild flow + Feet;7:Feet + Aerator Mild flow;8:Defrost;9:Feet + Defrost;10:Aerator + Defrost;11:Feet + Aerator + Defrost;12:Mild flow + Defrost;13:Feet + Mild flow + Defrost;14:Aerator + Mild flow + Defrost;15:Feet + Aerator + Mild flow + Defrost
+,764,44,47,1,0,0,,2165,6165,ff,OLB_FP_BlowerLevelDisplay,0:No display;1:Display bars 1;2:Display bars 2;3:Display bars 3;4:Display bars 4;5:Display bars 5;6:Display bars 6;7:Display bars 7;8:Display bars 8;9:Display bars 9;10:Display bars 10;11:Display bars 11;12:Display bars 12;13:Display bars 13;14:Display bars 14;15:Display  blower OFF
+,764,48,48,1,0,0,,2165,6165,ff,OLB_FP_TestLamp,0:No test lamps;1:Test lamps
+,764,49,49,1,0,0,,2165,6165,ff,OLB_FP_LEDA_Indic,0:Off;1:On
+,764,50,50,1,0,0,,2165,6165,ff,OLB_FP_LEDB_Indic,0:Off;1:On
+,764,51,51,1,0,0,,2165,6165,ff,OLB_FP_LEDC_Indic,0:Off;1:On
+,764,52,52,1,0,0,,2165,6165,ff,OLB_FP_LEDD_Indic,0:Off;1:On
+,764,53,53,1,0,0,,2165,6165,ff,OLB_FP_LEDE_Indic,0:Off;1:On
+,764,54,54,1,0,0,,2165,6165,ff,OLB_FP_LEDF_Indic,0:Off;1:On
+,764,55,55,1,0,0,,2165,6165,ff,OLB_FP_LEDG_Indic,0:Off;1:On
+,764,56,56,1,0,0,,2165,6165,ff,OLB_FP_LEDH_Indic,0:Off;1:On
+,764,57,57,1,0,0,,2165,6165,ff,OLB_FP_LEDJ_Indic,0:Off;1:On
+,764,58,58,1,0,0,,2165,6165,ff,OLB_FP_LEDK_Indic,0:Off;1:On
+,764,59,59,1,0,0,,2165,6165,ff,OLB_FP_LEDL_Indic,0:Off;1:On
+,764,60,60,1,0,0,,2165,6165,ff,OLB_FP_LEDM_Indic,0:Off;1:On
+,764,61,61,1,0,0,,2165,6165,ff,OLB_FP_LEDN_Indic,0:Off;1:On
+,764,62,62,1,0,0,,2165,6165,ff,OLB_FP_LEDP_Indic,0:Off;1:On
+,764,63,63,1,0,0,,2165,6165,ff,OLB_FP_LEDR_Indic,0:Off;1:On
+,764,64,64,1,0,0,,2165,6165,ff,OLB_FP_LEDS_Indic,0:Off;1:On
+,764,65,65,1,0,0,,2165,6165,ff,OLB_FP_LEDT_Indic,0:Off;1:On
+,764,66,66,1,0,0,,2165,6165,ff,OLB_FP_LEDU_Indic,0:Off;1:On
+,764,67,67,1,0,0,,2165,6165,ff,OLB_FP_LEDV_Indic,0:Off;1:On
+,764,68,68,1,0,0,,2165,6165,ff,OLB_FP_LEDW_Indic,0:Off;1:On
+,764,69,69,1,0,0,,2165,6165,ff,OLB_FP_LEDX_Indic,0:Off;1:On
+,764,70,70,1,0,0,,2165,6165,ff,OLB_FP_LEDY_Indic,0:Off;1:On
+,764,71,71,1,0,0,,2165,6165,ff,OLB_FP_LEDZ_Indic,0:Off;1:On
+,764,72,72,1,0,0,,2165,6165,ff,OLB_MMITempUnit,0:Celsius;1:Fahrenheit
+,764,73,76,1,0,0,,2165,6165,ff,OLB_FP_RightTempByLEDs,0:No display;1:Display indicator 1;2:Display indicator 2;3:Display indicator 3;4:Display indicator 4;5:Display indicator 5;6:Display indicator 6;7:Display indicator 7;8:Display indicator 8;9:Display indicator 9;10:Display indicator 10;11:Display indicator 11;12:Display indicator 12;13:Display indicator 13;14:Display indicator 14;15:Display indicator 15
+,764,77,77,1,0,0,,2165,6165,ff,OLB_SliderDisplayMode,0:No display;1:Display Blower
+,764,16,19,1,-1,0,,2166,6166,ff,ILB_FP_VersionNumber
+,764,20,23,1,0,0,,2166,6166,ff,ILB_FP_ControlPanelType,0:Unavailable;1:CP type 1;2:CP type 2;3:CP type 3;4:CP type 4;5:CP type 5;6:CP type 6;7:CP type 7;8:CP type 8;9:CP type 9;10:CP type 10;11:CP type 11;12:CP type 12;13:CP type 13;14:CP type 14;15:CP type 15
+,764,24,28,1,-1,0,,2166,6166,ff,ILB_FP_SpareCPPartNumber
+,764,29,29,1,0,0,,2166,6166,ff,ILB_FCP_Response_Error,0:No response error;1:Response error
+,764,30,30,1,0,0,,2166,6166,ff,ILB_FP_ResetState,0:No reset;1:Exit from reset
+,764,31,31,1,0,0,,2166,6166,ff,ILB_FP_SwitchAPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,32,32,1,0,0,,2166,6166,ff,ILB_FP_SwitchALongPushState,0:No long push in progress;1:Long push in progress
+,764,33,33,1,0,0,,2166,6166,ff,ILB_FP_SwitchBPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,34,34,1,0,0,,2166,6166,ff,ILB_FP_SwitchBLongPushState,0:No long push in progress;1:Long push in progress
+,764,35,35,1,0,0,,2166,6166,ff,ILB_FP_SwitchCPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,36,36,1,0,0,,2166,6166,ff,ILB_FP_SwitchCLongPushState,0:No long push in progress;1:Long push in progress
+,764,37,37,1,0,0,,2166,6166,ff,ILB_FP_SwitchDPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,38,38,1,0,0,,2166,6166,ff,ILB_FP_SwitchDLongPushState,0:No long push in progress;1:Long push in progress
+,764,39,39,1,0,0,,2166,6166,ff,ILB_FP_SwitchEPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,40,40,1,0,0,,2166,6166,ff,ILB_FP_SwitchELongPushState,0:No long push in progress;1:Long push in progress
+,764,41,41,1,0,0,,2166,6166,ff,ILB_FP_SwitchFPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,42,42,1,0,0,,2166,6166,ff,ILB_FP_SwitchFLongPushState,0:No long push in progress;1:Long push in progress
+,764,43,43,1,0,0,,2166,6166,ff,ILB_FP_SwitchGPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,44,44,1,0,0,,2166,6166,ff,ILB_FP_SwitchGLongPushState,0:No long push in progress;1:Long push in progress
+,764,45,45,1,0,0,,2166,6166,ff,ILB_FP_SwitchHPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,46,46,1,0,0,,2166,6166,ff,ILB_FP_SwitchHLongPushState,0:No long push in progress;1:Long push in progress
+,764,47,47,1,0,0,,2166,6166,ff,ILB_FP_SwitchJPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,48,48,1,0,0,,2166,6166,ff,ILB_FP_SwitchJLongPushState,0:No long push in progress;1:Long push in progress
+,764,49,49,1,0,0,,2166,6166,ff,ILB_FP_SwitchKPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,50,50,1,0,0,,2166,6166,ff,ILB_FP_SwitchKLongPushState,0:No long push in progress;1:Long push in progress
+,764,51,51,1,0,0,,2166,6166,ff,ILB_FP_SwitchLPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,52,52,1,0,0,,2166,6166,ff,ILB_FP_SwitchLLongPushState,0:No long push in progress;1:Long push in progress
+,764,53,53,1,0,0,,2166,6166,ff,ILB_FP_SwitchMPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,54,54,1,0,0,,2166,6166,ff,ILB_FP_SwitchMLongPushState,0:No long push in progress;1:Long push in progress
+,764,55,55,1,0,0,,2166,6166,ff,ILB_FP_SwitchNPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,56,56,1,0,0,,2166,6166,ff,ILB_FP_SwitchNLongPushState,0:No long push in progress;1:Long push in progress
+,764,57,57,1,0,0,,2166,6166,ff,ILB_FP_SwitchPPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,58,58,1,0,0,,2166,6166,ff,ILB_FP_SwitchPLongPushState,0:No long push in progress;1:Long push in progress
+,764,59,59,1,0,0,,2166,6166,ff,ILB_FP_SwitchRPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,60,60,1,0,0,,2166,6166,ff,ILB_FP_SwitchRLongPushState,0:No long push in progress;1:Long push in progress
+,764,61,61,1,0,0,,2166,6166,ff,ILB_FP_SwitchSPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,62,62,1,0,0,,2166,6166,ff,ILB_FP_SwitchSLongPushState,0:No long push in progress;1:Long push in progress
+,764,63,63,1,0,0,,2166,6166,ff,ILB_FP_SwitchTPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,64,64,1,0,0,,2166,6166,ff,ILB_FP_SwitchTLongPushState,0:No long push in progress;1:Long push in progress
+,764,65,65,1,0,0,,2166,6166,ff,ILB_FP_SwitchUPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,66,66,1,0,0,,2166,6166,ff,ILB_FP_SwitchULongPushState,0:No long push in progress;1:Long push in progress
+,764,67,67,1,0,0,,2166,6166,ff,ILB_FP_SwitchVPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,68,68,1,0,0,,2166,6166,ff,ILB_FP_SwitchVLongPushState,0:No long push in progress;1:Long push in progress
+,764,69,69,1,0,0,,2166,6166,ff,ILB_FP_SwitchWPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,70,70,1,0,0,,2166,6166,ff,ILB_FP_SwitchWLongPushState,0:No long push in progress;1:Long push in progress
+,764,71,71,1,0,0,,2166,6166,ff,ILB_FP_SwitchXPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,72,72,1,0,0,,2166,6166,ff,ILB_FP_SwitchXLongPushState,0:No long push in progress;1:Long push in progress
+,764,73,73,1,0,0,,2166,6166,ff,ILB_FP_SwitchYPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,74,74,1,0,0,,2166,6166,ff,ILB_FP_SwitchYLongPushState,0:No long push in progress;1:Long push in progress
+,764,75,75,1,0,0,,2166,6166,ff,ILB_FP_SwitchZPushToggle,0:(0) transition means switch pressed;1:(1) transition means switch pressed
+,764,76,76,1,0,0,,2166,6166,ff,ILB_FP_SwitchZLongPushState,0:No long push in progress;1:Long push in progress
+,764,16,23,1,0,0,,216C,616C,ff,CL_WithValve1Output,0:Not Configured;1:without output;2:with output type1;3:with output type2;4:with output type3;5:with output type4
+,764,21,23,1,0,0,,216D,616D,ff,IH_UnballastRequest,0:No request;1:Load Cut Off For life On Board;2:Load Cut Off For life On Board 2;3:Reserved for Safety;4:Load Cut Off For Pulse Compatibilty;5:Load Cut off level 1;6:Load Cut off level 2;7:Load Cut off level 3
+,764,47,47,1,0,0,,216E,616E,ff,IH_ACCompClutchDefault,0:No clutch failure;1:Clutch failure
+,764,48,54,.1,0,1,A,216E,616E,ff,IH_ACCompValveCurrent
+,764,55,55,1,0,0,,216E,616E,ff,IH_ACCompValveDefault,0:No valve failure;1:Valve failure
+,764,72,78,1,0,0,%,216E,616E,ff,IH_EngineFanSpeedStatus_PWM
+,764,16,23,1,0,0,,216F,616F,ff,CL_WithValve2Output,0:Not Configured;1:without output;2:with output type1;3:with output type2;4:with output type3;5:with output type4
+,764,16,23,50,0,0,W,2170,6170,ff,OH_ACCompPowerUsed
+,764,24,30,.01,0,2,A,2170,6170,ff,OH_ACCompValveRequest
+,764,31,31,1,0,0,,2170,6170,ff,OH_ClimateCoolingSelect,0:No AC request;1:AC requested
+,764,32,32,1,0,0,,2170,6170,ff,OH_BlowerFanMotorStatus_AC,0:Blower fan motor off;1:Blower fan motor on
+,764,33,34,1,0,0,,2170,6170,ff,OH_VoltageRatebyAC,0:No request;1:Rate 1;2:Rate 2;3:Rate 3
+,764,35,35,1,0,0,,2170,6170,ff,OH_ACCompRequest,0:No AC Requested;1:AC Requested
+,764,36,36,1,0,0,,2170,6170,ff,OH_ACCompWorkingMode,0:Running in idle mode or stopped;1:Running not in idle mode
+,764,37,37,1,0,0,,2170,6170,ff,OH_ACCompClutchRequest,0:Compressor Not Requested;1:Compressor Requested
+,764,38,39,1,0,0,,2170,6170,ff,OH_PumpActivationRequest,0:Unvailable Value;1:No Activation Requested;2:Activation Requested;3:Not Used
+,764,40,40,1,0,0,,2170,6170,ff,OH_RearDefrostRequest,0:Not Requested;1:Requested
+,764,41,47,1,0,0,%,2170,6170,ff,OH_EngineFanSpeedRequestPWM_AC
+,764,48,51,1,0,0,,2170,6170,ff,OH_PTCNumberThermalReq,0:0 PTC requested;1:1 PTC requested;2:2 PTC requested;3:3 PTC requested;4:4 PTC requested;5:5 PTC requested;6:6 PTC requested;7:7 PTC requested;8:8 PTC requested;9:9 PTC requested;10:10 PTC requested;11:Not used;15:No Request
+,764,52,55,50,-10,0,rpm,2170,6170,ff,OH_ACMinEngineIdleSpeedRequest
+,764,56,57,1,0,0,,2170,6170,ff,OH_AC_StopAutoFobidden,0:Unvailable Value;1:Auto Stop forbidden;2:Auto Stop authorized;3:Not used
+,764,58,59,1,0,0,,2170,6170,ff,OH_ClimConsoButtonDisplay,0:No display;1:Clim Conso Button ON;2:Clim Conso Button OFF;3:Not used
+,764,60,62,.5,-24,1,V,2170,6170,ff,OH_MinimumVoltagebyAC_1540
+,764,63,63,1,0,0,,2170,6170,ff,OH_FrontDefrostEngaged,0:Front defrost not engaged;1:Front defrost engaged
+,764,16,23,1,0,0,,2174,6174,ff,CL_BatteryPTCType,0:Not Configured;1:Without PTC;16:PTC 1kW;24:PTC 1-8kW
+,764,16,23,1,0,0,,2175,6175,ff,CL_HVPTCType,0:Not Configured;1:Without HV PTC;35:HV PTC 3-5 kW;50:HV PTC 5kW
+,764,16,23,1,0,0,,2176,6176,ff,CL_FrontHVACType,0:Not Configured;1:HVAC Type 1 (CK CMF1);2:HVAC Type 2 (Valeo VLCL CMF1);3:HVAC Type 3 (Valeo GHEM CMF1);4:HVAC Type 4 (X82);5:HVAC Type 5 (X07);6:HVAT Type 6 (CK CMF1 Renault 1);7:HVAC Type 7 (CK CMF1 Renault 2);8:HVAC Type 8 (Valeo XGA-HHA);9:HVAC Type 9 (Behr H79ph2);10:HVAC Type 10 (CK CMF1 Renault 3);11:HVAC Type 11 (CK CMF1 Renault 4);12:HVAC Type 12;13:HVAC Type 13;14:HVAC Type 14;15:HVAC Type 15;16:HVAC Type 16;17:HVAC Type 17;18:HVAC Type 18;19:HVAC Type 19;20:HVAC Type 20
+,764,16,23,1,0,0,,2177,6177,ff,CL_RearHVACType,0:Not configured;1:without rearHVACType;2:with rear blower by wires;3:with rear blower by LIN
+,764,16,23,1,0,0,,2178,6178,ff,CL_NISSANDestination,0:Not Configured;1:JPN- GOM;2:EUR1;3:PRC;4:GCC;5:GOM1;6:USA;7:GOM(CAN);12:EUR2;15:GOM2
+,764,16,23,1,0,0,,2179,6179,ff,CL_WithBlowerFanFeedback,0:Not Configured;1:without local blower Fan Feedback;2:with local blower Fan Feedback
+,764,16,23,1,0,0,,217C,617C,ff,CL_WithBattBlowerRelayOutput,0:Not Configured;1:KL_WithoutOutput;2:KL_WithLocalOutput
+,764,16,23,1,0,0,,217D,617D,ff,CL_MMIArchitecture,0:Not Configured;1:Front Control Panel only;2:Multimedia Display + Front Control Panel;3:Multimedia Display + Front Control Panel + RCP;4:Front Control Panel+Rear Control Panel+AQM;5:Central Panel only;6:Central Panel+Rear Control Panel;7:Front Control Panel+Rear Control Panel;8:Front Control Panel+AQM
+,764,16,23,1,0,0,,217E,617E,ff,CL_LINArchitecture,0:Not Configured;1:Architecture type 1;2:Architecture type 2;3:Architecture type 3;4:Architecture type 4
+,764,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
+,764,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode
+,764,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
+,764,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
+,764,128,143,1,0,0,,2180,6180,4ff,SoftwareNumber
+,764,144,159,1,0,0,,2180,6180,4ff,EditionNumber
+,764,160,175,1,0,0,,2180,6180,4ff,CalibrationNumber
+,764,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;1:28525;2:27531
+,764,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:N/A;1:28526
+,764,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A;1:RENO.;2:NISS.
+,764,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,136:5DIGITS;131:Nissan N4;130:Nissan N3;129:Nissan N2;128:Nissan N1;0:Renault R1;255:Renault R3
+,764,16,151,1,0,0,,2181,6181,2ff,VIN
+,764,152,167,1,0,0,,2181,6181,4ff,Vin CRC
+,764,16,31,1,0,0,,2182,6182,4ff,KL_CanVerMess
+,764,32,32,1,0,0,,2182,6182,ff,CurrentFaultBus_OFF,0:False;1:True
+,764,33,33,1,0,0,,2182,6182,ff,ConfirmedFaultBus_OFF,0:False;1:True
+,764,34,39,1,0,0,,2182,6182,ff,M_Bus_OFF
+,764,40,40,1,0,0,,2182,6182,ff,CurrentFaultMute,0:False;1:True
+,764,41,41,1,0,0,,2182,6182,ff,ConfirmedFaultMute,0:False;1:True
+,764,42,47,1,0,0,,2182,6182,ff,M_Mute
+,764,72,72,1,0,0,,2182,6182,ff,CurrentFaultBCM,0:False;1:True
+,764,73,73,1,0,0,,2182,6182,ff,ConfirmedFaultBCM,0:False;1:True
+,764,74,79,1,0,0,,2182,6182,ff,M_BCM
+,764,111,118,1,0,0,,2182,6182,ff,CLIM_Absent,0:False;1:True
+,764,16,55,1,0,0,,2183,6183,2ff,NissanSparePartNumber
+,764,56,63,1,0,0,,2183,6183,4ff,NissanDiagnosticIdentificationCode
+,764,64,87,1,0,0,,2183,6183,4ff,NissanSupplierNumber.ITG
+,764,88,127,1,0,0,,2183,6183,4ff,NissanHardwareNumber
+,764,128,143,1,0,0,,2183,6183,4ff,NissanSoftwareNumber
+,764,144,159,1,0,0,,2183,6183,4ff,NissanEditionNumber
+,764,160,175,1,0,0,,2183,6183,4ff,NissanCalibrationNumber
+,764,176,199,1,0,0,,2183,6183,4ff,NissanOtherSystemFeatures
+,764,200,207,1,0,0,,2183,6183,4ff,NissanManufacturerIdentificationCode
+,764,16,175,1,0,0,,2184,6184,2ff,UnitaryDataTraceability
+,764,24,31,1,0,0,,2185,6185,ff,CL_VehicleType,0:Not Configured;9:X98;16:X10;17:P32;18:EspaceConcept;19:X82;20:X07VE;21:X07ICE
+,764,32,39,1,0,0,,2185,6185,ff,CL_ACType,0:Not Configured;1:Manual Monozone;2:Heater - Chauffo;16:Monozone Regulated -  CAREG MZ;17:Dualzone without rear vent ducts;18:Dualzone with rear vent ducts;19:Trizone with temperature;20:Trizone with temperature and with distribution;21:Dualzone with additional rear monozone;22:Monozone Regulated - with rear blowers
+,764,40,47,1,0,0,,2185,6185,ff,CL_PTCType,0:Not Configured;1:Without PTC;16:PTC 0-9kW or 1kW;24:PTC 1-5kW-1-6kW or 1-8kW;25:CTP 0-9KW + THP;27:THP Only
+,764,48,55,1,0,0,,2185,6185,ff,CL_CountryCfg,0:Not Configured;1:zone 1 (mild);2:zone 2;3:zone 3;4:zone 4
+,764,56,63,1,0,0,,2185,6185,ff,CL_Steering,0:Not Configured;1:Right Hand Drive;2:Left Hand Drive
+,764,64,71,1,0,0,,2185,6185,ff,CL_CompType,0:Not Configured;1:Compressor 1 (Ext Ctrl - Clutch);33:Compressor 5 (Electrical Vehicle);67:Compressor 3 (Int Ctrl - Clutch);68:Compressor 4 (Fixed Cap - Clutch);129:Compressor 2 (Ext Ctrl - Clutchless)
+,764,72,79,.01,0,2,,2185,6185,ff,CL_CompPulleyRatio
+,764,80,87,1,0,0,,2185,6185,ff,CL_WithEvapSensor,0:Not Configured;1:WithoutSensor;2:WithLocalSensorType1;3:With local sensor type2
+,764,88,95,1,0,0,,2185,6185,ff,CL_WithSolarSensor,0:Not Configured;1:KL_WithoutSensor;2:KL_WithLocalSensor(left & right);3:KL_SensorByCAN;4:with sensor (local Right only);5:with sensor (local Left only)
+,764,96,103,1,0,0,,2185,6185,ff,CL_WithAirQualitySensor,0:Not Configured;1:KL_WithoutSensor;2:with sensor Type1(Renault);3:with sensor Type2(Nissan)
+,764,104,111,1,0,0,,2185,6185,ff,CL_WindshieldType,0:Not Configured;1:Without Windshield Option;2:With Ft Defrost;3:With Heat Reflecting;4:With Ft Defrost &Heat Reflecting;5:with front defrost by CAN;6:with front defrost +heat Reflect by CAN;7:with deicer;8:with deicer+HeatReflecting;9:With front defrost and switch
+,764,112,119,1,0,0,,2185,6185,ff,CL_WithLINBus,0:Not Configured;1:KL_WithoutLINBus;2:with message set 1(LINCLIM3);3:with message set 2(TBD)
+,764,120,127,1,0,0,,2185,6185,ff,CL_WithHumiditySensor,0:Not Configured;1:Without Sensor;2:WithLocalSensorType1 (Renault);3:With local sensor Type 2
+,764,128,135,1,0,0,,2185,6185,ff,CL_WithExtTempSensor,0:Not Configured;1:KL_WithoutSensor;2:KL_WithLocalSensor;3:KL_SensorByCAN
+,764,136,143,1,0,0,,2185,6185,ff,CL_ColdLoopType,0:Not Configured;1:Cold Loop inside ECU Clim;2:Cold Loop outside ECU Clim
+,764,144,319,1,0,0,,2185,6185,4ff,CL_DiagnosticConfiguration
+,764,320,327,1,0,0,,2185,6185,ff,CL_EngineType,0:Not Configured;1:Thermic engine;2:SAS Engine;3:Electrical engine;5:Thermic Nissan engine;6:Hybrid Nissan engine
+,764,328,335,1,0,0,,2185,6185,ff,CL_WithInCarTempSensor,0:Not Configured;1:WithoutSensor;2:WithLocalSensor Type 1(Renault);3:WithLocalSensor Type 2(Nissan)
+,764,336,343,1,0,0,,2185,6185,ff,CL_WithHotSourceSensor,0:Not Configured;1:Without Sensor;2:WithLocalSensor
+,764,344,351,1,0,0,,2185,6185,ff,CL_CANArchitecture,0:Not Configured;1:Architecture type 1=T4(X82) / T4 Edison X07 ph2;2:Architecture type 2=1540;3:Architecture type 3=P32;4:Architecture type 4=X07VE;5:Architecture type 5=X07ICE;6:Architecture type 6;7:Architecture type 7;8:Architecture type 8;12:Architecture type 12=C1A
+,764,352,359,1,0,0,,2185,6185,ff,CL_WithLINBus2,0:Not Configured;1:KL_WithoutLINBus2;2:with message set 1(LINCLIM3);3:with message set 2(TBD);4:with message set 2(HVPTC + Compressor)
+,764,360,367,1,0,0,,2185,6185,ff,CL_WithBatteryBlower,0:Not Configured;1:Without Output;2:With Local Output;3:with output and feedback input
+,764,368,375,1,0,0,,2185,6185,ff,CL_WithHPM,0:Not Configured;1:WithoutHPM;2:WithHPM
+,764,376,383,1,0,0,,2185,6185,ff,CL_SeatsHeatingCommand,0:Not Configured;1:without Seats Heating;2:With seat heating control FL;4:With seat heating control FR;6:With seat heating control FL +FR;8:With seat heating control RL;10:With seat heating control FL+RL;12:With seat heating control FR+RL;14:With seat heating control FR+FR+RL;16:With seat heating control RR;18:With seat heating control FL+ RR;20:With seat heating control FR+ RR;22:With seat heating control FL+FR+ RR;24:With seat heating control RL + RR;26:With seat heating control FL+ RL + RR;28:With seat heating control FR+ RL + RR;30:With seat heating control FL+FR+ RL + RR
+,764,384,391,1,0,0,,2185,6185,ff,CL_WithControlPanel,0:Not Configured;1:WithoutCP;2:CP Type 1 - X10 CAREG / X07 EV CAREG RSA;3:CP Type 2 - X10 CHAUFFO / X07 EV CHAUFFO RSA;4:CP Type 3 - CAREG X07 ICE  RSA;5:CP Type 4 - X07 ICE & EV CAREG Daimler;6:CP Type 5 - Careg X82;7:CP Type 6 - 1540 E2;8:CP Type 7 - 1540 E3;9:CP Type 8 - Nissan USA;10:CP Type 9 - X07 ICE & EV CHAUFFO Daimler;11:CP Type 10- NISSAN Europe;12:CP Type 11 - 1540 Caman;13:CP Type 12 - CP HFE CAREG without HFS;14:CP Type 13 - CP HFE Caman;15:CP Type 14 - CP HFE CAREG with HFS;16:CP Type 15 - 1540 E2 KOREA;17:CP Type 16 - NISSAN P32 RUSSIA;18:CP Type 17;19:CP Type 18;20:CP Type 19;21:CP Type 20
+,764,392,399,1,0,0,,2185,6185,ff,CL_WithInternalAirQualityManagement,0:Not Configured;1:Without Air Quality Management;2:With Fragrance- Without Ionizer;3:Without Fragrance- With Ionizer Type1;4:With Fragrance- With Ionizer Type1;5:without fragrance with ionizer type 2;6:with fragrance with ionizer type 2
+,764,400,407,1,0,0,,2185,6185,ff,CL_CompValveType,0:Not configured;1:without Compressor Valve;2:with Compressor Valve type 1;3:with Compressor Valve type 2;4:with Compressor Valve type 3
+,764,408,415,1,0,0,,2185,6185,ff,CL_SeatsHeatingFeedback,0:Not Configured;1:without Seats Heating Feedback;2:With seat heating feedback FL;4:With seat heating feedback FR;6:With seat heating feedback FL +FR;8:With seat heating feedback RL;10:With seat heating feedback FL+RL;12:With seat heating feedback FR+RL;14:With seat heating feedback FR+FR+RL;16:With seat heating feedback RR;18:With seat heating feedback FL+ RR;20:With seat heating feedback FR+ RR;22:With seat heating feedback FL+FR+ RR;24:With seat heating feedback RL + RR;26:With seat heating feedback FL+ RL + RR;28:With seat heating feedback FR+ RL + RR;30:With seat heating feedback FL+FR+ RL + RR
+,764,416,423,1,0,0,,2185,6185,ff,CL_WithBoiler,0:Not Configured;1:Without boiler;2:With Boiler Type 1;3:With Boiler Type 2;4:With Boiler Type 3
+,764,424,431,1,0,0,,2185,6185,ff,CL_SolarSensorType,0:Not Configured;1:Local sensor Renault (type 1);2:Local sensor Nissan_CK (type 2);3:Local sensor Nissan_Valéo (type 3)
+,764,432,439,1,0,0,,2185,6185,ff,CL_WithSED,0:Not configured;1:Without SED;2:SED with low pressure drop ducts;3:SED with medium pressure drop ducts;4:SED with high pressure drop ducts
+,764,440,447,1,0,0,,2185,6185,ff,CL_WithValve1Output,0:Not Configured;1:without output;2:with output type1;3:with output type2;4:with output type3;5:with output type4
+,764,448,455,1,0,0,,2185,6185,ff,CL_WithValve2Output,0:Not Configured;1:without output;2:with output type1;3:with output type2;4:with output type3;5:with output type4
+,764,456,463,1,0,0,,2185,6185,ff,CL_BatteryPTCType,0:Not Configured;1:Without PTC;16:PTC 1kW;24:PTC 1-8kW
+,764,464,471,1,0,0,,2185,6185,ff,CL_HVPTCType,0:Not Configured;1:Without HV PTC;35:HV PTC 3-5 kW;50:HV PTC 5kW
+,764,480,487,1,0,0,,2185,6185,ff,CL_WithBlowerFanFeedback,0:Not Configured;1:without local blower Fan Feedback;2:with local blower Fan Feedback
+,764,488,495,1,0,0,,2185,6185,ff,CL_WithBattBlowerRelayOutput,0:Not Configured;1:KL_WithoutOutput;2:KL_WithLocalOutput
+,764,496,503,1,0,0,,2185,6185,ff,CL_MMIArchitecture,0:Not Configured;1:Front Control Panel only;2:Multimedia Display + Front Control Panel;3:Multimedia Display + Front Control Panel + RCP;4:Front Control Panel+Rear Control Panel+AQM;5:Central Panel only;6:Central Panel+Rear Control Panel;7:Front Control Panel+Rear Control Panel;8:Front Control Panel+AQM
+,764,504,511,1,0,0,,2185,6185,ff,CL_LINArchitecture,0:Not Configured;1:Architecture type 1;2:Architecture type 2;3:Architecture type 3;4:Architecture type 4
+,764,512,519,1,0,0,,2185,6185,ff,CL_FrontHVACType,0:Not Configured;1:HVAC Type 1 (CK CMF1);2:HVAC Type 2 (Valeo VLCL CMF1);3:HVAC Type 3 (Valeo GHEM CMF1);4:HVAC Type 4 (X82);5:HVAC Type 5 (X07);6:HVAT Type 6 (CK CMF1 Renault 1);7:HVAC Type 7 (CK CMF1 Renault 2);8:HVAC Type 8 (Valeo XGA-HHA);9:HVAC Type 9 (Behr H79ph2);10:HVAC Type 10 (CK CMF1 Renault 3);11:HVAC Type 11 (CK CMF1 Renault 4);12:HVAC Type 12;13:HVAC Type 13;14:HVAC Type 14;15:HVAC Type 15;16:HVAC Type 16;17:HVAC Type 17;18:HVAC Type 18;19:HVAC Type 19;20:HVAC Type 20
+,764,520,527,1,0,0,,2185,6185,ff,CL_RearHVACType,0:Not configured;1:without rearHVACType;2:with rear blower by wires;3:with rear blower by LIN
+,764,16,95,1,0,0,,21EF,61EF,2ff,HardwareNumber.ASCII
+,764,96,175,1,0,0,,21EF,61EF,2ff,SoftwareNumber.ASCII
+,764,16,55,1,0,0,,21F0,61F0,2ff,KL_RefB
+,764,56,63,1,0,0,,21F0,61F0,4ff,DiagnosticIdentificationCode
+,764,64,87,1,0,0,,21F0,61F0,2ff,SupplierNumber.ITG
+,764,88,127,1,0,0,,21F0,61F0,2ff,KL_RefA
+,764,128,143,1,0,0,,21F0,61F0,4ff,SoftwareNumber
+,764,144,159,1,0,0,,21F0,61F0,4ff,EditionNumber
+,764,160,175,1,0,0,,21F0,61F0,4ff,CalibrationNumber
+,764,176,183,1,0,0,,21F0,61F0,ff,PartNumber.BasicPartList,0:N/A;1:28525;2:27531
+,764,184,191,1,0,0,,21F0,61F0,ff,HardwareNumber.BasicPartList,0:N/A;1:28526
+,764,192,199,1,0,0,,21F0,61F0,ff,ApprovalNumber.BasicPartList,0:N/A;1:RENO.;2:NISS.
+,764,200,207,1,0,0,,21F0,61F0,ff,ManufacturerIdentificationCode,136:5DIGITS;131:Nissan N4;130:Nissan N3;129:Nissan N2;128:Nissan N1;0:Renault R1;255:Renault R3
+,764,0,0,1,0,0,,21F1,61F1,ff,DataRead.Reprog.1stRec.Reprog
+,764,16,55,1,0,0,,21FE,61FE,2ff,PartNumber.LowerPart
+,764,56,63,1,0,0,,21FE,61FE,4ff,DiagnosticIdentificationCode
+,764,64,87,1,0,0,,21FE,61FE,2ff,SupplierNumber.ITG
+,764,88,127,1,0,0,,21FE,61FE,2ff,KL_RefA
+,764,128,143,1,0,0,,21FE,61FE,4ff,SoftwareNumber
+,764,144,159,1,0,0,,21FE,61FE,4ff,EditionNumber
+,764,160,175,1,0,0,,21FE,61FE,4ff,CalibrationNumber
+,764,176,183,1,0,0,,21FE,61FE,ff,PartNumber.BasicPartList,0:N/A;1:28525;2:27531
+,764,184,191,1,0,0,,21FE,61FE,ff,HardwareNumber.BasicPartList,0:N/A;1:28526
+,764,192,199,1,0,0,,21FE,61FE,ff,ApprovalNumber.BasicPartList,0:N/A;1:RENO.;2:NISS.
+,764,200,207,1,0,0,,21FE,61FE,ff,ManufacturerIdentificationCode,136:5DIGITS;131:Nissan N4;130:Nissan N3;129:Nissan N2;128:Nissan N1;0:Renault R1;255:Renault R3
+,764,0,0,1,0,0,,21FF,61FF,ff,DataRead.Reprog.2ndRec.Reprog
+,764,24,33,.1,400,1,°C,22400A,62400A,ff,IH_EvapTemp
+,764,24,30,1,0,0,%,224248,624248,ff,OH_ACCompValveCommand
+,764,24,39,1,0,0,,229101,629101,4ff,EngineeringSoftwareNumber
+,764,24,39,1,0,0,,229102,629102,4ff,EngineeringCalibrationNumber
+,764,24,39,1,0,0,,22A101,62A101,ff,LIN_CAREG_LINCLIM3_R_01.OLB_RearMixActrTarget
+,764,40,46,1,0,0,,22A101,62A101,ff,LIN_CAREG_LINCLIM3_R_01.OLB_Indexing_Overstepping
+,764,47,47,1,0,0,,22A101,62A101,ff,LIN_CAREG_LINCLIM3_R_01.OLB_RearActrLockReq,0:Lock not requested;1:Lock requested
+,764,48,48,1,0,0,,22A101,62A101,ff,LIN_CAREG_LINCLIM3_R_01.OLB_RearOnOffIndic,0:Off;1:On
+,764,49,55,1,0,0,%,22A101,62A101,ff,LIN_CAREG_LINCLIM3_R_01.OLB_RearBlowerReq
+,764,56,56,1,0,0,,22A101,62A101,ff,LIN_CAREG_LINCLIM3_R_01.OLB_RP_TestLamps,0:No test lamps;1:Test lamps
+,764,62,64,1,0,0,,22A101,62A101,ff,LIN_CAREG_LINCLIM3_R_01.OLB_AQMFragSelectState,0:Unavailable;1:Fragrance 1;2:Fragrance 2;3:OFF;4:Fragrance 3;5:Not Used;6:Not Used 1;7:Auto
+,764,65,67,1,0,0,,22A101,62A101,ff,LIN_CAREG_LINCLIM3_R_01.OLB_AQMIoniserModeState,0:Unavailable;1:Off;2:Clean;3:Relax;4:Refused;5:Not Used
+,764,68,71,1,0,0,,22A101,62A101,ff,LIN_CAREG_LINCLIM3_R_01.OLB_AQMFragIntensityState,0:Unavailable;1:No intensity / Not used;2:Intensity 1;3:Intensity 2;4:Intensity 3;5:Intensity 4;6:Intensity 5;7:Intensity 6;8:Intensity 7
+,764,24,27,1,0,0,,22A102,62A102,ff,LIN_AQM_LINCLIM3_R_01.ILB_AQMFragIntensityRequest,0:No request;1:Not used;2:Intensity 1;3:Intensity 2;4:Intensity 3;5:Intensity 4;6:Intensity 5;7:Intensity 6;8:Intensity 7
+,764,28,30,1,0,0,,22A102,62A102,ff,LIN_AQM_LINCLIM3_R_01.ILB_AQMFragSelectRequest,0:No request;1:Fragrance 1;2:Fragrance 2;3:OFF;4:Fragrance 3;5:Not Used;6:Not Used 1;7:Auto
+,764,31,33,1,0,0,,22A102,62A102,ff,LIN_AQM_LINCLIM3_R_01.ILB_AQMIoniserModeSelectionReq,0:No request;1:Off;2:Clean;3:Relax;4:Refused;5:Not Used
+,764,34,37,1,-1,0,,22A102,62A102,ff,LIN_AQM_LINCLIM3_R_01.ILB_AQMCPVersionNumber
+,764,39,39,1,0,0,,22A102,62A102,ff,LIN_AQM_LINCLIM3_R_01.ILB_AQM_Response_Error,0:No response error;1:Response error
+,764,24,33,.1,400,1,°C,22A103,62A103,ff,LIN_RCP_LINCLIM3_R_01.ILB_RearBlowedAirTemp
+,764,34,39,1,0,0,,22A103,62A103,ff,LIN_RCP_LINCLIM3_R_01.ILB_RearBlowerRotaryState
+,764,40,47,.5,0,1,%,22A103,62A103,ff,LIN_RCP_LINCLIM3_R_01.ILB_RearBlowerVoltRatio
+,764,48,51,1,-1,0,,22A103,62A103,ff,LIN_RCP_LINCLIM3_R_01.ILB_RMZCPVersionNumber
+,764,52,52,1,0,0,,22A103,62A103,ff,LIN_RCP_LINCLIM3_R_01.ILB_RearBlowerFanOn,0:No fan;1:Fan
+,764,63,78,1,0,0,,22A103,62A103,ff,LIN_RCP_LINCLIM3_R_01.ILB_RearMixActrPosition
+,764,79,79,1,0,0,,22A103,62A103,ff,LIN_RCP_LINCLIM3_R_01.ILB_RearMixActr_OCF,0:No failure;1:Failure
+,764,80,80,1,0,0,,22A103,62A103,ff,LIN_RCP_LINCLIM3_R_01.ILB_RearMixActr_SCF,0:No failure;1:Failure
+,764,81,81,1,0,0,,22A103,62A103,ff,LIN_RCP_LINCLIM3_R_01.ILB_RearMixActr_F,0:DTC Update shouldn t be done;1:DTC Update can be done
+,764,24,24,1,0,0,,22A104,62A104,ff,LIN_RCP_LINCLIM3_R_02.ILB_RearAirTempSensor_SCF,0:No failure;1:Failure
+,764,25,25,1,0,0,,22A104,62A104,ff,LIN_RCP_LINCLIM3_R_02.ILB_RearAirTempSensor_OCF,0:No failure;1:Failure
+,764,26,26,1,0,0,,22A104,62A104,ff,LIN_RCP_LINCLIM3_R_02.ILB_RearBlowerFanFeedback_SCF,0:No failure;1:Failure
+,764,27,27,1,0,0,,22A104,62A104,ff,LIN_RCP_LINCLIM3_R_02.ILB_RearBlowerFanFeedback_OCF,0:No failure;1:Failure
+,764,28,28,1,0,0,,22A104,62A104,ff,LIN_RCP_LINCLIM3_R_02.ILB_RCP_Response_Error,0:No response error;1:Response error
+,764,0,0,1,0,0,,22A105,62A105,ff,DataRead.LIN_Bit_Error
+,764,28,31,1,0,0,,22A106,62A106,ff,CAN_RX_BCM_CANHS_R_04.IH_VehicleStateExtended,0:Vehicle Sleeping;1:Technical Wakeup;2:Cut Off Pending;3:Bat Tempo Level;4:Accessory Level;5:Ignition Level;6:Starting in Progress;7:Engine Running;8:Auto Start;9:Engine System Stop;15:Unavailable Value
+,764,32,55,1,0,0,min,22A106,62A106,ff,CAN_RX_BCM_CANHS_R_04.IH_AbsoluteTimeSinceFirstIgnition
+,764,64,64,1,0,0,,22A106,62A106,ff,CAN_RX_BCM_CANHS_R_04.IH_VehicleOutsideLockedToggle,0:VehicleNotLockedFromOutside;1:VehicleLockedFromOutside
+,764,68,69,1,0,0,,22A106,62A106,ff,CAN_RX_BCM_CANHS_R_04.ILN_GenericApplicativeDiagEnable,0:Diag frozen;1:Diag enabled (01);2:Diag enabled (10);3:Unavailable Value
+,764,80,81,1,0,0,,22A106,62A106,ff,CAN_RX_BCM_CANHS_R_04.IH_EcoModeRequest,0:Unavailable Value;1:Eco mode requested;2:Eco mode not requested;3:Not used
+,764,24,28,100,0,0,W,22A107,62A107,ff,CAN_RX_BCM_CANHS_R_05.IH_ElectricalPowerDrived
+,764,30,31,1,0,0,,22A107,62A107,ff,CAN_RX_BCM_CANHS_R_05.IH_SupposedCustomerDeparture,0:Event 0;1:Event 1;2:Event 2;3:Unavailable
+,764,47,47,1,0,0,,22A107,62A107,ff,CAN_RX_BCM_CANHS_R_05.IH_PTCThermalRegulatorFreeze,0:Not requested;1:Freeze requested
+,764,48,54,1,0,0,min,22A108,62A108,ff,CAN_RX_BCM_CANHS_R_07.IH_LeftTimeToScheduledTime
+,764,56,63,1,0,0,km/h,22A109,62A109,ff,CAN_RX_HALMO_CANHS_R_01.CAN_RX_BRAKE_FWHEEL_R1.IH_VehicleSpeed
+,764,24,25,1,0,0,,22A10A,62A10A,ff,CAN_TX_HVAC_MMI_R1.OH_ClimAQSActivationState,0:Unavailable;1:Activated;2:Not activated;3:Not used
+,764,27,27,1,0,0,,22A10A,62A10A,ff,CAN_TX_HVAC_MMI_R1.OH_ClimOFFModeDisplay,0:No Display;1:OFF Mode Activated Display
+,764,28,31,1,0,0,,22A10A,62A10A,ff,CAN_TX_HVAC_MMI_R1.OH_AQMFragIntensityState,0:Unavailable;1:No intensity;2:intensity 1;3:intensity 2;4:intensity 3;5:intensity 4;6:intensity 5;7:intensity 6;8:intensity 7
+,764,32,34,1,0,0,,22A10A,62A10A,ff,CAN_TX_HVAC_MMI_R1.OH_AQMFragSelectState,0:Unavailable;1:Fragrance 1;2:Fragrance 2;3:Off;7:Auto
+,764,35,37,1,0,0,,22A10A,62A10A,ff,CAN_TX_HVAC_MMI_R1.OH_AQMIoniserModeState,0:Unavailable;1:Off;2:Clean;3:Relax;4:Refused
+,764,38,39,1,0,0,,22A10A,62A10A,ff,CAN_TX_HVAC_MMI_R1.OH_IoniserAutoLaunchState,0:Unavailable;1:Activated;2:Not activated;3:Not used
+,764,40,47,1,0,0,,22A10A,62A10A,ff,CAN_TX_HVAC_MMI_R1.OH_ClimRightTempDisplay,0:No display;8:Display LO;10:Display HI;16:18;17:18-5;18:19;19:19-5;20:20;21:20-5;22:21;23:21-5;24:22;25:22-5;26:23;27:23-5;28:24;29:24-5;30:25;31:25-5;32:26;33:26-5;34:27;35:27-5;36:28;37:28-5;38:29;40:30;41:30-5;42:31;43:31-5;44:32;45:32-5;46:33;47:33-5;48:34;49:34-5;50:35;51:35-5;52:36;53:36-5;54:37;55:37-5;56:38;57:38-5;58:39;59:39-5;60:40
+,764,49,50,1,0,0,,22A10A,62A10A,ff,CAN_TX_HVAC_MMI_R1.OH_ClimRearModeDisplay,0:No display;1:Rear Panel available;2:Rear Panel locked;3:Rear panel OFF
+,764,51,52,1,0,0,,22A10A,62A10A,ff,CAN_TX_HVAC_MMI_R1.OH_AutoRecyclingDisplay,0:Unavailable value;1:Automatic Recycling not in progress;2:Automatic Recycling in progress;3:Not Used
+,764,53,54,1,0,0,,22A10A,62A10A,ff,CAN_TX_HVAC_MMI_R1.OH_ClimAutoModeDisplay,0:No display;1:Soft display;2:Fast display;3:Auto display
+,764,55,55,1,0,0,,22A10A,62A10A,ff,CAN_TX_HVAC_MMI_R1.OH_ClimDualModeDisplay,0:No display;1:Dual Mode activated
+,764,30,32,1,0,0,,22A10B,62A10B,ff,CAN_RX_MULTIDRIVE_SELECTION_R1.IH_MultiDriveMode_CLIM,0:Mode CLIM 1 (Normal);1:Mode CLIM 2 (Eco);2:Mode CLIM 3;3:Mode CLIM 4;4:Mode CLIM 5;5:Mode CLIM 6;6:Mode CLIM 7;7:Unavailable
+,764,26,27,1,0,0,,22A10C,62A10C,ff,CAN_RX_CCM_CANV_01.IH_RearRoofState,0:Rear Roof fully open;1:Rear Roof in conversion;2:Rear Roof fully closed;3:Unavailable
+,764,28,29,1,0,0,,22A10C,62A10C,ff,CAN_RX_CCM_CANV_01.IH_FrontRoofState,0:Front Roof fully open;1:Front Roof in conversion;2:Front Roof fully closed;3:Unavailable
+,764,38,39,1,0,0,,22A10D,62A10D,ff,CAN_RX_CONTROL_CANHS_R_01.IH_ClimAQSActivationRequest,0:No request;1:Activation request;2:No activation request;3:Not used
+,764,72,73,1,0,0,,22A10E,62A10E,ff,CAN_RX_ECM_CANHS_R_03.IH_CoolingFanSpeedStatus,0:Engine Fan Stopped;1:Low speed;2:Mid speed;3:High speed
+,764,74,74,1,0,0,,22A10E,62A10E,ff,CAN_RX_ECM_CANHS_R_03.IH_ACCompClutchStatus,0:Clutch OFF;1:Clutch ON
+,764,24,28,50,0,0,W/m²,22A10F,62A10F,ff,CAN_RX_EMM_CANHS_R_02.IH_RightSolarLevel
+,764,30,33,50,0,0,W,22A10F,62A10F,ff,CAN_RX_EMM_CANHS_R_02.IH_VisibleSolarLevelInfo
+,764,34,38,50,0,0,W/m²,22A10F,62A10F,ff,CAN_RX_EMM_CANHS_R_02.IH_LeftSolarLevel
+,764,64,65,1,0,0,,22A110,62A110,ff,CAN_RX_MMI_SCH_CANHS_R_03.IH_ClimProgrammedPCDisplay,0:No pre-heating requested;1:pre-heating time 1;2:pre-heating time 2;3:Unavailable
+,764,40,41,1,0,0,,22A111,62A111,ff,CAN_RX_SCH_CANHS_R_16.IH_ChillerActivation_Request,1:No chiller activation requested;0:Not Used;2:Chiller activation requested;3:Unavailable
+,764,42,43,1,0,0,,22A111,62A111,ff,CAN_RX_SCH_CANHS_R_16.IH_ChillerPriorityLevel,0:Priority level 1;1:Priority level 2;2:Priority level 3;3:Unavailable
+,764,24,39,.125,0,1,,22A112,62A112,ff,CAN_RX_TORQUE_ECM_CANHS_RNr_01.IH_EngineRPM
+,764,24,31,1,0,0,km/h,22A113,62A113,ff,CAN_RX_HALMO_CANHS_R_01.CAN_RX_BRAKE_FWHEEL_R1.IH_VehicleSpeed
+,764,40,63,1,0,0,,22A113,62A113,ff,CAN_RX_HALMO_CANHS_R_01.IH_DistanceTotalizer
+,764,34,34,1,0,0,,22A114,62A114,ff,CAN_RX_MM_R1_IH_BlowerSpeedReductionRequest,0:Blower Speed Reduction not Requested;1:Blower Speed Reduction Requested
+,764,24,103,1,0,0,,22F187,62F187,2ff,VehiculeManufacturerSparPartNumber
+,764,24,103,1,0,0,,22F18E,62F18E,2ff,VehicleManufacturerKitAssemblyPartNumber
+,764,0,0,1,0,0,,3E01,7E01,ff,TesterPresent.WithResponse

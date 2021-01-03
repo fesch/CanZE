@@ -1,0 +1,9 @@
+9402,Fuel gauge monitoring
+9404,Warning Airbag telltale monitoring
+940C,EEPROM monitoring
+9412,External temperature inputs
+9413,Error configuration
+C001,Lost CAN communication or BUS OFF
+F003,Power supply monitoring
+9420,Alternator Excitation Input
+C002,Lost LIN communication or BUS OFF

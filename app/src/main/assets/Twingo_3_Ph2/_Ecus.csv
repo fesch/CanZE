@@ -1,31 +1,31 @@
 # Descriptive name, Renault ID, Network (s), From ID (used in fields), To ID, Mnemonic, Alias(ses), GetDtc responseID (s),  Session required
 # If more than one, semicolon separated
 Navigation-UCC-ITM,0,,767,747,Navigation-UCC-ITM,-,5902ff,5003,0
-CAN1-CAN2 Gateway,0,,7A5,785,INSULATOR,,5902ff,5003,0
-Body Control Module,0,,765,745,UCH,,5902ff,5003,0
+CAN1-CAN2 Gateway,0,,7A5,785,INSULATOR,-,5902ff,5003,0
+Body Control Module,0,,765,745,UCH,-,5902ff,5003,0
 Multimedia Interface Unit,0,,734,714,MIU,-,5902ff,5003,0
-Lithium Battery Controller,0,,7BB,79B,LBC (EV),,5902ff,5003,0
+Lithium Battery Controller,0,,7BB,79B,LBC-(EV),LBC (EV),5902ff,5003,0
 Security Gateway3,0,,18DAF1D2,18DAD2F1,S-GW3,-,5902ff,5003,0
-Climate Control,0,,764,744,HVAC,,5902ff,5003,0
-Meter Cluster,0,,763,743,TDB,,5902ff,5003,0
-Automatic Transmission,0,,7E9,7E1,AT,,5902ff,5003,0
-USM,0,,76D,74D,UPC-EMM,,5902ff,5003,0
-Engine Control Module,0,,7E8,7E0,ECM,,5902ff,5003,0
-Electrical Vehicle Control module,0,,7EC,7E4,(H) EVC,,5902ff,5003,0
-Battery Charger Block,0,,793,792,BCB,,5902ff,5003,0
-Front camera,0,,7DD,7DC,FCAM,,5902ff,5003,0
-Audio Unit,0,,732,712,Audio,,5902ff,5003,0
-Airbag-SRS,0,,772,752,Airbag-SRS,,5902ff,5003,0
-CSHV,0,,7D7,78A,CSHV Airbag Vehicle stopped,,5902ff,5003,0
-Vehicle Charger Controler Unit,0,,739,719,VCCU,,5902ff,5003,0
-Data Communication Module,0,,7DA,7CA,DCM Renault,DCM,5902ff,5003,0
-ABS-VDC,0,,760,740,ABS-VDC,,5902ff,5003,0
+Climate Control,0,,764,744,HVAC,-,5902ff,5003,0
+Meter Cluster,0,,763,743,TDB,-,5902ff,5003,0
+Automatic Transmission,0,,7E9,7E1,AT,-,5902ff,5003,0
+USM,0,,76D,74D,UPC-EMM,-,5902ff,5003,0
+Engine Control Module,0,,7E8,7E0,ECM,-,5902ff,5003,0
+Electrical Vehicle Control module,0,,7EC,7E4,(H)-EVC,(H) EVC,5902ff,5003,0
+Battery Charger Block,0,,793,792,BCB-OBC,BCB,5902ff,5003,0
+Front camera,0,,7DD,7DC,FCAM,-,5902ff,5003,0
+Audio Unit,0,,732,712,Audio,-,5902ff,5003,0
+Airbag-SRS,0,,772,752,Airbag-SRS,-,5902ff,5003,0
+CSHV,0,,7D7,78A,CSHV-Airbag-Vehicle-stopped,CSHV Airbag Vehicle stopped,5902ff,5003,0
+Vehicle Charger Controler Unit,0,,739,719,VCCU,-,5902ff,5003,0
+Data Communication Module,0,,7DA,7CA,DCM,DCM Renault,5902ff,5003,0
+ABS-VDC,0,,760,740,ABS-VDC,-,5902ff,5003,0
 Vehicle Sound for Pedestrian,0,,761,73F,VSP,-,5902ff,5003,0
-Wireless Charger Smartphone,0,,7AD,7AA,WCGS,,5902ff,5003,0
-Electric Power Steering,0,,762,742,EPS,,5902ff,5003,0
-ACC,0,,77D,75D,ACC,,5902ff,5003,0
-Top Control Unit,0,,76B,74B,TCU,,5902ff,5003,0
-Power Electronic Box,0,,77E,75A,PEB,,5902ff,5003,0
-Power Line connection/ Power Line GateWay,0,,7C8,7D8,PLC-PLGW,,5902ff,5003,0
-Shift By Wire,0,,7BD,79D,SCU,,5902ff,5003,0
-Audio Amplifier Unit,0,,7A2,782,AAU,,5902ff,5003,0
+Wireless Charger Smartphone,0,,7AD,7AA,WCGS,-,5902ff,5003,0
+Electric Power Steering,0,,762,742,EPS,-,5902ff,5003,0
+ACC,0,,77D,75D,ACC,-,5902ff,5003,0
+Top Control Unit,0,,76B,74B,TCU,-,5902ff,5003,0
+Power Electronic Box,0,,77E,75A,PEB,-,5902ff,5003,0
+Power Line connection/ Power Line GateWay,0,,7C8,7D8,PLC-PLGW,-,5902ff,5003,0
+Shift By Wire,0,,7BD,79D,SCU,-,5902ff,5003,0
+Audio Amplifier Unit,0,,7A2,782,AAU,-,5902ff,5003,0
