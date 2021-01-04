@@ -1104,7 +1104,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static String getAssetPrefix() {
         if (isPh2()) return "ZOE_Ph2/";
         if (isTwingo()) return "Twingo_3_Ph2/";
-        if (isTwingo()) return "Twizy/";
+        if (isTwizy()) return "Twizy/";
         return "ZOE/";
     }
 
