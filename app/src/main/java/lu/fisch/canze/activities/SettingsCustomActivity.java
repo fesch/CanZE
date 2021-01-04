@@ -124,7 +124,8 @@ public class SettingsCustomActivity extends AppCompatActivity {
 
     private void saveSettings()
     {
-        SharedPreferences settings = MainActivity.getInstance().getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
+        // removed the MainActivity.getInstance(), as we got a nullException, 20210104
+        SharedPreferences settings = getSharedPreferences(MainActivity.PREFERENCES_FILE, 0);
         SharedPreferences.Editor editor = settings.edit();
         for(int i = 0; i< CustomFragment.BUTTONCOUNT; i++)
         {
