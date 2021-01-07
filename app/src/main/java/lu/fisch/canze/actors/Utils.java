@@ -138,14 +138,9 @@ public class Utils {
      * @return int
      * @see "https://stackoverflow.com/a/4428288/4011313"
      */
-    public static int getResId(String resName, Class<?> c) {
-        try {
-            Field idField = c.getDeclaredField(resName);
-            return idField.getInt(idField);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
+    public static int getResId(String resName, Class<?> c) throws NoSuchFieldException, SecurityException, IllegalAccessException {
+        Field idField = c.getDeclaredField(resName);
+        return idField.getInt(idField);
     }
 
     /**
