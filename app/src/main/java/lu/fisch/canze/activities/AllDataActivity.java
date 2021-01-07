@@ -252,9 +252,9 @@ public class AllDataActivity extends CanzeActivity {
                                 }
 
                             } else {
-                                appendResult(frame.getFromIdHex() + "." + frame.getResponseId() + ":" + message.getError() + "\n");
+                                appendResultBuffered(frame.getFromIdHex() + "." + frame.getResponseId() + ":" + message.getError());
                                 if (!MainActivity.device.initDevice(1)) {
-                                    appendResult(MainActivity.getStringSingle(R.string.message_InitFailed));
+                                    appendResultBuffered(MainActivity.getStringSingle(R.string.message_InitFailed));
                                     break;
                                 }
                             }
