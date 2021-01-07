@@ -270,6 +270,7 @@ public class TwingoTestActivity extends CanzeActivity implements FieldListener, 
     }
 
     private void log(String text) {
+        if (!dumpInProgress) return;
         try {
             bufferedDumpWriter.append(text);
             bufferedDumpWriter.append(System.getProperty("line.separator"));
