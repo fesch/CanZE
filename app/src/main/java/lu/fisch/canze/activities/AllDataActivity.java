@@ -102,7 +102,7 @@ public class AllDataActivity extends CanzeActivity {
                 if (ecu != null) {
                     dogetAllData(ecu);
                 } else {
-                    appendResult("Can't find ECU:" + mne + "\n");
+                    appendResult("Can't find ECU:" + mne);
                 }
             }
         });
@@ -151,7 +151,7 @@ public class AllDataActivity extends CanzeActivity {
         if (!ecu.getSessionRequired()) return true;
         String filter = Integer.toHexString(ecu.getFromId());
         // we are a testerInit
-        appendResult(MainActivity.getStringSingle(R.string.message_StartTestSession) + " (testerInit)\n");
+        appendResult(MainActivity.getStringSingle(R.string.message_StartTestSession) + " (testerInit)");
         //field = Fields.getInstance().getBySID(filter + ".7e01.0");
         Field field = Fields.getInstance().getBySID(filter + "." + ecu.getStartDiag() + ".0");
         if (field != null) {
@@ -164,10 +164,10 @@ public class AllDataActivity extends CanzeActivity {
                     testerKeepalive(); // start the keepalive timer
                     return true;
                 } else {
-                    appendResult("Start Diag Session, unexpected result [" + backRes + "]\n");
+                    appendResult("Start Diag Session, unexpected result [" + backRes + "]");
                 }
             } else {
-                appendResult("Start Diag Session, error result [" + message.getError() + "]\n");
+                appendResult("Start Diag Session, error result [" + message.getError() + "]");
             }
         } else {
             appendResult(R.string.message_NoTestSessionField);
@@ -199,7 +199,7 @@ public class AllDataActivity extends CanzeActivity {
                 // clear the screen
                 clearResult();
                 displayProgressSpinner(true, R.id.progressBar_cyclic);
-                appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")\n");
+                appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")");
 
                 // here initialize this particular ECU diagnostics fields
                 try {
@@ -293,7 +293,7 @@ public class AllDataActivity extends CanzeActivity {
             resultbuffer = new StringBuffer();
             bufferedLines = 100;
         }
-        resultbuffer.append(str);
+        resultbuffer.append(str + "\n");
     }
 
     private void appendResult(String str) {
