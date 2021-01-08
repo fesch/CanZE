@@ -654,9 +654,14 @@ public class Fields {
             }
         }
         if (allOk) {
+            Frame frame = Frames.getInstance().getById(0x800);
+            if (frame == null) {
+                MainActivity.toast(MainActivity.TOAST_NONE, "rame does not exist:0x800");
+                MainActivity.debug("frame does not exist:0x800");
+                return;
+            }
             VirtualField virtualField = new VirtualField(virtualId, dependantFields, decimals, unit, virtualFieldAction);
             // a virtualfield is always ISO-TP, so we need to create a subframe for it
-            Frame frame = Frames.getInstance().getById(0x800);
             Frame subFrame = Frames.getInstance().getById(0x800, virtualField.getResponseId());
             if (subFrame == null) {
                 subFrame = new Frame(frame.getFromId(), frame.getInterval(), frame.getSendingEcu(), virtualField.getResponseId(), frame);
