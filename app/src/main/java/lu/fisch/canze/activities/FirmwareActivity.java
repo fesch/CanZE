@@ -372,6 +372,7 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
     }
 
     private void log(String text) {
+        if (!dumpInProgress) return;
         try {
             bufferedDumpWriter.append(text);
             bufferedDumpWriter.append(System.getProperty("line.separator"));

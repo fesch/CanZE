@@ -420,6 +420,7 @@ public class DtcActivity extends CanzeActivity {
     }
 
     private void log(String text) {
+        if (!dumpInProgress) return;
         try {
             bufferedDumpWriter.append(text);
             bufferedDumpWriter.append(System.getProperty("line.separator"));
