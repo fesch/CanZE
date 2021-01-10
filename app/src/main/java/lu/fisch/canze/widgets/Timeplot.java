@@ -32,6 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 import lu.fisch.awt.Color;
 import lu.fisch.awt.Graphics;
@@ -89,33 +90,22 @@ public class Timeplot extends Drawable {
         // if empty, add
 
         /* TODO  given crashlitics, I think we should sync this block JM */
-        if (values.get(fieldSID).size() == 0)
-            values.get(fieldSID).add(new TimePoint(iTime, value));
+        ArrayList<TimePoint> val = values.get(fieldSID);
+        if (val == null) return;
+        if (val.size() == 0)
+            val.add(new TimePoint(iTime, value));
         else {
-            TimePoint lastTP = values.get(fieldSID).get(values.get(fieldSID).size() - 1);
+            TimePoint lastTP = val.get(val.size() - 1);
             // if this is really a new point, add it
             if (lastTP == null || lastTP.date != iTime)
-                values.get(fieldSID).add(new TimePoint(iTime, value));
+                val.add(new TimePoint(iTime, value));
                 // if not, replace the previous point
                 // ( database will store the max, but as the value of the last point is also being
                 //   displayed on the screen, we should prefer having the real last point here )
             else {
-                values.get(fieldSID).set(values.get(fieldSID).size() - 1, new TimePoint(iTime, value));
+                val.set(val.size() - 1, new TimePoint(iTime, value));
             }
         }
-
-
-        /*
-        if(value<min) setMin((int) value - 1);
-        else if(value>max) setMax((int) value + 1);
-        */
-
-        /*setMinorTicks(0);
-        setMajorTicks(1);
-        if(getMax()-getMin()>100) setMajorTicks(10);
-        else if(getMax()-getMin()>1000) setMajorTicks(100);
-        else if(getMax()-getMin()>10000) setMajorTicks(1000);
-        /**/
     }
 
     private Color getColor(int i) {
@@ -145,7 +135,7 @@ public class Timeplot extends Drawable {
         }
         barWidth -= spaceAlt;
 
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         int graphHeight = height - g.stringHeight(sdf.format(Calendar.getInstance().getTime())) - 15;
 
         // draw the ticks
@@ -155,7 +145,7 @@ public class Timeplot extends Drawable {
             if (toTicks == 0) toTicks = majorTicks;
             double intervals = ((max - min) / (double) toTicks);
             double accel = (double) graphHeight / intervals;
-            double ax, ay, bx = 0, by = 0;
+            double ax, ay, bx, by;
             int actual = min;
             int actualAlt = minAlt;
             int sum = 0;
@@ -215,7 +205,7 @@ public class Timeplot extends Drawable {
                         // alternative labels
                         if (spaceAlt != 0) {
                             text = (actualAlt) + "";
-                            sw = g.stringWidth(text);
+                            //sw = g.stringWidth(text);
                             bx = x + width - spaceAlt + 16;
                             by = y + i;
                             g.drawString(text, (int) (bx), (int) (by + g.stringHeight(text) * (1 - i / graphHeight)));
@@ -234,7 +224,7 @@ public class Timeplot extends Drawable {
 
         // draw the vertical grid
         g.setColor(getIntermediate());
-        long start = (Calendar.getInstance().getTimeInMillis() / 1000);
+        long start = (Calendar.getInstance().getTimeInMillis() / 1000); // start in seconds
         int interval = 60 / timeSale;
 
         try {
@@ -246,11 +236,7 @@ public class Timeplot extends Drawable {
                     long thisDate = list.get(list.size() - 1).date / 1000;
                     if (thisDate > start) start = thisDate;
                 }
-                //MainActivity.debug("Start: "+start);
-                //MainActivity.debug("Start: "+interval);
-                //MainActivity.debug("Start: "+(start%interval));
                 long newStart = start;
-                //MainActivity.debug("Start 1: "+sdf.format(newStart));
                 for (long x = width - (newStart % interval) - spaceAlt; x >= width - barWidth - spaceAlt; x -= interval) {
                     g.drawLine(x, 1, x, graphHeight + 5);
                 }
@@ -425,8 +411,7 @@ public class Timeplot extends Drawable {
                             }
                         }
                     }
-                } else // forward
-                {
+                } else { // forward
                     long minTime = start * 1000; //values.get(0).date;
 
                     for (int i = 0; i < tmpValues.size(); i++) {
@@ -548,22 +533,17 @@ public class Timeplot extends Drawable {
         int c = 0;
         int ts = (int) timeSale;
 
-        //MainActivity.debug("Start : "+sdf.format(start));
-
-        sdf = new SimpleDateFormat("HH:mm");
+        // draw the horizontal scale
+        sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
         if (!this.values.isEmpty())
             if (backward) {
-                ArrayList<TimePoint> list = this.values.get(sids.get(0));
-                long newStart = (Calendar.getInstance().getTimeInMillis());
-                if (list != null && !list.isEmpty()) {
-                    newStart = list.get(list.size() - 1).date;
-                    for (int s = 0; s < sids.size(); s++) {
-                        list = this.values.get(sids.get(s));
-                        if (list != null && !list.isEmpty()) {
-                            TimePoint tp = list.get(list.size() - 1);
-                            if (tp != null) {
-                                if (tp.date > start) newStart = tp.date;
-                            }
+                long newStart = (Calendar.getInstance().getTimeInMillis()); // use now as starting
+                for (int s = 0; s < sids.size(); s++) { //check all sids in this graph
+                    ArrayList<TimePoint> list = this.values.get(sids.get(s)); // get the timepoints of this sid
+                    if (list != null && !list.isEmpty()) {
+                        TimePoint tp = list.get(list.size() - 1); // get the last one
+                        if (tp != null) {
+                            if (tp.date > newStart) newStart = tp.date; // find the max
                         }
                     }
                 }
@@ -581,17 +561,15 @@ public class Timeplot extends Drawable {
                     }
                     c++;
                 }
-            } else {
+            } else { // forward
                 ArrayList<TimePoint> list = this.values.get(sids.get(0));
-
                 long newStart = (Calendar.getInstance().getTimeInMillis());
-                if (list != null && !list.isEmpty()) {
-                    newStart = list.get(list.size() - 1).date;
-                    for (int s = 0; s < sids.size(); s++) {
-                        list = this.values.get(sids.get(s));
-                        if (list != null && !list.isEmpty()) {
-                            TimePoint tp = list.get(0);
-                            if (tp.date < start) newStart = tp.date;
+                for (int s = 0; s < sids.size(); s++) { //check all sids in this graph
+                    list = this.values.get(sids.get(s)); // get the timepoints of this sid
+                    if (list != null && !list.isEmpty()) {
+                        TimePoint tp = list.get(0); // get the first one
+                        if (tp != null) {
+                            if (tp.date < newStart) newStart = tp.date; // find the min
                         }
                     }
                 }
