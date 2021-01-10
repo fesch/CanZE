@@ -89,9 +89,6 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addField(Sid.AvailableEnergy, 5000);
         addField(Sid.SOH, 5000); // state of health gives continuous timeouts. This frame is send at a very low rate
         addField(Sid.RangeEstimate, 5000);
-        addField(Sid.Aux12V, 2000);
-        addField(Sid.Aux12A, 1000);
-        addField(Sid.DcLoad, 1000);
         addField(Sid.HvKilometers, 5000);
         addField(Sid.TractionBatteryVoltage, 5000);
         addField(Sid.TractionBatteryCurrent, 5000);
@@ -230,16 +227,6 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
                             tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue() * (1 - usoc) / usoc));
                         }
                         tv = findViewById(R.id.textAvEner);
-                        break;
-
-                    case Sid.Aux12V:
-                        tv = findViewById(R.id.text12V);
-                        break;
-                    case Sid.Aux12A:
-                        tv = findViewById(R.id.text12A);
-                        break;
-                    case Sid.DcLoad:
-                        tv = findViewById(R.id.textDcLoad);
                         break;
 
                     case Sid.HvKilometers:

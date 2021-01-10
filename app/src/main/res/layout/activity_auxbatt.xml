@@ -20,10 +20,44 @@
             <TextView
                 android:layout_weight="0.7"
                 android:width="0dp"
-                android:text="@string/label_auxbatvolt" />
+                android:text="@string/label_12V"
+                />
 
             <TextView
-                android:id="@+id/text_12V"
+                android:id="@+id/text12V"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash"
+
+                />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_12A" />
+
+            <TextView
+                android:id="@+id/text12A"
+                android:layout_weight="0.3"
+                android:width="0dp"
+                android:gravity="end"
+                android:text="@string/default_Dash" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="0.7"
+                android:width="0dp"
+                android:text="@string/label_DcLoad" />
+
+            <TextView
+                android:id="@+id/textDcLoad"
                 android:layout_weight="0.3"
                 android:width="0dp"
                 android:gravity="end"

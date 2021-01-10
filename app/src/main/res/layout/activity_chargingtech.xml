@@ -36,18 +36,14 @@
                     <TextView
                         android:layout_weight="0.7"
                         android:width="0dp"
-                        android:text="@string/label_Plug"
-
-                        />
+                        android:text="@string/label_Plug" />
 
                     <TextView
                         android:id="@+id/textPlug"
                         android:layout_weight="0.3"
                         android:width="0dp"
                         android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
                 <TableRow>
@@ -55,18 +51,14 @@
                     <TextView
                         android:layout_weight="0.7"
                         android:width="0dp"
-                        android:text="@string/label_max_pilot"
-
-                        />
+                        android:text="@string/label_max_pilot" />
 
                     <TextView
                         android:id="@+id/text_max_pilot"
                         android:layout_weight="0.3"
                         android:width="0dp"
                         android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
                 <TableRow>
@@ -74,17 +66,14 @@
                     <TextView
                         android:layout_weight="0.7"
                         android:width="0dp"
-                        android:text="@string/label_AvChPwr"
-                        />
+                        android:text="@string/label_AvChPwr" />
 
                     <TextView
                         android:id="@+id/textAvChPwr"
                         android:layout_weight="0.3"
                         android:width="0dp"
                         android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
             </TableLayout>
@@ -105,18 +94,14 @@
                     <TextView
                         android:layout_weight="0.7"
                         android:width="0dp"
-                        android:text="@string/label_UserSOC"
-
-                        />
+                        android:text="@string/label_UserSOC" />
 
                     <TextView
                         android:id="@+id/textUserSOC"
                         android:layout_weight="0.3"
                         android:width="0dp"
                         android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
                 <TableRow>
@@ -124,54 +109,29 @@
                     <TextView
                         android:layout_weight="0.7"
                         android:width="0dp"
-                        android:text="@string/label_RealSOC"
-
-                        />
+                        android:text="@string/label_RealSOC" />
 
                     <TextView
                         android:id="@+id/textRealSOC"
                         android:layout_weight="0.3"
                         android:width="0dp"
                         android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
-
-                <!-- <TableRow>
-                    <TextView
-                        android:text="@string/label_Capacity"
-                                                android:layout_weight="0.7"
-                        android:width="0dp"
-
-                        />
-                    <TextView
-                        android:id="@+id/textCapacity"
-                        android:text="@string/default_Capacity"
-                        android:gravity="end"
-                                                android:layout_weight="0.3"
-                        android:width="0dp"
-
-                        />
-                </TableRow> -->
 
                 <TableRow>
 
                     <TextView
                         android:layout_weight="0.7"
                         android:width="0dp"
-                        android:text="@string/label_max_charge"
-
-                        />
+                        android:text="@string/label_max_charge" />
 
                     <TextView
                         android:id="@+id/text_max_charge"
                         android:layout_weight="0.3"
                         android:width="0dp"
                         android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
                 <TableRow>
@@ -179,38 +139,29 @@
                     <TextView
                         android:layout_weight="0.7"
                         android:width="0dp"
-                        android:text="@string/label_AvEner"
-
-                        />
+                        android:text="@string/label_AvEner" />
 
                     <TextView
                         android:id="@+id/textAvEner"
                         android:layout_weight="0.3"
                         android:width="0dp"
                         android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
-
 
                 <TableRow>
 
                     <TextView
                         android:layout_weight="0.7"
                         android:width="0dp"
-                        android:text="@string/label_ETF"
-
-                        />
+                        android:text="@string/label_ETF" />
 
                     <TextView
                         android:id="@+id/textETF"
                         android:layout_weight="0.3"
                         android:width="0dp"
                         android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
                 <TableRow>
@@ -218,18 +169,14 @@
                     <TextView
                         android:layout_weight="0.7"
                         android:width="0dp"
-                        android:text="@string/label_DcPwr"
-
-                        />
+                        android:text="@string/label_DcPwr" />
 
                     <TextView
                         android:id="@+id/textDcPwr"
                         android:layout_weight="0.3"
                         android:width="0dp"
                         android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
                 <TableRow>
@@ -237,18 +184,14 @@
                     <TextView
                         android:layout_weight="0.7"
                         android:width="0dp"
-                        android:text="@string/label_Amps"
-
-                        />
+                        android:text="@string/label_Amps" />
 
                     <TextView
                         android:id="@+id/textAmps"
                         android:layout_weight="0.3"
                         android:width="0dp"
                         android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
                 <TableRow>
@@ -256,18 +199,14 @@
                     <TextView
                         android:layout_weight="0.7"
                         android:width="0dp"
-                        android:text="@string/label_Volt"
-
-                        />
+                        android:text="@string/label_Volt" />
 
                     <TextView
                         android:id="@+id/textVolt"
                         android:layout_weight="0.3"
                         android:width="0dp"
                         android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
                 <TableRow>
@@ -275,18 +214,14 @@
                     <TextView
                         android:layout_weight="0.7"
                         android:width="0dp"
-                        android:text="@string/label_SOH"
-
-                        />
+                        android:text="@string/label_SOH" />
 
                     <TextView
                         android:id="@+id/textSOH"
                         android:layout_weight="0.3"
                         android:width="0dp"
                         android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
                 <TableRow>
@@ -294,75 +229,14 @@
                     <TextView
                         android:layout_weight="0.7"
                         android:width="0dp"
-                        android:text="@string/label_12V"
-
-                        />
-
-                    <TextView
-                        android:id="@+id/text12V"
-                        android:layout_weight="0.3"
-                        android:width="0dp"
-                        android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
-                </TableRow>
-
-                <TableRow>
-
-                    <TextView
-                        android:layout_weight="0.7"
-                        android:width="0dp"
-                        android:text="@string/label_12A"
-
-                        />
-
-                    <TextView
-                        android:id="@+id/text12A"
-                        android:layout_weight="0.3"
-                        android:width="0dp"
-                        android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
-                </TableRow>
-
-                <TableRow>
-
-                    <TextView
-                        android:layout_weight="0.7"
-                        android:width="0dp"
-                        android:text="@string/label_DcLoad"
-
-                        />
-
-                    <TextView
-                        android:id="@+id/textDcLoad"
-                        android:layout_weight="0.3"
-                        android:width="0dp"
-                        android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
-                </TableRow>
-
-                <TableRow>
-
-                    <TextView
-                        android:layout_weight="0.7"
-                        android:width="0dp"
-                        android:text="@string/label_HKM"
-
-                        />
+                        android:text="@string/label_HKM" />
 
                     <TextView
                         android:id="@+id/textHKM"
                         android:layout_weight="0.3"
                         android:width="0dp"
                         android:gravity="end"
-                        android:text="@string/default_Dash"
-
-                        />
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
             </TableLayout>
