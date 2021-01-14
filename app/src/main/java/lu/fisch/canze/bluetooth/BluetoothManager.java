@@ -254,7 +254,7 @@ public class BluetoothManager {
                     debug("Connected");
                     return;
                     */
-                } catch (IOException e) {
+                } catch (IOException | SecurityException e) {
                     //e.printStackTrace();
                 }
             }
