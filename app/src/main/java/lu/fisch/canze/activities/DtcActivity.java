@@ -226,10 +226,6 @@ public class DtcActivity extends CanzeActivity {
                 Message message;
                 String backRes;
 
-                // get the from ID from the selected ECU
-                filter = Integer.toHexString(ecu.getFromId());
-
-
                 if (!MainActivity.device.initDevice(1)) {
                     appendResult(R.string.message_InitFailed);
                     return;
@@ -240,6 +236,9 @@ public class DtcActivity extends CanzeActivity {
                     appendResult(R.string.message_InitFailed);
                     return;
                 }
+
+                // get the from ID from the selected ECU
+                filter = Integer.toHexString(ecu.getFromId());
 
                 boolean onePrinted = false;
                 for (String getDtc : ecu.getGetDtcs().split(";")) {
@@ -268,14 +267,22 @@ public class DtcActivity extends CanzeActivity {
                                     if (((StoppableThread) Thread.currentThread()).isStopped())
                                         return;
 
-                                    int flags = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
-                                    // exclude 50 / 10 as it means something like "I have this DTC code, but I have never tested it"
-                                    if (flags != 0x50 && flags != 0x10) {
+                                    try {
+                                        int flags = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
+                                        // exclude 50 / 10 as it means something like "I have this DTC code, but I have never tested it"
+                                        if (flags != 0x50 && flags != 0x10) {
+                                            onePrinted = true;
+                                            appendResult(
+                                                    "\n*** DTC" + backRes.substring(i, i + 6) + " (" + Dtcs.getInstance().getDisplayCodeById(backRes.substring(i, i + 6)) + ") ***\n"
+                                                            + Dtcs.getInstance().getDescriptionById(backRes.substring(i, i + 6))
+                                                            + "\nFlags:" + Dtcs.getInstance().getFlagDescription(flags)
+                                            );
+                                        }
+                                    } catch (Exception e) {
                                         onePrinted = true;
                                         appendResult(
-                                                "\n*** DTC" + backRes.substring(i, i + 6) + " (" + Dtcs.getInstance().getDisplayCodeById(backRes.substring(i, i + 6)) + ") ***\n"
-                                                        + Dtcs.getInstance().getDescriptionById(backRes.substring(i, i + 6))
-                                                        + "\nFlags:" + Dtcs.getInstance().getFlagDescription(flags)
+                                                "\n*** DTC uninterpretable;" + backRes.substring(i, i + 8) + ") ***\n"
+                                                        + e.getMessage()
                                         );
                                     }
                                 }
