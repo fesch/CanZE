@@ -224,7 +224,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 // inform user
                 // setTitle(TAG + " - disconnected");
                 showBluetoothState(BLUETOOTH_DISCONNECTED);
-                toast(R.string.toast_BluetoothLost);
+                if (!isFinishing())
+                    toast(R.string.toast_BluetoothLost);
 
                 // try to reconnect
                 (new Thread(new Runnable() {

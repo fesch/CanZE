@@ -490,7 +490,8 @@ public class DtcActivity extends CanzeActivity {
         try {
             if (dumpInProgress) {
                 bufferedDumpWriter.close();
-                MainActivity.toast (MainActivity.TOAST_NONE, "Done."); // resources
+                if (!isFinishing())
+                    MainActivity.toast (MainActivity.TOAST_NONE, "Done."); // resources
             }
         } catch (IOException e) {
             e.printStackTrace();

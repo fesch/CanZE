@@ -263,7 +263,8 @@ public class AllDataActivity extends CanzeActivity {
                 }
                 appendResultBuffered(""); // empty buffer
                 closeDump();
-                MainActivity.toast(MainActivity.TOAST_NONE, R.string.message_DumpDone);
+                if (!isFinishing())
+                    MainActivity.toast(MainActivity.TOAST_NONE, R.string.message_DumpDone);
                 displayProgressSpinner(false, R.id.progressBar_cyclic);
                 // allow rotation again
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
@@ -368,7 +369,8 @@ public class AllDataActivity extends CanzeActivity {
             //BufferedWriter for performance, true to set append to file flag
             bufferedDumpWriter = new BufferedWriter(new FileWriter(logFile, true));
             dumpInProgress = true;
-            MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_DumpWriting), exportdataFileName);
+            if (!isFinishing())
+                MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_DumpWriting), exportdataFileName);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -380,7 +382,8 @@ public class AllDataActivity extends CanzeActivity {
         try {
             if (dumpInProgress) {
                 bufferedDumpWriter.close();
-                MainActivity.toast(MainActivity.TOAST_NONE, "Done.");
+                if (!isFinishing())
+                    MainActivity.toast(MainActivity.TOAST_NONE, "Done.");
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -97,7 +97,8 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
                         try {
                             BluetoothManager.getInstance().connect();
                         } catch (InvalidParameterException e) {
-                            MainActivity.toast(MainActivity.TOAST_NONE, R.string.message_CantConnect);
+                            if (!isFinishing())
+                                MainActivity.toast(MainActivity.TOAST_NONE, R.string.message_CantConnect);
                         }
                     }
                 })).start();
@@ -326,7 +327,8 @@ public abstract class CanzeActivity extends AppCompatActivity implements FieldLi
             }
         } else {
             MainActivity.debug(this.getClass().getSimpleName() + " (CanzeActivity): SID " + sid + " does not exist in class Fields");
-            MainActivity.toast(MainActivity.TOAST_NONE, String.format(Locale.getDefault(), MainActivity.getStringSingle(R.string.format_NoSid), this.getClass().getSimpleName(), sid));
+            if (!isFinishing())
+                MainActivity.toast(MainActivity.TOAST_NONE, String.format(Locale.getDefault(), MainActivity.getStringSingle(R.string.format_NoSid), this.getClass().getSimpleName(), sid));
         }
     }
 

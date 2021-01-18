@@ -426,7 +426,8 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
             //BufferedWriter for performance, true to set append to file flag
             bufferedDumpWriter = new BufferedWriter(new FileWriter(logFile, true));
             dumpInProgress = true;
-            MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_DumpWriting), exportdataFileName);
+            if (!isFinishing())
+                MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_DumpWriting), exportdataFileName);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -447,7 +448,8 @@ public class FirmwareActivity extends CanzeActivity implements FieldListener, De
         try {
             if (dumpInProgress) {
                 bufferedDumpWriter.close();
-                MainActivity.toast(MainActivity.TOAST_NONE, "Done.");
+                if (!isFinishing())
+                    MainActivity.toast(MainActivity.TOAST_NONE, "Done.");
             }
         } catch (IOException e) {
             e.printStackTrace();

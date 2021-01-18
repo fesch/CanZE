@@ -345,7 +345,8 @@ public class TwingoTestActivity extends CanzeActivity implements FieldListener, 
         try {
             if (dumpInProgress) {
                 bufferedDumpWriter.close();
-                MainActivity.toast(MainActivity.TOAST_NONE, "Done.");
+                if (!isFinishing())
+                    MainActivity.toast(MainActivity.TOAST_NONE, "Done.");
             }
         } catch (IOException e) {
             e.printStackTrace();
