@@ -157,7 +157,12 @@ public class Field {
     }
 
     public String getDebugValue() {
-        if (isString() || isHexString()) {
+        return getDebugValue("");
+    }
+    public String getDebugValue(String frameError) {
+        if (!frameError.isEmpty()) {
+            return String.format(Locale.US, "%s,%s,%s,", getSID(), getName(), frameError);
+        } else if (isString() || isHexString()) {
             return String.format(Locale.US, "%s,%s,%s,", getSID(), getName(), getStringValue());
         } else if (isList()) {
             return String.format(Locale.US, "%s,%s,%s,", getSID(), getName(), getListValue());

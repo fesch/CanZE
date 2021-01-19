@@ -241,21 +241,25 @@ public class AllDataActivity extends CanzeActivity {
 
                             // query the Frame
                             Message message = MainActivity.device.requestFrame(frame);
-                            if (!message.isError()) {
-                                // process the frame by going through all the containing fields
+                            if (!message.isError()) { // isError is also true when a 7f is returned
+                                // process the frame by going through all the contained fields
                                 // setting their values and notifying all listeners (there should be none)
-                                // Fields.getInstance().onMessageCompleteEvent(message);
                                 message.onMessageCompleteEvent();
-
+                                // output all the contained fields
                                 for (Field field : frame.getAllFields()) {
                                     appendResultBuffered(field.getDebugValue());
                                 }
 
                             } else {
-                                appendResultBuffered(frame.getFromIdHex() + "." + frame.getResponseId() + ":" + message.getError());
-                                if (!MainActivity.device.initDevice(1)) {
-                                    appendResultBuffered(MainActivity.getStringSingle(R.string.message_InitFailed));
-                                    break;
+                                // for readability output all contained fields, but instead of the field value state the frame error
+                                for (Field field : frame.getAllFields()) {
+                                    appendResultBuffered(field.getDebugValue(message.getError()));
+                                }
+                                if (!message.isError7f()) { // it makes no sense to re-initialize the device if a 7f is returned
+                                    if (!MainActivity.device.initDevice(1)) {
+                                        appendResultBuffered(MainActivity.getStringSingle(R.string.message_InitFailed));
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -287,14 +291,14 @@ public class AllDataActivity extends CanzeActivity {
     private void appendResultBuffered (String str) {
         // optimize speed and avoid ANRs by reducing UI work
         if (dumpInProgress) log(str);
-        if (bufferedLines-- == 0 || str == "") {
+        if (bufferedLines-- == 0 || str.isEmpty()) {
             if (resultbuffer != null) { // empty buffer
                 appendResult(resultbuffer.toString());
             }
             resultbuffer = new StringBuffer();
             bufferedLines = 100;
         }
-        resultbuffer.append(str + "\n");
+        resultbuffer.append(str).append("\n");
     }
 
     private void appendResult(String str) {
