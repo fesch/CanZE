@@ -10,6 +10,8 @@ import java.io.InputStreamReader;
 import android.content.Context;
 import android.content.res.AssetManager;
 
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
+
 import lu.fisch.canze.activities.MainActivity;
 
 public class AssetLoadHelper {
@@ -52,6 +54,7 @@ public class AssetLoadHelper {
         } catch (FileNotFoundException e) {
             // do nothing, so return null
         } catch (IOException | NullPointerException e) {
+            MainActivity.logStringToCrashlitics("loading asset:[" + asset + "]");
             MainActivity.logExceptionToCrashlytics(e);
         } // Catching null is bad practive, but I have seen one thrown by myContext.getAssets();
 

@@ -1251,5 +1251,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static void logExceptionToCrashlytics (Exception e) {
         FirebaseCrashlytics.getInstance().recordException(e);
     }
+
+    public static void logStringToCrashlitics (String e) {
+        FirebaseCrashlytics.getInstance().log(e);
+    }
 }
 
