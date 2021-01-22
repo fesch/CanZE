@@ -240,6 +240,7 @@ public class DataLogger implements FieldListener {
      */
     public void log(String text) {
         if (!isCreated()) createNewLog();
+        if (logFile == null) return;
         debug("DataLogger - log: " + text);
 
         try {
@@ -247,13 +248,11 @@ public class DataLogger implements FieldListener {
             bufferedWriter.append(text + System.getProperty("line.separator"));
             bufferedWriter.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 
     public boolean start() {
-        boolean result = false;
-
         // open logfile
         // start timer
         debug("DataLogger: start");
@@ -263,8 +262,6 @@ public class DataLogger implements FieldListener {
     }
 
     public boolean stop() {
-        boolean result = false;
-
         // flush and close logfile
         // stop timer
         debug("DataLogger: stop");
@@ -279,12 +276,12 @@ public class DataLogger implements FieldListener {
             subscribedFields.clear();
         }
         debug("DataLogger: stop - and logFile = null");
-        return result;
+        return true;
     }
 
     public void destroy() {
         handler.removeCallbacks(runnable);
-        boolean result = stop();
+        stop();
     }
 
     private void addListener(String sid, int intervalMs) {
@@ -321,52 +318,30 @@ public class DataLogger implements FieldListener {
         addListener(SID_EVC_Odometer, intervall);  // 6000
         addListener(SID_EVC_TractionBatteryVoltage, intervall); // 5000
         addListener(SID_EVC_TractionBatteryCurrent, intervall); // 2000
-        //addListener(SID_PEB_Torque);
     }
-
 
     // This is the event fired as soon as this the registered fields are
     // getting updated by the corresponding reader class.
     @Override
     public void onFieldUpdateEvent(final Field field) {
         String fieldId = field.getSID();
-        double fieldValue;
-
-        // Long tsLong = System.currentTimeMillis()/1000;
-        // String timestamp = tsLong.toString();
-
-        // String timestamp = "timestamp"; // sdf.format(sdf.format(Calendar.getInstance().getTime()));
-        // System.getProperty("line.separator");
-
-        // log ( timestamp + ";" + fieldId + ";" + field.getPrintValue() );
-        // get the text field
         switch (fieldId) {
             case SID_SoC:
-//                  case SID_EVC_SoC:
                 var_SoC = field.getPrintValue();
-                // log ( "...SID_SoC: " + fieldValue );
                 break;
             case SID_Pedal:
-//                  case SID_EVC_Pedal:
                 var_Pedal = field.getPrintValue();
-                // pb.setProgress((int) field.getValue());
                 break;
             case SID_MeanEffectiveTorque:
                 var_MeanEffectiveTorque = field.getPrintValue();
-                // pb.setProgress((int) field.getValue());
                 break;
             case SID_EVC_Odometer:
                 var_Odometer = "" + ((int) field.getValue());
                 break;
             case SID_RealSpeed:
-//                  case SID_EVC_RealSpeed:
-                //realSpeed = (Math.round(Utils.kmOrMiles(field.getValue()) * 10.0) / 10.0);
                 realSpeed = (Math.round(field.getValue() * 10.0) / 10.0);
                 var_realSpeed = "" + realSpeed;
                 break;
-            //case SID_PEB_Torque:
-            //    tv = (TextView) findViewById(R.id.textTorque);
-            //    break;
             case SID_EVC_TractionBatteryVoltage: // DC volts
                 // save DC voltage for DC power purposes
                 dcVolt = field.getValue();
@@ -386,7 +361,6 @@ public class DataLogger implements FieldListener {
                 }
                 break;
             case SID_RangeEstimate:
-                //int rangeInBat = (int) Utils.kmOrMiles(field.getValue());
                 var_rangeInBat = "" + (int) field.getValue();
                 break;
             case SID_DriverBrakeWheel_Torque_Request:
