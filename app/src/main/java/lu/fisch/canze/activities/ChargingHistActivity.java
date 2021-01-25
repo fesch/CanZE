@@ -50,24 +50,24 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
         MainActivity.getInstance().setDebugListener(this);
         for (int i = 0; i < 10; i++) {
             sid = Sid.Preamble_KM  + (240 - i * 24);
-            addField(sid, 6000);
+            addField(sid);
             sid = Sid.Preamble_END + ( 96 - i *  8);
-            addField(sid, 6000);
+            addField(sid);
             sid = Sid.Preamble_TYP + ( 96 - i *  8);
-            addField(sid, 6000);
+            addField(sid);
             sid = Sid.Preamble_SOC + (168 - i * 16);
-            addField(sid, 6000);
+            addField(sid);
             sid = Sid.Preamble_TMP + ( 96 - i *  8);
-            addField(sid, 6000);
+            addField(sid);
             sid = Sid.Preamble_DUR + (168 - i * 16);
-            addField(sid, 6000);
+            addField(sid);
         }
-        addField(Sid.Total_kWh, 6000);
-        addField(Sid.Counter_Full, 6000);
-        addField(Sid.Counter_Partial, 6000);
+        addField(Sid.Total_kWh);
+        addField(Sid.Counter_Full);
+        addField(Sid.Counter_Partial);
 
         if (MainActivity.isPh2()) {
-            addField(Sid.Total_Regen_kWh, 6000);
+            addField(Sid.Total_Regen_kWh);
         }
     }
 
@@ -95,15 +95,25 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
                     case Sid.Preamble_END:
                         tv = findViewById(getResources().getIdentifier("textEND" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
                         value = (int) val;
-                        if (tv != null && !Double.isNaN(val) && charging_HistEnd != null && value >= 0 && value < charging_HistEnd.length)
-                            tv.setText(charging_HistEnd[value]);
+                        if (tv != null) {
+                            if (!Double.isNaN(val) && charging_HistEnd != null && value >= 0 && value < charging_HistEnd.length) {
+                                tv.setText(charging_HistEnd[value]);
+                            } else {
+                                tv.setText("---");
+                            }
+                        }
                         tv = null;
                         break;
                     case Sid.Preamble_TYP:
                         tv = findViewById(getResources().getIdentifier("textTYP" + ((104 - Integer.parseInt(startBit)) /  8), "id", getPackageName()));
                         value = (int) val;
-                        if (tv != null && !Double.isNaN(val) && charging_HistTyp != null && value >= 0 && value < charging_HistTyp.length)
-                            tv.setText(charging_HistTyp[value]);
+                        if (tv != null) {
+                            if (!Double.isNaN(val) && charging_HistTyp != null && value >= 0 && value < charging_HistTyp.length) {
+                                tv.setText(charging_HistTyp[value]);
+                            } else {
+                                tv.setText("---");
+                            }
+                        }
                         tv = null;
                         break;
                     case Sid.Preamble_SOC:
