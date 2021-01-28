@@ -149,7 +149,7 @@ public class Frames {
         for(int i=0; i<frames.size(); i++)
         {
             Frame frame = frames.get(i);
-            if (frame.getFromId() == id && frame.getResponseId() == null) return frame;
+            if (frame != null && frame.getFromId() == id && frame.getResponseId() == null) return frame;
         }
         return null;
     }
@@ -158,7 +158,7 @@ public class Frames {
         for(int i=0; i<frames.size(); i++)
         {
             Frame frame = frames.get(i);
-            if (frame.getFromId() == id && frame.getResponseId() != null) {
+            if (frame != null && frame.getFromId() == id && frame.getResponseId() != null) {
                 if (frame.getResponseId().compareTo(responseId.toLowerCase()) == 0) return frame;
             }
         }
