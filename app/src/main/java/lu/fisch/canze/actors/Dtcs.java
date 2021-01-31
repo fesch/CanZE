@@ -83,8 +83,7 @@ public class Dtcs {
 
     private void fillFromAsset (String dtcsAssetName, String testsAssetName) {
         //Read text from asset
-        AssetLoadHelper assetLoadHelper = new AssetLoadHelper(MainActivity.getInstance());
-        BufferedReader bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(dtcsAssetName);
+        BufferedReader bufferedReader = AssetLoadHelper.getBufferedReaderFromAsset(dtcsAssetName);
         if (bufferedReader == null) {
             MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_NoAsset), dtcsAssetName);
             return;
@@ -98,7 +97,7 @@ public class Dtcs {
         catch (IOException e) {
             e.printStackTrace();
         }
-        bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(testsAssetName);
+        bufferedReader = AssetLoadHelper.getBufferedReaderFromAsset(testsAssetName);
         if (bufferedReader == null) {
             MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_NoAsset), testsAssetName);
             return;

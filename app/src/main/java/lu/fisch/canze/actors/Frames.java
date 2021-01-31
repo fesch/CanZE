@@ -35,7 +35,7 @@ public class Frames {
 
     private static final int FRAME_ID               = 0; // to be stated in HEX, no leading 0x
     private static final int FRAME_INTERVAL_ZOE     = 1; // decimal
-    private static final int FRAME_INTTERVAL_FLUKAN = 2; // decimal
+    private static final int FRAME_INTERVAL_FLUKAN  = 2; // decimal, deprecated
     private static final int FRAME_ECU              = 3; // double
 
     private final ArrayList<Frame> frames = new ArrayList<>();
@@ -64,7 +64,7 @@ public class Frames {
                 MainActivity.debug("Ecu does not exist:'" + tokens[FRAME_ECU].trim() + "'");
             } else {
                 int frameId = Integer.parseInt(tokens[FRAME_ID].trim(), 16);
-                int interval = MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240 ? Integer.parseInt(tokens[FRAME_INTERVAL_ZOE].trim(), 10) : Integer.parseInt(tokens[FRAME_INTTERVAL_FLUKAN].trim(), 10);
+                int interval = MainActivity.car == MainActivity.CAR_ZOE_Q210 || MainActivity.car == MainActivity.CAR_ZOE_R240 ? Integer.parseInt(tokens[FRAME_INTERVAL_ZOE].trim(), 10) : Integer.parseInt(tokens[FRAME_INTERVAL_FLUKAN].trim(), 10);
                 Frame frame = getById(frameId);
                 if (frame == null) {
                     frame = new Frame(
@@ -85,8 +85,7 @@ public class Frames {
 
     private void fillFromAsset (String assetName) {
         //Read text from asset
-        AssetLoadHelper assetLoadHelper = new AssetLoadHelper(MainActivity.getInstance());
-        BufferedReader bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(assetName);
+        BufferedReader bufferedReader = AssetLoadHelper.getBufferedReaderFromAsset(assetName);
         if (bufferedReader == null) {
             MainActivity.toast(MainActivity.TOAST_NONE, MainActivity.getStringSingle(R.string.format_NoAsset),assetName);
             return;
@@ -120,7 +119,7 @@ public class Frames {
 
     public void load (Ecu ecu)
     {
-        if (ecu.getFromId() != 0x801) { // for all but the Free Frame ECU, just load it's diagnostic frame. Subframes will be created automatically for each field
+        if (ecu.getFromId() != 0x801) { // for all but the Free Frame ECU, just load it's diagnostic frame. Sub-frames will be created automatically for each field
             frames.clear();
             Frame frame = new Frame(
                     ecu.getFromId(),

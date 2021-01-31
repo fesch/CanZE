@@ -86,10 +86,6 @@ public class Fields {
         //addVirtualFields();
     }
 
-    public static boolean initialised() {
-        return (instance == null);
-    }
-
     public static Fields getInstance() {
         if (instance == null) instance = new Fields();
         return instance;
@@ -325,7 +321,7 @@ public class Fields {
     }
 
     private void addVirtualFieldDcPowerOut() {
-        // positive = discharging, negative = charging. Unusable for harging graphs
+        // positive = discharging, negative = charging. Unusable for charging graphs
 
 
         addVirtualFieldCommon("6109", "kW", Sid.TractionBatteryVoltage + ";" + Sid.TractionBatteryCurrent, new VirtualFieldAction() {
@@ -354,7 +350,7 @@ public class Fields {
                 if (!Double.isNaN(value)) {
                     long now = Calendar.getInstance().getTimeInMillis();
                     long since = now - start;
-                    if (since > 1000) since = 1000; // use a maximim of 1 second
+                    if (since > 1000) since = 1000; // use a maximum of 1 second
                     start = now;
 
                     double factor = since * 0.00005; // 0.05 per second
@@ -757,9 +753,7 @@ public class Fields {
 
     private void fillFromAsset(String assetName) {
         //Read text from asset
-        AssetLoadHelper assetLoadHelper = new AssetLoadHelper(MainActivity.getInstance());
-
-        BufferedReader bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(assetName);
+        BufferedReader bufferedReader = AssetLoadHelper.getBufferedReaderFromAsset(assetName);
         if (bufferedReader == null) {
             MainActivity.toast(MainActivity.TOAST_NONE, "Can't access asset " + assetName);
             return;
@@ -820,11 +814,6 @@ public class Fields {
             return null;
         }
     }
-
-    public Object[] toArray() {
-        return fields.toArray();
-    }
-
 
     public void add(Field field) {
         fields.add(field);

@@ -60,9 +60,9 @@ public class Ecus {
                     Integer.parseInt(tokens[3].trim(), 16),     // From ID
                     Integer.parseInt(tokens[4].trim(), 16),     // To ID
                     tokens[5].trim(),                           // Mnemonic
-                    tokens[6].trim(),                           // Aliasses, semicolon separated
+                    tokens[6].trim(),                           // Aliases, semicolon separated
                     tokens [7].trim(),                          // GetDtc responseIDs, semicolon separated
-                    tokens [8].trim(),                          // startDiag
+                    tokens [8].trim(),                          // start Diagnotic sessioncommand
                     tokens [9].trim().compareTo("1") == 0       // Session required
             );
             // add the field to the list of available fields
@@ -74,8 +74,7 @@ public class Ecus {
 
     private void fillFromAsset (String assetName) {
         //Read text from asset
-        AssetLoadHelper assetLoadHelper = new AssetLoadHelper(MainActivity.getInstance());
-        BufferedReader bufferedReader = assetLoadHelper.getBufferedReaderFromAsset(assetName);
+        BufferedReader bufferedReader = AssetLoadHelper.getBufferedReaderFromAsset(assetName);
         if (bufferedReader == null) {
             MainActivity.toast(MainActivity.TOAST_NONE, "Can't access asset " + assetName);
             return;
@@ -119,7 +118,7 @@ public class Ecus {
         return null;
     }
 
-    public Ecu getByRenaultId (int renaultId) {
+    private Ecu getByRenaultId (int renaultId) { // public
         for (Ecu ecu : ecus) {
             if (ecu.getRenaultId() == renaultId) return ecu;
         }
@@ -133,7 +132,7 @@ public class Ecus {
         return null;
     }
 
-    public Ecu getByToId (int toId) {
+    private Ecu getByToId (int toId) { // public
         for (Ecu ecu : ecus) {
             if (ecu.getToId() == toId) return ecu;
         }
