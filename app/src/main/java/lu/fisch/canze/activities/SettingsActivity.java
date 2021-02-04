@@ -120,7 +120,7 @@ public class SettingsActivity extends AppCompatActivity {
             "ZOE R240",
             "ZOE Q90",
             "ZOE R90/110",
-            "ZOE ZE50",
+            "ZOE ZE40/ZE50",
             "TWINGO 3 Ph2 (unsupported)",
             "TWIZY (unsupported)"
     };
