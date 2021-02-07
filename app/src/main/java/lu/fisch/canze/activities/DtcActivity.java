@@ -226,6 +226,11 @@ public class DtcActivity extends CanzeActivity {
                 Message message;
                 String backRes;
 
+                if (MainActivity.device == null) {
+                    appendResult(R.string.message_NoConnection);
+                    return;
+                }
+
                 if (!MainActivity.device.initDevice(1)) {
                     appendResult(R.string.message_InitFailed);
                     return;
