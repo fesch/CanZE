@@ -34,6 +34,7 @@ import android.os.Bundle;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.classes.Crashlytics;
 import lu.fisch.canze.classes.FieldLogger;
 import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.database.CanzeDataSource;
@@ -764,7 +765,7 @@ public class Fields {
                 fillOneLine(line);
             bufferedReader.close();
         } catch (IOException e) {
-            MainActivity.logExceptionToCrashlytics(e);
+            Crashlytics.logException(e);
         }
     }
 

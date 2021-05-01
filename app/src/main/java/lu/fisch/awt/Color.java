@@ -26,6 +26,7 @@ import android.util.TypedValue;
 
 import java.lang.reflect.Field;
 import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.classes.Crashlytics;
 
 public class Color {
     private int alpha = 0xff;
@@ -131,7 +132,7 @@ public class Color {
             Field idField = android.R.attr.class.getDeclaredField(resName);
             return idField.getInt(idField);
         } catch (Exception e) {
-            MainActivity.logExceptionToCrashlytics(e);
+            Crashlytics.logException(e);
             return -1;
         }
     }

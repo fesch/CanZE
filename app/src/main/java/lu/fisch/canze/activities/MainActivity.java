@@ -67,8 +67,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
-
 import java.util.Locale;
 
 import lu.fisch.canze.BuildConfig;
@@ -80,6 +78,7 @@ import lu.fisch.canze.actors.Frames;
 import lu.fisch.canze.bluetooth.BluetoothManager;
 import lu.fisch.canze.classes.Activity;
 import lu.fisch.canze.classes.ActivityRegistry;
+import lu.fisch.canze.classes.Crashlytics;
 import lu.fisch.canze.classes.DataLogger;
 import lu.fisch.canze.classes.DebugLogger;
 import lu.fisch.canze.database.CanzeDataSource;
@@ -382,7 +381,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             dataExportMode = dataLogger.activate(dataExportMode);
         } catch (Exception e) {
             if (BuildConfig.BRANCH.equals("master")) {
-                logExceptionToCrashlytics(e);
+                Crashlytics.logException(e);
             } else {
                 e.printStackTrace();
             }
@@ -1246,14 +1245,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // - through USB the folder is unfortunately read-only. This makes it almost impossible to use the _Research facility
         // - it selects Internal storage instead of SD card. Why is somewhat unclear, but more or less OK for now
         return getExternalFilesDir(null).getAbsolutePath() + "/";
-    }
-
-    public static void logExceptionToCrashlytics (Exception e) {
-        FirebaseCrashlytics.getInstance().recordException(e);
-    }
-
-    public static void logStringToCrashlitics (String e) {
-        FirebaseCrashlytics.getInstance().log(e);
     }
 }
 

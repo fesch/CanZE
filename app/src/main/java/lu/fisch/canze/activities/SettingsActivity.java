@@ -63,6 +63,7 @@ import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Utils;
 import lu.fisch.canze.classes.Activity;
 import lu.fisch.canze.classes.ActivityRegistry;
+import lu.fisch.canze.classes.Crashlytics;
 import lu.fisch.canze.database.CanzeDataSource;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -734,7 +735,7 @@ public class SettingsActivity extends AppCompatActivity {
                 String version = MainActivity.getStringSingle(R.string.version) + BuildConfig.VERSION_NAME + " (" + BuildConfig.BUILD_TYPE + "-" + BuildConfig.BRANCH + ") " + MainActivity.getStringSingle(R.string.build) + sdf.format(buildDate);
                 versionInfo.setTitle(version);
             } catch (Exception e) {
-                MainActivity.logExceptionToCrashlytics(e);
+                Crashlytics.logException(e);
             }
         }
 

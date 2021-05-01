@@ -31,7 +31,14 @@ android {
         //    proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         //}
     }
+    flavorDimensions "edition"
     productFlavors {
+        playstore {
+            dimension "edition"
+        }
+        fdroid {
+            dimension "edition"
+        }
     }
     defaultConfig {
         buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
@@ -55,11 +62,11 @@ def getGitRevParseInfo() {
 
 dependencies {
     // BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:26.2.0')
+    playstoreImplementation platform('com.google.firebase:firebase-bom:26.2.0')
 
     // Dependencies for the desired Firebase products without specifying versions
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-crashlytics'
+    playstoreImplementation 'com.google.firebase:firebase-analytics'
+    playstoreImplementation 'com.google.firebase:firebase-crashlytics'
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
