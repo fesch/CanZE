@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 
 import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.classes.Crashlytics;
 
 public class AssetLoadHelper {
 
@@ -30,8 +31,8 @@ public class AssetLoadHelper {
         } catch (FileNotFoundException e) {
             // do nothing, so return null
         } catch (IOException | NullPointerException e) {
-            MainActivity.logStringToCrashlitics("loading asset:[" + asset + "]");
-            MainActivity.logExceptionToCrashlytics(e);
+            Crashlytics.logString("loading asset:[" + asset + "]");
+            Crashlytics.logException(e);
         } // Catching null is bad practice, but I have seen one thrown by myContext.getAssets();
 
         return null;

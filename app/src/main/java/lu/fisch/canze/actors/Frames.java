@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.classes.Crashlytics;
 
 /**
  * Frames
@@ -97,7 +98,7 @@ public class Frames {
             bufferedReader.close();
         }
         catch (IOException e) {
-            MainActivity.logExceptionToCrashlytics(e);
+            Crashlytics.logException(e);
         }
     }
 

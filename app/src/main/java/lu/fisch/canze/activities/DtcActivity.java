@@ -49,6 +49,7 @@ import lu.fisch.canze.actors.Frames;
 import lu.fisch.canze.actors.Message;
 import lu.fisch.canze.actors.StoppableThread;
 import lu.fisch.canze.bluetooth.BluetoothManager;
+import lu.fisch.canze.classes.Crashlytics;
 
 import static lu.fisch.canze.activities.MainActivity.debug;
 
@@ -212,7 +213,7 @@ public class DtcActivity extends CanzeActivity {
                 try {
                     queryThread.join();
                 } catch (Exception e) {
-                    MainActivity.logExceptionToCrashlytics(e);
+                    Crashlytics.logException(e);
                     MainActivity.debug(e.getMessage());
                 }
             }

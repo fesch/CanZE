@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import lu.fisch.canze.activities.MainActivity;
+import lu.fisch.canze.classes.Crashlytics;
 
 /**
  * Ecus
@@ -86,7 +87,7 @@ public class Ecus {
             bufferedReader.close();
         }
         catch (IOException e) {
-            MainActivity.logExceptionToCrashlytics(e);
+            Crashlytics.logException(e);
         }
     }
 

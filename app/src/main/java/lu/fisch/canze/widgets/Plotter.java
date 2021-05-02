@@ -37,6 +37,7 @@ import java.util.Locale;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.classes.Crashlytics;
 import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.fragments.MainFragment;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
@@ -79,7 +80,7 @@ public class Plotter extends Drawable {
             try {
                 values.set(index, value);
             } catch (IndexOutOfBoundsException e) {
-                MainActivity.logExceptionToCrashlytics(e);
+                Crashlytics.logException(e);
                 // Bail out. Based on Play Console Crash Report
             }
             //if(value<minValues.get(index)) minValues.set(index,value);

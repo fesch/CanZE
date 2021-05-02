@@ -46,6 +46,7 @@ import lu.fisch.awt.Graphics;
 import lu.fisch.canze.activities.CanzeActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.classes.ColorRanges;
+import lu.fisch.canze.classes.Crashlytics;
 import lu.fisch.canze.classes.Intervals;
 import lu.fisch.canze.classes.Options;
 import lu.fisch.canze.interfaces.DrawSurfaceInterface;
@@ -252,7 +253,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
             }
             catch(Exception e)
             {
-                MainActivity.logExceptionToCrashlytics(e);
+                Crashlytics.logException(e);
             }
         }
 
@@ -368,7 +369,7 @@ public class WidgetView extends SurfaceView implements DrawSurfaceInterface, Sur
         }
         catch(Exception e)
         {
-            MainActivity.logExceptionToCrashlytics(e);
+            Crashlytics.logException(e);
             // ignore
         }
         finally
