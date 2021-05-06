@@ -1,0 +1,17 @@
+Description
+---------------
+If you want to learn about your Renault ZOE electric vehicle, you’ve come to a good starting point. We will supply you with an app that displays driving stats and lots of interesting information about your car, all you need is a bluetooth OBDII dongle and an Android device. Note: CanZE will not work yet on a ZOE model ZE50
+
+More on http://canze.fisch.lu
+
+
+Informal warning
+-----------------------
+Before you download and use this software consider the following: you are interfering with your car and doing that with hardware and software beyond your control (and frankly, for a large part beyond ours), created by a loose team of interested amateurs in this field. Any car is a possibly lethal piece of machinery and you might hurt or kill yourself or others by using it, or even by paying attention to the display instead of watching the road. Be extremely prudent!
+
+By even downloading this software, or the source code provided on Github, you agree to have completely understand this.
+
+
+Formal disclaimer
+-----------------------
+CANZE ("THE SOFTWARE") IS PROVIDED AS IS. USE THE SOFTWARE AT YOUR OWN RISK. THE AUTHORS MAKE NO WARRANTIES AS TO PERFORMANCE OR FITNESS FOR A PARTICULAR PURPOSE, OR ANY OTHER WARRANTIES WHETHER EXPRESSED OR IMPLIED. NO ORAL OR WRITTEN COMMUNICATION FROM OR INFORMATION PROVIDED BY THE AUTHORS SHALL CREATE A WARRANTY. UNDER NO CIRCUMSTANCES SHALL THE AUTHORS BE LIABLE FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES RESULTING FROM THE USE, MISUSE, OR INABILITY TO USE THE SOFTWARE, EVEN IF THE AUTHOR HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. THESE EXCLUSIONS AND LIMITATIONS MAY NOT APPLY IN ALL JURISDICTIONS. YOU MAY HAVE ADDITIONAL RIGHTS AND SOME OF THESE LIMITATIONS MAY NOT APPLY TO YOU. THIS SOFTWARE IS ONLY INTENDED FOR SCIENTIFIC USAGE.
