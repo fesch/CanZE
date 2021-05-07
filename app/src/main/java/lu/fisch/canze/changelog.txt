@@ -1,3 +1,4 @@
+2020-05-07 [Jeroen] Version bump for Fdroid. Not release on Play (no code change)
 2020-02-16 [Jeroen] Extended addressing and ZE50 test code (aplha!)
 2020-02-02 [Jeroen] Removed phases count in advanced charging. Already show in Mains Current Type
 2020-01-25 [Jeroen] Switch off CANsee chatter on USB when on master branch
