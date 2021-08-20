@@ -69,6 +69,7 @@ import android.widget.Toast;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
+import java.io.File;
 import java.util.Locale;
 
 import lu.fisch.canze.BuildConfig;
@@ -171,7 +172,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static boolean debugLogMode = false;
     public static boolean fieldLogMode = false;
 
-    public static boolean dataExportMode = false;
+    // use "debugLogMode" instead
+    //public static boolean dataExportMode = false;
     public static DataLogger dataLogger = null; // rather use singleton in onCreate
 
     public static int car = CAR_NONE;
@@ -327,7 +329,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             bluetoothBackgroundMode = settings.getBoolean(SettingsActivity.SETTING_DEVICE_USE_BACKGROUND_MODE, false);
             milesMode = settings.getBoolean(SettingsActivity.SETTING_CAR_USE_MILES, false);
             altFieldsMode = settings.getBoolean(SettingsActivity.SETTING_DEVICE_USE_ISOTP_FIELDS, false);
-            dataExportMode = settings.getBoolean(SettingsActivity.SETTING_LOGGING_USE_SD_CARD, false);
+            //dataExportMode = settings.getBoolean(SettingsActivity.SETTING_LOGGING_USE_SD_CARD, false);
             debugLogMode = settings.getBoolean(SettingsActivity.SETTING_LOGGING_DEBUG_LOG, false);
             fieldLogMode = settings.getBoolean(SettingsActivity.SETTING_LOGGING_FIELDS_LOG, false);
             toastLevel = settings.getInt(SettingsActivity.SETTING_DISPLAY_TOAST_LEVEL, MainActivity.TOAST_ELM);
@@ -378,8 +380,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 // registerApplicationFields(); // now done in Fields.load
             }
 
-            // after loading PREFERENCES we may have new values for "dataExportMode"
-            dataExportMode = dataLogger.activate(dataExportMode);
+            // after loading PREFERENCES we may have new values for "debugLogMode"
+            debugLogMode = dataLogger.activate(debugLogMode);
         } catch (Exception e) {
             if (BuildConfig.BRANCH.equals("master")) {
                 logExceptionToCrashlytics(e);
@@ -1245,7 +1247,15 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // Two isues
         // - through USB the folder is unfortunately read-only. This makes it almost impossible to use the _Research facility
         // - it selects Internal storage instead of SD card. Why is somewhat unclear, but more or less OK for now
-        return getExternalFilesDir(null).getAbsolutePath() + "/";
+        //Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        //startActivityForResult(intent, 713);
+
+        File path = Environment.getExternalStoragePublicDirectory("CanZE");
+        //debug("Datalogger: "+Environment.DIRECTORY_DCIM);
+        path.mkdirs();
+        return path.getAbsolutePath();
+
+        //return getExternalFilesDir(null).getAbsolutePath() + "/";
     }
 
     public static void logExceptionToCrashlytics (Exception e) {
