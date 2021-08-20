@@ -1253,7 +1253,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         File path = Environment.getExternalStoragePublicDirectory("CanZE");
         //debug("Datalogger: "+Environment.DIRECTORY_DCIM);
         path.mkdirs();
-        return path.getAbsolutePath();
+        return path.getAbsolutePath()+ "/";
 
         //return getExternalFilesDir(null).getAbsolutePath() + "/";
     }
