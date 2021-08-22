@@ -103,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public final static String PREFERENCES_FILE = "lu.fisch.canze.settings";
     public final static String DATA_FILE = "lu.fisch.canze.data";
 
+    public final static boolean pokeSecureGateway = false;
+
     // MAC-address of Bluetooth module (you must edit this line)
     private static String bluetoothDeviceAddress = null;
     private static String bluetoothDeviceName = null;
@@ -409,19 +411,21 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
 
         // (de)activate the secure gateway
-        field = fields.getBySID("18daf1d2.5003.0");
-        if (isPh2()) {
-            if (field != null) {
-                field.addListener(MainActivity.getInstance()); // callback is onFieldUpdateEvent
-                if (device != null)
-                    device.addApplicationField(field, 3000); // keep awake every 3 seconds
-            }
+        if (pokeSecureGateway) {
+            field = fields.getBySID("18daf1d2.5003.0");
+            if (isPh2()) {
+                if (field != null) {
+                    field.addListener(MainActivity.getInstance()); // callback is onFieldUpdateEvent
+                    if (device != null)
+                        device.addApplicationField(field, 3000); // keep awake every 3 seconds
+                }
 
-        } else {
-            if (field != null) {
-                field.removeListener(MainActivity.getInstance());
-                if (device != null)
-                    device.removeApplicationField(field);
+            } else {
+                if (field != null) {
+                    field.removeListener(MainActivity.getInstance());
+                    if (device != null)
+                        device.removeApplicationField(field);
+                }
             }
         }
     }
@@ -524,13 +528,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         // setup cleaning (once every hour)
         // Extra check for non null CanzeDatasource instance
-        Runnable cleanUpRunnable = new Runnable() {
-            @Override
-            public void run() {
-                CanzeDataSource dsInstance = CanzeDataSource.getInstance();
-                if (dsInstance != null) {
-                    dsInstance.cleanUp();
-                }
+        Runnable cleanUpRunnable = () -> {
+            CanzeDataSource dsInstance = CanzeDataSource.getInstance();
+            if (dsInstance != null) {
+                dsInstance.cleanUp();
             }
         };
         Handler handler = new Handler();
@@ -583,19 +584,16 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         // load fields
         //final SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
-        (new Thread(new Runnable() {
-            @Override
-            public void run() {
-                debug("Loading fields last field values from database");
-                for (int i = 0; i < fields.size(); i++) {
-                    Field field = fields.get(i);
-                    if (field != null)
-                        field.setCalculatedValue(CanzeDataSource.getInstance().getLast(field.getSID()));
-                    //debug("MainActivity: Setting "+field.getSID()+" = "+field.getValue());
-                    //f.setValue(settings.getFloat(f.getUniqueID(), 0));
-                }
-                debug("Loading fields last field values from database (done)");
+        (new Thread(() -> {
+            debug("Loading fields last field values from database");
+            for (int i = 0; i < fields.size(); i++) {
+                Field field = fields.get(i);
+                if (field != null)
+                    field.setCalculatedValue(CanzeDataSource.getInstance().getLast(field.getSID()));
+                //debug("MainActivity: Setting "+field.getSID()+" = "+field.getValue());
+                //f.setValue(settings.getFloat(f.getUniqueID(), 0));
             }
+            debug("Loading fields last field values from database (done)");
         })).start();
     }
 
@@ -648,17 +646,14 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
 
         // remove progress spinners
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ProgressBar pb;
-                pb = findViewById(R.id.progressBar_cyclic0);
-                if (pb != null) pb.setVisibility(View.GONE);
-                pb = findViewById(R.id.progressBar_cyclic1);
-                if (pb != null) pb.setVisibility(View.GONE);
-                pb = findViewById(R.id.progressBar_cyclic2);
-                if (pb != null) pb.setVisibility(View.GONE);
-            }
+        runOnUiThread(() -> {
+            ProgressBar pb;
+            pb = findViewById(R.id.progressBar_cyclic0);
+            if (pb != null) pb.setVisibility(View.GONE);
+            pb = findViewById(R.id.progressBar_cyclic1);
+            if (pb != null) pb.setVisibility(View.GONE);
+            pb = findViewById(R.id.progressBar_cyclic2);
+            if (pb != null) pb.setVisibility(View.GONE);
         });
 
         // load/reload settings if they have not been loaded yet
@@ -668,12 +663,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         if (!leaveBluetoothOn) {
             showBluetoothState(BLUETOOTH_DISCONNECTED);
-            (new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    reloadBluetooth();
-                }
-            })).start();
+            (new Thread(this::reloadBluetooth)).start();
         }
 
         if (!this.settings.getBoolean(SettingsActivity.SETTING_APP_DISCLAIMER_SEEN, false)) {
@@ -702,28 +692,24 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             alertDialogBuilder
                     .setMessage(Html.fromHtml(getStringSingle(R.string.prompt_DisclaimerText)))
                     .setCancelable(true)
-                    .setPositiveButton(yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // if this button is clicked, close
-                            SharedPreferences.Editor editor = settings.edit();
-                            editor.putBoolean(SettingsActivity.SETTING_APP_DISCLAIMER_SEEN, true);
-                            // editor.commit();
-                            editor.apply();
-                            // current activity
-                            dialog.cancel();
-                        }
+                    .setPositiveButton(yes, (dialog, id) -> {
+                        // if this button is clicked, close
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putBoolean(SettingsActivity.SETTING_APP_DISCLAIMER_SEEN, true);
+                        // editor.commit();
+                        editor.apply();
+                        // current activity
+                        dialog.cancel();
                     })
                     .setNegativeButton(no,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // if this button is clicked, just close
-                                    // the dialog box and do nothing
-                                    dialog.cancel();
-                                    //MainActivity.this.finishAffinity(); requires API16
-                                    MainActivity.this.finish();
-                                    android.os.Process.killProcess(android.os.Process.myPid());
-                                    System.exit(0);
-                                }
+                            (dialog, id) -> {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                                //MainActivity.this.finishAffinity(); requires API16
+                                MainActivity.this.finish();
+                                android.os.Process.killProcess(android.os.Process.myPid());
+                                System.exit(0);
                             });
 
             // create alert dialog
@@ -935,19 +921,14 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // get access to the image view
         ImageView imageView = bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
         // define an action
-        imageView.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnClickListener(v -> (new Thread(new Runnable() {
             @Override
-            public void onClick(View v) {
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        toast(getStringSingle(R.string.toast_Reconnecting));
-                        stopBluetooth(false); // do NOT clear the activity queue
-                        reloadBluetooth(false); // no need to reload settings
-                    }
-                })).start();
+            public void run() {
+                toast(getStringSingle(R.string.toast_Reconnecting));
+                stopBluetooth(false); // do NOT clear the activity queue
+                reloadBluetooth(false); // no need to reload settings
             }
-        });
+        })).start());
     }
 
     private void showBluetoothState(final int btState) {
@@ -957,33 +938,29 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             if (view == null) return;
             final ImageView imageView = view.findViewById(R.id.animated_menu_item_action);
 
-            runOnUiThread(new Runnable() {
-                @SuppressLint("NewApi")
-                @Override
-                public void run() {
-                    // stop the animation if there is one running
-                    AnimationDrawable frameAnimation = null;
-                    if (imageView.getBackground() instanceof AnimationDrawable) {
-                        frameAnimation = (AnimationDrawable) imageView.getBackground();
-                        if (frameAnimation.isRunning())
-                            frameAnimation.stop();
-                    }
+            runOnUiThread(() -> {
+                // stop the animation if there is one running
+                AnimationDrawable frameAnimation = null;
+                if (imageView.getBackground() instanceof AnimationDrawable) {
+                    frameAnimation = (AnimationDrawable) imageView.getBackground();
+                    if (frameAnimation.isRunning())
+                        frameAnimation.stop();
+                }
 
-                    switch (btState) {
-                        case BLUETOOTH_DISCONNECTED:
-                            imageView.setBackgroundResource(R.drawable.bluetooth_none); // 21, white icon
-                            break;
-                        case BLUETOOTH_CONNECTED:
-                            imageView.setBackgroundResource(R.drawable.bluetooth_3); // 23, blue icon
-                            break;
-                        case BLUETOOTH_SEARCH:
-                                    imageView.setBackgroundResource(R.drawable.animation_bluetooth); // 22, animated blue icon
-                                    // AnimationDrawable frameAnimation = (AnimationDrawable) imageView.getBackground();
-                                    if (frameAnimation != null) frameAnimation.start();
-                            break;
-                        default:
-                            break;
-                    }
+                switch (btState) {
+                    case BLUETOOTH_DISCONNECTED:
+                        imageView.setBackgroundResource(R.drawable.bluetooth_none); // 21, white icon
+                        break;
+                    case BLUETOOTH_CONNECTED:
+                        imageView.setBackgroundResource(R.drawable.bluetooth_3); // 23, blue icon
+                        break;
+                    case BLUETOOTH_SEARCH:
+                                imageView.setBackgroundResource(R.drawable.animation_bluetooth); // 22, animated blue icon
+                                // AnimationDrawable frameAnimation = (AnimationDrawable) imageView.getBackground();
+                                if (frameAnimation != null) frameAnimation.start();
+                        break;
+                    default:
+                        break;
                 }
             });
         }
@@ -1001,35 +978,29 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 // toast(R.string.toast_WaitingSettings);
 
                 // display the spinner
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ProgressBar pb = null;
-                        if (viewPager.getCurrentItem() == 0) {
-                            pb = findViewById(R.id.progressBar_cyclic0);
-                        } else if (viewPager.getCurrentItem() == 1) {
-                            pb = findViewById(R.id.progressBar_cyclic1);
-                        } else if (viewPager.getCurrentItem() == 2) {
-                            pb = findViewById(R.id.progressBar_cyclic2);
-                        }
-                        if (pb != null) pb.setVisibility(View.VISIBLE);
+                runOnUiThread(() -> {
+                    ProgressBar pb = null;
+                    if (viewPager.getCurrentItem() == 0) {
+                        pb = findViewById(R.id.progressBar_cyclic0);
+                    } else if (viewPager.getCurrentItem() == 1) {
+                        pb = findViewById(R.id.progressBar_cyclic1);
+                    } else if (viewPager.getCurrentItem() == 2) {
+                        pb = findViewById(R.id.progressBar_cyclic2);
                     }
+                    if (pb != null) pb.setVisibility(View.VISIBLE);
                 });
 
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (device != null) {
-                            // stop the BT device
-                            device.stopAndJoin();
-                            device.clearFields();
-                            BluetoothManager.getInstance().disconnect();
-                        }
-
-                        // load the activity
-                        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                        startActivityForResult(intent, SETTINGS_ACTIVITY);
+                (new Thread(() -> {
+                    if (device != null) {
+                        // stop the BT device
+                        device.stopAndJoin();
+                        device.clearFields();
+                        BluetoothManager.getInstance().disconnect();
                     }
+
+                    // load the activity
+                    Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                    startActivityForResult(intent, SETTINGS_ACTIVITY);
                 })).start();
                 return true;
             }
@@ -1050,10 +1021,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         } else if (id == R.id.action_crash) {
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Force Crash",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            throw new RuntimeException("Test crash");
-                        }
+                    (dialog, which) -> {
+                        throw new RuntimeException("Test crash");
                     });
             alertDialog.show();
 

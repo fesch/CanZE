@@ -73,21 +73,13 @@ public class TwizyTestActivity extends CanzeActivity implements FieldListener, D
         setContentView(R.layout.activity_firmware);
 
         final Button btnCsvSave = findViewById(R.id.csvFirmware);
-        btnCsvSave.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doGetAllFirmware();
-            }
-        });
+        btnCsvSave.setOnClickListener(v -> doGetAllFirmware());
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                if (MainActivity.device != null) {
-                    // stop the poller thread
-                    // note tht for the ZE50, the gateway is now not triggered
-                    MainActivity.device.stopAndJoin();
-                }
+        new Thread(() -> {
+            if (MainActivity.device != null) {
+                // stop the poller thread
+                // note tht for the ZE50, the gateway is now not triggered
+                MainActivity.device.stopAndJoin();
             }
         }).start();
     }
@@ -106,46 +98,43 @@ public class TwizyTestActivity extends CanzeActivity implements FieldListener, D
             }
         }
 
-        queryThread = new StoppableThread(new Runnable() {
-            @Override
-            public void run() {
-                freezeOrientation();
-                Frame frame;
+        queryThread = new StoppableThread(() -> {
+            freezeOrientation();
+            Frame frame;
 
-                displayProgress(true, R.id.progressBar_cyclic3, R.id.csvFirmware);
-                // re-initialize the device
-                if (!MainActivity.device.initDevice(1)) {
-                    return;
-                }
-
-                Ecus.getInstance().load("Twizy/_Ecus.csv");
-                Frames.getInstance().load("Twizy/_Frames.csv");
-                Fields.getInstance().load("Twizy/_Fields.csv");
-
-                createDump();
-                ticker = Calendar.getInstance().getTimeInMillis();
-                log("ECU, Version Type, Version data");
-
-                if (MainActivity.isPh2()) {
-                    frame = getFrame(0x18daf1d2, "5003"); // open the gateway, as the poller is stopped
-                    queryFrame(frame);
-                }
-
-                for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
-                    // see if we need to stop right now
-                    if (((StoppableThread) Thread.currentThread()).isStopped()) return;
-                    if (ecu.getFromId() > 0 && (ecu.getFromId() < 0x800 || ecu.getFromId() >= 0x900)) {
-                        keepAlive();
-                        if (ecu.getSessionRequired()) {
-                            frame = getFrame(ecu.getFromId(), ecu.getStartDiag()); // open the ecu, as the poller is stopped
-                            queryFrame(frame);
-                        }
-                        processOneEcu(ecu, 0, 0, 0, 0);
-                     }
-                }
-                closeDump();
-                displayProgress(false, R.id.progressBar_cyclic3, R.id.csvFirmware);
+            displayProgress(true, R.id.progressBar_cyclic3, R.id.csvFirmware);
+            // re-initialize the device
+            if (!MainActivity.device.initDevice(1)) {
+                return;
             }
+
+            Ecus.getInstance().load("Twizy/_Ecus.csv");
+            Frames.getInstance().load("Twizy/_Frames.csv");
+            Fields.getInstance().load("Twizy/_Fields.csv");
+
+            createDump();
+            ticker = Calendar.getInstance().getTimeInMillis();
+            log("ECU, Version Type, Version data");
+
+            if (MainActivity.isPh2() && MainActivity.pokeSecureGateway) {
+                frame = getFrame(0x18daf1d2, "5003"); // open the gateway, as the poller is stopped
+                queryFrame(frame);
+            }
+
+            for (Ecu ecu : Ecus.getInstance().getAllEcus()) {
+                // see if we need to stop right now
+                if (((StoppableThread) Thread.currentThread()).isStopped()) return;
+                if (ecu.getFromId() > 0 && (ecu.getFromId() < 0x800 || ecu.getFromId() >= 0x900)) {
+                    keepAlive();
+                    if (ecu.getSessionRequired()) {
+                        frame = getFrame(ecu.getFromId(), ecu.getStartDiag()); // open the ecu, as the poller is stopped
+                        queryFrame(frame);
+                    }
+                    processOneEcu(ecu, 0, 0, 0, 0);
+                 }
+            }
+            closeDump();
+            displayProgress(false, R.id.progressBar_cyclic3, R.id.csvFirmware);
         });
         queryThread.start();
     }
@@ -254,13 +243,10 @@ public class TwizyTestActivity extends CanzeActivity implements FieldListener, D
             return;
         }
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                TextView tv = findViewById(id);
-                if (tv != null) {
-                    tv.setText(toDisplay);
-                }
+        runOnUiThread(() -> {
+            TextView tv = findViewById(id);
+            if (tv != null) {
+                tv.setText(toDisplay);
             }
         });
     }
@@ -330,7 +316,7 @@ public class TwizyTestActivity extends CanzeActivity implements FieldListener, D
     private void keepAlive() {
         if (!MainActivity.isPh2()) return; // quit ticker if no gateway and no session
         if (Calendar.getInstance().getTimeInMillis() < ticker) return; // then, quit if no timeout
-        if (MainActivity.isPh2()) {
+        if (MainActivity.isPh2() && MainActivity.pokeSecureGateway) {
             // open the gateway
             MainActivity.device.requestFrame(Frames.getInstance().getById(0x18daf1d2, "5003"));
         }
@@ -352,14 +338,11 @@ public class TwizyTestActivity extends CanzeActivity implements FieldListener, D
 
     private void displayProgress(final boolean on, final int id_spinner, final int id_button) {
         // remove progress spinners
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ProgressBar pb = findViewById(id_spinner);
-                if (pb != null){ pb.setVisibility(on ? View.VISIBLE : View.GONE);}
-                Button btn = findViewById(id_button);
-                if (btn != null){btn.setEnabled(!on);}
-            }
+        runOnUiThread(() -> {
+            ProgressBar pb = findViewById(id_spinner);
+            if (pb != null){ pb.setVisibility(on ? View.VISIBLE : View.GONE);}
+            Button btn = findViewById(id_button);
+            if (btn != null){btn.setEnabled(!on);}
         });
     }
 
