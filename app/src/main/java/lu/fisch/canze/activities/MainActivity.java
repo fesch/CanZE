@@ -71,6 +71,7 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.io.File;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
@@ -83,6 +84,7 @@ import lu.fisch.canze.classes.Activity;
 import lu.fisch.canze.classes.ActivityRegistry;
 import lu.fisch.canze.classes.DataLogger;
 import lu.fisch.canze.classes.DebugLogger;
+import lu.fisch.canze.classes.ForegroundCheckTask;
 import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.devices.CanSee;
 import lu.fisch.canze.devices.Device;
@@ -228,16 +230,34 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 // inform user
                 // setTitle(TAG + " - disconnected");
                 showBluetoothState(BLUETOOTH_DISCONNECTED);
-                if (!isFinishing())
+                if (!isFinishing()) {
                     toast(R.string.toast_BluetoothLost);
+                }
 
-                // try to reconnect
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        reloadBluetooth(false);
-                    }
-                })).start();
+                try {
+                    // check if application is in foreground
+                    // OR
+                    // we use background mode
+                    if (
+                            (new ForegroundCheckTask()).execute(context).get()==true
+                                    ||
+                                    bluetoothBackgroundMode==true
+                    ) {
+                        // try to reconnect
+                        (new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                reloadBluetooth(false);
+                            }
+                        })).start();
+                    } else toast("Not reloading bluetooth!");
+                } catch (ExecutionException e) {
+                    toast(e.getMessage());
+                } catch (InterruptedException e) {
+                    toast(e.getMessage());
+                }
+
+
                 //if (visible) onResume();
                 //}
             }

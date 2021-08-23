@@ -198,4 +198,10 @@ public class CanSee extends Device {
         lastInitProblem = "";
         return true;
     }
+
+    @Override
+    public void stopAndJoin() {
+        super.stopAndJoin();
+        BluetoothManager.getInstance().disconnect();
+    }
 }
