@@ -21,6 +21,8 @@
 
 package lu.fisch.canze.widgets;
 
+import static lu.fisch.canze.activities.MainActivity.debug;
+
 import android.content.res.Resources;
 import android.util.TypedValue;
 
@@ -267,13 +269,18 @@ public class Plotter extends Drawable {
             double lastY = Double.NaN;
             double min = Double.NaN;
             double max = Double.NaN;
+
+            if(values.size()>0)
+                min=values.get(0);
+            max=min;
+
             g.setColor(Color.RED);
             for(int i=0; i<values.size(); i++)
             {
                 // calculate min / max
-                if(values.get(i)<min || min==Double.NaN)
+                if(values.get(i)<min)
                     min=values.get(i);
-                if(values.get(i)>max || max==Double.NaN)
+                if(values.get(i)>max)
                     max=values.get(i);
 
                 try {
