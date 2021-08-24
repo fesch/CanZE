@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                                 reloadBluetooth(false);
                             }
                         })).start();
-                    } else toast("Not reloading bluetooth!");
+                    } else toast("CanZE is sleeping ...");
                 } catch (ExecutionException e) {
                     toast(e.getMessage());
                 } catch (InterruptedException e) {

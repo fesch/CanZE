@@ -312,12 +312,12 @@ public class Plotter extends Drawable {
                 int ty = getY();
                 int dy = g.stringHeight("Ip") + 4; // full height and undersling
 
-                String text = "min: "+min;
+                String text = "min: "+String.format("%.2f", min);
                 int tw = g.stringWidth(text);
                 ty += dy;
                 g.drawString(text, tx - tw, ty);
 
-                text = "max: "+max;
+                text = "max: "+String.format("%.2f", max);
                 tw = g.stringWidth(text);
                 ty += dy;
                 g.drawString(text, tx - tw, ty);
