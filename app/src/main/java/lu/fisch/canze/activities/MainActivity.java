@@ -67,7 +67,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
+//import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import java.io.File;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
