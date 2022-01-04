@@ -220,6 +220,7 @@
                 custom:text="@string/graph_ModuleTemperatures"
                 custom:titleColor="?android:attr/colorForeground"
                 custom:widget="plotter"
+                custom:showValue="false"
                 custom:intervals="{
                     '7bb.6104.32':10000,
                     '7bb.6104.56':10000,

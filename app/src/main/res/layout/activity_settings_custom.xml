@@ -16,12 +16,12 @@
         android:textStyle="bold" />
 
     <ListView
-        android:layout_width="match_parent"
         android:id="@+id/lstAll"
-        android:choiceMode="singleChoice"
-        android:listSelector="?attr/colorButtonNormal"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="0.5"
+        android:choiceMode="singleChoice"
+        android:listSelector="?attr/colorButtonNormal" />
 
     <TableLayout
         android:layout_width="match_parent"
@@ -83,7 +83,7 @@
         android:id="@+id/lstSelected"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:choiceMode="singleChoice"
         android:listSelector="?attr/colorButtonNormal" />
 </LinearLayout>

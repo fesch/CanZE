@@ -94,37 +94,31 @@ public class AllDataActivity extends CanzeActivity {
         spinnerEcu.setAdapter(arrayAdapter);
 
         final Button btnDiag = findViewById(R.id.allData);
-        btnDiag.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String mne = String.valueOf(spinnerEcu.getSelectedItem());
-                Ecu ecu = Ecus.getInstance().getByMnemonic(mne);
-                if (ecu != null) {
-                    dogetAllData(ecu);
-                } else {
-                    appendResult("Can't find ECU:" + mne);
-                }
+        btnDiag.setOnClickListener(v -> {
+            String mne = String.valueOf(spinnerEcu.getSelectedItem());
+            Ecu ecu = Ecus.getInstance().getByMnemonic(mne);
+            if (ecu != null) {
+                dogetAllData(ecu);
+            } else {
+                appendResult("Can't find ECU:" + mne);
             }
         });
 
         setDoRestartQueueOnResume(false);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                displayProgressSpinner(true, R.id.progressBar_cyclic);
-                //appendResult(R.string.message_PollerStopping);
-                if (MainActivity.device != null) {
-                    // stop the poller thread
-                    MainActivity.device.stopAndJoin();
-                }
-
-                if (!BluetoothManager.getInstance().isConnected()) {
-                    appendResult(R.string.message_NoConnection);
-                    //} else {
-                    //    appendResult(MainActivity.getStringSingle(R.string.message_Ready));
-                }
-                displayProgressSpinner(false, R.id.progressBar_cyclic);
+        new Thread(() -> {
+            displayProgressSpinner(true, R.id.progressBar_cyclic);
+            //appendResult(R.string.message_PollerStopping);
+            if (MainActivity.device != null) {
+                // stop the poller thread
+                MainActivity.device.stopAndJoin();
             }
+
+            if (!BluetoothManager.getInstance().isConnected()) {
+                appendResult(R.string.message_NoConnection);
+                //} else {
+                //    appendResult(MainActivity.getStringSingle(R.string.message_Ready));
+            }
+            displayProgressSpinner(false, R.id.progressBar_cyclic);
         }).start();
     }
 
@@ -138,7 +132,7 @@ public class AllDataActivity extends CanzeActivity {
     private void testerKeepalive(Ecu ecu) {
         if (!ecu.getSessionRequired() && !MainActivity.isPh2()) return; // quit ticker if no gateway and no session
         if (Calendar.getInstance().getTimeInMillis() < ticker) return; // then, quit if no timeout
-        if (MainActivity.isPh2()) {
+        if (MainActivity.isPh2() && MainActivity.pokeSecureGateway) {
             // open the gateway
             MainActivity.device.requestFrame(Frames.getInstance().getById(0x18daf1d2, "5003"));
         }
@@ -190,102 +184,94 @@ public class AllDataActivity extends CanzeActivity {
             }
         }
 
-        queryThread = new StoppableThread(new Runnable() {
-            @Override
-            public void run() {
+        queryThread = new StoppableThread(() -> {
 
-                // Stop responding to rotation
-                freezeOrientation();
-                // clear the screen
-                clearResult();
-                displayProgressSpinner(true, R.id.progressBar_cyclic);
-                appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")");
+            // Stop responding to rotation
+            freezeOrientation();
+            // clear the screen
+            clearResult();
+            displayProgressSpinner(true, R.id.progressBar_cyclic);
+            appendResult("Query " + ecu.getName() + " (renault ID:" + ecu.getRenaultId() + ")");
 
-                // here initialize this particular ECU diagnostics fields
-                try {
-                    Frames.getInstance().load(ecu);
-                    Fields.getInstance().load( MainActivity.getAssetPrefix() + ecu.getMnemonic() + "_Fields.csv");
-                } catch (Exception e) {
-                    appendResult(R.string.message_NoEcuDefinition);
-                    // Reload the default frame & timings
-                    Frames.getInstance().load();
-                    Fields.getInstance().load();
-                    // Don't care about DTC's and tests
-                    return;
-                }
+            // here initialize this particular ECU diagnostics fields
+            try {
+                Frames.getInstance().load(ecu);
+                Fields.getInstance().load( MainActivity.getAssetPrefix() + ecu.getMnemonic() + "_Fields.csv");
+            } catch (Exception e) {
+                appendResult(R.string.message_NoEcuDefinition);
+                // Reload the default frame & timings
+                Frames.getInstance().load();
+                Fields.getInstance().load();
+                // Don't care about DTC's and tests
+                return;
+            }
 
-                // re-initialize the device
-                appendResult(R.string.message_SendingInit);
+            // re-initialize the device
+            appendResult(R.string.message_SendingInit);
 
-                // re-initialize the device
-                if (!MainActivity.device.initDevice(1)) {
-                    appendResult(R.string.message_InitFailed);
-                    displayProgressSpinner(false, R.id.progressBar_cyclic);
-                    return;
-                }
+            // re-initialize the device
+            if (!MainActivity.device.initDevice(1)) {
+                appendResult(R.string.message_InitFailed);
+                displayProgressSpinner(false, R.id.progressBar_cyclic);
+                return;
+            }
 
-                createDump(ecu);
-                testerInit(ecu);
+            createDump(ecu);
+            testerInit(ecu);
 
-                // for (Frame frame : Frames.getInstance().getAllFrames()) {    <<< this is not thread-safe!
-                for (int i = 0; i < Frames.getInstance().getAllFrames().size(); i++) {
-                    // see if we need to stop right now
-                    if (((StoppableThread) Thread.currentThread()).isStopped()) return;
+            // for (Frame frame : Frames.getInstance().getAllFrames()) {    <<< this is not thread-safe!
+            for (int i = 0; i < Frames.getInstance().getAllFrames().size(); i++) {
+                // see if we need to stop right now
+                if (((StoppableThread) Thread.currentThread()).isStopped()) return;
 
-                    Frame frame = Frames.getInstance().get(i);
-                    if (frame.getResponseId() != null && !frame.getResponseId().startsWith("5")) { // ship dtc commands and mode controls
+                Frame frame = Frames.getInstance().get(i);
+                if (frame.getResponseId() != null && !frame.getResponseId().startsWith("5")) { // ship dtc commands and mode controls
 
-                        testerKeepalive(ecu); // may need to set a keepalive/session
+                    testerKeepalive(ecu); // may need to set a keepalive/session
 
-                        if (frame.getContainingFrame() != null || ecu.getFromId() == 0x801) { // only use subframes and free frames
+                    if (frame.getContainingFrame() != null || ecu.getFromId() == 0x801) { // only use subframes and free frames
 
-                            // query the Frame
-                            Message message = MainActivity.device.requestFrame(frame);
-                            if (!message.isError()) { // isError is also true when a 7f is returned
-                                // process the frame by going through all the contained fields
-                                // setting their values and notifying all listeners (there should be none)
-                                message.onMessageCompleteEvent();
-                                // output all the contained fields
-                                for (Field field : frame.getAllFields()) {
-                                    appendResultBuffered(field.getDebugValue());
-                                }
+                        // query the Frame
+                        Message message = MainActivity.device.requestFrame(frame);
+                        if (!message.isError()) { // isError is also true when a 7f is returned
+                            // process the frame by going through all the contained fields
+                            // setting their values and notifying all listeners (there should be none)
+                            message.onMessageCompleteEvent();
+                            // output all the contained fields
+                            for (Field field : frame.getAllFields()) {
+                                appendResultBuffered(field.getDebugValue());
+                            }
 
-                            } else {
-                                // for readability output all contained fields, but instead of the field value state the frame error
-                                for (Field field : frame.getAllFields()) {
-                                    appendResultBuffered(field.getDebugValue(message.getError()));
-                                }
-                                if (!message.isError7f()) { // it makes no sense to re-initialize the device if a 7f is returned
-                                    if (!MainActivity.device.initDevice(1)) {
-                                        appendResultBuffered(MainActivity.getStringSingle(R.string.message_InitFailed));
-                                        break;
-                                    }
+                        } else {
+                            // for readability output all contained fields, but instead of the field value state the frame error
+                            for (Field field : frame.getAllFields()) {
+                                appendResultBuffered(field.getDebugValue(message.getError()));
+                            }
+                            if (!message.isError7f()) { // it makes no sense to re-initialize the device if a 7f is returned
+                                if (!MainActivity.device.initDevice(1)) {
+                                    appendResultBuffered(MainActivity.getStringSingle(R.string.message_InitFailed));
+                                    break;
                                 }
                             }
                         }
                     }
                 }
-                appendResultBuffered(""); // empty buffer
-                closeDump();
-                if (!isFinishing())
-                    MainActivity.toast(MainActivity.TOAST_NONE, R.string.message_DumpDone);
-                displayProgressSpinner(false, R.id.progressBar_cyclic);
-                // allow rotation again
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-
             }
+            appendResultBuffered(""); // empty buffer
+            closeDump();
+            if (!isFinishing())
+                MainActivity.toast(MainActivity.TOAST_NONE, R.string.message_DumpDone);
+            displayProgressSpinner(false, R.id.progressBar_cyclic);
+            // allow rotation again
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+
         });
         queryThread.start();
     }
 
     // Ensure all UI updates are done on the UiThread
     private void clearResult() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                textView.setText("");
-            }
-        });
+        runOnUiThread(() -> textView.setText(""));
     }
 
     private void appendResultBuffered (String str) {
@@ -304,12 +290,7 @@ public class AllDataActivity extends CanzeActivity {
     private void appendResult(String str) {
         if (dumpInProgress) log(str);
         final String localStr = str;
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                textView.append(localStr);
-            }
-        });
+        runOnUiThread(() -> textView.append(localStr));
     }
 
     private void appendResult(int strResource) {
@@ -397,12 +378,9 @@ public class AllDataActivity extends CanzeActivity {
 
     private void displayProgressSpinner(final boolean on, final int id) {
         // remove progress spinners
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ProgressBar pb = findViewById(id);
-                if (pb != null) pb.setVisibility(on ? View.VISIBLE : View.GONE);
-            }
+        runOnUiThread(() -> {
+            ProgressBar pb = findViewById(id);
+            if (pb != null) pb.setVisibility(on ? View.VISIBLE : View.GONE);
         });
     }
 

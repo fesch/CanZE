@@ -727,4 +727,10 @@ public class ELM327 extends Device {
         else
             return new Message(frame, hexData.toLowerCase(), false);
     }
+
+    @Override
+    public void stopAndJoin() {
+        super.stopAndJoin();
+        BluetoothManager.getInstance().disconnect();
+    }
 }
