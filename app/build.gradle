@@ -11,12 +11,12 @@ android {
             keyPassword 'canze4us!'
         }
     }
-    compileSdkVersion 29
+    compileSdkVersion 30
     //buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "lu.fisch.canze"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionName '1.62'
         versionCode 94
     }
@@ -40,17 +40,15 @@ android {
             dimension "edition"
         }
     }
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+        disable 'TypographyFractions'
+    }
     defaultConfig {
         buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "String", "BRANCH", "\"" + getGitRevParseInfo() + "\""
         signingConfig signingConfigs.release
-    }
-    lintOptions {
-        checkReleaseBuilds false
-        // Or, if you prefer, you can continue to check for errors in release builds,
-        // but continue the build even when errors are found:
-        abortOnError false
-        disable 'TypographyFractions'
     }
 }
 
