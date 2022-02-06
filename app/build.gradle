@@ -11,12 +11,16 @@ android {
             keyPassword 'canze4us!'
         }
     }
-    compileSdkVersion 30
+    compileOptions {
+        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+    }
+    compileSdkVersion 31
     //buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "lu.fisch.canze"
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdkVersion 23
+        targetSdkVersion 31
         versionName '1.62'
         versionCode 94
     }
@@ -73,4 +77,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.preference:preference:1.1.1'
+    implementation "androidx.car.app:app:1.0.0-beta01"
 }
