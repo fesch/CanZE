@@ -127,6 +127,8 @@
 
     </TableLayout>
 
+    <!-- debug line -->
+
     <lu.fisch.canze.widgets.WidgetView
         android:layout_width="fill_parent"
         android:layout_height="0dip"
@@ -137,6 +139,8 @@
         android:layout_weight="0.3"
         android:width="0dp"
 
+        custom:axisMaxY="15"
+        custom:axisMinY="9"
         custom:backgroundColor="?android:attr/colorBackground"
         custom:colorRanges="[
                     {'sid':'7ec.622005.24','color':'#5050ff','from':9,'to':12},
@@ -154,8 +158,6 @@
         custom:fieldSID="7ec.622005.24,35c.5"
         custom:foregroundColor="?android:attr/colorForeground"
         custom:majorTicks="1"
-        custom:axisMaxY="15"
-        custom:axisMinY="9"
         custom:minorTicks="1"
         custom:options="{
                      '7ec.622005.24':'gradient',
@@ -164,7 +166,6 @@
         custom:text="Voltage, Vehicle state"
         custom:timeScale="4"
         custom:widget="timeplot" />
-    <!-- debug line -->
 
     <LinearLayout
         android:layout_width="wrap_content"

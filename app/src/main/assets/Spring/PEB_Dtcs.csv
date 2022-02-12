@@ -1,0 +1,71 @@
+1000,PEB Ctrl Board
+1001,PEB Ctrl Board ADC
+1002,PEB Ctrl Board ATIC81
+1003,PEB Ctrl Board microprocessor
+1004,Internal voltage sensor on HV side
+1006,Interlock electrical circuit
+1007,PEB HV DC link discharge failure
+1009,14V supply wire (KL30)
+100A,DCDC internal Power module Temp sensor
+100B,DCDC internal Driver Board Temp sensor
+100C,DCDC current sensor LV side
+100D,DCDC Sigma delta voltage sensor 14V side
+100E,DCDC internal MOS+drivers
+100F,DCDC internal FPGA_CPLD component
+1010,14V_DCDC wire
+1011,HV_DCDC wire
+1012,DCDC Temp
+1013,INV internal temp sensor
+1014,INV phase U internal current sensor
+1015,INV phase V internal current sensor
+1016,INV phase W internal current sensor
+1018,INV internal FPGA_CPLD component
+1019,HV_Inverter wire
+101A,INV_EM Iphase
+101B,INV_EM Phase U wire
+101C,INV_EM Phase V wire
+101D,INV_EM Phase W wire
+101E,INV+EXCIT Temp
+101F,EXCIT Temp sensor
+1020,EXCIT +current  sensor
+1021,EXCIT -current  sensor
+1023,EM Iexcit signal
+1024,APC by wire
+1025,EM_SIN signal
+1026,EM_COS signal
+1027,EM_SIN_COS signals
+1028,EM position sensor Supply signal
+1029,Excitation current sensors
+102A,EM_TEMP signal
+102B,EMR Interlock electrical circuit
+102C,EM Temp
+102E,Spiderbox Interlock electrical circuit
+102F,Excitation Interlock electrical circuit
+1031,Switch power test procedure
+1032,Software parametrization
+1033,DCDC Trafo temp sensor
+1034,DCDC Power Supply
+1036,Program flow
+1037,DCDC Failure Class C
+1038,Inverter+ Excitation Failure Class C
+1039,PEB Failure Class C
+103A,Inverter Power Supply
+103E,DCDC ADC voltage sensor 14V side
+1040,DCDC voltage sensors 14V side
+1041,Writing of rotor resistance
+1042,Writing of the position sensor
+1043,OV flags Data Received by CAN
+1044,Torque request deviation
+D000,CAN communication
+D001,Communication with EVC
+D002,Torque request from EVC
+D004,Communication with LBC
+D003,14V Data from USM
+1045,Incoherent requests from EVC
+D005,Communication in charge mode
+1046,EM positive overspeed
+1047,EM negative overspeed
+1048,Wrong direction of the wheels
+1049,PWM signal
+1050,CPLD reprogramming
+1052,PEB Failure Class B with safety alert

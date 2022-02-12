@@ -136,6 +136,7 @@
                     android:layout_height="match_parent">
 
                     <Button
+                        android:id="@+id/buttonDashSummary"
                         style="?android:attr/button"
                         android:layout_width="0dp"
                         android:layout_height="fill_parent"
@@ -145,7 +146,8 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
-                        android:visibility="invisible" />
+                        android:drawableStart="@drawable/button_dash"
+                        android:text="Summary" />
 
                     <Button
                         android:id="@+id/buttonSpeed"

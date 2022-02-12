@@ -1,0 +1,14 @@
+D000,CAN bus fault (EPS mute)
+C100,CAN Engine Status fault
+5605,EPS fault - Angle sensor
+5608,EPS fault - ECU
+5606,EPS fault - Motor
+5604,EPS fault - Torque Sensor
+5614,EPS Thermal Protection
+5613,IGNITION signal fault
+5612,No Angle calibration
+F003,Battery voltage fault
+C129,CAN ABS Absent fault
+C418,CAN ABS Invalid data fault
+D001,CAN wheelspeed fault
+5603,EPS fault - Adaptative straight ahead offset

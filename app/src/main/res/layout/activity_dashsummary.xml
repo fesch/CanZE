@@ -1,0 +1,140 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="lu.fisch.canze.activities.DashSummaryActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Summary Status"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+                <TextView
+                    android:layout_weight="0.7"
+                    android:width="0dp"
+                    android:text="@string/label_UserSOC" />
+
+                <TextView
+                    android:id="@+id/textUserSOC"
+                    android:layout_weight="0.3"
+                    android:width="0dp"
+                    android:gravity="end"
+                    android:text="@string/default_Dash" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_weight="0.7"
+                    android:width="0dp"
+                    android:text="@string/label_AvEner" />
+                <TextView
+                    android:id="@+id/textAvEner"
+                    android:layout_weight="0.3"
+                    android:width="0dp"
+                    android:gravity="end"
+                    android:text="@string/default_Dash" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:layout_weight="0.7"
+                    android:width="0dp"
+                    android:text="@string/label_SOH" />
+
+                <TextView
+                    android:id="@+id/textSOH"
+                    android:layout_weight="0.3"
+                    android:width="0dp"
+                    android:gravity="end"
+                    android:text="@string/default_Dash" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_weight="0.7"
+                    android:width="0dp"
+                    android:text="@string/label_Range" />
+
+                <TextView
+                    android:id="@+id/textKMA"
+                    android:layout_weight="0.3"
+                    android:width="0dp"
+                    android:gravity="end"
+                    android:text="@string/default_Dash" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_weight="0.7"
+                    android:width="0dp"
+                    android:text="@string/label_HvTemp" />
+                <TextView
+                    android:id="@+id/textHvTemp"
+                    android:layout_weight="0.3"
+                    android:width="0dp"
+                    android:gravity="end"
+                    android:text="@string/default_Dash" />
+            </TableRow>
+
+
+            <TableRow>
+                <TextView
+                    android:layout_weight="0.7"
+                    android:width="0dp"
+                    android:text="@string/label_InstantConsumption" />
+                <TextView
+                    android:id="@+id/text_instant_consumption"
+                    android:layout_weight="0.3"
+                    android:width="0dp"
+                    android:gravity="end"
+                    android:text="@string/default_Dash" />
+            </TableRow>
+
+
+
+        </TableLayout>
+
+
+    </LinearLayout>
+
+    <!-- debug line -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_debug" />
+
+        <TextView
+            android:id="@+id/textDebug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/default_debug" />
+
+    </LinearLayout>
+
+</LinearLayout>

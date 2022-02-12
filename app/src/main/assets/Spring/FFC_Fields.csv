@@ -1,0 +1,379 @@
+# SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
+#
+# FFC is not displayed in the DTC activity so doe not require Tests and Dtcs
+# Other than the ISO-TP based fields, FCC needs to have it's frames defined
+# Source: X10 CAN_V v4.0 officiel 01072011 65610-2011-173.xls
+#
+,023,0,15,1,0,0,,,,ff,AIRBAGCrash
+,0c6,0,15,1,32768,1,°,,,ff,Steering Position
+,0c6,16,31,1,32768,1,°/s,,,ff,Steering Acceleration
+,0c6,32,47,1,32768,1,°,,,ff,SteeringWheelAngle_Offset
+,0c6,48,50,1,0,0,,,,ff,SwaSensorInternalStatus
+,0c6,51,54,1,0,0,,,,ff,SwaClock
+,0c6,56,63,1,0,0,,,,ff,SwaChecksum
+,12e,0,7,1,198,0,,,,ff,LongitudinalAccelerationProc
+,12e,8,23,1,32768,0,,,,ff,TransversalAcceleration
+,12e,24,35,0.1,2047,1,deg/s,,,ff,Yaw rate
+,130,8,10,1,0,0,,,,ff,UBP_Clock
+,130,11,12,1,0,0,,,,ff,HBB_Malfunction
+,130,16,17,1,0,0,,,,ff,EB_Malfunction
+,130,18,19,1,0,0,,,,ff,EB_inProgress
+,130,20,31,1,4094,0,Nm,,,ff,ElecBrakeWheelsTorqueRequest
+,130,32,38,1,0,0,%,,,ff,BrakePedalDriverWill
+,130,40,41,1,0,0,,,,ff,HBA_ActivationRequest
+,130,42,43,1,0,0,,,,ff,PressureBuildUp
+,130,44,55,-3,4094,0,Nm,,,ff,DriverBrakeWheelTq_Req 
+,130,56,63,1,0,0,,,,ff,CheckSum_UBP
+,17a,24,27,1,0,0,,,,ff,Transmission Range
+,17a,48,63,0.5,12800,1,Nm,,,ff,Estimated Wheel Torque
+,17e,40,41,1,0,0,,,,ff,CrankingAuthorisation_AT
+,17e,48,51,1,0,0,,,,ff,GearLeverPosition
+,186,0,15,0.125,0,2,rpm,,,ff,Engine RPM
+,186,16,27,0.5,800,1,Nm,,,ff,MeanEffectiveTorque
+,186,28,39,0.5,800,0,Nm,,,ff,RequestedTorqueAfterProc
+,186,40,49,0.125,0,1,%,,,ff,Throttle
+,186,50,50,1,0,0,,,,ff,ASR_MSRAcknowledgement
+,186,51,52,1,0,0,,,,ff,ECM_TorqueRequestStatus
+,18a,16,25,0.125,0,2,%,,,ff,Throttle
+,18a,27,38,0.5,800,1,Nm,,,ff,Coasting Torque
+,1f6,0,1,1,0,0,,,,ff,Engine Fan Speed
+,1f6,3,7,100,0,0,W,,,ff,Max Electrical Power Allowed
+,1f6,8,9,1,0,0,,,,ff,ElectricalPowerCutFreeze
+,1f6,10,11,1,0,0,,,,ff,EngineStatus_R
+,1f6,12,15,1,0,0,,,,ff,EngineStopRequestOrigine
+,1f6,16,17,1,0,0,,,,ff,CrankingAuthorization_ECM
+,1f6,19,20,1,0,1,,,,ff,Brake Pedal
+,1f6,23,31,0.1,0,1,bar,,,ff,AC High Pressure Sensor
+,1f8,0,7,1,0,0,,,,ff,Checksum EVC
+,1f8,12,13,1,0,0,,,,ff,EVCReadyAsActuator
+,1f8,16,27,1,4096,0,Nm,,,ff,TotalPotentialResistiveWheelsTorque
+,1f8,28,39,-1,4096,0,Nm,,,ff,ElecBrakeWheelsTorqueApplied
+,1f8,40,50,10,0,0,Rpm,,,ff,ElecEngineRPM
+,1f8,52,54,1,0,0,,,,ff,EVC_Clock
+,1f8,56,58,1,0,0,,,,ff,GearRangeEngagedCurrent
+,1f8,62,63,1,0,0,,,,ff,DeclutchInProgress
+,1fd,0,7,0.390625,0,1,%,,,ff,14V Battery Current?
+,1fd,8,9,1,0,0,,,,ff,SCH Refuse to Sleep
+,1fd,17,18,1,0,0,,,,ff,Stop Preheating Counter
+,1fd,19,20,1,0,0,,,,ff,Start Preheating Counter
+,1fd,21,31,1,0,0,min,,,ff,Time left before vehicle wakeup
+,1fd,32,32,1,0,0,,,,ff,Pre heating activation
+,1fd,33,39,1,0,0,min,,,ff,LeftTimeToScheduledTime
+,1fd,40,47,25,0,0,W,,,ff,Climate Available Power
+,1fd,48,55,1,80,0,kW,,,ff,Consumption
+,212,8,9,1,0,0,,,,ff,Starter Status
+,212,10,11,1,0,0,,,,ff,Rear Gear Engaged
+,242,0,0,1,0,0,,,,ff,ABS in Regulation
+,242,1,1,1,0,0,,,,ff,ABS Malfunction
+,242,2,2,1,0,0,,,,ff,ASR in Regulation
+,242,3,3,1,0,0,,,,ff,ASR Malfunction
+,242,5,5,1,0,0,,,,ff,AYC in Regulation
+,242,6,6,1,0,0,,,,ff,AYC Malfunction
+,242,7,7,1,0,0,,,,ff,MSR in Regulation
+,242,8,8,1,0,0,,,,ff,MSR Malfunction
+,242,9,12,1,0,0,,,,ff,ESP Clock
+,242,13,15,1,0,0,,,,ff,ESP Torque Control Type
+,242,16,27,0.5,800,1,Nm,,,ff,ASR Dynamic Torque Request
+,242,28,39,0.5,800,1,Nm,,,ff,ASR Static Torque Request
+,242,40,51,0.5,800,1,Nm,,,ff,MSR Torque Request
+,29a,0,15,0.0416666666666667,0,2,rpm,,,ff,Rpm Front Right
+,29a,16,31,0.0416666666666667,0,2,rpm,,,ff,Rpm Front Left
+,29a,32,47,0.01,0,2,km/h,,,ff,Vehicle Speed
+,29a,52,55,1,0,0,,,,ff,Vehicle Speed Clock
+,29a,56,63,1,0,0,,,,ff,Vehicle Speed Checksum
+,29c,0,15,0.0416666666666667,0,2,rpm,,,ff,Rpm Rear Right
+,29c,16,31,0.0416666666666667,0,2,rpm,,,ff,Rpm Rear Left
+,29c,48,63,0.01,0,2,km/h,,,ff,Vehicle Speed
+,2b7,32,33,1,0,0,,,,ff,EBD Active
+,2b7,34,35,1,0,0,,,,ff,HBA Active
+,2b7,36,37,1,0,0,,,,ff,ESC HBB Malfunction
+,352,0,1,1,0,0,,,,ff,ABS Warning Request
+,352,2,3,1,0,0,,,,ff,ESP Stop Lamp Request
+,352,24,31,1,0,0,,,,ff,Brake pressure
+,35c,0,1,1,0,0,,,,ff,BCM Wake Up Sleep Command
+,35c,4,4,1,0,0,,,,ff,Wake Up Type
+,35c,5,7,1,0,0,,,,ff,Vehicle State
+,35c,8,8,1,0,0,,,,ff,Diag Mux On BCM
+,35c,9,10,1,0,0,,,,ff,Starting Mode BCM R
+,35c,11,11,1,0,0,,,,ff,Engine Stop Driver Requested
+,35c,12,12,1,0,0,,,,ff,Switch Off SES Disturbers
+,35c,15,15,1,0,0,,,,ff,Delivery Mode Information
+,35c,16,39,1,0,0,min,,,ff,Absolute Time Since 1rst Ignition
+,35c,40,42,1,0,0,,,,ff,Brake Info Status
+,35c,47,47,1,0,0,,,,ff,ProbableCustomer Feed Back Need
+,35c,48,51,1,0,0,,,,ff,Emergency Engine Stop
+,35c,52,52,1,0,0,,,,ff,Welcome Phase State
+,35c,53,54,1,0,0,,,,ff,Supposed Customer Departure
+,35c,55,55,1,0,0,,,,ff,VehicleOutside Locked State
+,35c,58,59,1,0,0,,,,ff,Generic Applicative Diag Enable
+,35c,60,61,1,0,0,,,,ff,Parking Brake Status
+,391,15,15,1,0,0,,,,e2,Climate Cooling Select
+,391,16,16,1,0,0,,,,e2,Blower State
+,391,22,22,1,0,0,,,,e2,ACVbat Tempo Maintain
+,391,28,28,1,0,0,,,,e2,Rear Defrost Request
+,391,32,33,1,0,0,,,,e2,Clim Customer Action
+,391,36,39,1,0,0,,,,e2,PTC Number Thermal Request
+,3b7,17,25,1,0,0,day,,,ff,Time Before Draining
+,3b7,32,38,1,0,0,,,,ff,Global Eco Score
+,3f7,0,4,1,0,0,,,,e2,Range
+,3f7,10,10,1,0,0,,,,e2,AT Open Door Warning
+,3f7,11,11,1,0,0,,,,e2,AT Press Brake Pedal Request
+,3f7,12,12,1,0,0,,,,e2,AT Gear Shift Refused
+,427,0,1,1,0,0,,,,ff,HV Connection Status
+,427,2,3,1,0,0,,,,ff,Charging Alert
+,427,4,5,1,0,0,,,,ff,HV Battery Locked
+,427,26,28,1,0,0,,,,ff,Pre Heating Progress
+,427,40,47,0.3,0,0,kW,,,e2,Available Charging Power
+,427,49,57,0.1,0,1,kWh,,,e2,Available Energy
+,427,58,58,1,0,0,,,,e2,Charge Available
+,42a,0,0,1,0,0,,,,e2,PreHeating Request
+,42a,6,15,0.1,40,1,°C,,,e2,Evaporator Temp Set Point
+,42a,24,29,1,0,0,%,,,e2,Clim Air Flow
+,42a,30,39,0.1,40,1,°C,,,ff,Evaporator Temp Measure
+,42a,48,50,1,0,0,,,,e2,Clim Loop Mode
+,42a,51,52,1,0,0,,,,e2,PTC Activation Request
+,42a,56,60,5,0,0,%,,,e2,Engine Fan Speed Request PWM
+,42e,0,12,0.02,0,2,%,,,e3,State of Charge
+,42e,18,19,1,0,0,,,,ff,HV Bat Level2 Failure
+,42e,20,24,5,0,0,%,,,e2,Engine Fan Speed
+,42e,25,34,0.5,0,0,V,,,ff,HV Network Voltage
+,42e,38,43,1,0,1,A,,,e3,Charging Pilot Current
+,42e,44,50,1,40,0,°C,,,e3,HV Battery Temp
+,42e,56,63,0.3,0,1,kW,,,ff,Charging Power
+,430,0,9,10,0,0,rpm,,,e2,Clim Compressor Speed RPM Request 
+,430,16,22,1,0,0,%,,,e2,High Voltage PTC Request PWM
+,430,24,33,0.5,30,1,°C,,,e2,Comp Temperature Discharge
+,430,34,35,1,0,0,,,,e2,DeIcing Request
+,430,36,37,1,0,0,,,,e2,Clim Panel PC Activation Request
+,430,38,39,1,0,0,,,,e2,HV Battery Cooling State
+,430,40,49,0.1,40,1,°C,,,e2,HV Battery Evaporator Temp
+,430,50,59,0.1,40,1,°C,,,e2,HV Battery Evaporator Setpoint
+,432,0,1,1,0,0,,,,e2,Bat VE Shut Down Alert
+,432,2,3,1,0,0,,,,e2,Immediate Preheating Authorization Status
+,432,4,5,1,0,0,,,,e2,HV Battery Level Alert
+,432,6,9,1,0,0,,,,e2,HVBatCondPriorityLevel
+,432,10,19,10,0,0,rpm,,,e2,Clim Comp RPM Status
+,432,20,22,1,0,0,,,,e2,Clim Comp Default Status
+,432,26,28,1,0,0,,,,e2,PTC Default Status
+,432,29,35,1,40,0,°C,,,e2,HV Batt Cond Temp Average
+,432,36,37,1,0,0,,,,e2,HV Bat Conditionning Mode
+,432,40,41,1,0,0,,,,e2,Eco Mode Request
+,432,42,48,100,0,0,Wh,,,e2,Climate Available Energy
+,432,56,57,1,0,0,,,,e2,Low Voltage Unballast Request
+,432,59,60,1,0,0,,,,e2,DeIcing Authorisation
+,433,0,2,1,0,0,,,,e2,AQM Frag Select Request
+,433,7,8,1,0,0,,,,e2,AQM Ioniser Mode Selection Req
+,433,9,12,1,0,0,,,,e2,AQM Frag Intensity Request
+,433,15,16,1,0,0,,,,e2,Clim AQS Activation Request
+,433,28,29,1,0,0,,,,e2,Ioniser Auto Launch Request
+,4f8,0,1,-1,-2,0,,,,ff,Start
+,4f8,4,5,-1,-2,0,,,,ff,Parking Brake
+,4f8,8,9,1,0,0,,,,ff,AIRBAG Malfunction Lamp State
+,4f8,12,12,1,0,0,,,,ff,Cluster Driven Lamps Auto Check
+,4f8,13,13,1,0,0,,,,ff,Displayed Speed Unit
+,4f8,24,39,0.01,0,2,,,,ff,Speed on Display
+,534,32,40,1,40,0,°C,,,5,Temp out
+,5d7,0,15,0.01,0,2,km/h,,,ff,Speed
+,5d7,16,43,0.01,0,2,km,,,ff,Odometer
+,5d7,50,54,0.04,0,2,cm,,,ff,Fine distance
+,5da,0,7,1,40,0,ºC,,,5,Water temperature
+,5de,1,1,1,0,0,,,,ff,Right Indicator
+,5de,2,2,1,0,0,,,,ff,Left Indicator
+,5de,3,3,1,0,0,,,,ff,Rear Fog Light
+,5de,5,5,1,0,0,,,,ff,Park Light
+,5de,6,6,1,0,0,,,,ff,Head Light
+,5de,7,7,1,0,0,,,,ff,Beam Light
+,5de,8,9,1,0,0,,,,ff,Position Lights Omission Warning
+,5de,10,10,1,0,0,,,,ff,ALS malfunction
+,5de,11,12,1,0,0,,,,ff,Door Front Left
+,5de,13,14,1,0,0,,,,ff,Door Front Right
+,5de,16,17,1,0,0,,,,ff,Door Rear Left
+,5de,18,19,1,0,0,,,,ff,Door Rear Right
+,5de,21,22,1,0,0,,,,ff,Steering Lock Failure
+,5de,23,23,1,0,0,,,,ff,Unlocking Steering Column Warning
+,5de,24,24,1,0,0,,,,ff,Automatic Lock Up Activation State
+,5de,25,25,1,0,0,,,,ff,Badge Battery Low
+,5de,28,29,1,0,0,,,,ff,Trip Display Scrolling Request
+,5de,32,35,1,0,0,,,,ff,Smart Keyless Information Display
+,5de,36,36,1,0,0,,,,ff,Keyless Info Reemission Request
+,5de,37,37,1,0,0,,,,ff,Keyless Card Reader Failure Display
+,5de,47,47,1,0,0,,,,ff,Brake Switch Fault Display
+,5de,49,49,1,0,0,,,,ff,Stop Lamp Failure Display
+,5de,56,57,1,0,0,,,,ff,Rear Wiper Status
+,5de,58,59,1,0,0,,,,ff,Boot Open Warning
+,5e9,0,0,1,0,0,,,,ff,UPAFailureDisplayRequest
+,5e9,9,11,1,0,0,,,,ff,FrontParkAssistVolState
+,5e9,12,12,1,0,0,,,,ff,RearParkAssistState
+,5e9,28,31,1,0,0,,,,ff,RearLeftObstacleZone
+,5e9,32,35,1,0,0,,,,ff,RearCenterObstacleZone
+,5e9,36,39,1,0,0,,,,ff,RearRightObstacleZone
+,5e9,40,42,1,0,0,,,,ff,UPAMode
+,5e9,48,48,1,0,0,,,,ff,UPA_SoundRecurrenceType
+,5e9,49,55,10,0,1,Hz,,,ff,UPA_SoundRecurrencePeriod
+,5e9,56,58,1,0,0,,,,ff,UPA_SoundObstacleZone
+,5e9,59,59,1,0,0,,,,ff,UPA_SoundActivationBeep
+,5e9,60,60,1,0,0,,,,ff,UPA_SoundErrorBeep
+,5e9,61,62,1,0,0,,,,ff,UPA_SoundUseContext
+,5ee,0,0,1,0,0,,,,ff,Parking Light
+,5ee,1,1,1,0,0,,,,ff,Head Light
+,5ee,2,2,1,0,0,,,,ff,Beam Light
+,5ee,8,10,1,0,0,,,,ff,Front Wiping Request
+,5ee,11,15,100,0,0,W,,,ff,Electrical Power Drived
+,5ee,16,16,1,0,0,,,,ff,Climate Cooling Request
+,5ee,19,19,1,0,0,,,,ff,PTC Thermal Regulator Freeze
+,5ee,21,23,1,0,0,,,,ff,User Identification
+,5ee,24,24,1,0,0,,,,ff,Day Night Status For Backlights
+,5ee,27,27,1,0,0,,,,ff,Driver Door State
+,5ee,28,28,1,0,0,,,,ff,Passenger Door State
+,5ee,29,31,1,0,0,,,,ff,Start Button Pushed
+,5ee,32,39,0.4,0,0,%,,,ff,Night Rheostated Light Max Percent
+,5ee,40,40,1,0,0,,,,ff,Light Sensor Status
+,5ee,43,47,50,0,0,W,,,ff,Right Solar Level Info
+,5ee,48,52,50,0,0,W,,,ff,Left Solar Level Info
+,5ee,59,59,1,0,0,,,,ff,Day Running Light Request
+,5ee,60,63,50,0,0,W/m2,,,ff,Visible Solar Level Info
+,62c,0,1,1,0,0,,,,ff,EPS Warning
+,62d,0,9,0.1,0,0,kWh/100km,,,ff,Worst Average Consumption
+,62d,10,19,0.1,0,0,kWh/100km,,,ff,Best Average Consumption
+,62d,20,28,100,0,0,W,,,ff,BCB Power Mains
+,634,0,1,1,0,0,,,,ff,TCU Refuse to Sleep
+,634,2,3,1,0,0,,,,ff,Ecall Function Failure Display
+,634,4,7,1,0,0,,,,ff,ECALL State Display
+,634,8,14,15,0,0,min,,,ff,Charging Timer Value Status
+,634,15,15,1,0,0,,,,ff,Remote Pre AC Activation
+,634,16,17,1,0,0,,,,ff,Charging Timer Status
+,634,18,19,1,0,0,,,,ff,Charge Prohibited
+,634,20,21,1,0,0,,,,ff,Charge Authorization
+,634,22,23,1,0,0,,,,ff,External Charging Manager
+,637,0,9,10,0,0,kWh,,,ff,Consumption Since Mission Start
+,637,10,19,10,0,0,kWh,,,ff,Recovery Since Mission Start
+,637,20,29,10,0,0,kWh,,,ff,Aux Consumption Since Mission Start
+,637,32,38,1,0,0,%,,,ff,Speed Score Indicator Display
+,637,40,51,1,0,0,kWh,,,ff,Total Recovery
+,637,52,52,1,0,0,,,,ff,Open Charge Flap Warning Display
+,638,0,7,1,80,0,kW,,,ff,Traction Instant Consumption
+,638,8,17,1,0,0,km,,,ff,Vehicle Autonomy Min
+,638,18,27,1,0,0,km,,,ff,Vehicle Autonomy Max
+,638,32,36,1,0,0,kW,,,ff,AuxInstant Consumption
+,638,37,39,1,0,0,,,,ff,Battery 14v To Be Changed Display
+,646,1,3,1,0,0,,,,ff,Trip Unit Consumption
+,646,4,5,1,0,0,,,,ff,Trip Unit Distance
+,646,6,15,0.1,0,1,kWh/100km,,,ff,Average trip B consumpion
+,646,16,32,0.1,0,1,km,,,ff,Trip B distance
+,646,33,47,0.1,0,1,kWh,,,ff,trip B consumption
+,646,48,59,0.1,0,1,km/h,,,ff,Average trip B speed
+,650,1,2,1,0,0,,,,ff,Energy Flow For Energy Recovering Display
+,650,6,7,1,0,0,,,,ff,Energy Flow For Traction Display
+,650,8,9,1,0,0,,,,ff,Short Range Display
+,650,10,11,1,0,0,,,,ff,Quick Drop Iteration Exceeded Display
+,650,12,13,1,0,0,,,,ff,Quick Drop Lock Failure Display
+,650,14,15,1,0,0,,,,ff,Quick Drop Unlocked Display
+,650,16,22,1,0,0,%,,,ff,Advisor Econometer
+,650,30,31,1,0,0,,,,ff,Cranking Plugged Display
+,650,40,41,1,0,0,,,,ff,Clim Programmed PC Display
+,650,42,44,1,0,0,,,,ff,Pre Heating State Display
+,653,0,0,1,0,0,,,,ff,Crash Detected
+,653,1,1,1,0,0,,,,ff,Crash DetectionOutOfOrder
+,653,8,9,1,0,0,,,,ff,Driver Safety Belt Reminder
+,653,10,11,1,0,0,,,,ff,Front Passenger Safety Belt Reminder
+,653,12,12,1,0,0,,,,ff,Passenger AIRBAG Inhibition
+,653,13,13,1,0,0,,,,ff,AIRBAG Malfunction
+,653,14,15,1,0,0,,,,ff,Second Row Center Safety Belt State
+,653,16,17,1,0,0,,,,ff,Second Row Left Safety Belt State
+,653,18,19,1,0,0,,,,ff,Second Row Right Safety Belt State
+,653,20,20,1,0,0,,,,ff,Valid AIRBAG Information
+,654,2,2,1,0,0,,,,ff,Charging Plug Connected
+,654,3,3,1,0,0,,,,ff,Driver Walk Away Engine ON
+,654,4,4,1,0,0,,,,ff,HVBatteryUnballastAlert
+,654,25,31,1,0,0,,,,ff,State of Charge
+,654,32,41,1,0,0,min,,,ff,Time to Full
+,654,42,51,1,0,0,km,,,ff,Available Distance
+,654,52,61,0.1,0,1,kWh/100km,,,ff,Average Consumption
+,654,62,62,1,0,0,,,,ff,HV Battery Low
+,656,3,3,1,0,0,,,,ff,Trip Data Reset
+,656,21,31,1,0,0,min,,,ff,Cluster Scheduled Time
+,656,32,42,1,0,0,min,,,ff,Cluster Scheduled Time 2
+,656,48,55,1,40,0,°C,,,e2,External Temp
+,656,56,57,1,0,0,,,,e2,Clim PC Customer Activation
+,657,0,1,1,0,0,,,,ff,PreHeatingActivationRequest
+,657,8,9,1,0,0,,,,ff,PreHeatingActivationRequestedByKey
+,657,10,11,1,0,0,,,,ff,TechnicalWakeUpType
+,657,12,13,1,0,0,,,,ff,UnlockChargingPlugRequestedByKey
+,658,0,31,1,0,0,,,,ff,Battery Serial N°
+,658,33,39,1,0,0,%,,,ff,Battery Health
+,658,42,42,1,0,0,,,,ff,Charging
+,65b,0,10,1,0,0,min,,,ff,Schedule timer 1 min
+,65b,12,22,1,0,0,min,,,ff,Schedule timer 2 min
+,65b,24,30,1,0,0,%,,,ff,Fluent driver
+,65b,33,34,1,0,0,,,,ff,Economy Mode displayed
+,65b,39,40,1,0,0,,,,ff,Consider eco mode
+,65b,41,43,1,0,0,,,,ff,Charging Status Display
+,65b,44,45,1,0,0,,,,ff,Set park for charging
+,665,0,1,1,0,0,,,,ff,Auto Lock Up Activation Request
+,665,13,15,1,0,0,,,,ff,Front Park Assist Volume Req
+,665,16,17,1,0,0,,,,ff,Rear Park Assist Activation Req
+,665,28,29,1,0,0,,,,ff,Auto Rear Wiper Activation Request
+,665,40,41,1,0,0,,,,ff,Charging Timer Request
+,665,42,48,15,0,0,min,,,ff,Charging Timer Value Request
+,666,0,0,1,0,0,,,,ff,ESP In Regulation Display Request
+,666,1,1,1,0,0,,,,ff,ESP In Default Display Request
+,666,3,3,1,0,0,,,,ff,ASR Activation State For Display
+,666,4,4,1,0,0,,,,ff,ABS In Default Display Request
+,666,6,6,1,0,0,,,,ff,EBV In Default Display Request
+,666,7,7,1,0,0,,,,ff,Emergency Braking Failure
+,666,8,8,1,0,0,,,,ff,ABS-ESP Lamps Auto Check
+,666,14,14,1,0,0,,,,ff,ABS or ESP In Calibrating Diag
+,666,15,15,1,0,0,,,,ff,ABS or ESP To Be Calibrated
+,666,23,23,1,0,0,,,,ff,HSA Failure Display Request
+,668,0,1,1,0,0,,,,ff,Clim AQS Activation State
+,668,4,7,1,0,0,,,,ff,AQM Frag Intensity State
+,668,8,10,1,0,0,,,,ff,AQM Frag Select State
+,668,11,13,1,0,0,,,,ff,AQM Ioniser Mode State
+,668,14,15,1,0,0,,,,ff,Ioniser Auto Launch State
+,66a,5,7,1,0,0,,,,ff,Cruise Control Mode
+,66a,8,15,1,0,0,km/h,,,ff,Cruise Control Speed
+,66a,16,16,1,0,0,,,,ff,Cruise Control OverSpeed
+,66d,0,1,1,0,0,,,,ff,Braking System Defective Display
+,66d,2,3,1,0,0,,,,ff,Braking System To Be Checked Display
+,66d,4,5,1,0,0,,,,ff,UBP To Be Calibrated
+,66d,6,7,1,0,0,,,,ff,UBP In Calibrating Diag
+,66d,8,9,1,0,0,,,,ff,UBP Lamp Auto Check
+,673,0,0,1,0,0,,,,ff,Speed pressure misadaptation
+,673,2,4,1,0,0,,,,ff,Rear right wheel state
+,673,5,7,1,0,0,,,,ff,Rear left wheel state
+,673,8,10,1,0,0,,,,ff,Front right wheel state
+,673,11,13,1,0,0,,,,ff,Front left wheel state
+,673,16,23,13.725,0,0,mbar,,,ff,Rear right wheel pressure
+,673,24,31,13.725,0,0,mbar,,,ff,Rear left wheel pressure
+,673,32,39,13.725,0,0,mbar,,,ff,Front right wheel pressure
+,673,40,47,13.725,0,0,mbar,,,ff,Front left wheel pressure
+,68b,0,3,1,0,0,,,,ff,MM action counter
+,68c,21,31,1,0,0,min,,,ff,Local Time
+,699,0,1,1,0,0,,,,e2,Clima off Request display
+,699,2,3,1,0,0,,,,e2,Clima read defrost Request display
+,699,4,6,1,1,0,,,,e2,Cima mode
+,699,8,15,0.5,0,0,°C,,,e2,Temperature
+,699,16,19,1,0,0,,,,e2,Clima Flow
+,699,20,21,1,0,0,,,,e2,Forced recycling
+,699,22,23,1,0,0,,,,e2,
+,699,24,27,1,0,0,,,,e2,
+,699,28,31,1,0,0,,,,e2,Clim Last Func Modified By Customer
+,699,32,33,1,0,0,,,,e2,Clim MMI Activation Request
+,699,34,39,2,0,0,%,,,e2,Clim AQS Indicator
+,699,40,45,1,0,0,min,,,e2,Clim AQM Ioniser Max Timer Display
+,699,46,51,1,0,0,min,,,e2,Clim AQM Ioniser Timer Display
+,699,52,53,1,0,0,,,,e2,Clim Auto Display
+,699,54,55,1,0,0,,,,e2,Clim AC Off Display
+,699,56,57,1,0,0,,,,e2,Clim Clearness Display
+,699,58,59,1,0,0,,,,e2,Clim Display Menu PC
+,699,60,61,1,0,0,,,,e2,Energy Flow For Thermal Comfort Display
+,699,63,63,1,0,0,,,,e2,Clim Eco Low Soc Display
+,69f,0,31,1,0,0,,,,ff,Car Serial N°
+,6f8,0,1,1,0,0,,,,ff,USM Refuse to Sleep
+,6f8,4,4,1,0,0,,,,ff,Ignition Supply Confirmation
+,6f8,5,5,1,0,0,,,,ff,Front Wiper Stop Position
+,6f8,6,7,1,0,0,,,,ff,Front Wiper Status
+,6f8,11,11,1,0,0,,,,ff,Ignition Control State
+,6f8,16,23,0.0625,0,2,V,,,ff,14V Battery Voltage
+,6fb,8,9,1,0,0,,,,ff,Global Vehicle Warning State
+,6fb,32,39,250,0,0,km,,,ff,Fixed Maintenance Range

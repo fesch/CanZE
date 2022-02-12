@@ -154,13 +154,14 @@
                         android:layout_weight="0.7"
                         android:width="0dp"
                         />
+
                     <TextView
                         android:id="@+id/textUserSOC"
-                        android:text="@string/default_Dash"
-                        android:gravity="end"
+                        android:layout_height="match_parent"
                         android:layout_weight="0.3"
                         android:width="0dp"
-                        />
+                        android:gravity="end"
+                        android:text="@string/default_Dash" />
                 </TableRow>
 
                 <TableRow>

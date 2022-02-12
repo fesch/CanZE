@@ -1,0 +1,171 @@
+,763,0,0,1,0,0,,1081,5081,ff,Ouverture session par defaut
+,763,0,0,1,0,0,,1085,5085,ff,Ouverture de session reprogrammation
+,763,0,0,1,0,0,,1086,5086,ff,Start Diagnostic Session
+,763,0,0,1,0,0,,10C0,50C0,ff,Ouverture de session FAB et AV
+,763,0,0,1,0,0,,10FA,50FA,ff,Ouverture de session Fournisseur
+,763,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.all
+,763,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask
+,763,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceAndFailureTypeOBD,37641:Surveillance de la sortie SYS-ON;37708:Surveillance du controleur CAN-V;37709:Surveillance du controleur CAN-M;37892:Surv Témoin Défaut Airbag;37896:Surv Com Témoin Ceinture;37900:Surv E2prom;37901:Paramètre CAN produit Vitesse Affichée;49408:Perte trames SCH (EVC) _ Id 0x652;49425:Perte trames USM_Id 0x212;49447:Perte trames TPMS (SSPP)_Id 0x673;49449:Perte trames Brake (ABS)_Id 0x5D7;49457:Perte trames EPS_ Id 0x62C;49458:Perte trames Clim_ Id 0x668;49459:Perte trames UBP_ Id 0x66D;49460:Perte trames TCU_ Id 0x634;49472:Perte trames BCM_Id 0x35C;49489:Perte trames Airbag_Id 0x653;49497:Perte trames UPA_ Id 0x5E9;50258:ValidAirbagInformation = 0 pendant 60 s;61443:Surv Alimentation
+,763,40,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType,71:watchdog / safety µC failure;118:wrong mounting position;131:value of signal protection calculation incorrect;5:System Programming Failures;4:System Internal Failures;72:supervision software failure;67:special memory failure;35:signal stuck low;36:signal stuck high;41:signal signal invalid;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;100:signal plausibility failure;51:signal low time > maximum;50:signal low time < minimum;134:signal invalid;103:signal incorrect after event;53:signal high time > maximum;52:signal high time < minimum;102:signal has too many transitions / events;101:signal has too few transitions / events;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;47:signal erratic;98:signal compare failure;97:signal calculation failure;40:signal bias level out of range / 0 adjust failure;132:signal below allowable range;34:signal amplitude > maximum;33:signal amplitude < minimum;133:signal above allowable range;69:program memory failure;146:performance or incorrect operation;145:parametric;75:over temperature;81:not programmed;85:not configured;82:not activated;49:no signal;147:no operation;135:missing message;84:missing calibration;121:mechanical linkage failure;7:Mechanical Failures;123:low fluid level;129:invalid serial data received;73:internal electronic failure;58:incorrect has too many pulses;57:incorrect has too few pulses;74:incorrect component installed;148:unexpected operation;2:General signal failure;66:general memory failure;1:General Electrical Failure;65:general checksum failure;3:FM (Frequency Modulated) / PWM  Failures;122:fluid leak or seal failure;104:event information;143:erratic;117:emergency position not reachable;0:Device and failure type ODB codding;83:deactivated;68:data memory failure;149:incorrect assembly;151:Component or system operation obstructed or blocke;150:component internal failure;9:Component Failures;119:commanded position not reachable;28:circuit voltage out of range;22:circuit voltage below threshold;23:circuit voltage above threshold;20:circuit short to ground or open;17:circuit short to ground;21:circuit short to battery or open;18:circuit short to battery;30:circuit resistance out of range;26:circuit resistance below threshold;27:circuit resistance above threshold;19:circuit open;31:circuit intermittent;29:circuit current out of range;24:circuit current below threshold;25:circuit current above threshold;99:circuit / component protection time-out;70:calibration / parameter memory failure;8:Bus Signal / Message Failures;136:bus off;130:alive / sequence counter incorrect / not updated;120:alignment or adjustment incorrect;6:Algorithm Based Failures;114:actuator stuck open;115:actuator stuck closed;113:actuator stuck;116:actuator slipping;152:component or system over temperature
+,763,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier
+,763,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,763,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,763,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,763,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,763,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,763,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,763,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,763,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,763,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord
+,763,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC
+,763,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord
+,763,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC
+,763,48,55,1,0,0,,190600000080,590600000080,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,763,56,79,1,0,0,km,190600000080,590600000080,ff,DTCExtendedData.Mileage
+,763,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord
+,763,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC
+,763,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,763,56,79,1,0,0,km,1906000000FF,5906000000FF,ff,DTCExtendedData.Mileage
+,763,16,47,1,0,0,,2100,6100,4ff,Reponse LID utilises
+,763,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart
+,763,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode
+,763,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG
+,763,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart
+,763,128,143,1,0,0,,2180,6180,4ff,SoftwareNumber
+,763,144,159,1,0,0,,2180,6180,4ff,EditionNumber
+,763,160,175,1,0,0,,2180,6180,4ff,CalibrationNumber
+,763,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:N/A;2:285J2
+,763,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:N/A;1:25046
+,763,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:N/A
+,763,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:Magnéti Marelli
+,763,16,151,1,0,0,,2181,6181,2ff,VIN Numero Identification
+,763,16,31,1,0,0,,2182,6182,4ff,Version Messagerie Mux
+,763,32,33,1,0,0,,2182,6182,ff,Module BusOff,0:BusOn;2:BusOff;3:Confirmé BusOff
+,763,34,39,1,0,0,,2182,6182,ff,Module BusOff compteur,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Non Contrôlé
+,763,40,41,1,0,0,,2182,6182,ff,Module BusMuet,0:Non muet;2:BusMuet;3:Confirmé BusMuet
+,763,42,47,1,0,0,,2182,6182,ff,Module BusMuet compteur,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Non Contrôlé
+,763,56,57,1,0,0,,2182,6182,ff,Producteur MUX BRAKE,0:Présent;2:Absent;3:Confirmé Absent
+,763,58,63,1,0,0,,2182,6182,ff,Producteur MUX BRAKE compteur,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Non Contrôlé
+,763,64,65,1,0,0,,2182,6182,ff,Producteur MUX Tabbeau de bord,0:Présent;2:Absent;3:Confirmé Absent
+,763,66,71,1,0,0,,2182,6182,ff,Producteur MUX Tabbeau de bord compteur,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Non Contrôlé
+,763,72,73,1,0,0,,2182,6182,ff,Producteur MUX BCM,0:Présent;2:Absent;3:Confirmé Absent
+,763,74,79,1,0,0,,2182,6182,ff,Producteur MUX BCM compteur,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Non Contrôlé
+,763,80,81,1,0,0,,2182,6182,ff,Producteur MUX Airbag,0:Présent;2:Absent;3:Confirmé Absent
+,763,82,87,1,0,0,,2182,6182,ff,Producteur MUX Airbag compteur,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Non Contrôlé
+,763,104,105,1,0,0,,2182,6182,ff,Producteur MUX Clim,0:Présent;2:Absent;3:Confirmé Absent
+,763,106,111,1,0,0,,2182,6182,ff,Producteur MUX Clim compteur,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Non Contrôlé
+,763,184,185,1,0,0,,2182,6182,ff,Producteur MUX EPS Controle trajectoire,0:Présent;2:Absent;3:Confirmé Absent
+,763,186,191,1,0,0,,2182,6182,ff,Producteur MUX EPS Controle trajectoire compteur,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Non Contrôlé
+,763,200,201,1,0,0,,2182,6182,ff,Producteur MUX USM,0:Présent;2:Absent;3:Confirmé Absent
+,763,202,207,1,0,0,,2182,6182,ff,Producteur MUX USM compteur,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Non Contrôlé
+,763,424,425,1,0,0,,2182,6182,ff,Producteur MUX EVC,0:Présent;2:Absent;3:Confirmé Absent
+,763,426,431,1,0,0,,2182,6182,ff,Producteur MUX EVC compteur,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Non Contrôlé
+,763,664,665,1,0,0,,2182,6182,ff,Producteur MUX UBP,0:Présent;2:Absent;3:Confirmé Absent
+,763,666,671,1,0,0,,2182,6182,ff,Producteur MUX UBP compteur,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Non Contrôlé
+,763,672,673,1,0,0,,2182,6182,ff,Producteur MUX TCU,0:Présent;2:Absent;3:Confirmé Absent
+,763,674,679,1,0,0,,2182,6182,ff,Producteur MUX TCU compteur,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Non Contrôlé
+,763,16,95,1,0,0,,2184,6184,2ff,ClusterProductionNumber en ASCII
+,763,96,143,1,0,0,,2184,6184,2ff,ClusterProductionDate en ASCII
+,763,16,103,1,0,0,,21B3,61B3,4ff,RECVAL1
+,763,16,103,1,0,0,,21B4,61B4,4ff,RECVAL2
+,763,24,31,1,0,0,,220101,620101,ff,Config Generale_Langue,0:Francais (par défaut);16:Anglais;32:Italien;48:Allemand;64:Espagnol;80:Hollandais;96:Portugais;112:Turc;128:Polonais;145:Suedois;146:Finnois;147:Bulgare;148:Slovene;149:Grec;150:Roumain;151:Hongrois;152:Slovaque;153:Tcheque;154:Danois;155:Estonien;156:Letton;157:Lituanien;158:Croate;255:Autre
+,763,24,31,1,0,0,,220102,620102,ff,Config Generale_Sieges chauffants,0:Sans Sièges Chauffants;16:Avec Sièges Chauffants
+,763,24,31,1,0,0,,220104,620104,ff,Config Generale_Distance,0:Km (par défaut);16:Miles
+,763,24,31,1,0,0,,220107,620107,ff,Config Generale_pression,0:BAR (par défaut);16:PSI
+,763,24,31,1,0,0,,220108,620108,ff,Config Generale_RV_LV_ACC,0:Sans (par défaut);16:RV / LV présent;32:ACC / LV;48:LV seul
+,763,24,31,1,0,0,,220109,620109,ff,Config Generale_Inhib SBR_av,0:Buzzer SBR avant non inhibé (par défaut);16:Buzzer SBR avant inhibe
+,763,24,31,1,0,0,,22010C,62010C,ff,Config Generale_Clim,0:Sans Clim (par défaut);16:Avec Clim
+,763,24,31,1,0,0,,22010D,62010D,ff,Config Generale_AAP UPA,0:Sans AAP (par défaut);16:Avec APP AV et AR;32:Avec APP AR uniquement
+,763,24,31,1,0,0,,22010E,62010E,ff,Config Generale_SSPP TPMS,0:Sans SSPP (par défaut);16:Avec SSPP et sans stratégie de reset;32:Avec SSPP et avec stratégie de reset
+,763,24,31,1,0,0,,22010F,62010F,ff,Config Generale_Survitesse,0:Sans  survitesse (par défaut);16:Avec survitesse
+,763,24,31,1,0,0,,220110,620110,ff,Config Generale_TCU,0:Sans TCU (par défaut);16:Avec TCU
+,763,24,31,1,0,0,,220111,620111,ff,Config Generale_ALS,0:Sans ALS (par défaut);16:Avec ALS
+,763,24,31,1,0,0,,220116,620116,ff,Config Generale_Sons clignotants personalise,0:Not tuned (default value);16:Tuned
+,763,24,31,1,0,0,,220119,620119,ff,Config Generale_Essuyage automatique,0:Sans CFG MPU Ess lunette marche arr (par défaut);16:Avec CFG MPU Essuyage lunette marche arriere
+,763,24,31,1,0,0,,22011C,62011C,ff,Config Generale_menu_retardateur,0:Sans Menu_Retardateur  (par défaut);16:Avec Menu_Retardateur
+,763,24,31,1,0,0,,220121,620121,ff,Config Generale_montre,0:sans affichage montre ( par défaut);16:montre 12 heures;32:montre 24 heures
+,763,24,31,1,0,0,,220122,620122,ff,Config Generale_Affichage temp exter,0:sans affichage température ext;16:Avec affichage température extérieure (par défaut)
+,763,24,55,1,0,0,,220127,620127,4ff,Config Generale_VehicleIdent default value
+,763,24,31,1,0,0,,220129,620129,ff,Config Generale_NAV,0:sans NAV (par defaut);16:MFD présent
+,763,24,39,1,0,0,km,220201,620201,ff,Config Entretien_Vidange init.Valeur initiale autonomie vidange distance
+,763,40,55,1,0,0,Jours,220201,620201,ff,Config Entretien_Vidange init.Valeur initiale autonomie vidange temps
+,763,24,39,1,0,0,km,220202,620202,ff,Config Entretien_Vidange courant. distance
+,763,40,55,1,0,0,Jours,220202,620202,ff,Config Entretien_Vidange courant. Jours
+,763,24,55,1,0,0,Km,220206,620206,1ff,Config Entretien_Odometre general
+,763,24,31,1,0,0,,220207,620207,ff,Config Entretien_Nb de maj par diag
+,763,24,31,1,0,0,,220208,620208,ff,Config Entretien_Nb de maj par ABS
+,763,24,31,1,0,0,,222001,622001,ff,Entrees filaires_contact frein a main,0:Frein desserré (contact ouvert);1:Frein serré (contact fermé)
+,763,24,39,1,0,0,mV,222002,622002,ff,Entrees filaires_incident frein NivoCod.Tension Nivocod
+,763,40,47,1,0,0,,222002,622002,ff,Entrees filaires_incident frein NivoCod.Entree Nivocod,0:Pas de défaut;1:Défaut Nivocod;2:Entrée en CC;3:Entrée en CO
+,763,24,39,.001,0,3,V,222006,622006,ff,Entrees filaires_batterie
+,763,24,31,1,0,0,,222007,622007,ff,Entrees filaires_contact siege chauffant,1:0 siège chauffant actif (témoin éteint);2:1 siège chauffant activé (témoin allumé);4:2 sièges chauffants activés (témoin allumé)
+,763,25,25,1,0,0,,22200B,62200B,ff,Entrees filaires_Input_boutons.Push toTalk press since reset
+,763,26,26,1,0,0,,22200B,62200B,ff,Entrees filaires_Input_boutons. Bouton LVE arriere press since reset
+,763,27,27,1,0,0,,22200B,62200B,ff,Entrees filaires_Input_boutons.Bouton Ambiance press since reset
+,763,29,29,1,0,0,,22200B,62200B,ff,Entrees filaires_Input_boutons.Bouton Push to Talk
+,763,30,30,1,0,0,,22200B,62200B,ff,Entrees filaires_Input_boutons.Bouton Input LVE arriere
+,763,31,31,1,0,0,,22200B,62200B,ff,Entrees filaires_Input_boutons.Bouton Ambiance
+,763,25,25,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.Rep
+,763,26,26,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.Val
+,763,27,27,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.Vol plus
+,763,28,28,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.Vol moins
+,763,29,29,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.Sup
+,763,30,30,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.High
+,763,31,31,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.Low
+,763,38,38,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.left
+,763,39,39,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.right
+,763,41,41,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.Rep since reset
+,763,42,42,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.Val since reset
+,763,43,43,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.Vol plus since reset
+,763,44,44,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.Vol moins since reset
+,763,45,45,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.Sup since reset
+,763,46,46,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.High since reset
+,763,47,47,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.Low since reset
+,763,54,54,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.left since reset
+,763,55,55,1,0,0,,2220F0,6220F0,ff,Entrees filaires_Satellite_boutons.right since reset
+,763,24,24,1,0,0,,2220F1,6220F1,ff,Entrees filaires_Satellite_rotary.Molette bas since reset
+,763,25,25,1,0,0,,2220F1,6220F1,ff,Entrees filaires_Satellite_rotary.Molette haut since reset
+,763,26,26,1,0,0,,2220F1,6220F1,ff,Entrees filaires_Satellite_rotary.Molette A since reset
+,763,27,27,1,0,0,,2220F1,6220F1,ff,Entrees filaires_Satellite_rotary.Molette B since reset
+,763,28,28,1,0,0,,2220F1,6220F1,ff,Entrees filaires_Satellite_rotary.Molette C since reset
+,763,32,32,1,0,0,,2220F1,6220F1,ff,Entrees filaires_Satellite_rotary.Molette bas
+,763,33,33,1,0,0,,2220F1,6220F1,ff,Entrees filaires_Satellite_rotary.Molette haut
+,763,34,34,1,0,0,,2220F1,6220F1,ff,Entrees filaires_Satellite_rotary.Molette A
+,763,35,35,1,0,0,,2220F1,6220F1,ff,Entrees filaires_Satellite_rotary.Molette B
+,763,36,36,1,0,0,,2220F1,6220F1,ff,Entrees filaires_Satellite_rotary.Molette C
+,763,26,26,1,0,0,,2220F2,6220F2,ff,Entrees filaires_Wake up Signals.system ON Request
+,763,28,28,1,0,0,,2220F2,6220F2,ff,Entrees filaires_Wake up Signals.Wake up
+,763,31,31,1,0,0,,2220F3,6220F3,ff,Entrees filaires_Output Lines.System On,1:System ON (ON command from MM= 1 if active)
+,763,24,55,.1,0,1,m,222101,622101,1ff,Infos Calcul_Distance parcourue ADAC
+,763,24,47,1,0,0,s,222104,622104,ff,Infos Calcul_Temps ADAC
+,763,24,31,1,40,0,°C,222202,622202,ff,Mesures CTN_afficheur.Temperature Dalle
+,763,24,31,1,40,0,°C,222204,622204,ff,Mesures Temperature Exterieure.Temperature Exterieure
+,763,24,31,1,0,0,,222403,622403,ff,Status Systeme_status EEPROM,0:Non défini;1:EEPROM Status OK;2:EEPROM Error
+,763,24,31,1,0,0,,222405,622405,ff,Status Systeme_number resets by failures
+,763,24,31,1,0,0,,222406,622406,ff,Status Systeme_number intended resets
+,763,28,28,1,0,0,,222407,622407,ff,Status Systeme_erreur configuration.Erreur Configuration CLIM,0:Pas d'erreur config CLIM;1:Erreur config CLIM
+,763,29,29,1,0,0,,222407,622407,ff,Status Systeme_erreur configuration.Erreur Configuration TCU,0:Pas d'erreur config TCU;1:Erreur config TCU
+,763,30,30,1,0,0,,222407,622407,ff,Status Systeme_erreur configuration.Erreur Configuration UPA,0:Pas d'erreur config UPA;1:Erreur config UPA
+,763,35,35,1,0,0,,222407,622407,ff,Status Systeme_erreur configuration.Erreur Configuration tableau jamais configure,0:Pas d'erreur - tdb configuré OK;1:Erreur - Tdb jamais configuré
+,763,38,38,1,0,0,,222407,622407,ff,Status Systeme_erreur configuration.Erreur Configuration SSPP,0:Pas d'erreur config SSPP;1:Erreur config SSPP
+,763,24,39,1,0,0,,222501,622501,4ff,Causes allumage temoins Service Present.SERVICE Present Alerte 1
+,763,40,55,1,0,0,,222501,622501,4ff,Causes allumage temoins Service Present.SERVICE Present Alerte 2
+,763,24,39,1,0,0,,222502,622502,4ff,Causes allumage temoins Service Memorise.SERVICE Memorise Alerte 1
+,763,40,55,1,0,0,,222502,622502,4ff,Causes allumage temoins Service Memorise.SERVICE Memorise Alerte 2
+,763,24,39,1,0,0,,222503,622503,4ff,Causes allumage temoins Stop.STOP Present Alerte 1
+,763,40,55,1,0,0,,222503,622503,4ff,Causes allumage temoins Stop.STOP Present Alerte 2
+,763,24,39,1,0,0,,222504,622504,4ff,Causes allumage temoin Stop Memorise.STOP Memorise Alerte 1
+,763,40,55,1,0,0,,222504,622504,4ff,Causes allumage temoin Stop Memorise.STOP Memorise Alerte 2
+,763,24,39,1,0,0,,222505,622505,4ff,Causes allumage temoins Ref.REF Present Alerte 1
+,763,40,55,1,0,0,,222505,622505,4ff,Causes allumage temoins Ref.REF Present Alerte 2
+,763,24,39,1,0,0,,222506,622506,4ff,Causes allumage temoin Ref Memorise.REF Memorise Alerte 1
+,763,40,55,1,0,0,,222506,622506,4ff,Causes allumage temoin Ref Memorise.REF Memorise Alerte 2
+,763,24,39,1,0,0,km,222601,622601,ff,DataRead Info Entretien Km apres alerte
+,763,24,39,1,0,0,Jours,222602,622602,ff,DataRead Info Entretien Jours apres alerte
+,763,24,39,1,0,0,km,222603,622603,ff,DataRead Info Entretien valeur affichee
+,763,24,47,1,0,0,Km,222604,622604,ff,DataRead Odo TdB avant recalage ABS par TdB
+,763,24,47,1,0,0,Km,222605,622605,ff,DataRead Odo TdB avant recalage TdB par ABS
+,763,24,103,1,0,0,,22F187,62F187,2ff,Reference piece VehicleManufacturer SparePartNumber
+,763,24,103,1,0,0,,22F18E,62F18E,2ff,Reference piece VehicleManufacturer KitAssemblyPartNumber
+,763,24,103,1,0,0,,22F196,62F196,2ff,Numero homologation reference
+,763,0,0,1,0,0,,3E01,7E01,ff,TesterPresent.WithResponse

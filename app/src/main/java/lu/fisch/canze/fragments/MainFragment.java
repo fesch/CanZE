@@ -53,6 +53,7 @@ import lu.fisch.canze.activities.BrakingActivity;
 import lu.fisch.canze.activities.ChargingActivity;
 import lu.fisch.canze.activities.ClimaTechActivity;
 import lu.fisch.canze.activities.ConsumptionActivity;
+import lu.fisch.canze.activities.DashSummaryActivity;
 import lu.fisch.canze.activities.DrivingActivity;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.activities.SpeedcontrolActivity;
@@ -90,6 +91,8 @@ public class MainFragment extends Fragment {
             activateButton(view, R.id.buttonBraking, BrakingActivity.class);
 
             activateButton(view, R.id.buttonSpeed, SpeedcontrolActivity.class);
+
+            activateButton(view, R.id.buttonDashSummary, DashSummaryActivity.class);
 
             getNews(view);
             return view;

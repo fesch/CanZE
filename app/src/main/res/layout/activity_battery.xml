@@ -26,19 +26,19 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
+                custom:axisMaxY="0"
+                custom:axisMinY="0"
                 custom:backgroundColor="?android:attr/colorBackground"
                 custom:fieldSID="658.33"
                 custom:foregroundColor="?android:attr/colorForeground"
+                custom:intervals="{
+                    '658.33':10000
+                }"
                 custom:majorTicks="0"
-                custom:axisMaxY="0"
-                custom:axisMinY="0"
                 custom:minorTicks="0"
                 custom:text="@string/graph_SOH"
                 custom:titleColor="?android:attr/colorForeground"
-                custom:widget="label"
-                custom:intervals="{
-                    '658.33':10000
-                }" />
+                custom:widget="label" />
 
             <lu.fisch.canze.widgets.WidgetView
                 android:layout_width="0dp"

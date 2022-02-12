@@ -122,6 +122,7 @@ public class SettingsActivity extends AppCompatActivity {
             "ZOE Q90",
             "ZOE R90/110",
             "ZOE ZE40/ZE50",
+            "DACIA SPRING",
             "TWINGO 3 Ph2 (unsupported)",
             "TWIZY (unsupported)"
     };
@@ -131,6 +132,7 @@ public class SettingsActivity extends AppCompatActivity {
             String.valueOf(MainActivity.CAR_ZOE_Q90),
             String.valueOf(MainActivity.CAR_ZOE_R90),
             String.valueOf(MainActivity.CAR_X10PH2),
+            String.valueOf(MainActivity.CAR_SPRING),
             String.valueOf(MainActivity.CAR_TWINGO),
             String.valueOf(MainActivity.CAR_TWIZY)
     };
@@ -276,6 +278,9 @@ public class SettingsActivity extends AppCompatActivity {
                             break;
                         case "ZOE ZE50":
                             car = MainActivity.CAR_X10PH2;
+                            break;
+                        case "DACIA SPRING":
+                            car = MainActivity.CAR_SPRING;
                             break;
                     }
                     editor.putInt(SETTING_CAR_MODEL, car);

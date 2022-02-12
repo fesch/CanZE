@@ -147,12 +147,11 @@
                     android:id="@+id/pb_instant_consumption_positive"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="25dp"
-                    android:max="150"
-                    android:progressDrawable="@drawable/progressbar_canze_accel"
+                    android:layout_height="14dp"
                     android:layout_weight="1"
-                    />
+                    android:max="150"
+                    android:minHeight="25dp"
+                    android:progressDrawable="@drawable/progressbar_canze_accel" />
 
             </LinearLayout>
 
@@ -170,26 +169,24 @@
                 android:layout_alignTop="@+id/bar"
                 android:gravity="start"
                 />
+
             <TextView
                 android:id="@+id/text_instant_consumption_negative"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/label_kWh100km"
-                android:layout_marginRight="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_alignRight="@+id/bar"
-                android:layout_alignEnd="@+id/bar"
-                android:layout_alignLeft="@+id/bar"
                 android:layout_alignStart="@+id/bar"
-                android:layout_alignBottom="@+id/bar"
+                android:layout_alignLeft="@+id/bar"
                 android:layout_alignTop="@+id/bar"
+                android:layout_alignEnd="@+id/bar"
+                android:layout_alignRight="@+id/bar"
+                android:layout_alignBottom="@+id/bar"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
                 android:gravity="end"
-                android:textStyle="bold"
-                android:textSize="20sp" />
+                android:text="@string/label_kWh100km"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </RelativeLayout>
-
-
-
     </LinearLayout>
 
     <TableLayout
@@ -206,17 +203,14 @@
 
             <lu.fisch.canze.widgets.WidgetView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="fill_parent"
                 android:layout_marginTop="8dp"
-                custom:axisMinY="-30"
+                android:layout_weight="1"
                 custom:axisMaxY="70"
-                custom:axisMinYAlt="0"
                 custom:axisMaxYAlt="100"
-                custom:majorTicks="15"
-                custom:minorTicks="5"
-                custom:fieldSID="800.6109.24,42e.0"
-                custom:widget="timeplot"
+                custom:axisMinY="-30"
+                custom:axisMinYAlt="0"
+                custom:backgroundColor="?android:attr/colorBackground"
                 custom:colorRanges="[
                     {'sid':'800.6109.24','color':'#cc00ff','from':-100,'to':-1},
                     {'sid':'800.6109.24','color':'#3ee9ff','from':-1,'to':1},
@@ -225,17 +219,19 @@
                     {'sid':'800.6109.24','color':'#FF0000','from':33,'to':100},
                     {'sid':'42e.0','color':'?android:attr/colorForeground','from':0, 'to':100}
                 ]"
-                custom:text="@string/graph_PowerSoc"
+                custom:fieldSID="800.6109.24,42e.0"
+                custom:foregroundColor="?android:attr/colorForeground"
                 custom:intervals="{
                     '42e.0':10000
                 }"
+                custom:majorTicks="15"
+                custom:minorTicks="5"
                 custom:options="{
                     '800.6109.24':'gradient',
                     '42e.0':'alt,dot'
                 }"
-                custom:backgroundColor="?android:attr/colorBackground"
-                custom:foregroundColor="?android:attr/colorForeground"
-                />
+                custom:text="@string/graph_PowerSoc"
+                custom:widget="timeplot" />
 
         </TableRow>
 
@@ -322,7 +318,6 @@
 
     </TableLayout>
     <!-- debug line -->
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"

@@ -1,0 +1,64 @@
+030D,EVC
+0305,Lithium Battery Controler
+030C,BCM (Body Control Module)
+0309,CAN
+0436,Junction box hood interlock
+0437,HV Battery interlock
+0438,Mains plug interlock
+0439,PEB interlock
+043A,PEB neutral interlock
+043E,PTC interlock
+0466,Cooling Temperature Sensor
+046F,Cooling temperature
+0602,Charging stop
+0613,Charge yield
+0612,S2 relay control
+0620,CPU temperature
+0621,Electronic card voltage supply
+0622,CPU Temperature sensor
+0630,Electronic power driver
+0632,Electronic power driver temperature sensor
+0631,Electronic power driver temperature
+0640,Mains identification
+0669,Mains communication line
+0642,Mains phase 1 current
+0643,Mains phase 2 current
+0644,Mains phase 3 current
+0645,Mains phase mono current
+0646,Mains current regulation
+0647,Mains locking input line
+0649,Mains phases voltage
+064A,Mains phase 1 voltage sensor
+064B,Mains phase 2 voltage sensor
+064C,Mains phase 3 voltage sensor
+064D,Mains mono phased voltage sensors
+065E,Mains phase 1 current sensor
+065F,Mains phase 2 current sensor
+0660,Mains phase 3 current sensor
+0670,Neutral current sensor
+0671,Neutral current regulation
+043D,Air conditionned Interlock
+043B,Fuse interlock
+043C,Relay box interlock
+0623,Internal power supply voltage (+5V)
+0625,SPI communication
+0662,Mains locking motor command
+0663,Mains ground
+0664,Capacity module
+0626,Rectifier micro-controler
+0665,Mains phase current sensor
+0666,Mains phase voltage sensor
+0668,Earth current sensor
+0680,Blue Led
+0681,Red Led
+066A,Input filter temperature
+066B,Input filter i
+066C,Mains neutral/phase3
+0648,Mains leakage
+0627,Driver Flyback
+0690,External power supply
+0654,Hot Spot Input Module Temperature
+06A0,PLGW card
+0667,Mains differential current sensor
+0672,CPL card
+0673,Relay Box

@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     //public static final short CAR_KANGOO = 0x004;
     public static final short CAR_TWIZY = 0x008;
     public static final short CAR_X10PH2 = 0x010;     // ZE50
+    public static final short CAR_SPRING = 0x030;     // Dacia Spring
     public static final short CAR_ZOE_R240 = 0x020;
     public static final short CAR_ZOE_Q90 = 0x040;
     public static final short CAR_ZOE_R90 = 0x080;
@@ -1093,6 +1094,10 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         return (car == CAR_X10PH2);
     }
 
+    public static boolean isSpring() {
+        return (car == CAR_SPRING);
+    }
+
     public static boolean isTwingo()  {
         return (car == CAR_TWINGO);
     }
@@ -1105,6 +1110,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         if (isPh2()) return "ZOE_Ph2/";
         if (isTwingo()) return "Twingo_3_Ph2/";
         if (isTwizy()) return "Twizy/";
+        if (isSpring()) return "Spring/";
         return "ZOE/";
     }
 
