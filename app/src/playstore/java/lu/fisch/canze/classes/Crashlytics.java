@@ -1,4 +1,4 @@
-package lu.fisch.canze.classes;
+package org.bobby.canze.classes;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 

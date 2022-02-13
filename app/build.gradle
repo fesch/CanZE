@@ -18,10 +18,10 @@ android {
     compileSdkVersion 31
     //buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId "lu.fisch.canze"
+        applicationId 'org.bobby.canze'
         minSdkVersion 23
         targetSdkVersion 31
-        versionName '1.62.3'
+        versionName '1.62.5'
         versionCode 94
     }
     buildTypes {

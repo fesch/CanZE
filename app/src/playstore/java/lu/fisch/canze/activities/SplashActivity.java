@@ -19,7 +19,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package lu.fisch.canze.activities;
+package org.bobby.canze.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
-import lu.fisch.canze.BuildConfig;
+import org.bobby.canze.BuildConfig;
 
 public class SplashActivity extends AppCompatActivity {
 

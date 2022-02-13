@@ -12,7 +12,7 @@
     android:paddingRight="0dp"
     android:paddingBottom="0dp"
     android:stretchColumns="3"
-    tools:context="lu.fisch.canze.fragments.TechnicalFragment">
+    tools:context="org.bobby.canze.fragments.TechnicalFragment">
 
     <RelativeLayout
         android:layout_width="fill_parent"

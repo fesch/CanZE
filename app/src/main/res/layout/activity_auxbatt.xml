@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="lu.fisch.canze.activities.AuxBattTechActivity">
+    tools:context="org.bobby.canze.activities.AuxBattTechActivity">
 
     <TableLayout
         android:layout_width="fill_parent"
@@ -129,7 +129,7 @@
 
     <!-- debug line -->
 
-    <lu.fisch.canze.widgets.WidgetView
+    <org.bobby.canze.widgets.WidgetView
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_marginLeft="8dp"

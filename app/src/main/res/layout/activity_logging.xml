@@ -9,7 +9,7 @@
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
     android:orientation="vertical"
-    tools:context="lu.fisch.canze.activities.LoggingActivity">
+    tools:context="org.bobby.canze.activities.LoggingActivity">
 
     <TextView
         android:layout_width="wrap_content"

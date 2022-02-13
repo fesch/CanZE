@@ -15,7 +15,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
--keep class lu.fisch.** { *; }
+-keep class org.bobby.** { *; }
 
 ##---------------Begin: proguard configuration for Gson  ----------
 # Gson uses generic type information stored in a class file when working with fields. Proguard
@@ -23,7 +23,7 @@
 -keepattributes Signature
 
 # Gson specific classes
--keep class sun.misc.Unsafe { *; }
+ -keep class sun.misc.Unsafe { *; }
 #-keep class com.google.gson.stream.** { *; }
 
 ##------------------Begin: added rules to see if we can nip ClassNotFound in the butt ----------

@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="lu.fisch.canze.activities.ChargingGraphActivity"
+    tools:context="org.bobby.canze.activities.ChargingGraphActivity"
     >
 
     <TableLayout
@@ -26,7 +26,7 @@
             android:layout_weight="1">
 
             <!-- pilot amp / available power -->
-            <lu.fisch.canze.widgets.WidgetView
+            <org.bobby.canze.widgets.WidgetView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -62,7 +62,7 @@
             android:layout_weight="1">
 
             <!-- max battery charge / DC charging power -->
-            <lu.fisch.canze.widgets.WidgetView
+            <org.bobby.canze.widgets.WidgetView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -96,7 +96,7 @@
             android:layout_weight="1">
 
             <!-- available energy -->
-            <lu.fisch.canze.widgets.WidgetView
+            <org.bobby.canze.widgets.WidgetView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"

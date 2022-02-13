@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="lu.fisch.canze.activities.LeakCurrentsActivity"
+    tools:context="org.bobby.canze.activities.LeakCurrentsActivity"
     android:orientation="vertical">
 
     <TableLayout
@@ -23,7 +23,7 @@
             android:orientation="horizontal"
             android:layout_weight="1">
 
-            <lu.fisch.canze.widgets.WidgetView
+            <org.bobby.canze.widgets.WidgetView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -46,7 +46,7 @@
             android:orientation="horizontal"
             android:layout_weight="1">
 
-            <lu.fisch.canze.widgets.WidgetView
+            <org.bobby.canze.widgets.WidgetView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -70,7 +70,7 @@
             android:orientation="horizontal"
             android:layout_weight="1">
 
-            <lu.fisch.canze.widgets.WidgetView
+            <org.bobby.canze.widgets.WidgetView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"
@@ -94,7 +94,7 @@
             android:orientation="horizontal"
             android:layout_weight="1">
 
-            <lu.fisch.canze.widgets.WidgetView
+            <org.bobby.canze.widgets.WidgetView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent"

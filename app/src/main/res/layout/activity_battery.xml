@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="lu.fisch.canze.activities.BatteryActivity">
+    tools:context="org.bobby.canze.activities.BatteryActivity">
 
     <TableLayout
         android:layout_width="fill_parent"
@@ -22,7 +22,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <lu.fisch.canze.widgets.WidgetView
+            <org.bobby.canze.widgets.WidgetView
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -40,7 +40,7 @@
                 custom:titleColor="?android:attr/colorForeground"
                 custom:widget="label" />
 
-            <lu.fisch.canze.widgets.WidgetView
+            <org.bobby.canze.widgets.WidgetView
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_marginStart="8dp"
@@ -90,7 +90,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <lu.fisch.canze.widgets.WidgetView
+            <org.bobby.canze.widgets.WidgetView
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_marginBottom="8dp"
@@ -204,7 +204,7 @@
                     '7bb.6142.544':10000
                 }" />
 
-            <lu.fisch.canze.widgets.WidgetView
+            <org.bobby.canze.widgets.WidgetView
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_marginStart="8dp"

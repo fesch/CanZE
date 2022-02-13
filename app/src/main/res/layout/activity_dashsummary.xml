@@ -8,51 +8,192 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="lu.fisch.canze.activities.DashSummaryActivity">
+    tools:context="org.bobby.canze.activities.DashSummaryActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Summary Status"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
+
             <TableRow>
                 <TextView
-                    android:layout_weight="0.7"
-                    android:width="0dp"
-                    android:text="@string/label_UserSOC" />
+                    android:text="@string/label_UserSOC"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="?attr/colorButtonNormal"
+                    />
+                <TextView
+                    android:text=""
+                    android:layout_width="20dp"
+                    android:layout_weight="1" />
+                <TextView
+                    android:text="@string/label_AvEner"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="?attr/colorButtonNormal" />
+            </TableRow>
 
+            <TableRow>
                 <TextView
                     android:id="@+id/textUserSOC"
-                    android:layout_weight="0.3"
-                    android:width="0dp"
-                    android:gravity="end"
-                    android:text="@string/default_Dash" />
+                    android:text="@string/default_Dash"
+                    android:textSize="48sp"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="?attr/colorButtonNormal" />
+                <TextView
+                    android:text="@string/default_DoubleSpace"
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/textAvEner"
+                    android:text="@string/default_Dash"
+                    android:textSize="48sp"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="?attr/colorButtonNormal" />
+            </TableRow>
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:text="@string/default_DoubleSpace"
+                android:layout_weight="1" />
+
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/default_DoubleSpace"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:text="@string/label_Range"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="?attr/colorButtonNormal"
+                        />
+                    <TextView
+                        android:text="@string/default_DoubleSpace"
+                        android:layout_weight="1" />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/default_DoubleSpace"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/textKMA"
+                        android:text="@string/default_Dash"
+                        android:textSize="48sp"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="?attr/colorButtonNormal"
+                        />
+                    <TextView
+                        android:text="@string/default_DoubleSpace"
+                        android:layout_weight="1" />
+
+                </TableRow>
+
+
+
+
+
+            </TableLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:text="@string/default_DoubleSpace"
+                android:layout_weight="1" />
+
+            <TableRow>
+                <TextView
+                    android:text="@string/label_averageSpeed"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="?attr/colorButtonNormal"
+                    />
+                <TextView
+                    android:text=""
+                    android:layout_width="20dp"
+                    android:layout_weight="1" />
+                <TextView
+                    android:text="@string/label_InstantConsumption"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="?attr/colorButtonNormal" />
             </TableRow>
 
             <TableRow>
                 <TextView
-                    android:layout_weight="0.7"
-                    android:width="0dp"
-                    android:text="@string/label_AvEner" />
+                    android:id="@+id/textRealSpeed"
+                    android:text="@string/default_Dash"
+                    android:textSize="48sp"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="?attr/colorButtonNormal" />
                 <TextView
-                    android:id="@+id/textAvEner"
-                    android:layout_weight="0.3"
-                    android:width="0dp"
-                    android:gravity="end"
-                    android:text="@string/default_Dash" />
+                    android:text="@string/default_DoubleSpace"
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/textDCPowerIn"
+                    android:text="@string/default_Dash"
+                    android:textSize="48sp"
+                    android:gravity="center"
+                    android:layout_weight="5"
+                    android:background="?attr/colorButtonNormal" />
             </TableRow>
+
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:text="@string/default_DoubleSpace"
+                android:layout_weight="1" />
+
+
+
+
+
+
+
+
+
+
 
 
             <TableRow>
@@ -70,19 +211,7 @@
                     android:text="@string/default_Dash" />
             </TableRow>
 
-            <TableRow>
-                <TextView
-                    android:layout_weight="0.7"
-                    android:width="0dp"
-                    android:text="@string/label_Range" />
 
-                <TextView
-                    android:id="@+id/textKMA"
-                    android:layout_weight="0.3"
-                    android:width="0dp"
-                    android:gravity="end"
-                    android:text="@string/default_Dash" />
-            </TableRow>
 
             <TableRow>
                 <TextView
@@ -98,18 +227,6 @@
             </TableRow>
 
 
-            <TableRow>
-                <TextView
-                    android:layout_weight="0.7"
-                    android:width="0dp"
-                    android:text="@string/label_InstantConsumption" />
-                <TextView
-                    android:id="@+id/text_instant_consumption"
-                    android:layout_weight="0.3"
-                    android:width="0dp"
-                    android:gravity="end"
-                    android:text="@string/default_Dash" />
-            </TableRow>
 
 
 

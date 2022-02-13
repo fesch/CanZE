@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="lu.fisch.canze.activities.DrivingActivity">
+    tools:context="org.bobby.canze.activities.DrivingActivity">
 
     <ScrollView
         android:layout_width="fill_parent"
