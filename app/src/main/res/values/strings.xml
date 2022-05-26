@@ -101,6 +101,9 @@
     <string name="button_AuxBatt">12 volt batt</string>
     <string name="label_auxbat">Voltage, Vehicle state, Charging state</string>
     <string name="label_auxbatvolt">Voltage</string>
+    <string name="label_auxbatcurr">Current</string>
+    <string name="label_auxbatvunder">Voltage under load</string>
+    <string name="label_auxbatcunder">Curent under load</string>
     <string name="label_AuxStatus">Replacement advice</string>
     <string name="label_vehiclestate">Vehicle state</string>
     <string-array name="list_VehicleState">
@@ -112,6 +115,33 @@
         <item>5</item>
         <item>6</item>
         <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+    <!-- Bobby: 0:SLEEPING;1:TECHNICAL_WAKE_UP;2:CUT_OFF_PENDING;3:BAT_TEMPO_LEVEL;4:ACCESSORY_LEVEL;5:IGNITION_LEVEL;6:STARTING_IN_PROGRESS;7:ENGINE_RUNNING;9:ENGINE_SYSTEM_STOP;,kW,8:AUTOSTART;15:UNAVAILABLE -->
+    <string-array name="list_VehicleStateSpring">
+    <item>Asleep, off (0:red)</item>
+    <item>Awake, off (1:green)</item>
+    <item>Sleep mode pending (2:blue)</item>
+    <item>AutoACC (3:yellow)</item>
+    <item>Contact on</item>
+    <item>Ignition on</item>
+    <item>Starting in progress</item>
+    <item>Engine active</item>
+    <item>Autostart</item>
+    <item>Engine stop</item>
+    <item>10</item>
+    <item>11</item>
+    <item>12</item>
+    <item>13</item>
+    <item>14</item>
+    <item>Unavailable (15:black)</item>
     </string-array>
     <string-array name="list_VehicleStatePh2">
         <item>Asleep, off (0:red)</item>
@@ -564,6 +594,45 @@
         <item>Cooling coupled</item>
         <item>Unavailable</item>
     </string-array>
+    <string-array name="list_ACStatus">
+        <item>Signal Invalid</item>
+        <item>Compressor Off</item>
+        <item>Compressor is starting</item>
+        <item>Compressor On</item>
+    </string-array>
+    <string-array name="list_ACAuth">
+        <item>Disable</item>
+        <item>Enable</item>
+        <item>Not used</item>
+        <item>Signal invalid</item>
+    </string-array>
+    <string-array name="list_ACError">
+        <item>No problem</item>
+        <item>Degraded mode</item>
+        <item>Compressor shut-off safety reasons</item>
+        <item>Compressor has to te changed</item>
+    </string-array>
+    <string-array name="list_ETSState">
+        <item>ETS_Standby</item>
+        <item>ETS_WakeUp</item>
+        <item>ETS_Comfort</item>
+        <item>ETS_Driving</item>
+        <item>ETS_QuickDrop</item>
+    </string-array>
+    <string-array name="list_ACInterlock">
+        <item>Unvailable Value</item>
+        <item>Open</item>
+        <item>Closed</item>
+        <item>Sensor Unavailable</item>
+    </string-array>
+    <string-array name="list_FanActivation">
+        <item>no FAN requested</item>
+        <item>(61- low- 38- very low) speed fan request</item>
+        <item>61- not used- 38- low speed fan request</item>
+        <item>high speed fan request</item>
+    </string-array>
+
+
     <string-array name="list_ConditioningStatus">
         <item>Blow req</item>
         <item>Cool cond req</item>
@@ -877,5 +946,10 @@
 
     <!-- ZE50 test -->
     <string name="title_activity_ZE50Test">ZE50 test</string>
+
+    <!-- Additional   -->
+    <string name="toast_WaitingSettings">"Stop Bluetooth. The settings are loading. Please wait… "</string>
+    <string name="toast_PleaseUseTop">"Please use the buttons at the top to exit settings... "</string>
+    <string name="about">About</string>
 
 </resources>

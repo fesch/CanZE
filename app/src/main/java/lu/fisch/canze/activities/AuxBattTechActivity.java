@@ -38,7 +38,8 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
 
     //private final String[] charging_Status = MainActivity.getStringList(R.array.list_ChargingStatus2);
     private final String[] vehicle_Status = MainActivity.getStringList(MainActivity.isPh2() ? R.array.list_VehicleStatePh2
-                                                                                            : R.array.list_VehicleState);
+            : (MainActivity.isSpring() ? R.array.list_VehicleStateSpring : R.array.list_VehicleState));
+
     private final String[] aux_Status = MainActivity.getStringList(R.array.list_AuxStatus);
 
     @Override
@@ -93,6 +94,7 @@ public class AuxBattTechActivity extends CanzeActivity implements FieldListener,
                             tv.setText(aux_Status[value]);
                         tv = null;
                         break;
+//0:SLEEPING;1:TECHNICAL_WAKE_UP;2:CUT_OFF_PENDING;3:BAT_TEMPO_LEVEL;4:ACCESSORY_LEVEL;5:IGNITION_LEVEL;6:STARTING_IN_PROGRESS;7:ENGINE_RUNNING;9:ENGINE_SYSTEM_STOP;,kW,8:AUTOSTART;15:UNAVAILABLE
                     case Sid.VehicleState:
                         tv = findViewById(R.id.text_vehicle_state);
                         value = (int) field.getValue();

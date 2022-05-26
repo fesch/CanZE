@@ -107,6 +107,7 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
         addField(Sid.TotalPotentialResistiveWheelsTorque, 0);
         addField(Sid.RealSpeed, 0);
         addField(Sid.SoC, 7200);
+        addField(Sid.RealSoC, 7200);
         addField(Sid.RangeEstimate, 7200);
         addField(Sid.EVC_Odometer, 6000);
         addField(Sid.TripMeterB, 6000);
@@ -287,6 +288,11 @@ public class DrivingActivity extends CanzeActivity implements FieldListener, Deb
                 switch (fieldId) {
                     case Sid.SoC:
                         tv = findViewById(R.id.textSOC);
+                        break;
+                    case Sid.RealSoC:
+                        if (MainActivity.isSpring()) {
+				tv = findViewById(R.id.textSOC);
+			}
                         break;
                     case Sid.Pedal:
                         pb = findViewById(R.id.pedalBar);

@@ -1,0 +1,373 @@
+,732,0,0,1,0,0,,1081,5081,ff,StartDefaultSession,
+,732,0,0,1,0,0,,1085,5085,ff,StartReprogSession,
+,732,0,0,1,0,0,,10C0,50C0,ff,StartDiagnosticSession,
+,732,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All,
+,732,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask,
+,732,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceAndFailureTypeOBD,
+,732,40,43,1,0,0,,1902FF,5902FF,ff,DTCFailureType.Category,0:General Failure Information;1:General Electrical Failures;2:General Signal Failures;3:FM / PWM Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;15:Vehicle manufacturer / System supplier specific
+,732,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier,
+,732,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested,
+,732,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,
+,732,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,732,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,732,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,732,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,
+,732,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,
+,732,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,732,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord,
+,732,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC,
+,732,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord,
+,732,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC,
+,732,48,55,1,0,0,,190600000080,590600000080,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,732,56,79,1,0,0,km,190600000080,590600000080,ff,DTCExtendedData.Mileage,
+,732,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord,
+,732,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC,
+,732,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter
+,732,56,79,1,0,0,km,1906000000FF,5906000000FF,ff,DTCExtendedData.Mileage,
+,732,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart,
+,732,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode,
+,732,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG,
+,732,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart,
+,732,128,143,1,0,0,,2180,6180,4ff,SoftwareNumber,
+,732,144,159,1,0,0,,2180,6180,4ff,EditionNumber,
+,732,160,175,1,0,0,,2180,6180,4ff,CalibrationNumber,
+,732,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:NA;1:28115;2:283C2
+,732,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:HARDW;1:285J9
+,732,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:NA
+,732,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS
+,732,16,31,1,0,0,,2182,6182,4ff,CANV.RefMessagerie,
+,732,32,33,1,0,0,,2182,6182,ff,CANV.BusOff,0:Present;2:Missing;3:Missing Confirmed
+,732,34,39,1,0,0,,2182,6182,ff,CANV.BusOffCounter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,732,40,41,1,0,0,,2182,6182,ff,CANV.Mute,0:Present;2:Missing;3:Missing Confirmed
+,732,42,47,1,0,0,,2182,6182,ff,CANV.MuteCounter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Not Checked
+,732,48,49,1,0,0,,2182,6182,ff,CANV.ECM,0:Present;2:Missing;3:Missing Confirmed
+,732,50,55,1,0,0,,2182,6182,ff,CANV.ECMCounter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Not Checked
+,732,56,57,1,0,0,,2182,6182,ff,CANV.Brake,0:Present;2:Missing;3:Missing Confirmed
+,732,58,63,1,0,0,,2182,6182,ff,CANV.BrakeCounter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Not Checked
+,732,64,65,1,0,0,,2182,6182,ff,CANV.Cluster,0:Present;2:Missing;3:Missing Confirmed
+,732,66,71,1,0,0,,2182,6182,ff,CANV.ClusterCounter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Not Checked
+,732,72,73,1,0,0,,2182,6182,ff,CANV.BCM,0:Present;2:Missing;3:Missing Confirmed
+,732,74,79,1,0,0,,2182,6182,ff,CANV.BCMCounter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Not Checked
+,732,112,113,1,0,0,,2182,6182,ff,CANV.AT,0:Present;2:Missing;3:Missing Confirmed
+,732,114,119,1,0,0,,2182,6182,ff,CANV.ATCounter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Not Checked
+,732,200,201,1,0,0,,2182,6182,ff,CANV.BMM,0:Present;2:Missing;3:Missing Confirmed
+,732,202,207,1,0,0,,2182,6182,ff,CANV.BMMCounter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Not Checked
+,732,424,425,1,0,0,,2182,6182,ff,CANV.EVC,0:Present;2:Missing;3:Missing Confirmed
+,732,426,431,1,0,0,,2182,6182,ff,CANV.EVCCounter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Not Checked
+,732,592,593,1,0,0,,2182,6182,ff,CANV.TCU,0:Present;2:Missing;3:Missing Confirmed
+,732,594,599,1,0,0,,2182,6182,ff,CANV.TCUCounter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Not Checked
+,732,16,39,1,0,0,,2184,6184,2ff,Traceability.SupplierCode,
+,732,40,71,1,0,0,,2184,6184,2ff,Traceability.ProductionYear,
+,732,72,87,1,0,0,,2184,6184,2ff,Traceability.ProductionWeek,
+,732,88,175,1,0,0,,2184,6184,2ff,Traceability.SerialNumber,
+,732,16,31,1,0,0,,2185,6185,4ff,CANM.RefMessagerie,
+,732,32,33,1,0,0,,2185,6185,ff,CANM.BusOff,0:Present;2:Missing;3:Missing Confirmed
+,732,34,39,1,0,0,,2185,6185,ff,CANM.BusOffCounter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:No Checked
+,732,40,41,1,0,0,,2185,6185,ff,CANM.Mute,0:Present;2:Missing;3:Missing Confirmed
+,732,42,47,1,0,0,,2185,6185,ff,CANM.MuteCounter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Not Checked
+,732,96,97,1,0,0,,2185,6185,ff,CANM.Ampli,0:Present;2:Missing;3:Missing Confirmed
+,732,98,103,1,0,0,,2185,6185,ff,CANM.AmpliCounter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Not Checked
+,732,152,153,1,0,0,,2185,6185,ff,CANM.BIC,0:Present;2:Missing;3:Missing Confirmed
+,732,154,159,1,0,0,,2185,6185,ff,CANM.BICCounter,0:0;1:1;2:2;3:3;4:4;5:5;6:6;7:7;8:8;9:9;10:10;11:11;12:12;13:13;14:14;15:15;16:16;17:17;18:18;19:19;20:20;21:21;22:22;23:23;24:24;25:25;26:26;27:27;28:28;29:29;30:30;31:31;32:32;33:33;34:34;35:35;36:36;37:37;38:38;39:39;40:40;63:Not Checked
+,732,16,95,1,0,0,,21EF,61EF,2ff,DaimlerID.HardwarePartNumber,
+,732,96,175,1,0,0,,21EF,61EF,2ff,DaimlerID.SoftwarePartNumber,
+,732,24,31,1,0,0,,222201,622201,ff,Antitheft,0:Deactivated;1:Activated
+,732,24,31,1,0,0,,222203,622203,ff,Road compagnon licence,0:Licence Not Active;1:Licence Active;2:Dongle 2nd generation
+,732,27,27,1,0,0,,222403,622403,ff,LIN_IN.Info_Aux_IN,0:Jack not connected;1:Jack connected
+,732,28,28,1,0,0,,222403,622403,ff,LIN_IN.MuteTCU,0:Mute OFF;1:Mute ON
+,732,31,31,1,0,0,,222403,622403,ff,LIN_IN.ACC,0:ACC OFF;1:ACC ON
+,732,24,31,.2,0,1,V,222501,622501,ff,Analog_Level.Battery,
+,732,24,31,.1,0,1,V,22250D,62250D,ff,Analog_Level.Microphone,
+,732,28,28,1,0,0,,222607,622607,ff,Radio_button.Rightrotary_VAL_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,31,31,1,0,0,,222607,622607,ff,Radio_button.Leftrotary_ON_OFF_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,32,32,1,0,0,,222607,622607,ff,Radio_button.MUTE_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,33,33,1,0,0,,222607,622607,ff,Radio_button.PREVIOUS_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,34,34,1,0,0,,222607,622607,ff,Radio_button.NEXT_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,35,35,1,0,0,,222607,622607,ff,Radio_button.BACK_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,36,36,1,0,0,,222607,622607,ff,Radio_button.TEXT_pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,37,37,1,0,0,,222607,622607,ff,Radio_button.TEL_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,38,38,1,0,0,,222607,622607,ff,Radio_button.SETUP_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,39,39,1,0,0,,222607,622607,ff,Radio_button.RADIO_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,40,40,1,0,0,,222607,622607,ff,Radio_button.MEDIA_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,41,41,1,0,0,,222607,622607,ff,Radio_button.EJECT_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,42,42,1,0,0,,222607,622607,ff,Radio_button.6_pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,43,43,1,0,0,,222607,622607,ff,Radio_button.5_pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,44,44,1,0,0,,222607,622607,ff,Radio_button.4_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,45,45,1,0,0,,222607,622607,ff,Radio_button.3_pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,46,46,1,0,0,,222607,622607,ff,Radio_button.2_pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,47,47,1,0,0,,222607,622607,ff,Radio_button.1_pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,50,50,1,0,0,,222607,622607,ff,Radio_button.Rightrotary_Anticlockwise,0:Not pressed;1:Pressed
+,732,51,51,1,0,0,,222607,622607,ff,Radio_button.Rightrotary_Clockwise,0:Not pressed;1:Pressed
+,732,52,52,1,0,0,,222607,622607,ff,Radio_button.Rightrotary_VAL,0:Not pressed;1:Pressed
+,732,53,53,1,0,0,,222607,622607,ff,Radio_button.Leftrotary_Anticlockwise,0:Not pressed;1:Pressed
+,732,54,54,1,0,0,,222607,622607,ff,Radio_button.Leftrotary_Clockwise,0:Not pressed;1:Pressed
+,732,55,55,1,0,0,,222607,622607,ff,Radio_button.Leftrotary_ON_OFF,0:Not pressed;1:Pressed
+,732,56,56,1,0,0,,222607,622607,ff,Radio_button.MUTE,0:Not pressed;1:Pressed
+,732,57,57,1,0,0,,222607,622607,ff,Radio_button.PREVIOUS,0:Not pressed;1:Pressed
+,732,58,58,1,0,0,,222607,622607,ff,Radio_button.NEXT,0:Not pressed;1:Pressed
+,732,59,59,1,0,0,,222607,622607,ff,Radio_button.BACK,0:Not pressed;1:Pressed
+,732,60,60,1,0,0,,222607,622607,ff,Radio_button.TEXT,0:Not pressed;1:Pressed
+,732,61,61,1,0,0,,222607,622607,ff,Radio_button.TEL,0:Not pressed;1:Pressed
+,732,62,62,1,0,0,,222607,622607,ff,Radio_button.SETUP,0:Not pressed;1:Pressed
+,732,63,63,1,0,0,,222607,622607,ff,Radio_button.RADIO,0:Not pressed;1:Pressed
+,732,64,64,1,0,0,,222607,622607,ff,Radio_button.MEDIA,0:Not pressed;1:Pressed
+,732,65,65,1,0,0,,222607,622607,ff,Radio_button.EJECT,0:Not pressed;1:Pressed
+,732,66,66,1,0,0,,222607,622607,ff,Radio_button.6,0:Not pressed;1:Pressed
+,732,67,67,1,0,0,,222607,622607,ff,Radio_button.5,0:Not pressed;1:Pressed
+,732,68,68,1,0,0,,222607,622607,ff,Radio_button.4,0:Not pressed;1:Pressed
+,732,69,69,1,0,0,,222607,622607,ff,Radio_button.3,0:Not pressed;1:Pressed
+,732,70,70,1,0,0,,222607,622607,ff,Radio_button.2,0:Not pressed;1:Pressed
+,732,71,71,1,0,0,,222607,622607,ff,Radio_button.1,0:Not pressed;1:Pressed
+,732,24,55,1,0,0,,22281A,62281A,4ff,VID,
+,732,25,25,1,0,0,,222820,622820,ff,Internal.StoredScripts.X61,0:Not present;1:Present
+,732,26,26,1,0,0,,222820,622820,ff,Internal.StoredScripts.HFE,0:Not present;1:Present
+,732,27,27,1,0,0,,222820,622820,ff,Internal.StoredScripts.X07V,0:Not present;1:Present
+,732,28,28,1,0,0,,222820,622820,ff,Internal.StoredScripts.X07M,0:Not present;1:Present
+,732,29,29,1,0,0,,222820,622820,ff,Internal.StoredScripts.X82,0:Not present;1:Present
+,732,30,30,1,0,0,,222820,622820,ff,Internal.StoredScripts.X62,0:Not present;1:Present
+,732,31,31,1,0,0,,222820,622820,ff,Internal.StoredScripts.Default,0:Not present;1:Present
+,732,24,47,1,0,0,,222821,622821,4ff,BT_HW_identifier,
+,732,24,71,1,0,0,,222823,622823,4ff,BT_ECU_address,
+,732,31,31,1,0,0,,222832,622832,ff,Radio_State,0:Off user;1:On user
+,732,24,31,1,0,0,,222901,622901,4ff,ANT1.current level field,
+,732,32,39,1,0,0,,222901,622901,4ff,ANT1.Multipath level,
+,732,40,47,1,0,0,,222901,622901,4ff,ANT1.Noise level,
+,732,48,87,1,0,0,,222901,622901,2ff,ANT1.Frequency value,
+,732,88,95,1,0,0,,222901,622901,ff,ANT1.Band,1:FM;2:AM
+,732,24,31,1,0,0,,22290A,62290A,4ff,ANT3.current level field,
+,732,32,47,1,0,0,,22290A,62290A,4ff,ANT3.FIC_BER,
+,732,48,63,1,0,0,,22290A,62290A,4ff,ANT3.MSC_BER,
+,732,64,103,1,0,0,,22290A,62290A,2ff,ANT3.ChannelNumber,
+,732,104,167,1,0,0,,22290A,62290A,2ff,ANT3.ChannelName,
+,732,168,183,1,0,0,,22290A,62290A,4ff,ANT3.EnsembleID,
+,732,184,215,1,0,0,,22290A,62290A,4ff,ANT3.ServiceID,
+,732,216,231,1,0,0,,22290A,62290A,4ff,ANT3.CompID,
+,732,232,239,1,0,0,,22290A,62290A,ff,ANT3.Band,3:DAB+;4:DAB;5:DMB-A;6:DMB-BSAC
+,732,24,31,1,0,0,,222920,622920,ff,CD_Insertion,0:No CD;1:CD present;254:invalid value (data error);255:no available information
+,732,24,31,1,0,0,,222C08,622C08,ff,MMILanguage,0:French;1:UK English;2:German;3:Spanish;4:Italian;5:Portuguese (for Portugal);6:Portuguese (for Brazil);7:Dutch;8:Turkish;9:Russian;10:Polish;11:Czech;12:Denmark;13:Korean;14:Chinese (mandarin);15:Sweden;16:Taiwanese;17:US English;18:Greek Alphabet;19:Slovak;20:Hungarian;21:Croatian;22:Slovene;23:Estonian;24:Lithuanian;25:Latvian;26:Arabic;27:Finnish;28:Flemish;29:Norwegian;30:Japanese;31:Bulgarian;32:Romanian;33:Serbian;34:Bosnian;35:Ukrainian;36:Hebrew
+,732,24,31,1,0,0,,222C0A,622C0A,ff,Time display,0:No time displayed;1:Time displayed in 12H format;2:Time displayed in 24H format
+,732,24,31,1,0,0,,222C11,622C11,ff,Radio country,0:Europe & Northern Asia;1:South Asia & Pacific;2:Afric & Middle East;3:Japan;4:South & Central America;5:North America;6:South Korean;7:Australia;8:China;9:Brazil
+,732,26,29,1,0,0,,222C1C,622C1C,ff,ECU Configuration.Roger/error beep volume,
+,732,30,30,1,0,0,,222C1C,622C1C,ff,ECU Configuration.Ecall,0:Not present;1:Present
+,732,33,33,1,0,0,,222C1C,622C1C,ff,ECU Configuration.Renault Amplifier,0:Not fitted;1:Fitted
+,732,34,34,1,0,0,,222C1C,622C1C,ff,ECU Configuration.DaimlerAmplifier,0:Ampli not fitted;1:Ampli fitted
+,732,35,35,1,0,0,,222C1C,622C1C,ff,ECU Configuration.Sub,0:Subwoofer not fitted;1:Subwoofer fitted
+,732,37,37,1,0,0,,222C1C,622C1C,ff,ECU Configuration.TW_front,0:Front tweeter not fitted;1:Front tweeter fitted
+,732,38,38,1,0,0,,222C1C,622C1C,ff,ECU Configuration.LS_rear,0:Rear louspeakers not fitted;1:Rear louspeakers fitted
+,732,40,40,1,0,0,,222C1C,622C1C,ff,ECU Configuration.Antenna1,0:Passive;1:Active
+,732,41,43,1,0,0,,222C1C,622C1C,ff,ECU Configuration.PTT,0:Disable SPVR;1:PTT on SWRC long press;2:PTT on Steering Wheel;3:PTT on M-CAN (Daimler);4:PTT on SWRC direct Input;5:PTT on V-CAN
+,732,44,44,1,0,0,,222C1C,622C1C,ff,ECU Configuration.OSW,0:Not Fitted;1:Fitted
+,732,45,47,1,0,0,,222C1C,622C1C,ff,ECU Configuration.SWRC,0:No SWRC;1:492R / X61;2:448R;3:229R;4:0420
+,732,48,48,1,0,0,,222C1C,622C1C,ff,ECU Configuration.Loudness,0:Not Activated;1:Activated
+,732,49,49,1,0,0,,222C1C,622C1C,ff,ECU Configuration.Alternate Frequency,0:Deactivated;1:Activated
+,732,50,51,1,0,0,,222C1C,622C1C,ff,ECU Configuration.Cradle,0:Reserved 1;1:Reserved 2;2:Cradle on fascia;3:Cradle on dashboard
+,732,52,52,1,0,0,,222C1C,622C1C,ff,ECU Configuration.DAB_activation,0:Deactivated;1:Activated
+,732,53,54,1,0,0,,222C1C,622C1C,ff,ECU Configuration.AM_activation,0:AM (LW & MW) activated;1:Reserved;2:LW deactivated- MW activated;3:AM (LW & MW) deactivated
+,732,29,29,1,0,0,,222C24,622C24,ff,Car Configuration.Driver_position,0:Driver on the left;1:Driver on the right
+,732,30,31,1,0,0,,222C24,622C24,ff,Car Configuration.GearBox,0:BVM;1:BVA
+,732,32,39,1,0,0,,222C24,622C24,ff,Car Configuration.Engine,0:ICE;3:EV
+,732,40,47,1,0,0,,222C24,622C24,ff,Car Configuration.CarManufacturer,0:Renault;1:Nissan;2:RSM;3:Dacia;4:Daimler;5:GM;6:RVI;7:Fiat
+,732,48,55,1,0,0,,222C24,622C24,ff,Car Configuration.Environment,0:Default;1:X62;2:X82;3:X07 CAN M;4:X07 CAN V;5:HFE;6:X61;7:HZH;8:X98 CAN - V;9:X98 CAN - M;10:X87 CAN - V;11:X87 CAN - M;12:X52;13:X52 ph2;14:X67;15:X67 ph2;16:X92;17:X92 ph2;18:X79 ph2;19:HJD;20:X79;21:Reserved;31:XHAph2;33:XBC
+,732,56,63,1,0,0,,222C24,622C24,ff,Car Configuration.SDVC_curve,0:Speed 0;1:Speed 1;2:Speed 2;3:Speed 3;4:Speed 4;5:Speed 5
+,732,24,4023,1,0,0,,222C25,622C25,4ff,Phone_acoustic_parameters_1,
+,732,24,3823,1,0,0,,222C2A,622C2A,4ff,Acoustic_Part1,
+,732,24,3823,1,0,0,,222C2B,622C2B,4ff,Acoustic_Part2,
+,732,24,3823,1,0,0,,222C2C,622C2C,4ff,Acoustic_Part3,
+,732,24,4023,1,0,0,,222C2D,622C2D,4ff,Radio_reception.AMFM,
+,732,24,119,1,0,0,,222C31,622C31,4ff,Radio_reception.DAB,
+,732,24,103,1,0,0,,222C32,622C32,4ff,Apple bundle seed ID,
+,732,24,503,1,0,0,,222C33,622C33,4ff,Apple bundle ID,
+,732,24,4023,1,0,0,,222C34,622C34,4ff,SPVR_parameters_1,
+,732,24,4023,1,0,0,,222C35,622C35,4ff,SPVR_parameters_2,
+,732,24,4023,1,0,0,,222C36,622C36,4ff,SPVR_parameters_3,
+,732,24,3823,1,0,0,,222C37,622C37,4ff,Acoustic_Part4,
+,732,24,4023,1,0,0,,222C38,622C38,4ff,SPVR_parameters_4,
+,732,25,25,1,0,0,,222C39,622C39,ff,RNGO parameters.AVRCP protocol,0:Deactivated;1:Dynamic
+,732,26,26,1,0,0,,222C39,622C39,ff,RNGO parameters.Journey_recording,0:Not compatible;1:Compatible
+,732,27,27,1,0,0,,222C39,622C39,ff,RNGO parameters.MAP_protocol,0:Not compatible;1:Compatible
+,732,24,4023,1,0,0,,222C3D,622C3D,4ff,Phone_acoustic_parameters_2,
+,732,24,4023,1,0,0,,222C3E,622C3E,4ff,Phone_acoustic_parameters_3,
+,732,24,4023,1,0,0,,222C3F,622C3F,4ff,Phone_acoustic_parameters_4,
+,732,24,263,1,0,0,,222C40,622C40,4ff,Bluetooth name,
+,732,24,31,.1,0,1,cd/m²,222C43,622C43,ff,Dimming.MinimumBrightnessButtons,
+,732,32,39,.5,0,1,cd/m²,222C43,622C43,ff,Dimming.MinimumBrightnessDisplay,
+,732,40,47,.1,0,1,cd/m²,222C43,622C43,ff,Dimming.MaximumBrightnessButtons,
+,732,48,55,.5,0,1,cd/m²,222C43,622C43,ff,Dimming.MaximumBrightnessDisplay,
+,732,56,63,.1,0,1,cd/m²,222C43,622C43,ff,Dimming.FixedNightBrightnessButtons,
+,732,64,71,.5,0,1,cd/m²,222C43,622C43,ff,Dimming.FixedNightBrightnessDisplay,
+,732,72,79,1,0,0,ms,222C43,622C43,ff,Dimming.SamplingIntervalTe,
+,732,80,87,.01,0,2,,222C43,622C43,ff,Dimming.IncreaseConstantK,
+,732,88,95,.01,0,2,,222C43,622C43,ff,Dimming.DecreaseConstantJ,
+,732,31,31,1,0,0,,222C45,622C45,ff,DISPLAY_HEBREW,0:Not Activated;1:Activated
+,732,24,183,1,0,0,,223408,623408,2ff,BluetoothDevice.name1,
+,732,184,231,1,0,0,,223408,623408,4ff,BluetoothDevice.address1,
+,732,232,391,1,0,0,,223408,623408,2ff,BluetoothDevice.name2,
+,732,392,439,1,0,0,,223408,623408,4ff,BluetoothDevice.address2,
+,732,440,599,1,0,0,,223408,623408,2ff,BluetoothDevice.name3,
+,732,600,647,1,0,0,,223408,623408,4ff,BluetoothDevice.address3,
+,732,648,807,1,0,0,,223408,623408,2ff,BluetoothDevice.name4,
+,732,808,855,1,0,0,,223408,623408,4ff,BluetoothDevice.address4,
+,732,856,1015,1,0,0,,223408,623408,2ff,BluetoothDevice.name5,
+,732,1016,1063,1,0,0,,223408,623408,4ff,BluetoothDevice.address5,
+,732,24,39,1,0,0,,223801,623801,ff,History.NumberOfReprogramming,
+,732,24,31,1,0,0,,223803,623803,4ff,HistoricZone0.Year,
+,732,32,39,1,0,0,,223803,623803,4ff,HistoricZone0.Mounth,
+,732,40,47,1,0,0,,223803,623803,4ff,HistoricZone0.Day,
+,732,48,55,1,0,0,,223803,623803,4ff,HistoricZone0.Hour,
+,732,56,63,1,0,0,,223803,623803,4ff,HistoricZone0.Minute,
+,732,64,71,1,0,0,,223803,623803,4ff,HistoricZone0.Second,
+,732,72,79,1,0,0,,223803,623803,ff,HistoricZone0.Status,0:reprogramming succeed;1:reprogramming failed;255:No log recorded
+,732,80,95,1,0,0,,223803,623803,ff,HistoricZone0.Index,
+,732,96,111,1,0,0,,223803,623803,4ff,HistoricZone0.SoftwareNumber,
+,732,112,127,1,0,0,,223803,623803,4ff,HistoricZone0.SoftwareEditionNumber,
+,732,128,143,1,0,0,,223803,623803,4ff,HistoricZone0.BootNumber,
+,732,144,159,1,0,0,,223803,623803,4ff,HistoricZone0.BootEditionNumber,
+,732,24,31,1,0,0,,223804,623804,4ff,HistoricZone1.Year,
+,732,32,39,1,0,0,,223804,623804,4ff,HistoricZone1.Mounth,
+,732,40,47,1,0,0,,223804,623804,4ff,HistoricZone1.Day,
+,732,48,55,1,0,0,,223804,623804,4ff,HistoricZone1.Hour,
+,732,56,63,1,0,0,,223804,623804,4ff,HistoricZone1.Minute,
+,732,64,71,1,0,0,,223804,623804,4ff,HistoricZone1.Second,
+,732,72,79,1,0,0,,223804,623804,ff,HistoricZone1.Status,0:reprogramming succeed;1:reprogramming failed;255:No log recorded
+,732,80,95,1,0,0,,223804,623804,ff,HistoricZone1.Index,
+,732,96,111,1,0,0,,223804,623804,4ff,HistoricZone1.SoftwareNumber,
+,732,112,127,1,0,0,,223804,623804,4ff,HistoricZone1.SoftwareEditionNumber,
+,732,128,143,1,0,0,,223804,623804,4ff,HistoricZone1.BootNumber,
+,732,144,159,1,0,0,,223804,623804,4ff,HistoricZone1.BootEditionNumber,
+,732,24,31,1,0,0,,223810,623810,4ff,HistoricZoneX0.Year,
+,732,32,39,1,0,0,,223810,623810,4ff,HistoricZoneX0.Mounth,
+,732,40,47,1,0,0,,223810,623810,4ff,HistoricZoneX0.Day,
+,732,48,55,1,0,0,,223810,623810,4ff,HistoricZoneX0.Hour,
+,732,56,63,1,0,0,,223810,623810,4ff,HistoricZoneX0.Minute,
+,732,64,71,1,0,0,,223810,623810,4ff,HistoricZoneX0.Second,
+,732,72,79,1,0,0,,223810,623810,ff,HistoricZoneX0.Status,0:reprogramming succeed;1:reprogramming failed;255:No log recorded
+,732,80,95,1,0,0,,223810,623810,ff,HistoricZoneX0.Index,
+,732,96,111,1,0,0,,223810,623810,4ff,HistoricZoneX0.SoftwareNumber,
+,732,112,127,1,0,0,,223810,623810,4ff,HistoricZoneX0.SoftwareEditionNumber,
+,732,128,143,1,0,0,,223810,623810,4ff,HistoricZoneX0.BootNumber,
+,732,144,159,1,0,0,,223810,623810,4ff,HistoricZoneX0.BootEditionNumber,
+,732,24,31,1,0,0,,223811,623811,4ff,HistoricZoneX1.Year,
+,732,32,39,1,0,0,,223811,623811,4ff,HistoricZoneX1.Mounth,
+,732,40,47,1,0,0,,223811,623811,4ff,HistoricZoneX1.Day,
+,732,48,55,1,0,0,,223811,623811,4ff,HistoricZoneX1.Hour,
+,732,56,63,1,0,0,,223811,623811,4ff,HistoricZoneX1.Minute,
+,732,64,71,1,0,0,,223811,623811,4ff,HistoricZoneX1.Second,
+,732,72,79,1,0,0,,223811,623811,ff,HistoricZoneX1.Status,0:reprogramming succeed;1:reprogramming failed;255:No log recorded
+,732,80,95,1,0,0,,223811,623811,ff,HistoricZoneX1.Index,
+,732,96,111,1,0,0,,223811,623811,4ff,HistoricZoneX1.SoftwareNumber,
+,732,112,127,1,0,0,,223811,623811,4ff,HistoricZoneX1.SoftwareEditionNumber,
+,732,128,143,1,0,0,,223811,623811,4ff,HistoricZoneX1.BootNumber,
+,732,144,159,1,0,0,,223811,623811,4ff,HistoricZoneX1.BootEditionNumber,
+,732,24,31,1,0,0,,223812,623812,4ff,HistoricZoneX2.Year,
+,732,32,39,1,0,0,,223812,623812,4ff,HistoricZoneX2.Mounth,
+,732,40,47,1,0,0,,223812,623812,4ff,HistoricZoneX2.Day,
+,732,48,55,1,0,0,,223812,623812,4ff,HistoricZoneX2.Hour,
+,732,56,63,1,0,0,,223812,623812,4ff,HistoricZoneX2.Minute,
+,732,64,71,1,0,0,,223812,623812,4ff,HistoricZoneX2.Second,
+,732,72,79,1,0,0,,223812,623812,ff,HistoricZoneX2.Status,0:reprogramming succeed;1:reprogramming failed;255:No log recorded
+,732,80,95,1,0,0,,223812,623812,ff,HistoricZoneX2.Index,
+,732,96,111,1,0,0,,223812,623812,4ff,HistoricZoneX2.SoftwareNumber,
+,732,112,127,1,0,0,,223812,623812,4ff,HistoricZoneX2.SoftwareEditionNumber,
+,732,128,143,1,0,0,,223812,623812,4ff,HistoricZoneX2.BootNumber,
+,732,144,159,1,0,0,,223812,623812,4ff,HistoricZoneX2.BootEditionNumber,
+,732,24,31,1,0,0,,223813,623813,4ff,HistoricZoneX3.Year,
+,732,32,39,1,0,0,,223813,623813,4ff,HistoricZoneX3.Mounth,
+,732,40,47,1,0,0,,223813,623813,4ff,HistoricZoneX3.Day,
+,732,48,55,1,0,0,,223813,623813,4ff,HistoricZoneX3.Hour,
+,732,56,63,1,0,0,,223813,623813,4ff,HistoricZoneX3.Minute,
+,732,64,71,1,0,0,,223813,623813,4ff,HistoricZoneX3.Second,
+,732,72,79,1,0,0,,223813,623813,ff,HistoricZoneX3.Status,0:reprogramming succeed;1:reprogramming failed;255:No log recorded
+,732,80,95,1,0,0,,223813,623813,ff,HistoricZoneX3.Index,
+,732,96,111,1,0,0,,223813,623813,4ff,HistoricZoneX3.SoftwareNumber,
+,732,112,127,1,0,0,,223813,623813,4ff,HistoricZoneX3.SoftwareEditionNumber,
+,732,128,143,1,0,0,,223813,623813,4ff,HistoricZoneX3.BootNumber,
+,732,144,159,1,0,0,,223813,623813,4ff,HistoricZoneX3.BootEditionNumber,
+,732,24,31,1,0,0,,223814,623814,4ff,HistoricZoneX4.Year,
+,732,32,39,1,0,0,,223814,623814,4ff,HistoricZoneX4.Mounth,
+,732,40,47,1,0,0,,223814,623814,4ff,HistoricZoneX4.Day,
+,732,48,55,1,0,0,,223814,623814,4ff,HistoricZoneX4.Hour,
+,732,56,63,1,0,0,,223814,623814,4ff,HistoricZoneX4.Minute,
+,732,64,71,1,0,0,,223814,623814,4ff,HistoricZoneX4.Second,
+,732,72,79,1,0,0,,223814,623814,ff,HistoricZoneX4.Status,0:reprogramming succeed;1:reprogramming failed;255:No log recorded
+,732,80,95,1,0,0,,223814,623814,ff,HistoricZoneX4.Index,
+,732,96,111,1,0,0,,223814,623814,4ff,HistoricZoneX4.SoftwareNumber,
+,732,112,127,1,0,0,,223814,623814,4ff,HistoricZoneX4.SoftwareEditionNumber,
+,732,128,143,1,0,0,,223814,623814,4ff,HistoricZoneX4.BootNumber,
+,732,144,159,1,0,0,,223814,623814,4ff,HistoricZoneX4.BootEditionNumber,
+,732,24,31,1,0,0,,223815,623815,4ff,HistoricZoneX5.Year,
+,732,32,39,1,0,0,,223815,623815,4ff,HistoricZoneX5.Mounth,
+,732,40,47,1,0,0,,223815,623815,4ff,HistoricZoneX5.Day,
+,732,48,55,1,0,0,,223815,623815,4ff,HistoricZoneX5.Hour,
+,732,56,63,1,0,0,,223815,623815,4ff,HistoricZoneX5.Minute,
+,732,64,71,1,0,0,,223815,623815,4ff,HistoricZoneX5.Second,
+,732,72,79,1,0,0,,223815,623815,ff,HistoricZoneX5.Status,0:reprogramming succeed;1:reprogramming failed;255:No log recorded
+,732,80,95,1,0,0,,223815,623815,ff,HistoricZoneX5.Index,
+,732,96,111,1,0,0,,223815,623815,4ff,HistoricZoneX5.SoftwareNumber,
+,732,112,127,1,0,0,,223815,623815,4ff,HistoricZoneX5.SoftwareEditionNumber,
+,732,128,143,1,0,0,,223815,623815,4ff,HistoricZoneX5.BootNumber,
+,732,144,159,1,0,0,,223815,623815,4ff,HistoricZoneX5.BootEditionNumber,
+,732,24,31,1,0,0,,223816,623816,4ff,HistoricZoneX6.Year,
+,732,32,39,1,0,0,,223816,623816,4ff,HistoricZoneX6.Mounth,
+,732,40,47,1,0,0,,223816,623816,4ff,HistoricZoneX6.Day,
+,732,48,55,1,0,0,,223816,623816,4ff,HistoricZoneX6.Hour,
+,732,56,63,1,0,0,,223816,623816,4ff,HistoricZoneX6.Minute,
+,732,64,71,1,0,0,,223816,623816,4ff,HistoricZoneX6.Second,
+,732,72,79,1,0,0,,223816,623816,ff,HistoricZoneX6.Status,0:reprogramming succeed;1:reprogramming failed;255:No log recorded
+,732,80,95,1,0,0,,223816,623816,ff,HistoricZoneX6.Index,
+,732,96,111,1,0,0,,223816,623816,4ff,HistoricZoneX6.SoftwareNumber,
+,732,112,127,1,0,0,,223816,623816,4ff,HistoricZoneX6.SoftwareEditionNumber,
+,732,128,143,1,0,0,,223816,623816,4ff,HistoricZoneX6.BootNumber,
+,732,144,159,1,0,0,,223816,623816,4ff,HistoricZoneX6.BootEditionNumber,
+,732,24,31,1,0,0,,223817,623817,4ff,HistoricZoneX7.Year,
+,732,32,39,1,0,0,,223817,623817,4ff,HistoricZoneX7.Mounth,
+,732,40,47,1,0,0,,223817,623817,4ff,HistoricZoneX7.Day,
+,732,48,55,1,0,0,,223817,623817,4ff,HistoricZoneX7.Hour,
+,732,56,63,1,0,0,,223817,623817,4ff,HistoricZoneX7.Minute,
+,732,64,71,1,0,0,,223817,623817,4ff,HistoricZoneX7.Second,
+,732,72,79,1,0,0,,223817,623817,ff,HistoricZoneX7.Status,0:reprogramming succeed;1:reprogramming failed;255:No log recorded
+,732,80,95,1,0,0,,223817,623817,ff,HistoricZoneX7.Index,
+,732,96,111,1,0,0,,223817,623817,4ff,HistoricZoneX7.SoftwareNumber,
+,732,112,127,1,0,0,,223817,623817,4ff,HistoricZoneX7.SoftwareEditionNumber,
+,732,128,143,1,0,0,,223817,623817,4ff,HistoricZoneX7.BootNumber,
+,732,144,159,1,0,0,,223817,623817,4ff,HistoricZoneX7.BootEditionNumber,
+,732,24,31,1,0,0,,223818,623818,4ff,HistoricZoneX8.Year,
+,732,32,39,1,0,0,,223818,623818,4ff,HistoricZoneX8.Mounth,
+,732,40,47,1,0,0,,223818,623818,4ff,HistoricZoneX8.Day,
+,732,48,55,1,0,0,,223818,623818,4ff,HistoricZoneX8.Hour,
+,732,56,63,1,0,0,,223818,623818,4ff,HistoricZoneX8.Minute,
+,732,64,71,1,0,0,,223818,623818,4ff,HistoricZoneX8.Second,
+,732,72,79,1,0,0,,223818,623818,ff,HistoricZoneX8.Status,0:reprogramming succeed;1:reprogramming failed;255:No log recorded
+,732,80,95,1,0,0,,223818,623818,ff,HistoricZoneX8.Index,
+,732,96,111,1,0,0,,223818,623818,4ff,HistoricZoneX8.SoftwareEditionNumber,
+,732,112,127,1,0,0,,223818,623818,4ff,HistoricZoneX8.SoftwareNumber,
+,732,128,143,1,0,0,,223818,623818,4ff,HistoricZoneX8.BootNumber,
+,732,144,159,1,0,0,,223818,623818,4ff,HistoricZoneX8.BootEditionNumber,
+,732,24,31,1,0,0,,223819,623819,4ff,HistoricZoneX9.Year,
+,732,32,39,1,0,0,,223819,623819,4ff,HistoricZoneX9.Mounth,
+,732,40,47,1,0,0,,223819,623819,4ff,HistoricZoneX9.Day,
+,732,48,55,1,0,0,,223819,623819,4ff,HistoricZoneX9.Hour,
+,732,56,63,1,0,0,,223819,623819,4ff,HistoricZoneX9.Minute,
+,732,64,71,1,0,0,,223819,623819,4ff,HistoricZoneX9.Second,
+,732,72,79,1,0,0,,223819,623819,ff,HistoricZoneX9.Status,0:reprogramming succeed;1:reprogramming failed;255:No log recorded
+,732,80,95,1,0,0,,223819,623819,ff,HistoricZoneX9.Index,
+,732,96,111,1,0,0,,223819,623819,4ff,HistoricZoneX9.SoftwareNumber,
+,732,112,127,1,0,0,,223819,623819,4ff,HistoricZoneX9.SoftwareEditionNumber,
+,732,128,143,1,0,0,,223819,623819,4ff,HistoricZoneX9.BootNumber,
+,732,144,159,1,0,0,,223819,623819,4ff,HistoricZoneX9.BootEditionNumber,
+,732,24,24,1,0,0,,22A601,62A601,ff,SWRC_button.8,0:Not pressed;1:Pressed
+,732,25,25,1,0,0,,22A601,62A601,ff,SWRC_button.7,0:Not pressed;1:Pressed
+,732,26,26,1,0,0,,22A601,62A601,ff,SWRC_button.6,0:Not pressed;1:Pressed
+,732,27,27,1,0,0,,22A601,62A601,ff,SWRC_button.5,0:Not pressed;1:Pressed
+,732,28,28,1,0,0,,22A601,62A601,ff,SWRC_button.4,0:Not pressed;1:Pressed
+,732,29,29,1,0,0,,22A601,62A601,ff,SWRC_button.3,0:Not pressed;1:Pressed
+,732,30,30,1,0,0,,22A601,62A601,ff,SWRC_button.2,0:Not pressed;1:Pressed
+,732,31,31,1,0,0,,22A601,62A601,ff,SWRC_button.1,0:Not pressed;1:Pressed
+,732,24,24,1,0,0,,22A602,62A602,ff,SWRC_rotary.UPtoDOWN,0:Not pressed;1:Rotary switch increase
+,732,25,25,1,0,0,,22A602,62A602,ff,SWRC_rotary.DOWNtoUP,0:Not pressed;1:Rotary switch decrease
+,732,26,26,1,0,0,,22A603,62A603,ff,OSW.PTT,0:Not Pressed;1:Pressed
+,732,27,27,1,0,0,,22A603,62A603,ff,OSW.Phone,0:Not pressed;1:Pressed
+,732,24,103,1,0,0,,22F013,62F013,2ff,Multimedia System Identification,
+,732,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI,
+,732,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI,
+,732,24,103,1,0,0,,22F187,62F187,2ff,VehicleManufacturerSparePartReference,
+,732,0,0,1,0,0,,30,70,ff,TesterPresent.WithResponse,

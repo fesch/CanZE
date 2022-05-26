@@ -1,0 +1,5 @@
+A861,DSC_FAILURE
+C075,CAN_COMM_CIRCUIT
+E143,Communication Failure of EVC ECU
+E148,Communication Failure of ABS ECU
+E14F,Communication Failure of BCM ECU

@@ -95,6 +95,15 @@ public class BrakingActivity extends CanzeActivity implements FieldListener, Deb
                         pb.setProgress((int)(frictionTorque + elecBrakeTorque));
                         tv = findViewById(R.id.text_driver_torque_request);
                         if (tv != null) tv.setText(String.format(Locale.getDefault(), "%.0f" + MainActivity.getStringSingle(R.string.unit_Nm), frictionTorque + elecBrakeTorque));
+
+                        tv = findViewById(R.id.breaking_details);
+                        tv.setText(
+                                String.format(Locale.getDefault(),
+                                        "ElecBrakeTorque:%s %nFrictionTorque: %s %n",
+                                        elecBrakeTorque, frictionTorque
+                                )
+                        );
+
                         break;
 
                 }

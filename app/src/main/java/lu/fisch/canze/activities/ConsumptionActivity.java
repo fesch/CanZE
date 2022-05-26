@@ -51,6 +51,10 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
         addField(Sid.TotalNegativeTorque);
         addField(Sid.TotalPotentialResistiveWheelsTorque, 7200);
         addField(Sid.Instant_Consumption, 0);
+        addField(Sid.AverageConsumption, 5000);
+        if (MainActivity.isSpring()) {
+            addField(Sid.DcPowerOut, 5000);
+        }
     }
 
     @Override
@@ -103,7 +107,7 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
             public void run() {
                 String fieldId = field.getSID();
                 ProgressBar pb;
-                TextView tv;
+                TextView tv, tvS;
 
                 switch (fieldId) {
 
@@ -149,6 +153,28 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
                             }
                         } else {
                             tv.setText("-");
+                        }
+                        break;
+
+                    //consumption for Dacia Spring
+                    case Sid.DcPowerOut:
+                        double consumptionDblS = field.getValue();
+                        int consumptionIntS = (int)consumptionDblS;
+                        tvS = findViewById(R.id.text_instant_consumption_negative);
+                        if (!Double.isNaN(consumptionDblS)) {
+                            // progress bars are rescaled to miles by the layout
+                            ((ProgressBar) findViewById(R.id.pb_instant_consumption_negative)).setProgress(-(Math.min(0, consumptionIntS)));
+                            ((ProgressBar) findViewById(R.id.pb_instant_consumption_positive)).setProgress(  Math.max(0, consumptionIntS) );
+                            if (!MainActivity.milesMode) {
+                                tvS.setText(consumptionIntS + " " + field.getUnit());
+                            } else if (consumptionDblS != 0.0) { // consumption is now in kWh/100mi, so rescale progress bar
+                                // display the value in imperial format (100 / consumption, meaning mi/kwh)
+                                tvS.setText(String.format (Locale.getDefault(),"%.2f %s", (100.0 / consumptionDblS), MainActivity.getStringSingle(R.string.unit_ConsumptionMiAlt)));
+                            } else {
+                                tvS.setText("-");
+                            }
+                        } else {
+                            tvS.setText("-");
                         }
                         break;
                 }

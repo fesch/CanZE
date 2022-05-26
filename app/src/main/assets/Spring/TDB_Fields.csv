@@ -1,0 +1,183 @@
+,763,0,0,1,0,0,,1001,5001,ff,StartDiagnosticSession.DefaultSession,
+,763,0,0,1,0,0,,1002,5002,ff,StartDiagnosticSession.ProgrammingSession,
+,763,0,0,1,0,0,,1003,5003,ff,StartDiagnosticSession.ExtendedDiagnosticSession,
+,763,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All,
+,763,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask,
+,763,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier,
+,763,32,47,1,0,0,,1901FF,5901FF,ff,DTCCount,
+,763,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask,
+,763,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceIdentifier,37891:Brake fluid level;37900:EEPROM monitoring;37907:Error configuration;37906:External temperature inputs;37922:EPS Frame Safety mechanisms;37923:FWS Frame Safety mechanisms;37898:Parking Brake input;37927:PM2.5 sensor mall function;49153:Lost CAN communication or BUS OFF;37924:SafetyBag triggering;37896:SBR telltale command monitoring;37926:SERVICE Telltale diagnosis (SS2);37925:STOP Telltale diagnosis (SS1);37904:Trip computer input(s);37893:Warning ABS telltale monitoring;37892:Warning Airbag telltale monitoring;37894:Warning EPS Red telltale monitoring;61443:Power supply monitoring
+,763,40,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM  / PWM Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adjt failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component/system operation obstructed or blocked;152:component or system over temperature
+,763,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier,
+,763,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,763,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,763,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,763,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,763,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,763,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,763,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,763,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,763,16,39,1,0,0,,1903000000FF,5903000000FF,4ff,DTCRecord,
+,763,40,47,1,0,0,,1903000000FF,5903000000FF,ff,DTCSnapshotRecordNumber,
+,763,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord,
+,763,40,40,1,0,0,,1904000000FF,5904000000FF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,763,41,41,1,0,0,,1904000000FF,5904000000FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,763,42,42,1,0,0,,1904000000FF,5904000000FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,763,43,43,1,0,0,,1904000000FF,5904000000FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,763,44,44,1,0,0,,1904000000FF,5904000000FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,763,45,45,1,0,0,,1904000000FF,5904000000FF,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,763,46,46,1,0,0,,1904000000FF,5904000000FF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,763,47,47,1,0,0,,1904000000FF,5904000000FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,763,16,23,1,0,0,,190A,590A,ff,DTCStatusAvailabilityMask,
+,763,24,39,1,0,0,,190A,590A,ff,DTCDeviceIdentifier,37891:Brake fluid level;37900:EEPROM monitoring;37907:Error configuration;37906:External temperature inputs;37922:EPS Frame Safety mechanisms;37923:FWS Frame Safety mechanisms;37898:Parking Brake input;37927:PM2.5 sensor mall function;49153:Lost CAN communication or BUS OFF;37924:SafetyBag triggering;37896:SBR telltale command monitoring;37926:SERVICE Telltale diagnosis (SS2);37925:STOP Telltale diagnosis (SS1);37904:Trip computer input(s);37893:Warning ABS telltale monitoring;37892:Warning Airbag telltale monitoring;37894:Warning EPS Red telltale monitoring;61443:Power supply monitoring
+,763,40,47,1,0,0,,190A,590A,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM  / PWM Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adjt failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component/system operation obstructed or blocked;152:component or system over temperature
+,763,48,55,1,0,0,,190A,590A,ff,StatusOfDTC,
+,763,49,49,1,0,0,,190A,590A,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,763,50,50,1,0,0,,190A,590A,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,763,51,51,1,0,0,,190A,590A,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,763,52,52,1,0,0,,190A,590A,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,763,53,53,1,0,0,,190A,590A,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,763,54,54,1,0,0,,190A,590A,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,763,55,55,1,0,0,,190A,590A,ff,DTCStatus.testFailed,0:No;1:Yes
+,763,0,0,1,0,0,,220001,620001,ff,DataRead.OutputControl_Telltales_Read,
+,763,0,0,1,0,0,,220002,620002,ff,DataRead.OutputControl_Sound_Read,
+,763,0,0,1,0,0,,220003,620003,ff,DataRead.OutputControl_Display_Read,
+,763,0,0,1,0,0,,220005,620005,ff,DataRead.OutputControl_Backlight_Read,
+,763,0,0,1,0,0,,220006,620006,ff,DataRead.OutputControl_Gauge_Read,
+,763,24,31,1,0,0,,220101,620101,ff,Language_CF,0:Albanese;1:Arabic;2:Bulgarian;3:Chinese Mandarin(Simplified Chinese character);4:Croatian;5:Czech;6:Danish;7:Dutch;8:English (UK);9:Estonian;10:Finnish;11:French;12:German;13:Greek;14:Hebrew;15:Hindi;16:Hungarian;17:Indonesian (Bahasa );18:Italian;19:Japanese;20:Korean;21:Latvian;22:Lithuanian;23:Norvegian;24:Persian (Farsi / Iranian);25:Polish;26:Portuguese (Portugal);27:Portuguese Brazilian;28:Romanian;29:Russian;30:Serbian;31:Slovak;32:Slovenian;33:Spanish (Castillan);34:Spanish Latin American (also Mexican);35:Swedish;36:Turkish;37:Ukrainian;38:Vietnamese;255:not used
+,763,28,31,1,0,0,,220102,620102,ff,GEARBOX_TYPE_CF,0:Automatic Gearbox (ICE);1:Manual Gearbox;2:Automatic Gearbox (EV)
+,763,30,31,1,0,0,,220104,620104,ff,DistanceUnit_CF,0:0 = km;1:1 = miles
+,763,30,31,1,0,0,,220106,620106,ff,TripComputerType_CF,0:without Trip Computer;1:volume/mileage;2:mileage/volume
+,763,30,31,1,0,0,,220108,620108,ff,CC_SL_ACC_Service_Customer,0:without;1:CC/SL;2:ACC/SL;3:SL only
+,763,31,31,1,0,0,,220109,620109,ff,Front_SBR_inhibition_CF,0:Activated (Chimes are functional);1:De-activated (Chimes not functional)
+,763,31,31,1,0,0,,22010B,62010B,ff,ESC_PRESENT,0:Without ESC;1:With ESC
+,763,30,31,1,0,0,,22010E,62010E,ff,TPMS_PRESENT,0:Without TPMS;1:With TPMS;2:With TPW
+,763,30,31,1,0,0,,22010F,62010F,ff,OverspeedWarningPresent_CF,0:Without overspeed warning;1:With overspeed warning (GCC countries);2:With overspeed warning (India)
+,763,30,31,1,0,0,,220115,620115,ff,POWER_STEERING_TYPE,0:Without;1:Hydraullic (HEPS);2:Electrical (EPS);3:Not used
+,763,31,31,1,0,0,,220118,620118,ff,DAY_BACKLIGHTS_PRESENT,0:Without;1:With
+,763,31,31,1,0,0,,22011C,62011C,ff,EMM_PRESENT,0:Without EMM;1:With EMM
+,763,28,31,1,0,0,,22011D,62011D,ff,WelcomeSequenceType_CF,0:No Welcome;1:DRAC;2:DFLZ;3:DFPV;4:New Dacia;5:DFV;6:DFSK;7:DACIA;8:New Renault
+,763,31,31,1,0,0,,22011E,62011E,ff,Rear Seat Belt Remainder,0:Without Rear SBR;1:With Rear SBR
+,763,29,29,1,0,0,,22011F,62011F,ff,CLOCK_CF.Clock_Mode,0:12h fromat;1:24h format
+,763,30,31,1,0,0,,22011F,62011F,ff,CLOCK_CF.Clock_displayed,0:Not displayed;1:displayed with SW Internal;2:Clock displayed with CAN clock
+,763,31,31,1,0,0,,220120,620120,ff,ABS_PRESENT,0:Without ABS;1:With ABS
+,763,30,31,1,0,0,,220122,620122,ff,EXTERNAL_TEMPERATURE_PRESENT,0:No external Temp. management;2:External Temp. measurement but no display;3:External Temp. Measurement and Display in TFT
+,763,31,31,1,0,0,,220124,620124,ff,AIRBAG_PRESENT,0:Without AIRBAG;1:With AIRBAG
+,763,31,31,1,0,0,,22012A,62012A,ff,OCS_PRESENT,0:Without Oil Control System;1:With oil control system
+,763,31,31,1,0,0,,22012B,62012B,ff,AEBS_PRESENT_CF,0:Without AEBS;1:With AEBS
+,763,24,31,100,0,0,km,22012C,62012C,ff,FIRST_WARNING_THRESHOLD_MAINTENANCE_SCHEDULE,
+,763,30,31,1,0,0,,220130,620130,ff,TemperatureUnit_CF,0:degree Celsius;1:Fahrenheit
+,763,30,31,1,0,0,,220140,620140,ff,CCSLOverspeedBuzzerInhibition_CF,0:without buzzer;1:With expected and  unexpected overspeed buzzer;2:With unexpected overspeed buzzer;3:Not used
+,763,31,31,1,0,0,,220142,620142,ff,TCU_EcallPresent_CF,0:Without Emergency_Call;1:With Emergency_Call
+,763,31,31,1,0,0,,220149,620149,ff,AT_BeepInRPresent_CF,0:Without beep;1:With Beep
+,763,24,31,1,0,0,km/h,220153,620153,ff,OverSpeedAlert_Thresholds.Level1,
+,763,32,39,1,0,0,km/h,220153,620153,ff,OverSpeedAlert_Thresholds.Level2,
+,763,28,28,1,0,0,,220154,620154,ff,OverSpeedAlert_Configuration.L2_Buzzer_Enable,0:DISABLE;1:ENABLE
+,763,29,29,1,0,0,,220154,620154,ff,OverSpeedAlert_Configuration.L2_TT_Enable,0:DISABLE;1:ENABLE
+,763,30,30,1,0,0,,220154,620154,ff,OverSpeedAlert_Configuration.L1_Buzzer_Enable,0:DISABLE;1:ENABLE
+,763,31,31,1,0,0,,220154,620154,ff,OverSpeedAlert_Configuration.L1_TT_Enable,0:DISABLE;1:ENABLE
+,763,30,31,1,0,0,,220155,620155,ff,External_seat_belt_reminder,0:Disable both internal and external control;1:Enable Internal control;2:Enable External control;3:Enable both internal and external control
+,763,38,39,1,0,0,,220156,620156,ff,INPUT_BUTTON_TYPE,0:Enable Trip Button Control;1:Enable External 2 Button Control;2:Enable External 4 Button Control;3:Not used
+,763,32,47,1,0,0,km,220201,620201,ff,Oil_Change_Initial_Distance_In_Km,
+,763,32,47,1,0,0,d,220202,620202,ff,Oil_Change_Initial_Duration_In_Day,
+,763,32,47,1,0,0,km,220203,620203,ff,Oil_Change_Usual_Distance_In_Km,
+,763,32,47,1,0,0,d,220204,620204,ff,Oil_Change_Usual_Duration_In_Day,
+,763,32,47,1,0,0,km,22020B,62020B,ff,NEXT_SERVICE_INITIAL_DISTANCE_IN_KM,
+,763,32,47,1,0,0,d,22020C,62020C,ff,NEXT_SERVICE_INITIAL_DURATION_IN_DAY,
+,763,32,47,1,0,0,km,22020D,62020D,ff,NEXT_SERVICE_USUAL_DISTANCE_IN_KM,
+,763,32,47,1,0,0,d,22020E,62020E,ff,NEXT_SERVICE_USUAL_DURATION_IN_DAY,
+,763,24,31,1,0,0,s,22020F,62020F,ff,MAINTENANCE_TIMEOUT,
+,763,24,31,1,0,0,%,220320,620320,ff,STATEOFCHARGE.SOC_Chargeplugalert_CF,
+,763,32,39,1,0,0,%,220320,620320,ff,STATEOFCHARGE.L2_7,
+,763,40,47,1,0,0,%,220320,620320,ff,STATEOFCHARGE.L2_6,
+,763,48,55,1,0,0,%,220320,620320,ff,STATEOFCHARGE.L2_5,
+,763,56,63,1,0,0,%,220320,620320,ff,STATEOFCHARGE.L2_4,
+,763,64,71,1,0,0,%,220320,620320,ff,STATEOFCHARGE.L2_3,
+,763,72,79,1,0,0,%,220320,620320,ff,STATEOFCHARGE.L2_2,
+,763,80,87,1,0,0,%,220320,620320,ff,STATEOFCHARGE.L2_1,
+,763,24,31,1,0,0,,220321,620321,4ff,ECONOMETER.BOOST_MAX_Power_CF,
+,763,32,39,1,0,0,,220321,620321,4ff,ECONOMETER.BOOST_LED11_Power_CF,
+,763,40,47,1,0,0,,220321,620321,4ff,ECONOMETER.DISCHA_MAX_Power_CF,
+,763,48,55,1,0,0,,220321,620321,4ff,ECONOMETER.DISCHA_LED9_Power_CF,
+,763,56,63,1,0,0,,220321,620321,4ff,ECONOMETER.DISCHA_LED8_Power_CF,
+,763,64,71,1,0,0,,220321,620321,4ff,ECONOMETER.DISCHA_LED7_Power_CF,
+,763,72,79,1,0,0,,220321,620321,4ff,ECONOMETER.DISCHA_LED6_Power_CF,
+,763,80,87,1,0,0,,220321,620321,4ff,ECONOMETER.DISCHA_LED5_Power_CF,
+,763,88,91,1,0,0,kW,220321,620321,ff,ECONOMETER.Neutral_Discha_Tolerence_CF,
+,763,92,95,1,0,0,kW,220321,620321,ff,ECONOMETER.Neutral_Regen_Tolerence_CF,
+,763,96,103,1,0,0,,220321,620321,4ff,ECONOMETER.REGEN_LED2_Power_CF,
+,763,104,111,1,0,0,,220321,620321,4ff,ECONOMETER.REGEN_LED3_Power_CF,
+,763,112,119,1,0,0,,220321,620321,4ff,ECONOMETER.REGEN_MAX_Power_CF,
+,763,26,26,1,0,0,,220322,620322,ff,Tachometer.TACHOMETER_CF,0:Tachometer Display on LCD Disabled;1:Tachometer Display on LCD Enabled
+,763,27,27,1,0,0,,220322,620322,ff,Tachometer.TACHOALERT_CF,0:Disable Overspeed RPM Alert;1:Enable Overspeed RPM Alert
+,763,28,31,1,0,0,Hz,220322,620322,ff,Tachometer.TACHOOVERSPEEDFREQ_CF,
+,763,24,29,1,0,0,s,220324,620324,ff,INSTCONSUMPTION_CF.Brake_Vaccum_TM,
+,763,31,31,1,0,0,,220324,620324,ff,INSTCONSUMPTION_CF.INSTCONSUMPTION_CF,0:Do Not Display Instant Energy Consumption;1:Display Instant Energy Consumption
+,763,24,31,1,0,0,km,220325,620325,ff,REMAININGRANGE.REMDISTALERTTHERSHOLD_CF,
+,763,35,35,1,0,0,,220325,620325,ff,REMAININGRANGE.REMDISTANCE_CF,0:Do Not Display Remaining Range;1:Display Remaining Range
+,763,36,39,1,0,0,,220325,620325,ff,REMAININGRANGE.REMDISTALERTFREQ_CF,0:0 Hz;1:0.5 Hz;2:1 Hz;3:2 Hz;5:5 Hz
+,763,31,31,1,0,0,,220327,620327,ff,AMMETER_CF,0:Ammeter display disabled;1:Ammeter display enabled
+,763,24,27,1,0,0,,220328,620328,ff,VOLTMETER.Voltage_Alert_FREQ1_CF,0:0 Hz;1:0.5 Hz;2:1 Hz;3:2 Hz;5:5 Hz
+,763,28,31,1,0,0,,220328,620328,ff,VOLTMETER.Voltage_Alert_FREQ2_CF,0:0 Hz;1:0.5 Hz;2:1 Hz;3:2 Hz;5:5 Hz
+,763,38,38,1,0,0,,220328,620328,ff,VOLTMETER.VOLTMETER_CF,0:Disbale Voltmeter Functionality;1:Enable Voltmeter Functionality
+,763,39,39,1,0,0,,220328,620328,ff,VOLTMETER.VOLTMETERALERT_CF,0:Disable Over_Under voltage alert;1:Enable Over_Under voltage alert
+,763,31,31,1,0,0,,220329,620329,ff,RIGHTHAND_DRIVE_CF,0:Left hand drive (DNR);1:Right hand drive (RND)
+,763,24,31,1,0,0,%,220330,620330,1ff,ElecMachineTemp.ElecMachineTemp.Threshold2_CF,
+,763,32,39,1,0,0,%,220330,620330,1ff,ElecMachineTemp.ElecMachineTemp.Threshold1_CF,
+,763,31,31,1,0,0,,220331,620331,ff,VSP_PRESENT,0:Disable VSP;1:Enable VSP
+,763,24,39,.000000001,0,3,kg/m³,220332,620332,1ff,PM2.5.PM25WarningThersholdON_CF,
+,763,40,55,.000000001,0,3,kg/m³,220332,620332,1ff,PM2.5.PM25WarningThersholdOFF_CF,
+,763,62,62,1,0,0,,220332,620332,ff,PM2.5.PM25TextAlert_CF,0:Disable;1:Enable
+,763,63,63,1,0,0,,220332,620332,ff,PM2.5.PM25PRESENT_CF,0:Disable;1:Enable
+,763,31,31,1,0,0,,220333,620333,ff,GOOD BYE SEQUENCE_CF,0:Enabled;1:Disabled
+,763,24,183,1,0,0,,220346,620346,2ff,Homologation Number,
+,763,30,31,1,0,0,,222001,622001,ff,Hand_Brake_State,0:Parking brake released;1:Parking brake tightened;2:Circuit short to battery;3:Unavailable
+,763,30,31,1,0,0,,222002,622002,ff,Brake_Fluid_Level_State,0:No default;1:Mini level is reached;2:Circuit short to battery;3:Unavailable
+,763,24,39,1,0,0,mV,222006,622006,ff,Battery_Voltage,
+,763,30,31,1,0,0,,222009,622009,ff,Trip_Computer_Scroll_State,0:No driver request;1:Upward scrolling request;2:Downward scrolling request;3:Both scrolling request
+,763,28,28,1,0,0,,22200A,62200A,ff,Driver_Module_Buttons_State.Up_Button,0:NOT PRESSED;1:PRESSED
+,763,29,29,1,0,0,,22200A,62200A,ff,Driver_Module_Buttons_State.Down_Button,0:NOT PRESSED;1:PRESSED
+,763,30,30,1,0,0,,22200A,62200A,ff,Driver_Module_Buttons_State.Menu_Button,0:NOT PRESSED;1:PRESSED
+,763,31,31,1,0,0,,22200A,62200A,ff,Driver_Module_Buttons_State.OK_Button,0:NOT PRESSED;1:PRESSED
+,763,24,31,1,40,0,°C,22200C,62200C,ff,External_Temperature.Temp,
+,763,32,55,1,0,0,Ohm,22200C,62200C,ff,External_Temperature.R,
+,763,24,39,1,0,0,km,222101,622101,ff,Trip_Distance,
+,763,24,47,1,0,0,s,222104,622104,ff,Trip_Timer,
+,763,27,27,1,0,0,,222406,622406,ff,EEPROM_Status.EPM_QUEUE_FULL,0:OK;1:NOK
+,763,28,28,1,0,0,,222406,622406,ff,EEPROM_Status.EPM_PKG_BUSY,0:OK;1:Can't read dataflash
+,763,29,29,1,0,0,,222406,622406,ff,EEPROM_Status.NOT_EPM_E2_SAFE_TO_READ,0:OK;1:Can't read dataflash
+,763,30,30,1,0,0,,222406,622406,ff,EEPROM_Status.EPM_FAIL_LOAD_SHADOW,0:OK;1:NOK
+,763,24,31,1,0,0,,222408,622408,ff,Number_Resets_Caused_By_Failures,
+,763,24,31,1,0,0,,222409,622409,ff,Number_Intended_Resets,
+,763,30,30,1,0,0,,22240A,62240A,ff,Configuration_Error.Trip_UnitConsumption,0:Trip Unit has been correctly configured;1:Trip Unit has not been correctly configured
+,763,31,31,1,0,0,,22240A,62240A,ff,Configuration_Error.CLUSTER,0:Cluster has been configured;1:Cluster has never been configured
+,763,32,32,1,0,0,,22240A,62240A,ff,Configuration_Error.AIRBAG,0:OK;1:AIRBAG configuration error detection
+,763,33,33,1,0,0,,22240A,62240A,ff,Configuration_Error.EPS,0:OK;1:HEPS/EPS configuration error detection
+,763,34,34,1,0,0,,22240A,62240A,ff,Configuration_Error.AT,0:OK;1:AT configuration error detection
+,763,35,35,1,0,0,,22240A,62240A,ff,Configuration_Error.TPMS,0:OK;1:TPMS configuration error detection
+,763,36,36,1,0,0,,22240A,62240A,ff,Configuration_Error.EMM,0:OK;1:EMM configuration error detection
+,763,37,37,1,0,0,,22240A,62240A,ff,Configuration_Error.VSP,0:OK;1:VSP configuration error detection
+,763,38,38,1,0,0,,22240A,62240A,ff,Configuration_Error.AEB_FCW,0:OK;1:AEB_FCW configuration error detection
+,763,39,39,1,0,0,,22240A,62240A,ff,Configuration_Error.ABS,0:OK;1:ABS configuration error detection
+,763,24,55,.01,0,2,km,222604,622604,1ff,External_Ecu_Distance_Before_Readjustment_S,
+,763,24,55,1,0,0,km,222605,622605,1ff,Cluster_Distance_Before_Readjustment_S,
+,763,24,103,1,0,0,,22EF01,62EF01,4ff,supplier fault code,
+,763,24,215,1,0,0,,22EFB2,62EFB2,4ff,Vehicle_Configuration_1,
+,763,24,151,1,0,0,,22EFB4,62EFB4,4ff,Vehicle_Configuration_2,
+,763,24,151,1,0,0,,22F010,62F010,4ff,ProgrammingOperationFingerprint,
+,763,24,103,1,0,0,,22F012,62F012,2ff,OperationalReference,
+,763,24,103,1,0,0,,22F013,62F013,2ff,SecondaryOperationalReference,
+,763,24,47,1,0,0,km,22F0D0,62F0D0,1ff,Odometer of the last occurence,
+,763,24,31,1,0,0,,22F0D1,62F0D1,ff,Occurence fault counter,
+,763,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber,
+,763,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber,
+,763,24,47,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier,
+,763,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumber,
+,763,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber,
+,763,24,151,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber,
+,763,24,151,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber,
+,763,24,103,1,0,0,,22F196,62F196,2ff,TypeApprovalNumber,
+,763,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion,
+,763,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N,
+,763,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationDataReferenceAfterConfigurationProcess,
+,763,0,0,1,0,0,,3,7,ff,TesterPresent.WithResponse,

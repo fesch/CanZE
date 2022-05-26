@@ -32,6 +32,7 @@ import lu.fisch.canze.R;
 import lu.fisch.canze.actors.Fields;
 import lu.fisch.canze.classes.Sid;
 import lu.fisch.canze.actors.Field;
+import lu.fisch.canze.devices.Device;
 import lu.fisch.canze.interfaces.DebugListener;
 import lu.fisch.canze.interfaces.FieldListener;
 
@@ -79,7 +80,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(Sid.BcbTesterInit, lu.fisch.canze.devices.Device.INTERVAL_ONCE);
+        addField(Sid.BcbTesterInit, Device.INTERVAL_ONCE);
         addField(Sid.MaxCharge, 5000);
         addField(Sid.ACPilot, 5000);
         addField(Sid.PlugConnected, 5000);
@@ -107,14 +108,16 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
         addField(Sid.Phase1currentRMS);
         addField(Sid.Phase2CurrentRMS);
         addField(Sid.Phase3CurrentRMS);
-        if (!MainActivity.isPh2()) {
+        if (!MainActivity.isPh2() && !MainActivity.isSpring()) {
             addField(Sid.PhaseVoltage1);
             addField(Sid.PhaseVoltage2);
             addField(Sid.PhaseVoltage3);
         }
-        addField(Sid.InterPhaseVoltage12);
-        addField(Sid.InterPhaseVoltage23);
-        addField(Sid.InterPhaseVoltage31);
+        if (!MainActivity.isSpring()) {
+            addField(Sid.InterPhaseVoltage12);
+            addField(Sid.InterPhaseVoltage23);
+            addField(Sid.InterPhaseVoltage31);
+        }
         addField(Sid.MainsActivePower);
         addField(Sid.GroundResistance);
         addField(Sid.SupervisorState);
@@ -182,7 +185,7 @@ public class ChargingTechActivity extends CanzeActivity implements FieldListener
 
                     case Sid.SOH:
                         tv = findViewById(R.id.textSOH);
-                        tv.setText(String.format(Locale.getDefault(), "%.0f", field.getValue()));
+                        tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue()));
                         tv = null;
                         break;
 

@@ -1,0 +1,147 @@
+,776,0,0,1,0,0,,1001,5001,ff,StartDiagnosticSession.Default,
+,776,0,0,1,0,0,,1002,5002,ff,StartDiagnosticSession.Programming,
+,776,0,0,1,0,0,,1003,5003,ff,StartDiagnosticSession.ExtendedDiagnostic,
+,776,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All,
+,776,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask,
+,776,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier,0:SAE_J2012-DA_DTC;1:ISO_14229-1_DTC;2:SAE_J1939-73_DTC;3:ISO_11992-4_DTC;4:SAE_J2012-DA_WWHOBD_DTC
+,776,32,47,1,0,0,,1901FF,5901FF,ff,DTCCount,
+,776,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask,
+,776,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceAndFailureTypeOBD,0:Device and failure type ODB codding
+,776,40,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adj. failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety uC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or sys. operation obstructed or blocked;152:component or system over temperature
+,776,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier,0:Device and failure type ODB codding
+,776,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,776,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,776,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,776,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,776,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,776,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,776,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,776,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,776,16,39,1,0,0,,1903,5903,4ff,DTCRecord,
+,776,40,47,1,0,0,,1903,5903,ff,DTCSnapshotRecordNumber,
+,776,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord,
+,776,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC,
+,776,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord,
+,776,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC,
+,776,16,39,1,0,0,,190600000081,590600000081,4ff,DTCRecord,
+,776,40,47,1,0,0,,190600000081,590600000081,ff,StatusOfDTC,
+,776,16,39,1,0,0,,190600000082,590600000082,4ff,DTCRecord,
+,776,40,47,1,0,0,,190600000082,590600000082,ff,StatusOfDTC,
+,776,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord,
+,776,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC,
+,776,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurenceCounter
+,776,56,63,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedData.DTCOccurenceCounter,
+,776,16,23,1,0,0,,190A,590A,ff,DTCStatusAvailabilityMask,
+,776,24,39,1,0,0,,190A,590A,ff,DTCDeviceIdentifier,1605:OBC_input_current;1620:PFC_MOSFET_Temperature;1613:OBC_input_voltage;1621:PFC_Start-up_failure;1575:HV_battery_voltage;1638:Pre_Charge_Failure;1574:OBC_inner_self-check;1538:CC_fault;1554:S2 relay;1585:LLC_Temperature;1643:LLC_output_current;1634:ChargingLockingMotor;1641:CP_Status;1577:AC_ChargingPortTemperature;4107:CoolantTemperature;4110:DCDC_inputCurrent;4112:DCDC_outputVoltage;4108:DCDC_outputCurrent;4106:DCDC_transformerTemperature;4152:DCDC_ReverseMode_SelfTest;4150:DCDC_EEPROM;53250:BusOff;53249:MissingMessage_OBC;1576:PFC_outputVoltage;4113:DCDC_input_Voltage;53251:MissingMessage_EVC;4151:DCDC_initialize_selftest;1555:PLC_Communication_EVSE;1556:SPI_Communication;1558:DCComboCurrent;1560:DCChargingPortTmp;1561:DCInput_HV;1571:OBC_Auxiliary_Power_PVCC;1126:OBC_Ambient_Temperature;1584:DCCharging_Relay;4162:LV_battery_voltage;4161:DCDC_ExceptionInterrupt_Programming;4160:DCDC_Auxillary_Power_LVCC;1559:12 pin connector loss;53252:MissingMessage_BMS
+,776,40,47,1,0,0,,190A,590A,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adj. failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety uC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or sys. operation obstructed or blocked;152:component or system over temperature
+,776,48,55,1,0,0,,190A,590A,ff,StatusOfDTC,
+,776,16,31,1,0,0,,1914,5914,ff,DTCDeviceIdentifier,1605:OBC_input_current;1620:PFC_MOSFET_Temperature;1613:OBC_input_voltage;1621:PFC_Start-up_failure;1575:HV_battery_voltage;1638:Pre_Charge_Failure;1574:OBC_inner_self-check;1538:CC_fault;1554:S2 relay;1585:LLC_Temperature;1643:LLC_output_current;1634:ChargingLockingMotor;1641:CP_Status;1577:AC_ChargingPortTemperature;4107:CoolantTemperature;4110:DCDC_inputCurrent;4112:DCDC_outputVoltage;4108:DCDC_outputCurrent;4106:DCDC_transformerTemperature;4152:DCDC_ReverseMode_SelfTest;4150:DCDC_EEPROM;53250:BusOff;53249:MissingMessage_OBC;1576:PFC_outputVoltage;4113:DCDC_input_Voltage;53251:MissingMessage_EVC;4151:DCDC_initialize_selftest;1555:PLC_Communication_EVSE;1556:SPI_Communication;1558:DCComboCurrent;1560:DCChargingPortTmp;1561:DCInput_HV;1571:OBC_Auxiliary_Power_PVCC;1126:OBC_Ambient_Temperature;1584:DCCharging_Relay;4162:LV_battery_voltage;4161:DCDC_ExceptionInterrupt_Programming;4160:DCDC_Auxillary_Power_LVCC;1559:12 pin connector loss;53252:MissingMessage_BMS
+,776,32,39,1,0,0,,1914,5914,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adj. failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety uC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or sys. operation obstructed or blocked;152:component or system over temperature
+,776,40,47,1,0,0,,1914,5914,ff,DTCFaultDetectionCounter,
+,776,24,31,.1,0,1,V,222002,622002,ff,bat12v_voltage,
+,776,24,39,1,0,0,,222003,622003,ff,CP_frequency,
+,776,24,31,1,40,0,°C,222004,622004,1ff,OBC_Inner_enviormentTemp,
+,776,24,39,1,0,0,V,22300E,62300E,ff,DCDC_InputVoltage,
+,776,24,31,1,0,0,,22300F,62300F,ff,DCDC_State,0:SYS_STAT_INIT;1:SYS_STAT_STANDBY;2:SYS_STAT_Prestart;3:SYS_STAT_RUN;4:SYS_STAT_PROTECT
+,776,24,31,1,0,0,,223010,623010,ff,DCDC_ONOFFRequest,0:OFF;1:ON;2:Moving
+,776,24,31,.1,0,1,V,223011,623011,ff,DCDCVoltageRegulation,
+,776,24,31,.1,0,1,V,223012,623012,ff,DCDC_LowVoltage,
+,776,24,31,1,0,0,A,223013,623013,ff,DCDC_CurrentOutput,
+,776,24,31,1,0,0,,223014,623014,ff,Combo_DCExtendedConnectStatus parameter,0:AC_SINGLE_PHASE_CORE;1:AC_THREE_PHASE_CORE;2:DC_CORE;3:DC_EXTENDED;4:DC_COMBO_CORE;5:DC_DUAL;6:AC_CORE1P_DC_EXTENDED;7:AC_SINGLE_DC_CORE;8:AC_SINGLE_PHASE_THREE_PHASE_CORE_DC_EXTENDED;9:AC_CORE3P_DC_EXTENDED
+,776,24,31,1,0,0,A,223015,623015,ff,DCDC_MaxCurrentAvailable,
+,776,24,31,1,0,0,,223016,623016,ff,Combo_EVchargeHLCRequest CAN consolidated,0:MsgTrig_None;1:MsgTrig_SLAC;2:MsgTrig_SECCDiscoveryProtocol;3:MsgTrig_TransportLayer;4:MsgTrig_SupportedAppProtocol;5:MsgTrig_SessionSetup;6:MsgTrig_ServiceDiscovery;7:MsgTrig_ReadContrCertChain;8:MsgTrig_ServiceDetail;9:MsgTrig_PaymentServiceSelection;10:MsgTrig_ReadRootCerts;11:MsgTrig_ReadProvCert;12:MsgTrig_CertificateInstallation;13:MsgTrig_CertificateUpdate;14:MsgTrig_PaymentDetails;15:MsgTrig_Authorization;16:MsgTrig_ChargeParameterDiscovery;17:MsgTrig_PowerDelivery;18:MsgTrig_MeteringReceipt;19:MsgTrig_CableCheck;20:MsgTrig_PreCharge;21:MsgTrig_CurrentDemand;22:MsgTrig_WeldingDetection;23:MsgTrig_SessionStop;24:MsgTrig_StopCommunicationSession
+,776,24,31,1,40,0,°C,223017,623017,1ff,DCDCMainTransformerTemperature,
+,776,24,31,1,40,0,°C,223018,623018,1ff,DCDC_MCU temperature,
+,776,24,31,1,40,0,°C,223019,623019,1ff,DCDC_primaryMOSTemperature,
+,776,24,31,1,0,0,,22301A,62301A,ff,DCDC_failureClass,0:ClassA;1:ClassB;2:ClassC;3:ClassD
+,776,24,31,.1,0,1,A,223022,623022,ff,DCDCPrimaryMOS_Current,
+,776,24,31,1,0,0,,223023,623023,ff,Combo_EVSEchargeHLCState,0:None;1:SLAC_OK;2:SLAC_Failed;3:SECCDiscoveryProtocol_OK;4:SECCDiscoveryProtocol_Failed;5:TransportLayer_OK;6:TransportLayer_Failed;7:SupportedAppProtocol_OK;8:SupportedAppProtocol_Failed;9:SessionSetup_OK;10:SessionSetup_Failed;11:ServiceDiscovery_OK;12:ServiceDiscovery_Failed;13:ReadContrCertChain_OK;14:ReadContrCertChain_Failed;15:ServiceDetail_OK;16:ServiceDetail_Failed;17:PaymentServiceSelection_OK;18:PaymentServiceSelection_Failed;19:ReadRootCerts_OK;20:ReadRootCerts_Failed;21:ReadProvCert_OK;22:ReadProvCert_Failed;23:CertificateInstallation_OK;24:CertificateInstallation_Failed;25:CertificateUpdate_OK;26:CertificateUpdate_Failed;27:PaymentDetails_OK;28:PaymentDetails_Failed;29:Authorization_OK;30:Authorization_Failed;31:ChargeParameterDiscovery_OK;32:ChargeParameterDiscovery_Failed;33:PowerDelivery_OK;34:PowerDelivery_Failed;35:MeteringReceipt_OK;36:MeteringReceipt_Failed;37:CableCheck_OK;38:CableCheck_Failed;39:PreCharge_OK;40:PreCharge_Failed;41:CurrentDemand_OK;42:CurrentDemand_Failed;43:WeldingDetection_OK;44:WeldingDetection_Failed;45:SessionStop_OK;46:SessionStop_Failed;47:StopCommunicationSession_OK;48:StopCommunicationSession_Failed
+,776,24,31,1,0,0,,22303B,62303B,ff,Charger_failureClass,0:ClassA;1:ClassB;2:ClassC;3:ClassD
+,776,24,31,1,0,0,,224001,624001,ff,DC_ChargerType,0:DC absent;1:DC Chademo;2:DC Comb
+,776,24,31,1,0,0,A,224002,624002,ff,ComboEVMaximumCurrentLimit,
+,776,24,39,1,0,0,V,224003,624003,ff,ComboEVMaximumVoltageLimit,
+,776,24,31,1,0,0,A,224004,624004,ff,ComboEVSEMaximumCurrentLimit,
+,776,24,31,1,0,0,kW,224005,624005,ff,ComboEVSEMaximumPowerLimit,
+,776,24,39,1,0,0,V,224006,624006,ff,ComboEVSEMaximumVoltageLimit,
+,776,24,31,1,0,0,A,224007,624007,ff,ComboEVSEMinimumCurrentLimit,
+,776,24,39,.1,0,1,A,224008,624008,ff,ComboEVTargetCurrent,
+,776,24,39,1,0,0,V,224009,624009,ff,ComboEVTargetVoltage,
+,776,24,31,1,0,0,,224010,624010,ff,CPLC_ChargeProgress,0:None;1:Initialized;2:SLAC;3:WaitForIP;4:SECCDiscoveryProtocol;5:TLConnection;6:SupportedAppProtocol;7:SessionSetup;8:ServiceDiscovery;9:ServiceDetail;10:PaymentServiceSelection;11:CertificateInstallation;12:CertificateUpdate;13:PaymentDetails;14:Authorization;15:ChargeParameterDiscovery;16:PowerDelivery;17:MeteringReceipt;18:CableCheck;19:PreCharge;20:CurrentDemand;21:WeldingDetection;22:SessionStop;23:StopCommunicationSession;24:Finished;25:Error_WaitingForRetry;26:Error_Stopped
+,776,24,31,1,0,0,,224011,624011,ff,CPLC_CommunicationStatus,0:No HLC communication is established;1:HLC communication is initializing;2:HLC communication is ready to charge;3:HLC communication is stopped;4:HLC communication error;5:Not used;6:Not used2;7:Unavailable
+,776,24,31,1,0,0,,224012,624012,ff,CPLC_FaultType,0:No Fault;1:Contract NOK;2:Energy Transfer mode type not supported;3:PLC comm failure HLCcommstatus;4:EVSE comm Failure;5:EVSE Not Ready;6:EVSE Shutdown;7:EVSE Utility Interrupt Event;8:EVSE Isolation Monitoring Active;9:EVSE Emergency Shutdown;10:EVSE Malfunction Protocol with EVSE (Station charging);11:EVSE_Renegociate;12:Not used1;13:Not used2;14:Not used3;15:Not used4
+,776,24,31,1,0,0,,224013,624013,ff,S2 relay command,0:open;1:close
+,776,24,31,1,0,0,,224014,624014,ff,S2 Relay state,0:open;1:close
+,776,24,39,1,0,0,,224015,624015,ff,NumDCchargRelayOpening,
+,776,24,39,1,0,0,,224016,624016,ff,NumDCchargRelayOpenWithCurr,
+,776,24,31,1,0,0,,225005,625005,ff,JB2_CAN_activity,0:no activity;1:activity
+,776,24,31,1,0,0,,22500D,62500D,ff,MainsVoltagePresence,0:absent;1:present
+,776,24,31,1,0,0,,225015,625015,ff,WakeUp_Sleep Request,0:GoToSleep;1:reserved;2:reserved1;3:WakeUp
+,776,24,31,1,0,0,,225018,625018,ff,MainsPlugUnlockin_CAN_Request,0:No unlock request;1:Unlock request
+,776,24,31,1,0,0,,22501A,62501A,ff,BCM_WakeUp_byWire,0:No wake-up;1:wake-up
+,776,24,31,1,0,0,,22501C,62501C,ff,S2RelayControl,0:Open;1:Close
+,776,24,31,1,0,0,,22501D,62501D,ff,ChargeState_Request,0:No chagre;1:slow chagre;2:quick chagre;3:unavailable value;4:DIAG;5:power off
+,776,24,31,1,0,0,,225021,625021,ff,CoolingTemperatureState,0:OK;1:Derating;2:NOK
+,776,24,39,1,0,0,V,225024,625024,ff,PLCinputVoltage,
+,776,24,31,1,0,0,,225025,625025,ff,EVSEStatusCode,4:EVSE_ISOLATION_MONITORE_ACTIVE;0:EVSE_NOT_READY;1:EVSE_READY;2:EVSE_SHUTDOWN;3:EVSE_UTILITY_INTERRUPT_EVENT;5:EVSE_EMERGENCY_SHUTDOWN;6:RESERVED1;7:RESERVED2;8:RESERVED3;9:RESERVED4;10:RESERVED5
+,776,24,39,.1,0,1,%,225026,625026,ff,CP_DutyCycle_raw,
+,776,24,39,.1,0,1,V,225027,625027,1ff,CP_Voltage_raw,
+,776,24,39,.01,0,2,A,225029,625029,ff,AC_input_current,
+,776,24,39,.1,0,1,V,22502C,62502C,ff,AC_input_voltage,
+,776,24,31,1,0,0,,225030,625030,ff,EVSE_ResCode,20:F_EVSEPRESENT_VOLTAGE_TO_LOW;21:F_METERING_SIGNATURE_NO_VALID;19:FAIL_CHARGING_PROFILE_INVALID;12:FAIL_NO_CERTIFICATE_AVAILABLE;9:FAIL_PAYMENT_SELECTION_INVALID;17:FAIL_POWER_DELIVERY_NO_APPLIE;8:FAIL_SERVICE_SELECTION_INVALID;18:FAIL_TARIFF_SELECTION_INVALID;16:FAIL_WRONG_CHARGE_PARAMETER;4:FAILED;13:FAILED_CERT_CHAIN_ERROR;10:FAILED_CERTIFICATE_EXPIRED;14:FAILED_CHALLENGE_INVALID;15:FAILED_CONTRACT_CANCELED;5:FAILED_SEQUENCE_ERROR;6:FAILED_SERVICE_IDINVALID;11:FAILED_SIGNATURE_ERROR;7:FAILED_UNKNOWN_SESSION;0:OK;3:OK_CERTIFICATE_EXPIRES_SOON;1:OK_NEW_SESSION_ESTABLISHED;2:OK_OLD_SESSION_JOINED;22:F_WRONG_ENERGY_TRANSFER_TYPE
+,776,24,39,.25,2000,1,A,225031,625031,ff,HVBatInstantCurrent,
+,776,24,39,.1,0,1,A,225032,625032,ff,EVTargetCurrentRequest,
+,776,24,31,1,0,0,,225033,625033,ff,WeldingDetectionRequest,0:Not Used;1:No request;2:Request;3:Unavailable Value
+,776,24,31,1,0,0,,225034,625034,ff,SPICommunicationState,0:No error;1:Communication timeout
+,776,24,31,1,0,0,,225035,625035,ff,StateMachineError,7:AuthorizationOngoingTimer;8:ChargeParasDiscoveryOngoingTim;3:CommunicationSetupTimer;5:FinePositioningOngoingTimer;10:CableCheckOngoingTimer;9:InitialAlignmentCheckOngoTim;12:Init_ContractSelectionFailed;1:IPAddressWaitTimer;0:NoError;6:PairingOngoingTimer;18:PaySerSelec_ServMismatch;11:PreChargeOngoingTimer;4:ReadyToChargeTimer;13:SDP_NoSharedSecurityOption;2:SequencePerformanceTimer;17:SerDetl_NoCont_NoInstSerAvail;16:SerDisc_NoCont_NoCertiSerAvai;14:ServiceDisc_InvaEnergyTransMd;15:ServiceDisc_NoSharedPayOpt;19:InvalidControlPilotState;20:StackError
+,776,24,31,1,0,0,,225036,625036,ff,StackError,6:Error_Exi;9:Error_Crypto;10:Error_InvalidKeyPair;11:Error_InvalidRxMessage;3:Error_InvalidTxParameter;5:Error_IpBase;12:Error_InvalidRxParameter;13:Error_NegativeResponseCode;14:Error_NvM;1:Error_SLAC;4:Error_Timeout;2:Error_TransportLayer;7:Error_XmlSecurity;8:Error_XmlSecurityMissReference;0:NoError;15:Error_PBufToSmall
+,776,24,31,1,0,0,,225037,625037,ff,SCC_TxStateMachineStatus,14:MStatus_Authorization;11:MStatus_CertificateInstall;12:MStatus_CertificateUpdate;15:MStatus_ChargeParaDiscovery;18:MStatus_CableCheck;20:MStatus_CurrentDemand;25:MStatus_Error_WaitingForRetry;24:MStatus_Finished;1:MStatus_Initialized;17:MStatus_MeteringReceipt;0:MStatus_Non;13:MStatus_PaymentDetails;10:MStatus_PaymentServiceSelec;16:MStatus_PowerDelivery;19:MStatus_PreCharge;4:MStatus_SECCDiscoveryProtocol;9:MStatus_ServiceDetail;8:MStatus_ServiceDiscovery;7:MStatus_SessionSetup;22:MStatus_SessionStop;2:MStatus_SLAC;23:MStatus_StopCommuniteSession;6:MStatus_SupportedAppProtocol;5:MStatus_TLConnection;3:MStatus_WaitForIP;21:MStatus_WeldingDetection;26:MStatus_Error_Stopped
+,776,24,31,1,0,0,,225038,625038,ff,MainsPlugLockingSwitchInformation,0:unused;1:open;2:close;3:moving
+,776,24,31,1,0,0,,225039,625039,ff,MainsPlugLocking_Control,1:ELECKLOCK_CMD_OPEN;2:ELECKLOCK_CMD_CLOSE;3:ELECKLOCK_CMD_KEEP
+,776,24,31,1,0,0,,225040,625040,ff,MemoryStatus,0:normal;1:disable;2:error
+,776,24,39,1,0,0,Ohm,225041,625041,ff,CC_resistanceValue,
+,776,24,31,1,0,0,,225042,625042,ff,ChargerFaultType,0:No Fault Type;1:Charger Stopped
+,776,24,31,.1,0,1,V,225043,625043,ff,DCDCAuxilaryVoltage,
+,776,24,31,1,0,0,,225044,625044,ff,ChargingPlugsStatus,0:No plug connected_0;1:Not used_1;2:Plug present Plug locked_2;3:Not used_3;4:Plug present Plug unlocked_4;5:Not used_5;6:2 Plugs connected_6;7:Unavaliable Value_7
+,776,24,31,1,40,0,°C,225046,625046,1ff,AC_ChargingPort _temperature,
+,776,24,31,1,0,0,,225047,625047,ff,K5K6_RelaySt,0:No Fault;1:One relay welded close;2:Two relays welded close;3:Command failure / diag relay state failure
+,776,24,39,1,0,0,,225048,625048,ff,NumFWL_AntiFloodingOverflowCounter,
+,776,24,31,1,0,0,,22504A,62504A,ff,SafetyModeflagValue,0:Not used;1:No Safety Mode;2:Safety Mode 1 Requested;3:Unavailable Value
+,776,24,31,1,0,0,,22504B,62504B,ff,7705 DownloadFlag,0:Download not complete;1:Download Complete
+,776,24,31,1,0,0,,22504C,62504C,ff,SCC_MsgStatus,0:None;1:SLAC_OK;2:SLAC_Failed;3:SECCDiscoveryProtocol_OK;4:SECCDiscoveryProtocol_Failed;5:TransportLayer_OK;6:TransportLayer_Failed;7:SupportedAppProtocol_OK;8:SupportedAppProtocol_Failed;9:SessionSetup_OK;10:SessionSetup_Failed;11:ServiceDiscovery_OK;12:ServiceDiscovery_Failed;13:ReadContrCertChain_OK;14:ReadContrCertChain_Failed;15:ServiceDetail_OK;16:ServiceDetail_Failed;17:PaymentServiceSelection_OK;18:PaymentServiceSelection_Fail;19:ReadRootCerts_OK;20:ReadRootCerts_Failed;21:ReadProvCert_OK;22:ReadProvCert_Failed;23:CertificateInstallation_OK;24:CertificateInstallation_Fail;25:CertificateUpdate_OK;26:CertificateUpdate_Failed;27:PaymentDetails_OK;28:PaymentDetails_Failed;29:Authorization_OK;30:Authorization_Failed;31:ChargeParameterDiscovery_OK;32:ChargeParameterDiscovery_Failed;33:PowerDelivery_OK;34:PowerDelivery_Failed;35:MeteringReceipt_OK;36:MeteringReceipt_Failed;37:CableCheck_OK;38:CableCheck_Failed;39:PreCharge_OK;40:PreCharge_Failed;41:CurrentDemand_OK;42:CurrentDemand_Failed;43:WeldingDetection_OK;44:WeldingDetection_Failed;45:SessionStop_OK;46:SessionStop_Failed;47:StopCommunicationSession_OK;48:StopCommunicationSession_Failed
+,776,24,39,.01,0,2,A,22504D,62504D,ff,OBC_outputCurrent,
+,776,24,39,1,0,0,V,22504E,62504E,ff,OBC_outputVoltage,
+,776,24,31,1,40,0,,225050,625050,ff,DC-ChargingPortTemEstimation,
+,776,24,31,1,40,0,°C,225051,625051,1ff,CPU_temperature,
+,776,24,31,1,40,0,°C,225052,625052,1ff,LLC_temp,
+,776,24,31,1,40,0,°C,225053,625053,1ff,PFC_temp,
+,776,24,39,1,0,0,,22505A,62505A,ff,NumFWL_InvalidIDCounter,
+,776,24,31,1,0,0,,22505B,62505B,ff,PlugTempPowerLimitationLogic,0:Not used;1:Absolute Temperature;2:Temperature increase speed
+,776,24,39,1,0,0,,22505C,62505C,ff,NumFWL_InvalidDLCCounter,
+,776,24,39,1,0,0,,22505D,62505D,ff,NumMPUErrorCounter,
+,776,24,39,.1,0,1,V,22505E,62505E,ff,Bulk_voltage,
+,776,24,31,1,0,0,,22506A,62506A,ff,K5K6CloseStates,0:open;1:close
+,776,24,31,1,0,0,,22506B,62506B,ff,FCRelayFailFlag,0:No Fault;1:FCRelay CMD Error
+,776,24,31,.1,0,1,V,22506C,62506C,ff,PVCC_votage,
+,776,24,31,1,40,0,,22506D,62506D,ff,DC+ChargingPortTemperature,
+,776,24,55,1,0,0,,225070,625070,2ff,OBCAppSwVersion,
+,776,24,55,1,0,0,,225071,625071,2ff,OBCBootSwVersion,
+,776,24,55,1,0,0,,225072,625072,2ff,DCChargingAppSwVersion,
+,776,24,55,1,0,0,,225073,625073,2ff,DCChargingBootSwVersion,
+,776,24,151,1,0,0,,22F010,62F010,4ff,programmingOperationFingerPrint,
+,776,24,103,1,0,0,,22F011,62F011,2ff,secutityaccessFingerPrint,
+,776,24,103,1,0,0,,22F012,62F012,2ff,Operationnal Reference,
+,776,24,103,1,0,0,,22F013,62F013,2ff,SecondaryOperationnalRef,
+,776,24,111,1,0,0,,22F180,62F180,2ff,BootVersion,
+,776,24,103,1,0,0,,22F182,62F182,4ff,CalibrationNumber,
+,776,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber,
+,776,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber,
+,776,24,71,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier,
+,776,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumber,
+,776,24,103,1,0,0,,22F18E,62F18E,2ff,VehicleManufacturerKitAssemblyPartNumber,
+,776,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber,
+,776,24,55,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber,
+,776,24,55,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber,
+,776,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion,
+,776,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N,
+,776,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationDataReferenceAfterConfigurationProcess,
+,776,0,0,1,0,0,,3,7,ff,TesterPresent.WithResponse,

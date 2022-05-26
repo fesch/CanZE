@@ -39,7 +39,7 @@ public class BatteryActivity extends CanzeActivity implements DebugListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_battery);
+        setContentView(MainActivity.isSpring() ? R.layout.activity_battery72 : R.layout.activity_battery);
 
         TextView textView = findViewById(R.id.link);
         textView.setText(Html.fromHtml(MainActivity.getStringSingle(R.string.help_QA)));
@@ -68,6 +68,11 @@ public class BatteryActivity extends CanzeActivity implements DebugListener {
                         tv = findViewById(R.id.textBatterySerial);
                         if (tv != null) tv.setText(String.format(Locale.getDefault(), "Serial: %X", (long)field.getValue()).replace (" 26", "F"));
                         //tv = null;
+
+                        //This fields holds VIN for Dacia Spring
+                        if (MainActivity.isSpring()) {
+                        if (tv != null) tv.setText(field.getStringValue());
+                        }
                 }
                 // set regular new content, all exceptions handled above
 /*              if (tv != null) {

@@ -102,6 +102,7 @@ public class ChargingActivity extends CanzeActivity implements FieldListener, De
                         break;
                     case Sid.SOH:
                         tv = findViewById(R.id.textSOH);
+                        tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue()));
                         break;
                     case Sid.RangeEstimate:
                         tv = findViewById(R.id.textKMA);

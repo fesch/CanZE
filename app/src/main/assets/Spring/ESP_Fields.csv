@@ -1,0 +1,797 @@
+,760,8,15,1,0,0,,1000,5000,ff,StartDiagnosticSession.ResponseType,129:Yes
+,760,8,15,1,0,0,,1001,5001,ff,StartDiagnosticSession.ResponseType,129:Yes
+,760,0,0,1,0,0,,1002,5002,ff,StartDiagnosticSession.Start Programming Session,
+,760,0,0,1,0,0,,1003,5003,ff,StartDiagnosticSession.Start Extended Session,
+,760,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All,
+,760,16,23,1,0,0,,190109,590109,ff,DTCStatusAvailabilityMask,
+,760,24,31,1,0,0,,190109,590109,ff,DTCFormatIdentifier,0:SAE_J2012-DA_DTC;1:ISO_14229-1_DTC;2:SAE_J1939-73_DTC;3:ISO_11992-4_DTC;4:SAE_J2012-DA_WWHOBD_DTC
+,760,32,47,1,0,0,,190109,590109,ff,DTCCount,
+,760,16,23,1,0,0,,190201,590201,ff,DTCStatusAvailabilityMask,
+,760,24,39,1,0,0,,190201,590201,ff,DTCDeviceIdentifier,"34:Mastervac brake assistance system;20544:Telemeter;20545:Invalid function configuration;20546:Isolating valve FR/RL axe fault;20547:Isolating valve FL/RR axe fault;20550:Electric shuttle valve FR/RL axe fault;20551:Electric shuttle valve FL/RR axe fault;20552:Valve relay;20553:Inlet valve FL;20554:Outlet valve FL;20555:Inlet valve FR;20556:Outlet valve FR;20557:Inlet valve RL;20558:Outlet valve RL;20559:Inlet valve RR;20560:Outlet valve RR;20561:Pump motor control;20562:Brake Booster Performance;20563:CAN Receive Monitor;20564:Judgement time 2-2;20565:CAN Register;20566:Supply Voltage;20568:ECU ABS or ESC;20569:Solenoid overheating;20570:Stability system active too long;20571:HEVC not ready as actuator;20572:Implausible control;20573:Brake Fluid Level;20574:EBA Failure;20575:GCC commands;20577:Front left wheel speed sensor;20579:Front right wheel speed sensor;20581:Rear left wheel speed sensor;20583:Rear right wheel speed sensor;20584:WSS Front Axle;20585:WSS Rear Axle;20586:WSS General;20587:Brake pedal switch ""A"";20588:Master cylinder pressure sensor;20589:Vacuum booster;20590:SWAS;20592:Lateral acceleration sensor;20593:Longitudinal acceleration sensor;20594:Yaw rate sensor;20595:Vacuum sensor;20596:Activation switch AYC/ASR;20597:Activation HDC switch;20598:Missing ABS or VDC calibration parameters;20599:Invalid gearbox configuration;20600:Invalid parking brake configuration;20601:Invalid wheel circumference configuration;20602:Invalid VDC Physical Implantatation Configuration;20603:Important function deactivated;20604:Secondary function deactivated;20605:4WD;20606:Extended Grip button;20607:Stroke sensor;20608:ECM Invalid data;20609:APB Invalid data;20610:AT Invalid data;20611:SWAS Invalid data;20613:METER Invalid data;20614:BCM Invalid data;20615:USM Invalid data;20616:MIU Invalid data;20617:4WS Invalid data;20624:ADAS Invalid data;20625:RADAR Invalid data;20626:4WD Invalid data;20627:USA Invalid data;20628:HEVC Invalid data;20629:EBA Invalid data;20630:CDM Invalid data;20631:IDM Invalid data;20640:TPW Under Inflated;20641:TPW INVALID INPUT DATA;20642:TPW Wheel Front Left;20643:TPW Wheel Front Right;20644:TPW Wheel Rear Right;20645:TPW Wheel Rear Left;20646:TPW ERROR;20647:TPW AUTOCALIBRATION FAILED;20650:LifeTimeCounter;20651:Reserved C1A-HS;20652:Reserved C1A-HS-1;20653:Reserved C1A-HS-2;20656:EPB_ACTUATOR_RIGHT;20657:EPB_ACTUATOR_LEFT;20658:EPB_SWITCH;20659:EPB_ELECTRONIC_ECU;20661:EPB_ASSEMBLY_CHECK_NOT_DONE;20662:EPB_MAX_BRAKING;20664:EPB_BRAKE_INCOHERENT;20665:EPB_BRAKE_STATE_UNKNOWN;49267:Vehicle CAN;49270:Chassis CAN;57601:Lost Communication with Add. Display on Vehicle CAN;57604:Lost Communication with 4WS on Vehicle CAN;57618:Lost Communication with EBA on Vehicle CAN;57664:Lost Communication with ECM on Vehicle CAN;57665:Lost Communication with AT on Vehicle CAN;57667:Lost Communication with HEVC on Vehicle CAN;57674:Lost Communication with 4WD on Vehicle CAN;57678:Lost Communication with METER on Vehicle CAN;57679:Lost Communication with BCM on Vehicle CAN;57684:Lost Communication with MIU on Vehicle CAN;57686:Lost Communication with SWAS on Vehicle CAN;57691:Lost communication with USM on Vehicle CAN;57718:Lost Communication with IDM on Vehicle CAN;57860:Lost Communication with 4WS on Chassis-CAN;57874:Lost Communication with EBA on Chassis-CAN;57923:Lost Communication with HEVC on Chassis-CAN;57938:Lost Communication with ADAS on Chassis CAN;57941:Lost Communication with APB on Chassis-CAN;57951:Lost Communication with RADAR on Chassis-CAN;57957:Lost Communication with USA on Chassis-CAN;57974:Lost Communication with IDM on Chassis-CAN"
+,760,40,43,1,0,0,,190201,590201,ff,DTCFailureType.Category,0:General Failure Information;1:General Electrical Failures;2:General Signal Failures;3:FM (Freq Mod) / PWM (Pulse Width Mod) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;15:Vehicle manufacturer / System supplier specific
+,760,44,47,1,0,0,,190201,590201,ff,DTCFailureType.ManufacturerOrSupplier,
+,760,48,55,1,0,0,,190201,590201,ff,StatusOfDTC,
+,760,49,49,1,0,0,,190201,590201,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,760,50,50,1,0,0,,190201,590201,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,760,51,51,1,0,0,,190201,590201,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,760,52,52,1,0,0,,190201,590201,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,760,53,53,1,0,0,,190201,590201,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,760,54,54,1,0,0,,190201,590201,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,760,55,55,1,0,0,,190201,590201,ff,DTCStatus.testFailed,0:No;1:Yes
+,760,16,23,1,0,0,,190209,590209,ff,DTCStatusAvailabilityMask,
+,760,24,39,1,0,0,,190209,590209,ff,DTCDeviceIdentifier,"34:Mastervac brake assistance system;20544:Telemeter;20545:Invalid function configuration;20546:Isolating valve FR/RL axe fault;20547:Isolating valve FL/RR axe fault;20550:Electric shuttle valve FR/RL axe fault;20551:Electric shuttle valve FL/RR axe fault;20552:Valve relay;20553:Inlet valve FL;20554:Outlet valve FL;20555:Inlet valve FR;20556:Outlet valve FR;20557:Inlet valve RL;20558:Outlet valve RL;20559:Inlet valve RR;20560:Outlet valve RR;20561:Pump motor control;20562:Brake Booster Performance;20563:CAN Receive Monitor;20564:Judgement time 2-2;20565:CAN Register;20566:Supply Voltage;20568:ECU ABS or ESC;20569:Solenoid overheating;20570:Stability system active too long;20571:HEVC not ready as actuator;20572:Implausible control;20573:Brake Fluid Level;20574:EBA Failure;20575:GCC commands;20577:Front left wheel speed sensor;20579:Front right wheel speed sensor;20581:Rear left wheel speed sensor;20583:Rear right wheel speed sensor;20584:WSS Front Axle;20585:WSS Rear Axle;20586:WSS General;20587:Brake pedal switch ""A"";20588:Master cylinder pressure sensor;20589:Vacuum booster;20590:SWAS;20592:Lateral acceleration sensor;20593:Longitudinal acceleration sensor;20594:Yaw rate sensor;20595:Vacuum sensor;20596:Activation switch AYC/ASR;20597:Activation HDC switch;20598:Missing ABS or VDC calibration parameters;20599:Invalid gearbox configuration;20600:Invalid parking brake configuration;20601:Invalid wheel circumference configuration;20602:Invalid VDC Physical Implantatation Configuration;20603:Important function deactivated;20604:Secondary function deactivated;20605:4WD;20606:Extended Grip button;20607:Stroke sensor;20608:ECM Invalid data;20609:APB Invalid data;20610:AT Invalid data;20611:SWAS Invalid data;20613:METER Invalid data;20614:BCM Invalid data;20615:USM Invalid data;20616:MIU Invalid data;20617:4WS Invalid data;20624:ADAS Invalid data;20625:RADAR Invalid data;20626:4WD Invalid data;20627:USA Invalid data;20628:HEVC Invalid data;20629:EBA Invalid data;20630:CDM Invalid data;20631:IDM Invalid data;20640:TPW Under Inflated;20641:TPW INVALID INPUT DATA;20642:TPW Wheel Front Left;20643:TPW Wheel Front Right;20644:TPW Wheel Rear Right;20645:TPW Wheel Rear Left;20646:TPW ERROR;20647:TPW AUTOCALIBRATION FAILED;20650:LifeTimeCounter;20651:Reserved C1A-HS;20652:Reserved C1A-HS-1;20653:Reserved C1A-HS-2;20656:EPB_ACTUATOR_RIGHT;20657:EPB_ACTUATOR_LEFT;20658:EPB_SWITCH;20659:EPB_ELECTRONIC_ECU;20661:EPB_ASSEMBLY_CHECK_NOT_DONE;20662:EPB_MAX_BRAKING;20664:EPB_BRAKE_INCOHERENT;20665:EPB_BRAKE_STATE_UNKNOWN;49267:Vehicle CAN;49270:Chassis CAN;57601:Lost Communication with Add. Display on Vehicle CAN;57604:Lost Communication with 4WS on Vehicle CAN;57618:Lost Communication with EBA on Vehicle CAN;57664:Lost Communication with ECM on Vehicle CAN;57665:Lost Communication with AT on Vehicle CAN;57667:Lost Communication with HEVC on Vehicle CAN;57674:Lost Communication with 4WD on Vehicle CAN;57678:Lost Communication with METER on Vehicle CAN;57679:Lost Communication with BCM on Vehicle CAN;57684:Lost Communication with MIU on Vehicle CAN;57686:Lost Communication with SWAS on Vehicle CAN;57691:Lost communication with USM on Vehicle CAN;57718:Lost Communication with IDM on Vehicle CAN;57860:Lost Communication with 4WS on Chassis-CAN;57874:Lost Communication with EBA on Chassis-CAN;57923:Lost Communication with HEVC on Chassis-CAN;57938:Lost Communication with ADAS on Chassis CAN;57941:Lost Communication with APB on Chassis-CAN;57951:Lost Communication with RADAR on Chassis-CAN;57957:Lost Communication with USA on Chassis-CAN;57974:Lost Communication with IDM on Chassis-CAN"
+,760,40,43,1,0,0,,190209,590209,ff,DTCFailureType.Category,0:General Failure Information;1:General Electrical Failures;2:General Signal Failures;3:FM (Freq Mod) / PWM (Pulse Width Mod) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;15:Vehicle manufacturer / System supplier specific
+,760,44,47,1,0,0,,190209,590209,ff,DTCFailureType.ManufacturerOrSupplier,
+,760,48,55,1,0,0,,190209,590209,ff,StatusOfDTC,
+,760,49,49,1,0,0,,190209,590209,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,760,50,50,1,0,0,,190209,590209,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,760,51,51,1,0,0,,190209,590209,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,760,52,52,1,0,0,,190209,590209,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,760,53,53,1,0,0,,190209,590209,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,760,54,54,1,0,0,,190209,590209,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,760,55,55,1,0,0,,190209,590209,ff,DTCStatus.testFailed,0:No;1:Yes
+,760,0,0,1,0,0,,1903000000FF,5903000000FF,ff,ReadDTCInformation.ReportDTCSnapshotIdentification,
+,760,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord,
+,760,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC,
+,760,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord,
+,760,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC,
+,760,48,55,1,0,0,,190600000080,590600000080,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage;136:IUPR numerator;137:IUPR denominator
+,760,56,79,1,0,0,km,190600000080,590600000080,ff,DTCExtendedData.Mileage,
+,760,16,39,1,0,0,,190600000081,590600000081,4ff,DTCRecord,
+,760,40,47,1,0,0,,190600000081,590600000081,ff,StatusOfDTC,
+,760,48,55,1,0,0,,190600000081,590600000081,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage;136:IUPR numerator;137:IUPR denominator
+,760,56,63,1,0,0,,190600000081,590600000081,ff,DTCExtendedData.AgingCounter,
+,760,16,39,1,0,0,,190600000082,590600000082,4ff,DTCRecord,
+,760,40,47,1,0,0,,190600000082,590600000082,ff,StatusOfDTC,
+,760,48,55,1,0,0,,190600000082,590600000082,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage;136:IUPR numerator;137:IUPR denominator
+,760,56,63,1,0,0,,190600000082,590600000082,ff,DTCExtendedData.DTCOccurrenceCounter,
+,760,16,39,1,0,0,,190600000085,590600000085,4ff,DTCRecord,
+,760,40,47,1,0,0,,190600000085,590600000085,ff,StatusOfDTC,
+,760,48,55,1,0,0,,190600000085,590600000085,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage;136:IUPR numerator;137:IUPR denominator
+,760,56,79,1,0,0,km,190600000085,590600000085,ff,DTCExtendedData.DTCLastDiseappearMileage,
+,760,16,39,1,0,0,,190600000087,590600000087,4ff,DTCRecord,
+,760,40,47,1,0,0,,190600000087,590600000087,ff,StatusOfDTC,
+,760,48,55,1,0,0,,190600000087,590600000087,ff,DTCExtendedDataRecordNumber,128:Mileage;129:AgingCounter;130:DTCOccurrenceCounter;132:DTCOccurrenceCounter_2;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage;136:IUPR numerator;137:IUPR denominator
+,760,56,79,1,0,0,km,190600000087,590600000087,ff,DTCExtendedData.DTCFirstAppearMileage,
+,760,16,23,1,0,0,,190A,590A,ff,DTCStatusAvailabilityMask,
+,760,24,39,1,0,0,,190A,590A,ff,DTCDeviceIdentifier,"34:Mastervac brake assistance system;20544:Telemeter;20545:Invalid function configuration;20546:Isolating valve FR/RL axe fault;20547:Isolating valve FL/RR axe fault;20550:Electric shuttle valve FR/RL axe fault;20551:Electric shuttle valve FL/RR axe fault;20552:Valve relay;20553:Inlet valve FL;20554:Outlet valve FL;20555:Inlet valve FR;20556:Outlet valve FR;20557:Inlet valve RL;20558:Outlet valve RL;20559:Inlet valve RR;20560:Outlet valve RR;20561:Pump motor control;20562:Brake Booster Performance;20563:CAN Receive Monitor;20564:Judgement time 2-2;20565:CAN Register;20566:Supply Voltage;20568:ECU ABS or ESC;20569:Solenoid overheating;20570:Stability system active too long;20571:HEVC not ready as actuator;20572:Implausible control;20573:Brake Fluid Level;20574:EBA Failure;20575:GCC commands;20577:Front left wheel speed sensor;20579:Front right wheel speed sensor;20581:Rear left wheel speed sensor;20583:Rear right wheel speed sensor;20584:WSS Front Axle;20585:WSS Rear Axle;20586:WSS General;20587:Brake pedal switch ""A"";20588:Master cylinder pressure sensor;20589:Vacuum booster;20590:SWAS;20592:Lateral acceleration sensor;20593:Longitudinal acceleration sensor;20594:Yaw rate sensor;20595:Vacuum sensor;20596:Activation switch AYC/ASR;20597:Activation HDC switch;20598:Missing ABS or VDC calibration parameters;20599:Invalid gearbox configuration;20600:Invalid parking brake configuration;20601:Invalid wheel circumference configuration;20602:Invalid VDC Physical Implantatation Configuration;20603:Important function deactivated;20604:Secondary function deactivated;20605:4WD;20606:Extended Grip button;20607:Stroke sensor;20608:ECM Invalid data;20609:APB Invalid data;20610:AT Invalid data;20611:SWAS Invalid data;20613:METER Invalid data;20614:BCM Invalid data;20615:USM Invalid data;20616:MIU Invalid data;20617:4WS Invalid data;20624:ADAS Invalid data;20625:RADAR Invalid data;20626:4WD Invalid data;20627:USA Invalid data;20628:HEVC Invalid data;20629:EBA Invalid data;20630:CDM Invalid data;20631:IDM Invalid data;20640:TPW Under Inflated;20641:TPW INVALID INPUT DATA;20642:TPW Wheel Front Left;20643:TPW Wheel Front Right;20644:TPW Wheel Rear Right;20645:TPW Wheel Rear Left;20646:TPW ERROR;20647:TPW AUTOCALIBRATION FAILED;20650:LifeTimeCounter;20651:Reserved C1A-HS;20652:Reserved C1A-HS-1;20653:Reserved C1A-HS-2;20656:EPB_ACTUATOR_RIGHT;20657:EPB_ACTUATOR_LEFT;20658:EPB_SWITCH;20659:EPB_ELECTRONIC_ECU;20661:EPB_ASSEMBLY_CHECK_NOT_DONE;20662:EPB_MAX_BRAKING;20664:EPB_BRAKE_INCOHERENT;20665:EPB_BRAKE_STATE_UNKNOWN;49267:Vehicle CAN;49270:Chassis CAN;57601:Lost Communication with Add. Display on Vehicle CAN;57604:Lost Communication with 4WS on Vehicle CAN;57618:Lost Communication with EBA on Vehicle CAN;57664:Lost Communication with ECM on Vehicle CAN;57665:Lost Communication with AT on Vehicle CAN;57667:Lost Communication with HEVC on Vehicle CAN;57674:Lost Communication with 4WD on Vehicle CAN;57678:Lost Communication with METER on Vehicle CAN;57679:Lost Communication with BCM on Vehicle CAN;57684:Lost Communication with MIU on Vehicle CAN;57686:Lost Communication with SWAS on Vehicle CAN;57691:Lost communication with USM on Vehicle CAN;57718:Lost Communication with IDM on Vehicle CAN;57860:Lost Communication with 4WS on Chassis-CAN;57874:Lost Communication with EBA on Chassis-CAN;57923:Lost Communication with HEVC on Chassis-CAN;57938:Lost Communication with ADAS on Chassis CAN;57941:Lost Communication with APB on Chassis-CAN;57951:Lost Communication with RADAR on Chassis-CAN;57957:Lost Communication with USA on Chassis-CAN;57974:Lost Communication with IDM on Chassis-CAN"
+,760,40,47,1,0,0,,190A,590A,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM (Freq Mod) / PWM (Pulse Width Mod) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level / zero adjustment failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or operation obstructed or blocked;152:component or system over temperature
+,760,48,55,1,0,0,,190A,590A,ff,StatusOfDTC,
+,760,24,39,.1,32767,1,°,220100,620100,ff,Steering Wheel Angle,
+,760,24,31,.1,0,1,V,22012F,62012F,ff,Supply voltage,
+,760,24,31,1,0,0,,221597,621597,ff,Multimode RS,0:Activated;170:Deactivated;255:Not configured
+,760,24,39,.01,0,2,km/h,224B00,624B00,ff,WheelSpeed FL,
+,760,24,39,.01,0,2,km/h,224B01,624B01,ff,WheelSpeed FR,
+,760,24,39,.01,0,2,km/h,224B02,624B02,ff,WheelSpeed RL,
+,760,24,39,.01,0,2,km/h,224B03,624B03,ff,WheelSpeed RR,
+,760,24,39,.01,0,2,km/h,224B04,624B04,ff,Vehicle speed,
+,760,0,0,1,0,0,,224B05,624B05,ff,DataRead.DID Unknown,
+,760,28,55,10,0,0,m,224B06,624B06,ff,Internal odometer.Internal odometer,
+,760,24,31,.1,127,1,m/s²,224B07,624B07,ff,Longitudinal acceleration,
+,760,24,31,1,0,0,,224B08,624B08,ff,Aging Counter,
+,760,24,47,1,0,0,km,224B09,624B09,1ff,Mileage of the first failure,
+,760,24,31,.02,127,2,g,224B0B,624B0B,ff,Lateral acceleration,
+,760,24,39,.2,32767,1,°/s,224B0C,624B0C,ff,Yaw speed,
+,760,24,31,1,0,0,,224B0D,624B0D,ff,Activation switch state,0:Activation switch released;1:Activation switch pressed
+,760,24,31,1,0,0,bar,224B0E,624B0E,ff,Braking pressure,
+,760,24,31,1,0,0,,224B11,624B11,ff,Brake Pedal Position,0:released;1:pressed;255:unavailable
+,760,24,24,1,0,0,,224B12,624B12,ff,Hydraulic valves and pump.outlet EV RR,0:off;1:activated
+,760,25,25,1,0,0,,224B12,624B12,ff,Hydraulic valves and pump.inlet EV RR,0:off;1:activated
+,760,26,26,1,0,0,,224B12,624B12,ff,Hydraulic valves and pump.outlet EV RL,0:off;1:activated
+,760,27,27,1,0,0,,224B12,624B12,ff,Hydraulic valves and pump.inlet EV RL,0:off;1:activated
+,760,28,28,1,0,0,,224B12,624B12,ff,Hydraulic valves and pump.outlet EV FR,0:off;1:activated
+,760,29,29,1,0,0,,224B12,624B12,ff,Hydraulic valves and pump.intlet EV FR,0:off;1:activated
+,760,30,30,1,0,0,,224B12,624B12,ff,Hydraulic valves and pump.outlet EV FL,0:off;1:activated
+,760,31,31,1,0,0,,224B12,624B12,ff,Hydraulic valves and pump.inlet EV FL,0:off;1:activated
+,760,33,33,1,0,0,,224B12,624B12,ff,Hydraulic valves and pump.pump,0:off;1:activated
+,760,36,36,1,0,0,,224B12,624B12,ff,Hydraulic valves and pump.FL RR Electric shuttle EV,0:off;1:activated
+,760,37,37,1,0,0,,224B12,624B12,ff,Hydraulic valves and pump.FL RR Isolating EV,0:off;1:activated
+,760,38,38,1,0,0,,224B12,624B12,ff,Hydraulic valves and pump.FR RL Electric shuttle EV,0:off;1:activated
+,760,39,39,1,0,0,,224B12,624B12,ff,Hydraulic valves and pump.FR RL Isolating EV,0:off;1:activated
+,760,24,31,1,0,0,km/h,224B13,624B13,ff,Vehicle speed wire generation,
+,760,24,31,1,0,0,,224B14,624B14,ff,Hazard lights activation state,0:not activated;1:activated
+,760,24,31,1,0,0,,224B15,624B15,ff,Brake lights activation state,0:not activated;1:activated
+,760,24,31,1,0,0,,224B16,624B16,ff,ASR Request Simulation,3:ShortTermAdjustement
+,760,24,31,1,0,0,°C,224B17,624B17,ff,Hydraulic unit temperature,
+,760,24,31,1,0,0,,224B18,624B18,ff,After Sales Date,
+,760,24,31,1,0,0,,224B1A,624B1A,ff,Vehicle Status,0:0 (Asleep);1:1 (Not used);2:2 (CutOff pending);3:3 (AutoACC);4:4 (Not used);5:5 (IgnitionLevel);6:6 (StartInProgress);7:7 (Powertrain Running);8:8 (AutoStart);9:9 (EngineSystemStop);255:Unavaible
+,760,24,39,1,0,0,,224B1C,624B1C,ff,ESC Steering Angle Sensor calibration,
+,760,24,39,1,0,0,,224B1D,624B1D,ff,Magnetic tone wheel control,
+,760,24,39,1,0,0,,224B1E,624B1E,ff,ESC inertial sensors calibration,
+,760,24,31,1,0,0,,224B20,624B20,ff,AEB Ped function inhibtion state,0:Activated;170:Deactivated;255:Not Configured
+,760,24,31,1,0,0,,224B21,624B21,ff,HDC Button state,0:HDC Button not activated;1:HDC Button activated
+,760,24,39,1,0,0,,224B24,624B24,ff,Real Tires Circumference,1000:Minimum value (expert only);1789:165/70 R 14;1793:BBG Europe;1794:XBABS6.2;1836:175/70/R14;1879:205/45/R17;1891:195/55/R16;1895:185/65/R15;1927:205/55/R16 XFB;1934:195/65/R15 XFB;1957:205/50/R17 XFB;1967:235/40/R18 (RS);1968:205/60/R16 XFB;1998:245/35/R19 (RS);2036:215/60/R16 95V;2073:245/45/R18 100W;2074:225/55/R17 97V;2078:225/55/R17 101W;2093:215/65/R16;2105:215/60/R17;2114:215/55/R18;2244:255/45/R20;2251:235/65/R17;2254:235/60/R18;2261:235/55/R19;3000:Maximum value (expert only);65535:Not configured
+,760,24,31,10,-1,0,s,224B25,624B25,ff,Powerlatch duration,
+,760,24,31,1,0,0,,224B26,624B26,ff,GearBox Type.GearBoxType,1:Manual;2:Automatic;3:CVT;4:DCT;5:AMT;255:Not Configured
+,760,24,31,1,0,0,,224B27,624B27,ff,Parking Brake Type,1:Manual;2:Assisted;3:Assisted_Int_Edrum;4:Assisted_Int_Ecaliper;255:Not Configured
+,760,24,39,1,0,0,,224B28,624B28,ff,Rear tires real Circumference,1000:Minimum value (expert only);1879:205/45/R17;1891:195/55/R16;1894:185/65/R15;3000:Maximum value (expert only);65535:Not configured
+,760,24,31,1,0,0,,224B29,624B29,ff,RMF function inhibition state,0:Activated;170:Deactivated;255:Not Configured
+,760,24,31,1,0,0,,224B2A,624B2A,ff,MULTIEXP function inhibition state,0:MODE 1;85:MODE 2;170:Not activated;255:Not configured
+,760,24,31,1,0,0,,224B2B,624B2B,ff,HBA function inhibition state,0:Activated;170:Deactivated;255:NotConfigured
+,760,24,31,1,0,0,,224B2C,624B2C,ff,EBP function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224B2E,624B2E,ff,TSF function inhibition state,0:Activated;170:Deactivated;255:Not Configured
+,760,24,31,1,0,0,,224B2F,624B2F,ff,ACC function inhibition state,0:Activated;170:Deactivated;255:Not Configured
+,760,24,31,1,0,0,,224B30,624B30,ff,AEBS function inhibition state,0:Activated;170:Deactivated;255:Not Configured
+,760,24,31,1,0,0,,224B31,624B31,ff,HSA function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224B32,624B32,ff,BHF function inhibition state,0:Activated;170:Deactivated;255:Not Configured
+,760,24,31,1,0,0,,224B33,624B33,ff,Calibration variant,
+,760,24,31,1,0,0,,224B34,624B34,ff,Filling status,0:OK (Filled in);176:NOK (Evac failure);192:NOK (Filling failure);255:NEW (Empty)
+,760,24,24,1,0,0,,224B35,624B35,ff,Function status.EBD function.failure status,0:not operational;1:operational
+,760,25,25,1,0,0,,224B35,624B35,ff,Function status.EBD function.activation status,0:not active;1:active
+,760,26,26,1,0,0,,224B35,624B35,ff,Function status.ABS function.failure status,0:not operational;1:operational
+,760,27,27,1,0,0,,224B35,624B35,ff,Function status.ABS function.activation status,0:not active;1:active
+,760,28,28,1,0,0,,224B35,624B35,ff,Function status.ASR function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,29,29,1,0,0,,224B35,624B35,ff,Function status.ASR function.inhibition by switch status,0:inhibited by switch;1:not inhibited by switch
+,760,30,30,1,0,0,,224B35,624B35,ff,Function status.ASR function.failure status,0:not operational;1:operational
+,760,31,31,1,0,0,,224B35,624B35,ff,Function status.ASR function.activation status,0:not active;1:active
+,760,32,32,1,0,0,,224B35,624B35,ff,Function status.AYC function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,33,33,1,0,0,,224B35,624B35,ff,Function status.AYC function.inhibition by switch status,0:inhibited by switch;1:not inhibited by switch
+,760,34,34,1,0,0,,224B35,624B35,ff,Function status.AYC function.failure status,0:not operational;1:operational
+,760,35,35,1,0,0,,224B35,624B35,ff,Function status.AYC function.activation status,0:not active;1:active
+,760,36,36,1,0,0,,224B35,624B35,ff,Function status.MSR function.failure status,0:not operational;1:operational
+,760,37,37,1,0,0,,224B35,624B35,ff,Function status.MSR function.activation status,0:not active;1:active
+,760,38,38,1,0,0,,224B35,624B35,ff,Function status.HBA function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,39,39,1,0,0,,224B35,624B35,ff,Function status.HBA function.failure status,0:not operational;1:operational
+,760,40,40,1,0,0,,224B35,624B35,ff,Function status.HBA function.activation status,0:not active;1:active
+,760,41,41,1,0,0,,224B35,624B35,ff,Function status.HSA function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,42,42,1,0,0,,224B35,624B35,ff,Function status.HSA function.failure status,0:not operational;1:operational
+,760,43,43,1,0,0,,224B35,624B35,ff,Function status.HSA function.activation status,0:not active;1:active
+,760,44,44,1,0,0,,224B35,624B35,ff,Function status.EBP function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,45,45,1,0,0,,224B35,624B35,ff,Function status.EBP function.failure status,0:not operational;1:operational
+,760,46,46,1,0,0,,224B35,624B35,ff,Function status.EBP function.activation status,0:not active;1:active
+,760,47,47,1,0,0,,224B35,624B35,ff,Function status.RMF function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,48,48,1,0,0,,224B35,624B35,ff,Function status.RMF function.failure status,0:not operational;1:operational
+,760,49,49,1,0,0,,224B35,624B35,ff,Function status.RMF function.activation status,0:not active;1:active
+,760,50,50,1,0,0,,224B35,624B35,ff,Function status.TSF function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,51,51,1,0,0,,224B35,624B35,ff,Function status.TSF function.failure status,0:not operational;1:operational
+,760,52,52,1,0,0,,224B35,624B35,ff,Function status.TSF function.activation status,0:not active;1:active
+,760,53,53,1,0,0,,224B35,624B35,ff,Function status.HLA function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,54,54,1,0,0,,224B35,624B35,ff,Function status.HLA function.failure status,0:not operational;1:operational
+,760,55,55,1,0,0,,224B35,624B35,ff,Function status.HLA function.activation status,0:not active;1:active
+,760,56,56,1,0,0,,224B35,624B35,ff,Function status.VDL function.failure status,0:not operational;1:operational
+,760,57,57,1,0,0,,224B35,624B35,ff,Function status.VDL function.activation status,0:not active;1:active
+,760,62,62,1,0,0,,224B35,624B35,ff,Function status.HBB function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,63,63,1,0,0,,224B35,624B35,ff,Function status.HBB function.failure status,0:not operational;1:operational
+,760,64,64,1,0,0,,224B35,624B35,ff,Function status.HBB function.activation status,0:not active;1:active
+,760,65,65,1,0,0,,224B35,624B35,ff,Function status.ACC function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,66,66,1,0,0,,224B35,624B35,ff,Function status.ACC function.failure status,0:not operational;1:operational
+,760,67,67,1,0,0,,224B35,624B35,ff,Function status.ACC function.activation status,0:not active;1:active
+,760,68,68,1,0,0,,224B35,624B35,ff,Function status.AEBS function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,69,69,1,0,0,,224B35,624B35,ff,Function status.AEBS function.failure status,0:not operational;1:operational
+,760,70,70,1,0,0,,224B35,624B35,ff,Function status.AEBS function.activation status,0:not active;1:active
+,760,71,71,1,0,0,,224B35,624B35,ff,Function status.SIDIPIL function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,72,72,1,0,0,,224B35,624B35,ff,Function status.SIDIPIL function.failure status,0:not operational;1:operational
+,760,73,73,1,0,0,,224B35,624B35,ff,Function status.SIDIPIL function.activation status,0:not active;1:active
+,760,74,74,1,0,0,,224B35,624B35,ff,Function status.MULTI EXP function.inhibition by diag status,0:not operational;1:operational
+,760,75,75,1,0,0,,224B35,624B35,ff,Function status.MULTI EXP function.failure status,0:not operational;1:operational
+,760,76,76,1,0,0,,224B35,624B35,ff,Function status.EG function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,77,77,1,0,0,,224B35,624B35,ff,Function status.EG function.failure status,0:not operational;1:operational
+,760,78,78,1,0,0,,224B35,624B35,ff,Function status.EG function.activation status,0:not active;1:active
+,760,79,79,1,0,0,,224B35,624B35,ff,Function status.BLA function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,80,80,1,0,0,,224B35,624B35,ff,Function status.BLA function.failure status,0:not operational;1:operational
+,760,81,81,1,0,0,,224B35,624B35,ff,Function status.BLA function.activation status,0:not active;1:active
+,760,82,82,1,0,0,,224B35,624B35,ff,Function status.BHF function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,83,83,1,0,0,,224B35,624B35,ff,Function status.BHF function.failure status,0:not operational;1:operational
+,760,84,84,1,0,0,,224B35,624B35,ff,Function status.BHF function.activation status,0:not active;1:active
+,760,85,85,1,0,0,,224B35,624B35,ff,Function status.VESS function.inhibition by diag status,0:inhibited by diag;1:not inhibited by diag
+,760,86,86,1,0,0,,224B35,624B35,ff,Function status.VESS function.failure status,0:not operational;1:operational
+,760,87,87,1,0,0,,224B35,624B35,ff,Function status.VESS function.activation status,0:not active;1:active
+,760,24,31,.2,127,1,°,224B36,624B36,ff,Steering wheel angle offset,
+,760,24,31,.01,127,2,g,224B37,624B37,ff,Lateral acceleration offset,
+,760,24,31,.0981,127,2,m/s²,224B38,624B38,ff,Longitudinal acceleration offset,
+,760,24,31,.2,127,1,bar,224B39,624B39,ff,Braking pressure offset,
+,760,24,55,1,0,0,,224B3A,624B3A,2ff,Steering Wheel Angle Traceability.Serial Number,
+,760,56,71,1,0,0,,224B3A,624B3A,2ff,Steering Wheel Angle Traceability.Year,
+,760,72,87,1,0,0,,224B3A,624B3A,2ff,Steering Wheel Angle Traceability.Month,
+,760,88,103,1,0,0,,224B3A,624B3A,2ff,Steering Wheel Angle Traceability.Day,
+,760,104,119,1,0,0,,224B3A,624B3A,2ff,Steering Wheel Angle Traceability.Reserved,
+,760,120,151,1,0,0,,224B3A,624B3A,2ff,Steering Wheel Angle Traceability.Sequence,
+,760,24,31,1,0,0,,224B3B,624B3B,ff,LWC function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224B3C,624B3C,ff,ESC Orientation,1:Config 1 ( Left hand drive / DaG);2:Config 2 (Right hand drive / DaD);3:Config 3;4:Config 4;5:Config 5;6:Config 6;7:Config 7;8:Config 8;255:Not configured
+,760,24,39,1,0,0,,224B3D,624B3D,4ff,Supplier fault code,
+,760,24,31,1,0,0,,224B3E,624B3E,ff,ASR function inhibition state,0:Activated;170:Deactivated;255:Not Configured
+,760,24,31,1,0,0,,224B3F,624B3F,ff,AEB Type,1:ADAS;2:RADAR;255:Not configured
+,760,24,31,1,0,0,,224B40,624B40,ff,AYC function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224B41,624B41,ff,Brake Assistance System Configuration,0:Not Needed;17:Config 1;34:Config 2;51:Config 3;68:Config 4;85:Config 5;102:Config 6;119:Config 7;136:Config 8;153:Config 9;255:Not configured
+,760,24,39,.1,32767,1,°/s,224B42,624B42,ff,Steering Wheel Speed,
+,760,24,31,1,0,0,,224B43,624B43,ff,BLA function inhibition state,0:Activated;170:Deactivated;255:Not Configured
+,760,24,31,1,0,0,,224B45,624B45,ff,Integrated sensors gateway activation deactivation,0:Deactivated;170:Activated;255:Not configured
+,760,24,31,1,0,0,,224B46,624B46,ff,Voltage drop management function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224B47,624B47,ff,Extended Grip function inhibition state,0:Activated;170:Deactivated;255:Not Configured
+,760,24,31,1,0,0,,224B48,624B48,ff,FourWS configuration state,0:Activated;170:Deactivated;255:Not Configured
+,760,24,31,1,0,0,,224B49,624B49,ff,HLA function inhibition state,0:Activated;170:Deactivated;255:Not Configured
+,760,24,31,1,0,0,,224B4A,624B4A,ff,trailer connector state,0:trailer not connected;1:trailer connected
+,760,24,31,1,0,0,,224B4B,624B4B,ff,ARBS function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224B4C,624B4C,ff,HBB function inhibition state,0:Activated;170:Deactivated;255:Not Configured
+,760,24,31,1,0,0,,224B4D,624B4D,ff,VESS function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,50,0,0,mbar,224B4E,624B4E,ff,Vacuum sensor value,
+,760,24,31,1,0,0,,224B4F,624B4F,ff,Vacuum Sensor Configuration,0:Not present;170:Present;255:Not configured
+,760,24,31,1,0,0,,224B50,624B50,ff,CCSL function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224B51,624B51,ff,AUTOPARK function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224B52,624B52,ff,GCC function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224B53,624B53,ff,BSI function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224B54,624B54,ff,SSF function inhibition state,0:Activated;170:Not activated;255:Not configured
+,760,24,31,1,0,0,,224B55,624B55,ff,HDC function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224B57,624B57,ff,Roller Bench Mode function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224B5A,624B5A,ff,CRBS function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224B5B,624B5B,ff,GSB function inhibition state,0:Activated;170:Not activated;255:Not configured
+,760,24,31,1,0,0,,224B5C,624B5C,ff,OBD function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224B5D,624B5D,ff,TorqueRequestType,1:WheelTorque;2:EngineTorque;255:Not configured
+,760,24,31,1,0,0,,224B5E,624B5E,ff,BCR function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,45,1,0,0,s,224B5F,624B5F,ff,Vacuum Pump Activation counter,
+,760,24,31,1,0,0,,224B61,624B61,ff,DTV Function,0:Activated;170:Deactivated;255:Not configured
+,760,24,39,1,0,0,,224BA0,624BA0,2ff,ECU Activities.GeneralData.Calibration file reference,
+,760,40,63,6.4,0,0,s,224BA0,624BA0,ff,ECU Activities.GeneralData.ECU ON time,
+,760,64,79,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDuration.C1,
+,760,80,95,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDuration.C2,
+,760,96,111,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDuration.C3,
+,760,112,127,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDuration.C4,
+,760,128,143,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDuration.C5,
+,760,144,159,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDuration.C6,
+,760,160,175,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDuration.C7,
+,760,176,191,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDuration.C8,
+,760,192,207,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDistanceLevel.C1,
+,760,208,223,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDistanceLevel.C2,
+,760,224,239,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDistanceLevel.C3,
+,760,240,255,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDistanceLevel.C4,
+,760,256,271,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDistanceLevel.C5,
+,760,272,287,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDistanceLevel.C6,
+,760,288,303,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDistanceLevel.C7,
+,760,304,319,1,0,0,,224BA0,624BA0,ff,ECU Activities.GeneralData.IgnitionCyclesDistanceLevel.C8,
+,760,320,351,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C1,
+,760,352,383,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C2,
+,760,384,415,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C3,
+,760,416,447,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C4,
+,760,448,479,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C5,
+,760,480,511,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C6,
+,760,512,543,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C7,
+,760,544,575,1,0,0,,224BA0,624BA0,4ff,ECU Activities.GeneralData.TimeBySpeedLevel.C8,
+,760,576,591,2,0,0,min,224BA0,624BA0,ff,ECU Activities.GeneralData.Time by temperature Level.C1,
+,760,592,607,2,0,0,min,224BA0,624BA0,ff,ECU Activities.GeneralData.Time by temperature Level.C2,
+,760,608,623,2,0,0,min,224BA0,624BA0,ff,ECU Activities.GeneralData.Time by temperature Level.C3,
+,760,624,639,2,0,0,min,224BA0,624BA0,ff,ECU Activities.GeneralData.Time by temperature Level.C4,
+,760,640,655,2,0,0,min,224BA0,624BA0,ff,ECU Activities.GeneralData.Time by temperature Level.C5,
+,760,656,671,2,0,0,min,224BA0,624BA0,ff,ECU Activities.GeneralData.Time by temperature Level.C6,
+,760,672,687,2,0,0,min,224BA0,624BA0,ff,ECU Activities.GeneralData.Time by temperature Level.C7,
+,760,688,703,2,0,0,min,224BA0,624BA0,ff,ECU Activities.GeneralData.Time by temperature Level.C8,
+,760,704,727,.32,0,1,s,224BA0,624BA0,ff,ECU Activities.GeneralData.Pump Motor ON time,
+,760,24,39,1,0,0,,224BA1,624BA1,ff,ECU Activities.ActivationCounters.EBD Activations,
+,760,40,55,1,0,0,,224BA1,624BA1,ff,ECU Activities.ActivationCounters.ABS ActivationsByDeceleration.C1,
+,760,56,71,1,0,0,,224BA1,624BA1,ff,ECU Activities.ActivationCounters.ABS ActivationsByDeceleration.C2,
+,760,72,87,1,0,0,,224BA1,624BA1,ff,ECU Activities.ActivationCounters.ABS ActivationsByDeceleration.C3,
+,760,88,103,1,0,0,,224BA1,624BA1,ff,ECU Activities.ActivationCounters.ASR Activations,
+,760,104,119,1,0,0,,224BA1,624BA1,ff,ECU Activities.ActivationCounters.AYC ActivationsByBrakingPressure.C1,
+,760,120,135,1,0,0,,224BA1,624BA1,ff,ECU Activities.ActivationCounters.AYC ActivationsByBrakingPressure.C2,
+,760,136,151,1,0,0,,224BA1,624BA1,ff,ECU Activities.ActivationCounters.AYC ActivationsByBrakingPressure.C3,
+,760,152,167,1,0,0,,224BA1,624BA1,ff,ECU Activities.ActivationCounters.AYC ActivationsByBrakingPressure.C4,
+,760,168,183,1,0,0,,224BA1,624BA1,ff,ECU Activities.ActivationCounters.MSR Activations,
+,760,184,199,1,0,0,,224BA1,624BA1,ff,ECU Activities.ActivationCounters.HBA Activations,
+,760,200,215,1,0,0,,224BA1,624BA1,ff,ECU Activities.ActivationCounters.EBP Activations,
+,760,216,231,1,0,0,,224BA1,624BA1,ff,ECU Activities.ActivationCounters.HSA Activations,
+,760,232,247,1,0,0,,224BA1,624BA1,ff,ECU Activities.ActivationCounters.LWC Activations,
+,760,24,39,640,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.EBD duration,
+,760,40,55,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C1.K1,
+,760,56,71,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C1.K2,
+,760,72,79,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C1.K3,
+,760,80,87,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C1.K4,
+,760,88,103,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C2.K1,
+,760,104,119,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C2.K2,
+,760,120,135,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C2.K3,
+,760,136,151,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C2.K4,
+,760,152,167,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C3.K1,
+,760,168,183,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C3.K2,
+,760,184,199,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C3.K3,
+,760,200,215,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C3.K4,
+,760,216,231,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C4.K1,
+,760,232,247,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C4.K2,
+,760,248,263,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C4.K3,
+,760,264,279,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C4.K4,
+,760,280,295,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C5.K1,
+,760,296,311,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C5.K2,
+,760,312,327,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C5.K3,
+,760,328,343,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C5.K4,
+,760,344,359,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C6.K1,
+,760,360,375,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C6.K2,
+,760,376,383,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C6.K3,
+,760,384,391,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C6.K4,
+,760,392,399,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C7.K1,
+,760,400,407,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C7.K2,
+,760,408,415,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C7.K3,
+,760,416,423,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C7.K4,
+,760,424,431,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C8.K1,
+,760,432,439,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C8.K2,
+,760,440,447,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C8.K3,
+,760,448,455,1,0,0,,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABSdurationbypressure level.C8.K4,
+,760,456,471,1280,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.ABS duration,
+,760,472,535,1,0,0,,224BA2,624BA2,4ff,ECU Activities.ActivationTimers.ASR duration,
+,760,536,551,1280,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.AYC duration,
+,760,552,567,80,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.MSR duration,
+,760,568,583,80,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.HBA duration,
+,760,584,599,20.48,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.HSA duration,
+,760,600,615,1280,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.LWC duration,
+,760,616,639,320,0,0,ms,224BA2,624BA2,ff,ECU Activities.ActivationTimers.HBB duration,
+,760,24,55,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C1,
+,760,56,87,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C2,
+,760,88,119,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C3,
+,760,120,151,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C4,
+,760,152,183,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C5,
+,760,184,215,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C6,
+,760,216,247,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C7,
+,760,248,279,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AxDurationbyLongitudinalAcceleraion.C8,
+,760,280,311,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C1,
+,760,312,343,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C2,
+,760,344,375,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C3,
+,760,376,407,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C4,
+,760,408,439,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.AyDurationbyTransversalAcceleraion.C5,
+,760,440,471,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C1,
+,760,472,503,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C2,
+,760,504,535,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C3,
+,760,536,567,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C4,
+,760,568,591,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C5,
+,760,592,615,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C6,
+,760,616,639,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C7,
+,760,640,663,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C8,
+,760,664,679,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbyYawSpeedLevel.C9,
+,760,680,711,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.MissionDurationbySWALevel.C1,
+,760,712,743,1,0,0,,224BA3,624BA3,4ff,ECU Activities.PhysicalData.MissionDurationbySWALevel.C2,
+,760,744,767,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbySWALevel.C3,
+,760,768,791,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbySWALevel.C4,
+,760,792,815,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbySWALevel.C5,
+,760,816,839,100,0,0,ms,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbySWALevel.C6,
+,760,840,855,100,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.MissionDurationbySWALevel.C7,
+,760,856,879,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C1K1,
+,760,880,903,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C1K2,
+,760,904,927,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C1K3,
+,760,928,943,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C1K4,
+,760,944,959,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C1K5,
+,760,960,983,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C2K1,
+,760,984,1007,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C2K2,
+,760,1008,1031,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C2K3,
+,760,1032,1047,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C2K4,
+,760,1048,1063,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C2K5,
+,760,1064,1087,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C3K1,
+,760,1088,1111,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C3K2,
+,760,1112,1135,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C3K3,
+,760,1136,1151,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C3K4,
+,760,1152,1167,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C3K5,
+,760,1168,1191,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C4K1,
+,760,1192,1215,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C4K2,
+,760,1216,1239,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C4K3,
+,760,1240,1255,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C4K4,
+,760,1256,1271,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C4K5,
+,760,1272,1287,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C5K1,
+,760,1288,1303,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C5K2,
+,760,1304,1319,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C5K3,
+,760,1320,1335,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C5K4,
+,760,1336,1351,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C5K5,
+,760,1352,1367,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C6K1,
+,760,1368,1383,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C6K2,
+,760,1384,1399,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C6K3,
+,760,1400,1415,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C6K4,
+,760,1416,1431,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C6K5,
+,760,1432,1447,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C7K1,
+,760,1448,1463,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C7K2,
+,760,1464,1479,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C7K3,
+,760,1480,1495,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C7K4,
+,760,1496,1511,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C7K5,
+,760,1512,1527,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C8K1,
+,760,1528,1543,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C8K2,
+,760,1544,1559,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C8K3,
+,760,1560,1575,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C8K4,
+,760,1576,1591,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C8K5,
+,760,1592,1607,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C9K1,
+,760,1608,1623,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C9K2,
+,760,1624,1639,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C9K3,
+,760,1640,1655,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C9K4,
+,760,1656,1663,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C9K5,
+,760,1664,1679,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C10K1,
+,760,1680,1695,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C10K2,
+,760,1696,1711,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C10K3,
+,760,1712,1727,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C10K4,
+,760,1728,1735,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C10K5,
+,760,1736,1751,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C11K1,
+,760,1752,1767,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C11K2,
+,760,1768,1783,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C11K3,
+,760,1784,1799,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C11K4,
+,760,1800,1807,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C11K5,
+,760,1808,1815,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C12K1,
+,760,1816,1823,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C12K2,
+,760,1824,1831,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C12K3,
+,760,1832,1839,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C12K4,
+,760,1840,1847,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C12K5,
+,760,1848,1855,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C13K1,
+,760,1856,1863,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C13K2,
+,760,1864,1871,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C13K3,
+,760,1872,1879,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C13K4,
+,760,1880,1887,1,0,0,,224BA3,624BA3,ff,ECU Activities.PhysicalData.BrakingDurationbyPressureLevel.C13K5,
+,760,24,31,1,0,0,,224BBA,624BBA,ff,Malfunction flags inhibition in development,0:Inhibited;170:Not inhibited
+,760,24,31,1,0,0,,224BBB,624BBB,ff,Signed Wheel Speed Sensors Configuration,1:None;2:On Front Wheels;3:On Rear Wheels;4:On all Wheels;255:Not configured
+,760,24,39,.01,0,2,km/h,224BBC,624BBC,ff,FourWheel Reference Speed,
+,760,24,31,1,0,0,,224BBD,624BBD,ff,Ax monitoring inhibition state,0:Ax monitoring not inhibited;170:Ax monitoring inhibited
+,760,24,31,1,0,0,,224BBE,624BBE,ff,Development frames activation inhibition,0:development frames transmission activated by diag;170:development frames transmission not activated by diag
+,760,24,31,1,0,0,,224BBF,624BBF,ff,SIDIPIL function inhibition state,0:Activated;170:Deactivated;255:Not configured
+,760,24,55,10,0,0,m,224BD0,624BD0,1ff,AEBS HBA Threshold Decrease application data.Mileage appli HBA Threshold Decrease 1,
+,760,48,55,.1,0,1,s,224BD0,624BD0,ff,AEBS HBA Threshold Decrease application data.Duration appli HBA Threshold Decrease 1,
+,760,56,87,10,0,0,m,224BD0,624BD0,1ff,AEBS HBA Threshold Decrease application data.Mileage appli HBA Threshold Decrease 2,
+,760,88,95,.1,0,1,s,224BD0,624BD0,ff,AEBS HBA Threshold Decrease application data.Duration appli HBA Threshold Decrease 2,
+,760,96,127,10,0,0,m,224BD0,624BD0,1ff,AEBS HBA Threshold Decrease application data.Mileage appli HBA Threshold Decrease 3,
+,760,128,135,.1,0,1,s,224BD0,624BD0,ff,AEBS HBA Threshold Decrease application data.Duration appli HBA Threshold Decrease 3,
+,760,24,55,10,0,0,m,224BD1,624BD1,1ff,AEBS Braking Gain application data.Mileage appli AEBS Braking Gain 1,
+,760,48,55,.1,0,1,s,224BD1,624BD1,ff,AEBS Braking Gain application data.Duration appli AEBS Braking Gain 1,
+,760,56,87,10,0,0,m,224BD1,624BD1,1ff,AEBS Braking Gain application data.Mileage appli AEBS Braking Gain 2,
+,760,88,95,.1,0,1,s,224BD1,624BD1,ff,AEBS Braking Gain application data.Duration appli AEBS Braking Gain 2,
+,760,96,127,10,0,0,m,224BD1,624BD1,1ff,AEBS Braking Gain application data.Mileage appli AEBS Braking Gain 3,
+,760,128,135,.1,0,1,s,224BD1,624BD1,ff,AEBS Braking Gain application data.Duration appli AEBS Braking Gain 3,
+,760,24,25,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request a1,1:Off request;2:On request;3:no storage
+,760,26,27,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request a2,1:Off request;2:On request;3:no storage
+,760,28,29,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request a3,1:Off request;2:On request;3:no storage
+,760,30,31,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request a4,1:Off request;2:On request;3:no storage
+,760,32,33,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request a5,1:Off request;2:On request;3:no storage
+,760,34,35,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request a6,1:Off request;2:On request;3:no storage
+,760,36,37,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request a7,1:Off request;2:On request;3:no storage
+,760,38,39,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request a8,1:Off request;2:On request;3:no storage
+,760,40,47,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration a1,
+,760,48,55,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration a2,
+,760,56,63,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration a3,
+,760,64,71,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration a4,
+,760,72,79,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration a5,
+,760,80,87,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration a6,
+,760,88,95,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration a7,
+,760,96,103,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration a8,
+,760,104,111,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration a9,
+,760,112,143,10,0,0,m,224BD2,624BD2,1ff,AEBS Strong Braking application data.Mileage appli AEBS Strong Braking 1,
+,760,144,151,.1,0,1,s,224BD2,624BD2,ff,AEBS Strong Braking application data.Duration appli AEBS Strong Braking 1,
+,760,152,153,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request b1,1:Off request;2:On request;3:no storage
+,760,154,155,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request b2,1:Off request;2:On request;3:no storage
+,760,156,157,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request b3,1:Off request;2:On request;3:no storage
+,760,158,159,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request b4,1:Off request;2:On request;3:no storage
+,760,160,161,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request b5,1:Off request;2:On request;3:no storage
+,760,162,163,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request b6,1:Off request;2:On request;3:no storage
+,760,164,165,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request b7,1:Off request;2:On request;3:no storage
+,760,166,167,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request b8,1:Off request;2:On request;3:no storage
+,760,168,175,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration b1,
+,760,176,183,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration b2,
+,760,184,191,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration b3,
+,760,192,199,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration b4,
+,760,200,207,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration b5,
+,760,208,215,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration b6,
+,760,216,223,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration b7,
+,760,224,231,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration b8,
+,760,232,239,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration b9,
+,760,240,271,10,0,0,m,224BD2,624BD2,1ff,AEBS Strong Braking application data.Mileage appli AEBS Strong Braking 2,
+,760,272,279,.1,0,1,s,224BD2,624BD2,ff,AEBS Strong Braking application data.Duration appli AEBS Strong Braking 2,
+,760,280,281,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request c1,1:Off request;2:On request;3:no storage
+,760,282,283,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request c2,1:Off request;2:On request;3:no storage
+,760,284,285,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request c3,1:Off request;2:On request;3:no storage
+,760,286,287,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request c4,1:Off request;2:On request;3:no storage
+,760,288,289,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request c5,1:Off request;2:On request;3:no storage
+,760,290,291,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request c6,1:Off request;2:On request;3:no storage
+,760,292,293,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request c7,1:Off request;2:On request;3:no storage
+,760,294,295,1,0,0,,224BD2,624BD2,ff,AEBS Strong Braking application data.StopLamp Request c8,1:Off request;2:On request;3:no storage
+,760,296,303,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration c1,
+,760,304,311,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration c2,
+,760,312,319,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration c3,
+,760,320,327,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration c4,
+,760,328,335,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration c5,
+,760,336,343,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration c6,
+,760,344,351,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration c7,
+,760,352,359,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration c8,
+,760,360,367,.1,100,1,m/s²,224BD2,624BD2,ff,AEBS Strong Braking application data.Vehicle acceleration c9,
+,760,368,399,10,0,0,m,224BD2,624BD2,1ff,AEBS Strong Braking application data.Mileage appli AEBS Strong Braking 3,
+,760,400,407,.1,0,1,s,224BD2,624BD2,ff,AEBS Strong Braking application data.Duration appli AEBS Strong Braking 3,
+,760,24,25,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request a1,1:Off request;2:On request;3:no storage
+,760,26,27,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request a2,1:Off request;2:On request;3:no storage
+,760,28,29,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request a3,1:Off request;2:On request;3:no storage
+,760,30,31,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request a4,1:Off request;2:On request;3:no storage
+,760,32,33,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request a5,1:Off request;2:On request;3:no storage
+,760,34,35,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request a6,1:Off request;2:On request;3:no storage
+,760,36,37,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request a7,1:Off request;2:On request;3:no storage
+,760,38,39,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request a8,1:Off request;2:On request;3:no storage
+,760,40,47,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration a1,
+,760,48,55,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration a2,
+,760,56,63,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration a3,
+,760,64,71,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration a4,
+,760,72,79,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration a5,
+,760,80,87,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration a6,
+,760,88,95,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration a7,
+,760,96,103,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration a8,
+,760,104,111,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration a9,
+,760,112,143,10,0,0,m,224BD3,624BD3,1ff,AEBS Moderate Braking application data.Mileage appli AEBS Moderate Braking 1,
+,760,144,151,.1,0,1,s,224BD3,624BD3,ff,AEBS Moderate Braking application data.Duration appli AEBS Moderate Braking 1,
+,760,152,153,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request b1,1:Off request;2:On request;3:no storage
+,760,154,155,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request b2,1:Off request;2:On request;3:no storage
+,760,156,157,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request b3,1:Off request;2:On request;3:no storage
+,760,158,159,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request b4,1:Off request;2:On request;3:no storage
+,760,160,161,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request b5,1:Off request;2:On request;3:no storage
+,760,162,163,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request b6,1:Off request;2:On request;3:no storage
+,760,164,165,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request b7,1:Off request;2:On request;3:no storage
+,760,166,167,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request b8,1:Off request;2:On request;3:no storage
+,760,168,175,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration b1,
+,760,176,183,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration b2,
+,760,184,191,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration b3,
+,760,192,199,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration b4,
+,760,200,207,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration b5,
+,760,208,215,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration b6,
+,760,216,223,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration b7,
+,760,224,231,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration b8,
+,760,232,239,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration b9,
+,760,240,271,10,0,0,m,224BD3,624BD3,1ff,AEBS Moderate Braking application data.Mileage appli AEBS Moderate Braking 2,
+,760,272,279,.1,0,1,s,224BD3,624BD3,ff,AEBS Moderate Braking application data.Duration appli AEBS Moderate Braking 2,
+,760,280,281,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request c1,1:Off request;2:On request;3:no storage
+,760,282,283,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request c2,1:Off request;2:On request;3:no storage
+,760,284,285,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request c3,1:Off request;2:On request;3:no storage
+,760,286,287,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request c4,1:Off request;2:On request;3:no storage
+,760,288,289,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request c5,1:Off request;2:On request;3:no storage
+,760,290,291,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request c6,1:Off request;2:On request;3:no storage
+,760,292,293,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request c7,1:Off request;2:On request;3:no storage
+,760,294,295,1,0,0,,224BD3,624BD3,ff,AEBS Moderate Braking application data.StopLamp Request c8,1:Off request;2:On request;3:no storage
+,760,296,303,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration c1,
+,760,304,311,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration c2,
+,760,312,319,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration c3,
+,760,320,327,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration c4,
+,760,328,335,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration c5,
+,760,336,343,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration c6,
+,760,344,351,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration c7,
+,760,352,359,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration c8,
+,760,360,367,.1,100,1,m/s²,224BD3,624BD3,ff,AEBS Moderate Braking application data.Vehicle acceleration c9,
+,760,368,399,10,0,0,m,224BD3,624BD3,1ff,AEBS Moderate Braking application data.Mileage appli AEBS Moderate Braking 3,
+,760,400,407,.1,0,1,s,224BD3,624BD3,ff,AEBS Moderate Braking application data.Duration appli AEBS Moderate Braking 3,
+,760,24,25,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request a1,1:Off request;2:On request;3:no storage
+,760,26,27,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request a2,1:Off request;2:On request;3:no storage
+,760,28,29,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request a3,1:Off request;2:On request;3:no storage
+,760,30,31,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request a4,1:Off request;2:On request;3:no storage
+,760,32,33,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request a5,1:Off request;2:On request;3:no storage
+,760,34,35,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request a6,1:Off request;2:On request;3:no storage
+,760,36,37,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request a7,1:Off request;2:On request;3:no storage
+,760,38,39,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request a8,1:Off request;2:On request;3:no storage
+,760,40,47,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration a1,
+,760,48,55,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration a2,
+,760,56,63,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration a3,
+,760,64,71,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration a4,
+,760,72,79,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration a5,
+,760,80,87,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration a6,
+,760,88,95,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration a7,
+,760,96,103,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration a8,
+,760,104,111,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration a9,
+,760,112,143,10,0,0,m,224BD4,624BD4,1ff,AEBS City Braking application data.Mileage appli AEBS City Braking 1,
+,760,144,159,.01,0,2,km/h,224BD4,624BD4,ff,AEBS City Braking application data.VehicleSpeed a,
+,760,160,167,.1,0,1,s,224BD4,624BD4,ff,AEBS City Braking application data.Duration appli AEBS City Braking 1,
+,760,168,169,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request b1,1:Off request;2:On request;3:no storage
+,760,170,171,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request b2,1:Off request;2:On request;3:no storage
+,760,172,173,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request b3,1:Off request;2:On request;3:no storage
+,760,174,175,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request b4,1:Off request;2:On request;3:no storage
+,760,176,177,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request b5,1:Off request;2:On request;3:no storage
+,760,178,179,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request b6,1:Off request;2:On request;3:no storage
+,760,180,181,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request b7,1:Off request;2:On request;3:no storage
+,760,182,183,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request b8,1:Off request;2:On request;3:no storage
+,760,184,191,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration b1,
+,760,192,199,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration b2,
+,760,200,207,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration b3,
+,760,208,215,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration b4,
+,760,216,223,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration b5,
+,760,224,231,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration b6,
+,760,232,239,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration b7,
+,760,240,247,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration b8,
+,760,248,255,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration b9,
+,760,256,287,10,0,0,m,224BD4,624BD4,1ff,AEBS City Braking application data.Mileage appli AEBS City Braking 2,
+,760,288,303,.01,0,2,km/h,224BD4,624BD4,ff,AEBS City Braking application data.VehicleSpeed b,
+,760,304,311,.1,0,1,s,224BD4,624BD4,ff,AEBS City Braking application data.Duration appli AEBS City Braking 2,
+,760,312,313,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request c1,1:Off request;2:On request;3:no storage
+,760,314,315,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request c2,1:Off request;2:On request;3:no storage
+,760,316,317,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request c3,1:Off request;2:On request;3:no storage
+,760,318,319,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request c4,1:Off request;2:On request;3:no storage
+,760,320,321,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request c5,1:Off request;2:On request;3:no storage
+,760,322,323,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request c6,1:Off request;2:On request;3:no storage
+,760,324,325,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request c7,1:Off request;2:On request;3:no storage
+,760,326,327,1,0,0,,224BD4,624BD4,ff,AEBS City Braking application data.StopLamp Request c8,1:Off request;2:On request;3:no storage
+,760,328,335,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration c1,
+,760,336,343,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration c2,
+,760,344,351,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration c3,
+,760,352,359,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration c4,
+,760,360,367,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration c5,
+,760,368,375,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration c6,
+,760,376,383,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration c7,
+,760,384,391,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration c8,
+,760,392,399,.1,100,1,m/s²,224BD4,624BD4,ff,AEBS City Braking application data.Vehicle acceleration c9,
+,760,400,431,10,0,0,m,224BD4,624BD4,1ff,AEBS City Braking application data.Mileage appli AEBS City Braking 3,
+,760,432,447,.01,0,2,km/h,224BD4,624BD4,ff,AEBS City Braking application data.VehicleSpeed c,
+,760,448,455,.1,0,1,s,224BD4,624BD4,ff,AEBS City Braking application data.Duration appli AEBS City Braking 3,
+,760,24,31,1,0,0,,224BD5,624BD5,ff,AEBS evolved diagnostic activation deactivation,0:Activated;170:Deactivated;255:Not configured
+,760,24,39,1,0,0,N·m,224BD6,624BD6,ff,AEBS Braking Levels.MaxPedThreshold.ADAS,
+,760,40,55,1,0,0,N·m,224BD6,624BD6,ff,AEBS Braking Levels.MaxCityThreshold.ADAS,
+,760,56,71,1,0,0,N·m,224BD6,624BD6,ff,AEBS Braking Levels.MaxStrongThreshold.ADAS,
+,760,72,87,1,0,0,N·m,224BD6,624BD6,ff,AEBS Braking Levels.MaxModerateThreshold.ADAS,
+,760,88,103,.001,0,3,m/s²,224BD6,624BD6,ff,AEBS Braking Levels.MaxPedThreshold.RADAR,
+,760,104,119,.001,0,3,m/s²,224BD6,624BD6,ff,AEBS Braking Levels.MaxCityThreshold.RADAR,
+,760,120,135,.001,0,3,m/s²,224BD6,624BD6,ff,AEBS Braking Levels.MaxStrongThreshold.RADAR,
+,760,136,151,.001,0,3,m/s²,224BD6,624BD6,ff,AEBS Braking Levels.MaxModerateThreshold.RADAR,
+,760,24,31,1,0,0,km/h,224BD7,624BD7,ff,ACC Vehcile Speed Thresholds.Brake Lead Time,
+,760,32,39,1,0,0,km/h,224BD7,624BD7,ff,ACC Vehcile Speed Thresholds.Req conf Error,
+,760,24,31,1,0,0,,224BD8,624BD8,ff,Clutch SSF configuration state,0:Activated;170:Deactivated;255:Not configured
+,760,24,31,1,0,0,,224BD9,624BD9,ff,SWA parameter configuration,1:EPS;2:SWA;255:Not configured
+,760,24,31,1,0,0,,224BDA,624BDA,ff,ConfigModeSSF1,0:ConfigModeRenault;170:ConfigModeNissan;255:NotConfigured
+,760,24,31,1,0,0,,224BDB,624BDB,ff,ConfigModeSSF2,0:ConfigModeRenault;170:ConfigModeNissan;255:NotConfigured
+,760,24,31,1,0,0,,224BF0,624BF0,ff,TPMS Indirect function inhibition state,0:TPMS indirect configuration activated;170:TPMS indirect configuration not activated;255:TPMS indirect configuration not configured
+,760,24,823,1,0,0,,224BF1,624BF1,4ff,TPMS MappingBlock0,
+,760,24,823,1,0,0,,224BF2,624BF2,4ff,TPMS MappingBlock1,
+,760,24,823,1,0,0,,224BF3,624BF3,4ff,TPMS MappingBlock2,
+,760,24,823,1,0,0,,224BF4,624BF4,4ff,TPMS MappingBlock3,
+,760,24,823,1,0,0,,224BF5,624BF5,4ff,TPMS MappingBlock4,
+,760,24,823,1,0,0,,224BF6,624BF6,4ff,TPMS MappingBlock5,
+,760,24,823,1,0,0,,224BF7,624BF7,4ff,TPMS MappingBlock6,
+,760,24,823,1,0,0,,224BF8,624BF8,4ff,TPMS MappingBlock7,
+,760,24,823,1,0,0,,224BF9,624BF9,4ff,TPMS MappingBlock8,
+,760,24,823,1,0,0,,224BFA,624BFA,4ff,TPMS MappingBlock9,
+,760,24,39,1,0,0,,224BFB,624BFB,4ff,TPMS FunctionalMappingChecksum,
+,760,24,31,1,0,0,,224BFC,624BFC,1ff,TPMS CarDetectionSensitivityLevel,0:normal;-1:robust;-2:max robust;-3:sensitive (positioning);-4:normal (positioning);-5:robust (positioning);-6:max robust (positioning);1:sensitive
+,760,24,31,1,0,0,,224BFD,624BFD,ff,TPMS DataStreamLogType,5:CAN - Renault dev frame - TPI data disabled;4:CAN - TPI with only basic functions- Renault dev frame unavailable;3:CAN - TPI- no cog;1:XCP - TPI- fully active and data;0:Disabled;6:CAN - TPI- reduced data- no cog  + Renault dev frame
+,760,24,31,50,0,0,km,224BFE,624BFE,ff,TPMS KmForAutomaticCalibDemand,
+,760,24,31,2,0,0,d,224BFF,624BFF,ff,TPMS DaysForAutomaticCalibDemand,
+,760,24,31,1,0,0,,224C00,624C00,4ff,TPMS WarningIndicatorPunctureFrontLeft,
+,760,24,31,1,0,0,,224C01,624C01,4ff,TPMS WarningIndicatorPunctureFrontRight,
+,760,24,31,1,0,0,,224C02,624C02,4ff,TPMS WarningIndicatorPunctureRearLeft,
+,760,24,31,1,0,0,,224C03,624C03,4ff,TPMS WarningIndicatorPunctureRearRight,
+,760,24,31,1,0,0,,224C04,624C04,4ff,TPMS WarningIndicatorDiffusionFrontLeft,
+,760,24,31,1,0,0,,224C05,624C05,4ff,TPMS WarningIndicatorDiffusionFrontRight,
+,760,24,31,1,0,0,,224C06,624C06,4ff,TPMS WarningIndicatorDiffusionRearLeft,
+,760,24,31,1,0,0,,224C07,624C07,4ff,TPMS WarningIndicatorDiffusionRearRight,
+,760,24,39,5,0,0,km,224C08,624C08,ff,TPMS CalibrationKmHistory0,
+,760,24,39,5,0,0,km,224C09,624C09,ff,TPMS CalibrationKmHistory1,
+,760,24,39,5,0,0,km,224C0A,624C0A,ff,TPMS CalibrationKmHistory2,
+,760,24,39,5,0,0,km,224C0B,624C0B,ff,TPMS CalibrationKmHistory3,
+,760,24,39,5,0,0,km,224C0C,624C0C,ff,TPMS WarningKmHistory0,
+,760,24,39,5,0,0,km,224C0D,624C0D,ff,TPMS WarningKmHistory1,
+,760,24,39,5,0,0,km,224C0E,624C0E,ff,TPMS WarningKmHistory2,
+,760,24,39,5,0,0,km,224C0F,624C0F,ff,TPMS WarningKmHistory3,
+,760,28,31,5,6,0,°C,224C10,624C10,ff,TPMS CalibrationTemperatureHistory0,
+,760,28,31,5,6,0,°C,224C11,624C11,ff,TPMS CalibrationTemperatureHistory1,
+,760,28,31,5,6,0,°C,224C12,624C12,ff,TPMS CalibrationTemperatureHistory2,
+,760,28,31,5,6,0,°C,224C13,624C13,ff,TPMS CalibrationTemperatureHistory3,
+,760,28,31,5,6,0,°C,224C14,624C14,ff,TPMS WarningTemperatureHistory0,
+,760,28,31,5,6,0,°C,224C15,624C15,ff,TPMS WarningTemperatureHistory1,
+,760,28,31,5,6,0,°C,224C16,624C16,ff,TPMS WarningTemperatureHistory2,
+,760,28,31,5,6,0,°C,224C17,624C17,ff,TPMS WarningTemperatureHistory3,
+,760,28,39,2,0,0,d,224C18,624C18,ff,TPMS DaysSince1stIgnitionAtCalibrationHistory0,
+,760,28,39,2,0,0,d,224C19,624C19,ff,TPMS DaysSince1stIgnitionAtCalibrationHistory1,
+,760,28,39,2,0,0,d,224C1A,624C1A,ff,TPMS DaysSince1stIgnitionAtCalibrationHistory2,
+,760,24,31,1,0,0,,224C1B,624C1B,ff,TPMS_DaysSince1stIgn.AtCalib.History3,
+,760,28,39,2,0,0,d,224C1C,624C1C,ff,TPMS DaysSince1stIgnitionAtWarningHistory0,
+,760,28,39,2,0,0,d,224C1D,624C1D,ff,TPMS DaysSince1stIgnitionAtWarningHistory1,
+,760,28,39,2,0,0,d,224C1E,624C1E,ff,TPMS DaysSince1stIgnitionAtWarningHistory2,
+,760,28,39,2,0,0,d,224C1F,624C1F,ff,TPMS DaysSince1stIgnitionAtWarningHistory3,
+,760,24,31,2,0,0,d,224C20,624C20,ff,TPMS TimeFromLastCalibration,
+,760,24,39,1,0,0,km,224C21,624C21,ff,TPMS KmFromLastCalibration,
+,760,26,27,1,0,0,,224C22,624C22,ff,TPMS CalibStatusRollRadius.7,2:fine;1:rough;0:not done;3:calibration finished
+,760,28,29,1,0,0,,224C22,624C22,ff,TPMS CalibStatusRollRadius.6,2:fine;1:rough;0:not done;3:calibration finished
+,760,30,31,1,0,0,,224C22,624C22,ff,TPMS CalibStatusRollRadius.5,2:fine;1:rough;0:not done;3:calibration finished
+,760,32,33,1,0,0,,224C22,624C22,ff,TPMS CalibStatusRollRadius.4,2:fine;1:rough;0:not done;3:calibration finished
+,760,34,35,1,0,0,,224C22,624C22,ff,TPMS CalibStatusRollRadius.3,2:fine;1:rough;0:not done;3:calibration finished
+,760,36,37,1,0,0,,224C22,624C22,ff,TPMS CalibStatusRollRadius.2,2:fine;1:rough;0:not done;3:calibration finished
+,760,38,39,1,0,0,,224C22,624C22,ff,TPMS CalibStatusRollRadius.1,2:fine;1:rough;0:not done;3:calibration finished
+,760,24,25,1,0,0,,224C23,624C23,ff,TPMS CalibStatusRollSpectrum_FL.8,2:fine;1:rough;0:not done;3:calibration finished
+,760,26,27,1,0,0,,224C23,624C23,ff,TPMS CalibStatusRollSpectrum_FL.7,2:fine;1:rough;0:not done;3:calibration finished
+,760,28,29,1,0,0,,224C23,624C23,ff,TPMS CalibStatusRollSpectrum_FL.6,2:fine;1:rough;0:not done;3:calibration finished
+,760,30,31,1,0,0,,224C23,624C23,ff,TPMS CalibStatusRollSpectrum_FL.5,2:fine;1:rough;0:not done;3:calibration finished
+,760,32,33,1,0,0,,224C23,624C23,ff,TPMS CalibStatusRollSpectrum_FL.4,2:fine;1:rough;0:not done;3:calibration finished
+,760,34,35,1,0,0,,224C23,624C23,ff,TPMS CalibStatusRollSpectrum_FL.3,2:fine;1:rough;0:not done;3:calibration finished
+,760,36,37,1,0,0,,224C23,624C23,ff,TPMS CalibStatusRollSpectrum_FL.2,2:fine;1:rough;0:not done;3:calibration finished
+,760,38,39,1,0,0,,224C23,624C23,ff,TPMS CalibStatusRollSpectrum_FL.1,2:fine;1:rough;0:not done;3:calibration finished
+,760,24,25,1,0,0,,224C24,624C24,ff,TPMS CalibStatusRollSpectrum_FR.8,2:fine;1:rough;0:not done;3:calibration finished
+,760,26,27,1,0,0,,224C24,624C24,ff,TPMS CalibStatusRollSpectrum_FR.7,2:fine;1:rough;0:not done;3:calibration finished
+,760,28,29,1,0,0,,224C24,624C24,ff,TPMS CalibStatusRollSpectrum_FR.6,2:fine;1:rough;0:not done;3:calibration finished
+,760,30,31,1,0,0,,224C24,624C24,ff,TPMS CalibStatusRollSpectrum_FR.5,2:fine;1:rough;0:not done;3:calibration finished
+,760,32,33,1,0,0,,224C24,624C24,ff,TPMS CalibStatusRollSpectrum_FR.4,2:fine;1:rough;0:not done;3:calibration finished
+,760,34,35,1,0,0,,224C24,624C24,ff,TPMS CalibStatusRollSpectrum_FR.3,2:fine;1:rough;0:not done;3:calibration finished
+,760,36,37,1,0,0,,224C24,624C24,ff,TPMS CalibStatusRollSpectrum_FR.2,2:fine;1:rough;0:not done;3:calibration finished
+,760,38,39,1,0,0,,224C24,624C24,ff,TPMS CalibStatusRollSpectrum_FR.1,2:fine;1:rough;0:not done;3:calibration finished
+,760,24,25,1,0,0,,224C25,624C25,ff,TPMS CalibStatusRollSpectrum_RL.8,2:fine;1:rough;0:not done;3:calibration finished
+,760,26,27,1,0,0,,224C25,624C25,ff,TPMS CalibStatusRollSpectrum_RL.7,2:fine;1:rough;0:not done;3:calibration finished
+,760,28,29,1,0,0,,224C25,624C25,ff,TPMS CalibStatusRollSpectrum_RL.6,2:fine;1:rough;0:not done;3:calibration finished
+,760,30,31,1,0,0,,224C25,624C25,ff,TPMS CalibStatusRollSpectrum_RL.5,2:fine;1:rough;0:not done;3:calibration finished
+,760,32,33,1,0,0,,224C25,624C25,ff,TPMS CalibStatusRollSpectrum_RL.4,2:fine;1:rough;0:not done;3:calibration finished
+,760,34,35,1,0,0,,224C25,624C25,ff,TPMS CalibStatusRollSpectrum_RL.3,2:fine;1:rough;0:not done;3:calibration finished
+,760,36,37,1,0,0,,224C25,624C25,ff,TPMS CalibStatusRollSpectrum_RL.2,2:fine;1:rough;0:not done;3:calibration finished
+,760,38,39,1,0,0,,224C25,624C25,ff,TPMS CalibStatusRollSpectrum_RL.1,2:fine;1:rough;0:not done;3:calibration finished
+,760,24,25,1,0,0,,224C26,624C26,ff,TPMS CalibStatusRollSpectrum_RR.8,2:fine;1:rough;0:not done;3:calibration finished
+,760,26,27,1,0,0,,224C26,624C26,ff,TPMS CalibStatusRollSpectrum_RR.7,2:fine;1:rough;0:not done;3:calibration finished
+,760,28,29,1,0,0,,224C26,624C26,ff,TPMS CalibStatusRollSpectrum_RR.6,2:fine;1:rough;0:not done;3:calibration finished
+,760,30,31,1,0,0,,224C26,624C26,ff,TPMS CalibStatusRollSpectrum_RR.5,2:fine;1:rough;0:not done;3:calibration finished
+,760,32,33,1,0,0,,224C26,624C26,ff,TPMS CalibStatusRollSpectrum_RR.4,2:fine;1:rough;0:not done;3:calibration finished
+,760,34,35,1,0,0,,224C26,624C26,ff,TPMS CalibStatusRollSpectrum_RR.3,2:fine;1:rough;0:not done;3:calibration finished
+,760,36,37,1,0,0,,224C26,624C26,ff,TPMS CalibStatusRollSpectrum_RR.2,2:fine;1:rough;0:not done;3:calibration finished
+,760,38,39,1,0,0,,224C26,624C26,ff,TPMS CalibStatusRollSpectrum_RR.1,2:fine;1:rough;0:not done;3:calibration finished
+,760,24,119,1,0,0,,224C27,624C27,2ff,TPMS Version,
+,760,24,55,1,0,0,,224C28,624C28,4ff,TPMS DiagnosticDatalist,
+,760,24,39,.2,0,1,s,224C29,624C29,ff,TPMS HighSenModeDiffusionActiveTimer,
+,760,24,39,.2,0,1,s,224C2A,624C2A,ff,TPMS HighSenModePunctureActiveTimer,
+,760,24,31,1,0,0,,224C2B,624C2B,4ff,TPMS HighSenModeActive,
+,760,24,31,2.55,0,0,%,224C2C,624C2C,ff,TPMS WSAModuleOntime,
+,760,24,31,1,0,0,%,224C2D,624C2D,ff,TPMS WRAModuleOntime,
+,760,24,31,1,0,0,,224C2E,624C2E,4ff,TPMS AutomaticAlertByKm,
+,760,24,31,1,0,0,,224C2F,624C2F,4ff,TPMS AutomaticAlertByDays,
+,760,24,31,1,0,0,,224C30,624C30,4ff,TPMS HighSenModeEnabling,
+,760,24,95,1,0,0,,224D00,624D00,4ff,EPB.PhysicalConfiguration,
+,760,40,47,.001,0,3,,224D00,624D00,ff,EPB.PhysicalConfiguration.RearGearRatio,
+,760,48,63,1,0,0,kg,224D00,624D00,ff,EPB.PhysicalConfiguration.VehMasse,
+,760,64,79,.001,0,3,m,224D00,624D00,ff,EPB.PhysicalConfiguration.WheelRadius,
+,760,80,95,.0001,0,3,kg/m²,224D00,624D00,ff,EPB.PhysicalConfiguration.EngineInertia,
+,760,24,39,1,0,0,,224D01,624D01,4ff,EPB.VehicleConfiguration,
+,760,26,27,1,0,0,,224D01,624D01,ff,EPB.VehicleConfiguration.AutoApplyInhibitionMode,0:AutoApplyEnabled;1:AutoApplyInhibited;3:Not Configured
+,760,28,29,1,0,0,,224D01,624D01,ff,EPB.VehicleConfiguration.StopAndStartMode,0:Not Stop And Start;1:Stop And Start;3:Not Configured
+,760,30,31,1,0,0,,224D01,624D01,ff,EPB.VehicleConfiguration.SCUVehicleTypeMode,0:Not SCU Vehicle;1:SCU Vehicle;3:Not Configured
+,760,32,33,1,0,0,,224D01,624D01,ff,EPB.VehicleConfiguration.RNConfig,0:Renault;1:Nissan with opsig;2:Nissan without opsig;3:Not Configured
+,760,34,35,1,0,0,,224D01,624D01,ff,EPB.VehicleConfiguration.ExternalAutoApplyRequest,0:No External Auto Apply request;1:External Auto Apply Request;3:Not Configured
+,760,38,39,1,0,0,,224D01,624D01,ff,EPB.VehicleConfiguration.Opsig_Config,0:No Optional Signal EPB status Output;1:Optional Signal EPB status Output;3:Not configured
+,760,24,31,1,0,0,,224D02,624D02,ff,EPB.Studies_CAN_Frames,0:STD_LOGGER_ON;1:TMO_LOGGER_ON;2:DAA_AG_LOGGER_ON;3:SANDA_LOGGER_ON;255:LOGGER_OFF
+,760,24,31,1,0,0,,224D03,624D03,ff,EPB.FactoryMode,0:Customer Mode;255:Factory Mode
+,760,24,239,1,0,0,,224D04,624D04,2ff,EPB.PBC_version,
+,760,24,239,1,0,0,,224D05,624D05,2ff,EPB.Software_Name,
+,760,24,31,.1,0,1,V,224D06,624D06,ff,EPB.ActuatorBatteryVoltageRR,
+,760,24,31,.1,0,1,V,224D07,624D07,ff,EPB.ActuatorBatteryVoltageRL,
+,760,24,31,.2,0,1,A,224D08,624D08,ff,EPB.ActuatorCurrentnominalValueRR,
+,760,24,31,.2,0,1,A,224D09,624D09,ff,EPB.ActuatorCurrentnominalValueRL,
+,760,24,31,1,0,0,,224D0A,624D0A,1ff,EPB.VehicleForwardSlope,
+,760,24,39,.1,0,1,,224D0B,624D0B,ff,EPB.BrakeForceEstimated ValueRight,
+,760,24,39,.1,0,1,,224D0C,624D0C,ff,EPB.BrakeForceEstimated ValueLeft,
+,760,24,31,1,0,0,%,224D0D,624D0D,ff,ClutchPedalPosition,
+,760,24,31,1,0,0,,224D0E,624D0E,ff,EPB.SwitchState,0:Neutral (no operation);1:Apply cmd request (EPB ON);2:Release cmd request (EPB OFF);3:Unavailable
+,760,24,31,1,0,0,,224D0F,624D0F,ff,EPB.FailureLevel,0:No Failure;1:Reparing Needed- Orange Warning Lamp- Service Warning;2:Red Warning Lamp - STOP lamp
+,760,24,31,1,0,0,,224D10,624D10,ff,EPB.DynamicBrakingCounter,
+,760,24,31,1,0,0,,224D11,624D11,ff,EPB_BrakeStatusLeft,0:Applied;1:Applying;2:Fully Applied;3:Released;4:Releasing;5:Unknown;6:Init;7:Fully Released - Maintenance Mode;8:Wind Back - Release to Fully Released
+,760,24,31,1,0,0,,224D12,624D12,ff,EPB_BrakeStatusRight,0:Applied;1:Applying;2:Fully Applied;3:Released;4:Releasing;5:Unknown;6:Init;7:Fully Released - Maintenance Mode;8:Wind Back - Release to Fully Released
+,760,24,39,1,0,0,°C,224D13,624D13,ff,EPB_BrakeDiscTemperature,
+,760,24,39,1,0,0,°C,224D14,624D14,ff,EPB.Highest BrakeDiscTemperature,
+,760,24,47,1,0,0,km,224D15,624D15,ff,EPB.MileageAtHighestBrakeDiscTemperature,
+,760,24,47,1,0,0,,224D16,624D16,ff,EPB.ManualApplyCounter,
+,760,24,47,1,0,0,,224D17,624D17,ff,EPB.ApplyCounterLess5,
+,760,24,47,1,0,0,,224D18,624D18,ff,EPB.ApplyCounterLess10,
+,760,24,47,1,0,0,,224D19,624D19,ff,EPB.ApplyCounterLess20,
+,760,24,47,1,0,0,,224D1A,624D1A,ff,EPB.ApplyCounterLess25,
+,760,24,47,1,0,0,,224D1B,624D1B,ff,EPB.ApplyCounterMore25,
+,760,24,47,1,0,0,,224D1C,624D1C,ff,EPB.ReclampCounterOnWheelTop,
+,760,24,47,1,0,0,,224D1D,624D1D,ff,EPB.ReclampCounterHTR,
+,760,24,39,1,0,0,km/h,224D1E,624D1E,ff,EPB.VehicleSpeedRef,
+,760,24,31,1,0,0,,224D1F,624D1F,ff,EPB.ParkingBrakeBindingStatusDisplay,0:Parking Brake Released;1:Parking Brake Applied;2:Unavailable State;3:Re-emission Request
+,760,24,31,1,0,0,,224D20,624D20,ff,EPB.ParkingBrakeMalfunctionDisplay,0:No EPB Failure;1:Minor EPB Failure;2:Major EPB Failure
+,760,24,31,1,0,0,,224D21,624D21,ff,EPB.NotImmobilizedVehicleWarning,"0:No warning ""Vehicle not immobilized"" display request;1:Warning ""Vehicle not immobilized"" display request"
+,760,24,31,1,0,0,,224D22,624D22,ff,EPB.NotTightenedWarning,0:No EPB not tightened warning display requested;1:EPB not tightened warning display requested
+,760,24,31,1,0,0,,224D23,624D23,ff,EPBTightenRequestUnavailable,0:No EPB tightened request unavailable warning requested;1:EPB tightened request unavailable warning requested;3:EPB tightened request unavailable warning re-emission requested
+,760,24,31,1,0,0,,224D24,624D24,ff,EPB.BrakePedalRequestDisplay,"0:No ""brake pedal Request message"" display;1:Brake pedal request message to display;3:Brake pedal request message re-emission requested"
+,760,24,31,1,0,0,,224D25,624D25,ff,EPB.DynamicBrakingDisplay,0:No dynamic braking display Request;1:Dynamic braking display request
+,760,24,31,1,0,0,,224D26,624D26,ff,EPB.TakeOffInhibitionWarning,0:No take off inhibition warning requested;1:Take off inhibition warning requested;2:Unavailable;3:Take off inhibition warning re-emission requested
+,760,24,31,1,0,0,,224D27,624D27,ff,EPB.LED_State,0:LED Off;1:LED On;3:LED Flashing
+,760,24,31,1,0,0,,224D28,624D28,ff,EPB.MalfunctionDisplay,0:No EPB malfunction;1:Minor default;2:Major default;3:Unavailable
+,760,24,31,1,0,0,,224D29,624D29,ff,EPB.RequestBrakeControl,1:Reserved;3:No EPB dynamic braking requested;4:Reserved 4;5:Reserved 5;6:Reserved 6;7:Reserved 7;9:Reserved 9;10:Reserved 10;11:Reserved 11;12:EPB dynamic braking requested;13:Reserved 13;14:Reserved 14;15:Unavailable
+,760,24,31,.005,0,3,m/s²,224D2A,624D2A,ff,EPB.RequestTargetDeceleration,
+,760,24,31,1,0,0,,224D2B,624D2B,ff,GADE,0:Sleep or Crank fault- Disable DiagMuxDTC;1:AutoACC fault- Disable DiagMuxDTC;2:All fault- Disable DiagMuxDTC;3:All fault- Enable DiagMuxDTC;7:Unavailable
+,760,24,31,1,0,0,,224D2C,624D2C,ff,BrakeInfoStatus,0:Not used;1:Brake pedal not pressed;2:Brake pedal pressed;3:Not used 3;4:Brake pedal confirmed pressed;5:Not used 5;6:Not used 6;7:Unavailable
+,760,24,24,1,0,0,,224D2D,624D2D,ff,EPB_IOSwitchOnLed,
+,760,31,31,1,0,0,,224D2E,624D2E,ff,EPB_IOApplyBothActuator,
+,760,31,31,1,0,0,,224D2F,624D2F,ff,EPB_IOReleaseBothActuator,
+,760,24,24,1,0,0,,224D30,624D30,ff,EPB_RC_AssemblyCheck,
+,760,24,24,1,0,0,,224D31,624D31,ff,EPB_RC_MaintenanceOpen,
+,760,24,24,1,0,0,,224D32,624D32,ff,EPB_RC_MaintenanceClose,
+,760,24,39,1,0,0,,22EF01,62EF01,4ff,Supplier fault code specified,
+,760,24,151,1,0,0,,22F010,62F010,2ff,Fingerprint,
+,760,24,103,1,0,0,,22F011,62F011,2ff,IndexSrvData,
+,760,24,103,1,0,0,,22F012,62F012,2ff,Calibration file reference,
+,760,24,103,1,0,0,,22F013,62F013,2ff,Secondary Operational Reference,
+,760,24,47,1,0,0,km,22F0D0,62F0D0,1ff,Mileage of the last occurence,
+,760,24,31,1,0,0,,22F0D1,62F0D1,ff,DTC Occurence Counter,
+,760,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI,
+,760,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI,
+,760,24,111,1,0,0,,22F180,62F180,2ff,Boot SW identification,
+,760,24,55,1,0,0,,22F182,62F182,2ff,CalibrationNumber,
+,760,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber,
+,760,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber,
+,760,24,63,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier,
+,760,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumber,
+,760,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber,
+,760,24,63,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber,
+,760,24,191,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber,
+,760,24,103,1,0,0,,22F196,62F196,2ff,exhaustRegulationOrTypeApprovalNumberDataIdentifier,
+,760,24,279,1,0,0,,22F197,62F197,4ff,SystemNameOrEngineType,
+,760,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion,
+,760,24,103,1,0,0,,22F1A1,62F1A1,2ff,VehicleManufacturerSparePartNumber_N,
+,760,24,103,1,0,0,,22F1A2,62F1A2,2ff,ConfigurationDataReferenceAfterConfigurationProcess,
+,760,0,0,1,0,0,,3,7,ff,TesterPresent.WithResponse,
