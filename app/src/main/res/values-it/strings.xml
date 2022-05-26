@@ -2,7 +2,7 @@
 
     <!-- App -->
 
-    <string name="app_name">CanZE Plus</string>
+    <string name="app_name">CanZE</string>
 
     <!-- Menus -->
 
@@ -898,10 +898,6 @@
 
     <string name="title_activity_settingscustom">Custom fragment settings</string>
 
-    <!-- Dash Summary -->
-
-    <string name="button_summary">Summary</string>
-
     <!-- Speed control -->
 
     <string name="title_activity_speedcontrol">Average speed</string>
@@ -951,12 +947,6 @@
     <!-- ZE50 test -->
     <string name="title_activity_ZE50Test">ZE50 test</string>
     <string name="about">About</string>
-    <string name="title_dashsummary">Summary/Consumption</string>
-    <string name="thanks">Special Thanks</string>
-    <string name="thankslist">To Vasile Onofrei, Francis Bernier, Constantin Irimia, Stavarache F, Mihail Emil Montoi, Pompei Gheorghe, Eniko Maria B, Davide Attanasio, Doru Fanaragiu, Dan Padure.</string>
-    <string name="aboutinfo">Sviluppato da Bobby Galati, basato sull\'app CanZE di http://canze.fisch.lu inizialmente costruito da Bob Fisch e Jeroen Meijer per il veicolo elettrico Renault ZOE</string>
-    <string name="aaintro">Please open CanZE Plus application on your phone and connect to OBD Bluetooth!</string>
-    <string name="aastart">Go to your dash</string>
     <string name="toast_WaitingSettings">"Stop Bluetooth. The settings are loading. Please wait… "</string>
     <string name="toast_PleaseUseTop">"Please use the buttons at the top to exit settings... "</string>
 

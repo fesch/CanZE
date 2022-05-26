@@ -50,11 +50,11 @@ public class ConsumptionActivity extends CanzeActivity implements FieldListener,
         addField(Sid.TotalPositiveTorque);
         addField(Sid.TotalNegativeTorque);
         addField(Sid.TotalPotentialResistiveWheelsTorque, 7200);
-        addField(Sid.Instant_Consumption, 0);
         addField(Sid.AverageConsumption, 5000);
         if (MainActivity.isSpring()) {
             addField(Sid.DcPowerOut, 5000);
-        }
+        } else addField(Sid.Instant_Consumption, 0);
+
     }
 
     @Override

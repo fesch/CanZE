@@ -2,7 +2,7 @@
 
     <!-- App -->
 
-    <string name="app_name">CanZE Plus</string>
+    <string name="app_name">CanZE</string>
 
     <!-- Menus -->
 
@@ -922,17 +922,10 @@
 
     <!-- Android Auto -->
     <string name="about">Despre</string>
-    <string name="title_dashsummary">Sumar/Consum</string>
-    <string name="thanks">Mulțumiri speciale</string>
-    <string name="thankslist">Pentru Vasile Onofrei, Francis Bernier, Constantin Irimia, Stavarache F, Mihail Emil Montoi, Pompei Gheorghe, Eniko Maria B, Davide Attanasio, Doru Fanaragiu, Dan Padure.</string>
-    <string name="aboutinfo">Aplicație dezvoltată de Bobby Galati, după aplicația CanZE de la http://canze.fisch.lu realizata initial de Bob Fisch si Jeroen Meijer pentru vehiculul electric Renault ZOE</string>
-    <string name="aaintro">Deschideți aplicația CanZE Plus din telefon și conectați prin Bluetooth la adaptorul OBD din mașină!</string>
-    <string name="aastart">Mergi la sumar</string>
     <string name="graph_MaxRealChPwr">Încărcare maximă baterie (kW) / Putere încărcare DC (kW)</string>
     <string name="graph_EnergyTemperature">Energie disponibilă (kWh), temperatură (°C)</string>
     <string name="toast_PleaseUseTop">Folosiți butonul de sus pentru a ieși din setări...</string>
     <string name="toast_WaitingSettings">Opriți conexiunea. Setările se încarcă. Așteptați...</string>
-    <string name="button_summary">Sumar</string>
 
 </resources>
 

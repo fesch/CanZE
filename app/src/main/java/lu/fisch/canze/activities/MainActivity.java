@@ -344,7 +344,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 altFieldsMode = false;
             }
 
-            // Bobby: Dacia Spring daoes not have altfields as well, but fields doesnt match, so not disabled, yet. To be tested without
+            // Bobby: Dacia Spring does not have altfields as well, but fields doesnt match, so not disabled, yet. To be tested without
             if (car == CAR_SPRING) {
                 altFieldsMode = false;
             }
