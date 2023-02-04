@@ -13,7 +13,7 @@ The website can be found at http://canze.fisch.lu
 We strongly urge you to report bugs, issues and requests here on github using the issue system. You have to have a github account for that, but it offloads the team from an awful lot of administrative tasks, wasting valuable time that would better be spent on more productive work. You can report in English (preferred, and really, we don't mind language errors, NONE of the team members are native speakers!), German, French, Portuguese, Dutch and Danish, as long as you don't mind us answering in English, to keep things coordinated.
 
 
-#Informal warning
+# Informal warning
 
 Before you download and use this software consider the following:
 you are interfering with your car and doing that with hardware and software beyond your control (and frankly, for
@@ -23,7 +23,7 @@ the displays instead of watching the road. Be extremely prudent!
 
 By even downloading this software, or the source code provided on github, you agree to have completely understand this.
 
-#Formal disclaimer
+# Formal disclaimer
 
 CANZE (“THE SOFTWARE”) IS PROVIDED AS IS. USE THE SOFTWARE AT YOUR OWN RISK. THE AUTHORS MAKE NO WARRANTIES AS TO
 PERFORMANCE OR FITNESS FOR A PARTICULAR PURPOSE, OR ANY OTHER WARRANTIES WHETHER EXPRESSED OR IMPLIED. NO ORAL OR
