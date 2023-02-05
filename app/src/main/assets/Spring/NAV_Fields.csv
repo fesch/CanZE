@@ -1,0 +1,181 @@
+,732,0,0,1,0,0,,1081,5081,ff,StartDiagnosticSession,
+,732,0,0,1,0,0,,10C0,50C0,ff,StartAfterSalesSession,
+,732,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All,
+,732,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask,57:TFSLC|TNCSLC|CDTC|TF
+,732,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier,0:SAE_J2012-DA_DTCFormat;1:ISO_14229-1_DTCFormat;2:SAE_J1939-73_DTCFormat;3:ISO_11992-4_DTCFormat;4:SAE_J2012-DA_WWHOBD_DTCFormat
+,732,32,47,1,0,0,,1901FF,5901FF,4ff,DTCCount,
+,732,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask,57:TFSLC|TNCSLC|CDTC|TF
+,732,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceAndFailureTypeOBD,
+,732,40,43,1,0,0,,1902FF,5902FF,ff,DTCFailureType.Category,0:General Failure Information;1:General Electrical Failures;2:General Signal Failures;3:FM / PWM Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;15:Vehicle manufacturer / System supplier specific
+,732,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier,0:Supplier;1:Manufacturer
+,732,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested,
+,732,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,
+,732,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,732,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,732,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,732,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,
+,732,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,
+,732,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,732,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord,
+,732,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC,0:Test completed OK - default not present;16:Default not yet checked by the ECU;40:Default detected- confirmed but not more present;41:Default confirmed and present
+,732,48,55,1,0,0,,190600000080,590600000080,ff,DTCExtendedDataRecordNumber,128:Mileage;255:All Extended Data Records
+,732,56,79,1,0,0,,190600000080,590600000080,ff,DTCExtendedData.Mileage,16777215:NA
+,732,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord,
+,732,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC,0:Test completed OK - default not present;16:Default not yet checked by the ECU;40:Default detected- confirmed but not more present;41:Default confirmed and present
+,732,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;255:All Extended Data Records
+,732,56,79,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedData.Mileage,16777215:NA
+,732,16,23,1,0,0,,190A,590A,ff,DTCStatusAvailabilityMask,57:TFSLC|TNCSLC|CDTC|TF
+,732,16,55,1,0,0,,2180,6180,2ff,PartNumber.LowerPart,
+,732,56,63,1,0,0,,2180,6180,4ff,DiagnosticIdentificationCode,
+,732,64,87,1,0,0,,2180,6180,2ff,SupplierNumber.ITG,
+,732,88,127,1,0,0,,2180,6180,2ff,HardwareNumber.LowerPart,
+,732,128,143,1,0,0,,2180,6180,4ff,SoftwareNumber,
+,732,144,159,1,0,0,,2180,6180,4ff,EditionNumber,
+,732,160,175,1,0,0,,2180,6180,4ff,CalibrationNumber,
+,732,176,183,1,0,0,,2180,6180,ff,PartNumber.BasicPartList,0:NA;1:28115;2:283C2
+,732,184,191,1,0,0,,2180,6180,ff,HardwareNumber.BasicPartList,0:HARDW;1:28115
+,732,192,199,1,0,0,,2180,6180,ff,ApprovalNumber.BasicPartList,0:NA;1:28115
+,732,200,207,1,0,0,,2180,6180,ff,ManufacturerIdentificationCode,0:Renault R1;128:Nissan N1;129:Nissan N2;130:Nissan N3;136:5DIGITS
+,732,16,39,1,0,0,,2184,6184,2ff,SupplierITG,
+,732,40,159,1,0,0,,2184,6184,2ff,Serial Number,
+,732,160,175,1,0,0,,2184,6184,2ff,Serial Number Padding,
+,732,24,279,1,0,0,,2221EF,6221EF,4ff,Daimler Identification,
+,732,24,31,1,0,0,,222901,622901,ff,Tuner_Analog.FieldMax,
+,732,32,39,1,0,0,,222901,622901,ff,Tuner_Analog.FieldMean,
+,732,40,47,1,0,0,,222901,622901,ff,Tuner_Analog.FieldMin,
+,732,48,55,1,0,0,,222901,622901,ff,Tuner_Analog.CurrentLevelField,
+,732,56,63,1,0,0,,222901,622901,4ff,Tuner_Analog.AFCounter,
+,732,64,71,1,0,0,,222901,622901,4ff,Tuner_Analog.MultipathLevel,
+,732,72,79,1,0,0,,222901,622901,4ff,Tuner_Analog.NoiseLevel,
+,732,80,95,1,0,0,,222901,622901,4ff,Tuner_Analog.Frequency,
+,732,96,103,1,0,0,,222901,622901,ff,Tuner_Analog.Band,1:FM;2:AM
+,732,24,31,1,0,0,,22290A,62290A,ff,Tuner_Digital.RSSI,
+,732,32,47,1,0,0,,22290A,62290A,4ff,Tuner_Digital.FICBER,
+,732,48,63,1,0,0,,22290A,62290A,4ff,Tuner_Digital.MICBER,
+,732,64,103,1,0,0,,22290A,62290A,2ff,Tuner_Digital.ChannelNumber,
+,732,104,167,1,0,0,,22290A,62290A,2ff,Tuner_Digital.ServiceShortName,
+,732,168,183,1,0,0,,22290A,62290A,4ff,Tuner_Digital.EnsembleID,
+,732,184,215,1,0,0,,22290A,62290A,4ff,Tuner_Digital.ServiceID,
+,732,216,231,1,0,0,,22290A,62290A,4ff,Tuner_Digital.CompID,
+,732,232,239,1,0,0,,22290A,62290A,ff,Tuner_Digital.Band,3:DAB+;4:DAB;5:DMB-A;6:DMB-BSAC
+,732,26,26,1,0,0,,226403,626403,ff,LIN_IN.Info_E-CALL,0:Requested (low level);1:Not requested (high level)
+,732,27,27,1,0,0,,226403,626403,ff,LIN_IN.PTT,0:Not Pressed;1:Pressed
+,732,28,28,1,0,0,,226403,626403,ff,LIN_IN.RearGear,0:Not engaged;1:Engaged
+,732,29,29,1,0,0,,226403,626403,ff,LIN_IN.Ignition,0:OFF;1:ON
+,732,30,30,1,0,0,,226403,626403,ff,LIN_IN.Illumination,0:OFF;1:ON
+,732,31,31,1,0,0,,226403,626403,ff,LIN_IN.Accessories,0:OFF;1:ON
+,732,24,31,.5,0,1,V,226501,626501,ff,VAL_BAT,
+,732,24,39,.01,0,2,km/h,226502,626502,ff,VAL_SPD,
+,732,25,25,1,0,0,,226607,626607,ff,Radio_button.VOL_plus,0:Released;1:Pressed
+,732,26,26,1,0,0,,226607,626607,ff,Radio_button.VOL_minus,0:Released;1:Pressed
+,732,27,27,1,0,0,,226607,626607,ff,Radio_button.ON_OFF,0:Released;1:Pressed
+,732,29,29,1,0,0,,226607,626607,ff,Radio_button.VOL_plus_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,30,30,1,0,0,,226607,626607,ff,Radio_button.VOL_minus_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,31,31,1,0,0,,226607,626607,ff,Radio_button.ON_OFF_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,24,55,1,0,0,,226801,626801,2ff,AntitheftPrecode,
+,732,24,47,1,0,0,,226821,626821,4ff,BT_HW,
+,732,24,47,1,0,0,,226822,626822,4ff,BT_SW,
+,732,24,71,1,0,0,,226823,626823,4ff,BT_ADR,
+,732,31,31,1,0,0,,226832,626832,ff,Power State,0:Off user;1:On user
+,732,24,31,1,0,0,,226C01,626C01,4ff,LastAfterSalesOperationDate.Day,
+,732,32,39,1,0,0,,226C01,626C01,4ff,LastAfterSalesOperationDate.Month,
+,732,40,47,1,0,0,,226C01,626C01,4ff,LastAfterSalesOperationDate.Year,
+,732,24,31,1,0,0,,226C08,626C08,ff,MMILangage,0:English (United Kingdom) [en-GB];1:French (France) [fr-FR];2:German [de];3:Spanish (Spain- International Sort) [es-ES];4:Portuguese (Portugal) [pt-PT];5:Italian (Italy) [it-IT];6:Dutch (Netherlands) [nl-NL];7:Turkish [tr];8:Russian [ru];9:Arabic [ar];10:Romanian [ro];11:Greek [el];12:Polish [pl];13:Danish [da];14:Swedish (Sweden) [sv-SE];15:Finnish [fi];16:Norwegian [no];17:Bulgarian [bg];18:Croatian (Croatia) [hr-HR];19:Czech [cs];20:Estonian [et];21:Hungarian [hu];22:Latvian [lv];23:Lithuanian [lt];24:Slovak [sk];25:Slovenian [sl];26:Portuguese (Brazil) [pt-BR];27:Hebrew [il];28:Serbian (Cyrillic) [rs];29:Ukrainian [ua];30:Japanese [jp];31:Hindi [in];32:Indonesian [id];33:Australian-English [au];34:Farsi [ir];35:Kazakh [kz];36:Albanian (applicability for ULC 4.1)
+,732,24,31,1,0,0,,226C09,626C09,ff,HebrewActivation,0:Hebrew language deactivated;1:Hebrew language activated (default value)
+,732,24,25,1,0,0,,226C0A,626C0A,ff,UI Config.Colouring,0:Dacia coloring;1:Renault coloring
+,732,26,26,1,0,0,,226C0A,626C0A,ff,UI Config.RES,0:Without RES;1:With RES
+,732,27,27,1,0,0,,226C0A,626C0A,ff,UI Config.AHA,0:Without AHA;1:With AHA
+,732,28,28,1,0,0,,226C0A,626C0A,ff,UI Config.Restriction,0:No restriction;1:Restricted use of UI
+,732,29,29,1,0,0,,226C0A,626C0A,ff,UI Config.Navigation,0:With navigation;1:Without navigation
+,732,30,30,1,0,0,,226C0A,626C0A,ff,UI Config.Distance display,0:Kilometers & KM/H;1:Miles & MPH
+,732,31,31,1,0,0,,226C0A,626C0A,ff,UI Config.Time display,0:24H;1:12H
+,732,39,39,1,0,0,,226C0A,626C0A,ff,UI Config.TMC,0:With TMC;1:Without TMC
+,732,24,31,1,0,0,,226C0B,626C0B,ff,External microphone type,0:Narrowband single microphone;1:Wideband single microphone
+,732,24,31,1,0,0,,226C0E,626C0E,ff,RearViewCamera,0:No guideline;1:Guideline for RVC0_X87;2:Guideline for RVC0_B98;3:Guideline for RVC0_K98;4:Guideline for H79ph2;5:Guideline for RVC1_X87;6:Guideline for RVC1_B98;7:Guideline for RVC1_K98;8:Guideline for HHA;9:Guideline X92;10:Guideline BGA;11:Guideline HGA;12:Guideline for X67;13:Guideline for X52 Ph1;14:Guideline for X52 Ph2 body 1;15:Guideline for X52 Ph2 body 2;16:Guideline for X52 Ph2 body 3;17:Guideline for X52 Ph2 body 4;18:Guideline for X52 Ph2 body 5;19:Guideline for X62;20:Guideline for RVC0_X82;21:Guideline for RVC1_X82;22:Guideline for XBB;23:Guideline for HJD_RVC;24:Guideline for HJD_MVC;25:Guideline for BBG EV step1;26:Guideline for BBG EV Step 2
+,732,24,31,1,0,0,,226C11,626C11,ff,RadioCountry,0:Europe & others;1:Asia;2:Arabia;3:Japan;4:America;5:Pacific;6:Brazil;7:South Korea;8:North America;9:China
+,732,24,31,1,0,0,,226C12,626C12,ff,RadioSDVCcurve,0:Speed 0;1:Speed 1;2:Speed 2;3:Speed 3;4:Speed 4;5:Speed 5
+,732,24,31,1,0,0,,226C14,626C14,ff,Car maker,0:Dacia;1:Renault;2:Opel;3:AvtoVAZ;4:Vauxhall;5:Renault GT (X52 - GT);6:Renault RS (X52 - RS);7:Fiat;8:Renault Trucks;9:Nissan;10:Renault Samsung Motors;11:BBG EV (BBG EV will use actual Dacia TEMPO_ON disabled due to refuse to sleep issue)static logo;12:Mitsubishi;13:BBG Renault EV(BBG Renault EV will use actual Renault TEMPO_ON disabbled due to refuse to sleep issue)static logo
+,732,24,24,1,0,0,,226C15,626C15,ff,Specific_HMI.Eco_Drive_Config,0:Not Present;1:Present
+,732,25,25,1,0,0,,226C15,626C15,ff,Specific_HMI.Gearbox_Type,0:BVM;1:BVR
+,732,26,26,1,0,0,,226C15,626C15,ff,Specific_HMI.AIR_Configuration,0:not present;1:present
+,732,27,28,1,0,0,,226C15,626C15,ff,Specific_HMI.Temperature_Display,0:No Temp Display;1:Display Temp in C;2:Display Temp in F
+,732,29,31,1,0,0,,226C15,626C15,ff,Specific_HMI.ADAC_Config,0:Not present;1:Present
+,732,31,31,1,0,0,,226C1B,626C1B,ff,BOSE,0:System amplifier deactivated;1:System amplifier activated
+,732,24,25,1,0,0,,226C1C,626C1C,ff,ECU Config.SWRC type,0:No SWRC;1:Type 1- With Mute (Type for H79/X90);2:Type 2- Without Mute (TypreX52);3:Reserved (2)
+,732,26,26,1,0,0,,226C1C,626C1C,ff,ECU Config.External Mic,0:Fitted;1:Not fitted
+,732,27,27,1,0,0,,226C1C,626C1C,ff,ECU Config.E-CALL,0:Not fitted;1:Fitted
+,732,28,28,1,0,0,,226C1C,626C1C,ff,ECU Config.Vehicle Speed,0:Fitted;1:Not fitted
+,732,29,29,1,0,0,,226C1C,626C1C,ff,ECU Config.AM LW Tuner,0:Activated;1:Deactivated
+,732,30,30,1,0,0,,226C1C,626C1C,ff,ECU Config.AM MW Tuner,0:Activated;1:Deactivated
+,732,31,31,1,0,0,,226C1C,626C1C,ff,ECU Config.Antenna phantom PS,0:Passive;1:Active
+,732,32,32,1,0,0,,226C1C,626C1C,ff,ECU Config.Push to talk,0:Not Fitted;1:Fitted
+,732,33,33,1,0,0,,226C1C,626C1C,ff,ECU Config.TWR_REAR,0:Fitted;1:Not fitted
+,732,34,34,1,0,0,,226C1C,626C1C,ff,ECU Config.TWR_FRONT,0:Fitted;1:Not fitted
+,732,35,35,1,0,0,,226C1C,626C1C,ff,ECU Config.Rear Loudspeakers,0:Fitted;1:Not fitted
+,732,36,36,1,0,0,,226C1C,626C1C,ff,ECU Config.GPS,0:GPS;1:GLONASS
+,732,37,37,1,0,0,,226C1C,626C1C,ff,ECU Config.Rear View Camera,0:Not fitted;1:Fitted
+,732,38,38,1,0,0,,226C1C,626C1C,ff,ECU Config.DR Tuner,0:Deactivated;1:Activated
+,732,39,39,1,0,0,,226C1C,626C1C,ff,ECU Config.DR Phantom PS,0:Passive;1:Active
+,732,31,31,1,0,0,,226C1D,626C1D,ff,LDNS,0:Loudness parameter deactivated;1:Loudness parameter activated
+,732,31,31,1,0,0,,226C1E,626C1E,ff,WAKE UP,0:Wake Up from ACC;1:Wake Up from SYSTEM ON
+,732,28,29,1,0,0,,226C1F,626C1F,ff,UPA.HMI,0:UPA not present;1:UPA rear;2:UPA rear/front
+,732,30,31,1,0,0,,226C1F,626C1F,ff,UPA.SND,0:UPA Audio not present;1:UPA Audio without settings;2:UPA Audio with settings
+,732,30,31,1,0,0,,226C20,626C20,ff,UPA.SPK,0:Front speaker only;1:Rear and front speakers
+,732,24,31,1,0,0,,226C24,626C24,ff,Car configuration,0:Left hand drive;1:Right hand drive;2:Both hand drive
+,732,24,6447,1,0,0,,226C25,626C25,4ff,Phone_acoustic_parameters_1,
+,732,24,6463,1,0,0,,226C26,626C26,4ff,Phone_acoustic_parameters_2,
+,732,24,6447,1,0,0,,226C27,626C27,4ff,SPVR_parameters_1,
+,732,24,6463,1,0,0,,226C28,626C28,4ff,SPVR_parameters_2,
+,732,24,7359,1,0,0,,226C2C,626C2C,4ff,Acoustic_Whole_car,
+,732,24,6423,1,0,0,,226C2D,626C2D,4ff,Radio_reception,
+,732,24,24,1,0,0,,226C2F,626C2F,ff,ECU Config2.ROAD,0:Deactivated;1:Activated
+,732,25,26,1,0,0,,226C2F,626C2F,ff,ECU Config2.Push to talk2,0:Fitted by wire;1:Fitted by CAN
+,732,27,27,1,0,0,,226C2F,626C2F,ff,ECU Config2.Multi View Camera,0:Not fitted;1:Fitted
+,732,28,29,1,0,0,,226C2F,626C2F,ff,ECU Config2.SWRC2 type,0:No SWRC2;1:Type 3- BGA;2:Type 4- HJD;3:Reserved for Type5- HJD 2018MY
+,732,31,31,1,0,0,,226C2F,626C2F,ff,ECU Config2.RDS/AF,0:deactivated;1:activated (default value)
+,732,24,31,1,0,0,,226C30,626C30,ff,RVC_Brightness,
+,732,24,31,1,0,0,,226C31,626C31,ff,RVC_Contrast,
+,732,24,31,1,0,0,,226C32,626C32,ff,RVC_Hue,
+,732,24,31,1,0,0,,226C33,626C33,ff,RVC_ChromaU,
+,732,24,31,1,0,0,,226C34,626C34,ff,RVC_ChromaV,
+,732,24,31,1,0,0,,226C35,626C35,ff,RVC_ReactionTime,
+,732,24,31,1,0,0,,226C36,626C36,ff,RVC_TemporizationTime,
+,732,24,7159,1,0,0,,226C37,626C37,4ff,Phone_acoustic_parameters_3,
+,732,24,7159,1,0,0,,226C38,626C38,4ff,SPVR_parameters_3,
+,732,28,28,1,0,0,,226C39,626C39,ff,SPCX & SPVR existence.SPVR_Android,0:SPVR_Android inactivation;1:SPVR_Android activation (default value)
+,732,29,29,1,0,0,,226C39,626C39,ff,SPCX & SPVR existence.SPVR_SIRI,0:SPVR_SIRI inactivation;1:SPVR_SIRI activation (default value)
+,732,30,30,1,0,0,,226C39,626C39,ff,SPCX & SPVR existence.SPCX_AA,0:Android Auto inactivation;1:Android Auto activation
+,732,31,31,1,0,0,,226C39,626C39,ff,SPCX & SPVR existence.SPCX _CP,0:Car play inactivation;1:Car play activation
+,732,24,8215,1,0,0,,226C40,626C40,4ff,SPCX Carplay HFSQ Narrow band parameter 1,
+,732,24,8215,1,0,0,,226C41,626C41,4ff,SPCX Carplay HFSQ Narrow band parameter 2,
+,732,24,8215,1,0,0,,226C42,626C42,4ff,SPCX Carplay HFSQ Narrow band parameter 3,
+,732,24,8215,1,0,0,,226C44,626C44,4ff,SPCX Carplay HFSQ Wide band parameter 1,
+,732,24,8215,1,0,0,,226C45,626C45,4ff,SPCX Carplay HFSQ Wide band parameter 2,
+,732,24,8215,1,0,0,,226C46,626C46,4ff,SPCX Carplay HFSQ Wide band parameter 3,
+,732,24,8215,1,0,0,,226C48,626C48,4ff,SPCX Carplay VR Siri parameter 1,
+,732,24,8215,1,0,0,,226C49,626C49,4ff,SPCX Carplay VR Siri parameter 2,
+,732,24,8215,1,0,0,,226C50,626C50,4ff,SPCX Carplay VR Siri parameter 3,
+,732,24,8215,1,0,0,,226C52,626C52,4ff,SPCX Carplay Facetime parameter 1,
+,732,24,8215,1,0,0,,226C53,626C53,4ff,SPCX Carplay Facetime parameter 2,
+,732,24,8215,1,0,0,,226C54,626C54,4ff,SPCX Carplay Facetime parameter 3,
+,732,24,39,1,0,0,,226CF0,626CF0,ff,Map,8995:##- No map;10794:**- Supplier special mode;11565:--- Not configured;16705:AA;16722:AR;16724:AT;16725:AU;16965:BE;16971:BK;16978:BR;17224:CH;17228:CL;17231:CO;17242:CZ;17473:DA;17477:DE;17483:DK;17498:DZ;17747:ES;17969:F1- Full part (Europe);17970:F2- Full part (America);17971:F3- Full part (Other);17972:F4- Full part (Western Europe);17973:F5- Full part (Eastern Europe);17974:F6-Full part(Western Europe with EV POI);17975:F7-Full part(Eastern Europe with EV POI);18002:FR;18242:GB;18243:GC;18258:GR;18756:ID;18757:IE;18764:IL;18766:IN;18770:IR;18772:IT;19532:LL;19777:MA;19800:MX;19801:MY;20044:NL;20047:NO;20549:PE;20559:PO;20564:PT;21071:RO;21077:RU;21319:SG;21582:TN;21586:TR;21825:UA;23105:ZA
+,732,24,24,1,0,0,,227701,627701,ff,NavReception.GPSReceptionStatus,0:No satellite;1:At least one satellite
+,732,28,31,1,0,0,,227701,627701,ff,NavReception.NumberOfSatellites,
+,732,24,24,1,0,0,,22A601,62A601,ff,SWRC_button.UPtoDOWN_Pressed,0:Not moved since last clear;1:Moved since last clear
+,732,25,25,1,0,0,,22A601,62A601,ff,SWRC_button.DOWNtoUP_Pressed,0:Not moved since last clear;1:Moved since last clear
+,732,26,26,1,0,0,,22A601,62A601,ff,SWRC_button.phone&mute_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,27,27,1,0,0,,22A601,62A601,ff,SWRC_button.VOL_plus_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,28,28,1,0,0,,22A601,62A601,ff,SWRC_button.VOL_minus_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,29,29,1,0,0,,22A601,62A601,ff,SWRC_button.SUP_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,30,30,1,0,0,,22A601,62A601,ff,SWRC_button.HIGH_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,31,31,1,0,0,,22A601,62A601,ff,SWRC_button.LOW_Pressed,0:Not pressed since last clear;1:Pressed since last clear
+,732,32,32,1,0,0,,22A601,62A601,ff,SWRC_button.UPtoDOWN,0:Not moving;1:Moving
+,732,33,33,1,0,0,,22A601,62A601,ff,SWRC_button.DOWNtoUP,0:Not moving;1:Moving
+,732,34,34,1,0,0,,22A601,62A601,ff,SWRC_button.phone&mute,0:Released;1:Pressed
+,732,35,35,1,0,0,,22A601,62A601,ff,SWRC_button.VOL_plus,0:Not pressed;1:Pressed
+,732,36,36,1,0,0,,22A601,62A601,ff,SWRC_button.VOL_minus,0:Released;1:Pressed
+,732,37,37,1,0,0,,22A601,62A601,ff,SWRC_button.SUP,0:Released;1:Pressed
+,732,38,38,1,0,0,,22A601,62A601,ff,SWRC_button.HIGH,0:Released;1:Pressed
+,732,39,39,1,0,0,,22A601,62A601,ff,SWRC_button.LOW,0:Released;1:Pressed
+,732,24,103,1,0,0,,22F187,62F187,2ff,PartNumber,
+,732,0,0,1,0,0,,30,70,ff,TesterPresent.WithResponse,

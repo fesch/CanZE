@@ -1,0 +1,7 @@
+# SID (defaults to ID.startBit.[responseId]), ID (hex), startBit, endBit, resolution, offset (aplied BEFORE resolution multiplication), decimals, unit, requestID (hex string), responseID (hex string), options (hex, see MainActivity for definitions), optional name, optional list
+#
+# FFC is not displayed in the DTC activity so doe not require Tests and Dtcs
+# Other than the ISO-TP based fields, FCC needs to have it's frames defined
+# Source: X10 CAN_V v4.0 officiel 01072011 65610-2011-173.xls
+#
+

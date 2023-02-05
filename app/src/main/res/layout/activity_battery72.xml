@@ -1,0 +1,259 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="lu.fisch.canze.activities.BatteryActivity">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <lu.fisch.canze.widgets.WidgetView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                custom:axisMaxY="0"
+                custom:axisMinY="0"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:fieldSID="658.33"
+                custom:foregroundColor="?android:attr/colorForeground"
+                custom:intervals="{
+                    '658.33':10000
+                }"
+                custom:majorTicks="0"
+                custom:minorTicks="0"
+                custom:text="@string/graph_SOH"
+                custom:titleColor="?android:attr/colorForeground"
+                custom:widget="label" />
+
+            <lu.fisch.canze.widgets.WidgetView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:colorRanges="[
+                    {'sid':'42e.0','color':'?android:attr/colorForeground','from':-40,'to':100}]"
+                custom:fieldSID="7bb.6103.192,42e.0"
+                custom:foregroundColor="?android:attr/colorForeground"
+                custom:majorTicks="10"
+                custom:axisMaxY="120"
+                custom:axisMinY="0"
+                custom:minorTicks="5"
+                custom:text="@string/graph_RealIndicatedSoc"
+                custom:widget="timeplot"
+                custom:intervals="{
+                    '7bb.6103.192':2000,
+                    '42e.0':2000
+                }" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:background="?attr/colorButtonNormal"
+                android:text="" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <lu.fisch.canze.widgets.WidgetView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:fieldSID="7bb.6141.16,7bb.6141.32,7bb.6141.48,7bb.6141.64,7bb.6141.80,7bb.6141.96,7bb.6141.112,7bb.6141.128,7bb.6141.144,7bb.6141.160,7bb.6141.176,7bb.6141.192,7bb.6141.208,7bb.6141.224,7bb.6141.240,7bb.6141.256,7bb.6141.272,7bb.6141.288,7bb.6141.304,7bb.6141.320,7bb.6141.336,7bb.6141.352,7bb.6141.368,7bb.6141.384,7bb.6141.400,7bb.6141.416,7bb.6141.432,7bb.6141.448,7bb.6141.464,7bb.6141.480,7bb.6141.496,7bb.6141.512,7bb.6141.528,7bb.6141.544,7bb.6141.560,7bb.6141.576,7bb.6141.592,7bb.6141.608,7bb.6141.624,7bb.6141.640,7bb.6141.656,7bb.6141.672,7bb.6141.688,7bb.6141.704,7bb.6141.720,7bb.6141.736,7bb.6141.752,7bb.6141.768,7bb.6141.784,7bb.6141.800,7bb.6141.816,7bb.6141.832,7bb.6141.848,7bb.6141.864,7bb.6141.880,7bb.6141.896,7bb.6141.912,7bb.6141.928,7bb.6141.944,7bb.6141.960,7bb.6141.976,7bb.6141.992,7bb.6142.16,7bb.6142.32,7bb.6142.48,7bb.6142.64,7bb.6142.80,7bb.6142.96,7bb.6142.112,7bb.6142.128,7bb.6142.144,7bb.6142.160"
+                custom:foregroundColor="?android:attr/colorForeground"
+                custom:majorTicks="1"
+                custom:axisMaxY="5"
+                custom:axisMinY="3"
+                custom:minorTicks="0"
+                custom:text="@string/graph_CellVoltages"
+                custom:titleColor="?android:attr/colorForeground"
+                custom:widget="plotter"
+                custom:intervals="{
+                    '7bb.6141.16':10000,
+                    '7bb.6141.32':10000,
+                    '7bb.6141.48':10000,
+                    '7bb.6141.64':10000,
+                    '7bb.6141.80':10000,
+                    '7bb.6141.96':10000,
+                    '7bb.6141.112':10000,
+                    '7bb.6141.128':10000,
+                    '7bb.6141.144':10000,
+                    '7bb.6141.160':10000,
+                    '7bb.6141.176':10000,
+                    '7bb.6141.192':10000,
+                    '7bb.6141.208':10000,
+                    '7bb.6141.224':10000,
+                    '7bb.6141.240':10000,
+                    '7bb.6141.256':10000,
+                    '7bb.6141.272':10000,
+                    '7bb.6141.288':10000,
+                    '7bb.6141.304':10000,
+                    '7bb.6141.320':10000,
+                    '7bb.6141.336':10000,
+                    '7bb.6141.352':10000,
+                    '7bb.6141.368':10000,
+                    '7bb.6141.384':10000,
+                    '7bb.6141.400':10000,
+                    '7bb.6141.416':10000,
+                    '7bb.6141.432':10000,
+                    '7bb.6141.448':10000,
+                    '7bb.6141.464':10000,
+                    '7bb.6141.480':10000,
+                    '7bb.6141.496':10000,
+                    '7bb.6141.512':10000,
+                    '7bb.6141.528':10000,
+                    '7bb.6141.544':10000,
+                    '7bb.6141.560':10000,
+                    '7bb.6141.576':10000,
+                    '7bb.6141.592':10000,
+                    '7bb.6141.608':10000,
+                    '7bb.6141.624':10000,
+                    '7bb.6141.640':10000,
+                    '7bb.6141.656':10000,
+                    '7bb.6141.672':10000,
+                    '7bb.6141.688':10000,
+                    '7bb.6141.704':10000,
+                    '7bb.6141.720':10000,
+                    '7bb.6141.736':10000,
+                    '7bb.6141.752':10000,
+                    '7bb.6141.768':10000,
+                    '7bb.6141.784':10000,
+                    '7bb.6141.800':10000,
+                    '7bb.6141.816':10000,
+                    '7bb.6141.832':10000,
+                    '7bb.6141.848':10000,
+                    '7bb.6141.864':10000,
+                    '7bb.6141.880':10000,
+                    '7bb.6141.896':10000,
+                    '7bb.6141.912':10000,
+                    '7bb.6141.928':10000,
+                    '7bb.6141.944':10000,
+                    '7bb.6141.960':10000,
+                    '7bb.6141.976':10000,
+                    '7bb.6141.992':10000,
+                    '7bb.6142.16':10000,
+                    '7bb.6142.32':10000,
+                    '7bb.6142.48':10000,
+                    '7bb.6142.64':10000,
+                    '7bb.6142.80':10000,
+                    '7bb.6142.96':10000,
+                    '7bb.6142.112':10000,
+                    '7bb.6142.128':10000,
+                    '7bb.6142.144':10000,
+                    '7bb.6142.160':10000
+                }" />
+
+            <lu.fisch.canze.widgets.WidgetView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                custom:backgroundColor="?android:attr/colorBackground"
+                custom:fieldSID="7bb.6104.32,7bb.6104.56,7bb.6104.80,7bb.6104.104,7bb.6104.128,7bb.6104.152,7bb.6104.176,7bb.6104.200,7bb.6104.224,7bb.6104.248,7bb.6104.272,7bb.6104.296"
+                custom:foregroundColor="?android:attr/colorForeground"
+                custom:majorTicks="10"
+                custom:axisMaxY="50"
+                custom:axisMinY="0"
+                custom:minorTicks="5"
+                custom:text="@string/graph_ModuleTemperatures"
+                custom:titleColor="?android:attr/colorForeground"
+                custom:widget="plotter"
+                custom:intervals="{
+                    '7bb.6104.32':10000,
+                    '7bb.6104.56':10000,
+                    '7bb.6104.80':10000,
+                    '7bb.6104.104':10000,
+                    '7bb.6104.128':10000,
+                    '7bb.6104.152':10000,
+                    '7bb.6104.176':10000,
+                    '7bb.6104.200':10000,
+                    '7bb.6104.224':10000,
+                    '7bb.6104.248':10000,
+                    '7bb.6104.272':10000,
+                    '7bb.6104.296':10000
+                }" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textBatterySerial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_weight="1"
+                android:gravity="center" />
+        </TableRow>
+    </TableLayout>
+    <!-- debug line -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_debug"
+
+            />
+
+        <TextView
+            android:id="@+id/textDebug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/default_debug" />
+
+    </LinearLayout>
+
+</LinearLayout>

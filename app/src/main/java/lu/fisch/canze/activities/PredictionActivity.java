@@ -42,6 +42,8 @@ public class PredictionActivity extends CanzeActivity implements FieldListener, 
 
         if (MainActivity.car == MainActivity.CAR_ZOE_Q90 || MainActivity.car == MainActivity.CAR_ZOE_R90) {
             battery.setBatteryType(41);
+        } else if (MainActivity.car == MainActivity.CAR_SPRING) {
+            battery.setBatteryType(26);
         } else {
             battery.setBatteryType(22);
         }

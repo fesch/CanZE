@@ -1,0 +1,931 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="TypographyFractions,TypographyEllipsis">
+
+    <!-- App -->
+
+    <string name="app_name">CanZE</string>
+
+    <!-- Menus -->
+
+    <string name="action_settings">Setări</string>
+
+    <!-- Generic -->
+
+    <string name="default_Yes">Da</string>
+    <string name="default_No">Nu</string>
+    <string name="default_Ok">OK</string>
+    <string name="default_NotOk">Nu e OK</string>
+    <string name="default_Cancel">Anulare</string>
+    <string name="default_Reset">Resetare</string>
+
+    <!-- Formats -->
+
+    <string name="format_NoView" formatted="false">Nicio vizualizare cu id \'%s%s\'</string>
+    <!-- for logging and debugging -->
+    <!-- for fairly readable displaying (settings, speedcontrol -->
+    <!-- for log file filename -->
+
+    <!-- Units -->
+
+    <string name="unit_Nm">Nm</string>
+    <string name="unit_SpeedKm">\u0020km/h</string>
+    <string name="unit_SpeedMi">\u0020mi/h</string>
+    <string name="unit_ConsumptionKm">\u0020kWh/100km</string>
+    <string name="unit_ConsumptionMiAlt">\u0020mi/kWh</string>
+
+    <!-- Debug (generic) -->
+
+    <string name="label_debug">Depanare\u0020</string>
+    <string name="default_debug">#Debug</string>
+
+    <!-- *************************** SELECTION SCREENS (MAIN AND FRAGMENTS) *************************** -->
+
+    <!-- Mainactivity -->
+
+    <string name="toast_InitWidgets">Inițializarea widget-urilor</string>
+    <string name="toast_BluetoothLost">Conexiunea Bluetooth s-a pierdut!</string>
+    <string name="prompt_Accept">Da, am înțeles!</string>
+    <string name="prompt_Decline">Nu, nu am înțeles nimic…</string>
+    <string name="prompt_DisclaimerText" translatable="false"><![CDATA[<html>CanZE („software-ul”) este furnizat ca atare. Utilizați software-ul pe propriul
+                            risc. Autorul nu oferă garanții cu privire la performanță sau adecvare pentru un anumit scop,
+                            sau orice alte garanții, indiferent dacă sunt exprese sau implicite. Nici o comunicare orală sau scrisă
+                            din informațiile furnizate de autor vor crea o garanție. În nici o împrejurare
+                            autorul nu va fi răspunzător pentru efectele directe, indirecte, speciale, incidentale sau în consecință
+                            rezultate din utilizarea necorespunzătoare sau incapacitatea de a utiliza software-ul, chiar dacă autorul
+                            a fost informat cu privire la posibilitatea unor astfel de daune. Aceste excluderi și limitări se aplică 
+							în toate jurisdicțiile. Acest software este destinat numai utilizării experimentale.
+                            <br>
+                            <br>
+                            <b>Folosind acest software, interferați cu mașina dvs. și faceți asta cu hardware-ul și
+                            software aflat în afara controlului dumneavoastră, creat de amatori interesați în acest domeniu. Orice
+                            mașina este o mașinărie care poate fi letală și vă puteți răni sau vă ucide pe dvs. sau pe alții, folosind
+                            sau chiar să acordați atenție afișajelor în loc să priviți drumul.</b></html></string>]]></string>							
+							
+    <string name="toast_Reconnecting">Reconectare Bluetooth…</string>
+    <!-- <string name="toast_WaitingSettings">Oprire Bluetooth. Setările sunt în curs de încărcare. Te rog așteaptă ....</string> -->
+    <string name="toast_NotWhileDriving">Nu este posibil în timpul conducerii…</string>
+    <string name="toast_AdjustSettings">Vă rugăm să ajustați mai întâi setările</string>
+
+    <!-- Main (fragment) -->
+
+    <string name="menu_Main">Principal</string>
+    <string name="help_Main">Folosiți gesturi swipe pentru a selecta ecranul Principal, Tehnic și Experimental</string>
+
+    <!-- Technical (fragment) -->
+
+    <string name="menu_Technical">Tehnic</string>
+
+    <!-- Experimental (fragment) -->
+
+    <string name="menu_Experimental">Experimental</string>
+    <string name="help_Experimental">Aceste butoane sunt doar în scop de testare</string>
+
+    <!-- *************************** ACTIVITIES *************************** -->
+
+    <!-- All data -->
+
+    <string name="title_activity_alldata">Toate datele</string>
+    <string name="button_alldata">Toate datele</string>
+
+    <!-- Auxiliary battery -->
+
+    <string name="title_activity_auxbatt">Bateria de 12 Volți</string>
+    <string name="button_AuxBatt">Bateria de 12V</string>
+    <string name="label_auxbat">Voltaj, Starea mașinii, Starea încărcării</string>
+    <string name="label_auxbatvolt">Voltaj</string>
+    <string name="label_auxbatcurr">Curent</string>
+    <string name="label_auxbatvunder">Voltaj în sarcină</string>
+    <string name="label_auxbatcunder">Curent în sarcină</string>
+    <string name="label_AuxStatus">Sfat de înlocuire</string>
+    <string name="label_vehiclestate">Starea mașinii</string>
+    <string-array name="list_VehicleState">
+        <item>Repaus (0:red)</item>
+        <item>Activ (1:green)</item>
+        <item>Contact (2:blue)</item>
+        <item>Pornire (3:yellow)</item>
+        <item>Activ (4:cyan)</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+    <string-array name="list_VehicleStatePh2">
+        <item>Repaus (0:red)</item>
+        <item>Activ (1:green)</item>
+        <item>In așteaptare (2:blue)</item>
+        <item>AutoACC (3:yellow)</item>
+        <item>4</item>
+        <item>Contact</item>
+        <item>Se pornește</item>
+        <item>Motor activ</item>
+        <item>Autostart</item>
+        <item>Motor oprit</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>Indisponibil</item>
+    </string-array>
+    <!-- Bobby: 0:SLEEPING;1:TECHNICAL_WAKE_UP;2:CUT_OFF_PENDING;3:BAT_TEMPO_LEVEL;4:ACCESSORY_LEVEL;5:IGNITION_LEVEL;6:STARTING_IN_PROGRESS;7:ENGINE_RUNNING;9:ENGINE_SYSTEM_STOP;,kW,8:AUTOSTART;15:UNAVAILABLE -->
+    <string-array name="list_VehicleStateSpring">
+        <item>Repaus</item>
+        <item>Activ</item>
+        <item>In așteaptare</item>
+        <item>AutoACC</item>
+        <item>Contact</item>
+        <item>Contact pornit</item>
+        <item>Se pornește</item>
+        <item>Motor activ</item>
+        <item>Autostart</item>
+        <item>Motor oprit</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>Indisponibil</item>
+    </string-array>
+    <string-array name="list_ChargingStatus2">
+        <item>Nu încarcă (0:red)</item>
+        <item>În așteptare (planificată, 1:green)</item>
+        <item>Finalizată (2:blue)</item>
+        <item>În curs (3:yellow)</item>
+        <item>Eșuată (4:cyan)</item>
+        <item>În așteptare (5:purple)</item>
+        <item>Clapetă deschisă (6:black)</item>
+        <item>Indisponibilă (7:grey)</item>
+    </string-array>
+    <!-- 638.37,7ec,30,31,1,0,0,,22333A,62333A,ff,Low Battery 14V MMI request,2:14VBat Low Display;1:No 14VBat Low Display;0:Unavailable value;3:Not used -->
+    <string-array name="list_AuxStatus">
+        <item>Nu</item>
+        <item>1</item>
+        <item>2</item>
+        <item>În curând</item>
+        <item>4</item>
+        <item>Acum</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
+    <!-- Battery -->
+
+    <string name="title_activity_battery">Baterie</string>
+    <string name="button_Battery">Baterie</string>
+    <string name="graph_SOH">Starea de sănătate (%)</string>
+    <string name="graph_RealIndicatedSoc">SoC real / utilizator (%)</string>
+    <string name="help_QA"><![CDATA[Informații mai detaliate despre aceste date pot fi găsite aici<a href=\'http://canze.fisch.lu/qa/\'>Q & A section</a> of the <a href=\'http://canze.fisch.lu/\'>CanZE homepage</a>.]]></string>
+    <string name="graph_CellVoltages">Voltajul celulelor (V)</string>
+    <string name="graph_ModuleTemperatures">Temperatura modulelor bateriei (°C)</string>
+
+    <!-- BCB (now integrated in ChargingTech) -->
+
+    <string name="header_GridParameters">Parametrii rețelei</string>
+    <string name="label_MainsCurrentType">Tipul de curent din rețea</string>
+    <string-array name="list_MainsCurrentType">
+        <item>Nok</item>
+        <item>AC mono</item>
+        <item>AC tri</item>
+        <item>DC</item>
+        <item>AC bi</item>
+    </string-array>
+    <string name="label_phaseCurrent">Curentul fazei RMS 1/2/3 (A)</string>
+    <string name="label_PhaseVoltage">Tensiunea fazei 1/2/3 (V)</string>
+    <string name="label_InterPhaseVoltage">Tensiune interfazată 12/23/31 (V)</string>
+    <string name="label_MainsActivePowerConsumed">Puterea absorbită din rețea (W)</string>
+    <string name="label_GroundResistanceOhm">Rezistența la sol (Ω)</string>
+    <string name="label_CompletionStatus">Starea de finalizare</string>
+    <string-array name="list_CompletionStatus">
+        <item>Init</item>
+        <item>HF10</item>
+        <item>-</item>
+        <item>Împământare rețea</item>
+        <item>-</item>
+        <item>Earth Current</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Împământare</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Scurgere DC</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Scurgere LF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Scurgere DC+LF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Scurgere HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Scurgere DC+HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Scurgere LF+HF</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+        <item>Scurgere DC+LF+HF</item>
+    </string-array>
+    <string name="label_SupervisorState">Supervisor state</string>
+    <string-array name="list_SupervisorState">
+        <item>Init</item>
+        <item>Wait</item>
+        <item>ClosingS2</item>
+        <item>InitType</item>
+        <item>InitLkg</item>
+        <item>InitChg</item>
+        <item>Charge</item>
+        <item>ZeroAmpMode</item>
+        <item>EndOfChg</item>
+        <item>OpeningS2</item>
+        <item>ReadyToSleep</item>
+        <item>EmergencyStop</item>
+        <item>InitChargeDF</item>
+        <item>OCPStop</item>
+        <item>WaitS2</item>
+    </string-array>
+    <string-array name="list_SupervisorStatePh2">
+        <item>Init</item>
+        <item>StandByPowerOn</item>
+        <item>ClosingS2</item>
+        <item>InitType</item>
+        <item>Initlkg</item>
+        <item>StandByPowerOnSetup</item>
+        <item>Charge</item>
+        <item>ZeroAmpMode</item>
+        <item>EndOfCharge</item>
+        <item>OpeningRL</item>
+        <item>STestOK</item>
+        <item>-</item>
+        <item>STestWait</item>
+        <item>STestAct</item>
+        <item>WaitRLCHA</item>
+        <item>WaitRLContactorTri</item>
+        <item>OpeningCapaMC</item>
+        <item>-</item>
+    </string-array>
+
+    <!-- Braking -->
+
+    <string name="title_activity_braking">Informații despre frânare</string>
+    <string name="button_Braking">Frânare</string>
+    <string name="label_driver_torque_request">Cuplul solicitat</string>
+    <string name="label_ElecBrakeWheelsTorqueApplied">Cuplu electric aplicat (regenerare)</string>
+    <string name="label_diff_friction_torque">Cuplul de frecare aplicat (pierderi)</string>
+    <string name="default_ZeroNm">0 Nm</string>
+    <string name="help_AllTorques">Toate cuplurile sunt afișate ca și cupluri combinate ale roților, nu cupluri ale motorului.</string>
+
+    <!-- CanZE -->
+
+    <string name="message_CantConnect">Nu se poate conecta. Bluetooth-ul nu este configurat?</string>
+
+    <!-- Charging and ChargingTech -->
+
+    <string name="title_activity_charging">Încărcare</string>
+    <string name="button_Charging">Încărcare</string>
+    <string name="button_ChargingTech">Tehnologia de încărcare</string>
+    <string name="header_Charging">Parametrii de încărcare</string>
+    <string name="header_Battery">Parametrii bateriei</string>
+    <string name="header_DrivingCh">Conducere</string>
+    <string name="header_CompTemp">Temperaturile și balansarea modulelor bateriei</string>
+    <string name="label_max_charge">Încărcarea/regenerarea maximă kW</string>
+    <string name="label_max_pilot">Curent de încărcare Amp</string>
+    <string name="label_Phases">Faze</string>
+    <string name="label_UserSOC">Starea de încărcare utilizabilă (%)</string>
+    <string name="label_RealSOC">Starea de încărcare reală (%)</string>
+    <string name="label_HvTemp">Temperatura media a bateriei (°C)</string>
+    <string name="label_SOH">Starea de sănătate (%)</string>
+    <string name="label_TTF">Timp până la plin (min)</string>
+    <string name="label_ETF">Energie până la plin (kWh)</string>
+    <string name="label_DISTA">Autonomie disponibilă</string>
+    <string name="label_Volt">Tensiune baterie de tracțiune (V)</string>
+    <string name="label_Amps">Curent baterie de tracțiune (A)</string>
+    <string name="label_DcPwr">Puterea DC (kW)</string>
+    <string name="label_AvChPwr">Puterea disponibilă (kW)</string>
+    <string name="label_AvEner">Energie disponibilă (kWh)</string>
+    <string name="label_12V">Voltajul bateriei 12 volti (V)</string>
+    <string name="label_12A">Curentul bateriei 12 volti (A)</string>
+    <string name="label_DcLoad">Sarcina DC-DC (%)</string>
+    <string name="label_HKM">Odometru baterie</string>
+    <string name="label_ChaStatus">Starea încărcării</string>
+    <string name="label_Plug">Starea prizei</string>
+    <string-array name="list_ChargingStatus">
+        <item>Nu încarcă</item>
+        <item>În așteptare (planificată)</item>
+        <item>Finalizată</item>
+        <item>În curs</item>
+        <item>Eșuată</item>
+        <item>În așteptare</item>
+        <item>Clapetă deschisă</item>
+        <item>Indisponibilă</item>
+    </string-array>
+    <string-array name="list_PlugStatus">
+        <item>Neconectată</item>
+        <item>Conectată</item>
+    </string-array>
+    <string name="header_EVSEParameters">Parametri CCS</string>
+    <string name="EVSEStatus">Statusul încărcătorului</string>
+    <string-array name="list_EVSEStatus">
+        <item>Ok</item>
+        <item>EVSEnotReady</item>
+        <item>EVSEShutdown</item>
+        <item>EVSE_UtilityInterruptEvent</item>
+        <item>EVSE_IsolationMonitoringActive</item>
+        <item>EVSE_EmergencyShutdown</item>
+        <item>EVSE_Malfunction</item>
+        <item>Reserved 8-C</item>
+        <item>Renegotiate</item>
+    </string-array>
+    <string name="EVSEFailureStatus">Starea eșecului</string>
+    <string-array name="list_EVSEFailureStatus">
+        <item>Ok</item>
+        <item>OK_CertificateExpiresSoon</item>
+        <item>FAILED_CertificateExpired</item>
+        <item>FAILED_ContractCanceled</item>
+        <item>FAILED_CertificateRevoked</item>
+        <item>FAILED_CertificateNotAllowedAtThisEVSE</item>
+        <item>FAILED_NoCertificate Available</item>
+        <item>FAILED_WrongEnergyTransferMode</item>
+        <item>FAILED_WrongChargeParameter</item>
+        <item>FAILED_ChargingProfileInvalid</item>
+        <item>FAILED_ServiceIDInvalid</item>
+        <item>FAILED_UnknownSession</item>
+        <item>FAILED_ServiceSelectionInvalid</item>
+        <item>FAILED_TariffSelectionInvalid</item>
+        <item>FAILED_PaymentSelectionInvalid</item>
+        <item>FAILED_CertChainError</item>
+        <item>FAILED_ChallengeInvalid</item>
+        <item>FAILED_MeteringSignatureNotValid</item>
+        <item>FAILED_NoChargeServiceSelected</item>
+        <item>FAILED_SequenceError</item>
+        <item>FAILED_SignatureError</item>
+        <item>FAILED_NoCertificateAvailable</item>
+        <item>FAILED_PowerDeliveryNotApplied</item>
+        <item>FAILED</item>
+        <item>FAILED_ContactorError</item>
+    </string-array>
+    <string name="EVReady">Masina este pregătită</string>
+    <string-array name="list_EVReady">
+        <item>Masina nu este pregătită pentru încărcare</item>
+        <item>Masina este pregătită pentru încărcare</item>
+    </string-array>
+    <string name="CPLCComStatus">Starea comunicării</string>
+    <string-array name="list_CPLCComStatus">
+        <item>No HLC communication is established</item>
+        <item>HLC communication is initializing</item>
+        <item>HLC communication is ready - secured mode</item>
+        <item>HLC communication is stopped</item>
+        <item>HLC communication error</item>
+        <item>HLC Communication is ready - not secured mode</item>
+        <item>Not used</item>
+        <item>Unavailable Value[initial value]</item>
+        <item>HLC Communication is not ready- TLS setup failed</item>
+        <item>HLC Communication is not ready- TLS timeout</item>
+        <item>HLC Communication is not ready- TLS not supported</item>
+        <item>HLC Communication is not ready- SDP timeout</item>
+        <item>HLC Communication is not ready- not supported ISO-2 version</item>
+        <item>HLC Communication is not ready- V2G setup timeout</item>
+        <item>HLC Communication is not ready- V2G failed</item>
+    </string-array>
+    <string name="EVRequestState">Starea cererii mașinii</string>
+    <string-array name="list_EVRequestState">
+        <item>No HLC Request</item>
+        <item>Communication and service setting request</item>
+        <item>Charge parameter discovery request</item>
+        <item>Cable Check request</item>
+        <item>Precharge request</item>
+        <item>Power delivery request</item>
+        <item>Current demand request</item>
+        <item>Metering receipt request</item>
+        <item>Welding detection request</item>
+        <item>Session stop request</item>
+        <item>Matching Reset</item>
+        <item>Charging Status request</item>
+        <item>AC BPT</item>
+        <item>DC BPT</item>
+    </string-array>
+    <string name="EVSEState">Starea încărcătorului</string>
+    <string-array name="list_EVSEState">
+        <item>No HLC communication is established</item>
+        <item>Communication and service setting is established</item>
+        <item>Charge parameter discovery response</item>
+        <item>CableCheck response</item>
+        <item>Precharge response</item>
+        <item>Power delivery response</item>
+        <item>Current demand response</item>
+        <item>Metering receipt response</item>
+        <item>Welding detection response</item>
+        <item>Session stop response with EVSE(station charging)</item>
+        <item>Charging Status response</item>
+    </string-array>
+    <string name="EVSEMaxPower">Puterea maximă de încărcare DC (W)</string>
+    <string name="EVSEPowerLimitReached">A fost atinsă limita de putere DC</string>
+    <string name="EVSEMaxVoltage">Tensiunea maximă de încărcare DC (V)</string>
+    <string name="EVSEPresentVoltage">Tensiunea curentă de încărcare DC (V)</string>
+    <string name="EVSEVoltageLimitReached">A fost atinsă limita de tensiune DC</string>
+    <string name="EVSEMaxCurrent">Curentul maxin de încărcare DC (A)</string>
+    <string name="EVSEPresentCurrent">Curentul actual de încărcare DC (A)</string>
+    <string name="EVSECurrentLimitReached">A fost atinsă limita de curent DC</string>
+    <string-array name="list_EVSELimitReached">
+        <item>Nu</item>
+        <item>Da</item>
+    </string-array>
+
+    <!-- Charging graph -->
+
+    <string name="title_activity_charging_graph">Grafice de încărcare</string>
+    <string name="button_ChargingGraphs">Grafice de încărcare</string>
+    <string name="graph_PilotPower">Curent de încărcare (A), Puterea de încărcare (kW)</string>
+
+    <!-- Charging history -->
+
+    <string name="title_activity_charging_history">Istoricul încărcării</string>
+    <string name="button_chargingHistory">Istoricul încărcării</string>
+    <string name="header_ChargingHistory">Ultimele 10 sesiuni</string>
+    <string name="label_distance">Odometru</string>
+    <string name="label_EndOfChargeStatus">Sfărșit</string>
+    <string name="label_TypeOfCharge">Tip</string>
+    <string name="label_EndSoc">SoC</string>
+    <string name="label_EndBatteryTemp">Temp</string>
+    <string name="label_HistDuration">Durata</string>
+    <string-array name="list_ChargingHistEnd">
+        <item>Completă</item>
+        <item>Deconectată</item>
+        <item>Oprită</item>
+        <item>Eroare</item>
+        <item>Programată</item>
+        <item>Flt1</item>
+        <item>Flt22</item>
+        <item>Flt3</item>
+        <item>Flt4</item>
+        <item>Flt5</item>
+        <item>Flt6</item>
+    </string-array>
+    <string-array name="list_ChargingHistTyp">
+        <item>Lentă</item>
+        <item>Rapidă</item>
+        <item>Întrer</item>
+        <item>Nec.</item>
+        <item>Prog</item>
+    </string-array>
+    <string name="header_ChargeSummary">Rezumatul încărcării</string>
+    <string name="label_TotKwh">Utilizarea totală a bateriei (kWh)</string>
+    <string name="label_TotKwhRegen">Energia totală din franare regenerativă (kWh)</string>
+    <string name="label_CountFull">Încărcări complete (#)</string>
+    <string name="label_CountPartial">Încărcări parțiale (#)</string>
+
+    <!-- Clima tech -->
+
+    <string name="title_activity_clima_tech">Climatizare</string>
+    <string name="button_Climate">Climatizare</string>
+    <string name="label_ThermalComfortPower">Consum de putere pentru confort termic (W)</string>
+    <string name="label_ClimaLoopMode">Climatizare în mod buclă</string>
+    <string name="label_HVBatConditioningMode">Mod precondiționare a bateriei HV</string>
+    <string name="label_Temperatures">Temperaturi (°C)</string>
+    <string name="label_HVEvaporationTemp">Temperatura de evaporare HV (°C)</string>
+    <string name="label_ACPressure">Presiune (bari)</string>
+    <string name="label_HVCoolingState">Starea de răcire a bateriei HV</string>
+    <string name="label_EngineFanSpeed">Viteza ventilatorului motorului (%)</string>
+    <string name="label_ClimateBatteryInteraction">Interacțiunea climatizare-baterie</string>
+    <string-array name="list_CoolingStatus">
+        <item>Nu</item>
+        <item>Auto răcire</item>
+        <item>Răcire cuplată</item>
+        <item>Indisponibil</item>
+    </string-array>
+    <string-array name="list_ACStatus">
+        <item>Semnal Invalid</item>
+        <item>Compresor Oprit</item>
+        <item>Compresorul porneste</item>
+        <item>Compresor Pornit</item>
+    </string-array>
+    <string-array name="list_ACAuth">
+        <item>Dezactivare</item>
+        <item>Activare</item>
+        <item>Neutilizare</item>
+        <item>Semnal invalid</item>
+    </string-array>
+    <string-array name="list_ACError">
+        <item>Fără probleme</item>
+        <item>Funcționare defectuasă</item>
+        <item>Compresor oprit din motive de siguranță</item>
+        <item>Compresorul trebuie înlocuit</item>
+    </string-array>
+    <string-array name="list_ETSState">
+        <item>În așteptare</item>
+        <item>Activ</item>
+        <item>Comfort</item>
+        <item>Driving</item>
+        <item>QuickDrop</item>
+    </string-array>
+    <string-array name="list_ACInterlock">
+        <item>Valoare indisponibilă</item>
+        <item>Deschis</item>
+        <item>Închis</item>
+        <item>Sensor Indisponibil</item>
+    </string-array>
+    <string-array name="list_FanActivation">
+        <item>no FAN requested</item>
+        <item>(61- low- 38- very low) speed fan request</item>
+        <item>61- not used- 38- low speed fan request</item>
+        <item>high speed fan request</item>
+    </string-array>
+    <string-array name="list_ConditioningStatus">
+        <item>Ventilație necesară</item>
+        <item>Răcire condiționată necesară</item>
+        <item>Încălzire condiționată necesară</item>
+        <item>Condiționarea nu este necesară</item>
+    </string-array>
+    <string-array name="list_ConditioningStatusPh2">
+        <item>Nesolicitată</item>
+        <item>CoolCabinCoupleByAir</item>
+        <item>CoolBattCoupleByAir</item>
+        <item>CoolBattAloneByAir</item>
+        <item>CoolCabinCouple</item>
+    </string-array>
+    <string-array name="list_ClimateStatus">
+        <item>Unavailable</item>
+        <item>AC</item>
+        <item>AC deiceing</item>
+        <item> </item>
+        <item>Heat pump</item>
+        <item> </item>
+        <item>Demisting</item>
+        <item>Idle</item>
+    </string-array>
+    <string-array name="list_ClimateStatusPh2">
+        <item>Unavailable</item>
+        <item>AC</item>
+        <item>AC deicing</item>
+        <item>AC to heat pump</item>
+        <item>Heat pump</item>
+        <item>Heat pump to AC</item>
+        <item>-</item>
+        <item>Idle mode</item>
+    </string-array>
+    <string name="label_IH_ClimCompPWRStatus">Compressor RPM, ECO</string>
+    <string name="graph_Climatech">External (°C), Internal (°C), Setpoint (°C), Battery (°C)</string>
+    <string name="label_PtcRelay1">PTC Relay 1</string>
+    <string name="label_PtcRelay2">PTC Relay 2</string>
+    <string name="label_PtcRelay3">PTC Relay 3</string>
+    <string-array name="list_PtcRelay">
+        <item>On</item>
+        <item>Off</item>
+    </string-array>
+
+    <!-- Consumption -->
+
+    <string name="title_activity_consumption">Consum</string>
+    <string name="button_Consumption">Consum</string>
+    <string name="label_WheelTorque">Cuplul la roată</string>
+    <string name="label_InstantConsumption">Consum Instant</string>
+    <string name="label_kWh100km">kWh/100km</string>
+    <string name="graph_PowerSoc">Putere (kW), SoC (%)</string>
+    <string name="graph_SpeedConsumption">Viteză (km/h), Consum (kWh/100km)</string>
+
+    <!-- Dash -->
+
+    <string name="title_activity_dash">Bord</string>
+    <string name="button_Dash">Bord</string>
+
+    <!-- Datalogger -->
+
+    <string name="format_NoSid" formatted="false">%s: sid %s nu există</string>
+
+    <!-- Driving -->
+
+    <string name="title_activity_driving">Informații de conducere</string>
+    <string name="button_Driving">Conducere</string>
+    <string name="label_pedal">Poziția pedalei</string>
+    <string name="label_wheel_torque">Cuplul la roată</string>
+    <string name="label_DistToDest">Distanța până la destinație</string>
+    <string name="label_DistAvailAtDest">Dist. disponibilă la dest.</string>
+    <string name="label_TripConsumption">Consumul călătoriei</string>
+    <string name="label_TripDistance">Distanța călătoriei</string>
+    <string name="label_TripEnergy">Energia călătoriei (kWh)</string>
+    <string name="button_Double">Dublu</string>
+    <string name="prompt_Distance">DISTANȚA RĂMASĂ</string>
+    <string name="prompt_SetDistance">Introdu distanța până la destinație. Afișajul va estima distanța rămasă de condus disponibilă în baterie la sosirel</string>
+
+    <!-- DTC and All data -->
+
+    <string name="title_activity_dtc">Codurile de diagnosticare a erorilor(CDE)</string>
+    <string name="button_DtcReadout">Citire CDE</string>
+    <string name="button_QueryDTCs">Interogare</string>
+    <string name="button_ClearDTCs">Șterge</string>
+    <string name="button_AllData">Toate datele</string>
+    <string name="help_DTC">To enable clearing DTC\'s:\n\nEnter key card\n\nGear to D\n\nHold start button for approximately 5 seconds until the \'Remove card\' message appears\n\nGear to P</string>
+    <string name="message_PollerStopping">\n\nVă rugăm să așteptați până când firul de interogare este oprit…\n</string>
+    <string name="message_NoConnection">\nNu există conexiune. Închideți acest ecran și asigurați-vă că dispozitivul este asociat și conectat\n</string>
+    <string name="message_NoEcuDefinition">\nNu se pot găsi intrări pentru acest ECU. Se vor afișa doar CDE\n</string>
+    <string name="message_SendingInit">\nSe trimite secvența de inițializare\n</string>
+    <string name="message_InitFailed">\nInițializarea a eșuat\n</string>
+    <string name="message_StartTestSession">\nSe trimite secvența sesiunii de pornire a testerului</string>
+    <string name="message_NoTestSessionField">Câmpul de pornire a sesiunii nu există\n</string>
+    <string name="message_UnexpectedResult">Interogare trimisă, dar rezultat neașteptat primit:[</string>
+    <string name="message_GetDtcs">\nSe trimite secvența CDE-urilor de pornire:[</string>
+    <string name="message_NoGetDtcsField">Câmpul Obține CDE-uri nu există\n</string>
+    <string name="message_NoActiveDtcs">\nNu exista CDE-uri active\n</string>
+    <string name="message_clear">"Șterge "</string>
+    <string name="message_NoClearDtcField">Câmpul de ștergere a codurilor de eroare nu există\n</string>
+    <string name="message_MessageNull">Mesaj nul. Este mașina pornită?\n</string>
+    <string name="message_ClearSuccessful">Ștergerea pare că a avut succes, vă rugăm să interogați CDE-urile\n</string>
+    <string name="message_DumpDone">Terminat. Fișierul jurnal creat</string>
+    <string name="format_DumpWriting" formatted="false">Așteaptă, scriere %s</string>
+
+    <!-- Elm testing -->
+
+    <string name="title_activity_elm_test">Test dispozitiv ELM327</string>
+    <string name="button_ElmTesting">Testare ELM </string>
+    <string name="message_ExpectedResult">S-a primit rezultatul așteptat\n==========\n</string>
+    <string name="message_FieldNotExists">Câmpul solicitat nu există. Aceasta este o eroare în suita de teste, vă rugăm să raportați\n</string>
+    <string name="message_Ready">\nPregătit</string>
+    <string name="message_ResultEmpty">Rezultatul este gol. Dispozitivul nu va funcționak\n</string>
+    <string name="message_Problem">Problemă:</string>
+    <string name="message_PrepIsoTp">\nSe procesează comanda ISO-TP CLUSTER SW pregătită\n</string>
+    <string name="message_PrepFree">\nSe procesează cadru liber pregătit FRÂNĂ DE PARCARE\n</string>
+    <string name="message_NoFreeTesting">\nNu se testează cadrele libere, deoarece ați selectat Utilizați câmpuri ISOTP\n</string>
+    <string name="message_DevicePassed">\nDispozitivul dvs. a trecut toate testele, probabil că va funcționa bine\n</string>
+
+    <!-- ELM327 -->
+
+    <string name="message_HardResetFailed">Hard reset a eșuat, se repornește Bluetooth ...</string>
+    <string name="message_ELM13Ready">ELM pregătit, versiunea 1.3, ar trebui să funcționeze</string>
+    <string name="message_ELM14Ready">ELM pregătit, versiunea 1.4, ar trebui să funcționezek</string>
+    <string name="message_ELM8015Ready">ELM pregătit, versiunea innocar, ar trebui să funcționeze</string>
+    <string name="message_ELMReady">ELM este acum pregătit</string>
+    <string name="message_ELM20Ready">ELM pregătit, versiunea 2.x, probabil nu va funcționa, vă rugăm raportați dacă merge</string>
+    <string name="message_ELMUnknown">ELM pregătit, versiune necunoscută, probabil nu va funcționa, vă rugăm raportați dacă merge</string>
+
+    <!-- Field test -->
+
+    <!-- Firmware -->
+
+    <string name="title_activity_firmware">Firmware</string>
+    <string name="button_Firmware">Firmware</string>
+    <string name="help_Ecus"><![CDATA[Click pe ECU pentru detalii. Aflați mai multe despre computerele mașinii <a href="http://canze.fisch.lu/computers/">here</a>.]]></string>
+    <string name="button_WriteCsv">Scrie totul în csv</string>
+
+    <!-- Frames -->
+
+    <string name="format_NoAsset" formatted="false">Can\'t access asset %s</string>
+
+    <!-- Heatmap battery modules -->
+
+    <string name="title_activity_heatmap_bat">Harta temperaturii</string>
+    <string name="button_HeatmapTemperature">Harta temperaturii</string>
+
+    <!-- Heatmap voltages -->
+
+    <string name="title_activity_heatmap_cellvoltage">Harta voltajului</string>
+    <string name="button_HeatmapVoltage">Harta voltajului</string>
+    <string name="label_CellVoltageTop">Tensiunea cea mai mare (V)</string>
+    <string name="label_CellVoltageBottom">Tensiunea cea mai mică (V)</string>
+    <string name="label_CellVoltageDelta">Diferența de tensiune (mV)</string>
+
+    <!-- LeakCurrents -->
+
+    <string name="title_activity_leakCurrents">Curenți de scurgere</string>
+    <string name="button_LeakCurrents">Curenți de scurgere</string>
+    <string name="label_LeakCurrentDc">Curenți de scurgere DC (mA)</string>
+    <string name="label_LeakCurrentLf">Curenți de scurgere LF, 50 Hz (mA)</string>
+    <string name="label_LeakCurrentHf">Curenți de scurgeret HF, 10 Khz (mA)</string>
+    <string name="label_LeakCurrentEhf">Curenți de scurgere EHF, 10 KHz harmonics (mA)</string>
+
+    <!-- Prediction -->
+
+    <string name="title_activity_prediction">Predicție de încărcare</string>
+    <string name="button_ChargingPrediction">Predicție de încărcaren</string>
+    <string name="label_StateAtThisMoment">Starea la acest moment</string>
+    <string name="label_BatteryTemperature">Temperatura bateriei</string>
+    <string name="label_ACPower">Putere AC</string>
+    <string name="label_StateOfCharge">Starea de încărcare (%)</string>
+    <string name="label_ChargingPrediction">Predicție de încărcare</string>
+    <string name="label_Duration">Durata (hh:mm)</string>
+    <string name="label_Soc">SoC</string>
+    <string name="label_Range">Autonomie disponibilă</string>
+    <string name="label_DcPower">Putere încărcare DC</string>
+
+    <!-- Range -->
+
+    <string name="title_activity_range">Autonomie</string>
+    <string name="button_Range">Autonomie</string>
+    <string name="label_RangeRemaining">Autonomie disponibilă conform mașinii:</string>
+    <string name="label_RangeRemainingCanZE">Autonomie disponibilă conform CanZE:</string>
+    <string name="label_EstimatedDrivingStyleLoss">Pierderea de energie estimată pentru stilul de conducere:</string>
+    <string name="graph_DistanceEnergy">Autonomie disponibilă (km), Energie disponibilă (kWh)</string>
+
+    <!-- Research -->
+
+    <string name="title_activity_research">Cercetare</string>
+    <string name="button_Research">Cercetare</string>
+
+    <!-- Settings -->
+
+    <string name="title_activity_settings">Setări</string>
+    <string name="build">Build:</string>
+    <string name="version">Versiune</string>
+    <string name="label_RemoteDevice">Dispozitiv la distanță</string>
+    <string name="label_DeviceAddress">Adresa dispozitivului</string>
+    <string name="label_DeviceType">Tipul dispozitivului</string>
+    <string name="label_Car">Mașina</string>
+    <string name="label_LogLevel">Nivel de jurnal</string>
+    <string name="label_Options">Opțiuni</string>
+    <string name="label_SafeDrivingMode">Modul de conducere în siguranță</string>
+    <string name="label_BluetoothBackgroundMode">Modul Bluetooth de fundal</string>
+    <string name="label_Miles">Mile</string>
+    <string name="label_Darkmode">Mod întunecat</string>
+    <string name="label_AltFields">Utilizați câmpurile ISOTP</string>
+    <string name="label_SdCardLogging">Salvare jurnal pe card SD</string>
+    <string name="label_Debug">Depanare</string>
+    <string name="label_Fields">Câmpuri</string>
+    <string name="help_Fields">Aceasta înregistrează toate câmpurile solicitate de ecranul real.</string>
+    <string name="label_LogToSdcard1">Salvează jurnalul pe sdcard1</string>
+    <string name="label_Actions">Acțiuni</string>
+    <string name="label_ClearCachedData">Șterge datele din cache</string>
+    <string name="prompt_YesIKnow">Da</string>
+    <string name="prompt_NoSecureWay">Nu</string>
+    <string name="prompt_Attention">ATENȚIE</string>
+    <string name="prompt_WarningDriving">Conducerea și neacordarea de atenție deplină traficului este extrem de periculoasă și pune în pericol viața dvs și a celorlalți participanți la trafic. Dezavtivarea acestui mod nu este deloc recomandata!\n\n Sigur vreți să dezactivați Modul de conducere în siguranță?</string>
+    <string name="prompt_NoThanks">Nu, mulțumesc</string>
+    <string name="prompt_BluetoothOn">Dacă lăsați conexiunea Bluetooth activă în timp ce aplicația trece în fundal, aceasta poate interfera cu alte aplicații care utilizează Bluetooth. De asemenea, vă poate descărca bateria dacă uitați să închideți CanZE sau să dezactivați această opțiune.<br /><br /><b>Dacă utilizați această funcție, conexiunea va rămâne activă, chiar dacă reporniți dispozitivul Android.</b><br /><br />Sunteți sigur că doriți să continuați să activați modul de fundal Bluetooth?</string>
+    <string name="prompt_NoSd">Card SD nu este disponibil, nu se poate scrie sau nu are spațiu suficient pentru jurnalul de date.<br /><br /><b>Exportul de date nu poate fi activat!</b></string>
+    <string name="prompt_Sorry">Ne pare rău…</string>
+    <string name="toast_CacheCleared">Cache-ul a fost șters…</string>
+    <!-- <string name="toast_PleaseUseTop">Please use one of the top buttons to quit the settings …</string> -->
+    <string name="toast_NoBluetooth">Acest dispozitiv nu are niciun adaptor Bluetooth.\n\nSorry…</string>
+
+    <string name="label_Settings_Device">Dispozitiv</string>
+    <string name="label_CarModel">Model</string>
+    <string name="label_DistanceUnit">Unitatea de măsura pentru distanță</string>
+    <string name="label_Kilometers">Kilometri</string>
+    <string name="label_Security">Securitate</string>
+    <string name="label_Display">Afișaj</string>
+    <string name="label_CanSeeSettings">Setări CanSee</string>
+    <string name="label_LogLevelSummary">Definește nivelul de mesaje toast de depanare afișate</string>
+    <string name="label_LoggingSettings">Setări de înregistrare</string>
+    <string name="label_Logging">Înregistrarea datelor</string>
+    <string name="label_ConfigureCustomFragment">Configurați segment personalizat</string>
+    <string name="label_StartupActivity">Activitate de pornire</string>
+    <string name="label_Theme">Tema</string>
+    <string name="label_ThemeFollowSystem">Urmează sistemul</string>
+    <string name="label_ThemeDark">Dark</string>
+    <string name="label_ThemeLight">Light</string>
+    <string name="label_ToastLevelNone">Nici unul</string>
+    <string name="label_ToastLevelElm">Dispozitiv</string>
+    <string name="label_ToastLevelElmCar">Toate</string>
+    <string name="label_Info">Info</string>
+
+    <!-- SettingsCustom -->
+
+    <string name="title_activity_settingscustom">Setări segment personalizat</string>
+
+    <!-- Speed control -->
+
+    <string name="title_activity_speedcontrol">Viteza medie</string>
+    <string name="button_speedcontrol">Vit medie</string>
+    <string name="label_averageSpeed">Viteza medie</string>
+    <string name="label_TapToStart">Atinge oriunde pentru a începe sau a reseta</string>
+    <string name="message_gotfirst">Am prima valoare…</string>
+    <string name="message_gotsecond">Am a doua valoare…</string>
+    <string name="message_waitsecond">Se așteaptă a doua valoare…</string>
+
+    <!-- Tires -->
+
+    <string name="title_activity_tires">Informații anvelope</string>
+    <string name="button_Tires">Anvelope</string>
+    <string name="help_PressuresMbar">Toate presiunile în mbar. Presiunile sunt primite doar în timpul concuderii.</string>
+    <string name="label_TireSpdPresMisadaption">Neadaptare viteză-presiune</string>
+    <string name="label_TireFL">Față stânga</string>
+    <string name="label_TireFR">Față dreapta</string>
+    <string name="label_TireRL">Spate stânga</string>
+    <string name="label_TireRR">Spate dreapta</string>
+    <string name="label_TireIDFL">ID față stânga</string>
+    <string name="label_TireIDFR">ID față dreapta</string>
+    <string name="label_TireIDRL">ID spate stânga</string>
+    <string name="label_TireIDRR">ID spate dreaptat</string>
+    <string name="button_Tires_write">scrie</string>
+    <string name="button_Tires_read">citește</string>
+    <string-array name="list_TireStatus">
+        <item>OK</item>
+        <item>No info</item>
+        <item>Supraumflat</item>
+        <item>-</item>
+        <item>Pană</item>
+        <item>Pană</item>
+        <item>Sub umflat</item>
+        <item>-</item>
+    </string-array>
+
+
+    <!-- Widgets only -->
+
+    <string name="title_activity_widget">WidgetActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_Custom">Custom</string>
+
+    <!-- ZE50 test -->
+    <string name="title_activity_ZE50Test">ZE50 test</string>
+
+    <!-- Android Auto -->
+    <string name="about">Despre</string>
+    <string name="graph_MaxRealChPwr">Încărcare maximă baterie (kW) / Putere încărcare DC (kW)</string>
+    <string name="graph_EnergyTemperature">Energie disponibilă (kWh), temperatură (°C)</string>
+    <string name="toast_PleaseUseTop">Folosiți butonul de sus pentru a ieși din setări...</string>
+    <string name="toast_WaitingSettings">Opriți conexiunea. Setările se încarcă. Așteptați...</string>
+
+</resources>
+

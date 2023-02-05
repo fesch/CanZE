@@ -83,7 +83,7 @@
             <TextView
                 android:layout_weight="0.7"
                 android:width="0dp"
-                android:text="Voltage under load" />
+                android:text="@string/label_auxbatvunder" />
 
             <TextView
                 android:id="@+id/textVoltageLoad"
@@ -99,7 +99,7 @@
             <TextView
                 android:layout_weight="0.7"
                 android:width="0dp"
-                android:text="Current under load" />
+                android:text="@string/label_auxbatcunder" />
 
             <TextView
                 android:id="@+id/textCurrentLoad"

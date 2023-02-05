@@ -734,5 +734,33 @@
     <string name="menu_Custom">Benutzerdefiniert</string>
     <string name="button_speedcontrol">Durchschn. Geschw.</string>
     <string name="title_activity_settingscustom">Benutzerdefinierte button Einstellungen</string>
+    <string name="about">About</string>
+    <string name="label_Kilometers">"Kilometer "</string>
+    <string name="label_DistanceUnit">"Entfernungseinheit "</string>
+    <string name="label_CarModel">Auto Model</string>
+    <string name="label_Settings_Device">Gerät</string>
+    <string name="label_auxbatcunder">Strom unter Last</string>
+    <string name="label_auxbatvunder">Spannung unter Last</string>
+    <string name="label_auxbatcurr">Strom</string>
+    <string name="label_Security">Sicherheit</string>
+    <string name="label_Display">Anzeige</string>
+    <string name="label_CanSeeSettings">CanSee Einstellungen</string>
+    <string name="label_LogLevelSummary">Definiert die Ebene der angezeigten Debug-Toastmeldungen</string>
+    <string name="label_LoggingSettings">Protokollierungseinstellungen</string>
+    <string name="label_Logging">"Protokollierung "</string>
+    <string name="label_ConfigureCustomFragment">Benutzerdefiniertes Fragment konfigurieren</string>
+    <string name="label_StartupActivity">Startup-Aktivität</string>
+    <string name="label_Theme">Thema</string>
+    <string name="label_ThemeFollowSystem">System folgen</string>
+    <string name="label_ThemeDark">Dunkel</string>
+    <string name="label_ThemeLight">Licht</string>
+    <string name="label_ToastLevelNone">Keiner</string>
+    <string name="label_ToastLevelElm">Gerät</string>
+    <string name="label_ToastLevelElmCar">Alle</string>
+    <string name="label_Info">Info</string>
+    <string name="title_activity_ZE50Test">ZE50 test</string>
+    <string name="toast_PleaseUseTop">Bitte verwenden Sie die Schaltflächen oben, um die Einstellungen zu verlassen...</string>
+    <string name="toast_WaitingSettings">"Stoppen Sie Bluetooth. Die Einstellungen werden geladen. Warten Sie mal… "</string>
+    <string name="button_summary">Armaturenbrett</string>
 
 </resources>

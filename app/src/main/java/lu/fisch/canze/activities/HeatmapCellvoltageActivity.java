@@ -45,7 +45,8 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
     private double lowest, highest;
     private double cutoff;
     private final double[] lastVoltage = {0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4};
-    private final int lastCell = 96;
+    private int lastCell = 96;
+    private int totalCells = 96;
     @ColorInt
     private int baseColor;
     private boolean dark;
@@ -53,7 +54,13 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_heatmap_cellvoltage);
+        setContentView(MainActivity.isSpring() ? R.layout.activity_heatmap_cellvoltages : R.layout.activity_heatmap_cellvoltage);
+
+        //define the number of cells depending on the car
+        if (MainActivity.isSpring()) {
+            lastCell = 72;
+            totalCells = 72;
+        }
 
         TypedValue typedValue = new TypedValue();
         Resources.Theme theme = this.getTheme();
@@ -69,7 +76,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
             String sid = Sid.Preamble_CellVoltages1 + (i * 16); // remember, first is pos 16, i starts s at 1
             addField(sid);
         }
-        for (int i = 63; i <= 96; i++) {
+        for (int i = 63; i <= totalCells; i++) {
             String sid = Sid.Preamble_CellVoltages2 + ((i - 62) * 16); // remember, first is pos 16, i starts s at 1
             addField(sid);
         }

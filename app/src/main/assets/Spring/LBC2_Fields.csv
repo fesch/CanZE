@@ -1,0 +1,332 @@
+,7b6,0,0,1,0,0,,1001,5001,ff,StartDiagnosticSession.Default,
+,7b6,0,0,1,0,0,,1002,5002,ff,StartDiagnosticSession.Programming,
+,7b6,0,0,1,0,0,,1003,5003,ff,StartDiagnosticSession.ExtendedDiagnostic,
+,7b6,0,0,1,0,0,,1060,5060,ff,StartDiagnosticSession.Supplier,
+,7b6,0,0,1,0,0,,14FFFFFF,54FFFFFF,ff,ClearDiagnosticInformation.All,
+,7b6,16,23,1,0,0,,1901FF,5901FF,ff,DTCStatusAvailabilityMask,
+,7b6,24,31,1,0,0,,1901FF,5901FF,ff,DTCFormatIdentifier,0:SAE_J2012-DA_DTC;1:ISO_14229-1_DTC;2:SAE_J1939-73_DTC;3:ISO_11992-4_DTC;4:SAE_J2012-DA_WWHOBD_DTC
+,7b6,32,47,1,0,0,,1901FF,5901FF,ff,DTCCount,
+,7b6,16,23,1,0,0,,1902FF,5902FF,ff,DTCStatusAvailabilityMask,
+,7b6,24,39,1,0,0,,1902FF,5902FF,ff,DTCDeviceAndFailureTypeOBD,1:Current sensor internal error;4:HVMux diagnosis error (HVMuxSeq or HVMuxTestSource);6:GENERAL / Algorithm;8:Communication Failure (UART communication);17:half of thermistor in SCG. Performance is degraded;18:Cell Short circuit;19:Opened Cell;20:ELECTRICAL / SC Ground or Open;21:half thermistor in SCB or OC. Performance is degraded;22:LV Power Supply is too low;23:LV Power Supply is too high;25:Pack overcurrent;26:Insulation NOK (alert charge forbidden);28:ELECTRICAL / Voltage Out Of Range;30:Cell Wire Impendance Out of Range;33:Cell undervoltage derating;36:Power Off failure;49:No signal can be read from FAN;56:Internal 32kHz deviation;65:Error on Internal Memory (Main CPU);67:Communication failure with Flash memory;68:Corruption of datas;71:Corruption (checksum mechanism) on safety datas;73:ADC conversion error;81:PROGRAMMING / Not Programmed;98:1 thermistor in deviation (compare to other thermistors);129:Invalid data received on CAN Current sensor frames;135:Missing frame(s)  from CAN Current sensor;136:Bus OFF on CAN transceiver (Main CPU);146:COMPONENT / Performance;150:COMPONENT / Internal;152:Temp1 value is over the limit threshold;241:Cell overvoltage safety;242:Cell overdischarge;244:Temp1 value is under the limit threshold;249:Available Power is limited;251:Battery pack temperature is over the  functionnal threshold (derating);253:Current offset too high
+,7b6,40,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adj. failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or sys. operation obstructed or blocked;152:component or system over temperature
+,7b6,44,47,1,0,0,,1902FF,5902FF,ff,DTCFailureType.ManufacturerOrSupplier,0:General Failure Information;1:General Electrical Failures;2:General Signal Failures;3:FM / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;15:Vehicle manufacturer / System supplier specific
+,7b6,48,48,1,0,0,,1902FF,5902FF,ff,DTCStatus.warningIndicatorRequested,0:No;1:Yes
+,7b6,49,49,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedThisMonitoringCycle,0:No;1:Yes
+,7b6,50,50,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedSinceLastClear,0:No;1:Yes
+,7b6,51,51,1,0,0,,1902FF,5902FF,ff,DTCStatus.testNotCompletedSinceLastClear,0:No;1:Yes
+,7b6,52,52,1,0,0,,1902FF,5902FF,ff,DTCStatus.confirmedDTC,0:No;1:Yes
+,7b6,53,53,1,0,0,,1902FF,5902FF,ff,DTCStatus.pendingDTC,0:No;1:Yes
+,7b6,54,54,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailedThisMonitoringCycle,0:No;1:Yes
+,7b6,55,55,1,0,0,,1902FF,5902FF,ff,DTCStatus.testFailed,0:No;1:Yes
+,7b6,16,39,1,0,0,,1903000000FF,5903000000FF,4ff,DTCRecord,
+,7b6,40,47,1,0,0,,1903000000FF,5903000000FF,4ff,DTCSnapshotRecordNumber,
+,7b6,16,39,1,0,0,,1904000000FF,5904000000FF,4ff,DTCRecord,
+,7b6,40,47,1,0,0,,1904000000FF,5904000000FF,ff,StatusOfDTC,
+,7b6,16,39,1,0,0,,190600000080,590600000080,4ff,DTCRecord,
+,7b6,40,47,1,0,0,,190600000080,590600000080,ff,StatusOfDTC,
+,7b6,48,55,1,0,0,,190600000080,590600000080,ff,DTCExtendedDataRecordNumber,128:Mileage;132:DTCOccurrenceCounter;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage;136:IUPRnumerator;137:IUPRdenominator
+,7b6,56,87,.01,-2147483648,2,km,190600000080,590600000080,1ff,DTCExtendedData.Mileage,
+,7b6,16,39,1,0,0,,190600000084,590600000084,4ff,DTCRecord,
+,7b6,40,47,1,0,0,,190600000084,590600000084,ff,StatusOfDTC,
+,7b6,48,55,1,0,0,,190600000084,590600000084,ff,DTCExtendedDataRecordNumber,128:Mileage;132:DTCOccurrenceCounter;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage;136:IUPRnumerator;137:IUPRdenominator
+,7b6,56,63,1,0,0,,190600000084,590600000084,ff,DTCExtendedData.DTCOccurrenceCounter,
+,7b6,16,39,1,0,0,,190600000085,590600000085,4ff,DTCRecord,
+,7b6,40,47,1,0,0,,190600000085,590600000085,ff,StatusOfDTC,
+,7b6,48,55,1,0,0,,190600000085,590600000085,ff,DTCExtendedDataRecordNumber,128:Mileage;132:DTCOccurrenceCounter;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage;136:IUPRnumerator;137:IUPRdenominator
+,7b6,56,87,1,0,0,km,190600000085,590600000085,1ff,DTCExtendedData.DTCLastDiseappearMileage,
+,7b6,16,39,1,0,0,,190600000086,590600000086,4ff,DTCRecord,
+,7b6,40,47,1,0,0,,190600000086,590600000086,ff,StatusOfDTC,
+,7b6,48,55,1,0,0,,190600000086,590600000086,ff,DTCExtendedDataRecordNumber,128:Mileage;132:DTCOccurrenceCounter;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage;136:IUPRnumerator;137:IUPRdenominator
+,7b6,56,87,1,0,0,km,190600000086,590600000086,1ff,DTCExtendedData.DTCTravelledDistanceFailurePresent,
+,7b6,16,39,1,0,0,,190600000087,590600000087,4ff,DTCRecord,
+,7b6,40,47,1,0,0,,190600000087,590600000087,ff,StatusOfDTC,
+,7b6,48,55,1,0,0,,190600000087,590600000087,ff,DTCExtendedDataRecordNumber,128:Mileage;132:DTCOccurrenceCounter;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage;136:IUPRnumerator;137:IUPRdenominator
+,7b6,56,87,1,0,0,km,190600000087,590600000087,1ff,DTCExtendedData.DTCFirstAppearMileage,
+,7b6,16,39,1,0,0,,1906000000FF,5906000000FF,4ff,DTCRecord,
+,7b6,40,47,1,0,0,,1906000000FF,5906000000FF,ff,StatusOfDTC,
+,7b6,48,55,1,0,0,,1906000000FF,5906000000FF,ff,DTCExtendedDataRecordNumber,128:Mileage;132:DTCOccurrenceCounter;133:DTCLastDiseappearMileage;134:DTCTravelledDistanceFailurePresent;135:DTCFirstAppearMileage;136:IUPRnumerator;137:IUPRdenominator
+,7b6,56,87,1,0,0,km,1906000000FF,5906000000FF,1ff,DTCExtendedData.DTCFirstAppearMileage,
+,7b6,16,23,1,0,0,,190A,590A,ff,DTCStatusAvailabilityMask,
+,7b6,24,39,1,0,0,,190A,590A,ff,DTCDeviceIdentifier,6912:Low voltage supply input;6913:Cell input lines;6914:Battery pack voltage;6915:Current sensor input;6916:Few module thermistors in failure;6917:Many module thermistors in failure;6918:All module thermistors in failure;6919:Cooling thermistor input;6920:FAN speed input;6921:FAN control output;6922:Main relay control output;6923:Precharge relay control output;6924:Battery pack temperature;6925:Internal memory RAM/ROM;6926:External NV memory (EEPROM- FLASH);6927:Analog to Digital Converter;6928:Master CPU/Slave Communication;6930:Main ASSP;6932:Relay 3 control output;6933:Temp 2 thermistor input;6934:MCPU/PCB temperature sensor;6935:Air/Ambient thermistor input;6936:Interlock1;6937:Interlock2;6938:Interlock3;6939:Interlock4;6940:Busbar;6941:Current sensor 5V supply;6942:Current sensor 12V supply;6943:CAN current sensor (MCPU);6944:Relay 4 control output;6945:Flash memory failure (FOTA);6960:Module thermistor 1;6961:Module thermistor 2;6962:Module thermistor 3;6963:Module thermistor 4;6964:Module thermistor 5;6965:Module thermistor 6;6966:Module thermistor 7;6967:Module thermistor 8;6968:Module thermistor 9;6969:Module thermistor 10;6970:Module thermistor 11;6971:Module thermistor 12;6972:Module thermistor 13;6973:Module thermistor 14;6974:Module thermistor 15;6975:Module thermistor 16;6976:Module thermistor 17;6977:Module thermistor 18;6978:Module thermistor 19;6979:Module thermistor 20;6980:Module thermistor 21;6981:Module thermistor 22;6982:Module thermistor 23;6983:Module thermistor 24;6984:Module thermistor 25;6985:Module thermistor 26;6986:Module thermistor 27;6987:Module thermistor 28;6988:Module thermistor 29;6989:Module thermistor 30;6990:Module thermistor 31;6991:Module thermistor 32;7008:Cell sensing lines - Module 1;7009:Cell sensing lines - Module 2;7010:Cell sensing lines - Module 3;7011:Cell sensing lines - Module 4;7012:Cell sensing lines - Module 5;7013:Cell sensing lines - Module 6;7014:Cell sensing lines - Module 7;7015:Cell sensing lines - Module 8;7016:Cell sensing lines - Module 9;7017:Cell sensing lines - Module 10;7018:Cell sensing lines - Module 11;7019:Cell sensing lines - Module 12;7020:Cell sensing lines - Module 13;7021:Cell sensing lines - Module 14;7022:Cell sensing lines - Module 15;7023:Cell sensing lines - Module 16;7024:Cell sensing lines - Module 17;7025:Cell sensing lines - Module 18;7026:Cell sensing lines - Module 19;7027:Cell sensing lines - Module 20;7028:Cell sensing lines - Module 21;7040:State of Charge Estimation;7041:State of Health Estimation;7042:Available Power;7043:Cell SOHP;7072:Low voltage supply input (SCPU);7073:Cell input lines (SCPU);7074:Insulation Resistance measurement circuit;7075:SCPU/PCB temperature sensor;7076:Current sensor input1;7085:Internal memory RAM/ROM (SCPU);7086:External NV memory (EEPROM- FLASH)1;7087:ADC (Analog-To-Digital ) Conversion Failure - BMS2;7089:Safety CPU/Slave Communication;7090:ASIC (redundancy);7091:Hot Spot (SPARE) sensor;7092:Pack module temperature sensor (SCPU);7093:CAN current sensor (SCPU)1;7094:Flash memory failure (FOTA) (SCPU);57664:CAN from HECM;57666:CAN from Inverter;57667:CAN from EVC/HEVC;57668:CAN from BMS1;59917:CAN controller (MCPU);64768:FOTA - SW bloc;64769:FOTA - Calibration bloc
+,7b6,40,47,1,0,0,,190A,590A,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adj. failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or sys. operation obstructed or blocked;152:component or system over temperature
+,7b6,48,55,1,0,0,,190A,590A,ff,StatusOfDTC,
+,7b6,16,31,1,0,0,,1914,5914,ff,DTCDeviceIdentifier,6912:Low voltage supply input;6913:Cell input lines;6914:Battery pack voltage;6915:Current sensor input;6916:Few module thermistors in failure;6917:Many module thermistors in failure;6918:All module thermistors in failure;6919:Cooling thermistor input;6920:FAN speed input;6921:FAN control output;6922:Main relay control output;6923:Precharge relay control output;6924:Battery pack temperature;6925:Internal memory RAM/ROM;6926:External NV memory (EEPROM- FLASH);6927:Analog to Digital Converter;6928:Master CPU/Slave Communication;6930:Main ASSP;6932:Relay 3 control output;6933:Temp 2 thermistor input;6934:MCPU/PCB temperature sensor;6935:Air/Ambient thermistor input;6936:Interlock1;6937:Interlock2;6938:Interlock3;6939:Interlock4;6940:Busbar;6941:Current sensor 5V supply;6942:Current sensor 12V supply;6943:CAN current sensor (MCPU);6944:Relay 4 control output;6945:Flash memory failure (FOTA);6960:Module thermistor 1;6961:Module thermistor 2;6962:Module thermistor 3;6963:Module thermistor 4;6964:Module thermistor 5;6965:Module thermistor 6;6966:Module thermistor 7;6967:Module thermistor 8;6968:Module thermistor 9;6969:Module thermistor 10;6970:Module thermistor 11;6971:Module thermistor 12;6972:Module thermistor 13;6973:Module thermistor 14;6974:Module thermistor 15;6975:Module thermistor 16;6976:Module thermistor 17;6977:Module thermistor 18;6978:Module thermistor 19;6979:Module thermistor 20;6980:Module thermistor 21;6981:Module thermistor 22;6982:Module thermistor 23;6983:Module thermistor 24;6984:Module thermistor 25;6985:Module thermistor 26;6986:Module thermistor 27;6987:Module thermistor 28;6988:Module thermistor 29;6989:Module thermistor 30;6990:Module thermistor 31;6991:Module thermistor 32;7008:Cell sensing lines - Module 1;7009:Cell sensing lines - Module 2;7010:Cell sensing lines - Module 3;7011:Cell sensing lines - Module 4;7012:Cell sensing lines - Module 5;7013:Cell sensing lines - Module 6;7014:Cell sensing lines - Module 7;7015:Cell sensing lines - Module 8;7016:Cell sensing lines - Module 9;7017:Cell sensing lines - Module 10;7018:Cell sensing lines - Module 11;7019:Cell sensing lines - Module 12;7020:Cell sensing lines - Module 13;7021:Cell sensing lines - Module 14;7022:Cell sensing lines - Module 15;7023:Cell sensing lines - Module 16;7024:Cell sensing lines - Module 17;7025:Cell sensing lines - Module 18;7026:Cell sensing lines - Module 19;7027:Cell sensing lines - Module 20;7028:Cell sensing lines - Module 21;7040:State of Charge Estimation;7041:State of Health Estimation;7042:Available Power;7043:Cell SOHP;7072:Low voltage supply input (SCPU);7073:Cell input lines (SCPU);7074:Insulation Resistance measurement circuit;7075:SCPU/PCB temperature sensor;7076:Current sensor input1;7085:Internal memory RAM/ROM (SCPU);7086:External NV memory (EEPROM- FLASH)1;7087:ADC (Analog-To-Digital ) Conversion Failure - BMS2;7089:Safety CPU/Slave Communication;7090:ASIC (redundancy);7091:Hot Spot (SPARE) sensor;7092:Pack module temperature sensor (SCPU);7093:CAN current sensor (SCPU)1;7094:Flash memory failure (FOTA) (SCPU);57664:CAN from HECM;57666:CAN from Inverter;57667:CAN from EVC/HEVC;57668:CAN from BMS1;59917:CAN controller (MCPU);64768:FOTA - SW bloc;64769:FOTA - Calibration bloc
+,7b6,32,39,1,0,0,,1914,5914,ff,DTCFailureType,0:Device and failure type ODB codding;1:General Electrical Failure;2:General signal failure;3:FM / PWM (Pulse Width Modulated) Failures;4:System Internal Failures;5:System Programming Failures;6:Algorithm Based Failures;7:Mechanical Failures;8:Bus Signal / Message Failures;9:Component Failures;17:circuit short to ground;18:circuit short to battery;19:circuit open;20:circuit short to ground or open;21:circuit short to battery or open;22:circuit voltage below threshold;23:circuit voltage above threshold;24:circuit current below threshold;25:circuit current above threshold;26:circuit resistance below threshold;27:circuit resistance above threshold;28:circuit voltage out of range;29:circuit current out of range;30:circuit resistance out of range;31:circuit intermittent;33:signal amplitude < minimum;34:signal amplitude > maximum;35:signal stuck low;36:signal stuck high;37:signal shape / waveform failure;38:signal rate of change below threshold;39:signal rate of change above threshold;40:signal bias level out of range / zero adj. failure;41:signal signal invalid;47:signal erratic;49:no signal;50:signal low time < minimum;51:signal low time > maximum;52:signal high time < minimum;53:signal high time > maximum;54:signal frequency too low;55:signal frequency too high;56:signal frequency incorrect;57:incorrect has too few pulses;58:incorrect has too many pulses;65:general checksum failure;66:general memory failure;67:special memory failure;68:data memory failure;69:program memory failure;70:calibration / parameter memory failure;71:watchdog / safety µC failure;72:supervision software failure;73:internal electronic failure;74:incorrect component installed;75:over temperature;81:not programmed;82:not activated;83:deactivated;84:missing calibration;85:not configured;97:signal calculation failure;98:signal compare failure;99:circuit / component protection time-out;100:signal plausibility failure;101:signal has too few transitions / events;102:signal has too many transitions / events;103:signal incorrect after event;104:event information;113:actuator stuck;114:actuator stuck open;115:actuator stuck closed;116:actuator slipping;117:emergency position not reachable;118:wrong mounting position;119:commanded position not reachable;120:alignment or adjustment incorrect;121:mechanical linkage failure;122:fluid leak or seal failure;123:low fluid level;129:invalid serial data received;130:alive / sequence counter incorrect / not updated;131:value of signal protection calculation incorrect;132:signal below allowable range;133:signal above allowable range;134:signal invalid;135:missing message;136:bus off;143:erratic;145:parametric;146:performance or incorrect operation;147:no operation;148:unexpected operation;149:incorrect assembly;150:component internal failure;151:Component or sys. operation obstructed or blocked;152:component or system over temperature
+,7b6,40,47,1,0,0,,1914,5914,ff,DTCFaultDetectionCounter,
+,7b6,24,55,1,0,0,,229000,629000,4ff,DIDs supported in range 9001_9020,
+,7b6,24,39,.000976563,0,3,V,229007,629007,ff,Maximum cell voltage,
+,7b6,24,31,1,0,0,,229008,629008,ff,Number of Maximum Cell Voltage,
+,7b6,24,39,.000976563,0,3,V,229009,629009,ff,Minimum cell voltage,
+,7b6,24,31,1,0,0,,22900A,62900A,ff,Number of Minimum Cell Voltage,
+,7b6,24,39,.0625,640,2,°C,229013,629013,ff,Minimum Temperature,
+,7b6,24,39,.0625,640,2,°C,229014,629014,ff,Maximum Temperature,
+,7b6,24,39,200,0,0,Ohm,229015,629015,ff,Isolation Impedance Wxx_hv_isol_imped_rcy,
+,7b6,24,55,1,0,0,,229020,629020,4ff,DIDs supported in range 9021_9040,
+,7b6,24,55,1,0,0,,229040,629040,4ff,DIDs supported in range 9041_9060,
+,7b6,24,55,1,0,0,,229060,629060,4ff,DIDs supported in range 9061_9080,
+,7b6,24,55,1,0,0,,229080,629080,4ff,DIDs supported in range 9081_90A0,
+,7b6,24,55,1,0,0,,2290A0,6290A0,4ff,DIDs supported in range 90A1_90C0,
+,7b6,24,55,1,0,0,,2290C0,6290C0,4ff,DIDs supported in range 90C1_90E0,
+,7b6,24,55,1,0,0,,2290,6290,4ff,DIDs supported in range 90E1_9100,
+,7b6,24,55,1,0,0,,229100,629100,4ff,DIDs supported in range 9101_9120,
+,7b6,24,55,1,0,0,,229120,629120,4ff,DIDs supported in range 9121_9140,
+,7b6,24,24,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.16,0:No failure;1:Slave No.16 in failure
+,7b6,25,25,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.15,0:No failure;1:Slave No.15 in failure
+,7b6,26,26,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.14,0:No failure;1:Slave No.14 in failure
+,7b6,27,27,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.13,0:No failure;1:Slave No.13 in failure
+,7b6,28,28,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.12,0:No failure;1:Slave No.12 in failure
+,7b6,29,29,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.11,0:No failure;1:Slave No.12 in failure
+,7b6,30,30,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.10,0:No failure;1:Slave No.10 in failure
+,7b6,31,31,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.09,0:No failure;1:Slave No.9 in failure
+,7b6,32,32,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.08,0:No failure;1:Slave No.8 in failure
+,7b6,33,33,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.07,0:No failure;1:Slave No.7 in failure
+,7b6,34,34,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.06,0:No failure;1:Slave No.6 in failure
+,7b6,35,35,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.05,0:No failure;1:Slave No.5 in failure
+,7b6,36,36,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.04,0:No failure;1:Slave No.4 in failure
+,7b6,37,37,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.03,0:No failure;1:Slave No.3 in failure
+,7b6,38,38,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.02,0:No failure;1:Slave No.2 in failure
+,7b6,39,39,1,0,0,,229129,629129,ff,Slaves Failure Status Wxx_slv_fail_nr.01,0:No failure;1:Slave No.1 in failure
+,7b6,24,55,1,0,0,,229140,629140,4ff,DIDs supported in range 9141_9160,
+,7b6,24,55,1,0,0,,229160,629160,4ff,DIDs supported in range 9161_9180,
+,7b6,24,55,1,0,0,,229180,629180,4ff,DIDs supported in range 9181_91A0,
+,7b6,24,55,1,0,0,,2291A0,6291A0,4ff,DIDs supported in range 91A1_91C0,
+,7b6,24,39,.0625,640,2,°C,2291B8,6291B8,ff,Board temperature Wxx_raw_cpu_temp,
+,7b6,28,39,.001953125,0,3,V,2291BF,6291BF,ff,ADC 5V reference P5VPREF_DIAG Wxx_raw_5v_ref_diag,
+,7b6,24,55,1,0,0,,2291C0,6291C0,4ff,DIDs supported in range 91C1_91E0,
+,7b6,24,55,1,0,0,,2291,6291,4ff,DIDs supported in range 91E1_9200,
+,7b6,24,39,.001,0,3,V,2291FA,6291FA,1ff,Raw IRDD Um Rm voltage measurement Wxx_raw_hv_iso_Um_mes,
+,7b6,24,39,.001,0,3,V,2291FB,6291FB,ff,IRDD Um Rm voltage Measurement Wxx_hv_iso_Um_mes,
+,7b6,24,39,.000976563,0,3,V,2291FC,6291FC,ff,Low Voltage Supply SUB CPU Wxx_raw_14v_mes,
+,7b6,31,31,1,0,0,,2291FD,6291FD,ff,VBATP2_CMD Bypass request Wbx_lv_sply_byp_req,0:Bypass OFF;1:Bypass ON
+,7b6,31,31,1,0,0,,2291FE,6291FE,ff,VBATP2_CMD Bypass value Wbx_lv_sply_byp_val,0:OPEN/OFF;1:CLOSE/ON
+,7b6,24,55,1,0,0,,229200,629200,4ff,DIDs supported in range 9201_9220,
+,7b6,31,31,1,0,0,,229201,629201,ff,S1_CMD Bypass request Wbx_hv_iso_switch_main_byp_req,0:Bypass OFF;1:Bypass ON
+,7b6,31,31,1,0,0,,229202,629202,ff,S1_CMD Bypass value Wbx_hv_iso_switch_main_byp_val,0:Switch OPENED;1:Switch CLOSED
+,7b6,31,31,1,0,0,,229203,629203,ff,S2_CMD Bypass request Wbx_hv_iso_switch_diag_byp_req,0:Bypass OFF;1:Bypass ON
+,7b6,31,31,1,0,0,,229204,629204,ff,S2_CMD Bypass value Wbx_hv_iso_switch_diag_byp_val,0:Switch OPENED;1:Switch CLOSED
+,7b6,31,31,1,0,0,,229205,629205,ff,P0VP_IRDD 0_60V IRDD Bypass request Wbx_hv_iso_supply_ctl_byp_req,0:Bypass OFF;1:Bypass ON
+,7b6,31,31,1,0,0,,229206,629206,ff,P0VP_IRDD 0 or 60V IRDD Bypass value Wbx_hv_iso_supply_ctl_byp_val,0:CC 60V OFF;1:CC 60V ON
+,7b6,31,31,1,0,0,,229207,629207,ff,P60VP_IRDD PWM Bypass request Wbx_hv_iso_supply_ena_byp_req,0:Bypass OFF;1:Bypass ON
+,7b6,31,31,1,0,0,,229208,629208,ff,P60VP_IRDD PWM Bypass value Wbx_hv_iso_supply_ena_byp_val,0:60V Supply OFF;1:60V Supply ON
+,7b6,24,31,1,40,0,°C,229209,629209,ff,Spare SCPU ANA input Hot Spot Temp Wxx_raw_hspt_temp,
+,7b6,24,39,.001,0,3,V,22920A,62920A,1ff,IRDD_MEA with P5VP_REF2 as ADC reference,
+,7b6,24,55,1,0,0,,229220,629220,4ff,DIDs supported in range 9221_9240,
+,7b6,24,55,1,0,0,,229240,629240,4ff,DIDs supported in range 9241_9260,
+,7b6,24,31,1,0,0,,229259,629259,ff,BMS mode,
+,7b6,24,31,1,0,0,,22925A,62925A,ff,Index of thermistor with maximal temperature,
+,7b6,24,31,1,0,0,,22925B,62925B,ff,Index of thermistor with minimal temperature,
+,7b6,30,31,1,0,0,,22925C,62925C,ff,Relay status internal value,
+,7b6,24,24,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.16,0:No failure;1:ALU
+,7b6,25,25,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.15,0:No failure;1:NOT USED
+,7b6,26,26,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.14,0:No failure;1:NOT USED
+,7b6,27,27,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.13,0:No failure;1:HVMUXseq
+,7b6,28,28,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.12,0:No failure;1:HVMUXSWOC
+,7b6,29,29,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.11,0:No failure;1:VPTAT
+,7b6,30,30,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.10,0:No failure;1:ADCL
+,7b6,31,31,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.09,0:No failure;1:ADCH
+,7b6,32,32,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.08,0:No failure;1:LSAMP
+,7b6,33,33,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.07,0:No failure;1:VAAdiag
+,7b6,34,34,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.06,0:No failure;1:RefV
+,7b6,35,35,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.05,0:No failure;1:OTemp
+,7b6,36,36,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.04,0:No failure;1:VHVHDRM
+,7b6,37,37,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.03,0:No failure;1:VHVOV
+,7b6,38,38,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.02,0:No failure;1:VHVUV
+,7b6,39,39,1,0,0,,22925D,62925D,ff,ASIC internal failure identifierWxx_assp1_tron_id.01,0:No failure;1:NOT USED
+,7b6,24,24,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.15,0:No Error;1:Data Flash Check Error
+,7b6,25,25,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.14,0:No Error;1:Deep-Stop Mode Reset
+,7b6,26,26,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.13,0:No Error;1:Power-Up Reset
+,7b6,27,27,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.12,0:No Error;1:Core Voltage Monitor (CVM) Reset
+,7b6,28,28,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.11,0:No Error;1:Low Voltage Indicator (LVI) Reset
+,7b6,29,29,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.10,0:No Error;1:Clock Monitor Reset 2
+,7b6,30,30,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.09,0:No Error;1:Clock Monitor Reset 1
+,7b6,31,31,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.08,0:No Error;1:Clock Monitor Reset 0
+,7b6,32,32,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.07,0:No Error;1:External Reset
+,7b6,33,33,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.06,0:No Error;1:Watchdog Reset 1
+,7b6,34,34,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.05,0:No Error;1:Watchdog Reset 0
+,7b6,35,35,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.04,0:No Error;1:Software Reset
+,7b6,36,36,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.03,0:No Error;1:Trap Error
+,7b6,37,37,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.02,0:No Error;1:Stack Check Error
+,7b6,38,38,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.01,0:No Error;1:R0M Check Error
+,7b6,39,39,1,0,0,,22925E,62925E,ff,CPU2 reset contextWxx_rst_chk_sum_id.00,0:No Error;1:RAM Check Error
+,7b6,31,31,1,0,0,,22925F,62925F,ff,SPI communication elementary failure Vbx_df_slv_com_2_bus,0:No loss communication detected;1:Loss of communcation detected
+,7b6,24,55,1,0,0,,229260,629260,4ff,DIDs supported in range 9261_9280,
+,7b6,24,47,1,0,0,',229261,629261,ff,Abs time since first ignition,
+,7b6,24,55,.01,-2147483648,2,km,229262,629262,1ff,Vehicle distance totalizer,
+,7b6,24,55,1,0,0,,229280,629280,4ff,DIDs supported in range 9281_92A0,
+,7b6,31,31,1,0,0,,229281,629281,ff,Sleep condition force,0:enabled;1:disabled
+,7b6,24,31,1,0,0,,229282,629282,ff,PCB traceability.01,
+,7b6,32,39,1,0,0,,229282,629282,ff,PCB traceability.02,
+,7b6,40,47,1,0,0,,229282,629282,ff,PCB traceability.03,
+,7b6,48,55,1,0,0,,229282,629282,ff,PCB traceability.04,
+,7b6,56,63,1,0,0,,229282,629282,ff,PCB traceability.05,
+,7b6,64,71,1,0,0,,229282,629282,ff,PCB traceability.06,
+,7b6,72,79,1,0,0,,229282,629282,ff,PCB traceability.07,
+,7b6,80,87,1,0,0,,229282,629282,ff,PCB traceability.08,
+,7b6,88,95,1,0,0,,229282,629282,ff,PCB traceability.09,
+,7b6,96,103,1,0,0,,229282,629282,ff,PCB traceability.10,
+,7b6,104,111,1,0,0,,229282,629282,ff,PCB traceability.11,
+,7b6,112,119,1,0,0,,229282,629282,ff,PCB traceability.12,
+,7b6,120,127,1,0,0,,229282,629282,ff,PCB traceability.13,
+,7b6,128,135,1,0,0,,229282,629282,ff,PCB traceability.14,
+,7b6,136,143,1,0,0,,229282,629282,ff,PCB traceability.15,
+,7b6,144,151,1,0,0,,229282,629282,ff,PCB traceability.16,
+,7b6,152,159,1,0,0,,229282,629282,ff,PCB traceability.17,
+,7b6,160,167,1,0,0,,229282,629282,ff,PCB traceability.18,
+,7b6,168,175,1,0,0,,229282,629282,ff,PCB traceability.19,
+,7b6,176,183,1,0,0,,229282,629282,ff,PCB traceability.20,
+,7b6,184,191,1,0,0,,229282,629282,ff,PCB traceability.21,
+,7b6,192,199,1,0,0,,229282,629282,ff,PCB traceability.22,
+,7b6,200,207,1,0,0,,229282,629282,ff,PCB traceability.23,
+,7b6,208,215,1,0,0,,229282,629282,ff,PCB traceability.24,
+,7b6,216,223,1,0,0,,229282,629282,ff,PCB traceability.25,
+,7b6,224,231,1,0,0,,229282,629282,ff,PCB traceability.26,
+,7b6,232,239,1,0,0,,229282,629282,ff,PCB traceability.27,
+,7b6,240,247,1,0,0,,229282,629282,ff,PCB traceability.28,
+,7b6,248,255,1,0,0,,229282,629282,ff,PCB traceability.29,
+,7b6,256,263,1,0,0,,229282,629282,ff,PCB traceability.30,
+,7b6,264,271,1,0,0,,229282,629282,ff,PCB traceability.31,
+,7b6,24,55,1,0,0,,2292A0,6292A0,4ff,DIDs supported in range 92A1_92C0,
+,7b6,24,55,1,0,0,,2292C0,6292C0,4ff,DIDs supported in range 92C1_92E0,
+,7b6,24,55,1,0,0,,2292,6292,4ff,DIDs supported in range 92E1_9300,
+,7b6,24,55,1,0,0,,229300,629300,4ff,DIDs supported in range 9301_9320,
+,7b6,24,55,1,0,0,,229320,629320,4ff,DIDs supported in range 9321_9340,
+,7b6,24,55,1,0,0,,229340,629340,4ff,DIDs supported in range 9341_9360,
+,7b6,24,55,1,0,0,,229360,629360,4ff,DIDs supported in range 9361_9380,
+,7b6,24,55,1,0,0,,229380,629380,4ff,DIDs supported in range 9381_93A0,
+,7b6,24,55,1,0,0,,2293A0,6293A0,4ff,DIDs supported in range 93A1_93C0,
+,7b6,24,55,1,0,0,,2293C0,6293C0,4ff,DIDs supported in range 93C1_93E0,
+,7b6,24,55,1,0,0,,2293,6293,4ff,DIDs supported in range 93E1_9400,
+,7b6,24,55,1,0,0,,229400,629400,4ff,DIDs supported in range 9401_9420,
+,7b6,24,55,1,0,0,,229420,629420,4ff,DIDs supported in range 9421_9440,
+,7b6,24,55,1,0,0,,229440,629440,4ff,DIDs supported in range 9441_9460,
+,7b6,24,55,1,0,0,,229460,629460,4ff,DIDs supported in range 9461_9480,
+,7b6,24,55,1,0,0,,229480,629480,4ff,DIDs supported in range 9481_94A0,
+,7b6,24,55,1,0,0,,2294A0,6294A0,4ff,DIDs supported in range 94A1_94C0,
+,7b6,24,55,1,0,0,,2294C0,6294C0,4ff,DIDs supported in range 94C1_94E0,
+,7b6,24,55,1,0,0,,2294,6294,4ff,DIDs supported in range 94E1_9500,
+,7b6,24,55,1,0,0,,229500,629500,4ff,DIDs supported in range 9501_9520,
+,7b6,24,55,1,0,0,,229520,629520,4ff,DIDs supported in range 9521_9540,
+,7b6,24,55,1,0,0,,229540,629540,4ff,DIDs supported in range 9541_9560,
+,7b6,24,55,1,0,0,,229560,629560,4ff,DIDs supported in range 9561_9580,
+,7b6,24,55,1,0,0,,229580,629580,4ff,DIDs supported in range 9581_95A0,
+,7b6,24,55,1,0,0,,2295A0,6295A0,4ff,DIDs supported in range 95A1_95C0,
+,7b6,24,55,1,0,0,,2295C0,6295C0,4ff,DIDs supported in range 95C1_95E0,
+,7b6,24,55,1,0,0,,2295,6295,4ff,DIDs supported in range 95E1_9600,
+,7b6,24,55,1,0,0,,229600,629600,4ff,DIDs supported in range 9601_9620,
+,7b6,24,55,1,0,0,,229620,629620,4ff,DIDs supported in range 9621_9640,
+,7b6,24,55,1,0,0,,229640,629640,4ff,DIDs supported in range 9641_9660,
+,7b6,24,55,1,0,0,,229660,629660,4ff,DIDs supported in range 9661_9680,
+,7b6,24,55,1,0,0,,229680,629680,4ff,DIDs supported in range 9681_96A0,
+,7b6,24,55,1,0,0,,2296A0,6296A0,4ff,DIDs supported in range 96A1_96C0,
+,7b6,24,55,1,0,0,,2296C0,6296C0,4ff,DIDs supported in range 96C1_96E0,
+,7b6,24,55,1,0,0,,2296,6296,4ff,DIDs supported in range 96E1_9700,
+,7b6,24,55,1,0,0,,229700,629700,4ff,DIDs supported in range 9701_9720,
+,7b6,24,55,1,0,0,,229720,629720,4ff,DIDs supported in range 9721_9740,
+,7b6,24,55,1,0,0,,229740,629740,4ff,DIDs supported in range 9741_9760,
+,7b6,24,55,1,0,0,,229760,629760,4ff,DIDs supported in range 9761_9780,
+,7b6,24,55,1,0,0,,229780,629780,4ff,DIDs supported in range 9781_97A0,
+,7b6,24,55,1,0,0,,2297A0,6297A0,4ff,DIDs supported in range 97A1_97C0,
+,7b6,24,55,1,0,0,,2297C0,6297C0,4ff,DIDs supported in range 97C1_97E0,
+,7b6,24,55,1,0,0,,2297,6297,4ff,DIDs supported in range 97E1_9800,
+,7b6,24,55,1,0,0,,229800,629800,4ff,DIDs supported in range 9801_9820,
+,7b6,24,55,1,0,0,,229820,629820,4ff,DIDs supported in range 9821_9840,
+,7b6,24,55,1,0,0,,229840,629840,4ff,DIDs supported in range 9841_9860,
+,7b6,24,55,1,0,0,,229860,629860,4ff,DIDs supported in range 9861_9880,
+,7b6,24,55,1,0,0,,229880,629880,4ff,DIDs supported in range 9881_98A0,
+,7b6,24,55,1,0,0,,2298A0,6298A0,4ff,DIDs supported in range 98A1_98C0,
+,7b6,24,55,1,0,0,,2298C0,6298C0,4ff,DIDs supported in range 98C1_98E0,
+,7b6,24,55,1,0,0,,2298,6298,4ff,DIDs supported in range 98E1_9900,
+,7b6,24,55,1,0,0,,229900,629900,4ff,DIDs supported in range 9901_9920,
+,7b6,24,55,1,0,0,,229920,629920,4ff,DIDs supported in range 9921_9940,
+,7b6,24,55,1,0,0,,229940,629940,4ff,DIDs supported in range 9941_9960,
+,7b6,24,55,1,0,0,,229960,629960,4ff,DIDs supported in range 9961_9980,
+,7b6,24,55,1,0,0,,229980,629980,4ff,DIDs supported in range 9981_99A0,
+,7b6,24,55,1,0,0,,2299A0,6299A0,4ff,DIDs supported in range 99A1_99C0,
+,7b6,24,55,1,0,0,,2299C0,6299C0,4ff,DIDs supported in range 99C1_99E0,
+,7b6,24,55,1,0,0,,2299,6299,4ff,DIDs supported in range 99E1_9A00,
+,7b6,24,55,1,0,0,,229A00,629A00,4ff,DIDs supported in range 9A01_9A20,
+,7b6,24,55,1,0,0,,229A20,629A20,4ff,DIDs supported in range 9A21_9A40,
+,7b6,24,55,1,0,0,,229A40,629A40,4ff,DIDs supported in range 9A41_9A60,
+,7b6,24,55,1,0,0,,229A60,629A60,4ff,DIDs supported in range 9A61_9A80,
+,7b6,24,55,1,0,0,,229A80,629A80,4ff,DIDs supported in range 9A81_9AA0,
+,7b6,24,55,1,0,0,,229AA0,629AA0,4ff,DIDs supported in range 9AA1_9AC0,
+,7b6,24,55,1,0,0,,229AC0,629AC0,4ff,DIDs supported in range 9AC1_9AE0,
+,7b6,24,55,1,0,0,,229AE0,629AE0,4ff,DIDs supported in range 9AE1_9B00,
+,7b6,24,55,1,0,0,,229B00,629B00,4ff,DIDs supported in range 9B01_9B20,
+,7b6,24,55,1,0,0,,229B20,629B20,4ff,DIDs supported in range 9B21_9B40,
+,7b6,24,55,1,0,0,,229B40,629B40,4ff,DIDs supported in range 9B41_9B60,
+,7b6,24,55,1,0,0,,229B60,629B60,4ff,DIDs supported in range 9B61_9B80,
+,7b6,24,55,1,0,0,,229B80,629B80,4ff,DIDs supported in range 9B81_9BA0,
+,7b6,24,55,1,0,0,,229BA0,629BA0,4ff,DIDs supported in range 9BA1_9BC0,
+,7b6,24,55,1,0,0,,229BC0,629BC0,4ff,DIDs supported in range 9BC1_9BE0,
+,7b6,24,55,1,0,0,,229BE0,629BE0,4ff,DIDs supported in range 9BE1_9C00,
+,7b6,24,55,1,0,0,,229C00,629C00,4ff,DIDs supported in range 9C01_9C20,
+,7b6,24,55,1,0,0,,229C20,629C20,4ff,DIDs supported in range 9C21_9C40,
+,7b6,24,55,1,0,0,,229C40,629C40,4ff,DIDs supported in range 9C41_9C60,
+,7b6,24,55,1,0,0,,229C60,629C60,4ff,DIDs supported in range 9C61_9C80,
+,7b6,24,55,1,0,0,,229C80,629C80,4ff,DIDs supported in range 9C81_9CA0,
+,7b6,24,55,1,0,0,,229CA0,629CA0,4ff,DIDs supported in range 9CA1_9CC0,
+,7b6,24,55,1,0,0,,229CC0,629CC0,4ff,DIDs supported in range 9CC1_9CE0,
+,7b6,24,55,1,0,0,,229CE0,629CE0,4ff,DIDs supported in range 9CE1_9D00,
+,7b6,24,55,1,0,0,,229D00,629D00,4ff,DIDs supported in range 9D01_9D20,
+,7b6,24,55,1,0,0,,229D20,629D20,4ff,DIDs supported in range 9D21_9D40,
+,7b6,24,55,1,0,0,,229D40,629D40,4ff,DIDs supported in range 9D41_9D60,
+,7b6,24,55,1,0,0,,229D60,629D60,4ff,DIDs supported in range 9D61_9D80,
+,7b6,24,55,1,0,0,,229D80,629D80,4ff,DIDs supported in range 9D81_9DA0,
+,7b6,24,55,1,0,0,,229DA0,629DA0,4ff,DIDs supported in range 9DA1_9DC0,
+,7b6,24,55,1,0,0,,229DC0,629DC0,4ff,DIDs supported in range 9DC1_9DE0,
+,7b6,24,55,1,0,0,,229DE0,629DE0,4ff,DIDs supported in range 9DE1_9E00,
+,7b6,24,55,1,0,0,,229,629,4ff,DIDs supported in range 9E01_9E20,
+,7b6,24,55,1,0,0,,229EA0,629EA0,4ff,DIDs supported in range 9EA1_9EC0,
+,7b6,24,55,1,0,0,,229EC0,629EC0,4ff,DIDs supported in range 9EC1_9EE0,
+,7b6,24,55,1,0,0,,229EE0,629EE0,4ff,DIDs supported in range 9EE1_9F00,
+,7b6,24,55,1,0,0,,229F00,629F00,4ff,DIDs supported in range 9F01_9F20,
+,7b6,24,55,1,0,0,,229F20,629F20,4ff,DIDs supported in range 9F21_9F40,
+,7b6,24,55,1,0,0,,229F40,629F40,4ff,DIDs supported in range 9F41_9F60,
+,7b6,24,55,1,0,0,,229F60,629F60,4ff,DIDs supported in range 9F61_9F80,
+,7b6,24,55,1,0,0,,229F80,629F80,4ff,DIDs supported in range 9F81_9FA0,
+,7b6,24,55,1,0,0,,229FA0,629FA0,4ff,DIDs supported in range 9FA1_9FC0,
+,7b6,24,55,1,0,0,,229FC0,629FC0,4ff,DIDs supported in range 9FC1_9FE0,
+,7b6,24,55,1,0,0,,229FE0,629FE0,4ff,DIDs supported in range 9FE1_A000,
+,7b6,24,55,1,0,0,,22F000,62F000,4ff,DIDs supported in range F001_F020,
+,7b6,24,31,1,0,0,,22F010,62F010,ff,Fingerprint information.01,
+,7b6,32,39,1,0,0,,22F010,62F010,ff,Fingerprint information.02,
+,7b6,40,47,1,0,0,,22F010,62F010,ff,Fingerprint information.03,
+,7b6,48,55,1,0,0,,22F010,62F010,ff,Fingerprint information.04,
+,7b6,56,63,1,0,0,,22F010,62F010,ff,Fingerprint information.05,
+,7b6,64,71,1,0,0,,22F010,62F010,ff,Fingerprint information.06,
+,7b6,72,79,1,0,0,,22F010,62F010,ff,Fingerprint information.07,
+,7b6,80,87,1,0,0,,22F010,62F010,ff,Fingerprint information.08,
+,7b6,88,103,1,0,0,,22F010,62F010,ff,Fingerprint information.09,
+,7b6,96,103,1,0,0,,22F010,62F010,ff,Fingerprint information.10,
+,7b6,104,111,1,0,0,,22F010,62F010,ff,Fingerprint information.11,
+,7b6,112,119,1,0,0,,22F010,62F010,ff,Fingerprint information.12,
+,7b6,120,127,1,0,0,,22F010,62F010,ff,Fingerprint information.13,
+,7b6,128,135,1,0,0,,22F010,62F010,ff,Fingerprint information.14,
+,7b6,136,143,1,0,0,,22F010,62F010,ff,Fingerprint information.15,
+,7b6,144,151,1,0,0,,22F010,62F010,ff,Fingerprint information.16,
+,7b6,24,103,1,0,0,,22F012,62F012,2ff,OperationalReference Ref C if available or Ref B then 0 if no Ref,
+,7b6,24,55,1,0,0,,22F020,62F020,4ff,DIDs supported in range F021_F040,
+,7b6,24,39,1,0,0,,22F0A0,62F0A0,4ff,FOTA Status,
+,7b6,24,31,1,0,0,,22F0A5,62F0A5,4ff,FOTA cancel counter,
+,7b6,24,55,1,0,0,,22F100,62F100,4ff,DIDs supported in range F101_F120,
+,7b6,24,103,1,0,0,,22F111,62F111,2ff,VehicleManufacturerECUHardwareNumber_DAI,
+,7b6,24,55,1,0,0,,22F120,62F120,4ff,DIDs supported in range F121_F140,
+,7b6,24,183,1,0,0,,22F121,62F121,2ff,VehicleManufacturerECUSoftwareNumber_DAI,
+,7b6,24,39,1,0,0,,22F180,62F180,2ff,Boot VersionbootSoftwareIdentification,
+,7b6,24,39,1,0,0,,22F182,62F182,4ff,Calibration number,
+,7b6,24,103,1,0,0,,22F187,62F187,2ff,vehicleManufacturerSparePartNumber,
+,7b6,24,103,1,0,0,,22F188,62F188,2ff,vehicleManufacturerECUSoftwareNumber,
+,7b6,24,63,1,0,0,,22F18A,62F18A,2ff,systemSupplierIdentifier,
+,7b6,24,183,1,0,0,,22F18C,62F18C,2ff,ECUSerialNumber,
+,7b6,24,103,1,0,0,,22F191,62F191,2ff,vehicleManufacturerECUHardwareNumber,
+,7b6,24,55,1,0,0,,22F194,62F194,2ff,systemSupplierECUSoftwareNumber,
+,7b6,24,55,1,0,0,,22F195,62F195,2ff,systemSupplierECUSoftwareVersionNumber,
+,7b6,24,103,1,0,0,,22F196,62F196,2ff,OBD Approval,
+,7b6,24,279,1,0,0,,22F197,62F197,2ff,OBD EngineType,
+,7b6,24,31,1,0,0,,22F1A0,62F1A0,4ff,diagnosticVersion,
+,7b6,24,103,1,0,0,,22F1A1,62F1A1,2ff,Vehicle Manufacturer Spare Part Number Nissan,
+,7b6,24,39,1,0,0,,22FD00,62FD00,4ff,Supplier reserved,
+,7b6,24,39,1,0,0,,22FD01,62FD01,4ff,Supplier reserved1,
+,7b6,24,39,1,0,0,,22FEFF,62FEFF,4ff,Supplier componant reset,
+,7b6,0,0,1,0,0,,3,7,ff,TesterPresent.WithResponse,

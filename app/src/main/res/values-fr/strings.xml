@@ -561,4 +561,13 @@
     <string name="label_ToastLevelElm">Périphérique</string>
     <string name="label_ToastLevelElmCar">Tous</string>
     <string name="label_Info">Informations</string>
+    <string name="about">About</string>
+    <string name="toast_WaitingSettings">"Arrêtez Bluetooth. Les paramètres sont en cours de chargement. S'il vous plaît, attendez… "</string>
+    <string name="toast_PleaseUseTop">"Veuillez utiliser les boutons en haut pour quitter les paramètres... "</string>
+    <string name="title_activity_ZE50Test">ZE50 test</string>
+    <string name="label_ThermalComfortPower">Consommation électrique confort thermique (W)</string>
+    <string name="label_auxbatcunder">Courant sous charge</string>
+    <string name="label_auxbatvunder">Tension sous charge</string>
+    <string name="label_auxbatcurr">Courant</string>
+    <string name="button_summary">Tableau</string>
 </resources>

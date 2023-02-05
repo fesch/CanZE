@@ -25,6 +25,7 @@ import android.os.Bundle;
 
 import lu.fisch.canze.R;
 import lu.fisch.canze.classes.Sid;
+import lu.fisch.canze.devices.Device;
 import lu.fisch.canze.interfaces.DebugListener;
 
 public class LeakCurrentsActivity extends CanzeActivity implements DebugListener {
@@ -46,8 +47,8 @@ public class LeakCurrentsActivity extends CanzeActivity implements DebugListener
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        addField(Sid.BcbTesterInit, lu.fisch.canze.devices.Device.INTERVAL_ONCE);
-        addField(Sid.BcbTesterAwake, 1500);
+            addField(Sid.BcbTesterInit, Device.INTERVAL_ONCE);
+            addField(Sid.BcbTesterAwake, 1500);
     }
 
 }

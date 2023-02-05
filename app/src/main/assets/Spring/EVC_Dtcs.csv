@@ -1,0 +1,188 @@
+10,Stop light relay command
+11,DF152 REVERSING LAMP CIRCUIT
+20,DF015 SERVO PRESSURE SENSOR CIRCUITS
+21,Vaccum Sensor pressure 2
+22,DF003 BRAKE SERVO CIRCUIT LEAK
+23,DF009 VACUUM PUMP AGING COUNTER LIMIT 2
+24,vacuum pump electric
+26,DF013 BRAKE PEDAL POSITION SIGNAL
+27,Mastervac sensor power supply
+60,DF063 DRIVER'S DOOR SWITCH
+62,DF117 CHARGING PORT LATCH
+63,DF115 CARGO HATCH
+70,Shift Lock electrical control circuit
+71,gear lever
+72,Gear lever sensor - track 1
+73,Gear lever sensor - track 2
+74,Incoherence detection position park on levier between info du CMF and info levier reçue on le CAN
+80,DF095 CHARGING PLUG
+81,DF053 CHARGING PLUG
+90,Eco mode switch
+101,Thermistor Heater 1
+102,Thermistor Heater 2
+103,Thermistor Heater 3
+104,Thermistor Heater 4
+105,DF085 INTERIOR HEATER
+106,Heat water temperature sensor
+120,Heater electrical command circuit
+121,Heater request relay electrical command circuit
+130,Pulser relay power control circuit
+140,Feedback Heater Water pump of passenger compartment
+141,Heater water pump of passenger compartment
+150,High Voltage Supply of the Air Conditioning - Side Compressor
+151,Low Voltage Supply of the Air Conditioning - Side Computer
+152,DF086 COMPRESSOR AIR CONDITIONING
+153,Inverter of the Air Conditioning
+154,Electric motor of air conditioning
+156,Evaporator sensor for AC
+160,Heater Led control circuit
+161,Self preconditioning relay
+170,Pulser power supply relay
+171,DF067 FAN
+180,Battery conditioning system (AC, CTP),,
+181,Battery CTP/THP relay 1
+182,Battery CTP/THP relay 2
+183,Battery CTP/THP relay 3
+184,Battery HVAC relay electrovalve 1
+185,Battery HVAC relay electrovalve 2
+186,Battery HVAC fan out (command)
+187,Battery HVAC temperature sensor
+188,battery blower rotation speed feedback line
+225,DF036 RAIL 1 PEDAL POTENTIOMETER CIRCUIT
+226,DF037 ACCELERATOR PEDAL POSITION
+301,Underhood switch module (USM)
+302,DF088 COMPRESSOR AIR CONDITIONING
+303,DF187 LOCAL DATA NETWORK
+304,power electronic block
+305,DF071 COMMUNICATION CAN
+306,DF149 CONTROL UNIT
+307,Power electronic block data
+308,DF469 BMS SECURITY NOT RECOGNIZED BY HEVC
+401,power electronic block 01
+402,14v static converter in default (from CAN) 01
+403,EM inverter in default (from CAN) 01
+404,14v static converter in default (from CAN)
+405,DF089 STATIC CONVERTER 14V
+406,EM inverter in default (from CAN)
+407,DCDC C class default
+410,Battery Charger Block in Default (from CAN) 01
+411,DF042 COMMUNICATION CAN
+412,Battery Charger Bloc - High Voltage Side (from CAN)
+413,Main Voltage Supply of the Battery Charger Block (from CAN)
+414,DF076 ELECTRICAL SYSTEM CIRCUIT
+415,DF139 PEB/UPS MULTIPLEX TRANSMISSION MISSING
+420,DF610 MULTIPLEX SIGNAL BMS NOT PRESENT
+430,comfort interlock
+431,DF161 CHARGING PORT LATCH
+432,DF022 SAFETY LOCK
+433,DF023 HEATING RESISTANT LOCK
+434,DF024 AIR CONDITIONING COMPRESSOR LOCK
+435,DF075 SAFETY LOCK
+440,DF044 INSULATION
+441,DF062 INSULATION
+442,DF150 INSULATION
+443,Insulation Clim
+450,Power latch main relay operating
+460,Engine Coolant Temperature Sensor
+461,Cooling valve 1 control circuit
+462,DF026 WATER PUMP REGULATION WHILE DRIVING
+463,DF027 WATER PUMP CONTROL WHILE DRIVING
+464,Feedback load mode water pump
+465,Load mode water pump
+467,PAC box
+468,Peltier fan request electrical command circuit
+469,Peltier external fan
+470,DF030 DRIVE BATTERY TRANSMITTER CAN SIGNAL
+471,DF109 TEMP. DRIVE BATTERY COOLING CIRCUIT
+472,Cooling valve 2 control circuit
+473,AC - Heat pump circuit temperature sensor 1 (managed by PAC system)
+474,AC - Heat pump circuit temperature sensor 2 (managed by PAC system)
+475,AC - Heat pump circuit valve 1 (managed by PAC system)
+476,AC - Heat pump circuit Valve 2 (managed by PAC system)
+480,DF031 DRIVE BATTERY RELAY CIRCUIT
+481,DF055 DRIVE BATTERY RELAY CIRCUIT
+482,DF056 DRIVE BATTERY RELAY CIRCUIT
+483,DF057 DRIVE BATTERY RELAY CIRCUIT
+485,DF058 DRIVE BATTERY RELAY CIRCUIT
+486,DF068 DRIVE BATTERY RELAY CIRCUIT
+490,Battery high voltage lock
+491,Battery high voltage lock loop 1
+492,Battery high voltage lock loop 2
+495,DF066 TEMPERATURE SENSOR CAN SIGNAL
+500,No ETS Sleeping that leads to a flat lead 12V battery
+502,Battery temperature sensors
+503,Mastervac Voltage supply
+504,DF111 CONFORMITY INFORMATION BRAKE CONTACT
+510,State of function (SOF) of 14V battery
+511,14V Battery current sensor
+512,pulse box
+513,14V Battery heat relay
+525,DF020 MONITORING INPUTS REGULATOR FUNCTION
+530,DF079 COOLANT PRESSURE SENSOR CIRCUIT
+560,DF124 EMPTY 12V BATTERY
+564,DF016 REGULATOR/SPEED LIMITER FUNCTION
+571,Closed Brake Sensor
+574,Cruise Control/Speed ​​Limiter - Displayed Speed
+575,DF017 CRUISE CONTROL BUTTON  
+601,DF032 PERFORMANCE ELECTRIC MOTOR
+606,DF045 CONTROL UNIT
+610,DF046 ENGINE TORQUE INFORMATION
+641,DF047 SUPPLY VOLTAGE NO. 1 THE GIVER
+651,DF048 SUPPLY VOLTAGE NO. 2 THE GIVER
+657,DF178 POWER RELAY CONTROL CIRCUIT
+703,DF049 INFORMATION BRAKE LIGHT SWITCH
+833,Beginning of Clutch Pedal Move Switch
+1525,DF018 MATCH MULTIPLEX SIGNALS CRUISE CONTROL
+1654,Communication with Aribag Control module
+1655,airbag data further to a crash
+2120,DF050 RAIL 2 PEDAL POTENTIOMETER CIRCUIT
+030A,DF119 COMMUNICATION CAN
+042F,DF140 LOCK BCB
+043F,DF192 LOCK
+046A,Peltier internal fan
+046B,Feedback from Peltier external fan
+046C,Feedback from Peltier internal fan
+046D,Peltier request relay electrical command circuit
+046E,Peltier temperature
+047E,Peltier Cells
+04A0,DF208 DRIVE BATTERY CHARGE
+04A1,Power Line Gateway
+04B1,DF110 CIRCUIT TEMPERATURE SENSOR
+04B2,DF210 TEMPERATURE SENSOR CIRCUIT CHARGER 1
+04B3,DF167 LEAKAGE CURRENT
+04B4,DF142 CIRCUIT. CONTACT SW. LEVER POSITION
+04B5,DF105 TEMP. DRIVE BATTERY COOLING CIRCUIT
+04B6,DF087 HEATER CONNECTION
+04B7,MVAC leakage detection with pump off
+04B8,MVAC leakage detection with pump on
+04B9,MVAC low level differential pressure
+04BA,Mastervac vacuum pump command open circuit
+04BB,MVAC pump life time G1 fail
+04BC,MVAC pump life time G2 fail
+04BD,DC charging relays
+04BE,Pressure Sensor 1 command
+04BF,Pressure sensor 1 fault
+04C0,Pressure sensor 2 command
+04C1,Pressure sensor 2 fault
+04C2,Incoherecy between operating type request send by EVC and Operating type status received from BMS
+04C5,Open circuit of air flaps_ Short circuit to ground of air flaps_ Short circuit of air flaps
+060A,DF128 PATH CONTROL
+060B,DF060 CONTROL UNIT
+060C,DF209 ESP FUNCTION
+160C,DF061 CONTROL UNIT
+C103,Communication With Gear Shift Control Module (Shifter)
+C121,Communication With ABS/ESP Control Module (safety)
+C122,Communication With ABS/ESP Control Module
+C123,Front Collision Warning
+C129,Communication With Brake System Control Module
+C140,Communication With Body Control Module
+C146,Communication With Gateway 'A' (BIC)
+C155,Communication With Instrument Panel Cluster (IPC) Control Module
+C164,Communication With Climate Control ECU Module
+C198,Communication With Telematic Control Module
+C199,Communication with Energy Management Module
+C19A,Communication with CSHV Unit (Dedicated for Crash when APC is off for daimler application)
+C19B,Communication with LBC8 Unit
+C19C,Safety mode 1 received from BMS
+C415,Invalid Data Received From Anti-Lock Brake System Control Module
+C418,Invalid data received from uncoupled brake pedal control module 

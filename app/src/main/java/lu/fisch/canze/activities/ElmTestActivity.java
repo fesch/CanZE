@@ -80,7 +80,14 @@ public class ElmTestActivity extends CanzeActivity {
         appendResult(R.string.message_ExpectedResult);
 
         appendResult(R.string.message_PrepIsoTp);
+        //Dacia Spring does not have this field id in TDB, but a similar one in EVC
+        // ,7ec,144,159,1,0,0,,2180,6180,4ff,EditionNumber,,,
+        // ,763,144,159,1,0,0,,2180,6180,4ff,EditionNumber
         field = Fields.getInstance().getBySID("763.6180.144");
+        if (MainActivity.isSpring()) {
+            field = Fields.getInstance().getBySID("7ec.6180.144");
+        }
+
         if (field == null) {
             appendResult(R.string.message_FieldNotExists);
             return;

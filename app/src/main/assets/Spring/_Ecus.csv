@@ -1,0 +1,20 @@
+# Descriptive name, Renault ID, Network (s), From ID, To ID, Mnemonic, Alias(ses), GetDtc responseID (s),  startDiag, Session required
+# If more than one, semicolon separated
+Airbag,756,V,772,752,AIRBAG,-,5902b9,5003,0
+Instrument panel,247,V,763,743,TDB,-,5902ff,5003,0
+Energy Management,1337,V,76d,74d,EMM,-,5902ff,5003,0
+ESP,1094,V,760,740,ESP,-,590209,5003,0
+Electric Vehicle Controller EVC,946,V;E,7ec,7e4,EVC,-,5902af,50c0,0
+Vehicle Sound for Pedestrians,1657,V,761,73f,VSP,-,5902b9,5003,0
+Radio,261,V,732,712,RADIO,-,5902ff,50c0,0
+Nav,261,V,732,712,NAV,-,5902ff,50c0,0
+Power Electronics Block PEB,2092,E,77e,75a,PEB,-,5902ff,5003,0
+Electrical Power Steering,1232,V,762,742,EPS,-,5902ff,5003,0
+Body Control Module,645,V,765,745,UCH,-,5902ff,50c0,0
+DC-DC,2092,E,776,756,DCDC,-,5902ff,5003,0
+Front Radar,2373,V,77d,75d,RADAR,-,5902ff,5003,0
+VirtualField computer,9999,V,800,800,VFC,-,,50c0,0
+Free fields,9998,V,801,801,FFC,-,,50c0,0
+Telematics Control Unit,2152,V,7da,7ca,TCU,-,5902ff,5003,0
+Lithium Battery Controller,938,E,7bb,79b,LBC,-,5902ff,5003,0
+Lithium Battery Controller 2,938,E,7b6,796,LBC2,-,5902ff,5003,0

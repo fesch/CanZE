@@ -176,6 +176,18 @@ public class Fields {
                 }
             });
 
+        }
+        else if (MainActivity.isSpring()) {
+            addVirtualFieldCommon("6101", "Nm", Sid.MeanEffectiveTorque, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(Sid.MeanEffectiveTorque)) == null)
+                        return Double.NaN;
+                    return -privateField.getValue();
+                }
+            });
+
         } else {
             addVirtualFieldCommon("6101", "Nm", Sid.DriverBrakeWheel_Torque_Request + ";" + Sid.ElecBrakeWheelsTorqueApplied + ";" + Sid.Coasting_Torque, new VirtualFieldAction() {
                 @Override
@@ -199,7 +211,7 @@ public class Fields {
 
     private void addVirtualFieldElecBrakeTorque() {
 
-        if (MainActivity.altFieldsMode || MainActivity.isPh2()) {
+        if (MainActivity.altFieldsMode || MainActivity.isPh2() || MainActivity.isSpring()) {
             addVirtualFieldCommon("610a", "Nm", Sid.PEBTorque, new VirtualFieldAction() {
                 @Override
                 public double updateValue(HashMap<String, Field> dependantFields) {
@@ -230,7 +242,7 @@ public class Fields {
 
     private void addVirtualFieldTotalPositiveTorque() {
 
-        if (MainActivity.altFieldsMode || MainActivity.isPh2()) {
+        if (MainActivity.altFieldsMode || MainActivity.isPh2() || MainActivity.isSpring()) {
             addVirtualFieldCommon("610b", "Nm", Sid.PEBTorque, new VirtualFieldAction() {
                 @Override
                 public double updateValue(HashMap<String, Field> dependantFields) {
@@ -273,7 +285,26 @@ public class Fields {
                 }
             });
 
-        } else {
+        }
+        else
+        if (MainActivity.isSpring()) {
+            addVirtualFieldCommon("610c", "Nm", Sid.PEBTorque + ";" + Sid.MeanEffectiveTorque, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(Sid.MeanEffectiveTorque)) == null)
+                        return Double.NaN;
+                    double hydraulicTorqueRequest = privateField.getValue();
+                    if ((privateField = dependantFields.get(Sid.PEBTorque)) == null)
+                        return Double.NaN;
+                    double pebTorque = privateField.getValue();
+                    return pebTorque <= 0 ? -hydraulicTorqueRequest - pebTorque * MainActivity.reduction : -hydraulicTorqueRequest;
+                }
+            });
+
+        }
+
+        else {
             addVirtualFieldCommon("610c", "Nm", Sid.DriverBrakeWheel_Torque_Request, new VirtualFieldAction() {
                 @Override
                 public double updateValue(HashMap<String, Field> dependantFields) {
@@ -383,7 +414,28 @@ public class Fields {
                 }
             });
 
-        } else if (MainActivity.altFieldsMode) {
+        }
+        else if (MainActivity.isSpring()) {
+            addVirtualFieldCommon("6105", 1, "°C", Sid.OHS_ClimTempDisplay, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(Sid.OHS_ClimTempDisplay)) == null) return Double.NaN;
+                    double value = privateField.getValue();
+                    if (value == 0) {
+                        return Double.NaN;
+                    } else if (value == 4) {
+                        return -10.0;
+                    } else if (value == 5) {
+                        return 40.0;
+                    }
+                    return value;
+                }
+            });
+
+        }
+
+        else if (MainActivity.altFieldsMode) {
             addVirtualFieldCommon("6105", "°C", Sid.OH_ClimTempDisplay, new VirtualFieldAction() {
                 @Override
                 public double updateValue(HashMap<String, Field> dependantFields) {
@@ -556,6 +608,20 @@ public class Fields {
                 public double updateValue(HashMap<String, Field> dependantFields) {
                     Field privateField;
                     if ((privateField = dependantFields.get(Sid.ACPilotDutyCycle)) == null)
+                        return Double.NaN;
+                    double dutyCycle = privateField.getValue();
+                    return dutyCycle < 80.0 ? dutyCycle * 0.6 : (dutyCycle - 64.0) * 2.5;
+                }
+            });
+
+        }
+        else
+        if (MainActivity.isSpring()) {
+            addVirtualFieldCommon("610d", "A", Sid.ACSPilotDutyCycle, new VirtualFieldAction() {
+                @Override
+                public double updateValue(HashMap<String, Field> dependantFields) {
+                    Field privateField;
+                    if ((privateField = dependantFields.get(Sid.ACSPilotDutyCycle)) == null)
                         return Double.NaN;
                     double dutyCycle = privateField.getValue();
                     return dutyCycle < 80.0 ? dutyCycle * 0.6 : (dutyCycle - 64.0) * 2.5;

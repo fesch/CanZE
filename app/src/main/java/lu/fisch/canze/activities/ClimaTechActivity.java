@@ -42,27 +42,56 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
     private final String[] climate_Status = MainActivity.getStringList(MainActivity.isPh2() ? R.array.list_ClimateStatusPh2
                                                                                             : R.array.list_ClimateStatus);
     private final String[] ptc_Relay = MainActivity.getStringList(R.array.list_PtcRelay);
+    private final String[] AC_Status = MainActivity.getStringList(R.array.list_ACStatus);
+    private final String[] ACAuth = MainActivity.getStringList(R.array.list_ACAuth);
+    private final String[] ACError = MainActivity.getStringList(R.array.list_ACError);
+    private final String[] ETSState = MainActivity.getStringList(R.array.list_ETSState);
+    private final String[] ACInterlock = MainActivity.getStringList(R.array.list_ACInterlock);
+    private final String[] FanActivation = MainActivity.getStringList(R.array.list_FanActivation);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_climatech);
+        if (MainActivity.isSpring()) {
+            setContentView(R.layout.activity_climatechspring);
+        } else
+        {
+            setContentView(R.layout.activity_climatech);
+        }
     }
 
     protected void initListeners() {
         MainActivity.getInstance().setDebugListener(this);
-        //if (MainActivity.isZOE()) {
-            addField(Sid.EngineFanSpeed, 0);
-            // addListener(Sid.ChargingPower);
-            addField(Sid.HvCoolingState, 0);
-            addField(Sid.HvEvaporationTemp, 10000);
-            addField(Sid.Pressure, 1000);
-            addField(Sid.BatteryConditioningMode, 0);
-            addField(Sid.ClimaLoopMode, 0);
-            //addField(Sid.PtcRelay1, 1000);
-            //addField(Sid.PtcRelay2, 1000);
-            //addField(Sid.PtcRelay3, 1000);
-        //}
+        if (MainActivity.isZOE()) {
+        addField(Sid.EngineFanSpeed, 0);
+        addField(Sid.HvCoolingState, 0);
+        addField(Sid.HvEvaporationTemp, 10000);
+        addField(Sid.Pressure, 1000);
+        addField(Sid.BatteryConditioningMode, 0);
+        addField(Sid.ClimaLoopMode, 0);
+        }
+        if (MainActivity.isSpring()) {
+            addField(Sid.ClimBlowerSpeed, 1000);
+            addField(Sid.ClimACConsumption, 1000);
+            addField(Sid.ClimACCompressorState, 3000);
+            addField(Sid.ClimACCompressorAuth, 3000);
+            addField(Sid.ClimACCompressorRPM, 1000);
+            addField(Sid.ClimACCompressorVoltage, 3000);
+            addField(Sid.ClimACCompressorTemp, 3000);
+            addField(Sid.ClimACCompressorError, 3000);
+            addField(Sid.BCBWaterTemp, 3000);
+            addField(Sid.BCBInternalTemp, 3000);
+            addField(Sid.HeatWaterTemp, 3000);
+            addField(Sid.HeaterSetpoint, 3000);
+            addField(Sid.FanCabinStatus, 1000);
+            addField(Sid.ETSState, 1000);
+            addField(Sid.FreonPressure, 3000);
+            addField(Sid.FreonPressureVoltage, 3000);
+            addField(Sid.FreonPressureSensor, 3000);
+            addField(Sid.ClimACCompressorInterlock, 3000);
+            addField(Sid.FanActivation, 1000);
+            addField(Sid.EngineFanSpeedCounter, 1000);
+        }
 
         TextView tv = findViewById(R.id.textLabel_climatePower);
         if (MainActivity.isPh2()) {
@@ -152,10 +181,116 @@ public class ClimaTechActivity extends CanzeActivity implements FieldListener, D
                     //    tv = null;
                     //    break;
 
+                    case Sid.ClimBlowerSpeed:
+                        value = (int) field.getValue();
+                        tv = findViewById(R.id.text_ClimBlowerSpeed);
+                        if (value == 0)
+                            tv.setText("Fan Off");
+                        if (value == 26)
+                            tv.setText("Fan level 1");
+                        if (value == 50)
+                            tv.setText("Fan level 2");
+                        if (value == 76)
+                            tv.setText("Fan level 3");
+                        if (value == 100)
+                            tv.setText("Fan level 4 (max)");
+                        tv = null;
+                        break;
+                    case Sid.ClimACConsumption:
+                        tv = findViewById(R.id.text_ClimACConsumption);
+                        break;
+                    case Sid.ClimACCompressorState:
+                        value = (int) field.getValue();
+                        tv = findViewById(R.id.text_ClimACCompressorState);
+                        if (tv != null && AC_Status != null && value >= 0 && value < AC_Status.length)
+                            tv.setText(AC_Status[value]);
+                        tv = null;
+                        break;
+                    case Sid.ClimACCompressorAuth:
+                        value = (int) field.getValue();
+                        tv = findViewById(R.id.text_ClimACCompressorAuth);
+                        if (tv != null && ACAuth != null && value >= 0 && value < ACAuth.length)
+                            tv.setText(ACAuth[value]);
+                        tv = null;
+                        break;
+                    case Sid.ClimACCompressorRPM:
+                        tv = findViewById(R.id.text_ClimACCompressorRPM);
+                        break;
+                    case Sid.ClimACCompressorVoltage:
+                        tv = findViewById(R.id.text_ClimACCompressorVoltage);
+                        break;
+                    case Sid.ClimACCompressorTemp:
+                        tv = findViewById(R.id.text_ClimACCompressorTemp);
+                        break;
+                    case Sid.ClimACCompressorError:
+                        value = (int) field.getValue();
+                        tv = findViewById(R.id.text_ClimACCompressorError);
+                        if (tv != null && ACError != null && value >= 0 && value < ACError.length)
+                            tv.setText(ACError[value]);
+                        tv = null;
+                        break;
+                    case Sid.BCBWaterTemp:
+                        tv = findViewById(R.id.text_BCBWaterTemp);
+                        break;
+                    case Sid.BCBInternalTemp:
+                        tv = findViewById(R.id.text_BCBInternalTemp);
+                        break;
+                    case Sid.HeatWaterTemp:
+                        tv = findViewById(R.id.text_HeatWaterTemp);
+                        break;
+                    case Sid.HeaterSetpoint:
+                        tv = findViewById(R.id.text_HeaterSetpoint);
+                        break;
+                    case Sid.FanCabinStatus:
+                        value = (int) field.getValue();
+                        tv = findViewById(R.id.text_FanCabinStatus);
+                        if (value == 0)
+                            tv.setText("Blower Ok");
+                        if (value == 1)
+                            tv.setText("Blower Not Ok");
+                        tv = null;
+                        break;
+                    case Sid.ETSState:
+                        value = (int) field.getValue();
+                        tv = findViewById(R.id.text_ETSState);
+                        if (tv != null && ETSState != null && value >= 0 && value < ETSState.length)
+                            tv.setText(ETSState[value]);
+                        tv = null;
+                        break;
+                    case Sid.FreonPressure:
+                        tv = findViewById(R.id.text_FreonPressure);
+                        break;
+                    case Sid.FreonPressureVoltage:
+                        tv = findViewById(R.id.text_FreonPressureVoltage);
+                        break;
+                    case Sid.FreonPressureSensor:
+                        tv = findViewById(R.id.text_FreonPressureSensor);
+                        break;
+                    case Sid.ClimACCompressorInterlock:
+                        value = (int) field.getValue();
+                        tv = findViewById(R.id.text_ClimACCompressorInterlock);
+                        if (tv != null && ACInterlock != null && value >= 0 && value < ACInterlock.length)
+                            tv.setText(ACInterlock[value]);
+                        tv = null;
+                        break;
+                    case Sid.FanActivation:
+                        value = (int) field.getValue();
+                        tv = findViewById(R.id.text_FanActivation);
+                        if (tv != null && FanActivation != null && value >= 0 && value < FanActivation.length)
+                            tv.setText(FanActivation[value]);
+                        tv = null;
+                        break;
+                    case Sid.EngineFanSpeedCounter:
+                        tv = findViewById(R.id.text_EngineFanSpeedCounter);
+                        break;
+
+
+
+
                 }
                 // set regular new content, all exeptions handled above
                 if (tv != null) {
-                    tv.setText(String.format(Locale.getDefault(), "%.1f", field.getValue()));
+                    tv.setText(String.format(Locale.getDefault(), "%.0f", field.getValue()));
                 }
 
                 //tv = (TextView) findViewById(R.id.textDebug);

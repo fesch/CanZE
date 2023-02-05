@@ -137,8 +137,14 @@
                 android:text="@string/help_AllTorques"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                />
+                android:layout_marginTop="40dp" />
+
+            <TextView
+                android:id="@+id/breaking_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="" />
 
         </LinearLayout>
     </ScrollView>

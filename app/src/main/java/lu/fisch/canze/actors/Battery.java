@@ -136,6 +136,11 @@ public class Battery {
                 //setCoefficients (19.00,  3.600, -0.026, -0.34000);
                 setCoefficients (19.00,  3.600, -0.340, -0.02600);
                 break;
+            case 26:
+                setRawCapacity(26);
+                //setCoefficients (19.00,  3.600, -0.026, -0.34000);
+                setCoefficients (19.00,  3.600, -0.340, -0.02600);
+                break;
             case 41:
                 setCoefficients (14.93,  1.101, -0.145, -0.00824);
                 setRawCapacity(41.0);

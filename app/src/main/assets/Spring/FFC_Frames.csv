@@ -1,0 +1,22 @@
+#Frame ID,interval ZOE, interval FLUKAN, Sending ECU
+# For Spring, we do not use free frames anymore
+# The container frames for ISOTP, in essence just one frame per ECU
+# 11 bit systems
+772,100,100,AIRBAG
+763,100,100,TDB
+776,100,100,DCDC
+76d,100,100,EMM
+760,100,100,ESP
+7ec,100,100,EVC
+761,100,100,VSP
+732,100,100,RADIO
+77e,100,100,PEB
+77d,100,100,RADAR
+762,100,100,EPS
+7da,100,100,TCU
+765,100,100,UCH
+# 0x800 - 0x8ff is reserved for CanZE's virtuals
+800,100,100,VFC
+7b6,100,100,LBC2
+7bb,100,100,LBC
+

@@ -69,6 +69,9 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
         if (MainActivity.isPh2()) {
             addField(Sid.Total_Regen_kWh);
         }
+        if (MainActivity.isSpring()) {
+            addField(Sid.Total_Spring_Regen_kWh);
+        }
     }
 
     // This event is fired as soon as any registered field is set through its setValue() method
@@ -131,6 +134,9 @@ public class ChargingHistActivity extends CanzeActivity implements FieldListener
                                 tv = findViewById(R.id.textTotKwh);
                                 break;
                             case Sid.Total_Regen_kWh:
+                                tv = findViewById(R.id.textTotKwhRegen);
+                                break;
+                            case Sid.Total_Spring_Regen_kWh:
                                 tv = findViewById(R.id.textTotKwhRegen);
                                 break;
                             case Sid.Counter_Full:
