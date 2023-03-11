@@ -269,6 +269,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             /*  TODO I wonder if this is safe beavior. instance should never be null and if it is,
                 something is pretty wrong and it is probably not a good plan to create a new object,
                 unless I am missing something
+
+                Bob: You are right: in this case instance should never be null! The beneath code
+                     is nothing less or more than the singleton-design-pattern.
              */
             instance = new MainActivity();
         return instance;
