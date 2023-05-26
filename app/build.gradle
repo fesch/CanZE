@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId "lu.fisch.canze"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 31
         versionName '1.62'
         versionCode 94
     }
