@@ -16,7 +16,6 @@ android {
     defaultConfig {
         applicationId "lu.fisch.canze"
         minSdkVersion 21
-        targetSdkVersion 31
         versionName '1.62'
         versionCode 94
     }
@@ -41,6 +40,8 @@ android {
         }
     }
     defaultConfig {
+
+        targetSdk 33
         buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "String", "BRANCH", "\"" + getGitRevParseInfo() + "\""
         signingConfig signingConfigs.release
