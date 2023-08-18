@@ -11,18 +11,18 @@ android {
             keyPassword 'canze4us!'
         }
     }
-    compileSdkVersion 33
-    //buildToolsVersion '26.0.2'
+    compileSdk 34
+
     defaultConfig {
         applicationId "lu.fisch.canze"
         minSdkVersion 21
-        versionName '1.64'
-        versionCode 96
+        versionName '1.65'
+        versionCode 98
     }
     buildTypes {
         release {
-            minifyEnabled false
-            // minifyEnabled true
+            //minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         //debug {
@@ -41,7 +41,7 @@ android {
     }
     defaultConfig {
 
-        targetSdk 33
+        targetSdk 34
         buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "String", "BRANCH", "\"" + getGitRevParseInfo() + "\""
         signingConfig signingConfigs.release
@@ -65,8 +65,8 @@ dependencies {
     playstoreImplementation platform('com.google.firebase:firebase-bom:32.2.2')
 
     // Dependencies for the desired Firebase products without specifying versions
-    playstoreImplementation 'com.google.firebase:firebase-analytics'
-    playstoreImplementation 'com.google.firebase:firebase-crashlytics'
+    playstoreImplementation 'com.google.firebase:firebase-analytics:21.3.0'
+    playstoreImplementation 'com.google.firebase:firebase-crashlytics:18.4.0'
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
