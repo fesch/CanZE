@@ -209,6 +209,23 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     private boolean storageGranted = false;
     private int startAnotherFragmentIndex = -2;
 
+    private static String[] PERMISSIONS_BLUETOOTH = {
+           // Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT
+            //Manifest.permission.BLUETOOTH_PRIVILEGED
+    };
+
+    private void checkPermissions(){
+        int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT);
+        if (permission != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(
+                    this,
+                    PERMISSIONS_BLUETOOTH,
+                    1
+            );
+        }
+    }
+
     //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -508,6 +525,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         } else {
             storageGranted = true;
         }
+
+        checkPermissions();
 
         handleDarkMode();
 
