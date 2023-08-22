@@ -90,38 +90,25 @@ public class DtcActivity extends CanzeActivity {
 
         // bind code to button2
         final Button btnQuery = findViewById(R.id.ecuQuery);
-        btnQuery.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doQueryEcu(Ecus.getInstance().getByMnemonic(String.valueOf(spinnerEcu.getSelectedItem())));
-            }
-        });
+        btnQuery.setOnClickListener(v -> doQueryEcu(Ecus.getInstance().getByMnemonic(String.valueOf(spinnerEcu.getSelectedItem()))));
 
         final Button btnClear = findViewById(R.id.ecuClear);
-        btnClear.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doClearEcu(Ecus.getInstance().getByMnemonic(String.valueOf(spinnerEcu.getSelectedItem())));
-            }
-        });
+        btnClear.setOnClickListener(v -> doClearEcu(Ecus.getInstance().getByMnemonic(String.valueOf(spinnerEcu.getSelectedItem()))));
 
         // stop the poller
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                appendResult(R.string.message_PollerStopping);
+        new Thread(() -> {
+            appendResult(R.string.message_PollerStopping);
 
-                if (MainActivity.device != null) {
-                    // stop the poller thread
-                    MainActivity.device.stopAndJoin();
-                }
-
-                if (!BluetoothManager.getInstance().isConnected()) {
-                    appendResult(R.string.message_NoConnection);
-                    return;
-                }
-                appendResult(MainActivity.getStringSingle(R.string.message_Ready));
+            if (MainActivity.device != null) {
+                // stop the poller thread
+                MainActivity.device.stopAndJoin();
             }
+
+            if (!BluetoothManager.getInstance().isConnected()) {
+                appendResult(R.string.message_NoConnection);
+                return;
+            }
+            appendResult(MainActivity.getStringSingle(R.string.message_Ready));
         }).start();
     }
 
@@ -138,7 +125,7 @@ public class DtcActivity extends CanzeActivity {
     private void testerKeepalive(Ecu ecu) {
         if (!ecu.getSessionRequired() && !MainActivity.isPh2()) return; // quit ticker if no gateway and no session
         if (Calendar.getInstance().getTimeInMillis() < ticker) return; // then, quit if no timeout
-        if (MainActivity.isPh2()) {
+        if (MainActivity.isPh2() && MainActivity.pokeSecureGateway) {
             // open the gateway
             MainActivity.device.requestFrame(Frames.getInstance().getById(0x18daf1d2, "5003"));
         }
@@ -218,93 +205,94 @@ public class DtcActivity extends CanzeActivity {
                 }
             }
 
-        queryThread = new StoppableThread(new Runnable() {
-            @Override
-            public void run() {
+        queryThread = new StoppableThread(() -> {
 
-                Field field;
-                String filter;
-                Message message;
-                String backRes;
+            Field field;
+            String filter;
+            Message message;
+            String backRes;
 
-                if (!MainActivity.device.initDevice(1)) {
-                    appendResult(R.string.message_InitFailed);
-                    return;
-                }
+            if (MainActivity.device == null) {
+                appendResult(R.string.message_NoConnection);
+                return;
+            }
 
-                // still trying desperately to get to the BCB!!!1
-                if (!testerInit(ecu)) {
-                    appendResult(R.string.message_InitFailed);
-                    return;
-                }
+            if (!MainActivity.device.initDevice(1)) {
+                appendResult(R.string.message_InitFailed);
+                return;
+            }
 
-                // get the from ID from the selected ECU
-                filter = Integer.toHexString(ecu.getFromId());
+            // still trying desperately to get to the BCB!!!1
+            if (!testerInit(ecu)) {
+                appendResult(R.string.message_InitFailed);
+                return;
+            }
 
-                boolean onePrinted = false;
-                for (String getDtc : ecu.getGetDtcs().split(";")) {
-                    testerKeepalive(ecu);
-                    // compile the field query and get the Field object
-                    appendResult(MainActivity.getStringSingle(R.string.message_GetDtcs) + getDtc + "]\n");
-                    field = Fields.getInstance().getBySID(filter + "." + getDtc + ".16"); // get DTC
-                    if (field != null) {
-                        // query the Field
-                        message = MainActivity.device.requestFrame(field.getFrame());
-                        if (!message.isError()) {
-                            // check the response
-                            backRes = message.getData();
-                            if (backRes.startsWith("59")) {
+            // get the from ID from the selected ECU
+            filter = Integer.toHexString(ecu.getFromId());
 
-                                // loop trough all DTC's
-                                // format of the message is
-                                // blocks of 4 bytes
-                                //   first 2 bytes is the DTC
-                                //     first nibble of DTC is th P0 etc encoding, but we are nit using that
-                                //   next byte is the test that triggered the DTC
-                                //   next byte contains the flags
-                                // All decoding is done in the Dtcs class
-                                for (int i = 6; i < backRes.length() - 7; i += 8) {
-                                    // see if we need to stop right now
-                                    if (((StoppableThread) Thread.currentThread()).isStopped())
-                                        return;
+            boolean onePrinted = false;
+            for (String getDtc : ecu.getGetDtcs().split(";")) {
+                testerKeepalive(ecu);
+                // compile the field query and get the Field object
+                appendResult(MainActivity.getStringSingle(R.string.message_GetDtcs) + getDtc + "]\n");
+                field = Fields.getInstance().getBySID(filter + "." + getDtc + ".16"); // get DTC
+                if (field != null) {
+                    // query the Field
+                    message = MainActivity.device.requestFrame(field.getFrame());
+                    if (!message.isError()) {
+                        // check the response
+                        backRes = message.getData();
+                        if (backRes.startsWith("59")) {
 
-                                    try {
-                                        int flags = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
-                                        // exclude 50 / 10 as it means something like "I have this DTC code, but I have never tested it"
-                                        if (flags != 0x50 && flags != 0x10) {
-                                            onePrinted = true;
-                                            appendResult(
-                                                    "\n*** DTC" + backRes.substring(i, i + 6) + " (" + Dtcs.getInstance().getDisplayCodeById(backRes.substring(i, i + 6)) + ") ***\n"
-                                                            + Dtcs.getInstance().getDescriptionById(backRes.substring(i, i + 6))
-                                                            + "\nFlags:" + Dtcs.getInstance().getFlagDescription(flags)
-                                            );
-                                        }
-                                    } catch (Exception e) {
+                            // loop trough all DTC's
+                            // format of the message is
+                            // blocks of 4 bytes
+                            //   first 2 bytes is the DTC
+                            //     first nibble of DTC is th P0 etc encoding, but we are nit using that
+                            //   next byte is the test that triggered the DTC
+                            //   next byte contains the flags
+                            // All decoding is done in the Dtcs class
+                            for (int i = 6; i < backRes.length() - 7; i += 8) {
+                                // see if we need to stop right now
+                                if (((StoppableThread) Thread.currentThread()).isStopped())
+                                    return;
+
+                                try {
+                                    int flags = Integer.parseInt(backRes.substring(i + 6, i + 8), 16);
+                                    // exclude 50 / 10 as it means something like "I have this DTC code, but I have never tested it"
+                                    if (flags != 0x50 && flags != 0x10) {
                                         onePrinted = true;
                                         appendResult(
-                                                "\n*** DTC uninterpretable;" + backRes.substring(i, i + 8) + ") ***\n"
-                                                        + e.getMessage()
+                                                "\n*** DTC" + backRes.substring(i, i + 6) + " (" + Dtcs.getInstance().getDisplayCodeById(backRes.substring(i, i + 6)) + ") ***\n"
+                                                        + Dtcs.getInstance().getDescriptionById(backRes.substring(i, i + 6))
+                                                        + "\nFlags:" + Dtcs.getInstance().getFlagDescription(flags)
                                         );
                                     }
+                                } catch (Exception e) {
+                                    onePrinted = true;
+                                    appendResult(
+                                            "\n*** DTC uninterpretable;" + backRes.substring(i, i + 8) + ") ***\n"
+                                                    + e.getMessage()
+                                    );
                                 }
-
-                            } else {
-                                appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes + "]\n");
                             }
 
                         } else {
-                            appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + message.getError() + "]\n");
+                            appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes + "]\n");
                         }
 
                     } else {
-                        appendResult(R.string.message_NoGetDtcsField);
+                        appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + message.getError() + "]\n");
                     }
 
-
+                } else {
+                    appendResult(R.string.message_NoGetDtcsField);
                 }
-                if (!onePrinted) appendResult(R.string.message_NoActiveDtcs);
-            }
 
+
+            }
+            if (!onePrinted) appendResult(R.string.message_NoActiveDtcs);
         });
         queryThread.start();
     }
@@ -351,75 +339,61 @@ public class DtcActivity extends CanzeActivity {
                 }
             }
 
-        queryThread = new StoppableThread(new Runnable() {
-            @Override
-            public void run() {
+        queryThread = new StoppableThread(() -> {
 
-                Field field;
-                Frame frame;
-                String filter;
+            Field field;
+            Frame frame;
+            String filter;
 
-                // get the from ID from the selected ECU
-                filter = Integer.toHexString(ecu.getFromId());
+            // get the from ID from the selected ECU
+            filter = Integer.toHexString(ecu.getFromId());
 
 
-                // compile the field query and get the Field object
-                field = Fields.getInstance().getBySID(filter + ".54ffffff.0"); // get DTC Clear
-                if (field == null) {
-                    appendResult(R.string.message_NoClearDtcField);
-                    return;
-                }
-                frame = field.getFrame();
+            // compile the field query and get the Field object
+            field = Fields.getInstance().getBySID(filter + ".54ffffff.0"); // get DTC Clear
+            if (field == null) {
+                appendResult(R.string.message_NoClearDtcField);
+                return;
+            }
+            frame = field.getFrame();
 
-                // re-initialize the device
-                appendResult(R.string.message_SendingInit);
-                if (!MainActivity.device.initDevice(1)) {
-                    appendResult(R.string.message_InitFailed);
-                    return;
-                }
-
-                testerInit(ecu);
-                testerKeepalive();
-
-                // query the Field
-                Message message = MainActivity.device.requestFrame(frame);
-                if (message.isError()) {
-                    appendResult(message.getError());
-                    return;
-                }
-
-                String backRes = message.getData();
-                // check the response
-                if (!backRes.startsWith("54")) {
-                    appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes + "]\n");
-                    return;
-                }
-
-                appendResult(R.string.message_ClearSuccessful);
+            // re-initialize the device
+            appendResult(R.string.message_SendingInit);
+            if (!MainActivity.device.initDevice(1)) {
+                appendResult(R.string.message_InitFailed);
+                return;
             }
 
+            testerInit(ecu);
+            testerKeepalive();
+
+            // query the Field
+            Message message = MainActivity.device.requestFrame(frame);
+            if (message.isError()) {
+                appendResult(message.getError());
+                return;
+            }
+
+            String backRes = message.getData();
+            // check the response
+            if (!backRes.startsWith("54")) {
+                appendResult(MainActivity.getStringSingle(R.string.message_UnexpectedResult) + backRes + "]\n");
+                return;
+            }
+
+            appendResult(R.string.message_ClearSuccessful);
         });
         queryThread.start();
     }
 
     // Ensure all UI updates are done on the UiThread
     private void clearResult() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                textView.setText("");
-            }
-        });
+        runOnUiThread(() -> textView.setText(""));
     }
 
     private void appendResult(final String str) {
         if (dumpInProgress) log(str);
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                textView.append(str);
-            }
-        });
+        runOnUiThread(() -> textView.append(str));
     }
 
     private void appendResult(int strResource) {

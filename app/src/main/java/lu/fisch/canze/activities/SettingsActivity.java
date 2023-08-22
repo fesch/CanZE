@@ -538,7 +538,7 @@ public class SettingsActivity extends AppCompatActivity {
                     return true;
                 }
             });
-
+            /*
             findPreference(SETTING_LOGGING_USE_SD_CARD).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(final Preference preference) {
@@ -575,7 +575,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                     return true;
                 }
-            });
+            });*/
 
             // On debug log check
             findPreference(SETTING_LOGGING_DEBUG_LOG).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {

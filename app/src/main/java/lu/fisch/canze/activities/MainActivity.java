@@ -67,7 +67,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+//import com.google.firebase.crashlytics.FirebaseCrashlytics;
+import java.io.File;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 import lu.fisch.canze.BuildConfig;
 import lu.fisch.canze.R;
@@ -81,6 +84,7 @@ import lu.fisch.canze.classes.ActivityRegistry;
 import lu.fisch.canze.classes.Crashlytics;
 import lu.fisch.canze.classes.DataLogger;
 import lu.fisch.canze.classes.DebugLogger;
+import lu.fisch.canze.classes.ForegroundCheckTask;
 import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.devices.CanSee;
 import lu.fisch.canze.devices.Device;
@@ -100,6 +104,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     public final static String PREFERENCES_FILE = "lu.fisch.canze.settings";
     public final static String DATA_FILE = "lu.fisch.canze.data";
+
+    public final static boolean pokeSecureGateway = false;
 
     // MAC-address of Bluetooth module (you must edit this line)
     private static String bluetoothDeviceAddress = null;
@@ -170,7 +176,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static boolean debugLogMode = false;
     public static boolean fieldLogMode = false;
 
-    public static boolean dataExportMode = false;
+    // use "debugLogMode" instead
+    //public static boolean dataExportMode = false;
     public static DataLogger dataLogger = null; // rather use singleton in onCreate
 
     public static int car = CAR_NONE;
@@ -200,6 +207,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     private int mBtState = BLUETOOTH_SEARCH;
 
     private boolean storageGranted = false;
+    private boolean btConnectGranted = false;
+    private boolean btLocationGranted = false;
     private int startAnotherFragmentIndex = -2;
 
     //The BroadcastReceiver that listens for bluetooth broadcasts
@@ -223,16 +232,34 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 // inform user
                 // setTitle(TAG + " - disconnected");
                 showBluetoothState(BLUETOOTH_DISCONNECTED);
-                if (!isFinishing())
+                if (!isFinishing()) {
                     toast(R.string.toast_BluetoothLost);
+                }
 
-                // try to reconnect
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        reloadBluetooth(false);
-                    }
-                })).start();
+                try {
+                    // check if application is in foreground
+                    // OR
+                    // we use background mode
+                    if (
+                            (new ForegroundCheckTask()).execute(context).get()==true
+                                    ||
+                                    bluetoothBackgroundMode==true
+                    ) {
+                        // try to reconnect
+                        (new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                reloadBluetooth(false);
+                            }
+                        })).start();
+                    } else toast("CanZE is sleeping ...");
+                } catch (ExecutionException e) {
+                    toast(e.getMessage());
+                } catch (InterruptedException e) {
+                    toast(e.getMessage());
+                }
+
+
                 //if (visible) onResume();
                 //}
             }
@@ -244,6 +271,9 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             /*  TODO I wonder if this is safe beavior. instance should never be null and if it is,
                 something is pretty wrong and it is probably not a good plan to create a new object,
                 unless I am missing something
+
+                Bob: You are right: in this case instance should never be null! The beneath code
+                     is nothing less or more than the singleton-design-pattern.
              */
             instance = new MainActivity();
         return instance;
@@ -252,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
     public static void debug(String text) {
         if (text == null) text = "null";
         //if (!BuildConfig.BRANCH.equals("master")) {
-            Log.d(TAG, text);
+        Log.d(TAG, text);
         //}
         if (storageIsAvailable && debugLogMode) {
             DebugLogger.getInstance().log(text);
@@ -326,7 +356,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             bluetoothBackgroundMode = settings.getBoolean(SettingsActivity.SETTING_DEVICE_USE_BACKGROUND_MODE, false);
             milesMode = settings.getBoolean(SettingsActivity.SETTING_CAR_USE_MILES, false);
             altFieldsMode = settings.getBoolean(SettingsActivity.SETTING_DEVICE_USE_ISOTP_FIELDS, false);
-            dataExportMode = settings.getBoolean(SettingsActivity.SETTING_LOGGING_USE_SD_CARD, false);
+            //dataExportMode = settings.getBoolean(SettingsActivity.SETTING_LOGGING_USE_SD_CARD, false);
             debugLogMode = settings.getBoolean(SettingsActivity.SETTING_LOGGING_DEBUG_LOG, false);
             fieldLogMode = settings.getBoolean(SettingsActivity.SETTING_LOGGING_FIELDS_LOG, false);
             toastLevel = settings.getInt(SettingsActivity.SETTING_DISPLAY_TOAST_LEVEL, MainActivity.TOAST_ELM);
@@ -377,8 +407,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 // registerApplicationFields(); // now done in Fields.load
             }
 
-            // after loading PREFERENCES we may have new values for "dataExportMode"
-            dataExportMode = dataLogger.activate(dataExportMode);
+            // after loading PREFERENCES we may have new values for "debugLogMode"
+            debugLogMode = dataLogger.activate(debugLogMode);
         } catch (Exception e) {
             if (BuildConfig.BRANCH.equals("master")) {
                 Crashlytics.logException(e);
@@ -406,19 +436,21 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
 
         // (de)activate the secure gateway
-        field = fields.getBySID("18daf1d2.5003.0");
-        if (isPh2()) {
-            if (field != null) {
-                field.addListener(MainActivity.getInstance()); // callback is onFieldUpdateEvent
-                if (device != null)
-                    device.addApplicationField(field, 3000); // keep awake every 3 seconds
-            }
+        if (pokeSecureGateway) {
+            field = fields.getBySID("18daf1d2.5003.0");
+            if (isPh2()) {
+                if (field != null) {
+                    field.addListener(MainActivity.getInstance()); // callback is onFieldUpdateEvent
+                    if (device != null)
+                        device.addApplicationField(field, 3000); // keep awake every 3 seconds
+                }
 
-        } else {
-            if (field != null) {
-                field.removeListener(MainActivity.getInstance());
-                if (device != null)
-                    device.removeApplicationField(field);
+            } else {
+                if (field != null) {
+                    field.removeListener(MainActivity.getInstance());
+                    if (device != null)
+                        device.removeApplicationField(field);
+                }
             }
         }
     }
@@ -439,105 +471,14 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
-    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1234;
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    MainActivity.debug("MainActivity.onRequestPermissionsResult:storage granted");
-                    storageGranted = true;
-                } else {
-                    storageGranted = false;
-                    MainActivity.debug("MainActivity.onRequestPermissionsResult:storage not granted");
-                }
-                break;
-
-            // other 'case' lines to check for other
-            // permissions this app might request.
-
-            default:
-                break;
-        }
-    }
 
     private ViewPager viewPager;
     private ActionBar actionBar;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        // always create an instance
-        instance = this;
+    private static final int MY_PERMISSIONS_REQUEST = 123;
 
-        // needed to get strings from resources in non-Activity classes
-        res = getResources();
-
-        if (ContextCompat.checkSelfPermission(instance, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(instance, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-        } else {
-            storageGranted = true;
-        }
-
-        handleDarkMode();
-
-        // dataLogger = DataLogger.getInstance();
-        dataLogger = new DataLogger();
-
-        debug("MainActivity: onCreate");
-
-        //MainActivity.context = getApplicationContext();
-
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-        // navigation bar
-        AppSectionsPagerAdapter appSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
-        actionBar = getSupportActionBar();
-        if (actionBar != null)
-            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
-        //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        viewPager = findViewById(R.id.main);
-        viewPager.setAdapter(appSectionsPagerAdapter);
-        // viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                //actionBar.setSelectedNavigationItem(position);
-                updateActionBar();
-            }
-        });
-        updateActionBar();
-
-        // setTitle(TAG + " - not connected");
-        showBluetoothState(BLUETOOTH_DISCONNECTED);
-
-        // open the database
-        CanzeDataSource.getInstance(getBaseContext()).open();
-        // cleanup
-        CanzeDataSource.getInstance().cleanUp();
-
-        // setup cleaning (once every hour)
-        // Extra check for non null CanzeDatasource instance
-        Runnable cleanUpRunnable = new Runnable() {
-            @Override
-            public void run() {
-                CanzeDataSource dsInstance = CanzeDataSource.getInstance();
-                if (dsInstance != null) {
-                    dsInstance.cleanUp();
-                }
-            }
-        };
-        Handler handler = new Handler();
-        handler.postDelayed(cleanUpRunnable, 60 * 1000);
-
-
-        // register for bluetooth changes
-        IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-        this.registerReceiver(broadcastReceiver, intentFilter);
-
+    private void configureBluetoothManager()
+    {
         // configure Bluetooth manager
         BluetoothManager.getInstance().setBluetoothEvent(new BluetoothEvent() {
             @Override
@@ -569,6 +510,179 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, 1);
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode) {
+            case 100:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    toast("BLUETOOTH_CONNECT Granted!");
+                    configureBluetoothManager();
+                } else {
+                    toast("BLUETOOTH_CONNECT Denied!");
+                }
+            case 101:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    toast("BLUETOOTH_SCAN Granted!");
+                    configureBluetoothManager();
+                } else {
+                    toast("BLUETOOTH_SCAN Denied!");
+                }
+            case 102:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    toast("WRITE_EXTERNAL_STORAGE Granted!");
+                    storageGranted=true;
+                } else {
+                    toast("WRITE_EXTERNAL_STORAGE Denied!");
+                    storageGranted=false;
+                }
+        }
+    }
+
+    private void requestPermission(String permissionName, int permissionRequestCode) {
+        ActivityCompat.requestPermissions(this,
+                new String[]{permissionName}, permissionRequestCode);
+    }
+
+    public void checkPermissions()
+    {
+        int permissionCheck;
+
+        if(Build.VERSION.SDK_INT>30) {
+            permissionCheck = ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.BLUETOOTH_CONNECT);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                requestPermission(Manifest.permission.BLUETOOTH_CONNECT, 100);
+            }
+
+            permissionCheck = ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.BLUETOOTH_SCAN);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                requestPermission(Manifest.permission.BLUETOOTH_SCAN, 101);
+            }
+        }
+        else
+        {
+            permissionCheck = ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 102);
+            }
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        checkPermissions();
+
+        if((ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED &&
+                Build.VERSION.SDK_INT>30)
+                ||
+                (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) == PackageManager.PERMISSION_GRANTED &&
+                        Build.VERSION.SDK_INT<=30)
+        )
+        {
+            configureBluetoothManager();
+        }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        // always create an instance
+        instance = this;
+
+        // needed to get strings from resources in non-Activity classes
+        res = getResources();
+
+        handleDarkMode();
+
+        // dataLogger = DataLogger.getInstance();
+        dataLogger = new DataLogger();
+
+        debug("MainActivity: onCreate");
+
+        //MainActivity.context = getApplicationContext();
+
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // navigation bar
+        AppSectionsPagerAdapter appSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
+        actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
+        //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        viewPager = findViewById(R.id.main);
+        viewPager.setAdapter(appSectionsPagerAdapter);
+        // viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                //actionBar.setSelectedNavigationItem(position);
+                updateActionBar();
+            }
+        });
+        updateActionBar();
+
+        /*
+        int permission;
+
+        permission= ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT);
+        Log.w("canze-bt","BLUETOOTH_CONNECT: "+permission);
+        if (permission != PackageManager.PERMISSION_GRANTED){
+            Log.w("canze-bt","BLUETOOTH_CONNECT: request!");
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[] {Manifest.permission.BLUETOOTH_CONNECT},
+                    REQ
+            );
+        }
+
+        permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        Log.w("canze-bt","ACCESS_FINE_LOCATION: "+permission);
+        Log.w("canze-bt","PERMISSION_GRANTED: "+PackageManager.PERMISSION_GRANTED);
+        if (permission != PackageManager.PERMISSION_GRANTED){
+            Log.w("canze-bt","ACCESS_FINE_LOCATION: request!");
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
+                    1
+            );
+        }*/
+
+        // setTitle(TAG + " - not connected");
+        showBluetoothState(BLUETOOTH_DISCONNECTED);
+
+        // open the database
+        CanzeDataSource.getInstance(getBaseContext()).open();
+        // cleanup
+        CanzeDataSource.getInstance().cleanUp();
+
+        // setup cleaning (once every hour)
+        // Extra check for non null CanzeDatasource instance
+        Runnable cleanUpRunnable = () -> {
+            CanzeDataSource dsInstance = CanzeDataSource.getInstance();
+            if (dsInstance != null) {
+                dsInstance.cleanUp();
+            }
+        };
+        Handler handler = new Handler();
+        handler.postDelayed(cleanUpRunnable, 60 * 1000);
+
+
+        // register for bluetooth changes
+        IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+        this.registerReceiver(broadcastReceiver, intentFilter);
+
+
 
         // load settings
         // - includes the reader
@@ -580,19 +694,16 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         // load fields
         //final SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE, 0);
-        (new Thread(new Runnable() {
-            @Override
-            public void run() {
-                debug("Loading fields last field values from database");
-                for (int i = 0; i < fields.size(); i++) {
-                    Field field = fields.get(i);
-                    if (field != null)
-                        field.setCalculatedValue(CanzeDataSource.getInstance().getLast(field.getSID()));
-                    //debug("MainActivity: Setting "+field.getSID()+" = "+field.getValue());
-                    //f.setValue(settings.getFloat(f.getUniqueID(), 0));
-                }
-                debug("Loading fields last field values from database (done)");
+        (new Thread(() -> {
+            debug("Loading fields last field values from database");
+            for (int i = 0; i < fields.size(); i++) {
+                Field field = fields.get(i);
+                if (field != null)
+                    field.setCalculatedValue(CanzeDataSource.getInstance().getLast(field.getSID()));
+                //debug("MainActivity: Setting "+field.getSID()+" = "+field.getValue());
+                //f.setValue(settings.getFloat(f.getUniqueID(), 0));
             }
+            debug("Loading fields last field values from database (done)");
         })).start();
     }
 
@@ -627,6 +738,7 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
     }
 
+    private boolean displayDone = false;
 
     @Override
     public void onResume() {
@@ -645,17 +757,14 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         }
 
         // remove progress spinners
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ProgressBar pb;
-                pb = findViewById(R.id.progressBar_cyclic0);
-                if (pb != null) pb.setVisibility(View.GONE);
-                pb = findViewById(R.id.progressBar_cyclic1);
-                if (pb != null) pb.setVisibility(View.GONE);
-                pb = findViewById(R.id.progressBar_cyclic2);
-                if (pb != null) pb.setVisibility(View.GONE);
-            }
+        runOnUiThread(() -> {
+            ProgressBar pb;
+            pb = findViewById(R.id.progressBar_cyclic0);
+            if (pb != null) pb.setVisibility(View.GONE);
+            pb = findViewById(R.id.progressBar_cyclic1);
+            if (pb != null) pb.setVisibility(View.GONE);
+            pb = findViewById(R.id.progressBar_cyclic2);
+            if (pb != null) pb.setVisibility(View.GONE);
         });
 
         // load/reload settings if they have not been loaded yet
@@ -665,16 +774,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
         if (!leaveBluetoothOn) {
             showBluetoothState(BLUETOOTH_DISCONNECTED);
-            (new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    reloadBluetooth();
-                }
-            })).start();
+            (new Thread(this::reloadBluetooth)).start();
         }
 
+        if(!displayDone)
         if (!this.settings.getBoolean(SettingsActivity.SETTING_APP_DISCLAIMER_SEEN, false)) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            displayDone=true;
 
             // set title
             alertDialogBuilder.setTitle(R.string.prompt_Disclaimer);
@@ -699,28 +805,24 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             alertDialogBuilder
                     .setMessage(Html.fromHtml(getStringSingle(R.string.prompt_DisclaimerText)))
                     .setCancelable(true)
-                    .setPositiveButton(yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // if this button is clicked, close
-                            SharedPreferences.Editor editor = settings.edit();
-                            editor.putBoolean(SettingsActivity.SETTING_APP_DISCLAIMER_SEEN, true);
-                            // editor.commit();
-                            editor.apply();
-                            // current activity
-                            dialog.cancel();
-                        }
+                    .setPositiveButton(yes, (dialog, id) -> {
+                        // if this button is clicked, close
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putBoolean(SettingsActivity.SETTING_APP_DISCLAIMER_SEEN, true);
+                        // editor.commit();
+                        editor.apply();
+                        // current activity
+                        dialog.cancel();
                     })
                     .setNegativeButton(no,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // if this button is clicked, just close
-                                    // the dialog box and do nothing
-                                    dialog.cancel();
-                                    //MainActivity.this.finishAffinity(); requires API16
-                                    MainActivity.this.finish();
-                                    android.os.Process.killProcess(android.os.Process.myPid());
-                                    System.exit(0);
-                                }
+                            (dialog, id) -> {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                                //MainActivity.this.finishAffinity(); requires API16
+                                MainActivity.this.finish();
+                                android.os.Process.killProcess(android.os.Process.myPid());
+                                System.exit(0);
                             });
 
             // create alert dialog
@@ -932,19 +1034,14 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // get access to the image view
         ImageView imageView = bluetoothMenutItem.getActionView().findViewById(R.id.animated_menu_item_action);
         // define an action
-        imageView.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnClickListener(v -> (new Thread(new Runnable() {
             @Override
-            public void onClick(View v) {
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        toast(getStringSingle(R.string.toast_Reconnecting));
-                        stopBluetooth(false); // do NOT clear the activity queue
-                        reloadBluetooth(false); // no need to reload settings
-                    }
-                })).start();
+            public void run() {
+                toast(getStringSingle(R.string.toast_Reconnecting));
+                stopBluetooth(false); // do NOT clear the activity queue
+                reloadBluetooth(false); // no need to reload settings
             }
-        });
+        })).start());
     }
 
     private void showBluetoothState(final int btState) {
@@ -954,33 +1051,29 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             if (view == null) return;
             final ImageView imageView = view.findViewById(R.id.animated_menu_item_action);
 
-            runOnUiThread(new Runnable() {
-                @SuppressLint("NewApi")
-                @Override
-                public void run() {
-                    // stop the animation if there is one running
-                    AnimationDrawable frameAnimation = null;
-                    if (imageView.getBackground() instanceof AnimationDrawable) {
-                        frameAnimation = (AnimationDrawable) imageView.getBackground();
-                        if (frameAnimation.isRunning())
-                            frameAnimation.stop();
-                    }
+            runOnUiThread(() -> {
+                // stop the animation if there is one running
+                AnimationDrawable frameAnimation = null;
+                if (imageView.getBackground() instanceof AnimationDrawable) {
+                    frameAnimation = (AnimationDrawable) imageView.getBackground();
+                    if (frameAnimation.isRunning())
+                        frameAnimation.stop();
+                }
 
-                    switch (btState) {
-                        case BLUETOOTH_DISCONNECTED:
-                            imageView.setBackgroundResource(R.drawable.bluetooth_none); // 21, white icon
-                            break;
-                        case BLUETOOTH_CONNECTED:
-                            imageView.setBackgroundResource(R.drawable.bluetooth_3); // 23, blue icon
-                            break;
-                        case BLUETOOTH_SEARCH:
-                                    imageView.setBackgroundResource(R.drawable.animation_bluetooth); // 22, animated blue icon
-                                    // AnimationDrawable frameAnimation = (AnimationDrawable) imageView.getBackground();
-                                    if (frameAnimation != null) frameAnimation.start();
-                            break;
-                        default:
-                            break;
-                    }
+                switch (btState) {
+                    case BLUETOOTH_DISCONNECTED:
+                        imageView.setBackgroundResource(R.drawable.bluetooth_none); // 21, white icon
+                        break;
+                    case BLUETOOTH_CONNECTED:
+                        imageView.setBackgroundResource(R.drawable.bluetooth_3); // 23, blue icon
+                        break;
+                    case BLUETOOTH_SEARCH:
+                        imageView.setBackgroundResource(R.drawable.animation_bluetooth); // 22, animated blue icon
+                        // AnimationDrawable frameAnimation = (AnimationDrawable) imageView.getBackground();
+                        if (frameAnimation != null) frameAnimation.start();
+                        break;
+                    default:
+                        break;
                 }
             });
         }
@@ -998,32 +1091,38 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                 // toast(R.string.toast_WaitingSettings);
 
                 // display the spinner
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ProgressBar pb = null;
-                        if (viewPager.getCurrentItem() == 0) {
-                            pb = findViewById(R.id.progressBar_cyclic0);
-                        } else if (viewPager.getCurrentItem() == 1) {
-                            pb = findViewById(R.id.progressBar_cyclic1);
-                        } else if (viewPager.getCurrentItem() == 2) {
-                            pb = findViewById(R.id.progressBar_cyclic2);
-                        }
-                        if (pb != null) pb.setVisibility(View.VISIBLE);
+                runOnUiThread(() -> {
+                    ProgressBar pb = null;
+                    if (viewPager.getCurrentItem() == 0) {
+                        pb = findViewById(R.id.progressBar_cyclic0);
+                    } else if (viewPager.getCurrentItem() == 1) {
+                        pb = findViewById(R.id.progressBar_cyclic1);
+                    } else if (viewPager.getCurrentItem() == 2) {
+                        pb = findViewById(R.id.progressBar_cyclic2);
                     }
+                    if (pb != null) pb.setVisibility(View.VISIBLE);
                 });
 
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (device != null) {
-                            // stop the BT device
-                            device.stopAndJoin();
-                            device.clearFields();
-                            BluetoothManager.getInstance().disconnect();
-                        }
+                (new Thread(() -> {
+                    if (device != null) {
+                        // stop the BT device
+                        device.stopAndJoin();
+                        device.clearFields();
+                        BluetoothManager.getInstance().disconnect();
+                    }
 
-                        // load the activity
+                    // load the activity
+                    checkPermissions();
+                    if((ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED &&
+                            Build.VERSION.SDK_INT>30)
+                            ||
+                       (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED &&
+                                    Build.VERSION.SDK_INT<=30)
+                    )
+                    {
+                        toast("Can't open settings without having the permission to use bluetooth. Sorry!");
+                    }
+                    else {
                         Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                         startActivityForResult(intent, SETTINGS_ACTIVITY);
                     }
@@ -1047,10 +1146,8 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         } else if (id == R.id.action_crash) {
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Force Crash",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            throw new RuntimeException("Test crash");
-                        }
+                    (dialog, which) -> {
+                        throw new RuntimeException("Test crash");
                     });
             alertDialog.show();
 
@@ -1244,7 +1341,15 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
         // Two isues
         // - through USB the folder is unfortunately read-only. This makes it almost impossible to use the _Research facility
         // - it selects Internal storage instead of SD card. Why is somewhat unclear, but more or less OK for now
-        return getExternalFilesDir(null).getAbsolutePath() + "/";
+        //Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        //startActivityForResult(intent, 713);
+
+        File path = Environment.getExternalStoragePublicDirectory("CanZE");
+        //debug("Datalogger: "+Environment.DIRECTORY_DCIM);
+        path.mkdirs();
+        return path.getAbsolutePath()+ "/";
+
+        //return getExternalFilesDir(null).getAbsolutePath() + "/";
     }
 }
 

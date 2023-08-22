@@ -103,17 +103,17 @@
         <SwitchPreference
             app:iconSpaceReserved="false"
             app:key="loggingDebugLog"
-            app:summary="@string/label_SdCardLogging"
+            app:summary="Logs go to the internal shared storage, folder CanZE"
             app:title="@string/label_Debug" />
         <SwitchPreference
             app:iconSpaceReserved="false"
             app:key="loggingFieldLog"
             app:summary="@string/help_Fields"
             app:title="@string/label_Fields" />
-        <SwitchPreference
+        <!--<SwitchPreference
             app:iconSpaceReserved="false"
             app:key="loggingUseSdCard"
-            app:title="@string/label_LogToSdcard1" />
+            app:title="@string/label_LogToSdcard1" />-->
     </PreferenceCategory>
 
     <PreferenceCategory

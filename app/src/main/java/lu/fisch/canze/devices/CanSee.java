@@ -59,7 +59,7 @@ public class CanSee extends Device {
 
     // send a command and wait for an answer
     private String sendAndWaitForAnswer(String command, int waitMillis, int timeout) {
-        // empty incoming buffer. This is neccesary to ensure things get not horribly out of sync
+        // empty incoming buffer. This is necessary to ensure things get not horribly out of sync
         try {
             while (BluetoothManager.getInstance().available() > 0) {
                 BluetoothManager.getInstance().read();
@@ -84,7 +84,7 @@ public class CanSee extends Device {
         boolean stop = false;
         //Do not use StringBuilder as it's not thread safe
         //StringBuilder readBuffer = new StringBuilder();
-        StringBuffer readBuffer = new StringBuffer();
+        StringBuilder readBuffer = new StringBuilder();
         // wait for answer
         long start = Calendar.getInstance().getTimeInMillis();
         long runtime = 0;
@@ -99,7 +99,7 @@ public class CanSee extends Device {
                         if (ch == EOM) {           // stop if we reached the end or if no more data is available
                             stop = true;
                         } else {
-                            // add it to the readBufferr
+                            // add it to the readBuffer
                             readBuffer.append(ch);
                         }
                     }
@@ -146,12 +146,9 @@ public class CanSee extends Device {
             //wrongCount++;
             if (wrongCount > WRONG_THRESHOLD) {
                 wrongCount = 0;
-                (new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        MainActivity.getInstance().stopBluetooth(false);
-                        MainActivity.getInstance().reloadBluetooth(false);
-                    }
+                (new Thread(() -> {
+                    MainActivity.getInstance().stopBluetooth(false);
+                    MainActivity.getInstance().reloadBluetooth(false);
                 })).start();
             }
             return new Message(frame, "-E-CanSee.rtm.empty", true);
@@ -188,14 +185,20 @@ public class CanSee extends Device {
 
     @Override
     protected boolean initDevice(int toughness, int retries) {
-        //if (BuildConfig.BRANCH.equals("master")) {
+        if (BuildConfig.BRANCH.equals("master") || !BuildConfig.DEBUG) {
             sendAndWaitForAnswer("n110,0", 0, TIMEOUT_FREE); // disable all serial when on master branch
             sendAndWaitForAnswer("n114,0", 0, TIMEOUT_FREE); // disable all debugging when on master branch
-        //} else {
-        //    sendAndWaitForAnswer("n110,1", 0, TIMEOUT_FREE); // enable all serial
-        //    sendAndWaitForAnswer("n114,f6", 0, TIMEOUT_FREE); // enable all default debugging
-        //}
+        } else {
+            sendAndWaitForAnswer("n110,0", 0, TIMEOUT_FREE); // enable all serial
+            sendAndWaitForAnswer("n114,fe", 0, TIMEOUT_FREE); // enable all default debugging, except reception of free frames
+        }
         lastInitProblem = "";
         return true;
+    }
+
+    @Override
+    public void stopAndJoin() {
+        super.stopAndJoin();
+        BluetoothManager.getInstance().disconnect();
     }
 }

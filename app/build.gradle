@@ -11,19 +11,18 @@ android {
             keyPassword 'canze4us!'
         }
     }
-    compileSdkVersion 29
-    //buildToolsVersion '26.0.2'
+    compileSdk 33
+
     defaultConfig {
         applicationId "lu.fisch.canze"
         minSdkVersion 21
-        targetSdkVersion 29
-        versionName '1.62'
-        versionCode 94
+        versionName '1.67'
+        versionCode 100
     }
     buildTypes {
         release {
-            minifyEnabled false
-            // minifyEnabled true
+            //minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         //debug {
@@ -41,15 +40,16 @@ android {
         }
     }
     defaultConfig {
+
+        targetSdk 33
         buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "String", "BRANCH", "\"" + getGitRevParseInfo() + "\""
         signingConfig signingConfigs.release
     }
-    lintOptions {
-        checkReleaseBuilds false
-        // Or, if you prefer, you can continue to check for errors in release builds,
-        // but continue the build even when errors are found:
+    namespace 'lu.fisch.canze'
+    lint {
         abortOnError false
+        checkReleaseBuilds false
         disable 'TypographyFractions'
     }
 }
@@ -62,17 +62,24 @@ def getGitRevParseInfo() {
 
 dependencies {
     // BoM for the Firebase platform
-    playstoreImplementation platform('com.google.firebase:firebase-bom:26.2.0')
+    playstoreImplementation platform('com.google.firebase:firebase-bom:32.2.2')
 
     // Dependencies for the desired Firebase products without specifying versions
-    playstoreImplementation 'com.google.firebase:firebase-analytics'
-    playstoreImplementation 'com.google.firebase:firebase-crashlytics'
+    playstoreImplementation 'com.google.firebase:firebase-analytics:21.3.0'
+    playstoreImplementation 'com.google.firebase:firebase-crashlytics:18.4.0'
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'me.drakeet.support:toastcompat:1.1.0'
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.preference:preference:1.2.1'
+
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.4.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.3.0'
+
+    //implementation 'com.firebase:firebase-client-android:2.5.0'
+
+
 }

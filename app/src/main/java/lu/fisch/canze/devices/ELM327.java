@@ -120,9 +120,9 @@ public class ELM327 extends Device {
 
         if (toughness == TOUGHNESS_HARD || toughness == TOUGHNESS_MEDIUM) {
             // the default 500mS should be enough to answer, however, the answer contains various <cr>'s, so we need to set untilEmpty to true
-            response = sendAndWaitForAnswer("atws", 0, true, -1, true);
+            response = sendAndWaitForAnswer("atws", 500, true, -1, true);
         } else { // TOUGHNESS_WEAK
-            response = sendAndWaitForAnswer("atd", 0, true, -1, true);
+            response = sendAndWaitForAnswer("atd", 500, true, -1, true);
             MainActivity.debug("ELM327: version = " + response);
         }
         MainActivity.debug("ELM327: version: [" + response + "]");
@@ -425,7 +425,13 @@ public class ELM327 extends Device {
                                 if (stop) {
                                     // wait a fraction
                                     try {
-                                        Thread.sleep(50);
+                                        //Thread.sleep(50);
+                                        if (waitMillis > 50) {
+                                                Thread.sleep(400);
+                                            } else {
+                                                Thread.sleep(50);
+                                            }
+                                        end = Calendar.getInstance().getTimeInMillis() + generalTimeout;
                                     } catch (InterruptedException e) {
                                         // do nothing
                                     }
@@ -726,5 +732,11 @@ public class ELM327 extends Device {
             return new Message(frame, "-E-ISOTP rx data empty", true);
         else
             return new Message(frame, hexData.toLowerCase(), false);
+    }
+
+    @Override
+    public void stopAndJoin() {
+        super.stopAndJoin();
+        BluetoothManager.getInstance().disconnect();
     }
 }

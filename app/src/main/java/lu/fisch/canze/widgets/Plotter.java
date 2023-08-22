@@ -21,6 +21,11 @@
 
 package lu.fisch.canze.widgets;
 
+import static lu.fisch.canze.activities.MainActivity.debug;
+
+import android.content.res.Resources;
+import android.util.TypedValue;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -37,6 +42,7 @@ import java.util.Locale;
 import lu.fisch.canze.activities.MainActivity;
 import lu.fisch.canze.actors.Field;
 import lu.fisch.canze.actors.Fields;
+import lu.fisch.canze.classes.TimePoint;
 import lu.fisch.canze.classes.Crashlytics;
 import lu.fisch.canze.database.CanzeDataSource;
 import lu.fisch.canze.fragments.MainFragment;
@@ -262,9 +268,22 @@ public class Plotter extends Drawable {
 
             double lastX = Double.NaN;
             double lastY = Double.NaN;
+            double min = Double.NaN;
+            double max = Double.NaN;
+
+            if(values.size()>0)
+                min=values.get(0);
+            max=min;
+
             g.setColor(Color.RED);
             for(int i=0; i<values.size(); i++)
             {
+                // calculate min / max
+                if(values.get(i)<min)
+                    min=values.get(i);
+                if(values.get(i)>max)
+                    max=values.get(i);
+
                 try {
                     //MainActivity.debug("Value "+i+": "+values.get(i));
                     //MainActivity.debug("Value "+i+": "+values.get(i)+" Max: "+getMax()+" Min: "+getMin()+" height: "+getHeight()+" h: "+h);
@@ -283,6 +302,26 @@ public class Plotter extends Drawable {
                 } catch (IndexOutOfBoundsException | NullPointerException e) {
                     /* simply ignore */
                 }
+            }
+
+            // draw min & max
+            if (showValue) {
+                g.setColor(getTitleColor());
+                g.setTextSize(20);
+
+                int tx = getX() + width - 8 - spaceAlt;
+                int ty = getY();
+                int dy = g.stringHeight("Ip") + 4; // full height and undersling
+
+                String text = "min: "+String.format("%.2f", min);
+                int tw = g.stringWidth(text);
+                ty += dy;
+                g.drawString(text, tx - tw, ty);
+
+                text = "max: "+String.format("%.2f", max);
+                tw = g.stringWidth(text);
+                ty += dy;
+                g.drawString(text, tx - tw, ty);
             }
         }
 
