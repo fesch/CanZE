@@ -477,80 +477,119 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
 
     private static final int MY_PERMISSIONS_REQUEST = 123;
 
+    private void configureBluetoothManager()
+    {
+        // configure Bluetooth manager
+        BluetoothManager.getInstance().setBluetoothEvent(new BluetoothEvent() {
+            @Override
+            public void onBeforeConnect() {
+                showBluetoothState(BLUETOOTH_SEARCH);
+            }
+
+            @Override
+            public void onAfterConnect(BluetoothSocket bluetoothSocket) {
+                if (device != null)
+                    device.init(visible);
+                showBluetoothState(BLUETOOTH_CONNECTED);
+            }
+
+            @Override
+            public void onBeforeDisconnect(BluetoothSocket bluetoothSocket) {
+            }
+
+            @Override
+            public void onAfterDisconnect() {
+                showBluetoothState(BLUETOOTH_DISCONNECTED);
+            }
+        });
+        // detect hardware status
+        int BT_STATE = BluetoothManager.getInstance().getHardwareState();
+        if (BT_STATE == BluetoothManager.STATE_BLUETOOTH_NOT_AVAILABLE)
+            toast("Sorry, but your device doesn't seem to have Bluetooth support!");
+        else if (BT_STATE == BluetoothManager.STATE_BLUETOOTH_NOT_ACTIVE) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, 1);
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    MainActivity.debug("MainActivity.onRequestPermissionsResult:permissions granted");
-                    storageGranted = true;
-                    btConnectGranted = true;
-                    btLocationGranted = true;
-
-                    // configure Bluetooth manager
-                    BluetoothManager.getInstance().setBluetoothEvent(new BluetoothEvent() {
-                        @Override
-                        public void onBeforeConnect() {
-                            showBluetoothState(BLUETOOTH_SEARCH);
-                        }
-
-                        @Override
-                        public void onAfterConnect(BluetoothSocket bluetoothSocket) {
-                            if (device != null)
-                                device.init(visible);
-                            showBluetoothState(BLUETOOTH_CONNECTED);
-                        }
-
-                        @Override
-                        public void onBeforeDisconnect(BluetoothSocket bluetoothSocket) {
-                        }
-
-                        @Override
-                        public void onAfterDisconnect() {
-                            showBluetoothState(BLUETOOTH_DISCONNECTED);
-                        }
-                    });
-                    // detect hardware status
-                    int BT_STATE = BluetoothManager.getInstance().getHardwareState();
-                    if (BT_STATE == BluetoothManager.STATE_BLUETOOTH_NOT_AVAILABLE)
-                        toast("Sorry, but your device doesn't seem to have Bluetooth support!");
-                    else if (BT_STATE == BluetoothManager.STATE_BLUETOOTH_NOT_ACTIVE) {
-                        Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                        startActivityForResult(enableBtIntent, 1);
-                    }
-
+            case 100:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    toast("BLUETOOTH_CONNECT Granted!");
+                    configureBluetoothManager();
                 } else {
-                    storageGranted = false;
-                    btConnectGranted = false;
-                    btLocationGranted = false;
-                    MainActivity.debug("MainActivity.onRequestPermissionsResult:permissions not granted");
+                    toast("BLUETOOTH_CONNECT Denied!");
                 }
-                break;
-
-            // other 'case' lines to check for other
-            // permissions this app might request.
-
-
-            default:
-                break;
+            case 101:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    toast("BLUETOOTH_SCAN Granted!");
+                    configureBluetoothManager();
+                } else {
+                    toast("BLUETOOTH_SCAN Denied!");
+                }
+            case 102:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    toast("WRITE_EXTERNAL_STORAGE Granted!");
+                    storageGranted=true;
+                } else {
+                    toast("WRITE_EXTERNAL_STORAGE Denied!");
+                    storageGranted=false;
+                }
         }
+    }
+
+    private void requestPermission(String permissionName, int permissionRequestCode) {
+        ActivityCompat.requestPermissions(this,
+                new String[]{permissionName}, permissionRequestCode);
     }
 
     public void checkPermissions()
     {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+        int permissionCheck;
+
+        if(Build.VERSION.SDK_INT>30) {
+            permissionCheck = ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.BLUETOOTH_CONNECT);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                requestPermission(Manifest.permission.BLUETOOTH_CONNECT, 100);
+            }
+
+            permissionCheck = ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.BLUETOOTH_SCAN);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                requestPermission(Manifest.permission.BLUETOOTH_SCAN, 101);
+            }
+        }
+        else
+        {
+            permissionCheck = ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, 102);
+            }
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        checkPermissions();
+
+        if((ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED &&
+                Build.VERSION.SDK_INT>30)
                 ||
-                ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED
-                ||
-                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.BLUETOOTH_CONNECT,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-            }, MY_PERMISSIONS_REQUEST);
-        } else {
-            storageGranted=true;
+                (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) == PackageManager.PERMISSION_GRANTED &&
+                        Build.VERSION.SDK_INT<=30)
+        )
+        {
+            configureBluetoothManager();
         }
     }
 
@@ -666,8 +705,6 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             }
             debug("Loading fields last field values from database (done)");
         })).start();
-
-        checkPermissions();
     }
 
     void handleDarkMode()
@@ -1075,8 +1112,13 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
                     }
 
                     // load the activity
-                    //checkPermissions();
-                    if(ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED)
+                    checkPermissions();
+                    if((ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED &&
+                            Build.VERSION.SDK_INT>30)
+                            ||
+                       (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED &&
+                                    Build.VERSION.SDK_INT<=30)
+                    )
                     {
                         toast("Can't open settings without having the permission to use bluetooth. Sorry!");
                     }

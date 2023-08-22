@@ -11,13 +11,13 @@ android {
             keyPassword 'canze4us!'
         }
     }
-    compileSdk 34
+    compileSdk 33
 
     defaultConfig {
         applicationId "lu.fisch.canze"
         minSdkVersion 21
-        versionName '1.65'
-        versionCode 98
+        versionName '1.67'
+        versionCode 100
     }
     buildTypes {
         release {
@@ -41,7 +41,7 @@ android {
     }
     defaultConfig {
 
-        targetSdk 34
+        targetSdk 33
         buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
         buildConfigField "String", "BRANCH", "\"" + getGitRevParseInfo() + "\""
         signingConfig signingConfigs.release
