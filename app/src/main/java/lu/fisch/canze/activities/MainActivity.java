@@ -520,27 +520,27 @@ public class MainActivity extends AppCompatActivity implements FieldListener /*,
             case 100:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    toast("BLUETOOTH_CONNECT Granted!");
+                    // toast("BLUETOOTH_CONNECT Granted!");
                     configureBluetoothManager();
                 } else {
-                    toast("BLUETOOTH_CONNECT Denied!");
+                    // toast("BLUETOOTH_CONNECT Denied!");
                 }
             case 101:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    toast("BLUETOOTH_SCAN Granted!");
+                    // toast("BLUETOOTH_SCAN Granted!");
                     configureBluetoothManager();
                 } else {
-                    toast("BLUETOOTH_SCAN Denied!");
+                    // toast("BLUETOOTH_SCAN Denied!");
                 }
             case 102:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    toast("WRITE_EXTERNAL_STORAGE Granted!");
-                    storageGranted=true;
+                    // toast("WRITE_EXTERNAL_STORAGE Granted!");
+                    storageGranted = true;
                 } else {
-                    toast("WRITE_EXTERNAL_STORAGE Denied!");
-                    storageGranted=false;
+                    // toast("WRITE_EXTERNAL_STORAGE Denied!");
+                    storageGranted = false;
                 }
         }
     }

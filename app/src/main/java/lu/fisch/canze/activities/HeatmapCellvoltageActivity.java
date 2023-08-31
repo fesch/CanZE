@@ -22,6 +22,7 @@
 package lu.fisch.canze.activities;
 
 import android.content.res.Resources;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.widget.TextView;
@@ -45,6 +46,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
     private double lowest, highest;
     private double cutoff;
     private final double[] lastVoltage = {0,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4};
+    private final boolean[] balancingBits  = new boolean[97];
     private final int lastCell = 96;
     @ColorInt
     private int baseColor;
@@ -66,11 +68,15 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
         MainActivity.getInstance().setDebugListener(this);
         // Battery compartment temperatures
         for (int i = 1; i <= 62; i++) {
-            String sid = Sid.Preamble_CellVoltages1 + (i * 16); // remember, first is pos 16, i starts s at 1
+            String sid = Sid.Preamble_CellVoltages1 + (i * 16); // remember, first is pos 16, i starts at 1
             addField(sid);
         }
         for (int i = 63; i <= 96; i++) {
-            String sid = Sid.Preamble_CellVoltages2 + ((i - 62) * 16); // remember, first is pos 16, i starts s at 1
+            String sid = Sid.Preamble_CellVoltages2 + ((i - 62) * 16); // remember, first is pos 16, i starts at 1
+            addField(sid);
+        }
+        for (int i = 0; i < 12; i++) {
+            String sid = Sid.Preamble_BalancingBytes + ((i + 2) * 8); // remember, first is pos 16, i starts at 0
             addField(sid);
         }
     }
@@ -86,6 +92,15 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
             cell = (Integer.parseInt(fieldId.split("[.]")[2])) / 16; // cell is 1-based
         } else if (fieldId.startsWith(Sid.Preamble_CellVoltages2)) {
             cell = (Integer.parseInt(fieldId.split("[.]")[2])) / 16 + 62; // cell is 1-based
+        } else if (fieldId.startsWith(Sid.Preamble_BalancingBytes)) {
+            cell = (Integer.parseInt(fieldId.split("[.]")[2])) / 8 - 2; // cell is 0-based
+            int mask = 0b10000000;
+            int value = (int) field.getValue();
+            for (int i = 0; i < 8; i++) {
+                balancingBits[cell * 8 + i + 1] = ((value & mask) != 0);
+                mask = mask >> 1;
+            }
+            return;
         }
         if (cell > 0 && cell <= lastCell) {
             final double value = field.getValue();
@@ -113,6 +128,11 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
                             TextView tv = findViewById(getResources().getIdentifier("text_cell_" + i + "_voltage", "id", getPackageName()));
                             if (tv != null) {
                                 // tv.setText(String.format("%.3f", lastVoltage[i]));
+                                if (balancingBits[i]) {
+                                    tv.setPaintFlags(tv.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                                } else {
+                                    tv.setPaintFlags(tv.getPaintFlags() & (~Paint.UNDERLINE_TEXT_FLAG));
+                                }
                                 tv.setText(String.format(Locale.getDefault(), "%.3f", lastVoltage[i]));
                                 int delta = (int) (5000 * (lastVoltage[i] - mean)); // color is temp minus mean. 1mV difference is 5 color ticks
                                 tv.setBackgroundColor(makeColor (delta));
@@ -137,6 +157,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
                     }
                 });
             }
+            return;
         }
     }
 
