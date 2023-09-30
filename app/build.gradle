@@ -16,13 +16,13 @@ android {
     defaultConfig {
         applicationId "lu.fisch.canze"
         minSdkVersion 21
-        versionName '1.67'
-        versionCode 100
+        versionName '1.68beta2'
+        versionCode 102
     }
     buildTypes {
         release {
-            //minifyEnabled false
-            minifyEnabled true
+        //  minifyEnabled false
+        //  minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         //debug {

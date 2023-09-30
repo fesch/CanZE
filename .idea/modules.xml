@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/CanZE.iml" filepath="$PROJECT_DIR$/.idea/modules/CanZE.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CanZE.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CanZE.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CanZE.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CanZE.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CanZE.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CanZE.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CanZE.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CanZE.app.unitTest.iml" />
     </modules>
