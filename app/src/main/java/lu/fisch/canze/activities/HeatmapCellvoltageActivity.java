@@ -163,10 +163,7 @@ public class HeatmapCellvoltageActivity extends CanzeActivity implements FieldLi
 
 
     private @ColorInt int makeColor (int delta) {
-        @ColorInt int color = baseColor;
-
         if (delta > 62) delta = 62; else if (delta < -62) delta = -62;
-
         if (dark) {
             if (delta > 0) {
                 return baseColor + (delta * 0x010000); // one tick is one red
