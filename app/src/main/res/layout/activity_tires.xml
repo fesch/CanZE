@@ -284,7 +284,7 @@
                         android:layout_weight="5"
                         android:layout_width="0dp"
                         android:enabled="false"
-                        android:text="SAVE TO A" />
+                        android:text="@string/button_TiresSaveToA" />
 
                     <TextView
                         android:layout_weight="1"
@@ -296,7 +296,7 @@
                         android:layout_weight="5"
                         android:layout_width="0dp"
                         android:enabled="false"
-                        android:text="LOAD FROM A" />
+                        android:text="@string/button_TiresLoadFromA" />
                 </TableRow>
 
                 <TableRow>
@@ -306,7 +306,7 @@
                         android:layout_weight="5"
                         android:layout_width="0dp"
                         android:enabled="false"
-                        android:text="SAVE TO B" />
+                        android:text="S@string/button_TiresSaveToB" />
 
                     <TextView
                         android:layout_weight="1"
@@ -318,7 +318,7 @@
                         android:layout_weight="5"
                         android:layout_width="0dp"
                         android:enabled="false"
-                        android:text="LOAD FROM B" />
+                        android:text="@string/button_TiresLoadFromB" />
                 </TableRow>
 
                 <TableRow>
@@ -328,7 +328,7 @@
                         android:layout_weight="11"
                         android:layout_width="0dp"
                         android:enabled="false"
-                        android:text="SWAP FRONT REAR" />
+                        android:text="@string/button_TiresSwapFrontRear" />
                 </TableRow>
 
             </TableLayout>

@@ -300,7 +300,7 @@
                 custom:minorTicks="2"
                 custom:fieldSID="800.6107.24,654.42"
                 custom:widget="timeplot"
-                custom:text="Delta with reality (km), Range (km)"
+                custom:text="@string/graph_DeltaRange"
                 custom:intervals="{
                     '800.6107.24':10000,
                     '654.42':10000

@@ -133,12 +133,12 @@
         <item>Nem elérhető (7:szürke)</item>
     </string-array>
     <string-array name="list_AuxStatus">
-        <item>None</item>
+        <item>Nincs</item>
         <item>1</item>
         <item>2</item>
-        <item>Soon</item>
+        <item>Hamarosan</item>
         <item>4</item>
-        <item>Now</item>
+        <item>Igen</item>
         <item>6</item>
         <item>7</item>
     </string-array>
@@ -146,12 +146,12 @@
     <!-- Battery -->
 
     <string name="title_activity_battery">Akkumulátor</string>
-    <string name="button_Battery">Akkumulátor</string>
+    <string name="button_Battery">Akku</string>
     <string name="graph_SOH">Egészségi Állapot [SoH](%)</string>
-    <string name="graph_RealIndicatedSoc">SOC valós/használható (%)</string>
-    <string name="help_QA"><![CDATA[More detailed information about these data can be found in the <a href=\'http://canze.fisch.lu/qa/\'>Q & A section</a> of the <a href=\'http://canze.fisch.lu/\'>CanZE homepage</a>.]]></string>
-    <string name="graph_CellVoltages">Cella Feszültségek (V)</string>
-    <string name="graph_ModuleTemperatures">Akku modulok hőmérséklete (°C)</string>
+    <string name="graph_RealIndicatedSoc">SOC valós/kijelzett (%)</string>
+    <string name="help_QA"><![CDATA[Ezekről az adatokról részletesebb információ a <a href=\'http://canze.fisch.lu/\'>CanZE oldalon</a>, a <a href=\'http://canze.fisch.lu/qa/\'>Q & A szekcióban</a> található.]]></string>
+    <string name="graph_CellVoltages">Cellafeszültség (V)</string>
+    <string name="graph_ModuleTemperatures">Akku modulok hőmérs. (°C)</string>
 
     <!-- BCB (now integrated in ChargingTech) -->
 
@@ -330,8 +330,8 @@
     <string name="title_activity_braking">Fékrendszer info</string>
     <string name="button_Braking">Fékrendszer</string>
     <string name="label_driver_torque_request">Kívánt nyomaték</string>
-    <string name="label_ElecBrakeWheelsTorqueApplied">Alkalmazott Elektromos Nyomaték (rekuperáció)</string>
-    <string name="label_diff_friction_torque">Alkalmazott Súrlódási Nyomaték (veszteség)</string>
+    <string name="label_ElecBrakeWheelsTorqueApplied">Alkalmazott elektromos nyomaték (rekuperáció)</string>
+    <string name="label_diff_friction_torque">Alkalmazott súrlódási nyomaték (veszteség)</string>
     <string name="default_ZeroNm">0 Nm</string>
     <string name="help_AllTorques">Minden érték kombinált keréknyomatékban van megadva, nem motornyomatékban.</string>
 
@@ -351,7 +351,7 @@
     <string name="label_max_charge">Max akku töltés/rekuperáció (kW)</string>
     <string name="label_max_pilot">Charge pilot (A)</string>
     <string name="label_Phases">Fázisok</string>
-    <string name="label_UserSOC">Használható töltöttség [SoC] (%)</string>
+    <string name="label_UserSOC">Kijelzett töltöttség [SoC] (%)</string>
     <string name="label_RealSOC">Valós töltöttség [SoC] (%)</string>
     <string name="label_HvTemp">Átlagolt akkuhőmérséklet (°C)</string>
     <string name="label_SOH">Egészségi Állapot [SoH] (%)</string>
@@ -380,7 +380,7 @@
         <item>Ismeretlen</item>
     </string-array>
     <string-array name="list_PlugStatus">
-        <item>Nincs csatlakozva</item>
+        <item>Szabad</item>
         <item>Csatlakoztatva</item>
     </string-array>
     <string name="header_EVSEParameters">CCS Paraméterek</string>
@@ -495,7 +495,7 @@
 
     <string name="title_activity_charging_graph">Töltési grafikonok</string>
     <string name="button_ChargingGraphs">Töltési grafikonok</string>
-    <string name="graph_PilotPower">Charge pilot amp (A), Töltési teljesítmény (kW)</string>
+    <string name="graph_PilotPower">Charge pilot áram (A), Töltési teljesítmény (kW)</string>
     <string name="graph_MaxRealChPwr">Max akku tölés (kW) / DC töltési teljesítmény (kW)</string>
     <string name="graph_EnergyTemperature">Töltöttség (kWh), Hőmérséklet (°C)</string>
 
@@ -512,8 +512,8 @@
     <string name="label_HistDuration">Időtartam</string>
     <string-array name="list_ChargingHistEnd">
         <item>Teljes</item>
-        <item>Unpl c</item>
-        <item>Cut ch</item>
+        <item>Kihúzv</item>
+        <item>Levágv</item>
         <item>Hiba</item>
         <item>Ütemez</item>
         <item>Flt1</item>
@@ -532,19 +532,19 @@
     </string-array>
     <string name="header_ChargeSummary">Töltés összesítő</string>
     <string name="label_TotKwh">Teljes akkumulátor használat (kWh)</string>
-    <string name="label_TotKwhRegen">Regeneratív fékezésből száramazó energia (kWh)</string>
+    <string name="label_TotKwhRegen">Regen. fékezésből származó energia (kWh)</string>
     <string name="label_CountFull">Teljes töltések száma (#)</string>
     <string name="label_CountPartial">Részleges töltések száma (#)</string>
 
     <!-- Clima tech -->
 
-    <string name="title_activity_clima_tech">Klíma</string>
+    <string name="title_activity_clima_tech">Légkondícionáló</string>
     <string name="button_Climate">Klíma</string>
     <string name="label_ThermalComfortPower">Energiafelhasználás (W)</string>
     <string name="label_ClimaLoopMode">Klímakör üzemmód</string>
     <string name="label_HVBatConditioningMode">Nagyfesz Akku hűtési mód</string>
     <string name="label_Temperatures">Hőmérsékletek (°C)</string>
-    <string name="label_HVEvaporationTemp">Nagyfesz akku hőcserélő hőmérséklet (°C)</string>
+    <string name="label_HVEvaporationTemp">Nagyfesz akku hőcserélő hőmérs. (°C)</string>
     <string name="label_ACPressure">Nyomás (bar)</string>
     <string name="label_HVCoolingState">Nagyfesz akku hűtés állapota</string>
     <string name="label_EngineFanSpeed">Motor ventillátor sebesség (%)</string>
@@ -615,13 +615,13 @@
 
     <!-- Datalogger -->
 
-    <string name="format_NoSid" formatted="false">%s: sid %s nem létezi</string>
+    <string name="format_NoSid" formatted="false">%s: sid %s nem létezik</string>
 
     <!-- Driving -->
 
     <string name="title_activity_driving">Vezetés infók</string>
     <string name="button_Driving">Vezetés</string>
-    <string name="label_pedal">Pedal ozíció</string>
+    <string name="label_pedal">Pedál pozíció</string>
     <string name="label_wheel_torque">Kerék Nyomaték</string>
     <string name="label_DistToDest">Távolság a célig</string>
     <string name="label_DistAvailAtDest">Maradék hatótáv a célnál</string>
@@ -630,7 +630,7 @@
     <string name="label_TripEnergy">Útvonal energiaigénye (kWh)</string>
     <string name="button_Double">Double</string>
     <string name="prompt_Distance">FENNMARADÓ TÁVOLSÁG</string>
-    <string name="prompt_SetDistance">KérEM, adja meg az úticél távolságát. A kijelző megbecsüli az akkumulátorban érkezéskor fennmaradó hátralévő vezetési távolságot.</string>
+    <string name="prompt_SetDistance">Kérem, adja meg az úticél távolságát. A kijelző megbecsüli az akkumulátorban érkezéskor fennmaradó hátralévő vezetési távolságot.</string>
 
     <!-- DTC and All data -->
 
@@ -643,8 +643,8 @@
     <string name="message_PollerStopping">\n\nKérem várjon, amíg a poller szál leáll…\n</string>
     <string name="message_NoConnection">\nNincs kapcsolat. Zárja be ezt a képernyőt és győződjön meg róla, hogy az eszköze párosítva és csatlakoztatva legyen.\n</string>
     <string name="message_NoEcuDefinition">\nNem találhatók definíciók ehhez az ECU-hoz. Csak a hibakódok jelennek meg.\n</string>
-    <string name="message_SendingInit">\nInicializálási sorozat küldése\n</string>
-    <string name="message_InitFailed">\nAz inicializálás nem sikerült\n</string>
+    <string name="message_SendingInit">\nSending initialisation sequence\n</string>
+    <string name="message_InitFailed">\nInitialisation failed\n</string>
     <string name="message_StartTestSession">\nSending start tester session sequence</string>
     <string name="message_NoTestSessionField">Start session field does not exist\n</string>
     <string name="message_UnexpectedResult">Lekérdezés elküldve, de váratlan eredmény érkezett:[</string>
@@ -653,15 +653,15 @@
     <string name="message_NoActiveDtcs">\nNincs aktív hibakód\n</string>
     <string name="message_clear">"Törlés "</string>
     <string name="message_NoClearDtcField">Clear DTCs field does not exist\n</string>
-    <string name="message_MessageNull">Msg is null. Is the car switched on?\n</string>
-    <string name="message_ClearSuccessful">A törlés sikeresnek tűnik, indítson egy új lekérést\n</string>
+    <string name="message_MessageNull">Az üzenet üres. A jármű be van kapcsolva?\n</string>
+    <string name="message_ClearSuccessful">A törlés sikeresnek tűnik, indítson egy új lekérést.\n</string>
     <string name="message_DumpDone">Kész. Logfile létrehozva.</string>
     <string name="format_DumpWriting" formatted="false">Várjon, írás %s</string>
 
     <!-- Elm testing -->
 
     <string name="title_activity_elm_test">Test ELM327 Dongle</string>
-    <string name="button_ElmTesting">ELM testing</string>
+    <string name="button_ElmTesting">ELM teszt</string>
     <string name="message_ExpectedResult">A várt eredmény érkezett\n==========\n</string>
     <string name="message_FieldNotExists">A kért mező nem létezik. Ez egy hiba a tesztcsomagban, kérjük, jelentse.\n</string>
     <string name="message_Ready">\nKész</string>
@@ -737,7 +737,7 @@
     <string name="button_Range">Hatótáv</string>
     <string name="label_RangeRemaining">Jármű szerinti hatótáv:</string>
     <string name="label_RangeRemainingCanZE">CanZE szerinti hatótáv:</string>
-    <string name="label_EstimatedDrivingStyleLoss">Becsült energiaveszteség vezetési stílus alapján:</string>
+    <string name="label_EstimatedDrivingStyleLoss">Becsült veszteség vez. stílus alapján:</string>
     <string name="graph_DistanceEnergy">Hatótáv (km), Töltöttség (kWh)</string>
 
     <!-- Research -->
@@ -771,9 +771,9 @@
     <string name="prompt_YesIKnow">Igen</string>
     <string name="prompt_NoSecureWay">Nem</string>
     <string name="prompt_Attention">FIGYELEM!</string>
-    <string name="prompt_WarningDriving">A vezetési tevékenység és a forgalom figyelmen kívül hagyása rendkívül veszélyes, és veszélybe sodorhatja az Ön és a környezetében élők életét. Ennek a módnak a letiltása egyáltalán nem javasolt!\n\n Biztosan szeretné a Biztonságos vezetési mód letiltását?</string>
+    <string name="prompt_WarningDriving">A vezetési tevékenység és a forgalom figyelmen kívül hagyása rendkívül veszélyes, és veszélybe sodorhatja az Ön és a környezetében élők életét. Ennek a módnak a letiltása egyáltalán nem javasolt!\n\nValóban letiltja a Biztonságos vezetési módot?</string>
     <string name="prompt_NoThanks">Nem, köszi</string>
-    <string name="prompt_BluetoothOn">Ha aktívan állapotban hagyja a Bluetooth-t miközben az alkalmazás a háttérben működik, az zavarhatja a Bluetooth funkciót használó más alkalmazásokat. Ezenkívül lemerítheti az akkumulátort, ha elfelejti kikapcsolni a CanZE-t, vagy letiltani ezt a funkciót.<br/><br/><b>Ha ezt a funkciót használja, a kapcsolat akkor is életben maradhat, ha újraindítja Android-eszközét.</b><br/><br/>Továbbra is engedélyezi a Bluetooth kapcsolat háttérben módot?</string>
+    <string name="prompt_BluetoothOn">Ha aktív állapotban hagyja a Bluetooth-t miközben az alkalmazás a háttérben működik, az zavarhatja a Bluetooth funkciót használó más alkalmazásokat. Ezenkívül lemerítheti az akkumulátort ha elfelejti kikapcsolni a CanZE-t vagy letiltani ezt a funkciót.<br/><br/><b> Ha ezt a funkciót használja, a kapcsolat akkor is életben maradhat ha újraindítja Android-eszközét.</b><br/><br/>Továbbra is engedélyezi a háttérben a Bluetooth kapcsolatot?</string>
     <string name="prompt_NoSd">A külső SD-kártya nem érhető el, nem írható, vagy nincs elég hely az adatok naplózásához.<br /><br /><b>Az adatok exportálása nem engedélyezhető!</b></string>
     <string name="prompt_Sorry">Sajnálom…</string>
     <string name="toast_CacheCleared">Gyorsítótár törölve…</string>
@@ -790,7 +790,7 @@
     <string name="label_LogLevelSummary">Meghatározza a megjelenített debug üzenetek szintjét</string>
     <string name="label_LoggingSettings">Naplózási beállítások</string>
     <string name="label_Logging">Naplózás</string>
-    <string name="label_ConfigureCustomFragment">Configure custom fragment</string>
+    <string name="label_ConfigureCustomFragment">Egyéni képernyő testreszabása</string>
     <string name="label_StartupActivity">Kezdőoldal</string>
     <string name="label_Theme">Téma</string>
     <string name="label_ThemeFollowSystem">Rendszertéma követése</string>
@@ -803,7 +803,7 @@
 
     <!-- SettingsCustom -->
 
-    <string name="title_activity_settingscustom">Custom fragment settings</string>
+    <string name="title_activity_settingscustom">Egyéni képernyő testreszabása</string>
 
     <!-- Speed control -->
 
@@ -820,7 +820,7 @@
     <string name="title_activity_tires">Gumi info</string>
     <string name="button_Tires">Gumik</string>
     <string name="help_PressuresMbar">Minden nyomás mbar-ban. Nyomás csak vezetés közben érzékelhető.</string>
-    <string name="label_TireSpdPresMisadaption">Sebesség-nyomás téves adaptáció</string>
+    <string name="label_TireSpdPresMisadaption">Sebesség-nyomás hibás adaptáció</string>
     <string name="label_TireFL">Bal első</string>
     <string name="label_TireFR">Jobb első</string>
     <string name="label_TireRL">Bal hátsó</string>

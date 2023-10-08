@@ -102,6 +102,7 @@
     <string name="label_auxbat">Voltage, Vehicle state, Charging state</string>
     <string name="label_auxbatvolt">Voltage</string>
     <string name="label_AuxStatus">Replacement advice</string>
+    <string name="graph_VoltageState">Voltage, Vehicle state</string>
     <string name="label_vehiclestate">Vehicle state</string>
     <string-array name="list_VehicleState">
         <item>Asleep, off (0:red)</item>
@@ -131,6 +132,8 @@
         <item>14</item>
         <item>15</item>
     </string-array>
+    <string name="label_VoltageLoad">Voltage under load</string>
+    <string name="label_CurrentLoad">Current under load</string>
     <string-array name="list_ChargingStatus2">
         <item>No charge (0:red)</item>
         <item>Waiting (planned, 1:green)</item>
@@ -616,6 +619,9 @@
     <string name="label_kWh100km">kWh/100km</string>
     <string name="graph_PowerSoc">Power (kW), SOC (%)</string>
     <string name="graph_SpeedConsumption">Speed (km/h), Consumption (kWh/100km)</string>
+    <string name="graph_PowerDelta">Power (kWh), Delta with reality (km)</string>
+    <string name="graph_RangeDelta">Range (km),Delta with reality (km)</string>
+    <string name="graph_DeltaRange">Delta with reality (km), Range (km)</string>
 
     <!-- Dash -->
 
@@ -855,6 +861,11 @@
     <string name="label_TireIDRR">ID rear right</string>
     <string name="button_Tires_write">write</string>
     <string name="button_Tires_read">read</string>
+    <string name="button_TiresSaveToA">SAVE TO A</string>
+    <string name="button_TiresLoadFromA">LOAD FROM A</string>
+    <string name="button_TiresSaveToB">SAVE TO B</string>
+    <string name="button_TiresLoadFromB">SAVE FROM B</string>
+    <string name="button_TiresSwapFrontRear">SWAP FRONT REAR</string>
     <string-array name="list_TireStatus">
         <item>OK</item>
         <item>No info</item>

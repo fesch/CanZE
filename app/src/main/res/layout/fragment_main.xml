@@ -159,7 +159,7 @@
                         android:layout_marginBottom="4dp"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/button_speedcam"
-                        android:text="avg speed" />
+                        android:text="@string/button_speedcontrol" />
 
                 </TableRow>
 

@@ -83,7 +83,7 @@
             <TextView
                 android:layout_weight="0.7"
                 android:width="0dp"
-                android:text="Voltage under load" />
+                android:text="@string/label_VoltageLoad" />
 
             <TextView
                 android:id="@+id/textVoltageLoad"
@@ -99,7 +99,7 @@
             <TextView
                 android:layout_weight="0.7"
                 android:width="0dp"
-                android:text="Current under load" />
+                android:text="@string/label_CurrentLoad" />
 
             <TextView
                 android:id="@+id/textCurrentLoad"
@@ -161,7 +161,7 @@
                      '7ec.622005.24':'gradient',
                      '35c.5':'colorline[14.8],dot'
                      }"
-        custom:text="Voltage, Vehicle state"
+        custom:text="@string/graph_VoltageState"
         custom:timeScale="4"
         custom:widget="timeplot" />
     <!-- debug line -->
