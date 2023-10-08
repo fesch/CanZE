@@ -54,7 +54,7 @@ android {
     }
 }
 
-def getGitRevParseInfo() {
+static def getGitRevParseInfo() {
     def cmd = "git rev-parse --abbrev-ref HEAD"
     def proc = cmd.execute()
     proc.text.trim()
