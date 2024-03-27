@@ -11,7 +11,7 @@ android {
             keyPassword 'canze4us!'
         }
     }
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "lu.fisch.canze"
@@ -30,7 +30,7 @@ android {
         //    proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         //}
     }
-    flavorDimensions "edition"
+    flavorDimensions = ["edition"]
     productFlavors {
         playstore {
             dimension "edition"
@@ -52,6 +52,9 @@ android {
         checkReleaseBuilds false
         disable 'TypographyFractions'
     }
+    buildFeatures {
+        buildConfig true
+    }
 }
 
 static def getGitRevParseInfo() {
@@ -62,11 +65,11 @@ static def getGitRevParseInfo() {
 
 dependencies {
     // BoM for the Firebase platform
-    playstoreImplementation platform('com.google.firebase:firebase-bom:32.3.1')
+    playstoreImplementation platform('com.google.firebase:firebase-bom:32.8.0')
 
     // Dependencies for the desired Firebase products without specifying versions
-    playstoreImplementation 'com.google.firebase:firebase-analytics:21.3.0'
-    playstoreImplementation 'com.google.firebase:firebase-crashlytics:18.4.3'
+    playstoreImplementation 'com.google.firebase:firebase-analytics:21.6.1'
+    playstoreImplementation 'com.google.firebase:firebase-crashlytics:18.6.3'
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -76,8 +79,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.preference:preference:1.2.1'
 
-    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.4.3'
-    implementation 'com.google.firebase:firebase-analytics-ktx:21.3.0'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.6.3'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.6.1'
 
     //implementation 'com.firebase:firebase-client-android:2.5.0'
 
